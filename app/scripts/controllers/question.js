@@ -10,4 +10,12 @@
 angular.module('impactApp')
   .controller('QuestionCtrl', function ($scope) {
     $scope.mdph = {'name' : 'Calvados'};
+
+	$scope.formData = {};
+	$scope.acceptConditions = false;
+
+	$scope.processForm = function() {
+		console.log('awesome!');
+	};
   });
+
