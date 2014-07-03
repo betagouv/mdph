@@ -20,32 +20,37 @@ angular
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      // route to show our basic form (/questionnaire)
-      .state('questionnaire', {
+    // route to show our basic form (/questionnaire)
+    .state('questionnaire', {
       url: '/questionnaire',
       templateUrl: 'views/questionnaire.html',
       controller: 'QuestionCtrl'
-      })
+    })
 
-      // nested states 
-      // each of these sections will have their own view
-      // url will be nested (/questionnaire/disclaimer)
-      .state('questionnaire.disclaimer', {
+    // nested states 
+    // each of these sections will have their own view
+    .state('questionnaire.disclaimer', {
       url: '/disclaimer',
       templateUrl: 'views/questions/disclaimer.html'
-      })
+    })
 
-      // url will be nested (/questionnaire/dossier)
-      .state('questionnaire.dossier', {
+    .state('questionnaire.dossier', {
       url: '/dossier',
-      templateUrl: 'views/questions/dossier.html'
-      })
+      templateUrl: 'views/questions/dossier.html',
+      controller: function($scope) {
+        $scope.nextStep = $scope.formData.newFile ? 'questionnaire.representant' : 'questionnaire.renouvellement';
+        }
+    })
 
-      // url will be nested (/questionnaire/renouvellement)
-      .state('questionnaire.renouvellement', {
+    .state('questionnaire.renouvellement', {
       url: '/renouvellement',
       templateUrl: 'views/questions/renouvellement.html'
-      });
+    })
+
+    .state('questionnaire.representant', {
+      url: '/representant',
+      templateUrl: 'views/questions/representant.html'
+    });
 
     // catch all route
     // send users to the home page

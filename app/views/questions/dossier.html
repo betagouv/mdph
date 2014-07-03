@@ -1,12 +1,12 @@
 <h3>Votre dossier</h3>
 
 <div>
-    <input type="radio" name="dossier" ng-model="formData.newFile" value="true">C'est votre première demande</input>
-    <input type="radio" name="dossier" ng-model="formData.newFile" value="false">Vous avez déjà un dossier à la MDPH {{mdph.name}}</input>
+    <input type="radio" name="dossier" ng-model="formData.newFile" value="true"> C'est votre première demande</input>
+    <input type="radio" name="dossier" ng-model="formData.newFile" value="false"> Vous avez déjà un dossier à la MDPH {{mdph.name}}</input>
 </div>
 
 <div class="pull-right">
-	<a ui-sref="questionnaire.renouvellement" class="btn btn-primary">
+	<a ui-sref="{{nextStep}}" class="btn btn-primary">
 		Question suivante <span class="glyphicon glyphicon-circle-arrow-right"></span>
 	</a>
 </div>
