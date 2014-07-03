@@ -1,12 +1,21 @@
-<h3>Votre dossier</h3>
+<h3 class="qtitle">Votre dossier</h3>
 
-<div>
-    <input type="radio" name="dossier" ng-model="formData.newFile" value="true"> C'est votre première demande</input>
-    <input type="radio" name="dossier" ng-model="formData.newFile" value="false"> Vous avez déjà un dossier à la MDPH {{mdph.name}}</input>
-</div>
-
-<div class="pull-right">
-	<a ui-sref="{{nextStep}}" class="btn btn-primary">
-		Question suivante <span class="glyphicon glyphicon-circle-arrow-right"></span>
-	</a>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-6">
+			<label class="btn btn-default center-block" ng-model="data.newFile" btn-radio="true">
+				C'est votre première demande
+			</label>
+		</div>
+		<div class="col-xs-6">
+			<label class="btn btn-default center-block" ng-model="data.newFile" btn-radio="false">
+				Vous avez déjà un dossier à la MDPH {{data.mdph}}
+			</label>
+		</div>
+	</div>
+  <div class="row next-step">
+    <div class="col-xs-offset-9 col-xs-3">
+      <a ng-disabled="data.newFile === undefined" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
+    </div>
+  </div>
 </div>

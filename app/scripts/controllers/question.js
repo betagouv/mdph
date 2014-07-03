@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('QuestionCtrl', function ($scope, $window) {
 
-	$scope.formData = { 'mdph' : 'calvados'};
 	$scope.acceptConditions = false;
+  $scope.data = { 'mdph' : 'calvados' };
 
 	$scope.processForm = function() {
 		$window.alert('Bravo !');

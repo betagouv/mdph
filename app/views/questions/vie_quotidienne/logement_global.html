@@ -1,0 +1,41 @@
+<h4 class="qsubtitle">Vous vivez</h4>
+
+<div class="container-fluid">
+  <div class="row" >
+    <div class="col-xs-3">
+      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'parents'">
+        Avec vos parents
+      </label>
+    </div>
+    <div class="col-xs-3">
+      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'seul'">
+        Seul
+      </label>
+    </div>
+    <div class="col-xs-3">
+      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'couple'">
+        En couple
+      </label>
+    </div>
+    <div class="col-xs-3">
+      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'enfants'">
+        Avec vos enfants
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'autre'">
+        Autre
+      </label>
+    </div>
+    <div class="col-xs-9">
+      <input type="text" class="form-control" ng-disabled="data.vie !== 'autre'" ng-model="data.vie_detail" placeholder="Préciser">
+    </div>
+  </div>
+  <div class="row next-step">
+    <div class="col-xs-offset-9 col-xs-3">
+      <button type="submit" class="btn btn-danger pull-right">Envoyer</button>
+    </div>
+  </div>
+</div>

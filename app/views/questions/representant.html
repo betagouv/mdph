@@ -1,10 +1,16 @@
-<h3>Pour quelle personne faites vous cette demande ?</h3>
+<h3 class="qtitle">Pour quelle personne faites vous cette demande ?</h3>
 
-<div>
-    <input type="radio" name="dossier" ng-model="formData.isRepresentant" value="true"> Pour vous</input>
-    <input type="radio" name="dossier" ng-model="formData.isRepresentant" value="false"> Pour une autre en tant que représentant légal</input>
-</div>
-
-<div class="pull-right">
-    <button type="submit" class="btn btn-danger">Envoyer</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6">
+      <a ui-sref="q.vie_quotidienne" ng-class="{'btn-primary' : false == formData.isRepresentant}" class="btn btn-default center-block" ng-click="formData.isRepresentant = false">
+        Pour vous
+      </a>
+    </div>
+    <div class="col-xs-6">
+      <a ui-sref="q.vie_quotidienne" ng-class="{'btn-primary' : formData.isRepresentant}" class="btn btn-default center-block" ng-click="formData.isRepresentant = true">
+        Pour une autre en tant que représentant légal
+      </a>
+    </div>
+  </div>
 </div>

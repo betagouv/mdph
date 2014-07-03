@@ -41,7 +41,7 @@ body {
 
 /* Custom page footer */
 .dev_footer {
-  margin-top: 55px;
+  margin-top: 34px;
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
@@ -55,6 +55,19 @@ body {
     font-size: 21px;
     padding: 14px 24px;
   }
+}
+
+/* Questionnaire */
+.qtitle {
+  padding-bottom: 34px;
+}
+
+.row {
+  padding-bottom: 7px;
+}
+
+.next-step {
+  padding-top: 34px;
 }
 
 /* Responsive: Portrait tablets and up */

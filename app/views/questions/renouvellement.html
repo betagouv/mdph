@@ -1,10 +1,16 @@
-<h3>Votre renouvellement</h3>
+<h3 class="qtitle">Votre renouvellement</h3>
 
-<div>
-    <input type="radio" name="dossier" ng-model="formData.hasChanged" value="true"> Vous arrivez à la fin de vos droits?</input>
-    <input type="radio" name="dossier" ng-model="formData.hasChanged" value="false"> Votre situation a changé</input>
-</div>
-
-<div class="pull-right">
-    <button type="submit" class="btn btn-danger">Envoyer</button>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-6">
+			<a ui-sref="q.vie_quotidienne" class="btn btn-default center-block" ng-click="data.hasChanged = true">
+				 Vous arrivez à la fin de vos droits
+			</a>
+		</div>
+		<div class="col-xs-6">
+			<a ui-sref="q.vie_quotidienne" class="btn btn-default center-block" ng-click="data.hasChanged = false">
+				 Votre situation a changé
+			</a>
+		</div>
+	</div>
 </div>
