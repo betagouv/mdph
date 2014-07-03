@@ -2,15 +2,19 @@
 	Avant de commencer le questionnaire, munissez-vous des documents qui peuvent vous être utiles (par exemple, vos relevés bancaires, bulletins de salaires des 3 derniers mois et ceux de votre conjoint(e), concubin(e) ou pacsé(e) et des personnes à charge âgées de moins de 25 ans).
 </div>
 
-<div class="form-group">
+<div>
   <label>
     <input type="checkbox" ng-model="acceptConditions">
     J’ai pris connaissance des conditions de ce service
   </label>
 </div>
 
-<div>
-	<a ui-sref="questionnaire.dossier" class="btn btn-primary" ng-disabled="{{acceptConditions}}">
+<div class="pull-right">
+	<a ui-sref="questionnaire.dossier" class="btn btn-primary">
 		Commencer le formulaire <span class="glyphicon glyphicon-ok"></span>
 	</a>
 </div>
+
+<pre class="dev_footer">
+{{acceptConditions}}
+</pre>

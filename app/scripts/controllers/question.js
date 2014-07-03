@@ -8,14 +8,12 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('QuestionCtrl', function ($scope) {
-    $scope.mdph = {'name' : 'Calvados'};
+  .controller('QuestionCtrl', function ($scope, $window) {
 
-	$scope.formData = {};
+	$scope.formData = { 'mdph' : 'calvados'};
 	$scope.acceptConditions = false;
 
 	$scope.processForm = function() {
-		console.log('awesome!');
+		$window.alert('Bravo !');
 	};
   });
-
