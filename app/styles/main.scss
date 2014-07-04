@@ -62,13 +62,54 @@ body {
   padding-bottom: 34px;
 }
 
+.btn-default.active {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
 .row {
-  padding-bottom: 7px;
+  padding-top: 7px;
+  z-index: 10;
+  .well {
+    z-index: -100;
+    -webkit-border-radius: 0 0 5px 5px ;
+    -moz-border-radius: 0 0 5px 5px ;
+    border-radius: 0 0 5px 5px ;
+    border-top: none;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 }
 
 .next-step {
   padding-top: 34px;
 }
+
+/* Animations
+.fadein,
+.fadeout {
+  -webkit-transition:all linear 0.2s;
+  -moz-transition:all linear 0.2s;
+  -o-transition:all linear 0.2s;
+  transition:all linear 0.2s;
+  position: relative;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  top: -50px;
+  display: block !important;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  top: 0;
+  display: block !important;
+}
+ */
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

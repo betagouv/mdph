@@ -1,0 +1,99 @@
+<h4 class="qsubtitle">Votre logement</h4>
+
+<div class="container-fluid">
+  <div class="row" >
+    <div class="col-xs-12">
+      <label class="btn btn-default center-block" ng-model="data.logement" btn-radio="'independant'">
+        Vous disposez d'un logement indépendant
+      </label>
+      <div class="well fadein fadeout" ng-hide="data.logement !== 'independant'">
+        <div class="row form-horizontal">
+          <label class="col-xs-4 control-label">En tant que</label>
+          <div class="col-xs-4">
+            <label class="btn btn-default center-block" ng-model="data.independantDetail" btn-radio="'proprietaire'">
+              Propriétaire
+            </label>
+          </div> 
+          <div class="col-xs-4">
+            <label class="btn btn-default center-block" ng-model="data.independantDetail" btn-radio="'locataire'">
+              Locataire
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-xs-12">
+      <label class="btn btn-default center-block" ng-model="data.logement" btn-radio="'etablissement'">
+        Vous logez en établissement
+      </label>
+      <div class="well fadein fadeout" ng-hide="data.logement !== 'etablissement'">
+        <div class="row form-horizontal">
+          <label class="col-xs-2 control-label">Précisez</label>
+          <div class="col-xs-10">
+            <input type="text" class="form-control" ng-model="data.etablissementNom" placeholder="Nom de l'établissement">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-xs-12">
+      <label class="btn btn-default center-block" ng-model="data.logement" btn-radio="'hebergement'">
+        Vous êtes hébergé(e) au domicile
+      </label>
+      <div class="well fadein fadeout" ng-show="data.logement === 'hebergement'">
+        <div class="row">
+          <div class="col-xs-4">
+            <label class="btn btn-default center-block" ng-model="data.hebergementDetail" btn-radio="'parents'">
+              De vos parents
+            </label>
+          </div>
+          <div class="col-xs-4">
+            <label class="btn btn-default center-block" ng-model="data.hebergementDetail" btn-radio="'enfants'">
+              De vos enfants
+            </label>
+          </div>
+          <div class="col-xs-4">
+            <label class="btn btn-default center-block" ng-model="data.hebergementDetail" btn-radio="'ami'">
+              D'un(e) ami(e)
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">
+            <label class="btn btn-default center-block" ng-model="data.hebergementDetail" btn-radio="'autreMembreFamille'">
+              D'un autre membre de<br>votre famille
+            </label>
+          </div>
+          <div class="col-xs-4">
+            <label class="btn btn-default center-block" ng-model="data.hebergementDetail" btn-radio="'familleAccueill'">
+              D'une famille d'accueil
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-xs-12">
+      <label class="btn btn-default center-block" ng-model="data.logement" btn-radio="'autre'">
+        Autre situation
+      </label>
+      <div class="well fadein fadeout" ng-hide="data.logement !== 'autre'">
+        <div class="row form-horizontal">
+          <label class="col-xs-2 control-label">Précisez</label>
+          <div class="col-xs-10">
+            <input type="text" class="form-control" ng-model="data.logementDetail">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row next-step">
+    <div class="col-xs-offset-8 col-xs-4">
+      <a ng-disabled="!isNextStepEnabled()" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
+    </div>
+  </div>
+</div>

@@ -38,22 +38,25 @@ angular
     .state('q.dossier', {
       url: '/dossier',
       templateUrl: 'views/questions/dossier.html',
-      controller: function($scope, $state) {
-        $scope.nextStep = function() {
-          $state.go('q.vie_quotidienne.logement_global');
-        };
-      }
+      controller: 'DossierCtrl'
     })
 
     .state('q.renouvellement', {
       url: '/renouvellement',
-      templateUrl: 'views/questions/renouvellement.html'
+      templateUrl: 'views/questions/renouvellement.html',
+      controller: 'RenouvellementCtrl'
     })
 
-    // inutilise pour le moment, a faire a la fin du questionnaire
     .state('q.representant', {
       url: '/representant',
-      templateUrl: 'views/questions/representant.html'
+      templateUrl: 'views/questions/representant.html',
+      controller: 'RepresentantCtrl'
+    })
+
+    .state('q.date_naissance', {
+      url: '/date_naissance',
+      templateUrl: 'views/questions/date_naissance.html',
+      controller: 'DateNaissanceCtrl'
     })
 
     .state('q.vie_quotidienne', {
@@ -64,7 +67,14 @@ angular
 
     .state('q.vie_quotidienne.logement_global', {
       url: '/logement_global',
-      templateUrl: 'views/questions/vie_quotidienne/logement_global.html'
+      templateUrl: 'views/questions/vie_quotidienne/logement_global.html',
+      controller: 'LogementGlobalCtrl'
+    })
+
+    .state('q.vie_quotidienne.logement_detail', {
+      url: '/logement_detail',
+      templateUrl: 'views/questions/vie_quotidienne/logement_detail.html',
+      controller: 'LogementDetailCtrl'
     });
 
     // catch all route

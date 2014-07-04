@@ -1,0 +1,14 @@
+<h3 class="qtitle">{{questionTitle}}</h3>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <input type="text" class="form-control" ng-model="data.dateNaissance" placeholder="DD/MM/YYYY"/>
+    </div>
+  </div>
+  <div class="row next-step">
+    <div class="col-xs-offset-8 col-xs-4">
+      <a ng-disabled="data.dateNaissance === undefined" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
+    </div>
+  </div>
+</div>

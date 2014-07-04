@@ -2,15 +2,22 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-xs-6">
-			<a ui-sref="q.vie_quotidienne" class="btn btn-default center-block" ng-click="data.hasChanged = true">
+		<div class="col-xs-12">
+			<label class="btn btn-default center-block" ng-model="data.situationChange" btn-radio="false">
 				 Vous arrivez à la fin de vos droits
-			</a>
-		</div>
-		<div class="col-xs-6">
-			<a ui-sref="q.vie_quotidienne" class="btn btn-default center-block" ng-click="data.hasChanged = false">
-				 Votre situation a changé
-			</a>
+			</label>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<label class="btn btn-default center-block" ng-model="data.situationChange" btn-radio="true">
+				 Votre situation a changé
+			</label>
+		</div>
+	</div>
+  <div class="row next-step">
+    <div class="col-xs-offset-8 col-xs-4">
+      <a ng-disabled="data.situationChange === undefined" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
+    </div>
+  </div>
 </div>

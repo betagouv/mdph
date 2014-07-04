@@ -2,15 +2,22 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-6">
-      <a ui-sref="q.vie_quotidienne" ng-class="{'btn-primary' : false == formData.isRepresentant}" class="btn btn-default center-block" ng-click="formData.isRepresentant = false">
+    <div class="col-xs-12">
+      <label class="btn btn-default center-block" ng-model="data.estRepresentant" btn-radio="false">
         Pour vous
-      </a>
+      </label>
     </div>
-    <div class="col-xs-6">
-      <a ui-sref="q.vie_quotidienne" ng-class="{'btn-primary' : formData.isRepresentant}" class="btn btn-default center-block" ng-click="formData.isRepresentant = true">
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <label class="btn btn-default center-block" ng-model="data.estRepresentant" btn-radio="true">
         Pour une autre en tant que représentant légal
-      </a>
+      </label>
+    </div>
+  </div>
+  <div class="row next-step">
+    <div class="col-xs-offset-8 col-xs-4">
+      <a ng-disabled="data.estRepresentant === undefined" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
     </div>
   </div>
 </div>

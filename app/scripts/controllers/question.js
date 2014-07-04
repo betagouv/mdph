@@ -16,4 +16,4 @@ angular.module('impactApp')
 	$scope.processForm = function() {
 		$window.alert('Bravo !');
 	};
-  });
+});
