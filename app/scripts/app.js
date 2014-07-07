@@ -90,6 +90,19 @@ angular
     })
     .state('q.vie_quotidienne.logement_detail.autre', {
       templateUrl: 'views/partials/form_precisez.html'
+    })
+
+    .state('q.vie_quotidienne.vos_besoins', {
+      abstract: true,
+      url: '/vos_besoins'
+    })
+    .state('q.vie_quotidienne.vos_besoins.quotidien', {
+      url: '/quotidien',
+      templateUrl: 'views/partials/question_checkbox.html',
+      controller: 'VosBesoinsCtrl'
+    })
+    .state('q.vie_quotidienne.vos_besoins.autre', {
+      templateUrl: 'views/partials/form_precisez.html'
     });
 
     // catch all route

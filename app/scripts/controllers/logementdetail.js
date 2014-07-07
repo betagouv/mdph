@@ -53,6 +53,6 @@ angular.module('impactApp')
     $scope.nextStep = function() {
       $scope.data.logement = $scope.question.model;
       $scope.data.logementDetail = $scope.question.detail;
-      $state.go('q.vie_quotidienne.hebergement');
+      $state.go('q.vie_quotidienne.vos_besoins.quotidien');
     };
   });

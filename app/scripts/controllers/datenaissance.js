@@ -13,6 +13,18 @@ angular.module('impactApp')
       'title' : $scope.data.estRepresentant ? 'Quelle est la date de naissance du demandeur ?' : 'Quelle est votre date de naissance ?',
     };
 
+    $scope.date = new Date();
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      startingDay: 1
+    };
+
     $scope.isNextStepDisabled = function() {
       return $scope.question.model === undefined;
     };
