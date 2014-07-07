@@ -37,7 +37,7 @@ angular
 
     .state('q.dossier', {
       url: '/dossier',
-      templateUrl: 'views/questions/dossier.html',
+      templateUrl: 'views/partials/question_radio.html',
       controller: 'DossierCtrl'
     })
 
@@ -49,13 +49,13 @@ angular
 
     .state('q.representant', {
       url: '/representant',
-      templateUrl: 'views/questions/representant.html',
+      templateUrl: 'views/partials/question_radio.html',
       controller: 'RepresentantCtrl'
     })
 
     .state('q.date_naissance', {
       url: '/date_naissance',
-      templateUrl: 'views/questions/date_naissance.html',
+      templateUrl: 'views/partials/question_date.html',
       controller: 'DateNaissanceCtrl'
     })
 
@@ -67,8 +67,13 @@ angular
 
     .state('q.vie_quotidienne.logement_global', {
       url: '/logement_global',
-      templateUrl: 'views/questions/vie_quotidienne/logement_global.html',
+      templateUrl: 'views/partials/question_radio.html',
       controller: 'LogementGlobalCtrl'
+    })
+
+    .state('q.vie_quotidienne.logement_global.precisez', {
+      url: '/logement_global',
+      templateUrl: 'views/questions/vie_quotidienne/logement_global.html'
     })
 
     .state('q.vie_quotidienne.logement_detail', {

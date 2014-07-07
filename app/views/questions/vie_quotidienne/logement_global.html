@@ -1,52 +1,6 @@
-<h4 class="qsubtitle">Vous vivez</h4>
-
-<div class="container-fluid">
-  <div class="row" >
-    <div class="col-xs-12">
-      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'parents'">
-        Avec vos parents
-      </label>
-    </div>
-  </div>
-  <div class="row" >
-    <div class="col-xs-12">
-      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'seul'">
-        Seul
-      </label>
-    </div>
-  </div>
-  <div class="row" >
-    <div class="col-xs-12">
-      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'couple'">
-        En couple
-      </label>
-    </div>
-  </div>
-  <div class="row" >
-    <div class="col-xs-12">
-      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'enfants'">
-        Avec vos enfants
-      </label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <label class="btn btn-default center-block" ng-model="data.vie" btn-radio="'autre'">
-        Autre
-      </label>
-      <div class="well fadein fadeout" ng-hide="data.vie !== 'autre'">
-        <div class="row form-horizontal">
-          <label class="col-xs-2 control-label">Précisez</label>
-          <div class="col-xs-10">
-            <input type="text" class="form-control" ng-model="data.vieDetail">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row next-step">
-    <div class="col-xs-offset-8 col-xs-4">
-      <a ng-disabled="!isNextStepEnabled()" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
-    </div>
+<div class="row form-horizontal">
+  <label class="col-xs-2 control-label">Précisez</label>
+  <div class="col-xs-10">
+    <input type="text" class="form-control" ng-model="question.detail">
   </div>
 </div>
