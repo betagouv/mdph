@@ -9,27 +9,50 @@
  */
 angular.module('impactApp')
   .controller('LogementDetailCtrl', function($scope, $state) {
-    $scope.data.logementDetail = '';
-    $scope.data.etablissementNom = '';
-    $scope.data.hebergementDetail = '';
-    $scope.data.independantDetail = '';
 
-    $scope.isNextStepEnabled = function() {
-      switch ($scope.data.logement) {
-        case 'autre':
-          return $scope.data.logementDetail !== '';
-        case 'etablissement':
-          return $scope.data.etablissementNom !== '';
-        case 'hebergement':
-          return $scope.data.hebergementDetail !== '';
+    $scope.question = {
+      'title': 'Votre vie quotidienne',
+      'subTitle': 'Votre logement',
+      'detail': '',
+      'answers': [
+        {'label': 'Vous disposez d\'un logement indépendant', 'value': 'independant', 'detail': true},
+        {'label': 'Vous logez en établissement', 'value': 'etablissement', 'detail': true, 'placeholder': 'Nom de l\'établissement'},
+        {'label': 'Vous êtes hébergé(e) au domicile', 'value': 'domicile', 'detail': true},
+        {'label': 'Autre situation', 'value': 'autre', 'detail': true}
+      ]
+    };
+
+    $scope.$watch('question.model', function() {
+      switch ($scope.question.model) {
         case 'independant':
-          return $scope.data.independantDetail !== '';
-        default:
-          return false;
+          $state.go('q.vie_quotidienne.logement_detail.independant');
+          break;
+        case 'domicile':
+          $state.go('q.vie_quotidienne.logement_detail.domicile');
+          break;
+        case 'etablissement':
+          $state.go('q.vie_quotidienne.logement_detail.etablissement');
+          break;
+        case 'autre':
+          $state.go('q.vie_quotidienne.logement_detail.autre');
+          break;
       }
+      $scope.question.detail = '';
+    });
+
+    $scope.isNextStepDisabled = function() {
+      if ($scope.question.model === undefined) {
+        return true;
+      }
+      if ($scope.question.detail === '') {
+        return true;
+      }
+      return false;
     };
 
     $scope.nextStep = function() {
+      $scope.data.logement = $scope.question.model;
+      $scope.data.logementDetail = $scope.question.detail;
       $state.go('q.vie_quotidienne.hebergement');
     };
   });

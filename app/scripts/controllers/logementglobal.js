@@ -24,7 +24,9 @@ angular.module('impactApp')
     };
 
     $scope.$watch('question.model', function() {
-      $state.go('q.vie_quotidienne.logement_global.precisez');
+      if ($scope.question.model === 'autre') {
+        $state.go('q.vie_quotidienne.logement_global.autre');
+      }
     });
 
     $scope.isNextStepDisabled = function() {

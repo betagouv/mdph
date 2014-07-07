@@ -43,7 +43,7 @@ angular
 
     .state('q.renouvellement', {
       url: '/renouvellement',
-      templateUrl: 'views/questions/renouvellement.html',
+      templateUrl: 'views/partials/question_radio.html',
       controller: 'RenouvellementCtrl'
     })
 
@@ -70,16 +70,26 @@ angular
       templateUrl: 'views/partials/question_radio.html',
       controller: 'LogementGlobalCtrl'
     })
-
-    .state('q.vie_quotidienne.logement_global.precisez', {
-      url: '/logement_global',
-      templateUrl: 'views/questions/vie_quotidienne/logement_global.html'
+    .state('q.vie_quotidienne.logement_global.autre', {
+      templateUrl: 'views/partials/form_precisez.html'
     })
 
     .state('q.vie_quotidienne.logement_detail', {
       url: '/logement_detail',
-      templateUrl: 'views/questions/vie_quotidienne/logement_detail.html',
+      templateUrl: 'views/partials/question_radio.html',
       controller: 'LogementDetailCtrl'
+    })
+    .state('q.vie_quotidienne.logement_detail.independant', {
+      templateUrl: 'views/questions/vie_quotidienne/logement_detail_independant.html'
+    })
+    .state('q.vie_quotidienne.logement_detail.domicile', {
+      templateUrl: 'views/questions/vie_quotidienne/logement_detail_domicile.html'
+    })
+    .state('q.vie_quotidienne.logement_detail.etablissement', {
+      templateUrl: 'views/partials/form_precisez.html'
+    })
+    .state('q.vie_quotidienne.logement_detail.autre', {
+      templateUrl: 'views/partials/form_precisez.html'
     });
 
     // catch all route
