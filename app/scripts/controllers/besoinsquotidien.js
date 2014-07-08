@@ -16,7 +16,7 @@ angular.module('impactApp')
       'autre': ''
     };
 
-    $scope.autre = {'label': 'Autre besoins', 'model': 'autre', 'value': false, 'detail': true};
+    $scope.autre = {'label': 'Autre besoin', 'model': 'autre', 'value': false, 'detail': true};
     $scope.question.answers = [
       {'label': 'Pour l\'hygiène corporelle (se laver, aller aux toilette, s\'habiller)', 'model': 'hygiene', 'value': false},
       {'label': 'Pour faire les courses', 'model': 'courses', 'value': false}
@@ -40,18 +40,15 @@ angular.module('impactApp')
       }
     });
 
-    $scope.isNextStepDisabled = function() {
-      return false;
-    };
-
     $scope.nextStep = function() {
       var $result = [];
       angular.forEach($scope.question.answers, function(answer) {
         if (answer.value) {
-          $result += answer.model;
+          $result.push(answer.model);
         }
       });
-      $scope.data.besoinsQuotidiens = $result;
-      $state.go('form.vos_besoins');
+      $scope.data.besoins = {};
+      $scope.data.besoins.quotidien = $result;
+      $state.go('form.vos_besoins.deplacement');
     };
   });

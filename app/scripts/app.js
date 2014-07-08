@@ -117,6 +117,48 @@ angular
                   templateUrl: 'views/partials/form_precisez.html',
                 }
               ]
+            },
+            {
+              name: 'deplacement',
+              url: '/deplacement',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'BesoinsDeplacementCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html',
+                }
+              ]
+            },
+            {
+              name: 'social',
+              url: '/social',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'BesoinsSocialCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html',
+                }
+              ]
+            },
+            {
+              name: 'lieu_de_vie',
+              url: '/lieu_de_vie',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'BesoinsLieuDeVieCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html',
+                }
+              ]
+            },
+            {
+              name: 'securite',
+              url: '/securite',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'BesoinsSecuriteCtrl'              
             }
           ]
         }
