@@ -86,30 +86,28 @@ body {
   padding-top: 34px;
 }
 
-/* Animations
-.fadein,
-.fadeout {
-  -webkit-transition:all linear 0.2s;
-  -moz-transition:all linear 0.2s;
-  -o-transition:all linear 0.2s;
-  transition:all linear 0.2s;
+/* Animations */
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition: all 0.1s linear;
+     -moz-transition: all 0.1s linear;
+       -o-transition: all 0.1s linear;
+          transition: all 0.1s linear;
   position: relative;
 }
-
-.fadein.ng-hide-remove,
-.fadeout.ng-hide-add.ng-hide-add-active {
+.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+  -webkit-transform: scaleY(0.0001);
+       -o-transform: scaleY(0.0001);
+          transform: scaleY(0.0001);
   opacity: 0;
   top: -50px;
-  display: block !important;
 }
-
-.fadeout.ng-hide-add,
-.fadein.ng-hide-remove.ng-hide-remove-active {
+.slide, .slide.ng-enter.ng-enter-active {
+  -webkit-transform: scaleY(1);
+       -o-transform: scaleY(1);
+          transform: scaleY(1);
   opacity: 1;
   top: 0;
-  display: block !important;
 }
- */
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

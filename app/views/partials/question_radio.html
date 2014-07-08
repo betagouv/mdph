@@ -7,7 +7,7 @@
       <label class="btn btn-default center-block" ng-model="question.model" btn-radio="answer.value">
         {{answer.label}}
       </label>
-      <div class="well fadein fadeout" ng-if="answer.detail && question.model === answer.value">
+      <div class="well slide" ng-if="answer.detail && question.model === answer.value">
         <div ui-view></div>
       </div>
     </div>

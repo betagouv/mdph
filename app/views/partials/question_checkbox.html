@@ -8,7 +8,7 @@
       <label class="btn btn-default center-block" ng-model="answer.value" btn-checkbox>
         {{answer.label}}
       </label>
-      <div class="well fadein fadeout" ng-if="answer.detail && answer.value">
+      <div class="well slide" ng-if="answer.detail && answer.value">
         <div ui-view></div>
       </div>
     </div>
