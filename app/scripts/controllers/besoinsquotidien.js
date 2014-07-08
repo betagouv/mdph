@@ -8,44 +8,31 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('BesoinsQuotidienCtrl', function ($scope, $state) {
+  .controller('BesoinsQuotidienCtrl', function ($scope, $state, isAdult) {
 
     $scope.question = {
       'title': 'Vos besoins dans la vie quotidienne',
       'subTitle': 'Vos besoins d\'aide',
       'autre': ''
     };
-    
-  //  $scope.isAdult = function($date) {
-  //    return moment($date).isBefore(moment().subtract('y', 18));
-  //  };
 
-    $scope.hygiene = {'label': 'Pour l\'hygiène corporelle (se laver, aller aux toilette, s\'habiller)', 'model': 'hygiene', 'value': false};
-    $scope.courses = {'label': 'Pour faire les courses', 'model': 'courses', 'value': false};
-    $scope.repas = {'label': 'Pour prendre les repas', 'model': 'repas', 'value': false};
-    $scope.sante = {'label': 'Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )', 'model': 'sante', 'value': false};
-    $scope.menage = {'label': 'Pour faire le ménage et l\'entretien des vêtements', 'model': 'menage', 'value': false};
-    $scope.cuisine = {'label': 'Pour préparer les repas', 'model': 'cuisine', 'value': false};
-    $scope.budget = {'label': 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', 'model': 'budget', 'value': false};
     $scope.autre = {'label': 'Autre besoins', 'model': 'autre', 'value': false, 'detail': true};
-    
     $scope.question.answers = [
-      $scope.hygiene,
-      $scope.courses
+      {'label': 'Pour l\'hygiène corporelle (se laver, aller aux toilette, s\'habiller)', 'model': 'hygiene', 'value': false},
+      {'label': 'Pour faire les courses', 'model': 'courses', 'value': false}
     ];
-    //if ($scope.isAdult($scope.data.dateNaissance)) {
-    if (true) {
-      $scope.question.answers += [
-        $scope.menage,
-        $scope.cuisine,
-        $scope.budget
-      ];
+    if (isAdult($scope.data.dateNaissance)) {
+      $scope.question.answers.push(
+        {'label': 'Pour faire le ménage et l\'entretien des vêtements', 'model': 'menage', 'value': false},
+        {'label': 'Pour préparer les repas', 'model': 'cuisine', 'value': false},
+        {'label': 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', 'model': 'budget', 'value': false}
+      );
     }
-    $scope.question.answers = [
-      $scope.repas,
-      $scope.sante,
+    $scope.question.answers.push(
+      {'label': 'Pour prendre les repas', 'model': 'repas', 'value': false},
+      {'label': 'Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )', 'model': 'sante', 'value': false},
       $scope.autre
-    ];
+    );
 
     $scope.$watch('autre.value', function() {
       if ($scope.autre.value) {
