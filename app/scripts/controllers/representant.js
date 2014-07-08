@@ -23,6 +23,6 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       $scope.data.estRepresentant = $scope.question.model;
-      $state.go('q.date_naissance');
+      $state.go('form.date_naissance');
     };
   });

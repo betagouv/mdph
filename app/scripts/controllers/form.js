@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:QuestionCtrl
+ * @name impactApp.controller:FormCtrl
  * @description
- * # QuestionCtrl
+ * # FormCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('QuestionCtrl', function ($scope, $window) {
+  .controller('FormCtrl', function ($scope, $window) {
 
 	$scope.acceptConditions = false;
   $scope.data = { 'mdph' : 'calvados' };

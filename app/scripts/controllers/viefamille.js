@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:LogementGlobalCtrl
+ * @name impactApp.controller:VieFamilleCtrl
  * @description
- * # LogementGlobalCtrl
+ * # VieFamilleCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('LogementGlobalCtrl', function($scope, $state) {
+  .controller('VieFamilleCtrl', function($scope, $state) {
 
     $scope.question = {
       'title' : 'Votre vie quotidienne',
@@ -25,7 +25,7 @@ angular.module('impactApp')
 
     $scope.$watch('question.model', function() {
       if ($scope.question.model === 'autre') {
-        $state.go('q.vie_quotidienne.logement_global.autre');
+        $state.go('form.vie_quotidienne.vie_famille.autre');
       }
     });
 
@@ -42,6 +42,6 @@ angular.module('impactApp')
     $scope.nextStep = function() {
       $scope.data.vie = $scope.question.model;
       $scope.data.vieDetail = $scope.question.detail;
-      $state.go('q.vie_quotidienne.logement_detail');
+      $state.go('form.vie_quotidienne.logement');
     };
   });

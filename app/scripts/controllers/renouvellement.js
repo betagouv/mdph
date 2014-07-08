@@ -23,6 +23,6 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       $scope.data.changementDeSituation = $scope.question.model;
-      $state.go('q.representant');
+      $state.go('form.representant');
     };
   });

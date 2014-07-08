@@ -31,6 +31,6 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       $scope.data.dateNaissance = $scope.question.model;
-      $state.go('q.vie_quotidienne.logement_global');
+      $state.go('form.vie_quotidienne.vie_famille');
     };
   });

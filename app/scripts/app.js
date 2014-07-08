@@ -17,96 +17,114 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.router.stateHelper'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-    // route to show our basic form (/questionnaire)
-    .state('q', {
+  .config(function (stateHelperProvider, $urlRouterProvider) {
+    stateHelperProvider.setNestedState({
+      name: 'form',
       url: '/questionnaire',
-      templateUrl: 'views/questionnaire.html',
-      controller: 'QuestionCtrl'
-    })
-
-    // nested states 
-    // each of these sections will have their own view
-    .state('q.disclaimer', {
-      url: '/disclaimer',
-      templateUrl: 'views/questions/disclaimer.html'
-    })
-
-    .state('q.dossier', {
-      url: '/dossier',
-      templateUrl: 'views/partials/question_radio.html',
-      controller: 'DossierCtrl'
-    })
-
-    .state('q.renouvellement', {
-      url: '/renouvellement',
-      templateUrl: 'views/partials/question_radio.html',
-      controller: 'RenouvellementCtrl'
-    })
-
-    .state('q.representant', {
-      url: '/representant',
-      templateUrl: 'views/partials/question_radio.html',
-      controller: 'RepresentantCtrl'
-    })
-
-    .state('q.date_naissance', {
-      url: '/date_naissance',
-      templateUrl: 'views/partials/question_date.html',
-      controller: 'DateNaissanceCtrl'
-    })
-
-    .state('q.vie_quotidienne', {
-      abstract: true,
-      url: '/vie_quotidienne',
-      templateUrl: 'views/questions/vie_quotidienne.html'
-    })
-
-    .state('q.vie_quotidienne.logement_global', {
-      url: '/logement_global',
-      templateUrl: 'views/partials/question_radio.html',
-      controller: 'LogementGlobalCtrl'
-    })
-    .state('q.vie_quotidienne.logement_global.autre', {
-      templateUrl: 'views/partials/form_precisez.html'
-    })
-
-    .state('q.vie_quotidienne.logement_detail', {
-      url: '/logement_detail',
-      templateUrl: 'views/partials/question_radio.html',
-      controller: 'LogementDetailCtrl'
-    })
-    .state('q.vie_quotidienne.logement_detail.independant', {
-      templateUrl: 'views/questions/vie_quotidienne/logement_detail_independant.html'
-    })
-    .state('q.vie_quotidienne.logement_detail.domicile', {
-      templateUrl: 'views/questions/vie_quotidienne/logement_detail_domicile.html'
-    })
-    .state('q.vie_quotidienne.logement_detail.etablissement', {
-      templateUrl: 'views/partials/form_precisez.html'
-    })
-    .state('q.vie_quotidienne.logement_detail.autre', {
-      templateUrl: 'views/partials/form_precisez.html'
-    })
-
-    .state('q.vie_quotidienne.vos_besoins', {
-      abstract: true,
-      url: '/vos_besoins'
-    })
-    .state('q.vie_quotidienne.vos_besoins.quotidien', {
-      url: '/quotidien',
-      templateUrl: 'views/partials/question_checkbox.html',
-      controller: 'VosBesoinsCtrl'
-    })
-    .state('q.vie_quotidienne.vos_besoins.autre', {
-      templateUrl: 'views/partials/form_precisez.html'
+      controller: 'FormCtrl',
+      templateUrl: 'views/form.html',
+      children: [
+        {
+          name: 'conditions',
+          url: '/conditions',
+          templateUrl: 'views/conditions.html'
+        },
+        {
+          name: 'dossier',
+          url: '/dossier',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'DossierCtrl'
+        },
+        {
+          name: 'renouvellement',
+          url: '/renouvellement',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'RenouvellementCtrl'
+        },
+        {
+          name: 'representant',
+          url: '/representant',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'RepresentantCtrl'
+        },
+        {
+          name: 'date_naissance',
+          url: '/date_naissance',
+          templateUrl: 'views/partials/question_date.html',
+          controller: 'DateNaissanceCtrl'
+        },
+        {
+          name: 'vie_quotidienne',
+          url: '/vie_quotidienne',
+          template: '<div id="form-views" ui-view></div>',
+          abstract: true,
+          children: [
+            {
+              name: 'vie_famille',
+              url: '/vie_famille',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'VieFamilleCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html'
+                }
+              ]
+            },
+            {
+              name: 'logement',
+              url: '/logement',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'LogementCtrl',
+              children: [
+                {
+                  name: 'independant',
+                  templateUrl: 'views/partials/details/independant.html'
+                },
+                {
+                  name: 'domicile',
+                  templateUrl: 'views/partials/details/domicile.html'
+                },
+                {
+                  name: 'etablissement',
+                  templateUrl: 'views/partials/form_precisez.html'
+                },
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'vos_besoins',
+          url: '/vos_besoins',
+          template: '<div id="form-views" ui-view></div>',
+          abstract: true,
+          children: [
+            {
+              name: 'quotidien',
+              url: '/quotidien',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'BesoinsQuotidienCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html',
+                }
+              ]
+            }
+          ]
+        }
+      ]
     });
 
     // catch all route
     // send users to the home page
-    $urlRouterProvider.otherwise('/questionnaire/disclaimer');
+    $urlRouterProvider.otherwise('/questionnaire/conditions');
 
 });

@@ -2,23 +2,23 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:VosBesoinsCtrl
+ * @name impactApp.controller:BesoinsQuotidienCtrl
  * @description
- * # VosBesoinsCtrl
+ * # BesoinsQuotidienCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('VosBesoinsCtrl', function ($scope, $state) {
+  .controller('BesoinsQuotidienCtrl', function ($scope, $state) {
 
     $scope.question = {
       'title': 'Vos besoins dans la vie quotidienne',
       'subTitle': 'Vos besoins d\'aide',
       'autre': ''
     };
-
-    $scope.isAdult = function($date) {
-      return moment($date).isBefore(moment().subtract('y', 18));
-    };
+    
+  //  $scope.isAdult = function($date) {
+  //    return moment($date).isBefore(moment().subtract('y', 18));
+  //  };
 
     $scope.hygiene = {'label': 'Pour l\'hygiène corporelle (se laver, aller aux toilette, s\'habiller)', 'model': 'hygiene', 'value': false};
     $scope.courses = {'label': 'Pour faire les courses', 'model': 'courses', 'value': false};
@@ -29,30 +29,27 @@ angular.module('impactApp')
     $scope.budget = {'label': 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', 'model': 'budget', 'value': false};
     $scope.autre = {'label': 'Autre besoins', 'model': 'autre', 'value': false, 'detail': true};
     
-    if ($scope.isAdult($scope.data.dateNaissance)) {
-      $scope.question.answers = [
-        $scope.hygiene,
-        $scope.courses,
-        $scope.repas,
-        $scope.sante,
-        $scope.autre
-      ];
-    } else {
-      $scope.question.answers = [
-        $scope.hygiene,
-        $scope.courses,
-        $scope.repas,
+    $scope.question.answers = [
+      $scope.hygiene,
+      $scope.courses
+    ];
+    //if ($scope.isAdult($scope.data.dateNaissance)) {
+    if (true) {
+      $scope.question.answers += [
         $scope.menage,
         $scope.cuisine,
-        $scope.budget,
-        $scope.sante,
-        $scope.autre
+        $scope.budget
       ];
     }
+    $scope.question.answers = [
+      $scope.repas,
+      $scope.sante,
+      $scope.autre
+    ];
 
     $scope.$watch('autre.value', function() {
       if ($scope.autre.value) {
-        $state.go('q.vie_quotidienne.vos_besoins.autre');
+        $state.go('form.vos_besoins.quotidien.autre');
       }
     });
 
@@ -62,13 +59,12 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       var $result = [];
-      for (var i = 0; i < $scope.question.answers.length; i++) {
-        if ($scope.question.answers[i].value) {
-          $result.push($scope.question.answers[i].model);
+      angular.forEach($scope.question.answers, function(answer) {
+        if (answer.value) {
+          $result += answer.model;
         }
-      }
+      });
       $scope.data.besoinsQuotidiens = $result;
-
-      $state.go('q.vie_quotidienne.logement_detail');
+      $state.go('form.vos_besoins');
     };
   });

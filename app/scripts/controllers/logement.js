@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:LogementDetailCtrl
+ * @name impactApp.controller:LogementCtrl
  * @description
- * # LogementDetailCtrl
+ * # LogementCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('LogementDetailCtrl', function($scope, $state) {
+  .controller('LogementCtrl', function($scope, $state) {
 
     $scope.question = {
       'title': 'Votre vie quotidienne',
@@ -25,16 +25,16 @@ angular.module('impactApp')
     $scope.$watch('question.model', function() {
       switch ($scope.question.model) {
         case 'independant':
-          $state.go('q.vie_quotidienne.logement_detail.independant');
+          $state.go('form.vie_quotidienne.logement.independant');
           break;
         case 'domicile':
-          $state.go('q.vie_quotidienne.logement_detail.domicile');
+          $state.go('form.vie_quotidienne.logement.domicile');
           break;
         case 'etablissement':
-          $state.go('q.vie_quotidienne.logement_detail.etablissement');
+          $state.go('form.vie_quotidienne.logement.etablissement');
           break;
         case 'autre':
-          $state.go('q.vie_quotidienne.logement_detail.autre');
+          $state.go('form.vie_quotidienne.logement.autre');
           break;
       }
       $scope.question.detail = '';
@@ -53,6 +53,6 @@ angular.module('impactApp')
     $scope.nextStep = function() {
       $scope.data.logement = $scope.question.model;
       $scope.data.logementDetail = $scope.question.detail;
-      $state.go('q.vie_quotidienne.vos_besoins.quotidien');
+      $state.go('form.vos_besoins.quotidien');
     };
   });
