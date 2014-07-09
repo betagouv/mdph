@@ -1,7 +1,10 @@
 {
   "name": "impact",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.5.1",
+    "gzippo": "^0.2.0"
+  },
   "devDependencies": {
     "connect-modrewrite": "^0.7.6",
     "grunt": "^0.4.1",

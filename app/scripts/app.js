@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'ui.router',
     'ui.bootstrap',
-    'ui.router.stateHelper'
+    'ui.router.stateHelper',
+    'angularFileUpload'
   ])
   .config(function (stateHelperProvider, $urlRouterProvider) {
     stateHelperProvider.setNestedState({
@@ -196,6 +197,12 @@ angular
           url: '/autres_renseignements',
           templateUrl: 'views/partials/question_textarea.html',
           controller: 'AutresRenseignementsCtrl'
+        },
+        {
+          name: 'envoi',
+          url: '/envoi',
+          templateUrl: 'views/envoi.html',
+          controller: 'EnvoiCtrl'
         }
       ]
     });

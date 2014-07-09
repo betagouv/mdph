@@ -9,12 +9,23 @@
  */
 angular.module('impactApp')
   .controller('AttenteStructureCtrl', function ($scope, $state) {
+    $scope.structures = [];
+
+    $scope.addStructure = function() {
+      $scope.structures.push(
+        {'name': '', 'contact': false}
+      );
+    };
+    $scope.addStructure();
+
     $scope.isNextStepDisabled = function() {
-      return $scope.structure === undefined;
+      return angular.isUndefined($scope.structureYesNo);
     };
 
     $scope.nextStep = function() {
-      $scope.data.attente.structure = $scope.structure;
+      if ($scope.structureYesNo) {
+        $scope.data.structures = $scope.structures;
+      }
       $state.go('form.autres_renseignements');
     };
   });

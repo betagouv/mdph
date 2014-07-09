@@ -13,6 +13,6 @@ angular.module('impactApp')
       if ($scope.textData) {
         $scope.data.autresRenseignements = $scope.textData;
       }
-      $state.go('form.autres_renseignements');
+      $state.go('form.envoi');
     };
   });

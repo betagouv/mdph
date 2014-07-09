@@ -3,7 +3,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
-/* Space out content a bit */
 body {
   padding-bottom: 20px;
 }
@@ -27,26 +26,20 @@ body {
   }
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.footer {
+.header {
   padding-left: 15px;
   padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* Custom page footer */
+/* Footer dev pour l'affichage des variables de scope */
 .dev_footer {
   margin-top: 34px;
   color: #777;
   border-top: 1px solid #e5e5e5;
+  visibility: hidden;
 }
 
-/* Main marketing message and sign up button */
 .jumbotron {
   text-align: justify;
   border-bottom: 1px solid #e5e5e5;
@@ -55,9 +48,28 @@ body {
     font-size: 21px;
     padding: 14px 24px;
   }
+
+  input {
+    margin: 4px;
+  }
 }
 
-/* Questionnaire */
+.numerique {
+  p {
+    font-size: 14px;
+    font-weight: 150;
+  }
+  border: 1px solid #CCC;
+  background-color: #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.detailEnvoi {
+  margin-top: 50px;
+}
+
 .qtitle {
   padding-bottom: 34px;
 }
@@ -81,9 +93,11 @@ body {
   padding: 6px 12px;
   margin-bottom: 0px;
   border-radius: 4px;
-  color: white;
-  background-color: #428bca;
-  border-color: #357ebd;
+  border-color: #CCC;
+
+  label {
+    font-weight: normal;
+  }
 }
 
 .well {
@@ -125,18 +139,17 @@ body {
     max-width: 730px;
   }
 
-  /* Remove the padding we set earlier */
   .header,
   .marketing,
   .footer {
     padding-left: 0;
     padding-right: 0;
   }
-  /* Space out the masthead */
+
   .header {
     margin-bottom: 30px;
   }
-  /* Remove the bottom border on the jumbotron for visual effect */
+
   .jumbotron {
     border-bottom: 0;
   }
