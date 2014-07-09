@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('VieFamilleCtrl', function($scope, $state) {
+  .controller('VieFamilleCtrl', function($scope, $state, isAdult) {
 
     $scope.question = {
       'title' : 'Votre vie quotidienne',
@@ -16,12 +16,20 @@ angular.module('impactApp')
       'detail' : '',
       'answers' : [
         {'label' : 'Avec vos parents', 'value' : 'parents'},
-        {'label' : 'Seul', 'value' : 'seul'},
-        {'label' : 'En couple', 'value' : 'couple'},
-        {'label' : 'Avec vos enfants', 'value' : 'enfants'},
-        {'label' : 'Autre', 'value' : 'autre', 'detail' : true }
+        {'label' : 'Seul', 'value' : 'seul'}
       ]
     };
+
+    if (isAdult($scope.data.dateNaissance)) {
+      $scope.question.answers.push(
+        {'label' : 'En couple', 'value' : 'couple'},
+        {'label' : 'Avec vos enfants', 'value' : 'enfants'}
+      );
+    }
+
+    $scope.question.answers.push(
+      {'label' : 'Autre', 'value' : 'autre', 'detail' : true }
+    );
 
     $scope.$watch('question.model', function() {
       if ($scope.question.model === 'autre') {

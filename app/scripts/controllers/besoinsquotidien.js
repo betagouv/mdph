@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('BesoinsQuotidienCtrl', function ($scope, $state, isAdult) {
+  .controller('BesoinsQuotidienCtrl', function($scope, $state, isAdult) {
 
     $scope.question = {
       'title': 'Vos besoins dans la vie quotidienne',

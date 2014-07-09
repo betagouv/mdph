@@ -86,7 +86,10 @@ angular
                 },
                 {
                   name: 'domicile',
-                  templateUrl: 'views/partials/details/domicile.html'
+                  templateUrl: 'views/partials/details/domicile.html',
+                  controller: function($scope, isAdult) {
+                    $scope.showAdult = isAdult($scope.data.dateNaissance);
+                  }
                 },
                 {
                   name: 'etablissement',

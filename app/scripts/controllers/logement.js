@@ -8,19 +8,32 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('LogementCtrl', function($scope, $state) {
+  .controller('LogementCtrl', function($scope, $state, isAdult) {
 
     $scope.question = {
       'title': 'Votre vie quotidienne',
       'subTitle': 'Votre logement',
       'detail': '',
-      'answers': [
-        {'label': 'Vous disposez d\'un logement indépendant', 'value': 'independant', 'detail': true},
-        {'label': 'Vous logez en établissement', 'value': 'etablissement', 'detail': true, 'placeholder': 'Nom de l\'établissement'},
-        {'label': 'Vous êtes hébergé(e) au domicile', 'value': 'domicile', 'detail': true},
-        {'label': 'Autre situation', 'value': 'autre', 'detail': true}
-      ]
+      'answers': []
     };
+
+    if (isAdult($scope.data.dateNaissance)) {
+      $scope.question.answers.push(
+        {'label': 'Vous disposez d\'un logement indépendant', 'value': 'independant', 'detail': true}
+      );
+    }
+
+    $scope.question.answers.push(        
+      {'label': 'Vous logez en établissement', 'value': 'etablissement', 'detail': true, 'placeholder': 'Nom de l\'établissement'},
+      {'label': 'Vous êtes hébergé(e) au domicile', 'value': 'domicile', 'detail': true},
+      {'label': 'Autre situation', 'value': 'autre', 'detail': true}
+    );
+
+    $scope.$watch('question.model', function() {
+      if ($scope.question.model === 'autre') {
+        $state.go('form.vie_quotidienne.vie_famille.autre');
+      }
+    });
 
     $scope.$watch('question.model', function() {
       switch ($scope.question.model) {
