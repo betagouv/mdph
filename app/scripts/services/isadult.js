@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .factory('isAdult', function() {
     return function(date) {
-        if (date === undefined) {
+        if (angular.isUndefined(date)) {
           return true;
         }
         var today = new Date();
-        var currentYear = today.getYear();
-        var limit = today.setYear(currentYear - 18);
-        return date.getTime() <= limit;
+        var currentYear = today.getFullYear();
+        var limit = today.setFullYear(currentYear - 18);
+        return date <= limit;
     };
 });
