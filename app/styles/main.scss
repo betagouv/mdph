@@ -70,20 +70,30 @@ body {
 
 .row {
   padding-top: 7px;
-  z-index: 10;
-  .well {
-    z-index: -100;
-    -webkit-border-radius: 0 0 5px 5px ;
-    -moz-border-radius: 0 0 5px 5px ;
-    border-radius: 0 0 5px 5px ;
-    border-top: none;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
 }
 
 .next-step {
   padding-top: 34px;
+}
+
+.yesno {
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  margin-bottom: 0px;
+  border-radius: 4px;
+  color: white;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.well {
+  z-index: -100;
+  -webkit-border-radius: 0 0 5px 5px ;
+  -moz-border-radius: 0 0 5px 5px ;
+  border-radius: 0 0 5px 5px ;
+  border-top: none;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 /* Animations */

@@ -29,6 +29,6 @@ angular.module('impactApp')
         }
       });
       $scope.data.besoins.securite = $result;
-      $state.go('form.vos_besoins.securite');
+      $state.go('form.vos_attentes.type_aide');
     };
   });

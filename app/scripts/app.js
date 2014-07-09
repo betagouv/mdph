@@ -161,6 +161,38 @@ angular
               controller: 'BesoinsSecuriteCtrl'              
             }
           ]
+        },
+        {
+          name: 'vos_attentes',
+          url: '/vos_attentes',
+          template: '<div id="form-views" ui-view></div>',
+          abstract: true,
+          children: [
+            {
+              name: 'type_aide',
+              url: '/type_aide',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'TypeAideCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html',
+                }
+              ]
+            },
+            {
+              name: 'structure',
+              url: '/structure',
+              templateUrl: 'views/partials/attente_structure.html',
+              controller: 'AttenteStructureCtrl'
+            }
+          ]
+        },
+        {
+          name: 'autres_renseignements',
+          url: '/autres_renseignements',
+          templateUrl: 'views/partials/question_textarea.html',
+          controller: 'AutresRenseignementsCtrl'
         }
       ]
     });

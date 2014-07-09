@@ -1,0 +1,38 @@
+<h3 class="qtitle">Vos attentes pour compenser votre handicap</h3>
+
+<div class="row form-horizontal yesno">
+  <label class="col-xs-8">Avez-vous déjà indentifié une structure qui pourrait répondre à vos attentes?</label>
+  <div class="col-xs-2">
+    <label class="btn btn-default center-block" ng-model="structure" btn-radio="true">
+      Oui
+    </label>
+  </div> 
+  <div class="col-xs-2">
+    <label class="btn btn-default center-block" ng-model="structure" btn-radio="false">
+      Non
+    </label>
+  </div>
+</div>
+<div class="well slide" ng-if="structure">
+  <div class="row form-horizontal">
+    <div class="col-xs-5">
+      <input type="text" class="form-control" ng-model="structure1.name" placeholder="Nom de la structure">
+    </div>
+    <label class="col-xs-3">Etes vous en contact</label>
+    <div class="col-xs-2">
+      <label class="btn btn-default form-control center-block" ng-model="structure1.contact" btn-radio="true">
+        Oui
+      </label>
+    </div> 
+    <div class="col-xs-2">
+      <label class="btn btn-default form-control center-block" ng-model="structure1.contact" btn-radio="false">
+        Non
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row next-step">
+  <div class="col-xs-offset-8 col-xs-4">
+    <a ng-disabled="isNextStepDisabled()" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
+  </div>
+</div>

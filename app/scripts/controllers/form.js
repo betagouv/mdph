@@ -14,6 +14,6 @@ angular.module('impactApp')
   $scope.data = { 'mdph' : 'calvados' };
 
 	$scope.processForm = function() {
-		$window.alert('Bravo !');
+		$window.alert(JSON.stringify($scope.data));
 	};
 });
