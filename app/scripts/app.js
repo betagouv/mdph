@@ -83,7 +83,8 @@ angular
               children: [
                 {
                   name: 'independant',
-                  templateUrl: 'views/partials/details/independant.html'
+                  templateUrl: 'views/partials/details/independant.html',
+                  controller: function(){}
                 },
                 {
                   name: 'domicile',
@@ -94,11 +95,13 @@ angular
                 },
                 {
                   name: 'etablissement',
-                  templateUrl: 'views/partials/form_precisez.html'
+                  templateUrl: 'views/partials/form_precisez.html',
+                  controller: function(){}
                 },
                 {
                   name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html'
+                  templateUrl: 'views/partials/form_precisez.html',
+                  controller: function(){}
                 }
               ]
             }

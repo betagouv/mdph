@@ -110,6 +110,22 @@ module.exports = function (grunt) {
       }
     },
 
+    // Heroku
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      heroku: {
+        options: {
+          remote: 'git@heroku.com:sgmap-impact.git',
+          branch: 'master'
+        }
+      }
+    }
+
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
@@ -138,7 +154,11 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
-            '!<%= yeoman.dist %>/.git*'
+            '!<%= yeoman.dist %>/.git*',
+            '!<%= yeoman.dist %>/Procfile',
+            '!<%= yeoman.dist %>/package.json',
+            '!<%= yeoman.dist %>/server.js',
+            '!<%= yeoman.dist %>/node_modules'
           ]
         }]
       },
@@ -442,4 +462,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('deploy', ['buildcontrol']);
 };
