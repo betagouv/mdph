@@ -5,7 +5,7 @@ dist
 bower_components
 
 #OSX
-DS_Store
+.DS_Store
 .AppleDouble
 .LSOverride
 
