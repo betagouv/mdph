@@ -6,6 +6,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 body {
   padding-bottom: 20px;
 }
+.dev {
+  visibility: hidden;
+}
 
 /* Navbar */
 .main-navbar {
@@ -32,12 +35,10 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* Footer dev pour l'affichage des variables de scope */
-.dev_footer {
+.footer {
   margin-top: 34px;
   color: #777;
   border-top: 1px solid #e5e5e5;
-  visibility: hidden;
 }
 
 .jumbotron {

@@ -1,26 +1,31 @@
-<h3 class="qtitle">{{question.title}}</h3>
-<h4 class="qsubtitle" ng-if='question.subTitle'>{{question.subTitle}}</h4>
-<h5>Plusieurs choix possibles.</h5>
+<div class="qtitle">
+  <h3>{{title}}</h3>
+  <h4 ng-if='subtitle'>{{subtitle}}</h4>
+</div>
 
 <div class="container-fluid">
-  <div class="row" ng-repeat="answer in question.answers">
-    <div class="col-xs-12">
-      <label class="btn btn-default center-block" ng-model="answer.value" btn-checkbox>
+  <div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
+    <div class="col-md-12">
+      <label class="btn btn-default center-block" ng-click="showDetail()" ng-model="model[question.model][answer.model]" btn-checkbox>
         {{answer.label}}
       </label>
-      <div class="well slide" ng-if="answer.detail && answer.value">
-        <div ui-view></div>
+      <div class="well slide" ng-if="answer.detail && model[question.model][answer.model]">
+        <div class="row form-horizontal">
+          <label class="col-md-2 control-label">Précisez</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" ng-model="model.detail">
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <div class="pull-right">
+    <small><em>Plusieurs choix possibles</em></small>
+  </div>
   <div class="row next-step">
     <hr/>
-    <div class="col-xs-offset-8 col-xs-4">
+    <div class="col-md-offset-8 col-md-4">
       <a ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
     </div>
   </div>
 </div>
-
-<pre class="dev_footer">
-  {{ question }}
-</pre>

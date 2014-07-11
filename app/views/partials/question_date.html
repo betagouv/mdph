@@ -1,10 +1,10 @@
-<h3 class="qtitle">{{question.title}}</h3>
+<h3 class="qtitle">{{title}}</h3>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-12">
     <p class="input-group">
-      <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="question.model" is-open="opened" placeholder="DD/MM/YYYY" max-date="{{date}}" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+      <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="model[question.model]" is-open="opened" placeholder="DD/MM/YYYY" max-date="{{date}}" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
       <span class="input-group-btn">
         <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
@@ -13,8 +13,8 @@
   </div>
   <div class="row next-step">
     <hr/>
-    <div class="col-xs-offset-8 col-xs-4">
-      <a ng-disabled="isNextStepDisabled()" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
+    <div class="col-md-offset-8 col-md-4">
+      <a ng-disabled="isNextStepDisabled(question)" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
     </div>
   </div>
 </div>

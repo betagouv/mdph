@@ -13,9 +13,9 @@ angular.module('impactApp')
         if (angular.isUndefined(date)) {
           return true;
         }
-        var today = new Date();
-        var currentYear = today.getFullYear();
-        var limit = today.setFullYear(currentYear - 18);
-        return date <= limit;
+        var limitDate = new Date();
+        var currentYear = limitDate.getFullYear();
+        limitDate.setFullYear(currentYear - 18);
+        return new Date(date).getTime() <= limitDate.getTime();
     };
 });

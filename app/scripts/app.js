@@ -19,7 +19,8 @@ angular
     'ui.router',
     'ui.bootstrap',
     'ui.router.stateHelper',
-    'angularFileUpload'
+    'angularFileUpload',
+    'ngStorage'
   ])
   .config(function (stateHelperProvider, $urlRouterProvider) {
     stateHelperProvider.setNestedState({
@@ -31,37 +32,52 @@ angular
         {
           name: 'conditions',
           url: '/conditions',
-          templateUrl: 'views/conditions.html'
+          templateUrl: 'views/conditions.html',
+          controller: function($scope, $state) {
+            $scope.nextStep = function() {
+              $state.go('form.demande.dossier');
+            };
+          }
         },
         {
-          name: 'dossier',
-          url: '/dossier',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'DossierCtrl'
-        },
-        {
-          name: 'renouvellement',
-          url: '/renouvellement',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'RenouvellementCtrl'
-        },
-        {
-          name: 'representant',
-          url: '/representant',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'RepresentantCtrl'
-        },
-        {
-          name: 'date_naissance',
-          url: '/date_naissance',
-          templateUrl: 'views/partials/question_date.html',
-          controller: 'DateNaissanceCtrl'
+          name: 'demande',
+          url: '/demande',
+          template: '<ui-view/>',
+          abstract: true,
+          controller: 'DemandeCtrl',
+          children: [
+            {
+              name: 'dossier',
+              url: '/dossier',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'DossierCtrl'
+            },
+            {
+              name: 'renouvellement',
+              url: '/renouvellement',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'RenouvellementCtrl'
+            },
+            {
+              name: 'representant',
+              url: '/representant',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'RepresentantCtrl'
+            },
+            {
+              name: 'date_naissance',
+              url: '/date_naissance',
+              templateUrl: 'views/partials/question_date.html',
+              controller: 'DateNaissanceCtrl'
+            }
+          ]
         },
         {
           name: 'vie_quotidienne',
           url: '/vie_quotidienne',
           template: '<div id="form-views" ui-view></div>',
           abstract: true,
+          controller: 'VieQuotidienneCtrl',
           children: [
             {
               name: 'vie_famille',
@@ -83,25 +99,19 @@ angular
               children: [
                 {
                   name: 'independant',
-                  templateUrl: 'views/partials/details/independant.html',
-                  controller: function(){}
+                  templateUrl: 'views/partials/details/independant.html'
                 },
                 {
                   name: 'domicile',
-                  templateUrl: 'views/partials/details/domicile.html',
-                  controller: function($scope, isAdult) {
-                    $scope.showAdult = isAdult($scope.data.dateNaissance);
-                  }
+                  templateUrl: 'views/partials/details/domicile.html'
                 },
                 {
                   name: 'etablissement',
-                  templateUrl: 'views/partials/form_precisez.html',
-                  controller: function(){}
+                  templateUrl: 'views/partials/form_precisez.html'
                 },
                 {
                   name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                  controller: function(){}
+                  templateUrl: 'views/partials/form_precisez.html'
                 }
               ]
             }
@@ -112,12 +122,13 @@ angular
           url: '/vos_besoins',
           template: '<div id="form-views" ui-view></div>',
           abstract: true,
+          controller: 'BesoinsCtrl',
           children: [
             {
               name: 'quotidien',
               url: '/quotidien',
               templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'BesoinsQuotidienCtrl',
+              controller: 'QuotidienCtrl',
               children: [
                 {
                   name: 'autre',
@@ -129,7 +140,7 @@ angular
               name: 'deplacement',
               url: '/deplacement',
               templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'BesoinsDeplacementCtrl',
+              controller: 'DeplacementCtrl',
               children: [
                 {
                   name: 'autre',
@@ -141,7 +152,7 @@ angular
               name: 'social',
               url: '/social',
               templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'BesoinsSocialCtrl',
+              controller: 'SocialCtrl',
               children: [
                 {
                   name: 'autre',
@@ -153,7 +164,7 @@ angular
               name: 'lieu_de_vie',
               url: '/lieu_de_vie',
               templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'BesoinsLieuDeVieCtrl',
+              controller: 'LieuDeVieCtrl',
               children: [
                 {
                   name: 'autre',
@@ -165,7 +176,7 @@ angular
               name: 'securite',
               url: '/securite',
               templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'BesoinsSecuriteCtrl'              
+              controller: 'SecuriteCtrl'              
             }
           ]
         },
@@ -174,6 +185,7 @@ angular
           url: '/vos_attentes',
           template: '<div id="form-views" ui-view></div>',
           abstract: true,
+          controller: 'VosAttentesCtrl',
           children: [
             {
               name: 'type_aide',

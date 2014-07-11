@@ -1,28 +1,28 @@
 <div class="row">
-  <div class="col-xs-4">
-    <label class="btn btn-default center-block" ng-model="question.detail" btn-radio="'parents'">
+  <div class="col-md-4">
+    <label class="btn btn-default center-block" ng-model="detail[answer.value]" btn-radio="'parents'">
       De vos parents
     </label>
   </div>
-  <div class="col-xs-4">
-    <label class="btn btn-default center-block" ng-model="question.detail" btn-radio="'ami'">
+  <div class="col-md-4">
+    <label class="btn btn-default center-block" ng-model="detail[answer.value]" btn-radio="'ami'">
       D'un(e) ami(e)
     </label>
   </div>
-  <div class="col-xs-4">
-    <label class="btn btn-default center-block" ng-model="question.detail" btn-radio="'autreMembreFamille'">
+  <div class="col-md-4">
+    <label class="btn btn-default center-block" ng-model="detail[answer.value]" btn-radio="'autreMembreFamille'">
       D'un autre membre de<br>votre famille
     </label>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-4">
-    <label class="btn btn-default center-block" ng-model="question.detail" btn-radio="'familleAccueill'">
+  <div class="col-md-4">
+    <label class="btn btn-default center-block" ng-model="detail[answer.value]" btn-radio="'familleAccueill'">
       D'une famille d'accueil
     </label>
   </div>
-  <div class="col-xs-4">
-    <label class="btn btn-default center-block" ng-if="showAdult" ng-model="question.detail" btn-radio="'enfants'">
+  <div class="col-md-4">
+    <label class="btn btn-default center-block" ng-if="showAdult" ng-model="detail[answer.value]" btn-radio="'enfants'">
       De vos enfants
     </label>
   </div>

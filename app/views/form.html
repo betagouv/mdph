@@ -2,6 +2,6 @@
 	<div id="form-views" ui-view></div>
 </form>
 
-<pre class="dev_footer">
-  {{ data }}
+<pre ng-if="dev" class="footer">
+  {{ data | json }}
 </pre>

@@ -1,42 +1,44 @@
-<h3 class="qtitle">Vos attentes pour compenser votre handicap</h3>
+<div class="qtitle">
+  <h3>Vos attentes pour compenser votre handicap</h3>
+</div>
 
 <div class="row form-horizontal yesno">
-  <label class="col-xs-8">Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?</label>
-  <div class="col-xs-2">
-    <label class="btn btn-default center-block" ng-model="structureYesNo" btn-radio="true">
+  <label class="col-md-8">Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?</label>
+  <div class="col-md-2">
+    <label class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="true">
       Oui
     </label>
   </div> 
-  <div class="col-xs-2">
-    <label class="btn btn-default center-block" ng-model="structureYesNo" btn-radio="false">
+  <div class="col-md-2">
+    <label class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="false">
       Non
     </label>
   </div>
 </div>
-<div class="well slide" ng-if="structureYesNo">
-  <div class="row form-horizontal" ng-repeat="structure in structures">
-    <div class="col-xs-5">
+<div class="well slide" ng-if="model['valeur']">
+  <div class="row form-horizontal" ng-repeat="structure in model.structures">
+    <div class="col-md-5">
       <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
     </div>
-    <label class="col-xs-3">Etes-vous déjà en contact?</label>
-    <div class="col-xs-2">
+    <label class="col-md-3">Etes-vous déjà en contact?</label>
+    <div class="col-md-2">
       <label class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="true">
         Oui
       </label>
     </div> 
-    <div class="col-xs-2">
+    <div class="col-md-2">
       <label class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="false">
         Non
       </label>
     </div>
   </div>
-  <div class="row col-xs-offset-4 col-xs-4">
+  <div class="row col-md-offset-4 col-md-4">
     <label class="btn btn-default center-block" ng-click="addStructure()">+</label>
   </div>
 </div>
 <div class="row next-step">
   <hr/>
-  <div class="col-xs-offset-8 col-xs-4">
+  <div class="col-md-offset-8 col-md-4">
     <a ng-disabled="isNextStepDisabled()" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
   </div>
 </div>

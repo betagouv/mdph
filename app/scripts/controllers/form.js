@@ -8,12 +8,25 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('FormCtrl', function ($scope) {
+  .controller('FormCtrl', function ($scope, $sessionStorage, isAdult) {
+    $scope.dev = true;
+  	$scope.acceptConditions = false;
 
-	$scope.acceptConditions = false;
-  $scope.data = { 'mdph' : 'calvados' };
+    $scope.initData = function() {
+      $sessionStorage.data = { 'mdph' : 'calvados'};
+    };
 
-	$scope.processForm = function() {
-		console.log($scope.data);
-	};
-});
+    $scope.isAdult = function() {
+      return isAdult($scope.data.dateNaissance);
+    };
+
+    $scope.processForm = function() {
+      console.log($scope.data);
+    };
+
+    if (angular.isUndefined($sessionStorage.data)) {
+      $scope.initData();
+    }
+
+    $scope.data = $sessionStorage.data;
+  });
