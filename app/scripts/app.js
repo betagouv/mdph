@@ -70,7 +70,7 @@ angular
         {
           name: 'vie_quotidienne',
           url: '/vie_quotidienne',
-          template: '<div id="form-views" ui-view></div>',
+          template: '<ui-view/>',
           abstract: true,
           controller: 'VieQuotidienneCtrl',
           children: [
@@ -109,104 +109,134 @@ angular
                   templateUrl: 'views/partials/form_precisez.html'
                 }
               ]
+            },
+            {
+              name: 'vos_besoins',
+              url: '/vos_besoins',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'BesoinsCtrl',
+              children: [
+                {
+                  name: 'quotidien',
+                  url: '/quotidien',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'QuotidienCtrl',
+                  children: [
+                    {
+                      name: 'autre',
+                      templateUrl: 'views/partials/form_precisez.html',
+                    }
+                  ]
+                },
+                {
+                  name: 'deplacement',
+                  url: '/deplacement',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'DeplacementCtrl',
+                  children: [
+                    {
+                      name: 'autre',
+                      templateUrl: 'views/partials/form_precisez.html',
+                    }
+                  ]
+                },
+                {
+                  name: 'social',
+                  url: '/social',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'SocialCtrl',
+                  children: [
+                    {
+                      name: 'autre',
+                      templateUrl: 'views/partials/form_precisez.html',
+                    }
+                  ]
+                },
+                {
+                  name: 'lieu_de_vie',
+                  url: '/lieu_de_vie',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'LieuDeVieCtrl',
+                  children: [
+                    {
+                      name: 'autre',
+                      templateUrl: 'views/partials/form_precisez.html',
+                    }
+                  ]
+                },
+                {
+                  name: 'securite',
+                  url: '/securite',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'SecuriteCtrl'              
+                }
+              ]
+            },
+            {
+              name: 'vos_attentes',
+              url: '/vos_attentes',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'VosAttentesCtrl',
+              children: [
+                {
+                  name: 'type_aide',
+                  url: '/type_aide',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'TypeAideCtrl',
+                  children: [
+                    {
+                      name: 'autre',
+                      templateUrl: 'views/partials/form_precisez.html',
+                    }
+                  ]
+                },
+                {
+                  name: 'structure',
+                  url: '/structure',
+                  templateUrl: 'views/partials/attente_structure.html',
+                  controller: 'AttenteStructureCtrl'
+                }
+              ]
+            },
+            {
+              name: 'autres_renseignements',
+              url: '/autres_renseignements',
+              templateUrl: 'views/partials/question_textarea.html',
+              controller: 'AutresRenseignementsCtrl'
             }
           ]
         },
         {
-          name: 'vos_besoins',
-          url: '/vos_besoins',
-          template: '<div id="form-views" ui-view></div>',
+          name: 'situation',
+          url: '/situation',
+          template: '<ui-view/>',
           abstract: true,
-          controller: 'BesoinsCtrl',
+          controller: 'SituationCtrl',
           children: [
             {
-              name: 'quotidien',
-              url: '/quotidien',
-              templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'QuotidienCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                }
-              ]
-            },
-            {
-              name: 'deplacement',
-              url: '/deplacement',
-              templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'DeplacementCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                }
-              ]
-            },
-            {
-              name: 'social',
-              url: '/social',
-              templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'SocialCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                }
-              ]
-            },
-            {
-              name: 'lieu_de_vie',
-              url: '/lieu_de_vie',
-              templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'LieuDeVieCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                }
-              ]
-            },
-            {
-              name: 'securite',
-              url: '/securite',
-              templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'SecuriteCtrl'              
+              name: 'type',
+              url: '/type',
+              templateUrl: 'views/partials/type_situation.html',
+              controller: 'TypeSituationCtrl'
             }
           ]
         },
         {
-          name: 'vos_attentes',
-          url: '/vos_attentes',
-          template: '<div id="form-views" ui-view></div>',
+          name: 'aidant',
+          url: '/aidant',
+          template: '<ui-view/>',
           abstract: true,
-          controller: 'VosAttentesCtrl',
+          controller: 'AidantCtrl',
           children: [
             {
-              name: 'type_aide',
-              url: '/type_aide',
-              templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'TypeAideCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                }
-              ]
-            },
-            {
-              name: 'structure',
-              url: '/structure',
-              templateUrl: 'views/partials/attente_structure.html',
-              controller: 'AttenteStructureCtrl'
+              name: 'identite',
+              url: '/identite',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'IdentiteAidantCtrl'
             }
           ]
-        },
-        {
-          name: 'autres_renseignements',
-          url: '/autres_renseignements',
-          templateUrl: 'views/partials/question_textarea.html',
-          controller: 'AutresRenseignementsCtrl'
         },
         {
           name: 'envoi',

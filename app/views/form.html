@@ -1,15 +1,34 @@
-<div class="page-header text-center">  
-  <div id="status-buttons" class="text-center">
-    <a 
-      ui-sref=".demande.dossier"
-      data-ng-class="{active: $state.includes('form.demande.*')}">
-        <span>1</span> Votre demande
-    </a>
-    <a 
-      ui-sref=".vie_quotidienne.vie_famille"
-      data-ng-class="{active: $state.includes('form.vie_quotidienne.**')}">
-        <span>2</span> Votre vie quotidienne
-    </a>
+<div class="page-header text-center container-fluid">  
+  <div id="status-buttons" class="text-center row">
+    <div class="col-md-3">
+      <a
+        ui-sref=".demande.dossier"
+        ng-disabled="true"
+        data-ng-class="{active: $state.includes('form.demande.**')}">
+          <span>1</span> Demande
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a 
+        ui-sref=".vie_quotidienne.vie_famille"
+        data-ng-class="{active: $state.includes('form.vie_quotidienne.**')}">
+          <span>2</span> Vie quotidienne
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a 
+        ui-sref=".situation.type"
+        data-ng-class="{active: $state.includes('form.situation.**')}">
+          <span>3</span> Situation scolaire et/ou professsionelle
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a 
+        ui-sref=".aidant.identite"
+        data-ng-class="{active: $state.includes('form.aidant.**')}">
+          <span>4</span> Situation et besoins de l'aidant famillial
+      </a>
+    </div>
   </div>
 </div>
 

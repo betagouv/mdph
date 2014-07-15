@@ -42,10 +42,10 @@ angular.module('impactApp')
     };
 
     $scope.showDetail = function() {
-      $state.go('form.vos_besoins.deplacement.autre');
+      $state.go('form.vie_quotidienne.vos_besoins.deplacement.autre');
     };
 
     $scope.nextStep = function() {
-      $state.go('form.vos_besoins.social');
+      $state.go('form.vie_quotidienne.vos_besoins.social');
     };
   });

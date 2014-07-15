@@ -40,10 +40,10 @@ angular.module('impactApp')
 
 
     $scope.showDetail = function() {
-      $state.go('form.vos_attentes.type_aide.autre');
+      $state.go('form.vie_quotidienne.vos_attentes.type_aide.autre');
     };
 
     $scope.nextStep = function() {
-      $state.go('form.vos_attentes.structure');
+      $state.go('form.vie_quotidienne.vos_attentes.structure');
     };
   });

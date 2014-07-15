@@ -27,6 +27,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('form.autres_renseignements');
+      $state.go('form.vie_quotidienne.autres_renseignements');
     };
   });

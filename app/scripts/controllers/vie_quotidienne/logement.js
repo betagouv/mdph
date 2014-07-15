@@ -48,6 +48,6 @@ angular.module('impactApp')
     $scope.showDetail($scope.model.valeur);
 
     $scope.nextStep = function() {
-      $state.go('form.vos_besoins.quotidien');
+      $state.go('form.vie_quotidienne.vos_besoins.quotidien');
     };
   });

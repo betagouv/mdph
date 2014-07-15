@@ -33,6 +33,6 @@ angular.module('impactApp')
     $scope.showDetail = function() {};
 
     $scope.nextStep = function() {
-      $state.go('form.vos_attentes.type_aide');
+      $state.go('form.vie_quotidienne.vos_attentes.type_aide');
     };
   });
