@@ -33,11 +33,11 @@ angular
           name: 'conditions',
           url: '/conditions',
           templateUrl: 'views/conditions.html',
-          controller: function($scope, $state) {
+          controller: ['$scope', '$state', function($scope, $state) {
             $scope.nextStep = function() {
               $state.go('form.demande.dossier');
             };
-          }
+          }]
         },
         {
           name: 'demande',

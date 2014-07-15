@@ -1,3 +1,18 @@
+<div class="page-header text-center">  
+  <div id="status-buttons" class="text-center">
+    <a 
+      ui-sref=".demande.dossier"
+      data-ng-class="{active: $state.includes('form.demande.*')}">
+        <span>1</span> Votre demande
+    </a>
+    <a 
+      ui-sref=".vie_quotidienne.vie_famille"
+      data-ng-class="{active: $state.includes('form.vie_quotidienne.**')}">
+        <span>2</span> Votre vie quotidienne
+    </a>
+  </div>
+</div>
+
 <form id="form" ng-submit="processForm()">
 	<div id="form-views" ui-view></div>
 </form>

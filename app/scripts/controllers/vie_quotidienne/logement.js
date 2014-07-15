@@ -28,24 +28,24 @@ angular.module('impactApp')
       ]
     };
 
+    $scope.isNextStepDisabled = function(question) {
+      if ($scope.model.valeur === '') {
+        return true;
+      }
+
+      if ($scope.model.valeur === 'autre' && !$scope.detail[$scope.model[question.model]]) {
+        return true;
+      }
+      
+      return false;
+    };
+
     $scope.showDetail = function(value) {
       if (angular.isDefined(value) && value !== '') {
         $state.go('form.vie_quotidienne.logement.' + value);
       }
     };
     $scope.showDetail($scope.model.valeur);
-
-    $scope.isNextStepDisabled = function(question) {
-      if (angular.isUndefined($scope.model.valeur)) {
-        return true;
-      }
-
-      if ($scope.detail[$scope.model[question.model]] === '') {
-        return true;
-      }
-      
-      return false;
-    };
 
     $scope.nextStep = function() {
       $state.go('form.vos_besoins.quotidien');

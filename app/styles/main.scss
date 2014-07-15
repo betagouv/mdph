@@ -10,6 +10,40 @@ body {
   visibility: hidden;
 }
 
+
+/* Progressions */
+#status-buttons { }
+#status-buttons a {
+  display:inline-block; 
+  font-size:12px; 
+  margin-right:10px; 
+  text-align:center; 
+  color: #000;
+}
+#status-buttons a:hover {
+  text-decoration:none;
+}
+
+/* Cercle */
+#status-buttons span {
+  display: block;
+  height: 30px;
+  margin: 0 auto 10px;
+  padding-top: 5px;
+  width: 30px; 
+  border-radius: 50%;
+  border: 1px solid #CCC;
+  font-weight: bold;
+}
+
+#status-buttons a.active {
+  font-weight: bold;
+  span {
+    background: #5cb85c;
+    color: #FFF
+  }
+}
+
 /* Navbar */
 .main-navbar {
   .navbar-brand {

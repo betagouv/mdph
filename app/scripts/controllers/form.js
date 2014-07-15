@@ -8,9 +8,14 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('FormCtrl', function ($scope, $sessionStorage, isAdult) {
+  .controller('FormCtrl', function ($rootScope, $scope, $state, $stateParams, $sessionStorage, isAdult) {
     $scope.dev = true;
   	$scope.acceptConditions = false;
+
+    // TODO remplacer toute cette partie par ui-serf-active quand
+    // ca marchera pour les nested states
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
 
     $scope.initData = function() {
       $sessionStorage.data = { 'mdph' : 'calvados'};
