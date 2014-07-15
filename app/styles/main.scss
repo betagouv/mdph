@@ -14,23 +14,28 @@ body {
 /* Progressions */
 #status-buttons { }
 #status-buttons a {
-  display:inline-block; 
-  font-size:12px; 
-  text-align:center; 
+  display: inline-block; 
+  font-size: 12px; 
+  text-align: center; 
   color: #000;
+  p {
+    float: right;
+  }
 }
 #status-buttons a:hover {
-  text-decoration:none;
+  text-decoration: none;
 }
 
 #status-buttons span {
   display: block;
+  font-weight: bold;
   height: 30px;
   margin: 0 auto 10px;
   padding-top: 5px;
   width: 30px; 
   border-radius: 50%;
   border: 1px solid #CCC;
+  background: white;
 }
 
 #status-buttons a.active {
@@ -43,6 +48,11 @@ body {
 }
 
 /* Navbar */
+.navbar {
+  margin-bottom: 0px;
+  background-color: white;
+}
+
 .main-navbar {
   .navbar-brand {
     &.title {
@@ -65,6 +75,11 @@ body {
   padding-left: 15px;
   padding-right: 15px;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.page-header {
+  margin-top: 0px;
+  background-color: #F8F8F8;
 }
 
 .footer {
@@ -113,8 +128,10 @@ body {
   border-color: #4cae4c;
 }
 
-.row {
+form {
+  .row {
   padding-top: 7px;
+  }
 }
 
 .next-step {
@@ -177,10 +194,6 @@ body {
   .footer {
     padding-left: 0;
     padding-right: 0;
-  }
-
-  .header {
-    margin-bottom: 30px;
   }
 
   .jumbotron {

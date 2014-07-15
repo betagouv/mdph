@@ -1,47 +1,72 @@
-<div class="page-header text-center container-fluid">  
+<div class="page-header text-center container-fluid">
+  <div class="text-center row">
+    <div class="col-md-4 col-md-offset-4">
+      <h5>Votre projet de vie</h5>
+    </div>
+  </div>
   <div id="status-buttons" class="text-center row">
     <div class="col-md-2 col-md-offset-1">
       <a
         ui-sref=".contexte.dossier"
-        ng-disabled="true"
         data-ng-class="{active: $state.includes('form.contexte.**')}">
-          <span>1</span> Contexte
+        <span>1</span>
+        <p>
+          Contexte
+        </p>
       </a>
     </div>
+
     <div class="col-md-2">
       <a 
         ui-sref=".vie_quotidienne.vie_famille"
         data-ng-class="{active: $state.includes('form.vie_quotidienne.**')}">
-          <span>2</span> Vie quotidienne
+        <span>2</span>
+        <p>
+          Vie quotidienne
+        </p>
       </a>
     </div>
+
     <div class="col-md-2">
       <a 
         ui-sref=".scolaire.condition"
         data-ng-class="{active: $state.includes('form.scolaire.**')}">
-          <span>3</span> Vie scolaire ou étudiante
+        <span>3</span>
+        <p>
+          Vie scolaire ou étudiante
+        </p>
       </a>
     </div>
+
     <div class="col-md-2">
       <a 
         ui-sref=".travail.condition"
         data-ng-class="{active: $state.includes('form.travail.**')}">
-          <span>4</span> Vie au travail
+        <span>4</span>
+        <p>
+          Vie au travail
+        </p>
       </a>
     </div>
+
     <div class="col-md-2">
       <a 
         ui-sref=".envoi"
         data-ng-class="{active: $state.includes('form.envoi.**')}">
-          <span>5</span> Pièces justificatives
+        <span>5</span>
+        <p>
+          Pièces justificatives
+        </p>
       </a>
     </div>
   </div>
 </div>
 
-<form id="form" ng-submit="processForm()">
-	<div id="form-views" ui-view></div>
-</form>
+<div class="container">
+  <form id="form" ng-submit="processForm()">
+  	<div id="form-views" ui-view></div>
+  </form>
+</div>
 
 <pre ng-if="dev" class="footer">
   {{ data | json }}
