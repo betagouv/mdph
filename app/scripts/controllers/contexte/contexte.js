@@ -2,20 +2,20 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:DemandeCtrl
+ * @name impactApp.controller:ContexteCtrl
  * @description
- * # DemandeCtrl
+ * # ContexteCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope) {
-    if (angular.isUndefined($scope.data.demande)) {
-      $scope.data.demande = {};
+  .controller('ContexteCtrl', function ($scope) {
+    if (angular.isUndefined($scope.data.contexte)) {
+      $scope.data.contexte = {};
     }
 
     $scope.isNextStepDisabled = function(question) {
       return angular.isUndefined($scope.model[question.model]);
     };
 
-    $scope.model = $scope.data.demande;
+    $scope.model = $scope.data.contexte;
   });

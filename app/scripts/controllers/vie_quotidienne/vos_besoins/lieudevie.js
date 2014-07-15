@@ -35,11 +35,7 @@ angular.module('impactApp')
       ]
     };
 
-    $scope.showDetail = function() {
-      $state.go('form.vie_quotidienne.vos_besoins.lieu_de_vie.autre');
-    };
-
     $scope.nextStep = function() {
-      $state.go('form.vie_quotidienne.vos_besoins.securite');
+      $state.go('^.securite');
     };
   });

@@ -1,32 +1,39 @@
 <div class="page-header text-center container-fluid">  
   <div id="status-buttons" class="text-center row">
-    <div class="col-md-3">
+    <div class="col-md-2 col-md-offset-1">
       <a
-        ui-sref=".demande.dossier"
+        ui-sref=".contexte.dossier"
         ng-disabled="true"
-        data-ng-class="{active: $state.includes('form.demande.**')}">
-          <span>1</span> Demande
+        data-ng-class="{active: $state.includes('form.contexte.**')}">
+          <span>1</span> Contexte
       </a>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <a 
         ui-sref=".vie_quotidienne.vie_famille"
         data-ng-class="{active: $state.includes('form.vie_quotidienne.**')}">
           <span>2</span> Vie quotidienne
       </a>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <a 
-        ui-sref=".situation.type"
-        data-ng-class="{active: $state.includes('form.situation.**')}">
-          <span>3</span> Situation scolaire et/ou professsionelle
+        ui-sref=".scolaire.condition"
+        data-ng-class="{active: $state.includes('form.scolaire.**')}">
+          <span>3</span> Vie scolaire ou étudiante
       </a>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <a 
-        ui-sref=".aidant.identite"
-        data-ng-class="{active: $state.includes('form.aidant.**')}">
-          <span>4</span> Situation et besoins de l'aidant famillial
+        ui-sref=".travail.condition"
+        data-ng-class="{active: $state.includes('form.travail.**')}">
+          <span>4</span> Vie au travail
+      </a>
+    </div>
+    <div class="col-md-2">
+      <a 
+        ui-sref=".envoi"
+        data-ng-class="{active: $state.includes('form.envoi.**')}">
+          <span>5</span> Pièces justificatives
       </a>
     </div>
   </div>

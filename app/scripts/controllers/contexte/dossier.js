@@ -21,9 +21,9 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       if ($scope.model.nouveauDossier) {
-        $state.go('form.demande.representant');
+        $state.go('^.representant');
       } else {
-        $state.go('form.demande.renouvellement');
+        $state.go('^.renouvellement');
       }
     };
   });

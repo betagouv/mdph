@@ -41,13 +41,13 @@ angular.module('impactApp')
     };
 
     $scope.showDetail = function(value) {
-      if (angular.isDefined(value) && value !== '') {
+      if (angular.isDefined(value) && value !== '' && !$state.includes('**.' + value)) {
         $state.go('form.vie_quotidienne.logement.' + value);
       }
     };
     $scope.showDetail($scope.model.valeur);
 
     $scope.nextStep = function() {
-      $state.go('form.vie_quotidienne.vos_besoins.quotidien');
+      $state.go('^.^.vos_besoins.quotidien');
     };
   });

@@ -31,13 +31,13 @@ body {
   width: 30px; 
   border-radius: 50%;
   border: 1px solid #CCC;
-  font-weight: bold;
 }
 
 #status-buttons a.active {
-  font-weight: bold;
   span {
+    font-weight: bold;
     background: #5cb85c;
+    border-color: #4cae4c;
     color: #FFF
   }
 }
@@ -111,8 +111,6 @@ body {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
-  // TODO A tester sur differents navigateurs
-  text-shadow: -1px 0 #1b7c1b, 0 1px #1b7c1b, 1px 0 #1b7c1b, 0 -1px #1b7c1b;
 }
 
 .row {

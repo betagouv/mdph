@@ -20,6 +20,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('form.demande.date_naissance');
+      $state.go('^.date_naissance');
     };
   });

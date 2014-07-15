@@ -35,11 +35,11 @@ angular
       templateUrl: 'views/form.html',
       children: [
         {
-          name: 'demande',
-          url: '/demande',
+          name: 'contexte',
+          url: '/context',
           template: '<ui-view/>',
           abstract: true,
-          controller: 'DemandeCtrl',
+          controller: 'ContexteCtrl',
           children: [
             {
               name: 'dossier',
@@ -121,49 +121,25 @@ angular
                   name: 'quotidien',
                   url: '/quotidien',
                   templateUrl: 'views/partials/question_checkbox.html',
-                  controller: 'QuotidienCtrl',
-                  children: [
-                    {
-                      name: 'autre',
-                      templateUrl: 'views/partials/form_precisez.html',
-                    }
-                  ]
+                  controller: 'QuotidienCtrl'
                 },
                 {
                   name: 'deplacement',
                   url: '/deplacement',
                   templateUrl: 'views/partials/question_checkbox.html',
-                  controller: 'DeplacementCtrl',
-                  children: [
-                    {
-                      name: 'autre',
-                      templateUrl: 'views/partials/form_precisez.html',
-                    }
-                  ]
+                  controller: 'DeplacementCtrl'
                 },
                 {
                   name: 'social',
                   url: '/social',
                   templateUrl: 'views/partials/question_checkbox.html',
-                  controller: 'SocialCtrl',
-                  children: [
-                    {
-                      name: 'autre',
-                      templateUrl: 'views/partials/form_precisez.html',
-                    }
-                  ]
+                  controller: 'SocialCtrl'
                 },
                 {
                   name: 'lieu_de_vie',
                   url: '/lieu_de_vie',
                   templateUrl: 'views/partials/question_checkbox.html',
-                  controller: 'LieuDeVieCtrl',
-                  children: [
-                    {
-                      name: 'autre',
-                      templateUrl: 'views/partials/form_precisez.html',
-                    }
-                  ]
+                  controller: 'LieuDeVieCtrl'
                 },
                 {
                   name: 'securite',
@@ -209,32 +185,32 @@ angular
           ]
         },
         {
-          name: 'situation',
-          url: '/situation',
+          name: 'scolaire',
+          url: '/scolaire',
           template: '<ui-view/>',
           abstract: true,
-          controller: 'SituationCtrl',
+          controller: 'ScolaireCtrl',
           children: [
             {
-              name: 'type',
-              url: '/type',
-              templateUrl: 'views/partials/type_situation.html',
-              controller: 'TypeSituationCtrl'
+              name: 'condition',
+              url: '/condition',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'ConditionScolaireCtrl'
             }
           ]
         },
         {
-          name: 'aidant',
-          url: '/aidant',
+          name: 'travail',
+          url: '/travail',
           template: '<ui-view/>',
           abstract: true,
-          controller: 'AidantCtrl',
+          controller: 'TravailCtrl',
           children: [
             {
-              name: 'identite',
-              url: '/identite',
+              name: 'condition',
+              url: '/condition',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'IdentiteAidantCtrl'
+              controller: 'ConditionTravailCtrl'
             }
           ]
         },

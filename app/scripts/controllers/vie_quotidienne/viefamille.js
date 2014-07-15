@@ -41,14 +41,18 @@ angular.module('impactApp')
       return false;
     };
 
+    var next;
     $scope.showDetail = function(value) {
-      if (value === 'autre') {
-        $state.go('form.vie_quotidienne.vie_famille.autre');
+      if (value === 'autre' && !$state.includes('**.autre')) {
+        $state.go('.autre');
+        next = '^.^.logement';
+      } else {
+        next = '^.logement';
       }
     };
     $scope.showDetail($scope.model.valeur);
 
     $scope.nextStep = function() {
-      $state.go('form.vie_quotidienne.logement');
+      $state.go(next);
     };
   });
