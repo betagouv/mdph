@@ -22,23 +22,18 @@ angular
     'angularFileUpload',
     'ngStorage'
   ])
-  .config(function (stateHelperProvider, $urlRouterProvider) {
+  .config(function (stateHelperProvider, $urlRouterProvider, $stateProvider) {
+    $stateProvider.state({
+      name: 'conditions',
+      url: '/conditions',
+      templateUrl: 'views/conditions.html'
+    });
     stateHelperProvider.setNestedState({
       name: 'form',
       url: '/questionnaire',
       controller: 'FormCtrl',
       templateUrl: 'views/form.html',
       children: [
-        {
-          name: 'conditions',
-          url: '/conditions',
-          templateUrl: 'views/conditions.html',
-          controller: ['$scope', '$state', function($scope, $state) {
-            $scope.nextStep = function() {
-              $state.go('form.demande.dossier');
-            };
-          }]
-        },
         {
           name: 'demande',
           url: '/demande',
@@ -224,6 +219,6 @@ angular
 
     // catch all route
     // send users to the home page
-    $urlRouterProvider.otherwise('/questionnaire/conditions');
+    $urlRouterProvider.otherwise('/conditions');
 
 });
