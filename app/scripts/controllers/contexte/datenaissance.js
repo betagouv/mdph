@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('DateNaissanceCtrl', function($scope, $state) {
-    $scope.title = $scope.estRepresentant() ? 'Quelle est sa date de naissance ?' : 'Quelle est votre date de naissance ?';
+    $scope.title = $scope.estRepresentant() ? 'Date de naissance du demandeur' : 'Votre date de naissance';
     
     if (angular.isUndefined($scope.sectionModel.dateNaissance)) {
       $scope.sectionModel.dateNaissance = {label: 'Date de naissance'};

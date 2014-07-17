@@ -67,7 +67,7 @@ angular
         },
         {
           name: 'scolaire',
-          url: '/soclaire',
+          url: '/scolaire',
           templateUrl: 'views/partials/question_radio.html',
           controller: 'ConditionScolaireCtrl'
         },

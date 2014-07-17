@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('AutresRenseignementsCtrl', function ($scope) {
 
-    $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer par rapport à votre vie quotidienne';
+    $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer';
 
     if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
       $scope.subSectionModel.autresRenseignements = '';

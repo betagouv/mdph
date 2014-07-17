@@ -23,13 +23,33 @@ angular.module('impactApp')
       detailValues[$scope.sectionModel.logement.value] =  $scope.sectionModel.logement.detail;
     }
 
-    $scope.subtitle = 'Votre logement';
+    $scope.subtitle = 'Logement';
     $scope.question = {
       answers: [
-        {label: 'Vous disposez d\'un logement indépendant', value: 'independant', onlyAdult: true, showDetail: true, detail: detailValues.independant},
-        {label: 'Vous logez en établissement', value: 'etablissement', showDetail: true, detail: detailValues.etablissement, placeholder: 'Nom de l\'établissement'},
-        {label: 'Vous êtes hébergé(e) au domicile', value: 'domicile', showDetail: true, detail: detailValues.domicile},
-        {label: 'Autre', value: 'autre', showDetail: true, detail: detailValues.autre}
+        {
+          label: 'Vous disposez d\'un logement indépendant',
+          labelRep: 'Il dispose d\'un logement indépendant',
+          value: 'independant', onlyAdult: true,
+          showDetail: true, detail: detailValues.independant
+        },
+        {
+          label: 'Vous logez en établissement', 
+          labelRep: 'Il loge en établissement', 
+          value: 'etablissement', 
+          showDetail: true, detail: detailValues.etablissement, 
+          placeholder: 'Nom de l\'établissement'
+        },
+        {
+          label: 'Vous êtes hébergé(e) au domicile',
+          labelRep: 'Il est hébergé au domicile', 
+          value: 'domicile', 
+          showDetail: true, detail: detailValues.domicile
+        },
+        {
+          label: 'Autre', 
+          value: 'autre', 
+          showDetail: true, detail: detailValues.autre
+        }
       ],
       radioModel: initialRadioModel,
       setAnswer: function(answer) {
@@ -44,7 +64,7 @@ angular.module('impactApp')
         return true;
       }
 
-      if (model.value === 'autre' && model.detail === '') {
+      if (model.showDetail && model.detail === '') {
         return true;
       }
       

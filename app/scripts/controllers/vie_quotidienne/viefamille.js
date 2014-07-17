@@ -13,12 +13,31 @@ angular.module('impactApp')
     var initialDetail = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.detail : '';
     var initialRadioModel = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.value : '';
 
+    $scope.subtitle = 'Foyer';
     $scope.question = {
       answers: [
-        {label: 'Vous vivez avec vos parents', value: 'parents'},
-        {label: 'Vous vivez seul', value: 'seul'},
-        {label: 'Vous vivez en couple', value: 'couple', onlyAdult: true},
-        {label: 'Vous vivez avec vos enfants', value: 'enfants', onlyAdult: true},
+        {
+          label: 'Vous vivez avec vos parents',
+          labelRep: 'Il vit avec ses parents',
+          value: 'parents'
+        },
+        {
+          label: 'Vous vivez seul',
+          labelRep: 'Il vit seul',
+          value: 'seul'
+        },
+        {
+          label: 'Vous vivez en couple',
+          labelRep: 'Il vit en couple',
+          value: 'couple',
+          onlyAdult: true
+        },
+        {
+          label: 'Vous vivez avec vos enfants', 
+          labelRep: 'Il vit avec ses enfants', 
+          value: 'enfants', 
+          onlyAdult: true
+        },
         {label: 'Autre', value: 'autre', showDetail: true, detail: initialDetail}
       ],
       radioModel: initialRadioModel,

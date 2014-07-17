@@ -1,7 +1,4 @@
-<div class="qtitle">
-  <h3>{{title}}</h3>
-  <h4 ng-if='subtitle'>{{subtitle}}</h4>
-</div>
+<qtitle/>
 
 <div class="container-fluid">
   <div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">

@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('QuotidienCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Besoin d\'aide dans votre vie quotidienne';
+    $scope.subtitle = 'Besoin d\'aide quotidienne';
 
     if (angular.isUndefined($scope.subSectionModel.quotidien)) {
       $scope.subSectionModel.quotidien = {
