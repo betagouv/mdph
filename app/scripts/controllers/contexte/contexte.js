@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('ContexteCtrl', function ($rootScope, $sessionStorage, $scope) {   
+  .controller('ContexteCtrl', function ($rootScope, $sessionStorage, $scope, estRepresentant) {   
 
     $scope.acceptConditions = false;
 
@@ -20,6 +20,17 @@ angular.module('impactApp')
         }
       };
     }
+
+    $scope.estRepresentant = function() {
+      return estRepresentant($scope.data.contexte);
+    };
+
+    $scope.getLabel = function(answer) {
+      if ($scope.estRepresentant() && answer.labelRep) {
+        return answer.labelRep;
+      }
+      return answer.label;
+    };
 
     $scope.broadcastFormTemplate = function() {
       var answers = $scope.sectionModel;

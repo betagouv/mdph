@@ -10,12 +10,20 @@
 angular.module('impactApp')
   .controller('ConditionScolaireCtrl', function($scope, $state) {
 
-    $scope.title = 'Votre scolarité';
+    $scope.title = 'Scolarité';
     
     $scope.question = {
       'answers': [
-        {'label': 'Vous êtes actuellement scolarisé', 'value': true},
-        {'label': 'Vous n\'êtes pas scolarisé', 'value': false}
+        {
+          'label': 'Vous êtes scolarisé',
+          'labelRep': 'Il est scolarisé',
+          'value': true
+        },
+        {
+          'label': 'Vous n\'êtes pas scolarisé',
+          'labelRep': 'Il n\'est pas actuellement scolarisé',
+          'value': false
+        }
       ],
       radioModel: ($scope.sectionModel.scolaire) ? $scope.sectionModel.scolaire.value : '',
       setAnswer: function(answer) {

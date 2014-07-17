@@ -10,6 +10,8 @@
 angular.module('impactApp')
   .controller('CodePostalCtrl', function($scope, $state) {
     
+    $scope.title = ($scope.estRepresentant()) ? 'Quel est son code postal ?' : 'Quel est votre code postal ?';
+
     if (angular.isUndefined($scope.sectionModel.codePostal)) {
       $scope.sectionModel.codePostal = {label: 'Code postal', value: ''};
     }
@@ -21,6 +23,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.dossier');
+      $state.go('^.date_naissance');
     };
   });

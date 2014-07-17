@@ -9,12 +9,20 @@
  */
 angular.module('impactApp')
   .controller('DossierCtrl', function($scope, $state) {
-    $scope.title = 'Votre dossier';
+    $scope.title = 'Dossier MDPH';
 
     $scope.question = {
       answers: [
-        {'label': 'C\'est votre première demande', 'value': true},
-        {'label': 'Vous avez déjà un dossier dans cette MDPH', 'value': false}
+        {
+          'label': 'C\'est votre première demande',
+          'labelRep': 'C\'est le premier dossier du demandeur',
+          'value': true
+        },
+        {
+          'label': 'Vous avez déjà un dossier dans cette MDPH',
+          'labelRep': 'Il a déjà un dossier dans cette MDPH',
+          'value': false
+        }
       ],
       radioModel: ($scope.sectionModel.nouveauDossier) ? $scope.sectionModel.nouveauDossier.value : '',
       setAnswer: function(answer) {
@@ -22,8 +30,6 @@ angular.module('impactApp')
         $scope.showDetail(answer.value);
       }
     };
-
-    $scope.radioModel = 'truc';
 
     $scope.showDetail = function(value) {
       if (value === false && angular.isDefined($scope.sectionModel.changementDeSituation)) {
@@ -37,7 +43,7 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       if ($scope.sectionModel.nouveauDossier.value) {
-        $state.go('^.representant');
+        $state.go('^.code_postal');
       } else {
         $state.go('^.renouvellement');
       }

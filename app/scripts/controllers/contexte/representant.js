@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('RepresentantCtrl', function($scope, $state) {
-    $scope.title = 'Pour quelle personne faites-vous cette demande ?';
+    $scope.title = 'Représentant légal';
 
     $scope.question = {
       'answers': [
@@ -27,6 +27,6 @@ angular.module('impactApp')
     };
     
     $scope.nextStep = function() {
-      $state.go('^.date_naissance');
+      $state.go('^.dossier');
     };
   });

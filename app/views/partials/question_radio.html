@@ -11,7 +11,7 @@
         ng-click="question.setAnswer(answer)"
         ng-model="question.radioModel"
         btn-radio="answer.value">
-        {{answer.label}}
+        {{getLabel(answer)}}
       </label>
       <div class="well slide" ng-if="answer.showDetail && question.radioModel === answer.value">
         <div ui-view></div>

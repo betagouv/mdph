@@ -8,8 +8,8 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('VieQuotidienneCtrl', function ($scope) {
-    $scope.title = 'Votre vie quotidienne';
+  .controller('VieQuotidienneCtrl', function ($scope, estRepresentant) {
+    $scope.title = 'Vie quotidienne';
     
     $scope.section = 'vie_quotidienne';
 
@@ -19,6 +19,17 @@ angular.module('impactApp')
         answers: {}
       };
     }
+
+    $scope.estRepresentant = function() {
+      return estRepresentant($scope.data.contexte);
+    };
+
+    $scope.getLabel = function(answer) {
+      if ($scope.estRepresentant() && answer.labelRep) {
+        return answer.labelRep;
+      }
+      return answer.label;
+    };
 
     $scope.sectionModel = $scope.data.vie.answers;
   });

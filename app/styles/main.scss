@@ -6,19 +6,24 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 body {
   padding-bottom: 20px;
 }
+
+/* Pour cacher les parties de dev */
 .dev {
   display: none;
 }
 
 
 /* Progressions */
-#status-buttons {}
+#status-buttons {
+  margin-top: 20px;
+}
 #status-buttons a {
   display: inline-block; 
   font-size: 12px; 
   text-align: center; 
   color: #000;
   margin: 0 20px;
+  min-width: 120px;
   span {
     display: block;
     font-weight: bold;

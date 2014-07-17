@@ -9,12 +9,20 @@
  */
 angular.module('impactApp')
   .controller('RenouvellementCtrl', function($scope, $state) {
-    $scope.title = 'Votre renouvellement';
+    $scope.title = 'Raison du renouvellement';
 
     $scope.question = {
       'answers': [
-        {'label': 'Vous arrivez à la fin de vos droits', 'value': false},
-        {'label': 'Votre situation a changé', 'value': true}
+        {
+          'label': 'Vous arrivez à la fin de vos droits',
+          'labelRep': 'Il arrive à la fin de ses droits',
+          'value': false
+        },
+        {
+          'label': 'Votre situation a changé',
+          'labelRep': 'Sa situation a changé',
+          'value': true
+        }
       ],
       radioModel: ($scope.sectionModel.changementDeSituation) ? $scope.sectionModel.changementDeSituation.value : '',
       setAnswer: function(answer) {
@@ -27,6 +35,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.representant');
+      $state.go('^.code_postal');
     };
   });

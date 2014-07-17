@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('ScolaireCtrl', function ($scope) {
+  .controller('ScolaireCtrl', function ($scope, estRepresentant) {
     $scope.title = 'Votre scolarité';
 
     $scope.section = 'votre_scolarite';
@@ -19,6 +19,17 @@ angular.module('impactApp')
         answers: {}
       };
     }
+
+    $scope.estRepresentant = function() {
+      return estRepresentant($scope.data.contexte);
+    };
+
+    $scope.getLabel = function(answer) {
+      if ($scope.estRepresentant() && answer.labelRep) {
+        return answer.labelRep;
+      }
+      return answer.label;
+    };
 
     $scope.nextStep = function() {
       $scope.goToNextSection($scope.section);
