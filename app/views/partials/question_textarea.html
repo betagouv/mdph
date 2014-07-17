@@ -1,10 +1,13 @@
 <h4 ng-if='subtitle'>{{subtitle}}</h4>
 
-<div class="row">
-  <textarea class="col-md-12" class="form-control" rows="20" ng-model="subSectionModel[autresRenseignements]"></textarea>
-</div>
-<div class="row next-step">
-  <div class="col-md-offset-8 col-md-4">
-    <button ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</button>
+<div class="container-fluid">
+  <div class="row">
+    <textarea class="col-md-12" class="form-control" rows="20" ng-model="subSectionModel[autresRenseignements]"></textarea>
+  </div>
+  <div class="row next-step">
+    <hr/>
+    <div class="col-md-offset-8 col-md-4">
+      <button ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</button>
+    </div>
   </div>
 </div>

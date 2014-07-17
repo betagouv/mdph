@@ -55,6 +55,12 @@ angular.module('impactApp')
           filter: 'form.votre_aidant.**'
         });
       }
+      formTemplate.push({
+        section: 'envoi',
+        sref: 'form.envoi',
+        label: 'Pièces justificatives',
+        filter: 'form.envoi.**'
+      });
 
       $sessionStorage.formTemplate = formTemplate;
     };

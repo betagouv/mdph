@@ -1,12 +1,14 @@
 <div class ="container">
   <div class="jumbotron">
-  	Avant de commencer le questionnaire, munissez-vous des documents qui peuvent vous être utiles (par exemple, vos relevés bancaires, bulletins de salaires des 3 derniers mois et ceux de votre conjoint(e), concubin(e) ou pacsé(e) et des personnes à charge âgées de moins de 25 ans).
+  	<p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées. Elle peut répondre aux besoins liés à votre handicap.</p>
+    <p>Ce service en ligne vous permettra de saisir votre projet de vie et vos besoins, et de les transmettre à votre MDPH pour qu'elle instruise automatiquement votre dossier.</p>
+    <p>Ce service est adapté aussi bien pour renouveler un dossier existant que pour en ouvrir un nouveau. Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
   </div>
 
-  <div>
+  <div class="text-center">
     <label>
       <input type="checkbox" ng-model="acceptConditions">
-      J’ai pris connaissance des conditions de ce service
+        <a href="#">J’accepte les conditions générales d'utilisation du service</a>
     </label>
   </div>
 
@@ -14,7 +16,7 @@
 
   <div class="pull-right">
   	<a ui-sref="contexte.code_postal" class="btn btn-primary">
-  		Commencer le formulaire
+  		Commencer le questionnaire
   	</a>
   </div>
 </div>

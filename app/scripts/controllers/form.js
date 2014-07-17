@@ -33,11 +33,7 @@ angular.module('impactApp')
     $scope.goToNextSection = function(currentSection) {
       for (var i = 0; i < $scope.formTemplate.length; i++) {
         if ($scope.formTemplate[i].section === currentSection) {
-          if (i === $scope.formTemplate.length - 1) {
-            $state.go('form.envoi');
-          } else {
-            $state.go($scope.formTemplate[i + 1].sref);
-          }
+          $state.go($scope.formTemplate[i + 1].sref);
         }
       }
     };
