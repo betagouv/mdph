@@ -10,49 +10,52 @@
 angular.module('impactApp')
   .controller('VieFamilleCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Vous vivez';
+    var initialDetail = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.detail : '';
+    var initialRadioModel = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.value : '';
 
-    if (angular.isUndefined($scope.parentModel.famille)) {
-      $scope.parentModel.famille = {'valeur': '', 'detail': {}};
-    }
-
-    $scope.model = $scope.parentModel.famille;
-    $scope.detail = $scope.model.detail;
     $scope.question = {
-      'model': 'valeur',
-      'answers': [
-        {'label': 'Avec vos parents', 'value': 'parents'},
-        {'label': 'Seul', 'value': 'seul'},
-        {'label': 'En couple', 'value': 'couple', 'onlyAdult': true},
-        {'label': 'Avec vos enfants', 'value': 'enfants', 'onlyAdult': true},
-        {'label': 'Autre', 'value': 'autre', 'detail': true}
-      ]
+      answers: [
+        {label: 'Vous vivez avec vos parents', value: 'parents'},
+        {label: 'Vous vivez seul', value: 'seul'},
+        {label: 'Vous vivez en couple', value: 'couple', onlyAdult: true},
+        {label: 'Vous vivez avec vos enfants', value: 'enfants', onlyAdult: true},
+        {label: 'Autre', value: 'autre', showDetail: true, detail: initialDetail}
+      ],
+      radioModel: initialRadioModel,
+      setAnswer: function(answer) {
+        $scope.sectionModel.famille = answer;
+        $scope.showDetail(answer.value);
+      }
     };
 
-    $scope.isNextStepDisabled = function(question) {
-      if ($scope.model.valeur === '') {
+    $scope.isNextStepDisabled = function() {
+      var model = $scope.sectionModel.famille;
+      if (angular.isUndefined(model)) {
         return true;
       }
 
-      if ($scope.model.valeur === 'autre' && !$scope.detail[$scope.model[question.model]]) {
+      if (model.value === 'autre' && model.detail === '') {
         return true;
       }
       
       return false;
     };
 
-    var next;
     $scope.showDetail = function(value) {
       if (value === 'autre' && !$state.includes('**.autre')) {
         $state.go('.autre');
-        next = '^.^.logement';
-      } else {
-        next = '^.logement';
       }
     };
-    $scope.showDetail($scope.model.valeur);
 
+    if (angular.isDefined($scope.sectionModel.famille)) {
+      $scope.question.setAnswer($scope.sectionModel.famille);
+    }
+    
     $scope.nextStep = function() {
-      $state.go(next);
+      if ($state.includes('**.autre')) {
+        $state.go('^.^.logement');
+      } else {
+        $state.go('^.logement');
+      }
     };
   });

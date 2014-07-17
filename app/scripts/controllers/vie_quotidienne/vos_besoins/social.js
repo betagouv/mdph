@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Besoin d\'aide dans vos relations sociales et familiales';
 
-    if (angular.isUndefined($scope.parentModel.social)) {
-      $scope.parentModel.social = {
+    if (angular.isUndefined($scope.subSectionModel.social)) {
+      $scope.subSectionModel.social = {
         'besoins': {
           'proches': false,
           'loisirs': false,
@@ -25,7 +25,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.parentModel.social;
+    $scope.model = $scope.subSectionModel.social;
     $scope.question = {
       'model': 'besoins',
       'answers': [

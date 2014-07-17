@@ -12,13 +12,20 @@ angular.module('impactApp')
     $scope.title = 'Pour quelle personne faites-vous cette demande ?';
 
     $scope.question = {
-      'model': 'estRepresentant',
       'answers': [
-        {'label': 'Pour vous', 'value': false},
-        {'label': 'Pour une autre en tant que représentant légal', 'value': true}
-      ]
+        {'label': 'Vous faites cette demande pour vous', 'value': false},
+        {'label': 'Vous faites cette demande pour un autre en tant que représentant légal', 'value': true}
+      ],
+      radioModel: ($scope.sectionModel.estRepresentant) ? $scope.sectionModel.estRepresentant.value : '',
+      setAnswer: function(answer) {
+        $scope.sectionModel.estRepresentant = answer;
+      }
     };
 
+    $scope.isNextStepDisabled = function() {
+      return angular.isUndefined($scope.sectionModel.estRepresentant);
+    };
+    
     $scope.nextStep = function() {
       $state.go('^.date_naissance');
     };

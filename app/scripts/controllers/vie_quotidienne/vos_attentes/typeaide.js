@@ -10,21 +10,21 @@
 angular.module('impactApp')
   .controller('TypeAideCtrl', function ($scope, $state) {
     
-    if (angular.isUndefined($scope.parentModel.typeAide)) {
-      $scope.parentModel.typeAide = {
+    if (angular.isUndefined($scope.subSectionModel.typeAide)) {
+      $scope.subSectionModel.typeAide = {
         attentes: {
-        'humain': false,
-        'materiel': false,
-        'financier': false,
-        'orientation_sante': false,
-        'medico_social': false,
-        'autre': false
+          'humain': false,
+          'materiel': false,
+          'financier': false,
+          'orientation_sante': false,
+          'medico_social': false,
+          'autre': false
         },
         detail: ''
       };
     }
 
-    $scope.model = $scope.parentModel.typeAide;
+    $scope.model = $scope.subSectionModel.typeAide;
     $scope.question = {
       model: 'attentes',
       answers:

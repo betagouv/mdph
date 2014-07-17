@@ -11,9 +11,12 @@ angular.module('impactApp')
   .controller('VosAttentesCtrl', function ($scope) {
     $scope.title = 'Vos attentes pour compenser votre handicap';
 
-    if (angular.isUndefined($scope.data.attentes)) {
-      $scope.data.attentes = {};
+    if (angular.isUndefined($scope.sectionModel.attentes)) {
+      $scope.sectionModel.attentes = {
+        label: 'Vos attentes pour compenser votre handicap',
+        answers: {}
+      };
     }
 
-    $scope.parentModel = $scope.data.attentes;
+    $scope.subSectionModel = $scope.sectionModel.attentes.answers;
   });

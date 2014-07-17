@@ -10,30 +10,41 @@
 angular.module('impactApp')
   .controller('LogementCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Votre logement';
+    var detailValues = {
+      'independant': '',
+      'etablissement': '',
+      'domicile': '',
+      'autre': ''
+    };
+    var initialRadioModel = '';
 
-    if (angular.isUndefined($scope.parentModel.logement)) {
-      $scope.parentModel.logement = {'valeur': '', 'detail': {}};
+    if ($scope.sectionModel.logement) {
+      initialRadioModel = $scope.sectionModel.logement.value;
+      detailValues[$scope.sectionModel.logement.value] =  $scope.sectionModel.logement.detail;
     }
 
-    $scope.model = $scope.parentModel.logement;
-    $scope.detail = $scope.parentModel.logement.detail;
+    $scope.subtitle = 'Votre logement';
     $scope.question = {
-      'model': 'valeur',
-      'answers': [
-        {'label': 'Vous disposez d\'un logement indépendant', 'value': 'independant', 'onlyAdult': true, 'detail': true},
-        {'label': 'Vous logez en établissement', 'value': 'etablissement', 'detail': true, 'placeholder': 'Nom de l\'établissement'},
-        {'label': 'Vous êtes hébergé(e) au domicile', 'value': 'domicile', 'detail': true},
-        {'label': 'Autre situation', 'value': 'autre', 'detail': true}
-      ]
+      answers: [
+        {label: 'Vous disposez d\'un logement indépendant', value: 'independant', onlyAdult: true, showDetail: true, detail: detailValues.independant},
+        {label: 'Vous logez en établissement', value: 'etablissement', showDetail: true, detail: detailValues.etablissement, placeholder: 'Nom de l\'établissement'},
+        {label: 'Vous êtes hébergé(e) au domicile', value: 'domicile', showDetail: true, detail: detailValues.domicile},
+        {label: 'Autre', value: 'autre', showDetail: true, detail: detailValues.autre}
+      ],
+      radioModel: initialRadioModel,
+      setAnswer: function(answer) {
+        $scope.sectionModel.logement = answer;
+        $scope.showDetail(answer.value);
+      }
     };
 
-    $scope.isNextStepDisabled = function(question) {
-      if ($scope.model.valeur === '') {
+    $scope.isNextStepDisabled = function() {
+      var model = $scope.sectionModel.logement;
+      if (angular.isUndefined(model)) {
         return true;
       }
 
-      if ($scope.model.valeur === 'autre' && !$scope.detail[$scope.model[question.model]]) {
+      if (model.value === 'autre' && model.detail === '') {
         return true;
       }
       
@@ -45,7 +56,10 @@ angular.module('impactApp')
         $state.go('form.vie_quotidienne.logement.' + value);
       }
     };
-    $scope.showDetail($scope.model.valeur);
+
+    if (angular.isDefined($scope.sectionModel.logement)) {
+      $scope.question.setAnswer($scope.sectionModel.logement);
+    }
 
     $scope.nextStep = function() {
       $state.go('^.^.vos_besoins.quotidien');

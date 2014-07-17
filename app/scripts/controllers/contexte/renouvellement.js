@@ -12,11 +12,18 @@ angular.module('impactApp')
     $scope.title = 'Votre renouvellement';
 
     $scope.question = {
-      'model': 'changementDeSituation',
       'answers': [
         {'label': 'Vous arrivez à la fin de vos droits', 'value': false},
         {'label': 'Votre situation a changé', 'value': true}
-      ]
+      ],
+      radioModel: ($scope.sectionModel.changementDeSituation) ? $scope.sectionModel.changementDeSituation.value : '',
+      setAnswer: function(answer) {
+        $scope.sectionModel.changementDeSituation = answer;
+      }
+    };
+    
+    $scope.isNextStepDisabled = function() {
+      return angular.isUndefined($scope.sectionModel.changementDeSituation);
     };
 
     $scope.nextStep = function() {

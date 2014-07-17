@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Besoin d\'aide pour vous déplacer';
     
-    if (angular.isUndefined($scope.parentModel.deplacement)) {
-      $scope.parentModel.deplacement = {
+    if (angular.isUndefined($scope.subSectionModel.deplacement)) {
+      $scope.subSectionModel.deplacement = {
         'besoins': {
           'intra_domicile': false,
           'acces_domicile': false,
@@ -27,7 +27,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.parentModel.deplacement;
+    $scope.model = $scope.subSectionModel.deplacement;
     $scope.question = {
       'model': 'besoins',
       'answers':[

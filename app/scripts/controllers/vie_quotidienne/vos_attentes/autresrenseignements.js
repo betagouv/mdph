@@ -8,11 +8,15 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AutresRenseignementsCtrl', function ($scope, $state) {
+  .controller('AutresRenseignementsCtrl', function ($scope) {
+
+    $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer par rapport à votre vie quotidienne';
+
+    if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
+      $scope.subSectionModel.autresRenseignements = '';
+    }
+
     $scope.nextStep = function() {
-      if ($scope.textData) {
-        $scope.data.autresRenseignements = $scope.textData;
-      }
-      $state.go('^.^.scolaire.condition');
+      $scope.goToNextSection($scope.section);
     };
   });

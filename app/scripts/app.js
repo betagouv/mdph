@@ -29,44 +29,68 @@ angular
       templateUrl: 'views/conditions.html'
     });
     stateHelperProvider.setNestedState({
+      name: 'contexte',
+      url: '/contexte',
+      templateUrl: 'views/contexte.html',
+      abstract: true,
+      controller: 'ContexteCtrl',
+      children: [
+        {
+          name: 'code_postal',
+          url: '/code_postal',
+          templateUrl: 'views/partials/code_postal.html',
+          controller: 'CodePostalCtrl'
+        },
+        {
+          name: 'dossier',
+          url: '/dossier',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'DossierCtrl'
+        },
+        {
+          name: 'renouvellement',
+          url: '/renouvellement',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'RenouvellementCtrl'
+        },
+        {
+          name: 'representant',
+          url: '/representant',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'RepresentantCtrl'
+        },
+        {
+          name: 'date_naissance',
+          url: '/date_naissance',
+          templateUrl: 'views/partials/question_date.html',
+          controller: 'DateNaissanceCtrl'
+        },
+        {
+          name: 'scolaire',
+          url: '/soclaire',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'ConditionScolaireCtrl'
+        },
+        {
+          name: 'travail',
+          url: '/travail',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'ConditionTravailCtrl'
+        },
+        {
+          name: 'aidant',
+          url: '/aidant',
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'ConditionAidantCtrl'
+        }
+      ]
+    });
+    stateHelperProvider.setNestedState({
       name: 'form',
       url: '/questionnaire',
       controller: 'FormCtrl',
       templateUrl: 'views/form.html',
       children: [
-        {
-          name: 'contexte',
-          url: '/context',
-          template: '<ui-view/>',
-          abstract: true,
-          controller: 'ContexteCtrl',
-          children: [
-            {
-              name: 'dossier',
-              url: '/dossier',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'DossierCtrl'
-            },
-            {
-              name: 'renouvellement',
-              url: '/renouvellement',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'RenouvellementCtrl'
-            },
-            {
-              name: 'representant',
-              url: '/representant',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'RepresentantCtrl'
-            },
-            {
-              name: 'date_naissance',
-              url: '/date_naissance',
-              templateUrl: 'views/partials/question_date.html',
-              controller: 'DateNaissanceCtrl'
-            }
-          ]
-        },
         {
           name: 'vie_quotidienne',
           url: '/vie_quotidienne',
@@ -173,46 +197,40 @@ angular
                   url: '/structure',
                   templateUrl: 'views/partials/attente_structure.html',
                   controller: 'AttenteStructureCtrl'
+                },
+                {
+                  name: 'autres_renseignements',
+                  url: '/autres_renseignements',
+                  templateUrl: 'views/partials/question_textarea.html',
+                  controller: 'AutresRenseignementsCtrl'
                 }
               ]
-            },
-            {
-              name: 'autres_renseignements',
-              url: '/autres_renseignements',
-              templateUrl: 'views/partials/question_textarea.html',
-              controller: 'AutresRenseignementsCtrl'
             }
           ]
         },
         {
-          name: 'scolaire',
-          url: '/scolaire',
-          template: '<ui-view/>',
-          abstract: true,
-          controller: 'ScolaireCtrl',
-          children: [
-            {
-              name: 'condition',
-              url: '/condition',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'ConditionScolaireCtrl'
-            }
-          ]
+          name: 'votre_scolarite',
+          url: '/votre_scolarite',
+          //template: '<ui-view/>',
+          //abstract: true,
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'ScolaireCtrl'
         },
         {
-          name: 'travail',
-          url: '/travail',
-          template: '<ui-view/>',
-          abstract: true,
-          controller: 'TravailCtrl',
-          children: [
-            {
-              name: 'condition',
-              url: '/condition',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'ConditionTravailCtrl'
-            }
-          ]
+          name: 'votre_travail',
+          url: '/votre_travail',
+          //template: '<ui-view/>',
+          //abstract: true,
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'TravailCtrl'
+        },
+        {
+          name: 'votre_aidant',
+          url: '/votre_aidant',
+          //template: '<ui-view/>',
+          //abstract: true,
+          templateUrl: 'views/partials/question_radio.html',
+          controller: 'AidantCtrl'
         },
         {
           name: 'envoi',

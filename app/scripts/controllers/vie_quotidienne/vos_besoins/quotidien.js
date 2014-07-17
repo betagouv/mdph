@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Besoin d\'aide dans votre vie quotidienne';
 
-    if (angular.isUndefined($scope.parentModel.quotidien)) {
-      $scope.parentModel.quotidien = {
+    if (angular.isUndefined($scope.subSectionModel.quotidien)) {
+      $scope.subSectionModel.quotidien = {
         'besoins': {
           'hygiene': false,
           'courses': false,
@@ -28,7 +28,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.parentModel.quotidien;
+    $scope.model = $scope.subSectionModel.quotidien;
     $scope.question = {
       'model': 'besoins',
       'answers': [

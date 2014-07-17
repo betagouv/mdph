@@ -2,11 +2,24 @@
   <h3>Choisissez votre type d'envoi</h3>
 </div>
 
+<div>
+  <h4>Récapitulatif de votre demande</h4>
+  <ol>
+    <li ng-repeat="section in data">{{section.sectionLabel}}
+      <ul>
+        <li ng-repeat="answer in section.answers">{{answer.label}}</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<hr/>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <label class="btn btn-default center-block" ng-model="typeEnvoi" btn-radio="'numerique'">
-        Scanner ou photographier les pièces jointes de votre dossier<br>pour le transmettre par voie électronique
+        Photographier ou scanner les pièces jointes de votre dossier<br>pour le transmettre par voie électronique
       </label>
     </div>
   </div>

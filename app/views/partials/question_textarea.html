@@ -1,7 +1,7 @@
-<h4>Autres renseignements que vous souhaiteriez nous communiquer par rapport à votre vie quotidienne</h4>
+<h4 ng-if='subtitle'>{{subtitle}}</h4>
 
 <div class="row">
-  <textarea class="col-md-12" class="form-control" rows="20" ng-model="textData"></textarea>
+  <textarea class="col-md-12" class="form-control" rows="20" ng-model="subSectionModel[autresRenseignements]"></textarea>
 </div>
 <div class="row next-step">
   <div class="col-md-offset-8 col-md-4">

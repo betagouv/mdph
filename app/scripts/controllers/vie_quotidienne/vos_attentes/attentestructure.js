@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('AttenteStructureCtrl', function ($scope, $state) {
 
-    if (angular.isUndefined($scope.parentModel.structure)) {
-      $scope.parentModel.structure = {
+    if (angular.isUndefined($scope.subSectionModel.structure)) {
+      $scope.subSectionModel.structure = {
         valeur: false,
         structures: [
           {'name': '', 'contact': false}
@@ -19,7 +19,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.parentModel.structure;
+    $scope.model = $scope.subSectionModel.structure;
     $scope.addStructure = function() {
       $scope.model.structures.push(
         {'name': '', 'contact': false}
@@ -27,6 +27,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.^.autres_renseignements');
+      $state.go('^.autres_renseignements');
     };
   });

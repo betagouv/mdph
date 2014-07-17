@@ -10,10 +10,15 @@
 angular.module('impactApp')
   .controller('VieQuotidienneCtrl', function ($scope) {
     $scope.title = 'Votre vie quotidienne';
+    
+    $scope.section = 'vie_quotidienne';
 
     if (angular.isUndefined($scope.data.vie)) {
-      $scope.data.vie = {};
+      $scope.data.vie = {
+        sectionLabel: 'Vie quotidienne',
+        answers: {}
+      };
     }
 
-    $scope.parentModel = $scope.data.vie;
+    $scope.sectionModel = $scope.data.vie.answers;
   });

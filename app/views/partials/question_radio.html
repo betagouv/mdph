@@ -6,10 +6,14 @@
 <div class="container-fluid">
   <div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
     <div class="col-md-12">
-      <label class="btn btn-default center-block" ng-model="model[question.model]" ng-click="showDetail(answer.value)" btn-radio="answer.value">
+      <label 
+        class="btn btn-default center-block"
+        ng-click="question.setAnswer(answer)"
+        ng-model="question.radioModel"
+        btn-radio="answer.value">
         {{answer.label}}
       </label>
-      <div class="well slide" ng-if="answer.detail && model[question.model] === answer.value">
+      <div class="well slide" ng-if="answer.showDetail && question.radioModel === answer.value">
         <div ui-view></div>
       </div>
     </div>
@@ -17,7 +21,7 @@
   <div class="row next-step">
     <hr/>
     <div class="col-md-offset-8 col-md-4">
-      <a ng-disabled="isNextStepDisabled(question)" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
+      <a ng-disabled="isNextStepDisabled()" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
     </div>
   </div>
 </div>

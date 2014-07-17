@@ -7,37 +7,33 @@ body {
   padding-bottom: 20px;
 }
 .dev {
-  visibility: hidden;
+  display: none;
 }
 
 
 /* Progressions */
-#status-buttons { }
+#status-buttons {}
 #status-buttons a {
   display: inline-block; 
   font-size: 12px; 
   text-align: center; 
   color: #000;
-  p {
-    float: right;
+  margin: 0 20px;
+  span {
+    display: block;
+    font-weight: bold;
+    height: 30px;
+    margin: 0 auto 10px;
+    padding-top: 5px;
+    width: 30px; 
+    border-radius: 50%;
+    border: 1px solid #CCC;
+    background: white;
   }
 }
 #status-buttons a:hover {
   text-decoration: none;
 }
-
-#status-buttons span {
-  display: block;
-  font-weight: bold;
-  height: 30px;
-  margin: 0 auto 10px;
-  padding-top: 5px;
-  width: 30px; 
-  border-radius: 50%;
-  border: 1px solid #CCC;
-  background: white;
-}
-
 #status-buttons a.active {
   span {
     font-weight: bold;
@@ -89,6 +85,7 @@ body {
 }
 
 .jumbotron {
+  margin-top: 30px;
   text-align: justify;
   border-bottom: 1px solid #e5e5e5;
 
@@ -128,7 +125,7 @@ body {
   border-color: #4cae4c;
 }
 
-form {
+.form-view {
   .row {
   padding-top: 7px;
   }

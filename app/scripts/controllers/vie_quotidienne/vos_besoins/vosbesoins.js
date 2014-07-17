@@ -11,9 +11,12 @@ angular.module('impactApp')
   .controller('BesoinsCtrl', function ($scope) {
     $scope.title = 'Vos besoins dans la vie quotidienne';
     
-    if (angular.isUndefined($scope.data.besoins)) {
-      $scope.data.besoins = {};
+    if (angular.isUndefined($scope.sectionModel.besoins)) {
+      $scope.sectionModel.besoins = {
+        label: 'Vos besoins dans la vie quotidienne',
+        answers: {}
+      };
     }
 
-    $scope.parentModel = $scope.data.besoins;
+    $scope.subSectionModel = $scope.sectionModel.besoins.answers;
   });

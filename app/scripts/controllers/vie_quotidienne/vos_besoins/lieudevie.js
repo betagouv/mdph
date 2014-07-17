@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Besoin d\'aide pour adapter votre lieu de vie';
     
-    if (angular.isUndefined($scope.parentModel.lieuDeVie)) {
-      $scope.parentModel.lieuDeVie = {
+    if (angular.isUndefined($scope.subSectionModel.lieuDeVie)) {
+      $scope.subSectionModel.lieuDeVie = {
         'besoins': {
           'materiel': false,
           'nouveau_lieu': false,
@@ -24,7 +24,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.parentModel.lieuDeVie;
+    $scope.model = $scope.subSectionModel.lieuDeVie;
     $scope.question = {
       'model': 'besoins',
       'answers': [

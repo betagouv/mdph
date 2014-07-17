@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Besoin d\'aide pour assurer votre sécurité';
 
-    if (angular.isUndefined($scope.parentModel.securite)) {
-      $scope.parentModel.securite = {
+    if (angular.isUndefined($scope.subSectionModel.securite)) {
+      $scope.subSectionModel.securite = {
         'besoins': {
           'interieur': false,
           'exterieur': false
@@ -21,7 +21,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.parentModel.securite;
+    $scope.model = $scope.subSectionModel.securite;
     $scope.question = {
       'model': 'besoins',
       'answers': [
