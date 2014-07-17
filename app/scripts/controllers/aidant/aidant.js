@@ -9,9 +9,9 @@
  */
 angular.module('impactApp')
   .controller('AidantCtrl', function ($scope) {
-    $scope.title = 'Votre scolarité';
+    $scope.title = 'Votre aidant';
 
-    $scope.section = 'votre_scolarite';
+    $scope.section = 'votre_aidant';
 
     if (angular.isUndefined($scope.data.aidant)) {
       $scope.data.aidant = {};
