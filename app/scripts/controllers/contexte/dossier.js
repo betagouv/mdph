@@ -19,8 +19,8 @@ angular.module('impactApp')
           'value': true
         },
         {
-          'label': 'Vous avez déjà un dossier dans cette MDPH',
-          'labelRep': 'Il a déjà un dossier dans cette MDPH',
+          'label': 'Vous avez déjà un dossier',
+          'labelRep': 'Il a déjà un dossier',
           'value': false
         }
       ],

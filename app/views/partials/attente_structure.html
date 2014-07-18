@@ -1,42 +1,39 @@
 <qtitle/>
 
-<div class="row form-horizontal yesno">
-  <label class="col-md-8">Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?</label>
-  <div class="col-md-2">
-    <label class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="true">
-      Oui
-    </label>
-  </div> 
-  <div class="col-md-2">
-    <label class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="false">
-      Non
-    </label>
-  </div>
-</div>
-<div class="well slide" ng-if="model['valeur']">
-  <div class="row form-horizontal" ng-repeat="structure in model.structures">
-    <div class="col-md-5">
-      <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
-    </div>
-    <label class="col-md-3">Etes-vous déjà en contact?</label>
+<div class="container-fluid">
+  <div class="row form-horizontal yesno">
+    <label class="col-md-8">Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?</label>
     <div class="col-md-2">
-      <label class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="true">
+      <label class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="true">
         Oui
       </label>
     </div> 
     <div class="col-md-2">
-      <label class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="false">
+      <label class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="false">
         Non
       </label>
     </div>
   </div>
-  <div class="row col-md-offset-4 col-md-4">
-    <label class="btn btn-default center-block" ng-click="addStructure()">+</label>
+  <div class="well slide" ng-if="model['valeur']">
+    <div class="row form-horizontal" ng-repeat="structure in model.structures">
+      <div class="col-md-5">
+        <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
+      </div>
+      <label class="col-md-3">Etes-vous déjà en contact?</label>
+      <div class="col-md-2">
+        <label class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="true">
+          Oui
+        </label>
+      </div> 
+      <div class="col-md-2">
+        <label class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="false">
+          Non
+        </label>
+      </div>
+    </div>
+    <div class="row col-md-offset-4 col-md-4">
+      <label class="btn btn-default center-block" ng-click="addStructure()">+</label>
+    </div>
   </div>
-</div>
-<div class="row next-step">
-  <hr/>
-  <div class="col-md-offset-8 col-md-4">
-    <a ng-disabled="isNextStepDisabled()" ng-click="nextStep()" class="btn btn-primary pull-right">Suivant</a>
-  </div>
+  <div go-next/>
 </div>

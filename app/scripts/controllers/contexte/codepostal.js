@@ -19,7 +19,7 @@ angular.module('impactApp')
     $scope.model = $scope.sectionModel.codePostal;
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.model.value);
+      return !$scope.model.value;
     };
 
     $scope.nextStep = function() {
