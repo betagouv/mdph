@@ -185,6 +185,11 @@ body {
   top: 0;
 }
 
+::-webkit-input-placeholder { font-style: italic }
+:-moz-placeholder           { font-style: italic }
+::-moz-placeholder          { font-style: italic }
+:-ms-input-placeholder      { font-style: italic } 
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {

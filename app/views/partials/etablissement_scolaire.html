@@ -1,0 +1,14 @@
+<qtitle/>
+
+<div class="container-fluid">
+  <div class="row form-horizontal" ng-repeat="etablissement in model.etablissements">
+    <div class="col-md-12">
+      <input type="text" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement">
+    </div>
+  </div>
+  <div class="row col-md-offset-4 col-md-4">
+    <label class="btn btn-default center-block" ng-click="addEtablissement()">+</label>
+  </div>
+</div>
+
+<div go-next/>

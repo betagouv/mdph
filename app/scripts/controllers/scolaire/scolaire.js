@@ -31,9 +31,5 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
-    };
-
-    $scope.model = $scope.data.scolaire;
+    $scope.sectionModel = $scope.data.scolaire;
   });

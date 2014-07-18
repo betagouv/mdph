@@ -66,22 +66,10 @@ angular
           controller: 'DateNaissanceCtrl'
         },
         {
-          name: 'scolaire',
-          url: '/scolaire',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'ConditionScolaireCtrl'
-        },
-        {
-          name: 'travail',
-          url: '/travail',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'ConditionTravailCtrl'
-        },
-        {
-          name: 'aidant',
-          url: '/aidant',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'ConditionAidantCtrl'
+          name: 'objet',
+          url: '/objet',
+          templateUrl: 'views/partials/question_checkbox.html',
+          controller: 'ObjetCtrl'
         }
       ]
     });
@@ -211,18 +199,77 @@ angular
         {
           name: 'votre_scolarite',
           url: '/votre_scolarite',
-          //template: '<ui-view/>',
-          //abstract: true,
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'ScolaireCtrl'
+          template: '<ui-view/>',
+          abstract: true,
+          controller: 'ScolaireCtrl',
+          children: [
+            {
+              name: 'condition',
+              url: '/condition',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'ConditionScolaireCtrl'
+            },
+            {
+              name: 'type_scolaire',
+              url: '/type_scolaire',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'TypeScolaireCtrl'
+            },
+            {
+              name: 'etablissement',
+              url: '/etablissement',
+              templateUrl: 'views/partials/etablissement_scolaire.html',
+              controller: 'EtablissementScolaireCtrl'
+            },
+            {
+              name: 'raison_non_scolaire',
+              url: '/raison_non_scolaire',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'RaisonNonScolaireCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html',
+                }
+              ]
+            },
+            {
+              name: 'vos_attentes',
+              url: '/vos_attentes',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'VosAttentesScolairesCtrl',
+              children: [
+                {
+                  name: 'structure',
+                  url: '/structure',
+                  templateUrl: 'views/partials/attente_structure.html',
+                  controller: 'AttenteStructureCtrl'
+                },
+                {
+                  name: 'autres_renseignements',
+                  url: '/autres_renseignements',
+                  templateUrl: 'views/partials/question_textarea.html',
+                  controller: 'AutresRenseignementsScolaireCtrl'
+                }
+              ]
+            }
+          ]
         },
         {
           name: 'votre_travail',
           url: '/votre_travail',
-          //template: '<ui-view/>',
-          //abstract: true,
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'TravailCtrl'
+          template: '<ui-view/>',
+          abstract: true,
+          controller: 'TravailCtrl',
+          children: [
+            {
+              name: 'condition',
+              url: '/condition',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'ConditionTravailCtrl'
+            }
+          ]
         },
         {
           name: 'votre_aidant',

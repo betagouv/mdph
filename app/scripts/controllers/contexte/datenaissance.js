@@ -36,6 +36,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.scolaire');
+      $state.go('^.objet');
     };
   });

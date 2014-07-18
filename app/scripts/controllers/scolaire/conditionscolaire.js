@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('ConditionScolaireCtrl', function($scope, $state) {
 
-    $scope.title = 'Scolarité';
+    $scope.subtitle = 'Situation';
     
     $scope.question = {
       'answers': [
@@ -36,6 +36,10 @@ angular.module('impactApp')
     };
     
     $scope.nextStep = function() {
-      $state.go('^.travail');
+      if ($scope.question.radioModel) {
+        $state.go('^.type_scolaire');
+      } else {
+        $state.go('^.raison_non_scolaire');
+      }
     };
   });

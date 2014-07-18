@@ -1,5 +1,5 @@
 <div class="row form-horizontal">
-  <label class="col-md-2 control-label">Précisez</label>
+  <label class="col-md-2 control-label">{{answer.detailLabel || 'Précisez'}}</label>
   <div class="col-md-10">
     <input type="text" class="form-control" ng-model="$parent.answer.detail" placeholder="{{answer.placeholder}}">
   </div>

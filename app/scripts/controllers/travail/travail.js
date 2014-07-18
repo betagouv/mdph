@@ -35,5 +35,5 @@ angular.module('impactApp')
       $scope.goToNextSection($scope.section);
     };
 
-    $scope.model = $scope.data.travail;
+    $scope.sectionModel = $scope.data.travail;
   });

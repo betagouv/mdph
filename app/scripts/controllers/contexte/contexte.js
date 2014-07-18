@@ -33,7 +33,7 @@ angular.module('impactApp')
     };
 
     $scope.broadcastFormTemplate = function() {
-      var answers = $scope.sectionModel;
+      var objets = $scope.sectionModel.objet;
       var formTemplate = [
         {
           section: 'vie_quotidienne',
@@ -42,23 +42,23 @@ angular.module('impactApp')
           filter: 'form.vie_quotidienne.**'
         }
       ];
-      if (answers.scolaire && answers.scolaire.value) {
+      if (objets.scolarite) {
         formTemplate.push({
           section: 'votre_scolarite',
-          sref: 'form.votre_scolarite',
+          sref: 'form.votre_scolarite.condition',
           label: 'Vie scolaire ou étudiante',
           filter: 'form.votre_scolarite.**'
         });
       }
-      if (answers.travail && answers.travail.value) {
+      if (objets.travail) {
         formTemplate.push({
           section: 'votre_travail',
-          sref: 'form.votre_travail',
+          sref: 'form.votre_travail.condition',
           label: 'Situation professionnelle',
           filter: 'form.votre_travail.**'
         });
       }
-      if (answers.aidant && answers.aidant.value) {
+      if (objets.aidant) {
         formTemplate.push({
           section: 'votre_aidant',
           sref: 'form.votre_aidant',
