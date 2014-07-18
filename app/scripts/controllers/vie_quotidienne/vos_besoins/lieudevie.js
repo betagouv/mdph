@@ -29,7 +29,6 @@ angular.module('impactApp')
       'model': 'besoins',
       'answers': [
         {'label': 'Je souhaite m\'équiper d\'un matériel spécifique', 'model': 'materiel'},
-        {'label': 'Je souhaite accéder à un autre lieu de vie plus adapté à ma situation de handicap', 'model': 'nouveau_lieu'},
         {'label': 'Je souhaite aménager mon lieu de vie', 'model': 'amenagement'},
         {'label': 'Autre besoin', 'model': 'autre', 'detail': true}
       ]
