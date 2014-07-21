@@ -9,12 +9,15 @@
  */
 angular.module('impactApp')
   .controller('AidantCtrl', function ($scope, estRepresentant) {
-    $scope.title = 'Votre aidant';
+    $scope.title = 'Aidant familial';
 
     $scope.section = 'votre_aidant';
 
     if (angular.isUndefined($scope.data.aidant)) {
-      $scope.data.aidant = {};
+      $scope.data.aidant = {
+        sectionLabel: $scope.title,
+        answers: {}
+      };
     }
 
     $scope.estRepresentant = function() {
@@ -28,9 +31,5 @@ angular.module('impactApp')
       return answer.label;
     };
     
-    $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
-    };
-    
-    $scope.sectionModel = $scope.data.aidant;
+    $scope.sectionModel = $scope.data.aidant.answers;
   });

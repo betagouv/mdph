@@ -1,17 +1,12 @@
+<div go-next></div>
+
 <qtitle></qtitle>
 
-<div class="form-horizontal">
-  <div class="form-group">
-    <label class="col-md-3 control-label">{{model.label}}</label>
-    <div class="col-md-9">
-      <textarea
-        class="form-control" 
-        ng-model="model.value"
-        rows="{{model.rows}}"
-        placeholder="{{model.placeholder}}">
-      </textarea>
-    </div>
+<div class="container-fluid">
+  <div class="row">
+    <label for="inputid" class="control-label">{{model.label}}</label>
+    <textarea type="text" id="inputid" class="form-control"
+        rows="{{model.rows}}" ng-model="model.value" placeholder="{{model.placeholder}}"></textarea>
   </div>
+  <div go-next></div>
 </div>
-
-<div go-next></div>

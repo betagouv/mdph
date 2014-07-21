@@ -61,7 +61,7 @@ angular.module('impactApp')
       if (objets.aidant) {
         formTemplate.push({
           section: 'votre_aidant',
-          sref: 'form.votre_aidant',
+          sref: 'form.votre_aidant.lien',
           label: 'Aidant familial',
           filter: 'form.votre_aidant.**'
         });

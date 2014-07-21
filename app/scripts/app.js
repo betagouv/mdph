@@ -391,10 +391,17 @@ angular
         {
           name: 'votre_aidant',
           url: '/votre_aidant',
-          //template: '<ui-view/>',
-          //abstract: true,
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'AidantCtrl'
+          template: '<ui-view/>',
+          abstract: true,
+          controller: 'AidantCtrl',
+          children: [
+            {
+              name: 'lien',
+              url: '/lien',
+              templateUrl: 'views/partials/question_textinput.html',
+              controller: 'AidantLienCtrl'
+            }
+          ]
         },
         {
           name: 'envoi',
