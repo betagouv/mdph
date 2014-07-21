@@ -9,8 +9,6 @@
  */
 angular.module('impactApp')
   .controller('ConditionTravailCtrl', function($scope, $state) {
-    
-    $scope.title = 'Situation professionnelle';
 
     $scope.question = {
       'answers': [
@@ -24,17 +22,22 @@ angular.module('impactApp')
           'value': false
         }
       ],
-      radioModel: ($scope.sectionModel.travail) ? $scope.sectionModel.travail.value : '',
+      radioModel: ($scope.subSectionModel.travail) ? $scope.subSectionModel.travail.value : '',
       setAnswer: function(answer) {
-        $scope.sectionModel.travail = answer;
+        $scope.subSectionModel.travail = answer;
       }
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.travail);
+      return angular.isUndefined($scope.subSectionModel.travail);
     };
 
     $scope.nextStep = function() {
-      $state.go('^.aidant');
+      if ($scope.subSectionModel.travail.value) {
+        $state.go('^.milieu');
+      } else {
+        $state.go('^.sans_emploi.passe');
+      }
     };
   });
+  

@@ -32,8 +32,8 @@ angular.module('impactApp')
           'model': 'scolarite'
         },
         {
-          'label': 'Votre projet professionel',
-          'labelRep': 'Sont projet professionel',
+          'label': 'Votre projet professionnel',
+          'labelRep': 'Sont projet professionnel',
           'model': 'travail'
         },
         {

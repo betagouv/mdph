@@ -9,13 +9,13 @@
  */
 angular.module('impactApp')
   .controller('TravailCtrl', function ($scope, estRepresentant) {
-    $scope.title = 'Votre travail';
+    $scope.title = 'Vie au travail';
 
     $scope.section = 'votre_travail';
     
     if (angular.isUndefined($scope.data.travail)) {
       $scope.data.travail = {
-        sectionLabel: 'Votre situation professionnelle',
+        sectionLabel: 'Vie au travail',
         answers: {}
       };
     }
@@ -31,9 +31,5 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
-    };
-
-    $scope.sectionModel = $scope.data.travail;
+    $scope.sectionModel = $scope.data.travail.answers;
   });

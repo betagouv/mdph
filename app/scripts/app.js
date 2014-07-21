@@ -189,7 +189,7 @@ angular
                 {
                   name: 'autres_renseignements',
                   url: '/autres_renseignements',
-                  templateUrl: 'views/partials/question_textarea.html',
+                  templateUrl: 'views/partials/autres_renseignements.html',
                   controller: 'AutresRenseignementsCtrl'
                 }
               ]
@@ -249,7 +249,7 @@ angular
                 {
                   name: 'autres_renseignements',
                   url: '/autres_renseignements',
-                  templateUrl: 'views/partials/question_textarea.html',
+                  templateUrl: 'views/partials/autres_renseignements.html',
                   controller: 'AutresRenseignementsScolaireCtrl'
                 }
               ]
@@ -264,10 +264,127 @@ angular
           controller: 'TravailCtrl',
           children: [
             {
-              name: 'condition',
-              url: '/condition',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'ConditionTravailCtrl'
+              name: 'situation_professionnelle',
+              url: '/situation_professionnelle',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'VotreSituationCtrl',
+              children: [
+                {
+                  name: 'condition',
+                  url: '/condition',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'ConditionTravailCtrl'
+                },
+                {
+                  name: 'milieu',
+                  url: '/milieu',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'MilieuCtrl'
+                },
+                {
+                  name: 'type',
+                  url: '/type',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'TypeEmploiCtrl'
+                },
+                {
+                  name: 'employeur',
+                  url: '/employeur',
+                  templateUrl: 'views/partials/employeur.html',
+                  controller: 'EmployeurCtrl'
+                },
+                {
+                  name: 'emploi',
+                  url: '/emploi',
+                  template: '<ui-view/>',
+                  abstract: true,
+                  controller: 'EmploiCtrl',
+                  children: [
+                    {
+                      name: 'nom_poste',
+                      url: '/nom_poste',
+                      templateUrl: 'views/partials/question_textinput.html',
+                      controller: 'NomPosteCtrl'
+                    },
+                    {
+                      name: 'temps',
+                      url: '/temps',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'EmploiTempsCtrl'
+                    },
+                    {
+                      name: 'heures',
+                      url: '/heures',
+                      templateUrl: 'views/partials/question_textinput.html',
+                      controller: 'EmploiHeuresCtrl'
+                    },
+                    {
+                      name: 'adapte',
+                      url: '/adapte',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'AdapteHandicapCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez.html',
+                        }
+                      ]
+                    },
+                    {
+                      name: 'difficultes',
+                      url: '/difficultes',
+                      templateUrl: 'views/partials/question_textarea.html',
+                      controller: 'EmploiDifficultesCtrl'
+                    },
+                    {
+                      name: 'amenagement',
+                      url: '/amenagement',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'AmenagementCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez.html',
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: 'sans_emploi',
+                  url: '/sans_emploi',
+                  template: '<ui-view/>',
+                  abstract: true,
+                  controller: 'SansEmploiCtrl',
+                  children: [
+                    {
+                      name: 'passe',
+                      url: '/passe',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'EmploiPasseCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez_big.html',
+                        }
+                      ]
+                    },
+                    {
+                      name: 'pole_emploi',
+                      url: '/pole_emploi',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'PoleEmploiCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez_date.html',
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },

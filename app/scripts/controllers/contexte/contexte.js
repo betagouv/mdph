@@ -53,8 +53,8 @@ angular.module('impactApp')
       if (objets.travail) {
         formTemplate.push({
           section: 'votre_travail',
-          sref: 'form.votre_travail.condition',
-          label: 'Situation professionnelle',
+          sref: 'form.votre_travail.situation_professionnelle.condition',
+          label: 'Vie au travail',
           filter: 'form.votre_travail.**'
         });
       }
