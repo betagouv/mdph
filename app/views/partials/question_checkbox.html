@@ -1,23 +1,22 @@
 <qtitle></qtitle>
 
-<div class="container-fluid">
-  <div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
-    <div class="col-md-12">
-      <label class="btn btn-default center-block" ng-model="model[question.model][answer.model]" btn-checkbox>
-        {{answer.label}}
-      </label>
-      <div class="well slide" ng-if="answer.detail && model[question.model][answer.model]">
-        <div class="row form-horizontal">
-          <label class="col-md-2 control-label">Précisez</label>
-          <div class="col-md-10">
-            <input type="text" class="form-control" ng-model="model.detail">
-          </div>
+<div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
+  <div class="col-md-12">
+    <label class="btn btn-default btn-block" ng-model="model[question.model][answer.model]" btn-checkbox>
+      {{answer.label}}
+    </label>
+    <div class="well slide" ng-if="answer.detail && model[question.model][answer.model]">
+      <div class="row form-horizontal">
+        <label class="col-md-2 control-label">Précisez</label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" ng-model="model.detail">
         </div>
       </div>
     </div>
   </div>
-  <div class="pull-right">
-    <small><em>Plusieurs choix possibles</em></small>
-  </div>
-  <div go-next></div>
 </div>
+<div class="pull-right">
+  <small><em>Plusieurs choix possibles</em></small>
+</div>
+
+<div go-next></div>

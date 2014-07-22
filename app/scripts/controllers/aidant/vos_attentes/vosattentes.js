@@ -2,18 +2,18 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:VosAttentesCtrl
+ * @name impactApp.controller:VosAttentesAidantCtrl
  * @description
- * # VosAttentesCtrl
+ * # VosAttentesAidantCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('VosAttentesCtrl', function ($scope) {
-    $scope.title = 'Vos attentes pour compenser votre handicap';
+  .controller('VosAttentesAidantCtrl', function ($scope) {
+    $scope.title = 'Vos attentes en tant qu’aidant familial';
 
     if (angular.isUndefined($scope.sectionModel.attentes)) {
       $scope.sectionModel.attentes = {
-        label: 'Vos attentes pour compenser votre handicap',
+        label: $scope.title,
         answers: {}
       };
     }

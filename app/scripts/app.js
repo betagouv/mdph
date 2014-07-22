@@ -172,13 +172,7 @@ angular
                   name: 'type_aide',
                   url: '/type_aide',
                   templateUrl: 'views/partials/question_checkbox.html',
-                  controller: 'TypeAideCtrl',
-                  children: [
-                    {
-                      name: 'autre',
-                      templateUrl: 'views/partials/form_precisez.html',
-                    }
-                  ]
+                  controller: 'TypeAideCtrl'
                 },
                 {
                   name: 'structure',
@@ -400,6 +394,117 @@ angular
               url: '/lien',
               templateUrl: 'views/partials/question_textinput.html',
               controller: 'AidantLienCtrl'
+            },
+            {
+              name: 'vie',
+              url: '/vie',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'VieAidantCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez_date.html',
+                }
+              ]
+            },
+            {
+              name: 'emploi',
+              url: '/emploi',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'EmploiAidantCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez_yes_no.html',
+                }
+              ]
+            },
+            {
+              name: 'nature_aide',
+              url: '/nature_aide',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'NatureAideCtrl'
+            },
+            {
+              name: 'nature_aide_bis',
+              url: '/nature_aide_2',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'NatureAideBisCtrl'
+            },
+            {
+              name: 'dedommagement',
+              url: '/dedommagement',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'DedommagementCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez_montant.html',
+                }
+              ]
+            },
+            {
+              name: 'accompagnement',
+              url: '/accompagnement',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'AccompagnementCtrl'
+            },
+            {
+              name: 'soutien',
+              url: '/soutien',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'SoutienCtrl'
+            },
+            {
+              name: 'empechement',
+              url: '/empechement',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'EmpechementCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html',
+                }
+              ]
+            },
+            {
+              name: 'situation_future',
+              url: '/situation_future',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'SituationFutureCtrl'
+            },
+            {
+              name: 'renseignements',
+              url: '/renseignements',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'RenseignementsAidantCtrl'
+            },
+            {
+              name: 'vos_attentes',
+              url: '/vos_attentes',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'VosAttentesAidantCtrl',
+              children: [
+                {
+                  name: 'type_attente',
+                  url: '/type_attente',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'TypeAttenteAidantCtrl'
+                },
+                {
+                  name: 'structure',
+                  url: '/structure',
+                  templateUrl: 'views/partials/attente_structure.html',
+                  controller: 'AttenteStructureAidantCtrl'
+                },
+                {
+                  name: 'autres_renseignements',
+                  url: '/autres_renseignements',
+                  templateUrl: 'views/partials/autres_renseignements.html',
+                  controller: 'AutresRenseignementsAidantCtrl'
+                }
+              ]
             }
           ]
         },

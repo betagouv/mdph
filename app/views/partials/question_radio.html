@@ -1,19 +1,18 @@
 <qtitle></qtitle>
 
-<div class="container-fluid">
-  <div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
-    <div class="col-md-12">
-      <label 
-        class="btn btn-default center-block"
-        ng-click="question.setAnswer(answer)"
-        ng-model="question.radioModel"
-        btn-radio="answer.value">
-        {{getLabel(answer)}}
-      </label>
-      <div class="well slide" ng-if="answer.showDetail && question.radioModel === answer.value">
-        <div ui-view></div>
-      </div>
+<div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
+  <div class="col-md-12">
+    <label 
+      class="btn btn-default center-block"
+      ng-click="question.setAnswer(answer)"
+      ng-model="question.radioModel"
+      btn-radio="answer.value">
+      {{getLabel(answer)}}
+    </label>
+    <div class="well slide" ng-if="answer.showDetail && question.radioModel === answer.value">
+      <div ui-view></div>
     </div>
   </div>
-  <div go-next></div>
 </div>
+
+<div go-next></div>

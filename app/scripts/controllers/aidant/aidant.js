@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('AidantCtrl', function ($scope, estRepresentant) {
-    $scope.title = 'Aidant familial';
+    $scope.title = 'Votre situation en tant qu\'aidant familial';
 
     $scope.section = 'votre_aidant';
 

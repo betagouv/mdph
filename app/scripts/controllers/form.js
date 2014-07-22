@@ -37,8 +37,4 @@ angular.module('impactApp')
         }
       }
     };
-
-    $scope.processForm = function() {
-      console.log($scope.data);
-    };
   });

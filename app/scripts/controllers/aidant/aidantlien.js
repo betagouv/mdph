@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AidantLienCtrl', function($scope) {
+  .controller('AidantLienCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Lien';
+    $scope.subtitle = 'Relation avec la personne en situation de handicap';
 
     if (angular.isUndefined($scope.sectionModel.lien)) {
       $scope.sectionModel.lien = {
@@ -26,6 +26,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
+      $state.go('^.vie');
     };
   });

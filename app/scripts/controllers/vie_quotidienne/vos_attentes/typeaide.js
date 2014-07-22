@@ -38,11 +38,6 @@ angular.module('impactApp')
       ]
     };
 
-
-    $scope.showDetail = function() {
-      $state.go('.autre');
-    };
-
     $scope.nextStep = function() {
       $state.go('^.structure');
     };
