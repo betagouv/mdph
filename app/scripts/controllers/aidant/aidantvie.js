@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('VieAidantCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Relation avec la personne en situation de handicap';
+    $scope.subtitle = 'Relation';
 
     var initialDetail = ($scope.sectionModel.vie) ? $scope.sectionModel.vie.detail : '';
     var initialRadioModel = ($scope.sectionModel.vie) ? $scope.sectionModel.vie.value : '';

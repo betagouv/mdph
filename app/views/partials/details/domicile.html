@@ -22,8 +22,14 @@
     </label>
   </div>
   <div class="col-md-4">
-    <label class="btn btn-default center-block" ng-if="showAdult" ng-model="sectionModel.logement.detail" btn-radio="'enfants'">
-      Des enfants
-    </label>
+    <div tooltip="{{debug ? debugAdultText : ''}}">
+      <label class="btn btn-default center-block"
+        ng-if="debug || showAdult"
+        ng-disabled="!showAdult"
+        ng-model="sectionModel.logement.detail"
+        btn-radio="'enfants'">
+        Des enfants
+      </label>
+    </div>
   </div>
 </div>

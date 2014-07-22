@@ -18,6 +18,7 @@ angular.module('impactApp')
     $scope.formTemplate = $sessionStorage.formTemplate;
     $scope.data =  $sessionStorage.data;
 
+
     $scope.isAdult = function() {
       return isAdult($scope.data.contexte);
     };

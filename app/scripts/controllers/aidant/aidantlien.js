@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('AidantLienCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Relation avec la personne en situation de handicap';
+    $scope.subtitle = 'Relation';
 
     if (angular.isUndefined($scope.sectionModel.lien)) {
       $scope.sectionModel.lien = {

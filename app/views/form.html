@@ -2,6 +2,7 @@
   <div id="status-buttons" class="text-center">
     <span ng-repeat="(idx, currentState) in formTemplate">
       <a 
+        tooltip="{{currentState.tooltip}}"
         ui-sref="{{currentState.sref}}"
         data-ng-class="{active: isActive(currentState)}">
         <span>{{idx + 1}}</span>
@@ -17,6 +18,6 @@
   <div class="form-view" ui-view></div>
 </div>
 
-<pre class="footer dev">
+<pre class="footer" ng-class="{hide: !debug}">
   {{ data | json }}
 </pre>

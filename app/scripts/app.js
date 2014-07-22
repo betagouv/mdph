@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('impactApp', [
     'ngAnimate',
     'ngCookies',
@@ -521,4 +521,9 @@ angular
     // send users to the home page
     $urlRouterProvider.otherwise('/conditions');
 
+});
+
+app.run(function ($rootScope) {
+    $rootScope.debug = true;
+    $rootScope.debugAdultText = 'Affiché uniquement si le demandeur est adulte';
 });

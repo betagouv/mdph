@@ -1,8 +1,12 @@
 <qtitle></qtitle>
 
-<div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
-  <div class="col-md-12">
-    <label class="btn btn-default btn-block" ng-model="model[question.model][answer.model]" btn-checkbox>
+<div class="row" ng-repeat="answer in question.answers" ng-if="debug || (!answer.onlyAdult || isAdult())">
+  <div class="col-md-12" tooltip="{{debug && answer.onlyAdult && !isAdult() ? debugAdultText : ''}}">
+    <label 
+      class="btn btn-default btn-block" 
+      ng-disabled="debug && answer.onlyAdult && !isAdult()" 
+      ng-model="model[question.model][answer.model]"
+      btn-checkbox>
       {{answer.label}}
     </label>
     <div class="well slide" ng-if="answer.detail && model[question.model][answer.model]">

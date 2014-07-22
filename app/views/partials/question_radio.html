@@ -1,9 +1,12 @@
 <qtitle></qtitle>
 
-<div class="row" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
-  <div class="col-md-12">
+<div class="row" ng-repeat="answer in question.answers" 
+  ng-if="debug || (!answer.onlyAdult || isAdult())">
+  <div class="col-md-12" 
+      tooltip="{{debug && answer.onlyAdult && !isAdult() ? debugAdultText : ''}}">
     <label 
-      class="btn btn-default center-block"
+      class="btn btn-default btn-block"
+      ng-disabled="debug && answer.onlyAdult && !isAdult()" 
       ng-click="question.setAnswer(answer)"
       ng-model="question.radioModel"
       btn-radio="answer.value">

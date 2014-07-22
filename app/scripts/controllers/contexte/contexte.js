@@ -47,7 +47,8 @@ angular.module('impactApp')
           section: 'votre_scolarite',
           sref: 'form.votre_scolarite.condition',
           label: 'Vie scolaire ou étudiante',
-          filter: 'form.votre_scolarite.**'
+          filter: 'form.votre_scolarite.**',
+          tooltip: 'Optionnel'
         });
       }
       if (objets.travail) {
@@ -55,7 +56,8 @@ angular.module('impactApp')
           section: 'votre_travail',
           sref: 'form.votre_travail.situation_professionnelle.condition',
           label: 'Vie au travail',
-          filter: 'form.votre_travail.**'
+          filter: 'form.votre_travail.**',
+          tooltip: 'Optionnel'
         });
       }
       if (objets.aidant) {
@@ -63,7 +65,8 @@ angular.module('impactApp')
           section: 'votre_aidant',
           sref: 'form.votre_aidant.lien',
           label: 'Aidant familial',
-          filter: 'form.votre_aidant.**'
+          filter: 'form.votre_aidant.**',
+          tooltip: 'Optionnel, à remplir par l\'aidant'
         });
       }
       formTemplate.push({

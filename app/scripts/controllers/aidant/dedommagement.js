@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('DedommagementCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Relation avec la personne en situation de handicap';
+    $scope.subtitle = 'Dédommagement';
 
     var initialDetail = ($scope.sectionModel.dedommagement) ? $scope.sectionModel.dedommagement.detail : 0;
     var initialRadioModel = ($scope.sectionModel.dedommagement) ? $scope.sectionModel.dedommagement.value : '';

@@ -2,6 +2,6 @@
   <div class="form-view" ui-view></div>
 </div>
 
-<pre class="footer dev">
+<pre class="footer" ng-class="{hide: !debug}">
   {{ data | json }}
 </pre>
