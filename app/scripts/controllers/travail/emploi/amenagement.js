@@ -59,6 +59,10 @@ angular.module('impactApp')
     }
     
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
+      if ($state.includes('**.autre')) {
+        $state.go('^.^.arret_de_travail');
+      } else {
+        $state.go('^.arret_de_travail');
+      }
     };
   });

@@ -342,6 +342,99 @@ var app = angular
                           templateUrl: 'views/partials/form_precisez.html',
                         }
                       ]
+                    },
+                    {
+                      name: 'arret_de_travail',
+                      url: '/arret_de_travail',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'ArretDeTravailCtrl'
+                    },
+                    {
+                      name: 'indemnite_journaliere',
+                      url: '/indemnite_journaliere',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'IndemniteJournaliereCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez_date.html',
+                        }
+                      ]
+                    },
+                    {
+                      name: 'accident_de_travail',
+                      url: '/accident_de_travail',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'AccidentDeTravailCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez_date.html',
+                        }
+                      ]
+                    },
+                    {
+                      name: 'professionnel_social',
+                      url: '/professionnel_social',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'ProfessionnelSocialCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez_date.html',
+                        }
+                      ]
+                    },
+                    {
+                      name: 'medecin_travail',
+                      url: '/medecin_travail',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'MedecinTravailCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez_date.html',
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: 'projet_professionnel',
+                  url: '/projet_professionnel',
+                  template: '<ui-view/>',
+                  abstract: true,
+                  controller: 'ProjetProfessionnelCtrl',
+                  children: [
+                    {
+                      name: 'description',
+                      url: '/description',
+                      templateUrl: 'views/partials/question_radio.html',
+                      controller: 'DescriptionProjetProCtrl',
+                      children: [
+                        {
+                          name: 'autre',
+                          templateUrl: 'views/partials/form_precisez_big.html',
+                        }
+                      ]
+                    },
+                    {
+                      name: 'besoin_soutien',
+                      url: '/besoin_soutien',
+                      templateUrl: 'views/partials/question_checkbox.html',
+                      controller: 'BesoinSoutienCtrl'
+                    },
+                    {
+                      name: 'structure',
+                      url: '/structure',
+                      templateUrl: 'views/partials/attente_structure.html',
+                      controller: 'AttenteStructureProjetProCtrl'
+                    },
+                    {
+                      name: 'autres_renseignements',
+                      url: '/autres_renseignements',
+                      templateUrl: 'views/partials/autres_renseignements.html',
+                      controller: 'AutresRenseignementsProjetProCtrl'
                     }
                   ]
                 },
