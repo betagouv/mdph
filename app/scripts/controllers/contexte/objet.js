@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('ObjetCtrl', function($scope, $state) {
 
-    $scope.title = 'Objets concernés par votre demande';
+    $scope.title = 'Vos attentes concernent';
 
     if (angular.isUndefined($scope.sectionModel.objet)) {
       $scope.sectionModel.objet = {
