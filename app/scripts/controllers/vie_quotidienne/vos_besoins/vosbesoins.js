@@ -12,9 +12,15 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.sectionModel.besoins)) {
       $scope.sectionModel.besoins = {
-        label: 'Vos besoins dans la vie quotidienne',
+        label: 'Besoins dans la vie quotidienne',
         answers: {}
       };
+    }
+
+    if ($scope.estRepresentant()) {
+      $scope.title ='Quels sont les besoins d\'aide de ' + $scope.getName() + ' ?';
+    } else {
+      $scope.title ='Quels sont vos besoins d\'aide ?';
     }
 
     $scope.subSectionModel = $scope.sectionModel.besoins.answers;

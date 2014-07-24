@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('EnvoiCtrl', function($scope, isAdult) {
     $scope.typeEnvoi = 'numerique';
-    $scope.justificatifStr = $scope.data.estRepresentant ? 
+    $scope.justificatifStr = $scope.$storage.estRepresentant ? 
       'de votre justificatif d\'identité ainsi que celui de la personne handicapée' : 
       'de votre justificatif d\'identité';
-    $scope.showAdult = isAdult($scope.data.dateNaissance);
+    $scope.showAdult = isAdult($scope.$storage.dateNaissance);
   });

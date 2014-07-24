@@ -9,18 +9,18 @@
  */
 angular.module('impactApp')
   .controller('RenouvellementCtrl', function($scope, $state) {
-    $scope.title = 'Raison du renouvellement';
+    $scope.title = 'Quelle est la raison de votre renouvellement ?';
 
     $scope.question = {
       'answers': [
         {
           'label': 'Vous arrivez à la fin de vos droits',
-          'labelRep': 'Il arrive à la fin de ses droits',
+          'labelRep': $scope.getName() + ' arrive à la fin de ses droits',
           'value': false
         },
         {
           'label': 'Votre situation a changé',
-          'labelRep': 'Sa situation a changé',
+          'labelRep': 'La situation de ' + $scope.getName() + ' a changé',
           'value': true
         }
       ],
@@ -29,7 +29,7 @@ angular.module('impactApp')
         $scope.sectionModel.changementDeSituation = answer;
       }
     };
-    
+
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.sectionModel.changementDeSituation);
     };

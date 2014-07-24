@@ -13,15 +13,15 @@ angular.module('impactApp')
 
     $scope.section = 'votre_aidant';
 
-    if (angular.isUndefined($scope.data.aidant)) {
-      $scope.data.aidant = {
+    if (angular.isUndefined($scope.$storage.aidant)) {
+      $scope.$storage.aidant = {
         sectionLabel: $scope.title,
         answers: {}
       };
     }
 
     $scope.estRepresentant = function() {
-      return estRepresentant($scope.data.contexte);
+      return estRepresentant($scope.$storage.contexte);
     };
 
     $scope.getLabel = function(answer) {
@@ -31,5 +31,5 @@ angular.module('impactApp')
       return answer.label;
     };
     
-    $scope.sectionModel = $scope.data.aidant.answers;
+    $scope.sectionModel = $scope.$storage.aidant.answers;
   });

@@ -29,56 +29,56 @@ var app = angular
       templateUrl: 'views/conditions.html'
     });
     stateHelperProvider.setNestedState({
-      name: 'contexte',
-      url: '/contexte',
-      templateUrl: 'views/contexte.html',
-      abstract: true,
-      controller: 'ContexteCtrl',
-      children: [
-        {
-          name: 'code_postal',
-          url: '/code_postal',
-          templateUrl: 'views/partials/code_postal.html',
-          controller: 'CodePostalCtrl'
-        },
-        {
-          name: 'dossier',
-          url: '/dossier',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'DossierCtrl'
-        },
-        {
-          name: 'renouvellement',
-          url: '/renouvellement',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'RenouvellementCtrl'
-        },
-        {
-          name: 'representant',
-          url: '/representant',
-          templateUrl: 'views/partials/question_radio.html',
-          controller: 'RepresentantCtrl'
-        },
-        {
-          name: 'date_naissance',
-          url: '/date_naissance',
-          templateUrl: 'views/partials/question_date.html',
-          controller: 'DateNaissanceCtrl'
-        },
-        {
-          name: 'objet',
-          url: '/objet',
-          templateUrl: 'views/partials/question_checkbox.html',
-          controller: 'ObjetCtrl'
-        }
-      ]
-    });
-    stateHelperProvider.setNestedState({
       name: 'form',
       url: '/questionnaire',
       controller: 'FormCtrl',
       templateUrl: 'views/form.html',
       children: [
+        {
+          name: 'contexte',
+          url: '/contexte',
+          template: '<ui-view/>',
+          abstract: true,
+          controller: 'ContexteCtrl',
+          children: [
+            {
+              name: 'code_postal',
+              url: '/code_postal',
+              templateUrl: 'views/partials/code_postal.html',
+              controller: 'CodePostalCtrl'
+            },
+            {
+              name: 'dossier',
+              url: '/dossier',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'DossierCtrl'
+            },
+            {
+              name: 'renouvellement',
+              url: '/renouvellement',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'RenouvellementCtrl'
+            },
+            {
+              name: 'representant',
+              url: '/representant',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'RepresentantCtrl',
+              children: [
+                {
+                  name: 'autre',
+                  templateUrl: 'views/partials/form_precisez.html'
+                }
+              ]
+            },
+            {
+              name: 'date_naissance',
+              url: '/date_naissance',
+              templateUrl: 'views/partials/question_date.html',
+              controller: 'DateNaissanceCtrl'
+            }
+          ]
+        },
         {
           name: 'vie_quotidienne',
           url: '/vie_quotidienne',
@@ -157,7 +157,7 @@ var app = angular
                   name: 'securite',
                   url: '/securite',
                   templateUrl: 'views/partials/question_checkbox.html',
-                  controller: 'SecuriteCtrl'              
+                  controller: 'SecuriteCtrl'
                 }
               ]
             },
@@ -187,6 +187,12 @@ var app = angular
                   controller: 'AutresRenseignementsCtrl'
                 }
               ]
+            },
+            {
+              name: 'objet',
+              url: '/objet',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'ObjetCtrl'
             }
           ]
         },

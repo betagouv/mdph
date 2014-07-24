@@ -11,17 +11,17 @@ angular.module('impactApp')
   .controller('TravailCtrl', function ($scope, estRepresentant) {
     $scope.title = 'Vie au travail';
 
-    $scope.section = 'votre_travail';
+    $scope.sectionId = 'votre_travail';
     
-    if (angular.isUndefined($scope.data.travail)) {
-      $scope.data.travail = {
+    if (angular.isUndefined($scope.$storage.travail)) {
+      $scope.$storage.travail = {
         sectionLabel: 'Vie au travail',
         answers: {}
       };
     }
 
     $scope.estRepresentant = function() {
-      return estRepresentant($scope.data.contexte);
+      return estRepresentant($scope.$storage.contexte);
     };
 
     $scope.getLabel = function(answer) {
@@ -31,5 +31,5 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    $scope.sectionModel = $scope.data.travail.answers;
+    $scope.sectionModel = $scope.$storage.travail.answers;
   });

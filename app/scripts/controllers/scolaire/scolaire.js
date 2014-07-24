@@ -13,15 +13,15 @@ angular.module('impactApp')
 
     $scope.section = 'votre_scolarite';
 
-    if (angular.isUndefined($scope.data.scolaire)) {
-      $scope.data.scolaire = {
+    if (angular.isUndefined($scope.$storage.scolaire)) {
+      $scope.$storage.scolaire = {
         sectionLabel: 'Votre scolarité',
         answers: {}
       };
     }
 
     $scope.estRepresentant = function() {
-      return estRepresentant($scope.data.contexte);
+      return estRepresentant($scope.$storage.contexte);
     };
 
     $scope.getLabel = function(answer) {
@@ -31,5 +31,5 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    $scope.sectionModel = $scope.data.scolaire.answers;
+    $scope.sectionModel = $scope.$storage.scolaire.answers;
   });

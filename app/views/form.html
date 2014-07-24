@@ -1,16 +1,6 @@
 <div class="nav-steps text-center container-fluid">
-  <div id="status-buttons" class="text-center">
-    <span ng-repeat="(idx, currentState) in formTemplate">
-      <a 
-        tooltip="{{currentState.tooltip}}"
-        ui-sref="{{currentState.sref}}"
-        data-ng-class="{active: isActive(currentState)}">
-        <span>{{idx + 1}}</span>
-        <p>
-          {{currentState.label}}
-        </p>
-      </a>
-    </span>
+  <div id="status-buttons" class="row">
+    <div section-link section="section" ng-repeat="section in sections"></div>
   </div>
 </div>
 
@@ -19,5 +9,5 @@
 </div>
 
 <pre class="footer" ng-class="{hide: !debug}">
-  {{ data | json }}
+  {{ $storage | json }}
 </pre>

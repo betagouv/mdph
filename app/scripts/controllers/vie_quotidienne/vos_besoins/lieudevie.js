@@ -10,8 +10,12 @@
 angular.module('impactApp')
   .controller('LieuDeVieCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Besoin d\'aide pour adapter votre lieu de vie';
-    
+    if ($scope.estRepresentant()) {
+      $scope.subtitle = 'Pour adapter sont lieu de vie';
+    } else {
+      $scope.subtitle = 'Pour adapter votre lieu de vie';
+    }
+
     if (angular.isUndefined($scope.subSectionModel.lieuDeVie)) {
       $scope.subSectionModel.lieuDeVie = {
         'besoins': {
@@ -28,8 +32,15 @@ angular.module('impactApp')
     $scope.question = {
       'model': 'besoins',
       'answers': [
-        {'label': 'Je souhaite m\'équiper d\'un matériel spécifique', 'model': 'materiel'},
-        {'label': 'Je souhaite aménager mon lieu de vie', 'model': 'amenagement'},
+        {
+          'label': 'Vous équiper d\'un matériel spécifique',
+          labelRep: 'S\'équiper d\'un matériel spécifique',
+          'model': 'materiel'
+        },
+        {
+          'label': 'Aménager votre lieu de vie',
+          labelRep: 'Aménager son lieu de vie',
+          'model': 'amenagement'},
         {'label': 'Autre besoin', 'model': 'autre', 'detail': true}
       ]
     };

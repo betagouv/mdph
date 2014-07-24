@@ -13,29 +13,29 @@ angular.module('impactApp')
     var initialDetail = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.detail : '';
     var initialRadioModel = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.value : '';
 
-    $scope.subtitle = 'Foyer';
+    $scope.title = 'Avec qui ';
+    $scope.title += $scope.estRepresentant() ? ' vit ' + $scope.getName() + ' ?' : ' vivez-vous ?';
+
     $scope.question = {
       answers: [
         {
-          label: 'Vous vivez avec vos parents',
-          labelRep: 'Il vit avec ses parents',
+          label: 'Avec vos parents',
+          labelRep: 'Avec ses parents',
           value: 'parents'
         },
         {
-          label: 'Vous vivez seul',
-          labelRep: 'Il vit seul',
+          label: 'Seul',
           value: 'seul'
         },
         {
-          label: 'Vous vivez en couple',
-          labelRep: 'Il vit en couple',
+          label: 'En couple',
           value: 'couple',
           onlyAdult: true
         },
         {
-          label: 'Vous vivez avec vos enfants', 
-          labelRep: 'Il vit avec ses enfants', 
-          value: 'enfants', 
+          label: 'Avec vos enfants',
+          labelRep: 'Avec ses enfants',
+          value: 'enfants',
           onlyAdult: true
         },
         {label: 'Autre', value: 'autre', showDetail: true, detail: initialDetail}
@@ -56,7 +56,7 @@ angular.module('impactApp')
       if (model.value === 'autre' && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -69,7 +69,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.sectionModel.famille)) {
       $scope.question.setAnswer($scope.sectionModel.famille);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.logement');

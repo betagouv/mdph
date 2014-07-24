@@ -8,15 +8,15 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('DateNaissanceCtrl', function($scope, $state) {
-    $scope.title = $scope.estRepresentant() ? 'Date de naissance du demandeur' : 'Votre date de naissance';
-    
+  .controller('DateNaissanceCtrl', function($scope) {
+    $scope.title = $scope.estRepresentant() ? 'Quelle est la date de naissance de ' + $scope.getName() + ' ?': 'Quelle est votre date de naissance ?';
+
     if (angular.isUndefined($scope.sectionModel.dateNaissance)) {
       $scope.sectionModel.dateNaissance = {label: 'Date de naissance'};
     }
-    
+
     $scope.model = $scope.sectionModel.dateNaissance;
-    
+
     $scope.question = {
       'model': 'value'
     };
@@ -36,6 +36,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.objet');
+      $scope.beginForm();
     };
   });

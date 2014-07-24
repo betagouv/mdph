@@ -23,31 +23,30 @@ angular.module('impactApp')
       detailValues[$scope.sectionModel.logement.value] =  $scope.sectionModel.logement.detail;
     }
 
-    $scope.subtitle = 'Logement';
+    $scope.title = 'Où ';
+    $scope.title += $scope.estRepresentant() ? ' loge ' + $scope.getName() + ' ?' : ' logez-vous ?';
+
     $scope.question = {
       answers: [
         {
-          label: 'Vous disposez d\'un logement indépendant',
-          labelRep: 'Il dispose d\'un logement indépendant',
+          label: 'En logement indépendant',
           value: 'independant', onlyAdult: true,
           showDetail: true, detail: detailValues.independant
         },
         {
-          label: 'Vous logez en établissement', 
-          labelRep: 'Il loge en établissement', 
-          value: 'etablissement', 
-          showDetail: true, detail: detailValues.etablissement, 
+          label: 'En établissement',
+          value: 'etablissement',
+          showDetail: true, detail: detailValues.etablissement,
           placeholder: 'Nom de l\'établissement'
         },
         {
-          label: 'Vous êtes hébergé(e) au domicile',
-          labelRep: 'Il est hébergé au domicile', 
-          value: 'domicile', 
+          label: 'Hébergé(e) au domicile ...',
+          value: 'domicile',
           showDetail: true, detail: detailValues.domicile
         },
         {
-          label: 'Autre', 
-          value: 'autre', 
+          label: 'Autre',
+          value: 'autre',
           showDetail: true, detail: detailValues.autre
         }
       ],
@@ -67,7 +66,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 

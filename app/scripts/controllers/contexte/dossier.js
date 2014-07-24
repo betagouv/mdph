@@ -9,18 +9,16 @@
  */
 angular.module('impactApp')
   .controller('DossierCtrl', function($scope, $state) {
-    $scope.title = 'Dossier MDPH';
+    $scope.title = $scope.estRepresentant() ? 'Est-ce le premier dossier de ' + $scope.getName() + ' ?' : 'Est-ce votre premier dossier ?';
 
     $scope.question = {
       answers: [
         {
-          'label': 'C\'est votre première demande',
-          'labelRep': 'C\'est le premier dossier du demandeur',
+          'label': 'Oui',
           'value': true
         },
         {
-          'label': 'Vous avez déjà un dossier',
-          'labelRep': 'Il a déjà un dossier',
+          'label': 'Non',
           'value': false
         }
       ],

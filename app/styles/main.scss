@@ -35,35 +35,42 @@ footer {
 /* Progressions */
 #status-buttons {
   margin-top: 20px;
-}
-#status-buttons a {
-  display: inline-block; 
-  font-size: 12px; 
-  text-align: center; 
-  color: #000;
-  margin: 0 20px;
-  min-width: 120px;
-  span {
-    display: block;
-    font-weight: bold;
-    height: 30px;
-    margin: 0 auto 10px;
-    padding-top: 5px;
-    width: 30px; 
-    border-radius: 50%;
-    border: 1px solid #CCC;
-    background: white;
+  a {
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    color: #000;
+    margin: 0 20px;
+    min-width: 120px;
+    span {
+      display: block;
+      height: 30px;
+      margin: 0 auto 10px;
+      padding-top: 5px;
+      width: 30px;
+      border-radius: 50%;
+      border: 1px solid #CCC;
+      background: white;
+    }
   }
-}
-#status-buttons a:hover {
-  text-decoration: none;
-}
-#status-buttons a.active {
-  span {
-    font-weight: bold;
-    background: #5cb85c;
-    border-color: #4cae4c;
-    color: #FFF
+  a:hover {
+    text-decoration: none;
+  }
+  a.active {
+    span {
+      font-weight: bold;
+      background: #5cb85c;
+      border-color: #30822e;
+      color: #FFF
+    }
+  }
+  a.disabled {
+    color: #555555;
+    font-weight: 300;
+    span {
+      background: #d9d9d9;
+      border-color: #AAAAAA;
+    }
   }
 }
 
@@ -113,7 +120,7 @@ footer {
   margin-top: 30px;
   text-align: justify;
   border-bottom: 1px solid #e5e5e5;
-  
+
   p {
     font-size: 14px;
   }
@@ -207,7 +214,7 @@ footer {
 ::-webkit-input-placeholder { font-style: italic }
 :-moz-placeholder           { font-style: italic }
 ::-moz-placeholder          { font-style: italic }
-:-ms-input-placeholder      { font-style: italic } 
+:-ms-input-placeholder      { font-style: italic }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
