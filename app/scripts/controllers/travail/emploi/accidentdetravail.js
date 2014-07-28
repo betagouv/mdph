@@ -14,7 +14,7 @@ angular.module('impactApp')
     var initialRadioModel = ($scope.subSectionModel.accidentTravail) ? $scope.subSectionModel.accidentTravail.value : '';
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'Est-il en arrêt suite à un accident du travail ou une maladie professionnelle ?' : 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?';
+      'Est-' + $scope.getPronoun() + ' en arrêt suite à un accident du travail ou une maladie professionnelle ?' : 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?';
 
     $scope.question = {
       'answers': [

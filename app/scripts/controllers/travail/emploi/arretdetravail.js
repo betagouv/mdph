@@ -11,17 +11,17 @@ angular.module('impactApp')
   .controller('ArretDeTravailCtrl', function($scope, $state) {
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'Est-il actuellement en arrêt de travail ?' : 'Etes-vous actuellement en arrêt de travail ?';
+      'Est-' + $scope.getPronoun() + ' actuellement en arrêt de travail ?' : 'Etes-vous actuellement en arrêt de travail ?';
 
     $scope.question = {
       'answers': [
         {
-          'label': 'Oui',
-          'value': true
-        },
-        {
           'label': 'Non',
           'value': false
+        },
+        {
+          'label': 'Oui',
+          'value': true
         }
       ],
       radioModel: ($scope.subSectionModel.arretDeTravail) ? $scope.subSectionModel.arretDeTravail.value : '',
@@ -36,7 +36,7 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       if ($scope.subSectionModel.arretDeTravail.value === false) {
-        $scope.goToNextSection($scope.section);
+        $scope.goToNextSection($scope.currentSection);
       } else {
         $state.go('^.indemnite_journaliere');
       }

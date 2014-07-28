@@ -14,7 +14,7 @@ angular.module('impactApp')
     var initialRadioModel = ($scope.subSectionModel.indemniteJournaliere) ? $scope.subSectionModel.indemniteJournaliere.value : '';
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'Touche-t-il des indemnités journalières ?' : 'Touchez vous des indemnités journalières ?';
+      'Touche-t-' + $scope.getPronoun() + ' des indemnités journalières ?' : 'Touchez vous des indemnités journalières ?';
 
     $scope.question = {
       'answers': [

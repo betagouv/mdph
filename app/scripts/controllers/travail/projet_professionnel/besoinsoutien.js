@@ -11,7 +11,7 @@ angular.module('impactApp')
   .controller('BesoinSoutienCtrl', function ($scope, $state) {
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'Pour quoi a-t-il besoin de soutien ?' : 'Pour quoi avez-vous besoin de soutien ?';
+      'Pour quoi a-t-' + $scope.getPronoun() + ' besoin de soutien ?' : 'Pour quoi avez-vous besoin de soutien ?';
 
     if (angular.isUndefined($scope.subSectionModel.besoinSoutien)) {
       $scope.subSectionModel.besoinSoutien = {

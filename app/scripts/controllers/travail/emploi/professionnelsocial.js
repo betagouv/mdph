@@ -14,7 +14,7 @@ angular.module('impactApp')
     var initialRadioModel = ($scope.subSectionModel.profesionnelSocial) ? $scope.subSectionModel.profesionnelSocial.value : '';
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'A-t-il rencontré un professionnel du service social de la CARSA ?' : 'Avez-vous rencontré un professionnel du service social de la CARSA ?';
+      'A-t-' + $scope.getPronoun() + ' rencontré un professionnel du service social de la CARSA ?' : 'Avez-vous rencontré un professionnel du service social de la CARSA ?';
 
     $scope.question = {
       'answers': [

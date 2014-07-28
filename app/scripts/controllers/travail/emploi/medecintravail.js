@@ -14,7 +14,7 @@ angular.module('impactApp')
     var initialRadioModel = ($scope.subSectionModel.medecinTravail) ? $scope.subSectionModel.medecinTravail.value : '';
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'A-t-il rencontré le médecin du travail en visite de pré-reprise ?' : 'Avez-vous rencontré le médecin du travail en visite de pré-reprise ?';
+      'A-t-' + $scope.getPronoun() + ' rencontré le médecin du travail en visite de pré-reprise ?' : 'Avez-vous rencontré le médecin du travail en visite de pré-reprise ?';
 
     $scope.question = {
       'answers': [

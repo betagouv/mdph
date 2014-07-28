@@ -19,14 +19,14 @@ angular.module('impactApp')
     $scope.question = {
       answers: [
         {
+          label: 'Non',
+          value: false
+        },
+        {
           label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail
-        },
-        {
-          label: 'Non',
-          value: false
         }
       ],
       radioModel: initialRadioModel,

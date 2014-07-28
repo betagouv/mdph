@@ -14,19 +14,19 @@ angular.module('impactApp')
     var initialRadioModel = ($scope.subSectionModel.description) ? $scope.subSectionModel.description.value : '';
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'A-t-il un ou plusieurs projet(s) professionnel(s) ?' : 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?';
+      'A-t-' + $scope.getPronoun() + ' un ou plusieurs projet(s) professionnel(s) ?' : 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?';
 
     $scope.question = {
       'answers': [
+        {
+          'label': 'Non',
+          'value': false
+        },
         {
           'label': 'Oui',
           'value': true,
           showDetail: true,
           detail: initialDetail
-        },
-        {
-          'label': 'Non',
-          'value': false
         }
       ],
       radioModel: initialRadioModel,
