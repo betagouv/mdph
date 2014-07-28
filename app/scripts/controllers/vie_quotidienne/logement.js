@@ -24,7 +24,7 @@ angular.module('impactApp')
     }
 
     $scope.subtitle = 'Où ';
-    $scope.subtitle += $scope.estRepresentant() ? ' loge t\'il ?' : ' logez-vous ?';
+    $scope.subtitle += $scope.estRepresentant() ? ' loge-t-' + $scope.getPronoun() + ' ?' : ' logez-vous ?';
 
     $scope.question = {
       answers: [

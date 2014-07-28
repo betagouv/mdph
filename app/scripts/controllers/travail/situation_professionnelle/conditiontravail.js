@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('ConditionTravailCtrl', function($scope, $state) {
 
-    $scope.subtitle = $scope.estRepresentant() ? 'A-t-il actuellement un emploi ?' : 'Avez-vous actuellement un emploi ?';
+    $scope.subtitle = $scope.estRepresentant() ? 'A-t-' + $scope.getPronoun() + ' actuellement un emploi ?' : 'Avez-vous actuellement un emploi ?';
 
     $scope.question = {
       'answers': [

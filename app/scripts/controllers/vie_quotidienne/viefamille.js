@@ -14,7 +14,7 @@ angular.module('impactApp')
     var initialRadioModel = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.value : '';
 
     $scope.subtitle = 'Avec qui ';
-    $scope.subtitle += $scope.estRepresentant() ? ' vit-il ?' : ' vivez-vous ?';
+    $scope.subtitle += $scope.estRepresentant() ? ' vit-t-' + $scope.getPronoun() + ' ?' : ' vivez-vous ?';
 
     $scope.question = {
       answers: [
@@ -24,7 +24,9 @@ angular.module('impactApp')
           value: 'parents'
         },
         {
-          label: 'Seul',
+          label: 'Seul(e)',
+          labelRepMasc: 'Seul',
+          labelRepFem: 'Seule',
           value: 'seul'
         },
         {

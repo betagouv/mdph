@@ -11,7 +11,7 @@ angular.module('impactApp')
   .controller('CartesCtrl', function($scope, $sessionStorage, $state) {
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'Souhaite-t-il bénéficier d\'une de ces cartes ?' : 'Souhaitez-vous bénéficier d\'une de ces cartes ?';
+      'Souhaite-t-' + $scope.getPronoun() + ' bénéficier d\'une de ces cartes ?' : 'Souhaitez-vous bénéficier d\'une de ces cartes ?';
 
     if (angular.isUndefined($scope.sectionModel.cartes)) {
       $scope.sectionModel.cartes = {

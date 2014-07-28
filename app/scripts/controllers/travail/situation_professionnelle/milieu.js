@@ -11,8 +11,10 @@ angular.module('impactApp')
   .controller('MilieuCtrl', function($scope, $state) {
     $scope.subtitle = 'Milieu de l\'emploi';
 
-    $scope.subtitle = $scope.estRepresentant() ? 'Où est-il employé ?' : 'Où êtes-vous employé ?';
-
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Où est-' + $scope.getPronoun() + ' employé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+      'Où êtes-vous employé ?';
+      
     $scope.question = {
       answers: [
         {

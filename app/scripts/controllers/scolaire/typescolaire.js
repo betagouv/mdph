@@ -12,7 +12,9 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Type de scolarisation';
 
-    $scope.subtitle = $scope.estRepresentant() ? 'Où est-il scolarisé ?' : 'Où êtes-vous scolarisé ?';
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Où est-' + $scope.getPronoun() + ' scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+      'Où êtes-vous scolarisé ?';
 
     $scope.question = {
       answers: [

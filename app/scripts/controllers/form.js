@@ -96,19 +96,49 @@ angular.module('impactApp')
     };
 
     $scope.getLabel = function(answer) {
-      if ($scope.estRepresentant() && answer.labelRep) {
-        return answer.labelRep;
+      if ($scope.estRepresentant()) {
+        if (answer.labelRep) {
+          return answer.labelRep;
+        }
+        if ($scope.estMasculin() && answer.labelRepMasc) {
+          return answer.labelRepMasc;
+        } else if (answer.labelRepFem){
+          return answer.labelRepFem;
+        }
       }
       return answer.label;
     };
 
-    $scope.getName = function() {
-      if (angular.isUndefined($scope.$storage.contexte) ||
-          angular.isUndefined($scope.$storage.contexte.answers) ||
+    $scope.getRepresentant = function() {
+      if (angular.isUndefined($scope.$storage.contexte)||
+          angular.isUndefined($scope.$storage.contexte.answers)||
           angular.isUndefined($scope.$storage.contexte.answers.estRepresentant)) {
+        return undefined;
+      }
+      return $scope.$storage.contexte.answers.estRepresentant.personne;
+    };
+
+    $scope.getName = function() {
+      var representant = $scope.getRepresentant();
+      if (angular.isUndefined(representant)) {
         return '';
       }
-      return $scope.$storage.contexte.answers.estRepresentant.detail;
+      return representant.prenom;
+    };
+
+    $scope.estMasculin = function() {
+      var representant = $scope.getRepresentant();
+      if (angular.isUndefined(representant)) {
+        return false;
+      }
+      return representant.sexe === 'masculin';
+    };
+
+    $scope.getPronoun = function(capitalize) {
+      if (capitalize) {
+        return $scope.estMasculin() ? 'Il' : 'Elle';
+      }
+      return $scope.estMasculin() ? 'il' : 'elle';
     };
 
     $scope.goToNextSection = function(currentSection) {

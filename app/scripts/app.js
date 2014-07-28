@@ -67,7 +67,7 @@ var app = angular
               children: [
                 {
                   name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html'
+                  templateUrl: 'views/partials/details/personne.html'
                 }
               ]
             },

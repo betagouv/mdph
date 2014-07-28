@@ -10,7 +10,9 @@
 angular.module('impactApp')
   .controller('ConditionScolaireCtrl', function($scope, $state) {
 
-    $scope.subtitle = $scope.estRepresentant() ? 'Est-il actuellement scolarisé ?' : 'Etes-vous actuellement scolarisé ?';
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Est-' + $scope.getPronoun() + ' actuellement scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+      'Etes-vous actuellement scolarisé ?';
 
     $scope.question = {
       'answers': [

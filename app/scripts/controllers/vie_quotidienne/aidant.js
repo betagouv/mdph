@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('ConditionAidantCtrl', function($scope, $sessionStorage) {
 
-    $scope.subtitle = 'Souhaitez-vous informer la MDPH des attentes et besoins de l\'aidant familial ?';
+    $scope.subtitle = 'Souhaitez-vous nous informer des attentes et besoins de votre aidant familial ?';
 
     var initialRadioModel = ($scope.sectionModel.aidant) ? $scope.sectionModel.aidant.value : '';
 
@@ -34,10 +34,6 @@ angular.module('impactApp')
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.sectionModel.aidant);
     };
-
-    if (angular.isDefined($scope.sectionModel.aidant)) {
-      $scope.showDetail($scope.sectionModel.aidant);
-    }
 
     $scope.nextStep = function() {
       $sessionStorage.sectionAidant.isEnabled = $scope.sectionModel.aidant.value;

@@ -10,7 +10,9 @@
 angular.module('impactApp')
   .controller('RaisonNonScolaireCtrl', function($scope, $state) {
 
-    $scope.subtitle = ($scope.estRepresentant()) ? 'Pourquoi n\'est il pas scolarisé ?' : 'Pourquoi n\'êtes vous pas scolarisé ?';
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Pourquoi n\'est-' + $scope.getPronoun() + ' pas scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+      'Pourquoi n\'êtes vous pas scolarisé ?';
 
     var detailValues = {
       'tropJeune': '',
@@ -29,11 +31,13 @@ angular.module('impactApp')
       answers: [
         {
           label: 'Vous êtes trop jeune',
-          labelRep: 'Il est trop jeune',
+          labelRep: $scope.getPronoun(true) + ' est trop jeune',
           value: 'tropJeune',
           showDetail: true,
           detail: detailValues.tropJeune,
-          placeholder: ($scope.estRepresentant()) ? 'A partir de quand sera-t-il scolarisé ?' : 'A partir de quand serez vous scolarisé ?'
+          placeholder: ($scope.estRepresentant()) ?
+            'A partir de quand sera-t-' + $scope.getPronoun() + ' scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+            'A partir de quand serez vous scolarisé ?'
         },
         {
           label: 'Votre handicap vous en empêche',
@@ -44,7 +48,7 @@ angular.module('impactApp')
           placeholder: ($scope.estRepresentant()) ? 'Quelles sont ses difficultées ?' : 'Quelles sont vos difficultées ?'
         },
         {
-          label: 'Il ne trouve pas solution d\'accueil en établissement',
+          label: $scope.getPronoun(true) + ' ne trouve pas solution d\'accueil en établissement',
           value: 'etablissement'
         },
         {

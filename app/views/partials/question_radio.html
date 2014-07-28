@@ -5,7 +5,7 @@
   <div class="col-md-12"
       tooltip="{{debug && answer.onlyAdult && !isAdult() ? debugAdultText : ''}}">
     <label
-      class="btn btn-default btn-block"
+      class="btn btn-default btn-block text-capitalize"
       ng-disabled="debug && answer.onlyAdult && !isAdult()"
       ng-click="question.setAnswer(answer)"
       ng-model="question.radioModel"

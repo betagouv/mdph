@@ -11,8 +11,19 @@ angular.module('impactApp')
   .controller('RepresentantCtrl', function($scope, $state) {
     $scope.subtitle = 'Pour qui faites vous cette demande ?';
 
-    var initialDetail = ($scope.sectionModel.estRepresentant) ? $scope.sectionModel.estRepresentant.detail : '';
-    var initialRadioModel = ($scope.sectionModel.estRepresentant) ? $scope.sectionModel.estRepresentant.value : '';
+    $scope.personne = {};
+
+    var initialRadioModel;
+    if (angular.isDefined($scope.sectionModel.estRepresentant)) {
+      initialRadioModel = $scope.sectionModel.estRepresentant.value;
+      if (angular.isDefined($scope.sectionModel.estRepresentant.personne)) {
+        $scope.personne = $scope.sectionModel.estRepresentant.personne;
+      }
+    } else {
+      initialRadioModel = '';
+    }
+
+    $scope.sectionModel.estRepresentant.personne = $scope.personne;
 
     $scope.question = {
       'answers': [
@@ -20,9 +31,7 @@ angular.module('impactApp')
         {
           label: 'Pour un(e) autre',
           value: true,
-          detail: initialDetail,
-          showDetail: true,
-          placeholder: 'Prénom'
+          showDetail: true
         }
       ],
       radioModel: initialRadioModel,
@@ -38,7 +47,7 @@ angular.module('impactApp')
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.showDetail && !($scope.personne.prenom && $scope.personne.sexe)) {
         return true;
       }
 

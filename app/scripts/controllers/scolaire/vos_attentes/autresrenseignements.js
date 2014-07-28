@@ -10,7 +10,8 @@
 angular.module('impactApp')
   .controller('AutresRenseignementsScolaireCtrl', function ($scope) {
 
-    $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer';
+    $scope.subtitle = 'Autres renseignements concernant la scolarité que vous souhaiteriez nous communiquer';
+
     $scope.placeholder = '';
 
     if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
