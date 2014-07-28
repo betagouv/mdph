@@ -11,9 +11,9 @@ angular.module('impactApp')
   .controller('SecuriteCtrl', function($scope, $state) {
 
     if ($scope.estRepresentant()) {
-      $scope.subtitle = 'Pour assurer sa sécurité';
+      $scope.subtitle ='Quels sont ses besoins d\'aide pour assurer sa sécurité ?';
     } else {
-      $scope.subtitle = 'Pour assurer votre sécurité';
+      $scope.subtitle ='Quels sont vos besoins d\'aide pour assurer votre sécurité ?';
     }
 
     if (angular.isUndefined($scope.subSectionModel.securite)) {

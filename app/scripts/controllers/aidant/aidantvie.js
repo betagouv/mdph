@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('VieAidantCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Relation';
+    $scope.subtitle = 'Vivez-vous avec la personne en situation de handicap ?';
 
     var initialDetail = ($scope.sectionModel.vie) ? $scope.sectionModel.vie.detail : '';
     var initialRadioModel = ($scope.sectionModel.vie) ? $scope.sectionModel.vie.value : '';
@@ -18,11 +18,11 @@ angular.module('impactApp')
     $scope.question = {
       answers: [
         {
-          label: 'Vous ne vivez pas avec la personne en situation de handicap',
+          label: 'Non',
           value: false
         },
         {
-          label: 'Vous vivez avec la personne en situation de handicap',
+          label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail,
@@ -55,7 +55,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -68,7 +68,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.sectionModel.vie)) {
       $scope.question.setAnswer($scope.sectionModel.vie);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.emploi');

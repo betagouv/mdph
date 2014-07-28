@@ -10,6 +10,9 @@
 angular.module('impactApp')
   .controller('BesoinSoutienCtrl', function ($scope, $state) {
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Pour quoi a-t-il besoin de soutien ?' : 'Pour quoi avez-vous besoin de soutien ?';
+
     if (angular.isUndefined($scope.subSectionModel.besoinSoutien)) {
       $scope.subSectionModel.besoinSoutien = {
         soutiens: {
@@ -34,7 +37,7 @@ angular.module('impactApp')
         {'label': 'Adapter l\'environnement de travail', model: 'environnement'},
         {'label': 'Accéder à un emploi', model: 'emploi'},
         {'label': 'Accéder à une formation', model: 'formation'},
-        
+
         {'label': 'Autre besoin', model: 'autre', 'detail': true}
       ]
     };
@@ -43,11 +46,3 @@ angular.module('impactApp')
       $state.go('^.structure');
     };
   });
-
-
-
-
-
-
-
-

@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('SituationFutureCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Situation future';
-    
+    $scope.subtitle = 'Serez-vous prochainement dans une des situations suivantes ?';
+
     if (angular.isUndefined($scope.sectionModel.situationFuture)) {
       $scope.sectionModel.situationFuture = {
         'situations': {

@@ -13,19 +13,20 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.description) ? $scope.subSectionModel.description.detail : '';
     var initialRadioModel = ($scope.subSectionModel.description) ? $scope.subSectionModel.description.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'A-t-il un ou plusieurs projet(s) professionnel(s) ?' : 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?';
+
     $scope.question = {
-      answers: [
+      'answers': [
         {
-          label: 'Vous avez un ou plusieurs projet(s) professionnel(s)',
-          labelRep: 'Il a un ou plusieurs projet(s) professionnel(s)',
-          value: true,
+          'label': 'Oui',
+          'value': true,
           showDetail: true,
           detail: initialDetail
         },
         {
-          label: 'Vous n\'avez pas de projet professionnel',
-          labelRep: 'Il n\'a pas de projet professionnel',
-          value: false
+          'label': 'Non',
+          'value': false
         }
       ],
       radioModel: initialRadioModel,
@@ -44,7 +45,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -57,7 +58,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.description)) {
       $scope.question.setAnswer($scope.subSectionModel.description);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.besoin_soutien');

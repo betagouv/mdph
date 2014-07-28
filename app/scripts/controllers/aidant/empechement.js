@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('EmpechementCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Empêchement';
+    $scope.subtitle = 'En cas d\'empêchement, avez-vous prévu une solution pour vous remplacer ?';
 
     var initialDetail = ($scope.sectionModel.empechement) ? $scope.sectionModel.empechement.detail : '';
     var initialRadioModel = ($scope.sectionModel.empechement) ? $scope.sectionModel.empechement.value : '';
@@ -18,15 +18,15 @@ angular.module('impactApp')
     $scope.question = {
       answers: [
         {
-          label: 'Vous avez prévu une solution pour vous remplacer en cas d\'empêchement',
+          label: 'Non',
+          value: false
+        },
+        {
+          label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail,
           placeholder: 'Laquelle'
-        },
-        {
-          label: 'Vous n\'avez pas prévu de solution',
-          value: false
         }
       ],
       radioModel: initialRadioModel,
@@ -45,7 +45,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -58,7 +58,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.sectionModel.empechement)) {
       $scope.question.setAnswer($scope.sectionModel.empechement);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.situation_future');

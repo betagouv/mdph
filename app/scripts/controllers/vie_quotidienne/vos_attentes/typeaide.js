@@ -9,7 +9,13 @@
  */
 angular.module('impactApp')
   .controller('TypeAideCtrl', function ($scope, $state) {
-    
+
+    if ($scope.estRepresentant()) {
+      $scope.subtitle ='Quelles sont ses attentes pour compenser son handicap ?';
+    } else {
+      $scope.subtitle ='Quelles sont vos attentes pour compenser votre handicap ?';
+    }
+
     if (angular.isUndefined($scope.subSectionModel.typeAide)) {
       $scope.subSectionModel.typeAide = {
         attentes: {

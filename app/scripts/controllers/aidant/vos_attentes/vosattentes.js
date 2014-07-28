@@ -9,7 +9,6 @@
  */
 angular.module('impactApp')
   .controller('VosAttentesAidantCtrl', function ($scope) {
-    $scope.title = 'Vos attentes en tant qu’aidant familial';
 
     if (angular.isUndefined($scope.sectionModel.attentes)) {
       $scope.sectionModel.attentes = {

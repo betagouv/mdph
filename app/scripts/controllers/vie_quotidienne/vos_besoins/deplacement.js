@@ -11,9 +11,9 @@ angular.module('impactApp')
   .controller('DeplacementCtrl', function($scope, $state) {
 
     if ($scope.estRepresentant()) {
-      $scope.subtitle = 'Pour se déplacer';
+      $scope.subtitle ='Quels sont ses besoins d\'aide pour se déplacer ?';
     } else {
-      $scope.subtitle = 'Pour vous déplacer';
+      $scope.subtitle ='Quels sont vos besoins d\'aide pour se déplacer ?';
     }
 
     if (angular.isUndefined($scope.subSectionModel.deplacement)) {

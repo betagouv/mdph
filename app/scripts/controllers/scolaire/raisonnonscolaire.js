@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('RaisonNonScolaireCtrl', function($scope, $state) {
 
-    $scope.subtitle = ($scope.estRepresentant()) ? 'Pourquoi n\'est il pas scolarisé' : 'Pourquoi n\'êtes vous pas scolarisé';
+    $scope.subtitle = ($scope.estRepresentant()) ? 'Pourquoi n\'est il pas scolarisé ?' : 'Pourquoi n\'êtes vous pas scolarisé ?';
 
     var detailValues = {
       'tropJeune': '',
@@ -44,7 +44,7 @@ angular.module('impactApp')
           placeholder: ($scope.estRepresentant()) ? 'Quelles sont ses difficultées ?' : 'Quelles sont vos difficultées ?'
         },
         {
-          label: 'Sans solution d\'acceuil en établissement',
+          label: 'Il ne trouve pas solution d\'accueil en établissement',
           value: 'etablissement'
         },
         {
@@ -70,7 +70,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.sectionModel.raison)) {
       $scope.question.setAnswer($scope.sectionModel.raison);
     }
-    
+
     $scope.isNextStepDisabled = function() {
       if (angular.isUndefined($scope.sectionModel.raison)) {
         return true;
@@ -80,7 +80,7 @@ angular.module('impactApp')
       }
       return false;
     };
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.vos_attentes.structure');

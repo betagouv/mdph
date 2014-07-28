@@ -10,15 +10,15 @@
 angular.module('impactApp')
   .controller('ConditionTravailCtrl', function($scope, $state) {
 
+    $scope.subtitle = $scope.estRepresentant() ? 'A-t-il actuellement un emploi ?' : 'Avez-vous actuellement un emploi ?';
+
     $scope.question = {
       'answers': [
         {
-          'label': 'Vous avez un emploi',
-          'labelRep': 'Il a un emploi',
+          'label': 'Oui',
           'value': true},
         {
-          'label': 'Vous êtes actuellement sans emploi',
-          'labelRep': 'Il est actuellement sans emploi',
+          'label': 'Non',
           'value': false
         }
       ],
@@ -40,4 +40,3 @@ angular.module('impactApp')
       }
     };
   });
-  

@@ -10,16 +10,17 @@
 angular.module('impactApp')
   .controller('ArretDeTravailCtrl', function($scope, $state) {
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Est-il actuellement en arrêt de travail ?' : 'Etes-vous actuellement en arrêt de travail ?';
+
     $scope.question = {
       'answers': [
         {
-          'label': 'Vous êtes actuellement en arrêt de travail',
-          'labelRep': 'Il est actuellement en arrêt de travail',
+          'label': 'Oui',
           'value': true
         },
         {
-          'label': 'Vous n\'êtes pas en arrêt de travail',
-          'labelRep': 'Il n\'êtes pas en arrêt de travail',
+          'label': 'Non',
           'value': false
         }
       ],
@@ -41,4 +42,3 @@ angular.module('impactApp')
       }
     };
   });
-  

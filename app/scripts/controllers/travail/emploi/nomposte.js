@@ -10,9 +10,11 @@
 angular.module('impactApp')
   .controller('NomPosteCtrl', function($scope, $state) {
 
+    $scope.subtitle = $scope.estRepresentant() ? 'Quel est l\'intitulé de son poste ?' : 'Quel est l\'intitulé du poste ?';
+
     if (angular.isUndefined($scope.subSectionModel.nomPoste)) {
       $scope.subSectionModel.nomPoste = {
-        label: 'Nom du poste',
+        placeholder: 'Nom du poste',
         value: ''
       };
     }
@@ -22,7 +24,7 @@ angular.module('impactApp')
     $scope.isNextStepDisabled = function() {
       return $scope.model.value === '';
     };
-    
+
     $scope.nextStep = function() {
       $state.go('^.temps');
     };

@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('EmploiAidantCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Emploi';
+    $scope.subtitle = 'Avez-vous un emploi ?';
 
     var initialDetail = ($scope.sectionModel.emploi) ? $scope.sectionModel.emploi.detail : false;
     var initialRadioModel = ($scope.sectionModel.emploi) ? $scope.sectionModel.emploi.value : '';
@@ -18,16 +18,16 @@ angular.module('impactApp')
     $scope.question = {
       answers: [
         {
-          label: 'Vous avez un emploi',
+          label: 'Non',
+          value: false
+        },
+        {
+          label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail,
           detailLabel: 'Réduction d’activité liée à la prise en charge de la personne aidée'
         },
-        {
-          label: 'Vous êtes actuellement sans emploi',
-          value: false
-        }
       ],
       radioModel: initialRadioModel,
       setAnswer: function(answer) {
@@ -45,7 +45,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -58,7 +58,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.sectionModel.emploi)) {
       $scope.question.setAnswer($scope.sectionModel.emploi);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.nature_aide');

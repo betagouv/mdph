@@ -13,16 +13,17 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.poleEmploi) ? $scope.subSectionModel.poleEmploi.detail : '';
     var initialRadioModel = ($scope.subSectionModel.poleEmploi) ? $scope.subSectionModel.poleEmploi.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Est-il inscrit à Pôle Emploi ?' : 'Etes-vous inscrit à Pôle Emploi ?';
+
     $scope.question = {
       answers: [
         {
-          label: 'Vous n\'êtes pas inscrit à Pôle Emploi',
-          labelRep: 'Il n\'est pas inscrit à Pôle Emploi',
+          label: 'Non',
           value: false
         },
         {
-          label: 'Vous êtes inscrit à Pôle Emploi',
-          labelRep: 'Il est inscrit à Pôle Emploi',
+          label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail,
@@ -55,7 +56,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -68,8 +69,8 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.poleEmploi)) {
       $scope.question.setAnswer($scope.subSectionModel.poleEmploi);
     }
-    
+
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
+      $scope.goToNextSection($scope.currentSection);
     };
   });

@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('EtablissementScolaireCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Etablissement(s)';
+    $scope.subtitle = 'Dans quel(s) établissement(s) ?';
 
     if (angular.isUndefined($scope.sectionModel.etablissement)) {
       $scope.sectionModel.etablissement = {

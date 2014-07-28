@@ -8,28 +8,18 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('ScolaireCtrl', function ($scope, estRepresentant) {
-    $scope.title = 'Votre scolarité';
+  .controller('ScolaireCtrl', function ($scope, $sessionStorage) {
 
-    $scope.section = 'votre_scolarite';
+    $scope.currentSection = $sessionStorage.sectionScolarite;
+    $scope.title = $scope.estRepresentant() ? 'Sa scolarité' : 'Votre scolarité';
+
 
     if (angular.isUndefined($scope.$storage.scolaire)) {
       $scope.$storage.scolaire = {
-        sectionLabel: 'Votre scolarité',
+        sectionLabel: $scope.title,
         answers: {}
       };
     }
-
-    $scope.estRepresentant = function() {
-      return estRepresentant($scope.$storage.contexte);
-    };
-
-    $scope.getLabel = function(answer) {
-      if ($scope.estRepresentant() && answer.labelRep) {
-        return answer.labelRep;
-      }
-      return answer.label;
-    };
 
     $scope.sectionModel = $scope.$storage.scolaire.answers;
   });

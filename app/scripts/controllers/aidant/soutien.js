@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('SoutienCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Soutien';
-    
+    $scope.subtitle = 'Etes-vous soutenu dans votre fonction d’aidant ?';
+
     if (angular.isUndefined($scope.sectionModel.soutien)) {
       $scope.sectionModel.soutien = {
         'soutiens': {

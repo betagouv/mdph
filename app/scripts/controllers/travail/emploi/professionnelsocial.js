@@ -13,17 +13,18 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.profesionnelSocial) ? $scope.subSectionModel.profesionnelSocial.detail : '';
     var initialRadioModel = ($scope.subSectionModel.profesionnelSocial) ? $scope.subSectionModel.profesionnelSocial.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'A-t-il rencontré un professionnel du service social de la CARSA ?' : 'Avez-vous rencontré un professionnel du service social de la CARSA ?';
+
     $scope.question = {
-      answers: [
+      'answers': [
         {
-          label: 'Vous n\'avez pas rencontré de professionnel du service social de la CARSA',
-          labelRep: 'Il n\'a pas rencontré de professionnel du service social de la CARSA',
-          value: false
+          'label': 'Non',
+          'value': false
         },
         {
-          label: 'Vous avez rencontré un professionnel du service social de la CARSA',
-          labelRep: 'Il a rencontré un professionnel du service social de la CARSA',
-          value: true,
+          'label': 'Oui',
+          'value': true,
           showDetail: true,
           detail: initialDetail,
           detailLabel: 'A quelle date ?'
@@ -55,7 +56,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -68,7 +69,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.profesionnelSocial)) {
       $scope.question.setAnswer($scope.subSectionModel.profesionnelSocial);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.medecin_travail');

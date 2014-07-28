@@ -10,6 +10,8 @@
 angular.module('impactApp')
   .controller('TypeAttenteAidantCtrl', function ($scope, $state) {
 
+    $scope.subtitle = 'Quelles sont vos attentes en tant qu\'aidant familial ?';
+
     if (angular.isUndefined($scope.subSectionModel.typeAttente)) {
       $scope.subSectionModel.typeAttente = {
         attentes: {
@@ -46,7 +48,7 @@ angular.module('impactApp')
         {'label': 'Avoir un soutien psychologique', 'model': 'psychologique'},
         {'label': 'Etre affilié gratuitement à l’assurance vieillesse', 'model': 'vieillesse'},
         {'label': 'Etre conseillé pour mieux faire face au handicap de votre proche', 'model': 'conseil'},
-        
+
         {'label': 'Autre attente', 'model': 'autre', 'detail': true}
       ]
     };
@@ -55,11 +57,3 @@ angular.module('impactApp')
       $state.go('^.structure');
     };
   });
-
-
-
-
-
-
-
-

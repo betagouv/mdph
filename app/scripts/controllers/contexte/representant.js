@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('RepresentantCtrl', function($scope, $state) {
-    $scope.title = 'Pour qui faites vous cette demande ?';
+    $scope.subtitle = 'Pour qui faites vous cette demande ?';
 
     var initialDetail = ($scope.sectionModel.estRepresentant) ? $scope.sectionModel.estRepresentant.detail : '';
     var initialRadioModel = ($scope.sectionModel.estRepresentant) ? $scope.sectionModel.estRepresentant.value : '';

@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('NatureAideCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Nature de l\'aide apportée (1/2)';
-    
+    $scope.subtitle = 'Quelle est la nature de l\'aide apportée ? (1/2)';
+
     if (angular.isUndefined($scope.sectionModel.natureAide)) {
       $scope.sectionModel.natureAide = {
         'natures': {

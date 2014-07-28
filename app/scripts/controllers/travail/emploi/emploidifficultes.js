@@ -10,10 +10,11 @@
 angular.module('impactApp')
   .controller('EmploiDifficultesCtrl', function($scope, $state) {
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Quelles sont les difficultées liées à son handicap ?' : 'Quelles sont les difficultées liées à votre handicap ?';
+
     if (angular.isUndefined($scope.subSectionModel.difficultes)) {
       $scope.subSectionModel.difficultes = {
-        label: 'Quelles sont les difficultées liées à votre handicap ?',
-        labelRep: 'Quelles sont les difficultées liées à son handicap ?',
         value: '',
         rows: 4
       };

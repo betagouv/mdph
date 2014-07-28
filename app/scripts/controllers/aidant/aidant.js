@@ -8,28 +8,17 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AidantCtrl', function ($scope, estRepresentant) {
-    $scope.title = 'Votre situation en tant qu\'aidant familial';
+  .controller('AidantCtrl', function ($scope, $sessionStorage) {
 
-    $scope.section = 'votre_aidant';
+    $scope.currentSection = $sessionStorage.sectionAidant;
+    $scope.title = 'Cette partie s\'adresse  à(aux) l\'aidant(s) de la personne en situation de handicap';
 
     if (angular.isUndefined($scope.$storage.aidant)) {
       $scope.$storage.aidant = {
-        sectionLabel: $scope.title,
+        sectionLabel: $scope.currentSection.label,
         answers: {}
       };
     }
 
-    $scope.estRepresentant = function() {
-      return estRepresentant($scope.$storage.contexte);
-    };
-
-    $scope.getLabel = function(answer) {
-      if ($scope.estRepresentant() && answer.labelRep) {
-        return answer.labelRep;
-      }
-      return answer.label;
-    };
-    
     $scope.sectionModel = $scope.$storage.aidant.answers;
   });

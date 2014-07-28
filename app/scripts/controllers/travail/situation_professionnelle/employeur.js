@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('EmployeurCtrl', function($scope, $state) {
-    $scope.subtitle = $scope.estRepresentant() ? 'Son employeur' : 'Votre employeur';
+    $scope.subtitle = $scope.estRepresentant() ? 'Qui est son employeur ?' : 'Qui est votre employeur ?';
 
     if (angular.isUndefined($scope.subSectionModel.employeur)) {
       $scope.subSectionModel.employeur = {
@@ -24,7 +24,7 @@ angular.module('impactApp')
     $scope.isNextStepDisabled = function() {
       return $scope.model.nom.value === '' || $scope.model.adresse.value === '';
     };
-    
+
     $scope.nextStep = function() {
       $state.go('^.emploi.nom_poste');
     };

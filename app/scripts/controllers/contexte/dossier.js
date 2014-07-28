@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('DossierCtrl', function($scope, $state) {
-    $scope.title = $scope.estRepresentant() ? 'Est-ce le premier dossier de ' + $scope.getName() + ' ?' : 'Est-ce votre premier dossier ?';
+    $scope.subtitle = 'Est-ce votre premier dossier ?';
 
     $scope.question = {
       answers: [

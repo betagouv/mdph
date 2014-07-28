@@ -10,10 +10,13 @@
 angular.module('impactApp')
   .controller('EmploiHeuresCtrl', function($scope, $state) {
 
+    $scope.subtitle = $scope.estRepresentant() ? 'Quellle est sa durée de travail par semaine ?' : 'Quellle est votre durée de travail par semaine ?';
+
     if (angular.isUndefined($scope.subSectionModel.heures)) {
       $scope.subSectionModel.heures = {
-        label: 'Heures/semaines',
-        value: ''
+        label: 'Durée de travail',
+        value: '',
+        addon: 'Heures / semaine'
       };
     }
 

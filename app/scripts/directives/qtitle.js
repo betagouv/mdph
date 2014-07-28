@@ -9,7 +9,18 @@
 angular.module('impactApp')
   .directive('qtitle', function () {
     return {
-      template: '<div class="page-header"><h4>{{title}} <subtitle ng-if=\'subtitle\'><br/><small>{{subtitle}}</small></subtitle></h4></div>',
+      templateUrl: 'views/partials/qtitle.html',
       restrict: 'E',
+      controller: function($scope, $state) {
+        $scope.getPageHeader = function() {
+          if ($state.includes('**.contexte.**')) {
+            return 'Pour commencer';
+          }
+          if ($state.includes('**.votre_aidant.**')) {
+            return 'Situation et besoins de l\'aidant familial';
+          }
+          return $scope.estRepresentant() ? 'Projet de vie de ' + $scope.getName() : 'Votre projet de vie';
+        };
+      }
     };
   });

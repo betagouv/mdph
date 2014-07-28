@@ -9,7 +9,6 @@
  */
 angular.module('impactApp')
   .controller('EmploiCtrl', function($scope) {
-    $scope.subtitle = $scope.estRepresentant() ? 'Son emploi' : 'Votre emploi';
 
     if (angular.isUndefined($scope.sectionModel.emploi)) {
       $scope.sectionModel.emploi = {

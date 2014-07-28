@@ -189,10 +189,22 @@ var app = angular
               ]
             },
             {
+              name: 'cartes',
+              url: '/cartes',
+              templateUrl: 'views/partials/question_checkbox.html',
+              controller: 'CartesCtrl'
+            },
+            {
               name: 'objet',
               url: '/objet',
               templateUrl: 'views/partials/question_checkbox.html',
               controller: 'ObjetCtrl'
+            },
+            {
+              name: 'aidant',
+              url: '/aidant',
+              templateUrl: 'views/partials/question_radio.html',
+              controller: 'ConditionAidantCtrl'
             }
           ]
         },
@@ -623,6 +635,6 @@ var app = angular
 });
 
 app.run(function ($rootScope) {
-    $rootScope.debug = true;
+    $rootScope.debug = false;
     $rootScope.debugAdultText = 'Affiché uniquement si le demandeur est adulte';
 });

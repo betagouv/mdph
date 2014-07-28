@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('RenseignementsAidantCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Renseignements sur les aides et dispositifs existants';
-    
+    $scope.subtitle = 'Avez-vous besoin de mieux connaitre les aides et dispositifs existants ?';
+
     if (angular.isUndefined($scope.sectionModel.demandesAides)) {
       $scope.sectionModel.demandesAides = {
         'aides': {
@@ -27,8 +27,8 @@ angular.module('impactApp')
     $scope.question = {
       'model': 'aides',
       'answers':[
-        {label: 'Vous avez besoins de mieux connaitre les aides et dispositifs existants pour vous', model: 'eloignement'},
-        {label: 'Vous avez besoins de mieux connaitre les aides et dispositifs existants pour la personne aidée', model: 'indisponible'},
+        {label: 'Pour vous', model: 'eloignement'},
+        {label: 'Pour la personne aidée', model: 'indisponible'},
         {label: 'Autres', model: 'autre', detail: true}
       ]
     };

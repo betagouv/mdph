@@ -13,17 +13,18 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.indemniteJournaliere) ? $scope.subSectionModel.indemniteJournaliere.detail : '';
     var initialRadioModel = ($scope.subSectionModel.indemniteJournaliere) ? $scope.subSectionModel.indemniteJournaliere.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Touche-t-il des indemnités journalières ?' : 'Touchez vous des indemnités journalières ?';
+
     $scope.question = {
-      answers: [
+      'answers': [
         {
-          label: 'Vous ne touchez pas d\'indemnités journalières',
-          labelRep: 'Il ne touche pas d\'indemnités journalières',
-          value: false
+          'label': 'Non',
+          'value': false
         },
         {
-          label: 'Vous touchez des indemnités journalières',
-          labelRep: 'Il ne touche pas d\'indemnités journalières',
-          value: true,
+          'label': 'Oui',
+          'value': true,
           showDetail: true,
           detail: initialDetail,
           detailLabel: 'Depuis quand ?'
@@ -36,16 +37,6 @@ angular.module('impactApp')
       }
     };
 
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened = true;
-    };
-
-    $scope.dateOptions = {
-      startingDay: 1
-    };
-
     $scope.isNextStepDisabled = function() {
       var model = $scope.subSectionModel.indemniteJournaliere;
       if (angular.isUndefined(model)) {
@@ -55,7 +46,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -68,7 +59,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.indemniteJournaliere)) {
       $scope.question.setAnswer($scope.subSectionModel.indemniteJournaliere);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.accident_de_travail');

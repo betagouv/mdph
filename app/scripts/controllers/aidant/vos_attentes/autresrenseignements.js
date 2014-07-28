@@ -10,13 +10,13 @@
 angular.module('impactApp')
   .controller('AutresRenseignementsAidantCtrl', function ($scope) {
 
-    $scope.placeholder = 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant';
-    
+    $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant';
+
     if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
       $scope.subSectionModel.autresRenseignements = '';
     }
 
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
+      $scope.goToNextSection($scope.currentSection);
     };
   });

@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('TypeEmploiCtrl', function($scope, $state) {
-    $scope.subtitle = 'Type d\'emploi';
+    $scope.subtitle = $scope.estRepresentant() ? 'Quel est son type d\'emploi ?' : 'Quel est votre type d\'emploi ?';
     $scope.question = {
       answers: [
         {
@@ -42,7 +42,7 @@ angular.module('impactApp')
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.subSectionModel.type);
     };
-    
+
     $scope.nextStep = function() {
       $state.go('^.employeur');
     };

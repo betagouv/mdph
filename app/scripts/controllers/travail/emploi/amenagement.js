@@ -13,18 +13,19 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.amenagement) ? $scope.subSectionModel.amenagement.detail : '';
     var initialRadioModel = ($scope.subSectionModel.amenagement) ? $scope.subSectionModel.amenagement.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Des aménagements ont-ils été réalisés sur son poste de travail ?' : 'Des aménagements ont-ils été réalisés sur votre poste de travail ?';
+
     $scope.question = {
       answers: [
         {
-          label: 'Des aménagements on été réalisés sur votre poste de travail',
-          labelRep: 'Des aménagements on été réalisés sur son poste de travail',
+          label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail
         },
         {
-          label: 'Aucun aménagement n\'a été réalisé sur votre poste de travail',
-          labelRep: 'Aucun aménagement n\'a été réalisé sur son poste de travail',
+          label: 'Non',
           value: false
         }
       ],
@@ -44,7 +45,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -57,7 +58,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.amenagement)) {
       $scope.question.setAnswer($scope.subSectionModel.amenagement);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.arret_de_travail');

@@ -10,6 +10,8 @@
 angular.module('impactApp')
   .controller('EmploiTempsCtrl', function($scope, $state) {
 
+    $scope.subtitle = $scope.estRepresentant() ? 'Son emploi est-il a temps complet ou partiel ?' : 'Votre emploi est-il a temps complet ou partiel ?';
+
     if (angular.isUndefined($scope.subSectionModel.temps)) {
       $scope.subSectionModel.temps = {
         label: '',

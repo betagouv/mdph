@@ -17,11 +17,5 @@ angular.module('impactApp')
       };
     }
 
-    if ($scope.estRepresentant()) {
-      $scope.title ='Quels sont les besoins d\'aide de ' + $scope.getName() + ' ?';
-    } else {
-      $scope.title ='Quels sont vos besoins d\'aide ?';
-    }
-
     $scope.subSectionModel = $scope.sectionModel.besoins.answers;
   });

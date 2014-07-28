@@ -76,6 +76,16 @@ angular.module('impactApp')
       $scope.$storage.sectionEnvoi
     ];
 
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      startingDay: 1
+    };
+
     $scope.estRepresentant = function() {
       if (angular.isUndefined($scope.$storage.contexte) ||
           angular.isUndefined($scope.$storage.contexte.answers) ||
@@ -104,7 +114,7 @@ angular.module('impactApp')
     $scope.goToNextSection = function(currentSection) {
       var probableNext = $scope.sections[currentSection.id + 1];
       if (probableNext.isOptionnal && !probableNext.isEnabled) {
-        $scope.goToNextSection(probableNext.id);
+        $scope.goToNextSection(probableNext);
       } else {
         $state.go(probableNext.sref);
       }

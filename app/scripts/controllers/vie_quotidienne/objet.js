@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('ObjetCtrl', function($scope, $state) {
+  .controller('ObjetCtrl', function($scope, $sessionStorage, $state) {
 
-    $scope.title = 'Vos attentes concernent';
+    $scope.subtitle = $scope.estRepresentant() ? 'Quels autres projets sont concernés par sa demande ?' : 'Quels autres projets sont concernés par votre demande ?';
 
     if (angular.isUndefined($scope.sectionModel.objet)) {
       $scope.sectionModel.objet = {
@@ -33,26 +33,16 @@ angular.module('impactApp')
         },
         {
           'label': 'Votre projet professionnel',
-          'labelRep': 'Sont projet professionnel',
+          'labelRep': 'Son projet professionnel',
           'model': 'travail'
-        },
-        {
-          'label': 'Une carte de stationnement',
-          'model': 'carteStationnement'
-        },
-        {
-          'label': 'Une carte d\'invalidité',
-          'model': 'carteInvalidite'
-        },
-        {
-          'label': 'Vous êtes accompagné d\'un aidant familial et souhaitez informer la MDPH de ses attentes et besoins',
-          'model': 'aidant'
         }
       ]
     };
 
     $scope.nextStep = function() {
-      $state.go('form.vie_quotidienne.vie_famille');
-      $scope.broadcastFormTemplate();
+      $sessionStorage.sectionScolarite.isEnabled = $scope.model.objet.scolarite;
+      $sessionStorage.sectionTravail.isEnabled = $scope.model.objet.travail;
+      $sessionStorage.sectionEnvoi.isEnabled = true;
+      $state.go('^.aidant');
     };
   });

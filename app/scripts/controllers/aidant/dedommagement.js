@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('DedommagementCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Dédommagement';
+    $scope.subtitle = 'Etes vous dédommagé(e) pour l’aide apportée à votre proche ?';
 
     var initialDetail = ($scope.sectionModel.dedommagement) ? $scope.sectionModel.dedommagement.detail : 0;
     var initialRadioModel = ($scope.sectionModel.dedommagement) ? $scope.sectionModel.dedommagement.value : '';
@@ -18,15 +18,15 @@ angular.module('impactApp')
     $scope.question = {
       answers: [
         {
-          label: 'Vous êtes dédommagé(e) pour l’aide apportée à votre proche',
+          label: 'Non',
+          value: false
+        },
+        {
+          label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail,
           placeholder: 'Montant mensuel'
-        },
-        {
-          label: 'Vous n\'êtes pas dédommagé(e) pour l’aide apportée à votre proche',
-          value: false
         }
       ],
       radioModel: initialRadioModel,
@@ -45,7 +45,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail <= 0) {
         return true;
       }
-      
+
       return false;
     };
 
@@ -58,7 +58,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.sectionModel.dedommagement)) {
       $scope.question.setAnswer($scope.sectionModel.dedommagement);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.accompagnement');

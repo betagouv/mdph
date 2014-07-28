@@ -13,19 +13,20 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.passe) ? $scope.subSectionModel.passe.detail : '';
     var initialRadioModel = ($scope.subSectionModel.passe) ? $scope.subSectionModel.passe.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'A-t-il déjà travaillé ?' : 'Avez-vous déjà travaillé ?';
+
     $scope.question = {
       answers: [
         {
-          label: 'Vous avez déjà travaillé',
-          labelRep: 'Il a déjà travaillé',
+          label: 'Oui',
           value: true,
           showDetail: true,
           detail: initialDetail,
           placeholder: 'Pourquoi êtes-vous actuellement sans emploi et depuis quand ?'
         },
         {
-          label: 'Vous n\'avez pas encore travaillé',
-          labelRep: 'Il n\'a pas encore travaillé',
+          label: 'Non',
           value: false
         }
       ],
@@ -45,7 +46,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -58,7 +59,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.passe)) {
       $scope.question.setAnswer($scope.subSectionModel.passe);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.pole_emploi');

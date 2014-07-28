@@ -13,8 +13,8 @@ angular.module('impactApp')
     var initialDetail = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.detail : '';
     var initialRadioModel = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.value : '';
 
-    $scope.title = 'Avec qui ';
-    $scope.title += $scope.estRepresentant() ? ' vit ' + $scope.getName() + ' ?' : ' vivez-vous ?';
+    $scope.subtitle = 'Avec qui ';
+    $scope.subtitle += $scope.estRepresentant() ? ' vit-il ?' : ' vivez-vous ?';
 
     $scope.question = {
       answers: [

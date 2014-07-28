@@ -13,17 +13,18 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.medecinTravail) ? $scope.subSectionModel.medecinTravail.detail : '';
     var initialRadioModel = ($scope.subSectionModel.medecinTravail) ? $scope.subSectionModel.medecinTravail.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'A-t-il rencontré le médecin du travail en visite de pré-reprise ?' : 'Avez-vous rencontré le médecin du travail en visite de pré-reprise ?';
+
     $scope.question = {
-      answers: [
+      'answers': [
         {
-          label: 'Vous n\'avez pas rencontré le médecin du travail en visite de pré-reprise',
-          labelRep: 'Il n\'a pas rencontré le médecin du travail en visite de pré-reprise',
-          value: false
+          'label': 'Non',
+          'value': false
         },
         {
-          label: 'Vous avez rencontré le médecin du travail en visite de pré-reprise',
-          labelRep: 'Il a rencontré le médecin du travail en visite de pré-reprise',
-          value: true,
+          'label': 'Oui',
+          'value': true,
           showDetail: true,
           detail: initialDetail,
           detailLabel: 'A quelle date ?'
@@ -55,7 +56,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -68,7 +69,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.medecinTravail)) {
       $scope.question.setAnswer($scope.subSectionModel.medecinTravail);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.^.projet_professionnel.description');

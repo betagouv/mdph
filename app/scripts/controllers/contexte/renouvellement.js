@@ -9,7 +9,7 @@
  */
 angular.module('impactApp')
   .controller('RenouvellementCtrl', function($scope, $state) {
-    $scope.title = 'Quelle est la raison de votre renouvellement ?';
+    $scope.subtitle = 'Quelle est la raison de votre renouvellement ?';
 
     $scope.question = {
       'answers': [

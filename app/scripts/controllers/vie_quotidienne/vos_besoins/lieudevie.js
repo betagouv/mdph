@@ -11,9 +11,9 @@ angular.module('impactApp')
   .controller('LieuDeVieCtrl', function($scope, $state) {
 
     if ($scope.estRepresentant()) {
-      $scope.subtitle = 'Pour adapter sont lieu de vie';
+      $scope.subtitle ='Quels sont ses besoins d\'aide pour adapter son lieu de vie ?';
     } else {
-      $scope.subtitle = 'Pour adapter votre lieu de vie';
+      $scope.subtitle ='Quels sont vos besoins d\'aide pour adapter votre lieu de vie ?';
     }
 
     if (angular.isUndefined($scope.subSectionModel.lieuDeVie)) {

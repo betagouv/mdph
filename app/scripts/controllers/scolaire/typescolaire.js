@@ -12,27 +12,29 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Type de scolarisation';
 
+    $scope.subtitle = $scope.estRepresentant() ? 'Où est-il scolarisé ?' : 'Où êtes-vous scolarisé ?';
+
     $scope.question = {
       answers: [
         {
-          label: 'Scolarisé en milieu ordinaire',
+          label: 'En milieu ordinaire',
           value: 'ordinaire'
         },
         {
-          label: 'Scolarisé à domicile',
+          label: 'A domicile',
           value: 'domicile'
         },
         {
-          label: 'Scolarisé, avec accompagnement par un établissement médico-social',
+          label: 'Avec accompagnement par un établissement médico-social',
           value: 'etablissement'
         },
         {
-          label: 'Scolarise en temps partagé entre l’établissement médico-social et le milieu ordinaire ou domicile',
-          value: 'etablissementPartiel', 
+          label: 'En temps partagé entre l’établissement médico-social et le milieu ordinaire ou domicile',
+          value: 'etablissementPartiel',
         },
         {
           label: 'En formation supérieure',
-          value: 'superieur', 
+          value: 'superieur',
         }
       ],
       radioModel: ($scope.sectionModel.type) ? $scope.sectionModel.type.value : '',
@@ -44,7 +46,7 @@ angular.module('impactApp')
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.sectionModel.type);
     };
-    
+
     $scope.nextStep = function() {
       if ($scope.question.radioModel !== 'domicile') {
         $state.go('^.etablissement');

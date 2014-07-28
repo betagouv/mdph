@@ -11,6 +11,8 @@ angular.module('impactApp')
   .controller('MilieuCtrl', function($scope, $state) {
     $scope.subtitle = 'Milieu de l\'emploi';
 
+    $scope.subtitle = $scope.estRepresentant() ? 'Où est-il employé ?' : 'Où êtes-vous employé ?';
+
     $scope.question = {
       answers: [
         {
@@ -35,7 +37,7 @@ angular.module('impactApp')
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.subSectionModel.milieu);
     };
-    
+
     $scope.nextStep = function() {
       $state.go('^.type');
     };

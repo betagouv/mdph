@@ -12,12 +12,12 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer';
     $scope.placeholder = '';
-    
+
     if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
       $scope.subSectionModel.autresRenseignements = '';
     }
 
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
+      $scope.goToNextSection($scope.currentSection);
     };
   });

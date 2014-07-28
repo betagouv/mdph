@@ -13,17 +13,18 @@ angular.module('impactApp')
     var initialDetail = ($scope.subSectionModel.accidentTravail) ? $scope.subSectionModel.accidentTravail.detail : '';
     var initialRadioModel = ($scope.subSectionModel.accidentTravail) ? $scope.subSectionModel.accidentTravail.value : '';
 
+    $scope.subtitle = $scope.estRepresentant() ?
+      'Est-il en arrêt suite à un accident du travail ou une maladie professionnelle ?' : 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?';
+
     $scope.question = {
-      answers: [
+      'answers': [
         {
-          label: 'Vous n\'êtes pas en arrêt suite à un accident du travail ou une maladie professionnelle',
-          labelRep: 'Il n\'est pas en arrêt suite à un accident du travail ou une maladie professionnelle',
-          value: false
+          'label': 'Non',
+          'value': false
         },
         {
-          label: 'Vous êtes en arrêt suite à un accident du travail ou une maladie professionnelle',
-          labelRep: 'Il est en arrêt suite à un accident du travail ou une maladie professionnelle',
-          value: true,
+          'label': 'Oui',
+          'value': true,
           showDetail: true,
           detail: initialDetail,
           detailLabel: 'Depuis quand ?'
@@ -55,7 +56,7 @@ angular.module('impactApp')
       if (model.showDetail && model.detail === '') {
         return true;
       }
-      
+
       return false;
     };
 
@@ -68,7 +69,7 @@ angular.module('impactApp')
     if (angular.isDefined($scope.subSectionModel.accidentTravail)) {
       $scope.question.setAnswer($scope.subSectionModel.accidentTravail);
     }
-    
+
     $scope.nextStep = function() {
       if ($state.includes('**.autre')) {
         $state.go('^.^.professionnel_social');

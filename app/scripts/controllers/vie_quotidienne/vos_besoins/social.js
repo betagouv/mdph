@@ -11,9 +11,9 @@ angular.module('impactApp')
   .controller('SocialCtrl', function($scope, $state) {
 
     if ($scope.estRepresentant()) {
-      $scope.subtitle = 'Dans ses relations sociales et familiales';
+      $scope.subtitle ='Quels sont ses besoins d\'aide dans ses relations sociales et familiales ?';
     } else {
-      $scope.subtitle = 'Dans vos relations sociales et familiales';
+      $scope.subtitle ='Quels sont vos besoins d\'aide dans vos relations sociales et familiales ?';
     }
 
     if (angular.isUndefined($scope.subSectionModel.social)) {

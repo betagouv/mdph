@@ -10,18 +10,16 @@
 angular.module('impactApp')
   .controller('ConditionScolaireCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Situation';
-    
+    $scope.subtitle = $scope.estRepresentant() ? 'Est-il actuellement scolarisé ?' : 'Etes-vous actuellement scolarisé ?';
+
     $scope.question = {
       'answers': [
         {
-          'label': 'Vous êtes scolarisé',
-          'labelRep': 'Il est scolarisé',
+          'label': 'Oui',
           'value': true
         },
         {
-          'label': 'Vous n\'êtes pas scolarisé',
-          'labelRep': 'Il n\'est pas actuellement scolarisé',
+          'label': 'Non',
           'value': false
         }
       ],
@@ -34,7 +32,7 @@ angular.module('impactApp')
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.sectionModel.scolaire);
     };
-    
+
     $scope.nextStep = function() {
       if ($scope.question.radioModel) {
         $state.go('^.type_scolaire');

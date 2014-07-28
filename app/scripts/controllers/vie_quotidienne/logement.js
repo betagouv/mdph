@@ -23,8 +23,8 @@ angular.module('impactApp')
       detailValues[$scope.sectionModel.logement.value] =  $scope.sectionModel.logement.detail;
     }
 
-    $scope.title = 'Où ';
-    $scope.title += $scope.estRepresentant() ? ' loge ' + $scope.getName() + ' ?' : ' logez-vous ?';
+    $scope.subtitle = 'Où ';
+    $scope.subtitle += $scope.estRepresentant() ? ' loge t\'il ?' : ' logez-vous ?';
 
     $scope.question = {
       answers: [

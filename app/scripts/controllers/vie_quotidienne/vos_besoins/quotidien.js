@@ -11,9 +11,9 @@ angular.module('impactApp')
   .controller('QuotidienCtrl', function($scope, $state) {
 
     if ($scope.estRepresentant()) {
-      $scope.subtitle = 'Dans sa vie quotidienne';
+      $scope.subtitle ='Quels sont ses besoins d\'aide dans la vie quotidienne ?';
     } else {
-      $scope.subtitle = 'Dans votre vie quotidienne';
+      $scope.subtitle ='Quels sont vos besoins d\'aide dans la vie quotidienne ?';
     }
 
     if (angular.isUndefined($scope.subSectionModel.quotidien)) {

@@ -10,13 +10,13 @@
 angular.module('impactApp')
   .controller('AutresRenseignementsProjetProCtrl', function ($scope) {
 
-    $scope.placeholder = 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre projet professionnel';
-    
+    $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre projet professionnel';
+
     if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
       $scope.subSectionModel.autresRenseignements = '';
     }
 
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.section);
+      $scope.goToNextSection($scope.currentSection);
     };
   });
