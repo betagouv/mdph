@@ -20,6 +20,7 @@ angular.module('impactApp')
         $scope.personne = $scope.sectionModel.estRepresentant.personne;
       }
     } else {
+      $scope.sectionModel.estRepresentant = {};
       initialRadioModel = '';
     }
 
