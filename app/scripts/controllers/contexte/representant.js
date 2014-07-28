@@ -20,11 +20,8 @@ angular.module('impactApp')
         $scope.personne = $scope.sectionModel.estRepresentant.personne;
       }
     } else {
-      $scope.sectionModel.estRepresentant = {};
       initialRadioModel = '';
     }
-
-    $scope.sectionModel.estRepresentant.personne = $scope.personne;
 
     $scope.question = {
       'answers': [
@@ -66,6 +63,7 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
+      $scope.sectionModel.estRepresentant.personne = $scope.personne;
       if ($state.includes('**.autre')) {
         $state.go('^.^.dossier');
       } else {
