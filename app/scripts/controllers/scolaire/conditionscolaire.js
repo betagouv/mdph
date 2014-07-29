@@ -31,7 +31,7 @@ angular.module('impactApp')
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.scolaire.value);
+      return angular.isUndefined($scope.sectionModel.scolaire);
     };
 
     $scope.nextStep = function() {

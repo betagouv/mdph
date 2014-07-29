@@ -7,7 +7,8 @@
         {{section.label}}
       </p>
     </a>
-    <a ng-if="section.isEnabled" ui-sref="{{section.sref}}" ng-class="{active: isActive()}">
+    <a ng-if="section.isEnabled" ui-sref="{{section.sref}}" ng-class="{active: isActive(), optionnal: section.isOptionnal}"
+      tooltip="{{section.isOptionnal ? 'Optionnel' : ''}}">
       <span ng-if="section.span">{{section.span}}</span>
       <span ng-if="section.glyphicon" class="glyphicon {{section.glyphicon}}"></span>
       <p>

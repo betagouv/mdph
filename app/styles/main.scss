@@ -3,6 +3,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
+$lightest-grey: #f8f8f8;
+$light-grey: #e5e5e5;
+$medium-grey: #cccccc;
+$heavy-grey: #666666;
+
+$active-background: #5cb85c;
+$active-border: #30822e;
+$active-text: white;
+
 /* Pour cacher les parties de dev */
 .hide {
   display: none;
@@ -24,12 +33,21 @@ footer {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #F8F8F8;
-  border-top: 1px solid #e5e5e5;
+  background-color: $lightest-grey;
+  border-top: 1px solid $light-grey;
 }
 
 #push {
   height: 60px;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: $heavy-grey;
+  text-decoration: none;
 }
 
 /* Progressions */
@@ -39,7 +57,6 @@ footer {
     display: inline-block;
     font-size: 12px;
     text-align: center;
-    color: #000;
     margin: 0 20px;
     min-width: 120px;
     span {
@@ -49,27 +66,30 @@ footer {
       padding-top: 5px;
       width: 30px;
       border-radius: 50%;
-      border: 1px solid #CCC;
+      border: 1px solid $medium-grey;
       background: white;
     }
-  }
-  a:hover {
-    text-decoration: none;
   }
   a.active {
     span {
       font-weight: bold;
-      background: #5cb85c;
-      border-color: #30822e;
-      color: #FFF
+      background: $active-background;
+      border-color: $active-border;
+      color: $active-text
     }
   }
   a.disabled {
+    opacity: 0.4;
     color: #555555;
     font-weight: 300;
     span {
       background: #d9d9d9;
       border-color: #AAAAAA;
+    }
+  }
+  a.optionnal {
+    span {
+      border: 1px solid $active-background;
     }
   }
 }
@@ -101,25 +121,25 @@ footer {
 .header {
   padding-left: 15px;
   padding-right: 15px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid $light-grey;
 }
 
 .nav-steps {
   margin-top: 0px;
-  background-color: #F8F8F8;
-  border-bottom: 1px solid #e5e5e5;
+  background-color: $lightest-grey;
+  border-bottom: 1px solid $light-grey;
 }
 
 .footer {
   margin-top: 34px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid $light-grey;
 }
 
 .jumbotron {
   margin-top: 30px;
   text-align: justify;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid $light-grey;
 
   p {
     font-size: 14px;
@@ -135,8 +155,8 @@ footer {
     font-size: 14px;
     font-weight: 150;
   }
-  border: 1px solid #CCC;
-  background-color: #ddd;
+  border: 1px solid $medium-grey;
+  background-color: $light-grey;
   border-radius: 4px;
   padding: 10px;
   margin: 5px;
@@ -152,8 +172,8 @@ footer {
 
 .btn-default.active {
   color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  background-color: $active-background;
+  border-color: $active-border;
 }
 
 .form-view {
@@ -171,7 +191,7 @@ footer {
   padding: 6px 12px;
   margin-bottom: 0px;
   border-radius: 4px;
-  border-color: #CCC;
+  border-color: $medium-grey;
 
   label {
     font-weight: normal;
