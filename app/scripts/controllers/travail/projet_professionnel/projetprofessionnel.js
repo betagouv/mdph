@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .controller('ProjetProfessionnelCtrl', function($scope) {
 
-    if (angular.isUndefined($scope.sectionModel.projetProfessionnel)) {
-      $scope.sectionModel.projetProfessionnel = {
-        label: $scope.subtitle,
+    if (angular.isUndefined($scope.travailModel.projetProfessionnel)) {
+      $scope.travailModel.projetProfessionnel = {
+        label: 'Projet professionnel',
         answers: {}
       };
     }
 
-    $scope.subSectionModel = $scope.sectionModel.projetProfessionnel.answers;
+    $scope.sectionModel = $scope.travailModel.projetProfessionnel.answers;
   });

@@ -14,7 +14,10 @@ angular.module('impactApp')
       'Est-' + $scope.getPronoun() + ' actuellement scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
       'Etes-vous actuellement scolarisé ?';
 
+    $scope.sectionModel = $scope.sectionModel;
+
     $scope.question = {
+      model: 'scolaire',
       'answers': [
         {
           'label': 'Oui',
@@ -24,19 +27,15 @@ angular.module('impactApp')
           'label': 'Non',
           'value': false
         }
-      ],
-      radioModel: ($scope.sectionModel.scolaire) ? $scope.sectionModel.scolaire.value : '',
-      setAnswer: function(answer) {
-        $scope.sectionModel.scolaire = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.scolaire);
+      return angular.isUndefined($scope.sectionModel.scolaire.value);
     };
 
     $scope.nextStep = function() {
-      if ($scope.question.radioModel) {
+      if ($scope.sectionModel.scolaire.value) {
         $state.go('^.type_scolaire');
       } else {
         $state.go('^.raison_non_scolaire');

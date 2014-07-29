@@ -12,9 +12,10 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Souhaitez-vous nous informer des attentes et besoins de votre aidant familial ?';
 
-    var initialRadioModel = ($scope.sectionModel.aidant) ? $scope.sectionModel.aidant.value : '';
+    $scope.sectionModel = $scope.sectionModel;
 
     $scope.question = {
+      model: 'aidant',
       'answers': [
         {
           'label': 'Oui',
@@ -24,11 +25,7 @@ angular.module('impactApp')
           'label': 'Non',
           'value': false
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.aidant = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {

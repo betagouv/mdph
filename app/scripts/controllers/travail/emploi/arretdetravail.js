@@ -14,7 +14,8 @@ angular.module('impactApp')
       'Est-' + $scope.getPronoun() + ' actuellement en arrêt de travail ?' : 'Etes-vous actuellement en arrêt de travail ?';
 
     $scope.question = {
-      'answers': [
+      model: 'arretDeTravail',
+      answers: [
         {
           'label': 'Non',
           'value': false
@@ -23,19 +24,15 @@ angular.module('impactApp')
           'label': 'Oui',
           'value': true
         }
-      ],
-      radioModel: ($scope.subSectionModel.arretDeTravail) ? $scope.subSectionModel.arretDeTravail.value : '',
-      setAnswer: function(answer) {
-        $scope.subSectionModel.arretDeTravail = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.subSectionModel.arretDeTravail);
+      return angular.isUndefined($scope.sectionModel.arretDeTravail);
     };
 
     $scope.nextStep = function() {
-      if ($scope.subSectionModel.arretDeTravail.value === false) {
+      if ($scope.sectionModel.arretDeTravail.value === false) {
         $scope.goToNextSection($scope.currentSection);
       } else {
         $state.go('^.indemnite_journaliere');

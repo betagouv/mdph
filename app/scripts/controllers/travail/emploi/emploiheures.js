@@ -12,18 +12,18 @@ angular.module('impactApp')
 
     $scope.subtitle = $scope.estRepresentant() ? 'Quellle est sa durée de travail par semaine ?' : 'Quellle est votre durée de travail par semaine ?';
 
-    if (angular.isUndefined($scope.subSectionModel.heures)) {
-      $scope.subSectionModel.heures = {
+    if (angular.isUndefined($scope.sectionModel.heures)) {
+      $scope.sectionModel.heures = {
         label: 'Durée de travail',
         value: '',
         addon: 'Heures / semaine'
       };
     }
 
-    $scope.model = $scope.subSectionModel.heures;
+    $scope.model = $scope.sectionModel.heures;
 
     $scope.isNextStepDisabled = function() {
-      return $scope.subSectionModel.heures.value === '';
+      return $scope.sectionModel.heures.value === '';
     };
 
     $scope.nextStep = function() {

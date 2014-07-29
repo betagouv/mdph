@@ -10,13 +10,15 @@
 angular.module('impactApp')
   .controller('PoleEmploiCtrl', function($scope, $state) {
 
-    var initialDetail = ($scope.subSectionModel.poleEmploi) ? $scope.subSectionModel.poleEmploi.detail : '';
-    var initialRadioModel = ($scope.subSectionModel.poleEmploi) ? $scope.subSectionModel.poleEmploi.value : '';
-
     $scope.subtitle = $scope.estRepresentant() ?
       'Est-il inscrit à Pôle Emploi ?' : 'Etes-vous inscrit à Pôle Emploi ?';
 
+    if (angular.isUndefined($scope.sectionModel.poleEmploi)) {
+      $scope.sectionModel.poleEmploi = {};
+    }
+
     $scope.question = {
+      model: 'poleEmploi',
       answers: [
         {
           label: 'Non',
@@ -25,16 +27,11 @@ angular.module('impactApp')
         {
           label: 'Oui',
           value: true,
-          showDetail: true,
-          detail: initialDetail,
+          detailUrl: 'views/partials/form_precisez_date.html',
+          detail: $scope.sectionModel.poleEmploi.detail,
           detailLabel: 'Depuis quand ?'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.subSectionModel.poleEmploi = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.open = function($event) {
@@ -48,29 +45,19 @@ angular.module('impactApp')
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.subSectionModel.poleEmploi;
+      var model = $scope.sectionModel.poleEmploi;
       if (angular.isUndefined(model)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.detailUrl && !model.detail) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.subSectionModel.poleEmploi)) {
-      $scope.question.setAnswer($scope.subSectionModel.poleEmploi);
-    }
-
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.currentSection);
+      $state.go('^.^.projet_professionnel.description');
     };
   });

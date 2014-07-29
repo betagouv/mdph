@@ -109,17 +109,16 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    $scope.getRepresentant = function() {
+    var getRepresentant = function() {
       if (angular.isUndefined($scope.$storage.contexte)||
-          angular.isUndefined($scope.$storage.contexte.answers)||
-          angular.isUndefined($scope.$storage.contexte.answers.estRepresentant)) {
+          angular.isUndefined($scope.$storage.contexte.answers)) {
         return undefined;
       }
-      return $scope.$storage.contexte.answers.estRepresentant.personne;
+      return $scope.$storage.contexte.answers.demandeur;
     };
 
     $scope.getName = function() {
-      var representant = $scope.getRepresentant();
+      var representant = getRepresentant();
       if (angular.isUndefined(representant)) {
         return '';
       }
@@ -127,7 +126,7 @@ angular.module('impactApp')
     };
 
     $scope.estMasculin = function() {
-      var representant = $scope.getRepresentant();
+      var representant = getRepresentant();
       if (angular.isUndefined(representant)) {
         return false;
       }

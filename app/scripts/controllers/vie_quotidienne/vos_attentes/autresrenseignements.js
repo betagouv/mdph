@@ -15,8 +15,8 @@ angular.module('impactApp')
       'Renseignements importants, et notamment son(ses) projet(s) dans sa vie de tous les jours' :
       'Renseignements importants, et notamment votre(vos) projet(s) dans votre vie de tous les jours';
 
-    if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
-      $scope.subSectionModel.autresRenseignements = '';
+    if (angular.isUndefined($scope.sectionModel.autresRenseignements)) {
+      $scope.sectionModel.autresRenseignements = '';
     }
 
     $scope.nextStep = function() {

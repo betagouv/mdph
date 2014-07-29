@@ -9,7 +9,6 @@
  */
 angular.module('impactApp')
   .controller('VieQuotidienneCtrl', function ($scope, $sessionStorage) {
-
     $scope.currentSection = $sessionStorage.sectionVieQuotidienne;
     $scope.title = $scope.estRepresentant() ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
 
@@ -19,5 +18,6 @@ angular.module('impactApp')
         answers: {}
       };
     }
+
     $scope.sectionModel = $scope.$storage.vie.answers;
   });

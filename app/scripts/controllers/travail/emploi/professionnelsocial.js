@@ -10,13 +10,15 @@
 angular.module('impactApp')
   .controller('ProfessionnelSocialCtrl', function($scope, $state) {
 
-    var initialDetail = ($scope.subSectionModel.profesionnelSocial) ? $scope.subSectionModel.profesionnelSocial.detail : '';
-    var initialRadioModel = ($scope.subSectionModel.profesionnelSocial) ? $scope.subSectionModel.profesionnelSocial.value : '';
-
     $scope.subtitle = $scope.estRepresentant() ?
       'A-t-' + $scope.getPronoun() + ' rencontré un professionnel du service social de la CARSA ?' : 'Avez-vous rencontré un professionnel du service social de la CARSA ?';
 
+    if (angular.isUndefined($scope.sectionModel.profesionnelSocial)) {
+      $scope.sectionModel.profesionnelSocial = {};
+    }
+
     $scope.question = {
+      model: 'profesionnelSocial',
       'answers': [
         {
           'label': 'Non',
@@ -25,16 +27,11 @@ angular.module('impactApp')
         {
           'label': 'Oui',
           'value': true,
-          showDetail: true,
-          detail: initialDetail,
+          detailUrl: 'views/partials/form_precisez_date.html',
+          detail: $scope.sectionModel.profesionnelSocial.detail,
           detailLabel: 'A quelle date ?'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.subSectionModel.profesionnelSocial = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.open = function($event) {
@@ -48,33 +45,19 @@ angular.module('impactApp')
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.subSectionModel.profesionnelSocial;
-      if (angular.isUndefined(model)) {
+      var model = $scope.sectionModel.profesionnelSocial;
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.detailUrl && model.detail === '') {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.subSectionModel.profesionnelSocial)) {
-      $scope.question.setAnswer($scope.subSectionModel.profesionnelSocial);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.medecin_travail');
-      } else {
-        $state.go('^.medecin_travail');
-      }
+      $state.go('^.medecin_travail');
     };
   });

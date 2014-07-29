@@ -9,78 +9,57 @@
  */
 angular.module('impactApp')
   .controller('LogementCtrl', function($scope, $state) {
+    $scope.subtitle = $scope.estRepresentant() ? 'Où loge-t-' + $scope.getPronoun() + ' ?' : 'Où logez-vous ?';
 
-    var detailValues = {
-      'independant': '',
-      'etablissement': '',
-      'domicile': '',
-      'autre': ''
-    };
-    var initialRadioModel = '';
-
-    if ($scope.sectionModel.logement) {
-      initialRadioModel = $scope.sectionModel.logement.value;
-      detailValues[$scope.sectionModel.logement.value] =  $scope.sectionModel.logement.detail;
+    if (angular.isUndefined($scope.sectionModel.logement)) {
+      $scope.sectionModel.logement = {};
     }
 
-    $scope.subtitle = 'Où ';
-    $scope.subtitle += $scope.estRepresentant() ? ' loge-t-' + $scope.getPronoun() + ' ?' : ' logez-vous ?';
-
     $scope.question = {
+      model: 'logement',
       answers: [
         {
           label: 'En logement indépendant',
           value: 'independant', onlyAdult: true,
-          showDetail: true, detail: detailValues.independant
+          detailUrl: 'views/partials/details/independant.html',
+          detail: $scope.sectionModel.logement.value === 'independant' ? $scope.sectionModel.logement.detail : ''
         },
         {
           label: 'En établissement',
           value: 'etablissement',
-          showDetail: true, detail: detailValues.etablissement,
+          detailUrl: 'views/partials/form_precisez.html',
+          detail: $scope.sectionModel.logement.value === 'etablissement' ? $scope.sectionModel.logement.detail : '',
           placeholder: 'Nom de l\'établissement'
         },
         {
           label: 'Hébergé(e) au domicile ...',
           value: 'domicile',
-          showDetail: true, detail: detailValues.domicile
+          detailUrl: 'views/partials/details/domicile.html',
+          detail: $scope.sectionModel.logement.value === 'domicile' ? $scope.sectionModel.logement.detail : ''
         },
         {
           label: 'Autre',
           value: 'autre',
-          showDetail: true, detail: detailValues.autre
+          detailUrl: 'views/partials/form_precisez.html',
+          detail: $scope.sectionModel.logement.value === 'autre' ? $scope.sectionModel.logement.detail : ''
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.logement = answer;
-        $scope.showDetail(answer.value);
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.sectionModel.logement;
-      if (angular.isUndefined(model)) {
+      var answer = $scope.sectionModel.logement;
+      if (angular.isUndefined(answer)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (answer.detail === '') {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (angular.isDefined(value) && value !== '' && !$state.includes('**.' + value)) {
-        $state.go('form.vie_quotidienne.logement.' + value);
-      }
-    };
-
-    if (angular.isDefined($scope.sectionModel.logement)) {
-      $scope.question.setAnswer($scope.sectionModel.logement);
-    }
-
     $scope.nextStep = function() {
-      $state.go('^.^.vos_besoins.quotidien');
+      $state.go('^.vos_besoins.quotidien');
     };
   });

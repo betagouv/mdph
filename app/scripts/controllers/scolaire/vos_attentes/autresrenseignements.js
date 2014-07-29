@@ -14,8 +14,8 @@ angular.module('impactApp')
 
     $scope.placeholder = '';
 
-    if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
-      $scope.subSectionModel.autresRenseignements = '';
+    if (angular.isUndefined($scope.sectionModel.autresRenseignements)) {
+      $scope.sectionModel.autresRenseignements = '';
     }
 
     $scope.nextStep = function() {

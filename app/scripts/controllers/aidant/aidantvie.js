@@ -12,10 +12,12 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Vivez-vous avec la personne en situation de handicap ?';
 
-    var initialDetail = ($scope.sectionModel.vie) ? $scope.sectionModel.vie.detail : '';
-    var initialRadioModel = ($scope.sectionModel.vie) ? $scope.sectionModel.vie.value : '';
+    if (angular.isUndefined($scope.sectionModel.vie)) {
+      $scope.sectionModel.vie = {};
+    }
 
     $scope.question = {
+      model: 'vie',
       answers: [
         {
           label: 'Non',
@@ -24,16 +26,11 @@ angular.module('impactApp')
         {
           label: 'Oui',
           value: true,
-          showDetail: true,
-          detail: initialDetail,
+          detailUrl: 'views/partials/form_precisez_date.html',
+          detail: $scope.sectionModel.vie.detail,
           detailLabel: 'Depuis quand ?'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.vie = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.open = function($event) {
@@ -48,32 +45,18 @@ angular.module('impactApp')
 
     $scope.isNextStepDisabled = function() {
       var model = $scope.sectionModel.vie;
-      if (angular.isUndefined(model)) {
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.detailUrl && !model.detail) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.sectionModel.vie)) {
-      $scope.question.setAnswer($scope.sectionModel.vie);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.emploi');
-      } else {
-        $state.go('^.emploi');
-      }
+      $state.go('^.emploi');
     };
   });

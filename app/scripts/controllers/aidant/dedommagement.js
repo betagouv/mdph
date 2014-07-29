@@ -12,10 +12,12 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Etes vous dédommagé(e) pour l’aide apportée à votre proche ?';
 
-    var initialDetail = ($scope.sectionModel.dedommagement) ? $scope.sectionModel.dedommagement.detail : 0;
-    var initialRadioModel = ($scope.sectionModel.dedommagement) ? $scope.sectionModel.dedommagement.value : '';
+    if (angular.isUndefined($scope.sectionModel.dedommagement)) {
+      $scope.sectionModel.dedommagement = {};
+    }
 
     $scope.question = {
+      model: 'dedommagement',
       answers: [
         {
           label: 'Non',
@@ -24,46 +26,27 @@ angular.module('impactApp')
         {
           label: 'Oui',
           value: true,
-          showDetail: true,
-          detail: initialDetail,
+          detailUrl: 'views/partials/form_precisez_montant.html',
+          detail: $scope.sectionModel.dedommagement.detail,
           placeholder: 'Montant mensuel'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.dedommagement = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
       var model = $scope.sectionModel.dedommagement;
-      if (angular.isUndefined(model)) {
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
-      if (model.showDetail && model.detail <= 0) {
+      if (model.detailUrl && model.detail <= 0) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.sectionModel.dedommagement)) {
-      $scope.question.setAnswer($scope.sectionModel.dedommagement);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.accompagnement');
-      } else {
-        $state.go('^.accompagnement');
-      }
+      $state.go('^.accompagnement');
     };
   });

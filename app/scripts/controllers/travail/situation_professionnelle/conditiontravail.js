@@ -13,30 +13,28 @@ angular.module('impactApp')
     $scope.subtitle = $scope.estRepresentant() ? 'A-t-' + $scope.getPronoun() + ' actuellement un emploi ?' : 'Avez-vous actuellement un emploi ?';
 
     $scope.question = {
-      'answers': [
+      model: 'travail',
+      answers: [
         {
           'label': 'Oui',
-          'value': true},
+          'value': true
+        },
         {
           'label': 'Non',
           'value': false
         }
-      ],
-      radioModel: ($scope.subSectionModel.travail) ? $scope.subSectionModel.travail.value : '',
-      setAnswer: function(answer) {
-        $scope.subSectionModel.travail = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.subSectionModel.travail);
+      return angular.isUndefined($scope.sectionModel.travail);
     };
 
     $scope.nextStep = function() {
-      if ($scope.subSectionModel.travail.value) {
+      if ($scope.sectionModel.travail.value) {
         $state.go('^.milieu');
       } else {
-        $state.go('^.sans_emploi.passe');
+        $state.go('^.^.sans_emploi.passe');
       }
     };
   });

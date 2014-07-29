@@ -12,14 +12,12 @@ angular.module('impactApp')
 
     $scope.subtitle = $scope.estRepresentant() ? 'Son emploi est-il a temps complet ou partiel ?' : 'Votre emploi est-il a temps complet ou partiel ?';
 
-    if (angular.isUndefined($scope.subSectionModel.temps)) {
-      $scope.subSectionModel.temps = {
-        label: '',
-        value: ''
-      };
+    if (angular.isUndefined($scope.sectionModel.temps)) {
+      $scope.sectionModel.temps = {};
     }
 
     $scope.question = {
+      model: 'temps',
       answers: [
         {
           'label': 'Temps complet',
@@ -29,15 +27,11 @@ angular.module('impactApp')
           'label': 'Temps partiel',
           'value': false
         }
-      ],
-      radioModel: ($scope.subSectionModel.temps) ? $scope.subSectionModel.temps.value : '',
-      setAnswer: function(answer) {
-        $scope.subSectionModel.temps = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.subSectionModel.temps);
+      return angular.isUndefined($scope.sectionModel.temps);
     };
 
     $scope.nextStep = function() {

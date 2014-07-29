@@ -13,17 +13,17 @@ angular.module('impactApp')
     $scope.subtitle = $scope.estRepresentant() ?
       'Quelles sont les difficultées liées à son handicap ?' : 'Quelles sont les difficultées liées à votre handicap ?';
 
-    if (angular.isUndefined($scope.subSectionModel.difficultes)) {
-      $scope.subSectionModel.difficultes = {
+    if (angular.isUndefined($scope.sectionModel.difficultes)) {
+      $scope.sectionModel.difficultes = {
         value: '',
         rows: 4
       };
     }
 
-    $scope.model = $scope.subSectionModel.difficultes;
+    $scope.model = $scope.sectionModel.difficultes;
 
     $scope.isNextStepDisabled = function() {
-      return $scope.subSectionModel.difficultes.value === '';
+      return $scope.sectionModel.difficultes.value === '';
     };
 
     $scope.nextStep = function() {

@@ -10,59 +10,42 @@
 angular.module('impactApp')
   .controller('AdapteHandicapCtrl', function($scope, $state) {
 
-    var initialDetail = ($scope.subSectionModel.adapte) ? $scope.subSectionModel.adapte.detail : '';
-    var initialRadioModel = ($scope.subSectionModel.adapte) ? $scope.subSectionModel.adapte.value : '';
-
     $scope.subtitle = $scope.estRepresentant() ? 'Son emploi est-il adapté à son handicap ?' : 'Votre emploi est-il adapté à votre handicap ?';
 
+    if (angular.isUndefined($scope.sectionModel.adapte)) {
+      $scope.sectionModel.adapte = {};
+    }
+
     $scope.question = {
+      model: 'adapte',
       answers: [
         {
           label: 'Non',
           value: false,
-          showDetail: true,
-          detail: initialDetail
+          detailUrl: 'views/partials/form_precisez.html',
+          detail: $scope.sectionModel.adapte.detail
         },
         {
           label: 'Oui',
           value: true
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.subSectionModel.adapte = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.subSectionModel.adapte;
-      if (angular.isUndefined(model)) {
+      var model = $scope.sectionModel.adapte;
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.detailUrl && !model.detail) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.subSectionModel.adapte)) {
-      $scope.question.setAnswer($scope.subSectionModel.adapte);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.difficultes');
-      } else {
-        $state.go('^.difficultes');
-      }
+      $state.go('^.difficultes');
     };
   });

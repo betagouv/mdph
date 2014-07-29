@@ -10,13 +10,14 @@
 angular.module('impactApp')
   .controller('TypeScolaireCtrl', function($scope, $state) {
 
-    $scope.subtitle = 'Type de scolarisation';
-
     $scope.subtitle = $scope.estRepresentant() ?
       'Où est-' + $scope.getPronoun() + ' scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
       'Où êtes-vous scolarisé ?';
 
+    $scope.sectionModel = $scope.sectionModel;
+
     $scope.question = {
+      model: 'type',
       answers: [
         {
           label: 'En milieu ordinaire',
@@ -38,22 +39,17 @@ angular.module('impactApp')
           label: 'En formation supérieure',
           value: 'superieur',
         }
-      ],
-      radioModel: ($scope.sectionModel.type) ? $scope.sectionModel.type.value : '',
-      setAnswer: function(answer) {
-        $scope.sectionModel.type = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.type);
+      return angular.isUndefined($scope.sectionModel.type.value);
     };
 
     $scope.nextStep = function() {
-      if ($scope.question.radioModel !== 'domicile') {
+      if ($scope.sectionModel.type.value !== 'domicile') {
         $state.go('^.etablissement');
-      }
-      else {
+      } else {
         $state.go('^.vos_attentes.structure');
       }
     };

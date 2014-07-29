@@ -13,8 +13,8 @@ angular.module('impactApp')
     $scope.subtitle = $scope.estRepresentant() ?
       'Pour quoi a-t-' + $scope.getPronoun() + ' besoin de soutien ?' : 'Pour quoi avez-vous besoin de soutien ?';
 
-    if (angular.isUndefined($scope.subSectionModel.besoinSoutien)) {
-      $scope.subSectionModel.besoinSoutien = {
+    if (angular.isUndefined($scope.sectionModel.besoinSoutien)) {
+      $scope.sectionModel.besoinSoutien = {
         soutiens: {
           'bilan': false,
           'precisions': false,
@@ -27,7 +27,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.subSectionModel.besoinSoutien;
+    $scope.model = $scope.sectionModel.besoinSoutien;
     $scope.question = {
       model: 'soutiens',
       answers:

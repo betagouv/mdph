@@ -12,6 +12,7 @@ angular.module('impactApp')
     $scope.subtitle = 'Quelle est la raison de votre renouvellement ?';
 
     $scope.question = {
+      model: 'changementDeSituation',
       'answers': [
         {
           'label': 'Vous arrivez à la fin de vos droits',
@@ -23,15 +24,12 @@ angular.module('impactApp')
           'labelRep': 'La situation de ' + $scope.getName() + ' a changé',
           'value': true
         }
-      ],
-      radioModel: ($scope.sectionModel.changementDeSituation) ? $scope.sectionModel.changementDeSituation.value : '',
-      setAnswer: function(answer) {
-        $scope.sectionModel.changementDeSituation = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.changementDeSituation);
+      var answer = $scope.sectionModel.changementDeSituation;
+      return angular.isUndefined(answer);
     };
 
     $scope.nextStep = function() {

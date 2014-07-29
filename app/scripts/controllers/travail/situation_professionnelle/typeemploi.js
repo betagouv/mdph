@@ -10,7 +10,9 @@
 angular.module('impactApp')
   .controller('TypeEmploiCtrl', function($scope, $state) {
     $scope.subtitle = $scope.estRepresentant() ? 'Quel est son type d\'emploi ?' : 'Quel est votre type d\'emploi ?';
+
     $scope.question = {
+      model: 'type',
       answers: [
         {
           label: 'CDI',
@@ -32,18 +34,18 @@ angular.module('impactApp')
           label: 'Travailleur indépendant',
           value: 'independant'
         }
-      ],
-      radioModel: ($scope.subSectionModel.type) ? $scope.subSectionModel.type.value : '',
-      setAnswer: function(answer) {
-        $scope.subSectionModel.type = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.subSectionModel.type);
+      return angular.isUndefined($scope.sectionModel[$scope.question.model]);
     };
 
     $scope.nextStep = function() {
-      $state.go('^.employeur');
+      if ($scope.sectionModel.type.value === 'independant') {
+        $state.go('^.^.emploi.nom_poste');
+      } else {
+        $state.go('^.employeur');
+      }
     };
   });

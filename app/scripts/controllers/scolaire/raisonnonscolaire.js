@@ -9,74 +9,54 @@
  */
 angular.module('impactApp')
   .controller('RaisonNonScolaireCtrl', function($scope, $state) {
-
     $scope.subtitle = $scope.estRepresentant() ?
       'Pourquoi n\'est-' + $scope.getPronoun() + ' pas scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
       'Pourquoi n\'êtes vous pas scolarisé ?';
 
-    var detailValues = {
-      'tropJeune': '',
-      'handicap': '',
-      'etablissement': '',
-      'autre': ''
-    };
-    var initialRadioModel = '';
-
-    if ($scope.sectionModel.raison) {
-      initialRadioModel = $scope.sectionModel.raison.value;
-      detailValues[$scope.sectionModel.raison.value] =  $scope.sectionModel.raison.detail;
+    if (angular.isUndefined($scope.sectionModel.raison)) {
+      $scope.sectionModel.raison = {};
     }
 
     $scope.question = {
+      model: 'raison',
       answers: [
         {
           label: 'Vous êtes trop jeune',
           labelRep: $scope.getPronoun(true) + ' est trop jeune',
           value: 'tropJeune',
-          showDetail: true,
-          detail: detailValues.tropJeune,
+
+          detail: $scope.sectionModel.raison.value === 'tropJeune' ? $scope.sectionModel.raison.detail : '',
           placeholder: ($scope.estRepresentant()) ?
             'A partir de quand sera-t-' + $scope.getPronoun() + ' scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
-            'A partir de quand serez vous scolarisé ?'
+            'A partir de quand serez vous scolarisé ?',
+          detailUrl: 'views/partials/form_precisez.html'
         },
         {
           label: 'Votre handicap vous en empêche',
           labelRep: 'Son handicap l\'en empêche',
           value: 'handicap',
-          showDetail: true,
-          detail: detailValues.handicap,
-          placeholder: ($scope.estRepresentant()) ? 'Quelles sont ses difficultées ?' : 'Quelles sont vos difficultées ?'
+
+          detail: $scope.sectionModel.raison.value === 'handicap' ? $scope.sectionModel.raison.detail : '',
+          placeholder: ($scope.estRepresentant()) ? 'Quelles sont ses difficultées ?' : 'Quelles sont vos difficultées ?',
+          detailUrl: 'views/partials/form_precisez.html'
         },
         {
-          label: $scope.getPronoun(true) + ' ne trouve pas solution d\'accueil en établissement',
+          label: 'Vous ne trouvez pas solution d\'accueil en établissement',
+          labelRep: $scope.getPronoun(true) + ' ne trouve pas solution d\'accueil en établissement',
           value: 'etablissement'
         },
         {
           label: 'Autre',
           value: 'autre',
-          showDetail: true,
-          detail: detailValues.autre
+
+          detail: $scope.sectionModel.raison.value === 'autre' ? $scope.sectionModel.raison.detail : '',
+          detailUrl: 'views/partials/form_precisez.html'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.raison = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
-
-    $scope.showDetail = function(answer) {
-      if (answer.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.sectionModel.raison)) {
-      $scope.question.setAnswer($scope.sectionModel.raison);
-    }
 
     $scope.isNextStepDisabled = function() {
-      if (angular.isUndefined($scope.sectionModel.raison)) {
+      if (angular.isUndefined($scope.sectionModel.raison.value)) {
         return true;
       }
       if ($scope.sectionModel.raison.value !== 'etablissement' && !$scope.sectionModel.raison.detail) {
@@ -86,10 +66,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.vos_attentes.structure');
-      } else {
-        $state.go('^.vos_attentes.structure');
-      }
+      $state.go('^.vos_attentes.structure');
     };
   });

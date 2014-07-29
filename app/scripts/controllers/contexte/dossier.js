@@ -12,6 +12,7 @@ angular.module('impactApp')
     $scope.subtitle = 'Est-ce votre premier dossier ?';
 
     $scope.question = {
+      model: 'nouveauDossier',
       answers: [
         {
           'label': 'Oui',
@@ -22,25 +23,16 @@ angular.module('impactApp')
           'value': false
         }
       ],
-      radioModel: ($scope.sectionModel.nouveauDossier) ? $scope.sectionModel.nouveauDossier.value : '',
-      setAnswer: function(answer) {
-        $scope.sectionModel.nouveauDossier = answer;
-        $scope.showDetail(answer.value);
-      }
-    };
-
-    $scope.showDetail = function(value) {
-      if (value === false && angular.isDefined($scope.sectionModel.changementDeSituation)) {
-        delete $scope.sectionModel.changementDeSituation;
-      }
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.nouveauDossier);
+      var answer = $scope.sectionModel[$scope.question.model];
+      return angular.isUndefined(answer.value);
     };
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.nouveauDossier.value) {
+      var answer = $scope.sectionModel[$scope.question.model];
+      if (answer.value) {
         $state.go('^.code_postal');
       } else {
         $state.go('^.renouvellement');

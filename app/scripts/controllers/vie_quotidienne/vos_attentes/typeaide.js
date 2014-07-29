@@ -16,8 +16,8 @@ angular.module('impactApp')
       $scope.subtitle ='Quelles sont vos attentes pour compenser votre handicap ?';
     }
 
-    if (angular.isUndefined($scope.subSectionModel.typeAide)) {
-      $scope.subSectionModel.typeAide = {
+    if (angular.isUndefined($scope.sectionModel.typeAide)) {
+      $scope.sectionModel.typeAide = {
         attentes: {
           'humain': false,
           'materiel': false,
@@ -30,7 +30,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.subSectionModel.typeAide;
+    $scope.model = $scope.sectionModel.typeAide;
     $scope.question = {
       model: 'attentes',
       answers:

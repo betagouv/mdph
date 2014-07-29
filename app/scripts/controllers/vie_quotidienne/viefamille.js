@@ -9,14 +9,14 @@
  */
 angular.module('impactApp')
   .controller('VieFamilleCtrl', function($scope, $state) {
+    $scope.subtitle = $scope.estRepresentant() ? 'Avec qui vit-t-' + $scope.getPronoun() + ' ?' : 'Avec qui vivez-vous ?';
 
-    var initialDetail = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.detail : '';
-    var initialRadioModel = ($scope.sectionModel.famille) ? $scope.sectionModel.famille.value : '';
-
-    $scope.subtitle = 'Avec qui ';
-    $scope.subtitle += $scope.estRepresentant() ? ' vit-t-' + $scope.getPronoun() + ' ?' : ' vivez-vous ?';
+    if (angular.isUndefined($scope.sectionModel.famille)) {
+      $scope.sectionModel.famille = {};
+    }
 
     $scope.question = {
+      model: 'famille',
       answers: [
         {
           label: 'Avec vos parents',
@@ -40,43 +40,29 @@ angular.module('impactApp')
           value: 'enfants',
           onlyAdult: true
         },
-        {label: 'Autre', value: 'autre', showDetail: true, detail: initialDetail}
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.famille = answer;
-        $scope.showDetail(answer.value);
-      }
+        {
+          label: 'Autre',
+          value: 'autre',
+          detail: $scope.sectionModel.famille.detail,
+          detailUrl: 'views/partials/form_precisez.html'
+        }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.sectionModel.famille;
-      if (angular.isUndefined(model)) {
+      var answer = $scope.sectionModel.famille;
+      if (angular.isUndefined(answer.value)) {
         return true;
       }
 
-      if (model.value === 'autre' && model.detail === '') {
+      if (answer.value === 'autre' && !answer.detail) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value === 'autre' && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.sectionModel.famille)) {
-      $scope.question.setAnswer($scope.sectionModel.famille);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.logement');
-      } else {
-        $state.go('^.logement');
-      }
+      $state.go('^.logement');
     };
   });

@@ -12,14 +12,14 @@ angular.module('impactApp')
 
     $scope.subtitle = $scope.estRepresentant() ? 'Quel est l\'intitulé de son poste ?' : 'Quel est l\'intitulé du poste ?';
 
-    if (angular.isUndefined($scope.subSectionModel.nomPoste)) {
-      $scope.subSectionModel.nomPoste = {
+    if (angular.isUndefined($scope.sectionModel.nomPoste)) {
+      $scope.sectionModel.nomPoste = {
         placeholder: 'Nom du poste',
         value: ''
       };
     }
 
-    $scope.model = $scope.subSectionModel.nomPoste;
+    $scope.model = $scope.sectionModel.nomPoste;
 
     $scope.isNextStepDisabled = function() {
       return $scope.model.value === '';

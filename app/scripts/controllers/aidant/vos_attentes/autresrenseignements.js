@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant';
 
-    if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
-      $scope.subSectionModel.autresRenseignements = '';
+    if (angular.isUndefined($scope.sectionModel.autresRenseignements)) {
+      $scope.sectionModel.autresRenseignements = '';
     }
 
     $scope.nextStep = function() {

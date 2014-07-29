@@ -12,10 +12,12 @@ angular.module('impactApp')
 
     $scope.subtitle = 'En cas d\'empêchement, avez-vous prévu une solution pour vous remplacer ?';
 
-    var initialDetail = ($scope.sectionModel.empechement) ? $scope.sectionModel.empechement.detail : '';
-    var initialRadioModel = ($scope.sectionModel.empechement) ? $scope.sectionModel.empechement.value : '';
+    if (angular.isUndefined($scope.sectionModel.empechement)) {
+      $scope.sectionModel.empechement = {};
+    }
 
     $scope.question = {
+      model: 'empechement',
       answers: [
         {
           label: 'Non',
@@ -24,46 +26,27 @@ angular.module('impactApp')
         {
           label: 'Oui',
           value: true,
-          showDetail: true,
-          detail: initialDetail,
+          detailUrl: 'views/partials/form_precisez.html',
+          detail: $scope.sectionModel.empechement.detail,
           placeholder: 'Laquelle'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.empechement = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
       var model = $scope.sectionModel.empechement;
-      if (angular.isUndefined(model)) {
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.detailUrl && !model.detail) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.sectionModel.empechement)) {
-      $scope.question.setAnswer($scope.sectionModel.empechement);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.situation_future');
-      } else {
-        $state.go('^.situation_future');
-      }
+      $state.go('^.situation_future');
     };
   });

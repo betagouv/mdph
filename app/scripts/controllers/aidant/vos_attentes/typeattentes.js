@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Quelles sont vos attentes en tant qu\'aidant familial ?';
 
-    if (angular.isUndefined($scope.subSectionModel.typeAttente)) {
-      $scope.subSectionModel.typeAttente = {
+    if (angular.isUndefined($scope.sectionModel.typeAttente)) {
+      $scope.sectionModel.typeAttente = {
         attentes: {
           'repos': false,
           'imprevu': false,
@@ -32,7 +32,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.subSectionModel.typeAttente;
+    $scope.model = $scope.sectionModel.typeAttente;
     $scope.question = {
       model: 'attentes',
       answers:

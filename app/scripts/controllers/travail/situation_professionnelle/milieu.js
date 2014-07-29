@@ -9,13 +9,12 @@
  */
 angular.module('impactApp')
   .controller('MilieuCtrl', function($scope, $state) {
-    $scope.subtitle = 'Milieu de l\'emploi';
-
     $scope.subtitle = $scope.estRepresentant() ?
       'Où est-' + $scope.getPronoun() + ' employé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
       'Où êtes-vous employé ?';
-      
+
     $scope.question = {
+      model: 'milieu',
       answers: [
         {
           label: 'En entreprise adaptée',
@@ -29,15 +28,11 @@ angular.module('impactApp')
           label: 'En milieu protégé (Etablissements et services d’aide par le travail - ESAT)',
           value: 'etablissement'
         }
-      ],
-      radioModel: ($scope.subSectionModel.milieu) ? $scope.subSectionModel.milieu.value : '',
-      setAnswer: function(answer) {
-        $scope.subSectionModel.milieu = answer;
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.subSectionModel.milieu);
+      return angular.isUndefined($scope.sectionModel.milieu);
     };
 
     $scope.nextStep = function() {

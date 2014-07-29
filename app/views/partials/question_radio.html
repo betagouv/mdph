@@ -7,15 +7,16 @@
     <label
       class="btn btn-default btn-block text-capitalize"
       ng-disabled="debug && answer.onlyAdult && !isAdult()"
-      ng-click="question.setAnswer(answer)"
-      ng-model="question.radioModel"
-      btn-radio="answer.value">
+      ng-model="sectionModel[question.model]"
+      btn-radio="answer">
       {{getLabel(answer)}}
     </label>
-    <div class="well slide" ng-if="answer.showDetail && question.radioModel === answer.value">
-      <div ui-view></div>
+    <div class="well slide" ng-if="answer.detailUrl && sectionModel[question.model].value === answer.value">
+      <div ng-include="answer.detailUrl"></div>
     </div>
   </div>
 </div>
-
 <div go-next></div>
+<pre>
+  {{sectionModel | json}}
+</pre>

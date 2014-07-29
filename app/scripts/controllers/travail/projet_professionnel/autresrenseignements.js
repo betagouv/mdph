@@ -13,8 +13,8 @@ angular.module('impactApp')
     $scope.subtitle = $scope.estRepresentant() ?
       'Autres renseignements que vous souhaiteriez nous communiquer concernant son projet professionnel' : 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre projet professionnel';
 
-    if (angular.isUndefined($scope.subSectionModel.autresRenseignements)) {
-      $scope.subSectionModel.autresRenseignements = '';
+    if (angular.isUndefined($scope.sectionModel.autresRenseignements)) {
+      $scope.sectionModel.autresRenseignements = '';
     }
 
     $scope.nextStep = function() {

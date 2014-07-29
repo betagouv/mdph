@@ -18,5 +18,5 @@ angular.module('impactApp')
       };
     }
 
-    $scope.subSectionModel = $scope.sectionModel.attentes.answers;
+    $scope.sectionModel = $scope.$storage.scolaire.answers.attentes.answers;
   });

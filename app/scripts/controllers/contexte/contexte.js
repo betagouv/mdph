@@ -12,24 +12,12 @@ angular.module('impactApp')
 
     $scope.currentSection = $scope.$storage.sectionContexte;
 
-    $scope.beginForm = function() {
-      $scope.$storage.sectionVieQuotidienne.isEnabled = true;
-      $scope.goToNextSection($scope.currentSection);
-    };
-
     if (angular.isUndefined($scope.$storage.contexte)) {
       $scope.$storage.contexte = {
         sectionLabel: 'Contexte',
         answers: {}
       };
     }
-
-    $scope.getLabel = function(answer) {
-      if ($scope.estRepresentant() && answer.labelRep) {
-        return answer.labelRep;
-      }
-      return answer.label;
-    };
 
     $scope.sectionModel = $scope.$storage.contexte.answers;
   });

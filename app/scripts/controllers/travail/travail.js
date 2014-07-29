@@ -11,7 +11,7 @@ angular.module('impactApp')
   .controller('TravailCtrl', function ($scope, $sessionStorage) {
 
     $scope.title = $scope.estRepresentant() ? 'Sa vie au travail' : 'Votre vie au travail';
-    
+
     $scope.currentSection = $sessionStorage.sectionTravail;
 
     if (angular.isUndefined($scope.$storage.travail)) {
@@ -21,5 +21,5 @@ angular.module('impactApp')
       };
     }
 
-    $scope.sectionModel = $scope.$storage.travail.answers;
+    $scope.travailModel = $scope.$storage.travail.answers;
   });

@@ -11,63 +11,52 @@ angular.module('impactApp')
   .controller('RepresentantCtrl', function($scope, $state) {
     $scope.subtitle = 'Pour qui faites vous cette demande ?';
 
-    $scope.personne = {};
+    if (angular.isUndefined($scope.sectionModel.estRepresentant)) {
+      $scope.sectionModel.estRepresentant = {};
+    }
 
-    var initialRadioModel;
-    if (angular.isDefined($scope.sectionModel.estRepresentant)) {
-      initialRadioModel = $scope.sectionModel.estRepresentant.value;
-      if (angular.isDefined($scope.sectionModel.estRepresentant.personne)) {
-        $scope.personne = $scope.sectionModel.estRepresentant.personne;
-      }
-    } else {
-      initialRadioModel = '';
+    if (angular.isUndefined($scope.sectionModel.demandeur)) {
+      $scope.sectionModel.demandeur = {};
     }
 
     $scope.question = {
-      'answers': [
-        {label: 'Pour vous', value: false},
+      model: 'estRepresentant',
+      answers: [
+        {
+          label: 'Pour vous',
+          value: false
+        },
         {
           label: 'Pour un(e) autre',
           value: true,
-          showDetail: true
+          detailUrl: 'views/partials/details/personne.html'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.sectionModel.estRepresentant = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.sectionModel.estRepresentant;
-      if (angular.isUndefined(model)) {
+      var answer = $scope.sectionModel[$scope.question.model];
+
+      if (angular.isUndefined(answer.value)) {
         return true;
       }
-
-      if (model.showDetail && !($scope.personne.prenom && $scope.personne.sexe)) {
-        return true;
+      if (answer.detailUrl) {
+        var demandeur = $scope.sectionModel.demandeur;
+        if (angular.isUndefined(demandeur)) {
+          return true;
+        }
+        if (!demandeur.prenom || demandeur.prenom === '') {
+          return true;
+        }
+        if (!demandeur.sexe) {
+          return true;
+        }
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.sectionModel.estRepresentant)) {
-      $scope.showDetail($scope.sectionModel.estRepresentant);
-    }
-
     $scope.nextStep = function() {
-      $scope.sectionModel.estRepresentant.personne = $scope.personne;
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.dossier');
-      } else {
-        $state.go('^.dossier');
-      }
+      $state.go('^.dossier');
     };
   });

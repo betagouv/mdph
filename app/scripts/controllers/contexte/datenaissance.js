@@ -15,17 +15,12 @@ angular.module('impactApp')
       $scope.sectionModel.dateNaissance = {label: 'Date de naissance'};
     }
 
-    $scope.model = $scope.sectionModel.dateNaissance;
-
-    $scope.question = {
-      'model': 'value'
-    };
-
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.sectionModel.dateNaissance.value);
     };
 
     $scope.nextStep = function() {
-      $scope.beginForm();
+      $scope.$storage.sectionVieQuotidienne.isEnabled = true;
+      $scope.goToNextSection($scope.currentSection);
     };
   });

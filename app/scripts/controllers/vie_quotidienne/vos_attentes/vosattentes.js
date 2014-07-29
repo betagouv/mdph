@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .controller('VosAttentesCtrl', function ($scope) {
 
-    if (angular.isUndefined($scope.sectionModel.attentes)) {
-      $scope.sectionModel.attentes = {
+    if (angular.isUndefined($scope.$storage.vie.answers.attentes)) {
+      $scope.$storage.vie.answers.attentes = {
         label: 'Vos attentes pour compenser votre handicap',
         answers: {}
       };
     }
 
-    $scope.subSectionModel = $scope.sectionModel.attentes.answers;
+    $scope.sectionModel = $scope.$storage.vie.answers.attentes.answers;
   });

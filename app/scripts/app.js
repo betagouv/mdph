@@ -63,13 +63,7 @@ var app = angular
               name: 'representant',
               url: '/representant',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'RepresentantCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/details/personne.html'
-                }
-              ]
+              controller: 'RepresentantCtrl'
             },
             {
               name: 'date_naissance',
@@ -90,37 +84,13 @@ var app = angular
               name: 'vie_famille',
               url: '/vie_famille',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'VieFamilleCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html'
-                }
-              ]
+              controller: 'VieFamilleCtrl'
             },
             {
               name: 'logement',
               url: '/logement',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'LogementCtrl',
-              children: [
-                {
-                  name: 'independant',
-                  templateUrl: 'views/partials/details/independant.html'
-                },
-                {
-                  name: 'domicile',
-                  templateUrl: 'views/partials/details/domicile.html'
-                },
-                {
-                  name: 'etablissement',
-                  templateUrl: 'views/partials/form_precisez.html'
-                },
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html'
-                }
-              ]
+              controller: 'LogementCtrl'
             },
             {
               name: 'vos_besoins',
@@ -237,13 +207,7 @@ var app = angular
               name: 'raison_non_scolaire',
               url: '/raison_non_scolaire',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'RaisonNonScolaireCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                }
-              ]
+              controller: 'RaisonNonScolaireCtrl'
             },
             {
               name: 'vos_attentes',
@@ -305,189 +269,135 @@ var app = angular
                   url: '/employeur',
                   templateUrl: 'views/partials/employeur.html',
                   controller: 'EmployeurCtrl'
+                }
+              ]
+            },
+            {
+              name: 'emploi',
+              url: '/emploi',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'EmploiCtrl',
+              children: [
+                {
+                  name: 'nom_poste',
+                  url: '/nom_poste',
+                  templateUrl: 'views/partials/question_textinput.html',
+                  controller: 'NomPosteCtrl'
                 },
                 {
-                  name: 'emploi',
-                  url: '/emploi',
-                  template: '<ui-view/>',
-                  abstract: true,
-                  controller: 'EmploiCtrl',
-                  children: [
-                    {
-                      name: 'nom_poste',
-                      url: '/nom_poste',
-                      templateUrl: 'views/partials/question_textinput.html',
-                      controller: 'NomPosteCtrl'
-                    },
-                    {
-                      name: 'temps',
-                      url: '/temps',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'EmploiTempsCtrl'
-                    },
-                    {
-                      name: 'heures',
-                      url: '/heures',
-                      templateUrl: 'views/partials/question_textinput.html',
-                      controller: 'EmploiHeuresCtrl'
-                    },
-                    {
-                      name: 'adapte',
-                      url: '/adapte',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'AdapteHandicapCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez.html',
-                        }
-                      ]
-                    },
-                    {
-                      name: 'difficultes',
-                      url: '/difficultes',
-                      templateUrl: 'views/partials/question_textarea.html',
-                      controller: 'EmploiDifficultesCtrl'
-                    },
-                    {
-                      name: 'amenagement',
-                      url: '/amenagement',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'AmenagementCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez.html',
-                        }
-                      ]
-                    },
-                    {
-                      name: 'arret_de_travail',
-                      url: '/arret_de_travail',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'ArretDeTravailCtrl'
-                    },
-                    {
-                      name: 'indemnite_journaliere',
-                      url: '/indemnite_journaliere',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'IndemniteJournaliereCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez_date.html',
-                        }
-                      ]
-                    },
-                    {
-                      name: 'accident_de_travail',
-                      url: '/accident_de_travail',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'AccidentDeTravailCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez_date.html',
-                        }
-                      ]
-                    },
-                    {
-                      name: 'professionnel_social',
-                      url: '/professionnel_social',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'ProfessionnelSocialCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez_date.html',
-                        }
-                      ]
-                    },
-                    {
-                      name: 'medecin_travail',
-                      url: '/medecin_travail',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'MedecinTravailCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez_date.html',
-                        }
-                      ]
-                    }
-                  ]
+                  name: 'temps',
+                  url: '/temps',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'EmploiTempsCtrl'
                 },
                 {
-                  name: 'projet_professionnel',
-                  url: '/projet_professionnel',
-                  template: '<ui-view/>',
-                  abstract: true,
-                  controller: 'ProjetProfessionnelCtrl',
-                  children: [
-                    {
-                      name: 'description',
-                      url: '/description',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'DescriptionProjetProCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez_big.html',
-                        }
-                      ]
-                    },
-                    {
-                      name: 'besoin_soutien',
-                      url: '/besoin_soutien',
-                      templateUrl: 'views/partials/question_checkbox.html',
-                      controller: 'BesoinSoutienCtrl'
-                    },
-                    {
-                      name: 'structure',
-                      url: '/structure',
-                      templateUrl: 'views/partials/attente_structure.html',
-                      controller: 'AttenteStructureProjetProCtrl'
-                    },
-                    {
-                      name: 'autres_renseignements',
-                      url: '/autres_renseignements',
-                      templateUrl: 'views/partials/autres_renseignements.html',
-                      controller: 'AutresRenseignementsProjetProCtrl'
-                    }
-                  ]
+                  name: 'heures',
+                  url: '/heures',
+                  templateUrl: 'views/partials/question_textinput.html',
+                  controller: 'EmploiHeuresCtrl'
                 },
                 {
-                  name: 'sans_emploi',
-                  url: '/sans_emploi',
-                  template: '<ui-view/>',
-                  abstract: true,
-                  controller: 'SansEmploiCtrl',
-                  children: [
-                    {
-                      name: 'passe',
-                      url: '/passe',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'EmploiPasseCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez_big.html',
-                        }
-                      ]
-                    },
-                    {
-                      name: 'pole_emploi',
-                      url: '/pole_emploi',
-                      templateUrl: 'views/partials/question_radio.html',
-                      controller: 'PoleEmploiCtrl',
-                      children: [
-                        {
-                          name: 'autre',
-                          templateUrl: 'views/partials/form_precisez_date.html',
-                        }
-                      ]
-                    }
-                  ]
+                  name: 'adapte',
+                  url: '/adapte',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'AdapteHandicapCtrl'
+                },
+                {
+                  name: 'difficultes',
+                  url: '/difficultes',
+                  templateUrl: 'views/partials/question_textarea.html',
+                  controller: 'EmploiDifficultesCtrl'
+                },
+                {
+                  name: 'amenagement',
+                  url: '/amenagement',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'AmenagementCtrl'
+                },
+                {
+                  name: 'arret_de_travail',
+                  url: '/arret_de_travail',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'ArretDeTravailCtrl'
+                },
+                {
+                  name: 'indemnite_journaliere',
+                  url: '/indemnite_journaliere',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'IndemniteJournaliereCtrl'
+                },
+                {
+                  name: 'accident_de_travail',
+                  url: '/accident_de_travail',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'AccidentDeTravailCtrl'
+                },
+                {
+                  name: 'professionnel_social',
+                  url: '/professionnel_social',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'ProfessionnelSocialCtrl'
+                },
+                {
+                  name: 'medecin_travail',
+                  url: '/medecin_travail',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'MedecinTravailCtrl'
+                }
+              ]
+            },
+            {
+              name: 'projet_professionnel',
+              url: '/projet_professionnel',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'ProjetProfessionnelCtrl',
+              children: [
+                {
+                  name: 'description',
+                  url: '/description',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'DescriptionProjetProCtrl'
+                },
+                {
+                  name: 'besoin_soutien',
+                  url: '/besoin_soutien',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'BesoinSoutienCtrl'
+                },
+                {
+                  name: 'structure',
+                  url: '/structure',
+                  templateUrl: 'views/partials/attente_structure.html',
+                  controller: 'AttenteStructureProjetProCtrl'
+                },
+                {
+                  name: 'autres_renseignements',
+                  url: '/autres_renseignements',
+                  templateUrl: 'views/partials/autres_renseignements.html',
+                  controller: 'AutresRenseignementsProjetProCtrl'
+                }
+              ]
+            },
+            {
+              name: 'sans_emploi',
+              url: '/sans_emploi',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'SansEmploiCtrl',
+              children: [
+                {
+                  name: 'passe',
+                  url: '/passe',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'EmploiPasseCtrl'
+                },
+                {
+                  name: 'pole_emploi',
+                  url: '/pole_emploi',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'PoleEmploiCtrl'
                 }
               ]
             }
@@ -510,25 +420,13 @@ var app = angular
               name: 'vie',
               url: '/vie',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'VieAidantCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez_date.html',
-                }
-              ]
+              controller: 'VieAidantCtrl'
             },
             {
               name: 'emploi',
               url: '/emploi',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'EmploiAidantCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez_yes_no.html',
-                }
-              ]
+              controller: 'EmploiAidantCtrl'
             },
             {
               name: 'nature_aide',
@@ -546,13 +444,7 @@ var app = angular
               name: 'dedommagement',
               url: '/dedommagement',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'DedommagementCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez_montant.html',
-                }
-              ]
+              controller: 'DedommagementCtrl'
             },
             {
               name: 'accompagnement',
@@ -570,13 +462,7 @@ var app = angular
               name: 'empechement',
               url: '/empechement',
               templateUrl: 'views/partials/question_radio.html',
-              controller: 'EmpechementCtrl',
-              children: [
-                {
-                  name: 'autre',
-                  templateUrl: 'views/partials/form_precisez.html',
-                }
-              ]
+              controller: 'EmpechementCtrl'
             },
             {
               name: 'situation_future',

@@ -10,13 +10,15 @@
 angular.module('impactApp')
   .controller('AccidentDeTravailCtrl', function($scope, $state) {
 
-    var initialDetail = ($scope.subSectionModel.accidentTravail) ? $scope.subSectionModel.accidentTravail.detail : '';
-    var initialRadioModel = ($scope.subSectionModel.accidentTravail) ? $scope.subSectionModel.accidentTravail.value : '';
-
     $scope.subtitle = $scope.estRepresentant() ?
       'Est-' + $scope.getPronoun() + ' en arrêt suite à un accident du travail ou une maladie professionnelle ?' : 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?';
 
+    if (angular.isUndefined($scope.sectionModel.accidentTravail)) {
+      $scope.sectionModel.accidentTravail = {};
+    }
+
     $scope.question = {
+      model: 'accidentTravail',
       'answers': [
         {
           'label': 'Non',
@@ -25,16 +27,11 @@ angular.module('impactApp')
         {
           'label': 'Oui',
           'value': true,
-          showDetail: true,
-          detail: initialDetail,
+          detailUrl: 'views/partials/form_precisez_date.html',
+          detail: $scope.sectionModel.accidentTravail.detail,
           detailLabel: 'Depuis quand ?'
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.subSectionModel.accidentTravail = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.open = function($event) {
@@ -48,33 +45,19 @@ angular.module('impactApp')
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.subSectionModel.accidentTravail;
-      if (angular.isUndefined(model)) {
+      var model = $scope.sectionModel.accidentTravail;
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.detailUrl && !model.detail) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.subSectionModel.accidentTravail)) {
-      $scope.question.setAnswer($scope.subSectionModel.accidentTravail);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.professionnel_social');
-      } else {
-        $state.go('^.professionnel_social');
-      }
+      $state.go('^.professionnel_social');
     };
   });

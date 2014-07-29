@@ -10,13 +10,15 @@
 angular.module('impactApp')
   .controller('AmenagementCtrl', function($scope, $state) {
 
-    var initialDetail = ($scope.subSectionModel.amenagement) ? $scope.subSectionModel.amenagement.detail : '';
-    var initialRadioModel = ($scope.subSectionModel.amenagement) ? $scope.subSectionModel.amenagement.value : '';
-
     $scope.subtitle = $scope.estRepresentant() ?
       'Des aménagements ont-ils été réalisés sur son poste de travail ?' : 'Des aménagements ont-ils été réalisés sur votre poste de travail ?';
 
+    if (angular.isUndefined($scope.sectionModel.amenagement)) {
+      $scope.sectionModel.amenagement = {};
+    }
+
     $scope.question = {
+      model: 'amenagement',
       answers: [
         {
           label: 'Non',
@@ -25,45 +27,26 @@ angular.module('impactApp')
         {
           label: 'Oui',
           value: true,
-          showDetail: true,
-          detail: initialDetail
+          detailUrl: 'views/partials/form_precisez.html',
+          detail: $scope.sectionModel.amenagement.detail
         }
-      ],
-      radioModel: initialRadioModel,
-      setAnswer: function(answer) {
-        $scope.subSectionModel.amenagement = answer;
-        $scope.showDetail(answer);
-      }
+      ]
     };
 
     $scope.isNextStepDisabled = function() {
-      var model = $scope.subSectionModel.amenagement;
-      if (angular.isUndefined(model)) {
+      var model = $scope.sectionModel.amenagement;
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
-      if (model.showDetail && model.detail === '') {
+      if (model.detailUrl && !model.detail) {
         return true;
       }
 
       return false;
     };
 
-    $scope.showDetail = function(value) {
-      if (value.showDetail && !$state.includes('**.autre')) {
-        $state.go('.autre');
-      }
-    };
-
-    if (angular.isDefined($scope.subSectionModel.amenagement)) {
-      $scope.question.setAnswer($scope.subSectionModel.amenagement);
-    }
-
     $scope.nextStep = function() {
-      if ($state.includes('**.autre')) {
-        $state.go('^.^.arret_de_travail');
-      } else {
-        $state.go('^.arret_de_travail');
-      }
+      $state.go('^.arret_de_travail');
     };
   });

@@ -1,18 +1,18 @@
 <div class="row form-horizontal">
   <label class="col-md-2 control-label">Prénom</label>
   <div class="col-md-10">
-    <input type="text" class="form-control" ng-model="$parent.personne.prenom" placeholder="Prénom">
+    <input type="text" class="form-control" ng-model="sectionModel.demandeur.prenom" placeholder="Prénom">
   </div>
 </div>
 <div class="row form-horizontal">
   <label class="col-md-2 control-label">Sexe</label>
   <div class="col-md-5">
-    <label class="btn btn-default center-block" ng-model="$parent.personne.sexe" btn-radio="'masculin'">
+    <label class="btn btn-default center-block" ng-model="sectionModel.demandeur.sexe" btn-radio="'masculin'">
       Masculin
     </label>
   </div>
   <div class="col-md-5">
-    <label class="btn btn-default center-block" ng-model="$parent.personne.sexe" btn-radio="'feminin'">
+    <label class="btn btn-default center-block" ng-model="sectionModel.demandeur.sexe" btn-radio="'feminin'">
       Féminin
     </label>
   </div>
