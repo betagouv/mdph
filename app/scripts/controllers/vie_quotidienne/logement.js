@@ -20,7 +20,7 @@ angular.module('impactApp')
       answers: [
         {
           label: 'En logement indépendant',
-          value: 'independant', onlyAdult: true,
+          value: 'independant', // TODO a verifier onlyAdult: true,
           detailUrl: 'views/partials/details/independant.html',
           detail: $scope.sectionModel.logement.value === 'independant' ? $scope.sectionModel.logement.detail : ''
         },
