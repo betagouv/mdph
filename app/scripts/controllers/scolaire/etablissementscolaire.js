@@ -28,6 +28,15 @@ angular.module('impactApp')
       );
     };
 
+    $scope.isNextStepDisabled = function() {
+      for (var i = 0; i < $scope.model.etablissements.length; i++) {
+        if ($scope.model.etablissements[i].name !== '') {
+          return false;
+        }
+      }
+      return true;
+    };
+
     $scope.nextStep = function() {
       $state.go('^.vos_attentes.structure');
     };

@@ -21,7 +21,7 @@ angular.module('impactApp')
         },
         {
           'label': 'Votre situation a changé',
-          'labelRep': 'La situation de ' + $scope.getName() + ' a changé',
+          'labelRep': 'Sa situation a changé',
           'value': true
         }
       ]

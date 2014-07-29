@@ -1,7 +1,4 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
-// bower:scss
-@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
-// endbower
 
 /* Theme colors
 -------------------------------------------------- */
@@ -40,12 +37,19 @@ $nav-border: #1B212F;
 $nav-optionnal: #1B212F;
 
 $active-background: #D05158;
+$active-background-hover: #BA484F;
 $active-border: #6E2B2E;
 $active-text: $light-white;
 
 $primary: #3071a9;
 $primary-hover: #333E54;
 $text: $light-white;
+
+$input-border-focus: $active-background-hover;
+
+// bower:scss
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
 
 /* Sticky footer
 -------------------------------------------------- */
@@ -92,8 +96,8 @@ a:hover {
   a {
     color: $text;
     display: inline-block;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 500;
     text-align: center;
     margin: 0 20px;
     min-width: 120px;
@@ -118,10 +122,14 @@ a:hover {
       border-color: $nav-border;
       color: $active-text
     }
+    span:hover {
+      background-color: $active-background-hover;
+    }
+
   }
   a.disabled {
     color: white;
-    font-weight: 300;
+    font-weight: 100;
     opacity: 0.7;
     span {
 
@@ -131,6 +139,9 @@ a:hover {
     }
     p {
       opacity: 0.7;
+    }
+    p:hover {
+      text-decoration: none;
     }
   }
   a.optionnal {
@@ -227,6 +238,9 @@ a:hover {
   color: $active-text;
   background-color: $active-background;
   border-color: $active-border;
+}
+.btn-default.active:hover {
+  background-color: $active-background-hover;
 }
 
 .btn-primary {

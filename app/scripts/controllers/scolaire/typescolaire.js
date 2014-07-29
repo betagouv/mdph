@@ -14,8 +14,6 @@ angular.module('impactApp')
       'Où est-' + $scope.getPronoun() + ' scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
       'Où êtes-vous scolarisé ?';
 
-    $scope.sectionModel = $scope.sectionModel;
-
     $scope.question = {
       model: 'type',
       answers: [
@@ -43,7 +41,7 @@ angular.module('impactApp')
     };
 
     $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.type.value);
+      return angular.isUndefined($scope.sectionModel.type);
     };
 
     $scope.nextStep = function() {
