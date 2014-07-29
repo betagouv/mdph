@@ -3,21 +3,50 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
-$lightest-grey: #f8f8f8;
-$light-grey: #e5e5e5;
+/* Theme colors
+-------------------------------------------------- */
+
 $medium-grey: #cccccc;
 $heavy-grey: #666666;
+$light-white: #F8F8F8;
 
-$active-background: #5cb85c;
-$active-border: #30822e;
-$active-text: white;
+/* Teal/Red
+$dark-teal: #00495C;
+$medium-teal: #44A39D;
+$teal: #50C0A0;
+$light-teal: #50C0E7;
 
-/* Pour cacher les parties de dev */
-.hide {
-  display: none;
-}
+$dark-reddish: #8F1C2D;
+$reddish: #D92B44;
 
-/* Sticky footer styles
+$nav-background: $teal;
+$nav-span-background: $medium-teal;
+$nav-border: $light-white;
+$nav-optionnal: $dark-teal;
+
+$active-background: $reddish;
+$active-border: $dark-reddish;
+$active-text: $light-white;
+
+$primary: $light-teal;
+$text: $light-white;
+*/
+
+$footer-background: #222939;
+$nav-background: #333E54;
+$nav-span-background: #222939;
+$nav-border: #1B212F;
+$nav-optionnal: #1B212F;
+
+$active-background: #D05158;
+$active-border: #6E2B2E;
+$active-text: $light-white;
+
+$primary: #3071a9;
+$primary-hover: #333E54;
+$text: $light-white;
+
+/* Sticky footer
 -------------------------------------------------- */
 html {
   position: relative;
@@ -33,29 +62,37 @@ footer {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: $lightest-grey;
-  border-top: 1px solid $light-grey;
+  background-color: $footer-background;
+  border-top: 1px solid $nav-border;
+  color: white;
+  padding-top:20px;
+
+  a {
+    color: white;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 #push {
   height: 60px;
 }
 
-a {
-  color: black;
-}
-
+/* Barre de progression
+-------------------------------------------------- */
 a:hover {
-  color: $heavy-grey;
+  color: white;
   text-decoration: none;
 }
 
-/* Progressions */
 #status-buttons {
   margin-top: 20px;
   a {
+    color: $text;
     display: inline-block;
     font-size: 12px;
+    font-weight: 400;
     text-align: center;
     margin: 0 20px;
     min-width: 120px;
@@ -66,41 +103,61 @@ a:hover {
       padding-top: 5px;
       width: 30px;
       border-radius: 50%;
-      border: 1px solid $medium-grey;
-      background: white;
+      border: 1px solid $nav-border;
+      background: $nav-span-background;
+    }
+    p:hover {
+      text-decoration: underline;
     }
   }
   a.active {
     span {
       font-weight: bold;
       background: $active-background;
-      border-color: $active-border;
+      border-color: $nav-border;
       color: $active-text
     }
   }
   a.disabled {
-    opacity: 0.4;
-    color: #555555;
+    color: white;
     font-weight: 300;
+    opacity: 0.7;
     span {
+
+      opacity: 0.7;
       background: #d9d9d9;
       border-color: #AAAAAA;
     }
+    p {
+      opacity: 0.7;
+    }
   }
   a.optionnal {
-    span {
-      border: 1px solid $active-background;
+    p {
+      font-weight: 100;
     }
   }
 }
 
-/* Navbar */
+.nav-steps {
+  margin-top: 0px;
+  background-color: $nav-background;
+  border-top: 5px solid $footer-background;
+  border-bottom: 3px solid #3C4963;
+}
+
+/* Header
+-------------------------------------------------- */
 .navbar {
   margin-bottom: 0px;
   background-color: white;
 }
 
 .main-navbar {
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
   .navbar-brand {
     &.title {
       padding-top: 30px;
@@ -118,28 +175,20 @@ a:hover {
   }
 }
 
-.header {
-  padding-left: 15px;
-  padding-right: 15px;
-  border-bottom: 1px solid $light-grey;
-}
-
-.nav-steps {
-  margin-top: 0px;
-  background-color: $lightest-grey;
-  border-bottom: 1px solid $light-grey;
-}
-
+/* Footer dev
+-------------------------------------------------- */
 .footer {
   margin-top: 34px;
   color: #777;
-  border-top: 1px solid $light-grey;
+  border-top: 1px solid $nav-border;
 }
 
+/* Envoi
+-------------------------------------------------- */
 .jumbotron {
   margin-top: 30px;
   text-align: justify;
-  border-bottom: 1px solid $light-grey;
+  border-bottom: 1px solid $nav-border;
 
   p {
     font-size: 14px;
@@ -156,7 +205,7 @@ a:hover {
     font-weight: 150;
   }
   border: 1px solid $medium-grey;
-  background-color: $light-grey;
+  background-color: $light-white;
   border-radius: 4px;
   padding: 10px;
   margin: 5px;
@@ -166,14 +215,23 @@ a:hover {
   margin-top: 50px;
 }
 
+/* Directives
+-------------------------------------------------- */
 .qtitle {
   padding-bottom: 34px;
 }
 
 .btn-default.active {
-  color: #fff;
+  color: $active-text;
   background-color: $active-background;
   border-color: $active-border;
+}
+
+.btn-primary {
+  background-color: $primary;
+}
+.btn-primary:hover {
+  background-color: $primary-hover;
 }
 
 .form-view {
