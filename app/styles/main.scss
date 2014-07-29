@@ -5,6 +5,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 
 /* Theme colors
 -------------------------------------------------- */
+$font-family-serif: Georgia, "Times New Roman", Times, serif;
 
 $medium-grey: #cccccc;
 $heavy-grey: #666666;
@@ -160,6 +161,7 @@ a:hover {
 
   .navbar-brand {
     &.title {
+      font-family: $font-family-serif;
       padding-top: 30px;
       padding-bottom: 45px;
     }
