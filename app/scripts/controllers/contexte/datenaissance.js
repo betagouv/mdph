@@ -15,6 +15,16 @@ angular.module('impactApp')
       $scope.sectionModel.dateNaissance = {label: 'Date de naissance'};
     }
 
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      startingDay: 1
+    };
+
     $scope.isNextStepDisabled = function() {
       return angular.isUndefined($scope.sectionModel.dateNaissance.value);
     };

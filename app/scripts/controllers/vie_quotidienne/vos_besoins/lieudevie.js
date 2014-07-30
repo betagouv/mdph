@@ -18,12 +18,7 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.subSectionModel.lieuDeVie)) {
       $scope.subSectionModel.lieuDeVie = {
-        'besoins': {
-          'materiel': false,
-          'nouveau_lieu': false,
-          'amenagement': false,
-          'autre': false
-        },
+        'besoins': {},
         'detail': ''
       };
     }

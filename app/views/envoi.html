@@ -1,17 +1,49 @@
 <div class="page-header text-center">
   <h4>Merci d'avoir rempli votre dossier</h4>
-  <h5>Pour terminer, téléchargez ou envoyez vos pièces justificatives</h5>
 </div>
 
-<div ng-class="{hide: !debug}">
-  <h4>Récapitulatif de votre demande</h4>
-  <ol>
-    <li ng-repeat="section in data">{{section.sectionLabel}}
-      <ul>
-        <li ng-repeat="answer in section.answers">{{answer.label}}</li>
-      </ul>
-    </li>
-  </ol>
+<div>
+  <p>
+    En se basant sur votre situation, voici la liste a minima des prestations et orientations que votre MDPH va étudier.
+  </p>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4" ng-repeat="prestation in computePrestations()">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{prestation.label}}</h3>
+        </div>
+        <div class="panel-body">
+          {{prestation.description}}
+        </div>
+        <div class="panel-footer">
+          <div class="btn-group btn-group-justified">
+            <div class="btn-group">
+              <button class="btn btn-default">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                <a href="{{prestation.link}}">Plus d'infos</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default panel-action">
+        <div class="panel-body text-center">
+          <span class="glyphicon glyphicon-plus"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<div class="text-center">
+  <h5>Pour terminer, téléchargez ou envoyez vos pièces justificatives</h5>
 </div>
 
 <div class="container-fluid">

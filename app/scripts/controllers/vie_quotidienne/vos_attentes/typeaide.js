@@ -18,14 +18,7 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.sectionModel.typeAide)) {
       $scope.sectionModel.typeAide = {
-        attentes: {
-          'humain': false,
-          'materiel': false,
-          'financier': false,
-          'orientation_sante': false,
-          'medico_social': false,
-          'autre': false
-        },
+        attentes: {},
         detail: ''
       };
     }

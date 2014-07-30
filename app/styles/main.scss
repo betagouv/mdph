@@ -67,8 +67,8 @@ footer {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: $footer-background;
-  border-top: 1px solid $nav-border;
+  background-color: $nav-background;
+  border-top: 5px solid $nav-border;
   color: white;
   padding-top:20px;
 
@@ -87,7 +87,6 @@ footer {
 /* Barre de progression
 -------------------------------------------------- */
 a:hover {
-  color: white;
   text-decoration: none;
 }
 
@@ -97,18 +96,18 @@ a:hover {
     color: $text;
     display: inline-block;
     font-size: 13px;
-    font-weight: 500;
     text-align: center;
     margin: 0 20px;
     min-width: 120px;
     span {
       display: block;
+      font-weight: 500;
       height: 30px;
       margin: 0 auto 10px;
       padding-top: 5px;
       width: 30px;
       border-radius: 50%;
-      border: 1px solid $nav-border;
+      border: 1px solid $light-white;
       background: $nav-span-background;
     }
     p:hover {
@@ -117,9 +116,8 @@ a:hover {
   }
   a.active {
     span {
-      font-weight: bold;
       background: $active-background;
-      border-color: $nav-border;
+      //border-color: $nav-border;
       color: $active-text
     }
     span:hover {
@@ -132,7 +130,6 @@ a:hover {
     font-weight: 100;
     opacity: 0.7;
     span {
-
       opacity: 0.7;
       background: #d9d9d9;
       border-color: #AAAAAA;
@@ -148,6 +145,9 @@ a:hover {
     p {
       font-weight: 100;
     }
+  }
+  a:hover {
+    color: white;
   }
 }
 
@@ -228,10 +228,29 @@ a:hover {
   margin-top: 50px;
 }
 
+.panel {
+  min-height: 285px;
+}
+
+.panel-action {
+  padding-top: 110px;
+  font-size: 35px;
+}
+
+.panel-action:hover {
+  background-color: $light-white;
+}
+
 /* Directives
 -------------------------------------------------- */
 .qtitle {
   padding-bottom: 34px;
+}
+
+.btn {
+  white-space: normal;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .btn-default.active {
@@ -281,7 +300,8 @@ a:hover {
   margin-right: 15px;
 }
 
-/* Animations */
+/* Animations
+-------------------------------------------------- */
 .slide.ng-enter, .slide.ng-leave {
   -webkit-transition: all 0.1s linear;
      -moz-transition: all 0.1s linear;

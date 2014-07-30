@@ -159,12 +159,6 @@ var app = angular
               ]
             },
             {
-              name: 'cartes',
-              url: '/cartes',
-              templateUrl: 'views/partials/question_checkbox.html',
-              controller: 'CartesCtrl'
-            },
-            {
               name: 'objet',
               url: '/objet',
               templateUrl: 'views/partials/question_checkbox.html',

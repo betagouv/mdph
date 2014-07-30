@@ -28,6 +28,7 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-ui-router.stateHelper/statehelper.js',
       'bower_components/ng-file-upload/angular-file-upload.js',
+      'bower_components/ngstorage/ngStorage.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'

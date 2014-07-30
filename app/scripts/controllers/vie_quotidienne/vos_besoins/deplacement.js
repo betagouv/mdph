@@ -18,15 +18,7 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.subSectionModel.deplacement)) {
       $scope.subSectionModel.deplacement = {
-        'besoins': {
-          'intra_domicile': false,
-          'acces_domicile': false,
-          'public': false,
-          'transports': false,
-          'vacances': false,
-          'conduite': false,
-          'autre': false
-        },
+        'besoins': {},
         'detail': ''
       };
     }
@@ -35,8 +27,8 @@ angular.module('impactApp')
     $scope.question = {
       'model': 'besoins',
       'answers':[
-        {'label': 'Pour se déplacer au sein du domicile', 'model': 'intra_domicile'},
-        {'label': 'Pour sortir du domicile et y accéder', 'model': 'acces_domicile'},
+        {'label': 'Pour se déplacer au sein du domicile', 'model': 'intraDomicile'},
+        {'label': 'Pour sortir du domicile et y accéder', 'model': 'accesDomicile'},
         {'label': 'Pour se déplacer dans les espaces publics', 'model': 'public'},
         {'label': 'Pour utiliser les transports en commun', 'model': 'transports'},
         {'label': 'Pour partir en vacances', 'model': 'vacances'},

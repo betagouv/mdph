@@ -12,8 +12,6 @@ angular.module('impactApp')
 
     $scope.subtitle = 'Souhaitez-vous nous informer des attentes et besoins de votre aidant familial ?';
 
-    $scope.sectionModel = $scope.sectionModel;
-
     $scope.question = {
       model: 'aidant',
       'answers': [
