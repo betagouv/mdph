@@ -28,7 +28,7 @@ angular.module('impactApp')
       span: '1',
       label: 'Votre situation professionnelle',
       labelRep: 'Sa situation professionnelle',
-      isEnabled: true
+      showAfter: true
     };
     var projet = {
       id: 1,
@@ -37,7 +37,7 @@ angular.module('impactApp')
       span: '2',
       label: 'Votre projet professionnel',
       labelRep: 'Ses projet professionnel',
-      isEnabled: true
+      showBefore: true
     };
 
     $scope.colClass = 'col-md-6';

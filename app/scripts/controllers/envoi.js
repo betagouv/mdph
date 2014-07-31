@@ -31,54 +31,54 @@ angular.module('impactApp')
       return prestations;
     };
 
-    var besoins = $scope.$storage.vie.answers.besoins.answers;
-    var besoinsDeplacement = besoins.deplacement.besoins;
-    var besoinsQuotidien = besoins.quotidien.besoins;
-    var besoinsSecurite = besoins.securite.besoins;
-    var besoinsSocial = besoins.social.besoins;
-    var besoinsLieuDeVie = besoins.lieuDeVie.besoins;
+    var besoins = $scope.$storage.vie.answers.besoins ? $scope.$storage.vie.answers.besoins.answers : undefined;
+    var besoinsDeplacement = besoins ? besoins.deplacement.besoins : undefined;
+    var besoinsQuotidien = besoins ? besoins.quotidien.besoins : undefined;
+    var besoinsSecurite = besoins ? besoins.securite.besoins : undefined;
+    var besoinsSocial = besoins ? besoins.social.besoins : undefined;
+    var besoinsLieuDeVie = besoins ? besoins.lieuDeVie.besoins : undefined;
 
-    var attentes = $scope.$storage.vie.answers.attentes.answers;
-    var attentesType = attentes.typeAide.attentes;
+    var attentes = $scope.$storage.vie.answers.attentes ? $scope.$storage.vie.answers.attentes.answers : undefined;
+    var attentesType = attentes ? attentes.typeAide.attentes : undefined;
 
     var shouldHaveCarteStationnement = function() {
-      return besoinsDeplacement.public || besoinsDeplacement.transports || besoinsDeplacement.accesDomicile;
+      return besoinsDeplacement && (besoinsDeplacement.public || besoinsDeplacement.transports || besoinsDeplacement.accesDomicile);
     };
 
     var shouldHaveCarteInvalidite = function() {
-      return besoinsQuotidien.hygiene || besoinsQuotidien.repas ||
-        besoinsDeplacement.intraDomicile ||
-        besoinsSecurite.interieur ||  besoinsSecurite.exterieur;
+      return besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.repas) ||
+        besoinsDeplacement && besoinsDeplacement.intraDomicile ||
+        besoinsSecurite && (besoinsSecurite.interieur ||  besoinsSecurite.exterieur);
     };
 
     var shouldHaveAeeh = function() {
       return !isAdult() &&
-        (besoinsQuotidien.hygiene || besoinsQuotidien.repas ||
-        besoinsDeplacement.intraDomicile ||
-        besoinsSecurite.interieur ||  besoinsSecurite.exterieur ||
-        attentesType.financier);
+        (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.repas) ||
+        besoinsDeplacement && besoinsDeplacement.intraDomicile ||
+        besoinsSecurite && (besoinsSecurite.interieur ||  besoinsSecurite.exterieur) ||
+        attentesType && attentesType.financier);
     };
 
     var shouldHaveAah = function() {
-      return (besoinsQuotidien.hygiene || besoinsQuotidien.repas ||
-        besoinsDeplacement.intraDomicile ||
-        besoinsSecurite.interieur ||  besoinsSecurite.exterieur ||
-        attentesType.financier);
+      return (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.repas) ||
+        besoinsDeplacement && besoinsDeplacement.intraDomicile ||
+        besoinsSecurite && (besoinsSecurite.interieur ||  besoinsSecurite.exterieur) ||
+        attentesType && attentesType.financier);
     };
 
     var shouldHavePch = function() {
-      return besoinsDeplacement.conduite ||
-        besoinsLieuDeVie.amenagement ||  besoinsLieuDeVie.materiel ||
-        attentesType.financier || attentesType.materiel || attentesType.financier;
+      return besoinsDeplacement && besoinsDeplacement.conduite ||
+        besoinsLieuDeVie && (besoinsLieuDeVie.amenagement ||  besoinsLieuDeVie.materiel) ||
+        attentesType && (attentesType.financier || attentesType.materiel);
     };
 
     var shouldHaveEms = function() {
-      return attentesType.etablissement;
+      return attentesType && attentesType.etablissement;
     };
 
     var shouldHaveSms = function() {
       return isAdult() &&
-      (besoinsSocial.loisirs || besoinsSocial.citoyen);
+      (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen));
     };
 
     var carteStationnement = {

@@ -27,7 +27,7 @@ angular.module('impactApp')
       span: '1',
       label: 'Votre situation',
       labelRep: 'Sa situation',
-      isEnabled: true
+      showAfter: true
     };
     var attentes = {
       id: 1,
@@ -36,7 +36,7 @@ angular.module('impactApp')
       span: '2',
       label: 'Vos attentes',
       labelRep: 'Ses attentes',
-      isEnabled: true
+      showBefore: true
     };
 
     $scope.colClass = 'col-md-6';
