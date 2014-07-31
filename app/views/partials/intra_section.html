@@ -1,0 +1,4 @@
+<a ui-sref="{{section.sref}}" ng-class="{active: isActive(), showBefore: section.showBefore, showAfter: section.showAfter, first: !section.showBefore, last: !section.showAfter}"
+  tooltip="{{section.tooltip}}">
+  <span ng-if="section.span">{{getLabel(section)}}</span>
+</a>
