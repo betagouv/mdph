@@ -38,6 +38,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.vos_attentes.structure');
+      $state.go('^.^.vos_attentes.structure');
     };
   });

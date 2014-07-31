@@ -90,10 +90,8 @@ a:hover {
   text-decoration: none;
 }
 
-#status-buttons {
-  margin-top: 20px;
+.section-buttons {
   a {
-    color: $text;
     display: inline-block;
     font-size: 13px;
     text-align: center;
@@ -107,8 +105,6 @@ a:hover {
       padding-top: 5px;
       width: 30px;
       border-radius: 50%;
-      border: 1px solid $light-white;
-      background: $nav-span-background;
     }
     p:hover {
       text-decoration: underline;
@@ -117,13 +113,22 @@ a:hover {
   a.active {
     span {
       background: $active-background;
-      //border-color: $nav-border;
       color: $active-text
     }
     span:hover {
       background-color: $active-background-hover;
     }
+  }
+}
 
+.nav-form {
+  margin-top: 20px;
+  a {
+    color: $text;
+    span {
+      border: 1px solid white;
+      background: $nav-span-background;
+    }
   }
   a.disabled {
     color: white;
@@ -148,6 +153,17 @@ a:hover {
   }
   a:hover {
     color: white;
+  }
+}
+
+.nav-section {
+  margin-top: 30px;
+  a {
+    color: $nav-span-background;
+    span {
+      border: 1px solid $nav-span-background;
+      background: $text;
+    }
   }
 }
 
@@ -232,6 +248,10 @@ a:hover {
   min-height: 285px;
 }
 
+.panel-body {
+  min-height: 190px;
+}
+
 .panel-action {
   padding-top: 110px;
   font-size: 35px;
@@ -239,6 +259,7 @@ a:hover {
 
 .panel-action:hover {
   background-color: $light-white;
+  cursor: pointer;
 }
 
 /* Directives

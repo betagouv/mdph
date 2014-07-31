@@ -33,7 +33,7 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       if ($scope.sectionModel.arretDeTravail.value === false) {
-        $scope.goToNextSection($scope.currentSection);
+        $state.go('^.^.^.projet_professionnel.description');
       } else {
         $state.go('^.indemnite_journaliere');
       }

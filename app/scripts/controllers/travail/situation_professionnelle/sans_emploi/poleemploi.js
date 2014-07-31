@@ -46,7 +46,7 @@ angular.module('impactApp')
 
     $scope.isNextStepDisabled = function() {
       var model = $scope.sectionModel.poleEmploi;
-      if (angular.isUndefined(model)) {
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 
@@ -58,6 +58,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.^.projet_professionnel.description');
+      $state.go('^.^.^.projet_professionnel.description');
     };
   });

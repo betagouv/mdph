@@ -34,6 +34,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.vos_attentes.type_attente');
+      $state.go('^.^.vos_attentes.type_attente');
     };
   });

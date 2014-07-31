@@ -27,7 +27,7 @@ angular.module('impactApp')
           value: false
         },
         {
-          label: 'Pour un(e) autre',
+          label: 'Pour une autre personne',
           value: true,
           detailUrl: 'views/partials/details/personne.html'
         }

@@ -16,10 +16,6 @@ angular.module('impactApp')
           if ($state.includes('**.contexte.**')) {
             return 'Pour commencer';
           }
-          if ($state.includes('**.votre_aidant.**')) {
-            return 'Situation et besoins de l\'aidant familial';
-          }
-          return $scope.estRepresentant() ? 'Projet de vie de ' + $scope.getName() : 'Votre projet de vie';
         };
       }
     };

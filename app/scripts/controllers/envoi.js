@@ -89,7 +89,7 @@ angular.module('impactApp')
 
     var carteInvalidite = {
       label: 'Carte d\'invalidité',
-      description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé. ',
+      description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
       link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml'
     };
 

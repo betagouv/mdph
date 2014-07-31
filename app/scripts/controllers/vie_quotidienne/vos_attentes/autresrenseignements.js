@@ -20,6 +20,6 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $state.go('^.^.objet');
+      $state.go('^.objet');
     };
   });

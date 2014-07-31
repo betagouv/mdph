@@ -60,6 +60,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.vos_besoins.quotidien');
+      $state.go('^.^.vos_besoins.quotidien');
     };
   });

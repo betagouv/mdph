@@ -28,11 +28,11 @@ angular.module('impactApp')
       model: 'attentes',
       answers:
       [
-        {'label': 'Vivre en établissement', 'model': 'etablissement'},
-        {'label': 'Vivre à domicile', 'model': 'domicile'},
         {'label': 'Une aide humaine', 'model': 'humain'},
         {'label': 'Une aide financière', 'model': 'financier'},
         {'label': 'Une aide technique, du matériel ou équipement', 'model': 'materiel'},
+        {'label': 'Vivre en établissement', 'model': 'etablissement'},
+        {'label': 'Vivre à domicile', 'model': 'domicile'},
         {'label': 'Autre besoin', 'model': 'autre', 'detail': true}
       ]
     };

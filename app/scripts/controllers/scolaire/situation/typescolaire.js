@@ -48,7 +48,7 @@ angular.module('impactApp')
       if ($scope.sectionModel.type.value !== 'domicile') {
         $state.go('^.etablissement');
       } else {
-        $state.go('^.vos_attentes.structure');
+        $state.go('^.^.vos_attentes.structure');
       }
     };
   });

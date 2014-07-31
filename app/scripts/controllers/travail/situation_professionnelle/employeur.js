@@ -26,6 +26,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.^.emploi.nom_poste');
+      $state.go('^.emploi.nom_poste');
     };
   });

@@ -27,7 +27,7 @@ angular.module('impactApp')
       },
       sectionVieQuotidienne: {
         id: 1,
-        sref: 'form.vie_quotidienne.vie_famille',
+        sref: 'form.vie_quotidienne.situation.vie_famille',
         filter: 'form.vie_quotidienne.**',
         span: 'A',
         label: 'Vie quotidienne',
@@ -35,7 +35,7 @@ angular.module('impactApp')
       },
       sectionScolarite: {
         id: 2,
-        sref: 'form.votre_scolarite.condition',
+        sref: 'form.votre_scolarite.situation.condition',
         filter: 'form.votre_scolarite.**',
         span: 'B',
         label: 'Vie scolaire ou étudiante',
@@ -51,7 +51,7 @@ angular.module('impactApp')
       },
       sectionAidant: {
         id: 4,
-        sref: 'form.votre_aidant.lien',
+        sref: 'form.votre_aidant.situation.lien',
         filter: 'form.votre_aidant.**',
         span: 'D',
         label: 'Aidant familial',
@@ -113,8 +113,8 @@ angular.module('impactApp')
 
     $scope.getName = function() {
       var representant = getRepresentant();
-      if (angular.isUndefined(representant)) {
-        return '';
+      if (angular.isUndefined(representant) || angular.isUndefined(representant.prenom)) {
+        return 'la personne';
       }
       return representant.prenom;
     };

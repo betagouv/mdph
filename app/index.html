@@ -102,8 +102,11 @@
 
         <!-- vie_quotidienne -->
         <script src="scripts/controllers/vie_quotidienne/viequotidienne.js"></script>
-        <script src="scripts/controllers/vie_quotidienne/viefamille.js"></script>
-        <script src="scripts/controllers/vie_quotidienne/logement.js"></script>
+        <!-- situation -->
+        <script src="scripts/controllers/vie_quotidienne/situation/situation.js"></script>
+        <script src="scripts/controllers/vie_quotidienne/situation/viefamille.js"></script>
+        <script src="scripts/controllers/vie_quotidienne/situation/logement.js"></script>
+        <!-- endSituation -->
         <!-- vos_besoins -->
         <script src="scripts/controllers/vie_quotidienne/vos_besoins/quotidien.js"></script>
         <script src="scripts/controllers/vie_quotidienne/vos_besoins/deplacement.js"></script>
@@ -117,17 +120,19 @@
         <script src="scripts/controllers/vie_quotidienne/vos_attentes/typeaide.js"></script>
         <script src="scripts/controllers/vie_quotidienne/vos_attentes/attentestructure.js"></script>
         <script src="scripts/controllers/vie_quotidienne/vos_attentes/autresrenseignements.js"></script>
+        <script src="scripts/controllers/vie_quotidienne/vos_attentes/objet.js"></script>
+        <script src="scripts/controllers/vie_quotidienne/vos_attentes/aidant.js"></script>
         <!-- endVos_attentes -->
-        <script src="scripts/controllers/vie_quotidienne/objet.js"></script>
-        <script src="scripts/controllers/vie_quotidienne/aidant.js"></script>
         <!-- endVie_quotidienne -->
 
         <!-- scolaire -->
         <script src="scripts/controllers/scolaire/scolaire.js"></script>
-        <script src="scripts/controllers/scolaire/conditionscolaire.js"></script>
-        <script src="scripts/controllers/scolaire/typescolaire.js"></script>
-        <script src="scripts/controllers/scolaire/etablissementscolaire.js"></script>
-        <script src="scripts/controllers/scolaire/raisonnonscolaire.js"></script>
+        <!-- situation -->
+        <script src="scripts/controllers/scolaire/situation/conditionscolaire.js"></script>
+        <script src="scripts/controllers/scolaire/situation/typescolaire.js"></script>
+        <script src="scripts/controllers/scolaire/situation/etablissementscolaire.js"></script>
+        <script src="scripts/controllers/scolaire/situation/raisonnonscolaire.js"></script>
+        <!-- endSituation -->
         <!-- vos_attentes -->
         <script src="scripts/controllers/scolaire/vos_attentes/vosattentes.js"></script>
         <script src="scripts/controllers/scolaire/vos_attentes/autresrenseignements.js"></script>
@@ -142,26 +147,26 @@
         <script src="scripts/controllers/travail/situation_professionnelle/milieu.js"></script>
         <script src="scripts/controllers/travail/situation_professionnelle/typeemploi.js"></script>
         <script src="scripts/controllers/travail/situation_professionnelle/employeur.js"></script>
-        <!-- endSituation_professionnelle -->
         <!-- emploi -->
-        <script src="scripts/controllers/travail/emploi/emploi.js"></script>
-        <script src="scripts/controllers/travail/emploi/nomposte.js"></script>
-        <script src="scripts/controllers/travail/emploi/emploitemps.js"></script>
-        <script src="scripts/controllers/travail/emploi/emploiheures.js"></script>
-        <script src="scripts/controllers/travail/emploi/adaptehandicap.js"></script>
-        <script src="scripts/controllers/travail/emploi/emploidifficultes.js"></script>
-        <script src="scripts/controllers/travail/emploi/amenagement.js"></script>
-        <script src="scripts/controllers/travail/emploi/arretdetravail.js"></script>
-        <script src="scripts/controllers/travail/emploi/indemnitejournaliere.js"></script>
-        <script src="scripts/controllers/travail/emploi/accidentdetravail.js"></script>
-        <script src="scripts/controllers/travail/emploi/professionnelsocial.js"></script>
-        <script src="scripts/controllers/travail/emploi/medecintravail.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/emploi.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/nomposte.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/emploitemps.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/emploiheures.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/adaptehandicap.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/emploidifficultes.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/amenagement.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/arretdetravail.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/indemnitejournaliere.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/accidentdetravail.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/professionnelsocial.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/emploi/medecintravail.js"></script>
         <!-- endEmploi -->
         <!-- sansEmploi -->
-        <script src="scripts/controllers/travail/sans_emploi/sansemploi.js"></script>
-        <script src="scripts/controllers/travail/sans_emploi/emploipasse.js"></script>
-        <script src="scripts/controllers/travail/sans_emploi/poleemploi.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/sans_emploi/sansemploi.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/sans_emploi/emploipasse.js"></script>
+        <script src="scripts/controllers/travail/situation_professionnelle/sans_emploi/poleemploi.js"></script>
         <!-- endSansEmploi -->
+        <!-- endSituation_professionnelle -->
         <!-- projetPro -->
         <script src="scripts/controllers/travail/projet_professionnel/projetprofessionnel.js"></script>
         <script src="scripts/controllers/travail/projet_professionnel/descriptionprojetpro.js"></script>
@@ -173,17 +178,19 @@
 
         <!-- aidant -->
         <script src="scripts/controllers/aidant/aidant.js"></script>
-        <script src="scripts/controllers/aidant/aidantlien.js"></script>
-        <script src="scripts/controllers/aidant/aidantvie.js"></script>
-        <script src="scripts/controllers/aidant/emploi.js"></script>
-        <script src="scripts/controllers/aidant/natureaide.js"></script>
-        <script src="scripts/controllers/aidant/natureaidebis.js"></script>
-        <script src="scripts/controllers/aidant/dedommagement.js"></script>
-        <script src="scripts/controllers/aidant/accompagnement.js"></script>
-        <script src="scripts/controllers/aidant/soutien.js"></script>
-        <script src="scripts/controllers/aidant/empechement.js"></script>
-        <script src="scripts/controllers/aidant/situationfuture.js"></script>
-        <script src="scripts/controllers/aidant/renseignements.js"></script>
+        <!-- situation -->
+        <script src="scripts/controllers/aidant/situation/aidantlien.js"></script>
+        <script src="scripts/controllers/aidant/situation/aidantvie.js"></script>
+        <script src="scripts/controllers/aidant/situation/emploi.js"></script>
+        <script src="scripts/controllers/aidant/situation/natureaide.js"></script>
+        <script src="scripts/controllers/aidant/situation/natureaidebis.js"></script>
+        <script src="scripts/controllers/aidant/situation/dedommagement.js"></script>
+        <script src="scripts/controllers/aidant/situation/accompagnement.js"></script>
+        <script src="scripts/controllers/aidant/situation/soutien.js"></script>
+        <script src="scripts/controllers/aidant/situation/empechement.js"></script>
+        <script src="scripts/controllers/aidant/situation/situationfuture.js"></script>
+        <script src="scripts/controllers/aidant/situation/renseignements.js"></script>
+        <!-- endSituation -->
         <!-- vos_attentes -->
         <script src="scripts/controllers/aidant/vos_attentes/vosattentes.js"></script>
         <script src="scripts/controllers/aidant/vos_attentes/typeattentes.js"></script>

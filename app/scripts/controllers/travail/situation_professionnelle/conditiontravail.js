@@ -34,7 +34,7 @@ angular.module('impactApp')
       if ($scope.sectionModel.travail.value) {
         $state.go('^.milieu');
       } else {
-        $state.go('^.^.sans_emploi.passe');
+        $state.go('^.sans_emploi.passe');
       }
     };
   });

@@ -20,5 +20,30 @@ angular.module('impactApp')
       };
     }
 
+    var situation = {
+      id: 0,
+      sref: 'form.votre_aidant.situation.lien',
+      filter: '**.situation.**',
+      span: '1',
+      label: 'Votre situation',
+      labelRep: 'Sa situation',
+      isEnabled: true
+    };
+    var attentes = {
+      id: 1,
+      sref: 'form.votre_aidant.vos_attentes.structure',
+      filter: '**.vos_attentes.**',
+      span: '2',
+      label: 'Vos attentes',
+      labelRep: 'Ses attentes',
+      isEnabled: true
+    };
+
+    $scope.colClass = 'col-md-6';
+    $scope.sections = [
+      situation,
+      attentes
+    ];
+
     $scope.sectionModel = $scope.$storage.aidant.answers;
   });

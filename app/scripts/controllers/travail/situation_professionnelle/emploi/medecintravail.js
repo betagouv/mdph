@@ -58,6 +58,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.^.projet_professionnel.description');
+      $state.go('^.^.^.projet_professionnel.description');
     };
   });
