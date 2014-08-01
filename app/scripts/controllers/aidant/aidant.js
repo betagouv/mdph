@@ -20,29 +20,33 @@ angular.module('impactApp')
       };
     }
 
-    var situation = {
-      id: 0,
-      sref: 'form.votre_aidant.situation.lien',
-      filter: '**.situation.**',
-      span: '1',
-      label: 'Votre situation',
-      labelRep: 'Sa situation',
-      showAfter: true
-    };
-    var attentes = {
-      id: 1,
-      sref: 'form.votre_aidant.vos_attentes.structure',
-      filter: '**.vos_attentes.**',
-      span: '2',
-      label: 'Vos attentes',
-      labelRep: 'Ses attentes',
-      showBefore: true
-    };
+    if (angular.isUndefined($scope.$storage.sectionSituationAidant)) {
+      $scope.$storage.sectionSituationAidant = {
+        id: 0,
+        sref: 'form.votre_aidant.situation.lien',
+        filter: '**.situation.**',
+        span: '1',
+        label: 'Votre situation',
+        labelRep: 'Sa situation',
+        isEnabled: $scope.$storage.aidant.answers.situation,
+        showAfter: true
+      };
+      $scope.$storage.sectionAttentesAidant = {
+        id: 1,
+        sref: 'form.votre_aidant.vos_attentes.type_attente',
+        filter: '**.vos_attentes.**',
+        span: '2',
+        label: 'Vos attentes',
+        labelRep: 'Ses attentes',
+        isEnabled: $scope.$storage.aidant.answers.attentes,
+        showBefore: true
+      };
+    }
 
     $scope.colClass = 'col-md-6';
     $scope.sections = [
-      situation,
-      attentes
+      $scope.$storage.sectionSituationAidant,
+      $scope.$storage.sectionAttentesAidant
     ];
 
     $scope.sectionModel = $scope.$storage.aidant.answers;

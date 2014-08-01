@@ -22,10 +22,6 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel.difficultes;
 
-    $scope.isNextStepDisabled = function() {
-      return $scope.sectionModel.difficultes.value === '';
-    };
-
     $scope.nextStep = function() {
       $state.go('^.amenagement');
     };

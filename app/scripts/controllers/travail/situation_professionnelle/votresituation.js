@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .controller('VotreSituationCtrl', function ($scope) {
 
-    if (angular.isUndefined($scope.travailModel.situation)) {
-      $scope.travailModel.situation = {
+    if (angular.isUndefined($scope.$storage.travail.answers.situation)) {
+      $scope.$storage.travail.answers.situation = {
         label: 'Situation professionnelle',
         answers: {}
       };
     }
 
-    $scope.sectionModel = $scope.travailModel.situation.answers;
+    $scope.sectionModel = $scope.$storage.travail.answers.situation.answers;
   });

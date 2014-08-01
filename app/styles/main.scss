@@ -4,32 +4,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 -------------------------------------------------- */
 $font-family-serif: Georgia, "Times New Roman", Times, serif;
 
-$medium-grey: #cccccc;
 $heavy-grey: #666666;
+$medium-heavy-grey: #999999;
+$medium-grey: #cccccc;
 $light-grey: #d0d0d0;
 $light-white: #F8F8F8;
-
-/* Teal/Red
-$dark-teal: #00495C;
-$medium-teal: #44A39D;
-$teal: #50C0A0;
-$light-teal: #50C0E7;
-
-$dark-reddish: #8F1C2D;
-$reddish: #D92B44;
-
-$nav-background: $teal;
-$nav-span-background: $medium-teal;
-$nav-border: $light-white;
-$nav-optionnal: $dark-teal;
-
-$active-background: $reddish;
-$active-border: $dark-reddish;
-$active-text: $light-white;
-
-$primary: $light-teal;
-$text: $light-white;
-*/
 
 $footer-background: #222939;
 $nav-background: #333E54;
@@ -45,8 +24,6 @@ $active-text: $light-white;
 $primary: #3071a9;
 $primary-hover: #333E54;
 $text: $light-white;
-
-$input-border-focus: $active-background-hover;
 
 // bower:scss
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
@@ -127,7 +104,6 @@ a:hover {
   a {
     color: $text;
     span {
-      border: 1px solid white;
       background: $nav-span-background;
     }
   }
@@ -157,29 +133,9 @@ a:hover {
   }
 }
 
-/*
-.nav-section {
-  margin-top: 30px;
-  a {
-    color: $nav-span-background;
-    span {
-      padding: 7px;
-      border-radius: 15px;
-      border: 1px solid $nav-span-background;
-      background: $text;
-    }
-  }
-  a.active {
-    span {
-      background: $active-background;
-      color: $active-text
-    }
-    span:hover {
-      background-color: $active-background-hover;
-    }
-  }
+.ng-invalid {
+  border: 1px solid red !important;
 }
-*/
 
 .nav-section {
 
@@ -259,10 +215,14 @@ a:hover {
 
     &.active {
       background: $active-background;
-      color: $active-text;
+      color: $active-text !important;
       &:hover {
         background-color: $active-background-hover;
       }
+    }
+
+    &.disabled {
+      color: $medium-heavy-grey;
     }
   }
 }

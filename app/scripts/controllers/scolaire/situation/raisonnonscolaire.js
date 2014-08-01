@@ -66,6 +66,7 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.vos_attentes.structure');
+      $scope.sections[1].isEnabled = true;
+      $state.go('^.^.vos_attentes.structure');
     };
   });

@@ -31,6 +31,7 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
+      $scope.sections[1].isEnabled = false;
       if ($scope.sectionModel.travail.value) {
         $state.go('^.milieu');
       } else {

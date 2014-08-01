@@ -11,8 +11,8 @@ angular.module('impactApp')
   .controller('VosAttentesScolairesCtrl', function ($scope) {
     $scope.title = $scope.estRepresentant() ? 'Ses attentes en matière de vie scolaire / étudiante' : 'Vos attentes en matière de vie scolaire / étudiante';
 
-    if (angular.isUndefined($scope.sectionModel.attentes)) {
-      $scope.sectionModel.attentes = {
+    if (angular.isUndefined($scope.$storage.scolaire.answers.attentes)) {
+      $scope.$storage.scolaire.answers.attentes = {
         label: 'Vos attentes en matière de vie scolaire / étudiante',
         answers: {}
       };

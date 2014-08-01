@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:VosAttentesCtrl
+ * @name impactApp.controller:VosAttentesVieCtrl
  * @description
- * # VosAttentesCtrl
+ * # VosAttentesVieCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('VosAttentesCtrl', function ($scope) {
+  .controller('VosAttentesVieCtrl', function ($scope) {
 
     if (angular.isUndefined($scope.$storage.vie.answers.attentes)) {
       $scope.$storage.vie.answers.attentes = {

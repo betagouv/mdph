@@ -19,40 +19,43 @@ angular.module('impactApp')
       };
     }
 
-    var situation = {
-      id: 0,
-      sref: 'form.vie_quotidienne.situation.vie_famille',
-      filter: '**.situation.**',
-      span: '1',
-      label: 'Votre situation',
-      labelRep: 'Sa situation',
-      showAfter: true
-    };
-    var besoins = {
-      id: 1,
-      sref: 'form.vie_quotidienne.vos_besoins.quotidien',
-      filter: '**.vos_besoins.**',
-      span: '2',
-      label: 'Vos besoins',
-      labelRep: 'Ses besoins',
-      showBefore: true,
-      showAfter: true
-    };
-    var attentes = {
-      id: 2,
-      sref: 'form.vie_quotidienne.vos_attentes.type_aide',
-      filter: '**.vos_attentes.**',
-      span: '3',
-      label: 'Vos attentes',
-      labelRep: 'Ses attentes',
-      showBefore: true
-    };
+    if (angular.isUndefined($scope.$storage.sectionSituationVie)) {
+      $scope.$storage.sectionSituationVie = {
+        id: 0,
+        sref: 'form.vie_quotidienne.situation.vie_famille',
+        filter: '**.situation.**',
+        span: '1',
+        label: 'Votre situation',
+        labelRep: 'Sa situation',
+        isEnabled: true,
+        showAfter: true
+      };
+      $scope.$storage.sectionBesoinsVie = {
+        id: 1,
+        sref: 'form.vie_quotidienne.vos_besoins.quotidien',
+        filter: '**.vos_besoins.**',
+        span: '2',
+        label: 'Vos besoins',
+        labelRep: 'Ses besoins',
+        showBefore: true,
+        showAfter: true
+      };
+      $scope.$storage.sectionAttentesVie = {
+        id: 2,
+        sref: 'form.vie_quotidienne.vos_attentes.type_aide',
+        filter: '**.vos_attentes.**',
+        span: '3',
+        label: 'Vos attentes',
+        labelRep: 'Ses attentes',
+        showBefore: true
+      };
+    }
 
     $scope.colClass = 'col-md-4';
     $scope.sections = [
-      situation,
-      besoins,
-      attentes
+      $scope.$storage.sectionSituationVie,
+      $scope.$storage.sectionBesoinsVie,
+      $scope.$storage.sectionAttentesVie
     ];
 
     $scope.sectionModel = $scope.$storage.vie.answers;

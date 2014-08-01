@@ -58,6 +58,7 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
+      $scope.sections[1].isEnabled = true;
       $state.go('^.^.^.projet_professionnel.description');
     };
   });

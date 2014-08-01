@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:SituationCtrl
+ * @name impactApp.controller:SituationVieCtrl
  * @description
- * # SituationCtrl
+ * # SituationVieCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('SituationCtrl', function ($scope) {
+  .controller('SituationVieCtrl', function ($scope) {
 
     if (angular.isUndefined($scope.$storage.vie.answers.situation)) {
       $scope.$storage.vie.answers.situation = {

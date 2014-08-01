@@ -84,7 +84,7 @@ var app = angular
               url: '/situation',
               template: '<ui-view/>',
               abstract: true,
-              controller: 'SituationCtrl',
+              controller: 'SituationVieCtrl',
               children: [
                 {
                   name: 'vie_famille',
@@ -105,7 +105,7 @@ var app = angular
               url: '/vos_besoins',
               template: '<ui-view/>',
               abstract: true,
-              controller: 'BesoinsCtrl',
+              controller: 'BesoinsVieCtrl',
               children: [
                 {
                   name: 'quotidien',
@@ -144,7 +144,7 @@ var app = angular
               url: '/vos_attentes',
               template: '<ui-view/>',
               abstract: true,
-              controller: 'VosAttentesCtrl',
+              controller: 'VosAttentesVieCtrl',
               children: [
                 {
                   name: 'type_aide',
@@ -191,7 +191,7 @@ var app = angular
               url: '/situation',
               template: '<ui-view/>',
               abstract: true,
-              controller: 'SituationCtrl',
+              controller: 'SituationScolaireCtrl',
               children: [
                 {
                   name: 'condition',
@@ -423,6 +423,7 @@ var app = angular
               url: '/situation',
               template: '<ui-view/>',
               abstract: true,
+              controller: 'SituationAidantCtrl',
               children: [
                 {
                   name: 'lien',

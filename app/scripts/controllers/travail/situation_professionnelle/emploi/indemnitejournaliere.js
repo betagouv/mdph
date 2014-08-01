@@ -36,7 +36,7 @@ angular.module('impactApp')
 
     $scope.isNextStepDisabled = function() {
       var model = $scope.sectionModel.indemniteJournaliere;
-      if (angular.isUndefined(model)) {
+      if (angular.isUndefined(model.value)) {
         return true;
       }
 

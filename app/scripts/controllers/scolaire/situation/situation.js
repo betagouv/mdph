@@ -2,20 +2,20 @@
 
 /**
  * @ngdoc function
- * @name impactApp.controller:SituationCtrl
+ * @name impactApp.controller:SituationScolaireCtrl
  * @description
- * # SituationCtrl
+ * # SituationScolaireCtrl
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('SituationCtrl', function ($scope) {
+  .controller('SituationScolaireCtrl', function ($scope) {
 
-    if (angular.isUndefined($scope.$storage.scolarite.answers.situation)) {
-      $scope.$storage.scolarite.answers.situation = {
+    if (angular.isUndefined($scope.$storage.scolaire.answers.situation)) {
+      $scope.$storage.scolaire.answers.situation = {
         label: 'Votre situation',
         answers: {}
       };
     }
 
-    $scope.sectionModel = $scope.$storage.scolarite.answers.situation.answers;
+    $scope.sectionModel = $scope.$storage.scolaire.answers.situation.answers;
   });
