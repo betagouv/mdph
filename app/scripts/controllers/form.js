@@ -18,7 +18,7 @@ angular.module('impactApp')
     $scope.$storage = $sessionStorage.$default({
       sectionContexte: {
         id: 0,
-        sref: 'form.contexte.representant',
+        sref: 'form.contexte.pour_commencer.representant',
         filter: 'form.contexte.**',
         glyphicon: 'glyphicon-log-in',
         label: 'Pour commencer',

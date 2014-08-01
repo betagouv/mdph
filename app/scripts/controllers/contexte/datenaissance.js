@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('DateNaissanceCtrl', function($scope) {
+  .controller('DateNaissanceCtrl', function($scope, $state) {
     $scope.subtitle = $scope.estRepresentant() ? 'Quelle est sa date de naissance ?': 'Quelle est votre date de naissance ?';
 
     if (angular.isUndefined($scope.sectionModel.dateNaissance)) {
@@ -30,7 +30,7 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $scope.$storage.sectionVieQuotidienne.isEnabled = true;
-      $scope.goToNextSection($scope.currentSection);
+      $scope.sections[1].isEnabled = true;
+      $state.go('^.^.situations_urgentes.urgences');
     };
   });

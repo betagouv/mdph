@@ -37,39 +37,61 @@ var app = angular
         {
           name: 'contexte',
           url: '/contexte',
-          template: '<ui-view/>',
-          abstract: true,
+          templateUrl: 'views/partials/section_form.html',
           controller: 'ContexteCtrl',
           children: [
             {
-              name: 'code_postal',
-              url: '/code_postal',
-              templateUrl: 'views/partials/code_postal.html',
-              controller: 'CodePostalCtrl'
+              name: 'pour_commencer',
+              url: '/pour_commencer',
+              template: '<ui-view/>',
+              abstract: true,
+              children: [
+                {
+                  name: 'code_postal',
+                  url: '/code_postal',
+                  templateUrl: 'views/partials/code_postal.html',
+                  controller: 'CodePostalCtrl'
+                },
+                {
+                  name: 'dossier',
+                  url: '/dossier',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'DossierCtrl'
+                },
+                {
+                  name: 'renouvellement',
+                  url: '/renouvellement',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'RenouvellementCtrl'
+                },
+                {
+                  name: 'representant',
+                  url: '/representant',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'RepresentantCtrl'
+                },
+                {
+                  name: 'date_naissance',
+                  url: '/date_naissance',
+                  templateUrl: 'views/partials/question_date.html',
+                  controller: 'DateNaissanceCtrl'
+                }
+              ]
             },
             {
-              name: 'dossier',
-              url: '/dossier',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'DossierCtrl'
-            },
-            {
-              name: 'renouvellement',
-              url: '/renouvellement',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'RenouvellementCtrl'
-            },
-            {
-              name: 'representant',
-              url: '/representant',
-              templateUrl: 'views/partials/question_radio.html',
-              controller: 'RepresentantCtrl'
-            },
-            {
-              name: 'date_naissance',
-              url: '/date_naissance',
-              templateUrl: 'views/partials/question_date.html',
-              controller: 'DateNaissanceCtrl'
+              name: 'situations_urgentes',
+              url: '/situations_urgentes',
+              template: '<ui-view/>',
+              abstract: true,
+              controller: 'SituationsUrgentesCtrl',
+              children: [
+                {
+                  name: 'urgences',
+                  url: '/urgences',
+                  templateUrl: 'views/partials/question_checkbox.html',
+                  controller: 'UrgencesCtrl'
+                }
+              ]
             }
           ]
         },
