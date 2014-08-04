@@ -1,19 +1,19 @@
 <div class="row">
   <label class="col-md-8 control-label">{{answer.detailLabel || 'Précisez'}}</label>
   <div class="col-md-2">
-    <label
-        class="btn btn-default center-block"
+    <button
+        class="btn btn-default btn-block"
         ng-model="$parent.sectionModel[question.model]['detail']"
         btn-radio="true">
         Oui
-    </label>
+    </button>
   </div>
   <div class="col-md-2">
-    <label
-        class="btn btn-default center-block"
+    <button
+        class="btn btn-default btn-block"
         ng-model="$parent.sectionModel[question.model]['detail']"
         btn-radio="false">
         Non
-    </label>
+    </button>
   </div>
 </div>

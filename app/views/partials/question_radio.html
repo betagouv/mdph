@@ -4,13 +4,13 @@
   ng-if="debug || (!answer.onlyAdult || isAdult())">
   <div class="col-md-12"
       tooltip="{{debug && answer.onlyAdult && !isAdult() ? debugAdultText : ''}}">
-    <label
+    <button
       class="btn btn-default btn-block text-capitalize"
       ng-disabled="debug && answer.onlyAdult && !isAdult()"
       ng-model="sectionModel[question.model]"
       btn-radio="answer">
       {{getLabel(answer)}}
-    </label>
+    </button>
     <div class="well slide" ng-if="answer.detailUrl && sectionModel[question.model].value === answer.value">
       <div ng-include="answer.detailUrl"></div>
     </div>

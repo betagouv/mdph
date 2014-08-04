@@ -2,13 +2,13 @@
 
 <div class="row" ng-repeat="answer in question.answers" ng-if="debug || (!answer.onlyAdult || isAdult())">
   <div class="col-md-12" tooltip="{{debug && answer.onlyAdult && !isAdult() ? debugAdultText : ''}}">
-    <label
+    <button
       class="btn btn-default btn-block"
       ng-disabled="debug && answer.onlyAdult && !isAdult()"
       ng-model="model[question.model][answer.model]"
       btn-checkbox>
       {{getLabel(answer)}}
-    </label>
+    </button>
     <div class="well slide" ng-if="answer.detail && model[question.model][answer.model]">
       <div class="row form-horizontal" ng-if="!answer.detailUrl">
         <label class="col-md-2 control-label">Précisez</label>

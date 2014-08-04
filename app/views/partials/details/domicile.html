@@ -1,35 +1,33 @@
 <div class="row">
   <div class="col-md-4">
-    <label class="btn btn-default center-block" ng-model="sectionModel.logement.detail" btn-radio="'parents'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel.logement.detail" btn-radio="'parents'">
       Des parents
-    </label>
+    </button>
   </div>
   <div class="col-md-4">
-    <label class="btn btn-default center-block" ng-model="sectionModel.logement.detail" btn-radio="'ami'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel.logement.detail" btn-radio="'ami'">
       D'un(e) ami(e)
-    </label>
+    </button>
   </div>
   <div class="col-md-4">
-    <label class="btn btn-default center-block" ng-model="sectionModel.logement.detail" btn-radio="'autreMembreFamille'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel.logement.detail" btn-radio="'autreMembreFamille'">
       D'un autre membre de<br>la famille
-    </label>
+    </button>
   </div>
-</div>
-<div class="row">
   <div class="col-md-4">
-    <label class="btn btn-default center-block" ng-model="sectionModel.logement.detail" btn-radio="'familleAccueill'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel.logement.detail" btn-radio="'familleAccueill'">
       D'une famille d'accueil
-    </label>
+    </button>
   </div>
   <div class="col-md-4">
     <div tooltip="{{debug ? debugAdultText : ''}}">
-      <label class="btn btn-default center-block"
+      <button class="btn btn-default btn-block"
         ng-if="debug || showAdult"
         ng-disabled="!showAdult"
         ng-model="sectionModel.logement.detail"
         btn-radio="'enfants'">
         Des enfants
-      </label>
+      </button>
     </div>
   </div>
 </div>

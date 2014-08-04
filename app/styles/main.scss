@@ -111,6 +111,7 @@ a:hover {
     color: white;
     font-weight: 100;
     opacity: 0.7;
+    cursor: default;
     span {
       opacity: 0.7;
       background: #d9d9d9;
@@ -222,6 +223,7 @@ a:hover {
 
     &.disabled {
       color: $medium-heavy-grey;
+      cursor: default;
     }
   }
 }
@@ -348,6 +350,9 @@ a:hover {
 
 .btn-primary {
   background-color: $primary;
+  a {
+    color: white;
+  }
 }
 .btn-primary:hover {
   background-color: $primary-hover;
@@ -417,16 +422,5 @@ a:hover {
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
-  }
-
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .jumbotron {
-    border-bottom: 0;
   }
 }
