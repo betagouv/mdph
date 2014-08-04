@@ -324,15 +324,6 @@ a:hover {
   padding-right: 5px;
 }
 
-.btn-default.active {
-  color: $active-text;
-  background-color: $active-background;
-  border-color: $active-border;
-}
-.btn-default.active:hover {
-  background-color: $active-background-hover;
-}
-
 .btn-primary {
   background-color: $primary;
   a {

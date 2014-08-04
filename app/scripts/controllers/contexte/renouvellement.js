@@ -35,11 +35,6 @@ angular.module('impactApp')
       ]
     };
 
-    $scope.isNextStepDisabled = function() {
-      var answer = $scope.sectionModel.changementDeSituation;
-      return angular.isUndefined(answer);
-    };
-
     $scope.nextStep = function() {
       $state.go('^.code_postal');
     };
