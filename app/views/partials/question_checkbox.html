@@ -10,11 +10,14 @@
       {{getLabel(answer)}}
     </label>
     <div class="well slide" ng-if="answer.detail && model[question.model][answer.model]">
-      <div class="row form-horizontal">
+      <div class="row form-horizontal" ng-if="!answer.detailUrl">
         <label class="col-md-2 control-label">Précisez</label>
         <div class="col-md-10">
           <input type="text" class="form-control" ng-model="model.detail" placeholder="{{answer.placeholder}}">
         </div>
+      </div>
+      <div ng-if="answer.detailUrl">
+        <div ng-include="answer.detailUrl"></div>
       </div>
     </div>
   </div>
