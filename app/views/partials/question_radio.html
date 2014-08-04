@@ -9,6 +9,7 @@
       ng-disabled="debug && answer.onlyAdult && !isAdult()"
       ng-model="sectionModel[question.model]"
       btn-radio="answer">
+      <span class="glyphicon glyphicon-record pull-left span-type"></span>
       {{getLabel(answer)}}
     </button>
     <div class="well slide" ng-if="answer.detailUrl && sectionModel[question.model].value === answer.value">

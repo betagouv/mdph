@@ -5,35 +5,42 @@
     Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?
   </span>
   <div class="col-md-2">
-    <button class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="true">
+    <button class="btn btn-default btn-block" ng-model="model['valeur']" btn-radio="true">
       Oui
     </button>
   </div>
   <div class="col-md-2">
-    <button class="btn btn-default center-block" ng-model="model['valeur']" btn-radio="false">
+    <button class="btn btn-default btn-block" ng-model="model['valeur']" btn-radio="false">
       Non
     </button>
   </div>
 </div>
 <div class="well slide" ng-if="model['valeur']">
-  <div class="row form-horizontal" ng-repeat="structure in model.structures">
-    <div class="col-md-5">
-      <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
-    </div>
-    <label class="col-md-3">Etes-vous déjà en contact?</label>
-    <div class="col-md-2">
-      <button class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="true">
-        Oui
-      </button>
-    </div>
-    <div class="col-md-2">
-      <button class="btn btn-default form-control center-block" ng-model="structure.contact" btn-radio="false">
-        Non
-      </button>
-    </div>
-  </div>
+  <table class="table my-table-striped">
+    <thead>
+      <th>Nom de la structure</th>
+      <th colspan="2">Etes-vous déjà en contact?</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="structure in model.structures">
+        <td>
+          <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
+        </td>
+        <td>
+          <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="true">
+            Oui
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="false">
+            Non
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <div class="row col-md-offset-4 col-md-4">
-    <label class="btn btn-default center-block" ng-click="addStructure()">+</label>
+    <button class="btn btn-default btn-block" ng-click="addStructure()">+</button>
   </div>
 </div>
 

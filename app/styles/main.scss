@@ -389,6 +389,25 @@ a:hover {
   margin-right: 15px;
 }
 
+.my-table-striped {
+  tbody tr:nth-child(even) {
+     background-color: #ededed;
+  }
+}
+
+.active {
+  .span-type {
+    color: #B14247;
+    margin-top: 4px;
+    font-size: 15px;
+  }
+}
+.span-type {
+  color: $light-grey;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
 /* Animations
 -------------------------------------------------- */
 .slide.ng-enter, .slide.ng-leave {
