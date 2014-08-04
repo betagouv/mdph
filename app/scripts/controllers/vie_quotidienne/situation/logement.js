@@ -48,7 +48,7 @@ angular.module('impactApp')
 
     $scope.isNextStepDisabled = function() {
       var answer = $scope.sectionModel.logement;
-      if (angular.isUndefined(answer)) {
+      if (angular.isUndefined(answer.value)) {
         return true;
       }
 

@@ -26,7 +26,8 @@ var app = angular
     $stateProvider.state({
       name: 'conditions',
       url: '/conditions',
-      templateUrl: 'views/conditions.html'
+      templateUrl: 'views/conditions.html',
+      controller: 'ConditionsCtrl'
     });
     stateHelperProvider.setNestedState({
       name: 'form',

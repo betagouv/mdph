@@ -68,73 +68,54 @@ a:hover {
   text-decoration: none;
 }
 
-.section-buttons {
+.nav-form {
+  margin: 20px;
+  p {
+    margin: 0;
+  }
   a {
     display: inline-block;
+    color: $text;
     font-size: 13px;
     text-align: center;
-    margin: 0 20px;
-    min-width: 120px;
+    min-width: 140px;
+
     span {
       display: block;
-      font-weight: 500;
-      height: 30px;
-      margin: 0 auto 10px;
-      padding-top: 5px;
-      width: 30px;
-      border-radius: 50%;
-
-      &.glyphicon {
-        padding-top: 8px;
-      }
-    }
-    p:hover {
-      text-decoration: underline;
-    }
-  }
-  a.active {
-    span {
-      background: $active-background;
-      color: $active-text
-    }
-    span:hover {
-      background-color: $active-background-hover;
-    }
-  }
-}
-
-.nav-form {
-  margin-top: 20px;
-  a {
-    color: $text;
-    span {
+      height: 2px;
+      border-radius: 1px;
       background: $nav-span-background;
     }
-  }
-  a.disabled {
-    color: white;
-    font-weight: 100;
-    opacity: 0.7;
-    cursor: default;
-    span {
-      opacity: 0.7;
-      background: #d9d9d9;
-      border-color: #AAAAAA;
+
+    &.active {
+      span {
+        background: $active-background;
+        color: $active-text
+      }
     }
-    p {
-      opacity: 0.7;
-    }
-    p:hover {
-      text-decoration: none;
-    }
-  }
-  a.optionnal {
-    p {
+
+    &.disabled {
+      color: white;
       font-weight: 100;
+      opacity: 0.7;
+      cursor: default;
+      span {
+        opacity: 0.7;
+      }
+      p {
+        opacity: 0.7;
+      }
+      p:hover {
+        text-decoration: none;
+      }
     }
-  }
-  a:hover {
-    color: white;
+
+    &.optionnal {
+      p {
+        font-weight: 100;
+        font-style: italic !important;
+      }
+    }
   }
 }
 
@@ -286,7 +267,7 @@ a:hover {
 .jumbotron {
   margin-top: 30px;
   text-align: justify;
-  border-bottom: 1px solid $nav-border;
+  border-bottom: 2px solid #B8B8B8;
 
   p {
     font-size: 14px;
@@ -445,5 +426,17 @@ a:hover {
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .nav-section {
+    a {
+      padding: 6px 3px;
+      span {
+        padding: 0 1px;
+      }
+    }
   }
 }

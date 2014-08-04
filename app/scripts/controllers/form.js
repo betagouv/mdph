@@ -20,7 +20,6 @@ angular.module('impactApp')
         id: 0,
         sref: 'form.contexte.pour_commencer.representant',
         filter: 'form.contexte.**',
-        glyphicon: 'glyphicon-check',
         label: 'Pour commencer',
         isOptionnal: false,
         isEnabled: true

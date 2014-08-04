@@ -8,15 +8,15 @@
   <div class="text-center">
     <label>
       <input type="checkbox" ng-model="acceptConditions">
-        <a href="#">J’accepte les conditions générales d'utilisation du service</a>
+        J’accepte les conditions générales d'utilisation du service
     </label>
   </div>
 
   <hr/>
 
   <div class="pull-right">
-  	<a ui-sref="form.contexte.pour_commencer.representant" class="btn btn-primary">
-  		Commencer le questionnaire
-  	</a>
+    <button class="btn btn-primary btn-block" ng-disabled="isNextStepDisabled()" ng-click="nextStep()">
+      Commencer le questionnaire
+    </button>
   </div>
 </div>
