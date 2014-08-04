@@ -61,7 +61,7 @@ var app = angular
                 {
                   name: 'renouvellement',
                   url: '/renouvellement',
-                  templateUrl: 'views/partials/question_radio.html',
+                  templateUrl: 'views/partials/question_checkbox.html',
                   controller: 'RenouvellementCtrl'
                 },
                 {

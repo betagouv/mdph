@@ -83,6 +83,10 @@ a:hover {
       padding-top: 5px;
       width: 30px;
       border-radius: 50%;
+
+      &.glyphicon {
+        padding-top: 8px;
+      }
     }
     p:hover {
       text-decoration: underline;
