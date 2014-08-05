@@ -40,10 +40,6 @@ angular.module('impactApp')
       $scope.opened = true;
     };
 
-    $scope.dateOptions = {
-      startingDay: 1
-    };
-
     $scope.isNextStepDisabled = function() {
       var model = $scope.sectionModel.accidentTravail;
       if (angular.isUndefined(model.value)) {

@@ -75,6 +75,12 @@ angular.module('impactApp')
       $scope.$storage.sectionEnvoi
     ];
 
+    $scope.dateOptions = {
+      startingDay: 1,
+      showWeeks: false,
+      
+    };
+
     $scope.isAdult = function() {
       return isAdult($scope.$storage.contexte);
     };

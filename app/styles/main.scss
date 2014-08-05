@@ -120,7 +120,9 @@ a:hover {
 }
 
 .ng-invalid {
-  border: 1px solid red !important;
+  &.ng-dirty {
+    border: 1px solid red !important;
+  }
 }
 
 .nav-section {
@@ -262,8 +264,12 @@ a:hover {
   border-top: 1px solid $nav-border;
 }
 
-/* Envoi
+/* Envoi et conditions
 -------------------------------------------------- */
+#accept-conditions {
+  cursor: pointer;
+}
+
 .jumbotron {
   margin-top: 30px;
   text-align: justify;
@@ -287,7 +293,7 @@ a:hover {
   background-color: $light-white;
   border-radius: 4px;
   padding: 10px;
-  margin: 5px;
+  margin-bottom: 5px;
 }
 
 .detailEnvoi {
@@ -312,6 +318,10 @@ a:hover {
   cursor: pointer;
 }
 
+.panel-footer {
+  min-height: 58px;
+}
+
 /* Directives
 -------------------------------------------------- */
 .qtitle {
@@ -323,9 +333,38 @@ a:hover {
   padding-left: 5px;
   padding-right: 5px;
 }
+.btn-default {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+  border-bottom: 4px solid $medium-grey;
+
+  &.active {
+    -moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:         border-box;
+    border-bottom: 4px solid #5cb85c;
+    background-color: white;
+  }
+
+  &.btn-sm {
+    border-bottom-width: 2px;
+    &.active {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
+
+.input-group-btn {
+  .btn-default {
+    border-bottom: 1px solid $medium-grey;
+  }
+}
 
 .btn-primary {
   background-color: $primary;
+  border-bottom: 4px solid #285e8e;
   a {
     color: white;
   }
@@ -373,7 +412,7 @@ a:hover {
 
 .active {
   .span-type {
-    color: #B14247;
+    color: #5cb85c;
     margin-top: 4px;
     font-size: 15px;
   }

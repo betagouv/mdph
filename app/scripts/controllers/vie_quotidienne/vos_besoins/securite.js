@@ -34,8 +34,6 @@ angular.module('impactApp')
       ]
     };
 
-    $scope.showDetail = function() {};
-
     $scope.nextStep = function() {
       $scope.sections[2].isEnabled = true;
       $state.go('^.^.vos_attentes.type_aide');

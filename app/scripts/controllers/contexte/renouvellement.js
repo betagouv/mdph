@@ -36,6 +36,10 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.code_postal');
+      if ($scope.sectionModel.renouvellement.raison.finDeVosDroits) {
+        $state.go('^.fin_de_droits');
+      } else {
+        $state.go('^.code_postal');
+      }
     };
   });

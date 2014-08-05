@@ -1,0 +1,31 @@
+<qtitle></qtitle>
+
+<table class="table my-table-striped">
+  <thead>
+    <th width="70%">Droit:</th>
+    <th>Date de fin:</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="currentDroit in mesDroits">
+      <td>
+        <input type="text" class="form-control" ng-model="currentDroit.name" typeahead="droit.label for droit in droits | filter:{label: $viewValue}">
+      </td>
+      <td>
+        <p class="input-group">
+          <input type="text" class="form-control"
+            datepicker-popup="dd/MM/yyyy" ng-model="currentDroit.date"
+            is-open="currentDroit.opened" placeholder="DD/MM/YYYY" datepicker-options="{{dateOptions}}"
+            close-text="Fermer" show-button-bar="false" ng-required="true"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event, currentDroit)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="row col-md-offset-4 col-md-4">
+  <label class="btn btn-default center-block" ng-click="addDroit()">+</label>
+</div>
+
+<div go-next></div>

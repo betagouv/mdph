@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4" ng-repeat="prestation in computePrestations()">
+    <div class="col-sm-4" ng-repeat="prestation in prestations">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">{{prestation.label}}</h3>
@@ -22,7 +22,7 @@
           {{prestation.description}}
         </div>
         <div class="panel-footer">
-          <div class="btn-group btn-group-justified">
+          <div ng-if="prestation.link" class="btn-group btn-group-justified">
             <div class="btn-group">
               <button class="btn btn-default">
                 <span class="glyphicon glyphicon-info-sign"></span>
@@ -70,28 +70,28 @@
 
 <div class="jumbotron detailEnvoi" ng-if="typeEnvoi === 'numerique'">
   <p>Liste des pièces à joindre obligatoirement à votre demande</p>
-  <div class="row numerique">
+  <div class="numerique">
     <p>Un certificat médical de moins de 3 mois <br>
       <input type="file">
     </p>
   </div>
-  <div class="row numerique">
+  <div class="numerique">
     <p>Une photocopie recto/verso {{justificatifStr}} <br>
       <input type="file">
       <input type="file" ng-if="data.estRepresentant">
     </p>
   </div>
-  <div class="row numerique" ng-if='showAdult'>
+  <div class="numerique" ng-if='showAdult'>
     <p>Une photocopie d'un justificatif de domicile <br>
       <input type="file">
     </p>
   </div>
-  <div class="row numerique">
+  <div class="numerique">
     <p>Une attestation de jugement en protection juridique (le cas échéant) <br>
       <input type="file">
     </p>
   </div>
-  <label class="btn btn-primary center-block">Envoyer votre dossier</label>
+  <button class="btn btn-primary btn-block">Envoyer votre dossier</button>
 </div>
 
 <div class="jumbotron detailEnvoi" ng-if="typeEnvoi === 'courrier'">
