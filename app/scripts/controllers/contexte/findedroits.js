@@ -16,6 +16,7 @@ angular.module('impactApp')
     };
 
     if (angular.isUndefined($scope.sectionModel.mesDroits)) {
+      $scope.sectionModel.mesDroits = [];
       $scope.addDroit();
     }
 
