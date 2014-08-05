@@ -32,6 +32,7 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       $sessionStorage.sectionAidant.isEnabled = $scope.sectionModel.aidant.value;
+      $sessionStorage.sectionEnvoi.isEnabled = true;
       $scope.goToNextSection($scope.currentSection);
     };
   });

@@ -42,7 +42,6 @@ angular.module('impactApp')
     $scope.nextStep = function() {
       $sessionStorage.sectionScolarite.isEnabled = $scope.model.objet.scolarite;
       $sessionStorage.sectionTravail.isEnabled = $scope.model.objet.travail;
-      $sessionStorage.sectionEnvoi.isEnabled = true;
       $state.go('^.aidant');
     };
   });
