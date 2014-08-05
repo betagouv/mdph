@@ -11,15 +11,17 @@ angular.module('impactApp')
   .factory('getDroits', function(isAdult) {
     return function(data) {
 
-      var besoins = data.vie.answers.besoins ? data.vie.answers.besoins.answers : undefined;
-      var besoinsDeplacement = besoins ? besoins.deplacement.besoins : undefined;
-      var besoinsQuotidien = besoins ? besoins.quotidien.besoins : undefined;
-      var besoinsSecurite = besoins ? besoins.securite.besoins : undefined;
-      var besoinsSocial = besoins ? besoins.social.besoins : undefined;
-      var besoinsLieuDeVie = besoins ? besoins.lieuDeVie.besoins : undefined;
-
-      var attentes = data.vie.answers.attentes ? data.vie.answers.attentes.answers : undefined;
-      var attentesType = attentes ? attentes.typeAide.attentes : undefined;
+      if (data.vie) {
+        var besoins = data.vie.answers.besoins ? data.vie.answers.besoins.answers : undefined;
+        var besoinsDeplacement = besoins ? besoins.deplacement.besoins : undefined;
+        var besoinsQuotidien = besoins ? besoins.quotidien.besoins : undefined;
+        var besoinsSecurite = besoins ? besoins.securite.besoins : undefined;
+        var besoinsSocial = besoins ? besoins.social.besoins : undefined;
+        var besoinsLieuDeVie = besoins ? besoins.lieuDeVie.besoins : undefined;
+        
+        var attentes = data.vie.answers.attentes ? data.vie.answers.attentes.answers : undefined;
+        var attentesType = attentes ? attentes.typeAide.attentes : undefined;
+      }
 
       return [
         {
