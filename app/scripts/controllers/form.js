@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('FormCtrl', function ($rootScope, $scope, $state, $stateParams, $sessionStorage, isAdult) {
+  .controller('FormCtrl', function ($rootScope, $scope, $state, $stateParams, $sessionStorage, isAdult, datepickerConfig) {
 
     // TODO remplacer toute cette partie par ui-serf-active quand
     // ca marchera pour les nested states
@@ -77,9 +77,9 @@ angular.module('impactApp')
 
     $scope.dateOptions = {
       startingDay: 1,
-      showWeeks: false,
-      
+      showWeeks: false
     };
+    datepickerConfig.datepickerMode = 'day';
 
     $scope.isAdult = function() {
       return isAdult($scope.$storage.contexte);

@@ -66,12 +66,6 @@ var app = angular
                   controller: 'RenouvellementCtrl'
                 },
                 {
-                  name: 'fin_de_droits',
-                  url: '/fin_de_droits',
-                  templateUrl: 'views/partials/droits.html',
-                  controller: 'FinDeDroitsCtrl'
-                },
-                {
                   name: 'representant',
                   url: '/representant',
                   templateUrl: 'views/partials/question_radio.html',
@@ -126,6 +120,12 @@ var app = angular
                   url: '/logement',
                   templateUrl: 'views/partials/question_radio.html',
                   controller: 'LogementCtrl'
+                },
+                {
+                  name: 'fin_de_droits',
+                  url: '/fin_de_droits',
+                  templateUrl: 'views/partials/droits.html',
+                  controller: 'FinDeDroitsCtrl'
                 }
               ]
             },

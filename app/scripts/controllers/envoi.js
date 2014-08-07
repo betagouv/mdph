@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EnvoiCtrl', function($scope, isAdult, $filter, getDroits) {
+  .controller('EnvoiCtrl', function($scope, isAdult, $filter, getDroits, getDocuments) {
     $scope.typeEnvoi = 'numerique';
 
     $scope.justificatifStr = $scope.estRepresentant() ?
@@ -20,10 +20,12 @@ angular.module('impactApp')
     var computePrestations = function() {
       var prestations = [];
 
-      angular.forEach(getDroits($scope.$storage), function(prestation) {
-        if (prestation.shouldHave()) {
-          prestations.push(prestation);
-        }
+      angular.forEach(getDroits($scope.$storage), function(category) {
+        angular.forEach(category.prestations, function(prestation) {
+          if (prestation.shouldHave()) {
+            prestations.push(prestation);
+          }
+        });
       });
 
       var mesDroits = $scope.$storage.contexte.answers.mesDroits;
@@ -56,4 +58,5 @@ angular.module('impactApp')
     };
 
     $scope.prestations = computePrestations();
+    $scope.documents = getDocuments($scope.$storage, $scope.estRepresentant, $scope.isAdult, $scope.getName());
   });

@@ -32,7 +32,7 @@ angular.module('impactApp')
           placeholder: 'Nom de l\'établissement'
         },
         {
-          label: 'Hébergé(e) au domicile ...',
+          label: 'Hébergé(e) au domicile',
           value: 'domicile',
           detailUrl: 'views/partials/details/domicile.html',
           detail: $scope.sectionModel.logement.value === 'domicile' ? $scope.sectionModel.logement.detail : ''
@@ -61,6 +61,6 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       $scope.sections[1].isEnabled = true;
-      $state.go('^.^.vos_besoins.quotidien');
+      $state.go('^.fin_de_droits');
     };
   });

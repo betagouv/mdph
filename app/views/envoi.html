@@ -2,18 +2,18 @@
   <h4>Merci d'avoir rempli votre dossier</h4>
 </div>
 
-<div>
-  <p>
-    Compte-tenu des attentes et des besoins que vous avez exprimé, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
-  </p>
-  <p>
-    Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
-  </p>
-</div>
+<div id="#quitus" ng-if="prestations">
+  <div>
+    <p>
+      Compte-tenu des attentes et des besoins que vous avez exprimé, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
+    </p>
+    <p>
+      Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
+    </p>
+  </div>
 
-<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4" ng-repeat="prestation in prestations">
+    <div class="col-sm-4" class="prestation" ng-repeat="prestation in prestations">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">{{prestation.label}}</h3>
@@ -41,57 +41,61 @@
         </div>
       </div>
     </div>
-    -->
+  -->
   </div>
+  <hr/>
 </div>
-
-<hr/>
 
 <div class="text-center">
   <h5>Pour terminer, téléchargez ou envoyez vos pièces justificatives</h5>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <label class="btn btn-default center-block" ng-model="typeEnvoi" btn-radio="'numerique'">
-        Photographier ou scanner les pièces jointes de votre dossier<br>pour le transmettre par voie électronique
-      </label>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="btn btn-default center-block" ng-model="typeEnvoi" btn-radio="'numerique'">
+      Photographier ou scanner les pièces jointes de votre dossier<br>pour le transmettre par voie électronique
+    </label>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <label class="btn btn-default center-block" ng-model="typeEnvoi" btn-radio="'courrier'">
-        <small>Imprimer votre formulaire pour l'envoyer par courrier</small>
-      </label>
-    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="btn btn-default center-block" ng-model="typeEnvoi" btn-radio="'courrier'">
+      <small>Imprimer votre formulaire pour l'envoyer par courrier</small>
+    </label>
   </div>
 </div>
 
-<div class="jumbotron detailEnvoi" ng-if="typeEnvoi === 'numerique'">
-  <p>Liste des pièces à joindre obligatoirement à votre demande</p>
-  <div class="numerique">
-    <p>Un certificat médical de moins de 3 mois <br>
-      <input type="file">
-    </p>
-  </div>
-  <div class="numerique">
-    <p>Une photocopie recto/verso {{justificatifStr}} <br>
-      <input type="file">
-      <input type="file" ng-if="data.estRepresentant">
-    </p>
-  </div>
-  <div class="numerique" ng-if='showAdult'>
-    <p>Une photocopie d'un justificatif de domicile <br>
-      <input type="file">
-    </p>
-  </div>
-  <div class="numerique">
-    <p>Une attestation de jugement en protection juridique (le cas échéant) <br>
-      <input type="file">
-    </p>
-  </div>
-  <button class="btn btn-primary btn-block">Envoyer votre dossier</button>
+<div class="accordion" ng-if="typeEnvoi === 'numerique'">
+  <accordion>
+    <accordion-group is-open="category.open" ng-repeat="category in documents">
+      <accordion-heading>
+          {{category.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': category.open, 'glyphicon-chevron-right': !category.open}"></i>
+      </accordion-heading>
+      <div class="document" ng-repeat="document in category.documents">
+        <div class="panel panel-default panel-pj">
+          <div class="panel-heading">
+            <h4 class="panel-title">{{document.desc}}</h4>
+          </div>
+          <div class="panel-body">
+            <a href="#">
+              <span class="glyphicon glyphicon-file"></span>
+              <strong>{{document.filename ? document.filename : 'Pas de document'}}</strong>
+            </a>
+            <div>
+              <span><strong>PDF</strong></span> <!-- TODO -->
+              <span><strong>3.2Mb</strong></span> <!-- TODO -->
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="btn-group btn-group-justified">
+              <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</a>
+              <a class="btn btn-default" ng-if="document.why"><span class="glyphicon glyphicon-question-sign"></span> Pourquoi ?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
 </div>
 
 <div class="jumbotron detailEnvoi" ng-if="typeEnvoi === 'courrier'">

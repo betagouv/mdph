@@ -1,31 +1,54 @@
 <qtitle></qtitle>
 
-<table class="table my-table-striped">
-  <thead>
-    <th width="70%">Droit:</th>
-    <th>Date de fin:</th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="currentDroit in mesDroits">
-      <td>
-        <input type="text" class="form-control" ng-model="currentDroit.name" typeahead="droit.label for droit in droits | filter:{label: $viewValue}">
-      </td>
-      <td>
-        <p class="input-group">
-          <input type="text" class="form-control"
-            datepicker-popup="dd/MM/yyyy" ng-model="currentDroit.date"
-            is-open="currentDroit.opened" placeholder="DD/MM/YYYY" datepicker-options="{{dateOptions}}"
-            close-text="Fermer" show-button-bar="false" ng-required="true"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open($event, currentDroit)"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div class="row col-md-offset-4 col-md-4">
-  <label class="btn btn-default center-block" ng-click="addDroit()">+</label>
+<div class="row prestations">
+  <category ng-repeat="category in sectionModel.mesPrestations">
+    <div class="col-sm-4" ng-repeat="prestation in category.prestations">
+      <div class="panel panel-default panel-action" ng-class="category.type" ng-if="!prestation.selected" tooltip="{{prestation.title}}" ng-click="prestation.selected = true">
+        <div class="panel-body text-center">
+          <p class="panel-title">{{prestation.label}}</p>
+        </div>
+      </div>
+
+      <div class="panel panel-default panel-opened" ng-class="category.type" ng-if="prestation.selected && category.type !== 'presta-autre'">
+        <div class="panel-heading" tooltip="{{prestation.title}}">
+          <h3 class="panel-title">{{prestation.label}}
+            <span class="glyphicon glyphicon-remove-circle pull-right" ng-click="prestation.selected = false"></span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label>Date de fin</label>
+          <p class="input-group" >
+            <input type="text" class="form-control"
+              datepicker-popup="dd/MM/yyyy" ng-model="prestation.date"
+              is-open="prestation.opened" placeholder="DD/MM/YYYY" datepicker-options="{{dateOptions}}"
+              close-text="Fermer" show-button-bar="false" ng-required="true"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event, prestation)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="panel panel-default panel-opened" ng-class="category.type" ng-if="prestation.selected && category.type === 'presta-autre'">
+        <div class="panel-heading" tooltip="{{prestation.title}}">
+          <h3 class="panel-title">{{prestation.label}}
+            <span class="glyphicon glyphicon-remove-circle pull-right" ng-click="removeDroit(prestation)"></span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label>Type de prestation</label>
+          <input type="text" class="form-control" ng-model="prestation.description" ng-required="true"/>
+        </div>
+      </div>
+    </div>
+  </category>
+  <div class="col-sm-4">
+    <div class="panel panel-default panel-action presta-autre" ng-click="addDroit()">
+      <div class="panel-body text-center">
+        <span class="glyphicon glyphicon-plus"></span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div go-next></div>

@@ -43,8 +43,8 @@ angular.module('impactApp')
         {label: 'Pour faire les courses', model: 'courses'},
         {label: 'Pour faire le ménage et l\'entretien des vêtements', model: 'menage', 'onlyAdult': true},
         {label: 'Pour préparer les repas', model: 'cuisine', 'onlyAdult': true},
-        {label: 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', model: 'budget', 'onlyAdult': true},
         {label: 'Pour prendre les repas', model: 'repas'},
+        {label: 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', model: 'budget', 'onlyAdult': true},
         {
           label: 'Pour prendre soin de votre santé (suivre un traitement, aller en consultation... )',
           labelRep: 'Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )',

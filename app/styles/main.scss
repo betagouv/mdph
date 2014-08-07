@@ -25,6 +25,15 @@ $primary: #3071a9;
 $primary-hover: #333E54;
 $text: $light-white;
 
+$analog-1: #333E54;
+$analog-1-border: #1C222E;
+$analog-2: #473B52;
+$analog-2-border: #372E40;
+$analog-3: #435275;
+$analog-3-border: #1F2636;
+$analog-4: #D05158;
+$analog-4-border: #6E2B2E;
+
 // bower:scss
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
@@ -300,26 +309,130 @@ a:hover {
   margin-top: 50px;
 }
 
-.panel {
-  min-height: 285px;
+.prestations {
+
+  .panel {
+    border-bottom: 4px solid whitesmoke;
+  }
+
+  .panel-pj {
+    min-height: 248px !important;
+  }
+
+  .panel-heading {
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .panel-body {
+    &.disabled {
+      color: $light-grey;
+      background: whitesmoke;
+      opacity: 0.8;
+    }
+  }
+
+  .panel-action {
+    min-height: 137px;
+    line-height: 107px;
+    background-color: white;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+
+    &.presta-carte {
+      color: $analog-1;
+
+      &:hover {
+        color: $analog-1-border;
+        border-color: $analog-1;
+      }
+    }
+
+    &.presta-finances {
+      color: $analog-2;
+
+      &:hover {
+        color: $analog-2-border;
+        border-color: $analog-2;
+      }
+    }
+
+    &.presta-accompagnement {
+      color: $analog-3;
+
+      &:hover {
+        color: $analog-3-border;
+        border-color: $analog-3;
+      }
+    }
+
+    &.presta-autre {
+      color: $analog-4;
+
+      p {
+        color: white;
+      }
+
+      &:hover {
+        color: $analog-4-border;
+        border-color: $analog-4;
+      }
+    }
+  }
+
+  .panel-footer {
+    min-height: 58px;
+  }
+
+  .panel-opened {
+    &.presta-carte {
+      border-color: $analog-1;
+      border-bottom: 4px solid $analog-1;
+      .panel-heading {
+        background-color: $analog-1;
+        color: white;
+      }
+    }
+
+    &.presta-finances {
+      border-color: $analog-2;
+      border-bottom: 4px solid $analog-2;
+      .panel-heading {
+        background-color: $analog-2;
+        color: white;
+      }
+    }
+
+    &.presta-accompagnement {
+      border-color: $analog-3;
+      border-bottom: 4px solid $analog-2;
+      .panel-heading {
+        background-color: $analog-3;
+        color: white;
+      }
+    }
+
+    &.presta-autre {
+      min-height: 142px;
+      border-color: $analog-4;
+      border-bottom: 4px solid $analog-4;
+      .panel-heading {
+        background-color: $analog-4;
+        color: white;
+      }
+    }
+  }
 }
 
-.panel-body {
-  min-height: 190px;
-}
 
-.panel-action {
-  padding-top: 110px;
-  font-size: 35px;
-}
-
-.panel-action:hover {
-  background-color: $light-white;
-  cursor: pointer;
-}
-
-.panel-footer {
-  min-height: 58px;
+.accordion {
+  margin: 20px 0;
+  .document {
+    margin: 5px 0;
+  }
 }
 
 /* Directives
@@ -353,6 +466,10 @@ a:hover {
       color: black;
       font-weight: bold;
     }
+  }
+
+  span {
+    color: $primary-hover;
   }
 }
 
@@ -412,13 +529,13 @@ a:hover {
 
 .active {
   .span-type {
-    color: #5cb85c;
+    color: #5cb85c !important;
     margin-top: 4px;
     font-size: 15px;
   }
 }
 .span-type {
-  color: $light-grey;
+  color: $light-grey !important;
   margin-top: 4px;
   font-size: 15px;
 }
@@ -438,6 +555,7 @@ a:hover {
           transform: scaleY(0.0001);
   opacity: 0;
   top: -50px;
+  z-index: 0;
 }
 .slide, .slide.ng-enter.ng-enter-active {
   -webkit-transform: scaleY(1);
@@ -445,6 +563,7 @@ a:hover {
           transform: scaleY(1);
   opacity: 1;
   top: 0;
+  z-index: 0;
 }
 
 ::-webkit-input-placeholder { font-style: italic }
