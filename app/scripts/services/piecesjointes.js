@@ -23,6 +23,13 @@ angular.module('impactApp')
             }
           },
           {
+            id: 'justificatifDomicile',
+            desc: 'Une photocopie d\'un justificatif de domicile',
+            shouldHave: function() {
+              return true;
+            }
+          },
+          {
             id: 'carteIdentite',
             desc: 'Une photocopie recto/verso de votre carte d\'identité',
             shouldHave: function() {
@@ -34,13 +41,6 @@ angular.module('impactApp')
             desc: 'Une photocopie recto/verso de la carte d\'identité de ' + name,
             shouldHave: function() {
               return estRepresentant();
-            }
-          },
-          {
-            id: 'justificatifDomicile',
-            desc: 'Une photocopie d\'un justificatif de domicile',
-            shouldHave: function() {
-              return true;
             }
           },
           {
@@ -57,14 +57,16 @@ angular.module('impactApp')
         documents: [
           {
             id: 'bilanAccompagnementEnfant',
-            desc: 'Bilans d’accompagnement des services et établissements médico-sociaux enfants : IME, ITEP, IEM, IPEAP, IRS, SESSAD, SAAD, CMPP, CAMSP',
+            desc: 'Bilans d’accompagnement des services et établissements médico-sociaux enfants',
+            tooltip: ' IME, ITEP, IEM, IPEAP, IRS, SESSAD, SAAD, CMPP, CAMSP',
             shouldHave: function() {
               return false === isAdult();
             }
           },
           {
             id: 'bilanAccompagnementAdulte',
-            desc: 'Bilans d’accompagnement des services et établissements médico-sociaux adultes : SAVS, SAMSAH, FH, FV, FAM, MAS'
+            desc: 'Bilans d’accompagnement des services et établissements médico-sociaux adultes',
+            tooltip: 'SAVS, SAMSAH, FH, FV, FAM, MAS'
           },
           {
             id: 'compteRenduAideDomicile',

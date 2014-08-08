@@ -27,6 +27,7 @@ angular.module('impactApp')
         type: 'presta-carte',
         prestations: [
           {
+            id: 'carteStationnement',
             label: 'Carte stationnement',
             title: 'Carte de stationnement',
             description: 'La carte européenne de stationnement permet à son titulaire ou à la personne qui l\'accompagne de stationner sur les places réservées aux personnes handicapées.',
@@ -36,6 +37,7 @@ angular.module('impactApp')
             }
           },
           {
+            id: 'carteInvalidite',
             label: 'Carte d\'invalidité',
             title: 'Carte d\'invalidité',
             description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
@@ -53,6 +55,7 @@ angular.module('impactApp')
         type: 'presta-finances',
         prestations: [
           {
+            id: 'aeeh',
             label: 'AEEH',
             title: 'Allocation d\'éducation de l\'enfant handicapé',
             description: 'L\'allocation d\'éducation de l\'enfant handicapé (AEEH) est destinée à soutenir les personnes qui assurent la charge d\'un enfant en situation de handicap.',
@@ -66,6 +69,7 @@ angular.module('impactApp')
             }
           },
           {
+            id: 'aah',
             label: 'AAH',
             title: 'Allocation aux adultes handicapés',
             description: 'L\'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.',
@@ -78,6 +82,7 @@ angular.module('impactApp')
             }
           },
           {
+            id: 'pch',
             label: 'PCH',
             title: 'Prestation de compensation du handicap',
             description: 'La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à financer les besoins liés à la perte d\'autonomie des personnes handicapées.',
@@ -95,6 +100,7 @@ angular.module('impactApp')
         type: 'presta-accompagnement',
         prestations: [
           {
+            id: 'ems',
             label: 'EMS',
             title: 'Accompagnement par un service ou établissement médico-social',
             description: 'Orientation vers un établissement médical de santé.',
@@ -103,6 +109,7 @@ angular.module('impactApp')
             }
           },
           {
+            id: 'savs',
             label: 'SAVS',
             title: 'Services d\'accompagnement à la vie sociale',
             description: 'Les services d\'accompagnement à la vie sociale ont pour vocation de contribuer à la réalisation du projet de vie de personnes adultes handicapées par un accompagnement adapté.',
@@ -113,6 +120,7 @@ angular.module('impactApp')
             }
           },
           {
+            id: 'samsah',
             label: 'SAMSAH',
             title: 'Service d\'accompagnement médico-social pour adultes handicapés',
             description: 'Le service d\'accompagnement médico-social pour adultes handicapés (SAMSAH) a pour vocation la recherche des missions visées à l\'article D 3121553 du code de l\'action sociale et des familles.',

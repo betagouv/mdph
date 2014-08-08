@@ -309,14 +309,16 @@ a:hover {
   margin-top: 50px;
 }
 
+/* Panels
+-------------------------------------------------- */
+.pieces {
+  margin: 15px 0;
+}
+
 .prestations {
 
   .panel {
-    border-bottom: 4px solid whitesmoke;
-  }
-
-  .panel-pj {
-    min-height: 248px !important;
+    border-bottom: 4px solid #dddddd;
   }
 
   .panel-heading {
@@ -325,17 +327,9 @@ a:hover {
     }
   }
 
-  .panel-body {
-    &.disabled {
-      color: $light-grey;
-      background: whitesmoke;
-      opacity: 0.8;
-    }
-  }
-
   .panel-action {
-    min-height: 137px;
-    line-height: 107px;
+    min-height: 142px;
+    padding: 35px 0;
     background-color: white;
     font-weight: 500;
     font-size: 16px;
@@ -371,7 +365,7 @@ a:hover {
 
     &.presta-autre {
       color: $analog-4;
-
+      cursor: default !important;
       p {
         color: white;
       }
@@ -387,7 +381,11 @@ a:hover {
     min-height: 58px;
   }
 
-  .panel-opened {
+  .panel-opened, .panel-closed {
+    p {
+      min-height: 190px;
+    }
+
     &.presta-carte {
       border-color: $analog-1;
       border-bottom: 4px solid $analog-1;
@@ -408,7 +406,7 @@ a:hover {
 
     &.presta-accompagnement {
       border-color: $analog-3;
-      border-bottom: 4px solid $analog-2;
+      border-bottom: 4px solid $analog-3;
       .panel-heading {
         background-color: $analog-3;
         color: white;
@@ -416,7 +414,6 @@ a:hover {
     }
 
     &.presta-autre {
-      min-height: 142px;
       border-color: $analog-4;
       border-bottom: 4px solid $analog-4;
       .panel-heading {
@@ -425,13 +422,24 @@ a:hover {
       }
     }
   }
-}
 
+  .panel-opened {
+    &.presta-autre {
+      min-height: 142px;
+    }
+  }
+
+  .panel-closed {
+    .panel-heading {
+      border: none;
+    }
+  }
+}
 
 .accordion {
   margin: 20px 0;
-  .document {
-    margin: 5px 0;
+  .accordion-toggle {
+    cursor: pointer;
   }
 }
 
@@ -456,8 +464,16 @@ a:hover {
     -moz-box-sizing:    border-box;
     -webkit-box-sizing: border-box;
     box-sizing:         border-box;
-    border-bottom: 4px solid #5cb85c;
+    border-bottom: 4px solid #5cb85c !important;
     background-color: white;
+    color: black;
+    font-weight: 500;
+  }
+
+  &.btn-info {
+    border-bottom: 4px solid $medium-grey;
+    background-color: white;
+    color: black;
   }
 
   &.btn-sm {
@@ -466,10 +482,6 @@ a:hover {
       color: black;
       font-weight: bold;
     }
-  }
-
-  span {
-    color: $primary-hover;
   }
 }
 

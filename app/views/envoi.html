@@ -13,35 +13,15 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4" class="prestation" ng-repeat="prestation in prestations">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{prestation.label}}</h3>
-        </div>
-        <div class="panel-body">
-          {{prestation.description}}
-        </div>
-        <div class="panel-footer">
-          <div ng-if="prestation.link" class="btn-group btn-group-justified">
-            <div class="btn-group">
-              <button class="btn btn-default">
-                <span class="glyphicon glyphicon-info-sign"></span>
-                <a href="{{prestation.link}}">Plus d'infos</a>
-              </button>
-            </div>
-          </div>
+    <div class="col-sm-4 prestations" ng-repeat="prestation in prestations">
+      <div class="panel panel-default panel-closed" ng-class="prestation.type">
+        <div class="panel-heading" tooltip="{{prestation.description}}">
+          <h3 class="panel-title">{{prestation.label}}
+            <a ng-if="prestation.link" href="{{prestation.link}}" target="_blank"><span class="glyphicon glyphicon-info-sign pull-right"></span></a>
+          </h3>
         </div>
       </div>
     </div>
-    <!-- TODO Est ce necessaire?
-    <div class="col-sm-4">
-      <div class="panel panel-default panel-action">
-        <div class="panel-body text-center">
-          <span class="glyphicon glyphicon-plus"></span>
-        </div>
-      </div>
-    </div>
-  -->
   </div>
   <hr/>
 </div>
@@ -52,44 +32,47 @@
 
 <div class="row">
   <div class="col-md-12">
-    <label class="btn btn-default center-block" ng-model="typeEnvoi" btn-radio="'numerique'">
+    <button class="btn btn-block" ng-class="{'btn-primary': typeEnvoi, 'btn-default': !typeEnvoi}" ng-model="typeEnvoi" btn-radio="true">
       Photographier ou scanner les pièces jointes de votre dossier<br>pour le transmettre par voie électronique
-    </label>
+    </button>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <label class="btn btn-default center-block" ng-model="typeEnvoi" btn-radio="'courrier'">
-      <small>Imprimer votre formulaire pour l'envoyer par courrier</small>
+    <label class="btn center-block" ng-class="{'btn-primary': !typeEnvoi, 'btn-default': typeEnvoi}" ng-model="typeEnvoi" btn-radio="false">
+      Imprimer votre formulaire pour l'envoyer par courrier
     </label>
   </div>
 </div>
 
-<div class="accordion" ng-if="typeEnvoi === 'numerique'">
+<div class="accordion" ng-if="typeEnvoi">
   <accordion>
     <accordion-group is-open="category.open" ng-repeat="category in documents">
       <accordion-heading>
           {{category.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': category.open, 'glyphicon-chevron-right': !category.open}"></i>
       </accordion-heading>
-      <div class="document" ng-repeat="document in category.documents">
-        <div class="panel panel-default panel-pj">
-          <div class="panel-heading">
-            <h4 class="panel-title">{{document.desc}}</h4>
-          </div>
-          <div class="panel-body">
-            <a href="#">
-              <span class="glyphicon glyphicon-file"></span>
-              <strong>{{document.filename ? document.filename : 'Pas de document'}}</strong>
-            </a>
-            <div>
-              <span><strong>PDF</strong></span> <!-- TODO -->
-              <span><strong>3.2Mb</strong></span> <!-- TODO -->
+
+      <div class="row">
+        <div class="col-md-6 pieces" ng-repeat="document in category.documents">
+          <div class="panel panel-default" ng-class="document.type">
+            <div class="panel-heading" tooltip="{{document.tooltip}}">
+              <p>{{document.desc}}</p>
             </div>
-          </div>
-          <div class="panel-footer">
-            <div class="btn-group btn-group-justified">
-              <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</a>
-              <a class="btn btn-default" ng-if="document.why"><span class="glyphicon glyphicon-question-sign"></span> Pourquoi ?</a>
+            <div class="panel-body">
+              <a href="#">
+                <span class="glyphicon glyphicon-file"></span>
+                <strong>{{document.filename ? document.filename : 'Pas de document'}}</strong>
+              </a>
+              <div>
+                <span><strong>PDF</strong></span> <!-- TODO -->
+                <span><strong>3.2Mb</strong></span> <!-- TODO -->
+              </div>
+            </div>
+            <div class="panel-footer">
+              <div class="btn-group btn-group-justified">
+                <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</a>
+                <a class="btn btn-default" ng-if="document.why"><span class="glyphicon glyphicon-question-sign"></span> Pourquoi ?</a>
+              </div>
             </div>
           </div>
         </div>
@@ -98,7 +81,7 @@
   </accordion>
 </div>
 
-<div class="jumbotron detailEnvoi" ng-if="typeEnvoi === 'courrier'">
+<div class="jumbotron detailEnvoi" ng-if="!typeEnvoi">
   <p>Liste des pièces à joindre obligatoirement à votre demande</p>
   <ul>
     <li>Un certificat médical de moins de 3 mois</li>
