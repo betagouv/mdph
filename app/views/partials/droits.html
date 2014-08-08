@@ -3,13 +3,15 @@
 <div class="row prestations">
   <category ng-repeat="category in prestationCategories">
     <div class="col-sm-4" ng-repeat="prestation in category.prestations">
-      <div class="panel panel-default panel-action" ng-class="category.type" ng-if="!isSelected(prestation)" tooltip="{{prestation.title}}" ng-click="select(prestation)">
+      <div class="panel panel-default panel-action"
+        ng-class="category.type" ng-if="!isSelected(prestation)" tooltip="{{prestation.title}}" ng-click="select(prestation)">
         <div class="panel-body text-center">
           <p class="panel-title">{{prestation.label}}</p>
         </div>
       </div>
 
-      <div class="panel panel-default panel-opened" ng-class="category.type" ng-if="prestation.selected">
+      <div class="panel panel-default panel-opened"
+        ng-class="category.type" ng-if="prestation.selected">
         <div class="panel-heading" tooltip="{{prestation.title}}">
           <h3 class="panel-title">{{prestation.label}}
             <span class="glyphicon glyphicon-remove-circle pull-right" ng-click="deselect(prestation)"></span>

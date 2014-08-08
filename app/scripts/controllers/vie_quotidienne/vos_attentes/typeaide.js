@@ -28,12 +28,31 @@ angular.module('impactApp')
       model: 'attentes',
       answers:
       [
-        {'label': 'Une aide humaine', 'model': 'humain'},
-        {'label': 'Une aide financière', 'model': 'financier'},
-        {'label': 'Une aide technique, du matériel ou équipement', 'model': 'materiel'},
-        {'label': 'Vivre en établissement', 'model': 'etablissement'},
-        {'label': 'Vivre à domicile', 'model': 'domicile'},
-        {'label': 'Autre besoin', 'model': 'autre', 'detail': true}
+        {label: 'Vivre à domicile', model: 'domicile'},
+        {label: 'Une aide technique, du matériel ou équipement', model: 'materiel'},
+        {label: 'Vivre en établissement', model: 'etablissement'},
+        {
+          label: 'Une aide financière, afin de vous\'assurer un revenu minimum',
+          labelRep: 'Une aide financière, afin de lui\'assurer un revenu minimum',
+          model: 'financierMinimum'
+        },
+        {
+          label: 'Un aménagement de votre lieu de vie',
+          labelRep: 'Un aménagement de son lieu de vie',
+          model: 'amenagement'
+        },
+        {
+          label: 'Une aide financière pour des dépenses liées à votre handicap',
+          labelRep: 'Une aide financière pour des dépenses liées à son handicap',
+          model: 'financierHandicap'
+        },
+        {
+          label: 'Une aide humaine, avec quelqu\'un qui vient vous aider',
+          labelRep: 'Une aide humaine, avec quelqu\'un qui vient l\'aider',
+          model: 'humain'
+        },
+        {label: 'Une aide à la mobilite', model: 'mobilité'},
+        {label: 'Autre besoin', model: 'autre', 'detail': true}
       ]
     };
 

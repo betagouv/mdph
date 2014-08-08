@@ -20,7 +20,7 @@ angular.module('impactApp')
     var computePrestations = function() {
       var prestations = [];
 
-      angular.forEach(getDroits($scope.$storage), function(category) {
+      angular.forEach(getDroits($scope.$storage, $scope.isAdult), function(category) {
         angular.forEach(category.prestations, function(prestation) {
           if (angular.isDefined(prestation.shouldHave) && prestation.shouldHave()) {
             prestation.type = category.type;

@@ -8,8 +8,8 @@
  * Service in the impactApp.
  */
 angular.module('impactApp')
-  .factory('getDroits', function(isAdult) {
-    return function(data) {
+  .factory('getDroits', function() {
+    return function(data, isAdult) {
 
       if (data) {
         var besoins = data.vie.answers.besoins ? data.vie.answers.besoins.answers : undefined;
@@ -33,7 +33,8 @@ angular.module('impactApp')
             description: 'La carte européenne de stationnement permet à son titulaire ou à la personne qui l\'accompagne de stationner sur les places réservées aux personnes handicapées.',
             link: 'http://vosdroits.service-public.fr/particuliers/F2891.xhtml',
             shouldHave: function() {
-              return besoinsDeplacement && (besoinsDeplacement.public || besoinsDeplacement.transports || besoinsDeplacement.accesDomicile);
+              return besoinsDeplacement && (besoinsDeplacement.public || besoinsDeplacement.transports || besoinsDeplacement.accesDomicile) ||
+                attentesType && attentesType.mobilité;
             }
           },
           {
@@ -65,7 +66,7 @@ angular.module('impactApp')
                 (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.repas) ||
                 besoinsDeplacement && besoinsDeplacement.intraDomicile ||
                 besoinsSecurite && (besoinsSecurite.interieur ||  besoinsSecurite.exterieur) ||
-                attentesType && attentesType.financier);
+                attentesType && attentesType.financierHandicap);
             }
           },
           {
@@ -78,7 +79,7 @@ angular.module('impactApp')
               return (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.repas) ||
                 besoinsDeplacement && besoinsDeplacement.intraDomicile ||
                 besoinsSecurite && (besoinsSecurite.interieur ||  besoinsSecurite.exterieur) ||
-                attentesType && attentesType.financier);
+                attentesType && attentesType.financierMinimum);
             }
           },
           {
@@ -90,7 +91,7 @@ angular.module('impactApp')
             shouldHave: function() {
               return besoinsDeplacement && besoinsDeplacement.conduite ||
                 besoinsLieuDeVie && (besoinsLieuDeVie.amenagement ||  besoinsLieuDeVie.materiel) ||
-                attentesType && (attentesType.financier || attentesType.materiel);
+                attentesType && (attentesType.financierHandicap || attentesType.materiel || attentesType.mobilité);
             }
           }
         ]

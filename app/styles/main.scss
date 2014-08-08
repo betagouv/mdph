@@ -269,8 +269,11 @@ a:hover {
 -------------------------------------------------- */
 .footer {
   margin-top: 34px;
-  color: #777;
-  border-top: 1px solid $nav-border;
+}
+
+.send-json {
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 /* Envoi et conditions

@@ -147,4 +147,8 @@ angular.module('impactApp')
         $state.go(probableNext.sref);
       }
     };
+
+    $scope.encode = function(json) {
+      return encodeURIComponent(JSON.stringify(json));
+    }
   });
