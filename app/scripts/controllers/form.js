@@ -150,5 +150,5 @@ angular.module('impactApp')
 
     $scope.encode = function(json) {
       return encodeURIComponent(JSON.stringify(json));
-    }
+    };
   });

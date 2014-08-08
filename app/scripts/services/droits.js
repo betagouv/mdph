@@ -34,7 +34,7 @@ angular.module('impactApp')
             link: 'http://vosdroits.service-public.fr/particuliers/F2891.xhtml',
             shouldHave: function() {
               return besoinsDeplacement && (besoinsDeplacement.public || besoinsDeplacement.transports || besoinsDeplacement.accesDomicile) ||
-                attentesType && attentesType.mobilité;
+                attentesType && attentesType.mobilite;
             }
           },
           {
@@ -91,7 +91,7 @@ angular.module('impactApp')
             shouldHave: function() {
               return besoinsDeplacement && besoinsDeplacement.conduite ||
                 besoinsLieuDeVie && (besoinsLieuDeVie.amenagement ||  besoinsLieuDeVie.materiel) ||
-                attentesType && (attentesType.financierHandicap || attentesType.materiel || attentesType.mobilité);
+                attentesType && (attentesType.financierHandicap || attentesType.materiel || attentesType.mobilite);
             }
           }
         ]

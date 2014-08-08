@@ -51,7 +51,7 @@ angular.module('impactApp')
           labelRep: 'Une aide humaine, avec quelqu\'un qui vient l\'aider',
           model: 'humain'
         },
-        {label: 'Une aide à la mobilite', model: 'mobilité'},
+        {label: 'Une aide à la mobilité', model: 'mobilite'},
         {label: 'Autre besoin', model: 'autre', 'detail': true}
       ]
     };
