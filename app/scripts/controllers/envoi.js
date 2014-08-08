@@ -19,32 +19,32 @@ angular.module('impactApp')
 
     var computePrestations = function() {
       var prestations = [];
+      var defaultPrestations = getDroits($scope.$storage, $scope.isAdult);
+      var mesPrestations = $scope.$storage.vie.answers.situation.answers.mesPrestations;
 
-      angular.forEach(getDroits($scope.$storage, $scope.isAdult), function(category) {
+      angular.forEach(defaultPrestations, function(category) {
         angular.forEach(category.prestations, function(prestation) {
+          prestation.type = category.type;
           if (angular.isDefined(prestation.shouldHave) && prestation.shouldHave()) {
-            prestation.type = category.type;
             prestations.push(prestation);
+          } else {
+            angular.forEach(mesPrestations, function(droit) {
+              if (prestation.id === droit.id) {
+                prestation.description = getDescription(droit);
+                prestations.push(prestation);
+              }
+            });
           }
         });
       });
 
-      var mesPrestations = $scope.$storage.vie.answers.situation.answers.mesPrestations;
       angular.forEach(mesPrestations, function(droit) {
-        var found = false;
-
-        angular.forEach(prestations, function(prestation) {
-          if (prestation.id === droit.id) {
-            prestation.description = getDescription(droit);
-            found = true;
-          }
-        });
-
-        if (!found) {
+        if (droit.type === 'presta-autre') {
           var droitObj = { label: droit.label, description: getDescription(droit), type: 'presta-autre'};
           prestations.push(droitObj);
         }
       });
+
 
       return prestations;
     };
