@@ -424,6 +424,7 @@ a:hover {
   }
 
   .panel-opened {
+    min-height: 142px;
     &.presta-autre {
       min-height: 142px;
     }
@@ -464,7 +465,7 @@ a:hover {
     -moz-box-sizing:    border-box;
     -webkit-box-sizing: border-box;
     box-sizing:         border-box;
-    border-bottom: 4px solid #5cb85c !important;
+    border-bottom: 4px solid $analog-3 !important;
     background-color: white;
     color: black;
     font-weight: 500;
@@ -541,7 +542,7 @@ a:hover {
 
 .active {
   .span-type {
-    color: #5cb85c !important;
+    color: $analog-3 !important;
     margin-top: 4px;
     font-size: 15px;
   }
