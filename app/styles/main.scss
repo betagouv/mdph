@@ -489,6 +489,12 @@ a:hover {
   }
 }
 
+.dropdown-menu {
+  .btn-default {
+    border-bottom-width: 2px !important;
+  }
+}
+
 .input-group-btn {
   .btn-default {
     border-bottom: 1px solid $medium-grey;
