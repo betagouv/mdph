@@ -9,6 +9,8 @@
 
 module.exports = function (grunt) {
 
+  var path = require('path');
+  
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -18,7 +20,8 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    server: 'server'
   };
 
   // Define the configuration for all the tasks
@@ -60,6 +63,17 @@ module.exports = function (grunt) {
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      }
+    },
+
+    // Express
+    express: {
+      server: {
+        options: {
+          port: 3000,
+          hostname: 'localhost',
+          server: path.resolve(__dirname, 'server/server.js')
+        }
       }
     },
 
@@ -422,6 +436,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
+      'express',
       'watch'
     ]);
   });
