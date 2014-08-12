@@ -12,8 +12,8 @@ angular.module('impactApp')
 
     $scope.currentSection = $scope.$storage.sectionContexte;
 
-    if (angular.isUndefined($scope.$storage.contexte)) {
-      $scope.$storage.contexte = {
+    if (angular.isUndefined($scope.formAnswers.contexte)) {
+      $scope.formAnswers.contexte = {
         sectionLabel: 'Contexte',
         answers: {}
       };
@@ -45,5 +45,5 @@ angular.module('impactApp')
       $scope.$storage.sectionUrgenceContexte
     ];
 
-    $scope.sectionModel = $scope.$storage.contexte.answers;
+    $scope.sectionModel = $scope.formAnswers.contexte.answers;
   });

@@ -29,7 +29,8 @@ angular.module('impactApp')
           value: 'etablissement',
           detailUrl: 'views/partials/form_precisez.html',
           detail: $scope.sectionModel.logement.value === 'etablissement' ? $scope.sectionModel.logement.detail : '',
-          placeholder: 'Nom de l\'établissement'
+          placeholder: 'Nom de l\'établissement',
+          documents: [{category: 'sante', id: 'bilanAccompagnementEnfant'}]
         },
         {
           label: 'Hébergé(e) au domicile',
@@ -60,7 +61,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $scope.sections[1].isEnabled = true;
       $state.go('^.fin_de_droits');
     };
   });

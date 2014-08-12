@@ -7,8 +7,8 @@
       ng-disabled="debug && answer.onlyAdult && !isAdult()"
       ng-model="model[question.model][answer.model]"
       btn-checkbox>
-      <span class="glyphicon glyphicon-ok pull-left span-type"></span>
       {{getLabel(answer)}}
+      <span ng-if="answer.documents" ng-click=openModal(answer.documents) class="glyphicon glyphicon-file pull-right span-type"></span>
     </button>
     <div class="well slide" ng-if="answer.detail && model[question.model][answer.model]">
       <div class="row form-horizontal" ng-if="!answer.detailUrl">

@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .controller('SituationVieCtrl', function ($scope) {
 
-    if (angular.isUndefined($scope.$storage.vie.answers.situation)) {
-      $scope.$storage.vie.answers.situation = {
+    if (angular.isUndefined($scope.sectionModel.situation)) {
+      $scope.sectionModel.situation = {
         label: 'Votre situation',
         answers: {}
       };
     }
 
-    $scope.sectionModel = $scope.$storage.vie.answers.situation.answers;
+    $scope.sectionModel = $scope.sectionModel.situation.answers;
   });

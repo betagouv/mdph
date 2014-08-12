@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">Liste des documents qu'il vous faudra fournir <em>si possible</em></h4>
+</div>
+<div class="modal-body">
+    <ul>
+        <li ng-repeat="item in items">
+            <a>{{ item }}</a>
+        </li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>

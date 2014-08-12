@@ -19,7 +19,7 @@ angular.module('impactApp')
         var besoinsSocial = besoins ? besoins.social.besoins : undefined;
         var besoinsLieuDeVie = besoins ? besoins.lieuDeVie.besoins : undefined;
 
-        var attentes = data.vie.answers.attentes ? data.vie.answers.attentes.answers : undefined;
+        var attentes = data.vie.answers.attentes && data.vie.answers.attentes.answers ? data.vie.answers.attentes.answers : undefined;
         var attentesType = attentes ? attentes.typeAide.attentes : undefined;
       }
 

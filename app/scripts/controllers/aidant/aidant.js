@@ -13,8 +13,8 @@ angular.module('impactApp')
     $scope.currentSection = $sessionStorage.sectionAidant;
     $scope.title = 'Cette partie s\'adresse  à(aux) l\'aidant(s) de la personne en situation de handicap';
 
-    if (angular.isUndefined($scope.$storage.aidant)) {
-      $scope.$storage.aidant = {
+    if (angular.isUndefined($scope.sectionModel)) {
+      $scope.sectionModel = {
         sectionLabel: $scope.currentSection.label,
         answers: {}
       };
@@ -28,7 +28,7 @@ angular.module('impactApp')
         span: '1',
         label: 'Votre situation',
         labelRep: 'Sa situation',
-        isEnabled: $scope.$storage.aidant.answers.situation,
+        isEnabled: $scope.sectionModel.answers.situation,
         showAfter: true
       };
       $scope.$storage.sectionAttentesAidant = {
@@ -38,7 +38,7 @@ angular.module('impactApp')
         span: '2',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
-        isEnabled: $scope.$storage.aidant.answers.attentes,
+        isEnabled: $scope.sectionModel.answers.attentes,
         showBefore: true
       };
     }
@@ -49,5 +49,5 @@ angular.module('impactApp')
       $scope.$storage.sectionAttentesAidant
     ];
 
-    $scope.sectionModel = $scope.$storage.aidant.answers;
+    $scope.sectionModel = $scope.sectionModel.answers;
   });

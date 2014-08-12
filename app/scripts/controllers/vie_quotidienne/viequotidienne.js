@@ -12,8 +12,8 @@ angular.module('impactApp')
     $scope.currentSection = $sessionStorage.sectionVieQuotidienne;
     $scope.title = $scope.estRepresentant() ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
 
-    if (angular.isUndefined($scope.$storage.vie)) {
-      $scope.$storage.vie = {
+    if (angular.isUndefined($scope.formAnswers.vie)) {
+      $scope.formAnswers.vie = {
         sectionLabel: $scope.title,
         answers: {}
       };
@@ -58,5 +58,5 @@ angular.module('impactApp')
       $scope.$storage.sectionAttentesVie
     ];
 
-    $scope.sectionModel = $scope.$storage.vie.answers;
+    $scope.sectionModel = $scope.formAnswers.vie.answers;
   });

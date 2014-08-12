@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .controller('SansEmploiCtrl', function($scope) {
 
-    if (angular.isUndefined($scope.$storage.travail.answers.sansEmploi)) {
-      $scope.$storage.travail.answers.sansEmploi = {
+    if (angular.isUndefined($scope.sectionModel.sansEmploi)) {
+      $scope.sectionModel.sansEmploi = {
         label: 'Sans emploi, détails',
         answers: {}
       };
     }
 
-    $scope.sectionModel = $scope.$storage.travail.answers.sansEmploi.answers;
+    $scope.sectionModel = $scope.sectionModel.sansEmploi.answers;
   });

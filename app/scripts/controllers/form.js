@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('FormCtrl', function ($rootScope, $scope, $state, $stateParams, $sessionStorage, isAdult, datepickerConfig) {
+  .controller('FormCtrl', function ($rootScope, $scope, $state, $stateParams, $sessionStorage, isAdult, datepickerConfig, getDocuments, openModal) {
 
     // TODO remplacer toute cette partie par ui-serf-active quand
     // ca marchera pour les nested states
@@ -16,6 +16,8 @@ angular.module('impactApp')
     $rootScope.$stateParams = $stateParams;
 
     $scope.$storage = $sessionStorage.$default({
+      /* Sections
+      ----------------------------*/
       sectionContexte: {
         id: 0,
         sref: 'form.contexte.pour_commencer.representant',
@@ -63,7 +65,8 @@ angular.module('impactApp')
         glyphicon: 'glyphicon-paperclip',
         label: 'Pièces justificatives',
         isOptionnal: false
-      }
+      },
+      answers: {}
     });
 
     $scope.sections = [
@@ -75,6 +78,8 @@ angular.module('impactApp')
       $scope.$storage.sectionEnvoi
     ];
 
+    $scope.formAnswers = $scope.$storage.answers;
+
     $scope.dateOptions = {
       startingDay: 1,
       showWeeks: false
@@ -82,16 +87,16 @@ angular.module('impactApp')
     datepickerConfig.datepickerMode = 'day';
 
     $scope.isAdult = function() {
-      return isAdult($scope.$storage.contexte);
+      return isAdult($scope.formAnswers.contexte);
     };
 
     $scope.estRepresentant = function() {
-      if (angular.isUndefined($scope.$storage.contexte) ||
-          angular.isUndefined($scope.$storage.contexte.answers) ||
-          angular.isUndefined($scope.$storage.contexte.answers.estRepresentant)) {
+      if (angular.isUndefined($scope.formAnswers.contexte) ||
+          angular.isUndefined($scope.formAnswers.contexte.answers) ||
+          angular.isUndefined($scope.formAnswers.contexte.answers.estRepresentant)) {
         return false;
       }
-      return $scope.$storage.contexte.answers.estRepresentant.value;
+      return $scope.formAnswers.contexte.answers.estRepresentant.value;
     };
 
     $scope.getLabel = function(answer) {
@@ -109,11 +114,11 @@ angular.module('impactApp')
     };
 
     var getRepresentant = function() {
-      if (angular.isUndefined($scope.$storage.contexte)||
-          angular.isUndefined($scope.$storage.contexte.answers)) {
+      if (angular.isUndefined($scope.formAnswers.contexte)||
+          angular.isUndefined($scope.formAnswers.contexte.answers)) {
         return undefined;
       }
-      return $scope.$storage.contexte.answers.demandeur;
+      return $scope.formAnswers.contexte.answers.demandeur;
     };
 
     $scope.getName = function() {
@@ -150,5 +155,22 @@ angular.module('impactApp')
 
     $scope.encode = function(json) {
       return encodeURIComponent(JSON.stringify(json));
+    };
+
+    $scope.getDocuments = function() {
+      return getDocuments($scope.getName());
+    };
+
+    $scope.getDocumentTooltip = function(category, id) {
+      var desc = getDocuments()[category].documents[id].desc;
+      return 'List: <ul><li>' + desc + '</li></ul>';
+    };
+
+    $scope.openModal = function(items) {
+      var descs = [];
+      angular.forEach(items, function(item) {
+        descs.push($scope.getDocuments()[item.category].documents[item.id].desc);
+      });
+      openModal(descs);
     };
   });

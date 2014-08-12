@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .controller('EmploiCtrl', function($scope) {
 
-    if (angular.isUndefined($scope.$storage.travail.answers.emploi)) {
-      $scope.$storage.travail.answers.emploi = {
+    if (angular.isUndefined($scope.sectionModel.emploi)) {
+      $scope.sectionModel.emploi = {
         label: 'Emploi, détails',
         answers: {}
       };
     }
 
-    $scope.sectionModel = $scope.$storage.travail.answers.emploi.answers;
+    $scope.sectionModel = $scope.sectionModel.emploi.answers;
   });

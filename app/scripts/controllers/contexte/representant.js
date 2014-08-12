@@ -24,12 +24,14 @@ angular.module('impactApp')
       answers: [
         {
           label: 'Pour vous',
-          value: false
+          value: false,
+          documents: [{category: 'obligatoire', id: 'carteIdentite'}]
         },
         {
           label: 'Pour une autre personne',
           value: true,
-          detailUrl: 'views/partials/details/personne.html'
+          detailUrl: 'views/partials/details/personne.html',
+          documents: [{category: 'obligatoire', id: 'carteIdentite'}, {category: 'obligatoire', id: 'carteIdentiteRepresentant'}]
         }
       ]
     };

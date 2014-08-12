@@ -10,12 +10,12 @@
 angular.module('impactApp')
   .controller('SituationAidantCtrl', function ($scope) {
 
-    if (angular.isUndefined($scope.$storage.aidant.answers.situation)) {
-      $scope.$storage.aidant.answers.situation = {
+    if (angular.isUndefined($scope.formAnswers.situation)) {
+      $scope.formAnswers.situation = {
         label: 'Votre situation',
         answers: {}
       };
     }
 
-    $scope.sectionModel = $scope.$storage.aidant.answers.situation.answers;
+    $scope.sectionModel = $scope.formAnswers.situation.answers;
   });

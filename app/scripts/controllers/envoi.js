@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EnvoiCtrl', function($scope, isAdult, $filter, getDroits, getDocuments) {
+  .controller('EnvoiCtrl', function($scope, isAdult, $filter, getDroits) {
     $scope.typeEnvoi = 'numerique';
 
     $scope.justificatifStr = $scope.estRepresentant() ?
@@ -19,8 +19,8 @@ angular.module('impactApp')
 
     var computePrestations = function() {
       var prestations = [];
-      var defaultPrestations = getDroits($scope.$storage, $scope.isAdult);
-      var mesPrestations = $scope.$storage.vie.answers.situation.answers.mesPrestations;
+      var defaultPrestations = getDroits($scope.formAnswers, $scope.isAdult);
+      var mesPrestations = $scope.formAnswers.vie.answers.situation.answers.mesPrestations;
 
       angular.forEach(defaultPrestations, function(category) {
         angular.forEach(category.prestations, function(prestation) {
@@ -45,7 +45,6 @@ angular.module('impactApp')
         }
       });
 
-
       return prestations;
     };
 
@@ -56,6 +55,28 @@ angular.module('impactApp')
       return 'Etude du renouvellement de votre droit se terminant le ' + $filter('date')(droit.date, 'dd/MM/yyyy') + '.';
     };
 
+    var computeDocumentsForAnswers = function(answers, categories) {
+      angular.forEach(answers, function(answer) {
+        if (answer.answers) { // C'est une sous-section
+          computeDocumentsForAnswers(answer.answers, categories);
+        }
+        if (answer.documents) {
+          angular.forEach(answer.documents, function(document) {
+            categories[document.category].show = true;
+            categories[document.category].documents[document.id].show = true;
+          });
+        }
+      });
+    };
+
+    var computeDocuments = function() {
+      var categories = $scope.getDocuments();
+      angular.forEach($scope.formAnswers, function(section) {
+        computeDocumentsForAnswers(section.answers, categories);
+      });
+      return categories;
+    };
+
     $scope.prestations = computePrestations();
-    $scope.documents = getDocuments($scope.$storage, $scope.estRepresentant, $scope.isAdult, $scope.getName());
+    $scope.documents = computeDocuments();
   });

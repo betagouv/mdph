@@ -316,6 +316,10 @@ a:hover {
 -------------------------------------------------- */
 .pieces {
   margin: 15px 0;
+
+  p {
+    min-height: 40px;
+  }
 }
 
 .prestations {

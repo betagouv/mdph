@@ -53,13 +53,13 @@
 
 <div class="accordion" ng-if="typeEnvoi">
   <accordion>
-    <accordion-group is-open="category.open" ng-repeat="category in documents">
+    <accordion-group is-open="category.open" ng-if="category.show" ng-repeat="category in documents">
       <accordion-heading>
           {{category.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': category.open, 'glyphicon-chevron-right': !category.open}"></i>
       </accordion-heading>
 
       <div class="row">
-        <div class="col-md-6 pieces" ng-repeat="document in category.documents">
+        <div class="col-md-6 pieces" ng-if="document.show" ng-repeat="document in category.documents">
           <div class="panel panel-default" ng-class="document.type">
             <div class="panel-heading" tooltip="{{document.tooltip}}">
               <p>{{document.desc}}</p>
