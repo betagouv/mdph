@@ -36,6 +36,22 @@
   <h5>Pour terminer, téléchargez ou envoyez vos pièces justificatives</h5>
 </div>
 
+<form ng-submit="login()">
+  <div class="control-group">
+    <label for="username" class="control-label" >Username:</label>
+    <div class="controls"><input id="username" type="text" ng-model="credentials.username"></div>
+  </div>
+  <div class="control-group">
+    <label for="password" class="control-label" >Password:</label>
+    <div class="controls"><input id="password" type="password" ng-model="credentials.password"></div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <input type="submit" class="btn btn-default" value="submit">
+    </div>
+  </div>
+</form>
+
 <div class="row">
   <div class="col-md-12">
     <button class="btn btn-block" ng-class="{'btn-primary': typeEnvoi, 'btn-default': !typeEnvoi}" ng-model="typeEnvoi" btn-radio="true">

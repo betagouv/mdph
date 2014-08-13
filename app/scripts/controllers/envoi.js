@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EnvoiCtrl', function($scope, isAdult, $filter, getDroits) {
+  .controller('EnvoiCtrl', function($scope, isAdult, $filter, getDroits, authentication) {
     $scope.typeEnvoi = 'numerique';
 
     $scope.justificatifStr = $scope.estRepresentant() ?
@@ -75,6 +75,12 @@ angular.module('impactApp')
         computeDocumentsForAnswers(section.answers, categories);
       });
       return categories;
+    };
+
+    $scope.login = function() {
+      authentication.login(this.credentials).success(function() {
+        console.log('success');
+      });
     };
 
     $scope.prestations = computePrestations();

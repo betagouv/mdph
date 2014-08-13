@@ -10,7 +10,7 @@
 module.exports = function (grunt) {
 
   var path = require('path');
-  
+
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -33,15 +33,11 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
+        files: ['bower.json']
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/**/*.js'],
-        tasks: ['newer:jshint:all'],
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        }
+        tasks: ['newer:jshint:all']
       },
       jsTest: {
         files: ['test/spec/**/*.js'],
@@ -53,31 +49,45 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js']
-      },
-      livereload: {
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        },
-        files: [
-          '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
       }
     },
 
     // Express
     express: {
-      server: {
+      options: {
+        port: 9000,
+        hostname: 'localhost'
+      },
+      livereload: {
         options: {
-          port: 3000,
-          hostname: 'localhost',
-          server: path.resolve(__dirname, 'server/server.js')
+          server: path.resolve(__dirname, 'server/server.js'),
+          livereload: true,
+          serverreload: true,
+          bases: [path.resolve('./.tmp'), path.resolve(__dirname, 'app')]
+        }
+      },
+      test: {
+        options: {
+          server: path.resolve(__dirname, 'server/server.js'),
+          bases: [path.resolve('./.tmp'), path.resolve(__dirname, 'test')]
+        }
+      },
+      dist: {
+        options: {
+          server: path.resolve('./server'),
+          bases: path.resolve(__dirname, appConfig.dist)
         }
       }
     },
 
+    open: {
+      server: {
+        url: 'http://localhost:<%= express.options.port %>'
+      }
+    },
+
     // The actual grunt server settings
+    /*
     connect: {
       options: {
         port: 9000,
@@ -122,7 +132,7 @@ module.exports = function (grunt) {
           base: '<%= yeoman.dist %>'
         }
       }
-    },
+    }, */
 
     // Heroku
     buildcontrol: {
@@ -167,7 +177,7 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.dist %>/{,*/}*',
+            '<%= yeoman.dist %>/**/*',
             '!<%= yeoman.dist %>/Procfile',
             '!<%= yeoman.dist %>/package.json',
             '!<%= yeoman.dist %>/server.js',
@@ -193,21 +203,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Automatically inject Bower components into the app
-    wiredep: {
-      options: {
-        cwd: '<%= yeoman.app %>'
-      },
-      app: {
-        src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
-      },
-      sass: {
-        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
-      }
-    },
-
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
@@ -217,7 +212,7 @@ module.exports = function (grunt) {
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: './bower_components',
+        importPath: '<%= yeoman.app %>/bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
         httpFontsPath: '/styles/fonts',
@@ -270,7 +265,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
@@ -427,36 +422,29 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'express:dist:keepalive']);
     }
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
       'concurrent:server',
       'autoprefixer',
-      'connect:livereload',
-      'express',
+      'express:livereload',
+      'open',
       'watch'
     ]);
-  });
-
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
   });
 
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
     'autoprefixer',
-    'connect:test',
+    'express:test',
     'karma'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

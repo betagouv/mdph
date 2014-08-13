@@ -1,7 +1,16 @@
 {
   "name": "impact",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.6.3",
+    "cookie-parser": "^1.3.2",
+    "csurf": "^1.4.0",
+    "express": "^4.8.3",
+    "lodash": "^2.4.1",
+    "mongoose": "^3.8.14",
+    "passport": "^0.2.0",
+    "passport-local": "^1.0.0"
+  },
   "devDependencies": {
     "connect-modrewrite": "^0.7.6",
     "grunt": "^0.4.1",
@@ -35,7 +44,6 @@
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^0.4.0",
-    "mongoose": "^3.8.14",
     "time-grunt": "^0.3.1"
   },
   "engines": {
