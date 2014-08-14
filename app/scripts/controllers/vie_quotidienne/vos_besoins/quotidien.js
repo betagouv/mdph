@@ -19,14 +19,6 @@ angular.module('impactApp')
     if (angular.isUndefined($scope.subSectionModel.quotidien)) {
       $scope.subSectionModel.quotidien = {
         'besoins': {
-          'hygiene': false,
-          'courses': false,
-          'menage': false,
-          'cuisine': false,
-          'budget': false,
-          'repas': false,
-          'sante': false,
-          'autre': false
         },
         'detail': ''
       };
@@ -37,8 +29,13 @@ angular.module('impactApp')
       model: 'besoins',
       'answers': [
         {
-          label: 'Pour l\'hygiène corporelle (se laver, aller aux toilette, s\'habiller)',
+          label: 'Pour l\'hygiène corporelle (se laver, aller aux toilette)',
           model: 'hygiene'
+        },
+        {
+          label: 'Pour vous habiller (mettre et ôter vos vêtements, les choisir ....)',
+          labelRep: 'Pour s\'habiller (mettre et ôter ses vêtements, les choisir ....)',
+          model: 'habits'
         },
         {label: 'Pour faire les courses', model: 'courses'},
         {label: 'Pour faire le ménage et l\'entretien des vêtements', model: 'menage', 'onlyAdult': true},

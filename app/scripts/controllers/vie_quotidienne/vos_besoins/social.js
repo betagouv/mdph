@@ -19,11 +19,6 @@ angular.module('impactApp')
     if (angular.isUndefined($scope.subSectionModel.social)) {
       $scope.subSectionModel.social = {
         'besoins': {
-          'proches': false,
-          'loisirs': false,
-          'famille': false,
-          'citoyen': false,
-          'autre': false
         },
         'detail': ''
       };
@@ -33,12 +28,12 @@ angular.module('impactApp')
     $scope.question = {
       model: 'besoins',
       'answers': [
+        { label: 'Pour communiquer (s\'exprimer, se faire comprendre)', model: 'communication' },
+        { label: 'Pour avoir des activités culturelles, sportives et de loisirs', model: 'loisirs' },
         {
-          label: 'Pour les relations avec vos voisins, vos amis et votre famille',
-          labelRep: 'Pour les relations avec ses voisins, ses amis et sa famille',
+          label: 'Pour les relations les autres',
           model: 'proches'
         },
-        {label: 'Pour avoir des activités culturelles, sportives et de loisirs', model: 'loisirs'},
         {
           label: 'Pour vous occuper de votre famille',
           labelRep: 'Pour s\'occuper de sa famille',
@@ -49,7 +44,12 @@ angular.module('impactApp')
           labelRep: 'Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative ...)',
           model: 'citoyen', 'onlyAdult': true
         },
-        {label: 'Autre besoin', model: 'autre', 'detail': true}
+        {
+          label: 'Pour assurer votre sécurité',
+          labelRep: 'Pour assurer sa sécurité',
+          model: 'securite'
+        },
+        { label: 'Autre besoin', model: 'autre', 'detail': true }
       ]
     };
 

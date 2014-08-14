@@ -29,7 +29,7 @@ angular.module('impactApp')
       'answers':[
         {'label': 'Pour se déplacer au sein du domicile', 'model': 'intraDomicile'},
         {'label': 'Pour sortir du domicile et y accéder', 'model': 'accesDomicile'},
-        {'label': 'Pour se déplacer dans les espaces publics', 'model': 'public'},
+        {'label': 'Pour se déplacer à l\'extérieur du domicile', 'model': 'public'},
         {'label': 'Pour utiliser les transports en commun', 'model': 'transports'},
         {'label': 'Pour partir en vacances', 'model': 'vacances'},
         {'label': 'Adapter le véhicule pour pouvoir conduire', 'model': 'conduite', 'onlyAdult': true},

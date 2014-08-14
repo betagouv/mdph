@@ -159,12 +159,6 @@ var app = angular
                   url: '/lieu_de_vie',
                   templateUrl: 'views/partials/question_checkbox.html',
                   controller: 'LieuDeVieCtrl'
-                },
-                {
-                  name: 'securite',
-                  url: '/securite',
-                  templateUrl: 'views/partials/question_checkbox.html',
-                  controller: 'SecuriteCtrl'
                 }
               ]
             },
@@ -567,6 +561,6 @@ var app = angular
 });
 
 app.run(function ($rootScope) {
-  $rootScope.debug = true;
+  $rootScope.debug = false;
   $rootScope.debugAdultText = 'Affiché uniquement si le demandeur est adulte';
 });
