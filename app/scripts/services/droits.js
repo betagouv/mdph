@@ -110,7 +110,7 @@ angular.module('impactApp')
             title: 'Accompagnement par un service ou établissement médico-social',
             description: 'Orientation vers un établissement médical de santé.',
             shouldHave: function() {
-              return attentesType && attentesType.etablissement || besoinsSocial && besoinsSocial.securite;
+              return attentesType && attentesType.etablissement || (besoinsSocial && besoinsSocial.securite || besoinsQuotidien && besoinsQuotidien.logement);
             }
           },
           {
@@ -121,6 +121,7 @@ angular.module('impactApp')
             link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAVS-Service-d-Accompagnement-a-la-Vie-Sociale,i5629.html',
             shouldHave: function() {
               return isAdult() &&
+                (besoinsQuotidien && besoinsQuotidien.logement) &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
                   besoinsQuotidien && besoinsQuotidien.sante);
             }

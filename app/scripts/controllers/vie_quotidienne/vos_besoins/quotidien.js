@@ -47,6 +47,7 @@ angular.module('impactApp')
           labelRep: 'Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )',
           model: 'sante'
         },
+        {label: 'Pour vivre en logement autonome', model: 'logement'},
         {label: 'Autre besoin', model: 'autre', 'detail': true}
       ]
     };
