@@ -13,12 +13,12 @@ angular.module('impactApp')
     return function(items) {
       $modal.open({
         templateUrl: 'views/partials/modal.html',
-        controller: function($scope, $modalInstance, items) {
+        controller: ['$scope', '$modalInstance', function($scope, $modalInstance) {
           $scope.items = items;
           $scope.ok = function() {
             $modalInstance.close();
           };
-        },
+        }],
         resolve: {
           items: function () {
             return items;
