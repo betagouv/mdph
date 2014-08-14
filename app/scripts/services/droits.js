@@ -72,7 +72,7 @@ angular.module('impactApp')
             description: 'L\'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.',
             link: 'http://vosdroits.service-public.fr/particuliers/N12230.xhtml',
             shouldHave: function() {
-              return  (attentesType && attentesType.financierHandicap) &&
+              return  (isAdult() && attentesType && attentesType.financierHandicap) &&
                 (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
                   besoinsSocial && (besoinsSocial.proches  || besoinsSocial.securite) ||
                   besoinsDeplacement && besoinsDeplacement.intraDomicile ||
@@ -110,7 +110,7 @@ angular.module('impactApp')
             title: 'Accompagnement par un service ou établissement médico-social',
             description: 'Orientation vers un établissement médical de santé.',
             shouldHave: function() {
-              return attentesType && attentesType.etablissement || (besoinsSocial && besoinsSocial.securite || besoinsQuotidien && besoinsQuotidien.logement);
+              return attentesType && attentesType.etablissement || (besoinsSocial && besoinsSocial.securite && besoinsQuotidien && besoinsQuotidien.logement);
             }
           },
           {
@@ -134,6 +134,7 @@ angular.module('impactApp')
             link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAMSAH-Service-d-Accompagnement-Medico-Social-pour-Adultes-Handicapes,i5630.html',
             shouldHave: function() {
               return isAdult() &&
+                (besoinsQuotidien && besoinsQuotidien.logement) &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
                   besoinsQuotidien && besoinsQuotidien.sante);
             }
