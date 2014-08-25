@@ -567,6 +567,6 @@ var app = angular
 });
 
 app.run(function ($rootScope) {
-  $rootScope.debug = true;
+  $rootScope.debug = false;
   $rootScope.debugAdultText = 'Affiché uniquement si le demandeur est adulte';
 });
