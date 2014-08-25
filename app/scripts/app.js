@@ -60,6 +60,12 @@ var app = angular
                   controller: 'DossierCtrl'
                 },
                 {
+                  name: 'num_dossier',
+                  url: '/num_dossier',
+                  templateUrl: 'views/partials/question_radio.html',
+                  controller: 'NumDossierCtrl'
+                },
+                {
                   name: 'renouvellement',
                   url: '/renouvellement',
                   templateUrl: 'views/partials/question_checkbox.html',
@@ -393,7 +399,7 @@ var app = angular
                     {
                       name: 'pole_emploi',
                       url: '/pole_emploi',
-                      templateUrl: 'views/partials/question_radio.html',
+                      templateUrl: 'views/partials/question_checkbox.html',
                       controller: 'PoleEmploiCtrl'
                     }
                   ]
@@ -561,6 +567,6 @@ var app = angular
 });
 
 app.run(function ($rootScope) {
-  $rootScope.debug = false;
+  $rootScope.debug = true;
   $rootScope.debugAdultText = 'Affiché uniquement si le demandeur est adulte';
 });

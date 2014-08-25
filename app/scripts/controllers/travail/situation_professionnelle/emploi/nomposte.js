@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('NomPosteCtrl', function($scope, $state) {
 
-    $scope.subtitle = $scope.estRepresentant() ? 'Quel est l\'intitulé de son poste ?' : 'Quel est l\'intitulé du poste ?';
+    $scope.subtitle = 'Quel est le nom du poste ?';
 
     if (angular.isUndefined($scope.sectionModel.nomPoste)) {
       $scope.sectionModel.nomPoste = {

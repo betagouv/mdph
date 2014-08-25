@@ -32,18 +32,12 @@ angular.module('impactApp')
           detailUrl: 'views/partials/form_precisez.html'
         },
         {
-          label: 'Votre handicap vous en empêche',
-          labelRep: 'Son handicap l\'en empêche',
-          value: 'handicap',
-
-          detail: $scope.sectionModel.raison.value === 'handicap' ? $scope.sectionModel.raison.detail : '',
-          placeholder: ($scope.estRepresentant()) ? 'Quelles sont ses difficultées ?' : 'Quelles sont vos difficultées ?',
-          detailUrl: 'views/partials/form_precisez.html'
-        },
-        {
-          label: 'Vous ne trouvez pas solution d\'accueil en établissement',
+          label: 'Vous ne trouvez pas solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
           labelRep: $scope.getPronoun(true) + ' ne trouve pas solution d\'accueil en établissement',
-          value: 'etablissement'
+          value: 'etablissement',
+          
+          detail: $scope.sectionModel.raison.value === 'etablissement' ? $scope.sectionModel.raison.detail : '',
+          detailUrl: 'views/partials/form_precisez_big.html'
         },
         {
           label: 'Autre',

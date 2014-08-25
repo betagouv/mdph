@@ -39,7 +39,7 @@ angular.module('impactApp')
         return true;
       }
 
-      if (model.detailUrl && model.detail <= 0) {
+      if (model.detailUrl && (angular.isUndefined(model.detail) || model.detail <= 0)) {
         return true;
       }
 

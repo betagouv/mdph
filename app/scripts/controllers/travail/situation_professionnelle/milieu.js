@@ -17,12 +17,12 @@ angular.module('impactApp')
       model: 'milieu',
       answers: [
         {
-          label: 'En entreprise adaptée',
-          value: 'adaptee'
-        },
-        {
           label: 'En milieu ordinaire',
           value: 'ordinaire'
+        },
+        {
+          label: 'En entreprise adaptée',
+          value: 'adaptee'
         },
         {
           label: 'En milieu protégé (Etablissements et services d’aide par le travail - ESAT)',
@@ -36,6 +36,10 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.type');
+      if ($scope.sectionModel.milieu.value === 'etablissement') {
+        $state.go('^.emploi.nom_poste');
+      } else {
+        $state.go('^.type');
+      }
     };
   });

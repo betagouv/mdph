@@ -22,9 +22,18 @@ angular.module('impactApp')
         },
         {
           'label': 'Oui',
-          'value': true
+          'value': true,
+          detailUrl: 'views/partials/form_precisez_date.html',
+          detail: $scope.sectionModel.arretDeTravail.detail,
+          detailLabel: 'Depuis quand ?'
         }
       ]
+    };
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
     };
 
     $scope.isNextStepDisabled = function() {

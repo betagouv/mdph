@@ -59,6 +59,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.dossier');
+      $state.go('^.code_postal');
     };
   });

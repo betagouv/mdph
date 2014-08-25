@@ -24,10 +24,7 @@ angular.module('impactApp')
         },
         {
           label: 'Non',
-          value: false,
-          detailUrl: 'views/partials/form_precisez.html',
-          detail: $scope.sectionModel.nouveauDossier.detail,
-          detailLabel: 'Numéro de dossier'
+          value: false
         }
       ],
     };
@@ -49,9 +46,9 @@ angular.module('impactApp')
     $scope.nextStep = function() {
       var answer = $scope.sectionModel[$scope.question.model];
       if (answer.value) {
-        $state.go('^.code_postal');
+        $state.go('^.date_naissance');
       } else {
-        $state.go('^.renouvellement');
+        $state.go('^.num_dossier');
       }
     };
   });

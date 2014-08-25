@@ -14,6 +14,10 @@ angular.module('impactApp')
       'Où est-' + $scope.getPronoun() + ' scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
       'Où êtes-vous scolarisé ?';
 
+    if (angular.isUndefined($scope.sectionModel.type)) {
+      $scope.sectionModel.type = {};
+    }
+
     $scope.question = {
       model: 'type',
       answers: [
@@ -26,6 +30,14 @@ angular.module('impactApp')
           value: 'domicile'
         },
         {
+          label: 'En internat',
+          value: 'internat',
+
+          detailUrl: 'views/partials/form_precisez_yes_no.html',
+          detail: $scope.sectionModel.type.detailInternat,
+          detailLabel: 'Les frais de séjours sont-ils intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale?'
+        },
+        {
           label: 'Avec accompagnement par un établissement médico-social',
           value: 'etablissement'
         },
@@ -36,6 +48,12 @@ angular.module('impactApp')
         {
           label: 'En formation supérieure',
           value: 'superieur',
+        },
+        {
+          label: 'Autre',
+          value: 'autre',
+          detailUrl: 'views/partials/form_precisez.html',
+          detail: $scope.sectionModel.type.detail
         }
       ]
     };

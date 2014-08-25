@@ -32,7 +32,7 @@ angular.module('impactApp')
         {'label': 'Pour se déplacer à l\'extérieur du domicile', 'model': 'public'},
         {'label': 'Pour utiliser les transports en commun', 'model': 'transports'},
         {'label': 'Pour partir en vacances', 'model': 'vacances'},
-        {'label': 'Adapter le véhicule pour pouvoir conduire', 'model': 'conduite', 'onlyAdult': true},
+        {'label': 'Pour adapter le véhicule pour pouvoir conduire', 'model': 'conduite', 'onlyAdult': true},
         {'label': 'Autre besoin', 'model': 'autre', 'detail': true}
       ]
     };

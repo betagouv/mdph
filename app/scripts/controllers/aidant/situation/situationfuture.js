@@ -34,7 +34,7 @@ angular.module('impactApp')
         {label: 'Indisponibilité prolongée (séjour à l’étranger, hospitalisation, ...)', model: 'indisponible'},
         {label: 'Problème de santé', model: 'sante'},
         {label: 'Changement majeur dans la situation professionnelle', model: 'professionnelle'},
-        {label: 'Changement majeur dans la situation personnelle (séparation, décès du conjoint, départ en établissement de retraite ...)', model: 'personnel'},
+        {label: 'Changement majeur dans la situation personnelle (séparation, départ en établissement de retraite ...)', model: 'personnel'},
         {label: 'Autres changements prochains de situation', model: 'autre', detail: true}
       ]
     };

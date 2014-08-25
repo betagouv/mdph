@@ -28,13 +28,13 @@ angular.module('impactApp')
       'model': 'besoins',
       'answers': [
         {
-          'label': 'Vous équiper d\'un matériel spécifique',
-          labelRep: 'S\'équiper d\'un matériel spécifique',
+          'label': 'Pour vous équiper d\'un matériel spécifique',
+          labelRep: 'Pour s\'équiper d\'un matériel spécifique',
           'model': 'materiel'
         },
         {
-          'label': 'Aménager votre lieu de vie',
-          labelRep: 'Aménager son lieu de vie',
+          'label': 'Pour aménager votre lieu de vie',
+          labelRep: 'Pour aménager son lieu de vie',
           'model': 'amenagement'},
         {'label': 'Autre besoin', 'model': 'autre', 'detail': true}
       ]

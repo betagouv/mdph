@@ -15,18 +15,6 @@ angular.module('impactApp')
     if (angular.isUndefined($scope.sectionModel.typeAttente)) {
       $scope.sectionModel.typeAttente = {
         attentes: {
-          'repos': false,
-          'imprevu': false,
-          'vacances': false,
-          'professionnel': false,
-          'social': false,
-
-          'finance': false,
-          'echanges': false,
-          'psychologique': false,
-          'vieillesse': false,
-          'conseil': false,
-          'autre': false
         },
         detail: ''
       };

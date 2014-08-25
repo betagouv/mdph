@@ -33,7 +33,7 @@ angular.module('impactApp')
           documents: [{category: 'sante', id: 'bilanAccompagnementEnfant'}]
         },
         {
-          label: 'Hébergé(e) au domicile',
+          label: 'Hébergé(e) au domicile par une autre personne',
           value: 'domicile',
           detailUrl: 'views/partials/details/domicile.html',
           detail: $scope.sectionModel.logement.value === 'domicile' ? $scope.sectionModel.logement.detail : ''

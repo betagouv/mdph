@@ -34,7 +34,7 @@ angular.module('impactApp')
         sref: 'form.contexte.situations_urgentes.urgences',
         filter: '**.urgences.**',
         span: '2',
-        label: 'Situations urgentes',
+        label: 'Situations particulières',
         showBefore: true
       };
     }

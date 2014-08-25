@@ -43,7 +43,7 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       if ($scope.sectionModel.type.value === 'independant') {
-        $state.go('^.^.emploi.nom_poste');
+        $state.go('^.emploi.nom_poste');
       } else {
         $state.go('^.employeur');
       }

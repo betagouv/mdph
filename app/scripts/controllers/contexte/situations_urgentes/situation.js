@@ -12,7 +12,7 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.sectionModel.situationsUrgentes)) {
       $scope.sectionModel.situationsUrgentes = {
-        label: 'Situations urgentes',
+        label: 'Situations particulières',
         answers: {}
       };
     }

@@ -8,9 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('FinDeDroitsCtrl', function($scope, $state, getDroits) {
+  .controller('FinDeDroitsCtrl', function($scope, $state, getDroits, datepickerConfig) {
     $scope.subtitle = 'De quelles prestations bénéficiez-vous actuellement ?';
 
+    datepickerConfig.datepickerMode = 'day';
     if (angular.isUndefined($scope.sectionModel.mesPrestations)) {
       $scope.sectionModel.mesPrestations = [];
     }

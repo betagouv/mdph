@@ -1,7 +1,7 @@
 <div class="row form-horizontal">
   <label class="col-md-2 control-label">{{answer.detailLabel || 'Montant'}}</label>
   <div class="col-md-10 input-group">
-    <input type="number" class="form-control" ng-model="$parent.sectionModel[question.model]['detail']" placeholder="{{answer.placeholder}}">
+    <input type="number" class="form-control" min="0" ng-model="$parent.sectionModel[question.model]['detail']" placeholder="{{answer.placeholder}}">
     <div class="input-group-addon">€/Mois</div>
   </div>
 </div>

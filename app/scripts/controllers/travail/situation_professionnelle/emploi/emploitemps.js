@@ -35,6 +35,10 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.heures');
+      if ($scope.sectionModel.temps.value) {
+        $state.go('^.adapte');
+      } else {
+        $state.go('^.heures');
+      }
     };
   });

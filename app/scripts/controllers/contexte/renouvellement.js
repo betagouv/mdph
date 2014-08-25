@@ -36,6 +36,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.code_postal');
+      $state.go('^.date_naissance');
     };
   });

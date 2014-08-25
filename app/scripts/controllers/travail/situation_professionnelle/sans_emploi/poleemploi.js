@@ -11,46 +11,32 @@ angular.module('impactApp')
   .controller('PoleEmploiCtrl', function($scope, $state) {
 
     $scope.subtitle = $scope.estRepresentant() ?
-      'Est-il inscrit à Pôle Emploi ?' : 'Etes-vous inscrit à Pôle Emploi ?';
+      'Sa situation' : 'Votre situation';
 
     if (angular.isUndefined($scope.sectionModel.poleEmploi)) {
-      $scope.sectionModel.poleEmploi = {};
+      $scope.sectionModel.situationSansEmploi = {
+        situations: {},
+        detail: ''
+      };
     }
 
+    $scope.model = $scope.sectionModel.situationSansEmploi;
     $scope.question = {
-      model: 'poleEmploi',
+      model: 'situations',
       answers: [
         {
-          label: 'Non',
-          value: false
+          label: 'Inscrit à pôle emploi',
+          model: 'poleEmploi'
         },
         {
-          label: 'Oui',
-          value: true,
-          detailUrl: 'views/partials/form_precisez_date.html',
-          detail: $scope.sectionModel.poleEmploi.detail,
-          detailLabel: 'Depuis quand ?'
+          label: 'En formation continue',
+          model: 'formation'
+        },
+        {
+          label: 'Etudiant',
+          model: 'etudiant'
         }
       ]
-    };
-
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened = true;
-    };
-
-    $scope.isNextStepDisabled = function() {
-      var model = $scope.sectionModel.poleEmploi;
-      if (angular.isUndefined(model.value)) {
-        return true;
-      }
-
-      if (model.detailUrl && !model.detail) {
-        return true;
-      }
-
-      return false;
     };
 
     $scope.nextStep = function() {
