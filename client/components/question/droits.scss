@@ -1,0 +1,131 @@
+
+$analog-1: #333E54;
+$analog-1-border: #1C222E;
+$analog-2: #473B52;
+$analog-2-border: #372E40;
+$analog-3: #435275;
+$analog-3-border: #1F2636;
+$analog-4: #D05158;
+$analog-4-border: #6E2B2E;
+
+.prestations {
+
+  .panel {
+    border-bottom: 4px solid #dddddd;
+  }
+
+  .panel-heading {
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .panel-action {
+    min-height: 142px;
+    padding: 35px 0;
+    background-color: white;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+
+    &.presta-carte {
+      color: $analog-1;
+
+      &:hover {
+        color: $analog-1-border;
+        border-color: $analog-1;
+      }
+    }
+
+    &.presta-finances {
+      color: $analog-2;
+
+      &:hover {
+        color: $analog-2-border;
+        border-color: $analog-2;
+      }
+    }
+
+    &.presta-accompagnement {
+      color: $analog-3;
+
+      &:hover {
+        color: $analog-3-border;
+        border-color: $analog-3;
+      }
+    }
+
+    &.presta-autre {
+      color: $analog-4;
+      cursor: default !important;
+      p {
+        color: white;
+      }
+
+      &:hover {
+        color: $analog-4-border;
+        border-color: $analog-4;
+      }
+    }
+  }
+
+  .panel-footer {
+    min-height: 58px;
+  }
+
+  .panel-opened, .panel-closed {
+    p {
+      min-height: 190px;
+    }
+
+    &.presta-carte {
+      border-color: $analog-1;
+      border-bottom: 4px solid $analog-1;
+      .panel-heading {
+        background-color: $analog-1;
+        color: white;
+      }
+    }
+
+    &.presta-finances {
+      border-color: $analog-2;
+      border-bottom: 4px solid $analog-2;
+      .panel-heading {
+        background-color: $analog-2;
+        color: white;
+      }
+    }
+
+    &.presta-accompagnement {
+      border-color: $analog-3;
+      border-bottom: 4px solid $analog-3;
+      .panel-heading {
+        background-color: $analog-3;
+        color: white;
+      }
+    }
+
+    &.presta-autre {
+      border-color: $analog-4;
+      border-bottom: 4px solid $analog-4;
+      .panel-heading {
+        background-color: $analog-4;
+        color: white;
+      }
+    }
+  }
+
+  .panel-opened {
+    min-height: 142px;
+    &.presta-autre {
+      min-height: 142px;
+    }
+  }
+
+  .panel-closed {
+    .panel-heading {
+      border: none;
+    }
+  }
+}

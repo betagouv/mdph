@@ -1,0 +1,57 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="page-header"><h1>Questionnaire</h1></div>
+  <div ng-show="formAnswers">
+    <p class="lead no-margin">
+      Vous avez bien rempli le questionnaire. Vous pouvez choisir de le modifier ou de le valider pour qu'il soit transmis à votre MDPH.
+    </p>
+    <p>
+      <small><em>Dernière modification {{ updatedAt }} </em></small>
+    </p>
+
+    <div class="page-header"><h1>Suivi de votre demande</h1></div>
+    <div class="row answer">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="accordion">
+          <accordion>
+            <accordion-group is-open="category.open" ng-if="category.show" ng-repeat="category in documents">
+              <accordion-heading>
+                  {{category.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': category.open, 'glyphicon-chevron-right': !category.open}"></i>
+              </accordion-heading>
+
+              <div class="row answer">
+                <div class="col-md-6 pieces" ng-if="document.show" ng-repeat="document in category.documents">
+                  <div class="panel panel-default" ng-class="document.type">
+                    <div class="panel-heading" tooltip="{{document.tooltip}}">
+                      <p>{{document.desc}}</p>
+                    </div>
+                    <div class="panel-body">
+                      <a href="#">
+                        <span class="glyphicon glyphicon-file"></span>
+                        <strong>{{document.filename ? document.filename : 'Pas de document'}}</strong>
+                      </a>
+                      <div>
+                        <span><strong>PDF</strong></span> <!-- TODO -->
+                        <span><strong>3.2Mb</strong></span> <!-- TODO -->
+                      </div>
+                    </div>
+                    <div class="panel-footer">
+                      <div class="btn-group btn-group-justified">
+                        <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</a>
+                        <a class="btn btn-default" ng-if="document.why"><span class="glyphicon glyphicon-question-sign"></span> Pourquoi ?</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-hide="formAnswers">
+    Vous n'avez pas encore rempli le questionnaire.
+  </div>
+</div>

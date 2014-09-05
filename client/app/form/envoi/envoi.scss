@@ -1,0 +1,39 @@
+.send-json {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.accordion {
+  margin: 20px 0;
+  .accordion-toggle {
+    cursor: pointer;
+  }
+}
+
+.pieces {
+  margin: 15px 0;
+
+  p {
+    min-height: 40px;
+  }
+}
+
+.jumbotron {
+  margin-top: 30px;
+  text-align: justify;
+  border-bottom: 2px solid #B8B8B8;
+
+  p {
+    font-size: 14px;
+  }
+
+  input {
+    margin: 4px;
+  }
+}
+
+.btn-choice {
+  min-height: 150px;
+  padding: 0 15px;
+  text-align: middle;
+}

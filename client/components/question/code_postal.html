@@ -1,0 +1,10 @@
+<qtitle></qtitle>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <input type="text" class="form-control"
+      required ng-pattern="/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/" ng-model="model.value" ng-required="true"
+      ng-change="findMdph()" placeholder="Ex: 14000"/>
+    <span class="help-block" ng-if="model.value && mdph.value">{{mdph.value}}</span>
+  </div>
+</div>

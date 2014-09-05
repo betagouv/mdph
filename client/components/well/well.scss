@@ -1,0 +1,37 @@
+.well-detail {
+  -webkit-border-radius: 0 0 5px 5px ;
+  -moz-border-radius: 0 0 5px 5px ;
+  border-radius: 0 0 5px 5px ;
+  border-top: none;
+  margin: 0 15px;
+
+  .row {
+    margin-bottom: 4px;
+  }
+}
+
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition: all 0.1s linear;
+     -moz-transition: all 0.1s linear;
+       -o-transition: all 0.1s linear;
+          transition: all 0.1s linear;
+  position: relative;
+}
+
+.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+  -webkit-transform: scaleY(0.0001);
+       -o-transform: scaleY(0.0001);
+          transform: scaleY(0.0001);
+  opacity: 0;
+  top: -50px;
+  z-index: 0;
+}
+
+.slide, .slide.ng-enter.ng-enter-active {
+  -webkit-transform: scaleY(1);
+       -o-transform: scaleY(1);
+          transform: scaleY(1);
+  opacity: 1;
+  top: 0;
+  z-index: 0;
+}

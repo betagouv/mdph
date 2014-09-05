@@ -1,0 +1,77 @@
+.banner h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.hero-unit {
+    position: relative;
+    padding: 30px 15px;
+    text-align: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 55px;
+    background-image: url('../assets/images/bridge.jpg');
+}
+
+.features {
+    margin-top: 70px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    text-align: center;
+}
+
+.liste-prestations {
+    margin-top: 70px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #fff;
+    font: 15px 'Times new roman', sans-serif;
+    text-align: center;
+
+    .row {
+      margin: 30px 0;
+    }
+}
+
+.btn-outline-inverse {
+    font-weight: 200;
+    color: $light-blue;
+    background-color: #fff;
+
+    &:hover {
+      font-weight: 200;
+      color: #fff;
+      background-color: #fff;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-color: #fff;
+    }
+}
+
+$footer-height: 60px;
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: $footer-height;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #E5E5E5;
+
+    // Stick it
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $footer-height;
+}
+
+#push {
+    height: 60px;
+}
