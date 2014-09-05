@@ -143,7 +143,7 @@ angular.module('impactApp')
       }
     };
 
-    if (!angular.isDefined(currentForm)) {
+    if (angular.isDefined(currentForm)) {
       $scope.formAnswers = currentForm.formAnswers;
       $scope.$storage.sectionContexte.isEnabled = true;
       $scope.$storage.sectionVieQuotidienne.isEnabled = true;
