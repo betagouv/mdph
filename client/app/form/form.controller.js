@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FormCtrl', function ($scope, $rootScope, $state, $stateParams, $sessionStorage, isAdult, getDocuments, currentForm) {
+  .controller('FormCtrl', function ($scope, $rootScope, $state, $stateParams, $sessionStorage, isAdult, getDocuments, currentForm, datepickerConfig) {
+
+    datepickerConfig.showWeeks = false;
 
     $scope.$storage = $sessionStorage.$default({
       /* Sections
@@ -141,7 +143,7 @@ angular.module('impactApp')
       }
     };
 
-    if (angular.isDefined(currentForm)) {
+    if (!angular.isDefined(currentForm)) {
       $scope.formAnswers = currentForm.formAnswers;
       $scope.$storage.sectionContexte.isEnabled = true;
       $scope.$storage.sectionVieQuotidienne.isEnabled = true;

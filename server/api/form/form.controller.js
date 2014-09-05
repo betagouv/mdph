@@ -63,7 +63,7 @@ exports.mine = function(req, res, next) {
     user: userId
   }, function(err, form) {
     if (err) return next(err);
-    if (!form) return res.json(404);
+    if (!form) return res.send(404);
     res.json(form);
   });
 };
@@ -73,13 +73,20 @@ exports.mine = function(req, res, next) {
  */
 exports.saveForm = function(req, res, next) {
   var userId = req.user._id;
+  console.log(req.body);
   Form.findOne({
     user: userId
   }, function(err, form) {
     if (err) return next(err);
-    if(!form) { return res.send(404); }
-    var updated = _.merge(form, req.body);
-    updated.save(function (err) {
+    var newForm;
+    if(!form) {
+      newForm = new Form();
+      newForm.user = userId;
+    } else {
+      newForm = form;
+    }
+    newForm.formAnswers = req.body;
+    newForm.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, form);
     });

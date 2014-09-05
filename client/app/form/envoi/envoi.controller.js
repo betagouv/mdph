@@ -58,7 +58,6 @@ angular.module('impactApp')
 
     $scope.saveForm = function() {
       if (Auth.isLoggedIn()) {
-        debugger;
         $http.put('/api/forms/mine', $scope.formAnswers);
         $state.go('demande');
       } else {

@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('DemandeCtrl', function ($scope, currentForm, getDocuments) {
     if (angular.isDefined(currentForm)) {
-      $scope.formAnswers = currentForm.data.formAnswers;
+      $scope.formAnswers = currentForm.formAnswers;
 
       var computeDocumentsForAnswers = function(answers, categories) {
         angular.forEach(answers, function(answer) {

@@ -9,7 +9,11 @@ angular.module('impactApp')
         controller: 'DemandeCtrl',
         resolve: {
           currentForm:  function($http) {
-              return $http({method: 'GET', url: '/api/forms/mine'}).catch(function() {return undefined;});
+            return $http.get('/api/forms/mine').then(function(result) {
+              return result.data;
+            }).catch(function() {
+              return undefined;
+            });
            }
         }
       });

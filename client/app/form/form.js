@@ -11,7 +11,7 @@ angular.module('impactApp')
         resolve: {
           currentForm:  function($http) {
             return $http.get('/api/forms/mine').then(function(result) {
-              return result.data === '404' ? undefined : result.data;
+              return result.data;
             }).catch(function() {
               return undefined;
             });
