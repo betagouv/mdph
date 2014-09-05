@@ -11,4 +11,6 @@ angular.module('impactApp')
     }
 
     $scope.subSectionModel = $scope.sectionModel.besoins.answers;
+
+    $scope.helpTemplate = 'components/help/besoins.html';
   });
