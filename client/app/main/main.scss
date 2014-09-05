@@ -8,12 +8,15 @@
     position: relative;
     padding: 30px 15px;
     text-align: center;
+}
 
-    background-opacity: 70%;
+@media (min-width: $screen-md-min) {
+  .hero-unit {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: 50% 55px;
     background-image: url('../assets/images/bridge.jpg');
+  }
 }
 
 .features {
@@ -27,9 +30,6 @@
 .liste-prestations {
 
     background-image: url('../assets/images/tweed.png');
-  /*  background-attachment: fixed;
-    background-position: 50% 100px;
-    background-image: url('../assets/images/bridge.jpg');*/
 
     margin-top: 70px;
     font-size: 14px;
