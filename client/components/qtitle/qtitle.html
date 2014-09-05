@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h3 ng-if="subtitle">
+    {{subtitle}}
+    <div class="pull-right">
+      <button class="btn btn-primary" ng-disabled="isNextStepDisabled()" ng-click="nextStep()">
+        Suivant
+      </button>
+      <button class="btn btn-default" ng-show="isLoggedIn()" ng-click="saveForm()">
+        Enregistrer
+      </button>
+    </div>
+  </h5>
+</div>
