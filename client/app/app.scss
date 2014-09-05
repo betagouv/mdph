@@ -52,12 +52,12 @@ $active-text: $light-white;
 @import 'form/envoi/envoi.scss';
 @import 'form/form.scss';
 @import 'main/main.scss';
-@import 'qtitle/qtitle.scss';
-@import 'section/section.scss';
-@import 'subsection/subsection.scss';
 @import 'modal/login.scss';
 @import 'navbar/navbar.scss';
+@import 'qtitle/qtitle.scss';
 @import 'question/droits.scss';
 @import 'question/structure.scss';
+@import 'section/section.scss';
+@import 'subsection/subsection.scss';
 @import 'well/well.scss';
 // endinjector
