@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ParticulieresCtrl', function ($scope) {
+  .controller('ParticulieresCtrl', function ($scope, FormService) {
 
-    if ($scope.estRepresentant()) {
+    if (FormService.estRepresentant($scope.formAnswers)) {
       $scope.subtitle ='Se trouve-t-il dans une des situations suivantes ?';
     } else {
       $scope.subtitle ='Vous trouvez-vous dans une des situations suivantes ?';
@@ -23,7 +23,7 @@ angular.module('impactApp')
       [
         {
           label: 'Vous n\'arrivez plus à vivre chez vous',
-          labelRep: $scope.getPronoun(true) + ' n\'arrive plus à vivre à domicile',
+          labelRep: FormService.getPronoun($scope.formAnswers, true) + ' n\'arrive plus à vivre à domicile',
           model: 'domicile',
           detail: true,
           detailUrl: 'components/detail/precisez_big.html',
@@ -31,7 +31,7 @@ angular.module('impactApp')
         },
         {
           label: 'Votre établissement ne peux plus vous acceuillir et vous ne pouvez pas retourner chez vous',
-          labelRep: 'Son établissement ne peux plus l\'acceuillir et ' + $scope.getPronoun() + ' ne peut pas retourner chez ' + $scope.getPronounTonic(),
+          labelRep: 'Son établissement ne peux plus l\'acceuillir et ' + FormService.getPronoun($scope.formAnswers) + ' ne peut pas retourner chez ' + FormService.getPronounTonic($scope.formAnswers),
           model: 'etablissement',
           detail: true,
           detailUrl: 'components/detail/precisez_big.html',
@@ -47,7 +47,7 @@ angular.module('impactApp')
         },
         {
           label: 'Vous risquez de perdre votre travail',
-          labelRep: $scope.getPronoun(true) + ' risque de perdre son travail',
+          labelRep: FormService.getPronoun($scope.formAnswers, true) + ' risque de perdre son travail',
           detail: true,
           detailUrl: 'components/detail/precisez_big.html',
           placeholder: 'Expliquez la difficulté',
@@ -55,7 +55,7 @@ angular.module('impactApp')
         },
         {
           label: 'Vous commencez bientôt une nouvelle formation',
-          labelRep: $scope.getPronoun(true) + ' commence bientôt une nouvelle formation',
+          labelRep: FormService.getPronoun($scope.formAnswers, true) + ' commence bientôt une nouvelle formation',
           detail: true,
           detailUrl: 'components/detail/precisez_date.html',
           detailLabel: 'Date d\'entrée prévue',

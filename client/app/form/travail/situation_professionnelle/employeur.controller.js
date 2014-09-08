@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('EmployeurCtrl', function($scope, $state) {
-    $scope.subtitle = $scope.estRepresentant() ? 'Qui est son employeur ?' : 'Qui est votre employeur ?';
+  .controller('EmployeurCtrl', function($scope, $state, FormService) {
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Qui est son employeur ?' : 'Qui est votre employeur ?';
 
     if (angular.isUndefined($scope.sectionModel.employeur)) {
       $scope.sectionModel.employeur = {

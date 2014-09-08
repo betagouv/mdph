@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AccidentDeTravailCtrl', function($scope, $state) {
+  .controller('AccidentDeTravailCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Est-' + $scope.getPronoun() + ' en arrêt suite à un accident du travail ou une maladie professionnelle ?' : 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Est-' + FormService.getPronoun($scope.formAnswers) + ' en arrêt suite à un accident du travail ou une maladie professionnelle ?' : 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?';
 
     if (angular.isUndefined($scope.sectionModel.accidentTravail)) {
       $scope.sectionModel.accidentTravail = {};

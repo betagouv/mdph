@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LogementCtrl', function($scope, $state) {
-    $scope.subtitle = $scope.estRepresentant() ? 'Où loge-t-' + $scope.getPronoun() + ' ?' : 'Où logez-vous ?';
+  .controller('LogementCtrl', function($scope, $state, FormService) {
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Où loge-t-' + FormService.getPronoun($scope.formAnswers) + ' ?' : 'Où logez-vous ?';
 
     if (angular.isUndefined($scope.sectionModel.logement)) {
       $scope.sectionModel.logement = {};

@@ -136,14 +136,13 @@ angular.module('impactApp')
         return currentUser.role === 'admin';
       },
 
-
       /**
-       * Check if a user is an admin
+       * Check if a user is from an mdph
        *
        * @return {Boolean}
        */
-      isUser: function() {
-        return this.isAdmin() || currentUser.role === 'utilisateur';
+      isAdminMdph: function() {
+        return currentUser.role === 'adminMdph';
       },
 
       /**

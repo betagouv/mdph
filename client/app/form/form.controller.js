@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FormCtrl', function ($scope, $rootScope, $state, $stateParams, $sessionStorage, isAdult, getDocuments, currentForm, datepickerConfig) {
+  .controller('FormCtrl', function ($scope, $rootScope, $state, $stateParams, FormService, $sessionStorage, getDocuments, currentForm, datepickerConfig) {
 
     datepickerConfig.showWeeks = false;
 
@@ -64,47 +64,12 @@ angular.module('impactApp')
       $scope.$storage.sectionEnvoi
     ];
 
-    var getRepresentant = function() {
-      if (angular.isUndefined($scope.formAnswers.contexte)||
-          angular.isUndefined($scope.formAnswers.contexte.answers)) {
-        return undefined;
-      }
-      return $scope.formAnswers.contexte.answers.demandeur;
-    };
-
-    $scope.getName = function() {
-      var representant = getRepresentant();
-      if (angular.isUndefined(representant) || angular.isUndefined(representant.prenom)) {
-        return 'la personne';
-      }
-      return representant.prenom;
-    };
-
-    $scope.estMasculin = function() {
-      var representant = getRepresentant();
-      if (angular.isUndefined(representant)) {
-        return false;
-      }
-      return representant.sexe === 'masculin';
-    };
-
-    $scope.getPronoun = function(capitalize) {
-      if (capitalize) {
-        return $scope.estMasculin() ? 'Il' : 'Elle';
-      }
-      return $scope.estMasculin() ? 'il' : 'elle';
-    };
-
-    $scope.getPronounTonic = function() {
-      return $scope.estMasculin() ? 'lui' : 'elle';
-    };
-
     $scope.getLabel = function(answer) {
-      if ($scope.estRepresentant()) {
+      if (FormService.estRepresentant($scope.formAnswers)) {
         if (answer.labelRep) {
           return answer.labelRep;
         }
-        if ($scope.estMasculin() && answer.labelRepMasc) {
+        if (FormService.estMasculin($scope.formAnswers) && answer.labelRepMasc) {
           return answer.labelRepMasc;
         } else if (answer.labelRepFem){
           return answer.labelRepFem;
@@ -113,25 +78,12 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    $scope.estRepresentant = function() {
-      if (angular.isUndefined($scope.formAnswers.contexte) ||
-          angular.isUndefined($scope.formAnswers.contexte.answers) ||
-          angular.isUndefined($scope.formAnswers.contexte.answers.estRepresentant)) {
-        return false;
-      }
-      return $scope.formAnswers.contexte.answers.estRepresentant.value;
-    };
-
-    $scope.isAdult = function() {
-      return isAdult($scope.formAnswers.contexte);
-    };
-
     $scope.encode = function(json) {
       return encodeURIComponent(JSON.stringify(json));
     };
 
     $scope.getDocuments = function() {
-      return getDocuments($scope.getName());
+      return getDocuments(FormService.getName($scope.formAnswers));
     };
 
     $scope.goToNextSection = function(currentSection) {
@@ -144,6 +96,7 @@ angular.module('impactApp')
     };
 
     if (angular.isDefined(currentForm)) {
+      $scope.form = currentForm;
       $scope.formAnswers = currentForm.formAnswers;
       $scope.$storage.sectionContexte.isEnabled = true;
       $scope.$storage.sectionVieQuotidienne.isEnabled = true;

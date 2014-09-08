@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('VieQuotidienneCtrl', function ($scope, $sessionStorage) {
+  .controller('VieQuotidienneCtrl', function ($scope, $sessionStorage, FormService) {
     $scope.currentSection = $sessionStorage.sectionVieQuotidienne;
-    $scope.title = $scope.estRepresentant() ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
+    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
 
     if (angular.isUndefined($scope.formAnswers.vie)) {
       $scope.formAnswers.vie = {
@@ -28,6 +28,7 @@ angular.module('impactApp')
         span: '2',
         label: 'Vos besoins',
         labelRep: 'Ses besoins',
+        isEnabled: angular.isDefined($scope.form),
         showBefore: true,
         showAfter: true
       };
@@ -37,6 +38,7 @@ angular.module('impactApp')
         span: '3',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
+        isEnabled: angular.isDefined($scope.form),
         showBefore: true
       };
     }

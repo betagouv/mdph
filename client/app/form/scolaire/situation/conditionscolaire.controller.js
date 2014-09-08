@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ConditionScolaireCtrl', function($scope, $state) {
+  .controller('ConditionScolaireCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Est-' + $scope.getPronoun() + ' actuellement scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Est-' + FormService.getPronoun($scope.formAnswers) + ' actuellement scolarisé' + (FormService.estMasculin($scope.formAnswers) ? '' : 'e') + ' ?' :
       'Etes-vous actuellement scolarisé ?';
 
     $scope.sectionModel = $scope.sectionModel;

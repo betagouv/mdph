@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('MilieuCtrl', function($scope, $state) {
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Où est-' + $scope.getPronoun() + ' employé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+  .controller('MilieuCtrl', function($scope, $state, FormService) {
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Où est-' + FormService.getPronoun($scope.formAnswers) + ' employé' + (FormService.estMasculin($scope.formAnswers) ? '' : 'e') + ' ?' :
       'Où êtes-vous employé ?';
 
     $scope.question = {

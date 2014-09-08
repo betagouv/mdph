@@ -8,10 +8,6 @@ angular.module('impactApp')
       controller: function($scope, $http, Auth) {
         $scope.isLoggedIn = Auth.isLoggedIn;
 
-        $scope.saveForm = function() {
-          $http.put('/api/forms/mine', $scope.formAnswers);
-        };
-
         $scope.showHelp = function() {
           $modal.open({
             templateUrl: $scope.helpTemplate,

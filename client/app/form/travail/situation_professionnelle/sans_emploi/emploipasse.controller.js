@@ -8,8 +8,8 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EmploiPasseCtrl', function($scope, $state) {
-    $scope.subtitle = $scope.estRepresentant() ?
+  .controller('EmploiPasseCtrl', function($scope, $state, FormService) {
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
       'A-t-il déjà travaillé ?' : 'Avez-vous déjà travaillé ?';
 
     if (angular.isUndefined($scope.sectionModel.passe)) {

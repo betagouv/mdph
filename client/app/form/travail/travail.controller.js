@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TravailCtrl', function ($scope) {
+  .controller('TravailCtrl', function ($scope, FormService) {
 
-    $scope.title = $scope.estRepresentant() ? 'Sa vie au travail' : 'Votre vie au travail';
+    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie au travail' : 'Votre vie au travail';
 
     $scope.currentSection = $scope.$storage.sectionTravail;
 
@@ -30,6 +30,7 @@ angular.module('impactApp')
         span: '2',
         label: 'Votre projet professionnel',
         labelRep: 'Ses projet professionnel',
+        isEnabled: angular.isDefined($scope.form),
         showBefore: true
       };
     }

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RaisonNonScolaireCtrl', function($scope, $state) {
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Pourquoi n\'est-' + $scope.getPronoun() + ' pas scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+  .controller('RaisonNonScolaireCtrl', function($scope, $state, FormService) {
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Pourquoi n\'est-' + FormService.getPronoun($scope.formAnswers) + ' pas scolarisé' + (FormService.estMasculin($scope.formAnswers) ? '' : 'e') + ' ?' :
       'Pourquoi n\'êtes vous pas scolarisé ?';
 
     if (angular.isUndefined($scope.sectionModel.raison)) {
@@ -15,18 +15,18 @@ angular.module('impactApp')
       answers: [
         {
           label: 'Vous êtes trop jeune',
-          labelRep: $scope.getPronoun(true) + ' est trop jeune',
+          labelRep: FormService.getPronoun($scope.formAnswers, true) + ' est trop jeune',
           value: 'tropJeune',
 
           detail: $scope.sectionModel.raison.value === 'tropJeune' ? $scope.sectionModel.raison.detail : '',
-          placeholder: ($scope.estRepresentant()) ?
-            'A partir de quand sera-t-' + $scope.getPronoun() + ' scolarisé' + ($scope.estMasculin() ? '' : 'e') + ' ?' :
+          placeholder: (FormService.estRepresentant($scope.formAnswers)) ?
+            'A partir de quand sera-t-' + FormService.getPronoun($scope.formAnswers) + ' scolarisé' + (FormService.estMasculin($scope.formAnswers) ? '' : 'e') + ' ?' :
             'A partir de quand serez vous scolarisé ?',
           detailUrl: 'components/detail/precisez.html'
         },
         {
           label: 'Vous ne trouvez pas solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
-          labelRep: $scope.getPronoun(true) + ' ne trouve pas solution d\'accueil en établissement',
+          labelRep: FormService.getPronoun($scope.formAnswers, true) + ' ne trouve pas solution d\'accueil en établissement',
           value: 'etablissement',
 
           detail: $scope.sectionModel.raison.value === 'etablissement' ? $scope.sectionModel.raison.detail : '',

@@ -5,7 +5,7 @@ var Form = require('./form.model');
 
 // Get list of forms
 exports.index = function(req, res) {
-  Form.find(function (err, forms) {
+  Form.find().populate('user').exec(function (err, forms) {
     if(err) { return handleError(res, err); }
     return res.json(200, forms);
   });
@@ -73,7 +73,6 @@ exports.mine = function(req, res, next) {
  */
 exports.saveForm = function(req, res, next) {
   var userId = req.user._id;
-  console.log(req.body);
   Form.findOne({
     user: userId
   }, function(err, form) {
@@ -83,9 +82,17 @@ exports.saveForm = function(req, res, next) {
       newForm = new Form();
       newForm.user = userId;
     } else {
+      // Si readOnly on ne fait rien
+      if (form.readOnly) {
+        return res.send(423);
+      }
       newForm = form;
     }
     newForm.formAnswers = req.body;
+
+    // A verifier, pour l'instant des que le formulaire est en base il est readOnly
+    newForm.readOnly = true;
+
     newForm.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, form);

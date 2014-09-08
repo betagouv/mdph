@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EmploiDifficultesCtrl', function($scope, $state) {
+  .controller('EmploiDifficultesCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
       'Quelles sont les difficultées liées à son handicap ?' : 'Quelles sont les difficultées liées à votre handicap ?';
 
     if (angular.isUndefined($scope.sectionModel.difficultes)) {

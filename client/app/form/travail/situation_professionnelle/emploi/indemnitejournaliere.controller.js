@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('IndemniteJournaliereCtrl', function($scope, $state) {
+  .controller('IndemniteJournaliereCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Touche-t-' + $scope.getPronoun() + ' des indemnités journalières ?' : 'Touchez vous des indemnités journalières ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Touche-t-' + FormService.FormService($scope.formAnswers) + ' des indemnités journalières ?' : 'Touchez vous des indemnités journalières ?';
 
     if (angular.isUndefined($scope.sectionModel.indemniteJournaliere)) {
       $scope.sectionModel.indemniteJournaliere = {};

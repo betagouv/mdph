@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('PoleEmploiCtrl', function($scope, $state) {
+  .controller('PoleEmploiCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Est-' + $scope.getPronoun() + ' dans une des situations suivantes ?' : 'Etes-vous dans une des situations suivantes ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Est-' + FormService.getPronoun($scope.formAnswers) + ' dans une des situations suivantes ?' : 'Etes-vous dans une des situations suivantes ?';
 
     if (angular.isUndefined($scope.sectionModel.poleEmploi)) {
       $scope.sectionModel.situationSansEmploi = {

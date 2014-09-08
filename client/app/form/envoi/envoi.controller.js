@@ -10,7 +10,7 @@
 angular.module('impactApp')
   .controller('EnvoiCtrl', function($scope, isAdult, $filter, $state, getDroits, $http, $modal, Auth) {
 
-    $scope.justificatifStr = $scope.estRepresentant() ?
+    $scope.justificatifStr = FormService.estRepresentant($scope.formAnswers) ?
       'de votre justificatif d\'identité ainsi que celui de la personne handicapée' :
       'de votre justificatif d\'identité';
 
@@ -58,8 +58,10 @@ angular.module('impactApp')
 
     $scope.saveForm = function() {
       if (Auth.isLoggedIn()) {
-        $http.put('/api/forms/mine', $scope.formAnswers);
-        $state.go('demande');
+        $http.put('/api/forms/mine', $scope.formAnswers)
+        .success(function() {
+          $state.go('demande');
+        });
       } else {
         $modal.open({
           templateUrl: '/components/modal/login.html',

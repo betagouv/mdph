@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TypeAideCtrl', function ($scope, $state) {
+  .controller('TypeAideCtrl', function ($scope, $state, FormService) {
 
-    if ($scope.estRepresentant()) {
+    if (FormService.estRepresentant($scope.formAnswers)) {
       $scope.subtitle ='Quelles sont ses attentes pour compenser son handicap ?';
     } else {
       $scope.subtitle ='Quelles sont vos attentes pour compenser votre handicap ?';

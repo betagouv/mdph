@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SocialCtrl', function($scope, $state) {
+  .controller('SocialCtrl', function($scope, $state, FormService) {
 
-    if ($scope.estRepresentant()) {
+    if (FormService.estRepresentant($scope.formAnswers)) {
       $scope.subtitle ='Quels sont ses besoins d\'aide dans ses relations sociales et familiales ?';
     } else {
       $scope.subtitle ='Quels sont vos besoins d\'aide dans vos relations sociales et familiales ?';

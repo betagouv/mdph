@@ -6,6 +6,7 @@ var crypto = require('crypto');
 
 var UserSchema = new Schema({
   name: String,
+  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
   email: { type: String, lowercase: true, unique: true, required: true },
   role: {
     type: String,

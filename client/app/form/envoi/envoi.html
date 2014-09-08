@@ -34,51 +34,54 @@
   <hr/>
 </div>
 
-<div class="text-center">
-  <h4>Pour terminer, téléchargez ou envoyez vos pièces justificatives</h4>
-</div>
-
-<div class="row answer">
-  <div class="col-md-4 col-md-offset-2">
-    <button class="btn btn-block btn-default btn-choice" ng-model="formAnswers.typeEnvoi" btn-radio="'numerique'">
-      <strong>J'accepte</strong><br/>que la MDPH, pour mieux connaître ma situation et mes besoins, échange avec les professionnels qui m'accompagnents, en application de l'article L241&#8209;10 du code d'action sociale et des familles.
-    </button>
+<div ng-hide="form.readOnly">
+  <div class="text-center">
+    <h4>Pour terminer, téléchargez ou envoyez vos pièces justificatives</h4>
   </div>
 
-  <div class="col-md-4">
-    <button class="btn btn-block btn-default btn-choice" ng-model="formAnswers.typeEnvoi" btn-radio="'papier'">
-      <strong>Je n'accepte pas</strong><br/>que la MDPH échange avec les professionnels qui m'accompagnent, et je m'engage à ce que toute information complémentaire nécessaire à la MDPH passe par moi.
-    </button>
-  </div>
-</div>
+  <div class="row answer">
+    <div class="col-md-4 col-md-offset-2">
+      <button class="btn btn-block btn-default btn-choice" ng-model="formAnswers.typeEnvoi" btn-radio="'numerique'">
+        <strong>J'accepte</strong><br/>que la MDPH, pour mieux connaître ma situation et mes besoins, échange avec les professionnels qui m'accompagnents, en application de l'article L241&#8209;10 du code d'action sociale et des familles.
+      </button>
+    </div>
 
-<div class="row answer" ng-if="formAnswers.typeEnvoi==='numerique'">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="jumbotron detailEnvoi">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <label class="btn btn-primary btn-block" ng-click="saveForm()">Enregistrer votre demande</label>
+    <div class="col-md-4">
+      <button class="btn btn-block btn-default btn-choice" ng-model="formAnswers.typeEnvoi" btn-radio="'papier'">
+        <strong>Je n'accepte pas</strong><br/>que la MDPH échange avec les professionnels qui m'accompagnent, et je m'engage à ce que toute information complémentaire nécessaire à la MDPH passe par moi.
+      </button>
+    </div>
+  </div>
+
+  <div class="row answer" ng-if="formAnswers.typeEnvoi==='numerique'">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="jumbotron detailEnvoi">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <label class="btn btn-primary btn-block" ng-click="saveForm()">Enregistrer votre demande</label>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row answer" ng-if="formAnswers.typeEnvoi==='papier'">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="jumbotron detailEnvoi">
-      <p>Liste des pièces à joindre obligatoirement à votre demande</p>
-      <ul class="answer">
-        <li>Un certificat médical de moins de 3 mois</li>
-        <li>Une photocopie recto/verso {{justificatifStr}}</li>
-        <li ng-if='showAdult'>Une photocopie d'un justificatif de domicile</li>
-        <li>Une attestation de jugement en protection juridique (le cas échéant)</li>
-      </ul>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <label class="btn btn-primary btn-block">Télécharger votre formulaire</label>
+  <div class="row answer" ng-if="formAnswers.typeEnvoi==='papier'">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="jumbotron detailEnvoi">
+        <p>Liste des pièces à joindre obligatoirement à votre demande</p>
+        <ul class="answer">
+          <li>Un certificat médical de moins de 3 mois</li>
+          <li>Une photocopie recto/verso {{justificatifStr}}</li>
+          <li ng-if='showAdult'>Une photocopie d'un justificatif de domicile</li>
+          <li>Une attestation de jugement en protection juridique (le cas échéant)</li>
+        </ul>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <label class="btn btn-primary btn-block">Télécharger votre formulaire</label>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>

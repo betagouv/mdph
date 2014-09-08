@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
 var FormSchema = new Schema({
   formAnswers:  Schema.Types.Mixed,
   user:         { type: Schema.Types.ObjectId, ref: 'User' },
-  updatedAt:    { type: Date }
+  updatedAt:    { type: Date },
+  readOnly:     { type: Boolean }
 });
 
 module.exports = mongoose.model('Form', FormSchema);

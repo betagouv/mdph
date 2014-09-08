@@ -1,0 +1,10 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="form in forms">
+        <strong>{{form.user.name}}</strong><br>
+        <span class="text-muted">{{form.user.email}}</span>
+    </li>
+  </ul>
+</div>

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DeplacementCtrl', function($scope, $state) {
+  .controller('DeplacementCtrl', function($scope, $state, FormService) {
 
-    if ($scope.estRepresentant()) {
+    if (FormService.estRepresentant($scope.formAnswers)) {
       $scope.subtitle ='Quels sont ses besoins d\'aide pour se déplacer ?';
     } else {
       $scope.subtitle ='Quels sont vos besoins d\'aide pour se déplacer ?';

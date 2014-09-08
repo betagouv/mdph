@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DateNaissanceCtrl', function($scope, $state, datepickerConfig) {
-    $scope.subtitle = $scope.estRepresentant() ? 'Quelle est sa date de naissance ?': 'Quelle est votre date de naissance ?';
+  .controller('DateNaissanceCtrl', function($scope, $state, datepickerConfig, FormService) {
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Quelle est sa date de naissance ?': 'Quelle est votre date de naissance ?';
 
     if (angular.isUndefined($scope.sectionModel.dateNaissance)) {
       $scope.sectionModel.dateNaissance = {label: 'Date de naissance'};

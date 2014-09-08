@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AutresRenseignementsCtrl', function ($scope, $state) {
+  .controller('AutresRenseignementsCtrl', function ($scope, $state, FormService) {
 
     $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer';
-    $scope.placeholder = $scope.estRepresentant() ?
+    $scope.placeholder = FormService.estRepresentant($scope.formAnswers) ?
       'Renseignements importants, et notamment son(ses) projet(s) dans sa vie de tous les jours' :
       'Renseignements importants, et notamment votre(vos) projet(s) dans votre vie de tous les jours';
 

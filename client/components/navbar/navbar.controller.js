@@ -6,15 +6,12 @@ angular.module('impactApp')
     {
       'title': 'Accueil',
       'link': 'main'
-    },
-    {
-      'title': 'Questionnaire',
-      'link': 'form'
     }];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
+    $scope.isAdminMdph = Auth.isAdminMdph;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isUser = Auth.isUser;
 

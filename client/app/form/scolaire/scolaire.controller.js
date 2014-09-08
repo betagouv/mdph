@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ScolaireCtrl', function ($scope, $sessionStorage) {
+  .controller('ScolaireCtrl', function ($scope, $sessionStorage, FormService) {
 
     $scope.currentSection = $sessionStorage.sectionScolarite;
-    $scope.title = $scope.estRepresentant() ? 'Sa scolarité' : 'Votre scolarité';
+    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa scolarité' : 'Votre scolarité';
 
     if (angular.isUndefined($scope.formAnswers.scolaire)) {
       $scope.formAnswers.scolaire = {
@@ -29,6 +29,7 @@ angular.module('impactApp')
         span: '2',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
+        isEnabled: angular.isDefined($scope.form),
         showBefore: true
       };
     }

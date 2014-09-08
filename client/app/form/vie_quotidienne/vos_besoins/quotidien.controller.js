@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('QuotidienCtrl', function($scope, $state) {
+  .controller('QuotidienCtrl', function($scope, $state, FormService) {
 
-    if ($scope.estRepresentant()) {
+    if (FormService.estRepresentant($scope.formAnswers)) {
       $scope.subtitle ='Quels sont ses besoins d\'aide dans la vie quotidienne ?';
     } else {
       $scope.subtitle ='Quels sont vos besoins d\'aide dans la vie quotidienne ?';

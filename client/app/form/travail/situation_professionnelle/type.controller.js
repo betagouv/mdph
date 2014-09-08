@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TypeEmploiCtrl', function($scope, $state) {
-    $scope.subtitle = $scope.estRepresentant() ? 'Quel est son type d\'emploi ?' : 'Quel est votre type d\'emploi ?';
+  .controller('TypeEmploiCtrl', function($scope, $state, FormService) {
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Quel est son type d\'emploi ?' : 'Quel est votre type d\'emploi ?';
 
     $scope.question = {
       model: 'type',

@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AmenagementCtrl', function($scope, $state) {
+  .controller('AmenagementCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
       'Des aménagements ont-ils été réalisés sur son poste de travail ?' : 'Des aménagements ont-ils été réalisés sur votre poste de travail ?';
 
     if (angular.isUndefined($scope.sectionModel.amenagement)) {

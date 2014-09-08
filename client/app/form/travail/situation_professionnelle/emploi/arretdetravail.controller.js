@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('ArretDeTravailCtrl', function($scope, $state) {
+  .controller('ArretDeTravailCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Est-' + $scope.getPronoun() + ' actuellement en arrêt de travail ?' : 'Etes-vous actuellement en arrêt de travail ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Est-' + FormService.getPronoun($scope.formAnswers) + ' actuellement en arrêt de travail ?' : 'Etes-vous actuellement en arrêt de travail ?';
 
     $scope.question = {
       model: 'arretDeTravail',

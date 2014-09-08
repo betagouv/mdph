@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('DescriptionProjetProCtrl', function($scope, $state) {
+  .controller('DescriptionProjetProCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'A-t-' + $scope.getPronoun() + ' un ou plusieurs projet(s) professionnel(s) ?' : 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'A-t-' + FormService.getPronoun($scope.formAnswers) + ' un ou plusieurs projet(s) professionnel(s) ?' : 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?';
 
     if (angular.isUndefined($scope.sectionModel.description)) {
       $scope.sectionModel.description = {};

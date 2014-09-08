@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EmploiTempsCtrl', function($scope, $state) {
+  .controller('EmploiTempsCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ? 'Son emploi est-il a temps complet ou partiel ?' : 'Votre emploi est-il a temps complet ou partiel ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Son emploi est-il a temps complet ou partiel ?' : 'Votre emploi est-il a temps complet ou partiel ?';
 
     if (angular.isUndefined($scope.sectionModel.temps)) {
       $scope.sectionModel.temps = {};

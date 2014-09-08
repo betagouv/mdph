@@ -21,8 +21,8 @@ angular.module('impactApp')
         span: '1',
         label: 'Votre situation',
         labelRep: 'Sa situation',
-        isEnabled: false,
-        showAfter: true,
+        isEnabled: true,
+        showAfter: true
       };
       $scope.$storage.sectionAttentesAidant = {
         id: 1,
@@ -30,7 +30,7 @@ angular.module('impactApp')
         span: '2',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
-        isEnabled: false,
+        isEnabled: angular.isDefined($scope.form),
         showBefore: true
       };
     }

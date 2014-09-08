@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('BesoinSoutienCtrl', function ($scope, $state) {
+  .controller('BesoinSoutienCtrl', function ($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'Pour quoi a-t-' + $scope.getPronoun() + ' besoin de soutien ?' : 'Pour quoi avez-vous besoin de soutien ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'Pour quoi a-t-' + FormService.getPronoun($scope.formAnswers) + ' besoin de soutien ?' : 'Pour quoi avez-vous besoin de soutien ?';
 
     if (angular.isUndefined($scope.sectionModel.besoinSoutien)) {
       $scope.sectionModel.besoinSoutien = {

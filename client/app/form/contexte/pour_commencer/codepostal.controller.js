@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CodePostalCtrl', function($scope, $state) {
+  .controller('CodePostalCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = ($scope.estRepresentant()) ? 'Quel est le code postal de ' + $scope.getName() + ' ?': 'Quel est votre code postal ?';
+    $scope.subtitle = (FormService.estRepresentant($scope.formAnswers)) ? 'Quel est le code postal de ' + FormService.getName($scope.formAnswers) + ' ?': 'Quel est votre code postal ?';
 
     if (angular.isUndefined($scope.sectionModel.codePostal)) {
       $scope.sectionModel.codePostal = {label: 'Code postal', value: ''};

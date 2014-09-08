@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RenouvellementCtrl', function($scope, $state) {
+  .controller('RenouvellementCtrl', function($scope, $state, FormService) {
     $scope.subtitle = 'Quelle est la raison de votre renouvellement ?';
 
     if (angular.isUndefined($scope.sectionModel.renouvellement)) {
@@ -17,7 +17,7 @@ angular.module('impactApp')
       answers: [
         {
           label: 'Vous arrivez à la fin de vos droits',
-          labelRep: $scope.getName() + ' arrive à la fin de ses droits',
+          labelRep: FormService.getName($scope.formAnswers) + ' arrive à la fin de ses droits',
           model: 'finDeVosDroits'
         },
         {

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ObjetCtrl', function($scope, $sessionStorage) {
+  .controller('ObjetCtrl', function($scope, $sessionStorage, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ? 'Quels autres projets sont concernés par sa demande ?' : 'Quels autres projets sont concernés par votre demande ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Quels autres projets sont concernés par sa demande ?' : 'Quels autres projets sont concernés par votre demande ?';
 
     if (angular.isUndefined($scope.sectionModel.objet)) {
       $scope.sectionModel.objet = {

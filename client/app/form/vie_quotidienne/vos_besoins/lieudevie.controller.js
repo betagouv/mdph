@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LieuDeVieCtrl', function($scope, $state) {
+  .controller('LieuDeVieCtrl', function($scope, $state, FormService) {
 
-    if ($scope.estRepresentant()) {
+    if (FormService.estRepresentant($scope.formAnswers)) {
       $scope.subtitle ='Quels sont ses besoins d\'aide pour adapter son lieu de vie ?';
     } else {
       $scope.subtitle ='Quels sont vos besoins d\'aide pour adapter votre lieu de vie ?';

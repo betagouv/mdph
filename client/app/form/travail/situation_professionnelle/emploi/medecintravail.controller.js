@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('MedecinTravailCtrl', function($scope, $state) {
+  .controller('MedecinTravailCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'A-t-' + $scope.getPronoun() + ' rencontré le médecin du travail en visite de pré-reprise ?' : 'Avez-vous rencontré le médecin du travail en visite de pré-reprise ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'A-t-' + FormService.getPronoun($scope.formAnswers) + ' rencontré le médecin du travail en visite de pré-reprise ?' : 'Avez-vous rencontré le médecin du travail en visite de pré-reprise ?';
 
     if (angular.isUndefined($scope.sectionModel.medecinTravail)) {
       $scope.sectionModel.medecinTravail = {};

@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('ProfessionnelSocialCtrl', function($scope, $state) {
+  .controller('ProfessionnelSocialCtrl', function($scope, $state, FormService) {
 
-    $scope.subtitle = $scope.estRepresentant() ?
-      'A-t-' + $scope.getPronoun() + ' rencontré un professionnel du service social de la CARSA ?' : 'Avez-vous rencontré un professionnel du service social de la CARSA ?';
+    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
+      'A-t-' + FormService.getPronoun($scope.formAnswers) + ' rencontré un professionnel du service social de la CARSA ?' : 'Avez-vous rencontré un professionnel du service social de la CARSA ?';
 
     if (angular.isUndefined($scope.sectionModel.profesionnelSocial)) {
       $scope.sectionModel.profesionnelSocial = {};

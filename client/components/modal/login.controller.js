@@ -15,12 +15,15 @@ angular.module('impactApp')
         })
         .then( function() {
           $modalInstance.dismiss('cancel');
-          if ($http.get('/api/forms/mine')) {
+          $http.put('/api/forms/mine', $scope.formAnswers)
+          .success(function() {
+            debugger;
+            $state.go('demande');
+          })
+          .error(function() {
+            debugger;
             $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte. Le questionnaire courant sera perdu.');
-          } else {
-            $http.put('/api/forms/mine', $scope.formAnswers);
-          }
-          $state.go('demande');
+          });
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
