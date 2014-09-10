@@ -3,7 +3,8 @@
 angular.module('impactApp')
   .controller('ScolaireCtrl', function ($scope, $sessionStorage, FormService) {
 
-    $scope.currentSection = $sessionStorage.sectionScolarite;
+    $scope.currentSectionId = 2;
+
     $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa scolarité' : 'Votre scolarité';
 
     if (angular.isUndefined($scope.formAnswers.scolaire)) {

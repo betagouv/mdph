@@ -28,7 +28,7 @@ angular.module('impactApp')
         $scope.sections[0].isEnabled = true;
         $state.go('^.situation.lien');
       } else {
-        $scope.goToNextSection($scope.currentSection);
+        $scope.goToNextSection($scope.currentSectionId);
       }
     };
   });

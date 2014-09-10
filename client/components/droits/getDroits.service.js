@@ -52,7 +52,7 @@ angular.module('impactApp')
             description: 'L\'allocation d\'éducation de l\'enfant handicapé (AEEH) est destinée à soutenir les personnes qui assurent la charge d\'un enfant en situation de handicap.',
             link: 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml',
             shouldHave: function() {
-              return !isAdult() && (attentesType && attentesType.financierHandicap) &&
+              return !isAdult && (attentesType && attentesType.financierHandicap) &&
                 (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
                 besoinsDeplacement && besoinsDeplacement.intraDomicile ||
                 besoinsSocial && besoinsSocial.securite);
@@ -65,7 +65,7 @@ angular.module('impactApp')
             description: 'L\'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.',
             link: 'http://vosdroits.service-public.fr/particuliers/N12230.xhtml',
             shouldHave: function() {
-              return  (isAdult() && attentesType && attentesType.financierHandicap) &&
+              return  (isAdult && attentesType && attentesType.financierHandicap) &&
                 (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
                   besoinsSocial && (besoinsSocial.proches  || besoinsSocial.securite) ||
                   besoinsDeplacement && besoinsDeplacement.intraDomicile ||
@@ -113,7 +113,7 @@ angular.module('impactApp')
             description: 'Les services d\'accompagnement à la vie sociale ont pour vocation de contribuer à la réalisation du projet de vie de personnes adultes handicapées par un accompagnement adapté.',
             link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAVS-Service-d-Accompagnement-a-la-Vie-Sociale,i5629.html',
             shouldHave: function() {
-              return isAdult() &&
+              return isAdult &&
                 (besoinsQuotidien && besoinsQuotidien.logement) &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
                   besoinsQuotidien && besoinsQuotidien.sante);
@@ -126,7 +126,7 @@ angular.module('impactApp')
             description: 'Le service d\'accompagnement médico-social pour adultes handicapés (SAMSAH) a pour vocation la recherche des missions visées à l\'article D 3121553 du code de l\'action sociale et des familles.',
             link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAMSAH-Service-d-Accompagnement-Medico-Social-pour-Adultes-Handicapes,i5630.html',
             shouldHave: function() {
-              return isAdult() &&
+              return isAdult &&
                 (besoinsQuotidien && besoinsQuotidien.logement) &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
                   besoinsQuotidien && besoinsQuotidien.sante);

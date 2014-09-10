@@ -5,7 +5,7 @@ angular.module('impactApp')
 
     $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie au travail' : 'Votre vie au travail';
 
-    $scope.currentSection = $scope.$storage.sectionTravail;
+    $scope.currentSectionId = 3;
 
     if (angular.isUndefined($scope.formAnswers.travail)) {
       $scope.formAnswers.travail = {

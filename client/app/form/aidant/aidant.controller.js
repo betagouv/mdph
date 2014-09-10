@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AidantCtrl', function ($scope, $sessionStorage) {
+  .controller('AidantCtrl', function ($scope) {
 
-    $scope.currentSection = $sessionStorage.sectionAidant;
+    $scope.currentSectionId = 4;
+
     $scope.title = 'Cette partie s\'adresse  à(aux) l\'aidant(s) de la personne en situation de handicap';
     $scope.hideSubsections = true;
 

@@ -65,7 +65,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $scope.$storage.sectionVieQuotidienne.isEnabled = true;
-      $scope.goToNextSection($scope.currentSection);
+      $scope.goToNextSection($scope.currentSectionId);
     };
   });

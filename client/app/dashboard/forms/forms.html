@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="form in forms">
+    <strong>{{form.user.name}}</strong><br>
+    <span class="text-muted">{{updatedAt(form)}}</span>
+    <a ng-click="delete(form)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+  </li>
+</ul>

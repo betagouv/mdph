@@ -33,10 +33,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $sessionStorage.sectionScolarite.isEnabled = $scope.model.objet.scolarite;
-      $sessionStorage.sectionTravail.isEnabled = $scope.model.objet.travail;
-      $sessionStorage.sectionAidant.isEnabled = true;
-      $sessionStorage.sectionEnvoi.isEnabled = true;
-      $scope.goToNextSection($scope.currentSection);
+      $scope.goToNextSection($scope.currentSectionId);
     };
   });

@@ -1,10 +1,15 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="form in forms">
-        <strong>{{form.user.name}}</strong><br>
-        <span class="text-muted">{{form.user.email}}</span>
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-sm-3">
+      <ul class="nav nav-pills nav-stacked">
+        <li ui-sref-active="active"><a ui-sref="dashboard.forms">Demandes</a></li>
+        <li ui-sref-active="active"><a ui-sref="dashboard.users">Utilisateurs</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9">
+      <ui-view></ui-view>
+    </div>
+  </div>
 </div>

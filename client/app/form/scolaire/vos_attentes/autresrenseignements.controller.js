@@ -12,6 +12,6 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $scope.goToNextSection($scope.currentSection);
+      $scope.goToNextSection($scope.currentSectionId);
     };
   });

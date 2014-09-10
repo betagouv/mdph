@@ -2,7 +2,9 @@
 
 angular.module('impactApp')
   .controller('VieQuotidienneCtrl', function ($scope, $sessionStorage, FormService) {
-    $scope.currentSection = $sessionStorage.sectionVieQuotidienne;
+
+    $scope.currentSectionId = 1;
+
     $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
 
     if (angular.isUndefined($scope.formAnswers.vie)) {

@@ -1,0 +1,8 @@
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="user in users">
+      <strong>{{user.name}}</strong><br>
+      <span class="text-muted">{{user.email}}</span> |
+      <span class="text-muted">{{user.role | role}}</span>
+      <a ng-show="user.role !== 'adminMdph'" ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+  </li>
+</ul>

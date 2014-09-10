@@ -2,6 +2,18 @@
 
 var _ = require('lodash');
 var Mdph = require('./mdph.model');
+var User = require('../user/user.model');
+
+// Get all users linked to a single mdph
+exports.showUsers = function(req, res) {
+  User.find({
+    mdph: req.params.id
+  }, function (err, list) {
+    if(err) { return handleError(res, err); }
+    if(!list) { return res.send(404); }
+    return res.json(list);
+  });
+};
 
 // Get list of mdphs
 exports.index = function(req, res) {

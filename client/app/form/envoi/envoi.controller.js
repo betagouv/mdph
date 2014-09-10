@@ -8,17 +8,21 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EnvoiCtrl', function($scope, isAdult, $filter, $state, getDroits, $http, $modal, Auth) {
+  .controller('EnvoiCtrl', function($scope, $filter, $state, getDroits, $http, $modal, Auth, FormService) {
+
+    if (angular.isUndefined($scope.formAnswers.envoi)) {
+      $scope.formAnswers.envoi = true;
+    }
 
     $scope.justificatifStr = FormService.estRepresentant($scope.formAnswers) ?
       'de votre justificatif d\'identité ainsi que celui de la personne handicapée' :
       'de votre justificatif d\'identité';
 
-    $scope.showAdult = isAdult();
+    $scope.showAdult = $scope.isAdult();
 
     var computePrestations = function() {
       var prestations = [];
-      var defaultPrestations = getDroits($scope.formAnswers, $scope.isAdult);
+      var defaultPrestations = getDroits($scope.formAnswers, $scope.isAdult());
       var mesPrestations = $scope.formAnswers.vie.answers.situation.answers.mesPrestations;
 
       angular.forEach(defaultPrestations, function(category) {

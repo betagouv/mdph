@@ -5,7 +5,7 @@ angular.module('impactApp')
 
     /* Pour passer à la section suivante
     ---------------------------------------*/
-    $scope.currentSection = $scope.$storage.sectionContexte;
+    $scope.currentSectionId = 0;
 
     /* Section dans sessionStorage
     ---------------------------------------*/

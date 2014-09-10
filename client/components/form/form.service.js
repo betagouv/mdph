@@ -49,6 +49,10 @@ angular.module('impactApp')
 
       isAdult: function(answers) {
         return isAdult(answers.contexte);
+      },
+
+      updatedAt: function(form) {
+        return moment(form.updatedAt).fromNow();
       }
     };
   });

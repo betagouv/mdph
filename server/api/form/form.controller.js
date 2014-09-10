@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Form = require('./form.model');
+var auth = require('../../auth/auth.service');
 
 // Get list of forms
 exports.index = function(req, res) {
@@ -92,6 +93,7 @@ exports.saveForm = function(req, res, next) {
 
     // A verifier, pour l'instant des que le formulaire est en base il est readOnly
     newForm.readOnly = true;
+    newForm.updatedAt = new Date();
 
     newForm.save(function (err) {
       if (err) { return handleError(res, err); }

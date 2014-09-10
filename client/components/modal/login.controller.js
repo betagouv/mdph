@@ -17,11 +17,9 @@ angular.module('impactApp')
           $modalInstance.dismiss('cancel');
           $http.put('/api/forms/mine', $scope.formAnswers)
           .success(function() {
-            debugger;
             $state.go('demande');
           })
           .error(function() {
-            debugger;
             $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte. Le questionnaire courant sera perdu.');
           });
         })

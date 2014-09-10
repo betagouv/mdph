@@ -31,7 +31,7 @@ angular.module('impactApp', [
 
       // Intercept 401s and redirect you to login
       responseError: function(response) {
-        if(response.status === 401 && response.config.url !== '/api/forms/mine') {
+        if(response.status === 401) {
           $location.path('/login');
           // remove any stale tokens
           $cookieStore.remove('token');
