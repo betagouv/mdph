@@ -8,12 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/demande/demande.html',
         controller: 'DemandeCtrl',
         resolve: {
-          currentForm:  function($http) {
-            return $http.get('/api/forms/mine').then(function(result) {
-              return result.data;
-            }).catch(function() {
-              return undefined;
-            });
+          currentForm:  function(FormService) {
+            return FormService.getCurrentForm();
            }
         }
       });
