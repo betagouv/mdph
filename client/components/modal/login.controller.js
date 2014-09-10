@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ModalLoginCtrl', function ($scope, Auth, $location, $http, $state, $modalInstance, $window) {
+  .controller('ModalLoginCtrl', function ($scope, Auth, $modalInstance) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -14,17 +14,35 @@ angular.module('impactApp')
           password: $scope.user.password
         })
         .then( function() {
-          $modalInstance.dismiss('cancel');
-          $http.put('/api/forms/mine', $scope.formAnswers)
-          .success(function() {
-            $state.go('demande');
-          })
-          .error(function() {
-            $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte. Le questionnaire courant sera perdu.');
-          });
+          $modalInstance.close();
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
+        });
+      }
+    };
+
+    $scope.register = function(form) {
+      $scope.submitted = true;
+
+      if(form.$valid) {
+        Auth.createUser({
+          name: $scope.user.name,
+          email: $scope.user.email,
+          password: $scope.user.password
+        })
+        .then( function() {
+          $modalInstance.close();
+        })
+        .catch( function(err) {
+          err = err.data;
+          $scope.errors = {};
+
+          // Update validity of form fields that match the mongoose errors
+          angular.forEach(err.errors, function(error, field) {
+            form[field].$setValidity('mongoose', false);
+            $scope.errors[field] = error.message;
+          });
         });
       }
     };

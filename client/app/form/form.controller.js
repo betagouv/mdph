@@ -4,10 +4,7 @@ angular.module('impactApp')
   .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, SectionService, FormService, currentForm) {
 
     datepickerConfig.showWeeks = false;
-
-    $scope.$storage = $sessionStorage.$default({
-      answers: {}
-    });
+    $scope.$storage = $sessionStorage;
 
     $scope.isAdult = function() {
       return FormService.isAdult($scope.formAnswers);
@@ -33,13 +30,7 @@ angular.module('impactApp')
 
     $scope.sections = SectionService.getSections();
     $scope.goToNextSection = SectionService.goToNextSection;
-
-    if (angular.isDefined(currentForm)) {
-      $scope.form = currentForm;
-      $scope.formAnswers = currentForm.formAnswers;
-    } else {
-      $scope.formAnswers = $scope.$storage.answers;
-    }
+    $scope.formAnswers = $scope.$storage.answers = currentForm.formAnswers;
 
     SectionService.refresh($scope.formAnswers);
   });

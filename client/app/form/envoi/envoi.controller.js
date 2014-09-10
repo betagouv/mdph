@@ -67,17 +67,7 @@ angular.module('impactApp')
           $state.go('demande');
         });
       } else {
-        $modal.open({
-          templateUrl: '/components/modal/login.html',
-          backdrop: true,
-          windowClass: 'modal',
-          controller: 'ModalLoginCtrl',
-          resolve: {
-            user: function () {
-              return $scope.user;
-            }
-          }
-        });
+        $state.go('form.envoi.modal.login');
       }
     };
   });

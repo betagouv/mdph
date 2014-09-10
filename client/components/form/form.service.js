@@ -1,8 +1,29 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('FormService', function FormService(isAdult) {
+  .factory('FormService', function FormService(isAdult, $sessionStorage, $http, $state, $window) {
     return {
+      getCurrentForm: function() {
+        return $http.get('/api/forms/mine').then(function(result) {
+          return result.data;
+        }).catch(function() {
+          return {
+            formAnswers: {}
+          };
+        });
+      },
+
+      saveCurrentForm: function() {
+        $http.put('/api/forms/mine', $sessionStorage.answers)
+        .success(function() {
+          $state.go('demande');
+        })
+        .error(function() {
+          $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte. Le questionnaire courant sera perdu.');
+          $state.go('demande');
+        });
+      },
+
       getRepresentant: function(answers) {
         if (angular.isUndefined(answers.contexte)||
             angular.isUndefined(answers.contexte.answers)) {
