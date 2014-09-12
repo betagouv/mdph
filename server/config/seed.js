@@ -11,7 +11,9 @@ var Form = require('../api/form/form.model');
 
 console.log('test');
 
-Form.find({}).remove().exec();
+Form.find({}).remove(function() {
+  console.log('finished deleting forms')
+});
 
 Mdph.find({}).remove(function() {
   Mdph.create({

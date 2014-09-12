@@ -1,15 +1,14 @@
 <qtitle></qtitle>
 
-<div class="row answer" ng-repeat="answer in question.answers" ng-if="debug || (!answer.onlyAdult || isAdult())">
-  <div class="col-md-8 col-md-offset-2" tooltip="{{debug && answer.onlyAdult && !isAdult() ? debugAdultText : ''}}">
+<div class="row answer" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
+  <div class="col-md-8 col-md-offset-2">
     <button
       class="btn btn-default btn-block"
-      ng-disabled="debug && answer.onlyAdult && !isAdult()"
-      ng-model="model[question.model][answer.model]"
+      ng-model="sectionModel[question.model][answer.model]"
       btn-checkbox>
-      {{getLabel(answer)}}
+      {{answer.label}}
     </button>
-    <div class="well well-detail slide" ng-if="answer.detail && model[question.model][answer.model]">
+    <div class="well well-detail slide" ng-if="answer.detail && sectionModel[question.model][answer.model]">
       <div class="row form-horizontal" ng-if="!answer.detailUrl">
         <label class="col-md-2 control-label">Précisez</label>
         <div class="col-md-10">
@@ -28,3 +27,8 @@
     <small><em>Plusieurs choix possibles</em></small>
   </div>
 </div>
+
+
+<pre>
+  {{sectionModel[question.model]}}
+</pre>

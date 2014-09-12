@@ -6,10 +6,8 @@ angular.module('impactApp')
       getCurrentForm: function() {
         return $http.get('/api/forms/mine').then(function(result) {
           return result.data;
-        }).catch(function() {
-          return {
-            formAnswers: {}
-          };
+        }).catch( function() {
+          return null;
         });
       },
 
@@ -27,7 +25,7 @@ angular.module('impactApp')
       getRepresentant: function(answers) {
         if (angular.isUndefined(answers.contexte)||
             angular.isUndefined(answers.contexte.answers)) {
-          return undefined;
+          return null;
         }
         return answers.contexte.answers.demandeur;
       },
@@ -61,11 +59,10 @@ angular.module('impactApp')
 
       estRepresentant: function(answers) {
         if (angular.isUndefined(answers.contexte) ||
-            angular.isUndefined(answers.contexte.answers) ||
-            angular.isUndefined(answers.contexte.answers.estRepresentant)) {
+            angular.isUndefined(answers.contexte.answers)) {
           return false;
         }
-        return answers.contexte.answers.estRepresentant.value;
+        return answers.contexte.answers.estRepresentant;
       },
 
       isAdult: function(answers) {

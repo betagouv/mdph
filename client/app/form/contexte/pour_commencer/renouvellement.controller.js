@@ -1,32 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RenouvellementCtrl', function($scope, $state, FormService) {
-    $scope.subtitle = 'Quelle est la raison de votre renouvellement ?';
+  .controller('RenouvellementCtrl', function($scope, $state, QuestionService) {
 
-    if (angular.isUndefined($scope.sectionModel.renouvellement)) {
-      $scope.sectionModel.renouvellement = {
-        raison: {},
-        detail: ''
-      };
+    $scope.question = QuestionService.get('raison', $scope.formAnswers);
+
+    if (angular.isUndefined($scope.sectionModel[$scope.question.model])) {
+      $scope.sectionModel[$scope.question.model] = {};
     }
-
-    $scope.model = $scope.sectionModel.renouvellement;
-    $scope.question = {
-      model: 'raison',
-      answers: [
-        {
-          label: 'Vous arrivez à la fin de vos droits',
-          labelRep: FormService.getName($scope.formAnswers) + ' arrive à la fin de ses droits',
-          model: 'finDeVosDroits'
-        },
-        {
-          label: 'Votre situation a changé',
-          labelRep: 'Sa situation a changé',
-          model: 'changementDeSituation'
-        }
-      ]
-    };
 
     $scope.nextStep = function() {
       $state.go('^.date_naissance');

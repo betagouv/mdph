@@ -1,17 +1,15 @@
 <qtitle></qtitle>
 
 <div class="row answer" ng-repeat="answer in question.answers"
-  ng-if="debug || (!answer.onlyAdult || isAdult())">
-  <div class="col-md-8 col-md-offset-2"
-      tooltip="{{debug && answer.onlyAdult && !isAdult() ? debugAdultText : ''}}">
+  ng-if="!answer.onlyAdult || isAdult()">
+  <div class="col-md-8 col-md-offset-2">
     <button
       class="btn btn-default btn-block text-capitalize"
-      ng-disabled="debug && answer.onlyAdult && !isAdult()"
       ng-model="sectionModel[question.model]"
-      btn-radio="answer">
-      {{getLabel(answer)}}
+      btn-radio="answer.value">
+      {{answer.label}}
     </button>
-    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model].value === answer.value">
+    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.value">
       <div ng-include="answer.detailUrl"></div>
     </div>
   </div>

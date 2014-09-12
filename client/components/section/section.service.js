@@ -28,16 +28,23 @@ angular.module('impactApp')
     };
 
     return {
-      getSections: function() {
+      getSections: function(form, refresh) {
+        if (refresh) {
+          this.refresh(form);
+        }
         return sections;
       },
 
-      refresh: function(answers) {
+      refresh: function(form) {
+        var answers = form.answers;
+        if (angular.isUndefined(answers)) {
+          return;
+        }
         vieQuotidienne.isEnabled = angular.isDefined(answers.vie);
         scolarite.isEnabled = angular.isDefined(answers.scolaire) || getAnswerSectionScolaire(answers);
         travail.isEnabled = angular.isDefined(answers.travail) || getAnswerSectionTravail(answers);
         aidant.isEnabled = angular.isDefined(answers.aidant) ;
-        envoi.isEnabled = angular.isDefined(answers.envoi);
+        envoi.isEnabled = angular.isDefined(form.envoi);
       },
 
       goToNextSection: function(currentSectionId) {

@@ -1,7 +1,6 @@
 <div class="row form-horizontal">
   <label class="col-md-3 control-label">{{answer.detailLabel || 'Précisez'}}</label>
   <div class="col-md-9">
-    <input type="text" class="form-control" ng-if="answer.detailModel" ng-model="$parent.sectionModel[question.model][answer.detailModel]" placeholder="{{answer.placeholder}}">
-    <input type="text" class="form-control" ng-if="!answer.detailModel" ng-model="$parent.sectionModel[question.model]['detail']" placeholder="{{answer.placeholder}}">
+    <input type="text" class="form-control" ng-model="sectionModel[answer.detailModel]" placeholder="{{answer.placeholder}}">
   </div>
 </div>

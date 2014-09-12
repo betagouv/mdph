@@ -32,7 +32,6 @@ angular.module('impactApp')
         sref: 'form.contexte.situations',
         span: '2',
         label: 'Situations particulières',
-        isEnabled: angular.isDefined($scope.form),
         showBefore: true
       };
     }

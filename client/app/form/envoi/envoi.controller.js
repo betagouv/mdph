@@ -10,8 +10,8 @@
 angular.module('impactApp')
   .controller('EnvoiCtrl', function($scope, $filter, $state, getDroits, $http, $modal, Auth, FormService) {
 
-    if (angular.isUndefined($scope.formAnswers.envoi)) {
-      $scope.formAnswers.envoi = true;
+    if (angular.isUndefined($scope.form.envoi)) {
+      $scope.form.envoi = true;
     }
 
     $scope.justificatifStr = FormService.estRepresentant($scope.formAnswers) ?

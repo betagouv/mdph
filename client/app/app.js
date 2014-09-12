@@ -18,7 +18,7 @@ angular.module('impactApp', [
     $httpProvider.interceptors.push('authInterceptor');
   })
 
-  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+  .factory('authInterceptor', function ($rootScope, $q, $cookieStore) {
     return {
       // Add authorization token to headers
       request: function (config) {

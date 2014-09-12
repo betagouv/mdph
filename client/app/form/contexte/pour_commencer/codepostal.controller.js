@@ -1,23 +1,18 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CodePostalCtrl', function($scope, $state, FormService) {
+  .controller('CodePostalCtrl', function($scope, $state, FormService, QuestionService) {
 
-    $scope.subtitle = (FormService.estRepresentant($scope.formAnswers)) ? 'Quel est le code postal de ' + FormService.getName($scope.formAnswers) + ' ?': 'Quel est votre code postal ?';
+    $scope.question = QuestionService.get('codePostal', $scope.formAnswers);
 
-    if (angular.isUndefined($scope.sectionModel.codePostal)) {
-      $scope.sectionModel.codePostal = {label: 'Code postal', value: ''};
-      $scope.sectionModel.mdph = {label: 'MDPH', value: ''};
-    }
-
-    $scope.model = $scope.sectionModel.codePostal;
     $scope.mdph = $scope.sectionModel.mdph;
 
     $scope.findMdph = function() {
-      if (angular.isDefined($scope.model.value)) {
-        if ($scope.model.value.indexOf('14') === 0) {
+      var value = $scope.sectionModel[$scope.question.model];
+      if (angular.isDefined(value)) {
+        if (value.indexOf('14') === 0) {
           $scope.mdph.value = 'Votre demande sera dirigée vers la MDPH du 14, Calvados.';
-        } else if ($scope.model.value.indexOf('59') === 0) {
+        } else if (value.indexOf('59') === 0) {
           $scope.mdph.value = 'Votre demande sera dirigée vers la MDPH du 59, Nord.';
         } else {
           $scope.mdph.value = 'Ce département ne participe pas à l\'expérimentation de formulaire en ligne. Vous pourrez imprimer votre demande et l\'envoyer par courrier.';
@@ -25,10 +20,6 @@ angular.module('impactApp')
       } else {
         $scope.mdph.value = '';
       }
-    };
-
-    $scope.isNextStepDisabled = function() {
-      return !$scope.model.value;
     };
 
     $scope.nextStep = function() {

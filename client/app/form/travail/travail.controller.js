@@ -30,7 +30,6 @@ angular.module('impactApp')
         span: '2',
         label: 'Votre projet professionnel',
         labelRep: 'Ses projet professionnel',
-        isEnabled: angular.isDefined($scope.form),
         showBefore: true
       };
     }

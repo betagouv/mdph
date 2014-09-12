@@ -31,7 +31,6 @@ angular.module('impactApp')
         span: '2',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
-        isEnabled: angular.isDefined($scope.form),
         showBefore: true
       };
     }
