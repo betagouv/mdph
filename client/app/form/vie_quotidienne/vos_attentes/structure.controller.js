@@ -4,16 +4,17 @@ angular.module('impactApp')
   .controller('AttenteStructureCtrl', function ($scope, $state, QuestionService) {
 
     $scope.question = QuestionService.get('vieQuotidienneStructure', $scope.formAnswers);
-    $scope.model = $scope.sectionModel[$scope.question.model];
 
-    if (angular.isUndefined($scope.model)) {
-      $scope.model = {
+    if (angular.isUndefined($scope.sectionModel[$scope.question.model])) {
+      $scope.sectionModel[$scope.question.model] = {
         valeur: false,
         structures: [
           {'name': '', 'contact': false}
         ]
       };
     }
+    
+    $scope.model = $scope.sectionModel[$scope.question.model];
 
     $scope.addStructure = function() {
       $scope.model.structures.push(

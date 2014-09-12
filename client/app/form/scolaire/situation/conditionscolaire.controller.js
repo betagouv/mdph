@@ -1,34 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ConditionScolaireCtrl', function($scope, $state, FormService) {
+  .controller('ConditionScolaireCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
-      'Est-' + FormService.getPronoun($scope.formAnswers) + ' actuellement scolarisé' + (FormService.estMasculin($scope.formAnswers) ? '' : 'e') + ' ?' :
-      'Etes-vous actuellement scolarisé ?';
-
-    $scope.sectionModel = $scope.sectionModel;
-
-    $scope.question = {
-      model: 'scolaire',
-      'answers': [
-        {
-          'label': 'Oui',
-          'value': true
-        },
-        {
-          'label': 'Non',
-          'value': false
-        }
-      ]
-    };
-
-    $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.scolaire);
-    };
+    $scope.question = QuestionService.get('conditionScolaire', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.scolaire.value) {
+      if ($scope.sectionModel.conditionScolaire) {
         $state.go('^.type_scolaire');
       } else {
         $state.go('^.raison_non_scolaire');

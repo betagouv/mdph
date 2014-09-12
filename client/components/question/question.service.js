@@ -9,7 +9,8 @@ angular.module('impactApp')
       return compiled({
         'name': FormService.getName(formAnswers),
         'pronoun': FormService.getPronoun(formAnswers),
-        'pronounTonic': FormService.getPronounTonic(formAnswers)
+        'pronounTonic': FormService.getPronounTonic(formAnswers),
+        'fem': FormService.estMasculin(formAnswers) ? '' : 'e'
       });
     };
 

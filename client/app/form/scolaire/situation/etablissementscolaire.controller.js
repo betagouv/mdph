@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('EtablissementScolaireCtrl', function($scope, $state) {
+  .controller('EtablissementScolaireCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Dans quel(s) établissement(s) ?';
+    $scope.question = QuestionService.get('etablissementScolaire', $scope.formAnswers);
 
-    if (angular.isUndefined($scope.sectionModel.etablissement)) {
-      $scope.sectionModel.etablissement = {
+    if (angular.isUndefined($scope.sectionModel.etablissementScolaire)) {
+      $scope.sectionModel.etablissementScolaire = {
         valeur: false,
         etablissements: [
           { 'name': '' }
@@ -14,7 +14,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.sectionModel.etablissement;
+    $scope.model = $scope.sectionModel.etablissementScolaire;
     $scope.addEtablissement = function() {
       $scope.model.etablissements.push(
         { 'name': '' }
