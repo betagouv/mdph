@@ -5,7 +5,7 @@ angular.module('impactApp')
 
     $scope.question = QuestionService.get('codePostal', $scope.formAnswers);
 
-    $scope.mdph = $scope.sectionModel.mdph;
+    $scope.mdph = {};
 
     $scope.findMdph = function() {
       var value = $scope.sectionModel[$scope.question.model];
@@ -21,6 +21,8 @@ angular.module('impactApp')
         $scope.mdph.value = '';
       }
     };
+
+    $scope.findMdph();
 
     $scope.nextStep = function() {
       $state.go('^.dossier');
