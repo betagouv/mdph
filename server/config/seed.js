@@ -27,10 +27,6 @@ Mdph.find({}).remove(function() {
           email: 'bob@bob.com',
           password: 'bob',
           mdph: mdphCalvados
-        }, function(err, bob) {
-          Form.create({
-            user: bob
-          })
         });
         User.create({
           provider: 'local',

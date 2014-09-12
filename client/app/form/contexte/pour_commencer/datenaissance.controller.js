@@ -1,12 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DateNaissanceCtrl', function($scope, $state, datepickerConfig, FormService) {
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Quelle est sa date de naissance ?': 'Quelle est votre date de naissance ?';
+  .controller('DateNaissanceCtrl', function($scope, $state, datepickerConfig, QuestionService) {
 
-    if (angular.isUndefined($scope.sectionModel.dateNaissance)) {
-      $scope.sectionModel.dateNaissance = {label: 'Date de naissance'};
-    }
+    $scope.question = QuestionService.get('dateNaissance', $scope.formAnswers);
 
     datepickerConfig.datepickerMode = 'year';
 
@@ -14,10 +11,6 @@ angular.module('impactApp')
       $event.preventDefault();
       $event.stopPropagation();
       $scope.opened = true;
-    };
-
-    $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.dateNaissance.value);
     };
 
     $scope.nextStep = function() {

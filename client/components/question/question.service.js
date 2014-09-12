@@ -6,7 +6,11 @@ angular.module('impactApp')
 
     var loadAshCompile = function(str, formAnswers) {
       var compiled = _.template(str);
-      return compiled({ 'name': FormService.getName(formAnswers) });
+      return compiled({
+        'name': FormService.getName(formAnswers),
+        'pronoun': FormService.getPronoun(formAnswers),
+        'pronounTonic': FormService.getPronounTonic(formAnswers)
+      });
     };
 
     var computeLabel = function(answer, formAnswers) {
@@ -67,11 +71,8 @@ angular.module('impactApp')
         var answer = _.find(question.answers, function(answer) {
           return answer.value === value;
         });
-        if (angular.isUndefined(answer)) {
-          return true;
-        }
 
-        if (answer.detailModel && !section[answer.detailModel]) {
+        if (answer && answer.detailModel && !section[answer.detailModel]) {
           return true;
         }
 
