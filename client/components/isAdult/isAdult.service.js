@@ -5,11 +5,10 @@ angular.module('impactApp')
     return function(contexte) {
       if (angular.isUndefined(contexte) ||
           angular.isUndefined(contexte.answers) ||
-          angular.isUndefined(contexte.answers.dateNaissance) ||
-          angular.isUndefined(contexte.answers.dateNaissance.value)) {
+          angular.isUndefined(contexte.answers.dateNaissance)) {
         return true;
       }
-      var date = contexte.answers.dateNaissance.value;
+      var date = contexte.answers.dateNaissance;
       var limitDate = new Date();
       var currentYear = limitDate.getFullYear();
       limitDate.setFullYear(currentYear - 20);

@@ -35,6 +35,7 @@ angular.module('impactApp')
     };
 
     return {
+      // DEPRECATED
       getLabel: function(form, answer) {
         if (FormService.estRepresentant(form.formAnswers)) {
           if (answer.labelRep) {

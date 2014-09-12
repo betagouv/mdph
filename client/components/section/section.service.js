@@ -10,8 +10,8 @@ angular.module('impactApp')
     var envoi = sections[5];
 
     var getAnswerSection = function(answers) {
-      if (answers && answers.vie && answers.vie.answers.attentes && answers.vie.answers.attentes.answers.objet) {
-        return answers.vie.answers.attentes.answers.objet;
+      if (answers && answers.vie && answers.vie.answers.attentes && answers.vie.answers.attentes.answers.objetDemande) {
+        return answers.vie.answers.attentes.answers.objetDemande;
       }
 
       return undefined;
@@ -36,13 +36,13 @@ angular.module('impactApp')
       },
 
       refresh: function(form) {
-        var answers = form.answers;
+        var answers = form.formAnswers;
         if (angular.isUndefined(answers)) {
           return;
         }
         vieQuotidienne.isEnabled = angular.isDefined(answers.vie);
-        scolarite.isEnabled = angular.isDefined(answers.scolaire) || getAnswerSectionScolaire(answers);
-        travail.isEnabled = angular.isDefined(answers.travail) || getAnswerSectionTravail(answers);
+        scolarite.isEnabled = getAnswerSectionScolaire(answers);
+        travail.isEnabled = getAnswerSectionTravail(answers);
         aidant.isEnabled = angular.isDefined(answers.aidant) ;
         envoi.isEnabled = angular.isDefined(form.envoi);
       },

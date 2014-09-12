@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AttenteStructureCtrl', function ($scope, $state) {
+  .controller('AttenteStructureCtrl', function ($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?';
+    $scope.question = QuestionService.get('vieQuotidienneStructure', $scope.formAnswers);
+    $scope.model = $scope.sectionModel[$scope.question.model];
 
-    if (angular.isUndefined($scope.sectionModel.structure)) {
-      $scope.sectionModel.structure = {
+    if (angular.isUndefined($scope.model)) {
+      $scope.model = {
         valeur: false,
         structures: [
           {'name': '', 'contact': false}
@@ -14,7 +15,6 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.sectionModel.structure;
     $scope.addStructure = function() {
       $scope.model.structures.push(
         {'name': '', 'contact': false}

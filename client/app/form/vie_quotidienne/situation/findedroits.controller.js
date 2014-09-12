@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FinDeDroitsCtrl', function($scope, $state, droits, datepickerConfig, FormService) {
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'De quelles prestations bénéficie-t-' + FormService.getPronoun($scope.formAnswers) + '  actuellement ?' : 'De quelles prestations bénéficiez-vous actuellement ?';
+  .controller('FinDeDroitsCtrl', function($scope, $state, droits, datepickerConfig, QuestionService) {
+
+    $scope.question = QuestionService.get('finDroits', $scope.formAnswers);
 
     datepickerConfig.datepickerMode = 'day';
     if (angular.isUndefined($scope.sectionModel.mesPrestations)) {
