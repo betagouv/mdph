@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AttenteStructureProjetProCtrl', function ($scope, $state) {
+  .controller('AttenteStructureProjetProCtrl', function ($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?';
-    
+    $scope.question = QuestionService.get('travail', 'structure', $scope.formAnswers);
+
     if (angular.isUndefined($scope.sectionModel.structure)) {
       $scope.sectionModel.structure = {
         valeur: false,

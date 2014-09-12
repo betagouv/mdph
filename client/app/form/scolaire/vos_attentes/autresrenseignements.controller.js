@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('AutresRenseignementsScolaireCtrl', function ($scope, QuestionService) {
 
-    $scope.question = QuestionService.get('vieScolaireAutresRenseignements', $scope.formAnswers);
+    $scope.question = QuestionService.get('scolaire', 'vieScolaireAutresRenseignements', $scope.formAnswers);
 
     $scope.placeholder = 'Autres renseignements';
 

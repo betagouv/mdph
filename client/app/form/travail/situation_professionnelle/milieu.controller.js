@@ -8,35 +8,12 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('MilieuCtrl', function($scope, $state, FormService) {
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
-      'Où est-' + FormService.getPronoun($scope.formAnswers) + ' employé' + (FormService.estMasculin($scope.formAnswers) ? '' : 'e') + ' ?' :
-      'Où êtes-vous employé ?';
+  .controller('MilieuCtrl', function($scope, $state, QuestionService) {
 
-    $scope.question = {
-      model: 'milieu',
-      answers: [
-        {
-          label: 'En milieu ordinaire',
-          value: 'ordinaire'
-        },
-        {
-          label: 'En entreprise adaptée',
-          value: 'adaptee'
-        },
-        {
-          label: 'En milieu protégé (Etablissements et services d’aide par le travail - ESAT)',
-          value: 'etablissement'
-        }
-      ]
-    };
-
-    $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.milieu);
-    };
+    $scope.question = QuestionService.get('travail', 'milieuTravail', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.milieu.value === 'etablissement') {
+      if ($scope.sectionModel.milieuTravail === 'etablissement') {
         $state.go('^.emploi.nom_poste');
       } else {
         $state.go('^.type');

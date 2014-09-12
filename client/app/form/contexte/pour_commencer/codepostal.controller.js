@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('CodePostalCtrl', function($scope, $state, FormService, QuestionService) {
 
-    $scope.question = QuestionService.get('codePostal', $scope.formAnswers);
+    $scope.question = QuestionService.get('contexte', 'codePostal', $scope.formAnswers);
 
     $scope.mdph = {};
 

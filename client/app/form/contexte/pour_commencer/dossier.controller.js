@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('DossierCtrl', function($scope, $state, QuestionService) {
 
-    $scope.question = QuestionService.get('nouveauDossier', $scope.formAnswers);
+    $scope.question = QuestionService.get('contexte', 'nouveauDossier', $scope.formAnswers);
 
     $scope.nextStep = function() {
       var answer = $scope.sectionModel[$scope.question.model];

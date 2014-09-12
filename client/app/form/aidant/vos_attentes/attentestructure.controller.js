@@ -8,10 +8,10 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AttenteStructureAidantCtrl', function ($scope, $state) {
+  .controller('AttenteStructureAidantCtrl', function ($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?';
-    
+    $scope.question = QuestionService.get('aidant', 'structure', $scope.formAnswers);
+
     if (angular.isUndefined($scope.sectionModel.structure)) {
       $scope.sectionModel.structure = {
         valeur: false,
@@ -22,6 +22,7 @@ angular.module('impactApp')
     }
 
     $scope.model = $scope.sectionModel.structure;
+
     $scope.addStructure = function() {
       $scope.model.structures.push(
         {'name': '', 'contact': false}

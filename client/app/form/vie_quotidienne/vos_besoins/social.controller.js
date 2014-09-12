@@ -7,7 +7,7 @@ angular.module('impactApp')
       $scope.subSectionModel.besoinsSocial = {};
     }
 
-    $scope.question = QuestionService.get('besoinsSocial', $scope.formAnswers);
+    $scope.question = QuestionService.get('vieQuotidienne', 'besoinsSocial', $scope.formAnswers);
 
     $scope.nextStep = function() {
       $state.go('^.lieu_de_vie');

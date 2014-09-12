@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('RaisonNonScolaireCtrl', function($scope, $state, QuestionService) {
 
-    $scope.question = QuestionService.get('raisonNonScolaire', $scope.formAnswers);
+    $scope.question = QuestionService.get('scolaire', 'raisonNonScolaire', $scope.formAnswers);
 
     $scope.checkNextStep = function(value) {
       if (value === 'etablissement' && !$scope.sectionModel.raisonNonScolaireEtablissement) {

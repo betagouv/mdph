@@ -7,7 +7,7 @@ angular.module('impactApp')
       $scope.sectionModel.objetDemande = {};
     }
 
-    $scope.question = QuestionService.get('objetDemande', $scope.formAnswers);
+    $scope.question = QuestionService.get('vieQuotidienne', 'objetDemande', $scope.formAnswers);
 
     $scope.nextStep = function() {
       SectionService.refresh($scope.form);

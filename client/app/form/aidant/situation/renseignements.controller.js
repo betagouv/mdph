@@ -8,30 +8,13 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('RenseignementsAidantCtrl', function($scope, $state) {
+  .controller('RenseignementsAidantCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Avez-vous besoin de mieux connaitre les aides et dispositifs existants ?';
+    $scope.question = QuestionService.get('aidant', 'demandesAides', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel.demandesAides)) {
-      $scope.sectionModel.demandesAides = {
-        'aides': {
-          'vous': false,
-          'personne': false,
-          'autre': false
-        },
-        detail: ''
-      };
+      $scope.sectionModel.demandesAides = {};
     }
-
-    $scope.model= $scope.sectionModel.demandesAides;
-    $scope.question = {
-      'model': 'aides',
-      'answers':[
-        {label: 'Pour vous', model: 'eloignement'},
-        {label: 'Pour la personne aidée', model: 'indisponible'},
-        {label: 'Autres', model: 'autre', detail: true}
-      ]
-    };
 
     $scope.nextStep = function() {
       $scope.$storage.sectionAttentesAidant.isEnabled = true;

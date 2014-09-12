@@ -10,7 +10,7 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.formAnswers.aidant)) {
       $scope.formAnswers.aidant = {
-        sectionLabel: $scope.currentSection.label,
+        sectionLabel: 'Aidant familial',
         answers: {}
       };
     }

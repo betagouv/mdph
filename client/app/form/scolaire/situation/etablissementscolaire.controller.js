@@ -3,10 +3,10 @@
 angular.module('impactApp')
   .controller('EtablissementScolaireCtrl', function($scope, $state, QuestionService) {
 
-    $scope.question = QuestionService.get('etablissementScolaire', $scope.formAnswers);
+    $scope.question = QuestionService.get('scolaire', 'etablissement', $scope.formAnswers);
 
-    if (angular.isUndefined($scope.sectionModel.etablissementScolaire)) {
-      $scope.sectionModel.etablissementScolaire = {
+    if (angular.isUndefined($scope.sectionModel.etablissement)) {
+      $scope.sectionModel.etablissement = {
         valeur: false,
         etablissements: [
           { 'name': '' }
@@ -14,7 +14,7 @@ angular.module('impactApp')
       };
     }
 
-    $scope.model = $scope.sectionModel.etablissementScolaire;
+    $scope.model = $scope.sectionModel.etablissement;
     $scope.addEtablissement = function() {
       $scope.model.etablissements.push(
         { 'name': '' }

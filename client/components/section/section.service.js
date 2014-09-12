@@ -43,7 +43,7 @@ angular.module('impactApp')
         vieQuotidienne.isEnabled = angular.isDefined(answers.vie);
         scolarite.isEnabled = getAnswerSectionScolaire(answers);
         travail.isEnabled = getAnswerSectionTravail(answers);
-        aidant.isEnabled = angular.isDefined(answers.aidant) ;
+        aidant.isEnabled = angular.isDefined(answers.vie);
         envoi.isEnabled = angular.isDefined(form.envoi);
       },
 

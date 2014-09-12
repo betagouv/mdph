@@ -1,30 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ConditionAidantCtrl', function($scope, $state) {
+  .controller('ConditionAidantCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Votre aidant familial souhaite-t-il s\'exprimer ?';
-
-    $scope.question = {
-      model: 'aidant',
-      'answers': [
-        {
-          'label': 'Oui',
-          'value': true
-        },
-        {
-          'label': 'Non',
-          'value': false
-        }
-      ]
-    };
-
-    $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.aidant);
-    };
+    $scope.question = QuestionService.get('aidant', 'condition', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.aidant.value) {
+      if ($scope.sectionModel.condition) {
         $scope.sections[0].isEnabled = true;
         $state.go('^.situation.lien');
       } else {

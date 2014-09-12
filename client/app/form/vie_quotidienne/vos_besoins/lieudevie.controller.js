@@ -7,7 +7,7 @@ angular.module('impactApp')
       $scope.sectionModel.besoinsLieuDeVie = {};
     }
 
-    $scope.question = QuestionService.get('besoinsLieuDeVie', $scope.formAnswers);
+    $scope.question = QuestionService.get('vieQuotidienne', 'besoinsLieuDeVie', $scope.formAnswers);
 
     $scope.nextStep = function() {
       $scope.sections[2].isEnabled = true;

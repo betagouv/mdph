@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('DateNaissanceCtrl', function($scope, $state, datepickerConfig, QuestionService) {
 
-    $scope.question = QuestionService.get('dateNaissance', $scope.formAnswers);
+    $scope.question = QuestionService.get('contexte', 'dateNaissance', $scope.formAnswers);
 
     datepickerConfig.datepickerMode = 'year';
 

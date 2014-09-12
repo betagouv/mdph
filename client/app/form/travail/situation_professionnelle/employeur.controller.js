@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('EmployeurCtrl', function($scope, $state, FormService) {
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Qui est son employeur ?' : 'Qui est votre employeur ?';
+  .controller('EmployeurCtrl', function($scope, $state, QuestionService) {
+
+    $scope.question = QuestionService.get('travail', 'employeur', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel.employeur)) {
       $scope.sectionModel.employeur = {
@@ -14,8 +15,8 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel.employeur;
 
-    $scope.isNextStepDisabled = function() {
-      return $scope.model.nom.value === '' || $scope.model.adresse.value === '';
+    $scope.checkNextStep = function(value) {
+      // TODO
     };
 
     $scope.nextStep = function() {

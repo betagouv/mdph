@@ -8,34 +8,12 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EmploiTempsCtrl', function($scope, $state, FormService) {
+  .controller('EmploiTempsCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Son emploi est-il a temps complet ou partiel ?' : 'Votre emploi est-il a temps complet ou partiel ?';
-
-    if (angular.isUndefined($scope.sectionModel.temps)) {
-      $scope.sectionModel.temps = {};
-    }
-
-    $scope.question = {
-      model: 'temps',
-      answers: [
-        {
-          'label': 'Temps complet',
-          'value': true
-        },
-        {
-          'label': 'Temps partiel',
-          'value': false
-        }
-      ]
-    };
-
-    $scope.isNextStepDisabled = function() {
-      return angular.isUndefined($scope.sectionModel.temps);
-    };
+    $scope.question = QuestionService.get('travail', 'temps', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.temps.value) {
+      if ($scope.sectionModel.temps) {
         $state.go('^.adapte');
       } else {
         $state.go('^.heures');

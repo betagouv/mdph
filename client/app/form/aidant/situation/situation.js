@@ -55,7 +55,7 @@ angular.module('impactApp')
     })
     .state('form.votre_aidant.situation.situation_future', {
       url: '/situation_future',
-      templateUrl: 'components/question/radio.html',
+      templateUrl: 'components/question/checkbox.html',
       controller: 'SituationFutureCtrl'
     })
     .state('form.votre_aidant.situation.renseignements', {

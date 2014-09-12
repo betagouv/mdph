@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('TypeScolaireCtrl', function($scope, $state, FormService, QuestionService) {
 
-    $scope.question = QuestionService.get('vieScolaireType', $scope.formAnswers);
+    $scope.question = QuestionService.get('scolaire', 'vieScolaireType', $scope.formAnswers);
 
     $scope.nextStep = function() {
       if ($scope.sectionModel[$scope.question.model] !== 'domicile') {

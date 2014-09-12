@@ -8,28 +8,15 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AccompagnementCtrl', function($scope, $state) {
+  .controller('AccompagnementCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Quelqu\'un participe-t-il avec vous à l\'accompagnement de la personne aidée ?';
+    $scope.question = QuestionService.get('aidant', 'accompagnement', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel.accompagnement)) {
-      $scope.sectionModel.accompagnement = {
-        'accompagnements': {
-          'professionnel': false,
-          'proches': false,
-          'seul': false
-        }
-      };
+      $scope.sectionModel.accompagnement = {};
     }
 
     $scope.model= $scope.sectionModel.accompagnement;
-    $scope.question = {
-      'model': 'accompagnements',
-      'answers':[
-        {label: 'Oui, un (des) professionnel(s)', model: 'professionnel'},
-        {label: 'Oui, un (ou plusieurs) autre(s) proche(s)', model: 'proches'}
-      ]
-    };
 
     $scope.nextStep = function() {
       $state.go('^.soutien');

@@ -8,49 +8,14 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('MedecinTravailCtrl', function($scope, $state, FormService) {
+  .controller('MedecinTravailCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
-      'A-t-' + FormService.getPronoun($scope.formAnswers) + ' rencontré le médecin du travail en visite de pré-reprise ?' : 'Avez-vous rencontré le médecin du travail en visite de pré-reprise ?';
-
-    if (angular.isUndefined($scope.sectionModel.medecinTravail)) {
-      $scope.sectionModel.medecinTravail = {};
-    }
-
-    $scope.question = {
-      model: 'medecinTravail',
-      'answers': [
-        {
-          'label': 'Non',
-          'value': false
-        },
-        {
-          'label': 'Oui',
-          'value': true,
-          detailUrl: 'components/detail/precisez_date.html',
-          detail: $scope.sectionModel.medecinTravail.detail,
-          detailLabel: 'A quelle date ?'
-        }
-      ]
-    };
+    $scope.question = QuestionService.get('travail', 'medecinTravail', $scope.formAnswers);
 
     $scope.open = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.opened = true;
-    };
-
-    $scope.isNextStepDisabled = function() {
-      var model = $scope.sectionModel.medecinTravail;
-      if (angular.isUndefined(model.value)) {
-        return true;
-      }
-
-      if (model.detailUrl && !model.detail) {
-        return true;
-      }
-
-      return false;
     };
 
     $scope.nextStep = function() {

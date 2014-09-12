@@ -8,39 +8,13 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('BesoinSoutienCtrl', function ($scope, $state, FormService) {
+  .controller('BesoinSoutienCtrl', function ($scope, $state, QuestionService) {
 
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
-      'Pour quoi a-t-' + FormService.getPronoun($scope.formAnswers) + ' besoin de soutien ?' : 'Pour quoi avez-vous besoin de soutien ?';
+    $scope.question = QuestionService.get('travail', 'besoinSoutien', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel.besoinSoutien)) {
-      $scope.sectionModel.besoinSoutien = {
-        soutiens: {
-          'bilan': false,
-          'precisions': false,
-          'environnement': false,
-          'emploi': false,
-          'formation': false,
-          'autre': false
-        },
-        detail: ''
-      };
+      $scope.sectionModel.besoinSoutien = {};
     }
-
-    $scope.model = $scope.sectionModel.besoinSoutien;
-    $scope.question = {
-      model: 'soutiens',
-      answers:
-      [
-        {'label': 'Faire un bilan de capacités professionnelles', model: 'bilan'},
-        {'label': 'Préciser un projet professionnel', model: 'precisions'},
-        {'label': 'Adapter l\'environnement de travail', model: 'environnement'},
-        {'label': 'Accéder à un emploi', model: 'emploi'},
-        {'label': 'Accéder à une formation', model: 'formation'},
-
-        {'label': 'Autre besoin', model: 'autre', 'detail': true}
-      ]
-    };
 
     $scope.nextStep = function() {
       $state.go('^.structure');

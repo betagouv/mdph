@@ -1,8 +1,20 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('QuestionService', function QuestionService(FormService, questions) {
-    var q = _.indexBy(questions, 'model');
+  .factory('QuestionService', function QuestionService(FormService, contexte, vieQuotidienne, vieScolaire, travail, aidant) {
+
+    var qContexte = _.indexBy(contexte, 'model');
+    var qVieQuotidienne = _.indexBy(vieQuotidienne, 'model');
+    var qVieScolaire = _.indexBy(vieScolaire, 'model');
+    var qTravail = _.indexBy(travail, 'model');
+    var qAidant = _.indexBy(aidant, 'model');
+    var q = {
+      contexte: qContexte,
+      vieQuotidienne: qVieQuotidienne,
+      scolaire: qVieScolaire,
+      travail: qTravail,
+      aidant: qAidant
+    };
 
     var loadAshCompile = function(str, formAnswers) {
       var compiled = _.template(str);
@@ -36,23 +48,8 @@ angular.module('impactApp')
     };
 
     return {
-      // DEPRECATED
-      getLabel: function(form, answer) {
-        if (FormService.estRepresentant(form.formAnswers)) {
-          if (answer.labelRep) {
-            return answer.labelRep;
-          }
-          if (FormService.estMasculin(form.formAnswers) && answer.labelRepMasc) {
-            return answer.labelRepMasc;
-          } else if (answer.labelRepFem){
-            return answer.labelRepFem;
-          }
-        }
-        return answer.label;
-      },
-
-      get: function(model, formAnswers) {
-        var question = q[model];
+      get: function(section, model, formAnswers) {
+        var question = q[section][model];
         question.title = computeTitle(question, formAnswers);
         angular.forEach(question.answers, function(answer) {
           answer.label = computeLabel(answer, formAnswers);

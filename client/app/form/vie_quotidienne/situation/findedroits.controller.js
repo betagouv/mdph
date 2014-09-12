@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('FinDeDroitsCtrl', function($scope, $state, droits, datepickerConfig, QuestionService) {
 
-    $scope.question = QuestionService.get('finDroits', $scope.formAnswers);
+    $scope.question = QuestionService.get('vieQuotidienne', 'finDroits', $scope.formAnswers);
 
     datepickerConfig.datepickerMode = 'day';
     if (angular.isUndefined($scope.sectionModel.mesPrestations)) {

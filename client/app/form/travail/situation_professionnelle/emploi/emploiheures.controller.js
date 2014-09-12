@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EmploiHeuresCtrl', function($scope, $state, FormService) {
+  .controller('EmploiHeuresCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ? 'Quellle est sa durée de travail par semaine ?' : 'Quellle est votre durée de travail par semaine ?';
+    $scope.question = QuestionService.get('travail', 'heures', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel.heures)) {
       $scope.sectionModel.heures = {
@@ -22,8 +22,8 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel.heures;
 
-    $scope.isNextStepDisabled = function() {
-      return $scope.sectionModel.heures.value === '';
+    $scope.checkNextStep = function(answer) {
+      return answer.value === '';
     };
 
     $scope.nextStep = function() {

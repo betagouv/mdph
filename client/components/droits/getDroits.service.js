@@ -6,12 +6,12 @@ angular.module('impactApp')
 
       if (data) {
         var besoins = data.vie.answers.besoins ? data.vie.answers.besoins.answers : undefined;
-        var besoinsDeplacement = besoins ? besoins.deplacement.besoins : undefined;
-        var besoinsQuotidien = besoins ? besoins.quotidien.besoins : undefined;
-        var besoinsSocial = besoins ? besoins.social.besoins : undefined;
+        var besoinsDeplacement = besoins ? besoins.deplacement : undefined;
+        var besoinsQuotidien = besoins ? besoins.quotidien : undefined;
+        var besoinsSocial = besoins ? besoins.social : undefined;
 
         var attentes = data.vie.answers.attentes && data.vie.answers.attentes.answers ? data.vie.answers.attentes.answers : undefined;
-        var attentesType = attentes ? attentes.typeAide.attentes : undefined;
+        var attentesType = attentes ? attentes.typeAide : undefined;
       }
 
       var carte = {

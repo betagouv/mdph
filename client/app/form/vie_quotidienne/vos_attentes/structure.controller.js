@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('AttenteStructureCtrl', function ($scope, $state, QuestionService) {
 
-    $scope.question = QuestionService.get('vieQuotidienneStructure', $scope.formAnswers);
+    $scope.question = QuestionService.get('vieQuotidienne', 'structures', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel[$scope.question.model])) {
       $scope.sectionModel[$scope.question.model] = {
@@ -13,7 +13,7 @@ angular.module('impactApp')
         ]
       };
     }
-    
+
     $scope.model = $scope.sectionModel[$scope.question.model];
 
     $scope.addStructure = function() {

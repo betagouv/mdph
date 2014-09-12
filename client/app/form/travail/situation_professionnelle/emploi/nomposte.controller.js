@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('NomPosteCtrl', function($scope, $state) {
+  .controller('NomPosteCtrl', function($scope, $state, QuestionService) {
 
-    $scope.subtitle = 'Quel est le nom du poste ?';
+    $scope.question = QuestionService.get('travail', 'nomPoste', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel.nomPoste)) {
       $scope.sectionModel.nomPoste = {
@@ -21,8 +21,8 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel.nomPoste;
 
-    $scope.isNextStepDisabled = function() {
-      return $scope.model.value === '';
+    $scope.checkNextStep = function(answer) {
+      return answer.value === '';
     };
 
     $scope.nextStep = function() {

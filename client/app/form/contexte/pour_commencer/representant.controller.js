@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('RepresentantCtrl', function($scope, $state, QuestionService) {
 
-    $scope.question = QuestionService.get('estRepresentant', $scope.formAnswers);
+    $scope.question = QuestionService.get('contexte', 'estRepresentant', $scope.formAnswers);
 
     $scope.checkNextStep = function(value) {
       if (value) {

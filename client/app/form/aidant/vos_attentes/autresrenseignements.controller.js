@@ -8,9 +8,9 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AutresRenseignementsAidantCtrl', function ($scope) {
+  .controller('AutresRenseignementsAidantCtrl', function ($scope, QuestionService) {
 
-    $scope.subtitle = 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant';
+    $scope.question = QuestionService.get('aidant', 'autresRenseignements', $scope.formAnswers);
 
     if (angular.isUndefined($scope.sectionModel.autresRenseignements)) {
       $scope.sectionModel.autresRenseignements = '';
