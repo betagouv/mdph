@@ -4,7 +4,7 @@ angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('dashboard.users', {
-        url: '/',
+        url: '/utilisateurs',
         templateUrl: 'app/dashboard/users/users.html',
         controller: 'UsersCtrl',
         resolve: {

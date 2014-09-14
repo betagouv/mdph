@@ -3,13 +3,13 @@
 angular.module('impactApp')
   .directive('docsForm', function ($modal, getDocuments) {
     return {
-      resolve: {
-        form: '='
+      scope: {
+        form: '=',
+        small: '='
       },
       templateUrl: 'components/documents/documents.html',
       restrict: 'EA',
       controller: function($scope) {
-
         var computeDocumentsForAnswers = function(answers, categories) {
           angular.forEach(answers, function(answer) {
             if (answer.answers) { // C'est une sous-section

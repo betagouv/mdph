@@ -22,7 +22,7 @@
             <a ui-sref="{{item.link}}">{{item.title}}</a>
         </li>
         <li ng-show="!isAdminMdph()" ui-sref-active="active"><a ui-sref="form">Questionnaire</a></li>
-        <li ui-sref-active="active"><a ui-sref="recap">Recapitulatif</a></li>
+        <!--<li ui-sref-active="active"><a ui-sref="recap">Recapitulatif</a></li>-->
         <li ng-show="isLoggedIn() && !isAdminMdph()" ui-sref-active="active"><a ui-sref="demande">Ma demande</a></li>
         <li ng-show="isAdminMdph()" ui-sref-active="active"><a ui-sref="dashboard.forms">Tableau de bord</a></li>
         <li ng-show="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>

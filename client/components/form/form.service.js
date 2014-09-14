@@ -12,7 +12,7 @@ angular.module('impactApp')
       },
 
       saveCurrentForm: function() {
-        $http.put('/api/forms/mine', $sessionStorage.answers)
+        $http.put('/api/forms/mine', $sessionStorage.formAnswers)
         .success(function() {
           $state.go('demande');
         })
