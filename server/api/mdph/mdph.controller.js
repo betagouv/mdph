@@ -17,7 +17,7 @@ exports.showUsers = function(req, res) {
 
 // Get list of mdphs
 exports.index = function(req, res) {
-  Mdph.find(function (err, mdphs) {
+  Mdph.find().sort('zipcode').exec(function(err, mdphs) {
     if(err) { return handleError(res, err); }
     return res.json(200, mdphs);
   });

@@ -47,12 +47,16 @@ angular.module('impactApp')
       return question.titleDefault;
     };
 
+    var capitaliseFirstLetter = function (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
     return {
       get: function(section, model, formAnswers) {
         var question = q[section][model];
-        question.title = computeTitle(question, formAnswers);
+        question.title = capitaliseFirstLetter(computeTitle(question, formAnswers));
         angular.forEach(question.answers, function(answer) {
-          answer.label = computeLabel(answer, formAnswers);
+          answer.label = capitaliseFirstLetter(computeLabel(answer, formAnswers));
         });
         return question;
       },

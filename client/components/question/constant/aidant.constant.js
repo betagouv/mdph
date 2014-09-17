@@ -171,8 +171,8 @@ angular.module('impactApp').constant('aidant', [
       {'labelDefault': 'Obtenir une contre-partie financière', 'model': 'finance'},
       {'labelDefault': 'Echanger avec d’autres aidants', 'model': 'echanges'},
       {'labelDefault': 'Avoir un soutien psychologique', 'model': 'psychologique'},
-      {'labelDefault': 'Etre affilié gratuitement à l’assurance vieillesse', 'model': 'vieillesse'},
       {'labelDefault': 'Etre conseillé pour mieux faire face au handicap de votre proche', 'model': 'conseil'},
+      {'labelDefault': 'Etre affilié gratuitement à l’assurance vieillesse', 'model': 'vieillesse'},
 
       {'labelDefault': 'Autre attente', 'model': 'autre', detailModel: 'attentesDetail', detailUrl:'components/detail/precisez.html'}
     ]

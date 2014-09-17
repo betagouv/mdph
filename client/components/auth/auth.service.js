@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $sessionStorage) {
     var currentUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
@@ -46,6 +46,7 @@ angular.module('impactApp')
        */
       logout: function() {
         $cookieStore.remove('token');
+        $sessionStorage.$reset();
         currentUser = {};
       },
 

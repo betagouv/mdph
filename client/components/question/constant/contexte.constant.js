@@ -22,9 +22,9 @@ angular.module('impactApp').constant('contexte', [
     ]
   },
   {
-    model: 'codePostal',
-    titleDefault: 'Quel est votre code postal ?',
-    titleRep: 'Quel est le code postal de <%= name %>?',
+    model: 'mdph',
+    titleDefault: 'Quelle est votre Mdph ?',
+    titleRep: 'Quelle est la Mdph de <%= name %>?',
     type: 'text'
   },
   {
@@ -137,5 +137,42 @@ angular.module('impactApp').constant('contexte', [
         model: 'formation'
       }
     ]
-  }
+  },
+  {
+    model: 'connaisTaux',
+    titleDefault: 'Connaissez-vous votre taux d\'incapacité antérieur ?',
+    titleRep: 'Connaissez-vous son taux d\'incapacité antérieur ?',
+    answers: [
+    {
+      labelDefault: 'Oui',
+      value: true,
+      detailLabel: 'Taux',
+      detailUrl: 'components/detail/precisez_pourcent.html',
+      detailModel: 'tauxIncapacite'
+    },
+    {
+      labelDefault: 'Non',
+      value: false
+    }
+  ]},
+  {
+    model: 'contestationTaux',
+    titleDefault: 'Que pensez-vous de votre situation par rapport à ce taux ?',
+    titleRep: 'Que pensez-vous de sa situation par rapport à ce taux ?',
+    answers: [
+    {
+      labelDefault: 'Sa situation est stable',
+      value: 'stable'
+    },
+    {
+      labelDefault: 'Votre situation s\'aggrave',
+      labelRep: 'Sa situation s\'aggrave',
+      value: 'aggrave'
+    },
+    {
+      labelDefault: 'Votre situation s\'améliore',
+      labelRep: 'Sa situation s\'améliore',
+      value: 'ameliore'
+    }
+  ]}
 ]);

@@ -5,13 +5,32 @@ angular.module('impactApp')
     return function(data, isAdult) {
 
       if (data) {
+        // Factoriser et acceder par les questions
         var besoins = data.vie.answers.besoins ? data.vie.answers.besoins.answers : undefined;
-        var besoinsDeplacement = besoins ? besoins.deplacement : undefined;
-        var besoinsQuotidien = besoins ? besoins.quotidien : undefined;
-        var besoinsSocial = besoins ? besoins.social : undefined;
+        var besoinsDeplacement = besoins ? besoins.besoinsDeplacement : undefined;
+        var besoinsQuotidien = besoins ? besoins.besoinsVie : undefined;
+        var besoinsSocial = besoins ? besoins.besoinsSocial : undefined;
 
         var attentes = data.vie.answers.attentes && data.vie.answers.attentes.answers ? data.vie.answers.attentes.answers : undefined;
         var attentesType = attentes ? attentes.typeAide : undefined;
+
+        var aidant = data.aidant;
+        var aidantAnswers = aidant ? aidant.answers : undefined;
+        var aidantAttentes = aidantAnswers ? aidantAnswers.attentes : undefined;
+        var aidantTypeAttente = aidantAttentes ? aidantAttentes.answers.typeAttente : undefined;
+        var aidantAttenteVieillesse = aidantTypeAttente ? aidantTypeAttente.vieillesse : false;
+
+        var contexte = data.contexte;
+        var situations = contexte.answers.situations;
+        var urgences = situations ? situations.answers.urgences : undefined;
+        var formation = urgences ? urgences.formation : false;
+        var travail = urgences ? urgences.travail : false;
+        var ecole = urgences ? urgences.ecole : false;
+
+        var renouvellement = !contexte.answers.nouveauDossier;
+        var connaisTaux = contexte.answers.connaisTaux;
+        var taux = contexte.answers.tauxIncapacite;
+        var contestationTaux = contexte.answers.contestationTaux;
       }
 
       var carte = {
@@ -52,6 +71,11 @@ angular.module('impactApp')
             description: 'L\'allocation d\'éducation de l\'enfant handicapé (AEEH) est destinée à soutenir les personnes qui assurent la charge d\'un enfant en situation de handicap.',
             link: 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml',
             shouldHave: function() {
+              if (renouvellement) {
+                if (connaisTaux && taux < 50 && contestationTaux !== 'aggrave') {
+                  return false;
+                }
+              }
               return !isAdult && (attentesType && attentesType.financierHandicap) &&
                 (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
                 besoinsDeplacement && besoinsDeplacement.intraDomicile ||
@@ -90,11 +114,21 @@ angular.module('impactApp')
                 besoinsSocial && (besoinsSocial.proches || besoinsSocial.securite || besoinsSocial.communication)
               );
             }
+          },
+          {
+            id: 'AV',
+            label: 'AV',
+            title: 'Affiliation gratuite à l\'assurance vieillesse',
+            description: 'L\'affiliation à l\'assurance vieillesse permet à l\'aidant familial de valider des trimestres pour sa retraite sans qu\'il ait besoin de verser des cotisations auprès de sa caisse de retraite.',
+            link: 'http://vosdroits.service-public.fr/particuliers/F2574.xhtml',
+            shouldHave: function() {
+              return aidantAttenteVieillesse;
+            }
           }
         ]
       };
 
-      var accompagnementMedical = {
+      var accompagnement = {
         type: 'presta-accompagnement',
         prestations: [
           {
@@ -103,7 +137,7 @@ angular.module('impactApp')
             title: 'Accompagnement par un service ou établissement médico-social',
             description: 'Orientation vers un établissement médical de santé.',
             shouldHave: function() {
-              return attentesType && attentesType.etablissement || (besoinsSocial && besoinsSocial.securite && besoinsQuotidien && besoinsQuotidien.logement);
+              return attentesType && attentesType.etablissement;
             }
           },
           {
@@ -111,10 +145,8 @@ angular.module('impactApp')
             label: 'SAVS',
             title: 'Services d\'accompagnement à la vie sociale',
             description: 'Les services d\'accompagnement à la vie sociale ont pour vocation de contribuer à la réalisation du projet de vie de personnes adultes handicapées par un accompagnement adapté.',
-            link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAVS-Service-d-Accompagnement-a-la-Vie-Sociale,i5629.html',
             shouldHave: function() {
               return isAdult &&
-                (besoinsQuotidien && besoinsQuotidien.logement) &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
                   besoinsQuotidien && besoinsQuotidien.sante);
             }
@@ -124,12 +156,40 @@ angular.module('impactApp')
             label: 'SAMSAH',
             title: 'Service d\'accompagnement médico-social pour adultes handicapés',
             description: 'Le service d\'accompagnement médico-social pour adultes handicapés (SAMSAH) a pour vocation la recherche des missions visées à l\'article D 3121553 du code de l\'action sociale et des familles.',
-            link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAMSAH-Service-d-Accompagnement-Medico-Social-pour-Adultes-Handicapes,i5630.html',
             shouldHave: function() {
               return isAdult &&
-                (besoinsQuotidien && besoinsQuotidien.logement) &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
                   besoinsQuotidien && besoinsQuotidien.sante);
+            }
+          },
+          {
+            id: 'orp',
+            label: 'Orientation professionnelle',
+            title: 'Orientation professionnelle',
+            description: 'La demande d\'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation.',
+            shouldHave: function() {
+              // besoin evoaue dans vie scolaire //TODO
+              return formation || travail;
+            }
+          },
+          {
+            id: 'pps',
+            label: 'PPS',
+            title: 'Plan personnalisé de scolarisation',
+            description: 'Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.',
+            shouldHave: function() {
+              // besoin evoaue dans vie professionnelle //TODO
+              return ecole;
+            }
+          },
+          {
+            id: 'rqth',
+            label: 'RQTH',
+            title: 'Reconnaissance de la Qualité de Travailleur Handicapé',
+            description: 'Un travailleur handicapé est une personne dont les possibilités d\'obtenir ou de conserver un emploi sont réduites à cause de son handicap. Il peut s\'agir de l\'altération d\'une ou plusieurs fonctions physique, sensorielle, mentale ou psychique.',
+            shouldHave: function() {
+              // besoin evoaue dans vie professionnelle //TODO
+              return formation || travail;
             }
           }
         ]
@@ -143,7 +203,7 @@ angular.module('impactApp')
       var all = [
         carte,
         aideFinanciere,
-        accompagnementMedical,
+        accompagnement,
         autre
       ];
 

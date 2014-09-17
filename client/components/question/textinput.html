@@ -2,10 +2,6 @@
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <span ng-if="model.addon" class="input-group">
-      <input type="text" id="inputid" class="col-md-8 form-control" ng-model="model.value" placeholder="{{model.placeholder}}">
-      <div class="input-group-addon">{{model.addon}}</div>
-    </span>
-    <input type="text" ng-if="!model.addon" id="inputid" class="col-md-8 form-control" ng-model="model.value" placeholder="{{model.placeholder}}">
+    <input type="text" id="inputid" class="col-md-8 form-control" ng-model="sectionModel[question.model]" placeholder="{{question.placeholder}}">
   </div>
 </div>

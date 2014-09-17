@@ -188,8 +188,8 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
-    titleRep: 'A-t-<%= pronoun %> rencontré un professionnel du service social de la CARSA ?',
-    titleDefault: 'Avez-vous rencontré un professionnel du service social de la CARSA ?',
+    titleRep: 'A-t-<%= pronoun %> rencontré un professionnel du service social de la CARSAT ?',
+    titleDefault: 'Avez-vous rencontré un professionnel du service social de la CARSAT ?',
     model: 'profesionnelSocial',
     'answers': [
       {

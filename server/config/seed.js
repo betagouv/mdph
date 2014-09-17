@@ -9,16 +9,18 @@ var User = require('../api/user/user.model');
 var Mdph = require('../api/mdph/mdph.model');
 var Form = require('../api/form/form.model');
 
-console.log('test');
-
 Form.find({}).remove(function() {
   console.log('finished deleting forms')
 });
 
 Mdph.find({}).remove(function() {
   Mdph.create({
-    name: 'Mdph du Calvados',
-    zipcode: '14000'
+    name: 'Nord',
+    zipcode: '59'
+  });
+  Mdph.create({
+    name: 'Calvados',
+    zipcode: '14'
   }, function(err, mdphCalvados) {
       User.find({}).remove(function() {
         User.create({

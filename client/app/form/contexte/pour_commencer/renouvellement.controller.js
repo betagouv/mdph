@@ -10,6 +10,6 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $state.go('^.date_naissance');
+      $state.go('^.taux');
     };
   });

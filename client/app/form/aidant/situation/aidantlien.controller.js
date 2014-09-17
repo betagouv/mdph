@@ -12,7 +12,8 @@ angular.module('impactApp')
 
     $scope.question = QuestionService.get('aidant', 'lien', $scope.formAnswers);
 
-    $scope.model = $scope.sectionModel.lien;
+    $scope.model = $scope.sectionModel[$scope.question.model];
+
 
     $scope.nextStep = function() {
       $state.go('^.vie');

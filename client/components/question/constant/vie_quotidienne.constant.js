@@ -25,10 +25,19 @@ angular.module('impactApp').constant('vieQuotidienne', [
         onlyAdult: true
       },
       {
-        labelDefault: 'Avec vos enfants',
-        labelRep: 'Avec ses enfants',
+        labelDefault: 'Avec vos enfants (ou l\'un d\'entre eux)',
+        labelRep: 'Avec ses enfants (ou l\'un d\'entre eux)',
         value: 'enfants',
         onlyAdult: true
+      },
+      {
+        labelDefault: 'Vous vivez dans un établissement',
+        labelRep: '<%= pronoun %> vit dans un établissement',
+        value: 'etablissement',
+        detailUrl: 'components/detail/precisez_big.html',
+        detailModel: 'logement_etablissement',
+        placeholder: 'Nom de l\'établissement, type et lieu',
+        documents: [{category: 'sante', id: 'bilanAccompagnementEnfant'}]
       },
       {
         labelDefault: 'Autre',
@@ -44,21 +53,15 @@ angular.module('impactApp').constant('vieQuotidienne', [
     titleRep: 'Où loge-t-<%= pronoun %> ?',
     answers: [
       {
-        labelDefault: 'En logement indépendant',
+        labelDefault: 'Vous avez un logement indépendant',
+        labelRep: '<%= pronoun %> a un logement indépendant',
         value: 'independant', // TODO a verifier onlyAdult: true,
         detailUrl: 'components/detail/independant.html',
         detailModel: 'logement_independant'
       },
       {
-        labelDefault: 'En établissement',
-        value: 'etablissement',
-        detailUrl: 'components/detail/precisez.html',
-        detailModel: 'logement_etablissement',
-        placeholder: 'Nom de l\'établissement',
-        documents: [{category: 'sante', id: 'bilanAccompagnementEnfant'}]
-      },
-      {
-        labelDefault: 'Hébergé(e) au domicile par une autre personne',
+        labelDefault: 'Vous êtes hébergé(e) au domicile par une autre personne',
+        labelRep: '<%= pronoun %> est hébergé<%= fem %> au domicile par une autre personne',
         value: 'domicile',
         detailUrl: 'components/detail/domicile.html',
         detailModel: 'logement_domicile'
@@ -79,10 +82,16 @@ angular.module('impactApp').constant('vieQuotidienne', [
   },
   {
     model: 'besoinsVie',
-    titleDefault: 'Quels sont vos besoins d\'aide dans la vie quotidienne ?',
-    titleRep: 'Quels sont ses besoins d\'aide dans la vie quotidienne ?',
+    titleDefault: 'Vous avez besoin d\'aide dans votre vie quotidienne :',
+    titleRep: 'Elle a besoin d\'aide dans sa vie quotidienne :',
     type: 'checkbox',
     answers: [
+      {
+        labelDefault: 'Pour faire face aux dépenses courantes (loyer, énergie, habillement, alimentation, ...)',
+        model: 'courant',
+        onlyAdult: true
+      },
+      {labelDefault: 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', model: 'budget', onlyAdult: true},
       {
         labelDefault: 'Pour l\'hygiène corporelle (se laver, aller aux toilette)',
         model: 'hygiene'
@@ -93,78 +102,78 @@ angular.module('impactApp').constant('vieQuotidienne', [
         model: 'habits'
       },
       {labelDefault: 'Pour faire les courses', model: 'courses'},
-      {labelDefault: 'Pour faire le ménage et l\'entretien des vêtements', model: 'menage', onlyAdult: true},
       {labelDefault: 'Pour préparer les repas', model: 'cuisine', onlyAdult: true},
       {labelDefault: 'Pour prendre les repas', model: 'repas'},
-      {labelDefault: 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', model: 'budget', onlyAdult: true},
+      {labelDefault: 'Pour faire le ménage et l\'entretien des vêtements', model: 'menage', onlyAdult: true},
       {
         labelDefault: 'Pour prendre soin de votre santé (suivre un traitement, aller en consultation... )',
         labelRep: 'Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )',
         model: 'sante'
       },
-      {labelDefault: 'Pour vivre en logement autonome', model: 'logement'},
       {labelDefault: 'Autre besoin', model: 'autre', detailModel: 'besoinsVie_autre', detailUrl: 'components/detail/precisez.html'}
     ]
   },
   {
-    'model': 'besoinsDeplacement',
-    titleDefault: 'Quels sont vos besoins d\'aide concernant vos déplacements ?',
-    titleRep: 'Quels sont ses besoins d\'aide concernant ses déplacements ?',
+    model: 'besoinsDeplacement',
+    titleDefault: 'Vous avez besoin d\'aide pour vous déplacer :',
+    titleRep: 'Elle a besoin d\'aide pour se déplacer :',
     type: 'checkbox',
-    'answers':[
-      {'labelDefault': 'Pour se déplacer au sein du domicile', 'model': 'intraDomicile'},
-      {'labelDefault': 'Pour sortir du domicile et y accéder', 'model': 'accesDomicile'},
-      {'labelDefault': 'Pour se déplacer à l\'extérieur du domicile', 'model': 'public'},
-      {'labelDefault': 'Pour utiliser les transports en commun', 'model': 'transports'},
-      {'labelDefault': 'Pour partir en vacances', 'model': 'vacances'},
-      {'labelDefault': 'Pour adapter le véhicule pour pouvoir conduire', 'model': 'conduite', 'onlyAdult': true},
-      {'labelDefault': 'Autre besoin', 'model': 'autre', detailModel: 'besoinsDeplacement_autre', detailUrl: 'components/detail/precisez.html'}
+    answers:[
+      {labelDefault: 'Pour se déplacer à l\'intérieur du domicile', model: 'intraDomicile'},
+      {labelDefault: 'Pour sortir du domicile et y accéder', model: 'accesDomicile'},
+      {labelDefault: 'Pour se déplacer à l\'extérieur du domicile', model: 'public'},
+      {labelDefault: 'Pour adapter le véhicule pour pouvoir conduire', model: 'conduite', 'onlyAdult': true},
+      {labelDefault: 'Pour utiliser les transports en commun', model: 'transports'},
+      {labelDefault: 'Pour partir en vacances', model: 'vacances'},
+      {labelDefault: 'Autre besoin', model: 'autre', detailModel: 'besoinsDeplacement_autre', detailUrl: 'components/detail/precisez.html'}
     ]
   },
   {
     model: 'besoinsSocial',
-    titleDefault: 'Quels sont vos besoins d\'aide dans vos relations sociales et familiales ?',
-    titleRep: 'Quels sont ses besoins d\'aide dans ses relations sociales et familiales ?',
-    'answers': [
-      { labelDefault: 'Une aide pour communiquer (s\'exprimer, se faire comprendre)', model: 'communication' },
-      { labelDefault: 'Une aide avoir des activités culturelles, sportives et de loisirs', model: 'loisirs' },
+    titleDefault: 'Vous avez besoin d\'aide pour votre vie sociale :',
+    titleRep: '<%= pronoun %> a besoin d\'aide pour sa vie sociale :',
+    answers: [
+      { labelDefault: 'Pour communiquer (s\'exprimer, se faire comprendre)', model: 'communication' },
+      { labelDefault: 'Pour avoir des activités culturelles, sportives et de loisirs', model: 'loisirs' },
       {
-        labelDefault: 'Une aide les relations les autres',
+        labelDefault: 'Pour les relations les autres',
         model: 'proches'
       },
       {
-        labelDefault: 'Une aide vous occuper de votre famille',
-        labelRep: 'Une aide s\'occuper de sa famille',
+        labelDefault: 'Pour vous occuper de votre famille',
+        labelRep: 'Pour s\'occuper de sa famille',
         model: 'famille', 'onlyAdult': true
       },
       {
-        labelDefault: 'Une aide vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative ...)',
-        labelRep: 'Une aide se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative ...)',
+        labelDefault: 'Pour vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative ...)',
+        labelRep: 'Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative ...)',
         model: 'citoyen', 'onlyAdult': true
       },
       {
-        labelDefault: 'Une aide assurer votre sécurité',
-        labelRep: 'Une aide assurer sa sécurité',
+        labelDefault: 'Pour assurer votre sécurité',
+        labelRep: 'Pour assurer sa sécurité',
         model: 'securite'
       },
       { labelDefault: 'Autre besoin', model: 'autre', detailModel: 'besoinsSocial_autre', detailUrl: 'components/detail/precisez.html' }
     ]
   },
   {
-    'model': 'besoinsLieuDeVie',
-    titleDefault: 'Quels sont vos besoins d\'aide pour adapter votre lieu de vie ?',
-    titleRep: 'Quels sont ses besoins d\'aide pour adapter son lieu de vie ?',
-    'answers': [
+    model: 'besoinsLieuDeVie',
+    titleDefault: 'Vous avez besoin d\'aide pour adapter votre environnement :',
+    titleRep: '<%= pronoun %> a besoin d\'aide pour adapter son environnement :',
+    answers: [
       {
-        'labelDefault': 'Vous équiper d\'un matériel spécifique',
-        labelRep: 'S\'équiper d\'un matériel spécifique',
-        'model': 'materiel'
+        labelDefault: 'Pour vous équiper d\'un matériel spécifique',
+        labelRep: 'Pour s\'équiper d\'un matériel spécifique',
+        model: 'materiel'
       },
+      {labelDefault: 'Pour adapter le véhicule pour pouvoir conduire', model: 'conduite', 'onlyAdult': true},
       {
-        'labelDefault': 'Aménager votre lieu de vie',
-        labelRep: 'Aménager son lieu de vie',
-        'model': 'amenagement'},
-      {'labelDefault': 'Autre besoin', 'model': 'autre', detailModel: 'besoinsLieuDeVie_autre', detailUrl: 'components/detail/precisez.html'}
+        labelDefault: 'Pour aménager votre lieu de vie',
+        labelRep: 'Pour aménager son lieu de vie',
+        model: 'amenagement'
+      },
+      {labelDefault: 'Autre besoin', model: 'autre', detailModel: 'besoinsLieuDeVie_autre', detailUrl: 'components/detail/precisez.html'}
     ]
   },
   {
@@ -214,16 +223,16 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'objetDemande',
     titleDefault: 'Quels autres projets sont concernés par votre demande ?',
     titleRep: 'Quels autres projets sont concernés par sa demande ?',
-    'answers': [
+    answers: [
       {
-        'labelDefault': 'Votre scolarité ou vie étudiante',
+        labelDefault: 'Votre scolarité ou vie étudiante',
         'labelRep': 'Sa scolarité ou vie étudiante',
-        'model': 'scolarite'
+        model: 'scolarite'
       },
       {
-        'labelDefault': 'Votre vie professionnelle',
+        labelDefault: 'Votre vie professionnelle',
         'labelRep': 'Sa vie professionnelle',
-        'model': 'travail'
+        model: 'travail'
       }
     ]
   }

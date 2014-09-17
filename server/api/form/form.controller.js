@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Form = require('./form.model');
 var auth = require('../../auth/auth.service');
+var User = require('../user/user.model');
 
 // Get list of forms
 exports.index = function(req, res) {
@@ -74,6 +75,7 @@ exports.mine = function(req, res, next) {
  */
 exports.saveForm = function(req, res, next) {
   var userId = req.user._id;
+
   Form.findOne({
     user: userId
   }, function(err, form) {
@@ -90,6 +92,13 @@ exports.saveForm = function(req, res, next) {
       newForm = form;
     }
     newForm.formAnswers = req.body;
+
+    User.findById(userId, function (err, user) {
+      user.mdph = newForm.formAnswers.contexte.answers.mdph._id;
+      user.save(function(err){
+        if (err) {return handleError(res, err); }
+      });
+    });
 
     // A verifier, pour l'instant des que le formulaire est en base il est readOnly
     newForm.readOnly = true;

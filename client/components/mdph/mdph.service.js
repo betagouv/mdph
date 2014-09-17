@@ -6,6 +6,12 @@ angular.module('impactApp')
       id: '@_id'
     },
     {
+      queryAll: {
+        method: 'GET',
+        isArray: true
+      }
+    },
+    {
       query: {
         method: 'GET',
         isArray: true,

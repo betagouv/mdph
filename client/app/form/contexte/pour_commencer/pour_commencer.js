@@ -13,7 +13,12 @@ angular.module('impactApp')
     }).state('form.contexte.pour_commencer.code_postal', {
       url: '/code_postal',
       templateUrl: 'components/question/code_postal.html',
-      controller: 'CodePostalCtrl'
+      controller: 'CodePostalCtrl',
+      resolve: {
+        mdphs: function(Mdph) {
+          return Mdph.queryAll();
+        }
+      }
     }).state('form.contexte.pour_commencer.dossier', {
       url: '/dossier',
       templateUrl: 'components/question/radio.html',
@@ -30,5 +35,13 @@ angular.module('impactApp')
       url: '/renouvellement',
       templateUrl: 'components/question/checkbox.html',
       controller: 'RenouvellementCtrl'
+    }).state('form.contexte.pour_commencer.taux', {
+      url: '/taux',
+      templateUrl: 'components/question/radio.html',
+      controller: 'TauxCtrl'
+    }).state('form.contexte.pour_commencer.contestationTaux', {
+      url: '/votre_avis',
+      templateUrl: 'components/question/radio.html',
+      controller: 'ContestationTauxCtrl'
     });
   });

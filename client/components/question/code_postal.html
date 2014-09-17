@@ -2,9 +2,6 @@
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <input type="text" class="form-control"
-      required ng-pattern="/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/" ng-model="sectionModel[question.model]" ng-required="true"
-      ng-change="findMdph()" placeholder="Ex: 14000"/>
-    <span class="help-block" ng-if="mdph.value">{{mdph.value}}</span>
+    <input ng-model="sectionModel[question.model]" placeholder="Ex: 14, 14000, Calvados..." ng-required="true" typeahead="mdph as mdph.zipcode + ' - ' + mdph.name  for mdph in mdphs | limitTo:10 | filter:$viewValue" class="form-control">
   </div>
 </div>

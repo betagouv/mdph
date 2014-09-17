@@ -18,15 +18,22 @@
         Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
       </p>
       <div class="row">
-        <div class="col-sm-4 prestations" ng-repeat="prestation in prestations">
-          <div class="panel panel-default panel-closed" ng-class="prestation.type">
-            <div class="panel-heading" tooltip="{{prestation.description}}">
-              <h3 class="panel-title">{{prestation.label}}
-                <a ng-if="prestation.link" href="{{prestation.link}}" target="_blank"><span class="glyphicon glyphicon-info-sign pull-right"></span></a>
-              </h3>
+        <prestation ng-repeat="prestation in prestations">
+          <div class="col-sm-4 prestations">
+            <div class="panel panel-default panel-closed" ng-class="prestation.type">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{prestation.title}}
+                  <a ng-if="prestation.link" href="{{prestation.link}}" target="_blank"><span class="glyphicon glyphicon-info-sign pull-right"></span></a>
+                </h3>
+              </div>
+              <div class="panel-body">
+                {{prestation.description}}
+              </div>
             </div>
           </div>
-        </div>
+            
+          <div ng-if="$index % 3 === 2" class="clearfix"></div>
+        </prestation>
       </div>
     </div>
   </div>
