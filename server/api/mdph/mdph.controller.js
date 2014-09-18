@@ -6,8 +6,10 @@ var User = require('../user/user.model');
 
 // Get all users linked to a single mdph
 exports.showUsers = function(req, res) {
+  var reqMdph = req.user.mdph;
+  console.log(reqMdph);
   User.find({
-    mdph: req.params.id
+    mdph: reqMdph
   }, function (err, list) {
     if(err) { return handleError(res, err); }
     if(!list) { return res.send(404); }

@@ -9,6 +9,12 @@ angular.module('impactApp')
       $scope.sectionModel[$scope.question.model] = {};
     }
 
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
+    
     $scope.nextStep = function() {
       $scope.goToNextSection($scope.currentSectionId);
     };

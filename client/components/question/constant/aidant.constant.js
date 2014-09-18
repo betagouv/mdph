@@ -19,7 +19,8 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     model: 'lien',
-    titleDefault: 'Quel est votre lien avec la personne en situation de handicap ?'
+    titleDefault: 'Quel est votre lien avec la personne en situation de handicap ?',
+    placeholder: 'Frère'
   },
   {
     titleDefault: 'Vivez-vous avec la personne en situation de handicap ?',

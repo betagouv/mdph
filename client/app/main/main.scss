@@ -28,29 +28,28 @@
 }
 
 .liste-prestations {
-
-    background-image: url('../assets/images/tweed.png');
-
     margin-top: 70px;
     font-size: 14px;
     line-height: 1.5;
     color: #fff;
-    font: 15px 'Times new roman', sans-serif;
+    border-top: 3px solid $dark-blue;
+    background-color: $lighter-blue;
     text-align: center;
 
-    h2 {
+    h1 {
       margin-bottom: 20px;
-      font-size: 20px;
-      font-weight: 400;
+      font-size: 30px;
+      font-weight: 200;
       color: #eee;
     }
+
 
     .row {
       margin-bottom: 20px;
     }
 
     i {
-      color: $medium-red;
+      color: $lighter-blue;
       margin-right: 3px;
     }
 
@@ -61,7 +60,7 @@
 
       .elem-body {
         padding: 10px;
-        background-color: $light-red;
+        background-color: $light-blue;
         color: #eee;
 
         border-radius: 8px;
@@ -101,7 +100,6 @@ body {
     a {
       color: #eee;
     }
-    border-top: 3px solid $dark-blue;
     background-color: $light-blue;
 
     // Stick it

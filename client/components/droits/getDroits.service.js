@@ -12,7 +12,7 @@ angular.module('impactApp')
         var besoinsSocial = besoins ? besoins.besoinsSocial : undefined;
 
         var attentes = data.vie.answers.attentes && data.vie.answers.attentes.answers ? data.vie.answers.attentes.answers : undefined;
-        var attentesType = attentes ? attentes.typeAide : undefined;
+        var attentesType = attentes ? attentes.attentesTypeAide : undefined;
 
         var aidant = data.aidant;
         var aidantAnswers = aidant ? aidant.answers : undefined;
@@ -22,7 +22,7 @@ angular.module('impactApp')
 
         var contexte = data.contexte;
         var situations = contexte.answers.situations;
-        var urgences = situations ? situations.answers.urgences : undefined;
+        var urgences = situations && situations.answers ? situations.answers.urgences : undefined;
         var formation = urgences ? urgences.formation : false;
         var travail = urgences ? urgences.travail : false;
         var ecole = urgences ? urgences.ecole : false;

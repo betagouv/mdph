@@ -12,7 +12,7 @@ angular.module('impactApp')
       }
     },
     {
-      query: {
+      queryUsers: {
         method: 'GET',
         isArray: true,
         params: {

@@ -2,7 +2,6 @@
 
 angular.module('impactApp')
   .controller('UsersCtrl', function ($scope, User, users) {
-
     $scope.users = users;
 
     $scope.delete = function(user) {
