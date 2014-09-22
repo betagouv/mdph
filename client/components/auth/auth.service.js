@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $sessionStorage) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $sessionStorage, Mdph) {
     var currentUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
@@ -151,6 +151,10 @@ angular.module('impactApp')
        */
       getToken: function() {
         return $cookieStore.get('token');
+      },
+
+      getMdphUsers: function() {
+        return Mdph.queryUsers({ id: currentUser.mdph._id });
       }
     };
   });

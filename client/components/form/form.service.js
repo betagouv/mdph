@@ -11,6 +11,12 @@ angular.module('impactApp')
         });
       },
 
+      getAllForms: function() {
+        return $http.get('/api/forms').then(function(forms) {
+          return forms.data;
+        });
+      },
+
       saveCurrentForm: function() {
         $http.put('/api/forms/mine', $sessionStorage.formAnswers)
         .success(function() {

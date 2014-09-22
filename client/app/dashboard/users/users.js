@@ -8,12 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/users/users.html',
         controller: 'UsersCtrl',
         resolve: {
-          /*users: function(Mdph, Auth) {
-            return Mdph.queryUsers();
-          }*/
-
-          users: function() {
-            return [{name: 'Alice', email: 'alice@alice.com', role: 'adminMdph'}, {name: 'Bob', email: 'bob@bob.com', role: 'user'}, {name: 'Flo', email: 'flo@flo.com', role: 'user'}]
+          users: function(Auth) {
+            return Auth.getMdphUsers();
           }
         }
       });

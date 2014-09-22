@@ -9,9 +9,7 @@ angular.module('impactApp')
       queryAll: {
         method: 'GET',
         isArray: true
-      }
-    },
-    {
+      },
       queryUsers: {
         method: 'GET',
         isArray: true,

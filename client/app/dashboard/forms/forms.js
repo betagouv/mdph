@@ -8,10 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/forms/forms.html',
         controller: 'FormsCtrl',
         resolve: {
-          forms: function($http) {
-            return $http.get('/api/forms').then(function(forms) {
-              return forms.data;
-            });
+          forms: function(FormService) {
+            return FormService.getAllForms();
           }
         }
       });

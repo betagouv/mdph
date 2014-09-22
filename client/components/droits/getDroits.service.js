@@ -116,7 +116,7 @@ angular.module('impactApp')
             }
           },
           {
-            id: 'AV',
+            id: 'av',
             label: 'AV',
             title: 'Affiliation gratuite à l\'assurance vieillesse',
             description: 'L\'affiliation à l\'assurance vieillesse permet à l\'aidant familial de valider des trimestres pour sa retraite sans qu\'il ait besoin de verser des cotisations auprès de sa caisse de retraite.',
