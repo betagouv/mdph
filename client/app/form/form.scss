@@ -67,8 +67,31 @@
   }
 }
 
-.row{
-  &.answer{
-    margin-bottom: 8px;
+.btn-answer {
+  padding-left: 15px;
+  border-bottom: 2px solid $light-grey;
+  text-align: left;
+  i {
+    color: $light-grey;
+    margin-right: 15px;
   }
+
+  &.active {
+    border-bottom: 2px solid $green;
+    background-color: white;
+
+    i {
+      color: $green;
+    }
+  }
+}
+
+.ng-invalid {
+  &.ng-dirty {
+    border: 1px solid red !important;
+  }
+}
+
+.answer {
+  margin-bottom: 8px;
 }

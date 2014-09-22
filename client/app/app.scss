@@ -19,6 +19,7 @@ $medium-heavy-grey: #999999;
 $light-white: #F5F5F5;
 
 $active-text: $light-white;
+$green: #009513;
 
 /**
  * App-wide Styles
@@ -56,6 +57,7 @@ $active-text: $light-white;
 @import 'main/main.scss';
 @import 'recap/recap.scss';
 @import 'modal/login.scss';
+@import 'nav-steps/nav-steps.scss';
 @import 'navbar/navbar.scss';
 @import 'qtitle/qtitle.scss';
 @import 'question/droits.scss';

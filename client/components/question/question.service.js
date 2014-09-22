@@ -85,6 +85,5 @@ angular.module('impactApp')
           return false;
         }
       }
-
     };
   });

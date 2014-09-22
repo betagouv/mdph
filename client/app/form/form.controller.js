@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, QuestionService, SectionService, FormService, currentForm) {
+  .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, QuestionService, SectionService, FormService, currentForm, $window) {
 
     datepickerConfig.showWeeks = false;
     $scope.$storage = $sessionStorage.$default({
@@ -16,6 +16,10 @@ angular.module('impactApp')
 
     $scope.encode = function(json) {
       return encodeURIComponent(JSON.stringify(json));
+    };
+
+    $scope.previousStep = function() {
+      $window.history.back();
     };
 
     if (currentForm === null) {

@@ -22,6 +22,8 @@ angular.module('impactApp')
       return false;
     };
 
+    $scope.hidePrecedent = true;
+
     $scope.nextStep = function() {
       $state.go('^.code_postal');
     };

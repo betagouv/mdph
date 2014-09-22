@@ -1,4 +1,4 @@
-<div class="pull-right send-json">
+<div ng-hide="true" class="pull-right send-json">
   <div class="text-center">
     <small><a href="mailto:del.florian+impact@gmail.com?subject=Simulation&body={{encode($storage)}}">Envoyer la simulation courante</a></small>
   </div>
@@ -9,33 +9,29 @@
 </div>
 
 <div id="#quitus" ng-if="prestations">
-  <div class="row answer">
-    <div class="col-md-8 col-md-offset-2">
-      <p>
-        Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
-      </p>
-      <p>
-        Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
-      </p>
-      <div class="row">
-        <prestation ng-repeat="prestation in prestations">
-          <div class="col-sm-4 prestations">
-            <div class="panel panel-default panel-closed" ng-class="prestation.type">
-              <div class="panel-heading">
-                <h3 class="panel-title">{{prestation.title}}
-                  <a ng-if="prestation.link" href="{{prestation.link}}" target="_blank"><span class="glyphicon glyphicon-info-sign pull-right"></span></a>
-                </h3>
-              </div>
-              <div class="panel-body">
-                {{prestation.description}}
-              </div>
-            </div>
+  <p>
+    Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
+  </p>
+  <p>
+    Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
+  </p>
+  <div class="row">
+    <prestation ng-repeat="prestation in prestations">
+      <div class="col-sm-4 prestations">
+        <div class="panel panel-default panel-closed" ng-class="prestation.type">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{prestation.title}}
+              <a ng-if="prestation.link" href="{{prestation.link}}" target="_blank"><span class="glyphicon glyphicon-info-sign pull-right"></span></a>
+            </h3>
           </div>
-            
-          <div ng-if="$index % 3 === 2" class="clearfix"></div>
-        </prestation>
+          <div class="panel-body">
+            {{prestation.description}}
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div ng-if="$index % 3 === 2" class="clearfix"></div>
+    </prestation>
   </div>
 </div>
 
@@ -46,13 +42,13 @@
   </div>
 
   <div class="row answer">
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-6">
       <button class="btn btn-block btn-default btn-choice" ng-model="form.typeEnvoi" btn-radio="'numerique'">
         <strong>J'accepte</strong><br/>que la MDPH, pour mieux connaître ma situation et mes besoins, échange avec les professionnels qui m'accompagnents, en application de l'article L241&#8209;10 du code d'action sociale et des familles.
       </button>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <button class="btn btn-block btn-default btn-choice" ng-model="form.typeEnvoi" btn-radio="'papier'">
         <strong>Je n'accepte pas</strong><br/>que la MDPH échange avec les professionnels qui m'accompagnent, et je m'engage à ce que toute information complémentaire nécessaire à la MDPH passe par moi.
       </button>
