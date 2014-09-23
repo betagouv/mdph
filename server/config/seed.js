@@ -29,7 +29,23 @@ Mdph.find({}).remove(function() {
           email: 'bob@bob.com',
           password: 'bob',
           mdph: mdphCalvados
+        }, function(err, bob) {
+          Form.create({
+            user: bob,
+            formAnswers: {},
+            updatedAt: new Date(),
+            step: 'preEnvoi'
+          })
         });
+
+        User.create({
+          provider: 'local',
+          role: 'admin',
+          name: 'Admin',
+          email: 'admin@admin.com',
+          password: 'admin'
+        });
+
         User.create({
           provider: 'local',
           role: 'adminMdph',
@@ -37,12 +53,6 @@ Mdph.find({}).remove(function() {
           email: 'alice@alice.com',
           password: 'alice',
           mdph: mdphCalvados
-        }, {
-          provider: 'local',
-          role: 'admin',
-          name: 'Admin',
-          email: 'admin@admin.com',
-          password: 'admin'
         }, function() {
             console.log('finished populating users');
           }

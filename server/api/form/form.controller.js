@@ -4,6 +4,8 @@ var _ = require('lodash');
 var Form = require('./form.model');
 var auth = require('../../auth/auth.service');
 var User = require('../user/user.model');
+var path = require('path');
+var config = require('../../config/environment');
 
 // Get list of forms
 exports.index = function(req, res) {
@@ -103,12 +105,26 @@ exports.saveForm = function(req, res, next) {
     // A verifier, pour l'instant des que le formulaire est en base il est readOnly
     newForm.readOnly = true;
     newForm.updatedAt = new Date();
+    newForm.step = 'preEnvoi';
 
     newForm.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, form);
     });
   });
+};
+
+/**
+ * File upload
+ */
+exports.saveDocument = function (req, res, next) {
+    var data = _.pick(req.body, 'type'),
+     uploadPath = path.normalize(config.uploadDir),
+     file = req.files.file;
+
+    console.log(file.name); //original name (ie: sunset.png)
+    console.log(file.path); //tmp path (ie: /tmp/12345-xyaz.png)
+    console.log(uploadPath); //uploads directory: (ie: /home/user/data/uploads)
 };
 
 function handleError(res, err) {

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('/dashboard', '/dashboard/demandes');
     $stateProvider
       .state('dashboard', {
         url: '/dashboard',

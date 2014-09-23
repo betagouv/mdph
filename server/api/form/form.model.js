@@ -7,7 +7,8 @@ var FormSchema = new Schema({
   formAnswers:  Schema.Types.Mixed,
   user:         { type: Schema.Types.ObjectId, ref: 'User' },
   updatedAt:    { type: Date },
-  readOnly:     { type: Boolean }
+  readOnly:     { type: Boolean },
+  step:         { type: String }
 });
 
 module.exports = mongoose.model('Form', FormSchema);

@@ -8,7 +8,8 @@ angular.module('impactApp', [
   'ui.bootstrap',
   'ngStorage',
   'ngAnimate',
-  'angular-parallax'
+  'angular-parallax',
+  'angularFileUpload'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -46,7 +47,6 @@ angular.module('impactApp', [
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
-
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) {
           $location.path('/login');

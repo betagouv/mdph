@@ -1,9 +1,16 @@
-.header {
-  margin: 10px 0;
+.navbar {
+  .logo {
+    padding: 2px;
+  }
+  
+  img {
+    height: 46px;
+    border: 0;
+  }
+
   .title {
     margin-left: 30px;
     color: rgb(85,85,85);
-    font-size: 18px;
     text-decoration: none;
   }
 }

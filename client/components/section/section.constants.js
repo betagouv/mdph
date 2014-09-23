@@ -42,7 +42,7 @@ angular.module('impactApp').constant('defaultSections', [
     id: 5,
     sref: 'form.envoi',
     glyphicon: 'glyphicon-paperclip',
-    label: 'Pièces justificatives',
+    label: 'Résultats',
     isOptionnal: false
   }
 ]);

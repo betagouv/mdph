@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="page-header text-center">
+<div class="page-header">
   <h4>Merci d'avoir rempli votre dossier</h4>
 </div>
 
@@ -38,7 +38,7 @@
 <div ng-hide="readOnly">
   <hr/>
   <div class="text-center">
-    <h4>Pour terminer, téléchargez ou envoyez vos pièces justificatives</h4>
+    <h4>Pour terminer, veuillez choisir le mode de transmission de votre demande</h4>
   </div>
 
   <div class="row answer">
@@ -55,35 +55,19 @@
     </div>
   </div>
 
-  <div class="row answer" ng-if="form.typeEnvoi==='numerique'">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="jumbotron detailEnvoi">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <label class="btn btn-primary btn-block" ng-click="saveForm()">Enregistrer votre demande</label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <label class="btn btn-primary btn-block detailEnvoi" ng-if="form.typeEnvoi==='numerique'" ng-click="saveForm()">Enregistrer votre demande en ligne</label>
 
-  <div class="row answer" ng-if="form.typeEnvoi==='papier'">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="jumbotron detailEnvoi">
-        <p>Liste des pièces à joindre obligatoirement à votre demande</p>
-        <ul class="answer">
-          <li>Un certificat médical de moins de 3 mois</li>
-          <li>Une photocopie recto/verso {{justificatifStr}}</li>
-          <li ng-if='showAdult'>Une photocopie d'un justificatif de domicile</li>
-          <li>Une attestation de jugement en protection juridique (le cas échéant)</li>
-        </ul>
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <label class="btn btn-primary btn-block">Télécharger votre formulaire</label>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="jumbotron detailEnvoi" ng-if="form.typeEnvoi==='papier'">
+    <p>Liste des pièces à joindre obligatoirement à votre demande</p>
+    <ul class="answer">
+      <li>Un certificat médical de moins de 3 mois</li>
+      <li>Une photocopie recto/verso {{justificatifStr}}</li>
+      <li ng-if='showAdult'>Une photocopie d'un justificatif de domicile</li>
+      <li>Une attestation de jugement en protection juridique (le cas échéant)</li>
+    </ul>
+
+    <label class="btn btn-primary btn-block">Télécharger votre formulaire pré-rempli</label>
+
   </div>
 
 </div>

@@ -1,6 +1,6 @@
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="form in forms">
-    <a ui-sref="dashboard.detail({id: form._id})">
+    <a ui-sref="dashboard.forms.detail({id: form._id})">
       <strong>{{form.user.name}}</strong><br>
       <span class="text-muted">{{updatedAt(form)}}</span>
     </a>

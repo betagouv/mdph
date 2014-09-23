@@ -14,6 +14,6 @@ router.put('/mine', auth.isAuthenticated(), controller.saveForm);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
-
+router.post('/:id/document', auth.isAuthenticated(), controller.saveDocument);
 
 module.exports = router;

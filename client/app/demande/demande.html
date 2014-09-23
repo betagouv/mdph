@@ -1,19 +1,14 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container">
-  <div class="page-header"><h1>Questionnaire</h1></div>
-  <div ng-show="form">
-    <p class="lead no-margin">
-      Vous avez bien rempli le questionnaire. Vous pouvez toujours le consulter mais pas le modifier.
-    </p>
-    <p>
-      <small><em>Dernière modification {{ updatedAt(form) }} </em></small>
-    </p>
+<div class="container suivi-demande">
+  <div ng-show="form.step === 'preEnvoi'">
+    <div class="page-header">
+      <h4>Pièces obligatoires<br/><small>Pour terminer l'envoi de votre demande à la MDPH du {{getCurrentUser().mdph.name}}</small></h4>
+    </div>
 
-    <div class="page-header"><h1>Suivi de votre demande</h1></div>
-    <docs-form form="form"></docs-form>
+    <docs-form form="form" type="'mandatory'"></docs-form>
   </div>
-  <div ng-hide="form">
-    Vous n'avez pas encore rempli le questionnaire.
+  <div ng-show="form.step === 'premierNiveau'">
+
   </div>
 </div>

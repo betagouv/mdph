@@ -77,18 +77,12 @@
   }
 
   &.active {
-    border-bottom: 2px solid $green;
+    border-bottom: 2px solid $primary;
     background-color: white;
 
     i {
-      color: $green;
+      color: $primary;
     }
-  }
-}
-
-.ng-invalid {
-  &.ng-dirty {
-    border: 1px solid red !important;
   }
 }
 

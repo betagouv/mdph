@@ -1,4 +1,35 @@
 <div ng-if="!small">
+  <div class="row">
+    <div class="col-md-6 " ng-repeat="document in documents">
+      <div class="panel panel-default" ng-class="document.type">
+        <div class="panel-heading" tooltip="{{document.tooltip}}">
+          <h4>{{document.desc}}</h4>
+        </div>
+        <div class="panel-body">
+          <div ng-if="!document.file">
+            <em>Pas de document</em>
+          </div>
+          <div ng-if="document.file">
+            <a ng-href="{{document.file}}">
+              <span class="glyphicon glyphicon-file"></span>
+              <strong>{{document.filename}}</strong>
+            </a>
+            <span><strong>PDF</strong></span> <!-- TODO -->
+            <span><strong>3.2Mb</strong></span> <!-- TODO -->
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="btn-group btn-group-justified">
+            <div ng-file-select="onFileSelect($files, document)" data-multiple="false" class="btn btn-default" href="#"><span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</div>
+            <a class="btn btn-default" ng-if="document.why"><span class="glyphicon glyphicon-question-sign"></span> Pourquoi ?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-hide="true">
   <div class="row answer">
     <div class="col-md-12">
       <div class="accordion">
