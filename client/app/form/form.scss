@@ -2,10 +2,7 @@
   border-radius: 0;
   border-left: 0;
   border-right: 0;
-
-  .nav {
-    padding: 20px;
-  }
+  padding: 10px 0;
 
   .navbar-collapse {
     text-align: center;
@@ -21,25 +18,11 @@
     display: inline-block;
     color: $light-white;
     text-align: center;
+    padding: 5px;
     min-width: 140px;
-    margin: 5px 15px;
 
     &:hover {
       text-decoration: none;
-    }
-
-    span {
-      display: block;
-      height: 2px;
-      border-radius: 1px;
-      background: $dark-blue;
-    }
-
-    &.active {
-      span {
-        background: $light-red;
-        color: $active-text
-      }
     }
 
     &.disabled {
@@ -47,9 +30,6 @@
       font-weight: 100;
       opacity: 0.7;
       cursor: default;
-      span {
-        opacity: 0.7;
-      }
       p {
         opacity: 0.7;
       }

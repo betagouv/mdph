@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('SectionService', function SectionService($sessionStorage, defaultSections, $state) {
+  .factory('SectionService', function SectionService($sessionStorage, defaultSections, formSteps, $state) {
     var sections = defaultSections;
     var vieQuotidienne = sections[1];
     var scolarite = sections[2];
     var travail = sections[3];
     var aidant = sections[4];
     var envoi = sections[5];
+
+    var stepsById = _.indexBy(formSteps, 'id');
 
     var getAnswerSection = function(answers) {
       if (answers && answers.vie && answers.vie.answers.attentes && answers.vie.answers.attentes.answers.objetDemande) {
@@ -28,6 +30,32 @@ angular.module('impactApp')
     };
 
     return {
+      getFormSteps: function(form) {
+        var currentStep = stepsById[form.step];
+        if (currentStep.step > 0) {
+          stepsById.questionnaire.isFinished = true;
+          stepsById.obligatoire.isEnabled = true;
+        }
+        if (currentStep.step > 1) {
+          stepsById.obligatoire.isFinished = true;
+          stepsById.preevaluation.isEnabled = true;
+        }
+        if (currentStep.step > 2) {
+          stepsById.preevaluation.isFinished = true;
+          stepsById.complementaire.isEnabled = true;
+        }
+        if (currentStep.step > 3) {
+          stepsById.complementaire.isFinished = true;
+          stepsById.evaluation.isEnabled = true;
+        }
+        if (currentStep.step > 4) {
+          stepsById.evaluation.isFinished = true;
+          stepsById.reponse.isEnabled = true;
+        }
+        $state.go(currentStep.sref);
+        return formSteps;
+      },
+
       getSections: function(form, refresh) {
         if (refresh) {
           this.refresh(form);

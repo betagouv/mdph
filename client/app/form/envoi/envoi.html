@@ -4,8 +4,8 @@
   </div>
 </div>
 
-<div class="page-header">
-  <h4>Merci d'avoir rempli votre dossier</h4>
+<div class="page-header no-hr text-center">
+  <h1>Merci d'avoir rempli votre dossier</h1>
 </div>
 
 <div id="#quitus" ng-if="prestations">
@@ -35,7 +35,7 @@
   </div>
 </div>
 
-<div ng-hide="readOnly">
+<div ng-hide="form.readOnly">
   <hr/>
   <div class="text-center">
     <h4>Pour terminer, veuillez choisir le mode de transmission de votre demande</h4>
@@ -43,7 +43,7 @@
 
   <div class="row answer">
     <div class="col-md-6">
-      <button class="btn btn-block btn-default btn-choice" ng-model="form.typeEnvoi" btn-radio="'numerique'">
+      <button class="btn btn-block btn-default btn-choice" ng-model="form.typeEnvoi" btn-radio="'numerique'" ng-click="saveForm()">
         <strong>J'accepte</strong><br/>que la MDPH, pour mieux connaître ma situation et mes besoins, échange avec les professionnels qui m'accompagnents, en application de l'article L241&#8209;10 du code d'action sociale et des familles.
       </button>
     </div>
@@ -55,15 +55,12 @@
     </div>
   </div>
 
-  <label class="btn btn-primary btn-block detailEnvoi" ng-if="form.typeEnvoi==='numerique'" ng-click="saveForm()">Enregistrer votre demande en ligne</label>
-
   <div class="jumbotron detailEnvoi" ng-if="form.typeEnvoi==='papier'">
     <p>Liste des pièces à joindre obligatoirement à votre demande</p>
     <ul class="answer">
       <li>Un certificat médical de moins de 3 mois</li>
       <li>Une photocopie recto/verso {{justificatifStr}}</li>
       <li ng-if='showAdult'>Une photocopie d'un justificatif de domicile</li>
-      <li>Une attestation de jugement en protection juridique (le cas échéant)</li>
     </ul>
 
     <label class="btn btn-primary btn-block">Télécharger votre formulaire pré-rempli</label>

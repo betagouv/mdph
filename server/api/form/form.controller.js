@@ -105,10 +105,11 @@ exports.saveForm = function(req, res, next) {
     // A verifier, pour l'instant des que le formulaire est en base il est readOnly
     newForm.readOnly = true;
     newForm.updatedAt = new Date();
-    newForm.step = 'preEnvoi';
+    newForm.step = 'obligatoire';
 
     newForm.save(function (err) {
       if (err) { return handleError(res, err); }
+      console.log(form);
       return res.json(200, form);
     });
   });

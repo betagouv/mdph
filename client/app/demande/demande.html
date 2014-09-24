@@ -1,14 +1,21 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container suivi-demande">
-  <div ng-show="form.step === 'preEnvoi'">
-    <div class="page-header">
-      <h4>Pièces obligatoires<br/><small>Pour terminer l'envoi de votre demande à la MDPH du {{getCurrentUser().mdph.name}}</small></h4>
+<div class="banner banner-inverse navbar navbar-default nav-form" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-
-    <docs-form form="form" type="'mandatory'"></docs-form>
-  </div>
-  <div ng-show="form.step === 'premierNiveau'">
-
+    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-secondary">
+      <div class="row">
+        <div section="step" class="col-md-2" ng-repeat="step in steps"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+<ui-view></ui-view>

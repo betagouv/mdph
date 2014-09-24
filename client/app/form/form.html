@@ -10,10 +10,14 @@
         <span class="icon-bar"></span>
       </button>
     </div>
+
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-secondary">
-      <ul class="nav navbar-nav">
+      <!-- <ul class="nav navbar-nav">
         <li section="section" ng-repeat="section in sections"></li>
-      </ul>
+      </ul> -->
+      <div class="row section-row">
+        <div section="section" class="col-md-2" ng-repeat="section in sections"></div>
+      </div>
     </div>
   </div>
 </div>

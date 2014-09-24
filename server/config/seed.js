@@ -32,9 +32,110 @@ Mdph.find({}).remove(function() {
         }, function(err, bob) {
           Form.create({
             user: bob,
-            formAnswers: {},
+            formAnswers: {
+              "contexte":{
+                "sectionLabel":"Contexte",
+                "answers":{
+                  "estRepresentant":false,
+                  "mdph": mdphCalvados,
+                  "nouveauDossier":true,
+                  "dateNaissance":"1981-04-30T22:00:00.000Z",
+                  "situations":{
+                     "label":"Situations particulières",
+                     "answers":{
+                        "urgences":{
+                           "domicile":false,
+                           "formation":true
+                        },
+                        "urgences_domicile":"Je suis a la rue",
+                        "urgences_formation":"1982-05-11T22:00:00.000Z"
+                     }
+                  }
+                }
+                },
+                "vie":{
+                "sectionLabel":"Votre vie quotidienne",
+                "answers":{
+                  "situation":{
+                     "label":"Votre situation",
+                     "answers":{
+                        "famille":"seul",
+                        "logement":"independant",
+                        "logement_independant":"locataire",
+                        "mesPrestations":[
+
+                        ]
+                     }
+                  },
+                  "besoins":{
+                     "label":"Besoins dans la vie quotidienne",
+                     "answers":{
+                        "besoinsVie":{
+                           "courant":true,
+                           "hygiene":true,
+                           "budget":true,
+                           "courses":true,
+                           "habits":true,
+                           "cuisine":true,
+                           "repas":true,
+                           "menage":true
+                        },
+                        "besoinsDeplacement":{
+                           "intraDomicile":true,
+                           "accesDomicile":true,
+                           "public":true
+                        },
+                        "besoinsSocial":{
+                           "communication":true,
+                           "loisirs":true,
+                           "proches":true,
+                           "famille":true
+                        },
+                        "besoinsLieuDeVie":{
+                           "materiel":true,
+                           "conduite":true
+                        }
+                     }
+                  },
+                  "attentes":{
+                     "label":"Vos attentes pour compenser votre handicap",
+                     "answers":{
+                        "attentesTypeAide":{
+                           "domicile":true,
+                           "materiel":true,
+                           "etablissement":true,
+                           "financierMinimum":true,
+                           "amenagement":true,
+                           "financierHandicap":true
+                        },
+                        "structures":{
+                           "valeur":true,
+                           "structures":[
+                              {
+                                 "name":"Monoprix",
+                                 "contact":true
+                              }
+                           ]
+                        },
+                        "autresRenseignements":"Je suis bob.",
+                        "objetDemande":{
+
+                        }
+                     }
+                  }
+                }
+                },
+                "aidant":{
+                "sectionLabel":"Aidant familial",
+                "answers":{
+                  "condition":false
+                }
+              },
+              "envoi":true
+            },
             updatedAt: new Date(),
-            step: 'preEnvoi'
+            step: 'reponse',
+            readOnly: true
           })
         });
 

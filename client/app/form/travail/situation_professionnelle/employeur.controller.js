@@ -17,6 +17,7 @@ angular.module('impactApp')
 
     $scope.checkNextStep = function(value) {
       // TODO
+      return value;
     };
 
     $scope.nextStep = function() {
