@@ -11,6 +11,7 @@ angular.module('impactApp')
           users: function(Auth) {
             return Auth.getAllUsers();
           }
-        }
+        },
+        authenticate: true
       });
   });

@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var Form = require('../form/form.model');
 
 var UserSchema = new Schema({
   name: String,
@@ -36,6 +37,7 @@ UserSchema
   .virtual('profile')
   .get(function() {
     return {
+      '_id': this._id,
       'name': this.name,
       'role': this.role,
       'email': this.email
@@ -100,6 +102,17 @@ UserSchema
       next(new Error('Invalid password'));
     else
       next();
+  });
+
+
+/**
+ * Pre-delete hook
+ */
+UserSchema
+  .pre('remove', function(next) {
+    console.log('removeeeee');
+    Form.remove({user: this}).exec();
+    next();
   });
 
 /**

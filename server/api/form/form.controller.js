@@ -14,6 +14,9 @@ exports.index = function(req, res) {
    .populate('user')
    .exec(function (err, forms) {
     if(err) { return handleError(res, err); }
+    if (!forms) {
+      return res.json(200);
+    }
     var filteredForms = forms.filter(function(form){
       return form.user.mdph.equals(req.user.mdph);
     });
@@ -81,7 +84,6 @@ exports.mine = function(req, res, next) {
 };
 
 var saveMdphForUser = function(userId, mdphId, res) {
-  console.log(userId);
   User.findById(userId, function (err, user) {
     user.mdph = mdphId;
     user.save(function(err){
@@ -116,7 +118,6 @@ exports.saveForm = function(req, res, next) {
 
     newForm.save(function (err) {
       if (err) { return handleError(res, err); }
-      console.log(form);
       return res.json(200, form);
     });
   });

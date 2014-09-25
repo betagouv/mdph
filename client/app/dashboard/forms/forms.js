@@ -11,6 +11,7 @@ angular.module('impactApp')
           forms: function(FormService) {
             return FormService.getAllForms();
           }
-        }
+        },
+        authenticate: true
       });
   });
