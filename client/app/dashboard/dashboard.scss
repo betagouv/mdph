@@ -1,0 +1,16 @@
+.navbar-soft {
+  margin-top: -20px;
+  background-color: $light-blue;
+  border: none;
+  border-radius: 0;
+
+  a {
+    color: white !important;
+  }
+
+  .active {
+    a {
+      background-color: $lighter-blue !important;
+    }
+  }
+}

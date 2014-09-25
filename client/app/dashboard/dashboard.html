@@ -1,15 +1,22 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked">
+<div class="navbar navbar-default navbar-soft" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-secondary">
+      <ul class="nav navbar-nav">
         <li ui-sref-active="active"><a ui-sref="dashboard.forms">Demandes</a></li>
         <li ui-sref-active="active"><a ui-sref="dashboard.users">Utilisateurs</a></li>
       </ul>
     </div>
-    <div class="col-sm-9">
-      <ui-view></ui-view>
-    </div>
   </div>
 </div>
+
+<ui-view></ui-view>

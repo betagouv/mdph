@@ -31,28 +31,35 @@ angular.module('impactApp')
 
     return {
       getFormSteps: function(form) {
-        var currentStep = stepsById[form.step];
-        if (currentStep.step > 0) {
-          stepsById.questionnaire.isFinished = true;
-          stepsById.obligatoire.isEnabled = true;
+        var currentStep;
+        if (form === null) {
+          currentStep = stepsById.questionnaire;
+        } else {
+          currentStep = stepsById[form.step];
+          if (currentStep.step > 0) {
+            stepsById.questionnaire.isFinished = true;
+            stepsById.obligatoire.isEnabled = true;
+          }
+          if (currentStep.step > 1) {
+            stepsById.obligatoire.isFinished = true;
+            stepsById.preevaluation.isEnabled = true;
+          }
+          if (currentStep.step > 2) {
+            stepsById.preevaluation.isFinished = true;
+            stepsById.complementaire.isEnabled = true;
+          }
+          if (currentStep.step > 3) {
+            stepsById.complementaire.isFinished = true;
+            stepsById.evaluation.isEnabled = true;
+          }
+          if (currentStep.step > 4) {
+            stepsById.evaluation.isFinished = true;
+            stepsById.reponse.isEnabled = true;
+          }
         }
-        if (currentStep.step > 1) {
-          stepsById.obligatoire.isFinished = true;
-          stepsById.preevaluation.isEnabled = true;
-        }
-        if (currentStep.step > 2) {
-          stepsById.preevaluation.isFinished = true;
-          stepsById.complementaire.isEnabled = true;
-        }
-        if (currentStep.step > 3) {
-          stepsById.complementaire.isFinished = true;
-          stepsById.evaluation.isEnabled = true;
-        }
-        if (currentStep.step > 4) {
-          stepsById.evaluation.isFinished = true;
-          stepsById.reponse.isEnabled = true;
-        }
+
         $state.go(currentStep.sref);
+
         return formSteps;
       },
 

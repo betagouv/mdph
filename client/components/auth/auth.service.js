@@ -153,8 +153,10 @@ angular.module('impactApp')
         return $cookieStore.get('token');
       },
 
-      getMdphUsers: function() {
-        return Mdph.queryUsers({ id: currentUser.mdph._id });
+      getAllUsers: function() {
+        return $http.get('/api/users').then(function(users) {
+          return users.data;
+        });
       }
     };
   });

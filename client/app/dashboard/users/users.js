@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'UsersCtrl',
         resolve: {
           users: function(Auth) {
-            return Auth.getMdphUsers();
+            return Auth.getAllUsers();
           }
         }
       });

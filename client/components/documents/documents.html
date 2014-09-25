@@ -6,66 +6,20 @@
           <h4>{{document.desc}}</h4>
         </div>
         <div class="panel-body">
-          <div ng-if="!document.file">
+          <div ng-hide="document.file">
             <em>Pas de document</em>
           </div>
-          <div ng-if="document.file">
-            <a ng-href="{{document.file}}">
-              <span class="glyphicon glyphicon-file"></span>
-              <strong>{{document.filename}}</strong>
-            </a>
-            <span><strong>PDF</strong></span> <!-- TODO -->
-            <span><strong>3.2Mb</strong></span> <!-- TODO -->
+          <div ng-show="document.file">
+            <span class="glyphicon glyphicon-file"></span>
+            <span><strong>Document reçu</strong></span>
           </div>
         </div>
-        <div class="panel-footer">
+        <div class="panel-footer" ng-hide="document.file">
           <div class="btn-group btn-group-justified">
             <div ng-file-select="onFileSelect($files, document)" data-multiple="false" class="btn btn-default" href="#"><span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</div>
             <a class="btn btn-default" ng-if="document.why"><span class="glyphicon glyphicon-question-sign"></span> Pourquoi ?</a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div ng-hide="true">
-  <div class="row answer">
-    <div class="col-md-12">
-      <div class="accordion">
-        <accordion>
-          <accordion-group is-open="category.open" ng-if="category.show" ng-repeat="category in documents">
-            <accordion-heading>
-                {{category.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': category.open, 'glyphicon-chevron-right': !category.open}"></i>
-            </accordion-heading>
-
-            <div class="row answer">
-              <div class="col-md-6 pieces" ng-if="document.show" ng-repeat="document in category.documents">
-                <div class="panel panel-default" ng-class="document.type">
-                  <div class="panel-heading" tooltip="{{document.tooltip}}">
-                    <p>{{document.desc}}</p>
-                  </div>
-                  <div class="panel-body">
-                    <a href="#">
-                      <span class="glyphicon glyphicon-file"></span>
-                      <strong>{{document.filename ? document.filename : 'Pas de document'}}</strong>
-                    </a>
-                    <div>
-                      <span><strong>PDF</strong></span> <!-- TODO -->
-                      <span><strong>3.2Mb</strong></span> <!-- TODO -->
-                    </div>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="btn-group btn-group-justified">
-                      <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</a>
-                      <a class="btn btn-default" ng-if="document.why"><span class="glyphicon glyphicon-question-sign"></span> Pourquoi ?</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </accordion-group>
-        </accordion>
       </div>
     </div>
   </div>

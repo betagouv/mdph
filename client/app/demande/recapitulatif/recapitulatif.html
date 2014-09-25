@@ -1,7 +1,45 @@
 <div class="container">
+  <div id="#quitus" ng-if="prestations">
+    <h1 class="page-header no-hr">
+      Récapitulatif
+    </h1>
+
+    <p class="lead">
+      Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
+    </p>
+    <blockquote>
+      <p>
+        Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
+      </p>
+    </blockquote>
+    <div class="row">
+      <prestation ng-repeat="prestation in prestations">
+        <div class="col-sm-3 prestations">
+          <div class="panel panel-default panel-closed" ng-class="prestation.type">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{prestation.title}}
+                <a ng-if="prestation.link" href="{{prestation.link}}" target="_blank"><span class="glyphicon glyphicon-info-sign pull-right"></span></a>
+              </h3>
+            </div>
+            <div class="panel-body">
+              {{prestation.description}}
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="$index % 4 === 3" class="clearfix"></div>
+      </prestation>
+    </div>
+  </div>
+
   <h1 class="page-header no-hr">
-    Récapitulatif
-    <br/>
-    <small>Votre questionnaire n'a pas encore été transmis et vous pouvez donc encore le modifier.<small>
+    Questionnaire
   </h1>
+
+  <a class="btn btn-primary btn-lg" href="form">
+    {{currentStep.isFinished ? 'Consultez votre questionnaire' : 'Commencez votre questionnaire'}}
+  </a>
+
+  <div ui-view="form"></div>
+
 </div>

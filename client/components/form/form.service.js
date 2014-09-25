@@ -28,6 +28,13 @@ angular.module('impactApp')
         });
       },
 
+      saveStep: function(form, step, next) {
+        $http.put('/api/forms/' + form._id, {step: step})
+        .success(function() {
+          next(step);
+        });
+      },
+
       getRepresentant: function(answers) {
         if (angular.isUndefined(answers.contexte)||
             angular.isUndefined(answers.contexte.answers)) {

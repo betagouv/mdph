@@ -7,17 +7,25 @@ var User = require('../user/user.model');
 var path = require('path');
 var config = require('../../config/environment');
 
-// Get list of forms
+// Obtenir la liste des demande pour la mdph de l'utilisateur
 exports.index = function(req, res) {
-  Form.find().populate('user').exec(function (err, forms) {
+  Form
+   .find()
+   .populate('user')
+   .exec(function (err, forms) {
     if(err) { return handleError(res, err); }
-    return res.json(200, forms);
+    var filteredForms = forms.filter(function(form){
+      return form.user.mdph.equals(req.user.mdph);
+    });
+    return res.json(200, filteredForms);
   });
 };
 
 // Get a single form
 exports.show = function(req, res, next) {
-  Form.findById(req.params.id, function (err, form) {
+  Form.findById(req.params.id)
+  .populate('user')
+  .exec(function(err, form) {
     if(err) { return next(err); }
     if(!form) { return res.send(404); }
     return res.json(form);
@@ -72,6 +80,16 @@ exports.mine = function(req, res, next) {
   });
 };
 
+var saveMdphForUser = function(userId, mdphId, res) {
+  console.log(userId);
+  User.findById(userId, function (err, user) {
+    user.mdph = mdphId;
+    user.save(function(err){
+      if (err) {return handleError(res, err); }
+    });
+  });
+};
+
 /**
  * Save my form
  */
@@ -82,30 +100,19 @@ exports.saveForm = function(req, res, next) {
     user: userId
   }, function(err, form) {
     if (err) return next(err);
-    var newForm;
-    if(!form) {
-      newForm = new Form();
-      newForm.user = userId;
-    } else {
-      // Si readOnly on ne fait rien
-      if (form.readOnly) {
-        return res.send(423);
-      }
-      newForm = form;
+    if(form) {
+      // On ne peut sauvegarder qu'une fois le formulaire
+      return res.send(423);
     }
-    newForm.formAnswers = req.body;
 
-    User.findById(userId, function (err, user) {
-      user.mdph = newForm.formAnswers.contexte.answers.mdph._id;
-      user.save(function(err){
-        if (err) {return handleError(res, err); }
-      });
+    var newForm = new Form({
+      user: userId,
+      formAnswers: req.body,
+      updatedAt: new Date(),
+      step: 'obligatoire'
     });
 
-    // A verifier, pour l'instant des que le formulaire est en base il est readOnly
-    newForm.readOnly = true;
-    newForm.updatedAt = new Date();
-    newForm.step = 'obligatoire';
+    saveMdphForUser(userId, newForm.formAnswers.contexte.answers.mdph._id, res);
 
     newForm.save(function (err) {
       if (err) { return handleError(res, err); }
@@ -119,13 +126,23 @@ exports.saveForm = function(req, res, next) {
  * File upload
  */
 exports.saveDocument = function (req, res, next) {
-    var data = _.pick(req.body, 'type'),
-     uploadPath = path.normalize(config.uploadDir),
-     file = req.files.file;
+    var file = req.files.file;
 
-    console.log(file.name); //original name (ie: sunset.png)
-    console.log(file.path); //tmp path (ie: /tmp/12345-xyaz.png)
-    console.log(uploadPath); //uploads directory: (ie: /home/user/data/uploads)
+    Form.findOne({
+      user: req.user._id
+    }, function(err, form) {
+      if (err) return next(err);
+
+      var newDocument = {documentType: req.body.documentType, path: file.path};
+
+      form.files.push(newDocument);
+
+      form.save(function(err) {
+        if (err) {return handleError(res, err); }
+      });
+
+      res.send(newDocument);
+    });
 };
 
 function handleError(res, err) {

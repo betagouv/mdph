@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.forms.detail', {
         url: '/:id',
-        templateUrl: 'app/dashboard/detail/detail.html',
+        templateUrl: 'app/dashboard/forms/detail/detail.html',
         controller: 'DetailCtrl',
         resolve: {
           form: function($http, $stateParams) {

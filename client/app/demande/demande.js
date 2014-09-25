@@ -10,7 +10,7 @@ angular.module('impactApp')
         resolve: {
           currentForm:  function(FormService) {
             return FormService.getCurrentForm();
-           }
+          }
         }
       });
   });
