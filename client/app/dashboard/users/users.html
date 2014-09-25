@@ -1,13 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
       <div class="list-group">
-        <a class="list-group-item" ng-repeat="user in users" ui-sref-active="active" ui-sref="dashboard.users.detail({id: user._id})">
-          {{user.name}}<br/><span class="text-muted">{{user.role | role}}</span>
+        <a class="list-group-item searchbox">
+          <input class="form-control" type="text" ng-model="query" placeholder="Recherche">
+          </input>
+        </a>
+        <a class="list-group-item" ng-repeat="user in users | filter:query" ui-sref-active="active" ui-sref="dashboard.users.detail({id: user._id})">
+          {{user.name}}
         </a>
       </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div ui-view></div>
     </div>
   </div>
