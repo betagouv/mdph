@@ -7,13 +7,6 @@ angular.module('impactApp')
 
     $scope.currentSectionId = 3;
 
-    if (angular.isUndefined($scope.formAnswers.travail)) {
-      $scope.formAnswers.travail = {
-        sectionLabel: 'Vie au travail',
-        answers: {}
-      };
-    }
-
     if (angular.isUndefined($scope.$storage.sectionSituationTravail)) {
       $scope.$storage.sectionSituationTravail = {
         id: 0,
@@ -40,5 +33,9 @@ angular.module('impactApp')
       $scope.$storage.sectionProjetTravail
     ];
 
-    $scope.sectionModel = $scope.formAnswers.travail.answers;
+    if (angular.isUndefined($scope.formAnswers.travail)) {
+      $scope.formAnswers.travail = {};
+    }
+
+    $scope.sectionModel = $scope.formAnswers.travail;
   });

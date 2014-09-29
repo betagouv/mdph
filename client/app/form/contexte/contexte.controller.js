@@ -7,15 +7,6 @@ angular.module('impactApp')
     ---------------------------------------*/
     $scope.currentSectionId = 0;
 
-    /* Section dans sessionStorage
-    ---------------------------------------*/
-    if (angular.isUndefined($scope.formAnswers.contexte)) {
-      $scope.formAnswers.contexte = {
-        sectionLabel: 'Contexte',
-        answers: {}
-      };
-    }
-
     /* Navigation sous-etats
     ---------------------------------------*/
     if (angular.isUndefined($scope.$storage.sectionSituationContexte)) {
@@ -44,5 +35,9 @@ angular.module('impactApp')
 
     /* Modele des questions
     ---------------------------------------*/
-    $scope.sectionModel = $scope.formAnswers.contexte.answers;
+    if (angular.isUndefined($scope.formAnswers.contexte)) {
+      $scope.formAnswers.contexte = {};
+    }
+
+    $scope.sectionModel = $scope.formAnswers.contexte;
   });

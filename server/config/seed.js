@@ -62,105 +62,88 @@ Mdph.find({}).remove(function() {
         user: bob,
         formAnswers: {
           "contexte":{
-            "sectionLabel":"Contexte",
-            "answers":{
-              "estRepresentant":false,
-              "mdph": mdphCalvados,
-              "nouveauDossier":true,
-              "dateNaissance":"1981-04-30T22:00:00.000Z",
-              "situations":{
-                 "label":"Situations particulières",
-                 "answers":{
-                    "urgences":{
-                       "domicile":false,
-                       "formation":true
-                    },
-                    "urgences_domicile":"Je suis a la rue",
-                    "urgences_formation":"1982-05-11T22:00:00.000Z"
-                 }
-              }
-            }
+            "estRepresentant":true,
+            "demandeur":{
+               "prenom":"Bobby",
+               "sexe":"masculin"
             },
-            "vie":{
-            "sectionLabel":"Votre vie quotidienne",
-            "answers":{
-              "situation":{
-                 "label":"Votre situation",
-                 "answers":{
-                    "famille":"seul",
-                    "logement":"independant",
-                    "logement_independant":"locataire",
-                    "mesPrestations":[
-
-                    ]
-                 }
-              },
-              "besoins":{
-                 "label":"Besoins dans la vie quotidienne",
-                 "answers":{
-                    "besoinsVie":{
-                       "courant":true,
-                       "hygiene":true,
-                       "budget":true,
-                       "courses":true,
-                       "habits":true,
-                       "cuisine":true,
-                       "repas":true,
-                       "menage":true
-                    },
-                    "besoinsDeplacement":{
-                       "intraDomicile":true,
-                       "accesDomicile":true,
-                       "public":true
-                    },
-                    "besoinsSocial":{
-                       "communication":true,
-                       "loisirs":true,
-                       "proches":true,
-                       "famille":true
-                    },
-                    "besoinsLieuDeVie":{
-                       "materiel":true,
-                       "conduite":true
-                    }
-                 }
-              },
-              "attentes":{
-                 "label":"Vos attentes pour compenser votre handicap",
-                 "answers":{
-                    "attentesTypeAide":{
-                       "domicile":true,
-                       "materiel":true,
-                       "etablissement":true,
-                       "financierMinimum":true,
-                       "amenagement":true,
-                       "financierHandicap":true
-                    },
-                    "structures":{
-                       "valeur":true,
-                       "structures":[
-                          {
-                             "name":"Monoprix",
-                             "contact":true
-                          }
-                       ]
-                    },
-                    "autresRenseignements":"Je suis bob.",
-                    "objetDemande":{
-
-                    }
-                 }
-              }
-            }
+            "mdph":{
+               "_id":"54256c6657ad5bf81415d78a",
+               "name":"Calvados",
+               "zipcode":"14",
+               "__v":0
             },
-            "aidant":{
+            "nouveauDossier":true,
+            "dateNaissance":"1961-06-09T22:00:00.000Z",
+            "urgences":{
+               "formation":true
+            },
+            "urgences_formation":"2014-06-12T22:00:00.000Z"
+         },
+         "vieQuotidienne":{
+            "famille":"parents",
+            "logement":"independant",
+            "logement_independant":"proprietaire",
+            "mesPrestations":[
+
+            ],
+            "besoinsVie":{
+               "courant":true,
+               "budget":true,
+               "hygiene":true,
+               "habits":true,
+               "courses":true,
+               "cuisine":true,
+               "repas":true,
+               "menage":true
+            },
+            "besoinsDeplacement":{
+               "intraDomicile":true,
+               "accesDomicile":true,
+               "public":true,
+               "transports":true,
+               "conduite":true,
+               "vacances":true
+            },
+            "besoinsSocial":{
+               "communication":true,
+               "loisirs":true,
+               "proches":true,
+               "famille":true,
+               "citoyen":true
+            },
+            "besoinsLieuDeVie":{
+               "materiel":true,
+               "conduite":true,
+               "amenagement":true
+            },
+            "attentesTypeAide":{
+               "materiel":true,
+               "domicile":true,
+               "financierHandicap":true,
+               "etablissement":true
+            },
+            "structures":{
+               "valeur":false,
+               "structures":[
+                  {
+                     "name":"",
+                     "contact":false
+                  }
+               ]
+            },
+            "autresRenseignements":"Pas de renseignements.",
+            "objetDemande":{
+
+            }
+         },
+         "aidant":{
             "sectionLabel":"Aidant familial",
             "answers":{
-              "condition":false
+               "condition":false
             }
-          },
-          "envoi":true
-        },
+         }
+       },
         updatedAt: new Date(),
         step: 'obligatoire'
       })

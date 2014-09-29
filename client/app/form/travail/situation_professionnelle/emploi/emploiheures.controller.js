@@ -12,15 +12,15 @@ angular.module('impactApp')
 
     $scope.question = QuestionService.get('travail', 'heures', $scope.formAnswers);
 
-    if (angular.isUndefined($scope.sectionModel.heures)) {
-      $scope.sectionModel.heures = {
+    if (angular.isUndefined($scope.sectionModel[$scope.question.model])) {
+      $scope.sectionModel[$scope.question.model] = {
         label: 'Durée de travail',
         value: '',
         addon: 'Heures / semaine'
       };
     }
 
-    $scope.model = $scope.sectionModel.heures;
+    $scope.model = $scope.sectionModel[$scope.question.model];
 
     $scope.checkNextStep = function(answer) {
       return answer.value === '';

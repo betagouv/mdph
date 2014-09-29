@@ -13,7 +13,7 @@ angular.module('impactApp')
     $scope.question = QuestionService.get('travail', 'temps', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.temps) {
+      if ($scope.sectionModel[$scope.question.model]) {
         $state.go('^.adapte');
       } else {
         $state.go('^.heures');

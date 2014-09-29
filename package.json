@@ -21,7 +21,8 @@
     "morgan": "~1.0.0",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
-    "serve-favicon": "~2.0.1"
+    "serve-favicon": "~2.0.1",
+    "superagent": "^0.19.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

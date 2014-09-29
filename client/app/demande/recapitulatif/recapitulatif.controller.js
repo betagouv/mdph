@@ -5,6 +5,6 @@ angular.module('impactApp')
     $scope.currentStep = $scope.steps[0];
 
     if ($scope.form) {
-      $scope.prestations = DroitService.computePrestations($scope.form.formAnswers);
+      $scope.prestations = DroitService.compute($scope.form.formAnswers);
     }
   });

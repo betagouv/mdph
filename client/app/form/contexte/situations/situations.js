@@ -5,8 +5,7 @@ angular.module('impactApp')
     $urlRouterProvider.when('/form/contexte/situations', '/form/contexte/situations/particulieres');
     $stateProvider.state('form.contexte.situations', {
       url: '/situations',
-      template: '<ui-view/>',
-      controller: 'SituationsCtrl'
+      template: '<ui-view/>'
     }).state('form.contexte.situations.particulieres', {
       url: '/particulieres',
       templateUrl: 'components/question/checkbox.html',

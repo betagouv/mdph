@@ -6,7 +6,6 @@ angular.module('impactApp')
     $stateProvider.state('form.votre_scolarite.vos_attentes', {
       url: '/vos_attentes',
       template: '<ui-view/>',
-      controller: 'VosAttentesScolairesCtrl'
     }).state('form.votre_scolarite.vos_attentes.structure', {
       url: '/structure',
       templateUrl: 'components/question/structure.html',

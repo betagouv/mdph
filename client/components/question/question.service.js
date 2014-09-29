@@ -66,12 +66,16 @@ angular.module('impactApp')
           return false;
         }
 
+        if (!section) {
+          return true;
+        }
+
         var value = section[question.model];
         if (angular.isUndefined(value)) {
           return true;
         }
 
-        var answer = _.find(question.answers, function(answer) {
+        var answer = _.find(question, function(answer) {
           return answer.value === value;
         });
 
@@ -84,6 +88,13 @@ angular.module('impactApp')
         } else {
           return false;
         }
+      },
+
+      getAnswer: function(section, model, formAnswers) {
+        if (formAnswers[section] && formAnswers[section][model]) {
+          return formAnswers[section][model];
+        }
+        return undefined;
       }
     };
   });

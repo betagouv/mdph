@@ -8,45 +8,11 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EmploiPasseCtrl', function($scope, $state, FormService) {
-    $scope.subtitle = FormService.estRepresentant($scope.formAnswers) ?
-      'A-t-il déjà travaillé ?' : 'Avez-vous déjà travaillé ?';
+  .controller('EmploiPasseCtrl', function($scope, $state, QuestionService) {
 
-    if (angular.isUndefined($scope.sectionModel.passe)) {
-      $scope.sectionModel.passe = {};
-    }
+    $scope.question = QuestionService.get('travail', 'passe', $scope.formAnswers);
 
-    $scope.question = {
-      model: 'passe',
-      answers: [
-        {
-          label: 'Oui',
-          value: true,
-          showDetail: true,
-          detail: $scope.sectionModel.passe.detail,
-          detailUrl: 'components/detail/precisez_big.html',
-          placeholder: 'Pourquoi êtes-vous actuellement sans emploi et depuis quand ?'
-        },
-        {
-          label: 'Non',
-          value: false
-        }
-      ]
-    };
-
-    $scope.isNextStepDisabled = function() {
-      var model = $scope.sectionModel.passe;
-      if (angular.isUndefined(model.value)) {
-        return true;
-      }
-
-      if (model.detailUrl && !model.detail) {
-        return true;
-      }
-
-      return false;
-    };
-
+    $scope.model = $scope.sectionModel.passe;
 
     $scope.nextStep = function() {
       $state.go('^.pole_emploi');

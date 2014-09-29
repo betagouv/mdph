@@ -3,8 +3,8 @@
 angular.module('impactApp')
   .controller('SocialCtrl', function($scope, $state, QuestionService) {
 
-    if (angular.isUndefined($scope.subSectionModel.besoinsSocial)) {
-      $scope.subSectionModel.besoinsSocial = {};
+    if (angular.isUndefined($scope.sectionModel.besoinsSocial)) {
+      $scope.sectionModel.besoinsSocial = {};
     }
 
     $scope.question = QuestionService.get('vieQuotidienne', 'besoinsSocial', $scope.formAnswers);

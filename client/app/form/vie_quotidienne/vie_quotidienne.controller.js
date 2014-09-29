@@ -7,13 +7,6 @@ angular.module('impactApp')
 
     $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
 
-    if (angular.isUndefined($scope.formAnswers.vie)) {
-      $scope.formAnswers.vie = {
-        sectionLabel: $scope.title,
-        answers: {}
-      };
-    }
-
     if (angular.isUndefined($scope.$storage.sectionSituationVie)) {
       $scope.$storage.sectionSituationVie = {
         id: 0,
@@ -50,5 +43,9 @@ angular.module('impactApp')
       $scope.$storage.sectionAttentesVie
     ];
 
-    $scope.sectionModel = $scope.formAnswers.vie.answers;
+    if (angular.isUndefined($scope.formAnswers.vieQuotidienne)) {
+      $scope.formAnswers.vieQuotidienne = {};
+    }
+
+    $scope.sectionModel = $scope.formAnswers.vieQuotidienne;
   });

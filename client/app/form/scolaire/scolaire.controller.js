@@ -7,13 +7,6 @@ angular.module('impactApp')
 
     $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa scolarité' : 'Votre scolarité';
 
-    if (angular.isUndefined($scope.formAnswers.scolaire)) {
-      $scope.formAnswers.scolaire = {
-        sectionLabel: $scope.title,
-        answers: {}
-      };
-    }
-
     if (angular.isUndefined($scope.$storage.sectionSituationScolaire)) {
       $scope.$storage.sectionSituationScolaire = {
         id: 0,
@@ -40,5 +33,9 @@ angular.module('impactApp')
       $scope.$storage.sectionAttentesScolaire
     ];
 
-    $scope.sectionModel = $scope.formAnswers.scolaire.answers;
+    if (angular.isUndefined($scope.formAnswers.scolaire)) {
+      $scope.formAnswers.scolaire = {};
+    }
+    
+    $scope.sectionModel = $scope.formAnswers.scolaire;
   });

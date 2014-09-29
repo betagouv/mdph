@@ -8,7 +8,7 @@ angular.module('impactApp')
         // Factoriser et acceder par les questions
         var besoins = data.vie.answers.besoins ? data.vie.answers.besoins.answers : undefined;
         var besoinsDeplacement = besoins ? besoins.besoinsDeplacement : undefined;
-        var besoinsQuotidien = besoins ? besoins.besoinsVie : undefined;
+        var besoinsVie = besoins ? besoins.besoinsVie : undefined;
         var besoinsSocial = besoins ? besoins.besoinsSocial : undefined;
 
         var attentes = data.vie.answers.attentes && data.vie.answers.attentes.answers ? data.vie.answers.attentes.answers : undefined;
@@ -54,7 +54,7 @@ angular.module('impactApp')
             description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
             link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml',
             shouldHave: function() {
-              return besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
+              return besoinsVie && (besoinsVie.hygiene || besoinsVie.habits || besoinsVie.repas) ||
                 besoinsDeplacement && besoinsDeplacement.intraDomicile;
             }
           }
@@ -77,7 +77,7 @@ angular.module('impactApp')
                 }
               }
               return !isAdult && (attentesType && attentesType.financierHandicap) &&
-                (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
+                (besoinsVie && (besoinsVie.hygiene || besoinsVie.habits || besoinsVie.repas) ||
                 besoinsDeplacement && besoinsDeplacement.intraDomicile ||
                 besoinsSocial && besoinsSocial.securite);
             }
@@ -90,7 +90,7 @@ angular.module('impactApp')
             link: 'http://vosdroits.service-public.fr/particuliers/N12230.xhtml',
             shouldHave: function() {
               return  (isAdult && attentesType && attentesType.financierHandicap) &&
-                (besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
+                (besoinsVie && (besoinsVie.hygiene || besoinsVie.habits || besoinsVie.repas) ||
                   besoinsSocial && (besoinsSocial.proches  || besoinsSocial.securite) ||
                   besoinsDeplacement && besoinsDeplacement.intraDomicile ||
                   attentesType && attentesType.financierMinimum
@@ -109,7 +109,7 @@ angular.module('impactApp')
                 attentesType && (attentesType.amenagement || attentesType.financierHandicap || attentesType.materiel || attentesType.mobilite || attentesType.humain)
               ) &&
               (
-                besoinsQuotidien && (besoinsQuotidien.hygiene || besoinsQuotidien.habits || besoinsQuotidien.repas) ||
+                besoinsVie && (besoinsVie.hygiene || besoinsVie.habits || besoinsVie.repas) ||
                 besoinsDeplacement && (besoinsDeplacement.accesDomicile || besoinsDeplacement.public || besoinsDeplacement.transports) ||
                 besoinsSocial && (besoinsSocial.proches || besoinsSocial.securite || besoinsSocial.communication)
               );
@@ -148,7 +148,7 @@ angular.module('impactApp')
             shouldHave: function() {
               return isAdult &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
-                  besoinsQuotidien && besoinsQuotidien.sante);
+                  besoinsVie && besoinsVie.sante);
             }
           },
           {
@@ -159,7 +159,7 @@ angular.module('impactApp')
             shouldHave: function() {
               return isAdult &&
                 (besoinsSocial && (besoinsSocial.loisirs || besoinsSocial.citoyen || besoinsSocial.proches) ||
-                  besoinsQuotidien && besoinsQuotidien.sante);
+                  besoinsVie && besoinsVie.sante);
             }
           },
           {

@@ -263,5 +263,65 @@ angular.module('impactApp').constant('travail', [
   {
     model: 'autresRenseignements',
     titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?'
+  },
+  {
+    titleRep: 'Est-<%= pronoun %> dans une des situations suivantes ?',
+    titleDefault: 'Etes-vous dans une des situations suivantes ?',
+    model: 'situationSansEmploi',
+    type: 'checkbox',
+    answers:
+    [
+      {
+        label: 'Inscrit à pôle emploi',
+        model: 'poleEmploi'
+      },
+      {
+        label: 'En formation continue',
+        model: 'formation'
+      },
+      {
+        label: 'Etudiant',
+        model: 'etudiant'
+      }
+    ]
+  },
+  {
+    titleRep: 'Est-<%= pronoun %> dans une des situations suivantes ?',
+    titleDefault: 'Etes-vous dans une des situations suivantes ?',
+    model: 'situationSansEmploi',
+    type: 'checkbox',
+    answers:
+    [
+      {
+        labelDefault: 'Inscrit à pôle emploi',
+        model: 'poleEmploi'
+      },
+      {
+        labelDefault: 'En formation continue',
+        model: 'formation'
+      },
+      {
+        labelDefault: 'Etudiant',
+        model: 'etudiant'
+      }
+    ]
+  },
+  {
+    titleRep: 'A-t-<%= pronoun %> déjà travaillé<%= fem %> ?',
+    titleDefault: 'Avez-vous déjà travaillé ?',
+    model: 'passe',
+    'answers': [
+      {
+        'labelDefault': 'Oui',
+        'value': true,
+        detailUrl: 'components/detail/precisez_big.html',
+        detailModel: 'passeDetail',
+        detailLabel: 'Pourquoi êtes-vous actuellement sans emploi et depuis quand ?'
+      },
+      {
+        'labelDefault': 'Non',
+        'value': false
+      }
+    ]
   }
 ]);

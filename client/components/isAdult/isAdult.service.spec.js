@@ -12,26 +12,26 @@ describe('Service: isAdult', function () {
   }));
 
   it('should return true because the date is more than 20 years ago', function () {
-    var contexte = {answers: {dateNaissance: {value: new Date(1983,11,7)}}};
+    var contexte = {dateNaissance: new Date(1983,11,7)};
     expect(isAdult(contexte)).toBe(true);
   });
 
   it('should return true because the date is more than 20 years ago', function () {
     var date = new Date();
     date.setFullYear(date.getFullYear() - 20);
-    var contexte = {answers: {dateNaissance: {value: date}}};
+    var contexte = {dateNaissance: date};
     expect(isAdult(contexte)).toBe(true);
   });
 
   it('should return false because the date is less than 20 years ago', function () {
     var date = new Date();
     date.setFullYear(date.getFullYear() - 19);
-    var contexte = {answers: {dateNaissance: {value: date}}};
+    var contexte = {dateNaissance: date};
     expect(isAdult(contexte)).toBe(false);
   });
 
   it('should return false because the date is less than 20 years ago', function () {
-    var contexte = {answers: {dateNaissance: {value: new Date(2014,1,1)}}};
+    var contexte = {dateNaissance: new Date(2014,1,1)};
     expect(isAdult(contexte)).toBe(false);
   });
 

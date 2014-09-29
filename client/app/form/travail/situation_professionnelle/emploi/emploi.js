@@ -5,8 +5,7 @@ angular.module('impactApp')
     $urlRouterProvider.when('/form/votre_travail/situation_professionnelle/emploi', '/form/votre_travail/situation_professionnelle/emploi/nom_poste');
     $stateProvider.state('form.votre_travail.situation_professionnelle.emploi', {
       url: '/emploi',
-      template: '<ui-view/>',
-      controller: 'EmploiCtrl'
+      template: '<ui-view/>'
     })
     .state('form.votre_travail.situation_professionnelle.emploi.nom_poste', {
       url: '/nom_poste',

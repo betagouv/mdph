@@ -12,14 +12,14 @@ angular.module('impactApp')
 
     $scope.question = QuestionService.get('travail', 'nomPoste', $scope.formAnswers);
 
-    if (angular.isUndefined($scope.sectionModel.nomPoste)) {
-      $scope.sectionModel.nomPoste = {
+    if (angular.isUndefined($scope.sectionModel[$scope.question.model])) {
+      $scope.sectionModel[$scope.question.model] = {
         placeholder: 'Nom du poste',
         value: ''
       };
     }
 
-    $scope.model = $scope.sectionModel.nomPoste;
+    $scope.model = $scope.sectionModel[$scope.question.model];
 
     $scope.checkNextStep = function(answer) {
       return answer.value === '';

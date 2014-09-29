@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('LieuDeVieCtrl', function($scope, $state, QuestionService) {
 
-    if (angular.isUndefined($scope.subSectionModel.besoinsLieuDeVie)) {
+    if (angular.isUndefined($scope.sectionModel.besoinsLieuDeVie)) {
       $scope.sectionModel.besoinsLieuDeVie = {};
     }
 

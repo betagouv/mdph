@@ -19,7 +19,7 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.arretDeTravail === false) {
+      if ($scope.sectionModel[$scope.question.model] === false) {
         $scope.sections[1].isEnabled = true;
         $state.go('^.^.^.projet_professionnel.description');
       } else {

@@ -3,6 +3,10 @@
 angular.module('impactApp')
   .factory('FormService', function FormService(isAdult, $sessionStorage, $http, $state, $window) {
     return {
+      /**
+      * Appels API
+      */
+
       getCurrentForm: function() {
         return $http.get('/api/forms/mine').then(function(result) {
           return result.data;
@@ -34,6 +38,10 @@ angular.module('impactApp')
           next(step);
         });
       },
+
+      /**
+      * Utilitaires
+      */
 
       getRepresentant: function(answers) {
         if (angular.isUndefined(answers.contexte)||
@@ -84,6 +92,14 @@ angular.module('impactApp')
 
       updatedAt: function(form) {
         return moment(form.updatedAt).fromNow();
+      },
+
+      getRenouvellementDroits: function(form) {
+        if (form && form.vie) {
+          return form.vie.mesPrestations;
+        }
+
+        return undefined;
       }
     };
   });

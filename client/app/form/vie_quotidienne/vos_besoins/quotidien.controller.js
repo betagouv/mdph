@@ -3,8 +3,8 @@
 angular.module('impactApp')
   .controller('QuotidienCtrl', function($scope, $state, QuestionService) {
 
-    if (angular.isUndefined($scope.subSectionModel.besoinsVie)) {
-      $scope.subSectionModel.besoinsVie = {};
+    if (angular.isUndefined($scope.sectionModel.besoinsVie)) {
+      $scope.sectionModel.besoinsVie = {};
     }
 
     $scope.question = QuestionService.get('vieQuotidienne', 'besoinsVie', $scope.formAnswers);

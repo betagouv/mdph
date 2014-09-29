@@ -11,9 +11,9 @@ describe('Filter: role', function () {
     role = $filter('role');
   }));
 
-  it('should return the input prefixed with "role filter:"', function () {
-    var text = 'angularjs';
-    expect(role(text)).toBe('role filter: ' + text);
+  it('should return the prettystr version of the adminMdph role', function () {
+    var text = 'adminMdph';
+    expect(role(text)).toBe('Gestionnaire MDPH');
   });
 
 });

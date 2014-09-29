@@ -5,8 +5,7 @@ angular.module('impactApp')
     $urlRouterProvider.when('/form/vie_quotidienne/situation', '/form/vie_quotidienne/situation/vie_famille');
     $stateProvider.state('form.vie_quotidienne.situation', {
       url: '/situation',
-      template: '<ui-view/>',
-      controller: 'SituationVieCtrl'
+      template: '<ui-view/>'
     }).state('form.vie_quotidienne.situation.vie_famille', {
       url: '/vie_famille',
       templateUrl: 'components/question/radio.html',

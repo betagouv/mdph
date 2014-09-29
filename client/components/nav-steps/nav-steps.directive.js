@@ -5,7 +5,7 @@ angular.module('impactApp')
     return {
       templateUrl: 'components/nav-steps/nav-steps.html',
       restrict: 'EA',
-      link: function (scope, element, attrs) {
+      link: function () {
       }
     };
   });

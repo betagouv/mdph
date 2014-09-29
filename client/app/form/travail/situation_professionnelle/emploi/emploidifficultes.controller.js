@@ -12,14 +12,14 @@ angular.module('impactApp')
 
     $scope.question = QuestionService.get('travail', 'difficultes', $scope.formAnswers);
 
-    if (angular.isUndefined($scope.sectionModel.difficultes)) {
-      $scope.sectionModel.difficultes = {
+    if (angular.isUndefined($scope.sectionModel[$scope.question.model])) {
+      $scope.sectionModel[$scope.question.model] = {
         value: '',
         rows: 4
       };
     }
 
-    $scope.model = $scope.sectionModel.difficultes;
+    $scope.model = $scope.sectionModel[$scope.question.model];
 
     $scope.nextStep = function() {
       $state.go('^.amenagement');
