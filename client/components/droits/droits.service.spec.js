@@ -302,18 +302,18 @@ describe('Service: droits || AEEH', function () {
   });
 });
 
-  describe('Service: droits || AAH', function () {
+describe('Service: droits || AAH', function () {
 
-    // load the service's module
-    beforeEach(module('impactApp'));
+  // load the service's module
+  beforeEach(module('impactApp'));
 
-    // instantiate service
-    var service;
-    var constants;
-    beforeEach(inject(function (DroitService, droits) {
-      service = DroitService;
-      constants = droits;
-    }));
+  // instantiate service
+  var service;
+  var constants;
+  beforeEach(inject(function (DroitService, droits) {
+    service = DroitService;
+    constants = droits;
+  }));
 
   it('should not return aah because the user is a child', function () {
     // given
@@ -403,5 +403,46 @@ describe('Service: droits || AEEH', function () {
 
     // then
     expect(idResult).toContain('aah');
+  });
+});
+
+
+describe('Service: droits || Renouvellement', function () {
+
+  // load the service's module
+  beforeEach(module('impactApp'));
+
+  // instantiate service
+  var service;
+  var constants;
+  beforeEach(inject(function (DroitService, droits) {
+    service = DroitService;
+    constants = droits;
+  }));
+
+  it('should return renouvellement of aah', function () {
+    // given
+    var answers = {
+      vieQuotidienne: {
+        mesPrestations:[
+          {
+            id:'aah',
+            label:'AAH',
+            date:'2014-09-08T22:00:00.000Z',
+            type:'presta-finances',
+            description:'L\'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.'
+          }
+        ]
+      }
+    };
+
+    // when
+    var result = service.compute(answers);
+
+    // then
+    expect(result.length).toBe(1);
+    var expectedResult = result[0];
+    expect(expectedResult.renouvellement).toBe(true);
+    expect(expectedResult.descRenouvellement).toBe('* Etude du renouvellement de votre droit se terminant le 09/09/2014.');
   });
 });
