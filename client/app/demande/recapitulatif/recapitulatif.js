@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('demande.recapitulatif', {
         url: '/recapitulatif',
-        templateUrl: '/app/demande/recapitulatif/recapitulatif.html',
+        templateUrl: 'app/demande/recapitulatif/recapitulatif.html',
         controller: 'RecapitulatifCtrl',
         authenticate: true
       });

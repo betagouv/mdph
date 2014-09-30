@@ -5,6 +5,6 @@ angular.module('impactApp')
     $stateProvider
       .state('demande.reponse', {
         url: '/reponse',
-        templateUrl: '/app/demande/reponse/reponse.html'
+        templateUrl: 'app/demande/reponse/reponse.html'
       });
   });
