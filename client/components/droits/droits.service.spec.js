@@ -428,9 +428,7 @@ describe('Service: droits || Renouvellement', function () {
           {
             id:'aah',
             label:'AAH',
-            date:'2014-09-08T22:00:00.000Z',
-            type:'presta-finances',
-            description:'L\'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.'
+            date:'2014-09-08T22:00:00.000Z'
           }
         ]
       }
@@ -444,5 +442,28 @@ describe('Service: droits || Renouvellement', function () {
     var expectedResult = result[0];
     expect(expectedResult.renouvellement).toBe(true);
     expect(expectedResult.descRenouvellement).toBe('* Etude du renouvellement de votre droit se terminant le 09/09/2014.');
+  });
+
+
+  it('should return renouvellement of pch', function () {
+    // given
+    var answers = {
+      vieQuotidienne: {
+        mesPrestations:[
+          {
+            id:'ac',
+            label:'AAH',
+            date:'2014-09-08T22:00:00.000Z'
+          }
+        ]
+      }
+    };
+
+    // when
+    var result = service.compute(answers);
+    var idResult = _.pluck(result, 'id');
+
+    // then
+    expect(idResult).toContain('pch');
   });
 });
