@@ -7,11 +7,13 @@ angular.module('impactApp')
           angular.isUndefined(contexte.dateNaissance)) {
         return true;
       }
-      var date = contexte.dateNaissance;
+      var formDate = contexte.dateNaissance;
+
+      var currentYear = new Date().getFullYear();
+
       var limitDate = new Date();
-      var currentYear = limitDate.getFullYear();
       limitDate.setFullYear(currentYear - 20);
 
-      return new Date(date).getTime() <= limitDate.getTime();
+      return new Date(formDate).getTime() <= limitDate.getTime();
     };
 });

@@ -427,7 +427,6 @@ describe('Service: droits || Renouvellement', function () {
         mesPrestations:[
           {
             id:'aah',
-            label:'AAH',
             date:'2014-09-08T22:00:00.000Z'
           }
         ]
@@ -445,14 +444,13 @@ describe('Service: droits || Renouvellement', function () {
   });
 
 
-  it('should return renouvellement of pch', function () {
+  it('should return renouvellement of pch and aah', function () {
     // given
     var answers = {
       vieQuotidienne: {
         mesPrestations:[
           {
             id:'ac',
-            label:'AAH',
             date:'2014-09-08T22:00:00.000Z'
           }
         ]
@@ -465,5 +463,6 @@ describe('Service: droits || Renouvellement', function () {
 
     // then
     expect(idResult).toContain('pch');
+    expect(idResult).toContain('ac');
   });
 });

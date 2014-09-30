@@ -139,7 +139,7 @@ angular.module('impactApp')
           return contexte && _.some([contexte.travail, contexte.formation]);
         },
         pch: function(droit) {
-          if (estRenouvellement(droit) || estRenouvellement(droit)) {
+          if (estRenouvellement(droit) || estRenouvellement({id: 'ac'})) {
             return true;
           }
 
@@ -279,17 +279,12 @@ angular.module('impactApp')
       getFiltreTaux: getFiltreTaux,
 
       compute: function(answers) {
-        var quitus = [];
         var callbacks = getCallbacks(answers);
 
-        angular.forEach(droits, function(droit) {
+        return _.filter(droits, function(droit) {
           var callback = callbacks[droit.id];
-          if (callback && callback(droit)) {
-            quitus.push(droit);
-          }
+          return callback && callback(droit);
         });
-
-        return quitus;
       }
     };
   });
