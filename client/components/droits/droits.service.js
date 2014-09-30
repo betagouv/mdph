@@ -53,7 +53,8 @@ angular.module('impactApp')
         var res = renouvellements && renouvellements[presta.id];
         if (res) {
           presta.renouvellement = true;
-          presta.descRenouvellement = '* Etude du renouvellement de votre droit se terminant le ' + $filter('date')(renouvellements[presta.id].date, 'dd/MM/yyyy') + '.';
+          var date = renouvellements[presta.id].date;
+          presta.descRenouvellement = '* Etude du renouvellement de votre droit se terminant le ' + moment(date).format('DD/MM/YYYY') + '.';
         }
         return res;
       };

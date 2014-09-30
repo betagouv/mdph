@@ -427,7 +427,7 @@ describe('Service: droits || Renouvellement', function () {
         mesPrestations:[
           {
             id:'aah',
-            date:'2014-09-08T22:00:00.000Z'
+            date:'2014-09-08'
           }
         ]
       }
@@ -440,7 +440,7 @@ describe('Service: droits || Renouvellement', function () {
     expect(result.length).toBe(1);
     var expectedResult = result[0];
     expect(expectedResult.renouvellement).toBe(true);
-    expect(expectedResult.descRenouvellement).toBe('* Etude du renouvellement de votre droit se terminant le 09/09/2014.');
+    expect(expectedResult.descRenouvellement).toBe('* Etude du renouvellement de votre droit se terminant le 08/09/2014.');
   });
 
 
@@ -451,7 +451,7 @@ describe('Service: droits || Renouvellement', function () {
         mesPrestations:[
           {
             id:'ac',
-            date:'2014-09-08T22:00:00.000Z'
+            date:'2014-09-08'
           }
         ]
       }
