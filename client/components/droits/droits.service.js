@@ -264,6 +264,12 @@ angular.module('impactApp')
             return true;
           }
           return aidant && aidant.typeAttente && aidant.typeAttente.vieillesse;
+        },
+        rqth: function(droit) {
+          if (estRenouvellement(droit)) {
+            return true;
+          }
+          return contexte && _.some([contexte.travail, contexte.formation]);
         }
       };
     };

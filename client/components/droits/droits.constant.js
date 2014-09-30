@@ -44,6 +44,13 @@ angular.module('impactApp').constant('droits', [
     link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml'
   },
   {
+    id: 'rqth',
+    label: 'RQTH',
+    title: 'Reconnaissance de la Qualité de Travailleur Handicapé',
+    description: 'Un travailleur handicapé est une personne dont les possibilités d\'obtenir ou de conserver un emploi sont réduites à cause de son handicap. Il peut s\'agir de l\'altération d\'une ou plusieurs fonctions physique, sensorielle, mentale ou psychique.',
+    link: 'http://vosdroits.service-public.fr/particuliers/F1650.xhtml'
+  },
+  {
     id: 'av',
     type: 'presta-finances',
     label: 'AV',
