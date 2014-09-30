@@ -68,60 +68,71 @@ Mdph.find({}).remove(function() {
                "sexe":"masculin"
             },
             "mdph":{
-               "_id":"54256c6657ad5bf81415d78a",
+               "_id":"542a6da264487ac40501ab27",
                "name":"Calvados",
                "zipcode":"14",
                "__v":0
             },
-            "nouveauDossier":true,
-            "dateNaissance":"1961-06-09T22:00:00.000Z",
+            "nouveauDossier":false,
+            "numDossier":true,
+            "numeroDossier":"21",
+            "raison":{
+               "finDeVosDroits":true
+            },
+            "connaisTaux":true,
+            "tauxIncapacite":79,
+            "contestationTaux":"stable",
+            "dateNaissance":"1981-05-12T22:00:00.000Z",
             "urgences":{
+               "domicile":false,
                "formation":true
             },
-            "urgences_formation":"2014-06-12T22:00:00.000Z"
-         },
-         "vieQuotidienne":{
+            "formationDetail":"2014-10-21T22:00:00.000Z"
+          },
+          "vieQuotidienne":{
             "famille":"parents",
             "logement":"independant",
             "logement_independant":"proprietaire",
             "mesPrestations":[
-
+               {
+                  "id":"aah",
+                  "label":"AAH",
+                  "date":"2014-09-08T22:00:00.000Z",
+                  "type":"presta-finances",
+                  "description":"L'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum."
+               }
             ],
             "besoinsVie":{
-               "courant":true,
-               "budget":true,
-               "hygiene":true,
-               "habits":true,
                "courses":true,
-               "cuisine":true,
+               "habits":true,
+               "budget":true,
+               "courant":true,
                "repas":true,
                "menage":true
             },
             "besoinsDeplacement":{
                "intraDomicile":true,
-               "accesDomicile":true,
                "public":true,
                "transports":true,
-               "conduite":true,
                "vacances":true
             },
             "besoinsSocial":{
                "communication":true,
-               "loisirs":true,
                "proches":true,
-               "famille":true,
+               "securite":true,
                "citoyen":true
             },
             "besoinsLieuDeVie":{
                "materiel":true,
-               "conduite":true,
-               "amenagement":true
+               "conduite":true
             },
             "attentesTypeAide":{
-               "materiel":true,
                "domicile":true,
+               "amenagement":true,
                "financierHandicap":true,
-               "etablissement":true
+               "mobilite":true,
+               "etablissement":true,
+               "materiel":true
             },
             "structures":{
                "valeur":false,
@@ -132,18 +143,19 @@ Mdph.find({}).remove(function() {
                   }
                ]
             },
-            "autresRenseignements":"Pas de renseignements.",
+            "autresRenseignements":"",
             "objetDemande":{
-
+               "travail":false
             }
-         },
-         "aidant":{
+          },
+          "aidant":{
             "sectionLabel":"Aidant familial",
             "answers":{
                "condition":false
             }
-         }
-       },
+          },
+          "envoi":true
+        },
         updatedAt: new Date(),
         step: 'obligatoire'
       })

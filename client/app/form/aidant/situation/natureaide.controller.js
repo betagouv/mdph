@@ -19,6 +19,6 @@ angular.module('impactApp')
     $scope.model= $scope.sectionModel.natureAide;
 
     $scope.nextStep = function() {
-      $state.go('^.nature_aide_bis');
+      $state.go('^.dedommagement');
     };
   });

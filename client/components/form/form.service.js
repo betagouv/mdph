@@ -44,11 +44,10 @@ angular.module('impactApp')
       */
 
       getRepresentant: function(answers) {
-        if (angular.isUndefined(answers.contexte)||
-            angular.isUndefined(answers.contexte.answers)) {
+        if (angular.isUndefined(answers.contexte)) {
           return null;
         }
-        return answers.contexte.answers.demandeur;
+        return answers.contexte.demandeur;
       },
 
       getName: function(answers) {
@@ -79,11 +78,10 @@ angular.module('impactApp')
       },
 
       estRepresentant: function(answers) {
-        if (angular.isUndefined(answers.contexte) ||
-            angular.isUndefined(answers.contexte.answers)) {
+        if (angular.isUndefined(answers.contexte)) {
           return false;
         }
-        return answers.contexte.answers.estRepresentant;
+        return answers.contexte.estRepresentant;
       },
 
       isAdult: function(answers) {
@@ -92,6 +90,10 @@ angular.module('impactApp')
 
       updatedAt: function(form) {
         return moment(form.updatedAt).fromNow();
+      },
+
+      estRenouvellement: function(formAnswers) {
+        return formAnswers.contexte && !formAnswers.contexte.nouveauDossier;
       },
 
       getRenouvellementDroits: function(form) {

@@ -12,12 +12,6 @@ angular.module('impactApp')
 
     $scope.question = QuestionService.get('travail', 'accidentTravail', $scope.formAnswers);
 
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened = true;
-    };
-
     $scope.nextStep = function() {
       $state.go('^.professionnel_social');
     };

@@ -19,7 +19,7 @@ angular.module('impactApp')
       'de votre justificatif d\'identité';
 
     $scope.showAdult = $scope.isAdult();
-    $scope.prestations = DroitService.computePrestations($scope.formAnswers);
+    $scope.prestations = DroitService.compute($scope.formAnswers);
 
     $scope.saveForm = function() {
       if (Auth.isLoggedIn()) {

@@ -12,12 +12,6 @@ angular.module('impactApp')
 
     $scope.question = QuestionService.get('travail', 'arretDeTravail', $scope.formAnswers);
 
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened = true;
-    };
-
     $scope.nextStep = function() {
       if ($scope.sectionModel[$scope.question.model] === false) {
         $scope.sections[1].isEnabled = true;

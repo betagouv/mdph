@@ -8,11 +8,11 @@ angular.module('impactApp').constant('aidant', [
     titleDefault: 'Votre aidant familial souhaite-t-il s\'exprimer ?',
     answers: [
       {
-        'labelDefault': 'Oui',
+        labelDefault: 'Oui',
         'value': true
       },
       {
-        'labelDefault': 'Non',
+        labelDefault: 'Non',
         'value': false
       }
     ]
@@ -57,22 +57,16 @@ angular.module('impactApp').constant('aidant', [
     ]
   },
   {
-    titleDefault: 'Quelle est la nature de l\'aide apportée ? (1/2)',
-    'model': 'natureAide',
+    titleDefault: 'Quelle est la nature de l\'aide apportée ?',
+    model: 'natureAide',
     'answers':[
       {labelDefault: 'Surveillance / présence responsable', model: 'surveillance'},
-      {labelDefault: 'Aide aux déplacements à l’intérieur du logement', model: 'deplacement_interieur'},
-      {labelDefault: 'Aide aux déplacements à l’extérieur', model: 'deplacement_exterieur'},
+      {labelDefault: 'Aide aux déplacements à l’intérieur du logement', model: 'deplacementInterieur'},
+      {labelDefault: 'Aide aux déplacements à l’extérieur', model: 'deplacementExterieur'},
       {labelDefault: 'Aide pour entretenir le logement et le linge', model: 'logement'},
       {labelDefault: 'Aide à l’hygiène corporelle', model: 'hygiene'},
-      {labelDefault: 'Aide à la préparation des repas', model: 'repas_preparation'},
-      {labelDefault: 'Aide à la prise de repas', model: 'repas_prise'}
-    ]
-  },
-  {
-    titleDefault: 'Quelle est la nature de l\'aide apportée ? (2/2)',
-    'model': 'natureAideBis',
-    'answers':[
+      {labelDefault: 'Aide à la préparation des repas', model: 'repasPreparation'},
+      {labelDefault: 'Aide à la prise de repas', model: 'repasPrise'},
       {labelDefault: 'Coordination des intervenants professionnels à l’extérieur', model: 'professionnels'},
       {labelDefault: 'Gestion administrative et juridique', model: 'juridique'},
       {labelDefault: 'Gestion financière', model: 'finances'},
@@ -101,7 +95,7 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     titleDefault: 'Quelqu\'un participe-t-il avec vous à l\'accompagnement de la personne aidée ?',
-    'model': 'accompagnement',
+    model: 'accompagnement',
     type: 'checkbox',
     'answers':[
       {labelDefault: 'Oui, un (des) professionnel(s)', model: 'professionnel'},
@@ -110,7 +104,7 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     titleDefault: 'Etes-vous soutenu dans votre fonction d’aidant ?',
-    'model': 'soutien',
+    model: 'soutien',
     'answers':[
       {labelDefault: 'Vous participez à des rencontres avec d’autres aidants', model: 'rencontres'},
       {labelDefault: 'Vous êtes soutenu individuellement', model: 'individuel'}
@@ -135,7 +129,7 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     titleDefault: 'Serez-vous prochainement dans une des situations suivantes ?',
-    'model': 'situationFuture',
+    model: 'situationFuture',
     'answers':[
       {labelDefault: 'Eloignement géographique (déménagement, ...)', model: 'eloignement'},
       {labelDefault: 'Indisponibilité prolongée (séjour à l’étranger, hospitalisation, ...)', model: 'indisponible'},
@@ -147,7 +141,7 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     titleDefault: 'Avez-vous besoin de mieux connaitre les aides et dispositifs existants ?',
-    'model': 'demandesAides',
+    model: 'demandesAides',
     'answers':[
       {labelDefault: 'Pour vous', model: 'eloignement'},
       {labelDefault: 'Pour la personne aidée', model: 'indisponible'},
@@ -163,19 +157,19 @@ angular.module('impactApp').constant('aidant', [
     model: 'typeAttente',
     answers:
     [
-      {'labelDefault': 'Pouvoir vous reposer au quotidien', 'model': 'repos'},
-      {'labelDefault': 'Pouvoir vous faire remplacer en cas d’un imprévu', 'model': 'imprevu'},
-      {'labelDefault': 'Pouvoir vous faire remplacer pour partir en week-end/vacances', 'model': 'vacances'},
-      {'labelDefault': 'Reprendre/renforcer/maintenir votre activité professionnelle', 'model': 'professionnel'},
-      {'labelDefault': 'Reprendre/renforcer/maintenir vos liens sociaux', 'model': 'social'},
+      {labelDefault: 'Pouvoir vous reposer au quotidien', model: 'repos'},
+      {labelDefault: 'Pouvoir vous faire remplacer en cas d’un imprévu', model: 'imprevu'},
+      {labelDefault: 'Pouvoir vous faire remplacer pour partir en week-end/vacances', model: 'vacances'},
+      {labelDefault: 'Reprendre/renforcer/maintenir votre activité professionnelle', model: 'professionnel'},
+      {labelDefault: 'Reprendre/renforcer/maintenir vos liens sociaux', model: 'social'},
 
-      {'labelDefault': 'Obtenir une contre-partie financière', 'model': 'finance'},
-      {'labelDefault': 'Echanger avec d’autres aidants', 'model': 'echanges'},
-      {'labelDefault': 'Avoir un soutien psychologique', 'model': 'psychologique'},
-      {'labelDefault': 'Etre conseillé pour mieux faire face au handicap de votre proche', 'model': 'conseil'},
-      {'labelDefault': 'Etre affilié gratuitement à l’assurance vieillesse', 'model': 'vieillesse'},
+      {labelDefault: 'Obtenir une contre-partie financière', model: 'finance'},
+      {labelDefault: 'Echanger avec d’autres aidants', model: 'echanges'},
+      {labelDefault: 'Avoir un soutien psychologique', model: 'psychologique'},
+      {labelDefault: 'Etre conseillé pour mieux faire face au handicap de votre proche', model: 'conseil'},
+      {labelDefault: 'Etre affilié gratuitement à l’assurance vieillesse', model: 'vieillesse'},
 
-      {'labelDefault': 'Autre attente', 'model': 'autre', detailModel: 'attentesDetail', detailUrl:'components/detail/precisez.html'}
+      {labelDefault: 'Autre attente', model: 'autre', detailModel: 'attentesDetail', detailUrl:'components/detail/precisez.html'}
     ]
   },
   {

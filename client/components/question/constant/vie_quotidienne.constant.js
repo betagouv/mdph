@@ -122,7 +122,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
       {labelDefault: 'Pour se déplacer à l\'intérieur du domicile', model: 'intraDomicile'},
       {labelDefault: 'Pour sortir du domicile et y accéder', model: 'accesDomicile'},
       {labelDefault: 'Pour se déplacer à l\'extérieur du domicile', model: 'public'},
-      {labelDefault: 'Pour adapter le véhicule pour pouvoir conduire', model: 'conduite', 'onlyAdult': true},
+      {labelDefault: 'Pour utiliser un véhicule', model: 'conduite'},
       {labelDefault: 'Pour utiliser les transports en commun', model: 'transports'},
       {labelDefault: 'Pour partir en vacances', model: 'vacances'},
       {labelDefault: 'Autre besoin', model: 'autre', detailModel: 'besoinsDeplacement_autre', detailUrl: 'components/detail/precisez.html'}

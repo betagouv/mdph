@@ -44,6 +44,14 @@ angular.module('impactApp').constant('droits', [
     link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml'
   },
   {
+    id: 'av',
+    type: 'presta-finances',
+    label: 'AV',
+    title: 'Affiliation gratuite à l\'assurance vieillesse',
+    description: 'L\'affiliation à l\'assurance vieillesse permet à l\'aidant familial de valider des trimestres pour sa retraite sans qu\'il ait besoin de verser des cotisations auprès de sa caisse de retraite.',
+    link: 'http://vosdroits.service-public.fr/particuliers/F2574.xhtml'
+  },
+  {
     id: 'ems',
     type: 'presta-accompagnement',
     label: 'EMS',
@@ -51,19 +59,25 @@ angular.module('impactApp').constant('droits', [
     description: 'Orientation vers un établissement médical de santé.'
   },
   {
-    id: 'savs',
+    id: 'pps',
     type: 'presta-accompagnement',
-    label: 'SAVS',
-    title: 'Services d\'accompagnement à la vie sociale',
-    description: 'Les services d\'accompagnement à la vie sociale ont pour vocation de contribuer à la réalisation du projet de vie de personnes adultes handicapées par un accompagnement adapté.',
-    link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAVS-Service-d-Accompagnement-a-la-Vie-Sociale,i5629.html'
+    label: 'PPS',
+    title: 'Plan personnalisé de scolarisation',
+    description: 'Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.'
   },
   {
-    id: 'samsah',
+    id: 'orp',
     type: 'presta-accompagnement',
-    label: 'SAMSAH',
-    title: 'Service d\'accompagnement médico-social pour adultes handicapés',
-    description: 'Le service d\'accompagnement médico-social pour adultes handicapés (SAMSAH) a pour vocation la recherche des missions visées à l\'article D 3121553 du code de l\'action sociale et des familles.',
-    link: 'http://www.qualite-esms.coop/Medico-social/Ressources/Glossaire-et-Lexique-du-medico-social/Lexique-medico-social/SAMSAH-Service-d-Accompagnement-Medico-Social-pour-Adultes-Handicapes,i5630.html'
+    label: 'ORP',
+    title: 'Orientation professionnelle',
+    description: 'La demande d\'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation.'
+  },
+  {
+    id: 'ac',
+    type: 'presta-finances',
+    label: 'AC',
+    title: 'Allocation compensatrice',
+    link: 'http://vosdroits.service-public.fr/particuliers/F2475.xhtml',
+    description: 'Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du handicap (PCH). Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver.'
   }
 ]);

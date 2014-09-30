@@ -97,7 +97,7 @@ angular.module('impactApp').constant('contexte', [
         labelRep: '<%= pronoun %> n\'arrive plus à vivre à domicile',
         model: 'domicile',
         detail: true,
-        detailModel: 'urgences_domicile',
+        detailModel: 'domicileDetail',
         detailUrl: 'components/detail/precisez_big.html',
         placeholder: 'Expliquez la difficulté'
       },
@@ -106,7 +106,7 @@ angular.module('impactApp').constant('contexte', [
         labelRep: 'Son établissement ne peux plus l\'accueillir et <%= pronoun %> ne peut pas retourner chez <%= pronounTonic %>',
         model: 'etablissement',
         detail: true,
-        detailModel: 'urgences_etablissement',
+        detailModel: 'etablissementDetail',
         detailUrl: 'components/detail/precisez_big.html',
         placeholder: 'Expliquez la difficulté'
       },
@@ -114,7 +114,7 @@ angular.module('impactApp').constant('contexte', [
         labelDefault: 'Votre école ne peux plus vous accueillir',
         labelRep: 'Son école ne peux plus l\'accueillir',
         detail: true,
-        detailModel: 'urgences_ecole',
+        detailModel: 'ecoleDetail',
         detailUrl: 'components/detail/precisez_big.html',
         placeholder: 'Expliquez la difficulté',
         model: 'ecole'
@@ -123,7 +123,7 @@ angular.module('impactApp').constant('contexte', [
         labelDefault: 'Vous risquez de perdre votre travail',
         labelRep: '<%= pronoun %> risque de perdre son travail',
         detail: true,
-        detailModel: 'urgences_travail',
+        detailModel: 'travailDetail',
         detailUrl: 'components/detail/precisez_big.html',
         placeholder: 'Expliquez la difficulté',
         model: 'travail'
@@ -131,7 +131,7 @@ angular.module('impactApp').constant('contexte', [
       {
         labelDefault: 'Vous commencez bientôt une nouvelle formation',
         labelRep: '<%= pronoun %> commence bientôt une nouvelle formation',
-        detailModel: 'urgences_formation',
+        detailModel: 'formationDetail',
         detailUrl: 'components/detail/precisez_date.html',
         detailLabel: 'Date d\'entrée prévue',
         model: 'formation'
@@ -161,7 +161,8 @@ angular.module('impactApp').constant('contexte', [
     titleRep: 'Que pensez-vous de sa situation par rapport à ce taux ?',
     answers: [
     {
-      labelDefault: 'Sa situation est stable',
+      labelDefault: 'Votre situation est stable',
+      labelRep: 'Sa situation est stable',
       value: 'stable'
     },
     {

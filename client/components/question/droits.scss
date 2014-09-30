@@ -20,6 +20,11 @@ $analog-4-border: #6E2B2E;
     }
   }
 
+  .panel-footer {
+    text-align: right;
+    font-size: 10px;
+  }
+
   .panel-action {
     min-height: 142px;
     padding: 35px 0;
@@ -68,10 +73,6 @@ $analog-4-border: #6E2B2E;
         border-color: $analog-4;
       }
     }
-  }
-
-  .panel-footer {
-    min-height: 58px;
   }
 
   .panel-opened, .panel-closed {

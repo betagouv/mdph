@@ -6,6 +6,10 @@ angular.module('impactApp')
     $scope.question = QuestionService.get('contexte', 'connaisTaux', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      $state.go('^.contestationTaux');
+      if ($scope.sectionModel[$scope.question.model]) {
+        $state.go('^.contestationTaux');
+      } else {
+        $state.go('^.date_naissance');
+      }
     };
   });

@@ -28,11 +28,6 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'NatureAideCtrl'
     })
-    .state('form.votre_aidant.situation.nature_aide_bis', {
-      url: '/nature_aide_bis',
-      templateUrl: 'components/question/checkbox.html',
-      controller: 'NatureAideBisCtrl'
-    })
     .state('form.votre_aidant.situation.dedommagement', {
       url: '/dedommagement',
       templateUrl: 'components/question/radio.html',

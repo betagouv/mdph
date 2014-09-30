@@ -14,7 +14,7 @@
     </blockquote>
     <div class="row">
       <prestation ng-repeat="prestation in prestations">
-        <div class="col-sm-3 prestations">
+        <div class="col-sm-4 prestations">
           <div class="panel panel-default panel-closed" ng-class="prestation.type">
             <div class="panel-heading">
               <h3 class="panel-title">{{prestation.title}}
@@ -24,10 +24,13 @@
             <div class="panel-body">
               {{prestation.description}}
             </div>
+            <div class="panel-footer" ng-show={{prestation.renouvellement}}>
+              {{prestation.descRenouvellement}}
+            </div>
           </div>
         </div>
 
-        <div ng-if="$index % 4 === 3" class="clearfix"></div>
+        <div ng-if="$index % 4 === 2" class="clearfix"></div>
       </prestation>
     </div>
   </div>
