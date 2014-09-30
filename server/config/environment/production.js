@@ -21,5 +21,7 @@ module.exports = {
             'mongodb://localhost/impact'
   },
 
+  seedDB: true,
+  
   uploadDir: 'client/assets/uploads'
 };
