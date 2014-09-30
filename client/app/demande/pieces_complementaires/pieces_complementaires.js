@@ -7,5 +7,6 @@ angular.module('impactApp')
         url: '/pieces_complementaires',
         templateUrl: '/app/demande/pieces_complementaires/pieces_complementaires.html',
         controller: 'PiecesComplementairesCtrl',
+        authenticate: true
       });
   });

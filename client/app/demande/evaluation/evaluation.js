@@ -5,6 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('demande.evaluation', {
         url: '/evaluation',
-        templateUrl: '/app/demande/evaluation/evaluation.html'
+        templateUrl: '/app/demande/evaluation/evaluation.html',
+        authenticate: true
       });
   });

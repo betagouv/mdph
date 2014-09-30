@@ -5,6 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('demande.pre_evaluation', {
         url: '/pre_evaluation',
-        templateUrl: '/app/demande/pre_evaluation/pre_evaluation.html'
+        templateUrl: '/app/demande/pre_evaluation/pre_evaluation.html',
+        authenticate: true
       });
   });

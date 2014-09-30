@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/demande',
         templateUrl: 'app/demande/demande.html',
         controller: 'DemandeCtrl',
+        authenticate: true,
         resolve: {
           currentForm:  function(FormService) {
             return FormService.getCurrentForm();
