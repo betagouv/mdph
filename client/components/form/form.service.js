@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('FormService', function FormService(isAdult, $sessionStorage, $http, $state, $window) {
+  .factory('FormService', function FormService(isAdult, $sessionStorage, $http, $state, $window, Auth) {
     return {
       /**
       * Appels API
@@ -24,6 +24,9 @@ angular.module('impactApp')
       saveCurrentForm: function() {
         $http.put('/api/forms/mine', $sessionStorage.formAnswers)
         .success(function() {
+          Auth.getCurrentUser().$promise.then(function (user) {
+            user.mdph = $sessionStorage.formAnswers.contexte.mdph;
+          });
           $state.go('demande');
         })
         .error(function() {

@@ -15,6 +15,7 @@ angular.module('impactApp')
           angular.forEach(form.steps, function(step) {
             currentStep = stepsById[step.name];
             currentStep.isEnabled = true;
+            debugger;
             currentStep.isFinished = _.find(currentStep.states, {'name' : step.state }).isFinal;
           });
         }

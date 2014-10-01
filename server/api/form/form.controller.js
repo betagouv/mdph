@@ -119,7 +119,7 @@ exports.saveForm = function(req, res, next) {
         },
         {
           name: 'obligatoire',
-          state: 'demande',
+          state: 'en_cours',
           files: [
             { name: 'certificatMedical' },
             { name: 'carteIdentite' }
@@ -128,7 +128,7 @@ exports.saveForm = function(req, res, next) {
       ]
     });
 
-    saveMdphForUser(userId, newForm.formAnswers.contexte.answers.mdph._id, res);
+    saveMdphForUser(userId, newForm.formAnswers.contexte.mdph._id, res);
 
     newForm.save(function (err) {
       if (err) { return handleError(res, err); }
