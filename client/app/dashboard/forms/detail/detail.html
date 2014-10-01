@@ -11,8 +11,12 @@
 			</a>
 		</div>
 		<div class="list-group">
-			<div class="list-group-item" ng-if="form.formAnswers">
-				<h4 class="list-group-item-heading">Voir le questionnaire</h4>
+			<div class="list-group-item" ng-repeat="step in form.steps">
+				<h4 class="list-group-item-heading">{{step.name | stepFilter}}</h4>
+				<p>{{step.state | stateFilter}}</p>
+				<div ng-repeat="file in step.files">
+					<a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a>
+				</div>
 			</div>
 		</div>
 	</div>

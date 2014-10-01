@@ -151,7 +151,7 @@ exports.saveDocument = function (req, res, next) {
 
       var formStep = _.find(form.steps, {name: stepName});
       var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
-      formStepDocument.path = file.path;
+      formStepDocument.path = path.basename(file.path);
 
       form.save(function(err) {
         if (err) {return handleError(res, err); }
