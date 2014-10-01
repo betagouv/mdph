@@ -2,13 +2,15 @@
 
 angular.module('impactApp')
   .controller('PiecesObligatoiresCtrl', function ($scope, FormService) {
-    $scope.complete = false;
     $scope.currentStep = $scope.steps[1];
 
     $scope.$on('documentStepComplete', function () {
-      FormService.saveStep($scope.form, $scope.steps[2].id, function(nextStep) {
-        $scope.form.step = nextStep;
+      $scope.complete = true;
+    });
+
+    $scope.validateStep = function() {
+      FormService.saveStepState($scope.form, $scope.currentStep, 'a_valider', function() {
         $scope.$parent.$broadcast('refreshFormStepSection');
       });
-    });
+    };
   });

@@ -157,7 +157,20 @@ Mdph.find({}).remove(function() {
           "envoi":true
         },
         updatedAt: new Date(),
-        step: 'obligatoire'
+        steps: [
+          {
+            name: 'questionnaire',
+            state: 'complet'
+          },
+          {
+            name: 'obligatoire',
+            state: 'en_cours',
+            files: [
+              { name: 'certificatMedical' },
+              { name: 'carteIdentite' }
+            ]
+          }
+        ]
       })
     });
 

@@ -32,10 +32,11 @@ angular.module('impactApp')
         });
       },
 
-      saveStep: function(form, step, next) {
-        $http.put('/api/forms/' + form._id, {step: step})
+      saveStepState: function(form, step, state, next) {
+        $http.put('/api/forms/' + form._id + '/step', {step: step.id, state: state})
         .success(function() {
-          next(step);
+          _.find(form.steps, {name: step.id}).state = state;
+          next();
         });
       },
 

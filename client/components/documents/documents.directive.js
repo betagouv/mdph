@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('docsForm', function ($modal, DocumentService) {
+  .directive('docsForm', function ($modal, documents) {
+    var documentsById = _.indexBy(documents, 'id');
+
     return {
       scope: {
         form: '=',
-        small: '=',
-        type: '=',
-        complete: '='
+        currentStep: '='
       },
       templateUrl: 'components/documents/documents.html',
       restrict: 'EA',
       controller: function($scope, $upload) {
-        $scope.onFileSelect = function($files, document) {
+        $scope.onFileSelect = function($files, currentFile) {
           //$files: an array of files selected, each file has name, size, and type.
           var file = $files[0];
           $scope.upload = $upload.upload({
@@ -20,7 +20,10 @@ angular.module('impactApp')
             //method: 'POST' or 'PUT',
             //headers: {'header-key': 'header-value'},
             withCredentials: true,
-            data: {'documentType': document.id},
+            data: {
+              'stepName': $scope.currentStep.id,
+              'documentName': currentFile.name
+            },
             file: file, // or list of files ($files) for html5 only
             //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
             // customize file formData name ('Content-Disposition'), server side file variable name.
@@ -29,8 +32,8 @@ angular.module('impactApp')
             //formDataAppender: function(formData, key, val){}
           }).success(function(data) {
             // file is uploaded successfully
-            $scope.form.files.push(data);
-            $scope.refresh(true);
+            currentFile.path = data;
+            broadcastIfComplete();
           });
           //.error(...)
           //.then(success, error, progress);
@@ -38,16 +41,18 @@ angular.module('impactApp')
           //.xhr(function(xhr){xhr.upload.addEventListener(...)})
         };
 
-        $scope.refresh = function(broadcast) {
-          DocumentService.getDocumentTypeForForm($scope.form, $scope.type, function(documents, complete) {
-            $scope.documents = documents;
-            if (complete && broadcast) {
-              $scope.$parent.$broadcast('documentStepComplete');
-            }
-          });
+        $scope.files = _.find($scope.form.steps, { name: $scope.currentStep.id }).files;
+        angular.forEach($scope.files, function(file) {
+          file.document = documentsById[file.name];
+        });
+
+        var broadcastIfComplete = function() {
+          if (_.every($scope.files, 'path')) {
+            $scope.$parent.$broadcast('documentStepComplete');
+          }
         };
 
-        $scope.refresh(false);
+        broadcastIfComplete();
       }
     };
   });

@@ -1,53 +1,66 @@
 'use strict';
 
-/* jshint multistr: true */
-
 angular.module('impactApp').constant('formSteps', [
   {
     id: 'questionnaire',
     step: 0,
     sref: 'demande.recapitulatif',
     label: 'Questionnaire',
-    isEnabled: true
+    isEnabled: true,
+    states: [
+      {
+        name: 'en_cours'
+      },
+      {
+        name: 'complet',
+        isFinal: true
+      }
+    ]
   },
   {
     id: 'obligatoire',
     step: 1,
     sref: 'demande.pieces_obligatoires',
-    span: 'A',
     label: 'Pièces obligatoires',
-    isEnabled: false
+    states: [
+      {
+        name: 'en_cours'
+      },
+      {
+        name: 'a_valider',
+        isFinal: true
+      },
+      {
+        name: 'valide',
+        isFinal: true
+      },
+      {
+        name: 'erreur'
+      }
+    ]
   },
   {
     id: 'preevaluation',
     step: 2,
     sref: 'demande.pre_evaluation',
-    span: 'B',
-    label: 'Pré-évaluation',
-    isEnabled: false
+    label: 'Pré-évaluation'
   },
   {
     id: 'complementaire',
     step: 3,
     sref: 'demande.pieces_complementaires',
-    span: 'B',
-    label: 'Compléments',
-    isEnabled: false
+    label: 'Compléments'
   },
   {
     id: 'evaluation',
     step: 4,
     sref: 'demande.evaluation',
-    span: 'C',
-    label: 'Evaluation',
-    isEnabled: false
+    label: 'Evaluation'
   },
   {
     id: 'reponse',
     step: 5,
     sref: 'demande.reponse',
-    span: 'C',
-    label: 'Votre réponse',
-    isEnabled: false
+    label: 'Votre réponse'
   }
 ]);

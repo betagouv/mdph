@@ -111,7 +111,21 @@ exports.saveForm = function(req, res, next) {
       user: userId,
       formAnswers: req.body,
       updatedAt: new Date(),
-      step: 'obligatoire'
+      // TODO Extraire la logique de traitement des etapes dans un service dedie
+      steps: [
+        {
+          name: 'questionnaire',
+          state: 'complet'
+        },
+        {
+          name: 'obligatoire',
+          state: 'demande',
+          files: [
+            { name: 'certificatMedical' },
+            { name: 'carteIdentite' }
+          ]
+        }
+      ]
     });
 
     saveMdphForUser(userId, newForm.formAnswers.contexte.answers.mdph._id, res);
@@ -128,22 +142,43 @@ exports.saveForm = function(req, res, next) {
  */
 exports.saveDocument = function (req, res, next) {
     var file = req.files.file;
+    var stepName = req.body.stepName;
 
     Form.findOne({
       user: req.user._id
     }, function(err, form) {
       if (err) return next(err);
 
-      var newDocument = {documentType: req.body.documentType, path: file.path};
-
-      form.files.push(newDocument);
+      var formStep = _.find(form.steps, {name: stepName});
+      var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
+      formStepDocument.path = file.path;
 
       form.save(function(err) {
         if (err) {return handleError(res, err); }
       });
 
-      res.send(newDocument);
+      res.send(formStepDocument.path);
     });
+};
+
+exports.saveStep = function (req, res, next) {
+  var stepName = req.body.step;
+  var stateName = req.body.state;
+
+  Form.findOne({
+    user: req.user._id
+  }, function(err, form) {
+    if (err) return next(err);
+
+    var formStep = _.find(form.steps, {name: stepName});
+    formStep.state = stateName;
+
+    form.save(function(err) {
+      if (err) {return handleError(res, err); }
+    });
+
+    res.send(formStep);
+  });
 };
 
 function handleError(res, err) {

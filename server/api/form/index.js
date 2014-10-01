@@ -15,5 +15,6 @@ router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 router.post('/:id/document', auth.isAuthenticated(), controller.saveDocument);
+router.put('/:id/step', auth.isAuthenticated(), controller.saveStep);
 
 module.exports = router;
