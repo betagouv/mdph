@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('demande.pieces_complementaires', {
+      .state('demande.complementaire', {
         url: '/pieces_complementaires',
         templateUrl: 'app/demande/pieces_complementaires/pieces_complementaires.html',
         controller: 'PiecesComplementairesCtrl',

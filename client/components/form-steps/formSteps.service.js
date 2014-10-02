@@ -5,7 +5,7 @@ angular.module('impactApp')
     var stepsById = _.indexBy(formSteps, 'id');
 
     return {
-      getFormSteps: function(form) {
+      getFormSteps: function(form, parent) {
         var currentStep;
 
         if (form === null) {
@@ -19,7 +19,7 @@ angular.module('impactApp')
           });
         }
 
-        $state.go(currentStep.sref);
+        $state.go(parent + '.' + currentStep.sref);
         return formSteps;
       }
     };

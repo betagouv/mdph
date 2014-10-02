@@ -121,8 +121,8 @@ exports.saveForm = function(req, res, next) {
           name: 'obligatoire',
           state: 'en_cours',
           files: [
-            { name: 'certificatMedical' },
-            { name: 'carteIdentite' }
+            { name: 'certificatMedical', state: 'demande' },
+            { name: 'carteIdentite', state: 'demande' }
           ]
         }
       ]
@@ -152,6 +152,7 @@ exports.saveDocument = function (req, res, next) {
       var formStep = _.find(form.steps, {name: stepName});
       var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
       formStepDocument.path = path.basename(file.path);
+      formStepDocument.state = 'telecharge';
 
       form.save(function(err) {
         if (err) {return handleError(res, err); }

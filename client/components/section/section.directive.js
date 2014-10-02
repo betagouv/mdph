@@ -4,7 +4,8 @@ angular.module('impactApp')
   .directive('section', function () {
     return {
       scope: {
-        section: '='
+        section: '=',
+        srefPrefix: '='
       },
       templateUrl: 'components/section/section.html',
       restrict: 'EA',

@@ -3,8 +3,8 @@
 angular.module('impactApp').constant('formSteps', [
   {
     id: 'questionnaire',
+    sref: 'questionnaire',
     step: 0,
-    sref: 'demande.recapitulatif',
     label: 'Questionnaire',
     isEnabled: true,
     states: [
@@ -19,8 +19,8 @@ angular.module('impactApp').constant('formSteps', [
   },
   {
     id: 'obligatoire',
+    sref: 'obligatoire',
     step: 1,
-    sref: 'demande.pieces_obligatoires',
     label: 'Pièces obligatoires',
     states: [
       {
@@ -41,26 +41,30 @@ angular.module('impactApp').constant('formSteps', [
   },
   {
     id: 'preevaluation',
+    sref: 'preevaluation',
     step: 2,
-    sref: 'demande.pre_evaluation',
-    label: 'Pré-évaluation'
+    label: 'Pré-évaluation',
+    states: [
+      {
+        name: 'en_cours'
+      }
+    ]
   },
   {
     id: 'complementaire',
+    sref: 'complementaire',
     step: 3,
-    sref: 'demande.pieces_complementaires',
     label: 'Compléments'
   },
   {
     id: 'evaluation',
     step: 4,
-    sref: 'demande.evaluation',
     label: 'Evaluation'
   },
   {
     id: 'reponse',
+    sref: 'reponse',
     step: 5,
-    sref: 'demande.reponse',
     label: 'Votre réponse'
   }
 ]);

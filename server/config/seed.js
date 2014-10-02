@@ -166,8 +166,8 @@ Mdph.find({}).remove(function() {
             name: 'obligatoire',
             state: 'en_cours',
             files: [
-              { name: 'certificatMedical' },
-              { name: 'carteIdentite' }
+              { name: 'certificatMedical', state: 'demande' },
+              { name: 'carteIdentite', state: 'demande' }
             ]
           }
         ]

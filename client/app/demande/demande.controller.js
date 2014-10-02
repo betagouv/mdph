@@ -5,9 +5,9 @@ angular.module('impactApp')
     $scope.form = currentForm;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.updatedAt = FormService.updatedAt;
-    $scope.steps = FormStepService.getFormSteps(currentForm);
+    $scope.steps = FormStepService.getFormSteps(currentForm, 'demande');
 
     $scope.$on('refreshFormStepSection', function () {
-      $scope.steps = FormStepService.getFormSteps(currentForm);
+      $scope.steps = FormStepService.getFormSteps(currentForm, 'demande');
     });
   });

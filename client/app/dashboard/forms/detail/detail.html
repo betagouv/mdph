@@ -11,13 +11,12 @@
 			</a>
 		</div>
 		<div class="list-group">
-			<div class="list-group-item" ng-repeat="step in form.steps">
-				<h4 class="list-group-item-heading">{{step.name | stepFilter}}</h4>
+			<a class="list-group-item" ng-repeat="step in form.steps" ng-if="isFinal(step)" ui-sref="{{step | stepSrefFilter}}" ui-sref-active="active">
+				<h4 class="list-group-item-heading">{{step | stepFilter}}</h4>
 				<p>{{step.state | stateFilter}}</p>
-				<div ng-repeat="file in step.files">
-					<a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a>
-				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 </div>
+
+<div ui-view></div>

@@ -3,8 +3,14 @@
 angular.module('impactApp')
   .filter('stepFilter', function (formSteps) {
     return function (input) {
-      var step = _.find(formSteps, {'id': input});
+      var step = _.find(formSteps, {'id': input.name});
       return step.label;
+    };
+  })
+  .filter('stepSrefFilter', function (formSteps) {
+    return function (input) {
+      var step = _.find(formSteps, {'id': input.name});
+      return '.' + step.sref;
     };
   })
   .filter('stateFilter', function () {

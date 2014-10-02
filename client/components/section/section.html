@@ -4,7 +4,7 @@
     {{ getLabel(section) }}
   </p>
 </a>
-<a ng-if="section.isEnabled" ui-sref="{{section.sref}}" ui-sref-active="section-active" ng-class="{optionnal: section.isOptionnal, finished: section.isFinished}"
+<a ng-if="section.isEnabled" ui-sref="{{srefPrefix ? srefPrefix + '.' : ''}}{{section.sref}}" ui-sref-active="section-active" ng-class="{optionnal: section.isOptionnal, finished: section.isFinished}"
   tooltip="{{section.isOptionnal ? 'Optionnel' : ''}}{{section.isFinished ? 'Etape terminée' : ''}}">
   <p>
     {{ getLabel(section) }} <i ng-if="section.isFinished" class="glyphicon glyphicon-ok"></i>

@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('demande.recapitulatif', {
+      .state('demande.questionnaire', {
         url: '/recapitulatif',
         templateUrl: 'app/demande/recapitulatif/recapitulatif.html',
         controller: 'RecapitulatifCtrl',
