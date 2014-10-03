@@ -39,7 +39,16 @@ angular.module('impactApp')
         $http.put('/api/forms/' + form._id + '/step', {step: step.id, state: state})
         .success(function() {
           _.find(form.steps, {name: step.id}).state = state;
-          next();
+
+          if (next) { next(); }
+        });
+      },
+
+      saveNewStep: function(form, step, state, next) {
+        $http.post('/api/forms/' + form._id + '/step', {step: step, state: state})
+        .success(function(data) {
+          form.steps.push(data);
+          if (next) { next(); }
         });
       },
 

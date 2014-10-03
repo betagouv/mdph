@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6" ng-repeat="file in files">
-    <div class="panel panel-default" ng-class="file.document.type">
+    <div class="panel panel-default" ng-class="{'panel-danger': !currentStep.isFinished && file.state === 'erreur', 'panel-success': !currentStep.isFinished && file.state === 'valide'}">
       <div class="panel-heading" tooltip="{{file.document.tooltip}}">
         <h4>{{file.document.desc}}</h4>
       </div>
@@ -13,7 +13,7 @@
           <span><strong>Document reçu</strong></span>
         </div>
       </div>
-      <div class="panel-footer" ng-if="!currentStep.isFinished">
+      <div class="panel-footer" ng-if="!currentStep.isFinished && file.state !== 'valide'">
         <div class="btn-group btn-group-justified">
           <div ng-file-select="onFileSelect($files, file)" data-multiple="false" class="btn btn-default" href="#">
             <span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier

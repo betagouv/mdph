@@ -164,10 +164,10 @@ Mdph.find({}).remove(function() {
           },
           {
             name: 'obligatoire',
-            state: 'en_cours',
+            state: 'a_valider',
             files: [
-              { name: 'certificatMedical', state: 'demande' },
-              { name: 'carteIdentite', state: 'demande' }
+              { name: 'certificatMedical', state: 'telecharge', path: 'test' },
+              { name: 'carteIdentite', state: 'telecharge', path: 'test2' }
             ]
           }
         ]

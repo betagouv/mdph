@@ -47,6 +47,10 @@ angular.module('impactApp').constant('formSteps', [
     states: [
       {
         name: 'en_cours'
+      },
+      {
+        name: 'valide',
+        isFinal: true
       }
     ]
   },

@@ -1,3 +1,13 @@
 .backoffice-pj {
   line-height: 34px;
 }
+
+.backoffice-pj-result {
+  .success {
+    color: $brand-success;
+  }
+
+  .danger {
+    color: $brand-danger;
+  }
+}

@@ -162,17 +162,55 @@ exports.saveDocument = function (req, res, next) {
     });
 };
 
+exports.updateDocumentState = function (req, res, next) {
+  Form.findById(req.params.id, function (err, form) {
+     if (err) return next(err);
+
+     var formStep = _.find(form.steps, {name: req.body.stepName});
+     var formStepDocument = _.find(formStep.files, {name: req.body.fileName});
+
+     formStepDocument.state = req.body.state;
+
+     form.save(function(err) {
+       if (err) {return handleError(res, err); }
+     });
+
+     res.send(formStepDocument.state);
+   });
+};
+
+exports.updateStep = function (req, res, next) {
+  var stepName = req.body.step;
+  var stateName = req.body.state;
+
+  Form.findById(req.params.id, function (err, form) {
+    if (err) { return handleError(res, err); }
+    if(!form) { return res.send(404); }
+
+    var formStep = _.find(form.steps, {name: stepName});
+    formStep.state = stateName;
+
+    form.save(function(err) {
+      if (err) {return handleError(res, err); }
+    });
+
+    res.send(formStep);
+  });
+};
+
 exports.saveStep = function (req, res, next) {
   var stepName = req.body.step;
   var stateName = req.body.state;
 
-  Form.findOne({
-    user: req.user._id
-  }, function(err, form) {
-    if (err) return next(err);
+  Form.findById(req.params.id, function (err, form) {
+    if (err) { return handleError(res, err); }
+    if(!form) { return res.send(404); }
 
-    var formStep = _.find(form.steps, {name: stepName});
-    formStep.state = stateName;
+    var formStep = {
+      name: stepName,
+      state: stateName
+    };
+    form.steps.push(formStep);
 
     form.save(function(err) {
       if (err) {return handleError(res, err); }

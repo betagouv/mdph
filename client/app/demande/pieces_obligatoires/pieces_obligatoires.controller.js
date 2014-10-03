@@ -13,4 +13,6 @@ angular.module('impactApp')
         $scope.$parent.$broadcast('refreshFormStepSection');
       });
     };
+
+    $scope.currentFormStep = _.find($scope.form.steps, {'name': $scope.currentStep.id});
   });

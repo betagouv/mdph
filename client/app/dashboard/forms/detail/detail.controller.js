@@ -1,12 +1,21 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailCtrl', function ($scope, form, formSteps) {
+  .controller('DetailCtrl', function ($scope, $http, form, formSteps) {
     $scope.form = form;
 
-    $scope.isFinal = function (step) {
-      var formStep = _.find(formSteps, {'id': step.name});
-      var state = _.find(formStep.states, {'name' : step.state});
-      return state.isFinal;
+    $scope.getSaveFileStateRequest = function(step, file, state) {
+      return $http.put(
+        '/api/forms/' + $scope.form._id + '/document',
+        {
+          stepName: step.name,
+          fileName: file.name,
+          state: state
+        }
+      );
+    };
+
+    $scope.getStep = function(formStep) {
+      return _.find(formSteps, {'id': formStep.name});
     };
   });
