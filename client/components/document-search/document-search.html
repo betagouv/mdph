@@ -1,0 +1,18 @@
+<div class="panel panel-primary-light">
+  <div class="list-group">
+    <div class="list-group-item searchbox">
+      <h3 class="panel-title">Liste des pièces justificatives</h3>
+      <br>
+      <div class="input-group">
+        <input class="form-control" type="text" ng-model="docQuery" placeholder="Recherche">
+        </input>
+        <span class="input-group-addon" ng-class="{'btn': docQuery}" ng-click="docQuery = ''"><i class="fa fa-times" ng-class="{'text-muted': !docQuery}"></i></span>
+      </div>
+    </div>
+    <div class="list-group-item" ng-repeat="document in documents | filter:docQuery | orderBy:'label'">
+      <div class="backoffice-pj selectable" ng-click="callback(document.id)">
+        <div><i class="fa fa-muted fa-plus"></i> {{document.id | documentFilter}}</div>
+      </div>
+    </div>
+  </div>
+</div>

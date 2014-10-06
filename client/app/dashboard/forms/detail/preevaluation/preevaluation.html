@@ -1,0 +1,35 @@
+<div id="preevaluation">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{step.label}}
+        <a class="btn btn-success pull-right" ng-if="files.length !== 0 && formStep.state === 'en_cours'" ng-click="saveStep()">
+          <i class="fa fa-check"></i> Valider</a>
+        </a>
+        <br>
+        <small class="text-muted-primary">{{files.length}} documents demandés</small>
+
+      </h3>
+
+    </div>
+    <div class="list-group">
+      <div class="list-group-item" ng-if="files.length === 0">
+        <div class="backoffice-pj">
+          <em>Aucun document sélectionné, utilisez l'outil ci-dessous pour ajouter des pièces justificatives à la demande.</em>
+        </div>
+      </div>
+      <div class="list-group-item" ng-repeat="(idx, file) in files">
+        <div class="backoffice-pj" ng-if="formStep.state === 'valide'">
+          {{file.name | documentFilter}}
+        </div>
+        <div class="backoffice-pj selectable" ng-if="formStep.state === 'en_cours'" ng-click="removeFile(idx)">
+          <i class="fa fa-muted fa-minus"></i> {{file.name | documentFilter}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="formStep.state === 'en_cours'">
+  <hr>
+  <document-search form="form" callback="addFile"></document-search>
+</div>

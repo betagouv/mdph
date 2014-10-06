@@ -58,7 +58,16 @@ angular.module('impactApp').constant('formSteps', [
     id: 'complementaire',
     sref: 'complementaire',
     step: 3,
-    label: 'Compléments'
+    label: 'Compléments',
+    states: [
+      {
+        name: 'en_cours'
+      },
+      {
+        name: 'valide',
+        isFinal: true
+      }
+    ]
   },
   {
     id: 'evaluation',

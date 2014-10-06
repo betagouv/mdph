@@ -36,10 +36,13 @@ angular.module('impactApp')
       },
 
       saveStepState: function(form, step, state, next) {
-        $http.put('/api/forms/' + form._id + '/step', {step: step.id, state: state})
+        this.saveStepStateAndFiles(form, step, state, [], next);
+      },
+
+      saveStepStateAndFiles: function(form, step, state, files, next) {
+        $http.put('/api/forms/' + form._id + '/step', {step: step.id, state: state, files: files})
         .success(function() {
           _.find(form.steps, {name: step.id}).state = state;
-
           if (next) { next(); }
         });
       },

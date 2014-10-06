@@ -182,6 +182,7 @@ exports.updateDocumentState = function (req, res, next) {
 exports.updateStep = function (req, res, next) {
   var stepName = req.body.step;
   var stateName = req.body.state;
+  var files = req.body.files;
 
   Form.findById(req.params.id, function (err, form) {
     if (err) { return handleError(res, err); }
@@ -189,6 +190,9 @@ exports.updateStep = function (req, res, next) {
 
     var formStep = _.find(form.steps, {name: stepName});
     formStep.state = stateName;
+    if (files && files.length > 0) {
+      formStep.files = files;
+    }
 
     form.save(function(err) {
       if (err) {return handleError(res, err); }

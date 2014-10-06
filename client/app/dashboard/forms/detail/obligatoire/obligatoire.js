@@ -20,7 +20,7 @@ angular.module('impactApp')
               FormService.saveStepState($scope.form, $scope.step, 'erreur');
             } else {
               FormService.saveStepState($scope.form, $scope.step, 'valide', function() {
-                FormService.saveNewStep($scope.form, 'evaluation', 'en_cours');
+                FormService.saveNewStep($scope.form, 'preevaluation', 'en_cours');
               });
             }
           };

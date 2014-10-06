@@ -1,5 +1,9 @@
 .backoffice-pj {
   line-height: 34px;
+
+  em {
+    color: $medium-heavy-grey;
+  }
 }
 
 .backoffice-pj-result {
@@ -9,5 +13,26 @@
 
   .danger {
     color: $brand-danger;
+  }
+}
+
+.text-muted-primary {
+  color: $light-grey;
+}
+
+.list-group-item.active-soft {
+  background-color: whitesmoke;
+  color: #428bca !important;
+
+  h4 {
+    color: #428bca !important;
+  }
+}
+
+.panel-primary {
+  border-color: $light-blue;
+  .panel-heading {
+    background-color: $light-blue;
+    border-color: $light-blue;
   }
 }

@@ -1,9 +1,9 @@
 <div id="formCard">
-	<div class="panel panel-default">
+	<div class="panel panel-primary">
 		<div class="panel-heading clearfix">
 			<h3 class="panel-title pull-left">
         {{form.user.name}}<br>
-        <span class="text-muted">Dernière modification {{updatedAt(form)}}</span>
+        <small class="text-muted-primary">Dernière modification {{updatedAt(form)}}</small>
       </h3>
 			<a class="btn btn-danger pull-right" ng-click="delete(form)">
         <i class="glyphicon glyphicon-trash"></i>
@@ -11,7 +11,7 @@
 			</a>
 		</div>
 		<div class="list-group">
-			<a class="list-group-item" ng-repeat="step in form.steps" ui-sref="{{step | stepSrefFilter}}" ui-sref-active="active">
+			<a class="list-group-item" ng-repeat="step in form.steps" ui-sref="{{step | stepSrefFilter}}" ui-sref-active="active-soft">
 				<h4 class="list-group-item-heading">{{step | stepFilter}}</h4>
 				<p>{{step.state | stateFilter}}</p>
 			</a>
