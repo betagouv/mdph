@@ -40,6 +40,7 @@ var createMdphNord = function(cb) {
     zipcode: '59'
   }, function(err, data) {
     mdphNord = data;
+    console.log('finished creating mdph nord');
     cb();
   });
 };
@@ -50,6 +51,7 @@ var createMdphCalvados = function(cb) {
     zipcode: '14'
   }, function(err, data) {
     mdphCalvados = data;
+    console.log('finished creating mdph calvados');
     cb();
   });
 };
@@ -64,6 +66,7 @@ var createBar = function(cb) {
     mdph: mdphNord
   }, function(err, data) {
     bar = data;
+    console.log('finished creating user bar');
     cb();
   });
 };
@@ -77,6 +80,7 @@ var createFoo = function(cb) {
     mdph: mdphNord
   }, function(err, data) {
     foo = data;
+    console.log('finished creating user foo');
     cb();
   });
 };
@@ -90,6 +94,7 @@ var createBob = function(cb) {
     mdph: mdphCalvados
   }, function(err, data) {
     bob = data;
+    console.log('finished creating user bob');
     cb();
   });
 };
@@ -103,6 +108,7 @@ var createAdmin = function(cb) {
     password: 'admin'
   }, function(err, data) {
     admin = data;
+    console.log('finished creating user admin');
     cb();
   });
 };
@@ -117,6 +123,7 @@ var createAlice = function(cb) {
     mdph: mdphCalvados
   }, function(err, data) {
     alice = data;
+    console.log('finished creating user alice');
     cb();
   });
 };
@@ -128,6 +135,7 @@ var createFooForm = function(cb) {
     updatedAt: new Date(),
     step: 'obligatoire'
   }, function(err, data) {
+    console.log('finished creating form foo');
     cb();
   });
 };
@@ -242,6 +250,7 @@ var createBobForm = function(cb) {
       }
     ]
   }, function(err, data) {
+    console.log('finished creating form bob');
     cb();
   });
 };
