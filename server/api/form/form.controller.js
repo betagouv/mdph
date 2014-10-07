@@ -205,6 +205,7 @@ exports.updateStep = function (req, res, next) {
 exports.saveStep = function (req, res, next) {
   var stepName = req.body.step;
   var stateName = req.body.state;
+  var files = req.body.files;
 
   Form.findById(req.params.id, function (err, form) {
     if (err) { return handleError(res, err); }
@@ -213,7 +214,7 @@ exports.saveStep = function (req, res, next) {
     var formStep = {
       name: stepName,
       state: stateName,
-      files: []
+      files: files
     };
     form.steps.push(formStep);
 

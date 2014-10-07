@@ -64,15 +64,32 @@ angular.module('impactApp').constant('formSteps', [
         name: 'en_cours'
       },
       {
+        name: 'a_valider',
+        isFinal: true
+      },
+      {
         name: 'valide',
         isFinal: true
+      },
+      {
+        name: 'erreur'
       }
     ]
   },
   {
     id: 'evaluation',
+    sref: 'evaluation',
     step: 4,
-    label: 'Evaluation'
+    label: 'Evaluation',
+    states: [
+      {
+        name: 'en_cours'
+      },
+      {
+        name: 'valide',
+        isFinal: true
+      }
+    ]
   },
   {
     id: 'reponse',

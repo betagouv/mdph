@@ -26,7 +26,7 @@ angular.module('impactApp')
 
           $scope.saveStep = function() {
             FormService.saveStepStateAndFiles($scope.form, $scope.step, 'valide', $scope.files, function() {
-              FormService.saveNewStep($scope.form, 'complementaire', 'en_cours');
+              FormService.saveNewStepAndFiles($scope.form, 'complementaire', 'en_cours', $scope.files);
             });
           };
         }

@@ -2,7 +2,7 @@
   <div class="col-md-6" ng-repeat="file in files">
     <div class="panel panel-default" ng-class="{'panel-danger': !currentStep.isFinished && file.state === 'erreur', 'panel-success': !currentStep.isFinished && file.state === 'valide'}">
       <div class="panel-heading" tooltip="{{file.document.tooltip}}">
-        <h4>{{file.document.desc}}</h4>
+        <h4>{{file.document.label}}</h4>
       </div>
       <div class="panel-body">
         <div ng-if="!file.path">

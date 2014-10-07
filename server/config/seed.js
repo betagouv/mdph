@@ -28,7 +28,7 @@ var deleteForms = function(cb) {
 };
 
 var deleteMdphs = function(cb) {
-  Mdph.find({}).remove(function(err) {
+  Mdph.find({}).remove(function() {
     console.log('finished deleting mdphs');
     cb();
   });

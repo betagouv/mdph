@@ -48,14 +48,17 @@ angular.module('impactApp')
       },
 
       saveNewStep: function(form, step, state, next) {
-        $http.post('/api/forms/' + form._id + '/step', {step: step, state: state})
+        this.saveNewStepAndFiles(form, step, state, [], next);
+      },
+
+      saveNewStepAndFiles: function(form, step, state, files, next) {
+        $http.post('/api/forms/' + form._id + '/step', {step: step, state: state, files: files})
         .success(function(data) {
           form.steps.push(data);
           $state.go('^.' + step);
           if (next) { next(); }
         });
       },
-
       /**
       * Utilitaires
       */
