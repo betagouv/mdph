@@ -1,0 +1,37 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title panel-title-expand">
+      {{step.label}}
+      <a class="btn btn-success pull-right" ng-disabled="!isComplete" ng-if="files.length !== 0 && formStep.state === 'a_valider'" ng-click="saveStep()">
+        <i class="fa fa-check"></i> Enregistrer</a>
+      </a>
+    </h3>
+  </div>
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="file in files" ng-mouseleave="showButtons = false" ng-mouseover="showButtons = true">
+      <div class="row backoffice-pj">
+        <div class="col-md-8" ng-if="file.state === 'demande' ">
+          {{file.name | documentFilter}}
+          <small>(En attente)</small>
+        </div>
+        <div class="col-md-8" ng-if="file.state !== 'demande' ">
+          <a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a>
+        </div>
+        <div ng-if="showButtons && file.state === 'telecharge'">
+          <div class="col-md-2">
+            <a class="btn btn-success btn-block" ng-click="saveValid(file)"><i class="fa fa-check"></i> Valider</a>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-danger btn-block" ng-click="saveError(file)"><i class="fa fa-times"></i> Refuser</a>
+          </div>
+        </div>
+        <div ng-if="file.state !== 'demande' && file.state !== 'telecharge'">
+          <div class="col-md-2 col-md-offset-2 backoffice-pj-result">
+            <span class="success" ng-if="file.state === 'valide'"><i class="fa fa-check"></i> Validé</span>
+            <span class="danger" ng-if="file.state !== 'valide'"><i class="fa fa-times"></i> Refusé</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
