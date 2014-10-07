@@ -127,6 +127,8 @@ var createFooForm = function(cb) {
     formAnswers: {},
     updatedAt: new Date(),
     step: 'obligatoire'
+  }, function(err, data) {
+    cb();
   });
 };
 
@@ -239,6 +241,8 @@ var createBobForm = function(cb) {
         ]
       }
     ]
+  }, function(err, data) {
+    cb();
   });
 };
 
