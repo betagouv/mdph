@@ -51,6 +51,7 @@ angular.module('impactApp')
         $http.post('/api/forms/' + form._id + '/step', {step: step, state: state})
         .success(function(data) {
           form.steps.push(data);
+          $state.go('^.' + step);
           if (next) { next(); }
         });
       },

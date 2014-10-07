@@ -6,30 +6,23 @@ angular.module('impactApp')
       .state('dashboard.forms.detail.obligatoire', {
         url: '/obligatoire',
         templateUrl: 'app/dashboard/forms/detail/obligatoire/obligatoire.html',
-        controller: function($scope, FormService) {
-          var formStep = _.find($scope.form.steps, {'name': 'obligatoire'});
+        controller: function($scope, $state, formSteps, FormService) {
 
-          $scope.step = $scope.getStep(formStep);
-          $scope.files = formStep.files;
+          $scope.formStep = _.find($scope.form.steps, {'name': 'obligatoire'});
+          $scope.step = _.find(formSteps, {'id': $scope.formStep.name});
 
-          var sendEventIfComplete = function() {
-            if (_.some($scope.files, {'state': 'telecharge'})) {
-              return;
-            }
-            if (_.some($scope.files, {'state': 'erreur'})) {
-              FormService.saveStepState($scope.form, $scope.step, 'erreur');
-            } else {
-              FormService.saveStepState($scope.form, $scope.step, 'valide', function() {
-                FormService.saveNewStep($scope.form, 'preevaluation', 'en_cours');
-              });
-            }
+          $scope.files = $scope.formStep.files;
+
+          var checkIfComplete = function() {
+            return !_.some($scope.files, {'state': 'telecharge'});
           };
+          $scope.isComplete = $scope.formStep.state === 'a_valider' && checkIfComplete();
 
           var saveFileState = function(file, state) {
-            $scope.getSaveFileStateRequest(formStep, file, state).success(function() {
+            $scope.getSaveFileStateRequest($scope.formStep, file, state).success(function() {
               file.state = state;
             }).finally(function() {
-              sendEventIfComplete();
+              $scope.isComplete = checkIfComplete();
             });
           };
 
@@ -39,6 +32,16 @@ angular.module('impactApp')
 
           $scope.saveError = function(file) {
             saveFileState(file, 'erreur');
+          };
+
+          $scope.saveStep = function() {
+            if (_.some($scope.files, {'state': 'erreur'})) {
+              FormService.saveStepState($scope.form, $scope.step, 'erreur');
+            } else {
+              FormService.saveStepState($scope.form, $scope.step, 'valide', function() {
+                FormService.saveNewStep($scope.form, 'preevaluation', 'en_cours');
+              });
+            }
           };
         }
       });

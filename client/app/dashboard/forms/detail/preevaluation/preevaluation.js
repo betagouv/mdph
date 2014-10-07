@@ -8,7 +8,7 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/forms/detail/preevaluation/preevaluation.html',
         controller: function($scope, formSteps, FormService) {
           $scope.formStep = _.find($scope.form.steps, {'name': 'preevaluation'});
-          $scope.step = $scope.getStep($scope.formStep);
+          $scope.step = _.find(formSteps, {'id': $scope.formStep.name});
 
           $scope.files = $scope.formStep.files;
           $scope.allFiles = formSteps;

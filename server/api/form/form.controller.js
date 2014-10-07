@@ -212,7 +212,8 @@ exports.saveStep = function (req, res, next) {
 
     var formStep = {
       name: stepName,
-      state: stateName
+      state: stateName,
+      files: []
     };
     form.steps.push(formStep);
 

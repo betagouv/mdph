@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailCtrl', function ($scope, $http, form, formSteps) {
+  .controller('DetailCtrl', function ($scope, $http, form) {
     $scope.form = form;
 
     $scope.getSaveFileStateRequest = function(step, file, state) {
@@ -13,9 +13,5 @@ angular.module('impactApp')
           state: state
         }
       );
-    };
-
-    $scope.getStep = function(formStep) {
-      return _.find(formSteps, {'id': formStep.name});
     };
   });
