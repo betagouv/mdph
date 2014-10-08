@@ -8,8 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/forms/forms.html',
         controller: 'FormsCtrl',
         resolve: {
-          forms: function(FormService) {
-            return FormService.getAllForms();
+          forms: function(FormResource) {
+            return FormResource.query();
           }
         },
         authenticate: true

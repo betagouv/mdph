@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-var Form = require('../form/form.model');
+var Request = require('../request/request.model');
 
 var UserSchema = new Schema({
   name: String,
@@ -111,7 +111,7 @@ UserSchema
 UserSchema
   .pre('remove', function(next) {
     console.log('removeeeee');
-    Form.remove({user: this}).exec();
+    Request.remove({user: this}).exec();
     next();
   });
 

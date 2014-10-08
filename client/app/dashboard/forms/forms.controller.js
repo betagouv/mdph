@@ -6,12 +6,13 @@ angular.module('impactApp')
     $scope.updatedAt = FormService.updatedAt;
 
     $scope.delete = function(form) {
-      $http.delete('/api/forms/' + form._id);
-      angular.forEach($scope.forms, function(f, i) {
-        if (f._id === form._id) {
-          $scope.forms.splice(i, 1);
-          $state.go('dashboard.forms');
-        }
+      $http.delete('/api/forms/' + form._id).success(function() {
+        angular.forEach($scope.forms, function(f, i) {
+          if (f._id === form._id) {
+            $scope.forms.splice(i, 1);
+            $state.go('dashboard.forms');
+          }
+        });
       });
     };
   });

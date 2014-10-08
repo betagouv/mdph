@@ -9,9 +9,17 @@ angular.module('impactApp')
         templateUrl: 'app/form/form.html',
         controller: 'FormCtrl',
         resolve: {
-          currentForm:  function(FormService) {
-            return FormService.getCurrentForm();
-           }
+          isLoggedIn: function(Auth) {
+            return Auth.isLoggedIn();
+          },
+
+          currentForm:  function(FormResource, isLoggedIn) {
+            if (isLoggedIn) {
+              return FormResource.getMine().$promise;
+            } else {
+              return null;
+            }
+          }
         }
       });
   });

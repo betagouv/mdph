@@ -15,11 +15,11 @@ var StepSchema = new Schema({
   files:        [ FileSchema ]
 });
 
-var FormSchema = new Schema({
+var RequestSchema = new Schema({
   formAnswers:  Schema.Types.Mixed,
   user:         { type: Schema.Types.ObjectId, ref: 'User' },
   updatedAt:    { type: Date },
   steps:        [ StepSchema ]
 });
 
-module.exports = mongoose.model('Form', FormSchema);
+module.exports = mongoose.model('Request', RequestSchema);

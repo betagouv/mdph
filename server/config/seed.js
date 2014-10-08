@@ -7,7 +7,7 @@
 
 var User = require('../api/user/user.model');
 var Mdph = require('../api/mdph/mdph.model');
-var Form = require('../api/form/form.model');
+var Request = require('../api/request/request.model');
 var async = require('async');
 
 var mdphNord, mdphCalvados, admin, foo, bar, alice, bob;
@@ -20,9 +20,9 @@ var deleteUsers = function(cb) {
   });
 };
 
-var deleteForms = function(cb) {
-  Form.find({}).remove(function() {
-    console.log('finished deleting forms');
+var deleteRequests = function(cb) {
+  Request.find({}).remove(function() {
+    console.log('finished deleting requests');
     cb();
   });
 };
@@ -128,20 +128,20 @@ var createAlice = function(cb) {
   });
 };
 
-var createFooForm = function(cb) {
-  Form.create({
+var createFooRequest = function(cb) {
+  Request.create({
     user: foo,
     formAnswers: {},
     updatedAt: new Date(),
     step: 'obligatoire'
   }, function(err, data) {
-    console.log('finished creating form foo');
+    console.log('finished creating request foo');
     cb();
   });
 };
 
-var createBobForm = function(cb) {
-  Form.create({
+var createBobRequest = function(cb) {
+  Request.create({
     user: bob,
     formAnswers: {
       'contexte': {
@@ -250,14 +250,14 @@ var createBobForm = function(cb) {
       }
     ]
   }, function(err, data) {
-    console.log('finished creating form bob');
+    console.log('finished creating request bob');
     cb();
   });
 };
 
 async.series([
   deleteUsers,
-  deleteForms,
+  deleteRequests,
   deleteMdphs,
 
   createMdphNord,
@@ -269,6 +269,6 @@ async.series([
   createBob,
   createAdmin,
 
-  createBobForm,
-  createFooForm
+  createBobRequest,
+  createFooRequest
 ]);

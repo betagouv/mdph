@@ -9,8 +9,8 @@ angular.module('impactApp')
         controller: 'DemandeCtrl',
         authenticate: true,
         resolve: {
-          currentForm:  function(FormService) {
-            return FormService.getCurrentForm();
+          currentForm:  function(FormResource) {
+            return FormResource.getMine().$promise;
           }
         }
       });

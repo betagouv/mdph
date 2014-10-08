@@ -23,10 +23,7 @@ angular.module('impactApp')
 
     $scope.saveForm = function() {
       if (Auth.isLoggedIn()) {
-        $http.put('/api/forms/mine', $scope.formAnswers)
-        .success(function() {
-          $state.go('demande');
-        });
+        FormService.saveCurrentForm($scope.formAnswers);
       } else {
         $state.go('form.envoi.modal.login');
       }
