@@ -10,7 +10,7 @@ var Mdph = require('../api/mdph/mdph.model');
 var Request = require('../api/request/request.model');
 var async = require('async');
 
-var mdphNord, mdphCalvados, admin, foo, bar, alice, bob;
+var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, bobRequest, fooRequest;
 
 
 var deleteUsers = function(cb) {
@@ -77,11 +77,18 @@ var createFoo = function(cb) {
     name: 'Foo',
     email: 'foo@foo.com',
     password: 'foo',
-    mdph: mdphNord
+    mdph: mdphNord,
+    requests: []
   }, function(err, data) {
     foo = data;
-    console.log('finished creating user foo');
-    cb();
+    foo.requests.push(fooRequest);
+    foo.save(function(err) {
+      if (err) {
+        console.log(err);
+      }
+      console.log('finished creating user foo');
+      cb();
+    });
   });
 };
 
@@ -91,11 +98,18 @@ var createBob = function(cb) {
     name: 'Bob',
     email: 'bob@bob.com',
     password: 'bob',
-    mdph: mdphCalvados
+    mdph: mdphCalvados,
+    requests: []
   }, function(err, data) {
     bob = data;
-    console.log('finished creating user bob');
-    cb();
+    bob.requests.push(bobRequest);
+    bob.save(function(err) {
+      if (err) {
+        console.log(err);
+      }
+      console.log('finished creating user bob');
+      cb();
+    });
   });
 };
 
@@ -130,11 +144,11 @@ var createAlice = function(cb) {
 
 var createFooRequest = function(cb) {
   Request.create({
-    user: foo,
     formAnswers: {},
     updatedAt: new Date(),
     step: 'obligatoire'
   }, function(err, data) {
+    fooRequest = data;
     console.log('finished creating request foo');
     cb();
   });
@@ -142,7 +156,6 @@ var createFooRequest = function(cb) {
 
 var createBobRequest = function(cb) {
   Request.create({
-    user: bob,
     formAnswers: {
       'contexte': {
         'estRepresentant':true,
@@ -250,6 +263,7 @@ var createBobRequest = function(cb) {
       }
     ]
   }, function(err, data) {
+    bobRequest = data;
     console.log('finished creating request bob');
     cb();
   });
@@ -263,12 +277,12 @@ async.series([
   createMdphNord,
   createMdphCalvados,
 
+  createBobRequest,
+  createFooRequest,
+
   createFoo,
   createBar,
   createAlice,
   createBob,
-  createAdmin,
-
-  createBobRequest,
-  createFooRequest
+  createAdmin
 ]);

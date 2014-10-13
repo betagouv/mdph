@@ -7,50 +7,24 @@ var User = require('../user/user.model');
 var path = require('path');
 var config = require('../../config/environment');
 
-// Obtenir la liste des request pour la mdph de l'utilisateur
+
+/**
+ * Get list of requests
+ */
 exports.index = function(req, res) {
-  Request
-   .find()
-   .populate('user')
-   .exec(function (err, requests) {
-    if(err) { return handleError(res, err); }
-    if (!requests) {
-      return res.json(200);
-    }
-    var filtered = requests.filter(function(request){
-      return request.user.mdph.equals(req.user.mdph);
-    });
-    return res.json(200, filtered);
+  Request.find({}, function (err, requests) {
+    if(err) return res.send(500, err);
+    res.json(200, requests);
   });
 };
 
 // Get a single request
 exports.show = function(req, res, next) {
   Request.findById(req.params.id)
-  .populate('user')
   .exec(function(err, request) {
     if(err) { return next(err); }
     if(!request) { return res.send(404); }
     return res.json(request);
-  });
-};
-
-// Creates a new request in the DB.
-exports.create = function(req, res) {
-  var request = new Request({
-    user: req.user._id,
-    updatedAt: new Date(),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'en_cours'
-      }
-    ]
-  });
-
-  request.save(function (err) {
-    if (err) { return handleError(res, err); }
-    return res.json(201, request);
   });
 };
 
@@ -81,65 +55,17 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Get my request
+ * Update request
  */
-exports.mine = function(req, res, next) {
-  var userId = req.user._id;
+exports.update = function(req, res, next) {
   Request.findOne({
-    user: userId
+    _id: req.params.id
   }, function(err, request) {
     if (err) return next(err);
-    if (!request) return res.send(404);
-    res.json(request);
-  });
-};
 
-var saveMdphForUser = function(userId, mdphId, res) {
-  User.findById(userId, function (err, user) {
-    user.mdph = mdphId;
-    user.save(function(err){
-      if (err) {return handleError(res, err); }
-    });
-  });
-};
-
-/**
- * Save my request
- */
-exports.save = function(req, res, next) {
-  var userId = req.user._id;
-
-  Request.findOne({
-    user: userId
-  }, function(err, request) {
-    if (err) return next(err);
-    if(request) {
-      // On ne peut sauvegarder qu'une fois le formulaire
-      return res.send(423);
-    }
-
-    request = new Request({
-      user: userId,
-      formAnswers: req.body,
-      updatedAt: new Date(),
-      // TODO Extraire la logique de traitement des etapes dans un service dedie
-      steps: [
-        {
-          name: 'questionnaire',
-          state: 'complet'
-        },
-        {
-          name: 'obligatoire',
-          state: 'en_cours',
-          files: [
-            { name: 'certificatMedical', state: 'request' },
-            { name: 'carteIdentite', state: 'request' }
-          ]
-        }
-      ]
-    });
-
-    saveMdphForUser(userId, request.formAnswers.contexte.mdph._id, res);
+    request.updatedAt = new Date();
+    request.formAnswers = req.body.formAnswers;
+    request.steps = req.body.steps;
 
     request.save(function (err) {
       if (err) { return handleError(res, err); }

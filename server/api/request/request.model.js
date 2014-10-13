@@ -17,7 +17,6 @@ var StepSchema = new Schema({
 
 var RequestSchema = new Schema({
   formAnswers:  Schema.Types.Mixed,
-  user:         { type: Schema.Types.ObjectId, ref: 'User' },
   updatedAt:    { type: Date },
   steps:        [ StepSchema ]
 });

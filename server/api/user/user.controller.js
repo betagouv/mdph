@@ -1,6 +1,8 @@
 'use strict';
 
+var _ = require('lodash');
 var User = require('./user.model');
+var Request = require('../request/request.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -97,6 +99,62 @@ exports.me = function(req, res, next) {
     if (err) return next(err);
     if (!user) return res.json(401);
     res.json(user);
+  });
+};
+
+/**
+ * Get user requests
+ */
+exports.showUserRequests = function(req, res, next) {
+  var userId = req.user._id;
+  User.findOne({
+    _id: userId
+  })
+  .exec(function(err, user) {
+    if (err) return next(err);
+    if (!user) return res.json(401);
+    res.json(user.requests);
+  });
+};
+
+/**
+ * Get every request for mdph
+ */
+exports.showByMdph = function(req, res, next) {
+  User.find({
+    mdph: req.user.mdph
+  }).exec(function (err, users) {
+    if (err) return next(err);
+    if (!users) {
+      return res.json(200);
+    }
+    var allRequests = _.reduce(users, function(user) {
+      return user.requests;
+    }, []);
+    return res.json(200, allRequests);
+  });
+};
+
+/**
+ * Create a new request for user
+ */
+exports.createRequest = function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    if(err) return res.send(500, err);
+    var request = new Request({
+      updatedAt: new Date(),
+      steps: [
+        {
+          name: 'questionnaire',
+          state: 'en_cours'
+        }
+      ]
+    });
+    user.requests.push(request);
+    user.save(function(err, user) {
+      if(err) return res.send(500, err);
+      return res.send(200, user);
+    });
   });
 };
 

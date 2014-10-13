@@ -16,22 +16,26 @@ angular.module('impactApp')
       },
 
       saveCurrentForm: function(formAnswers) {
-        $http.put('/api/requests/mine', formAnswers ? formAnswers : $sessionStorage.formAnswers)
-        .success(function() {
-          Auth.getCurrentUser().$promise.then(function (user) {
+        Auth.getCurrentUser().$promise.then(function (user) {
+          $http.put('/api/users/' + user._id + 'requests', {formAnswers: formAnswers ? formAnswers : $sessionStorage.formAnswers, steps: [
+            // TODO LES STEPS
+            ]})
+          .success(function() {
+            // TODO http put save mdph
             user.mdph = $sessionStorage.formAnswers.contexte.mdph;
+          })
+          .error(function(err) {
+            if (err === 'Locked') {
+              $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte. Le questionnaire courant sera perdu.');
+            } else {
+              $window.alert(err);
+            }
+          })
+          .finally(function() {
+            $state.go('demande');
           });
-        })
-        .error(function(err) {
-          if (err === 'Locked') {
-            $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte. Le questionnaire courant sera perdu.');
-          } else {
-            $window.alert(err);
-          }
-        })
-        .finally(function() {
-          $state.go('demande');
         });
+
       },
 
       saveStepState: function(form, step, state, next) {
@@ -39,7 +43,6 @@ angular.module('impactApp')
       },
 
       saveStepStateAndFiles: function(form, step, state, files, next) {
-        debugger;
         FormResource.updateStep({id: form._id}, {step: step.id, state: state, files: files})
         .success(function() {
           _.find(form.steps, {name: step.id}).state = state;

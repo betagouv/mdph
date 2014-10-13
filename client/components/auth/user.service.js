@@ -17,6 +17,14 @@ angular.module('impactApp')
         params: {
           id:'me'
         }
+      },
+      queryRequests: {
+        method: 'GET',
+        params: {
+          id:'me',
+          controller:'requests'
+        },
+        isArray: true
       }
 	  });
   });
