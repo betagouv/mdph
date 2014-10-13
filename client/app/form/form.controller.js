@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, QuestionService, SectionService, FormService, currentForm, $window) {
+  .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, QuestionService, SectionService, RequestService, currentForm, $window) {
 
     datepickerConfig.showWeeks = false;
     $scope.$storage = $sessionStorage.$default({
@@ -11,7 +11,7 @@ angular.module('impactApp')
     $scope.getLabel = QuestionService.getLabel;
 
     $scope.isAdult = function() {
-      return FormService.isAdult($scope.formAnswers);
+      return RequestService.isAdult($scope.formAnswers);
     };
 
     $scope.encode = function(json) {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CodePostalCtrl', function($scope, $state, FormService, QuestionService, mdphs) {
+  .controller('CodePostalCtrl', function($scope, $state, RequestService, QuestionService, mdphs) {
 
     $scope.question = QuestionService.get('contexte', 'mdph', $scope.formAnswers);
 

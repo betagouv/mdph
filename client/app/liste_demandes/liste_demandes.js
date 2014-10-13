@@ -11,6 +11,12 @@ angular.module('impactApp')
         resolve: {
           requests:  function(User) {
             return User.queryRequests().$promise;
+          },
+          current: function(RequestService, requests) {
+            return RequestService.getCurrent(requests);
+          },
+          currentStep: function(RequestService, current) {
+            return RequestService.getCurrentStep(current);
           }
         }
       });

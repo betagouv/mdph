@@ -6,7 +6,7 @@ angular.module('impactApp')
       .state('dashboard.forms.detail.preevaluation', {
         url: '/preevaluation',
         templateUrl: 'app/dashboard/forms/detail/preevaluation/preevaluation.html',
-        controller: function($scope, formSteps, FormService) {
+        controller: function($scope, formSteps, RequestService) {
           $scope.formStep = _.find($scope.form.steps, {'name': 'preevaluation'});
           $scope.step = _.find(formSteps, {'id': $scope.formStep.name});
 
@@ -25,8 +25,8 @@ angular.module('impactApp')
           };
 
           $scope.saveStep = function() {
-            FormService.saveStepStateAndFiles($scope.form, $scope.step, 'valide', $scope.files, function() {
-              FormService.saveNewStepAndFiles($scope.form, 'complementaire', 'en_cours', $scope.files);
+            RequestService.saveStepStateAndFiles($scope.form, $scope.step, 'valide', $scope.files, function() {
+              RequestService.saveNewStepAndFiles($scope.form, 'complementaire', 'en_cours', $scope.files);
             });
           };
         }

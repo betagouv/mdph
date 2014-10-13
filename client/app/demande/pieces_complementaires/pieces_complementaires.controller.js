@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PiecesComplementairesCtrl', function ($scope, FormService) {
+  .controller('PiecesComplementairesCtrl', function ($scope, RequestService) {
     $scope.currentStep = $scope.steps[3];
 
     $scope.$on('documentStepComplete', function () {
@@ -9,7 +9,7 @@ angular.module('impactApp')
     });
 
     $scope.validateStep = function() {
-      FormService.saveStepState($scope.form, $scope.currentStep, 'a_valider', function() {
+      RequestService.saveStepState($scope.form, $scope.currentStep, 'a_valider', function() {
         $scope.$parent.$broadcast('refreshFormStepSection');
       });
     };

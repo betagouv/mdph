@@ -13,9 +13,9 @@ angular.module('impactApp')
             return Auth.isLoggedIn();
           },
 
-          currentForm:  function(FormResource, isLoggedIn) {
+          currentForm:  function(RequestResource, isLoggedIn) {
             if (isLoggedIn) {
-              return FormResource.getMine().$promise;
+              return RequestResource.getMine().$promise;
             } else {
               return null;
             }

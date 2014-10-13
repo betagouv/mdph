@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('VieQuotidienneCtrl', function ($scope, $sessionStorage, FormService) {
+  .controller('VieQuotidienneCtrl', function ($scope, $sessionStorage, RequestService) {
 
     $scope.currentSectionId = 1;
 
-    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
+    $scope.title = RequestService.estRepresentant($scope.formAnswers) ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
 
     if (angular.isUndefined($scope.$storage.sectionSituationVie)) {
       $scope.$storage.sectionSituationVie = {

@@ -12,9 +12,7 @@ var UserSchema = new Schema({
   salt: String,
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
-
-  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
-  requests: [{ type: Schema.Types.ObjectId, ref: 'Request' }]
+  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' }
 });
 
 /**
@@ -109,7 +107,6 @@ UserSchema
  */
 UserSchema
   .pre('remove', function(next) {
-    console.log('removeeeee');
     Request.remove({user: this}).exec();
     next();
   });

@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'DetailCtrl',
         resolve: {
           form: function($http, $stateParams) {
-            return $http.get('/api/forms/' + $stateParams.id).then(function(form) {
+            return $http.get('/api/requests/' + $stateParams.id).then(function(form) {
               return form.data;
             });
           }

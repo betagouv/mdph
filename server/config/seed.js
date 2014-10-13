@@ -81,14 +81,11 @@ var createFoo = function(cb) {
     requests: []
   }, function(err, data) {
     foo = data;
-    foo.requests.push(fooRequest);
-    foo.save(function(err) {
-      if (err) {
-        console.log(err);
-      }
-      console.log('finished creating user foo');
-      cb();
-    });
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user foo');
+    cb();
   });
 };
 
@@ -102,14 +99,11 @@ var createBob = function(cb) {
     requests: []
   }, function(err, data) {
     bob = data;
-    bob.requests.push(bobRequest);
-    bob.save(function(err) {
-      if (err) {
-        console.log(err);
-      }
-      console.log('finished creating user bob');
-      cb();
-    });
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user bob');
+    cb();
   });
 };
 
@@ -145,8 +139,10 @@ var createAlice = function(cb) {
 var createFooRequest = function(cb) {
   Request.create({
     formAnswers: {},
+    user: foo,
     updatedAt: new Date(),
-    step: 'obligatoire'
+    step: 'obligatoire',
+    opened: true
   }, function(err, data) {
     fooRequest = data;
     console.log('finished creating request foo');
@@ -156,6 +152,8 @@ var createFooRequest = function(cb) {
 
 var createBobRequest = function(cb) {
   Request.create({
+    opened: true,
+    user: bob,
     formAnswers: {
       'contexte': {
         'estRepresentant':true,
@@ -277,12 +275,12 @@ async.series([
   createMdphNord,
   createMdphCalvados,
 
-  createBobRequest,
-  createFooRequest,
-
   createFoo,
   createBar,
   createAlice,
   createBob,
-  createAdmin
+  createAdmin,
+
+  createBobRequest,
+  createFooRequest
 ]);

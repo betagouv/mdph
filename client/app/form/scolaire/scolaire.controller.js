@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ScolaireCtrl', function ($scope, $sessionStorage, FormService) {
+  .controller('ScolaireCtrl', function ($scope, $sessionStorage, RequestService) {
 
     $scope.currentSectionId = 2;
 
-    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa scolarité' : 'Votre scolarité';
+    $scope.title = RequestService.estRepresentant($scope.formAnswers) ? 'Sa scolarité' : 'Votre scolarité';
 
     if (angular.isUndefined($scope.$storage.sectionSituationScolaire)) {
       $scope.$storage.sectionSituationScolaire = {
