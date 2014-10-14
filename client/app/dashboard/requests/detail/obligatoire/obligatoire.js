@@ -3,9 +3,9 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('dashboard.forms.detail.obligatoire', {
+      .state('dashboard.requests.detail.obligatoire', {
         url: '/obligatoire',
-        templateUrl: 'app/dashboard/forms/detail/fileState.html',
+        templateUrl: 'components/file-state/fileState.html',
         resolve: {
           currentStepName: function() {
             return 'obligatoire';

@@ -3,8 +3,8 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('dashboard.forms.detail.evaluation', {
+      .state('dashboard.requests.detail.evaluation', {
         url: '/evaluation',
-        templateUrl: 'app/dashboard/forms/detail/evaluation/evaluation.html'
+        templateUrl: 'app/dashboard/requests/detail/evaluation/evaluation.html'
       });
   });

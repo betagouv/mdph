@@ -9,8 +9,8 @@
             <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
           </div>
         </div>
-        <a class="list-group-item" ng-repeat="form in forms | filter:query" ui-sref-active="active-soft" ui-sref="dashboard.forms.detail({id: form._id})">
-          {{form.user.name}}
+        <a class="list-group-item" ng-repeat="request in requests | filter:query" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({id: request._id})">
+          {{request.user.name}}
         </a>
       </div>
     </div>

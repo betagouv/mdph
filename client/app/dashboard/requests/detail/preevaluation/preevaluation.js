@@ -3,14 +3,14 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('dashboard.forms.detail.preevaluation', {
+      .state('dashboard.requests.detail.preevaluation', {
         url: '/preevaluation',
-        templateUrl: 'app/dashboard/forms/detail/preevaluation/preevaluation.html',
+        templateUrl: 'app/dashboard/requests/detail/preevaluation/preevaluation.html',
         controller: function($scope, requestSteps, RequestService) {
-          $scope.formStep = _.find($scope.form.steps, {'name': 'preevaluation'});
-          $scope.step = _.find(requestSteps, {'id': $scope.formStep.name});
+          $scope.requestStep = _.find($scope.request.steps, {'name': 'preevaluation'});
+          $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
 
-          $scope.files = $scope.formStep.files;
+          $scope.files = $scope.requestStep.files;
           $scope.allFiles = requestSteps;
 
           $scope.addFile = function(file) {
@@ -25,8 +25,8 @@ angular.module('impactApp')
           };
 
           $scope.saveStep = function() {
-            RequestService.saveStepStateAndFiles($scope.form, $scope.step, 'valide', $scope.files, function() {
-              RequestService.saveNewStepAndFiles($scope.form, 'complementaire', 'en_cours', $scope.files);
+            RequestService.saveStepStateAndFiles($scope.request, $scope.step, 'valide', $scope.files, function() {
+              RequestService.saveNewStepAndFiles($scope.request, 'complementaire', 'en_cours', $scope.files);
             });
           };
         }
