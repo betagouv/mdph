@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TravailCtrl', function ($scope, RequestService) {
+  .controller('TravailCtrl', function ($scope, FormService) {
 
-    $scope.title = RequestService.estRepresentant($scope.formAnswers) ? 'Sa vie au travail' : 'Votre vie au travail';
+    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie au travail' : 'Votre vie au travail';
 
     $scope.currentSectionId = 3;
 

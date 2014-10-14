@@ -8,13 +8,13 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EnvoiCtrl', function($scope, $state, DroitService, $http, $modal, Auth, RequestService) {
+  .controller('EnvoiCtrl', function($scope, $state, DroitService, $http, $modal, Auth, FormService, RequestService) {
 
     if (angular.isUndefined($scope.formAnswers.envoi)) {
       $scope.formAnswers.envoi = true;
     }
 
-    $scope.justificatifStr = RequestService.estRepresentant($scope.formAnswers) ?
+    $scope.justificatifStr = FormService.estRepresentant($scope.formAnswers) ?
       'de votre justificatif d\'identité ainsi que celui de la personne handicapée' :
       'de votre justificatif d\'identité';
 
@@ -23,7 +23,9 @@ angular.module('impactApp')
 
     $scope.saveForm = function() {
       if (Auth.isLoggedIn()) {
-        RequestService.saveCurrentForm($scope.formAnswers);
+        RequestService.getCurrent(function(request) {
+          RequestService.saveCurrentForm(request);
+        });
       } else {
         $state.go('form.envoi.modal.login');
       }

@@ -6,12 +6,12 @@ angular.module('impactApp')
       .state('dashboard.forms.detail.preevaluation', {
         url: '/preevaluation',
         templateUrl: 'app/dashboard/forms/detail/preevaluation/preevaluation.html',
-        controller: function($scope, formSteps, RequestService) {
+        controller: function($scope, requestSteps, RequestService) {
           $scope.formStep = _.find($scope.form.steps, {'name': 'preevaluation'});
-          $scope.step = _.find(formSteps, {'id': $scope.formStep.name});
+          $scope.step = _.find(requestSteps, {'id': $scope.formStep.name});
 
           $scope.files = $scope.formStep.files;
-          $scope.allFiles = formSteps;
+          $scope.allFiles = requestSteps;
 
           $scope.addFile = function(file) {
             if (_.contains($scope.files, file)) {

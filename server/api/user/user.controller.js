@@ -123,14 +123,10 @@ exports.showUserRequests = function(req, res, next) {
  */
 exports.createRequest = function(req, res) {
   var request = new Request({
-    user: req.params.id,
+    user: req.user._id,
     updatedAt: new Date(),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'en_cours'
-      }
-    ]
+    steps: req.body.steps,
+    opened: true
   });
   request.save(function(err, request) {
     if(err) return res.send(500, err);

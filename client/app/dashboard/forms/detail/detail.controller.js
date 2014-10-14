@@ -6,7 +6,7 @@ angular.module('impactApp')
 
     $scope.getSaveFileStateRequest = function(step, file, state) {
       return $http.put(
-        '/api/forms/' + $scope.form._id + '/document',
+        '/api/requests/' + $scope.form._id + '/document',
         {
           stepName: step.name,
           fileName: file.name,

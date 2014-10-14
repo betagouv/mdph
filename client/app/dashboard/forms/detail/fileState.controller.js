@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FileStateCtrl', function($scope, $state, currentStepName, nextStepName, formSteps, RequestService) {
+  .controller('FileStateCtrl', function($scope, $state, currentStepName, nextStepName, requestSteps, RequestService) {
 
     $scope.formStep = _.find($scope.form.steps, {'name': currentStepName});
-    $scope.step = _.find(formSteps, {'id': $scope.formStep.name});
+    $scope.step = _.find(requestSteps, {'id': $scope.formStep.name});
 
     $scope.files = $scope.formStep.files;
 

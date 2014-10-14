@@ -48,20 +48,6 @@ exports.show = function(req, res, next) {
   });
 };
 
-// Updates an existing request in the DB.
-exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Request.findById(req.params.id, function (err, request) {
-    if (err) { return handleError(res, err); }
-    if(!request) { return res.send(404); }
-    var updated = _.merge(request, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, request);
-    });
-  });
-};
-
 // Deletes a request from the DB.
 exports.destroy = function(req, res) {
   Request.findById(req.params.id, function (err, request) {
@@ -82,6 +68,10 @@ exports.update = function(req, res, next) {
     _id: req.params.id
   }, function(err, request) {
     if (err) return next(err);
+
+    if (request.formAnswers) {
+      return res.send(423);
+    }
 
     request.updatedAt = new Date();
     request.formAnswers = req.body.formAnswers;

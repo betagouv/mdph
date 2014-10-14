@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'DemandeCtrl',
         authenticate: true,
         resolve: {
-          request:  function(RequestResource, $stateParams) {
+          currentRequest: function($stateParams, RequestResource) {
             return RequestResource.get({id: $stateParams.id}).$promise;
           }
         }

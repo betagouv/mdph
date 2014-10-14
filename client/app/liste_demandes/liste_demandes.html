@@ -2,31 +2,15 @@
 
 <ui-view>
   <div class="container">
-    <div ng-if="current">
-      <h1>Demande en cours</h1>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="list-group">
-            <a class="list-group-item active" href="{{'liste_demandes/' + current._id + '/' + currentStep.name}}">
-              <div>Etape actuelle: {{currentStep | stepFilter}}</div>
-              Dernière modification {{updatedAt(current)}}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <h1>Toutes vos demandes</h1>
-    <div ng-if="!requests">
+    <h1 class="page-header">Vos demandes</h1>
+    <div ng-if="requests.length === 0">
       <em>Pas de demandes</em>
     </div>
-
-    <div class="row" ng-if="requests">
+    <div class="row" ng-if="requests.length > 0">
       <div class="col-md-12">
         <div class="list-group">
-          <a class="list-group-item" ng-repeat="request in requests" href="{{'liste_demandes/' + current._id + '/' + currentStep.name}}">
-            <div>Etape actuelle: {{request.steps[request.steps.length-1] | stepFilter}}</div>
+          <a class="list-group-item" ng-repeat="request in requests" href="{{'liste_demandes/' + request._id + '/' + getCurrentStep(request).name}}">
+            <div>Etape actuelle: {{getCurrentStep(request) | stepFilter}}</div>
             Dernière modification {{updatedAt(request)}}
           </a>
         </div>

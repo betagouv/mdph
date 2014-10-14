@@ -1,41 +1,51 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RequestService', function RequestService(isAdult, $sessionStorage, $http, $state, $window, Auth, RequestResource) {
-    var currentRequest = {};
-
+  .factory('RequestService', function RequestService(isAdult, $sessionStorage, $http, $state, $window, Auth, User, RequestResource) {
     return {
-
-      startNew: function() {
-        currentRequest = {};
-        $sessionStorage.currentRequest = currentRequest;
-      },
-
-      getCurrentRequest: function() {
-        return currentRequest;
-      },
-
-      saveCurrentRequest: function(formAnswers) {
-        Auth.getCurrentUser().$promise.then(function (user) {
-          $http.put('/api/users/' + user._id + 'requests', {formAnswers: formAnswers ? formAnswers : $sessionStorage.formAnswers, steps: [
-            // TODO LES STEPS
-            ]})
-          .success(function() {
-            // TODO http put save mdph
-            user.mdph = $sessionStorage.formAnswers.contexte.mdph;
-          })
-          .error(function(err) {
-            if (err === 'Locked') {
-              $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte. Le questionnaire courant sera perdu.');
-            } else {
-              $window.alert(err);
+      createRequest: function(next) {
+        $http.post('/api/users/me/requests', {
+          steps: [
+            {
+              name: 'questionnaire',
+              state: 'en_cours'
             }
-          })
-          .finally(function() {
-            $state.go('demande');
-          });
+          ]})
+        .success(function(data) {
+          $sessionStorage.currentRequest = data;
+          next(null, data);
+        })
+        .error(function(err) {
+          next(err);
+        });
+      },
+
+      saveCurrentForm: function(request) {
+        request.steps[0].state = 'complet';
+        request.steps.push({
+          name: 'obligatoire',
+          state: 'en_cours',
+          files: [
+            { name: 'certificatMedical', state: 'demande' },
+            { name: 'carteIdentite', state: 'demande' }
+          ]
         });
 
+        $http.put('/api/requests/' + request._id, {
+          steps: request.steps,
+          formAnswers: $sessionStorage.formAnswers
+        })
+        .success(function(data) {
+          $sessionStorage.currentRequest = data;
+          $state.go('liste_demandes.demande.obligatoire', {id: data._id, step: 'obligatoire'});
+        })
+        .error(function(err) {
+          if (err === 'Locked') {
+            $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte.');
+          } else {
+            $window.alert(err);
+          }
+        });
       },
 
       saveStepState: function(request, step, state, next) {
@@ -43,8 +53,7 @@ angular.module('impactApp')
       },
 
       saveStepStateAndFiles: function(request, step, state, files, next) {
-        RequestResource.updateStep({id: request._id}, {step: step.id, state: state, files: files})
-        .success(function() {
+        RequestResource.updateStep({id: request._id}, {step: step.id, state: state, files: files}, function() {
           _.find(request.steps, {name: step.id}).state = state;
           if (next) { next(); }
         });
@@ -66,82 +75,32 @@ angular.module('impactApp')
       /**
       * Utilitaires
       */
-      getCurrent: function(requests) {
-        if (!requests || !angular.isArray(requests)) {
-          return {};
-        } else if (requests.length === 1) {
-          return requests[0];
-        } else {
-          var current = _.max(requests, function(request) {
-            return request.updatedAt;
-          });
-          return current;
+      getUserRequests: function() {
+        return User.queryRequests({}, function(requests) {
+          if (requests && angular.isArray(requests)) {
+            $sessionStorage.currentRequest = _.find(requests, 'opened');
+          }
+        });
+      },
+
+      getCurrent: function(next) {
+        var current = $sessionStorage.currentRequest;
+        if (next) {
+          return next(current);
         }
+        return current;
       },
 
-      getCurrentStep: function(request) {
-        return request.steps[request.steps.length - 1];
-      },
-
-      getRepresentant: function(answers) {
-        if (angular.isUndefined(answers.contexte)) {
-          return null;
+      getCurrentStep: function() {
+        var current = $sessionStorage.currentRequest;
+        if (!current || !current.steps) {
+          return undefined;
         }
-        return answers.contexte.demandeur;
-      },
-
-      getName: function(answers) {
-        var representant = this.getRepresentant(answers);
-        if (angular.isUndefined(representant) || angular.isUndefined(representant.prenom)) {
-          return 'la personne';
-        }
-        return representant.prenom;
-      },
-
-      estMasculin: function(answers) {
-        var representant = this.getRepresentant(answers);
-        if (angular.isUndefined(representant)) {
-          return false;
-        }
-        return representant.sexe === 'masculin';
-      },
-
-      getPronoun: function(answers, capitalize) {
-        if (capitalize) {
-          return this.estMasculin(answers) ? 'Il' : 'Elle';
-        }
-        return this.estMasculin(answers) ? 'il' : 'elle';
-      },
-
-      getPronounTonic: function(answers) {
-        return this.estMasculin(answers) ? 'lui' : 'elle';
-      },
-
-      estRepresentant: function(answers) {
-        if (angular.isUndefined(answers.contexte)) {
-          return false;
-        }
-        return answers.contexte.estRepresentant;
-      },
-
-      isAdult: function(answers) {
-        return isAdult(answers.contexte);
+        return current.steps[current.steps.length - 1];
       },
 
       updatedAt: function(request) {
         return moment(request.updatedAt).fromNow();
-      },
-
-      estRenouvellement: function(formAnswers) {
-        return formAnswers.contexte && !formAnswers.contexte.nouveauDossier;
-      },
-
-      getRenouvellementDroits: function(request) {
-        if (request && request.vie) {
-          return request.vie.mesPrestations;
-        }
-
-        return undefined;
       }
     };
   });

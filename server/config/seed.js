@@ -107,6 +107,23 @@ var createBob = function(cb) {
   });
 };
 
+var createFlo = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Florian',
+    email: 'flo@flo.com',
+    password: 'flo',
+    mdph: mdphCalvados,
+    requests: []
+  }, function(err, data) {
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user flo');
+    cb();
+  });
+};
+
 var createAdmin = function(cb) {
   User.create({
     provider: 'local',
@@ -253,10 +270,10 @@ var createBobRequest = function(cb) {
       },
       {
         name: 'obligatoire',
-        state: 'a_valider',
+        state: 'en_cours',
         files: [
-          { name: 'certificatMedical', state: 'telecharge', path: 'test' },
-          { name: 'carteIdentite', state: 'telecharge', path: 'test2' }
+          { name: 'certificatMedical', state: 'demande' },
+          { name: 'carteIdentite', state: 'demande' }
         ]
       }
     ]
@@ -279,6 +296,7 @@ async.series([
   createBar,
   createAlice,
   createBob,
+  createFlo,
   createAdmin,
 
   createBobRequest,

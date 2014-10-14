@@ -9,10 +9,10 @@ angular.module('impactApp')
     });
 
     $scope.validateStep = function() {
-      RequestService.saveStepState($scope.form, $scope.currentStep, 'a_valider', function() {
+      RequestService.saveStepState($scope.currentRequest, $scope.currentStep, 'a_valider', function() {
         $scope.$parent.$broadcast('refreshFormStepSection');
       });
     };
 
-    $scope.currentFormStep = _.find($scope.form.steps, {'name': $scope.currentStep.id});
+    $scope.currentFormStep = _.find($scope.currentRequest.steps, {'name': $scope.currentStep.id});
   });

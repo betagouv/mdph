@@ -8,7 +8,7 @@ angular.module('impactApp')
       getFormSteps: function(request) {
         var currentStep;
 
-        if (request === null) {
+        if (!request) {
           currentStep = stepsById.questionnaire;
           currentStep.state = 'start';
         } else {

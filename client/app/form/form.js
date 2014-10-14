@@ -7,19 +7,6 @@ angular.module('impactApp')
       .state('form', {
         url: '/form',
         templateUrl: 'app/form/form.html',
-        controller: 'FormCtrl',
-        resolve: {
-          isLoggedIn: function(Auth) {
-            return Auth.isLoggedIn();
-          },
-
-          currentForm:  function(RequestResource, isLoggedIn) {
-            if (isLoggedIn) {
-              return RequestResource.getMine().$promise;
-            } else {
-              return null;
-            }
-          }
-        }
+        controller: 'FormCtrl'
       });
   });

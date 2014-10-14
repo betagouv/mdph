@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('DroitService', function DroitService($filter, RequestService, QuestionService, droits, isAdult) {
+  .factory('DroitService', function DroitService($filter, FormService, QuestionService, droits, isAdult) {
 
     // Retourne faux si et seulement on prend en compte le taux et qu'il est trop faible
     var getFiltreTaux = function(answers) {
       var contexte = answers.contexte;
       if (contexte) {
-        var renouvellement = RequestService.estRenouvellement(answers);
+        var renouvellement = FormService.estRenouvellement(answers);
         var connaisTaux = contexte.connaisTaux;
         var taux = contexte.tauxIncapacite;
         var contestationTaux = contexte.contestationTaux;

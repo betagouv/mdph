@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('QuestionService', function QuestionService(RequestService, contexte, vieQuotidienne, vieScolaire, travail, aidant) {
+  .factory('QuestionService', function QuestionService(FormService, contexte, vieQuotidienne, vieScolaire, travail, aidant) {
 
     var qContexte = _.indexBy(contexte, 'model');
     var qVieQuotidienne = _.indexBy(vieQuotidienne, 'model');
@@ -19,19 +19,19 @@ angular.module('impactApp')
     var loadAshCompile = function(str, formAnswers) {
       var compiled = _.template(str);
       return compiled({
-        'name': RequestService.getName(formAnswers),
-        'pronoun': RequestService.getPronoun(formAnswers),
-        'pronounTonic': RequestService.getPronounTonic(formAnswers),
-        'fem': RequestService.estMasculin(formAnswers) ? '' : 'e'
+        'name': FormService.getName(formAnswers),
+        'pronoun': FormService.getPronoun(formAnswers),
+        'pronounTonic': FormService.getPronounTonic(formAnswers),
+        'fem': FormService.estMasculin(formAnswers) ? '' : 'e'
       });
     };
 
     var computeLabel = function(answer, formAnswers) {
-      if (RequestService.estRepresentant(formAnswers)) {
+      if (FormService.estRepresentant(formAnswers)) {
         if (answer.labelRep) {
           return loadAshCompile(answer.labelRep, formAnswers);
         }
-        if (RequestService.estMasculin(formAnswers) && answer.labelRepMasc) {
+        if (FormService.estMasculin(formAnswers) && answer.labelRepMasc) {
           return loadAshCompile(answer.labelRepMasc, formAnswers);
         } else if (answer.labelRepFem){
           return loadAshCompile(answer.labelRepFem, formAnswers);
@@ -41,7 +41,7 @@ angular.module('impactApp')
     };
 
     var computeTitle = function(question, formAnswers) {
-      if (RequestService.estRepresentant(formAnswers) && angular.isDefined(question.titleRep)) {
+      if (FormService.estRepresentant(formAnswers) && angular.isDefined(question.titleRep)) {
         return loadAshCompile(question.titleRep, formAnswers);
       }
       return question.titleDefault;
