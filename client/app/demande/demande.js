@@ -3,14 +3,14 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('demande', {
-        url: '/demande',
+      .state('liste_demandes.demande', {
+        url: '/:id',
         templateUrl: 'app/demande/demande.html',
         controller: 'DemandeCtrl',
         authenticate: true,
         resolve: {
-          currentForm:  function(FormService) {
-            return FormService.getCurrentForm();
+          currentRequest: function($stateParams, RequestResource) {
+            return RequestResource.get({id: $stateParams.id}).$promise;
           }
         }
       });

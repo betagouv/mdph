@@ -10,7 +10,7 @@ angular.module('impactApp')
     $scope.question = QuestionService.get('vieQuotidienne', 'objetDemande', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      SectionService.refresh($scope.form);
+      SectionService.refresh($scope.formAnswers);
       $scope.goToNextSection($scope.currentSectionId);
     };
   });

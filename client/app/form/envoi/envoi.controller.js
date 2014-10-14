@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('EnvoiCtrl', function($scope, $state, DroitService, $http, $modal, Auth, FormService) {
+  .controller('EnvoiCtrl', function($scope, $state, DroitService, $http, $modal, Auth, FormService, RequestService) {
 
     if (angular.isUndefined($scope.formAnswers.envoi)) {
       $scope.formAnswers.envoi = true;
@@ -23,9 +23,8 @@ angular.module('impactApp')
 
     $scope.saveForm = function() {
       if (Auth.isLoggedIn()) {
-        $http.put('/api/forms/mine', $scope.formAnswers)
-        .success(function() {
-          $state.go('demande');
+        RequestService.getCurrent(function(request) {
+          RequestService.saveCurrentForm(request);
         });
       } else {
         $state.go('form.envoi.modal.login');

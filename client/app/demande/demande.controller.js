@@ -1,13 +1,17 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, FormService, FormStepService, currentForm, Auth) {
-    $scope.form = currentForm;
+  .controller('DemandeCtrl', function ($scope, RequestService, RequestStepService, Auth, currentRequest) {
     $scope.getCurrentUser = Auth.getCurrentUser;
-    $scope.updatedAt = FormService.updatedAt;
-    $scope.steps = FormStepService.getFormSteps(currentForm, 'demande');
+    $scope.currentRequest = currentRequest;
+
+    var refresh = function () {
+      $scope.steps = RequestStepService.getFormSteps($scope.currentRequest, 'demande');
+    };
+
+    refresh();
 
     $scope.$on('refreshFormStepSection', function () {
-      $scope.steps = FormStepService.getFormSteps(currentForm, 'demande');
+      refresh();
     });
   });

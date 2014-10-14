@@ -7,11 +7,6 @@ angular.module('impactApp')
       .state('form', {
         url: '/form',
         templateUrl: 'app/form/form.html',
-        controller: 'FormCtrl',
-        resolve: {
-          currentForm:  function(FormService) {
-            return FormService.getCurrentForm();
-           }
-        }
+        controller: 'FormCtrl'
       });
   });

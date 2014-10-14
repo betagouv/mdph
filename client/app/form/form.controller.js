@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, QuestionService, SectionService, FormService, currentForm, $window) {
+  .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, QuestionService, SectionService, FormService, $window) {
 
     datepickerConfig.showWeeks = false;
     $scope.$storage = $sessionStorage.$default({
@@ -22,13 +22,7 @@ angular.module('impactApp')
       $window.history.back();
     };
 
-    if (currentForm === null) {
-      currentForm = {
-        formAnswers: $sessionStorage.formAnswers
-      };
-    }
-    $scope.form = currentForm;
-    $scope.formAnswers = currentForm.formAnswers;
-    $scope.sections = SectionService.getSections($scope.form, true);
+    $scope.formAnswers = $scope.$storage.formAnswers;
+    $scope.sections = SectionService.getSections($scope.formAnswers, true);
     $scope.goToNextSection = SectionService.goToNextSection;
   });

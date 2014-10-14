@@ -1,0 +1,22 @@
+<div id="formCard">
+	<div class="panel panel-primary">
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">
+        {{request.user.name}}<br>
+        <small class="text-muted-primary">Dernière modification {{updatedAt(request)}}</small>
+      </h3>
+			<a class="btn btn-danger pull-right" ng-click="delete(request)">
+        <i class="glyphicon glyphicon-trash"></i>
+        <span>Supprimer</span>
+			</a>
+		</div>
+		<div class="list-group">
+			<a class="list-group-item" ng-repeat="step in request.steps" ui-sref="{{step | stepSrefFilter}}" ui-sref-active="active-soft">
+				<h4 class="list-group-item-heading">{{step | stepFilter}}</h4>
+				<p>{{step.state | stateFilter}}</p>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div ui-view></div>

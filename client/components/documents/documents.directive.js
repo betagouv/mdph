@@ -6,7 +6,7 @@ angular.module('impactApp')
 
     return {
       scope: {
-        form: '=',
+        request: '=',
         currentStep: '='
       },
       templateUrl: 'components/documents/documents.html',
@@ -16,7 +16,7 @@ angular.module('impactApp')
           //$files: an array of files selected, each file has name, size, and type.
           var file = $files[0];
           $scope.upload = $upload.upload({
-            url: 'api/forms/' + $scope.form._id + '/document', //upload.php script, node.js route, or servlet url
+            url: 'api/requests/' + $scope.request._id + '/document', //upload.php script, node.js route, or servlet url
             //method: 'POST' or 'PUT',
             //headers: {'header-key': 'header-value'},
             withCredentials: true,
@@ -41,7 +41,7 @@ angular.module('impactApp')
           //.xhr(function(xhr){xhr.upload.addEventListener(...)})
         };
 
-        $scope.files = _.find($scope.form.steps, { name: $scope.currentStep.id }).files;
+        $scope.files = _.find($scope.request.steps, { name: $scope.currentStep.id }).files;
         angular.forEach($scope.files, function(file) {
           file.document = documentsById[file.name];
         });

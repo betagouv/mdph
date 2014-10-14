@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <div class="list-group-item searchbox">
+          <div class="input-group">
+            <input class="form-control" type="text" ng-model="query" placeholder="Recherche">
+            </input>
+            <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
+          </div>
+        </div>
+        <a class="list-group-item" ng-repeat="request in requests | filter:query" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({id: request._id})">
+          {{request.user.name}}
+        </a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

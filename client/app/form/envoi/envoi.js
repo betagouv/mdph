@@ -9,14 +9,19 @@ angular.module('impactApp')
         controller: 'EnvoiCtrl'
       }).state('form.envoi.modal', {
         abstract: true,
-        onEnter: function($modal, $state, FormService) {
+        onEnter: function($modal, $state, $window, RequestService) {
           $modal.open({
             template: '<div ui-view="modal"></div>',
             backdrop: true,
             windowClass: 'right fade',
             controller: 'ModalLoginCtrl'
           }).result.then(function() {
-            FormService.saveCurrentForm();
+            RequestService.createRequest(function(err, request) {
+              if (err) {
+                $window.alert(err);
+              }
+              RequestService.saveCurrentForm(request);
+            });
           }, function() {
             $state.go('form.envoi');
           });

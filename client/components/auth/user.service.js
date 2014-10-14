@@ -9,14 +9,22 @@ angular.module('impactApp')
       changePassword: {
         method: 'PUT',
         params: {
-          controller:'password'
+          controller: 'password'
         }
       },
       get: {
         method: 'GET',
         params: {
-          id:'me'
+          id: 'me'
         }
+      },
+      queryRequests: {
+        method: 'GET',
+        params: {
+          id: 'me',
+          controller: 'requests'
+        },
+        isArray: true
       }
 	  });
   });

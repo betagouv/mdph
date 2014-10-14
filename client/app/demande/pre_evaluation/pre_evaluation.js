@@ -3,8 +3,8 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('demande.preevaluation', {
-        url: '/pre_evaluation',
+      .state('liste_demandes.demande.preevaluation', {
+        url: '/preevaluation',
         templateUrl: 'app/demande/pre_evaluation/pre_evaluation.html',
         authenticate: true
       });

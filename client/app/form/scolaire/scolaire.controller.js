@@ -36,6 +36,6 @@ angular.module('impactApp')
     if (angular.isUndefined($scope.formAnswers.scolaire)) {
       $scope.formAnswers.scolaire = {};
     }
-    
+
     $scope.sectionModel = $scope.formAnswers.scolaire;
   });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TypeScolaireCtrl', function($scope, $state, FormService, QuestionService) {
+  .controller('TypeScolaireCtrl', function($scope, $state, QuestionService) {
 
     $scope.question = QuestionService.get('scolaire', 'vieScolaireType', $scope.formAnswers);
 

@@ -28,15 +28,14 @@ angular.module('impactApp')
     };
 
     return {
-      getSections: function(form, refresh) {
+      getSections: function(answers, refresh) {
         if (refresh) {
-          this.refresh(form);
+          this.refresh(answers);
         }
         return sections;
       },
 
-      refresh: function(form) {
-        var answers = form.formAnswers;
+      refresh: function(answers) {
         if (angular.isUndefined(answers)) {
           return;
         }

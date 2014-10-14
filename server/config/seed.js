@@ -7,10 +7,10 @@
 
 var User = require('../api/user/user.model');
 var Mdph = require('../api/mdph/mdph.model');
-var Form = require('../api/form/form.model');
+var Request = require('../api/request/request.model');
 var async = require('async');
 
-var mdphNord, mdphCalvados, admin, foo, bar, alice, bob;
+var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, bobRequest, fooRequest;
 
 
 var deleteUsers = function(cb) {
@@ -20,9 +20,9 @@ var deleteUsers = function(cb) {
   });
 };
 
-var deleteForms = function(cb) {
-  Form.find({}).remove(function() {
-    console.log('finished deleting forms');
+var deleteRequests = function(cb) {
+  Request.find({}).remove(function() {
+    console.log('finished deleting requests');
     cb();
   });
 };
@@ -77,9 +77,13 @@ var createFoo = function(cb) {
     name: 'Foo',
     email: 'foo@foo.com',
     password: 'foo',
-    mdph: mdphNord
+    mdph: mdphNord,
+    requests: []
   }, function(err, data) {
     foo = data;
+    if (err) {
+      console.log(err);
+    }
     console.log('finished creating user foo');
     cb();
   });
@@ -91,10 +95,31 @@ var createBob = function(cb) {
     name: 'Bob',
     email: 'bob@bob.com',
     password: 'bob',
-    mdph: mdphCalvados
+    mdph: mdphCalvados,
+    requests: []
   }, function(err, data) {
     bob = data;
+    if (err) {
+      console.log(err);
+    }
     console.log('finished creating user bob');
+    cb();
+  });
+};
+
+var createFlo = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Florian',
+    email: 'flo@flo.com',
+    password: 'flo',
+    mdph: mdphCalvados,
+    requests: []
+  }, function(err, data) {
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user flo');
     cb();
   });
 };
@@ -128,20 +153,23 @@ var createAlice = function(cb) {
   });
 };
 
-var createFooForm = function(cb) {
-  Form.create({
-    user: foo,
+var createFooRequest = function(cb) {
+  Request.create({
     formAnswers: {},
+    user: foo,
     updatedAt: new Date(),
-    step: 'obligatoire'
+    step: 'obligatoire',
+    opened: true
   }, function(err, data) {
-    console.log('finished creating form foo');
+    fooRequest = data;
+    console.log('finished creating request foo');
     cb();
   });
 };
 
-var createBobForm = function(cb) {
-  Form.create({
+var createBobRequest = function(cb) {
+  Request.create({
+    opened: true,
     user: bob,
     formAnswers: {
       'contexte': {
@@ -242,22 +270,23 @@ var createBobForm = function(cb) {
       },
       {
         name: 'obligatoire',
-        state: 'a_valider',
+        state: 'en_cours',
         files: [
-          { name: 'certificatMedical', state: 'telecharge', path: 'test' },
-          { name: 'carteIdentite', state: 'telecharge', path: 'test2' }
+          { name: 'certificatMedical', state: 'demande' },
+          { name: 'carteIdentite', state: 'demande' }
         ]
       }
     ]
   }, function(err, data) {
-    console.log('finished creating form bob');
+    bobRequest = data;
+    console.log('finished creating request bob');
     cb();
   });
 };
 
 async.series([
   deleteUsers,
-  deleteForms,
+  deleteRequests,
   deleteMdphs,
 
   createMdphNord,
@@ -267,8 +296,9 @@ async.series([
   createBar,
   createAlice,
   createBob,
+  createFlo,
   createAdmin,
 
-  createBobForm,
-  createFooForm
+  createBobRequest,
+  createFooRequest
 ]);
