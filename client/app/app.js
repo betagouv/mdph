@@ -10,6 +10,7 @@ angular.module('impactApp', [
   'ngAnimate',
   'angular-parallax',
   'angularFileUpload'
+  //'ngAria'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

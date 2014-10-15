@@ -28,7 +28,7 @@ angular.module('impactApp')
           $cookieStore.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);
-          return cb();
+          return cb({}, data);
         }).
         error(function(err) {
           this.logout();

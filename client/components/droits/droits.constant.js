@@ -50,6 +50,7 @@ angular.module('impactApp').constant('droits', [
   },
   {
     id: 'rqth',
+    type: 'presta-finances',
     label: 'RQTH',
     title: 'Reconnaissance de la Qualité de Travailleur Handicapé',
     description: 'Un travailleur handicapé est une personne dont les possibilités d\'obtenir ou de conserver \

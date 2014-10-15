@@ -13,9 +13,15 @@ angular.module('impactApp')
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .then( function() {
-          // Logged in, redirect to home
-          $location.path('/');
+        .then( function(data) {
+          // Logged in, redirect
+          if (data.role === 'adminMdph') {
+            $location.path('/dashboard');
+          } else if (data.role === 'admin') {
+            $location.path('admin');
+          } else {
+            $location.path('/liste_demandes');
+          }
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
