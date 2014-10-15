@@ -9,9 +9,11 @@
     <div class="row" ng-if="requests.length > 0">
       <div class="col-md-12">
         <div class="list-group">
-          <a class="list-group-item" ng-repeat="request in requests" href="{{'liste_demandes/' + request._id + '/' + getCurrentStep(request).name}}">
-            <div>Etape actuelle: {{getCurrentStep(request) | stepFilter}}</div>
-            Dernière modification {{updatedAt(request)}}
+          <a class="list-group-item" ng-repeat="request in requests" ng-class="{active: request.opened}" href="{{'liste_demandes/' + request._id + '/' + getCurrentStep(request).name}}">
+            <span ng-if="request.opened" class="lead">Demande actuelle à la MDPH du {{request.mdph.name}}</span>
+            <span ng-if="!request.opened">Ancienne demande à la MDPH du {{request.mdph.name}}</span>
+            <div>Etape: {{getCurrentStep(request) | stepFilter}}<br/>
+            Dernière modification {{updatedAt(request)}}</div>
           </a>
         </div>
       </div>

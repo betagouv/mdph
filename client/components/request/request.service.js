@@ -92,12 +92,11 @@ angular.module('impactApp')
         return current;
       },
 
-      getCurrentStep: function() {
-        var current = $sessionStorage.currentRequest;
-        if (!current || !current.steps) {
+      getCurrentStep: function(request) {
+        if (!request || !request.steps) {
           return undefined;
         }
-        return current.steps[current.steps.length - 1];
+        return request.steps[request.steps.length - 1];
       },
 
       updatedAt: function(request) {

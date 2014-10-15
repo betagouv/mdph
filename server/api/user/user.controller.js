@@ -110,7 +110,8 @@ exports.showUserRequests = function(req, res, next) {
   Request.find({
     user: userId
   })
-  .populate('-formAnswers')
+  .populate('mdph -formAnswers')
+  .sort('-updatedAt')
   .exec(function(err, requests) {
     if (err) return next(err);
     if (!requests) return res.json(401);

@@ -165,6 +165,25 @@ var createFooRequest = function(cb) {
   });
 };
 
+var createBobOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: bob,
+    mdph: mdphCalvados,
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    
+    steps: [
+      {
+        name: 'reponse',
+        state: 'complet'
+      }
+    ]
+  }, function() {
+    console.log('finished creating request old bob');
+    cb();
+  });
+};
+
 var createBobRequest = function(cb) {
   Request.create({
     opened: true,
@@ -297,7 +316,8 @@ async.series([
   createBob,
   createFlo,
   createAdmin,
-
+  
+  createBobOldRequest,
   createBobRequest,
   createFooRequest
 ]);

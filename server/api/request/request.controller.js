@@ -14,8 +14,8 @@ var config = require('../../config/environment');
 exports.index = function(req, res) {
   if (req.query && req.query.opened) {
     Request.find({opened: req.query.opened, mdph: req.user.mdph})
-      .select('user')
-      .populate('user')
+      .select('user mdph')
+      .populate('user mdph')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
         res.json(200, requests);
@@ -31,7 +31,7 @@ exports.index = function(req, res) {
 // Get a single request
 exports.show = function(req, res, next) {
   Request.findById(req.params.id)
-  .populate('user')
+  .populate('user mdph')
   .exec(function(err, request) {
     if(err) { return next(err); }
     if(!request) { return res.send(404); }
