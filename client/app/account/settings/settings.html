@@ -1,31 +1,31 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Votre MDPH</h1>
+  <div ng-if="user.role === 'adminMdph'">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Votre MDPH</h1>
+      </div>
     </div>
+    <form class="form-horizontal" role="form">
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Nom</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">{{user.mdph.name}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Code Postal</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">{{user.mdph.zipcode}}</p>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
-  <form class="form-horizontal" role="form">
-    <div class="row">
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Nom</label>
-        <div class="col-sm-10">
-          <p class="form-control-static">{{getCurrentUser().mdph.name}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Code Postal</label>
-        <div class="col-sm-10">
-          <p class="form-control-static">{{getCurrentUser().mdph.zipcode}}</p>
-        </div>
-      </div>
-    </div>
-  </form>
-
-
 
   <div class="row">
     <div class="col-sm-12">

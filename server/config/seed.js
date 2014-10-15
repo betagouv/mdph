@@ -77,7 +77,6 @@ var createFoo = function(cb) {
     name: 'Foo',
     email: 'foo@foo.com',
     password: 'foo',
-    mdph: mdphNord,
     requests: []
   }, function(err, data) {
     foo = data;
@@ -95,7 +94,6 @@ var createBob = function(cb) {
     name: 'Bob',
     email: 'bob@bob.com',
     password: 'bob',
-    mdph: mdphCalvados,
     requests: []
   }, function(err, data) {
     bob = data;
@@ -113,7 +111,6 @@ var createFlo = function(cb) {
     name: 'Florian',
     email: 'flo@flo.com',
     password: 'flo',
-    mdph: mdphCalvados,
     requests: []
   }, function(err, data) {
     if (err) {
@@ -157,6 +154,7 @@ var createFooRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: foo,
+    mdph: mdphNord,
     updatedAt: new Date(),
     step: 'obligatoire',
     opened: true
@@ -171,6 +169,7 @@ var createBobRequest = function(cb) {
   Request.create({
     opened: true,
     user: bob,
+    mdph: mdphCalvados,
     formAnswers: {
       'contexte': {
         'estRepresentant':true,

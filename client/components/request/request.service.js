@@ -33,6 +33,7 @@ angular.module('impactApp')
 
         $http.put('/api/requests/' + request._id, {
           steps: request.steps,
+          mdph: $sessionStorage.formAnswers.contexte.mdph,
           formAnswers: $sessionStorage.formAnswers
         })
         .success(function(data) {

@@ -37,7 +37,8 @@ UserSchema
       '_id': this._id,
       'name': this.name,
       'role': this.role,
-      'email': this.email
+      'email': this.email,
+      'mdph': this.mdph
     };
   });
 

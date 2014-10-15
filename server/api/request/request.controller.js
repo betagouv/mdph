@@ -12,29 +12,20 @@ var config = require('../../config/environment');
  * Get list of requests
  */
 exports.index = function(req, res) {
-  User.find({
-    mdph: req.user.mdph
-  }).exec(function (err, users) {
-    if(err) return res.send(500, err);
-    if (!users) {
-      return res.json(200);
-    }
-    if (req.query && req.query.opened) {
-      Request.find({opened: true})
-        .where('user').in(users)
-        .select('user')
-        .populate('user')
-        .exec(function(err, requests) {
-          if(err) return res.send(500, err);
-          res.json(200, requests);
-        });
-    } else {
-      Request.find({}).where('user').in(users).exec(function(err, requests) {
+  if (req.query && req.query.opened) {
+    Request.find({opened: req.query.opened, mdph: req.user.mdph})
+      .select('user')
+      .populate('user')
+      .exec(function(err, requests) {
         if(err) return res.send(500, err);
         res.json(200, requests);
       });
-    }
-  });
+  } else {
+    Request.find({mdph: req.user.mdph}).exec(function(err, requests) {
+      if(err) return res.send(500, err);
+      res.json(200, requests);
+    });
+  }
 };
 
 // Get a single request
@@ -75,6 +66,7 @@ exports.update = function(req, res, next) {
 
     request.updatedAt = new Date();
     request.formAnswers = req.body.formAnswers;
+    request.mdph = req.body.mdph;
     request.steps = req.body.steps;
 
     request.save(function (err) {
