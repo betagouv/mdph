@@ -2,7 +2,10 @@
 
 <ui-view>
   <div class="container">
-    <h1 class="page-header">Vos demandes</h1>
+    <h1 class="page-header">
+      Vos demandes
+      <div class="btn btn-primary pull-right" ng-click="createRequest(onRequestCreated)">Nouvelle demande</div>
+    </h1>
     <div ng-if="requests.length === 0">
       <em>Pas de demandes</em>
     </div>
@@ -11,7 +14,7 @@
         <div class="list-group">
           <a class="list-group-item" ng-repeat="request in requests" ng-class="{'list-group-item-success': request.opened}" href="{{'liste_demandes/' + request._id + '/' + getCurrentStep(request).name}}">
             <div ng-if="request.opened">
-              <h4 class="list-group-item-heading">Demande actuelle à la MDPH du {{request.mdph.name}}</h4>
+              <h4 class="list-group-item-heading">{{getTitle(request)}}</span></h4>
               <p class="list-group-item-text">Etape: {{getCurrentStep(request) | stepFilter}}<br/>
               Dernière modification {{updatedAt(request)}}</p>
             </div>

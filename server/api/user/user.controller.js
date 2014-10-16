@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var User = require('./user.model');
-var Request = require('../request/request.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -99,39 +98,6 @@ exports.me = function(req, res, next) {
     if (err) return next(err);
     if (!user) return res.json(401);
     res.json(user);
-  });
-};
-
-/**
- * Get user requests
- */
-exports.showUserRequests = function(req, res, next) {
-  var userId = req.user._id;
-  Request.find({
-    user: userId
-  })
-  .populate('mdph -formAnswers')
-  .sort('-updatedAt')
-  .exec(function(err, requests) {
-    if (err) return next(err);
-    if (!requests) return res.json(401);
-    res.json(200, requests);
-  });
-};
-
-/**
- * Create a new request for user
- */
-exports.createRequest = function(req, res) {
-  var request = new Request({
-    user: req.user._id,
-    updatedAt: new Date(),
-    steps: req.body.steps,
-    opened: true
-  });
-  request.save(function(err, request) {
-    if(err) return res.send(500, err);
-    return res.send(200, request);
   });
 };
 

@@ -1,11 +1,11 @@
 'use strict';
 
 var _ = require('lodash');
-var Request = require('./request.model');
-var auth = require('../../auth/auth.service');
-var User = require('../user/user.model');
 var path = require('path');
+var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
+var Request = require('./request.model');
+var User = require('../user/user.model');
 
 
 /**
@@ -52,6 +52,38 @@ exports.destroy = function(req, res) {
 };
 
 /**
+ * Create a new request for user
+ */
+exports.createRequest = function(req, res) {
+  var request = new Request({
+    user: req.user._id,
+    updatedAt: new Date(),
+    steps: req.body.steps,
+    opened: true
+  });
+  request.save(function(err, request) {
+    if(err) return res.send(500, err);
+    return res.send(200, request);
+  });
+};
+
+/**
+ * Get user requests
+ */
+exports.showUserRequests = function(req, res, next) {
+  Request.find({
+    user: req.user._id
+  })
+  .populate('mdph -formAnswers')
+  .sort('-updatedAt')
+  .exec(function(err, requests) {
+    if (err) return next(err);
+    if (!requests) return res.json(401);
+    res.json(200, requests);
+  });
+};
+
+/**
  * Update request
  */
 exports.update = function(req, res, next) {
@@ -83,9 +115,7 @@ exports.saveDocument = function (req, res, next) {
     var file = req.files.file;
     var stepName = req.body.stepName;
 
-    Request.findOne({
-      user: req.user._id
-    }, function(err, request) {
+    Request.findById(req.params.id, function (err, request) {
       if (err) return next(err);
 
       var formStep = _.find(request.steps, {name: stepName});

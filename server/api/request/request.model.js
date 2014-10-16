@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+var shortId = require('shortid');
 
 var FileSchema = new Schema({
   name:           { type: String },
@@ -16,6 +17,7 @@ var StepSchema = new Schema({
 });
 
 var RequestSchema = new Schema({
+  shortId:      { type: String, unique: true, 'default': shortId.generate }, 
   formAnswers:  Schema.Types.Mixed,
   user:         { type: Schema.Types.ObjectId, ref: 'User' },
   mdph:         { type: Schema.Types.ObjectId, ref: 'Mdph' },

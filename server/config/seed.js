@@ -171,7 +171,6 @@ var createBobOldRequest = function(cb) {
     user: bob,
     mdph: mdphCalvados,
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
-    
     steps: [
       {
         name: 'reponse',

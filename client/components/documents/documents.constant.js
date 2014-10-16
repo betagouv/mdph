@@ -6,6 +6,7 @@ angular.module('impactApp').constant('documents', [
   {
     id: 'certificatMedical',
     label: 'Certificat médical',
+    canDelegate: true,
     type: 'obligatoire',
     desc: 'Un certificat médical de moins de 3 mois'
   },

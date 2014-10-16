@@ -10,6 +10,15 @@ angular.module('impactApp')
 
     $scope.getCurrentStep = RequestService.getCurrentStep;
 
+    $scope.getTitle = function(request) {
+      var str = 'Demande actuelle';
+      if (request.mdph) {
+        return str + ' à la MDPH du ' + request.mdph.name;
+      } else {
+        return str;
+      }
+    };
+
     $scope.onRequestCreated = function(error) {
       if (error) {
         // TODO
