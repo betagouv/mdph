@@ -6,7 +6,10 @@
       </div>
       
       <div ng-if="file.state === 'delegate'">
-        Demande transmise
+        <div class="panel-body delegate">
+          <a ui-sref="cm_identification({id: request.shortId})">{{request.shortId}}</a>
+          <p>Utilisez ce code pour communiquer avec votre médecin.</p>
+        </div>
       </div>
 
       <div ng-if="file.state !== 'delegate'">
@@ -24,7 +27,7 @@
             <div ng-file-select="onFileSelect($files, file)" data-multiple="false" class="btn btn-default">
               <span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier
             </div>
-            <div class="btn btn-primary" ng-if="file.document.canDelegate" ng-click="file.state = delegate">Transmettre</div>
+            <div class="btn btn-primary" ng-if="file.document.canDelegate" ng-click="file.state = 'delegate'">Transmettre</div>
           </div>
         </div>
       </div>
