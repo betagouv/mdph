@@ -4,9 +4,7 @@ angular.module('impactApp')
   .controller('FormCtrl', function ($scope, $sessionStorage, datepickerConfig, QuestionService, SectionService, FormService, $window) {
 
     datepickerConfig.showWeeks = false;
-    $scope.$storage = $sessionStorage.$default({
-        formAnswers: {}
-    });
+    $scope.$storage = $sessionStorage;
 
     $scope.getLabel = QuestionService.getLabel;
 

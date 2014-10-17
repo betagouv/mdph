@@ -95,10 +95,9 @@ exports.update = function(req, res, next) {
     if (request.formAnswers) {
       return res.send(423);
     }
-
     request.updatedAt = new Date();
     request.formAnswers = req.body.formAnswers;
-    request.mdph = req.body.mdph;
+    request.mdph = req.body.mdph._id;
     request.steps = req.body.steps;
 
     request.save(function (err) {
