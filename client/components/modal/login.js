@@ -7,7 +7,7 @@ angular.module('impactApp')
         url: '/login',
         views: {
           'modal@': {
-            templateUrl: '/components/modal/login.html'
+            templateUrl: 'components/modal/login.html'
           }
         }
       })
@@ -15,7 +15,7 @@ angular.module('impactApp')
         url: '/signup',
         views: {
           'modal@': {
-            templateUrl: '/components/modal/signup.html'
+            templateUrl: 'components/modal/signup.html'
           }
         }
       });

@@ -12,7 +12,6 @@ angular.module('impactApp')
             }
           ]})
         .success(function(data) {
-          debugger;
           $sessionStorage.currentRequest = data;
           next(null, data);
         })
