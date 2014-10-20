@@ -8,7 +8,6 @@ angular.module('impactApp', [
   'ui.bootstrap',
   'ngStorage',
   'ngAnimate',
-  'angular-parallax',
   'angularFileUpload'
   //'ngAria'
 ])

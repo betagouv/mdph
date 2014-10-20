@@ -14,3 +14,50 @@
     text-decoration: none;
   }
 }
+
+.navbar.has-intro {
+  transition: all 0.6s linear;
+  padding-top: 48px;
+}
+
+.intro {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  background: $lighter-blue;
+  padding: 14px;
+  color: white;
+  border-bottom: 1px solid #222;
+
+  .content {
+    text-align: center;
+    cursor: pointer;
+    font-weight: 200;
+  }
+
+  strong {
+    font-weight: 400;
+  }
+
+  a {
+    color: white;
+    &:hover {
+      text-decoration: underline;  
+    }
+  }
+
+  span {
+    margin: 0 10px;
+  }
+}
+
+.intro.ng-hide {
+  top: -48px;
+}
+
+.intro {
+  -webkit-transition:all linear 0.6s;
+  transition:all linear 0.6s;
+}
+

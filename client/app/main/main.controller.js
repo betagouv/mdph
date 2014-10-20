@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MainCtrl', function ($scope, Auth) {
+  .controller('MainCtrl', function ($scope, Auth, $sessionStorage) {
     Auth.isLoggedInAsync(function(isLoggedIn) {
       if (isLoggedIn) {
         $scope.btnText = 'Voir vos demandes';
@@ -11,4 +11,8 @@ angular.module('impactApp')
         $scope.btnRef = 'form';
       }
     });
+
+    $scope.getVerticalOffset = function() {
+      return $sessionStorage.hideIntro ? '-925' : '-948';
+    };
   });

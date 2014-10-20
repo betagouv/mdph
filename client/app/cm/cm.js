@@ -14,6 +14,7 @@ angular.module('impactApp')
       })
       .state('cm_form', {
         url: '/cm/:id',
-        templateUrl: 'app/cm/form/form.html'
+        templateUrl: 'app/cm/form/form.html',
+        controller: 'CmFormController'
       });
   });
