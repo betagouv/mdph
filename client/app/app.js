@@ -8,7 +8,8 @@ angular.module('impactApp', [
   'ui.bootstrap',
   'ngStorage',
   'ngAnimate',
-  'angularFileUpload'
+  'angularFileUpload',
+  'ngMessages'
   //'ngAria'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
