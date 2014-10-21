@@ -1,8 +1,23 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CmCliniqueActuelleCtrl', function ($scope) {
-    $scope.descriptions = [{name: '', frequence: {}}];
+  .controller('CmCliniqueCtrl', function ($scope) {
+    if (!$scope.form.clinique) {
+      $scope.form.clinique = {};
+    }
+
+    $scope.addDescription = function() {
+      $scope.descriptions.push({name: '', frequence: {}});
+    };
+
+    if (!$scope.form.clinique.descriptions) {
+      $scope.form.clinique.descriptions = [];
+    }
+    $scope.descriptions = $scope.form.clinique.descriptions;
+    while($scope.descriptions.length < 3) {
+      $scope.addDescription();
+    }
+    
     $scope.perspectives = [
       {
         id: 'stabilite',

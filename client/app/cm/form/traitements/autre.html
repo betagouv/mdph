@@ -1,0 +1,39 @@
+<div class="form-horizontal" role="form" ng-controller="CmContraintesCtrl">
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="traitement_autrePriseEnCharge">Autre prise en charge concernant les soins</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="traitement_autrePriseEnCharge" ng-model="form.traitement.autrePriseEnCharge" value="hospitalisations"> Hospitalisations itératives ou programmées
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="traitement_autrePriseEnCharge" ng-model="form.traitement.autrePriseEnCharge" value="suivi_medical"> Suivi médical spécialisé
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="traitement_autrePriseEnCharge" ng-model="form.traitement.autrePriseEnCharge" value="soins"> Soins ou traitement nocturnes <small>(si oui, préciser)</small>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="traitement_autrePriseEnCharge" ng-model="form.traitement.autrePriseEnCharge" value="autres"> Autres
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="traitement_autre_freq" class="col-sm-4 control-label">Fréquence</label>
+    <div class="col-sm-8">
+      <input type="text" name="traitement_autre_freq" rows="4" class="form-control" id="traitement_autre_freq"
+        ng-model="form.traitement.freqAutre"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="traitement_autre_precisions" class="col-sm-4 control-label">Précisions</label>
+    <div class="col-sm-8">
+      <textarea name="traitement_autre_precisions" rows="4" class="form-control" id="traitement_autre_precisions"
+        ng-model="form.traitement.preciserAutre"></textarea>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,116 @@
+.navbar-cm {
+  position: relative;
+
+  .content {
+    position: fixed;
+    top: 20px;
+  }
+}
+
+.center-middle {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.greyed {
+  color: #CCC;
+  background-color: #F8F8F8;
+}
+
+.radio-td {
+  @extend .center-middle;
+}
+
+.primary-row {
+  background-color: #E8E8E8;
+}
+
+.sub-primary-row {
+  background-color: #EEE;
+}
+
+.action-td {
+  @extend .center-middle;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.form-group-small {
+  margin-bottom: 5px;
+}
+
+.gutter {
+  height: 10px;
+}
+
+/* Menu rules */
+menu.pagemenu.affix {
+  top: 10px;
+  margin-top: 0;
+  width: 15%;
+}
+
+menu.pagemenu {
+  li.active > a, li.active > a:hover {
+    border-left: 2px solid black;
+    color: black;
+  }
+}
+
+menu.pagemenu a {
+  font-size: 14px;
+  padding: 4px 0px;
+  color: grey;
+  display: block;
+}
+
+menu.pagemenu a:hover {
+  background-color: transparent;
+  text-decoration: none;
+  border-left: 1px solid black;
+  color: black;
+}
+
+menu.pagemenu .nav {
+  display: none;
+  padding-bottom: 10px;
+}
+
+menu.pagemenu li.active > .nav {
+  display: block;
+}
+
+/* Indendation rules */
+/* Level 1 */
+menu.pagemenu a {
+  padding-left: 20px;
+}
+
+menu.pagemenu  a:hover {
+  padding-left: 19px;
+}
+
+menu.pagemenu  li.active>a {
+  padding-left: 18px;
+}
+
+/* Level 2 */
+menu.pagemenu .nav {
+  margin-top: 1px;
+}
+
+menu.pagemenu .nav a {
+  font-size: 12px;
+  padding-left: 40px;
+}
+
+menu.pagemenu .nav a:hover {
+  padding-left: 39px;
+}
+
+menu.pagemenu .nav li.active>a {
+  padding-left: 38px;
+}

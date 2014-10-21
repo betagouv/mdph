@@ -1,17 +1,34 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container" data-spy="scroll" data-target=".navbar-cm">
+<div class="container-fluid" data-spy="scroll" data-target=".navbar-cm">
   <div class="row">
-    <div class="col-md-2">
-      <div class="nav navbar-cm list-group">
-        <a class="list-group-item" href="#{{section.id}}" ng-click="scrollTo(section.id)" ng-repeat="(idx, section) in sections">{{idx + 1}}. {{section.name}}</a>
+    <div class="col-xs-2 hidden-xs">
+      <div>
+        <div class="gutter"></div>
+        <pagemenu affix></pagemenu>
       </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-xs-10">
       <form name="form">
-        <div id="{{section.id}}" ng-repeat="(idx, section) in sections">
-          <h1 class="page-header">{{idx + 1}}. {{section.name}}</h1>
-          <div ng-include="section.template"></div>
+        <div pageitems selector="pageitem" topmargin="20">
+          <h1 id="pathologie" class="pageitem page-header">1. Pathologie motivant la demande</h1>
+          <div ng-include="'app/cm/form/pathologie/pathologie.html'"></div>
+
+          <h1 id="histoire" class="pageitem page-header">2. Histoire de la pathologie</h1>
+          <div ng-include="'app/cm/form/histoire/histoire.html'"></div>
+
+          <h1 id="clinique" class="pageitem page-header">3. Description clinique actuelle</h1>
+          <div ng-include="'app/cm/form/clinique/clinique.html'"></div>
+
+          <h1 id="deficiences" class="pageitem page-header">4. Déficiences sensorielles</h1>
+          <div ng-include="'app/cm/form/deficiences/deficiences.html'"></div>
+
+          <h1 id="traitements" class="pageitem page-header">5. Traitements et prises en charge thérapeutiques</h1>
+          <h2 id="traitement-contraintes" class="pageitem">Contraintes et effets secondaires présents ayant un impact sur la vie quotidienne</h2>
+          <div ng-include="'app/cm/form/traitements/contraintes.html'"></div>
+          <h2 id="traitement-autre" class="pageitem">Autre prise en charge concernant les soins</h2>
+          <div ng-include="'app/cm/form/traitements/autre.html'"></div>
+          
         </div>
       </form>
     </div>

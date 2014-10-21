@@ -9,7 +9,8 @@ angular.module('impactApp', [
   'ngStorage',
   'ngAnimate',
   'angularFileUpload',
-  'ngMessages'
+  'ngMessages',
+  'ngScrollSpy'
   //'ngAria'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
