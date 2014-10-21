@@ -53,6 +53,8 @@
 }
 
 .intro.ng-hide {
+  -webkit-transition:all linear 0.2s;
+  transition:all linear 0.2s;
   top: -48px;
 }
 
