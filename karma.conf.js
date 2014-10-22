@@ -25,6 +25,7 @@ module.exports = function(config) {
       'client/bower_components/angular-animate/angular-animate.js',
       'client/bower_components/ngstorage/ngStorage.js',
       'client/bower_components/ng-file-upload/angular-file-upload.js',
+      'client/bower_components/ngScrollSpy/dist/ngScrollSpy.js',
       'client/bower_components/angular-parallax/scripts/angular-parallax.js',
       'client/bower_components/moment/moment.js',
       'client/bower_components/moment/locale/fr.js',
