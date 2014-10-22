@@ -10,7 +10,7 @@
     </div>
     <div class="col-xs-10">
       <form name="form">
-        <div pageitems selector="pageitem" topmargin="20">
+        <div pageitems selector="pageitem">
           <h1 id="pathologie" class="pageitem page-header">1. Pathologie motivant la demande</h1>
           <div ng-include="'app/cm/form/pathologie/pathologie.html'"></div>
 
@@ -26,9 +26,29 @@
           <h1 id="traitements" class="pageitem page-header">5. Traitements et prises en charge thérapeutiques</h1>
           <h2 id="traitement-contraintes" class="pageitem">Contraintes et effets secondaires présents ayant un impact sur la vie quotidienne</h2>
           <div ng-include="'app/cm/form/traitements/contraintes.html'"></div>
+          <hr>
           <h2 id="traitement-autre" class="pageitem">Autre prise en charge concernant les soins</h2>
           <div ng-include="'app/cm/form/traitements/autre.html'"></div>
-          
+          <hr>
+          <h2 id="traitement-sanitaire" class="pageitem">Prise en charge sanitaire réguliére</h2>
+          <div ng-include="'app/cm/form/traitements/checkbox_with_input.html'" ng-controller="CmSanitaireCtrl"></div>
+          <hr>
+          <h2 id="traitement-pluridisciplinaires" class="pageitem">Suivis pluridisciplinaires</h2>
+          <div ng-include="'app/cm/form/traitements/checkbox_with_input.html'" ng-controller="CmPluridisciplinaireCtrl"></div>
+          <hr>
+          <div class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="traitement_therapeutique" class="col-sm-4 control-label">Projet thérapeutique</label>
+              <div class="col-sm-8">
+                <textarea name="traitement_therapeutique" rows="3" class="form-control" id="traitement_therapeutique"
+                  ng-model="form.traitement.projetTherapeutique"></textarea>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <h2 id="traitement-appareillage" class="pageitem">Type d'appareillage</h2>
+          <div ng-include="'app/cm/form/traitements/appareillage.html'"></div>
+
         </div>
       </form>
     </div>
