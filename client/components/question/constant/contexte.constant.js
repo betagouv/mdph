@@ -102,8 +102,8 @@ angular.module('impactApp').constant('contexte', [
         placeholder: 'Expliquez la difficulté'
       },
       {
-        labelDefault: 'Votre établissement ne peux plus vous accueillir et vous ne pouvez pas retourner chez vous',
-        labelRep: 'Son établissement ne peux plus l\'accueillir et <%= pronoun %> ne peut pas retourner chez <%= pronounTonic %>',
+        labelDefault: 'Votre établissement ne peut plus vous accueillir et vous ne pouvez pas retourner chez vous',
+        labelRep: 'Son établissement ne peut plus l\'accueillir et <%= pronoun %> ne peut pas retourner chez <%= pronounTonic %>',
         model: 'etablissement',
         detail: true,
         detailModel: 'etablissementDetail',
@@ -111,8 +111,8 @@ angular.module('impactApp').constant('contexte', [
         placeholder: 'Expliquez la difficulté'
       },
       {
-        labelDefault: 'Votre école ne peux plus vous accueillir',
-        labelRep: 'Son école ne peux plus l\'accueillir',
+        labelDefault: 'Votre école ne peut plus vous accueillir',
+        labelRep: 'Son école ne peut plus l\'accueillir',
         detail: true,
         detailModel: 'ecoleDetail',
         detailUrl: 'components/detail/precisez_big.html',
