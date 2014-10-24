@@ -3,7 +3,7 @@
     <label class="col-sm-4 control-label">Origine, circonstances d'apparition</label>
     <div class="col-sm-8">
       <label class="radio-inline" ng-repeat="value in valuesOrigine">
-        <input type="radio" name="histoire_origine" ng-model="form.histoire.origine" value="{{value.id}}"> {{value.label}}
+        <input type="radio" name="histoire_origine" ng-model="certificat.histoire.origine" value="{{value.id}}"> {{value.label}}
       </label>
     </div>
   </div>
@@ -12,7 +12,7 @@
     <label class="col-sm-4 control-label">Date d'apparition</label>
     <div class="col-sm-8">
       <label class="radio-inline" ng-repeat="value in valuesDate">
-        <input type="radio" name="histoire_date" ng-model="form.histoire.date" value="{{value.id}}"> {{value.label}}
+        <input type="radio" name="histoire_date" ng-model="certificat.histoire.date" value="{{value.id}}"> {{value.label}}
       </label>
     </div>
   </div>
@@ -21,7 +21,7 @@
     <label for="histoire_antecedents" class="col-sm-4 control-label">Antécédents médicaux, chirurgicaux, périnataux en rapport avec le handicap</label>
     <div class="col-sm-8">
       <textarea name="histoire_antecedents" rows="4" class="form-control" id="histoire_antecedents"
-        ng-model="form.histoire.antecedents"></textarea>
+        ng-model="certificat.histoire.antecedents"></textarea>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
     <label for="histoire_retard_acquisitions" class="col-sm-4 control-label">Pour un enfant, indiquer la présence éventuelle d’un retard dans les acquisitions principales</label>
     <div class="col-sm-8">
       <textarea name="histoire_retard_acquisitions" rows="4" class="form-control" id="histoire_retard_acquisitions"
-        ng-model="form.histoire.retard_acquisitions"></textarea>
+        ng-model="certificat.histoire.retard_acquisitions"></textarea>
     </div>
   </div>
 </div>

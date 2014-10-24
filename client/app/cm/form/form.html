@@ -41,14 +41,21 @@
               <label for="traitement_therapeutique" class="col-sm-4 control-label">Projet thérapeutique</label>
               <div class="col-sm-8">
                 <textarea name="traitement_therapeutique" rows="3" class="form-control" id="traitement_therapeutique"
-                  ng-model="form.traitement.projetTherapeutique"></textarea>
+                  ng-model="certificat.traitement.projetTherapeutique"></textarea>
               </div>
             </div>
           </div>
-          <hr>
-          <h2 id="traitement-appareillage" class="pageitem">Type d'appareillage</h2>
-          <div ng-include="'app/cm/form/traitements/appareillage.html'"></div>
 
+          <h1 id="retentissement" class="pageitem page-header">6. Retentissement fonctionnel et/ou relationnel</h1>
+
+          <h1 id="remarques" class="pageitem page-header">7. Remarques ou observations complémentaires si besoin</h1>
+
+          <h1 id="coordonnees" class="pageitem page-header">8. Coordonnées</h1>
+          <div ng-include="'app/cm/form/coordonnees/coordonnees.html'"></div>
+          
+          <div class="pull-down col-md-2 col-md-offset-5">
+            <button class="btn btn-block btn-lg btn-primary" ng-click="submit()">Envoyer</button>
+          </div> 
         </div>
       </form>
     </div>

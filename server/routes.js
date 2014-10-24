@@ -12,6 +12,7 @@ module.exports = function(app) {
   app.use('/api/mdphs', require('./api/mdph'));
   app.use('/api/requests', require('./api/request'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/certificats', require('./api/certificat'));
 
   app.use('/auth', require('./auth'));
 

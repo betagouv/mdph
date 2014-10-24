@@ -4,7 +4,7 @@
       <div class="col-sm-4 col-sm-offset-1">
         <div class="checkbox">
           <label>
-            <input type="checkbox" ng-model="form.traitement[section][option.id]">
+            <input type="checkbox" ng-model="certificat.traitement[section][option.id]">
             {{option.label}} <small ng-if="option.labelDetail">({{option.labelDetail}})</small>
           </label>
         </div>
@@ -13,7 +13,7 @@
         <label for="{{id + option.inputId}}" class="col-sm-2 control-label">{{inputLabel}}</label>
         <div class="col-sm-2">
           <input type="text" ng-disabled="!form.traitement[section][option.id]" name="{{id + option.inputId}}" class="form-control" id="{{id + option.inputId}}"
-            ng-model="form.traitement[section][option.inputId]"></input>
+            ng-model="certificat.traitement[section][option.inputId]"></input>
         </div>
       </span>
     </div>

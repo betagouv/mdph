@@ -3,7 +3,7 @@
     <label class="col-sm-4 control-label" for="clinique_poids">Poids</label>
     <div class="col-sm-4">
       <div class="input-group">
-        <input type="number" name="clinique_poids" min="0" integer ng-model="form.clinique.poids" class="form-control">
+        <input type="number" name="clinique_poids" min="0" integer ng-model="certificat.clinique.poids" class="form-control">
         <span class="input-group-addon">kg</span>
       </div>
     </div>
@@ -19,7 +19,7 @@
     <label class="col-sm-4 control-label" for="clinique_taille">Taille</label>
     <div class="col-sm-4">
       <div class="input-group">
-        <input type="number" name="clinique_taille" min="0" max="250" integer ng-model="form.clinique.taille" class="form-control">
+        <input type="number" name="clinique_taille" min="0" max="250" integer ng-model="certificat.clinique.taille" class="form-control">
         <span class="input-group-addon">cm</span>
       </div>
     </div>
@@ -29,10 +29,10 @@
     <label class="col-sm-4 control-label" for="clinique_lateralite">Latéralité dominante avant handicap</label>
     <div class="col-sm-8">
       <label class="radio-inline">
-        <input type="radio" name="clinique_lateralite" ng-model="form.clinique.lateralite" value="gauche"> Gauche
+        <input type="radio" name="clinique_lateralite" ng-model="certificat.clinique.lateralite" value="gauche"> Gauche
       </label>
       <label class="radio-inline">
-        <input type="radio" name="clinique_lateralite" ng-model="form.clinique.lateralite" value="droite"> Droite
+        <input type="radio" name="clinique_lateralite" ng-model="certificat.clinique.lateralite" value="droite"> Droite
       </label>
     </div>
   </div>
@@ -71,7 +71,7 @@
   <div class="form-group">
     <label for="clinique_precisions" class="col-sm-4 control-label">Précisions</label>
     <div class="col-sm-8">
-      <input name="clinique_precisions" type="text" class="form-control" id="clinique_precisions" ng-model="form.clinique.precisions">
+      <input name="clinique_precisions" type="text" class="form-control" id="clinique_precisions" ng-model="certificat.clinique.precisions">
     </div>
   </div>
 
@@ -79,7 +79,7 @@
     <label class="col-sm-4 control-label" for="clinique_perspective">Perspective d'évolution globale</label>
     <div class="col-sm-8">
       <label class="radio-inline" ng-repeat="perspective in perspectives">
-        <input type="radio" name="clinique_perspective" ng-model="form.clinique.perspective" value="{{perspective.id}}"> {{perspective.label}}
+        <input type="radio" name="clinique_perspective" ng-model="certificat.clinique.perspective" value="{{perspective.id}}"> {{perspective.label}}
       </label>
       <br ng-if="perspective.br">
     </div>
@@ -90,10 +90,10 @@
     <div class="col-sm-8">
       <div class="row">
         <div class="col-sm-12">
-          <input type="file" id="clinique_pj" ng-model="form.clinique.pj">
+          <input type="file" id="clinique_pj" ng-model="certificat.clinique.pj">
         </div>
         <div class="col-sm-12">
-          <input class="form-control" ng-model="form.clinique.pjDetail" type="text" placeholder="Préciser">
+          <input class="form-control" ng-model="certificat.clinique.pjDetail" type="text" placeholder="Préciser">
         </div>
       </div>
     </div>
