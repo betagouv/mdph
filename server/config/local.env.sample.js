@@ -8,8 +8,8 @@
 module.exports = {
   DOMAIN:           'http://localhost:9000',
   SESSION_SECRET:   'impact-secret',
-  API_KEY: 'mailjet-api-key',
-  SECRET_KEY: 'mailjet-secret-key',
+  API_KEY:          'mailjet-api-key',
+  SECRET_KEY:       'mailjet-secret-key',
 
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
