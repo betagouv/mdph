@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $timeout) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout) {
     $scope.menu = [
     {
       'title': 'Accueil',
@@ -14,8 +14,7 @@ angular.module('impactApp')
     $scope.isAdminMdph = Auth.isAdminMdph;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isUser = Auth.isUser;
-
-    $scope.$storage = $sessionStorage;
+    $scope.$storage = $localStorage;
 
     angular.element(document).ready(function() {
       $timeout(function() {
