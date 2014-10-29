@@ -3,11 +3,12 @@
 angular.module('impactApp')
   .controller('CmFormController', function ($state, $scope, $http) {
     $scope.certificat = {};
+    $scope.requestId = $state.params.id || '';
 
     $scope.submit = function() {
-      $http.post('/api/certificats/' + $state.params.id, $scope.certificat)
+      $http.post('/api/certificats/' + $scope.requestId, $scope.certificat)
         .success(function(data) {
-          
+          $state.go('cm_email', {email: $scope.certificat.coordonnees.email});
         })
         .error(function(err) {
 

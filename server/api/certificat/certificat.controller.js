@@ -26,8 +26,8 @@ exports.save = function(req, res, next) {
 
       mailjet.sendContent(
         req.body.coordonnees.email,
-        'Hello world', 
-        '<b>Sun</b> is shining, the wheather is blue. http://localhost:9000/cm/' + request.shortId + '/' + request.certificat.secret
+        'Impact - Validez votre adresse mail', 
+        'Vous venez d\'envoyer un certificat médical sur notre site, merci de valider votre adresse.<a href="http://localhost:9000/cm/' + request.shortId + '/' + request.certificat.secret + '"><h1>Cliquez ici</h1></a></div>' 
       );
 
       return res.json(200, req.body.coordonnees.email);

@@ -1,9 +1,16 @@
 <div class="form-horizontal" role="form">
   <div class="form-group">
-    <label for="coordonnees_email" class="col-sm-4 control-label">Email</label>
+    <label for="coordonnees_email" class="col-sm-4 control-label">Votre e-mail</label>
     <div class="col-sm-8">
       <input name="coordonnees_email" type="email" class="form-control" id="coordonnees_email"
         ng-required="true" ng-model="certificat.coordonnees.email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="demande_id" class="col-sm-4 control-label">Demande</label>
+    <div class="col-sm-8">
+      <input name="demande_id" type="email" class="form-control" id="demande_id"
+        ng-required="true" disabled="false" ng-model="requestId">
     </div>
   </div>
 </div>

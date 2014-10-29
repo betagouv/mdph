@@ -20,6 +20,8 @@ Mailjet.prototype.sendContent = function(to, subject, content) {
         html: content
     });
 
+  console.log(body);
+
   var options = {
     hostname: 'api.mailjet.com',
     port: 80,

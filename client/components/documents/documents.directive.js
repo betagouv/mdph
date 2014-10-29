@@ -11,14 +11,23 @@ angular.module('impactApp')
       },
       templateUrl: 'components/documents/documents.html',
       restrict: 'EA',
-      controller: function($scope, $upload) {
+      controller: function($scope, $upload, $http) {
+        $scope.transmitFile = function(file) {
+          $http.put('api/requests/' + $scope.request._id + '/document', {
+            'state': 'delegate',
+            'stepName': $scope.currentStep.id,
+            'fileName': file.name
+          })
+          .success(function(state) {
+            file.state = state;
+          });
+        };
+
         $scope.onFileSelect = function($files, currentFile) {
           //$files: an array of files selected, each file has name, size, and type.
           var file = $files[0];
           $scope.upload = $upload.upload({
-            url: 'api/requests/' + $scope.request._id + '/document', //upload.php script, node.js route, or servlet url
-            //method: 'POST' or 'PUT',
-            //headers: {'header-key': 'header-value'},
+            url: 'api/requests/' + $scope.request._id + '/document',
             withCredentials: true,
             data: {
               'stepName': $scope.currentStep.id,
