@@ -1,0 +1,136 @@
+<div class="form-horizontal" role="form">
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Corrections auditives</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="corrections_auditives" ng-model="certificat.traitements.correctionsAuditives" value="unilaterale"> Unilatérale
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="corrections_auditives" ng-model="certificat.traitements.correctionsAuditives" value="bilaterale"> Bilatérale
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="corrections_auditives" ng-model="certificat.traitements.correctionsAuditives" value="appareillage"> Appareillage
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="corrections_auditives" ng-model="certificat.traitements.correctionsAuditives" value="implant"> Implant
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Aide à la mobilité</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.aideMobilite" value="deambulateur"> Déambulateur
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.aideMobilite" value="canne"> Canne
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.aideMobilite" value="orthese"> Orthèse, prothèse <small>(Préciser)</small>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.aideMobilite" value="autre"> Autre <small>(Ex: Scooter...)</small>
+      </label>
+    </div>
+  </div>
+
+  <div ng-class="{greyed: form.traitements.aideMobilite !== 'autre' && form.traitements.aideMobilite !== 'orthese'}">
+    <div class="form-group">
+      <label for="aide_mobilite_preciser" class="col-sm-4 control-label">Préciser</label>
+      <div class="col-sm-8">
+        <input name="aide_mobilite_preciser" ng-disabled="form.traitements.aideMobilite !== 'autre' && form.traitements.aideMobilite !== 'orthese'" type="text" class="form-control" id="aide_mobilite_preciser" ng-model="certificat.traitements.aideMobilitePreciser">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Appareillage visuel</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.appareillageVisuel" value="teleAgrandissaeur"> Télé-agrandisseur
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.appareillageVisuel" value="terminal"> Terminal-braille
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.appareillageVisuel" value="logiciel_vision"> Logiciel de basse vision
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.appareillageVisuel" value="loupe"> Loupe
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aide_mobilite" ng-model="certificat.traitements.appareillageVisuel" value="logiciel_vocale"> Logiciel de synthèse vocale
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Fauteuil roulant</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="fauteuil_roulant" ng-model="certificat.traitements.fauteuilRoulant" value="electrique"> Electrique
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="fauteuil_roulant" ng-model="certificat.traitements.fauteuilRoulant" value="manuel"> Manuel
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Alimentation/Elimination</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="alimentation" ng-model="certificat.traitements.alimentation" value="gastro"> Gastro ou jéjunostomie d'alimentation
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="alimentation" ng-model="certificat.traitements.alimentation" value="stomie"> Stomie digestive d'élimination
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="alimentation" ng-model="certificat.traitements.alimentation" value="sonde"> Sonde urinaire
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="alimentation" ng-model="certificat.traitements.alimentation" value="stomie_urinaire"> Stomie urinaire
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Aides respiratoires</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="aidesRespiratoires" ng-model="certificat.traitements.aidesRespiratoires" value="tracheotomie"> Trachéotomie
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aidesRespiratoires" ng-model="certificat.traitements.aidesRespiratoires" value="o2"> O2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="aidesRespiratoires" ng-model="certificat.traitements.aidesRespiratoires" value="ventilation"> Appareil de ventilation
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Aides à la parole</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="aideParole" ng-model="certificat.traitements.aideParole" value="phonatoire"> Prothèse phonatoire
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="autre_appareillage" class="col-sm-4 control-label">Autre appareillage</label>
+    <div class="col-sm-8">
+      <input name="autre_appareillage" type="text" class="form-control" id="autre_appareillage" ng-model="certificat.traitements.autreAppareillage">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="appareillage_precisions" class="col-sm-4 control-label">Précisions <br><small>Type, adaptation, circonstances d'utilisation, autonomie de la personne a l'utiliser, compliance</small></label>
+    <div class="col-sm-8">
+      <textarea name="appareillage_precisions" rows="4" class="form-control" id="appareillage_precisions"
+        ng-required="true" ng-model="certificat.traitement.precisionsAppareillage"></textarea>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,11 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
+<div class="navbar navbar-default navbar-static-top" ng-class="{'has-intro': showIntro}" ng-controller="NavbarCtrl">
+  <div class="intro" ng-cloak ng-show="showIntro">
+    <div class="content" ng-click="hideIntro()">
+      <span>
+        <strong>Service expérimental</strong>, ici l'état innove avec la société civile pour offrir aux usagers le service public de demain.
+      </span>
+    </div>
+  </div>
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">

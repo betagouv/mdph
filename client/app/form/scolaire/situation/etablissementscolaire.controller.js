@@ -21,7 +21,7 @@ angular.module('impactApp')
       );
     };
 
-    $scope.isNextStepDisabled = function() {
+    $scope.checkNextStep = function() {
       for (var i = 0; i < $scope.model.etablissements.length; i++) {
         if ($scope.model.etablissements[i].name !== '') {
           return false;

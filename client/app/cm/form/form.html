@@ -1,0 +1,63 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container-fluid" data-spy="scroll" data-target=".navbar-cm">
+  <div class="row">
+    <div class="col-xs-2 hidden-xs">
+      <div>
+        <div class="gutter"></div>
+        <pagemenu affix></pagemenu>
+      </div>
+    </div>
+    <div class="col-xs-10">
+      <form name="form">
+        <div pageitems selector="pageitem">
+          <h1 id="pathologie" class="pageitem page-header">1. Pathologie motivant la demande</h1>
+          <div ng-include="'app/cm/form/pathologie/pathologie.html'"></div>
+
+          <h1 id="histoire" class="pageitem page-header">2. Histoire de la pathologie</h1>
+          <div ng-include="'app/cm/form/histoire/histoire.html'"></div>
+
+          <h1 id="clinique" class="pageitem page-header">3. Description clinique actuelle</h1>
+          <div ng-include="'app/cm/form/clinique/clinique.html'"></div>
+
+          <h1 id="deficiences" class="pageitem page-header">4. Déficiences sensorielles</h1>
+          <div ng-include="'app/cm/form/deficiences/deficiences.html'"></div>
+
+          <h1 id="traitements" class="pageitem page-header">5. Traitements et prises en charge thérapeutiques</h1>
+          <h2 id="traitement-contraintes" class="pageitem">Contraintes et effets secondaires présents ayant un impact sur la vie quotidienne</h2>
+          <div ng-include="'app/cm/form/traitements/contraintes.html'"></div>
+          <hr>
+          <h2 id="traitement-autre" class="pageitem">Autre prise en charge concernant les soins</h2>
+          <div ng-include="'app/cm/form/traitements/autre.html'"></div>
+          <hr>
+          <h2 id="traitement-sanitaire" class="pageitem">Prise en charge sanitaire réguliére</h2>
+          <div ng-include="'app/cm/form/traitements/checkbox_with_input.html'" ng-controller="CmSanitaireCtrl"></div>
+          <hr>
+          <h2 id="traitement-pluridisciplinaires" class="pageitem">Suivis pluridisciplinaires</h2>
+          <div ng-include="'app/cm/form/traitements/checkbox_with_input.html'" ng-controller="CmPluridisciplinaireCtrl"></div>
+          <hr>
+          <div class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="traitement_therapeutique" class="col-sm-4 control-label">Projet thérapeutique</label>
+              <div class="col-sm-8">
+                <textarea name="traitement_therapeutique" rows="3" class="form-control" id="traitement_therapeutique"
+                  ng-model="certificat.traitement.projetTherapeutique"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <h1 id="retentissement" class="pageitem page-header">6. Retentissement fonctionnel et/ou relationnel</h1>
+
+          <h1 id="remarques" class="pageitem page-header">7. Remarques ou observations complémentaires si besoin</h1>
+
+          <h1 id="coordonnees" class="pageitem page-header">8. Coordonnées</h1>
+          <div ng-include="'app/cm/form/coordonnees/coordonnees.html'"></div>
+          
+          <div class="pull-down col-md-2 col-md-offset-5">
+            <button class="btn btn-block btn-lg btn-primary" ng-click="submit()">Envoyer</button>
+          </div> 
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

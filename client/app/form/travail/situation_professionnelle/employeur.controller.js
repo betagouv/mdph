@@ -16,8 +16,7 @@ angular.module('impactApp')
     $scope.model = $scope.sectionModel.employeur;
 
     $scope.checkNextStep = function(value) {
-      // TODO
-      return value;
+      return !value.nom.value || !value.adresse.value;
     };
 
     $scope.nextStep = function() {

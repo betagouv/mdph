@@ -23,7 +23,8 @@ var RequestSchema = new Schema({
   mdph:         { type: Schema.Types.ObjectId, ref: 'Mdph' },
   updatedAt:    { type: Date },
   steps:        [ StepSchema ],
-  opened:       { type: Boolean }
+  opened:       { type: Boolean },
+  certificat:   Schema.Types.Mixed
 });
 
 module.exports = mongoose.model('Request', RequestSchema);

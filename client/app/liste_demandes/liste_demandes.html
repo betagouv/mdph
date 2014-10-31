@@ -2,10 +2,9 @@
 
 <ui-view>
   <div class="container">
-    <h1 class="page-header">
-      Vos demandes
-      <div class="btn btn-primary pull-right" ng-click="createRequest(onRequestCreated)">Nouvelle demande</div>
-    </h1>
+    <h1>Vos demandes</h1>
+    <div class="btn btn-primary" ng-click="createRequest(onRequestCreated)">Nouvelle demande</div>
+    <hr>
     <div ng-if="requests.length === 0">
       <em>Pas de demandes</em>
     </div>
