@@ -1,5 +1,6 @@
 <qtitle></qtitle>
 
-<input ng-model="sectionModel[question.model]" placeholder="Ex: 14, 14000, Calvados..." ng-required="true" typeahead="mdph as mdph.zipcode + ' - ' + mdph.name  for mdph in mdphs | limitTo:10 | filter:$viewValue" class="form-control">
+<select class="form-control" ng-options="mdph.name for mdph in mdphs" ng-model="sectionModel[question.model]" ng-required="true">
+</select>
 
 <nav-steps></nav-steps>
