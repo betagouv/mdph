@@ -13,10 +13,8 @@ module.exports = function (grunt) {
     express: 'grunt-express-server',
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
-    injector: 'grunt-asset-injector',
-    buildcontrol: 'grunt-build-control'
+    injector: 'grunt-asset-injector'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -180,40 +178,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Debugging with node inspector
-    'node-inspector': {
-      custom: {
-        options: {
-          'web-host': 'localhost'
-        }
-      }
-    },
-
-    // Use nodemon to run server in debug mode with an initial breakpoint
-    nodemon: {
-      debug: {
-        script: 'server/app.js',
-        options: {
-          nodeArgs: ['--debug-brk'],
-          env: {
-            PORT: process.env.PORT || 9000
-          },
-          callback: function (nodemon) {
-            nodemon.on('log', function (event) {
-              console.log(event.colour);
-            });
-
-            // opens browser on initial server start
-            nodemon.on('config:update', function () {
-              setTimeout(function () {
-                require('open')('http://localhost:8080/debug?port=' + (process.env.PORT || 9000));
-              }, 500);
-            });
-          }
-        }
-      }
-    },
-
     // Automatically inject Bower components into the app
     wiredep: {
       target: {
@@ -278,17 +242,6 @@ module.exports = function (grunt) {
       }
     },
 
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.client %>/assets/images',
-          src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/assets/images'
-        }]
-      }
-    },
-
     // Allow the use of non-minsafe AngularJS files. Automatically makes it
     // minsafe compatible so Uglify does not destroy the ng references
     ngAnnotate: {
@@ -330,13 +283,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/*.html']
-      }
-    },
-
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -375,28 +321,6 @@ module.exports = function (grunt) {
       }
     },
 
-    buildcontrol: {
-      options: {
-        dir: 'dist',
-        commit: true,
-        push: true,
-        connectCommits: false,
-        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-      },
-      heroku: {
-        options: {
-          remote: 'heroku',
-          branch: 'master'
-        }
-      },
-      openshift: {
-        options: {
-          remote: 'openshift',
-          branch: 'master'
-        }
-      }
-    },
-
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
@@ -405,19 +329,9 @@ module.exports = function (grunt) {
       test: [
         'sass',
       ],
-      debug: {
-        tasks: [
-          'nodemon',
-          'node-inspector'
-        ],
-        options: {
-          logConcurrentOutput: true
-        }
-      },
       dist: [
         'sass',
-        'imagemin',
-        'svgmin'
+        'imagemin'
       ]
     },
 
@@ -561,19 +475,6 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
     }
 
-    if (target === 'debug') {
-      return grunt.task.run([
-        'clean:server',
-        'env:all',
-        'injector:sass',
-        'concurrent:server',
-        'injector',
-        'wiredep',
-        'autoprefixer',
-        'concurrent:debug'
-      ]);
-    }
-
     grunt.task.run([
       'clean:server',
       'env:all',
@@ -587,11 +488,6 @@ module.exports = function (grunt) {
       'open',
       'watch'
     ]);
-  });
-
-  grunt.registerTask('server', function () {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve']);
   });
 
   grunt.registerTask('test', function(target) {
@@ -650,7 +546,6 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
     'cssmin',
     'uglify',
     'rev',
