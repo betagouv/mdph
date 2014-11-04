@@ -1,6 +1,6 @@
 <div class="row prestations">
   <div ng-repeat="(idx, prestation) in prestations">
-    <div class="col-sm-4">
+    <div ng-class="{'col-sm-3': width === 4, 'col-sm-4': width === 3}">
       <div class="panel panel-default"
         ng-class="editable ? 'panel-action ' +  prestation.type : prestation.type">
         <div class="panel-heading" ng-click="editable && toggle(prestation)">

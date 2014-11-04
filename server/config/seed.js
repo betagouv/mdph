@@ -189,6 +189,11 @@ var createBobRequest = function(cb) {
     user: bob,
     mdph: mdphCalvados,
     formAnswers: {
+      'prestations': {
+        'aah': {
+          'date':'2014-09-08T22:00:00.000Z'
+        }
+      },
       'contexte': {
         'estRepresentant':true,
         'demandeur': {
@@ -216,15 +221,6 @@ var createBobRequest = function(cb) {
         'famille':'parents',
         'logement':'independant',
         'logement_independant':'proprietaire',
-        'mesPrestations':[
-           {
-              'id':'aah',
-              'label':'AAH',
-              'date':'2014-09-08T22:00:00.000Z',
-              'type':'presta-finances',
-              'description':'L\'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.'
-           }
-        ],
         'besoinsVie': {
            'courses':true,
            'habits':true,
