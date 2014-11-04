@@ -6,7 +6,14 @@ angular.module('impactApp')
       .state('form.envoi', {
         url: '/envoi',
         templateUrl: 'app/form/envoi/envoi.html',
-        controller: 'EnvoiCtrl'
+        controller: 'EnvoiCtrl',
+        resolve: {
+          prestations: function($http) {
+            return $http.get('/api/prestations').then(function(prestations) {
+              return prestations.data;
+            });
+          }
+        }
       }).state('form.envoi.modal', {
         abstract: true,
         onEnter: function($modal, $state, $window, RequestService) {

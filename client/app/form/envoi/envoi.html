@@ -8,7 +8,7 @@
   <h1>Merci d'avoir rempli votre dossier</h1>
 </div>
 
-<div id="#quitus" ng-if="prestations.length > 0">
+<div id="#quitus">
   <p>
     Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
   </p>
@@ -16,7 +16,7 @@
     Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
   </p>
 
-  <droits prestations="prestations" width="3"></droits>
+  <show-prestations form-answers="formAnswers" prestations="prestations" width="3"></show-prestations>
 </div>
 
 <div ng-hide="form.readOnly">

@@ -37,6 +37,13 @@ angular.module('impactApp')
       controller: 'RenouvellementCtrl'
     }).state('form.contexte.pour_commencer.liste_droits', {
       url: '/liste_droits',
+      resolve: {
+        prestations: function($http) {
+          return $http.get('/api/prestations').then(function(prestations) {
+            return prestations.data;
+          });
+        }
+      },
       templateUrl: 'components/question/droits.html',
       controller: 'RenouvellementListeDroitsCtrl'
     })

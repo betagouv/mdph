@@ -1,8 +1,6 @@
 'use strict';
 
-/* jshint multistr: true */
-
-angular.module('impactApp').constant('droits', [
+exports.all = [
   {
     id: 'carteStationnement',
     type: 'presta-carte',
@@ -100,4 +98,4 @@ angular.module('impactApp').constant('droits', [
     description: 'Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du \
       handicap (PCH). Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver.'
   }
-]);
+];

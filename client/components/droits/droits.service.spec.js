@@ -9,8 +9,10 @@ describe('Service: droits', function () {
 
   // instantiate service
   var service;
+  var constants;
   beforeEach(inject(function (DroitService) {
     service = DroitService;
+    constants = [{ id: 'test'}];
   }));
 
   it('should return an empty array when called on an empty form', function () {
@@ -18,7 +20,7 @@ describe('Service: droits', function () {
     var answers = {contexte: {}};
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
 
     // then
     expect(result).toEqual([]);
@@ -101,7 +103,7 @@ describe('Service: droits', function () {
   });
 });
 
-describe('Service: droits || AEEH', function () {
+describe('Service: droits || AEEH || ', function () {
 
   // load the service's module
   beforeEach(module('impactApp'));
@@ -109,9 +111,13 @@ describe('Service: droits || AEEH', function () {
   // instantiate service
   var service;
   var constants;
-  beforeEach(inject(function (DroitService, droits) {
+  beforeEach(inject(function (DroitService) {
     service = DroitService;
-    constants = droits;
+    constants = [
+      {
+        id: 'aeeh'
+      }
+    ];
   }));
 
   it('should return aeeh', function () {
@@ -136,7 +142,7 @@ describe('Service: droits || AEEH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -165,7 +171,7 @@ describe('Service: droits || AEEH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -194,7 +200,7 @@ describe('Service: droits || AEEH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -223,7 +229,7 @@ describe('Service: droits || AEEH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -258,7 +264,7 @@ describe('Service: droits || AEEH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -294,7 +300,7 @@ describe('Service: droits || AEEH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -302,7 +308,7 @@ describe('Service: droits || AEEH', function () {
   });
 });
 
-describe('Service: droits || AAH', function () {
+describe('Service: droits || AAH || ', function () {
 
   // load the service's module
   beforeEach(module('impactApp'));
@@ -310,9 +316,13 @@ describe('Service: droits || AAH', function () {
   // instantiate service
   var service;
   var constants;
-  beforeEach(inject(function (DroitService, droits) {
+  beforeEach(inject(function (DroitService) {
     service = DroitService;
-    constants = droits;
+    constants = [
+      {
+        id: 'aah'
+      }
+    ];
   }));
 
   it('should not return aah because the user is a child', function () {
@@ -343,7 +353,7 @@ describe('Service: droits || AAH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -366,7 +376,7 @@ describe('Service: droits || AAH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -398,7 +408,7 @@ describe('Service: droits || AAH', function () {
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then
@@ -407,7 +417,7 @@ describe('Service: droits || AAH', function () {
 });
 
 
-describe('Service: droits || Renouvellement', function () {
+describe('Service: droits || Renouvellements || ', function () {
 
   // load the service's module
   beforeEach(module('impactApp'));
@@ -415,26 +425,33 @@ describe('Service: droits || Renouvellement', function () {
   // instantiate service
   var service;
   var constants;
-  beforeEach(inject(function (DroitService, droits) {
+  beforeEach(inject(function (DroitService) {
     service = DroitService;
-    constants = droits;
+    constants = [
+      {
+        id: 'aah'
+      },
+      {
+        id: 'ac'
+      },
+      {
+        id: 'pch'
+      }
+    ];
   }));
 
   it('should return renouvellement of aah', function () {
     // given
     var answers = {
-      vieQuotidienne: {
-        mesPrestations:[
-          {
-            id:'aah',
-            date:'2014-09-08'
-          }
-        ]
+      prestations: {
+        'aah': {
+          date: '2014-09-08'
+        }
       }
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
 
     // then
     expect(result.length).toBe(1);
@@ -447,18 +464,15 @@ describe('Service: droits || Renouvellement', function () {
   it('should return renouvellement of pch and aah', function () {
     // given
     var answers = {
-      vieQuotidienne: {
-        mesPrestations:[
-          {
-            id:'ac',
-            date:'2014-09-08'
-          }
-        ]
+      prestations: {
+        'ac': {
+          date:'2014-09-08'
+        }
       }
     };
 
     // when
-    var result = service.compute(answers);
+    var result = service.compute(answers, constants);
     var idResult = _.pluck(result, 'id');
 
     // then

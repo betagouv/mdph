@@ -7,21 +7,13 @@ $analog-3-border: #1F2636;
 $analog-4: #D05158;
 $analog-4-border: #6E2B2E;
 
-@mixin panel-action-color($color) {
+@mixin panel-color($color) {
   .panel-heading {
     color: white;
+    background-color: $color;
   }
 
-  &.panel-closed {
-    .panel-heading {
-      background-color: $color;
-      &:hover {
-        background-color: lighten($color, 15%);
-      }
-    }
-  }
-
-  &.panel-opened {
+  &.panel-action:hover {
     .panel-heading {
       background-color: lighten($color, 15%);
     }
@@ -44,19 +36,17 @@ $analog-4-border: #6E2B2E;
     .panel-heading {
       cursor: pointer;
     }
+  }
 
-    &.presta-carte {
-      @include panel-action-color($analog-1);
-    }
+  .presta-carte {
+    @include panel-color($analog-1);
+  }
 
-    &.presta-finances {
-      @include panel-action-color($analog-2);
-    }
+  .presta-finances {
+    @include panel-color($analog-2);
+  }
 
-    &.presta-accompagnement {
-      @include panel-action-color($analog-3);
-    }
-
-    transition: max-height 0.15s ease-out;
+  .presta-accompagnement {
+    @include panel-color($analog-3);
   }
 }

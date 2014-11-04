@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('DroitService', function DroitService($filter, FormService, QuestionService, droits, isAdult) {
+  .factory('DroitService', function DroitService($filter, FormService, QuestionService, isAdult) {
 
     // Retourne faux si et seulement on prend en compte le taux et qu'il est trop faible
     var getFiltreTaux = function(answers) {
@@ -28,17 +28,19 @@ angular.module('impactApp')
       var contexte = answers.contexte;
       var aidant = answers.aidant;
       var vieQuotidienne = answers.vieQuotidienne;
+      var renouvellements = answers.prestations;
 
-      if (!vieQuotidienne) {
-        return {};  // optim
+      var besoinsDeplacement;
+      var besoinsVie;
+      var besoinsSocial;
+      var attentesTypeAide;
+
+      if (vieQuotidienne) {
+        besoinsDeplacement = vieQuotidienne.besoinsDeplacement;
+        besoinsVie = vieQuotidienne.besoinsVie;
+        besoinsSocial = vieQuotidienne.besoinsSocial;
+        attentesTypeAide = vieQuotidienne.attentesTypeAide;
       }
-
-      var renouvellements = _.indexBy(vieQuotidienne.mesPrestations, 'id');
-
-      var besoinsDeplacement = vieQuotidienne.besoinsDeplacement;
-      var besoinsVie = vieQuotidienne.besoinsVie;
-      var besoinsSocial = vieQuotidienne.besoinsSocial;
-      var attentesTypeAide = vieQuotidienne.attentesTypeAide;
 
       var filtreTaux = getFiltreTaux(answers);
       var estAdulte = isAdult(contexte);
@@ -279,12 +281,12 @@ angular.module('impactApp')
       // Commodité pour les tests
       getFiltreTaux: getFiltreTaux,
 
-      compute: function(answers) {
+      compute: function(answers, prestations) {
         var callbacks = getCallbacks(answers);
 
-        return _.filter(droits, function(droit) {
-          var callback = callbacks[droit.id];
-          return callback && callback(droit);
+        return _.filter(prestations, function(prestation) {
+          var callback = callbacks[prestation.id];
+          return callback && callback(prestation);
         });
       }
     };

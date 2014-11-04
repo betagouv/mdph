@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RenouvellementListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig) {
-
-    $scope.question = QuestionService.get('vieQuotidienne', 'finDroits', $scope.formAnswers);
-
-    if (angular.isUndefined($scope.formAnswers.mesPrestations)) {
-      $scope.formAnswers.mesPrestations = [];
+  .controller('RenouvellementListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, prestations) {
+    if (!$scope.formAnswers.prestations) {
+      $scope.formAnswers.prestations = {};
     }
-    
+
+    $scope.prestations = prestations;
+    $scope.question = QuestionService.get('vieQuotidienne', 'finDroits', $scope.formAnswers);
     datepickerConfig.datepickerMode = 'day';
 
     $scope.nextStep = function() {

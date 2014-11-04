@@ -1,23 +1,43 @@
-<div class="row">
-  <prestation ng-repeat="prestation in prestations">
-    <div class="col-sm-{{12 / width}} prestations">
-      <div class="panel panel-default panel-closed" ng-class="prestation.type">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{prestation.title}}
-            <a ng-if="prestation.link" href="{{prestation.link}}" target="_blank">
-              <span class="glyphicon glyphicon-info-sign pull-right"></span>
-            </a>
+<div class="row prestations">
+  <div ng-repeat="(idx, prestation) in prestations">
+    <div class="col-sm-4">
+      <div class="panel panel-default"
+        ng-class="editable ? 'panel-action ' +  prestation.type : prestation.type">
+        <div class="panel-heading" ng-click="editable && toggle(prestation)">
+          <h3 class="panel-title">
+            <div class="row">
+              <div class="col-xs-10">{{prestation.title}}</div>
+              <div class="col-xs-1"><i class="fa" ng-if="editable" 
+                ng-class="{'fa-plus-circle': !isSelected(prestation), 'fa-minus-circle': isSelected(prestation)}"></i>
+              </div>
+            </div>
           </h3>
         </div>
-        <div class="panel-body description">
-          {{prestation.description}}
+        <div class="panel-body" ng-if="!isSelected(prestation) || !editable">
+          <p>{{prestation.description}}</p>
+          <div class="text-center" ng-if="prestation.link">
+            <a href="{{prestation.link}}" target="_blank">
+              <span class="glyphicon glyphicon-info-sign"></span> Plus d'infos
+            </a>
+          </div>
         </div>
-        <div class="panel-footer" ng-show={{prestation.renouvellement}}>
+        <div class="panel-body" ng-if="isSelected(prestation) && editable">
+          <label>Date de fin</label>
+          <div class="input-group">
+            <input type="text" class="form-control"
+              datepicker-popup="dd/MM/yyyy" ng-model="formAnswers.prestations[prestation.id].date"
+              is-open="prestation.opened" placeholder="DD/MM/YYYY" datepicker-options="{{dateOptions}}"
+              close-text="Fermer" show-button-bar="false" ng-required="true"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event, prestation)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="panel-footer" ng-show="{{prestation.renouvellement}}" ng-if="!editable">
           {{prestation.descRenouvellement}}
         </div>
       </div>
     </div>
-
-    <div ng-if="$index % width ===  width - 1" class="clearfix"></div>
-  </prestation>
+    <div ng-if="idx % width === width - 1" class="clearfix"></div>
+  </div>
 </div>

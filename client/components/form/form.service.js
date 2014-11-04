@@ -50,14 +50,6 @@ angular.module('impactApp')
 
       estRenouvellement: function(formAnswers) {
         return formAnswers.contexte && !formAnswers.contexte.nouveauDossier;
-      },
-
-      getRenouvellementDroits: function(answers) {
-        if (answers && answers.vie) {
-          return answers.vie.mesPrestations;
-        }
-
-        return undefined;
       }
     };
   });

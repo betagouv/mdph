@@ -14,9 +14,5 @@ angular.module('impactApp')
       url: '/logement',
       templateUrl: 'components/question/radio.html',
       controller: 'LogementCtrl'
-    }).state('form.vie_quotidienne.situation.fin_de_droits', {
-      url: '/fin_de_droits',
-      templateUrl: 'components/question/droits.html',
-      controller: 'FinDeDroitsCtrl'
     });
   });
