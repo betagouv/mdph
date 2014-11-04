@@ -19,7 +19,7 @@ exports.showUsers = function(req, res) {
 exports.index = function(req, res) {
   Mdph.find().sort('zipcode').exec(function(err, mdphs) {
     if(err) { return handleError(res, err); }
-    return res.json(200, mdphs);
+    return res.json(mdphs);
   });
 };
 
@@ -36,7 +36,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Mdph.create(req.body, function(err, mdph) {
     if(err) { return handleError(res, err); }
-    return res.json(201, mdph);
+    return res.status(201).json(mdph);
   });
 };
 
@@ -49,7 +49,7 @@ exports.update = function(req, res) {
     var updated = _.merge(mdph, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, mdph);
+      return res.status(200).json(mdph);
     });
   });
 };

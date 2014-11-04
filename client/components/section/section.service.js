@@ -54,6 +54,11 @@ angular.module('impactApp')
           probableNext.isEnabled = true;
           $state.go(probableNext.sref);
         }
+      },
+
+      goToFinalSection: function() {
+        envoi.isEnabled = true;
+        $state.go(envoi.sref);
       }
     };
   });

@@ -17,7 +17,7 @@ angular.module('impactApp').constant('contexte', [
         labelDefault: 'Pour une autre personne',
         value: true,
         detailUrl: 'components/detail/personne.html',
-        documents: [{category: 'obligatoire', id: 'carteIdentite'}, {category: 'obligatoire', id: 'carteIdentiteRepresentant'}],
+        documents: [{category: 'obligatoire', id: 'carteIdentite'}, {category: 'obligatoire', id: 'carteIdentiteRepresentant'}]
       }
     ]
   },
@@ -44,38 +44,18 @@ angular.module('impactApp').constant('contexte', [
     ]
   },
   {
-    model: 'numDossier',
-    titleDefault: 'Connaissez-vous votre numéro de dossier ?',
-    titleRep: 'Connaissez-vous son numéro de dossier ?',
+    model: 'raison',
+    type: 'radio',
+    titleDefault: 'Y-a-t-il un changement dans votre situation ?',
+    titleRep: 'Y-a-t-il un changement dans sa situation ?',
     answers: [
       {
         labelDefault: 'Oui',
-        value: true,
-        detailModel: 'numeroDossier',
-        detailUrl: 'components/detail/precisez.html',
-        detailLabel: 'Numéro'
+        value: true
       },
       {
         labelDefault: 'Non',
         value: false
-      }
-    ],
-  },
-  {
-    model: 'raison',
-    type: 'checkbox',
-    titleDefault: 'Quelle est la raison de votre renouvellement ?',
-    titleRep: 'Quelle est la raison de son renouvellement ?',
-    answers: [
-      {
-        labelDefault: 'Vous arrivez à la fin de vos droits',
-        labelRep: '<%= name %> arrive à la fin de ses droits',
-        model: 'finDeVosDroits'
-      },
-      {
-        labelDefault: 'Votre situation a changé',
-        labelRep: 'Sa situation a changé',
-        model: 'changementDeSituation'
       }
     ]
   },

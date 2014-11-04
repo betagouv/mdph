@@ -33,9 +33,14 @@ angular.module('impactApp')
       controller: 'NumDossierCtrl'
     }).state('form.contexte.pour_commencer.renouvellement', {
       url: '/renouvellement',
-      templateUrl: 'components/question/checkbox.html',
+      templateUrl: 'components/question/radio.html',
       controller: 'RenouvellementCtrl'
-    }).state('form.contexte.pour_commencer.taux', {
+    }).state('form.contexte.pour_commencer.liste_droits', {
+      url: '/liste_droits',
+      templateUrl: 'components/question/droits.html',
+      controller: 'RenouvellementListeDroitsCtrl'
+    })
+    .state('form.contexte.pour_commencer.taux', {
       url: '/taux',
       templateUrl: 'components/question/radio.html',
       controller: 'TauxCtrl'

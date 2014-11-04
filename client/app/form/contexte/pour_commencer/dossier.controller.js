@@ -10,7 +10,7 @@ angular.module('impactApp')
       if (answer) {
         $state.go('^.date_naissance');
       } else {
-        $state.go('^.num_dossier');
+        $state.go('^.renouvellement');
       }
     };
   });

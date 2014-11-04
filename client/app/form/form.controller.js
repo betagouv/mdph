@@ -23,4 +23,5 @@ angular.module('impactApp')
     $scope.formAnswers = $scope.$storage.formAnswers;
     $scope.sections = SectionService.getSections($scope.formAnswers, true);
     $scope.goToNextSection = SectionService.goToNextSection;
+    $scope.goToFinalSection = SectionService.goToFinalSection;
   });

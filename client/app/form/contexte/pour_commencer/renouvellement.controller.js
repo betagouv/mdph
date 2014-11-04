@@ -10,6 +10,11 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $state.go('^.taux');
+      var answer = $scope.sectionModel[$scope.question.model];
+      if (answer) {
+        $state.go('^.taux');
+      } else {
+        $state.go('^.liste_droits');
+      }
     };
   });
