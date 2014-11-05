@@ -25,6 +25,11 @@ angular.module('impactApp')
     $scope.hidePrecedent = true;
 
     $scope.nextStep = function() {
-      $state.go('^.code_postal');
+      var answer = $scope.sectionModel[$scope.question.model];
+      if (answer) {
+        $state.go('^.consentement');
+      } else {
+        $state.go('^.code_postal');
+      }
     };
   });

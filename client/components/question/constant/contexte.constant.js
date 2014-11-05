@@ -22,9 +22,26 @@ angular.module('impactApp').constant('contexte', [
     ]
   },
   {
+    model: 'consentement',
+    titleRep: 'Quelle est votre relation avec <%= name %> ?',
+    type: 'radio',
+    answers: [
+      {
+        labelDefault: 'Vous êtes son représentant légal ou tuteur',
+        value: 'legalOuTuteur'
+      },
+      {
+        labelDefault: 'Vous avez un autre type de relation',
+        value: 'autre',
+        detailModel: 'consentementDetail',
+        detailUrl: 'components/detail/consentement.html'
+      }
+    ]
+  },
+  {
     model: 'mdph',
     titleDefault: 'Quelle est votre Mdph ?',
-    titleRep: 'Quelle est la Mdph de <%= name %>?',
+    titleRep: 'Quelle est la Mdph de <%= name %> ?',
     type: 'text'
   },
   {

@@ -10,6 +10,10 @@ angular.module('impactApp')
       url: '/representant',
       templateUrl: 'components/question/radio.html',
       controller: 'RepresentantCtrl'
+    }).state('form.contexte.pour_commencer.consentement', {
+      url: '/consentement',
+      templateUrl: 'components/question/radio.html',
+      controller: 'ConsentementCtrl'
     }).state('form.contexte.pour_commencer.code_postal', {
       url: '/code_postal',
       templateUrl: 'components/question/code_postal.html',
