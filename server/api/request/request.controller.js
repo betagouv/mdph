@@ -107,6 +107,30 @@ exports.update = function(req, res, next) {
   });
 };
 
+
+/**
+ * Fake file upload
+ */
+exports.saveFakeDocument = function (req, res, next) {
+  var file = req.body.file;
+  var stepName = req.body.stepName;
+
+  Request.findById(req.params.id, function (err, request) {
+    if (err) return next(err);
+
+    var formStep = _.find(request.steps, {name: stepName});
+    var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
+    formStepDocument.path = file;
+    formStepDocument.state = 'telecharge';
+
+    request.save(function(err) {
+      if (err) {return handleError(res, err); }
+    });
+
+    res.send(formStepDocument.path);
+  });
+};
+
 /**
  * File upload
  */

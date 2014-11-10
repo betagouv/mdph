@@ -26,6 +26,17 @@ angular.module('impactApp')
         $scope.onFileSelect = function($files, currentFile) {
           //$files: an array of files selected, each file has name, size, and type.
           var file = $files[0];
+          $http.post('api/requests/' + $scope.request._id + '/document', {
+            stepName: $scope.currentStep.id,
+            documentName: currentFile.name,
+            file: file.name
+          }).then(function(res) {
+            currentFile.path = res.data;
+            broadcastIfComplete();
+          });
+        };
+
+          /**
           $scope.upload = $upload.upload({
             url: 'api/requests/' + $scope.request._id + '/document',
             withCredentials: true,
@@ -43,16 +54,12 @@ angular.module('impactApp')
             // file is uploaded successfully
             currentFile.path = data;
             broadcastIfComplete();
-          })
-          .error(function() {
-            // TODO real error message
-            currentFile.path = 'error';
-            broadcastIfComplete();
           });
           //.then(success, error, progress);
           // access or attach event listeners to the underlying XMLHttpRequest.
           //.xhr(function(xhr){xhr.upload.addEventListener(...)})
         };
+        **/
 
         $scope.files = _.find($scope.request.steps, { name: $scope.currentStep.id }).files;
         angular.forEach($scope.files, function(file) {

@@ -11,7 +11,7 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.put('/:id', auth.isAuthenticated(), controller.update);
 router.delete('/:id', controller.destroy);
 
-router.post('/:id/document', auth.isAuthenticated(), controller.saveDocument);
+router.post('/:id/document', auth.isAuthenticated(), controller.saveFakeDocument);
 router.put('/:id/document', auth.isAuthenticated(), controller.updateDocumentState);
 
 router.put('/:id/step', auth.isAuthenticated(), controller.updateStep);
