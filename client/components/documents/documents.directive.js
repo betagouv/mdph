@@ -43,8 +43,12 @@ angular.module('impactApp')
             // file is uploaded successfully
             currentFile.path = data;
             broadcastIfComplete();
+          })
+          .error(function() {
+            // TODO real error message
+            currentFile.path = 'error';
+            broadcastIfComplete();
           });
-          //.error(...)
           //.then(success, error, progress);
           // access or attach event listeners to the underlying XMLHttpRequest.
           //.xhr(function(xhr){xhr.upload.addEventListener(...)})
