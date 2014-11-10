@@ -1,9 +1,10 @@
 .section-nav-steps {
-  text-align: center;
+  background-color: $bg-blue;
+  padding: 10px 0;
 }
 
 .nav-section {
-  margin: 0px 7px;
+  margin-right: 7px;
   position: relative;
   clear: both;
   display: inline-block;

@@ -8,6 +8,6 @@ angular.module('impactApp')
     $scope.mdphs = mdphs;
 
     $scope.nextStep = function() {
-      $state.go('^.dossier');
+      $state.go('^.date_naissance');
     };
   });

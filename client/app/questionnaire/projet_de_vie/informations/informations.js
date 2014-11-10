@@ -9,15 +9,18 @@ angular.module('impactApp')
       template: '<ui-view></ui-view>',
       controller: 'InformationsCtrl',
       abstract: true
-    }).state(index + '.representant', {
+    })
+    .state(index + '.representant', {
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'RepresentantCtrl'
-    }).state(index+ '.consentement', {
+    })
+    .state(index + '.consentement', {
       url: '/consentement',
       templateUrl: 'components/question/radio.html',
       controller: 'ConsentementCtrl'
-    }).state(index+ '.code_postal', {
+    })
+    .state(index + '.code_postal', {
       url: '/code_postal',
       templateUrl: 'components/question/code_postal.html',
       controller: 'CodePostalCtrl',
@@ -26,5 +29,10 @@ angular.module('impactApp')
           return Mdph.queryAll();
         }
       }
+    })
+    .state(index + '.date_naissance', {
+      url: '/date_naissance',
+      templateUrl: 'components/question/date_naissance.html',
+      controller: 'DateNaissanceCtrl'
     });
   });

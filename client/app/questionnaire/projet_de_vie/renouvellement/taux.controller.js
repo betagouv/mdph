@@ -9,7 +9,7 @@ angular.module('impactApp')
       if ($scope.sectionModel[$scope.question.model]) {
         $state.go('^.contestationTaux');
       } else {
-        $state.go('^.date_naissance');
+        $state.go('^.^.vie_quotidienne.situation.vie_famille');
       }
     };
   });

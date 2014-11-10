@@ -11,9 +11,12 @@ angular.module('impactApp')
       $event.stopPropagation();
       $scope.opened = true;
     };
-    
+
     $scope.nextStep = function() {
-      $scope.sections[1].isEnabled = true;
-      $state.go('^.^.situations.particulieres');
+      if ($scope.formAnswers.renouvellement) {
+        $state.go('^.^.renouvellements.evolution');
+      } else {
+        $state.go('^.^.vie_quotidienne.situation.vie_famille');
+      }
     };
   });

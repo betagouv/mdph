@@ -1,7 +1,9 @@
-<qtitle></qtitle>
+<div class="container">
+  <qtitle></qtitle>
 
-<select class="form-control" ng-options="mdph.name for mdph in mdphs" ng-model="sectionModel[question.model]" ng-required="true">
-  <option value="" disabled><em>-- Votre MDPH --</em></option>
-</select>
+  <select class="form-control" ng-options="mdph.name for mdph in mdphs" ng-model="sectionModel[question.model]" ng-required="true">
+    <option value="" disabled><em>-- Votre MDPH --</em></option>
+  </select>
 
-<nav-steps></nav-steps>
+  <nav-steps></nav-steps>
+</div>

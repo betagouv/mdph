@@ -6,6 +6,6 @@ angular.module('impactApp')
     $scope.question = QuestionService.get('contexte', 'contestationTaux', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      $state.go('^.date_naissance');
+      $state.go('^.^.vie_quotidienne.situation.vie_famille');
     };
   });

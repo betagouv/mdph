@@ -10,15 +10,15 @@ angular.module('impactApp').constant('SectionConstants', [
     label: 'Informations personnelles',
   },
   {
-    sref: 'questionnaire.projet_de_vie.droits',
-    include: 'questionnaire.projet_de_vie.droits.*',
-    fa: 'fa-check-square-o',
-    label: 'Renouvellements',
+    sref: 'questionnaire.projet_de_vie.renouvellement.evolution',
+    include: 'questionnaire.projet_de_vie.renouvellement.*',
+    fa: 'fa-history',
+    label: 'Renouvellement',
     renew: true
   },
   {
-    sref: 'questionnaire.projet_de_vie.vie_quotidienne',
-    include: 'questionnaire.projet_de_vie.vie_quotidienne.*',
+    sref: 'questionnaire.projet_de_vie.vie_quotidienne.situation.vie_famille',
+    include: 'questionnaire.projet_de_vie.vie_quotidienne.**',
     fa: 'fa-home',
     label: 'Vie quotidienne'
   },

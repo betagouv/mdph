@@ -75,12 +75,6 @@ angular.module('impactApp').constant('vieQuotidienne', [
     ]
   },
   {
-    model: 'finDroits',
-    titleDefault: 'De quelles prestations bénéficiez-vous actuellement ?',
-    titleRep: 'De quelles prestations bénéficie-t-<%= pronoun %> actuellement ?',
-    type: 'checkbox'
-  },
-  {
     model: 'besoinsVie',
     titleDefault: 'Vous avez besoin d\'aide dans votre vie quotidienne :',
     titleRep: 'Elle a besoin d\'aide dans sa vie quotidienne :',
@@ -218,22 +212,5 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'autresRenseignements',
     titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer',
     type: 'checkbox'
-  },
-  {
-    model: 'objetDemande',
-    titleDefault: 'Quels autres projets sont concernés par votre demande ?',
-    titleRep: 'Quels autres projets sont concernés par sa demande ?',
-    answers: [
-      {
-        labelDefault: 'Votre scolarité ou vie étudiante',
-        'labelRep': 'Sa scolarité ou vie étudiante',
-        model: 'scolarite'
-      },
-      {
-        labelDefault: 'Votre vie professionnelle',
-        'labelRep': 'Sa vie professionnelle',
-        model: 'travail'
-      }
-    ]
   }
 ]);

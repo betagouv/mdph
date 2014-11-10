@@ -56,6 +56,13 @@ $border-blue: darken($lighter-blue, 5%);
       font-weight: 300;
       font-style: italic;
       background-color: lighten($lighter-blue, 60%);
+
+      &.selected {
+        z-index: 2;
+        border-bottom-color: $bg-blue;
+        background-color: $bg-blue;
+        color: white;
+      }
     }
   }
 
