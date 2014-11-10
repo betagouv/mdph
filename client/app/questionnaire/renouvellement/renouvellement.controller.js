@@ -3,14 +3,14 @@
 angular.module('impactApp')
   .controller('RenouvellementCtrl', function($scope, $state, QuestionService) {
 
-    $scope.question = QuestionService.get('contexte', 'raison', $scope.formAnswers);
+    $scope.question = QuestionService.get('contexte', 'raisonRenouvellement', $scope.formAnswers);
 
-    if (angular.isUndefined($scope.sectionModel[$scope.question.model])) {
-      $scope.sectionModel[$scope.question.model] = {};
+    if (angular.isUndefined($scope.formAnswers.raisonRenouvellement)) {
+      $scope.formAnswers.raisonRenouvellement = {};
     }
 
     $scope.nextStep = function() {
-      var answer = $scope.sectionModel[$scope.question.model];
+      var answer = $scope.formAnswers.raisonRenouvellement;
       if (answer) {
         $state.go('^.taux');
       } else {

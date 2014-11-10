@@ -75,7 +75,7 @@ angular.module('impactApp')
           return true;
         }
 
-        var answer = _.find(question, function(answer) {
+        var answer = _.find(question.answers, function(answer) {
           return answer.value === value;
         });
 
