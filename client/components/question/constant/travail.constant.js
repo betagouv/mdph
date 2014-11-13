@@ -72,7 +72,8 @@ angular.module('impactApp').constant('travail', [
   {
     model: 'nomPoste',
     titleDefault: 'Quel est le nom de votre poste ?',
-    titleRep: 'Quel est le nom de son poste ?'
+    titleRep: 'Quel est le nom de son poste ?',
+    placeholder: 'Nom du poste'
   },
   {
     model: 'temps',
@@ -92,7 +93,8 @@ angular.module('impactApp').constant('travail', [
   {
     model: 'heures',
     titleDefault: 'Quellle est votre durée de travail par semaine ?',
-    titleRep: 'Quellle est sa durée de travail par semaine ?'
+    titleRep: 'Quellle est sa durée de travail par semaine ?',
+    placeholder: 'Durée de travail (en heures/semaine)'
   },
   {
     model: 'adapte',
@@ -258,11 +260,11 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'structure',
-    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?'
+    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?'
   },
   {
     model: 'autresRenseignements',
-    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?'
+    titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer'
   },
   {
     titleRep: 'Est-<%= pronoun %> dans une des situations suivantes ?',

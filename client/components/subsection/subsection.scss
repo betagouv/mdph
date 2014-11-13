@@ -6,7 +6,6 @@
 .nav-section {
   margin-right: 7px;
   position: relative;
-  clear: both;
   display: inline-block;
   font-weight: 200;
   font-size: 12px;
@@ -19,8 +18,8 @@
     height: 32px;
     padding: 6px 15px;
     float: left;
-    color: #000;
-    background: $light-grey;
+    color: white;
+    background: $disabled-blue;
 
     span {
       padding: 0 15px;
@@ -39,8 +38,8 @@
     &.showBefore:before {
       width: 0;
       height: 0;
-      border-top: 16px solid $light-grey;
-      border-bottom: 16px solid $light-grey;
+      border-top: 16px solid $disabled-blue;
+      border-bottom: 16px solid $disabled-blue;
       border-left: 16px solid transparent;
       position: absolute;
       content: "";
@@ -63,7 +62,7 @@
       height: 0;
       border-top: 16px solid transparent;
       border-bottom: 16px solid transparent;
-      border-left:16px solid $light-grey;
+      border-left:16px solid $disabled-blue;
       position: absolute;
       content: "";
       top: 0px;
@@ -84,12 +83,6 @@
       &:hover {
         background-color: $medium-red;
       }
-    }
-
-    &.disabled {
-      color: $medium-heavy-grey;
-      cursor: default;
-      text-decoration: none;
     }
   }
 }

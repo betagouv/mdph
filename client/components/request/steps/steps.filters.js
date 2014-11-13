@@ -10,7 +10,7 @@ angular.module('impactApp')
   .filter('stepSrefFilter', function (requestSteps) {
     return function (input) {
       var step = _.find(requestSteps, {'id': input.name});
-      return '.' + step.sref;
+      return step.sref;
     };
   })
   .filter('stateFilter', function () {

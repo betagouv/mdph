@@ -1,7 +1,3 @@
-
-$bg-blue: lighten($lighter-blue, 10%);
-$border-blue: darken($lighter-blue, 5%);
-
 .navigation {
   margin-top: -20px;
   padding-top: 10px;
@@ -62,6 +58,15 @@ $border-blue: darken($lighter-blue, 5%);
         border-bottom-color: $bg-blue;
         background-color: $bg-blue;
         color: white;
+      }
+    }
+
+    &.form-send {
+      color: $light-red;
+
+      &.selected {
+        color: white;
+        text-shadow: 0 0 3px $light-red;
       }
     }
   }

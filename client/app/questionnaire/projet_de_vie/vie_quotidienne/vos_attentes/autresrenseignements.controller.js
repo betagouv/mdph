@@ -14,6 +14,6 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $state.go('^.^.scolarite');
+      $state.go('questionnaire.projet_de_vie.scolarite.situation.condition');
     };
   });

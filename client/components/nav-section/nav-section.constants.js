@@ -23,25 +23,31 @@ angular.module('impactApp').constant('SectionConstants', [
     label: 'Vie quotidienne'
   },
   {
-    sref: 'questionnaire.projet_de_vie.scolarite',
-    include: 'questionnaire.projet_de_vie.scolarite.*',
+    sref: 'questionnaire.projet_de_vie.scolarite.situation.condition',
+    include: 'questionnaire.projet_de_vie.scolarite.**',
     fa: 'fa-user',
     label: 'Vie scolaire ou étudiante',
     isOptionnal: true
   },
   {
-    sref: 'questionnaire.projet_de_vie.travail',
-    include: 'questionnaire.projet_de_vie.travail.*',
+    sref: 'questionnaire.projet_de_vie.travail.situation_professionnelle.condition',
+    include: 'questionnaire.projet_de_vie.travail.**',
     fa: 'fa-briefcase',
     label: 'Vie au travail',
     isOptionnal: true
   },
   {
-    sref: 'questionnaire.projet_de_vie.aidant',
-    include: 'questionnaire.projet_de_vie.aidant.*',
+    sref: 'questionnaire.projet_de_vie.aidant.condition',
+    include: 'questionnaire.projet_de_vie.aidant.**',
     fa: 'fa-male',
     label: 'Aidant familial',
-    isOptionnal: true,
-    isSpecial: true
+    isOptionnal: true
+  },
+  {
+    sref: 'questionnaire.projet_de_vie.envoi',
+    include: 'questionnaire.projet_de_vie.envoi',
+    fa: 'fa-send',
+    label: 'Envoi',
+    isSend: true
   }
 ]);

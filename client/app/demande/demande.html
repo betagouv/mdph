@@ -10,7 +10,7 @@
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-secondary">
       <div class="row">
-        <div section="step" sref-prefix="'liste_demandes.demande'" class="col-md-2" ng-repeat="step in steps"></div>
+        <a class="col-md-2" ui-sref="{{step.sref}}" ng-repeat="step in steps"><i class="fa fa-check" ng-if="step.isFinished"></i> {{step.label}}</a>
       </div>
     </div>
   </div>

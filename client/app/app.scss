@@ -22,6 +22,10 @@ $light-white: #F5F5F5;
 $active-text: $light-white;
 $green: #009513;
 
+$bg-blue: lighten($lighter-blue, 10%);
+$border-blue: darken($lighter-blue, 5%);
+$disabled-blue: lighten($light-blue, 30%);
+
 /**
  * App-wide Styles
  */
@@ -46,6 +50,10 @@ $green: #009513;
     margin-top: -20px;
 }
 
+.row.push-down {
+    margin-top: 15px;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
@@ -55,9 +63,9 @@ $green: #009513;
 @import 'dashboard/requests/detail/detail.scss';
 @import 'dashboard/requests/requests.scss';
 @import 'demande/demande.scss';
-@import 'form/envoi/envoi.scss';
 @import 'form/form.scss';
 @import 'main/main.scss';
+@import 'questionnaire/projet_de_vie/envoi/envoi.scss';
 @import 'questionnaire/projet_de_vie/projet_de_vie.scss';
 @import 'questionnaire/questionnaire.scss';
 @import 'document-search/document-search.scss';
