@@ -2,8 +2,9 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
+    var index = 'questionnaire.projet_de_vie.envoi.modal';
     $stateProvider
-      .state('form.envoi.modal.login', {
+      .state(index + '.login', {
         url: '/login',
         views: {
           'modal@': {
@@ -11,7 +12,7 @@ angular.module('impactApp')
           }
         }
       })
-      .state('form.envoi.modal.signup', {
+      .state(index + '.signup', {
         url: '/signup',
         views: {
           'modal@': {

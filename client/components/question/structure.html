@@ -1,42 +1,44 @@
-<qtitle></qtitle>
+<div class="container">
+  <qtitle></qtitle>
 
-<div class="answer form-horizontal yesno">
-  <button class="btn btn-default btn-block" ng-model="model['valeur']" btn-radio="true">
-    Oui
-  </button>
-  <div class="well well-detail slide" ng-if="model['valeur']">
-    <table class="table my-table-striped">
-      <thead>
-        <th>Nom de la structure</th>
-        <th colspan="2">Etes-vous déjà en contact?</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="structure in model.structures">
-          <td>
-            <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
-          </td>
-          <td>
-            <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="true">
-              Oui
-            </button>
-          </td>
-          <td>
-            <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="false">
-              Non
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="row col-md-offset-4 col-md-4">
-      <button class="btn btn-default btn-block" ng-click="addStructure()">+</button>
+  <div class="answer form-horizontal yesno">
+    <button class="btn btn-default btn-block" ng-model="model['valeur']" btn-radio="true">
+      Oui
+    </button>
+    <div class="well well-detail slide" ng-if="model['valeur']">
+      <table class="table my-table-striped">
+        <thead>
+          <th>Nom de la structure</th>
+          <th colspan="2">Etes-vous déjà en contact?</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="structure in model.structures">
+            <td>
+              <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
+            </td>
+            <td>
+              <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="true">
+                Oui
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="false">
+                Non
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row col-md-offset-4 col-md-4">
+        <button class="btn btn-default btn-block" ng-click="addStructure()">+</button>
+      </div>
     </div>
   </div>
-</div>
-<div class="answer">
-  <button class="btn btn-default btn-block" ng-model="model['valeur']" btn-radio="false">
-    Non
-  </button>
-</div>
+  <div class="answer">
+    <button class="btn btn-default btn-block" ng-model="model['valeur']" btn-radio="false">
+      Non
+    </button>
+  </div>
 
-<nav-steps></nav-steps>
+  <nav-steps></nav-steps>
+</div>

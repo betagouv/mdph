@@ -1,0 +1,112 @@
+.navigation {
+  margin-top: -20px;
+  padding-top: 10px;
+  background-color: $lighter-blue;
+}
+
+.tabrow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 24px;
+  position: relative;
+
+ li {
+    position: relative;
+    cursor: pointer;
+    z-index: 0;
+    border: 1px solid $border-blue;
+    background: #FFF;
+    display: inline-block;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin: 0 -3px;
+    padding: 5px 20px;
+
+    &.selected {
+      z-index: 2;
+      border-bottom-color: $bg-blue;
+      background-color: $bg-blue;
+      color: white;
+    }
+
+    &:before {
+      left: -6px;
+    }
+
+    &:after {
+      right: -6px;
+    }
+
+    &:before, &:after {
+      position: absolute;
+      bottom: -1px;
+      width: 6px;
+      height: 6px;
+      content: " ";
+      border: 1px solid $border-blue;
+    }
+
+    &.optionnal {
+      color: $lighter-blue;
+      font-weight: 300;
+      font-style: italic;
+      background-color: lighten($lighter-blue, 60%);
+
+      &.selected {
+        z-index: 2;
+        border-bottom-color: $bg-blue;
+        background-color: $bg-blue;
+        color: white;
+      }
+    }
+
+    &.form-send {
+      color: $light-red;
+
+      &.selected {
+        color: white;
+        text-shadow: 0 0 3px $light-red;
+      }
+    }
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid $border-blue;
+    z-index: 1;
+  }
+
+  &:before {
+    z-index: 1;
+  }
+}
+
+.tabrow li:before {
+  border-bottom-right-radius: 6px;
+  border-width: 0 1px 1px 0;
+  box-shadow: 2px 0px 0 #FFF;
+}
+
+.tabrow li:after {
+  border-bottom-left-radius: 6px;
+  border-width: 0 0 1px 1px;
+  box-shadow: -2px 0px 0 #FFF;
+}
+
+.tabrow li.selected:before {
+  box-shadow: 2px 2px 0 $bg-blue;
+}
+
+.tabrow li.selected:after {
+  box-shadow: -2px 2px 0 $bg-blue;
+}
+
+#push-down {
+  height: 5px;
+  background-color: $bg-blue;
+}

@@ -27,11 +27,15 @@ angular.module('impactApp').constant('contexte', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Vous êtes son représentant légal ou tuteur',
-        value: 'legalOuTuteur'
+        labelDefault: 'Vous êtes son représentant légal',
+        value: 'representantLegal'
       },
       {
-        labelDefault: 'Vous avez un autre type de relation',
+        labelDefault: 'Vous êtes son tuteur',
+        value: 'tuteur'
+      },
+      {
+        labelDefault: 'Vous êtes un ami, proche, curateur, établissement de santé, etc...',
         value: 'autre',
         detailModel: 'consentementDetail',
         detailUrl: 'components/detail/consentement.html'
@@ -61,10 +65,10 @@ angular.module('impactApp').constant('contexte', [
     ]
   },
   {
-    model: 'raison',
+    model: 'raisonRenouvellement',
     type: 'radio',
-    titleDefault: 'Y-a-t-il un changement dans votre situation ?',
-    titleRep: 'Y-a-t-il un changement dans sa situation ?',
+    titleDefault: 'Si il eu un changement dans votre situation ?',
+    titleRep: 'Y-a-t-il eu un changement dans sa situation ?',
     answers: [
       {
         labelDefault: 'Oui',

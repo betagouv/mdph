@@ -7,6 +7,9 @@ angular.module('impactApp')
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: 'app/dashboard/dashboard.html',
-        authenticate: true
+        authenticate: true,
+        controller: function($scope, SectionBackConstants) {
+          $scope.sections = SectionBackConstants;
+        }
       });
   });

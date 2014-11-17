@@ -5,12 +5,16 @@ angular.module('impactApp')
     return {
       templateUrl: 'components/subsection/subsection.html',
       restrict: 'EA',
-      controller: function ($scope) {
-        $scope.getLabel = function(section) {
-          if (FormService.estRepresentant($scope.formAnswers) && section.labelRep) {
-            return section.labelRep;
+      controller: function ($scope, $state) {
+        $scope.isSelected = function(subsection) {
+          return $state.includes(subsection.include);
+        };
+
+        $scope.getLabel = function(subsection) {
+          if (FormService.estRepresentant($scope.formAnswers) && subsection.labelRep) {
+            return subsection.labelRep;
           }
-          return section.label;
+          return subsection.label;
         };
       }
     };

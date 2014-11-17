@@ -10,13 +10,17 @@
         <span>Supprimer</span>
 			</a>
 		</div>
-		<div class="list-group">
-			<a class="list-group-item" ng-repeat="step in request.steps" ui-sref="{{step | stepSrefFilter}}" ui-sref-active="active-soft">
-				<h4 class="list-group-item-heading">{{step | stepFilter}}</h4>
-				<p>{{step.state | stateFilter}}</p>
-			</a>
-		</div>
+    <div class="row no-spacing">
+      <div class="nav-section-col col-sm-2" ng-repeat="(idx, step) in request.steps">
+        <a ui-sref="{{step | stepSrefFilter}}"
+          ng-class="{showBefore: idx > 0, showAfter: idx < request.steps.length}"
+          tooltip="{{section.tooltip}}"
+          ui-sref-active="active">
+          <span>{{step | stepFilter}}</span>
+        </a>
+      </div>
+    </div>
+
+    <div ui-view></div>
 	</div>
 </div>
-
-<div ui-view></div>

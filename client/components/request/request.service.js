@@ -21,6 +21,7 @@ angular.module('impactApp')
       },
 
       saveCurrentForm: function(request) {
+        debugger;
         request.steps[0].state = 'complet';
         request.steps.push({
           name: 'obligatoire',

@@ -1,12 +1,15 @@
-<qtitle></qtitle>
+<div class="container">
+  <qtitle></qtitle>
 
-<div class="answer form-horizontal" ng-repeat="etablissement in model.etablissements">
-  <input type="text" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement">
-</div>
-<div class="row">
-  <div class="col-md-offset-4 col-md-4">
-    <label class="btn btn-default center-block" ng-click="addEtablissement()">+</label>
+  <div class="answer form-horizontal" ng-repeat="etablissement in model.etablissements">
+    <input type="text" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement">
   </div>
-</div>
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <label class="btn btn-default center-block" ng-click="addEtablissement()">+</label>
+    </div>
+  </div>
 
-<nav-steps></nav-steps>
+  <nav-steps></nav-steps>
+
+</div>

@@ -8,7 +8,7 @@ angular.module('impactApp')
         $scope.btnRef = 'liste_demandes';
       } else {
         $scope.btnText = 'Commencer';
-        $scope.btnRef = 'form';
+        $scope.btnRef = 'questionnaire';
       }
     });
 
