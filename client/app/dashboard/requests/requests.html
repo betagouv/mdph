@@ -8,8 +8,19 @@
             </input>
             <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
           </div>
+          <accordion close-others="oneAtATime">
+            <accordion-group heading="Filtrer" is-open="false">
+              <div class="filters small">
+                <span class="checkbox" ng-repeat="filter in availableFilters">
+                  <label>
+                    <input type="checkbox" ng-model="selectedFilters[filter.id]"> {{filter.label}}
+                  </label>
+                </span>
+              </div>
+            </accordion-group>
+          </accordion>
         </div>
-        <a class="list-group-item" ng-repeat="request in requests | filter:query" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({id: request._id})">
+        <a class="list-group-item" ng-repeat="request in requests | filter:filtres" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({id: request._id})">
           {{request.user.name}}
         </a>
       </div>
@@ -19,3 +30,5 @@
     </div>
   </div>
 </div>
+
+<pre>{{selectedFilters}}</pre>

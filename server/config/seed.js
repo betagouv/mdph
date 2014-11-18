@@ -10,7 +10,7 @@ var Mdph = require('../api/mdph/mdph.model');
 var Request = require('../api/request/request.model');
 var async = require('async');
 
-var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, bobRequest, fooRequest;
+var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, toto, bobRequest, fooRequest;
 
 
 var deleteUsers = function(cb) {
@@ -105,6 +105,23 @@ var createBob = function(cb) {
   });
 };
 
+var createToto = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Toto',
+    email: 'toto@toto.com',
+    password: 'toto',
+    requests: []
+  }, function(err, data) {
+    toto = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Toto');
+    cb();
+  });
+};
+
 var createFlo = function(cb) {
   User.create({
     provider: 'local',
@@ -159,7 +176,7 @@ var createFooRequest = function(cb) {
     step: 'obligatoire',
     opened: true
   }, function(err, data) {
-    fooRequest = data;
+     fooRequest = data;
     console.log('finished creating request foo');
     cb();
   });
@@ -179,6 +196,41 @@ var createBobOldRequest = function(cb) {
     ]
   }, function() {
     console.log('finished creating request old bob');
+    cb();
+  });
+};
+
+var createTotoOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: toto,
+    mdph: mdphCalvados,
+    opened: true,
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'preevaluation',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'valide'
+      },
+      {
+        name: 'evaluation',
+        state: 'valide'
+      }
+    ]
+  }, function() {
+    console.log('finished creating request old toto');
     cb();
   });
 };
@@ -311,8 +363,10 @@ async.series([
   createBob,
   createFlo,
   createAdmin,
+  createToto,
   
   createBobOldRequest,
   createBobRequest,
-  createFooRequest
+  createFooRequest,
+  createTotoOldRequest
 ]);

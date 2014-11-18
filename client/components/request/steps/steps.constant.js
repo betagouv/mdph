@@ -95,7 +95,7 @@ angular.module('impactApp').constant('requestSteps', [
     id: 'reponse',
     sref: '.reponse',
     step: 5,
-    label: 'Votre réponse',
+    label: 'Réponse',
     states: [
       {
         name: 'complet',
