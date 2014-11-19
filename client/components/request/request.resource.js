@@ -2,8 +2,8 @@
 
 angular.module('impactApp')
   .factory('RequestResource', function ($resource) {
-    return $resource('/api/requests/:id/:controller', {
-      id: '@_id'
+    return $resource('/api/requests/:shortId/:controller', {
+      shortId: '@shortId'
     },
     {
       updateStep: {

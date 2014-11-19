@@ -30,7 +30,9 @@ exports.index = function(req, res) {
 
 // Get a single request
 exports.show = function(req, res, next) {
-  Request.findById(req.params.id)
+  Request.findOne({
+    shortId: req.params.shortId
+  })
   .populate('user mdph')
   .exec(function(err, request) {
     if(err) { return next(err); }
@@ -41,7 +43,7 @@ exports.show = function(req, res, next) {
 
 // Deletes a request from the DB.
 exports.destroy = function(req, res) {
-  Request.findById(req.params.id, function (err, request) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if(err) { return handleError(res, err); }
     if(!request) { return res.send(404); }
     request.remove(function(err) {
@@ -88,7 +90,7 @@ exports.showUserRequests = function(req, res, next) {
  */
 exports.update = function(req, res, next) {
   Request.findOne({
-    _id: req.params.id
+    shortId: req.params.shortId
   }, function(err, request) {
     if (err) return next(err);
 
@@ -115,7 +117,7 @@ exports.saveFakeDocument = function (req, res, next) {
   var file = req.body.file;
   var stepName = req.body.stepName;
 
-  Request.findById(req.params.id, function (err, request) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (err) return next(err);
 
     var formStep = _.find(request.steps, {name: stepName});
@@ -138,7 +140,7 @@ exports.saveDocument = function (req, res, next) {
     var file = req.files.file;
     var stepName = req.body.stepName;
 
-    Request.findById(req.params.id, function (err, request) {
+    Request.findOne({shortId: req.params.shortId}, function (err, request) {
       if (err) return next(err);
 
       var formStep = _.find(request.steps, {name: stepName});
@@ -155,7 +157,7 @@ exports.saveDocument = function (req, res, next) {
 };
 
 exports.updateDocumentState = function (req, res, next) {
-  Request.findById(req.params.id, function (err, request) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
      if (err) return next(err);
 
      var formStep = _.find(request.steps, {name: req.body.stepName});
@@ -176,7 +178,7 @@ exports.updateStep = function (req, res, next) {
   var stateName = req.body.state;
   var files = req.body.files;
 
-  Request.findById(req.params.id, function (err, request) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (err) { return handleError(res, err); }
     if(!request) { return res.send(404); }
 
@@ -199,7 +201,7 @@ exports.saveStep = function (req, res, next) {
   var stateName = req.body.state;
   var files = req.body.files;
 
-  Request.findById(req.params.id, function (err, request) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (err) { return handleError(res, err); }
     if(!request) { return res.send(404); }
 

@@ -13,7 +13,7 @@ angular.module('impactApp')
       restrict: 'EA',
       controller: function($scope, $upload, $http) {
         $scope.transmitFile = function(file) {
-          $http.put('api/requests/' + $scope.request._id + '/document', {
+          $http.put('api/requests/' + $scope.request.shortId + '/document', {
             'state': 'delegate',
             'stepName': $scope.currentStep.id,
             'fileName': file.name
@@ -26,7 +26,7 @@ angular.module('impactApp')
         $scope.onFileSelect = function($files, currentFile) {
           //$files: an array of files selected, each file has name, size, and type.
           var file = $files[0];
-          $http.post('api/requests/' + $scope.request._id + '/document', {
+          $http.post('api/requests/' + $scope.request.shortId + '/document', {
             stepName: $scope.currentStep.id,
             documentName: currentFile.name,
             file: file.name
@@ -38,7 +38,7 @@ angular.module('impactApp')
 
           /**
           $scope.upload = $upload.upload({
-            url: 'api/requests/' + $scope.request._id + '/document',
+            url: 'api/requests/' + $scope.request.shortId + '/document',
             withCredentials: true,
             data: {
               'stepName': $scope.currentStep.id,

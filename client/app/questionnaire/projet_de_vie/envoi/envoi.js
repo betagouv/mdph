@@ -31,7 +31,7 @@ angular.module('impactApp')
               RequestService.saveCurrentForm(request);
             });
           }, function() {
-            $state.go(index);
+            $state.go('liste_demandes');
           });
         }
       });

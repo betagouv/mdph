@@ -11,7 +11,7 @@
     <div class="row" ng-if="requests.length > 0">
       <div class="col-md-12">
         <div class="list-group">
-          <a class="list-group-item" ng-repeat="request in requests" ng-class="{'list-group-item-success': request.opened}" href="{{'liste_demandes/' + request._id + '/' + getCurrentStep(request).name}}">
+          <a class="list-group-item" ng-repeat="request in requests" ng-class="{'list-group-item-success': request.opened}" href="{{'liste_demandes/' + request.shortId + '/' + getCurrentStep(request).name}}">
             <div ng-if="request.opened">
               <h4 class="list-group-item-heading">{{getTitle(request)}}</span></h4>
               <p class="list-group-item-text">Etape: {{getCurrentStep(request) | stepFilter}}<br/>

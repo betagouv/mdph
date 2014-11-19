@@ -20,7 +20,7 @@
             </accordion-group>
           </accordion>
         </div>
-        <a class="list-group-item" ng-repeat="request in requests | filter:filtres" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({id: request._id})">
+        <a class="list-group-item" ng-repeat="request in requests | filter:filtres" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({shortId: request.shortId})">
           {{request.user.name}}
         </a>
       </div>

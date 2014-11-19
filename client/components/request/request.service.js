@@ -21,7 +21,6 @@ angular.module('impactApp')
       },
 
       saveCurrentForm: function(request) {
-        debugger;
         request.steps[0].state = 'complet';
         request.steps.push({
           name: 'obligatoire',
@@ -32,7 +31,7 @@ angular.module('impactApp')
           ]
         });
 
-        $http.put('/api/requests/' + request._id, {
+        $http.put('/api/requests/' + request.shortId, {
           steps: request.steps,
           mdph: $sessionStorage.formAnswers.contexte.mdph,
           formAnswers: $sessionStorage.formAnswers
@@ -55,7 +54,7 @@ angular.module('impactApp')
       },
 
       saveStepStateAndFiles: function(request, step, state, files, next) {
-        RequestResource.updateStep({id: request._id}, {step: step.id, state: state, files: files}, function() {
+        RequestResource.updateStep({shortId: request.shortId}, {step: step.id, state: state, files: files}, function() {
           _.find(request.steps, {name: step.id}).state = state;
           if (next) { next(); }
         });
@@ -66,7 +65,7 @@ angular.module('impactApp')
       },
 
       saveNewStepAndFiles: function(request, step, state, files, next) {
-        $http.post('/api/requests/' + request._id + '/step', {step: step, state: state, files: files})
+        $http.post('/api/requests/' + request.shortId + '/step', {step: step, state: state, files: files})
         .success(function(data) {
           request.steps.push(data);
           $state.go('^.' + step);

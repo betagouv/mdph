@@ -6,9 +6,9 @@ angular.module('impactApp')
     $scope.updatedAt = RequestService.updatedAt;
 
     $scope.delete = function(request) {
-      $http.delete('/api/requests/' + request._id).success(function() {
+      $http.delete('/api/requests/' + request.shortId).success(function() {
         angular.forEach($scope.requests, function(f, i) {
-          if (f._id === request._id) {
+          if (f._id === request.shortId) {
             $scope.requests.splice(i, 1);
             $state.go('dashboard.requests');
           }
