@@ -10,6 +10,9 @@ angular.module('impactApp')
         $scope.btnText = 'Commencer';
         $scope.btnRef = 'questionnaire';
       }
+      $scope.btnPartenaireText = "Partenaire ?";
+      $scope.btnPartenaireRef = 'partenaire';
+
     });
 
     $scope.getVerticalOffset = function() {

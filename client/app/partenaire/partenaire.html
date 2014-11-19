@@ -1,0 +1,34 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-sm-12">
+      <h1>Partenaire</h1>
+    </div>
+    <div class="col-lg-8 col-lg-offset-2 col-sm-12">
+      <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
+
+        <div class="form-group">
+          <label>Veuillez saisir le short ID du demandeur</label>
+
+          <input type="text" name="shortId" class="form-control" ng-model="request.shortId" required>
+        </div>
+
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.shortId.$error.required && submitted">
+             Veuillez entrer un short ID.
+          </p>
+
+          <p class="help-block">{{ errors.other }}</p>
+        </div>
+
+        <div>
+          <button class="btn btn-primary btn-lg btn-login" type="submit">
+            Valider
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
