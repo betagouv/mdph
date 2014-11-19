@@ -1,3 +1,4 @@
+
 a.list-group-item.active {
   color: #fff;
   background-color: #428bca;
@@ -6,4 +7,23 @@ a.list-group-item.active {
   .text-muted {
     color: #CCC;
   }
+}
+
+.filtre-accordeon {
+	.panel {
+		border: none;
+		background: none;
+	}
+	.panel-heading {
+		border: none;
+		background: none;
+	}
+	.panel-title {
+		color: white;
+		border: none;
+		background: none;
+	}
+	.panel-group {
+		margin-bottom: 0;
+	} 
 }
