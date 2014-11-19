@@ -14,7 +14,7 @@ var User = require('../user/user.model');
 exports.index = function(req, res) {
   if (req.query && req.query.opened) {
     Request.find({opened: req.query.opened, mdph: req.user.mdph})
-      .select('user mdph steps')
+      .select('shortId user mdph steps')
       .populate('user mdph')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
