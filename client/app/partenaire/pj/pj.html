@@ -1,1 +1,29 @@
-{{request | json}}
+<div class="container" ng-if="request">
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
+	      <div id="recapitulatif" class="panel panel-default">
+			  <div class="panel-heading">Récapitulatif</div>
+			  <div class="panel-body">
+			    <p><strong>Demandeur :</strong> {{request.user.name}}</p>
+			    <p><strong>MDPH :</strong> {{request.mdph.name}}</p>
+			    <p><strong>Demande faite le :</strong> {{request.updatedAt | date : format : timezone}}</p>
+			  </div>
+			</div>
+    </div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
+		    <accordion>
+					<accordion-group is-open="status.open">
+			        <accordion-heading>
+			          Documents <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			        </accordion-heading>
+			        <div ng-repeat="document in documents">
+			        	<h4>{{document.label}}</h4>
+			        	<p>{{document.type}}</p>
+			        </div>
+			    </accordion-group>
+		  	</accordion>
+		</div>
+	</div>
+</div>
