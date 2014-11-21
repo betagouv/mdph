@@ -1,6 +1,6 @@
 <div class ="container">
   <div class="row">
-		<div class="col-lg-5">
+		<div class="col-lg-5 col-md-5 col-xs-8">
 			<div ng-if="request.steps[request.steps.length-1].name =='obligatoire' || request.steps[request.steps.length-1].name =='questionnaire'">
   			<h1 class="no-hr text-danger">Demande émise</h1>
   		</div>
@@ -11,42 +11,45 @@
   			<h1 class="no-hr text-info">Demande complète</h1>
   		</div>
 		</div>
-    <div class="col-lg-1 sent">
+    <div class="col-lg-1 col-xs-1 sent">
 			<h1><i class="fa fa-1x" ng-class="{'fa-folder': request.steps[request.steps.length-1].name =='obligatoire' || request.steps[request.steps.length-1].name =='questionnaire' , 'fa-folder-o': request.steps[request.steps.length-1].name !='obligatoire' && request.steps[request.steps.length-1].name !='questionnaire'}"></i></h1>
 		</div>
-		<div class="col-lg-1 admissible">
+		<div class="col-lg-1 col-xs-1 admissible">
 			<h1><i class="fa fa-1x" ng-class="{'fa-folder': request.steps[request.steps.length-1].name =='preevaluation' || request.steps[request.steps.length-1].name =='complementaire' , 'fa-folder-o': request.steps[request.steps.length-1].name !='preevaluation' && request.steps[request.steps.length-1].name !='complementaire'}"></i></h1>
 		</div>
-		<div class="col-lg-1 complete">
+		<div class="col-lg-1 col-xs-1 complete">
 			<h1><i class="fa fa-1x" ng-class="{'fa-folder': request.steps[request.steps.length-1].name =='evaluation' || request.steps[request.steps.length-1].name =='reponse' , 'fa-folder-o': request.steps[request.steps.length-1].name !='evaluation' && request.steps[request.steps.length-1].name !='reponse'}"></i></h1>
 		</div>
-		<div class="col-lg-1 archived">
+		<div class="col-lg-1 col-xs-1 archived">
 			<h1><i class="fa fa-folder-o"></i></h1>
 		</div> 
   </div>
 </div>
+
+<div class="panel" ng-class="{'panel-danger': request.steps[request.steps.length-1].name =='obligatoire' || request.steps[request.steps.length-1].name =='questionnaire', 'panel-warning': request.steps[request.steps.length-1].name =='preevaluation' || request.steps[request.steps.length-1].name =='complementaire', 'panel-default': request.steps[request.steps.length-1].name =='evaluation' || request.steps[request.steps.length-1].name =='reponse'}">
+	<div class="panel-heading clearfix">
+		<h3 class="panel-title pull-left">
+      {{request.user.name}}
+    </h3>
+    <a class="btn btn-danger pull-right" ng-click="delete(request)">
+      <i class="glyphicon glyphicon-trash"></i>
+      <span>Supprimer</span>
+		</a>
+    <br><small>Dernière modification {{updatedAt(request)}}</small>	
+	</div>
+</div>
 <div id="formCard">
-	<div class="panel panel-default">
-		<div class="panel-heading clearfix">
-			<h3 class="panel-title pull-left">
-        {{request.user.name}}
-      </h3>
-      <a class="btn btn-danger pull-right" ng-click="delete(request)">
-        <i class="glyphicon glyphicon-trash"></i>
-        <span>Supprimer</span>
-			</a>
-      <br><small>Dernière modification {{updatedAt(request)}}</small>	
-		</div>
-    <div class="row no-spacing">
-      <div class="nav-section-col col-sm-2" ng-repeat="(idx, step) in request.steps">
-        <a ui-sref="{{step | stepSrefFilter}}"
-          ng-class="{showBefore: idx > 0, showAfter: idx < request.steps.length}"
-          tooltip="{{section.tooltip}}"
-          ui-sref-active="active">
-          <span>{{step | stepFilter}}</span>
-        </a>
-      </div>
-    </div>
-    <div ui-view></div>
+<div class="panel panel-default">
+	<div class="row no-spacing">
+	  <div class="nav-section-col col-sm-2" ng-repeat="(idx, step) in request.steps">
+	    <a ui-sref="{{step | stepSrefFilter}}"
+	      ng-class="{showBefore: idx > 0, showAfter: idx < request.steps.length}"
+	      tooltip="{{section.tooltip}}"
+	      ui-sref-active="active">
+	      <span>{{step | stepFilter}}</span>
+	    </a>
+	  </div>
+	</div>
+	<div ui-view></div>
 	</div>
 </div>

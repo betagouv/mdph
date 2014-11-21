@@ -22,7 +22,8 @@
         </div>
         <a class="list-group-item" ng-repeat="request in requests | filter:filtres" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({shortId: request.shortId})">
           {{request.user.name}}
-        </a>
+					<i class="fa fa-1x fa-folder pull-right" ng-class="{'text-danger': request.steps[request.steps.length-1].name =='obligatoire' || request.steps[request.steps.length-1].name =='questionnaire', 'text-warning': request.steps[request.steps.length-1].name =='preevaluation' || request.steps[request.steps.length-1].name =='complementaire', 'text-primary': request.steps[request.steps.length-1].name =='evaluation' || request.steps[request.steps.length-1].name =='reponse'}"></i>
+        </a> 
       </div>
     </div>
     <div class="col-md-9">
