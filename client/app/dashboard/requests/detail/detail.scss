@@ -124,3 +124,27 @@
     }
   }
 }
+
+.sent {
+	.fa-folder, .fa-folder-o {
+		color: #d9534f;
+	}
+}
+
+.admissible {
+	.fa-folder, .fa-folder-o {
+		color: #f0ad4e;
+	}
+}
+
+.complete {
+	.fa-folder, .fa-folder-o {
+		color: #2e6da4;
+	}
+}
+
+.archived {
+	.fa-folder, .fa-folder-o {
+		color: #4cae4c;
+	}
+}

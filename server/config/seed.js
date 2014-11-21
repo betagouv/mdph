@@ -10,7 +10,7 @@ var Mdph = require('../api/mdph/mdph.model');
 var Request = require('../api/request/request.model');
 var async = require('async');
 
-var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, toto, bobRequest, fooRequest;
+var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, toto, rox, bobRequest, fooRequest;
 
 
 var deleteUsers = function(cb) {
@@ -118,6 +118,23 @@ var createToto = function(cb) {
       console.log(err);
     }
     console.log('finished creating user Toto');
+    cb();
+  });
+};
+
+var createRox = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Rox',
+    email: 'rox@rox.com',
+    password: 'rox',
+    requests: []
+  }, function(err, data) {
+    rox = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Rox');
     cb();
   });
 };
@@ -231,6 +248,33 @@ var createTotoOldRequest = function(cb) {
     ]
   }, function() {
     console.log('finished creating request old toto');
+    cb();
+  });
+};
+
+var createRoxOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: rox,
+    mdph: mdphCalvados,
+    opened: true,
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'preevaluation',
+        state: 'en_cours'
+      }
+    ]
+  }, function() {
+    console.log('finished creating request old rox');
     cb();
   });
 };
@@ -364,9 +408,11 @@ async.series([
   createFlo,
   createAdmin,
   createToto,
+  createRox,
   
   createBobOldRequest,
   createBobRequest,
   createFooRequest,
-  createTotoOldRequest
+  createTotoOldRequest,
+  createRoxOldRequest
 ]);
