@@ -22,12 +22,126 @@
         </div>
         <a class="list-group-item" ng-repeat="request in requests | filter:filtres" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({shortId: request.shortId})">
           {{request.user.name}}
-					<i class="fa fa-1x fa-folder pull-right" ng-class="{'text-danger': request.requestStatus=='Emise', 'text-warning': request.requestStatus=='Recevable', 'text-primary': request.requestStatus=='Complète'}"></i>
+					<i class="fa fa-1x fa-folder pull-right" ng-class="{'text-danger': request.requestStatus=='Emise', 'text-warning': request.requestStatus=='Recevable', 'text-info': request.requestStatus=='Complète'}"></i>
         </a> 
       </div>
     </div>
     <div class="col-md-9">
-      <div ui-view></div>
+      <div ui-view>
+        <div class ="container">
+
+          <div class="row">
+            <div class="col-lg-9">
+              <h1 class="no-hr">Evolution d'une demande</h1>
+            </div>       
+          </div>
+
+          <div class="row">
+            <div class="col-lg-9">
+              <accordion>
+                <accordion-group class="panel-danger">
+                  <accordion-heading>
+                    Demande émise
+                    <i class="fa fa-1x fa-folder text-danger pull-right"></i>
+                  </accordion-heading>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <ul>
+                        <li><strong>Questionnaire rempli</strong></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-7"><progressbar class="progress-striped active" max="6" value="1" type="danger"><i>1/6</i></progressbar></div>
+                  </div>
+                </accordion-group>
+              </accordion>
+            </div>
+          </div>
+
+          <div class="row workflow">
+            <div class="col-lg-9">
+              <i class="fa fa-arrow-down fa-2x"></i>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-9">
+              <accordion>
+                <accordion-group class="panel-warning">
+                  <accordion-heading>
+                    Demande recevable
+                    <i class="fa fa-1x fa-folder text-warning pull-right"></i>
+                  </accordion-heading>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <ul>
+                        <li><strong>Pièces obligatoires fournies et validées</strong></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-7"><progressbar class="progress-striped active" max="6" value="2" type="warning"><i>2/6</i></progressbar></div>
+                  </div>
+                </accordion-group>
+              </accordion>
+            </div>
+          </div>
+
+          <div class="row workflow">
+            <div class="col-lg-9">
+              <i class="fa fa-arrow-down fa-2x"></i>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-9">
+              <accordion>
+                <accordion-group class="panel-default">
+                  <accordion-heading>
+                    Demande complète
+                    <i class="fa fa-1x fa-folder text-info pull-right"></i>
+                  </accordion-heading>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <ul>
+                        <li><strong>Pré-évaluation terminée</strong></li>
+                        <li><strong>Compléments fournis et validés</strong></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-7"><progressbar class="progress-striped active" max="6" value="4"><i>4/6</i></progressbar></div>
+                  </div>
+                </accordion-group>
+              </accordion>
+            </div>
+          </div>
+
+          <div class="row workflow">
+            <div class="col-lg-9">
+              <i class="fa fa-arrow-down fa-2x"></i>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-9">
+              <accordion>
+                <accordion-group class="panel-success">
+                  <accordion-heading>
+                    Demande terminée
+                    <i class="fa fa-1x fa-folder text-sucess pull-right"></i>
+                  </accordion-heading>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <ul>
+                        <li><strong>Demande évaluée</strong></li>
+                        <li><strong>Réponse diffusée</strong></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-7"><progressbar class="progress-striped active" max="6" value="6" type="success"><i>6/6</i></progressbar></div>
+                  </div>
+                </accordion-group>
+              </accordion>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
