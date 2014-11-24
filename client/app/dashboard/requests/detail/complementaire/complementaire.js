@@ -12,6 +12,9 @@ angular.module('impactApp')
           },
           nextStepName: function() {
             return 'evaluation';
+          },
+          nextStatus: function() {
+            return 'Complète';
           }
         },
         controller: 'FileStateCtrl'

@@ -12,6 +12,9 @@ angular.module('impactApp')
           },
           nextStepName: function() {
             return 'preevaluation';
+          },
+          nextStatus: function() {
+            return 'Recevable';
           }
         },
         controller: 'FileStateCtrl'

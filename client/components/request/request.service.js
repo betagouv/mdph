@@ -60,7 +60,8 @@ angular.module('impactApp')
         });
       },
 
-      saveNewStep: function(request, step, state, next) {
+      saveNewStep: function(request, step, state, status, next) {
+      	this.saveStatus(request, status);
         this.saveNewStepAndFiles(request, step, state, [], next);
       },
 
@@ -70,6 +71,15 @@ angular.module('impactApp')
           request.steps.push(data);
           $state.go('^.' + step);
           if (next) { next(); }
+        });
+      },
+
+      saveStatus: function(request, status) {
+      	$http.post('/api/requests/' + request.shortId + '/status', {requestStatus: status})
+        .success(function(data) {
+        })
+        .error(function(err) {
+        	$window.alert(err);
         });
       },
 

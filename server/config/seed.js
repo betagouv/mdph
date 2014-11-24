@@ -223,6 +223,7 @@ var createTotoOldRequest = function(cb) {
     user: toto,
     mdph: mdphCalvados,
     opened: true,
+    requestStatus: 'Complète',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
     steps: [
       {
@@ -258,6 +259,7 @@ var createRoxOldRequest = function(cb) {
     user: rox,
     mdph: mdphCalvados,
     opened: true,
+    requestStatus: 'Recevable',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
     steps: [
       {
@@ -284,6 +286,7 @@ var createBobRequest = function(cb) {
     opened: true,
     user: bob,
     mdph: mdphCalvados,
+    requestStatus: 'Emise',
     formAnswers: {
       'prestations': {
         'aah': {

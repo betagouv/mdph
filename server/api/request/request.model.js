@@ -24,6 +24,7 @@ var RequestSchema = new Schema({
   updatedAt:    { type: Date },
   steps:        [ StepSchema ],
   opened:       { type: Boolean },
+  requestStatus:{ type: String, enum: ['Emise', 'Recevable', 'Complète', 'Réponse'], default: 'Emise' },
   certificat:   Schema.Types.Mixed
 });
 

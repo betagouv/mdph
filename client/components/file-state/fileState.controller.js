@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('FileStateCtrl', function($scope, $state, currentStepName, nextStepName, requestSteps, RequestService) {
+  .controller('FileStateCtrl', function($scope, $state, currentStepName, nextStepName, requestSteps, RequestService, nextStatus) {
 
     $scope.requestStep = _.find($scope.request.steps, {'name': currentStepName});
     $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
@@ -34,7 +34,7 @@ angular.module('impactApp')
         RequestService.saveStepState($scope.request, $scope.step, 'erreur');
       } else {
         RequestService.saveStepState($scope.request, $scope.step, 'valide', function() {
-          RequestService.saveNewStep($scope.request, nextStepName, 'en_cours');
+          RequestService.saveNewStep($scope.request, nextStepName, 'en_cours', nextStatus);
         });
       }
     };

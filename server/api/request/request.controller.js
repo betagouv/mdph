@@ -14,7 +14,7 @@ var User = require('../user/user.model');
 exports.index = function(req, res) {
   if (req.query && req.query.opened) {
     Request.find({opened: req.query.opened, mdph: req.user.mdph})
-      .select('shortId user mdph steps')
+      .select('shortId user mdph steps requestStatus')
       .populate('user mdph')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
@@ -101,6 +101,7 @@ exports.update = function(req, res, next) {
     request.formAnswers = req.body.formAnswers;
     request.mdph = req.body.mdph._id;
     request.steps = req.body.steps;
+    request.requestStatus = req.body.requestStatus;
 
     request.save(function (err) {
       if (err) { return handleError(res, err); }
@@ -217,6 +218,25 @@ exports.saveStep = function (req, res, next) {
     });
 
     res.send(formStep);
+  });
+};
+
+exports.saveRequestStatus = function (req, res, next) {
+  var requestStatusName = req.body.requestStatus;
+
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if (err) { return handleError(res, err); }
+    if(!request) { return res.send(404); }
+
+    var newRequestStatus = requestStatusName;
+
+    request.requestStatus = newRequestStatus ;
+
+    request.save(function(err) {
+      if (err) {return handleError(res, err); }
+    });
+
+    res.send(newRequestStatus);
   });
 };
 

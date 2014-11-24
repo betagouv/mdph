@@ -17,4 +17,6 @@ router.put('/:shortId/document', auth.isAuthenticated(), controller.updateDocume
 router.put('/:shortId/step', auth.isAuthenticated(), controller.updateStep);
 router.post('/:shortId/step', auth.isAuthenticated(), controller.saveStep);
 
+router.post('/:shortId/status', auth.isAuthenticated(), controller.saveRequestStatus);
+
 module.exports = router;

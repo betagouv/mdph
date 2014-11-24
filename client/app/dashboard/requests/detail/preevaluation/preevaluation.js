@@ -26,7 +26,7 @@ angular.module('impactApp')
 
           $scope.saveStep = function() {
             RequestService.saveStepStateAndFiles($scope.request, $scope.step, 'valide', $scope.files, function() {
-              RequestService.saveNewStepAndFiles($scope.request, 'complementaire', 'en_cours', $scope.files);
+              RequestService.saveNewStepAndFiles($scope.request, 'complementaire', 'en_cours', $scope.files, 'Recevable');
             });
           };
         }
