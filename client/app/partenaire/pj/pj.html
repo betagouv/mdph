@@ -14,13 +14,12 @@
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
 		    <accordion>
-					<accordion-group is-open="status.open">
+					<accordion-group is-open="status.open" ng-repeat="documentType in documentTypes">
 			        <accordion-heading>
-			          Documents <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			          {{documentType.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
 			        </accordion-heading>
-			        <div ng-repeat="document in documents">
+			        <div ng-repeat="document in documents | filter: documentType.type">
 			        	<h4>{{document.label}}</h4>
-			        	<p>{{document.type}}</p>
 			        </div>
 			    </accordion-group>
 		  	</accordion>
