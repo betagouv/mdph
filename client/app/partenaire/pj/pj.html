@@ -1,7 +1,7 @@
 <div class="container" ng-if="request">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
-	      <div id="recapitulatif" class="panel panel-default">
+	      <div id="recapitulatif" class="panel panel-primary">
 			  <div class="panel-heading">Récapitulatif</div>
 			  <div class="panel-body">
 			    <p><strong>Demandeur :</strong> {{request.user.name}}</p>
@@ -13,16 +13,24 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
-		    <accordion>
-					<accordion-group is-open="status.open" ng-repeat="documentType in documentTypes">
-			        <accordion-heading>
-			          {{documentType.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-			        </accordion-heading>
-			        <div ng-repeat="document in documents | filter: documentType.type">
-			        	<h4>{{document.label}}</h4>
-			        </div>
-			    </accordion-group>
-		  	</accordion>
+	    <accordion close-others="false">
+				<accordion-group is-open="status.open" ng-repeat="documentType in documentTypes" class="documentList">
+	        <accordion-heading>
+	          {{documentType.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+	        </accordion-heading>
+	        <table class="table">
+	        	<tbody>
+	        		<tr ng-repeat="document in documents | filter: documentType.type">
+	        			<td>
+      			      <div class="backoffice-pj selectable">
+						        <div><i class="fa fa-muted fa-plus"></i> {{document.label}}</div>
+						      </div>
+	        			</td>
+	        		</tr>
+	        	</tbody>
+	        </table>
+		    </accordion-group>
+	  	</accordion>
 		</div>
 	</div>
 </div>
