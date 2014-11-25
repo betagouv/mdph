@@ -20,9 +20,11 @@
             </accordion-group>
           </accordion>
         </div>
-        <a class="list-group-item" ng-repeat="request in requests | filter:filtres" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({shortId: request.shortId})">
+        <a class="list-group-item" ng-repeat="request in requests | filter:filtres" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({shortId: request.shortId})" ng-class="{'sent': request.requestStatus=='Emise', 'admissible': request.requestStatus=='Recevable', 'complete': request.requestStatus=='Complète'}">
+          <i class="fa fa-1x fa-folder pull-left"></i>
           {{request.user.name}}
-					<i class="fa fa-1x fa-folder pull-right" ng-class="{'text-danger': request.requestStatus=='Emise', 'text-warning': request.requestStatus=='Recevable', 'text-info': request.requestStatus=='Complète'}"></i>
+          <br>
+          <small class="text-muted pull-right"><i>{{request.updatedAt | date : format : timezone}}</i></small>
         </a> 
       </div>
     </div>
@@ -39,10 +41,10 @@
           <div class="row">
             <div class="col-lg-9">
               <accordion>
-                <accordion-group class="panel-danger">
+                <accordion-group class="panel-danger sent">
                   <accordion-heading>
                     Demande émise
-                    <i class="fa fa-1x fa-folder text-danger pull-right"></i>
+                    <i class="fa fa-1x fa-folder pull-right"></i>
                   </accordion-heading>
                   <div class="row">
                     <div class="col-md-5">
@@ -66,10 +68,10 @@
           <div class="row">
             <div class="col-lg-9">
               <accordion>
-                <accordion-group class="panel-warning">
+                <accordion-group class="panel-warning admissible">
                   <accordion-heading>
                     Demande recevable
-                    <i class="fa fa-1x fa-folder text-warning pull-right"></i>
+                    <i class="fa fa-1x fa-folder pull-right"></i>
                   </accordion-heading>
                   <div class="row">
                     <div class="col-md-5">
@@ -93,10 +95,10 @@
           <div class="row">
             <div class="col-lg-9">
               <accordion>
-                <accordion-group class="panel-default">
+                <accordion-group class="panel-complete complete">
                   <accordion-heading>
                     Demande complète
-                    <i class="fa fa-1x fa-folder text-info pull-right"></i>
+                    <i class="fa fa-1x fa-folder pull-right"></i>
                   </accordion-heading>
                   <div class="row">
                     <div class="col-md-5">

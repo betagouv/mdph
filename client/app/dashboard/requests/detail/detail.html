@@ -5,10 +5,10 @@
   			<h1 class="no-hr text-danger">Demande émise</h1>
   		</div>
   		<div ng-if="request.requestStatus=='Recevable'">
-  			<h1 class="no-hr text-info text-warning">Demande recevable</h1>
+  			<h1 class="no-hr text-warning">Demande recevable</h1>
   		</div>
   		<div ng-if="request.requestStatus=='Complète'">
-  			<h1 class="no-hr text-info">Demande complète</h1>
+  			<h1 class="no-hr text-complete">Demande complète</h1>
   		</div>
 		</div>
     <div class="col-lg-1 col-xs-1 sent">
@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-default': request.requestStatus=='Complète'}">
+<div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
 	<div class="panel-heading clearfix">
 		<h3 class="panel-title pull-left">
       {{request.user.name}}
