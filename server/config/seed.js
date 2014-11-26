@@ -60,9 +60,9 @@ var createBar = function(cb) {
   User.create({
     provider: 'local',
     role: 'adminMdph',
-    name: 'Bar',
-    email: 'bar@bar.com',
-    password: 'bar',
+    name: 'Nord',
+    email: 'nord@nord.com',
+    password: 'nord',
     mdph: mdphNord
   }, function(err, data) {
     bar = data;
@@ -174,8 +174,8 @@ var createAlice = function(cb) {
     provider: 'local',
     role: 'adminMdph',
     name: 'Alice',
-    email: 'alice@alice.com',
-    password: 'alice',
+    email: 'caen@caen.fr',
+    password: 'caen',
     mdph: mdphCalvados
   }, function(err, data) {
     alice = data;
@@ -412,7 +412,7 @@ async.series([
   createAdmin,
   createToto,
   createRox,
-  
+
   createBobOldRequest,
   createBobRequest,
   createFooRequest,

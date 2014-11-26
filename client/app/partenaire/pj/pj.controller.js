@@ -11,13 +11,13 @@ angular.module('impactApp')
       	label: $scope.documents[i].typeLabel
       };
       var existingType = false;
-      for(var j = $scope.documentTypes.length - 1; j >= 0 && existingType == false; j--){
-      	if($scope.documentTypes[j].type == documentType.type){
+      for(var j = $scope.documentTypes.length - 1; j >= 0 && existingType === false; j--){
+      	if($scope.documentTypes[j].type === documentType.type){
       		existingType = true;
       	}
       }
       if (!existingType){
       	$scope.documentTypes.push(documentType);
       }
-    };
+    }
   });
