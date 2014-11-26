@@ -44,8 +44,8 @@ angular.module('impactApp')
             return false;
           }
         }
-      };
-      
+      }
+
       return true;
     };
 
