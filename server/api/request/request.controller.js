@@ -215,9 +215,8 @@ exports.saveStep = function (req, res, next) {
 
     request.save(function(err) {
       if (err) {return handleError(res, err); }
+      res.send(formStep);
     });
-
-    res.send(formStep);
   });
 };
 
@@ -234,9 +233,8 @@ exports.saveRequestStatus = function (req, res, next) {
 
     request.save(function(err) {
       if (err) {return handleError(res, err); }
+      res.send(newRequestStatus);
     });
-
-    res.send(newRequestStatus);
   });
 };
 

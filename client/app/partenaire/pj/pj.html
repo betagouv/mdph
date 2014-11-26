@@ -1,7 +1,7 @@
 <div class="container" ng-if="request">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
-	      <div id="recapitulatif" class="panel panel-primary">
+      <div id="recapitulatif" class="panel panel-primary">
 			  <div class="panel-heading">Récapitulatif</div>
 			  <div class="panel-body">
 			    <p><strong>Demandeur :</strong> {{request.user.name}}</p>
@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
 	    <accordion close-others="false">
-				<accordion-group is-open="status.open" ng-repeat="documentType in documentTypes" class="documentList">
+  			<accordion-group is-open="status.open" ng-repeat="documentType in documentTypes" class="documentList">
 	        <accordion-heading>
 	          {{documentType.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
 	        </accordion-heading>
