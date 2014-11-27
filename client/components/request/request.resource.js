@@ -11,6 +11,12 @@ angular.module('impactApp')
         params: {
           controller: 'step'
         }
+      },
+      getPartenaire: {
+        method: 'GET',
+        params: {
+          controller: 'partenaire'
+        }
       }
     });
   });

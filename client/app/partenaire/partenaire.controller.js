@@ -19,7 +19,7 @@ angular.module('impactApp')
       $scope.submitted = true;
 
       if(form.$valid) {
-        RequestResource.get({shortId: $scope.shortId}, success, error);
+        RequestResource.getPartenaire({shortId: $scope.shortId}, success, error);
       }
     };
   });

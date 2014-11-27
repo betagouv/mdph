@@ -7,30 +7,10 @@
 			    <p><strong>Demandeur :</strong> {{request.user.name}}</p>
 			    <p><strong>MDPH :</strong> {{request.mdph.name}}</p>
 			    <p><strong>Demande faite le :</strong> {{request.updatedAt | date : format : timezone}}</p>
-			  </div>
+        </div>
 			</div>
-    </div>
-	</div>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
-	    <accordion close-others="false">
-  			<accordion-group is-open="status.open" ng-repeat="documentType in documentTypes" class="documentList">
-	        <accordion-heading>
-	          {{documentType.label}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-	        </accordion-heading>
-	        <table class="table">
-	        	<tbody>
-	        		<tr ng-repeat="document in documents | filter: documentType.type">
-	        			<td>
-      			      <div class="backoffice-pj selectable">
-						        <div><i class="fa fa-muted fa-plus"></i> {{document.label}}</div>
-						      </div>
-	        			</td>
-	        		</tr>
-	        	</tbody>
-	        </table>
-		    </accordion-group>
-	  	</accordion>
+
+      <docs-form request="request" current-step="{id: 'complementaire'}"></docs-form>
 		</div>
 	</div>
 </div>

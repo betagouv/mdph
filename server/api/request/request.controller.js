@@ -33,6 +33,20 @@ exports.show = function(req, res, next) {
   Request.findOne({
     shortId: req.params.shortId
   })
+  .select('-formAnswers')
+  .populate('user mdph')
+  .exec(function(err, request) {
+    if(err) { return next(err); }
+    if(!request) { return res.send(404); }
+    return res.json(request);
+  });
+};
+
+// Get a single request
+exports.showPartenaire = function(req, res, next) {
+  Request.findOne({
+    shortId: req.params.shortId
+  })
   .populate('user mdph')
   .exec(function(err, request) {
     if(err) { return next(err); }

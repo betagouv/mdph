@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('Controller: partenaire', function () {
 
   // load the service's module
@@ -26,6 +24,6 @@ describe('Controller: partenaire', function () {
     //then
     expect(scope.request.shortId).toEqual('AAAAA');
 
-  });  
+  });
 
 });
