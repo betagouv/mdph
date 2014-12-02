@@ -20,41 +20,17 @@
     <show-prestations form-answers="formAnswers" prestations="prestations" width="3"></show-prestations>
   </div>
 
-  <div ng-hide="form.readOnly">
-    <hr/>
-    <div class="text-center">
-      <h4>Pour terminer, veuillez choisir le mode de transmission de votre demande</h4>
-    </div>
-
-    <div class="row answer">
-      <div class="col-md-6">
-        <button class="btn btn-block btn-default btn-choice" ng-model="form.typeEnvoi" btn-radio="'numerique'" ng-click="saveForm()">
-          <strong>J'accepte</strong><br/>que la MDPH, pour mieux connaître ma situation et mes besoins, échange avec les professionnels qui m'accompagnents, en application de l'article L241&#8209;10 du code d'action sociale et des familles.
-        </button>
-      </div>
-
-      <div class="col-md-6">
-        <button class="btn btn-block btn-default btn-choice" ng-model="form.typeEnvoi" btn-radio="'papier'">
-          <strong>Je n'accepte pas</strong><br/>que la MDPH échange avec les professionnels qui m'accompagnent, et je m'engage à ce que toute information complémentaire nécessaire à la MDPH passe par moi.
-        </button>
-      </div>
-    </div>
-
-    <div class="jumbotron detailEnvoi" ng-if="form.typeEnvoi==='papier'">
-      <p>Liste des pièces à joindre obligatoirement à votre demande</p>
-      <ul class="answer">
-        <li>Un certificat médical de moins de 3 mois</li>
-        <li>Une photocopie recto/verso {{justificatifStr}}</li>
-        <li ng-if='showAdult'>Une photocopie d'un justificatif de domicile</li>
-      </ul>
-
-      <label class="btn btn-primary btn-block">Télécharger votre formulaire pré-rempli</label>
-    </div>
-  </div>
-
   <div>
     <div id="recapitulatif" class="panel panel-primary">
-      <div class="panel-heading">Récapitulatif</div>
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left">
+          Récapitulatif
+        </h3>
+        <a class="btn btn-success pull-right" ng-click="">
+          <i class="fa fa-send"></i>
+          <span>Envoyer ma demande</span>
+        </a>
+      </div>
       <h1>Contexte</h1>
       <div class="panel-body">
         <div ng-repeat="(question, answer) in formAnswers.contexte"
