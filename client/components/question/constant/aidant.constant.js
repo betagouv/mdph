@@ -6,6 +6,7 @@ angular.module('impactApp').constant('aidant', [
   {
     model: 'condition',
     titleDefault: 'Votre aidant familial souhaite-t-il s\'exprimer ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Oui',
@@ -20,11 +21,13 @@ angular.module('impactApp').constant('aidant', [
   {
     model: 'lien',
     titleDefault: 'Quel est votre lien avec la personne en situation de handicap ?',
-    placeholder: 'Frère'
+    placeholder: 'Frère',
+    type: 'text'
   },
   {
     titleDefault: 'Vivez-vous avec la personne en situation de handicap ?',
     model: 'vie',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Non',
@@ -42,6 +45,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Avez-vous un emploi ?',
     model: 'emploi',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Non',
@@ -59,6 +63,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Quelle est la nature de l\'aide apportée ?',
     model: 'natureAide',
+    type: 'checkbox',
     'answers':[
       {labelDefault: 'Surveillance / présence responsable', model: 'surveillance'},
       {labelDefault: 'Aide aux déplacements à l’intérieur du logement', model: 'deplacementInterieur'},
@@ -79,6 +84,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Etes vous dédommagé(e) pour l’aide apportée à votre proche ?',
     model: 'dedommagement',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Non',
@@ -105,6 +111,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Etes-vous soutenu dans votre fonction d’aidant ?',
     model: 'soutien',
+    type: 'checkbox',
     'answers':[
       {labelDefault: 'Vous participez à des rencontres avec d’autres aidants', model: 'rencontres'},
       {labelDefault: 'Vous êtes soutenu individuellement', model: 'individuel'}
@@ -113,6 +120,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'En cas d\'empêchement, avez-vous prévu une solution pour vous remplacer ?',
     model: 'empechement',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Non',
@@ -130,6 +138,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Serez-vous prochainement dans une des situations suivantes ?',
     model: 'situationFuture',
+    type: 'checkbox',
     'answers':[
       {labelDefault: 'Eloignement géographique (déménagement, ...)', model: 'eloignement'},
       {labelDefault: 'Indisponibilité prolongée (séjour à l’étranger, hospitalisation, ...)', model: 'indisponible'},
@@ -142,6 +151,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Avez-vous besoin de mieux connaitre les aides et dispositifs existants ?',
     model: 'demandesAides',
+    type: 'checkbox',
     'answers':[
       {labelDefault: 'Pour vous', model: 'eloignement'},
       {labelDefault: 'Pour la personne aidée', model: 'indisponible'},
@@ -150,11 +160,13 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     model: 'structure',
+    type: 'text',
     titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?'
   },
   {
     titleDefault: 'Quelles sont vos attentes en tant qu\'aidant familial ?',
     model: 'typeAttente',
+    type: 'checkbox',
     answers:
     [
       {labelDefault: 'Pouvoir vous reposer au quotidien', model: 'repos'},
@@ -174,6 +186,7 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     model: 'autresRenseignements',
+    type: 'text',
     titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant'
   }
 ]);

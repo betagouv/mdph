@@ -46,7 +46,7 @@ angular.module('impactApp').constant('contexte', [
     model: 'mdph',
     titleDefault: 'Quelle est votre Mdph ?',
     titleRep: 'Quelle est la Mdph de <%= name %> ?',
-    type: 'text'
+    type: 'mdph'
   },
   {
     model: 'nouveauDossier',

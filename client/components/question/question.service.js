@@ -50,6 +50,9 @@ angular.module('impactApp')
     return {
       get: function(section, model, formAnswers) {
         var question = q[section][model];
+        if (!question) {
+          return;
+        }
         question.title = capitaliseFirstLetter(computeTitle(question, formAnswers));
         angular.forEach(question.answers, function(answer) {
           answer.label = capitaliseFirstLetter(computeLabel(answer, formAnswers));

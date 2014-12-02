@@ -7,6 +7,7 @@ angular.module('impactApp').constant('travail', [
     model: 'conditionTravail',
     titleDefault: 'Avez-vous actuellement un emploi ?',
     titleRep: 'A-t-<%= pronoun %> actuellement un emploi ?',
+    type: 'radio',
     answers: [
       {
         'labelDefault': 'Oui',
@@ -22,6 +23,7 @@ angular.module('impactApp').constant('travail', [
     model: 'milieuTravail',
     titleDefault: 'Où êtes-vous employé ?',
     titleRep: 'Où est-<%= pronoun %> employé<%= fem %> ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'En milieu ordinaire',
@@ -41,6 +43,7 @@ angular.module('impactApp').constant('travail', [
     model: 'typeTravail',
     titleDefault: 'Quel est votre type d\'emploi ?',
     titleRep: 'Quel est son type d\'emploi ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'CDI',
@@ -67,18 +70,21 @@ angular.module('impactApp').constant('travail', [
   {
     model: 'employeur',
     titleDefault: 'Qui est votre employeur ?',
-    titleRep: 'Qui est son employeur ?'
+    titleRep: 'Qui est son employeur ?',
+    type: 'text'
   },
   {
     model: 'nomPoste',
     titleDefault: 'Quel est le nom de votre poste ?',
     titleRep: 'Quel est le nom de son poste ?',
-    placeholder: 'Nom du poste'
+    placeholder: 'Nom du poste',
+    type: 'text'
   },
   {
     model: 'temps',
     titleDefault: 'Votre emploi est-il a temps complet ou partiel ?',
     titleRep: 'Son emploi est-il a temps complet ou partiel ?',
+    type: 'radio',
     answers: [
       {
         'labelDefault': 'Temps complet',
@@ -94,12 +100,14 @@ angular.module('impactApp').constant('travail', [
     model: 'heures',
     titleDefault: 'Quellle est votre durée de travail par semaine ?',
     titleRep: 'Quellle est sa durée de travail par semaine ?',
+    type: 'text',
     placeholder: 'Durée de travail (en heures/semaine)'
   },
   {
     model: 'adapte',
     titleDefault: 'Votre emploi est-il adapté à votre handicap ?',
     titleRep: 'Son emploi est-il adapté à son handicap ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Non',
@@ -116,12 +124,14 @@ angular.module('impactApp').constant('travail', [
   {
     model: 'difficultes',
     titleRep: 'Quelles sont les difficultées liées à son handicap ?',
-    titleDefault: 'Quelles sont les difficultées liées à votre handicap ?'
+    titleDefault: 'Quelles sont les difficultées liées à votre handicap ?',
+    type: 'text'
   },
   {
     model: 'amenagement',
     titleRep: 'Des aménagements ont-ils été réalisés sur son poste de travail ?',
     titleDefault: 'Des aménagements ont-ils été réalisés sur votre poste de travail ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Non',
@@ -139,6 +149,7 @@ angular.module('impactApp').constant('travail', [
     titleDefault: 'Etes-vous actuellement en arrêt de travail ?',
     titleRep: 'Est-<%= pronoun %> actuellement en arrêt de travail ?',
     model: 'arretDeTravail',
+    type: 'radio',
     answers: [
       {
         'labelDefault': 'Non',
@@ -157,6 +168,7 @@ angular.module('impactApp').constant('travail', [
     titleRep: 'Touche-t-<%= pronoun %> des indemnités journalières ?',
     titleDefault: 'Touchez vous des indemnités journalières ?',
     model: 'indemniteJournaliere',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Non',
@@ -175,6 +187,7 @@ angular.module('impactApp').constant('travail', [
     titleRep: 'Est-<%= pronoun %> en arrêt suite à un accident du travail ou une maladie professionnelle ?',
     titleDefault: 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?',
     model: 'accidentTravail',
+    type: 'radio',
     'answers': [
       {
         'labelDefault': 'Non',
@@ -193,6 +206,7 @@ angular.module('impactApp').constant('travail', [
     titleRep: 'A-t-<%= pronoun %> rencontré un professionnel du service social de la CARSAT ?',
     titleDefault: 'Avez-vous rencontré un professionnel du service social de la CARSAT ?',
     model: 'profesionnelSocial',
+    type: 'radio',
     'answers': [
       {
         'labelDefault': 'Non',
@@ -211,6 +225,7 @@ angular.module('impactApp').constant('travail', [
     titleRep: 'A-t-<%= pronoun %> rencontré le médecin du travail en visite de pré-reprise ?',
     titleDefault: 'Avez-vous rencontré le médecin du travail en visite de pré-reprise ?',
     model: 'medecinTravail',
+    type: 'radio',
     'answers': [
       {
         'labelDefault': 'Non',
@@ -229,6 +244,7 @@ angular.module('impactApp').constant('travail', [
     titleRep: 'A-t-<%= pronoun %> un ou plusieurs projet(s) professionnel(s) ?',
     titleDefault: 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?',
     model: 'description',
+    type: 'radio',
     'answers': [
       {
         'labelDefault': 'Non',
@@ -264,7 +280,8 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'autresRenseignements',
-    titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer'
+    titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer',
+    type: 'text'
   },
   {
     titleRep: 'Est-<%= pronoun %> dans une des situations suivantes ?',
@@ -311,6 +328,7 @@ angular.module('impactApp').constant('travail', [
   {
     titleRep: 'A-t-<%= pronoun %> déjà travaillé<%= fem %> ?',
     titleDefault: 'Avez-vous déjà travaillé ?',
+    type: 'radio',
     model: 'passe',
     'answers': [
       {

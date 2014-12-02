@@ -7,6 +7,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'famille',
     titleDefault: 'Avec qui vivez-vous ?',
     titleRep: 'Avec qui vit-t-<%= pronoun %> ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Avec vos parents',

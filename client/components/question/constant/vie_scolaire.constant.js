@@ -7,6 +7,7 @@ angular.module('impactApp').constant('vieScolaire', [
     model: 'condition',
     titleDefault: 'Etes-vous actuellement scolarisé ?',
     titleRep: 'Est-<%= pronoun %> actuellement scolarisé<%= fem %> ?',
+    type: 'radio',
     'answers': [
       {
         'labelDefault': 'Oui',
@@ -22,6 +23,7 @@ angular.module('impactApp').constant('vieScolaire', [
     model: 'raisonNonScolaire',
     titleDefault: 'Pourquoi n\'êtes vous pas scolarisé ?',
     titleRep: 'Pourquoi n\'est-<%= pronoun %> pas scolarisé<%= fem %> ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Vous êtes trop jeune',
@@ -51,12 +53,14 @@ angular.module('impactApp').constant('vieScolaire', [
   },
   {
     model: 'vieScolaireAutresRenseignements',
-    titleDefault: 'Autres renseignements concernant la scolarité que vous souhaiteriez nous communiquer'
+    titleDefault: 'Autres renseignements concernant la scolarité que vous souhaiteriez nous communiquer',
+    type: 'text'
   },
   {
     model: 'vieScolaireType',
     titleDefault: 'Où êtes-vous scolarisé ?',
     titleRep: 'Où est-<%= pronoun %> scolarisé<%= fem %> ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'En milieu ordinaire',

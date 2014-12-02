@@ -9,7 +9,7 @@
     <h1>Merci d'avoir rempli votre dossier</h1>
   </div>
 
-  <div id="#quitus">
+  <div ng-if="" id="#quitus">
     <p>
       Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
     </p>
@@ -51,5 +51,36 @@
       <label class="btn btn-primary btn-block">Télécharger votre formulaire pré-rempli</label>
     </div>
   </div>
-</div>
 
+  <div>
+    <div id="recapitulatif" class="panel panel-primary">
+      <div class="panel-heading">Récapitulatif</div>
+      <h1>Contexte</h1>
+      <div class="panel-body">
+        <div ng-repeat="(question, answer) in formAnswers.contexte"
+          ng-bind-html="getQuestionAnswerHtml(question, answer, 'contexte')"></div>
+      </div>
+      <h1>Vie quotidienne</h1>
+      <div class="panel-body">
+        <div ng-repeat="(question, answer) in formAnswers.vieQuotidienne"
+          ng-bind-html="getQuestionAnswerHtml(question, answer, 'vieQuotidienne')"></div>
+      </div>
+      <h1>Scolarité</h1>
+      <div class="panel-body">
+        <div ng-repeat="(question, answer) in formAnswers.scolaire"
+          ng-bind-html="getQuestionAnswerHtml(question, answer, 'scolaire')"></div>
+      </div>
+      <h1>Travail</h1>
+      <div class="panel-body">
+        <div ng-repeat="(question, answer) in formAnswers.travail"
+          ng-bind-html="getQuestionAnswerHtml(question, answer, 'travail')"></div>
+      </div>
+      <h1>Aidant familial</h1>
+      <div class="panel-body">
+        <div ng-repeat="(question, answer) in formAnswers.aidant"
+          ng-bind-html="getQuestionAnswerHtml(question, answer, 'aidant')"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<pre>{{formAnswers | json}}</pre>
