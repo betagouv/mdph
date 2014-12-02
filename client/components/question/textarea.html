@@ -1,9 +1,9 @@
 <div class="container">
   <qtitle></qtitle>
 
-  <label for="inputid" ng-if="model.label" class="control-label">{{model.label}}</label>
+  <label for="inputid" ng-if="label" class="control-label">{{label}}</label>
   <textarea type="text" id="inputid" class="form-control"
-      rows="{{model.rows}}" ng-model="model.value" placeholder="{{model.placeholder}}"></textarea>
+      rows="{{rows}}" ng-model="sectionModel[question.model]" placeholder="{{placeholder}}"></textarea>
 
   <nav-steps></nav-steps>
 </div>
