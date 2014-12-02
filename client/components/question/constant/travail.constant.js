@@ -71,7 +71,7 @@ angular.module('impactApp').constant('travail', [
     model: 'employeur',
     titleDefault: 'Qui est votre employeur ?',
     titleRep: 'Qui est son employeur ?',
-    type: 'text'
+    type: 'employeur'
   },
   {
     model: 'nomPoste',
@@ -98,8 +98,8 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'heures',
-    titleDefault: 'Quellle est votre durée de travail par semaine ?',
-    titleRep: 'Quellle est sa durée de travail par semaine ?',
+    titleDefault: 'Quelle est votre durée de travail par semaine ?',
+    titleRep: 'Quelle est sa durée de travail par semaine ?',
     type: 'text',
     placeholder: 'Durée de travail (en heures/semaine)'
   },

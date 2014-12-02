@@ -42,6 +42,13 @@ angular.module('impactApp')
         else if (questionAnswer.type === 'text') {
           return questionAnswer.title + ' : ' + questionAnswer.answer.value;
         }
+        else if (questionAnswer.type === 'employeur') {
+          return (questionAnswer.title
+            + '<ul><li>' + questionAnswer.answer.value.nom.label + ' : ' + questionAnswer.answer.value.nom.value
+            + '</li><li>' + questionAnswer.answer.value.adresse.label + ' : ' + questionAnswer.answer.value.adresse.value
+            + '</li><li>' + questionAnswer.answer.value.medecin.label + ' : ' + questionAnswer.answer.value.medecin.value
+            + '</li></ul>');
+        }
         return '';
 
       }
@@ -84,7 +91,10 @@ angular.module('impactApp')
         questionAnswer.answer = {};
         questionAnswer.answer.value = answer;
       }
-
+      else if (questionConstant.type === 'employeur') {
+        questionAnswer.answer = {};
+        questionAnswer.answer.value = answer;
+      }
 
       return questionAnswer;
     };
