@@ -1,8 +1,6 @@
-var request = require('superagent'),
-    querystring = require('querystring'),
-    wkhtmltopdf = require('wkhtmltopdf');
-  var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
+var wkhtmltopdf = require('wkhtmltopdf'),
+    nodemailer = require('nodemailer'),
+    smtpTransport = require('nodemailer-smtp-transport');
 
 // Initialization class
 var Mailjet = function(apiKey, secretKey) {

@@ -1,7 +1,6 @@
 'use strict';
 
 var Mailjet = require('../../mailjet/mailjet');
-var Request = require('../request/request.model');
 var Config = require('../../config/local.env');
 var Mdph = require('../mdph/mdph.model');
 
