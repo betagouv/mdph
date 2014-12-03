@@ -160,7 +160,7 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     model: 'structure',
-    type: 'text',
+    type: 'structure',
     titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?'
   },
   {

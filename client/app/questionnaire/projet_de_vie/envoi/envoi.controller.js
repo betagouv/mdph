@@ -49,6 +49,15 @@ angular.module('impactApp')
             + '</li><li>' + questionAnswer.answer.value.medecin.label + ' : ' + questionAnswer.answer.value.medecin.value
             + '</li></ul>');
         }
+        else if (questionAnswer.type === 'structure'){
+          var structureBuilder = questionAnswer.title +'<ul>';
+          for(var i = 0 ; i < questionAnswer.answer.value.structures.length ; i++){
+            structureBuilder += '<li>' + questionAnswer.answer.value.structures[i].name + '</li>';
+          }
+          structureBuilder += '</ul>';
+          return structureBuilder;
+        }
+
         return '';
 
       }
@@ -92,6 +101,10 @@ angular.module('impactApp')
         questionAnswer.answer.value = answer;
       }
       else if (questionConstant.type === 'employeur') {
+        questionAnswer.answer = {};
+        questionAnswer.answer.value = answer;
+      }
+      else if (questionConstant.type === 'structure') {
         questionAnswer.answer = {};
         questionAnswer.answer.value = answer;
       }
