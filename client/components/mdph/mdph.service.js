@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .factory('Mdph', function ($resource) {
     return $resource('/api/mdphs/:id/:controller', {
-      id: '@_id'
+      id: '@id'
     },
     {
       queryAll: {

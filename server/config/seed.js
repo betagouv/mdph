@@ -36,6 +36,7 @@ var deleteMdphs = function(cb) {
 
 var createMdphNord = function(cb) {
   Mdph.create({
+    id: 'nord',
     name: 'Nord',
     zipcode: '59'
   }, function(err, data) {
@@ -47,6 +48,7 @@ var createMdphNord = function(cb) {
 
 var createMdphCalvados = function(cb) {
   Mdph.create({
+    id: 'calvados',
     name: 'Calvados',
     zipcode: '14'
   }, function(err, data) {

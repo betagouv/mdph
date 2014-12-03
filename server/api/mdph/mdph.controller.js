@@ -6,12 +6,18 @@ var User = require('../user/user.model');
 
 // Get all users linked to a single mdph
 exports.showUsers = function(req, res) {
-  User.find({
-    mdph: req.params.id
-  }, function (err, list) {
+  Mdph.find({
+    id: req.params.id
+  }, function (err, mdph) {
     if(err) { return handleError(res, err); }
-    if(!list) { return res.send(404); }
-    return res.json(list);
+    if(!mdph) { return res.send(404); }
+      User.find({
+        mdph: mdph._id
+      }, function (err, list) {
+        if(err) { return handleError(res, err); }
+        if(!list) { return res.send(404); }
+        return res.json(list);
+      });
   });
 };
 
@@ -25,7 +31,9 @@ exports.index = function(req, res) {
 
 // Get a single mdph
 exports.show = function(req, res) {
-  Mdph.findById(req.params.id, function (err, mdph) {
+  Mdph.findOne({
+    id: req.params.id
+  }, function (err, mdph) {
     if(err) { return handleError(res, err); }
     if(!mdph) { return res.send(404); }
     return res.json(mdph);
@@ -43,7 +51,9 @@ exports.create = function(req, res) {
 // Updates an existing mdph in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Mdph.findById(req.params.id, function (err, mdph) {
+  Mdph.findOne({
+    id: req.params.id
+  }, function (err, mdph) {
     if (err) { return handleError(res, err); }
     if(!mdph) { return res.send(404); }
     var updated = _.merge(mdph, req.body);
@@ -56,7 +66,9 @@ exports.update = function(req, res) {
 
 // Deletes a mdph from the DB.
 exports.destroy = function(req, res) {
-  Mdph.findById(req.params.id, function (err, mdph) {
+  Mdph.findOne({
+    id: req.params.id
+  }, function (err, mdph) {
     if(err) { return handleError(res, err); }
     if(!mdph) { return res.send(404); }
     mdph.remove(function(err) {

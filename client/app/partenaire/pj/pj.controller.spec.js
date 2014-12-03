@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('Controller: pj', function () {
 
   // load the service's module

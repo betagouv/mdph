@@ -37,6 +37,7 @@ module.exports = function(app) {
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'dist')));
+    app.use('/nord', express.static(path.join(config.root, 'dist')));
     app.set('appPath', 'dist');
     app.use(morgan('dev'));
   }
