@@ -18,12 +18,13 @@ exports.sendMail = function(req, res, next) {
     return res.status(400).send('No mdph given');
   }
 
-  mailjet.sendContent(
+  var html = req.body.html;
+
+  return mailjet.sendContent(
     req.body.mdph.email,
     'Nouvelle demande',
     req.body.html
   );
-  return res.status(200).send(req.body.mdph.email);
 };
 
 function handleError(res, err) {
