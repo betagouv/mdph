@@ -13,10 +13,6 @@ angular.module('impactApp')
       }
     };
 
-    if (angular.isDefined($scope.sectionModel.condition)) {
-      next();
-    }
-
     $scope.nextStep = function() {
       next();
     };
