@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
 var MdphSchema = new Schema({
   id: { type: String, unique: true },
   name: String,
-  zipcode: String
+  zipcode: String,
+  email: String
 });
 
 module.exports = mongoose.model('Mdph', MdphSchema);

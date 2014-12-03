@@ -26,36 +26,12 @@
         <h3 class="panel-title pull-left">
           Récapitulatif
         </h3>
-        <a class="btn btn-success pull-right" ng-click="">
+        <a class="btn btn-success pull-right" ng-click="envoiDemande()">
           <i class="fa fa-send"></i>
           <span>Envoyer ma demande</span>
         </a>
       </div>
-      <h1>Contexte</h1>
-      <div class="panel-body">
-        <div ng-repeat="(question, answer) in formAnswers.contexte"
-          ng-bind-html="getQuestionAnswerHtml(question, answer, 'contexte')"></div>
-      </div>
-      <h1>Vie quotidienne</h1>
-      <div class="panel-body">
-        <div ng-repeat="(question, answer) in formAnswers.vieQuotidienne"
-          ng-bind-html="getQuestionAnswerHtml(question, answer, 'vieQuotidienne')"></div>
-      </div>
-      <h1>Scolarité</h1>
-      <div class="panel-body">
-        <div ng-repeat="(question, answer) in formAnswers.scolaire"
-          ng-bind-html="getQuestionAnswerHtml(question, answer, 'scolaire')"></div>
-      </div>
-      <h1>Travail</h1>
-      <div class="panel-body">
-        <div ng-repeat="(question, answer) in formAnswers.travail"
-          ng-bind-html="getQuestionAnswerHtml(question, answer, 'travail')"></div>
-      </div>
-      <h1>Aidant familial</h1>
-      <div class="panel-body">
-        <div ng-repeat="(question, answer) in formAnswers.aidant"
-          ng-bind-html="getQuestionAnswerHtml(question, answer, 'aidant')"></div>
-      </div>
+      <div ng-bind-html="answersToHtml()"></div>
     </div>
   </div>
 </div>

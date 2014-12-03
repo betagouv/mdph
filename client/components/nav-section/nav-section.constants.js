@@ -4,12 +4,14 @@
 
 angular.module('impactApp').constant('SectionConstants', [
   {
+    id: 'contexte',
     sref: 'questionnaire.projet_de_vie.informations.representant',
     include: 'questionnaire.projet_de_vie.informations.*',
     fa: 'fa-user',
     label: 'Informations personnelles',
   },
   {
+    id: 'renouvellement',
     sref: 'questionnaire.projet_de_vie.renouvellement.evolution',
     include: 'questionnaire.projet_de_vie.renouvellement.*',
     fa: 'fa-history',
@@ -17,12 +19,14 @@ angular.module('impactApp').constant('SectionConstants', [
     renew: true
   },
   {
+    id: 'vieQuotidienne',
     sref: 'questionnaire.projet_de_vie.vie_quotidienne.situation.vie_famille',
     include: 'questionnaire.projet_de_vie.vie_quotidienne.**',
     fa: 'fa-home',
     label: 'Vie quotidienne'
   },
   {
+    id: 'scolaire',
     sref: 'questionnaire.projet_de_vie.scolarite.situation.condition',
     include: 'questionnaire.projet_de_vie.scolarite.**',
     fa: 'fa-user',
@@ -30,6 +34,7 @@ angular.module('impactApp').constant('SectionConstants', [
     isOptionnal: true
   },
   {
+    id: 'travail',
     sref: 'questionnaire.projet_de_vie.travail.situation_professionnelle.condition',
     include: 'questionnaire.projet_de_vie.travail.**',
     fa: 'fa-briefcase',
@@ -37,6 +42,7 @@ angular.module('impactApp').constant('SectionConstants', [
     isOptionnal: true
   },
   {
+    id: 'aidant',
     sref: 'questionnaire.projet_de_vie.aidant.condition',
     include: 'questionnaire.projet_de_vie.aidant.**',
     fa: 'fa-male',
@@ -44,6 +50,7 @@ angular.module('impactApp').constant('SectionConstants', [
     isOptionnal: true
   },
   {
+    id: 'envoi',
     sref: 'questionnaire.projet_de_vie.envoi',
     include: 'questionnaire.projet_de_vie.envoi',
     fa: 'fa-send',
