@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'MainCtrl',
         resolve: {
           mdph: function() {
-            return null;
+            return {};
           }
         }
       });

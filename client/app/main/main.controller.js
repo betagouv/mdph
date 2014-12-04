@@ -19,7 +19,7 @@ angular.module('impactApp')
     }
 
     $scope.getMdphName = function() {
-      if ($scope.currentMdph) {
+      if ($scope.currentMdph.name) {
         return ' ' + $scope.currentMdph.name;
       }
     };
