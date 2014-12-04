@@ -29,10 +29,10 @@ angular.module('impactApp')
 
     $scope.getCurrentMdph = function(request){
       if (!$sessionStorage.currentMdph || $sessionStorage.currentMdph.name !== 'Nord'){
-        return ('liste_demandes/' + request.shortId + '/' + $scope.getCurrentStep(request).name);
+        return 'liste_demandes/' + request.shortId + '/' + $scope.getCurrentStep(request).name;
       }
       else {
-        return 'settings';
+        return 'liste_demandes/' + request.shortId + '/recapitulatif';
       }
     };
   });
