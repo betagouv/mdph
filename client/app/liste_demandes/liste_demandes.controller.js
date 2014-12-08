@@ -27,7 +27,7 @@ angular.module('impactApp')
       }
     };
 
-    $scope.getCurrentMdph = function(request){
+    $scope.goToRequest = function(request){
       if (!$sessionStorage.currentMdph || $sessionStorage.currentMdph.name !== 'Nord'){
         return 'liste_demandes/' + request.shortId + '/' + $scope.getCurrentStep(request).name;
       }

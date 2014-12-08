@@ -33,7 +33,6 @@ exports.show = function(req, res, next) {
   Request.findOne({
     shortId: req.params.shortId
   })
-  .select('-formAnswers')
   .populate('user mdph')
   .exec(function(err, request) {
     if(err) { return next(err); }
