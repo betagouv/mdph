@@ -16,9 +16,4 @@ angular.module('impactApp')
     $scope.$on('refreshFormStepSection', function () {
       refresh();
     });
-
-    $scope.isCurrentMdph = function(){
-      return (!$sessionStorage.currentMdph || $sessionStorage.currentMdph.name !== 'Nord');
-    };
-
   });

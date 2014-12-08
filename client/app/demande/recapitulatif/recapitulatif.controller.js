@@ -11,4 +11,5 @@ angular.module('impactApp')
   .controller('RecapitulatifCtrl', function($scope, $sessionStorage, $http, $modal, Auth, RecapitulatifService) {
     $scope.formAnswers = $sessionStorage.formAnswers;
     $scope.answersToHtml = RecapitulatifService.answersToHtml;
+    $scope.$parent.hideBanner = true;
   });

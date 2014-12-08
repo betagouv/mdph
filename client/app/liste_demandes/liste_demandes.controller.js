@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ListeDemandesCtrl', function ($scope, $state, RequestService, requests, $sessionStorage) {
+  .controller('ListeDemandesCtrl', function ($scope, $state, RequestService, requests) {
     $scope.updatedAt = RequestService.updatedAt;
 
     $scope.requests = requests;
@@ -28,7 +28,7 @@ angular.module('impactApp')
     };
 
     $scope.goToRequest = function(request){
-      if (!$sessionStorage.currentMdph || $sessionStorage.currentMdph.name !== 'Nord'){
+      if (!request.mdph || request.mdph.id !== 'nord'){
         return 'liste_demandes/' + request.shortId + '/' + $scope.getCurrentStep(request).name;
       }
       else {

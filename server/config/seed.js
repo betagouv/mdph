@@ -289,7 +289,7 @@ var createBobRequest = function(cb) {
   Request.create({
     opened: true,
     user: bob,
-    mdph: mdphCalvados,
+    mdph: mdphNord,
     requestStatus: 'Emise',
     formAnswers: {
       'prestations': {

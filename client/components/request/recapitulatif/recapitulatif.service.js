@@ -108,11 +108,15 @@ angular.module('impactApp')
       answersToHtml: function() {
         var html = '';
         angular.forEach(SectionConstants, function(section) {
+          if (section.id === 'envoi') {
+            return;
+          }
           html += '<h1>' + section.label + '</h1>';
-          debugger;
           var sectionAnswers = $sessionStorage.formAnswers[section.id];
           if (!sectionAnswers) {
             html += '<em>Section non renseignée</em>';
+          } else if (section.id === 'aidant' && !sectionAnswers.condition) {
+            html += '<em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em>';
           } else {
             angular.forEach(sectionAnswers, function(answer, question) {
               var tmpHtml = getQuestionAnswerHtml(question, answer, section.id);
