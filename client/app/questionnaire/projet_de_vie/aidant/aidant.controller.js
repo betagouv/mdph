@@ -12,15 +12,15 @@ angular.module('impactApp')
 
     $scope.subsections = [
       {
-        sref: 'questionnaire.projet_de_vie.aidant.situation.lien',
-        include: 'questionnaire.projet_de_vie.aidant.situation.**',
+        sref: 'departement.questionnaire.projet_de_vie.aidant.situation.lien',
+        include: 'departement.questionnaire.projet_de_vie.aidant.situation.**',
         label: 'Votre situation',
         labelRep: 'Sa situation',
         showAfter: true
       },
       {
-        sref: 'questionnaire.projet_de_vie.aidant.vos_attentes.type_attente',
-        include: 'questionnaire.projet_de_vie.aidant.vos_attentes.**',
+        sref: 'departement.questionnaire.projet_de_vie.aidant.vos_attentes.type_attente',
+        include: 'departement.questionnaire.projet_de_vie.aidant.vos_attentes.**',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
         showBefore: true

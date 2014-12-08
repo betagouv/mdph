@@ -28,7 +28,7 @@ angular.module('impactApp')
       if (answer) {
         $state.go('^.consentement');
       } else {
-        $state.go('^.code_postal');
+        $state.go('^.date_naissance');
       }
     };
   });

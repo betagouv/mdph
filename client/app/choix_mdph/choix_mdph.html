@@ -15,7 +15,10 @@
             <h3>{{region}}</h3>
           </dt>
           <dd ng-repeat="mdph in mdphs | filter:query">
-            {{mdph.nom_du_departement}}
+            <a
+              ui-sref="departement.questionnaire.question_renouvellement({codeDepartement: mdph.code_departement})">
+                {{mdph.nom_du_departement}}
+            </a>
           </dd>
         </dl>
       </div>

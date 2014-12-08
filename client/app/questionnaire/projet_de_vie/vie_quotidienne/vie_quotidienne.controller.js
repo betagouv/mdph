@@ -8,14 +8,14 @@ angular.module('impactApp')
     $scope.subsections = [
       {
         sref: '.situation.vie_famille',
-        include: 'questionnaire.projet_de_vie.vie_quotidienne.situation.**',
+        include: 'departement.questionnaire.projet_de_vie.vie_quotidienne.situation.**',
         label: 'Votre situation',
         labelRep: 'Sa situation',
         showAfter: true
       },
       {
         sref: '.vos_besoins.quotidien',
-        include: 'questionnaire.projet_de_vie.vie_quotidienne.vos_besoins.**',
+        include: 'departement.questionnaire.projet_de_vie.vie_quotidienne.vos_besoins.**',
         label: 'Vos besoins',
         labelRep: 'Ses besoins',
         showBefore: true,
@@ -23,7 +23,7 @@ angular.module('impactApp')
       },
       {
         sref: '.vos_attentes.type_aide',
-        include: 'questionnaire.projet_de_vie.vie_quotidienne.vos_attentes.**',
+        include: 'departement.questionnaire.projet_de_vie.vie_quotidienne.vos_attentes.**',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
         showBefore: true

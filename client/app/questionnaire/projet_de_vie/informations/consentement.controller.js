@@ -7,6 +7,6 @@ angular.module('impactApp')
     $scope.name = FormService.getName($scope.formAnswers);
 
     $scope.nextStep = function() {
-      $state.go('^.code_postal');
+      $state.go('^.date_naissance');
     };
   });

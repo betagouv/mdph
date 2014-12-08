@@ -7,15 +7,15 @@ angular.module('impactApp')
 
     $scope.subsections = [
       {
-        sref: 'questionnaire.projet_de_vie.travail.situation_professionnelle.condition',
-        include: 'questionnaire.projet_de_vie.travail.situation_professionnelle.**',
+        sref: 'departement.questionnaire.projet_de_vie.travail.situation_professionnelle.condition',
+        include: 'departement.questionnaire.projet_de_vie.travail.situation_professionnelle.**',
         label: 'Votre situation professionnelle',
         labelRep: 'Sa situation professionnelle',
         showAfter: true
       },
       {
-        sref: 'questionnaire.projet_de_vie.travail.projet_professionnel.description',
-        include: 'questionnaire.projet_de_vie.travail.projet_professionnel.**',
+        sref: 'departement.questionnaire.projet_de_vie.travail.projet_professionnel.description',
+        include: 'departement.questionnaire.projet_de_vie.travail.projet_professionnel.**',
         label: 'Votre projet professionnel',
         labelRep: 'Ses projet professionnel',
         showBefore: true

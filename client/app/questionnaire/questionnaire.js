@@ -3,13 +3,13 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('questionnaire', {
+      .state('departement.questionnaire', {
         url: '/questionnaire',
         templateUrl: 'app/questionnaire/questionnaire.html',
         controller: 'QuestionnaireCtrl',
         abstract: true
       })
-      .state('questionnaire.question_renouvellement', {
+      .state('departement.questionnaire.question_renouvellement', {
         url: '',
         templateUrl: 'app/questionnaire/question_renouvellement.html'
       });

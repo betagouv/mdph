@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'questionnaire.projet_de_vie.aidant.situation';
+    var index = 'departement.questionnaire.projet_de_vie.aidant.situation';
     $stateProvider.state(index, {
       url: '/situation',
       template: '<ui-view/>',

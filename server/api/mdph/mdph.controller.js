@@ -24,17 +24,24 @@ exports.showUsers = function(req, res) {
 
 // Get list of mdphs
 exports.index = function(req, res) {
-  Mdph.find().sort('zipcode').exec(function(err, mdphs) {
-    if(err) { return handleError(res, err); }
-    return res.json(mdphs);
-  });
+  console.log(req.query.codeDepartement);
+  if (req.query.codeDepartement) {
+    Mdph.findOne({zipcode: req.query.codeDepartement}, function (err, mdph) {
+      if(err) { return handleError(res, err); }
+      if(!mdph) { return res.sendStatus(404); }
+      return res.json(mdph);
+    });
+  } else {
+    Mdph.find().sort('zipcode').exec(function(err, mdphs) {
+      if(err) { return handleError(res, err); }
+      return res.json(mdphs);
+    });
+  }
 };
 
 // Get a single mdph
 exports.show = function(req, res) {
-  Mdph.findOne({
-    id: req.params.id
-  }, function (err, mdph) {
+  Mdph.findOne({id: req.params.id}, function (err, mdph) {
     if(err) { return handleError(res, err); }
     if(!mdph) { return res.sendStatus(404); }
     return res.json(mdph);

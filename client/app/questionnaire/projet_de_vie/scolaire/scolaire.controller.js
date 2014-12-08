@@ -8,14 +8,14 @@ angular.module('impactApp')
     $scope.subsections = [
       {
         sref: '.situation.condition',
-        include: 'questionnaire.projet_de_vie.scolarite.situation.**',
+        include: 'departement.questionnaire.projet_de_vie.scolarite.situation.**',
         label: 'Votre situation',
         labelRep: 'Sa situation',
         showAfter: true
       },
       {
         sref: '.vos_attentes.structure',
-        include: 'questionnaire.projet_de_vie.scolarite.vos_attentes.**',
+        include: 'departement.questionnaire.projet_de_vie.scolarite.vos_attentes.**',
         label: 'Vos attentes',
         labelRep: 'Ses attentes',
         showBefore: true
