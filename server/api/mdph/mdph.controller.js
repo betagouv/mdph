@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Mdph = require('./mdph.model');
 var User = require('../user/user.model');
+var path = require('path');
 
 // Get all users linked to a single mdph
 exports.showUsers = function(req, res) {
@@ -35,7 +36,7 @@ exports.show = function(req, res) {
     id: req.params.id
   }, function (err, mdph) {
     if(err) { return handleError(res, err); }
-    if(!mdph) { return res.send(404); }
+    if(!mdph) { return res.sendStatus(404); }
     return res.json(mdph);
   });
 };
@@ -78,6 +79,11 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.list = function(req, res) {
+  res.status(200).sendFile(path.join(__dirname, '/', 'mdph.json'));
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }
+

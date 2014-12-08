@@ -1,0 +1,600 @@
+[{
+"code_region":"93",
+   "nom_de_la_region":"Provence-Alpes-C\u00f4te d'Azur",
+   "nom_du_departement":"Alpes-de-Haute-Provence",
+   "code_departement":"04"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Aveyron",
+   "code_departement":"12"
+},
+{
+   "code_region":"54",
+   "nom_de_la_region":"Poitou-Charentes",
+   "nom_du_departement":"Charente",
+   "code_departement":"16"
+},
+{
+   "code_region":"54",
+   "nom_de_la_region":"Poitou-Charentes",
+   "nom_du_departement":"Charente-Maritime",
+   "code_departement":"17"
+},
+{
+   "code_region":"26",
+   "nom_de_la_region":"Bourgogne",
+   "nom_du_departement":"C\u00f4te-d'Or",
+   "code_departement":"21"
+},
+{
+   "code_region":"74",
+   "nom_de_la_region":"Limousin",
+   "nom_du_departement":"Creuse",
+   "code_departement":"23"
+},
+{
+   "code_region":"24",
+   "nom_de_la_region":"Centre",
+   "nom_du_departement":"Eure-et-Loir",
+   "code_departement":"28"
+},
+{
+   "code_region":"53",
+   "nom_de_la_region":"Bretagne",
+   "nom_du_departement":"Finist\u00e8re",
+   "code_departement":"29"
+},
+{
+   "code_region":"72",
+   "nom_de_la_region":"Aquitaine",
+   "nom_du_departement":"Gironde",
+   "code_departement":"33"
+},
+{
+   "code_region":"91",
+   "nom_de_la_region":"Languedoc-Roussillon",
+   "nom_du_departement":"H\u00e9rault",
+   "code_departement":"34"
+},
+{
+   "code_region":"24",
+   "nom_de_la_region":"Centre",
+   "nom_du_departement":"Indre-et-Loire",
+   "code_departement":"37"
+},
+{
+   "code_region":"52",
+   "nom_de_la_region":"Pays de la Loire",
+   "nom_du_departement":"Mayenne",
+   "code_departement":"53"
+},
+{
+   "code_region":"53",
+   "nom_de_la_region":"Bretagne",
+   "nom_du_departement":"Morbihan",
+   "code_departement":"56"
+},
+{
+   "code_region":"52",
+   "nom_de_la_region":"Pays de la Loire",
+   "nom_du_departement":"Sarthe",
+   "code_departement":"72"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Haute-Savoie",
+   "code_departement":"74"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Paris",
+   "code_departement":"75"
+},
+{
+   "code_region":"54",
+   "nom_de_la_region":"Poitou-Charentes",
+   "nom_du_departement":"Deux-S\u00e8vres",
+   "code_departement":"79"
+},
+{
+   "code_region":"22",
+   "nom_de_la_region":"Picardie",
+   "nom_du_departement":"Somme",
+   "code_departement":"80"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Val-d'Oise",
+   "code_departement":"95"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Ain",
+   "code_departement":"01"
+},
+{
+   "code_region":"22",
+   "nom_de_la_region":"Picardie",
+   "nom_du_departement":"Aisne",
+   "code_departement":"02"
+},
+{
+   "code_region":"21",
+   "nom_de_la_region":"Champagne-Ardenne",
+   "nom_du_departement":"Ardennes",
+   "code_departement":"08"
+},
+{
+   "code_region":"24",
+   "nom_de_la_region":"Centre",
+   "nom_du_departement":"Cher",
+   "code_departement":"18"
+},
+{
+   "code_region":"53",
+   "nom_de_la_region":"Bretagne",
+   "nom_du_departement":"C\u00f4tes-d'Armor",
+   "code_departement":"22"
+},
+{
+   "code_region":"23",
+   "nom_de_la_region":"Haute-Normandie",
+   "nom_du_departement":"Eure",
+   "code_departement":"27"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Haute-Garonne",
+   "code_departement":"31"
+},
+{
+   "code_region":"24",
+   "nom_de_la_region":"Centre",
+   "nom_du_departement":"Indre",
+   "code_departement":"36"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Loire",
+   "code_departement":"42"
+},
+{
+   "code_region":"91",
+   "nom_de_la_region":"Languedoc-Roussillon",
+   "nom_du_departement":"Loz\u00e8re",
+   "code_departement":"48"
+},
+{
+   "code_region":"21",
+   "nom_de_la_region":"Champagne-Ardenne",
+   "nom_du_departement":"Marne",
+   "code_departement":"51"
+},
+{
+   "code_region":"26",
+   "nom_de_la_region":"Bourgogne",
+   "nom_du_departement":"Ni\u00e8vre",
+   "code_departement":"58"
+},
+{
+   "code_region":"31",
+   "nom_de_la_region":"Nord-Pas-de-Calais",
+   "nom_du_departement":"Nord",
+   "code_departement":"59"
+},
+{
+   "code_region":"22",
+   "nom_de_la_region":"Picardie",
+   "nom_du_departement":"Oise",
+   "code_departement":"60"
+},
+{
+   "code_region":"25",
+   "nom_de_la_region":"Basse-Normandie",
+   "nom_du_departement":"Orne",
+   "code_departement":"61"
+},
+{
+   "code_region":"31",
+   "nom_de_la_region":"Nord-Pas-de-Calais",
+   "nom_du_departement":"Pas-de-Calais",
+   "code_departement":"62"
+},
+{
+   "code_region":"42",
+   "nom_de_la_region":"Alsace",
+   "nom_du_departement":"Bas-Rhin",
+   "code_departement":"67"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Rh\u00f4ne",
+   "code_departement":"69"
+},
+{
+   "code_region":"26",
+   "nom_de_la_region":"Bourgogne",
+   "nom_du_departement":"Sa\u00f4ne-et-Loire",
+   "code_departement":"71"
+},
+{
+   "code_region":"23",
+   "nom_de_la_region":"Haute-Normandie",
+   "nom_du_departement":"Seine-Maritime",
+   "code_departement":"76"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Tarn",
+   "code_departement":"81"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Tarn-et-Garonne",
+   "code_departement":"82"
+},
+{
+   "code_region":"41",
+   "nom_de_la_region":"Lorraine",
+   "nom_du_departement":"Vosges",
+   "code_departement":"88"
+},
+{
+   "code_region":"43",
+   "nom_de_la_region":"Franche-Comt\u00e9",
+   "nom_du_departement":"Territoire de Belfort",
+   "code_departement":"90"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Seine-Saint-Denis",
+   "code_departement":"93"
+},
+{
+   "code_region":"83",
+   "nom_de_la_region":"Auvergne",
+   "nom_du_departement":"Allier",
+   "code_departement":"03"
+},
+{
+   "code_region":"93",
+   "nom_de_la_region":"Provence-Alpes-C\u00f4te d'Azur",
+   "nom_du_departement":"Alpes-Maritimes",
+   "code_departement":"06"
+},
+{
+   "code_region":"21",
+   "nom_de_la_region":"Champagne-Ardenne",
+   "nom_du_departement":"Aube",
+   "code_departement":"10"
+},
+{
+   "code_region":"91",
+   "nom_de_la_region":"Languedoc-Roussillon",
+   "nom_du_departement":"Aude",
+   "code_departement":"11"
+},
+{
+   "code_region":"25",
+   "nom_de_la_region":"Basse-Normandie",
+   "nom_du_departement":"Calvados",
+   "code_departement":"14"
+},
+{
+   "code_region":"74",
+   "nom_de_la_region":"Limousin",
+   "nom_du_departement":"Corr\u00e8ze",
+   "code_departement":"19"
+},
+{
+   "code_region":"94",
+   "nom_de_la_region":"Corse",
+   "nom_du_departement":"Corse-du-Sud",
+   "code_departement":"2A"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Dr\u00f4me",
+   "code_departement":"26"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Gers",
+   "code_departement":"32"
+},
+{
+   "code_region":"24",
+   "nom_de_la_region":"Centre",
+   "nom_du_departement":"Loir-et-Cher",
+   "code_departement":"41"
+},
+{
+   "code_region":"83",
+   "nom_de_la_region":"Auvergne",
+   "nom_du_departement":"Haute-Loire",
+   "code_departement":"43"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Lot",
+   "code_departement":"46"
+},
+{
+   "code_region":"72",
+   "nom_de_la_region":"Aquitaine",
+   "nom_du_departement":"Lot-et-Garonne",
+   "code_departement":"47"
+},
+{
+   "code_region":"41",
+   "nom_de_la_region":"Lorraine",
+   "nom_du_departement":"Moselle",
+   "code_departement":"57"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Hautes-Pyr\u00e9n\u00e9es",
+   "code_departement":"65"
+},
+{
+   "code_region":"42",
+   "nom_de_la_region":"Alsace",
+   "nom_du_departement":"Haut-Rhin",
+   "code_departement":"68"
+},
+{
+   "code_region":"43",
+   "nom_de_la_region":"Franche-Comt\u00e9",
+   "nom_du_departement":"Haute-Sa\u00f4ne",
+   "code_departement":"70"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Savoie",
+   "code_departement":"73"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Yvelines",
+   "code_departement":"78"
+},
+{
+   "code_region":"54",
+   "nom_de_la_region":"Poitou-Charentes",
+   "nom_du_departement":"Vienne",
+   "code_departement":"86"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Hauts-de-Seine",
+   "code_departement":"92"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Val-de-Marne",
+   "code_departement":"94"
+},
+{
+   "code_region":"01",
+   "nom_de_la_region":"Guadeloupe",
+   "nom_du_departement":"Guadeloupe",
+   "code_departement":"971"
+},
+{
+   "code_region":"93",
+   "nom_de_la_region":"Provence-Alpes-C\u00f4te d'Azur",
+   "nom_du_departement":"Hautes-Alpes",
+   "code_departement":"05"
+},
+{
+   "code_region":"73",
+   "nom_de_la_region":"Midi-Pyr\u00e9n\u00e9es",
+   "nom_du_departement":"Ari\u00e8ge",
+   "code_departement":"09"
+},
+{
+   "code_region":"83",
+   "nom_de_la_region":"Auvergne",
+   "nom_du_departement":"Cantal",
+   "code_departement":"15"
+},
+{
+   "code_region":"91",
+   "nom_de_la_region":"Languedoc-Roussillon",
+   "nom_du_departement":"Gard",
+   "code_departement":"30"
+},
+{
+   "code_region":"53",
+   "nom_de_la_region":"Bretagne",
+   "nom_du_departement":"Ille-et-Vilaine",
+   "code_departement":"35"
+},
+{
+   "code_region":"52",
+   "nom_de_la_region":"Pays de la Loire",
+   "nom_du_departement":"Loire-Atlantique",
+   "code_departement":"44"
+},
+{
+   "code_region":"52",
+   "nom_de_la_region":"Pays de la Loire",
+   "nom_du_departement":"Maine-et-Loire",
+   "code_departement":"49"
+},
+{
+   "code_region":"25",
+   "nom_de_la_region":"Basse-Normandie",
+   "nom_du_departement":"Manche",
+   "code_departement":"50"
+},
+{
+   "code_region":"21",
+   "nom_de_la_region":"Champagne-Ardenne",
+   "nom_du_departement":"Haute-Marne",
+   "code_departement":"52"
+},
+{
+   "code_region":"91",
+   "nom_de_la_region":"Languedoc-Roussillon",
+   "nom_du_departement":"Pyr\u00e9n\u00e9es-Orientales",
+   "code_departement":"66"
+},
+{
+   "code_region":"93",
+   "nom_de_la_region":"Provence-Alpes-C\u00f4te d'Azur",
+   "nom_du_departement":"Vaucluse",
+   "code_departement":"84"
+},
+{
+   "code_region":"74",
+   "nom_de_la_region":"Limousin",
+   "nom_du_departement":"Haute-Vienne",
+   "code_departement":"87"
+},
+{
+   "code_region":"26",
+   "nom_de_la_region":"Bourgogne",
+   "nom_du_departement":"Yonne",
+   "code_departement":"89"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Essonne",
+   "code_departement":"91"
+},
+{
+   "code_region":"02",
+   "nom_de_la_region":"Martinique",
+   "nom_du_departement":"Martinique",
+   "code_departement":"972"
+},
+{
+   "code_region":"03",
+   "nom_de_la_region":"Guyane",
+   "nom_du_departement":"Guyane",
+   "code_departement":"973"
+},
+{
+   "code_region":"04",
+   "nom_de_la_region":"La R\u00e9union",
+   "nom_du_departement":"La R\u00e9union",
+   "code_departement":"974"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Ard\u00e8che",
+   "code_departement":"07"
+},
+{
+   "code_region":"93",
+   "nom_de_la_region":"Provence-Alpes-C\u00f4te d'Azur",
+   "nom_du_departement":"Bouches-du-Rh\u00f4ne",
+   "code_departement":"13"
+},
+{
+   "code_region":"94",
+   "nom_de_la_region":"Corse",
+   "nom_du_departement":"Haute-Corse",
+   "code_departement":"2B"
+},
+{
+   "code_region":"72",
+   "nom_de_la_region":"Aquitaine",
+   "nom_du_departement":"Dordogne",
+   "code_departement":"24"
+},
+{
+   "code_region":"43",
+   "nom_de_la_region":"Franche-Comt\u00e9",
+   "nom_du_departement":"Doubs",
+   "code_departement":"25"
+},
+{
+   "code_region":"82",
+   "nom_de_la_region":"Rh\u00f4ne-Alpes",
+   "nom_du_departement":"Is\u00e8re",
+   "code_departement":"38"
+},
+{
+   "code_region":"43",
+   "nom_de_la_region":"Franche-Comt\u00e9",
+   "nom_du_departement":"Jura",
+   "code_departement":"39"
+},
+{
+   "code_region":"72",
+   "nom_de_la_region":"Aquitaine",
+   "nom_du_departement":"Landes",
+   "code_departement":"40"
+},
+{
+   "code_region":"24",
+   "nom_de_la_region":"Centre",
+   "nom_du_departement":"Loiret",
+   "code_departement":"45"
+},
+{
+   "code_region":"41",
+   "nom_de_la_region":"Lorraine",
+   "nom_du_departement":"Meurthe-et-Moselle",
+   "code_departement":"54"
+},
+{
+   "code_region":"41",
+   "nom_de_la_region":"Lorraine",
+   "nom_du_departement":"Meuse",
+   "code_departement":"55"
+},
+{
+   "code_region":"83",
+   "nom_de_la_region":"Auvergne",
+   "nom_du_departement":"Puy-de-D\u00f4me",
+   "code_departement":"63"
+},
+{
+   "code_region":"72",
+   "nom_de_la_region":"Aquitaine",
+   "nom_du_departement":"Pyr\u00e9n\u00e9es-Atlantiques",
+   "code_departement":"64"
+},
+{
+   "code_region":"11",
+   "nom_de_la_region":"Ile-de-France",
+   "nom_du_departement":"Seine-et-Marne",
+   "code_departement":"77"
+},
+{
+   "code_region":"93",
+   "nom_de_la_region":"Provence-Alpes-C\u00f4te d'Azur",
+   "nom_du_departement":"Var",
+   "code_departement":"83"
+},
+{
+   "code_region":"52",
+   "nom_de_la_region":"Pays de la Loire",
+   "nom_du_departement":"Vend\u00e9e",
+   "code_departement":"85"
+}]
