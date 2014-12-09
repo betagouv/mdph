@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, documents, Partenaire, request) {
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, documents, Partenaire, request) {
   	$scope.documents = documents;
   	$scope.documentTypes = [];
     $scope.request = request;
@@ -25,9 +25,16 @@ angular.module('impactApp')
     };
 
     var envoiConfirmation = function(partenaire) {
-      $http.post('api/send-mail/confirmation', 
-        {partenaire: partenaire, html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>'}).then(function() {
-        console.log('mail sent');
+      $http.post('api/send-mail/confirmation',
+        {partenaire: partenaire, html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>'}).success(function() {
+        $modal.open({
+          templateUrl: 'app/partenaire/pj/confirmationModal.html',
+          controller: function($scope, $modalInstance) {
+            $scope.ok = function() {
+              $modalInstance.close();
+            };
+          }
+        });
       });
     };
   });
