@@ -1,61 +1,63 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<ui-view>
+  <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit banner" parallax-vertical-offset="{{getVerticalOffset()}}" parallax-background parallax-ratio="0.5">
-  <div class="container">
-    <h1>{{'Votre demande à la MDPH' + getMdphName()}}</h1>
-    <a class="btn btn-outline-inverse btn-lg" href="{{btnRef}}">
-      {{btnText}}
-    </a>
-    <a class="btn btn-outline-inverse btn-lg" href="{{btnPartenaireRef}}">
-      {{btnPartenaireText}}
-    </a>
-  </div>
-</header>
-
-<div class="features">
-  <div class ="container">
-    <h2>Un suivi en ligne de votre dossier</h2>
-    <div class="row">
-      <div class="col-lg-4">
-        <h1><i class="fa fa-home fa-2x"></i></h1>
-    	  <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
-          Elle peut répondre aux besoins liés à votre handicap.</p>
+  <header class="hero-unit banner" parallax-vertical-offset="{{getVerticalOffset()}}" parallax-background parallax-ratio="0.5">
+    <div class="container">
+      <h1>{{'Votre demande à la MDPH' + getMdphName()}}</h1>
+      <div class="btn btn-outline-inverse btn-lg" ng-click="start()">
+        {{isLoggedIn() ? 'Voir vos demandes' : 'Commencer'}}
       </div>
-      <div class="col-lg-4">
-        <h1><i class="fa fa-comments-o fa-2x"></i></h1>
-        <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise automatiquement votre dossier.</p>
-      </div>
-      <div class="col-lg-4">
-        <h1><i class="fa fa-users fa-2x"></i></h1>
-        <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
-      </div>
+      <a class="btn btn-outline-inverse btn-lg" ui-sref="partenaire">
+        Partenaire ?
+      </a>
     </div>
-  </div>
-</div>
+  </header>
 
-<div ng-hide="false">
-  <div class="liste-prestations">
+  <div class="features">
     <div class ="container">
-      <h1>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h1>
+      <h2>Un suivi en ligne de votre dossier</h2>
       <div class="row">
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Allocation d'éducation de l'enfant handicapé (AEEH)</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Allocation aux adultes handicapées (AAH) et son complément</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Carte d'invalidité/ de priorité/ de stationnement</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Orientation vers un établissement ou service médico-social (ESMS)</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Prestation de compensation du handicap (PCH)</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Renouvellement d'allocation compensatrice (ACTP ou ACFP)</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Projet personnalisé de scolarisation – parcours et aides à la scolarisation</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Orientation professionnelle et/ou formation professionnelle</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Reconnaissance de la qualité de travailleur handicapé (RQTH)</div></div>
-        <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Affiliation gratuite à l'assurance vieillesse des parents au foyer (AVPF)</div></div>
+        <div class="col-lg-4">
+          <h1><i class="fa fa-home fa-2x"></i></h1>
+      	  <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
+            Elle peut répondre aux besoins liés à votre handicap.</p>
+        </div>
+        <div class="col-lg-4">
+          <h1><i class="fa fa-comments-o fa-2x"></i></h1>
+          <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise automatiquement votre dossier.</p>
+        </div>
+        <div class="col-lg-4">
+          <h1><i class="fa fa-users fa-2x"></i></h1>
+          <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<footer class="footer">
-  <div class="container">
-    <p>
-      <a href="mailto:del.florian+impact@gmail.com">Contact</a>
-    </p>
+
+  <div ng-hide="false">
+    <div class="liste-prestations">
+      <div class ="container">
+        <h1>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h1>
+        <div class="row">
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Allocation d'éducation de l'enfant handicapé (AEEH)</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Allocation aux adultes handicapées (AAH) et son complément</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Carte d'invalidité/ de priorité/ de stationnement</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Orientation vers un établissement ou service médico-social (ESMS)</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Prestation de compensation du handicap (PCH)</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Renouvellement d'allocation compensatrice (ACTP ou ACFP)</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Projet personnalisé de scolarisation – parcours et aides à la scolarisation</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Orientation professionnelle et/ou formation professionnelle</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Reconnaissance de la qualité de travailleur handicapé (RQTH)</div></div>
+          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Affiliation gratuite à l'assurance vieillesse des parents au foyer (AVPF)</div></div>
+        </div>
+      </div>
+    </div>
   </div>
-</footer>
+  <footer class="footer">
+    <div class="container">
+      <p>
+        <a href="mailto:del.florian+impact@gmail.com">Contact</a>
+      </p>
+    </div>
+  </footer>
+</ui-view>

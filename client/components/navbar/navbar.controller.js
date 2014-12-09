@@ -13,7 +13,6 @@ angular.module('impactApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.isAdminMdph = Auth.isAdminMdph;
     $scope.getCurrentUser = Auth.getCurrentUser;
-    $scope.isUser = Auth.isUser;
     $scope.$storage = $localStorage;
 
     angular.element(document).ready(function() {
@@ -32,4 +31,23 @@ angular.module('impactApp')
       $sessionStorage.$reset();
       $location.path('/login');
     };
+
+    $scope.getLogoSrc = function() {
+      var assetDir = 'assets/images/';
+      var defaultLogo = 'logo_marianne.png';
+      if ($scope.currentMdph && $scope.currentMdph.$resolved === true) {
+        return assetDir + $scope.currentMdph.logo;
+      } else {
+        return assetDir + defaultLogo;
+      }
+    };
+
+    $scope.getIndexSref = function() {
+      if ($scope.currentMdph && $scope.currentMdph.$resolved === true) {
+        return 'departement({codeDepartement: ' + $scope.currentMdph.zipcode + '})';
+      } else {
+        return 'main';
+      }
+    };
+
   });

@@ -18,8 +18,8 @@
 
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li><a href="/" class="logo"><img src="assets/images/logo_marianne.png"></a></li>
-        <li><a href="/" class="title"><em>Maisons Départementales des Personnes Handicapées</em></a></li>
+        <li><a ui-sref="{{getIndexSref()}}" class="logo" title="Acceuil"><img ng-src="{{getLogoSrc()}}"></a></li>
+        <li><a ui-sref="{{getIndexSref()}}" class="title"><em>Maisons Départementales des Personnes Handicapées</em></a></li>
         <li ng-show="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
       </ul>
 
