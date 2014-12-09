@@ -24,7 +24,6 @@ exports.showUsers = function(req, res) {
 
 // Get list of mdphs
 exports.index = function(req, res) {
-  console.log(req.query.codeDepartement);
   if (req.query.codeDepartement) {
     Mdph.findOne({zipcode: req.query.codeDepartement}, function (err, mdph) {
       if(err) { return handleError(res, err); }
