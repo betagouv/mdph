@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Partenaires en attente</h1>
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="partenaire in partenaires | filter:{certified: 'En attente'}">
+      <div class="row">
+        <div class="col-sm-2">
+          {{partenaire.email}}
+          <br/>
+          <small class="text-muted"><i>{{partenaire.certified}}</i></small>
+        </div>
+        <div class="col-sm-offset-6 col-sm-2">
+          <div class="btn btn-success btn-block" ng-click="certifier(partenaire)">
+            Certifier
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="btn btn-danger btn-block" ng-click="refuser(partenaire)">
+            Refuser
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>Partenaires certifiés</h1>
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="partenaire in partenaires | filter:{certified: 'Certifié'}">
+      <div class="row">
+        <div class="col-sm-2">
+          {{partenaire.email}}
+          <br/>
+          <small class="text-muted"><i>{{partenaire.certified}}</i></small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>Partenaires refusés</h1>
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="partenaire in partenaires | filter:{certified: 'Refusé'}">
+      <div class="row">
+        <div class="col-sm-2">
+          {{partenaire.email}}
+          <br/>
+          <small class="text-muted"><i>{{partenaire.certified}}</i></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

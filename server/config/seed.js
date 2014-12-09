@@ -7,11 +7,18 @@
 
 var User = require('../api/user/user.model');
 var Mdph = require('../api/mdph/mdph.model');
+var Partenaire = require('../api/partenaire/partenaire.model');
 var Request = require('../api/request/request.model');
 var async = require('async');
 
 var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, toto, rox, bobRequest, fooRequest;
 
+var deletePartenaires = function(cb) {
+  Partenaire.find({}).remove(function() {
+    console.log('finished deleting partenaires');
+    cb();
+  });
+};
 
 var deleteUsers = function(cb) {
   User.find({}).remove(function() {
@@ -402,10 +409,41 @@ var createBobRequest = function(cb) {
   });
 };
 
+var createBibi = function(cb) {
+  Partenaire.create({
+    email: 'bibi@bibi.fr',
+    certified: 'En attente'
+  }, function(err, data) {
+    console.log('finished creating user bibi');
+    cb();
+  });
+};
+
+var createBubu = function(cb) {
+  Partenaire.create({
+    email: 'bubu@bubu.fr',
+    certified: 'Certifié'
+  }, function(err, data) {
+    console.log('finished creating user bubu');
+    cb();
+  });
+};
+
+var createBobo = function(cb) {
+  Partenaire.create({
+    email: 'bobo@bobo.fr',
+    certified: 'Refusé'
+  }, function(err, data) {
+    console.log('finished creating user bobo');
+    cb();
+  });
+};
+
 async.series([
   deleteUsers,
   deleteRequests,
   deleteMdphs,
+  deletePartenaires,
 
   createMdphNord,
   createMdphCalvados,
@@ -418,6 +456,10 @@ async.series([
   createAdmin,
   createToto,
   createRox,
+
+  createBibi,
+  createBobo,
+  createBubu,
 
   createBobOldRequest,
   createBobRequest,

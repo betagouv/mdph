@@ -10,7 +10,16 @@
         </div>
 			</div>
 
-      <docs-form request="request" current-step="{id: 'complementaire'}"></docs-form>
+      <form role="form">
+        <docs-form request="request" current-step="{id: 'complementaire'}"></docs-form>
+        <div class="form-group">
+          <label for="inputEmail">E-mail</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="partenaire.email">
+        </div>
+        <button class="btn btn-primary btn-lg" ng-click="createPartenaire(partenaire)">
+          Certifier mon e-mail
+        </button>
+      </form>
 		</div>
 	</div>
 </div>
