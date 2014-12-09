@@ -22,7 +22,26 @@ exports.sendMail = function(req, res, next) {
   return mailjet.sendContent(
     req.body.mdph.email,
     'Nouvelle demande',
-    req.body.html
+    req.body.html,
+    true
+  );
+};
+
+exports.sendConfirmation = function(req, res, next) {
+  if (!req.body.html) {
+    return res.status(400).send('No html given');
+  }
+  if (!req.body.partenaire) {
+    return res.status(400).send('No partenaire given');
+  }
+
+  var html = req.body.html;
+
+  return mailjet.sendContent(
+    req.body.partenaire.email,
+    'Ajout de documents - confirmation',
+    req.body.html,
+    false
   );
 };
 
