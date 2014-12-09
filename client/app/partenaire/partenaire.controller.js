@@ -3,23 +3,20 @@
 angular.module('impactApp')
   .controller('PartenaireCtrl', function ($scope, $location, RequestResource, $state) {
     $scope.shortId = '';
-    $scope.errors = {};
+    $scope.errorMsg = '';
 
     var success = function(request) {
-      $scope.request = request;
-      $state.go('partenaire.pj', {shortId: $scope.shortId});
+      $state.go('partenaire.pj', {shortId: request.shortId});
     };
 
-    var error = function(err) {
-      // TODO
-      console.log(err);
+    var error = function() {
+      $scope.errorMsg = 'Code client incorrect';
     };
 
     $scope.enterShortId = function(form) {
       $scope.submitted = true;
-
       if(form.$valid) {
-        RequestResource.getPartenaire({shortId: $scope.shortId}, success, error);
+        RequestResource.getPartenaire({shortId: form.shortId.$modelValue}, success, error);
       }
     };
   });

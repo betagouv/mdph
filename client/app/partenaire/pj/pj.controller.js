@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, documents, Partenaire) {
+  .controller('PieceJointeCtrl', function ($scope, $http, documents, Partenaire, request) {
   	$scope.documents = documents;
   	$scope.documentTypes = [];
+    $scope.request = request;
 
     $scope.getRequestedDocuments = function(request) {
       if (request && request.steps) {

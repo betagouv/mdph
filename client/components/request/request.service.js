@@ -61,11 +61,11 @@ angular.module('impactApp')
       },
 
       saveNewStep: function(request, step, state, status, next) {
-      	this.saveStatus(request, status);
-        this.saveNewStepAndFiles(request, step, state, [], next);
+        this.saveNewStepAndFiles(request, step, state, [], status, next);
       },
 
-      saveNewStepAndFiles: function(request, step, state, files, next) {
+      saveNewStepAndFiles: function(request, step, state, files, status, next) {
+        this.saveStatus(request, status);
         $http.post('/api/requests/' + request.shortId + '/step', {step: step, state: state, files: files})
         .success(function(data) {
           request.steps.push(data);
@@ -76,7 +76,7 @@ angular.module('impactApp')
 
       saveStatus: function(request, status) {
       	$http.post('/api/requests/' + request.shortId + '/status', {requestStatus: status})
-        .success(function(data) {
+        .success(function() {
         })
         .error(function(err) {
         	$window.alert(err);

@@ -6,6 +6,11 @@ angular.module('impactApp')
       .state('partenaire.pj', {
         url: '/:shortId',
         templateUrl: 'app/partenaire/pj/pj.html',
-        controller: 'PieceJointeCtrl'
+        controller: 'PieceJointeCtrl',
+        resolve: {
+          request: function($stateParams, RequestResource) {
+            return RequestResource.getPartenaire({shortId: $stateParams.shortId});
+          }
+        }
       });
   });

@@ -1,25 +1,23 @@
-<div class="container" ng-if="request">
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-2 col-sm-12">
-      <div id="recapitulatif" class="panel panel-primary">
-			  <div class="panel-heading">Récapitulatif</div>
-			  <div class="panel-body">
-			    <p><strong>Demandeur :</strong> {{request.user.name}}</p>
-			    <p><strong>MDPH :</strong> {{request.mdph.name}}</p>
-			    <p><strong>Demande faite le :</strong> {{request.updatedAt | date : format : timezone}}</p>
-        </div>
-			</div>
-
-      <form role="form">
-        <docs-form request="request" current-step="{id: 'complementaire'}"></docs-form>
-        <div class="form-group">
-          <label for="inputEmail">E-mail</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="partenaire.email">
-        </div>
-        <button class="btn btn-primary btn-lg" ng-click="createPartenaire(partenaire)">
-          Certifier mon e-mail
-        </button>
-      </form>
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-2 col-sm-12">
+    <div id="recapitulatif" class="panel panel-primary">
+		  <div class="panel-heading">Récapitulatif</div>
+		  <div class="panel-body">
+		    <p><strong>Demandeur :</strong> {{request.user.name}}</p>
+		    <p><strong>MDPH :</strong> {{request.mdph.name}}</p>
+		    <p><strong>Demande faite le :</strong> {{request.updatedAt | date : format : timezone}}</p>
+      </div>
 		</div>
+
+    <form role="form">
+      <docs-form request="request" current-step="{id: 'complementaire'}"></docs-form>
+      <div class="form-group">
+        <label for="inputEmail">E-mail</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="partenaire.email">
+      </div>
+      <button class="btn btn-primary btn-lg" ng-click="createPartenaire(partenaire)">
+        Certifier mon e-mail
+      </button>
+    </form>
 	</div>
 </div>
