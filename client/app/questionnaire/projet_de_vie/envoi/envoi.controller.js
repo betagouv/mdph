@@ -19,18 +19,25 @@ angular.module('impactApp')
     $scope.answersToHtml = RecapitulatifService.answersToHtml();
 
     $scope.envoiDemande = function() {
-      $http.post('api/send-mail', {mdph: $scope.formAnswers.contexte.mdph, html: RecapitulatifService.answersToHtml()}).then(function() {
-        console.log('mail sent');
+      $http.post('api/send-mail', {mdph: $scope.currentMdph, html: RecapitulatifService.answersToHtml()}).success(function() {
+        $modal.open({
+          templateUrl: 'app/questionnaire/projet_de_vie/envoi/envoiModal.html',
+          controller: function($scope, $modalInstance) {
+            $scope.ok = function() {
+              $modalInstance.close();
+            };
+          }
+        });
       });
     };
 
     $scope.saveForm = function() {
       if (Auth.isLoggedIn()) {
         RequestService.getCurrent(function(request) {
-          RequestService.saveCurrentForm(request);
+          RequestService.saveCurrentForm(request, $scope.currentMdph);
         });
       } else {
-        $state.go('questionnaire.projet_de_vie.envoi.modal.login');
+        $state.go('departement.questionnaire.projet_de_vie.envoi.modal.login');
       }
     };
 

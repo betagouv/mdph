@@ -12,6 +12,6 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $state.go('questionnaire.projet_de_vie.travail.situation_professionnelle.condition');
+      $state.go('departement.questionnaire.projet_de_vie.travail.situation_professionnelle.condition');
     };
   });

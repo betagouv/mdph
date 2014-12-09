@@ -19,11 +19,19 @@ exports.sendMail = function(req, res, next) {
 
   var html = req.body.html;
 
+  var handleResponse = function(error, success) {
+    if (error) {
+      return handleError(res, error);
+    }
+    return res.status(200).send(success);
+  }
+
   return mailjet.sendContent(
     req.body.mdph.email,
     'Nouvelle demande',
     req.body.html,
-    true
+    true,
+    handleResponse
   );
 };
 
@@ -37,11 +45,19 @@ exports.sendConfirmation = function(req, res, next) {
 
   var html = req.body.html;
 
+  var handleResponse = function(error, success) {
+    if (error) {
+      return handleError(res, error);
+    }
+    return res.status(200).send(success);
+  }
+
   return mailjet.sendContent(
     req.body.partenaire.email,
     'Ajout de documents - confirmation',
     req.body.html,
-    false
+    false,
+    handleResponse
   );
 };
 

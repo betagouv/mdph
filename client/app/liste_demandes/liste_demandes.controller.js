@@ -23,7 +23,7 @@ angular.module('impactApp')
       if (error) {
         // TODO
       } else {
-        $state.go('questionnaire.question_renouvellement');
+        $state.go('departement.questionnaire.question_renouvellement');
       }
     };
 

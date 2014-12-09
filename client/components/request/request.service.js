@@ -20,7 +20,7 @@ angular.module('impactApp')
         });
       },
 
-      saveCurrentForm: function(request) {
+      saveCurrentForm: function(request, mdph) {
         request.steps[0].state = 'complet';
         request.steps.push({
           name: 'obligatoire',
@@ -33,7 +33,7 @@ angular.module('impactApp')
 
         $http.put('/api/requests/' + request.shortId, {
           steps: request.steps,
-          mdph: $sessionStorage.formAnswers.contexte.mdph,
+          mdph: mdph,
           formAnswers: $sessionStorage.formAnswers
         })
         .success(function(data) {

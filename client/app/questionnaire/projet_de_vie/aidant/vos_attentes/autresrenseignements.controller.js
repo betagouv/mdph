@@ -17,6 +17,6 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $state.go('questionnaire.projet_de_vie.envoi');
+      $state.go('departement.questionnaire.projet_de_vie.envoi');
     };
   });

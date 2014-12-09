@@ -11,7 +11,7 @@ var Mailjet = function(apiKey, secretKey) {
 Mailjet.prototype = {};
 
 // Email sending code
-Mailjet.prototype.sendContent = function(to, subject, content, hasAttachments) {
+Mailjet.prototype.sendContent = function(to, subject, content, hasAttachments, cb) {
   var transporter = nodemailer.createTransport(smtpTransport({
       port: 465,
       host: 'in.mailjet.com',
@@ -41,8 +41,10 @@ Mailjet.prototype.sendContent = function(to, subject, content, hasAttachments) {
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
         console.log(error);
+        cb(error, null);
     } else {
         console.log('Message sent: ' + info.response);
+        cb(null, info.response);
     }
   });
 };

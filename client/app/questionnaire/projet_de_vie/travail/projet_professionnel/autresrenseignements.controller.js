@@ -13,6 +13,6 @@ angular.module('impactApp')
     $scope.question = QuestionService.get('travail', 'autresRenseignements', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      $state.go('questionnaire.projet_de_vie.aidant.condition');
+      $state.go('departement.questionnaire.projet_de_vie.aidant.condition');
     };
   });
