@@ -15,7 +15,12 @@ exports.index = function(req, res) {
 // Creates a new partenaire in the DB.
 exports.create = function(req, res) {
   Partenaire.create(req.body, function(err, partenaire) {
-    if(err) { return handleError(res, err); }
+    if(err) { 
+    	if(err.code===11000){
+    		return res.sendStatus(409);
+    	}
+    	return handleError(res, err);
+	}
     return res.status(201).json(partenaire);
   });
 };

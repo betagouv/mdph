@@ -16,6 +16,10 @@ angular.module('impactApp')
 
     $scope.createPartenaire = function (partenaire) {
       var newPartenaire = new Partenaire(partenaire);
-      newPartenaire.$save();
+      newPartenaire.$save(null, function(data){
+        console.log("Youpi !");
+      }, function(error){
+        console.log(error);
+      });
     };
   });
