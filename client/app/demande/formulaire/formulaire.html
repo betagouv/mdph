@@ -1,5 +1,5 @@
 <div class="container">
-  <div id="#quitus" ng-if="prestations">
+  <div id="#quitus" ng-if="prestations.length > 0">
     <h1 class="page-header no-hr">
       Récapitulatif
     </h1>
@@ -19,8 +19,8 @@
     Questionnaire
   </h1>
 
-  <a class="btn btn-primary btn-lg" ui-sref="questionnaire.projet_de_vie.informations.representant">
-    {{currentStep.isFinished ? 'Consultez votre questionnaire' : 'Commencez votre questionnaire'}}
+  <a class="btn btn-primary btn-lg" ui-sref="departement.questionnaire.projet_de_vie.informations.representant({codeDepartement: currentRequest.mdph.zipcode})">
+    Consultez votre questionnaire
   </a>
 
 </div>

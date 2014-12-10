@@ -13,6 +13,17 @@ angular.module('impactApp', [
   'ngScrollSpy',
   //'ngAria'
 ])
+  // Fix compatibility angular bootstrap/angular 1.3
+  .directive('datepickerPopup', function (){
+    return {
+      restrict: 'EAC',
+      require: 'ngModel',
+      link: function(scope, element, attr, controller) {
+        //remove the default formatter from the input directive to prevent conflict
+        controller.$formatters.shift();
+      }
+    };
+  })
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
       .otherwise('/');

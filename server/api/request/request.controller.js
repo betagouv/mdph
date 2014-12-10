@@ -106,23 +106,35 @@ exports.update = function(req, res, next) {
     shortId: req.params.shortId
   }, function(err, request) {
     if (err) return next(err);
+    if (!request) { return res.sendStatus(404)}
 
-    if (request.formAnswers) {
-      return res.send(423);
-    }
-    request.updatedAt = new Date();
-    request.formAnswers = req.body.formAnswers;
-    request.mdph = req.body.mdph._id;
-    request.steps = req.body.steps;
-    request.requestStatus = req.body.requestStatus;
-
-    request.save(function (err) {
+    var updated = _.merge(request, req.body);
+    updated.updatedAt = new Date();
+    updated.save(function (err, data) {
       if (err) { return handleError(res, err); }
-      return res.json(200, request);
+      return res.json(200, data);
     });
   });
 };
 
+/**
+ * Save request
+ */
+exports.save = function(req, res, next) {
+  var request = new Request();
+
+  request.opened = true;
+  request.user = req.user._id;
+  request.updatedAt = new Date();
+  request.formAnswers = req.body.formAnswers;
+  request.mdph = req.body.mdph._id;
+  request.steps = req.body.steps;
+
+  request.save(function(err, data) {
+    if(err) return res.send(500, err);
+    return res.send(200, data);
+  });
+};
 
 /**
  * Fake file upload

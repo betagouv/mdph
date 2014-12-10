@@ -82,7 +82,7 @@ angular.module('impactApp').constant('contexte', [
   },
   {
     model: 'dateNaissance',
-    type: 'text',
+    type: 'date',
     titleDefault: 'Quelle est votre date de naissance ?',
     titleRep: 'Quelle est sa date de naissance ?',
     section: 'contexte'

@@ -1,10 +1,63 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RecapitulatifService', function RecapitulatifService(SectionConstants, QuestionService, $sessionStorage) {
+  .factory('RecapitulatifService', function RecapitulatifService(RequestService, SectionConstants, QuestionService) {
 
-    var getQuestionAnswerHtml = function(question, answer, section) {
-      var questionAnswer = getQuestionAnswer(question, answer, section);
+    var getQuestionAnswer = function(question, answer, sectionId, request) {
+      var answers = request.formAnswers;
+      var questionAnswer = {};
+
+      if (sectionId === 'contexte' && question === 'demandeur') {
+        return 'Détails du demandeur';
+      }
+      var questionConstant = QuestionService.get(sectionId, question, answers);
+      if (!questionConstant) {
+        return;
+      }
+      questionAnswer.title = questionConstant.title;
+      questionAnswer.type = questionConstant.type;
+
+      if (questionConstant.type === 'radio') {
+        angular.forEach(questionConstant.answers, function(answerConstant) {
+          if (answerConstant.value === answer) {
+            questionAnswer.answer = {};
+            questionAnswer.answer.value = answerConstant.label;
+            questionAnswer.answer.detail = getDetailAnswer(sectionId, questionConstant, answerConstant, request);
+          }
+        });
+      }
+      else if (questionConstant.type === 'checkbox') {
+        questionAnswer.answer = [];
+        angular.forEach(questionConstant.answers, function(answerConstant) {
+          if (answer[answerConstant.model]) {
+            var checkboxAnswer = {};
+            checkboxAnswer.value = answerConstant.label;
+            checkboxAnswer.detail = getDetailAnswer(sectionId, questionConstant, answerConstant, request);
+            questionAnswer.answer.push(checkboxAnswer);
+          }
+        });
+      }
+      else if (questionConstant.type === 'text' ||
+          questionConstant.type === 'employeur' ||
+          questionConstant.type === 'structure' ||
+          questionConstant.type === 'date') {
+        questionAnswer.answer = {};
+        questionAnswer.answer.value = answer;
+      }
+
+      return questionAnswer;
+    };
+
+    var getDetailAnswer = function(sectionId, questionConstant, answerConstant, request) {
+      if (answerConstant.detailModel && request.formAnswers[sectionId][answerConstant.detailModel]) {
+        return request.formAnswers[sectionId][answerConstant.detailModel];
+      }
+      return null;
+    };
+
+    var questionToHtml = function(answer, question, sectionId, request) {
+      var questionAnswer = getQuestionAnswer(question, answer, sectionId, request);
+
       if (questionAnswer && questionAnswer.answer) {
         if (questionAnswer.type === 'radio') {
           var radioBuilder = questionAnswer.title + ' : ' + questionAnswer.answer.value;
@@ -14,6 +67,9 @@ angular.module('impactApp')
           return radioBuilder;
         }
         else if (questionAnswer.type === 'checkbox') {
+          if (!questionAnswer.answer || questionAnswer.answer.length === 0) {
+            return '';
+          }
           var checkboxBuilder = questionAnswer.title +'<ul>';
           angular.forEach(questionAnswer.answer, function(checkboxAnswer){
             checkboxBuilder += '<li>' + checkboxAnswer.value + '</li>';
@@ -27,6 +83,9 @@ angular.module('impactApp')
         }
         else if (questionAnswer.type === 'text') {
           return questionAnswer.title + ' : ' + questionAnswer.answer.value;
+        }
+        else if (questionAnswer.type === 'date') {
+          return questionAnswer.title + ' : ' + moment(questionAnswer.answer.value).format('DD/MM/YYYY');
         }
         else if (questionAnswer.type === 'employeur') {
           return (questionAnswer.title +
@@ -48,84 +107,45 @@ angular.module('impactApp')
       return '';
     };
 
-    var getQuestionAnswer = function(question, answer, section) {
-      var questionAnswer = {};
+    var sectionToHtml = function(section, request) {
 
-      if (section === 'contexte' && question === 'demandeur') {
-        return 'Détails du demandeur';
-      }
-      var questionConstant = QuestionService.get(section, question, $sessionStorage.formAnswers);
-      if (!questionConstant) {
-        return;
-      }
-      questionAnswer.title = questionConstant.title;
-      questionAnswer.type = questionConstant.type;
-
-      if (questionConstant.type === 'radio') {
-        angular.forEach(questionConstant.answers, function(answerConstant) {
-          if (answerConstant.value === answer) {
-            questionAnswer.answer = {};
-            questionAnswer.answer.value = answerConstant.label;
-            questionAnswer.answer.detail = getDetailAnswer(section, questionConstant, answerConstant);
-          }
-        });
-      }
-      else if (questionConstant.type === 'checkbox') {
-        questionAnswer.answer = [];
-        angular.forEach(questionConstant.answers, function(answerConstant) {
-          if (answer[answerConstant.model]) {
-            var checkboxAnswer = {};
-            checkboxAnswer.value = answerConstant.label;
-            checkboxAnswer.detail = getDetailAnswer(section, questionConstant, answerConstant);
-            questionAnswer.answer.push(checkboxAnswer);
-          }
-        });
-      }
-      else if (questionConstant.type === 'text') {
-        questionAnswer.answer = {};
-        questionAnswer.answer.value = answer;
-      }
-      else if (questionConstant.type === 'employeur') {
-        questionAnswer.answer = {};
-        questionAnswer.answer.value = answer;
-      }
-      else if (questionConstant.type === 'structure') {
-        questionAnswer.answer = {};
-        questionAnswer.answer.value = answer;
+      if (section.id === 'envoi') {
+        return '';
       }
 
-      return questionAnswer;
-    };
-
-    var getDetailAnswer = function(section, questionConstant, answerConstant) {
-      if (answerConstant.detailModel && $sessionStorage.formAnswers[section][answerConstant.detailModel]) {
-        return $sessionStorage.formAnswers[section][answerConstant.detailModel];
+      if (section.id === 'renouvellement' && !request.estRenouvellement) {
+        return '';
       }
-      return null;
+
+      var answers = request.formAnswers;
+
+      var html = '<h1>' + section.label + '</h1>';
+      var sectionAnswers = answers[section.id];
+
+      if (!sectionAnswers) {
+        return html + '<em>Section non renseignée</em>';
+      }
+
+      if (section.id === 'aidant' && !sectionAnswers.condition) {
+        return html + '<em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em>';
+      }
+
+      angular.forEach(sectionAnswers, function(answer, question) {
+        var questionHtml = questionToHtml(answer, question, section.id, request);
+        if (questionHtml) {
+          html += questionToHtml(answer, question, section.id, request) + '<br>';
+        }
+      });
+
+      return html;
     };
 
     return {
       answersToHtml: function() {
+        var request = RequestService.getCurrent();
         var html = '';
         angular.forEach(SectionConstants, function(section) {
-          if (section.id === 'envoi') {
-            return;
-          }
-          html += '<h1>' + section.label + '</h1>';
-          var sectionAnswers = $sessionStorage.formAnswers[section.id];
-          if (!sectionAnswers) {
-            html += '<em>Section non renseignée</em>';
-          } else if (section.id === 'aidant' && !sectionAnswers.condition) {
-            html += '<em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em>';
-          } else {
-            angular.forEach(sectionAnswers, function(answer, question) {
-              var tmpHtml = getQuestionAnswerHtml(question, answer, section.id);
-              if (tmpHtml.length > 0) {
-                html += tmpHtml;
-                html += '<br>';
-              }
-            });
-          }
+          html += sectionToHtml(section, request);
         });
         return html;
       }

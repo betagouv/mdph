@@ -46,7 +46,7 @@ var createMdphNord = function(cb) {
     id: 'nord',
     name: 'Nord',
     zipcode: '59',
-    email: 'rri@octo.com',
+    email: 'fde@octo.com',
     logo: 'logo59.jpg'
   }, function(err, data) {
     mdphNord = data;
@@ -60,7 +60,7 @@ var createMdphCalvados = function(cb) {
     id: 'calvados',
     name: 'Calvados',
     zipcode: '14',
-    email: 'rri@octo.com',
+    email: 'fde@octo.com',
     logo: 'logo14.jpg'
   }, function(err, data) {
     mdphCalvados = data;

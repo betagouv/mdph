@@ -2,8 +2,14 @@
 
 angular.module('impactApp')
   .factory('RequestService', function RequestService(isAdult, $sessionStorage, $http, $state, $window, Auth, User, RequestResource) {
+    var currentRequest = null;
+    if ($sessionStorage.currentRequest) {
+      currentRequest = new RequestResource($sessionStorage.currentRequest);
+    }
+
     return {
       createRequest: function(next) {
+        var self = this;
         $http.post('/api/users/me/requests', {
           steps: [
             {
@@ -12,7 +18,7 @@ angular.module('impactApp')
             }
           ]})
         .success(function(data) {
-          $sessionStorage.currentRequest = data;
+          self.setCurrent(data);
           next(null, data);
         })
         .error(function(err) {
@@ -20,9 +26,17 @@ angular.module('impactApp')
         });
       },
 
-      saveCurrentForm: function(request, mdph) {
-        request.steps[0].state = 'complet';
-        request.steps.push({
+      saveCurrent: function(rootScope) {
+        if (!currentRequest) {
+          console.err('No current request');
+          return;
+        }
+
+        currentRequest.steps = [{ name: 'questionnaire', state: 'en_cours' }];
+
+        /**
+        TODO Mettre dans le backoffice, valider l'etape questionnaire
+        self.currentRequest.steps.push({
           name: 'obligatoire',
           state: 'en_cours',
           files: [
@@ -30,23 +44,21 @@ angular.module('impactApp')
             { name: 'carteIdentite', state: 'demande' }
           ]
         });
+        **/
 
-        $http.put('/api/requests/' + request.shortId, {
-          steps: request.steps,
-          mdph: mdph,
-          formAnswers: $sessionStorage.formAnswers
-        })
-        .success(function(data) {
-          $sessionStorage.currentRequest = data;
-          $state.go('liste_demandes.demande.obligatoire', {id: data._id, step: 'obligatoire'});
-        })
-        .error(function(err) {
-          if (err === 'Locked') {
-            $window.alert('Vous avez déjà enregistré un questionnaire sur ce compte.');
-          } else {
-            $window.alert(err);
-          }
-        });
+        var success = function() {
+          rootScope.broadCast('requestSaved');
+        };
+
+        var error = function(err) {
+          $window.alert(err.data);
+        };
+
+        if (currentRequest._id) {
+          currentRequest.$update(success, error);
+        } else {
+          currentRequest.$save(success, error);
+        }
       },
 
       saveStepState: function(request, step, state, next) {
@@ -94,12 +106,16 @@ angular.module('impactApp')
         });
       },
 
+      setCurrent: function(request) {
+        currentRequest = $sessionStorage.currentRequest = request;
+      },
+
       getCurrent: function(next) {
-        var current = $sessionStorage.currentRequest;
-        if (next) {
-          return next(current);
-        }
-        return current;
+        return next ? next(currentRequest) : currentRequest;
+      },
+
+      setCurrentMdph: function(mdph) {
+        currentRequest.mdph = mdph;
       },
 
       getCurrentStep: function(request) {

@@ -1,8 +1,18 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DepartementCtrl', function ($scope, $state, Auth, mdph, $sessionStorage) {
+  .controller('DepartementCtrl', function ($scope, $state, Auth, mdph, RequestService, $sessionStorage, RequestResource) {
     $scope.isLoggedIn = Auth.isLoggedIn;
+
+    $scope.currentRequest = RequestService.getCurrent();
+
+    if (!$scope.currentRequest) {
+      $scope.currentRequest = new RequestResource();
+      $scope.currentRequest.formAnswers = {};
+      RequestService.setCurrent($scope.currentRequest);
+    }
+
+    RequestService.setCurrentMdph(mdph);
     $scope.currentMdph = mdph;
 
     $scope.start = function() {

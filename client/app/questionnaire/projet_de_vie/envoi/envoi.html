@@ -9,7 +9,7 @@
     <h1>Merci d'avoir rempli votre dossier</h1>
   </div>
 
-  <div ng-if="currentMdph.id !== 'nord'" id="#quitus">
+  <div ng-if="currentMdph.id !== 'nord' && prestations.length > 0" id="#quitus">
     <p class="lead">
       Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.<br>
       Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
@@ -23,13 +23,13 @@
       <h3 class="panel-title pull-left">
         Récapitulatif
       </h3>
-      <a class="btn btn-success pull-right" ng-click="envoiDemande()">
+      <a class="btn btn-success pull-right" ng-click="saveCurrent()">
         <i class="fa fa-send"></i>
         <span>Envoyer ma demande</span>
       </a>
     </div>
     <div class="panel-body">
-      <div ng-bind-html="answersToHtml"></div>
+      <div ng-bind-html="answersToHtml()"></div>
     </div>
   </div>
 </div>

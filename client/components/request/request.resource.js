@@ -6,6 +6,9 @@ angular.module('impactApp')
       shortId: '@shortId'
     },
     {
+      update: {
+        method: 'PUT'
+      },
       updateStep: {
         method: 'PUT',
         params: {

@@ -52,6 +52,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'logement',
     titleDefault: 'Où logez-vous ?',
     titleRep: 'Où loge-t-<%= pronoun %> ?',
+    type: 'radio',
     answers: [
       {
         labelDefault: 'Vous avez un logement indépendant',

@@ -17,19 +17,14 @@ angular.module('impactApp')
         }
       }).state(index + '.modal', {
         abstract: true,
-        onEnter: function($modal, $state, $window, RequestService) {
+        onEnter: function($rootScope, $modal, $state, $window, RequestService) {
           $modal.open({
             template: '<div ui-view="modal"></div>',
             backdrop: true,
             windowClass: 'right fade',
             controller: 'ModalLoginCtrl'
           }).result.then(function() {
-            RequestService.createRequest(function(err, request) {
-              if (err) {
-                $window.alert(err);
-              }
-              RequestService.saveCurrentForm(request);
-            });
+              RequestService.saveCurrent($rootScope);
           }, function() {
             $state.go('liste_demandes');
           });
