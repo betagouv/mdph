@@ -54,7 +54,7 @@ exports.sendConfirmation = function(req, res, next) {
 
   return mailjet.sendContent(
     req.body.partenaire.email,
-    'Ajout de documents - confirmation',
+    req.body.subject,
     req.body.html,
     false,
     handleResponse
