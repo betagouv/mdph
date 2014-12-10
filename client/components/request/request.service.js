@@ -114,6 +114,10 @@ angular.module('impactApp')
         return next ? next(currentRequest) : currentRequest;
       },
 
+      resetCurrent: function() {
+        this.setCurrent(null);
+      },
+
       setCurrentMdph: function(mdph) {
         currentRequest.mdph = mdph;
       },
