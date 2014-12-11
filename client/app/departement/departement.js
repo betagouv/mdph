@@ -8,8 +8,14 @@ angular.module('impactApp')
         templateUrl: 'app/main/main.html',
         controller: 'DepartementCtrl',
         resolve: {
-          mdph: function(Mdph, $stateParams) {
-            return Mdph.get({codeDepartement: $stateParams.codeDepartement});
+          mdph: function(Mdph, $stateParams, $state) {
+            return Mdph.get({codeDepartement: $stateParams.codeDepartement},
+              function(data) {
+                return data;
+              },
+              function() {
+                $state.go('choix_mdph');
+            });
           }
         }
       });
