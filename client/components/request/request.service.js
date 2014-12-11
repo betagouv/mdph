@@ -98,7 +98,7 @@ angular.module('impactApp')
 
       resetCurrent: function(cb) {
         this.setCurrent(null);
-        cb();
+        if (cb) { cb(); }
       },
 
       setCurrentMdph: function(mdph) {
