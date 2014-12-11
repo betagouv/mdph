@@ -1,7 +1,9 @@
 <ui-view>
   <div ng-include="'components/navbar/navbar.html'"></div>
 
-  <header class="hero-unit banner" parallax-vertical-offset="{{getVerticalOffset()}}" parallax-background parallax-ratio="0.5">
+  <header
+    class="hero-unit banner"
+    ng-class="getMdphBgClass()">
     <div class="container">
       <h1>{{'Votre demande à la MDPH' + getMdphName()}}</h1>
       <div class="btn btn-outline-inverse btn-lg" ng-click="isLoggedIn() ? listeDemande() : start()">

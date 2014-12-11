@@ -20,4 +20,8 @@ angular.module('impactApp')
     $scope.getVerticalOffset = function() {
       return $sessionStorage.hideIntro ? '-925' : '-948';
     };
+
+    $scope.getMdphBgClass = function() {
+      return 'bg';
+    };
   });

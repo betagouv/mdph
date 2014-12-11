@@ -20,14 +20,24 @@
   .hero-unit {
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: 50% -900px;
-    background-image: url('../assets/images/grass.jpg');
     position: relative;
     height: 330px;
 
     h1 {
       margin-top: 0.67em;
     }
+  }
+
+  .bg {
+    background-image: url('../assets/images/grass.jpg');
+  }
+
+  .bg59 {
+    background-image: url('../assets/images/saint_amand.jpg');
+  }
+
+  .bg14 {
+    background-image: url('../assets/images/arromanches.jpg');
   }
 }
 
