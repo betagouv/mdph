@@ -2,6 +2,9 @@
 
 angular.module('impactApp')
   .controller('DepartementCtrl', function ($scope, $state, Auth, mdph, RequestService, $sessionStorage) {
+    if (!mdph.id) {
+      $state.go('choix_mdph');
+    }
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.currentMdph = mdph;
 
