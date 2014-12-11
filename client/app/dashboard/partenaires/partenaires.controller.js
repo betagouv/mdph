@@ -6,13 +6,16 @@ angular.module('impactApp')
 
     $scope.certifier = function(partenaire) {
       partenaire.certified = 'Certifié';
-      Partenaire.$update({id: partenaire._id}, partenaire);
-      envoiNotification(partenaire);
+      updatePartenaire(partenaire);
     };
 
     $scope.refuser = function(partenaire) {
       partenaire.certified = 'Refusé';
-      Partenaire.$update({id: partenaire._id}, partenaire);
+      updatePartenaire(partenaire);
+    };
+
+    var updatePartenaire = function(partenaire) {
+      Partenaire.update({id: partenaire._id}, partenaire);
       envoiNotification(partenaire);
     };
 
@@ -25,7 +28,5 @@ angular.module('impactApp')
         {partenaire: partenaire, html: notification, subject: 'Notification de certification'}).success(function() {
 
       });
-
     };
-
   });
