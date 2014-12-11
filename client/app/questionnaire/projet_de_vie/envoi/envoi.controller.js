@@ -37,6 +37,8 @@ angular.module('impactApp')
               $state.go('liste_demandes.demande.obligatoire', {id: $scope.getCurrentRequest()._id, step: 'obligatoire'});
             };
           }
+        }).error(function(data) {
+          console.err(data);
         });
       });
     });

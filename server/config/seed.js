@@ -46,7 +46,7 @@ var createMdphNord = function(cb) {
     id: 'nord',
     name: 'Nord',
     zipcode: '59',
-    email: 'fde@octo.com',
+    email: 'rri@octo.com',
     logo: 'logo59.jpg'
   }, function(err, data) {
     mdphNord = data;
@@ -60,7 +60,7 @@ var createMdphCalvados = function(cb) {
     id: 'calvados',
     name: 'Calvados',
     zipcode: '14',
-    email: 'fde@octo.com',
+    email: 'rri@octo.com',
     logo: 'logo14.jpg'
   }, function(err, data) {
     mdphCalvados = data;
@@ -409,29 +409,39 @@ var createBobRequest = function(cb) {
   });
 };
 
-var createBibi = function(cb) {
+var createMarc = function(cb) {
   Partenaire.create({
-    email: 'bibi@bibi.fr',
+    email: 'marc@marc.fr',
     certified: 'En attente'
   }, function(err, data) {
-    console.log('finished creating user bibi');
+    console.log('finished creating user marc');
     cb();
   });
 };
 
-var createBubu = function(cb) {
+var createAnne = function(cb) {
   Partenaire.create({
-    email: 'bubu@bubu.fr',
+    email: 'anne@anne.fr',
+    certified: 'En attente'
+  }, function(err, data) {
+    console.log('finished creating user anne');
+    cb();
+  });
+};
+
+var createLeo = function(cb) {
+  Partenaire.create({
+    email: 'leo@leo.fr',
     certified: 'Certifié'
   }, function(err, data) {
-    console.log('finished creating user bubu');
+    console.log('finished creating user leo');
     cb();
   });
 };
 
-var createBobo = function(cb) {
+var createJean = function(cb) {
   Partenaire.create({
-    email: 'bobo@bobo.fr',
+    email: 'jean@jean.fr',
     certified: 'Refusé'
   }, function(err, data) {
     console.log('finished creating user bobo');
@@ -457,9 +467,10 @@ async.series([
   createToto,
   createRox,
 
-  createBibi,
-  createBobo,
-  createBubu,
+  createMarc,
+  createAnne,
+  createLeo,
+  createJean,
 
   createBobOldRequest,
   createBobRequest,

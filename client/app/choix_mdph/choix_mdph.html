@@ -16,7 +16,7 @@
           </dt>
           <dd ng-repeat="mdph in mdphs | filter:query">
             <a
-              ui-sref="departement.questionnaire.question_renouvellement({codeDepartement: mdph.code_departement})">
+              ng-click="resetCurrentRequest(mdph)">
                 {{mdph.nom_du_departement}}
             </a>
           </dd>

@@ -8,24 +8,6 @@ angular.module('impactApp')
     }
 
     return {
-      createRequest: function(next) {
-        var self = this;
-        $http.post('/api/users/me/requests', {
-          steps: [
-            {
-              name: 'questionnaire',
-              state: 'en_cours'
-            }
-          ]})
-        .success(function(data) {
-          self.setCurrent(data);
-          next(null, data);
-        })
-        .error(function(err) {
-          next(err);
-        });
-      },
-
       saveCurrent: function(rootScope) {
         if (!currentRequest) {
           console.err('No current request');
@@ -47,11 +29,11 @@ angular.module('impactApp')
         **/
 
         var success = function() {
-          rootScope.broadCast('requestSaved');
+          rootScope.$broadcast('requestSaved');
         };
 
         var error = function(err) {
-          $window.alert(err.data);
+          $window.alert(err.data.message);
         };
 
         if (currentRequest._id) {
@@ -114,8 +96,9 @@ angular.module('impactApp')
         return next ? next(currentRequest) : currentRequest;
       },
 
-      resetCurrent: function() {
+      resetCurrent: function(cb) {
         this.setCurrent(null);
+        cb();
       },
 
       setCurrentMdph: function(mdph) {

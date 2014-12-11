@@ -67,22 +67,6 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Create a new request for user
- */
-exports.createRequest = function(req, res) {
-  var request = new Request({
-    user: req.user._id,
-    updatedAt: new Date(),
-    steps: req.body.steps,
-    opened: true
-  });
-  request.save(function(err, request) {
-    if(err) return res.send(500, err);
-    return res.send(200, request);
-  });
-};
-
-/**
  * Get user requests
  */
 exports.showUserRequests = function(req, res, next) {
@@ -107,6 +91,8 @@ exports.update = function(req, res, next) {
   }, function(err, request) {
     if (err) return next(err);
     if (!request) { return res.sendStatus(404)}
+    if (req.body.mdph) { delete req.body.mdph}
+    if (req.body.user) { delete req.body.user}
 
     var updated = _.merge(request, req.body);
     updated.updatedAt = new Date();

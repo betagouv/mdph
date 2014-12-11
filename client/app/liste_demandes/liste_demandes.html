@@ -3,7 +3,7 @@
 <ui-view>
   <div class="container">
     <h1>Vos demandes</h1>
-    <div class="btn btn-primary" ng-click="createRequest(onRequestCreated)">Nouvelle demande</div>
+    <a class="btn btn-primary" title="Nouvelle demande" ui-sref="choix_mdph">Nouvelle demande</a>
     <hr>
     <div ng-if="requests.length === 0">
       <em>Pas de demandes</em>
