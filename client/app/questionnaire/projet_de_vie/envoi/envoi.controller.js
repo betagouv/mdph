@@ -21,14 +21,15 @@ angular.module('impactApp')
 
     $scope.saveCurrent = function() {
       if (Auth.isLoggedIn()) {
-        RequestService.saveCurrent($rootScope);
+        RequestService.saveCurrent($scope);
       } else {
         $state.go('departement.questionnaire.projet_de_vie.envoi.modal.login');
       }
     };
 
-    $rootScope.$on('requestSaved', function () {
-      $http.post('api/send-mail', {mdph: $scope.currentMdph, html: RecapitulatifService.answersToHtml()}).success(function() {
+    $scope.$on('requestSaved', function () {
+      $http.post('api/send-mail', {mdph: $scope.currentMdph, html: RecapitulatifService.answersToHtml()}).success(function(data) {
+        console.log(data);
         $modal.open({
           templateUrl: 'app/questionnaire/projet_de_vie/envoi/envoiModal.html',
           controller: function($scope, $modalInstance) {

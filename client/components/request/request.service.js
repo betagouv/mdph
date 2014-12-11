@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RequestService', function RequestService(isAdult, $sessionStorage, $http, $state, $window, Auth, User, RequestResource) {
+  .factory('RequestService', function RequestService(isAdult, $timeout, $sessionStorage, $http, $state, $window, Auth, User, RequestResource) {
     var currentRequest = null;
     if ($sessionStorage.currentRequest) {
       currentRequest = new RequestResource($sessionStorage.currentRequest);
     }
 
     return {
-      saveCurrent: function(rootScope) {
+      saveCurrent: function(scope) {
         if (!currentRequest) {
           console.err('No current request');
           return;
@@ -29,7 +29,9 @@ angular.module('impactApp')
         **/
 
         var success = function() {
-          rootScope.$broadcast('requestSaved');
+          $timeout(function() {
+            scope.$broadcast('requestSaved');
+          }, 100);
         };
 
         var error = function(err) {
