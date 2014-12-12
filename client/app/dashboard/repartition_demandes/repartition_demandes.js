@@ -8,8 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/repartition_demandes/repartition_demandes.html',
         controller: 'RepartitionDemandesCtrl',
         resolve: {
-          requests: function(RequestResource) {
-            return RequestResource.query({opened: true}).$promise;
+          users: function(Auth) {
+            return Auth.getAllUsers();
           }
         },
         authenticate: true
