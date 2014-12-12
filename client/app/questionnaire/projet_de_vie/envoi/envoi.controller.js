@@ -28,7 +28,7 @@ angular.module('impactApp')
     };
 
     $scope.$on('requestSaved', function () {
-      $http.post('api/send-mail', {mdph: $scope.currentMdph, html: RecapitulatifService.answersToHtml()}).success(function(data) {
+      $http.post('api/send-mail', {mdph: $scope.currentMdph, user: Auth.getCurrentUser(), html: RecapitulatifService.answersToHtml()}).success(function(data) {
         console.log(data);
         $modal.open({
           templateUrl: 'app/questionnaire/projet_de_vie/envoi/envoiModal.html',

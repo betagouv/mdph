@@ -27,7 +27,7 @@ exports.sendMail = function(req, res, next) {
   }
 
   return mailjet.sendContent(
-    req.body.mdph.email,
+    [req.body.mdph.email, req.body.user.email],
     'Nouvelle demande',
     req.body.html,
     true,

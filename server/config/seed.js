@@ -139,7 +139,7 @@ var createRox = function(cb) {
   User.create({
     provider: 'local',
     name: 'Rox',
-    email: 'rox@rox.com',
+    email: 'rricci@octo.com',
     password: 'rox',
     requests: []
   }, function(err, data) {
