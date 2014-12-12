@@ -12,7 +12,14 @@
       </div>
     </div>
     <div class="col-md-9">
-      <div ui-view></div>
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="request in requests" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({shortId: request.shortId})" ng-class="{'sent': request.requestStatus=='Emise', 'admissible': request.requestStatus=='Recevable', 'complete': request.requestStatus=='Complète'}">
+          <i class="fa fa-1x fa-folder"></i>
+          {{request.user.name}}
+          <br/>
+          <small class="text-muted"><i>{{request.updatedAt | date : format : timezone}}</i></small>
+        </a>
+      </div>
     </div>
   </div>
 </div>

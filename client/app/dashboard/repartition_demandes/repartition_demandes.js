@@ -10,6 +10,9 @@ angular.module('impactApp')
         resolve: {
           users: function(Auth) {
             return Auth.getAllUsers();
+          },
+          requests: function(RequestResource) {
+            return RequestResource.query({opened: true}).$promise;
           }
         },
         authenticate: true
