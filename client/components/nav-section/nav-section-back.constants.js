@@ -26,5 +26,11 @@ angular.module('impactApp').constant('SectionBackConstants', [
     include: 'dashboard.partenaires.**',
     fa: 'fa-briefcase',
     label: 'Gestion des partenaires'
+  },
+  {
+    sref: 'dashboard.repartition_demandes',
+    include: 'dashboard.repartition_demandes.**',
+    fa: 'fa-pie-chart',
+    label: 'Répartition des demandes'
   }
 ]);
