@@ -11,7 +11,7 @@ var Partenaire = require('../api/partenaire/partenaire.model');
 var Request = require('../api/request/request.model');
 var async = require('async');
 
-var mdphNord, mdphCalvados, admin, foo, bar, alice, bob, toto, rox, bobRequest, fooRequest;
+var mdphNord, mdphCalvados, admin, foo, nord, bar, alice, bob, toto, rox, bobRequest, fooRequest;
 
 var deletePartenaires = function(cb) {
   Partenaire.find({}).remove(function() {
@@ -69,13 +69,28 @@ var createMdphCalvados = function(cb) {
   });
 };
 
-var createBar = function(cb) {
+var createAdminNord = function(cb) {
   User.create({
     provider: 'local',
     role: 'adminMdph',
     name: 'Nord',
     email: 'nord@nord.com',
     password: 'nord',
+    mdph: mdphNord
+  }, function(err, data) {
+    nord = data;
+    console.log('finished creating user nord');
+    cb();
+  });
+};
+
+var createAdminBar = function(cb) {
+  User.create({
+    provider: 'local',
+    role: 'adminMdph',
+    name: 'Bar',
+    email: 'bar@bar.com',
+    password: 'bar',
     mdph: mdphNord
   }, function(err, data) {
     bar = data;
@@ -459,7 +474,8 @@ async.series([
   createMdphCalvados,
 
   createFoo,
-  createBar,
+  createAdminNord,
+  createAdminBar,
   createAlice,
   createBob,
   createFlo,
