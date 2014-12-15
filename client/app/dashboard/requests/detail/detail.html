@@ -21,7 +21,7 @@
 	</div>
 	<div class="col-lg-1 col-xs-1 archived">
 		<h1><i class="fa fa-folder-o"></i></h1>
-	</div> 
+	</div>
 </div>
 
 <div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
@@ -32,8 +32,8 @@
 	    <a class="btn btn-danger pull-right" ng-click="delete(request)">
 	      <i class="glyphicon glyphicon-trash"></i>
 	      <span>Supprimer</span>
-		</a>
-	    <br><small>Dernière modification {{updatedAt(request)}}</small>	
+		  </a>
+	    <br><small>Dernière modification {{updatedAt(request)}}</small>
 	</div>
 </div>
 <div id="formCard">

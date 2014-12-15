@@ -12,8 +12,16 @@ var User = require('../user/user.model');
  * Get list of requests
  */
 exports.index = function(req, res) {
-  if (req.query && req.query.opened) {
-    Request.find({opened: req.query.opened, mdph: req.user.mdph})
+  if (req.query) {
+    var search = {};
+    if (req.query.opened) {
+      search.opened = req.query.opened;
+    }
+    if (req.query.evaluator) {
+      search.evaluator = undefined;
+    }
+    search.mdph =  req.user.mdph;
+    Request.find(search)
       .select('shortId user mdph steps requestStatus updatedAt')
       .populate('user mdph', '-password -salt')
       .exec(function(err, requests) {
@@ -86,10 +94,19 @@ exports.showUserRequests = function(req, res, next) {
  * Update request
  */
 exports.update = function(req, res, next) {
-  Request.update({ shortId: req.params.shortId }, req.body, {}, function(err, request) {
-    if (err) return next(err);
-    if (!request) { return res.sendStatus(404) }
-    return res.json(200, request);
+  if (req.body.user) {
+    req.body.user = req.body.user._id;
+  }
+  if (req.body.mdph) {
+    req.body.mdph = req.body.mdph._id;
+  }
+  if (req.body.evaluator) {
+    req.body.evaluator = req.body.evaluator._id;
+  }
+  Request.update({ shortId: req.params.shortId }, req.body, {}, function(err) {
+    if (err) {
+      return next(err);
+    }
   });
 };
 
