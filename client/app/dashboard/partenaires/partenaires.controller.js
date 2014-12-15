@@ -15,7 +15,7 @@ angular.module('impactApp')
     };
 
     var updatePartenaire = function(partenaire) {
-      Partenaire.update({id: partenaire._id}, partenaire);
+      partenaire.$update({id: partenaire._id});
       envoiNotification(partenaire);
     };
 

@@ -15,7 +15,7 @@ exports.index = function(req, res) {
   if (req.query && req.query.opened) {
     Request.find({opened: req.query.opened, mdph: req.user.mdph})
       .select('shortId user mdph steps requestStatus updatedAt')
-      .populate('user mdph')
+      .populate('user mdph', '-password -salt')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
         res.json(200, requests);
@@ -33,7 +33,7 @@ exports.show = function(req, res, next) {
   Request.findOne({
     shortId: req.params.shortId
   })
-  .populate('user mdph')
+  .populate('user mdph', '-password -salt')
   .exec(function(err, request) {
     if(err) { return next(err); }
     if(!request) { return res.send(404); }
@@ -46,7 +46,7 @@ exports.showPartenaire = function(req, res, next) {
   Request.findOne({
     shortId: req.params.shortId
   })
-  .populate('user mdph')
+  .populate('user mdph', '-password -salt')
   .exec(function(err, request) {
     if(err) { return next(err); }
     if(!request) { return res.send(404); }
@@ -86,20 +86,10 @@ exports.showUserRequests = function(req, res, next) {
  * Update request
  */
 exports.update = function(req, res, next) {
-  Request.findOne({
-    shortId: req.params.shortId
-  }, function(err, request) {
+  Request.update({ shortId: req.params.shortId }, req.body, {}, function(err, request) {
     if (err) return next(err);
-    if (!request) { return res.sendStatus(404)}
-    if (req.body.mdph) { delete req.body.mdph}
-    if (req.body.user) { delete req.body.user}
-
-    var updated = _.merge(request, req.body);
-    updated.updatedAt = new Date();
-    updated.save(function (err, data) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, data);
-    });
+    if (!request) { return res.sendStatus(404) }
+    return res.json(200, request);
   });
 };
 

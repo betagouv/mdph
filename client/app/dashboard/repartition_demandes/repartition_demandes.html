@@ -13,12 +13,21 @@
     </div>
     <div class="col-md-9">
       <div class="list-group">
-        <a class="list-group-item" ng-repeat="request in requests" ui-sref-active="active-soft" ui-sref="dashboard.requests.detail({shortId: request.shortId})" ng-class="{'sent': request.requestStatus=='Emise', 'admissible': request.requestStatus=='Recevable', 'complete': request.requestStatus=='Complète'}">
-          <i class="fa fa-1x fa-folder"></i>
-          {{request.user.name}}
-          <br/>
-          <small class="text-muted"><i>{{request.updatedAt | date : format : timezone}}</i></small>
-        </a>
+        <div class="list-group-item" ng-repeat="request in requests" ng-class="{'sent': request.requestStatus=='Emise', 'admissible': request.requestStatus=='Recevable', 'complete': request.requestStatus=='Complète'}">
+          <div class="row">
+            <div class="col-sm-2">
+              <i class="fa fa-1x fa-folder"></i>
+              {{request.user.name}}
+              <br/>
+              <small class="text-muted"><i>{{request.updatedAt | date : format : timezone}}</i></small>
+            </div>
+            <div class="col-sm-offset-7 col-sm-3">
+              <div class="btn btn-primary btn-block" ng-click="traiterDemande(request)">
+                Traiter cette demande
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

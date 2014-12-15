@@ -12,7 +12,7 @@ angular.module('impactApp')
             return Auth.getAllUsers();
           },
           requests: function(RequestResource) {
-            return RequestResource.query({opened: true}).$promise;
+            return RequestResource.query({opened: true, evaluator: undefined}).$promise;
           }
         },
         authenticate: true

@@ -17,10 +17,11 @@ var StepSchema = new Schema({
 });
 
 var RequestSchema = new Schema({
-  shortId:      { type: String, unique: true, 'default': shortId.generate }, 
+  shortId:      { type: String, unique: true, 'default': shortId.generate },
   formAnswers:  Schema.Types.Mixed,
   user:         { type: Schema.Types.ObjectId, ref: 'User' },
   mdph:         { type: Schema.Types.ObjectId, ref: 'Mdph' },
+  evaluator:    { type: Schema.Types.ObjectId, ref: 'User' },
   updatedAt:    { type: Date },
   steps:        [ StepSchema ],
   opened:       { type: Boolean },
