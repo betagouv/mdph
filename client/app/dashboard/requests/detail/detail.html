@@ -25,29 +25,30 @@
 </div>
 
 <div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
-	<div class="panel-heading clearfix">
-		<h3 class="panel-title pull-left">
-	      {{request.user.name}}
-	    </h3>
-	    <a class="btn btn-danger pull-right" ng-click="delete(request)">
-	      <i class="glyphicon glyphicon-trash"></i>
-	      <span>Supprimer</span>
-		  </a>
-	    <br><small>Dernière modification {{updatedAt(request)}}</small>
-	</div>
+  <div class="panel-heading clearfix">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="panel-title">
+          {{request.user.name}}
+        </div>
+        <small class="pull-left">Dernière modification {{updatedAt(request)}}</small>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="formCard">
-	<div class="panel panel-default">
-		<div class="row no-spacing">
-		  <div class="nav-section-col col-sm-2" ng-repeat="(idx, step) in request.steps">
-		    <a ui-sref="{{step | stepSrefFilter}}"
-		      ng-class="{showBefore: idx > 0, showAfter: idx < request.steps.length}"
-		      tooltip="{{section.tooltip}}"
-		      ui-sref-active="active">
-		      <span>{{step | stepFilter}}</span>
-		    </a>
-		  </div>
-		</div>
-		<div ui-view></div>
-	</div>
+  <div class="panel panel-default">
+    <div class="row no-spacing">
+      <div class="nav-section-col col-sm-2" ng-repeat="(idx, step) in request.steps">
+        <a ui-sref="{{step | stepSrefFilter}}"
+          ng-class="{showBefore: idx > 0, showAfter: idx < request.steps.length}"
+          tooltip="{{section.tooltip}}"
+          ui-sref-active="active">
+          <span>{{step | stepFilter}}</span>
+        </a>
+      </div>
+    </div>
+    <div ui-view></div>
+  </div>
 </div>
+

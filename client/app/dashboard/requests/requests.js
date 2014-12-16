@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'RequestsCtrl',
         resolve: {
           requests: function(RequestResource) {
-            return RequestResource.query({opened: true}).$promise;
+            return RequestResource.query({opened: true, evaluator: false}).$promise;
           }
         },
         authenticate: true

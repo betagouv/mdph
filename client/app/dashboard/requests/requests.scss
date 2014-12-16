@@ -32,7 +32,7 @@ a.list-group-item {
 	}
 	.panel-group {
 		margin-bottom: 0;
-	} 
+	}
 }
 
 .workflow {
@@ -67,4 +67,15 @@ a.list-group-item {
 
 .panel-complete > .panel-heading + .panel-collapse > .panel-body {
 	border-top-color: #fbf79e;
+}
+
+.request-searchbox {
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+  .panel {
+    box-shadow: none;
+  }
+  .panel-title {
+    color: #777;
+  }
 }

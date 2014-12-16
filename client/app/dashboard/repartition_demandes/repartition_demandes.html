@@ -1,43 +1,13 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="list-group">
-        <div class="list-group-item searchbox">
-          <a class="sidebar" ui-sref="dashboard.repartition_demandes.evaluateur({id: currentUser._id})">
-            Mes demandes
-          </a>
-        </div>
-        <div class="list-group-item searchbox">
-          <input class="form-control" type="text" ng-model="query" placeholder="Recherche">
-          </input>
-        </div>
-        <a class="list-group-item" ng-repeat="user in users | filter:query" ui-sref-active="active" ui-sref="dashboard.users.detail({id: user._id})">
-          {{user.name}}
-        </a>
-      </div>
-    </div>
-    <div class="col-md-9">
-      <div ui-view>
-        <div class="list-group">
-          <div class="list-group-item" ng-repeat="request in requests" ng-class="{'sent': request.requestStatus=='Emise', 'admissible': request.requestStatus=='Recevable', 'complete': request.requestStatus=='Complète'}">
-            <div class="row">
-              <div class="col-sm-2">
-                <i class="fa fa-1x fa-folder"></i>
-                {{request.user.name}}
-                <br/>
-                <small class="text-muted"><i>{{request.updatedAt | date : format : timezone}}</i></small>
-              </div>
-              <div class="col-sm-offset-7 col-sm-3">
-                <div class="btn btn-primary btn-block" ng-click="traiterDemande(request, $index)" ng-if="!demandeTraitee[$index]">
-                  Assigner cette demande
-                </div>
-                <div class="btn btn-success btn-block" ng-if="demandeTraitee[$index]">
-                  <i class="fa fa-thumbs-up"></i>
-                  <span>Demande assignée</span>
-                </div>
-              </div>
-            </div>
-          </div>
+  <h1>Mes demandes</h1>
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="userRequest in userRequests" ng-class="{'sent': userRequest.requestStatus=='Emise', 'admissible': userRequest.requestStatus=='Recevable', 'complete': userRequest.requestStatus=='Complète'}">
+      <div class="row">
+        <div class="col-sm-2">
+          <i class="fa fa-1x fa-folder"></i>
+          {{userRequest.user.name}}
+          <br/>
+          <small class="text-muted"><i>{{userRequest.updatedAt | date : format : timezone}}</i></small>
         </div>
       </div>
     </div>

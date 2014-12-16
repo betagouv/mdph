@@ -3,23 +3,17 @@
 /* jshint multistr: true */
 
 angular.module('impactApp').constant('SectionBackConstants', [
+    {
+    sref: 'dashboard.repartition_demandes',
+    include: 'dashboard.repartition_demandes.**',
+    fa: 'fa-pie-chart',
+    label: 'Mes demandes'
+  },
   {
     sref: 'dashboard.requests',
     include: 'dashboard.requests.**',
     fa: 'fa-folder',
     label: 'Demandes en cours',
-  },
-  {
-    sref: 'dashboard.users',
-    include: 'dashboard.users.**',
-    fa: 'fa-user',
-    label: 'Gestion des utilisateurs'
-  },
-  {
-    sref: 'dashboard.relances',
-    include: 'dashboard.relances.**',
-    fa: 'fa-envelope',
-    label: 'Relances'
   },
   {
     sref: 'dashboard.partenaires',
@@ -28,9 +22,9 @@ angular.module('impactApp').constant('SectionBackConstants', [
     label: 'Gestion des partenaires'
   },
   {
-    sref: 'dashboard.repartition_demandes',
-    include: 'dashboard.repartition_demandes.**',
-    fa: 'fa-pie-chart',
-    label: 'Répartition des demandes'
+    sref: 'dashboard.users',
+    include: 'dashboard.users.**',
+    fa: 'fa-user',
+    label: 'Gestion des utilisateurs'
   }
 ]);

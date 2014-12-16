@@ -1,15 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RepartitionDemandesCtrl', function ($scope, users, requests, RequestResource, Auth) {
-    $scope.users = users;
-    $scope.requests = _.sortBy(requests, $scope.updatedAt);
-    $scope.demandeTraitee = [];
-    $scope.currentUser = Auth.getCurrentUser();
-
-    $scope.traiterDemande = function (request, $index) {
-      request.evaluator = $scope.currentUser;
-      request.$update({id: request.shortId});
-      $scope.demandeTraitee[$index] = true;
-    };
+  .controller('RepartitionDemandesCtrl', function ($scope, user, userRequests) {
+    $scope.user = user;
+    $scope.userRequests = _.sortBy(userRequests, $scope.updatedAt);
   });

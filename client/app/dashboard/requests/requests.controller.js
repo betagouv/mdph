@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestsCtrl', function ($scope, $http, $state, RequestStepService, RequestService, requestSteps, requests) {
-    $scope.requests = requests;
+  .controller('RequestsCtrl', function ($scope, $http, $state, RequestStepService, RequestService, requestSteps, requests, Auth) {
+
+    $scope.requests = _.sortBy(requests, $scope.updatedAt);
+    $scope.demandeTraitee = [];
+    $scope.currentUser = Auth.getCurrentUser();
     $scope.updatedAt = RequestService.updatedAt;
 
     $scope.delete = function(request) {
@@ -47,6 +50,12 @@ angular.module('impactApp')
       }
 
       return true;
+    };
+
+    $scope.traiterDemande = function (request, $index) {
+      request.evaluator = $scope.currentUser;
+      request.$update({id: request.shortId});
+      $scope.demandeTraitee[$index] = true;
     };
 
   });
