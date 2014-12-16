@@ -5,9 +5,10 @@ angular.module('impactApp')
     $scope.users = users;
     $scope.requests = _.sortBy(requests, $scope.updatedAt);
     $scope.demandeTraitee = [];
+    $scope.currentUser = Auth.getCurrentUser();
 
     $scope.traiterDemande = function (request, $index) {
-      request.evaluator = Auth.getCurrentUser();
+      request.evaluator = $scope.currentUser;
       request.$update({id: request.shortId});
       $scope.demandeTraitee[$index] = true;
     };
