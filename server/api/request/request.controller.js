@@ -18,10 +18,11 @@ exports.index = function(req, res) {
       search.opened = req.query.opened;
     }
     if (req.query.evaluator) {
-      search.evaluator = undefined;
-    }
-    if (req.query.hasevaluator) {
-      search.evaluator = req.query.hasevaluator;
+      if (req.query.evaluator === 'null') {
+        search.evaluator = undefined;
+      } else {
+        search.evaluator = req.query.evaluator;
+      }
     }
 
     search.mdph =  req.user.mdph;
