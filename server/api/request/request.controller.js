@@ -20,6 +20,10 @@ exports.index = function(req, res) {
     if (req.query.evaluator) {
       search.evaluator = undefined;
     }
+    if (req.query.hasevaluator) {
+      search.evaluator = req.query.hasevaluator;
+    }
+
     search.mdph =  req.user.mdph;
     Request.find(search)
       .select('shortId user mdph steps requestStatus updatedAt')

@@ -12,7 +12,11 @@ angular.module('impactApp')
             return $http.get('/api/users/' + $stateParams.id).then(function(user) {
               return user.data;
             });
+          },
+          userRequests: function(RequestResource, $stateParams) {
+            return RequestResource.query({opened: true, hasevaluator: $stateParams.id}).$promise;
           }
-        }
+        },
+        authenticate: true
       });
   });
