@@ -3,17 +3,17 @@
 /* jshint multistr: true */
 
 angular.module('impactApp').constant('SectionBackConstants', [
-    {
-    sref: 'dashboard.repartition_demandes',
-    include: 'dashboard.repartition_demandes.**',
-    fa: 'fa-pie-chart',
-    label: 'Mes demandes'
-  },
   {
     sref: 'dashboard.requests',
     include: 'dashboard.requests.**',
     fa: 'fa-folder',
     label: 'Demandes en cours',
+  },
+  {
+    sref: 'dashboard.repartition_demandes',
+    include: 'dashboard.repartition_demandes.**',
+    fa: 'fa-pie-chart',
+    label: 'Mes demandes'
   },
   {
     sref: 'dashboard.partenaires',

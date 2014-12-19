@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-lg-5 col-md-5 col-xs-8">
+    <div ng-if="request.requestStatus==='Emise'">
+      <h1 class="no-hr text-danger">Demande émise</h1>
+    </div>
+    <div ng-if="request.requestStatus==='Recevable'">
+      <h1 class="no-hr text-warning">Demande recevable</h1>
+    </div>
+    <div ng-if="request.requestStatus==='Complète'">
+      <h1 class="no-hr text-complete">Demande complète</h1>
+    </div>
+  </div>
+  <div class="col-lg-1 col-xs-1  col-xs-offset-3 sent">
+    <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Emise', 'fa-folder-o': request.requestStatus!='Emise'}"></i></h1>
+  </div>
+  <div class="col-lg-1 col-xs-1 admissible">
+    <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Recevable', 'fa-folder-o': request.requestStatus!='Recevable'}"></i></h1>
+  </div>
+  <div class="col-lg-1 col-xs-1 complete">
+    <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Complète', 'fa-folder-o': request.requestStatus!='Complète'}"></i></h1>
+  </div>
+  <div class="col-lg-1 col-xs-1 archived">
+    <h1><i class="fa fa-folder-o"></i></h1>
+  </div>
+</div>
+<div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
+  <div class="panel-heading clearfix">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="panel-title">
+          {{request.user.name}}
+        </div>
+        <small class="pull-left">Dernière modification {{updatedAt(request)}}</small>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="formCard">
+  <div class="panel panel-default panel-body">
+    <div id="questionnaire">
+      <h2>Quitus</h2>
+      <ul>
+        <li ng-repeat="prestation in prestations">
+          {{prestation.label}}
+        </li>
+      </ul>
+    </div>
+    <div ng-if="request.mdph.name!='Nord'">
+      <div id="obligatoire" ng-if="request.steps.length >= 2">
+        <h2>
+          Pièces obligatoires
+        </h2>
+        <file-state request="request" current-step-name="'obligatoire'" next-step-name="'preevaluation'" next-status="'Recevable'"></file-state>
+      </div>
+      <div id="preevaluation" ng-if="request.steps.length >= 3">
+        <h2>Préevaluation</h2>
+        <small class="text-muted-primary">{{files.length}} documents demandés</small>
+        <div class="list-group">
+          <div class="list-group-item" ng-if="files.length === 0">
+            <div class="backoffice-pj">
+              <em>Aucun document sélectionné, utilisez l'outil ci-dessous pour ajouter des pièces justificatives à la demande.</em>
+            </div>
+          </div>
+          <div class="list-group-item" ng-repeat="(idx, file) in files">
+            <div class="backoffice-pj" ng-if="requestStep.state === 'valide'">
+              {{file.name | documentFilter}}
+            </div>
+            <div class="backoffice-pj selectable" ng-if="requestStep.state === 'en_cours'" ng-click="removeFile(idx)">
+              <i class="fa fa-muted fa-minus"></i> {{file.name | documentFilter}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 col-sm-offset-10">
+            <a class="btn btn-success btn-block" ng-if="files.length !== 0 && requestStep.state === 'en_cours'" ng-click="saveStep()">
+              <i class="fa fa-check"></i> Enregistrer
+            </a>
+          </div>
+        </div>
+        <div ng-if="requestStep.state === 'en_cours'">
+          <hr>
+          <document-search form="form" callback="addFile"></document-search>
+        </div>
+      </div>
+      <div id="complementaire" ng-if="request.steps.length >= 4">
+        <h2>
+          Pièces complémentaires
+        </h2>
+        <file-state request="request" current-step-name="'complementaire'" next-step-name="'evaluation'" next-status="'Complète'"></file-state>
+      </div>
+      <div id="evaluation" ng-if="request.steps.length >= 5">
+        <h2>
+          Evaluation
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
