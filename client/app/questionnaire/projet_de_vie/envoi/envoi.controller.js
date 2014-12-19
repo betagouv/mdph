@@ -17,7 +17,7 @@ angular.module('impactApp')
     $scope.prestations = DroitService.compute($scope.formAnswers, prestations);
     $scope.showAdult = FormService.isAdult($scope.formAnswers);
     $scope.answersToHtml = RecapitulatifService.answersToHtml;
-    $scope.getCurrentRequest = RequestService.getCurrent;
+    $scope.currentRequest = RequestService.getCurrent()._id;
 
     $scope.saveCurrent = function() {
       if (Auth.isLoggedIn()) {
@@ -35,7 +35,7 @@ angular.module('impactApp')
           controller: function($scope, $modalInstance) {
             $scope.ok = function() {
               $modalInstance.close();
-              $state.go('liste_demandes.demande.obligatoire', {id: $scope.getCurrentRequest()._id, step: 'obligatoire'});
+              $state.go('liste_demandes.demande.obligatoire', {id: RequestService.getCurrent()._id, step: 'obligatoire'});
             };
           }
         }).error(function(data) {

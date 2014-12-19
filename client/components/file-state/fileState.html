@@ -1,5 +1,5 @@
-<div class="panel-body">
-  <div ng-repeat="file in files" ng-mouseleave="showButtons = false" ng-mouseover="showButtons = true">
+<div class="list-group">
+  <div ng-repeat="file in files" ng-mouseleave="showButtons = false" ng-mouseover="showButtons = true" class="list-group-item">
     <div class="row backoffice-pj">
       <div class="col-md-8" ng-if="file.state === 'demande' ">
         {{file.name | documentFilter}}

@@ -14,11 +14,9 @@ angular.module('impactApp')
           return;
         }
 
-        currentRequest.steps = [{ name: 'questionnaire', state: 'en_cours' }];
+        currentRequest.steps = [{ name: 'questionnaire', state: 'complet' }];
 
-        /**
-        TODO Mettre dans le backoffice, valider l'etape questionnaire
-        self.currentRequest.steps.push({
+        currentRequest.steps.push({
           name: 'obligatoire',
           state: 'en_cours',
           files: [
@@ -26,7 +24,6 @@ angular.module('impactApp')
             { name: 'carteIdentite', state: 'demande' }
           ]
         });
-        **/
 
         var success = function() {
           $timeout(function() {
@@ -65,8 +62,8 @@ angular.module('impactApp')
         $http.post('/api/requests/' + request.shortId + '/step', {step: step, state: state, files: files})
         .success(function(data) {
           request.steps.push(data);
-          $state.go('^.' + step);
-          if (next) { next(); }
+/*          $state.go('^.' + step);
+          if (next) { next(); }*/
         });
       },
 

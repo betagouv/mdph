@@ -1,25 +1,25 @@
 <div class="container">
-  <div class="list-group">
-    <div class="list-group-item request-searchbox">
-      <div class="input-group">
-        <input class="form-control" type="text" ng-model="query" placeholder="Recherche">
-        </input>
-        <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
-      </div>
-      <accordion close-others="oneAtATime" class="filtre-accordeon">
-        <accordion-group heading="Filtrer" is-open="false">
-          <div class="filters small">
-            <span class="checkbox" ng-repeat="filter in availableFilters">
-              <label>
-                <input type="checkbox" ng-model="selectedFilters[filter.id]"> {{filter.label}}
-              </label>
-            </span>
-          </div>
-        </accordion-group>
-      </accordion>
-    </div>
-  </div>
   <div ui-view>
+    <div class="list-group">
+      <div class="list-group-item request-searchbox">
+        <div class="input-group">
+          <input class="form-control" type="text" ng-model="query" placeholder="Recherche">
+          </input>
+          <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
+        </div>
+        <accordion close-others="oneAtATime" class="filtre-accordeon">
+          <accordion-group heading="Filtrer" is-open="false">
+            <div class="filters small">
+              <span class="checkbox" ng-repeat="filter in availableFilters">
+                <label>
+                  <input type="checkbox" ng-model="selectedFilters[filter.id]"> {{filter.label}}
+                </label>
+              </span>
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
+    </div>
    <div class="list-group">
       <div class="list-group-item" ng-repeat="request in requests | filter:filtres" ng-class="{'sent': request.requestStatus=='Emise', 'admissible': request.requestStatus=='Recevable', 'complete': request.requestStatus=='Complète'}">
         <div class="row">
