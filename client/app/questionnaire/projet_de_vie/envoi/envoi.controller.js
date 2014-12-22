@@ -32,10 +32,19 @@ angular.module('impactApp')
         console.log(data);
         $modal.open({
           templateUrl: 'app/questionnaire/projet_de_vie/envoi/envoiModal.html',
-          controller: function($scope, $modalInstance) {
+          resolve: {
+            currentMdph: function() {
+              return $scope.currentMdph.name;
+            }
+          },
+          controller: function($scope, $modalInstance, currentMdph) {
             $scope.ok = function() {
               $modalInstance.close();
-              $state.go('liste_demandes.demande.obligatoire', {id: RequestService.getCurrent()._id, step: 'obligatoire'});
+              if(currentMdph==='Nord'){
+                $state.go('liste_demandes.demande.recapitulatif', {shortId: RequestService.getCurrent().shortId});
+              } else {
+                $state.go('liste_demandes.demande.obligatoire', {shortId: RequestService.getCurrent().shortId, step: 'obligatoire'});
+              }
             };
           }
         }).error(function(data) {
