@@ -11,12 +11,12 @@ exports.showUsers = function(req, res) {
     id: req.params.id
   }, function (err, mdph) {
     if(err) { return handleError(res, err); }
-    if(!mdph) { return res.send(404); }
+    if(!mdph) { return res.sendStatus(404); }
       User.find({
         mdph: mdph._id
       }, function (err, list) {
         if(err) { return handleError(res, err); }
-        if(!list) { return res.send(404); }
+        if(!list) { return res.sendStatus(404); }
         return res.json(list);
       });
   });
@@ -62,7 +62,7 @@ exports.update = function(req, res) {
     id: req.params.id
   }, function (err, mdph) {
     if (err) { return handleError(res, err); }
-    if(!mdph) { return res.send(404); }
+    if(!mdph) { return res.sendStatus(404); }
     var updated = _.merge(mdph, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
@@ -77,10 +77,10 @@ exports.destroy = function(req, res) {
     id: req.params.id
   }, function (err, mdph) {
     if(err) { return handleError(res, err); }
-    if(!mdph) { return res.send(404); }
+    if(!mdph) { return res.sendStatus(404); }
     mdph.remove(function(err) {
       if(err) { return handleError(res, err); }
-      return res.send(204);
+      return res.sendStatus(204);
     });
   });
 };
@@ -90,6 +90,6 @@ exports.list = function(req, res) {
 };
 
 function handleError(res, err) {
-  return res.send(500, err);
+  return res.sendStatus(500, err);
 }
 
