@@ -1,24 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, documents, Partenaire, request) {
-  	$scope.documents = documents;
-  	$scope.documentTypes = [];
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, Partenaire, request) {
     $scope.request = request;
-
-    $scope.getRequestedDocuments = function(request) {
-      if (request && request.steps) {
-        var stepsByName = _.indexBy(request.steps, 'name');
-        if (stepsByName.complementaire) {
-          return stepsByName.complementaire.files;
-        }
-      }
-    };
 
     $scope.createPartenaire = function (partenaire) {
       var newPartenaire = new Partenaire(partenaire);
-      newPartenaire.$save(null, function(data){
-      }, function(error){
+      newPartenaire.$save(null, function(){
+      }, function(){
         //TODO
       });
       envoiConfirmation(partenaire);

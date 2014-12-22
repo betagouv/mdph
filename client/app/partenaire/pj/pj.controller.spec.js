@@ -4,15 +4,25 @@ describe('Controller: pj', function () {
 
   // load the service's module
   beforeEach(module('impactApp'));
-  var $scope;
 
-  beforeEach(inject(function($rootScope, $controller) {
-    $scope = $rootScope.$new();
-    $controller('PieceJointeCtrl', {$scope: $scope});
-  }));
+  it('should render initial data', function () {
+    //given
+    var scope = {};
+    var request = [{
+          shortId: 'AAAA'
+        }];
 
-  it('should render the right document list types', function() {
-    expect($scope.documentTypes.length).toBe(6);
+    //when
+    inject(function($controller){
+      $controller('PieceJointeCtrl', {
+        $scope: scope,
+        request: request
+      });
+    });
+
+    //then
+    expect(scope.request.length).toBe(1);
+
   });
 
 });

@@ -56,13 +56,13 @@ describe('Controller: request', function () {
     var scope = {};
     var requests= [
       {
-        user: {name: "toto"}
+        user: {name: 'toto'}
       },
       {
-        user: {name: "alice"}
+        user: {name: 'alice'}
       },
       {
-        user: {name: "Aristote"}
+        user: {name: 'Aristote'}
       }
     ];
 
@@ -82,7 +82,7 @@ describe('Controller: request', function () {
     //then
     expect(result).toEqual([true, false, true]);
 
-  });  
+  });
 
   it('should filter data on steps', function () {
     //given
@@ -96,7 +96,7 @@ describe('Controller: request', function () {
             state: 'complet'
           }
         ]
-        
+
       },
       {
         user: {name: "alice"},
@@ -135,6 +135,6 @@ describe('Controller: request', function () {
     //then
     expect(result).toEqual([false, true, false]);
 
-  });  
+  });
 
 });
