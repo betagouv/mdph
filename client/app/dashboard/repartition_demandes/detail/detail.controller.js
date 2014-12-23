@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, request, DroitService, prestations, requestSteps, RequestService) {
+  .controller('DetailDemandeCtrl', function ($scope, $http, $state, request, DroitService, prestations, requestSteps, RequestService) {
     $scope.request = request;
     if($scope.request.formAnswers){
       $scope.prestations = DroitService.compute($scope.request.formAnswers, prestations);
@@ -30,4 +30,9 @@ angular.module('impactApp')
         RequestService.saveNewStepAndFiles($scope.request, 'complementaire', 'en_cours', $scope.files, 'Recevable');
       });
     };
+
+    $scope.goNext = function() {
+      $state.go('dashboard.repartition_demandes.detail.evaluation', {shortId: $scope.request.shortId});
+    };
+
   });
