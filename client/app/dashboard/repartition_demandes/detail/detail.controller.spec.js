@@ -19,14 +19,14 @@ describe('Controller: demande.detail', function () {
         prestations: prestations
       });
     });
-    scope.files = [
+    scope.requestedFiles = [
             { name: 'certificatMedical', state: 'demande' },
             { name: 'carteIdentite', state: 'demande' }
           ];
-    scope.addFile({ name: 'carteVitale', state: 'demande' });
+    scope.addRequestedFile({ name: 'carteVitale', state: 'demande' });
 
     //then
-    expect(scope.files.length).toEqual(3);
+    expect(scope.requestedFiles.length).toEqual(3);
   });
 
   it('should remove a specific file', function () {
@@ -43,14 +43,14 @@ describe('Controller: demande.detail', function () {
         prestations: prestations
       });
     });
-    scope.files = [
+    scope.requestedFiles = [
             { name: 'certificatMedical', state: 'demande' },
             { name: 'carteIdentite', state: 'demande' }
           ];
-    scope.removeFile(1);
+    scope.removeRequestedFile(1);
 
     //then
-    expect(scope.files.length).toEqual(1);
+    expect(scope.requestedFiles.length).toEqual(1);
   });
 
 });

@@ -7,32 +7,54 @@ angular.module('impactApp')
       $scope.prestations = DroitService.compute($scope.request.formAnswers, prestations);
     }
 
-    $scope.requestStep = _.find($scope.request.steps, {'name': 'preevaluation'});
-    if($scope.requestStep){
-      $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
-      $scope.files = $scope.requestStep.files;
-      $scope.allFiles = requestSteps;
-    }
+    // TODO rendre le find generique
+    var initPreevaluationFiles = function() {
+      $scope.requestStep = _.find($scope.request.steps, {'name': 'preevaluation'});
+      if($scope.requestStep){
+        $scope.requestedFiles = $scope.requestStep.files;
+        $scope.allFiles = requestSteps;
+      }
+    };
 
-    $scope.addFile = function(file) {
+    $scope.addRequestedFile = function(file) {
       if (_.contains($scope.files, file)) {
         return;
       }
-      $scope.files.push({name: file, state: 'demande'});
+      $scope.requestedFiles.push({name: file, state: 'demande'});
     };
 
-    $scope.removeFile = function(index) {
-      $scope.files.splice(index, 1);
+    $scope.removeRequestedFile = function(index) {
+      $scope.requestedFiles.splice(index, 1);
     };
 
-    $scope.saveStep = function() {
-      RequestService.saveStepStateAndFiles($scope.request, $scope.step, 'valide', $scope.files, function() {
-        RequestService.saveNewStepAndFiles($scope.request, 'complementaire', 'en_cours', $scope.files, 'Recevable');
-      });
+    $scope.saveStepAndFiles = function(currentStepId, currentStepState, nextStepId, nextStepState, nextStatus) {
+      if (!nextStepId) {
+        RequestService.saveStepState($scope.request, currentStepId, currentStepState);
+      } else {
+        RequestService.saveStepStateAndFiles($scope.request, currentStepId, currentStepState, $scope.requestedFiles, function() {
+          RequestService.saveNewStepAndFiles($scope.request, nextStepId, nextStepState, $scope.requestedFiles, nextStatus).then(function(data) {
+            $scope.requestStep = data;
+          });
+        });
+      }
+    };
+
+    $scope.saveStep = function(currentStepId, currentStepState, nextStepId, nextStepState, nextStatus) {
+      if (!nextStepId) {
+        RequestService.saveStepState($scope.request, currentStepId, currentStepState);
+      } else {
+        RequestService.saveStepState($scope.request, currentStepId, currentStepState, function() {
+          RequestService.saveNewStep($scope.request, nextStepId, nextStepState, nextStatus).then(function(result) {
+            $scope.requestStep = result.data;
+            initPreevaluationFiles();
+          });
+        });
+      }
     };
 
     $scope.goNext = function() {
       $state.go('dashboard.repartition_demandes.detail.evaluation', {shortId: $scope.request.shortId});
     };
 
+    initPreevaluationFiles();
   });

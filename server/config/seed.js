@@ -313,7 +313,7 @@ var createBobRequest = function(cb) {
   Request.create({
     opened: true,
     user: bob,
-    mdph: mdphNord,
+    mdph: mdphCalvados,
     requestStatus: 'Emise',
     formAnswers: {
       'prestations': {
@@ -403,17 +403,26 @@ var createBobRequest = function(cb) {
       'envoi':true
     },
     updatedAt: new Date(),
-    steps: [
+    "steps": [
       {
-        name: 'questionnaire',
-        state: 'complet'
+        "name": "questionnaire",
+        "state": "complet",
+        "files": []
       },
       {
-        name: 'obligatoire',
-        state: 'en_cours',
-        files: [
-          { name: 'certificatMedical', state: 'demande' },
-          { name: 'carteIdentite', state: 'demande' }
+        "name": "obligatoire",
+        "state": "a_valider",
+        "files": [
+          {
+            "name": "certificatMedical",
+            "state": "telecharge",
+            "path": "identite.png"
+          },
+          {
+            "name": "carteIdentite",
+            "state": "telecharge",
+            "path": "identite.jpg"
+          }
         ]
       }
     ]

@@ -7,11 +7,12 @@ angular.module('impactApp')
         request: '=',
         currentStepName: '=',
         nextStepName: '=',
-        nextStatus: '='
+        nextStatus: '=',
+        saveStep: '='
       },
       templateUrl: 'components/file-state/fileState.html',
       restrict: 'EA',
-      controller: function($scope, $http, $state, requestSteps, RequestService) {
+      controller: function($scope, $http, $state, requestSteps) {
         $scope.requestStep = _.find($scope.request.steps, {'name': $scope.currentStepName});
         $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
 
@@ -48,13 +49,12 @@ angular.module('impactApp')
           saveFileState(file, 'erreur');
         };
 
-        $scope.saveStep = function() {
+        $scope.save = function() {
+          debugger;
           if (_.some($scope.files, {'state': 'erreur'})) {
-            RequestService.saveStepState($scope.request, $scope.step, 'erreur');
+            $scope.saveStep($scope.currentStepName, 'erreur');
           } else {
-            RequestService.saveStepState($scope.request, $scope.step, 'valide', function() {
-              RequestService.saveNewStep($scope.request, $scope.nextStepName, 'en_cours', $scope.nextStatus);
-            });
+            $scope.saveStep($scope.currentStepName, 'valide', $scope.nextStepName, 'en_cours', $scope.nextStatus);
           }
         };
       }
