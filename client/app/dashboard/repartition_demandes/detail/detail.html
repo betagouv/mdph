@@ -1,41 +1,42 @@
-<div class="row">
-  <div class="col-lg-5 col-md-5 col-xs-8">
-    <div ng-if="request.requestStatus==='Emise'">
-      <h1 class="no-hr text-danger">Demande émise</h1>
+<ui-view>
+  <div class="row">
+    <div class="col-lg-5 col-md-5 col-xs-8">
+      <div ng-if="request.requestStatus==='Emise'">
+        <h1 class="no-hr text-danger">Demande émise</h1>
+      </div>
+      <div ng-if="request.requestStatus==='Recevable'">
+        <h1 class="no-hr text-warning">Demande recevable</h1>
+      </div>
+      <div ng-if="request.requestStatus==='Complète'">
+        <h1 class="no-hr text-complete">Demande complète</h1>
+      </div>
     </div>
-    <div ng-if="request.requestStatus==='Recevable'">
-      <h1 class="no-hr text-warning">Demande recevable</h1>
+    <div class="col-lg-1 col-xs-1  col-xs-offset-3 sent">
+      <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Emise', 'fa-folder-o': request.requestStatus!='Emise'}"></i></h1>
     </div>
-    <div ng-if="request.requestStatus==='Complète'">
-      <h1 class="no-hr text-complete">Demande complète</h1>
+    <div class="col-lg-1 col-xs-1 admissible">
+      <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Recevable', 'fa-folder-o': request.requestStatus!='Recevable'}"></i></h1>
+    </div>
+    <div class="col-lg-1 col-xs-1 complete">
+      <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Complète', 'fa-folder-o': request.requestStatus!='Complète'}"></i></h1>
+    </div>
+    <div class="col-lg-1 col-xs-1 archived">
+      <h1><i class="fa fa-folder-o"></i></h1>
     </div>
   </div>
-  <div class="col-lg-1 col-xs-1  col-xs-offset-3 sent">
-    <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Emise', 'fa-folder-o': request.requestStatus!='Emise'}"></i></h1>
-  </div>
-  <div class="col-lg-1 col-xs-1 admissible">
-    <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Recevable', 'fa-folder-o': request.requestStatus!='Recevable'}"></i></h1>
-  </div>
-  <div class="col-lg-1 col-xs-1 complete">
-    <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Complète', 'fa-folder-o': request.requestStatus!='Complète'}"></i></h1>
-  </div>
-  <div class="col-lg-1 col-xs-1 archived">
-    <h1><i class="fa fa-folder-o"></i></h1>
-  </div>
-</div>
-<div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
-  <div class="panel-heading clearfix">
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="panel-title">
-          {{request.user.name}}
+  <div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
+    <div class="panel-heading clearfix">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="panel-title">
+            {{request.user.name}}
+          </div>
+          <small class="pull-left">Dernière modification {{request.updatedAt | date: format: timezone}}</small>
         </div>
-        <small class="pull-left">Dernière modification {{updatedAt(request)}}</small>
       </div>
     </div>
   </div>
-</div>
-<ui-view>
+
   <div id="formCard">
     <div class="panel panel-default panel-body">
       <div id="questionnaire">
@@ -106,8 +107,7 @@
             Evaluation
           </h2>
           <a class="btn btn-success pull-right" ng-click="goNext()">
-            <i class="fa fa-send"></i>
-            <span>Envoyer ma demande</span>
+            <span>Commencer l'évaluation</span>
           </a>
         </div>
       </div>
