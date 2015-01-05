@@ -50,7 +50,6 @@ angular.module('impactApp')
         };
 
         $scope.save = function() {
-          debugger;
           if (_.some($scope.files, {'state': 'erreur'})) {
             $scope.saveStep($scope.currentStepName, 'erreur');
           } else {
