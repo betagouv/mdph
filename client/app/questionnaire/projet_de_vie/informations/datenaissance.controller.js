@@ -14,7 +14,7 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       if ($scope.currentRequest.renouvellement) {
-        $state.go('^.^.renouvellements.evolution');
+        $state.go('^.^.renouvellement.evolution');
       } else {
         $state.go('^.^.vie_quotidienne.situation.vie_famille');
       }

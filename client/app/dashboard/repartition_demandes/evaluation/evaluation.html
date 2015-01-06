@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-10">
-    <h1 class="no-hr text-complete">Evaluation</h1>
+    <h1 class="no-hr">Evaluation</h1>
   </div>
   <div class="col-md-2">
-    <h2 class="text-complete pull-right">En cours</h2>
+    <h2 class="pull-right">En cours</h2>
   </div>
 </div>
-<div class="panel panel-complete">
+<div class="panel panel-default">
   <div class="panel-heading clearfix">
     <div class="row">
       <div class="col-sm-10">
@@ -20,22 +20,44 @@
 </div>
 <div class="row">
   <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        Récapitulatif demande
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading clearfix">
+            Récapitulatif demande
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li>
+                {{request.user.name}}
+              </li>
+              <li>
+                {{request.formAnswers.contexte.dateNaissance | age}} ans
+              </li>
+              <li>
+                {{situationFamiliale}}
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-      <div class="panel-body">
-        <ul>
-          <li>
-            {{request.user.name}}
-          </li>
-          <li>
-            {{request.formAnswers.contexte.dateNaissance | age}} ans
-          </li>
-          <li>
-            {{request.formAnswers.vieQuotidienne.famille}}
-          </li>
-        </ul>
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading clearfix">
+            Points saillants
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li>
+                Situation d'urgence
+              </li>
+              <li>
+                {{renouvellement}}
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

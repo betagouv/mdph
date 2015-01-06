@@ -35,6 +35,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
       {
         label: 'Vous vivez dans un établissement',
         labelRep: '<%= pronoun %> vit dans un établissement',
+        labelRecap: 'En établissement',
         value: 'etablissement',
         detailUrl: 'components/detail/precisez_big.html',
         detailModel: 'logement_etablissement',

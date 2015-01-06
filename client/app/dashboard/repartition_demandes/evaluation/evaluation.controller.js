@@ -13,6 +13,22 @@ angular.module('impactApp')
 });
 
 angular.module('impactApp')
-  .controller('EvaluationDemandeCtrl', function () {
+  .controller('EvaluationDemandeCtrl', function ($scope, request, vieQuotidienne) {
+    var situationAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
+    $scope.situationFamiliale = situationAnswers[request.formAnswers.vieQuotidienne.famille];
+
+    if($scope.situationFamiliale.labelRecap){
+      $scope.situationFamiliale = $scope.situationFamiliale.labelRecap;
+    }
+    else {
+      $scope.situationFamiliale = $scope.situationFamiliale.label;
+    }
+
+    if(request.renouvellement){
+      $scope.renouvellement = 'Renouvellement';
+    }
+    else {
+      $scope.renouvellement = 'Première demande';
+    }
 
   });
