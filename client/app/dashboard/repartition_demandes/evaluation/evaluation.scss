@@ -1,0 +1,79 @@
+.geva-pie li {
+  position: absolute;
+  font-size: 1.5em;
+  width: 10em;
+  height: 10em;
+  transform-origin: 100% 100%;
+  overflow: hidden;
+  left: 50%;
+  top: 50%;
+  margin-top: -1.3em;
+  margin-left: -10em;
+  transition: border .3s ease;
+}
+
+.geva-pie li a {
+  display: block;
+  height: 14.5em;
+  width: 14.5em;
+  position: absolute;
+  bottom: -7.25em;
+  right: -7.25em;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #fff;
+  padding-top: 1.8em;
+  text-align: center;
+  transform: rotate(-45deg) scale(1);
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.geva-pie li a span {
+  opacity: 1;
+}
+/* for a central angle x, the list items must be skewed by 90-x degrees
+in our case x=90deg so skew angle is 0deg
+items should be rotated by x, minus (sum of angles - 360)2s */
+
+.geva-pie li:first-child {
+  transform: rotate(90deg) skew(0deg);
+}
+
+.geva-pie li:nth-child(2) {
+  transform: rotate(180deg) skew(0deg);
+}
+
+.geva-pie li:nth-child(3) {
+  transform: rotate(270deg) skew(0deg)
+}
+
+.geva-pie li:nth-child(4) {
+  transform: rotate(360deg) skew(0deg);
+}
+
+.geva-pie li:nth-child(odd) a {
+  background-color: #3C4963;
+  background-color: hsla(220, 25%, 31%, 1);
+}
+
+.geva-pie li:nth-child(even) a {
+  background-color: #4f6083;
+  background-color: hsla(220, 25%, 41%, 1);
+}
+
+/* active style */
+.geva-pie li.active a {
+  background-color: #6378A1;
+  background-color: hsla(220, 25%, 51%, 1);
+}
+
+/* hover style */
+.geva-pie li:not(.active) a:hover,
+.geva-pie li:not(.active) a:active,
+.geva-pie li:not(.active) a:focus {
+  background-color: #6378A1;
+  background-color: hsla(220, 25%, 51%, 1);
+}
+.geva-pie li:not(.active) a:focus {
+  position: fixed;
+}

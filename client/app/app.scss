@@ -60,6 +60,7 @@ $disabled-blue: lighten($light-blue, 30%);
 @import 'admin/admin.scss';
 @import 'cm/form/form.scss';
 @import 'dashboard/dashboard.scss';
+@import 'dashboard/repartition_demandes/evaluation/evaluation.scss';
 @import 'dashboard/repartition_demandes/repartition_demandes.scss';
 @import 'dashboard/requests/detail/detail.scss';
 @import 'dashboard/requests/requests.scss';
