@@ -127,6 +127,7 @@ exports.save = function(req, res, next) {
   request.formAnswers = req.body.formAnswers;
   request.mdph = req.body.mdph._id;
   request.steps = req.body.steps;
+  request.renouvellement = req.body.renouvellement;
 
   request.save(function(err, data) {
     if(err) return res.send(500, err);
