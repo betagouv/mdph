@@ -13,7 +13,7 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      if ($scope.request.renouvellement) {
+      if ($scope.currentRequest.renouvellement) {
         $state.go('^.^.renouvellements.evolution');
       } else {
         $state.go('^.^.vie_quotidienne.situation.vie_famille');
