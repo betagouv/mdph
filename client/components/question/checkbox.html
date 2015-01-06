@@ -1,21 +1,18 @@
-<div class="container">
-  <qtitle></qtitle>
+<qtitle></qtitle>
 
-  <div class="answer" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
-    <button
-      class="btn btn-default btn-block btn-answer text-capitalize"
-      ng-model="sectionModel[question.model][answer.model]"
-      btn-checkbox>
-      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.model], 'fa-square-o': !sectionModel[question.model][answer.model]}"></i>
-      {{answer.label}}
-    </button>
-    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model]">
-      <div class="row form-horizontal">
-        <div ng-include="answer.detailUrl"></div>
-      </div>
+<div class="answer" ng-repeat="answer in question.answers" ng-if="!answer.onlyAdult || isAdult()">
+  <button
+    class="btn btn-default btn-block btn-answer text-capitalize"
+    ng-model="sectionModel[question.model][answer.model]"
+    btn-checkbox>
+    <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.model], 'fa-square-o': !sectionModel[question.model][answer.model]}"></i>
+    {{answer.label}}
+  </button>
+  <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model]">
+    <div class="row form-horizontal">
+      <div ng-include="answer.detailUrl"></div>
     </div>
   </div>
-
-  <nav-steps></nav-steps>
-
 </div>
+
+<nav-steps ng-if="!hideSteps"></nav-steps>

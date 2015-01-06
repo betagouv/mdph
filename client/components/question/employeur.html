@@ -1,27 +1,25 @@
-<div class="container">
-  <qtitle></qtitle>
+<qtitle></qtitle>
 
-  <div class="form-horizontal">
-    <div class="form-group">
-      <label class="col-md-3 control-label" for="employeur-name">{{model.nom.label}}</label>
-      <div class="col-md-7">
-        <input type="text" id="employeur-name" class="form-control" ng-model="model.nom.value" placeholder="Nom">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-md-3 control-label" for="employeur-adresse">{{model.adresse.label}}</label>
-      <div class="col-md-7">
-        <textarea rows="4" id="employeur-adresse" class="form-control" ng-model="model.adresse.value" placeholder="Adresse">
-        </textarea>
-      </div>
-    </div>
-      <div class="form-group">
-      <label class="col-md-3 control-label" for="employeur-medecin">{{model.medecin.label}}</label>
-      <div class="col-md-7">
-        <input type="text" id="employeur-medecin" class="form-control" ng-model="model.medecin.value" placeholder="Nom du service et/ou du médecin du travail, si connu">
-      </div>
+<div class="form-horizontal">
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="employeur-name">{{model.nom.label}}</label>
+    <div class="col-md-7">
+      <input type="text" id="employeur-name" class="form-control" ng-model="model.nom.value" placeholder="Nom">
     </div>
   </div>
-
-  <nav-steps></nav-steps>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="employeur-adresse">{{model.adresse.label}}</label>
+    <div class="col-md-7">
+      <textarea rows="4" id="employeur-adresse" class="form-control" ng-model="model.adresse.value" placeholder="Adresse">
+      </textarea>
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="col-md-3 control-label" for="employeur-medecin">{{model.medecin.label}}</label>
+    <div class="col-md-7">
+      <input type="text" id="employeur-medecin" class="form-control" ng-model="model.medecin.value" placeholder="Nom du service et/ou du médecin du travail, si connu">
+    </div>
+  </div>
 </div>
+
+<nav-steps></nav-steps>

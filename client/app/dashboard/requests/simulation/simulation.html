@@ -1,0 +1,33 @@
+
+<div class="row">
+  <div class="col-sm-7">
+
+    <div class="section-quitus" ng-repeat="section in sections">
+      <h1>{{section.label}}</h1>
+      <div class="question-quitus" ng-repeat="question in questionsBySectionId[section.id]">
+        <div ng-if="question.titleDefault && question.neededForAdmin">
+          <h2>{{question.titleDefault}}</h2>
+          <div ng-include="getTemplate(question)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-sm-4 col-sm-offset-1">
+    <div class="fixed-top">
+      <div class="btn btn-primary" ng-click="computePrestations()">
+        Calculer les prestations
+      </div>
+      <div class="result" ng-if="prestations.length > 0">
+        Liste des prestations :
+        <ul>
+          <li ng-repeat="prestation in prestations">
+            {{prestation.label}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>

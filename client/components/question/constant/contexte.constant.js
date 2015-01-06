@@ -9,12 +9,12 @@ angular.module('impactApp').constant('contexte', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Pour vous',
+        label: 'Pour vous',
         value: false,
         documents: [{category: 'obligatoire', id: 'carteIdentite'}]
       },
       {
-        labelDefault: 'Pour une autre personne',
+        label: 'Pour une autre personne',
         value: true,
         detailUrl: 'components/detail/personne.html',
         documents: [{category: 'obligatoire', id: 'carteIdentite'}, {category: 'obligatoire', id: 'carteIdentiteRepresentant'}]
@@ -27,15 +27,15 @@ angular.module('impactApp').constant('contexte', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Vous êtes son représentant légal',
+        label: 'Vous êtes son représentant légal',
         value: 'representantLegal'
       },
       {
-        labelDefault: 'Vous êtes son tuteur',
+        label: 'Vous êtes son tuteur',
         value: 'tuteur'
       },
       {
-        labelDefault: 'Vous êtes un ami, proche, curateur, établissement de santé, etc...',
+        label: 'Vous êtes un ami, proche, curateur, établissement de santé, etc...',
         value: 'autre',
         detailModel: 'consentementDetail',
         detailUrl: 'components/detail/consentement.html'
@@ -55,11 +55,11 @@ angular.module('impactApp').constant('contexte', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true
       },
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       }
     ]
@@ -71,11 +71,11 @@ angular.module('impactApp').constant('contexte', [
     titleRep: 'Y-a-t-il eu un changement dans sa situation ?',
     answers: [
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true
       },
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       }
     ]
@@ -83,6 +83,7 @@ angular.module('impactApp').constant('contexte', [
   {
     model: 'dateNaissance',
     type: 'date',
+    neededForAdmin: true,
     titleDefault: 'Quelle est votre date de naissance ?',
     titleRep: 'Quelle est sa date de naissance ?',
     section: 'contexte'
@@ -94,7 +95,7 @@ angular.module('impactApp').constant('contexte', [
     answers:
     [
       {
-        labelDefault: 'Vous n\'arrivez plus à vivre chez vous',
+        label: 'Vous n\'arrivez plus à vivre chez vous',
         labelRep: '<%= pronoun %> n\'arrive plus à vivre à domicile',
         model: 'domicile',
         detail: true,
@@ -103,7 +104,7 @@ angular.module('impactApp').constant('contexte', [
         placeholder: 'Expliquez la difficulté'
       },
       {
-        labelDefault: 'Votre établissement ne peut plus vous accueillir et vous ne pouvez pas retourner chez vous',
+        label: 'Votre établissement ne peut plus vous accueillir et vous ne pouvez pas retourner chez vous',
         labelRep: 'Son établissement ne peut plus l\'accueillir et <%= pronoun %> ne peut pas retourner chez <%= pronounTonic %>',
         model: 'etablissement',
         detail: true,
@@ -112,7 +113,7 @@ angular.module('impactApp').constant('contexte', [
         placeholder: 'Expliquez la difficulté'
       },
       {
-        labelDefault: 'Votre école ne peut plus vous accueillir',
+        label: 'Votre école ne peut plus vous accueillir',
         labelRep: 'Son école ne peut plus l\'accueillir',
         detail: true,
         detailModel: 'ecoleDetail',
@@ -121,7 +122,7 @@ angular.module('impactApp').constant('contexte', [
         model: 'ecole'
       },
       {
-        labelDefault: 'Vous risquez de perdre votre travail',
+        label: 'Vous risquez de perdre votre travail',
         labelRep: '<%= pronoun %> risque de perdre son travail',
         detail: true,
         detailModel: 'travailDetail',
@@ -130,7 +131,7 @@ angular.module('impactApp').constant('contexte', [
         model: 'travail'
       },
       {
-        labelDefault: 'Vous commencez bientôt une nouvelle formation',
+        label: 'Vous commencez bientôt une nouvelle formation',
         labelRep: '<%= pronoun %> commence bientôt une nouvelle formation',
         detailModel: 'formationDetail',
         detailUrl: 'components/detail/precisez_date.html',
@@ -145,14 +146,14 @@ angular.module('impactApp').constant('contexte', [
     titleRep: 'Connaissez-vous son taux d\'incapacité antérieur ?',
     answers: [
     {
-      labelDefault: 'Oui',
+      label: 'Oui',
       value: true,
       detailLabel: 'Taux',
       detailUrl: 'components/detail/precisez_pourcent.html',
       detailModel: 'tauxIncapacite'
     },
     {
-      labelDefault: 'Non',
+      label: 'Non',
       value: false
     }
   ]},
@@ -162,17 +163,17 @@ angular.module('impactApp').constant('contexte', [
     titleRep: 'Que pensez-vous de sa situation par rapport à ce taux ?',
     answers: [
     {
-      labelDefault: 'Votre situation est stable',
+      label: 'Votre situation est stable',
       labelRep: 'Sa situation est stable',
       value: 'stable'
     },
     {
-      labelDefault: 'Votre situation s\'aggrave',
+      label: 'Votre situation s\'aggrave',
       labelRep: 'Sa situation s\'aggrave',
       value: 'aggrave'
     },
     {
-      labelDefault: 'Votre situation s\'améliore',
+      label: 'Votre situation s\'améliore',
       labelRep: 'Sa situation s\'améliore',
       value: 'ameliore'
     }

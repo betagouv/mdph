@@ -9,11 +9,11 @@ angular.module('impactApp').constant('aidant', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         'value': true
       },
       {
-        labelDefault: 'Non',
+        label: 'Non',
         'value': false
       }
     ]
@@ -30,11 +30,11 @@ angular.module('impactApp').constant('aidant', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       },
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'vieDetail',
@@ -48,11 +48,11 @@ angular.module('impactApp').constant('aidant', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       },
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true,
         detailUrl: 'components/detail/precisez_yes_no.html',
         detailModel: 'emploiDetail',
@@ -63,22 +63,23 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Quelle est la nature de l\'aide apportée ?',
     model: 'natureAide',
+    neededForAdmin: true,
     type: 'checkbox',
     'answers':[
-      {labelDefault: 'Surveillance / présence responsable', model: 'surveillance'},
-      {labelDefault: 'Aide aux déplacements à l’intérieur du logement', model: 'deplacementInterieur'},
-      {labelDefault: 'Aide aux déplacements à l’extérieur', model: 'deplacementExterieur'},
-      {labelDefault: 'Aide pour entretenir le logement et le linge', model: 'logement'},
-      {labelDefault: 'Aide à l’hygiène corporelle', model: 'hygiene'},
-      {labelDefault: 'Aide à la préparation des repas', model: 'repasPreparation'},
-      {labelDefault: 'Aide à la prise de repas', model: 'repasPrise'},
-      {labelDefault: 'Coordination des intervenants professionnels à l’extérieur', model: 'professionnels'},
-      {labelDefault: 'Gestion administrative et juridique', model: 'juridique'},
-      {labelDefault: 'Gestion financière', model: 'finances'},
-      {labelDefault: 'Stimulation par des activités (loisirs, sorties, etc.)', model: 'loisirs'},
-      {labelDefault: 'Aide à la communication et aux relations sociales', model: 'social'},
-      {labelDefault: 'Aide au suivi médical', model: 'medical'},
-      {labelDefault: 'Autres', model: 'autre', detailModel: 'natureAideDetail', detailUrl:'components/detail/precisez.html'}
+      {label: 'Surveillance / présence responsable', model: 'surveillance'},
+      {label: 'Aide aux déplacements à l’intérieur du logement', model: 'deplacementInterieur'},
+      {label: 'Aide aux déplacements à l’extérieur', model: 'deplacementExterieur'},
+      {label: 'Aide pour entretenir le logement et le linge', model: 'logement'},
+      {label: 'Aide à l’hygiène corporelle', model: 'hygiene'},
+      {label: 'Aide à la préparation des repas', model: 'repasPreparation'},
+      {label: 'Aide à la prise de repas', model: 'repasPrise'},
+      {label: 'Coordination des intervenants professionnels à l’extérieur', model: 'professionnels'},
+      {label: 'Gestion administrative et juridique', model: 'juridique'},
+      {label: 'Gestion financière', model: 'finances'},
+      {label: 'Stimulation par des activités (loisirs, sorties, etc.)', model: 'loisirs'},
+      {label: 'Aide à la communication et aux relations sociales', model: 'social'},
+      {label: 'Aide au suivi médical', model: 'medical'},
+      {label: 'Autres', model: 'autre', detailModel: 'natureAideDetail', detailUrl:'components/detail/precisez.html'}
     ]
   },
   {
@@ -87,11 +88,11 @@ angular.module('impactApp').constant('aidant', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       },
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true,
         detailUrl: 'components/detail/precisez_montant.html',
         detailModel: 'dedommagementDetail',
@@ -104,8 +105,8 @@ angular.module('impactApp').constant('aidant', [
     model: 'accompagnement',
     type: 'checkbox',
     'answers':[
-      {labelDefault: 'Oui, un (des) professionnel(s)', model: 'professionnel'},
-      {labelDefault: 'Oui, un (ou plusieurs) autre(s) proche(s)', model: 'proches'}
+      {label: 'Oui, un (des) professionnel(s)', model: 'professionnel'},
+      {label: 'Oui, un (ou plusieurs) autre(s) proche(s)', model: 'proches'}
     ]
   },
   {
@@ -113,8 +114,8 @@ angular.module('impactApp').constant('aidant', [
     model: 'soutien',
     type: 'checkbox',
     'answers':[
-      {labelDefault: 'Vous participez à des rencontres avec d’autres aidants', model: 'rencontres'},
-      {labelDefault: 'Vous êtes soutenu individuellement', model: 'individuel'}
+      {label: 'Vous participez à des rencontres avec d’autres aidants', model: 'rencontres'},
+      {label: 'Vous êtes soutenu individuellement', model: 'individuel'}
     ]
   },
   {
@@ -123,11 +124,11 @@ angular.module('impactApp').constant('aidant', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       },
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true,
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'empechementDetail',
@@ -140,12 +141,12 @@ angular.module('impactApp').constant('aidant', [
     model: 'situationFuture',
     type: 'checkbox',
     'answers':[
-      {labelDefault: 'Eloignement géographique (déménagement, ...)', model: 'eloignement'},
-      {labelDefault: 'Indisponibilité prolongée (séjour à l’étranger, hospitalisation, ...)', model: 'indisponible'},
-      {labelDefault: 'Problème de santé', model: 'sante'},
-      {labelDefault: 'Changement majeur dans la situation professionnelle', model: 'professionnelle'},
-      {labelDefault: 'Changement majeur dans la situation personnelle (séparation, départ en établissement de retraite ...)', model: 'personnel'},
-      {labelDefault: 'Autres changements prochains de situation', model: 'autre', detailModel: 'situationDetail', detailUrl:'components/detail/precisez.html'}
+      {label: 'Eloignement géographique (déménagement, ...)', model: 'eloignement'},
+      {label: 'Indisponibilité prolongée (séjour à l’étranger, hospitalisation, ...)', model: 'indisponible'},
+      {label: 'Problème de santé', model: 'sante'},
+      {label: 'Changement majeur dans la situation professionnelle', model: 'professionnelle'},
+      {label: 'Changement majeur dans la situation personnelle (séparation, départ en établissement de retraite ...)', model: 'personnel'},
+      {label: 'Autres changements prochains de situation', model: 'autre', detailModel: 'situationDetail', detailUrl:'components/detail/precisez.html'}
     ]
   },
   {
@@ -153,9 +154,9 @@ angular.module('impactApp').constant('aidant', [
     model: 'demandesAides',
     type: 'checkbox',
     'answers':[
-      {labelDefault: 'Pour vous', model: 'eloignement'},
-      {labelDefault: 'Pour la personne aidée', model: 'indisponible'},
-      {labelDefault: 'Autres', model: 'autre', detailModel: 'aidesDetail', detailUrl:'components/detail/precisez.html'}
+      {label: 'Pour vous', model: 'eloignement'},
+      {label: 'Pour la personne aidée', model: 'indisponible'},
+      {label: 'Autres', model: 'autre', detailModel: 'aidesDetail', detailUrl:'components/detail/precisez.html'}
     ]
   },
   {
@@ -166,22 +167,23 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Quelles sont vos attentes en tant qu\'aidant familial ?',
     model: 'typeAttente',
+    neededForAdmin: true,
     type: 'checkbox',
     answers:
     [
-      {labelDefault: 'Pouvoir vous reposer au quotidien', model: 'repos'},
-      {labelDefault: 'Pouvoir vous faire remplacer en cas d’un imprévu', model: 'imprevu'},
-      {labelDefault: 'Pouvoir vous faire remplacer pour partir en week-end/vacances', model: 'vacances'},
-      {labelDefault: 'Reprendre/renforcer/maintenir votre activité professionnelle', model: 'professionnel'},
-      {labelDefault: 'Reprendre/renforcer/maintenir vos liens sociaux', model: 'social'},
+      {label: 'Pouvoir vous reposer au quotidien', model: 'repos'},
+      {label: 'Pouvoir vous faire remplacer en cas d’un imprévu', model: 'imprevu'},
+      {label: 'Pouvoir vous faire remplacer pour partir en week-end/vacances', model: 'vacances'},
+      {label: 'Reprendre/renforcer/maintenir votre activité professionnelle', model: 'professionnel'},
+      {label: 'Reprendre/renforcer/maintenir vos liens sociaux', model: 'social'},
 
-      {labelDefault: 'Obtenir une contre-partie financière', model: 'finance'},
-      {labelDefault: 'Echanger avec d’autres aidants', model: 'echanges'},
-      {labelDefault: 'Avoir un soutien psychologique', model: 'psychologique'},
-      {labelDefault: 'Etre conseillé pour mieux faire face au handicap de votre proche', model: 'conseil'},
-      {labelDefault: 'Etre affilié gratuitement à l’assurance vieillesse', model: 'vieillesse'},
+      {label: 'Obtenir une contre-partie financière', model: 'finance'},
+      {label: 'Echanger avec d’autres aidants', model: 'echanges'},
+      {label: 'Avoir un soutien psychologique', model: 'psychologique'},
+      {label: 'Etre conseillé pour mieux faire face au handicap de votre proche', model: 'conseil'},
+      {label: 'Etre affilié gratuitement à l’assurance vieillesse', model: 'vieillesse'},
 
-      {labelDefault: 'Autre attente', model: 'autre', detailModel: 'attentesDetail', detailUrl:'components/detail/precisez.html'}
+      {label: 'Autre attente', model: 'autre', detailModel: 'attentesDetail', detailUrl:'components/detail/precisez.html'}
     ]
   },
   {

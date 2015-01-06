@@ -7,7 +7,8 @@ angular.module('impactApp')
         formAnswers: '=',
         editable: '=',
         width: '=',
-        prestations: '='
+        prestations: '=',
+        hideDetailPrestations: '='
       },
       templateUrl: 'components/droits/droits.html',
       restrict: 'EA',

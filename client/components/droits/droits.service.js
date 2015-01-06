@@ -4,7 +4,11 @@ angular.module('impactApp')
   .factory('DroitService', function DroitService($filter, FormService, QuestionService, isAdult) {
 
     // Retourne faux si et seulement on prend en compte le taux et qu'il est trop faible
-    var getFiltreTaux = function(answers) {
+    var getFiltreTaux = function(answers, isAdmin) {
+      if (isAdmin) {
+        return true;
+      }
+
       var contexte = answers.contexte;
       if (contexte) {
         var renouvellement = FormService.estRenouvellement(answers);
@@ -24,11 +28,23 @@ angular.module('impactApp')
       }
     };
 
-    var getCallbacks = function(answers) {
-      var contexte = answers.contexte;
-      var aidant = answers.aidant;
-      var vieQuotidienne = answers.vieQuotidienne;
-      var renouvellements = answers.prestations;
+    var getCallbacks = function(answers, isAdmin) {
+      var contexte;
+      var aidant;
+      var vieQuotidienne;
+      var renouvellements;
+
+      if (isAdmin) {
+        contexte = answers;
+        aidant = answers;
+        vieQuotidienne = answers;
+        renouvellements = answers;
+      } else {
+        contexte = answers.contexte;
+        aidant = answers.aidant;
+        vieQuotidienne = answers.vieQuotidienne;
+        renouvellements = answers.prestations;
+      }
 
       var besoinsDeplacement;
       var besoinsVie;
@@ -42,7 +58,7 @@ angular.module('impactApp')
         attentesTypeAide = vieQuotidienne.attentesTypeAide;
       }
 
-      var filtreTaux = getFiltreTaux(answers);
+      var filtreTaux = getFiltreTaux(answers, isAdmin);
       var estAdulte = isAdult(contexte);
       var estEnfant = !estAdulte;
 
@@ -281,8 +297,8 @@ angular.module('impactApp')
       // Commodité pour les tests
       getFiltreTaux: getFiltreTaux,
 
-      compute: function(answers, prestations) {
-        var callbacks = getCallbacks(answers);
+      compute: function(answers, prestations, isAdmin) {
+        var callbacks = getCallbacks(answers, isAdmin);
 
         return _.filter(prestations, function(prestation) {
           var callback = callbacks[prestation.id];

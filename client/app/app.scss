@@ -63,6 +63,7 @@ $disabled-blue: lighten($light-blue, 30%);
 @import 'dashboard/repartition_demandes/repartition_demandes.scss';
 @import 'dashboard/requests/detail/detail.scss';
 @import 'dashboard/requests/requests.scss';
+@import 'dashboard/requests/simulation/simulation.scss';
 @import 'demande/demande.scss';
 @import 'main/main.scss';
 @import 'partenaire/pj/pj.scss';

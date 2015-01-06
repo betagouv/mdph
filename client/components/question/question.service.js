@@ -33,7 +33,7 @@ angular.module('impactApp')
           return loadAshCompile(answer.labelRepFem, formAnswers);
         }
       }
-      return answer.labelDefault;
+      return answer.label;
     };
 
     var computeTitle = function(question, formAnswers) {

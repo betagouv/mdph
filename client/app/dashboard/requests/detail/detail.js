@@ -4,7 +4,7 @@ angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('dashboard.requests.detail', {
-        url: '/:shortId',
+        url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
         controller: 'DetailCtrl',
         resolve: {

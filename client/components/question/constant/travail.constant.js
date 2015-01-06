@@ -10,11 +10,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true
       },
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       }
     ]
@@ -26,15 +26,15 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'En milieu ordinaire',
+        label: 'En milieu ordinaire',
         value: 'ordinaire'
       },
       {
-        labelDefault: 'En entreprise adaptée',
+        label: 'En entreprise adaptée',
         value: 'adaptee'
       },
       {
-        labelDefault: 'En milieu protégé (Etablissements et services d’aide par le travail - ESAT)',
+        label: 'En milieu protégé (Etablissements et services d’aide par le travail - ESAT)',
         value: 'etablissement'
       }
     ]
@@ -46,23 +46,23 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'CDI',
+        label: 'CDI',
         value: 'cdi'
       },
       {
-        labelDefault: 'CDD',
+        label: 'CDD',
         value: 'cdd'
       },
       {
-        labelDefault: 'Interim',
+        label: 'Interim',
         value: 'interim'
       },
       {
-        labelDefault: 'Contrat aidé',
+        label: 'Contrat aidé',
         value: 'contrat_aide'
       },
       {
-        labelDefault: 'Travailleur indépendant',
+        label: 'Travailleur indépendant',
         value: 'independant'
       }
     ]
@@ -87,11 +87,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        'labelDefault': 'Temps complet',
+        'label': 'Temps complet',
         'value': true
       },
       {
-        'labelDefault': 'Temps partiel',
+        'label': 'Temps partiel',
         'value': false
       }
     ]
@@ -110,13 +110,13 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false,
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'adapteDetail'
       },
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true
       }
     ]
@@ -134,11 +134,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       },
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true,
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'amenagementDetail'
@@ -152,11 +152,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       },
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'arretDeTravailDetail',
@@ -171,11 +171,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Non',
+        label: 'Non',
         value: false
       },
       {
-        labelDefault: 'Oui',
+        label: 'Oui',
         value: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'indemniteJournaliereDetail',
@@ -190,11 +190,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     'answers': [
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       },
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'accidentTravailDetail',
@@ -209,11 +209,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     'answers': [
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       },
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'profesionnelSocialDetail',
@@ -228,11 +228,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     'answers': [
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       },
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'medecinTravailDetail',
@@ -247,11 +247,11 @@ angular.module('impactApp').constant('travail', [
     type: 'radio',
     'answers': [
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       },
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true,
         detailUrl: 'components/detail/precisez_big.html',
         detailModel: 'descriptionDetail'
@@ -265,13 +265,13 @@ angular.module('impactApp').constant('travail', [
     type: 'checkbox',
     answers:
     [
-      {'labelDefault': 'Faire un bilan de capacités professionnelles', model: 'bilan'},
-      {'labelDefault': 'Préciser un projet professionnel', model: 'precisions'},
-      {'labelDefault': 'Adapter l\'environnement de travail', model: 'environnement'},
-      {'labelDefault': 'Accéder à un emploi', model: 'emploi'},
-      {'labelDefault': 'Accéder à une formation', model: 'formation'},
+      {'label': 'Faire un bilan de capacités professionnelles', model: 'bilan'},
+      {'label': 'Préciser un projet professionnel', model: 'precisions'},
+      {'label': 'Adapter l\'environnement de travail', model: 'environnement'},
+      {'label': 'Accéder à un emploi', model: 'emploi'},
+      {'label': 'Accéder à une formation', model: 'formation'},
 
-      {'labelDefault': 'Autre besoin', model: 'autre', 'detailModel': 'besoinSoutienAutre', detailUrl: 'components/detail/precisez.html'}
+      {'label': 'Autre besoin', model: 'autre', 'detailModel': 'besoinSoutienAutre', detailUrl: 'components/detail/precisez.html'}
     ]
   },
   {
@@ -312,15 +312,15 @@ angular.module('impactApp').constant('travail', [
     answers:
     [
       {
-        labelDefault: 'Inscrit à pôle emploi',
+        label: 'Inscrit à pôle emploi',
         model: 'poleEmploi'
       },
       {
-        labelDefault: 'En formation continue',
+        label: 'En formation continue',
         model: 'formation'
       },
       {
-        labelDefault: 'Etudiant',
+        label: 'Etudiant',
         model: 'etudiant'
       }
     ]
@@ -332,14 +332,14 @@ angular.module('impactApp').constant('travail', [
     model: 'passe',
     'answers': [
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true,
         detailUrl: 'components/detail/precisez_big.html',
         detailModel: 'passeDetail',
         detailLabel: 'Pourquoi êtes-vous actuellement sans emploi et depuis quand ?'
       },
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       }
     ]

@@ -10,11 +10,11 @@ angular.module('impactApp').constant('vieScolaire', [
     type: 'radio',
     'answers': [
       {
-        'labelDefault': 'Oui',
+        'label': 'Oui',
         'value': true
       },
       {
-        'labelDefault': 'Non',
+        'label': 'Non',
         'value': false
       }
     ]
@@ -26,7 +26,7 @@ angular.module('impactApp').constant('vieScolaire', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'Vous êtes trop jeune',
+        label: 'Vous êtes trop jeune',
         labelRep: '<%= pronoun %> est trop jeune',
         value: 'tropJeune',
 
@@ -35,7 +35,7 @@ angular.module('impactApp').constant('vieScolaire', [
         detailUrl: 'components/detail/precisez.html'
       },
       {
-        labelDefault: 'Vous ne trouvez pas solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
+        label: 'Vous ne trouvez pas solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
         labelRep: '<%= pronoun %> ne trouve pas solution d\'accueil en établissement',
         value: 'etablissement',
 
@@ -43,7 +43,7 @@ angular.module('impactApp').constant('vieScolaire', [
         detailUrl: 'components/detail/precisez_big.html'
       },
       {
-        labelDefault: 'Autre',
+        label: 'Autre',
         value: 'autre',
 
         detailModel: 'raisonNonScolaireAutre',
@@ -63,15 +63,15 @@ angular.module('impactApp').constant('vieScolaire', [
     type: 'radio',
     answers: [
       {
-        labelDefault: 'En milieu ordinaire',
+        label: 'En milieu ordinaire',
         value: 'ordinaire'
       },
       {
-        labelDefault: 'A domicile',
+        label: 'A domicile',
         value: 'domicile'
       },
       {
-        labelDefault: 'En internat',
+        label: 'En internat',
         value: 'internat',
 
         detailUrl: 'components/detail/precisez_yes_no.html',
@@ -79,19 +79,19 @@ angular.module('impactApp').constant('vieScolaire', [
         detailLabel: 'Les frais de séjours sont-ils intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale?'
       },
       {
-        labelDefault: 'Avec accompagnement par un établissement médico-social',
+        label: 'Avec accompagnement par un établissement médico-social',
         value: 'etablissement'
       },
       {
-        labelDefault: 'En temps partagé entre l’établissement médico-social et le milieu ordinaire ou domicile',
+        label: 'En temps partagé entre l’établissement médico-social et le milieu ordinaire ou domicile',
         value: 'etablissementPartiel',
       },
       {
-        labelDefault: 'En formation supérieure',
+        label: 'En formation supérieure',
         value: 'superieur',
       },
       {
-        labelDefault: 'Autre',
+        label: 'Autre',
         value: 'autre',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'vieScolaireAutre'
