@@ -6,7 +6,7 @@ angular.module('impactApp')
     $stateProvider
       .state('departement.questionnaire.projet_de_vie.aidant', {
         url: '/aidant',
-        template: '<subsection/><ui-view/>',
+        template: '<subsection/><div class="container"><ui-view/></div>',
         controller: 'AidantCtrl',
         abstract: true
       })

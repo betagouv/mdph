@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('departement.questionnaire.projet_de_vie.travail', {
         url: '/travail',
-        template: '<subsection/><ui-view/>',
+        template: '<subsection/><div class="container"><ui-view/></div>',
         controller: 'TravailCtrl',
       });
   });

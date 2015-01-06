@@ -6,7 +6,7 @@ angular.module('impactApp')
   $stateProvider
     .state(index, {
       url: '/renouvellement',
-      template: '<ui-view></ui-view>',
+      template: '<div class="container"><ui-view/></div>',
       controller: 'RenouvellementsCtrl',
       abstract: true
     })
