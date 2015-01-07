@@ -12,6 +12,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
     answers: [
       {
         label: 'Avec vos parents',
+        labelRecap: 'Avec ses parents',
         labelRep: 'Avec ses parents',
         value: 'parents'
       },

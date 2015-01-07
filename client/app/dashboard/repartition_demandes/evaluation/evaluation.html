@@ -27,17 +27,9 @@
             Récapitulatif demande
           </div>
           <div class="panel-body">
-            <ul>
-              <li>
-                {{request.user.name}}
-              </li>
-              <li>
-                {{request.formAnswers.contexte.dateNaissance | age}} ans
-              </li>
-              <li>
-                {{situationFamiliale}}
-              </li>
-            </ul>
+            <p><strong>Nom :</strong> {{request.user.name}}</p>
+            <p><strong>Age :</strong> {{request.formAnswers.contexte.dateNaissance | age}} ans</p>
+            <p><strong>Situation :</strong> {{situationFamiliale}}</p>
           </div>
         </div>
 
