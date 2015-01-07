@@ -53,27 +53,31 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="geva-pie" id="geva-pie">
-       <ul>
-           <li><a href="#"><span>Situation</span></a></li>
-           <li><a href="#"><span>Environnement</span></a></li>
-           <li><a href="#"><span>Aides actuelles</span></a></li>
-           <li><a href="#"><span>Besoins</span></a></li>
-       </ul>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        Action à mener
+  <div class="col-md-9">
+    <ui-view>
+      <div class="col-md-8">
+        <div class="geva-pie" id="geva-pie">
+           <ul>
+             <li><a ui-sref="dashboard.repartition_demandes.detail.evaluation.situation({shortId: request.shortId})"><span>Situation</span></a></li>
+             <li><a href="#"><span>Environnement</span></a></li>
+             <li><a href="#"><span>Aides actuelles</span></a></li>
+             <li><a href="#"><span>Besoins</span></a></li>
+           </ul>
+        </div>
       </div>
-      <div class="panel-body">
-        <ul>
-          <li>Visite médicale</li>
-          <li>Visite à domicile</li>
-        </ul>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading clearfix">
+            Action à mener
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li>Visite médicale</li>
+              <li>Visite à domicile</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+    </ui-view>
   </div>
 </div>
