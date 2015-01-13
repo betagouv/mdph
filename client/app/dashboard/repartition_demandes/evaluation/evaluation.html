@@ -57,12 +57,11 @@
     <ui-view>
       <div class="col-md-8">
         <div class="geva-pie" id="geva-pie">
-           <ul>
-             <li><a ui-sref="dashboard.repartition_demandes.detail.evaluation.situation({shortId: request.shortId})"><span>Situation</span></a></li>
-             <li><a ui-sref="dashboard.repartition_demandes.detail.evaluation.environnement({shortId: request.shortId})"><span>Environnement</span></a></li>
-             <li><a ui-sref="dashboard.repartition_demandes.detail.evaluation.aides({shortId: request.shortId})"><span>Aides actuelles</span></a></li>
-             <li><a ui-sref="dashboard.repartition_demandes.detail.evaluation.besoins({shortId: request.shortId})"><span>Besoins</span></a></li>
-           </ul>
+          <ul>
+            <li ng-repeat="section in sections">
+              <a ui-sref="dashboard.repartition_demandes.detail.evaluation.section({sectionId: section.id})"><span>{{section.label}}</span></a>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="col-md-4">

@@ -1,0 +1,14 @@
+<h2 class="no-hr">{{currentSection.label}}</h2>
+
+<div ng-repeat="question in questions[currentSection.id]" class="section-quitus">
+  <h2>{{question[0].description}}</h2>
+  <div ng-repeat="answer in question" class="question-quitus">
+    <button
+      class="btn btn-default btn-answer"
+      ng-model="answer.selected"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': answer.selected, 'fa-square-o': !answer.selected}"></i>
+      {{answer.label}}
+    </button>
+  </div>
+</div>

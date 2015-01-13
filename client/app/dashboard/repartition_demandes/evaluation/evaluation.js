@@ -6,6 +6,14 @@ angular.module('impactApp')
       .state('dashboard.repartition_demandes.detail.evaluation', {
         url: '/evaluation',
         templateUrl: 'app/dashboard/repartition_demandes/evaluation/evaluation.html',
-        controller: 'EvaluationDemandeCtrl'
+        controller: 'EvaluationDemandeCtrl',
+        resolve: {
+          questions: function(GevaService) {
+            return GevaService.getQuestions();
+          },
+          sections: function(GevaService) {
+            return GevaService.getSections();
+          }
+        }
       });
   });
