@@ -17,6 +17,7 @@ module.exports = function(app) {
   app.use('/api/certificats', require('./api/certificat'));
   app.use('/api/prestations', require('./api/prestation'));
   app.use('/api/partenaires', require('./api/partenaire'));
+  app.use('/api/geva', require('./api/geva'));
 
   app.use('/auth', require('./auth'));
 
