@@ -1,18 +1,20 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('docsForm', function ($modal, documents) {
+  .directive('docsForm', function (documents) {
     var documentsById = _.indexBy(documents, 'id');
 
     return {
       scope: {
         request: '=',
         currentStep: '=',
-        uploaderType: '='
+        onFileSelect: '=',
+        file: '='
       },
       templateUrl: 'components/documents/documents.html',
       restrict: 'EA',
       controller: function($scope, $upload, $http) {
+        $scope.file.document = documentsById[$scope.file.name];
         $scope.transmitFile = function(file) {
           $http.put('api/requests/' + $scope.request.shortId + '/document', {
             'state': 'delegate',
@@ -21,20 +23,6 @@ angular.module('impactApp')
           })
           .success(function(state) {
             file.state = state;
-          });
-        };
-
-        $scope.onFileSelect = function($files, currentFile) {
-          //$files: an array of files selected, each file has name, size, and type.
-          var file = $files[0];
-          $http.post('api/requests/' + $scope.request.shortId + '/document', {
-            stepName: $scope.currentStep.id,
-            documentName: currentFile.name,
-            file: file.name,
-            uploaderType: $scope.uploaderType,
-          }).then(function(res) {
-            currentFile.path = res.data;
-            broadcastIfComplete();
           });
         };
 
@@ -62,19 +50,6 @@ angular.module('impactApp')
           //.xhr(function(xhr){xhr.upload.addEventListener(...)})
         };
         **/
-
-        $scope.files = _.find($scope.request.steps, { name: $scope.currentStep.id }).files;
-        angular.forEach($scope.files, function(file) {
-          file.document = documentsById[file.name];
-        });
-
-        var broadcastIfComplete = function() {
-          if (_.every($scope.files, 'path')) {
-            $scope.$parent.$broadcast('documentStepComplete');
-          }
-        };
-
-        broadcastIfComplete();
       }
     };
   });

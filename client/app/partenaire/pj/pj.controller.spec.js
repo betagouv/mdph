@@ -8,9 +8,13 @@ describe('Controller: pj', function () {
   it('should render initial data', function () {
     //given
     var scope = {};
-    var request = [{
-          shortId: 'AAAA'
-        }];
+    var files =  ['rox', 'anne'];
+    var request = {
+          shortId: 'AAAA',
+          steps: [
+            {name: 'complementaire', files: files}
+          ]
+        };
 
     //when
     inject(function($controller){
@@ -21,7 +25,7 @@ describe('Controller: pj', function () {
     });
 
     //then
-    expect(scope.request.length).toBe(1);
+    expect(scope.files).toBe(files);
 
   });
 

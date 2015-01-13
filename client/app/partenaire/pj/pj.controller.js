@@ -3,6 +3,9 @@
 angular.module('impactApp')
   .controller('PieceJointeCtrl', function ($scope, $http, $modal, Partenaire, request) {
     $scope.request = request;
+    $scope.currentFormStep = _.find($scope.request.steps, {'name': 'complementaire'});
+    $scope.files = $scope.currentFormStep.files;
+    $scope.partenaire = {};
 
     $scope.createPartenaire = function (partenaire) {
       var newPartenaire = new Partenaire(partenaire);
@@ -11,6 +14,25 @@ angular.module('impactApp')
         //TODO
       });
       envoiConfirmation(partenaire);
+    };
+
+    $scope.onFileSelect = function($files, currentFile) {
+      //$files: an array of files selected, each file has name, size, and type.
+      /*var file = $files[0];
+      $http.post('api/requests/' + $scope.request.shortId + '/document', {
+        stepName: $scope.currentStep.id,
+        documentName: currentFile.name,
+        file: file.name,
+        uploaderType: 'Demandeur',
+      }).then(function(res) {
+        currentFile.path = res.data;
+      });*/
+      var file = $files[0];
+      currentFile.path = file.name;
+    };
+
+    $scope.checkIfDisabled = function() {
+      return !$scope.partenaire.email || !_.some($scope.files, 'path');
     };
 
     var envoiConfirmation = function(partenaire) {

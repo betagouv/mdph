@@ -10,12 +10,14 @@
 		</div>
 
     <form role="form">
-      <docs-form request="request" current-step="{id: 'complementaire'}" uploader-type="'Partenaire'"></docs-form>
+      <div class="row">
+        <docs-form class="col-md-6" request="currentRequest" on-file-select="onFileSelect" current-step="currentStep" file="file" ng-repeat="file in files"></docs-form>
+      </div>
       <div class="form-group">
         <label for="inputEmail">E-mail</label>
         <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="partenaire.email">
       </div>
-      <button class="btn btn-primary btn-lg" ng-click="createPartenaire(partenaire)">
+      <button class="btn btn-primary btn-lg" ng-disabled="checkIfDisabled()" ng-click="createPartenaire(partenaire)">
         Certifier mon e-mail
       </button>
     </form>
