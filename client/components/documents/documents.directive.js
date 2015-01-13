@@ -7,7 +7,8 @@ angular.module('impactApp')
     return {
       scope: {
         request: '=',
-        currentStep: '='
+        currentStep: '=',
+        uploaderType: '='
       },
       templateUrl: 'components/documents/documents.html',
       restrict: 'EA',
@@ -29,7 +30,8 @@ angular.module('impactApp')
           $http.post('api/requests/' + $scope.request.shortId + '/document', {
             stepName: $scope.currentStep.id,
             documentName: currentFile.name,
-            file: file.name
+            file: file.name,
+            uploaderType: $scope.uploaderType,
           }).then(function(res) {
             currentFile.path = res.data;
             broadcastIfComplete();

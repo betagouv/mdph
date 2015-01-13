@@ -8,7 +8,7 @@
   <div class="alert alert-danger" role="alert" ng-if="currentFormStep.state === 'erreur'">
     <h5>Veuillez vérifier la validité des documents. ::TODO::  Commentaire de la MDPH</h5>
   </div>
-  <docs-form request="currentRequest" current-step="currentStep"></docs-form>
+  <docs-form request="currentRequest" current-step="currentStep" uploader-type="'Demandeur'"></docs-form>
 
   <div class="btn btn-primary btn-lg pull-right" ng-click="validateStep()" ng-if="!currentStep.isFinished" ng-disabled="!complete">Valider l'étape</div>
   <div class="btn btn-success btn-lg pull-right" ng-if="currentStep.isFinished" ng-disabled="true">Etape validée</div>

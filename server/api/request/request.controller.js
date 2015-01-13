@@ -141,6 +141,7 @@ exports.save = function(req, res, next) {
 exports.saveFakeDocument = function (req, res, next) {
   var file = req.body.file;
   var stepName = req.body.stepName;
+  var uploaderType = req.body.uploaderType;
 
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (err) return next(err);
@@ -149,6 +150,7 @@ exports.saveFakeDocument = function (req, res, next) {
     var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
     formStepDocument.path = file;
     formStepDocument.state = 'telecharge';
+    formStepDocument.uploaderType = uploaderType;
 
     request.save(function(err) {
       if (err) {return handleError(res, err); }
@@ -164,6 +166,7 @@ exports.saveFakeDocument = function (req, res, next) {
 exports.saveDocument = function (req, res, next) {
     var file = req.files.file;
     var stepName = req.body.stepName;
+    var uploaderType = req.body.uploaderType;
 
     Request.findOne({shortId: req.params.shortId}, function (err, request) {
       if (err) return next(err);
@@ -172,6 +175,7 @@ exports.saveDocument = function (req, res, next) {
       var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
       formStepDocument.path = path.basename(file.path);
       formStepDocument.state = 'telecharge';
+      formStepDocument.uploaderType = uploaderType;
 
       request.save(function(err) {
         if (err) {return handleError(res, err); }
