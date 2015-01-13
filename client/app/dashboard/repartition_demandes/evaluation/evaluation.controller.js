@@ -13,11 +13,13 @@ angular.module('impactApp')
 });
 
 angular.module('impactApp')
-  .controller('EvaluationDemandeCtrl', function ($scope, questions, sections, request, vieQuotidienne) {
+  .controller('EvaluationDemandeCtrl', function ($scope, GevaService, questions, request, vieQuotidienne) {
     var situationAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
     $scope.situationFamiliale = situationAnswers[request.formAnswers.vieQuotidienne.famille];
     $scope.questions = questions;
-    $scope.sections = sections;
+    $scope.sections = GevaService.getSections();
+
+    $scope.computeCompletion = GevaService.computeCompletion;
 
     if($scope.situationFamiliale.labelRecap){
       $scope.situationFamiliale = $scope.situationFamiliale.labelRecap;

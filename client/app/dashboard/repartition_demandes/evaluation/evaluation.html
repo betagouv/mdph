@@ -55,25 +55,35 @@
   </div>
   <div class="col-md-9">
     <ui-view>
-      <div class="col-md-8">
-        <div class="geva-pie" id="geva-pie">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="geva-pie" id="geva-pie">
           <ul>
             <li ng-repeat="section in sections">
               <a ui-sref="dashboard.repartition_demandes.detail.evaluation.section({sectionId: section.id})"><span>{{section.label}}</span></a>
             </li>
           </ul>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading clearfix">
-            Action à mener
           </div>
-          <div class="panel-body">
-            <ul>
-              <li>Visite médicale</li>
-              <li>Visite à domicile</li>
-            </ul>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              Action à mener
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>Visite médicale</li>
+                <li>Visite à domicile</li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Complétude
+            </div>
+            <div class="panel-body">
+              {{computeCompletion(questions)}} %
+            </div>
           </div>
         </div>
       </div>
