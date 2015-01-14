@@ -65,17 +65,14 @@
       <div class="row">
         <div class="col-md-8">
           <div class="geva-pie" id="geva-pie">
-            <div class="row">
-              <div class="col-md-6" ng-repeat="section in sections">
-                <a
-                  class="btn btn-default btn-block"
-                  tooltip-trigger tooltip-placement="left" tooltip-html-unsafe="{{section.tooltip}}"
-                  ui-sref="dashboard.repartition_demandes.detail.evaluation.section({sectionId: section.id})">
-                  {{section.label}}
-                </a>
-              </div>
+            <div class="geva-section" ng-repeat="section in sections">
+              <a
+                class="text-center"
+                tooltip-trigger tooltip-placement="left" tooltip-html-unsafe="{{section.tooltip}}"
+                ui-sref="dashboard.repartition_demandes.detail.evaluation.section({sectionId: section.id})">
+                {{section.label}}
+              </a>
             </div>
-          </ul>
           </div>
         </div>
         <div class="col-md-4">

@@ -1,0 +1,47 @@
+.geva-pie {
+  width: 60%;
+  margin: auto;
+}
+
+.geva-pie li {
+  text-align: left;
+}
+
+.geva-pie .geva-section {
+  width: 49%;
+  margin: 1px;
+  height: 10em;
+  display: inline-block;
+  border-radius: 5%;
+  padding-top: 4em;
+  text-align: center;
+
+  a {
+    color: white;
+    font-size: 18px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.geva-pie .geva-section:nth-child(1) {
+  background-color: #3C4963;
+  background-color: hsla(220, 25%, 31%, 1);
+}
+
+.geva-pie .geva-section:nth-child(2) {
+  background-color: #4f6083;
+  background-color: hsla(220, 25%, 41%, 1);
+}
+
+.geva-pie .geva-section:nth-child(3) {
+  background-color: #4f6083;
+  background-color: hsla(220, 25%, 41%, 1);
+}
+
+.geva-pie .geva-section:nth-child(4) {
+  background-color: #3C4963;
+  background-color: hsla(220, 25%, 31%, 1);
+}
