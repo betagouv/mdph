@@ -10,6 +10,11 @@ angular.module('impactApp')
         resolve: {
           questions: function(GevaService) {
             return GevaService.getQuestions();
+          },
+          prestations: function($http) {
+            return $http.get('/api/prestations').then(function(prestations) {
+              return prestations.data;
+            });
           }
         }
       });

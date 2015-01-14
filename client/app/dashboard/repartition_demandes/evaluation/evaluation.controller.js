@@ -13,7 +13,7 @@ angular.module('impactApp')
 });
 
 angular.module('impactApp')
-  .controller('EvaluationDemandeCtrl', function ($scope, GevaService, questions, request, vieQuotidienne) {
+  .controller('EvaluationDemandeCtrl', function ($scope, GevaService, DroitService, prestations, questions, request, vieQuotidienne) {
     var situationAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
     $scope.situationFamiliale = situationAnswers[request.formAnswers.vieQuotidienne.famille];
     $scope.questions = questions;
@@ -35,4 +35,5 @@ angular.module('impactApp')
       $scope.renouvellement = 'Première demande';
     }
 
+    $scope.prestations = DroitService.compute(request.formAnswers, prestations);
   });

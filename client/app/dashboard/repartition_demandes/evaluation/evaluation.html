@@ -20,36 +20,43 @@
 </div>
 <div class="row">
   <div class="col-md-3">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading clearfix">
-            Récapitulatif demande
-          </div>
-          <div class="panel-body">
-            <p><strong>Nom :</strong> {{request.user.name}}</p>
-            <p><strong>Age :</strong> {{request.formAnswers.contexte.dateNaissance | age}} ans</p>
-            <p><strong>Situation :</strong> {{situationFamiliale}}</p>
-          </div>
-        </div>
-
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        Récapitulatif demande
       </div>
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading clearfix">
-            Points saillants
-          </div>
-          <div class="panel-body">
-            <ul>
-              <li>
-                Situation d'urgence
-              </li>
-              <li>
-                {{renouvellement}}
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="panel-body">
+        <p><strong>Nom :</strong> {{request.user.name}}</p>
+        <p><strong>Age :</strong> {{request.formAnswers.contexte.dateNaissance | age}} ans</p>
+        <p><strong>Situation :</strong> {{situationFamiliale}}</p>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        Points saillants
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li>
+            Situation d'urgence
+          </li>
+          <li>
+            {{renouvellement}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default" ng-if="prestations.length > 0">
+      <div class="panel-heading clearfix">
+        Quitus
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li ng-repeat="prestation in prestations">
+            {{prestation.label}}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
