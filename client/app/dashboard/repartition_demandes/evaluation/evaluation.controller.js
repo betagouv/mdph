@@ -1,3 +1,4 @@
+
 'use strict';
 
 angular.module('impactApp')
@@ -17,7 +18,12 @@ angular.module('impactApp')
     var situationAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
     $scope.situationFamiliale = situationAnswers[request.formAnswers.vieQuotidienne.famille];
     $scope.questions = questions;
+
     $scope.sections = GevaService.getSections();
+
+    _.forEach($scope.sections, function(section){
+      section.tooltip = GevaService.getTooltipBySection(section, $scope.questions);
+    });
 
     $scope.computeCompletion = GevaService.computeCompletion;
 

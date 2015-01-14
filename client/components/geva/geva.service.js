@@ -51,6 +51,15 @@ angular.module('impactApp')
         return sections;
       },
 
+      getTooltipBySection: function(section, questions) {
+        var questionsBySection = '<ul>';
+        _.forEach(questions[section.id], function(elt){
+          questionsBySection = questionsBySection  + '<li>' + elt[0].description + '</li>';
+        });
+        questionsBySection = questionsBySection  + '</ul>';
+        return questionsBySection;
+      },
+
       validate: function(section) {
         section.validated = true;
       },
