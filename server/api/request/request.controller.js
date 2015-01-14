@@ -136,52 +136,34 @@ exports.save = function(req, res, next) {
 };
 
 /**
- * Fake file upload
- */
-exports.saveFakeDocument = function (req, res, next) {
-  var file = req.body.file;
-  var stepName = req.body.stepName;
-  var uploaderType = req.body.uploaderType;
-
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) return next(err);
-
-    var formStep = _.find(request.steps, {name: stepName});
-    var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
-    formStepDocument.path = file;
-    formStepDocument.state = 'telecharge';
-    formStepDocument.uploaderType = uploaderType;
-
-    request.save(function(err) {
-      if (err) {return handleError(res, err); }
-    });
-
-    res.send(formStepDocument.path);
-  });
-};
-
-/**
  * File upload
+ * Exemple de req.body
+ *  step: 'complementaire',
+ *  partenaire: partenaire,
+ *  html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
+ *  subject: 'Ajout de documents - confirmation'
+ *  uploaderType: 'Partenaire'
  */
 exports.saveDocument = function (req, res, next) {
-    var file = req.files.file;
-    var stepName = req.body.stepName;
-    var uploaderType = req.body.uploaderType;
-
     Request.findOne({shortId: req.params.shortId}, function (err, request) {
       if (err) return next(err);
 
-      var formStep = _.find(request.steps, {name: stepName});
-      var formStepDocument = _.find(formStep.files, {name: req.body.documentName});
-      formStepDocument.path = path.basename(file.path);
+      var formStep = _.find(request.steps, {name: req.body.step});
+      console.log('Etape de la requete: ', formStep);
+
+      var formStepDocument = _.find(formStep.files, {name: req.body.name});
+      console.log('Document: ' + formStepDocument);
+      formStepDocument.path = path.basename(req.files.file.path);
       formStepDocument.state = 'telecharge';
-      formStepDocument.uploaderType = uploaderType;
+      formStepDocument.uploaderType = req.body.uploaderType;
 
       request.save(function(err) {
         if (err) {return handleError(res, err); }
+        if (req.body.partenaire) {
+          console.log('Partenaire: ', req.body.partenaire);
+        }
+        res.send(request);
       });
-
-      res.send(formStepDocument.path);
     });
 };
 

@@ -15,7 +15,7 @@ router.put('/:shortId', auth.isAuthenticated(), controller.update);
 
 router.delete('/:shortId', controller.destroy);
 
-router.post('/:shortId/document', controller.saveFakeDocument); // TODO remettre isAuth
+router.post('/:shortId/document', controller.saveDocument);
 router.put('/:shortId/document', auth.isAuthenticated(), controller.updateDocumentState);
 
 router.put('/:shortId/step', auth.isAuthenticated(), controller.updateStep);

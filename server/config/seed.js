@@ -387,11 +387,25 @@ var createRoxOldRequest = function(cb) {
       },
       {
         name: 'preevaluation',
-        state: 'en_cours'
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
       }
     ]
-  }, function() {
-    console.log('finished creating request old rox');
+  }, function(err, request) {
+    console.log('finished creating request old rox: ' + request.shortId);
     cb();
   });
 };

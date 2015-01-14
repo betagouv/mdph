@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'PieceJointeCtrl',
         resolve: {
           request: function($stateParams, RequestResource) {
-            return RequestResource.getPartenaire({shortId: $stateParams.shortId});
+            return RequestResource.getPartenaire({shortId: $stateParams.shortId}).$promise;
           }
         }
       });

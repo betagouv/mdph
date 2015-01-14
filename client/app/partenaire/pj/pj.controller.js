@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, Partenaire, request) {
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, request) {
     $scope.request = request;
     $scope.currentFormStep = _.find($scope.request.steps, {'name': 'complementaire'});
     $scope.files = $scope.currentFormStep.files;
@@ -17,18 +17,8 @@ angular.module('impactApp')
     };
 
     $scope.onFileSelect = function($files, currentFile) {
-      //$files: an array of files selected, each file has name, size, and type.
-      /*var file = $files[0];
-      $http.post('api/requests/' + $scope.request.shortId + '/document', {
-        stepName: $scope.currentStep.id,
-        documentName: currentFile.name,
-        file: file.name,
-        uploaderType: 'Demandeur',
-      }).then(function(res) {
-        currentFile.path = res.data;
-      });*/
-      var file = $files[0];
-      currentFile.path = file.name;
+      currentFile.upload = $files[0];
+      currentFile.path = currentFile.upload.name;
     };
 
     $scope.checkIfDisabled = function() {
@@ -36,16 +26,37 @@ angular.module('impactApp')
     };
 
     var envoiConfirmation = function(partenaire) {
-      $http.post('api/send-mail/confirmation',
-        {partenaire: partenaire, html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>', subject: 'Ajout de documents - confirmation'}).success(function() {
-        $modal.open({
-          templateUrl: 'app/partenaire/pj/confirmationModal.html',
-          controller: function($scope, $modalInstance) {
-            $scope.ok = function() {
-              $modalInstance.close();
-            };
+      var confirmationSent = false;
+      _.forEach($scope.files, function(file) {
+        if (file.upload) {
+          if (confirmationSent === false) {
+            confirmationSent = true;
+            $http.post('api/send-mail/confirmation',
+              {partenaire: partenaire, html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>', subject: 'Ajout de documents - confirmation'}).success(function() {
+              $modal.open({
+                templateUrl: 'app/partenaire/pj/confirmationModal.html',
+                controller: function($scope, $modalInstance) {
+                  $scope.ok = function() {
+                    $modalInstance.close();
+                  };
+                }
+              });
+            });
           }
-        });
+          $scope.upload = $upload.upload({
+            url: 'api/requests/' + $scope.request.shortId + '/document',
+            withCredentials: true,
+            data: {
+              step: 'complementaire',
+              partenaire: partenaire,
+              html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
+              subject: 'Ajout de documents - confirmation',
+              uploaderType: 'Partenaire',
+              name: file.name
+            },
+            file: file.upload,
+          });
+        }
       });
     };
   });
