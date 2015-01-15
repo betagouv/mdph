@@ -31,8 +31,11 @@ angular.module('impactApp')
         if (file.upload) {
           if (confirmationSent === false) {
             confirmationSent = true;
-            $http.post('api/send-mail/confirmation',
-              {partenaire: partenaire, html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>', subject: 'Ajout de documents - confirmation'}).success(function() {
+            $http.post('api/send-mail/confirmation', {
+              partenaire: partenaire,
+              html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
+              subject: 'Ajout de documents - confirmation'
+            }).success(function() {
               $modal.open({
                 templateUrl: 'app/partenaire/pj/confirmationModal.html',
                 controller: function($scope, $modalInstance) {
@@ -43,18 +46,16 @@ angular.module('impactApp')
               });
             });
           }
-          $scope.upload = $upload.upload({
+          $upload.upload({
             url: 'api/requests/' + $scope.request.shortId + '/document',
             withCredentials: true,
             data: {
               step: 'complementaire',
               partenaire: partenaire,
-              html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
-              subject: 'Ajout de documents - confirmation',
               uploaderType: 'Partenaire',
               name: file.name
             },
-            file: file.upload,
+            file: file.upload
           });
         }
       });

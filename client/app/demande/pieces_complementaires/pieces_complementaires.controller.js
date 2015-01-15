@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PiecesComplementairesCtrl', function ($scope, RequestService, $http) {
+  .controller('PiecesComplementairesCtrl', function ($scope, $upload, RequestService) {
 
     $scope.currentStep = $scope.steps[3];
     $scope.currentFormStep = _.find($scope.currentRequest.steps, {'name': $scope.currentStep.id});
@@ -21,11 +21,15 @@ angular.module('impactApp')
     $scope.onFileSelect = function($files, currentFile) {
       //$files: an array of files selected, each file has name, size, and type.
       var file = $files[0];
-      $http.post('api/requests/' + $scope.request.shortId + '/document', {
-        stepName: $scope.currentStep.id,
-        documentName: currentFile.name,
-        file: file.name,
-        uploaderType: 'Demandeur',
+      $upload.upload({
+        url: 'api/requests/' + $scope.currentRequest.shortId + '/document',
+        withCredentials: true,
+        data: {
+          step: 'complementaire',
+          uploaderType: 'Demandeur',
+          name: currentFile.name
+        },
+        file: file
       }).then(function(res) {
         currentFile.path = res.data;
         checkIfComplete();

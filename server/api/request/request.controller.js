@@ -140,8 +140,6 @@ exports.save = function(req, res, next) {
  * Exemple de req.body
  *  step: 'complementaire',
  *  partenaire: partenaire,
- *  html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
- *  subject: 'Ajout de documents - confirmation'
  *  uploaderType: 'Partenaire'
  */
 exports.saveDocument = function (req, res, next) {
