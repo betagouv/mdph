@@ -218,7 +218,16 @@ var createFooRequest = function(cb) {
     user: foo,
     mdph: mdphNord,
     updatedAt: new Date(),
-    step: 'obligatoire',
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'en_cours'
+      }
+    ],
     opened: true
   }, function(err, data) {
      fooRequest = data;
@@ -512,17 +521,15 @@ var createBobRequest = function(cb) {
       },
       {
         "name": "obligatoire",
-        "state": "a_valider",
+        "state": "en_cours",
         "files": [
           {
             "name": "certificatMedical",
-            "state": "telecharge",
-            "path": "identite.png"
+            "state": "demande"
           },
           {
             "name": "carteIdentite",
-            "state": "telecharge",
-            "path": "identite.jpg"
+            "state": "demande"
           }
         ]
       }

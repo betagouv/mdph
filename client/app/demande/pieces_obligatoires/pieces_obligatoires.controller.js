@@ -24,7 +24,7 @@ angular.module('impactApp')
         url: 'api/requests/' + $scope.currentRequest.shortId + '/document',
         withCredentials: true,
         data: {
-          step: 'complementaire',
+          step: 'obligatoire',
           uploaderType: 'Demandeur',
           name: currentFile.name
         },
