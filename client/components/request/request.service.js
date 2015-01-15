@@ -8,7 +8,7 @@ angular.module('impactApp')
     }
 
     return {
-      saveCurrent: function(scope) {
+      saveCurrent: function(scope, next) {
         if (!currentRequest) {
           console.err('No current request');
           return;
@@ -26,6 +26,10 @@ angular.module('impactApp')
         });
 
         var success = function() {
+          if (next) {
+            next();
+          }
+
           $timeout(function() {
             scope.$broadcast('requestSaved');
           }, 100);

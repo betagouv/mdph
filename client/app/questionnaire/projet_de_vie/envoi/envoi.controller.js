@@ -28,8 +28,7 @@ angular.module('impactApp')
     };
 
     $scope.$on('requestSaved', function () {
-      $http.post('api/send-mail', {mdph: $scope.currentMdph, user: Auth.getCurrentUser(), html: RecapitulatifService.answersToHtml()}).success(function(data) {
-        console.log(data);
+      $http.post('api/send-mail', {mdph: $scope.currentMdph, user: Auth.getCurrentUser(), html: RecapitulatifService.answersToHtml()}).success(function() {
         $modal.open({
           templateUrl: 'app/questionnaire/projet_de_vie/envoi/envoiModal.html',
           resolve: {
@@ -40,6 +39,7 @@ angular.module('impactApp')
           controller: function($scope, $modalInstance, currentMdph) {
             $scope.ok = function() {
               $modalInstance.close();
+              RequestService.saveCurrent($rootScope);
               if(currentMdph==='Nord'){
                 $state.go('liste_demandes.demande.recapitulatif', {shortId: RequestService.getCurrent().shortId});
               } else {
