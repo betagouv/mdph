@@ -99,22 +99,24 @@ exports.showUserRequests = function(req, res, next) {
  * Update request
  */
 exports.update = function(req, res, next) {
-  if (req.body.user) {
-    req.body.user = req.body.user._id;
-  }
-  if (req.body.mdph) {
-    req.body.mdph = req.body.mdph._id;
-  }
-  if (req.body.evaluator) {
-    req.body.evaluator = req.body.evaluator._id;
+  var compare = function(current, value) {
+    return !value ? current: value._id;
   }
 
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    request.set(req.body).save(function(err, data) {
-      if(err) return res.send(500, err);
-      return res.send(200, data);
+    request
+      .set(_.omit(req.body, ['user', 'mdph', 'evaluator']))
+      .set('updatedAt', Date.now())
+      .set('user', compare(request.user, req.body.user))
+      .set('mdph', compare(request.mdph, req.body.mdph))
+      .set('evaluator', compare(request.evaluator, req.body.evaluator))
+      .save(function(err, data) {
+        if(err) return res.send(500, err);
+        data.populate('group', 'name').populate('user mdph evaluator', function(err, data) {
+          return res.json(data);
+        });
+      });
     });
-  });
 };
 
 /**
@@ -162,87 +164,6 @@ exports.saveDocument = function (req, res, next) {
         res.send(request);
       });
     });
-};
-
-exports.updateDocumentState = function (req, res, next) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
-     if (err) return next(err);
-
-     var formStep = _.find(request.steps, {name: req.body.stepName});
-     var formStepDocument = _.find(formStep.files, {name: req.body.fileName});
-
-     formStepDocument.state = req.body.state;
-
-     request.save(function(err) {
-       if (err) {return handleError(res, err); }
-     });
-
-     res.send(formStepDocument.state);
-   });
-};
-
-exports.updateStep = function (req, res, next) {
-  var stepName = req.body.step;
-  var stateName = req.body.state;
-  var files = req.body.files;
-
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) { return handleError(res, err); }
-    if(!request) { return res.send(404); }
-
-    var formStep = _.find(request.steps, {name: stepName});
-    formStep.state = stateName;
-    if (files && files.length > 0) {
-      formStep.files = files;
-    }
-
-    request.save(function(err) {
-      if (err) {return handleError(res, err); }
-    });
-
-    res.send(formStep);
-  });
-};
-
-exports.saveStep = function (req, res, next) {
-  var stepName = req.body.step;
-  var stateName = req.body.state;
-  var files = req.body.files;
-
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) { return handleError(res, err); }
-    if(!request) { return res.send(404); }
-
-    var formStep = {
-      name: stepName,
-      state: stateName,
-      files: files
-    };
-    request.steps.push(formStep);
-
-    request.save(function(err) {
-      if (err) {return handleError(res, err); }
-      res.send(formStep);
-    });
-  });
-};
-
-exports.saveRequestStatus = function (req, res, next) {
-  var requestStatusName = req.body.requestStatus;
-
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) { return handleError(res, err); }
-    if(!request) { return res.send(404); }
-
-    var newRequestStatus = requestStatusName;
-
-    request.requestStatus = newRequestStatus ;
-
-    request.save(function(err) {
-      if (err) {return handleError(res, err); }
-      res.send(newRequestStatus);
-    });
-  });
 };
 
 function handleError(res, err) {

@@ -16,11 +16,5 @@ router.put('/:shortId', auth.isAuthenticated(), controller.update);
 router.delete('/:shortId', controller.destroy);
 
 router.post('/:shortId/document', controller.saveDocument);
-router.put('/:shortId/document', auth.isAuthenticated(), controller.updateDocumentState);
-
-router.put('/:shortId/step', auth.isAuthenticated(), controller.updateStep);
-router.post('/:shortId/step', auth.isAuthenticated(), controller.saveStep);
-
-router.post('/:shortId/status', auth.isAuthenticated(), controller.saveRequestStatus);
 
 module.exports = router;
