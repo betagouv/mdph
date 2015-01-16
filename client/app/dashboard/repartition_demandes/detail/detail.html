@@ -100,7 +100,7 @@
           <document-search form="form" callback="addRequestedFile"></document-search>
         </div>
 
-        <div ng-if="getStep('complementaire').state === 'a_valider' || getStep('complementaire').state === 'valide'">
+        <div ng-if="getStep('complementaire').state !== 'pre_evaluation'">
           <file-state
             request="request"
             current-step-name="'complementaire'"

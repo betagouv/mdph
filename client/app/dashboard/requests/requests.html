@@ -44,10 +44,10 @@
             </div>
           </a>
           <div class="col-sm-2">
-            <div class="btn btn-primary btn-block" ng-click="traiterDemande(request, $index)" ng-if="!demandeTraitee[$index]">
+            <div class="btn btn-primary btn-block" ng-click="traiterDemande(request, $index)" ng-if="!request.evaluator">
               Assigner
             </div>
-            <div class="btn btn-success btn-block" ng-if="demandeTraitee[$index]">
+            <div class="btn btn-success btn-block" ng-if="request.evaluator">
               <i class="fa fa-thumbs-up"></i>
               <span>Assignée</span>
             </div>

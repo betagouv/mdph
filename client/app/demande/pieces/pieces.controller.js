@@ -33,6 +33,7 @@ angular.module('impactApp')
         file: file
       }).then(function(res) {
         currentFile.path = res.data;
+        currentFile.state = 'telecharge';
         checkIfComplete();
       });
     };

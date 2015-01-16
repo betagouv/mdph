@@ -4,25 +4,10 @@ angular.module('impactApp')
   .controller('RequestsCtrl', function ($scope, $http, $state, RequestStepService, RequestService, requestSteps, requests, Auth) {
 
     $scope.requests = _.sortBy(requests, $scope.updatedAt);
-    $scope.demandeTraitee = [];
     $scope.currentUser = Auth.getCurrentUser();
     $scope.updatedAt = RequestService.updatedAt;
 
-    $scope.delete = function(request) {
-      $http.delete('/api/requests/' + request.shortId).success(function() {
-        angular.forEach($scope.requests, function(f, i) {
-          if (f._id === request.shortId) {
-            $scope.requests.splice(i, 1);
-            $state.go('dashboard.requests');
-          }
-        });
-      });
-    };
-
-    $scope.selectedFilters = {
-
-    };
-
+    $scope.selectedFilters = {};
     $scope.availableFilters = requestSteps;
 
     $scope.filtres = function(request){
@@ -52,10 +37,9 @@ angular.module('impactApp')
       return true;
     };
 
-    $scope.traiterDemande = function (request, $index) {
+    $scope.traiterDemande = function (request) {
       request.evaluator = $scope.currentUser;
-      request.$update({id: request.shortId});
-      $scope.demandeTraitee[$index] = true;
+      request.$update();
     };
 
   });
