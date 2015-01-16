@@ -7,6 +7,7 @@ angular.module('impactApp')
         request: '=',
         currentStepName: '=',
         nextStepName: '=',
+        nextStepStatus: '=',
         nextStatus: '=',
         saveStep: '='
       },
@@ -27,8 +28,9 @@ angular.module('impactApp')
             $scope.requestStep.state = 'erreur';
           } else {
             $scope.requestStep.state = 'valide';
+            $scope.request.status = $scope.nextStatus;
             if ($scope.nextStepName) {
-              $scope.request.steps.push({name: $scope.nextStepName, state: 'en_cours'});
+              $scope.request.steps.push({name: $scope.nextStepName, state: $scope.nextStepStatus});
             }
           }
           $scope.request.$update();

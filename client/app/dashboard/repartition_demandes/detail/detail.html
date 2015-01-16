@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div id="obligatoire" ng-if="request.steps.length >= 1">
+      <div id="obligatoire" ng-if="request.steps.length >= 2">
         <h2>
           Pièces obligatoires
         </h2>
@@ -59,11 +59,12 @@
           request="request"
           current-step-name="'obligatoire'"
           next-step-name="'complementaire'"
+          next-step-status="'pre_evaluation'"
           next-status="'Recevable'">
         </file-state>
       </div>
 
-      <div id="complementaire" ng-if="request.steps.length >= 2">
+      <div id="complementaire" ng-if="request.steps.length >= 3">
         <h2>Pièces complémentaires</h2>
         <small class="text-muted-primary">{{getStep('complementaire').files.length}} documents demandés</small>
 
@@ -99,16 +100,19 @@
           <document-search form="form" callback="addRequestedFile"></document-search>
         </div>
 
-        <file-state
-          request="request"
-          current-step-name="'complementaire'"
-          next-step-name="'evaluation'"
-          next-status="'Complète'"
-          remove-file="true">
-        </file-state>
+        <div ng-if="getStep('complementaire').state === 'en_cours'">
+          <file-state
+            request="request"
+            current-step-name="'complementaire'"
+            next-step-name="'evaluation'"
+            next-step-status="'en_cours'"
+            next-status="'Complète'"
+            remove-file="true">
+          </file-state>
+        </div>
 
       </div>
-      <div id="evaluation" ng-if="request.steps.length >= 3">
+      <div id="evaluation" ng-if="request.steps.length >= 4">
         <h2>
           Evaluation
         </h2>
