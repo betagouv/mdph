@@ -15,7 +15,7 @@ angular.module('impactApp')
     };
 
     var updatePartenaire = function(partenaire) {
-      partenaire.$update({id: partenaire._id});
+      partenaire.$update();
       envoiNotification(partenaire);
     };
 
@@ -24,9 +24,6 @@ angular.module('impactApp')
       if (partenaire.certified === 'Certifié'){
         notification = '<h1>Vous avez été certifié par votre MDPH</h1><p>Vous êtes mainteant un partenaire reconnu de votre MDPH.</p>';
       }
-      $http.post('api/send-mail/confirmation',
-        {partenaire: partenaire, html: notification, subject: 'Notification de certification'}).success(function() {
-
-      });
+      $http.post('api/send-mail/confirmation', {partenaire: partenaire, html: notification, subject: 'Notification de certification'});
     };
   });

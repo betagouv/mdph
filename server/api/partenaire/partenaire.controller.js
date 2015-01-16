@@ -37,7 +37,7 @@ exports.create = function(req, res) {
 // Updates an existing partenaire in the DB.
 exports.update = function(req, res) {
   if(req.body.email) { delete req.body.email; }
-  Partenaire.find({email: req.params.email}, function (err, partenaire) {
+  Partenaire.findOne({email: req.params.email}, function (err, partenaire) {
     if (err) { return handleError(res, err); }
     if(!partenaire) { return res.send(404); }
     var updated = _.merge(partenaire, req.body);
