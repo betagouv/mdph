@@ -123,7 +123,7 @@ exports.update = function(req, res, next) {
       .save(function(err, data) {
         if(err) return res.send(500, err);
         data.populate('user mdph evaluator', function(err, data) {
-        if(err) return res.send(500, err);
+          if(err) return res.send(500, err);
           return res.json(data);
         });
       });
