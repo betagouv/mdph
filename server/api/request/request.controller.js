@@ -139,8 +139,7 @@ exports.save = function(req, res, next) {
  * File upload
  * Exemple de req.body
  *  step: 'complementaire',
- *  partenaire: partenaire,
- *  uploaderType: 'Partenaire'
+ *  partenaire: partenaire
  */
 exports.saveDocument = function (req, res, next) {
     Request.findOne({shortId: req.params.shortId}, function (err, request) {
@@ -153,7 +152,9 @@ exports.saveDocument = function (req, res, next) {
       console.log('Document: ' + formStepDocument);
       formStepDocument.path = path.basename(req.files.file.path);
       formStepDocument.state = 'telecharge';
-      formStepDocument.uploaderType = req.body.uploaderType;
+      if (req.body.partenaire) {
+          formStepDocument.partenaire = req.body.partenaire;
+        }
 
       request.save(function(err) {
         if (err) {return handleError(res, err); }

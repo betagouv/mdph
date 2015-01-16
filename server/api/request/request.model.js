@@ -8,7 +8,7 @@ var FileSchema = new Schema({
   name:           { type: String },
   path:           { type: String },
   state:          { type: String },
-  uploaderType:   { type: String }
+  partenaire:   { type: String }
 });
 
 var StepSchema = new Schema({

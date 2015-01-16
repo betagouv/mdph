@@ -13,7 +13,8 @@ angular.module('impactApp')
       }, function(){
         //TODO
       });
-      envoiConfirmation(partenaire);
+
+      envoiConfirmation(newPartenaire);
     };
 
     $scope.onFileSelect = function($files, currentFile) {
@@ -51,8 +52,7 @@ angular.module('impactApp')
             withCredentials: true,
             data: {
               step: 'complementaire',
-              partenaire: partenaire,
-              uploaderType: 'Partenaire',
+              partenaire: partenaire.email,
               name: file.name
             },
             file: file.upload

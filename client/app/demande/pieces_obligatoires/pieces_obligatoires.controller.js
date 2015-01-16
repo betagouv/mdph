@@ -25,7 +25,6 @@ angular.module('impactApp')
         withCredentials: true,
         data: {
           step: 'obligatoire',
-          uploaderType: 'Demandeur',
           name: currentFile.name
         },
         file: file
