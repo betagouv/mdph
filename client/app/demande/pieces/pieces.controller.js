@@ -15,9 +15,9 @@ angular.module('impactApp')
     };
 
     $scope.validateStep = function() {
-      RequestService.saveStepState($scope.currentRequest, $scope.currentStep.id, 'a_valider', function() {
-        $scope.$parent.$broadcast('refreshFormStepSection');
-      });
+      $scope.currentFormStep.state = 'a_valider';
+      $scope.currentRequest.$update();
+      $scope.$parent.$broadcast('refreshFormStepSection');
     };
 
     $scope.onFileSelect = function($files, currentFile) {

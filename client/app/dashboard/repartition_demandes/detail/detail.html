@@ -100,7 +100,7 @@
           <document-search form="form" callback="addRequestedFile"></document-search>
         </div>
 
-        <div ng-if="getStep('complementaire').state === 'en_cours'">
+        <div ng-if="getStep('complementaire').state === 'a_valider' || getStep('complementaire').state === 'valide'">
           <file-state
             request="request"
             current-step-name="'complementaire'"
@@ -120,7 +120,6 @@
           <span>Commencer l'évaluation</span>
         </a>
       </div>
-
     </div>
   </div>
 </ui-view>
