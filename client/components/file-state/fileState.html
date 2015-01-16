@@ -11,7 +11,7 @@
         <small>(En attente)</small>
       </div>
       <div class="col-md-8" ng-if="file.state !== 'demande' ">
-        <a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a> <small ng-if="file.partenaire">(Partenaire : {{file.partenaire}})</small>
+        <a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a> <small ng-if="file.partenaire">({{file.partenaire.email}} - {{file.partenaire.certified}})</small>
       </div>
       <div ng-if="showButtons && file.state === 'telecharge'">
         <div class="col-md-2">

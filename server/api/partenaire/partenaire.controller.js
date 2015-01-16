@@ -12,10 +12,19 @@ exports.index = function(req, res) {
   });
 };
 
+// Get list of partenaires
+exports.show = function(req, res) {
+  Partenaire.findOne({email: req.params.email}, function (err, partenaire) {
+    if (err) { return handleError(res, err); }
+    if(!partenaire) { return res.send(404); }
+    return res.json(partenaire);
+  });
+};
+
 // Creates a new partenaire in the DB.
 exports.create = function(req, res) {
   Partenaire.create(req.body, function(err, partenaire) {
-    if(err) { 
+    if(err) {
     	if(err.code===11000){
     		return res.sendStatus(409);
     	}
@@ -27,8 +36,8 @@ exports.create = function(req, res) {
 
 // Updates an existing partenaire in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Partenaire.findById(req.params.id, function (err, partenaire) {
+  if(req.body.email) { delete req.body.email; }
+  Partenaire.find({email: req.params.email}, function (err, partenaire) {
     if (err) { return handleError(res, err); }
     if(!partenaire) { return res.send(404); }
     var updated = _.merge(partenaire, req.body);
@@ -41,7 +50,7 @@ exports.update = function(req, res) {
 
 // Deletes a partenaire from the DB.
 exports.destroy = function(req, res) {
-  Partenaire.findById(req.params.id, function (err, partenaire) {
+  Partenaire.find({email: req.params.email}, function (err, partenaire) {
     if(err) { return handleError(res, err); }
     if(!partenaire) { return res.send(404); }
     partenaire.remove(function(err) {

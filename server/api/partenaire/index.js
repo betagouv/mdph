@@ -6,9 +6,10 @@ var controller = require('./partenaire.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.destroy);
+router.get('/:email', controller.show);
+router.post('/:email', controller.create);
+router.put('/:email', controller.update);
+router.patch('/:email', controller.update);
+router.delete('/:email', controller.destroy);
 
 module.exports = router;

@@ -164,7 +164,9 @@ exports.saveDocument = function (req, res, next) {
       var formStepDocument = _.find(formStep.files, {name: req.body.name});
       formStepDocument.path = path.basename(req.files.file.path);
       formStepDocument.state = 'telecharge';
-      formStepDocument.uploaderType = req.body.uploaderType;
+      if (req.body.partenaire) {
+          formStepDocument.partenaire = req.body.partenaire;
+        }
 
       request.save(function(err) {
         if (err) {return handleError(res, err); }

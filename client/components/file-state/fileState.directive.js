@@ -13,11 +13,18 @@ angular.module('impactApp')
       },
       templateUrl: 'components/file-state/fileState.html',
       restrict: 'EA',
-      controller: function($scope, $http, $state, requestSteps) {
+      controller: function($scope, $http, $state, requestSteps, Partenaire) {
         $scope.requestStep = _.find($scope.request.steps, {'name': $scope.currentStepName});
         $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
 
         $scope.files = $scope.requestStep.files;
+
+
+        _.forEach($scope.files, function(file){
+          if(file.partenaire){
+            file.partenaire = Partenaire.get({email: file.partenaire});
+          }
+        });
 
         $scope.isComplete = function() {
           return !_.some($scope.files, {'state': 'telecharge'});

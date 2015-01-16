@@ -9,10 +9,7 @@ angular.module('impactApp')
 
     $scope.createPartenaire = function (partenaire) {
       var newPartenaire = new Partenaire(partenaire);
-      newPartenaire.$save(null, function(){
-      }, function(){
-        //TODO
-      });
+      newPartenaire.$save();
 
       envoiConfirmation(newPartenaire);
     };
