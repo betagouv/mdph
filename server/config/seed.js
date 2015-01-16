@@ -244,8 +244,8 @@ var createBobOldRequest = function(cb) {
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
     steps: [
       {
-        name: 'reponse',
-        state: 'complet'
+        name: 'evaluation',
+        state: 'valide'
       }
     ]
   }, function() {
@@ -359,10 +359,6 @@ var createTotoOldRequest = function(cb) {
         state: 'valide'
       },
       {
-        name: 'preevaluation',
-        state: 'valide'
-      },
-      {
         name: 'complementaire',
         state: 'valide'
       },
@@ -392,10 +388,6 @@ var createRoxOldRequest = function(cb) {
       },
       {
         name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'preevaluation',
         state: 'valide'
       },
       {
@@ -516,20 +508,23 @@ var createBobRequest = function(cb) {
     "steps": [
       {
         "name": "questionnaire",
-        "state": "complet",
-        "files": []
+        "state": "complet"
       },
       {
         "name": "obligatoire",
-        "state": "en_cours",
+        "state": "a_valider",
         "files": [
           {
             "name": "certificatMedical",
-            "state": "demande"
+            "state": "telecharge",
+            "path": "toto.jpg",
+            uploaderType: "Demandeur"
           },
           {
             "name": "carteIdentite",
-            "state": "demande"
+            "state": "telecharge",
+            "path": "toto.jpg",
+            uploaderType: "Demandeur"
           }
         ]
       }

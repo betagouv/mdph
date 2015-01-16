@@ -108,10 +108,12 @@ exports.update = function(req, res, next) {
   if (req.body.evaluator) {
     req.body.evaluator = req.body.evaluator._id;
   }
-  Request.update({ shortId: req.params.shortId }, req.body, {}, function(err) {
-    if (err) {
-      return next(err);
-    }
+
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    request.set(req.body).save(function(err, data) {
+      if(err) return res.send(500, err);
+      return res.send(200, data);
+    });
   });
 };
 
@@ -144,12 +146,8 @@ exports.save = function(req, res, next) {
 exports.saveDocument = function (req, res, next) {
     Request.findOne({shortId: req.params.shortId}, function (err, request) {
       if (err) return next(err);
-
       var formStep = _.find(request.steps, {name: req.body.step});
-      console.log('Etape de la requete: ', formStep);
-
       var formStepDocument = _.find(formStep.files, {name: req.body.name});
-      console.log('Document: ' + formStepDocument);
       formStepDocument.path = path.basename(req.files.file.path);
       formStepDocument.state = 'telecharge';
       if (req.body.partenaire) {
@@ -160,6 +158,7 @@ exports.saveDocument = function (req, res, next) {
         if (err) {return handleError(res, err); }
         if (req.body.partenaire) {
           console.log('Partenaire: ', req.body.partenaire);
+          // Do something with partenaire
         }
         res.send(request);
       });

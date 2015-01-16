@@ -1,5 +1,10 @@
 <div class="list-group">
-  <div ng-repeat="file in files" ng-mouseleave="showButtons = false" ng-mouseover="showButtons = true" class="list-group-item">
+  <div class="list-group-item" ng-if="files.length === 0">
+    <div class="backoffice-pj">
+      <em>Aucun document sélectionné, utilisez l'outil ci-dessous pour ajouter des pièces justificatives à la demande.</em>
+    </div>
+  </div>
+  <div ng-repeat="(idx, file) in files" ng-if="files.length > 0" ng-mouseleave="showButtons = false" ng-mouseover="showButtons = true" class="list-group-item">
     <div class="row backoffice-pj">
       <div class="col-md-6" ng-if="file.state === 'demande' ">
         {{file.name | documentFilter}}
@@ -10,10 +15,10 @@
       </div>
       <div ng-if="showButtons && file.state === 'telecharge'">
         <div class="col-md-2">
-          <a class="btn btn-success btn-block" ng-click="saveValid(file)"><i class="fa fa-check"></i> Valider</a>
+          <a class="btn btn-success btn-block" ng-click="file.state = 'valide'"><i class="fa fa-check"></i> Valider</a>
         </div>
         <div class="col-md-2">
-          <a class="btn btn-danger btn-block" ng-click="saveError(file)"><i class="fa fa-times"></i> Refuser</a>
+          <a class="btn btn-danger btn-block" ng-click="file.state = 'erreur'"><i class="fa fa-times"></i> Refuser</a>
         </div>
       </div>
       <div ng-if="file.state !== 'demande' && file.state !== 'telecharge'">
@@ -24,15 +29,16 @@
       </div>
     </div>
   </div>
-  <div ng-if="files.length !== 0 && requestStep.state === 'a_valider'">
-    <hr>
+
+  <br>
+
+  <div ng-if="showSave()">
     <div class="row">
       <div class="col-sm-2 col-sm-offset-10">
-        <a class="btn btn-success btn-block" ng-disabled="!isComplete" ng-click="save()">
+        <a class="btn btn-success btn-block" ng-disabled="disableSave()" ng-click="save()">
           <i class="fa fa-check"></i> Enregistrer
         </a>
       </div>
     </div>
   </div>
 </div>
-

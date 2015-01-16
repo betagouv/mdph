@@ -40,26 +40,14 @@ angular.module('impactApp').constant('requestSteps', [
     ]
   },
   {
-    id: 'preevaluation',
-    sref: '.preevaluation',
-    step: 2,
-    label: 'Pré-évaluation',
-    states: [
-      {
-        name: 'en_cours'
-      },
-      {
-        name: 'valide',
-        isFinal: true
-      }
-    ]
-  },
-  {
     id: 'complementaire',
     sref: '.complementaire',
-    step: 3,
+    step: 2,
     label: 'Compléments',
     states: [
+      {
+        name: 'pre_evaluation'
+      },
       {
         name: 'en_cours'
       },
@@ -79,7 +67,7 @@ angular.module('impactApp').constant('requestSteps', [
   {
     id: 'evaluation',
     sref: '.evaluation',
-    step: 4,
+    step: 3,
     label: 'Evaluation',
     states: [
       {
@@ -87,18 +75,6 @@ angular.module('impactApp').constant('requestSteps', [
       },
       {
         name: 'valide',
-        isFinal: true
-      }
-    ]
-  },
-  {
-    id: 'reponse',
-    sref: '.reponse',
-    step: 5,
-    label: 'Réponse',
-    states: [
-      {
-        name: 'complet',
         isFinal: true
       }
     ]

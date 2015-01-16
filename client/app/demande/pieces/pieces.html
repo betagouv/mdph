@@ -1,8 +1,8 @@
 <div class="container">
   <h1 class="page-header no-hr">
-    Pièces obligatoires
+    {{title}}
     <br/>
-    <small>Pour compléter votre demande et la transmettre à la Mdph du {{currentRequest.mdph.name}}</small>
+    <small>{{subtitle}}<small>
   </h1>
 
   <div class="alert alert-danger" role="alert" ng-if="currentFormStep.state === 'erreur'">

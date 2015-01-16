@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PiecesComplementairesCtrl', function ($scope, $upload, RequestService) {
-
-    $scope.currentStep = $scope.steps[3];
-    $scope.currentFormStep = _.find($scope.currentRequest.steps, {'name': $scope.currentStep.id});
-
+  .controller('PiecesCtrl', function ($scope, $upload, RequestService, step) {
+    $scope.currentStep = $scope.steps[step.id];
+    $scope.currentFormStep = _.find($scope.currentRequest.steps, {'name': step.name});
     $scope.files = $scope.currentFormStep.files;
+    $scope.title = step.name === 'complementaire' ? 'Pièces complementaires' : 'Pièces obligatoires';
+    $scope.subtitle = step.name === 'complementaire' ?
+      'Suite à notre première analyse de votre demande, nous avons besoin des pièces suivantes avant de pouvoir procéder à l\'évaluation de votre situation.' :
+      'Pour compléter votre demande et la transmettre à la Mdph du ' + $scope.currentRequest.mdph.name;
 
     var checkIfComplete = function() {
       $scope.complete = _.every($scope.files, 'path');
@@ -25,7 +27,7 @@ angular.module('impactApp')
         url: 'api/requests/' + $scope.currentRequest.shortId + '/document',
         withCredentials: true,
         data: {
-          step: 'complementaire',
+          step: step.name,
           name: currentFile.name
         },
         file: file
@@ -35,4 +37,5 @@ angular.module('impactApp')
       });
     };
 
+    checkIfComplete();
   });

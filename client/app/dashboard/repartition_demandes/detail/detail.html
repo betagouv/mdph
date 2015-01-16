@@ -41,76 +41,82 @@
     <div class="panel panel-default panel-body">
       <div id="questionnaire">
         <h2>Quitus</h2>
-        <ul>
-          <li ng-repeat="prestation in prestations">
-            {{prestation.label}}
-          </li>
-        </ul>
-      </div>
-      <div ng-if="request.mdph.name!='Nord'">
-        <div id="obligatoire" ng-if="request.steps.length >= 2">
-          <h2>
-            Pièces obligatoires
-          </h2>
-          <file-state
-            request="request"
-            current-step-name="'obligatoire'"
-            next-step-name="'preevaluation'"
-            next-status="'Recevable'"
-            save-step="saveStep">
-          </file-state>
+        <div class="list-group">
+          <div class="list-group-item" ng-if="prestations.length === 0">
+            Pas de prestations
+          </div>
+          <div class="list-group-item" ng-if="prestations.length > 0" ng-repeat="prestation in prestations">
+            {{prestation.title}}
+          </div>
         </div>
-        <div id="preevaluation" ng-if="request.steps.length >= 3">
-          <h2>Préevaluation</h2>
-          <small class="text-muted-primary">{{requestedFiles.length}} documents demandés</small>
-          <div class="list-group">
-            <div class="list-group-item" ng-if="requestedFiles.length === 0">
-              <div class="backoffice-pj">
-                <em>Aucun document sélectionné, utilisez l'outil ci-dessous pour ajouter des pièces justificatives à la demande.</em>
-              </div>
+      </div>
+
+      <div id="obligatoire" ng-if="request.steps.length >= 1">
+        <h2>
+          Pièces obligatoires
+        </h2>
+        <file-state
+          request="request"
+          current-step-name="'obligatoire'"
+          next-step-name="'complementaire'"
+          next-status="'Recevable'">
+        </file-state>
+      </div>
+
+      <div id="complementaire" ng-if="request.steps.length >= 2">
+        <h2>Pièces complémentaires</h2>
+        <small class="text-muted-primary">{{getStep('complementaire').files.length}} documents demandés</small>
+
+        <div ng-if="getStep('complementaire').state === 'pre_evaluation'">
+          <div class="list-group-item" ng-if="getStep('complementaire').files.length === 0">
+            <div class="backoffice-pj">
+              <em>Aucun document sélectionné, utilisez l'outil ci-dessous pour ajouter des pièces justificatives à la demande.</em>
             </div>
-            <div class="list-group-item" ng-repeat="(idx, file) in requestedFiles">
-              <div class="backoffice-pj" ng-if="requestStep.state === 'valide'">
+          </div>
+          <div ng-repeat="(idx, file) in getStep('complementaire').files" ng-if="getStep('complementaire').files.length > 0" class="list-group-item">
+            <div class="row backoffice-pj">
+              <div class="col-md-8" ng-if="file.state === 'demande' ">
                 {{file.name | documentFilter}}
               </div>
-              <div class="backoffice-pj selectable" ng-if="requestStep.state === 'en_cours'" ng-click="removeRequestedFile(idx)">
-                <i class="fa fa-muted fa-minus"></i> {{file.name | documentFilter}}
+              <div class="col-md-2 col-md-offset-2">
+                <a class="btn btn-warning btn-block" ng-click="remove(getStep('complementaire').files, idx)"><i class="fa fa-times"></i> Supprimer</a>
               </div>
             </div>
           </div>
+
+          <br>
+
           <div class="row">
             <div class="col-sm-2 col-sm-offset-10">
-              <a class="btn btn-success btn-block" ng-if="requestedFiles.length !== 0 && requestStep.state === 'en_cours'" ng-click="saveStepAndFiles('preevaluation', 'valide', 'complementaire', 'en_cours', 'Recevable')">
+              <a class="btn btn-success btn-block" ng-click="save()">
                 <i class="fa fa-check"></i> Enregistrer
               </a>
             </div>
           </div>
-          <div ng-if="requestStep.state === 'en_cours'">
-            <hr>
-            <document-search form="form" callback="addRequestedFile"></document-search>
-          </div>
+
+          <br>
+
+          <document-search form="form" callback="addRequestedFile"></document-search>
         </div>
-        <div id="complementaire" ng-if="request.steps.length >= 4">
-          <h2>
-            Pièces complémentaires
-          </h2>
-          <file-state
-            request="request"
-            current-step-name="'complementaire'"
-            next-step-name="'evaluation'"
-            next-status="'Complète'"
-            save-step="saveStep">
-          </file-state>
-        </div>
-        <div id="evaluation" ng-if="request.steps.length >= 5">
-          <h2>
-            Evaluation
-          </h2>
-          <a class="btn btn-success pull-right" ng-click="goNext()">
-            <span>Commencer l'évaluation</span>
-          </a>
-        </div>
+
+        <file-state
+          request="request"
+          current-step-name="'complementaire'"
+          next-step-name="'evaluation'"
+          next-status="'Complète'"
+          remove-file="true">
+        </file-state>
+
       </div>
+      <div id="evaluation" ng-if="request.steps.length >= 3">
+        <h2>
+          Evaluation
+        </h2>
+        <a class="btn btn-success pull-right" ng-click="goNext()">
+          <span>Commencer l'évaluation</span>
+        </a>
+      </div>
+
     </div>
   </div>
 </ui-view>

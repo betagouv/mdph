@@ -8,10 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/repartition_demandes/detail/detail.html',
         controller: 'DetailDemandeCtrl',
         resolve: {
-          request: function($http, $stateParams) {
-            return $http.get('/api/requests/' + $stateParams.shortId).then(function(request) {
-              return request.data;
-            });
+          request: function(RequestResource, $stateParams) {
+            return RequestResource.get({shortId: $stateParams.shortId}).$promise;
           },
           prestations: function($http) {
             return $http.get('/api/prestations').then(function(prestations) {

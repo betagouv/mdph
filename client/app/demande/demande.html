@@ -11,7 +11,12 @@
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-secondary">
       <div class="row">
-        <a class="col-md-2" ui-sref="{{step.sref}}" ng-repeat="step in steps"><i class="fa fa-check" ng-if="step.isFinished"></i> {{step.label}}</a>
+        <step ng-repeat="step in steps">
+          <a class="col-md-2 disabled" ng-if="!step.isEnabled">{{step.label}}</a>
+          <a ng-if="step.isEnabled" class="col-md-2" ui-sref="{{step.sref}}">
+            <i class="fa" ng-class="{'fa-circle-o': !step.isFinished, 'fa-check-circle-o': step.isFinished}"></i> {{step.label}}
+          </a>
+        </step>
       </div>
     </div>
   </div>
