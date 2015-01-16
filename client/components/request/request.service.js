@@ -46,38 +46,6 @@ angular.module('impactApp')
         }
       },
 
-      saveStepState: function(request, step, state, next) {
-        this.saveStepStateAndFiles(request, step, state, [], next);
-      },
-
-      saveStepStateAndFiles: function(request, step, state, files, next) {
-        RequestResource.updateStep({shortId: request.shortId}, {step: step, state: state, files: files}, function() {
-          _.find(request.steps, {name: step}).state = state;
-          if (next) { next(); }
-        });
-      },
-
-      saveNewStep: function(request, step, state, status, next) {
-        return this.saveNewStepAndFiles(request, step, state, [], status, next);
-      },
-
-      saveNewStepAndFiles: function(request, step, state, files, status) {
-        this.saveStatus(request, status);
-        return $http.post('/api/requests/' + request.shortId + '/step', {step: step, state: state, files: files})
-        .success(function(data) {
-          request.steps.push(data);
-        });
-      },
-
-      saveStatus: function(request, status) {
-      	$http.post('/api/requests/' + request.shortId + '/status', {requestStatus: status})
-        .success(function() {
-        })
-        .error(function(err) {
-        	$window.alert(err);
-        });
-      },
-
       /**
       * Utilitaires
       */
