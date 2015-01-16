@@ -98,21 +98,32 @@ exports.showUserRequests = function(req, res, next) {
 /**
  * Update request
  */
-exports.update = function(req, res, next) {
-  var compare = function(current, value) {
-    return !value ? current: value._id;
-  }
+var compare = function(current, value) {
+  return !value ? current: value._id;
+}
 
+var updateIfn = function(request, body, field) {
+  var newValue = compare(request[field], body[field]);
+  if (newValue) {
+    request.set(field, newValue);
+  }
+}
+
+exports.update = function(req, res, next) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if(err) return res.send(500, err);
+
+    updateIfn(request, req.body, 'user');
+    updateIfn(request, req.body, 'mdph');
+    updateIfn(request, req.body, 'evaluator');
+
     request
       .set(_.omit(req.body, ['user', 'mdph', 'evaluator']))
       .set('updatedAt', Date.now())
-      .set('user', compare(request.user, req.body.user))
-      .set('mdph', compare(request.mdph, req.body.mdph))
-      .set('evaluator', compare(request.evaluator, req.body.evaluator))
       .save(function(err, data) {
         if(err) return res.send(500, err);
-        data.populate('group', 'name').populate('user mdph evaluator', function(err, data) {
+        data.populate('user mdph evaluator', function(err, data) {
+        if(err) return res.send(500, err);
           return res.json(data);
         });
       });
