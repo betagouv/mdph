@@ -11,7 +11,9 @@ var Partenaire = require('../api/partenaire/partenaire.model');
 var Request = require('../api/request/request.model');
 var async = require('async');
 
-var mdphNord, mdphCalvados, admin, foo, nord, bar, alice, bob, toto, rox, bobRequest, fooRequest;
+var mdphNord, mdphCalvados,
+    admin, foo, nord, bar, alice, bob, martin, rox, sophie, jeanne, francoise, arnaud, emma, jerome, ella, tanguy, pierre, thibault, florian,
+    bobRequest, fooRequest,  francoiseRequest,  emmaRequest;
 
 var deletePartenaires = function(cb) {
   Partenaire.find({}).remove(function() {
@@ -46,7 +48,7 @@ var createMdphNord = function(cb) {
     id: 'nord',
     name: 'Nord',
     zipcode: '59',
-    email: 'rri@octo.com',
+    email: 'nord@nord.fr',
     logo: 'logo59.jpg'
   }, function(err, data) {
     mdphNord = data;
@@ -60,7 +62,7 @@ var createMdphCalvados = function(cb) {
     id: 'calvados',
     name: 'Calvados',
     zipcode: '14',
-    email: 'rri@octo.com',
+    email: 'caen@caen.fr',
     logo: 'logo14.jpg'
   }, function(err, data) {
     mdphCalvados = data;
@@ -119,7 +121,7 @@ var createFoo = function(cb) {
 var createBob = function(cb) {
   User.create({
     provider: 'local',
-    name: 'Bob',
+    name: 'Bob Duchemin',
     email: 'bob@bob.com',
     password: 'bob',
     requests: []
@@ -133,19 +135,53 @@ var createBob = function(cb) {
   });
 };
 
-var createToto = function(cb) {
+var createMartin = function(cb) {
   User.create({
     provider: 'local',
-    name: 'Toto',
-    email: 'toto@toto.com',
-    password: 'toto',
+    name: 'Martin Durand',
+    email: 'martin@martin.com',
+    password: 'martin',
     requests: []
   }, function(err, data) {
-    toto = data;
+    martin = data;
     if (err) {
       console.log(err);
     }
-    console.log('finished creating user Toto');
+    console.log('finished creating user Martin');
+    cb();
+  });
+};
+
+var createFrancoise = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Francoise Lemarchand',
+    email: 'fr@fr.fr',
+    password: 'fr',
+    requests: []
+  }, function(err, data) {
+    francoise = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Francoise');
+    cb();
+  });
+};
+
+var createEmma = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Emma Lemarchand',
+    email: 'emma@emma.fr',
+    password: 'emma',
+    requests: []
+  }, function(err, data) {
+    emma = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Emma');
     cb();
   });
 };
@@ -153,8 +189,8 @@ var createToto = function(cb) {
 var createRox = function(cb) {
   User.create({
     provider: 'local',
-    name: 'Rox',
-    email: 'rricci@octo.com',
+    name: 'Rox Anne',
+    email: 'rox@rox.fr',
     password: 'rox',
     requests: []
   }, function(err, data) {
@@ -163,6 +199,125 @@ var createRox = function(cb) {
       console.log(err);
     }
     console.log('finished creating user Rox');
+    cb();
+  });
+};
+
+var createArnaud = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Arnaud Martin',
+    email: 'arnaud@arnaud.fr',
+    password: 'arnaud',
+    requests: []
+  }, function(err, data) {
+    arnaud = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Arnaud');
+    cb();
+  });
+};
+
+var createJerome = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Jérôme Martin',
+    email: 'jerome@jerome.fr',
+    password: 'jerome',
+    requests: []
+  }, function(err, data) {
+    jerome = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Arnaud');
+    cb();
+  });
+};
+
+var createElla = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Ella Pari',
+    email: 'ella@ella.fr',
+    password: 'ella',
+    requests: []
+  }, function(err, data) {
+    ella = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Ella');
+    cb();
+  });
+};
+
+var createPierre = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Pierre Poiret',
+    email: 'pierre@pierre.fr',
+    password: 'pierre',
+    requests: []
+  }, function(err, data) {
+    pierre = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user pierre');
+    cb();
+  });
+};
+
+var createTanguy = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Tanguy Pat',
+    email: 'tanguy@tanguy.fr',
+    password: 'tanguy',
+    requests: []
+  }, function(err, data) {
+    tanguy = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Tanguy');
+    cb();
+  });
+};
+
+var createThibault = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Thibault Vig',
+    email: 'thibault@thibault.fr',
+    password: 'thibault',
+    requests: []
+  }, function(err, data) {
+    thibault = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Thibault');
+    cb();
+  });
+};
+
+var createFlorian = function(cb) {
+  User.create({
+    provider: 'local',
+    name: 'Florian Abc',
+    email: 'florian@florian.fr',
+    password: 'florian',
+    requests: []
+  }, function(err, data) {
+    florian = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating user Florian');
     cb();
   });
 };
@@ -212,6 +367,36 @@ var createAlice = function(cb) {
   });
 };
 
+var createSophie = function(cb) {
+  User.create({
+    provider: 'local',
+    role: 'adminMdph',
+    name: 'Sophie',
+    email: 'caen1@caen.fr',
+    password: 'caen',
+    mdph: mdphCalvados
+  }, function(err, data) {
+    sophie = data;
+    console.log('finished creating user sophie');
+    cb();
+  });
+};
+
+var createJeanne = function(cb) {
+  User.create({
+    provider: 'local',
+    role: 'adminMdph',
+    name: 'Jeanne',
+    email: 'caen2@caen.fr',
+    password: 'caen',
+    mdph: mdphCalvados
+  }, function(err, data) {
+    jeanne = data;
+    console.log('finished creating user jeanne');
+    cb();
+  });
+};
+
 var createFooRequest = function(cb) {
   Request.create({
     formAnswers: {},
@@ -254,7 +439,7 @@ var createBobOldRequest = function(cb) {
   });
 };
 
-var createTotoOldRequest = function(cb) {
+var createMartinOldRequest = function(cb) {
   Request.create({
 
     formAnswers: {
@@ -344,10 +529,11 @@ var createTotoOldRequest = function(cb) {
       },
       'envoi':true
     },
-    user: toto,
+    user: martin,
     mdph: mdphCalvados,
     opened: true,
     requestStatus: 'Complète',
+    evaluator: jeanne,
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
     steps: [
       {
@@ -368,7 +554,7 @@ var createTotoOldRequest = function(cb) {
       }
     ]
   }, function() {
-    console.log('finished creating request old toto');
+    console.log('finished creating request old martin');
     cb();
   });
 };
@@ -379,8 +565,8 @@ var createRoxOldRequest = function(cb) {
     user: rox,
     mdph: mdphCalvados,
     opened: true,
-    requestStatus: 'Recevable',
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate())),
     steps: [
       {
         name: 'questionnaire',
@@ -407,6 +593,272 @@ var createRoxOldRequest = function(cb) {
     ]
   }, function(err, request) {
     console.log('finished creating request old rox: ' + request.shortId);
+    cb();
+  });
+};
+
+var createArnaudOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: arnaud,
+    mdph: mdphCalvados,
+    opened: true,
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-50)),
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
+      }
+    ]
+  }, function(err, request) {
+    console.log('finished creating request old arnaud: ' + request.shortId);
+    cb();
+  });
+};
+
+var createJeromeOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: jerome,
+    mdph: mdphCalvados,
+    opened: true,
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-10)),
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
+      }
+    ]
+  }, function(err, request) {
+    console.log('finished creating request old jerome: ' + request.shortId);
+    cb();
+  });
+};
+
+var createEllaOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: ella,
+    mdph: mdphCalvados,
+    opened: true,
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
+      }
+    ]
+  }, function(err, request) {
+    console.log('finished creating request old ella: ' + request.shortId);
+    cb();
+  });
+};
+
+var createTanguyOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: tanguy,
+    mdph: mdphCalvados,
+    opened: true,
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
+      }
+    ]
+  }, function(err, request) {
+    console.log('finished creating request old tanguy: ' + request.shortId);
+    cb();
+  });
+};
+
+var createThibaultOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: thibault,
+    mdph: mdphCalvados,
+    opened: true,
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
+      }
+    ]
+  }, function(err, request) {
+    console.log('finished creating request old thibault: ' + request.shortId);
+    cb();
+  });
+};
+
+var createFlorianOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: florian,
+    mdph: mdphCalvados,
+    opened: true,
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
+      }
+    ]
+  }, function(err, request) {
+    console.log('finished creating request old florian: ' + request.shortId);
+    cb();
+  });
+};
+
+var createPierreOldRequest = function(cb) {
+  Request.create({
+    formAnswers: {},
+    user: pierre,
+    mdph: mdphCalvados,
+    opened: true,
+    requestStatus: 'Emise',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    steps: [
+      {
+        name: 'questionnaire',
+        state: 'complet'
+      },
+      {
+        name: 'obligatoire',
+        state: 'valide'
+      },
+      {
+        name: 'complementaire',
+        state: 'en_cours',
+        files: [
+          {
+            "name": "bilanAccompagnementEnfant",
+            "state": "demande"
+          },
+          {
+            "name": "devis",
+            "state": "demande"
+          }
+        ]
+      }
+    ]
+  }, function(err, request) {
+    console.log('finished creating request old pierre: ' + request.shortId);
     cb();
   });
 };
@@ -517,13 +969,13 @@ var createBobRequest = function(cb) {
           {
             "name": "certificatMedical",
             "state": "telecharge",
-            "path": "toto.jpg",
+            "path": "martin.jpg",
             uploaderType: "Demandeur"
           },
           {
             "name": "carteIdentite",
             "state": "telecharge",
-            "path": "toto.jpg",
+            "path": "martin.jpg",
             uploaderType: "Demandeur"
           }
         ]
@@ -532,6 +984,258 @@ var createBobRequest = function(cb) {
   }, function(err, data) {
     bobRequest = data;
     console.log('finished creating request bob');
+    cb();
+  });
+};
+
+var createFrancoiseRequest = function(cb) {
+  Request.create({
+    opened: true,
+    user: francoise,
+    evaluator: sophie,
+    mdph: mdphCalvados,
+    requestStatus: 'Emise',
+    formAnswers: {
+      'prestations': {
+        'aah': {
+          'date':'2014-09-08T22:00:00.000Z'
+        }
+      },
+      'contexte': {
+        'estRepresentant':true,
+        'demandeur': {
+           'prenom':'Francoise',
+           'sexe':'féminin'
+        },
+        'mdph': mdphCalvados,
+        'nouveauDossier':false,
+        'numDossier':true,
+        'numeroDossier':'21',
+        'raison': {
+           'finDeVosDroits':true
+        },
+        'connaisTaux':true,
+        'tauxIncapacite':79,
+        'contestationTaux':'stable',
+        'dateNaissance':'1981-05-12T22:00:00.000Z',
+        'urgences': {
+           'domicile':false,
+           'formation':true
+        },
+        'formationDetail':'2014-10-21T22:00:00.000Z'
+      },
+      'vieQuotidienne': {
+        'famille':'parents',
+        'logement':'independant',
+        'logement_independant':'proprietaire',
+        'besoinsVie': {
+           'courses':true,
+           'habits':true,
+           'budget':true,
+           'courant':true,
+           'repas':true,
+           'menage':true
+        },
+        'besoinsDeplacement': {
+           'intraDomicile':true,
+           'public':true,
+           'transports':true,
+           'vacances':true
+        },
+        'besoinsSocial': {
+           'communication':true,
+           'proches':true,
+           'securite':true,
+           'citoyen':true
+        },
+        'besoinsLieuDeVie': {
+           'materiel':true,
+           'conduite':true
+        },
+        'attentesTypeAide': {
+           'domicile':true,
+           'amenagement':true,
+           'financierHandicap':true,
+           'mobilite':true,
+           'etablissement':true,
+           'materiel':true
+        },
+        'structures': {
+           'valeur':false,
+           'structures':[
+              {
+                 'name':'',
+                 'contact':false
+              }
+           ]
+        },
+        'autresRenseignements':'',
+        'objetDemande': {
+           'travail':false
+        }
+      },
+      'aidant': {
+        'sectionLabel':'Aidant familial',
+        'answers': {
+           'condition':false
+        }
+      },
+      'envoi':true
+    },
+    updatedAt: new Date(),
+    "steps": [
+      {
+        "name": "questionnaire",
+        "state": "complet"
+      },
+      {
+        "name": "obligatoire",
+        "state": "a_valider",
+        "files": [
+          {
+            "name": "certificatMedical",
+            "state": "telecharge",
+            "path": "francoise.jpg",
+            uploaderType: "Demandeur"
+          },
+          {
+            "name": "carteIdentite",
+            "state": "telecharge",
+            "path": "francoise.jpg",
+            uploaderType: "Demandeur"
+          }
+        ]
+      }
+    ]
+  }, function(err, data) {
+    francoiseRequest = data;
+    console.log('finished creating request francoise');
+    cb();
+  });
+};
+
+var createEmmaRequest = function(cb) {
+  Request.create({
+    opened: true,
+    user: emma,
+    evaluator: jeanne,
+    mdph: mdphCalvados,
+    requestStatus: 'Emise',
+    formAnswers: {
+      'prestations': {
+        'aah': {
+          'date':'2014-09-08T22:00:00.000Z'
+        }
+      },
+      'contexte': {
+        'estRepresentant':true,
+        'demandeur': {
+           'prenom':'Emma',
+           'sexe':'féminin'
+        },
+        'mdph': mdphCalvados,
+        'nouveauDossier':false,
+        'numDossier':true,
+        'numeroDossier':'21',
+        'raison': {
+           'finDeVosDroits':true
+        },
+        'connaisTaux':true,
+        'tauxIncapacite':79,
+        'contestationTaux':'stable',
+        'dateNaissance':'1981-05-12T22:00:00.000Z',
+        'urgences': {
+           'domicile':false,
+           'formation':true
+        },
+        'formationDetail':'2014-10-21T22:00:00.000Z'
+      },
+      'vieQuotidienne': {
+        'famille':'parents',
+        'logement':'independant',
+        'logement_independant':'proprietaire',
+        'besoinsVie': {
+           'courses':true,
+           'habits':true,
+           'budget':true,
+           'courant':true,
+           'repas':true,
+           'menage':true
+        },
+        'besoinsDeplacement': {
+           'intraDomicile':true,
+           'public':true,
+           'transports':true,
+           'vacances':true
+        },
+        'besoinsSocial': {
+           'communication':true,
+           'proches':true,
+           'securite':true,
+           'citoyen':true
+        },
+        'besoinsLieuDeVie': {
+           'materiel':true,
+           'conduite':true
+        },
+        'attentesTypeAide': {
+           'domicile':true,
+           'amenagement':true,
+           'financierHandicap':true,
+           'mobilite':true,
+           'etablissement':true,
+           'materiel':true
+        },
+        'structures': {
+           'valeur':false,
+           'structures':[
+              {
+                 'name':'',
+                 'contact':false
+              }
+           ]
+        },
+        'autresRenseignements':'',
+        'objetDemande': {
+           'travail':false
+        }
+      },
+      'aidant': {
+        'sectionLabel':'Aidant familial',
+        'answers': {
+           'condition':false
+        }
+      },
+      'envoi':true
+    },
+    updatedAt: new Date(),
+    "steps": [
+      {
+        "name": "questionnaire",
+        "state": "complet"
+      },
+      {
+        "name": "obligatoire",
+        "state": "a_valider",
+        "files": [
+          {
+            "name": "certificatMedical",
+            "state": "telecharge",
+            "path": "francoise.jpg",
+            uploaderType: "Demandeur"
+          },
+          {
+            "name": "carteIdentite",
+            "state": "telecharge",
+            "path": "francoise.jpg",
+            uploaderType: "Demandeur"
+          }
+        ]
+      }
+    ]
+  }, function(err, data) {
+    emmaRequest = data;
+    console.log('finished creating request Emma');
     cb();
   });
 };
@@ -592,8 +1296,19 @@ async.series([
   createBob,
   createFlo,
   createAdmin,
-  createToto,
+  createMartin,
   createRox,
+  createSophie,
+  createJeanne,
+  createFrancoise,
+  createEmma,
+  createArnaud,
+  createElla,
+  createJerome,
+  createPierre,
+  createThibault,
+  createTanguy,
+  createFlorian,
 
   createMarc,
   createAnne,
@@ -603,6 +1318,14 @@ async.series([
   createBobOldRequest,
   createBobRequest,
   createFooRequest,
-  createTotoOldRequest,
-  createRoxOldRequest
+  createMartinOldRequest,
+  createRoxOldRequest,
+  createFrancoiseRequest,
+  createEmmaRequest,
+  createArnaudOldRequest,
+  createEllaOldRequest,
+  createJeromeOldRequest,
+  createPierreOldRequest,
+  createThibaultOldRequest,
+  createTanguyOldRequest
 ]);
