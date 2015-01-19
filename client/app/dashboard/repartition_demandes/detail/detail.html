@@ -79,7 +79,10 @@
               <div class="col-md-8" ng-if="file.state === 'demande' ">
                 {{file.name | documentFilter}}
               </div>
-              <div class="col-md-2 col-md-offset-2">
+              <div class="col-md-2">
+                <a class="btn btn-info btn-block" ng-click="assignDocument(file)"><i class="fa fa-pencil"></i> Assigner...</a>
+              </div>
+              <div class="col-md-2">
                 <a class="btn btn-warning btn-block" ng-click="remove(getStep('complementaire').files, idx)"><i class="fa fa-times"></i> Supprimer</a>
               </div>
             </div>

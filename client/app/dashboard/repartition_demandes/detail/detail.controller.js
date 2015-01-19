@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, $state, request, DroitService, prestations, requestSteps) {
+  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, request, DroitService, prestations, requestSteps) {
     $scope.request = request;
     $scope.allFiles = requestSteps;
 
@@ -33,5 +33,19 @@ angular.module('impactApp')
 
     $scope.goNext = function() {
       $state.go('dashboard.repartition_demandes.detail.evaluation', {shortId: $scope.request.shortId});
+    };
+
+    $scope.assignDocument = function (file){
+      $modal.open({
+        templateUrl: 'app/dashboard/repartition_demandes/detail/assignDocumentModal.html',
+        controller: function($scope, $modalInstance, Partenaire) {
+          $scope.file = file;
+          $scope.partenaires = Partenaire.query();
+          $scope.selected = '';
+          $scope.ok = function() {
+            $modalInstance.close();
+          };
+        }
+      });
     };
   });
