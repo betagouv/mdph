@@ -3,6 +3,7 @@
 var Mailjet = require('../../mailjet/mailjet');
 var Config = require('../../config/local.env');
 var Mdph = require('../mdph/mdph.model');
+var Partenaire = require('../partenaire/partenaire.model');
 
 var mailjet = new Mailjet(Config.API_KEY, Config.SECRET_KEY);
 
@@ -39,8 +40,18 @@ exports.sendConfirmation = function(req, res, next) {
   if (!req.body.html) {
     return res.status(400).send('No html given');
   }
-  if (!req.body.partenaire) {
-    return res.status(400).send('No partenaire given');
+  if (req.body.partenaire){
+    Partenaire.findOne({email: req.body.partenaire}, function(error, result){
+      if(error){
+        return handleError(res, error);
+      }
+      else {
+        if(!result){
+          var partenaire = new Partenaire({email: req.body.partenaire.email});
+          partenaire.save();
+        }
+      }
+    });
   }
 
   var html = req.body.html;

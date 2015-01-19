@@ -7,13 +7,6 @@ angular.module('impactApp')
     $scope.files = $scope.currentFormStep.files;
     $scope.partenaire = {};
 
-    $scope.createPartenaire = function (partenaire) {
-      var newPartenaire = new Partenaire(partenaire);
-      newPartenaire.$save();
-
-      envoiConfirmation(newPartenaire);
-    };
-
     $scope.onFileSelect = function($files, currentFile) {
       currentFile.upload = $files[0];
       currentFile.path = currentFile.upload.name;
@@ -23,7 +16,7 @@ angular.module('impactApp')
       return !$scope.partenaire.email || !_.some($scope.files, 'path');
     };
 
-    var envoiConfirmation = function(partenaire) {
+    $scope.envoiConfirmation = function(partenaire) {
       var confirmationSent = false;
       _.forEach($scope.files, function(file) {
         if (file.upload) {
