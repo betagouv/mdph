@@ -3,9 +3,10 @@
 angular.module('impactApp')
   .controller('RequestsCtrl', function ($scope, $http, $state, RequestStepService, RequestService, requestSteps, requests, Auth) {
 
+    $scope.updatedAt = RequestService.updatedAtAscending;
     $scope.requests = _.sortBy(requests, $scope.updatedAt);
     $scope.currentUser = Auth.getCurrentUser();
-    $scope.updatedAt = RequestService.updatedAt;
+
 
     $scope.selectedFilters = {};
     $scope.availableFilters = requestSteps;

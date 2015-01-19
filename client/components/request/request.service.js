@@ -83,6 +83,11 @@ angular.module('impactApp')
 
       updatedAt: function(request) {
         return moment(request.updatedAt).fromNow();
-      }
+      },
+
+      updatedAtAscending: function(request) {
+        return moment(request.updatedAt);
+      },
+
     };
   });
