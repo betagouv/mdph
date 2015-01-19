@@ -14,6 +14,7 @@
   display: inline-block;
   border-radius: 5%;
   padding-top: 4em;
+  position: relative;
   text-align: center;
 
   a {
@@ -58,4 +59,13 @@
   &:hover {
     background-color: darken(#3C4963, 5%);
   }
+}
+
+.geva-section-id {
+  position: absolute;
+  right: 0;
+  top: -10%;
+  font-size: 10em;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
 }
