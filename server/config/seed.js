@@ -550,7 +550,7 @@ var createMartinOldRequest = function(cb) {
       },
       {
         name: 'evaluation',
-        state: 'valide'
+        state: 'en_cours'
       }
     ]
   }, function() {

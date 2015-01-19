@@ -14,30 +14,21 @@ angular.module('impactApp')
 });
 
 angular.module('impactApp')
-  .controller('EvaluationDemandeCtrl', function ($scope, GevaService, DroitService, prestations, questions, request, vieQuotidienne) {
+  .controller('EvaluationDemandeCtrl', function ($scope, GevaService, DroitService, prestations, sections, request, vieQuotidienne) {
     var situationAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
-    $scope.situationFamiliale = situationAnswers[request.formAnswers.vieQuotidienne.famille];
-    $scope.questions = questions;
-
-    $scope.sections = GevaService.getSections();
-
-    _.forEach($scope.sections, function(section){
-      section.tooltip = GevaService.getTooltipBySection(section, $scope.questions);
-    });
-
+    $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
 
+    $scope.situationFamiliale = situationAnswers[request.formAnswers.vieQuotidienne.famille];
     if($scope.situationFamiliale.labelRecap){
       $scope.situationFamiliale = $scope.situationFamiliale.labelRecap;
-    }
-    else {
+    } else {
       $scope.situationFamiliale = $scope.situationFamiliale.label;
     }
 
     if(request.renouvellement){
       $scope.renouvellement = 'Renouvellement';
-    }
-    else {
+    } else {
       $scope.renouvellement = 'Première demande';
     }
 

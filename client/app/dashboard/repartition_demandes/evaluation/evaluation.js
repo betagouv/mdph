@@ -8,8 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/repartition_demandes/evaluation/evaluation.html',
         controller: 'EvaluationDemandeCtrl',
         resolve: {
-          questions: function(GevaService) {
-            return GevaService.getQuestions();
+          sections: function(GevaService) {
+            return GevaService.getSections();
           },
           prestations: function($http) {
             return $http.get('/api/prestations').then(function(prestations) {

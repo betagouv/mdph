@@ -24,40 +24,29 @@ angular.module('impactApp')
       model: {}
     }];
 
-    var dispatch = function(questions) {
-      var result = {};
+    var sectionsByLabel = _.indexBy(sections, 'label');
 
-      _.forEach(sections, function(section) {
-        result[section.id] = [];
+    var getTooltipBySection = function(section) {
+      var tooltip = '<ul>';
+      _.forEach(section.questions, function(question){
+        tooltip += '<li>' + question[0].Description + '</li>';
       });
-
-      _.map(questions, function(question) {
-        var section = _.sample(sections);
-        result[section.id].push(question);
-      });
-
-      return result;
+      tooltip += '</ul>';
+      return tooltip;
     };
 
     return {
-      getQuestions: function() {
-        return $http.get('/api/geva', {cache: true}).then(function(result) {
-          var questionsByDesc = _.groupBy(result.data, 'description');
-          return dispatch(questionsByDesc);
-        });
-      },
-
       getSections: function() {
-        return sections;
-      },
+        return $http.get('/api/geva', {cache: true}).then(function(result) {
+          var gevaSections = _.groupBy(result.data, 'Section');
+          _.forEach(gevaSections, function(questions, section) {
+            var questionsByDesc = _.groupBy(questions, 'Description');
+            sectionsByLabel[section].questions = questionsByDesc;
+            sectionsByLabel[section].tooltip = getTooltipBySection(sectionsByLabel[section]);
+          });
 
-      getTooltipBySection: function(section, questions) {
-        var questionsBySection = '<ul>';
-        _.forEach(questions[section.id], function(elt){
-          questionsBySection = questionsBySection  + '<li>' + elt[0].description + '</li>';
+          return sections;
         });
-        questionsBySection = questionsBySection  + '</ul>';
-        return questionsBySection;
       },
 
       validate: function(section) {
