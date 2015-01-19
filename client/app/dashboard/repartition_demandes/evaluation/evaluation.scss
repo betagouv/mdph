@@ -7,7 +7,7 @@
   text-align: left;
 }
 
-.geva-pie .geva-section {
+.geva-pie a.geva-section {
   width: 49%;
   margin: 1px;
   height: 10em;
@@ -16,18 +16,15 @@
   padding-top: 4em;
   position: relative;
   text-align: center;
+  color: white;
+  font-size: 18px;
 
-  a {
-    color: white;
-    font-size: 18px;
-
-    &:hover {
-      text-decoration: none;
-    }
+  &:hover {
+    text-decoration: none;
   }
 }
 
-.geva-pie .geva-section:nth-child(1) {
+#geva-section-1 {
   border-top-left-radius: 50%;
   background-color: #3C4963;
   background-color: hsla(220, 25%, 31%, 1);
@@ -36,7 +33,7 @@
   }
 }
 
-.geva-pie .geva-section:nth-child(2) {
+#geva-section-2 {
   background-color: #4f6083;
   background-color: hsla(220, 25%, 41%, 1);
   &:hover {
@@ -44,7 +41,7 @@
   }
 }
 
-.geva-pie .geva-section:nth-child(3) {
+#geva-section-3 {
   background-color: #4f6083;
   background-color: hsla(220, 25%, 41%, 1);
   &:hover {
@@ -52,7 +49,7 @@
   }
 }
 
-.geva-pie .geva-section:nth-child(4) {
+#geva-section-4 {
   border-bottom-right-radius: 50%;
   background-color: #3C4963;
   background-color: hsla(220, 25%, 31%, 1);
