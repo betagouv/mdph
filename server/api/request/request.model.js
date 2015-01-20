@@ -8,6 +8,7 @@ var FileSchema = new Schema({
   name:           { type: String },
   path:           { type: String },
   state:          { type: String },
+  assignment:     { type: String },
   partenaire:     { type: String }
 });
 

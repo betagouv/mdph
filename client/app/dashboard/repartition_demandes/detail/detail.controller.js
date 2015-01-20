@@ -36,16 +36,34 @@ angular.module('impactApp')
     };
 
     $scope.assignDocument = function (file){
-      $modal.open({
+      var modalInstance = $modal.open({
         templateUrl: 'app/dashboard/repartition_demandes/detail/assignDocumentModal.html',
+        size: 'lg',
         controller: function($scope, $modalInstance, Partenaire) {
           $scope.file = file;
           $scope.partenaires = Partenaire.query();
-          $scope.selected = '';
+          $scope.chosenPartenaire = {};
+          $scope.radioModel ='';
+
           $scope.ok = function() {
-            $modalInstance.close();
+            var answers = {
+              label: $scope.radioModel,
+              chosenPartenaire: $scope.chosenPartenaire
+            };
+            $modalInstance.close(answers);
+          };
+
+          $scope.cancel = function () {
+            $modalInstance.dismiss();
           };
         }
+      });
+
+      modalInstance.result.then(function (answers) {
+        if(answers.chosenPartenaire){
+          file.assignment = answers.chosenPartenaire.email;
+        }
+        file.assignmentLabel = answers.label;
       });
     };
   });
