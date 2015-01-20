@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, request, DroitService, prestations, requestSteps, Partenaire) {
+  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, prestations, requestSteps, Partenaire) {
     $scope.request = request;
     $scope.allFiles = requestSteps;
 
@@ -25,6 +25,12 @@ angular.module('impactApp')
       var step = $scope.getStep('complementaire');
       step.state = 'en_cours';
       $scope.request.$update();
+
+      _.forEach(step.files, function(file){
+        if (file.assignment){
+          envoiAssignation(file);
+        }
+      });
     };
 
     $scope.remove = function(files, index) {
@@ -73,6 +79,14 @@ angular.module('impactApp')
           }
         }
         file.assignmentLabel = answers.label;
+      });
+    };
+
+    var envoiAssignation = function(file){
+      $http.post('api/send-mail/assignment', {
+        assignment: file.assignment,
+        html: '<h1>Ajout de pièces</h1><p>Bonjour, la MDPH vous demande de fournir une pièce pour compléter la demande de ' + $scope.request.user.name + '. Il s\'agit de '+ angular.lowercase($filter('documentFilter')(file.name)) +' pour la demande ' + $scope.request.shortId + '.</p>',
+        subject: 'Demande d\'ajout de pièces'
       });
     };
   });

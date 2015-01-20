@@ -72,6 +72,42 @@ exports.sendConfirmation = function(req, res, next) {
   );
 };
 
+exports.sendAssignment = function(req, res, next) {
+  if (!req.body.html) {
+    return res.status(400).send('No html given');
+  }
+  /*if (req.body.assignment){
+    Partenaire.findOne({email: req.body.assignment}, function(error, result){
+      if(error){
+        return handleError(res, error);
+      }
+      else {
+        if(!result){
+          var partenaire = new Partenaire({email: req.body.assignment});
+          partenaire.save();
+        }
+      }
+    });
+  }*/
+
+  var html = req.body.html;
+
+  var handleResponse = function(error, success) {
+    if (error) {
+      return handleError(res, error);
+    }
+    return res.status(200).send(success);
+  }
+
+  return mailjet.sendContent(
+    req.body.assignment,
+    req.body.subject,
+    req.body.html,
+    false,
+    handleResponse
+  );
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }
