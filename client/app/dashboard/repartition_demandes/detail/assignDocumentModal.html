@@ -12,11 +12,11 @@
   <div ng-if="radioModel=='Partenaire connu'">
     <h4>Sélection du partenaire</h4>
     <pre>{{chosenPartenaire}}</pre>
-    <input type="text" ng-model="chosenPartenaire.email" typeahead="partenaire.email for partenaire in partenaires | filter:$viewValue | limitTo:8" class="form-control">
+    <input type="text" ng-model="chosenPartenaire.email" typeahead="partenaire.email for partenaire in partenaires | filter:$viewValue | limitTo:8" typeahead-editable="false" class="form-control">
   </div>
   <div ng-if="radioModel=='Nouveau partenaire'">
     <h4>Nouveau partenaire</h4>
-    <input type="email" ng-model="chosenPartenaire.email" class="form-control">
+    <input type="email" ng-model="newPartenaire.email" class="form-control">
   </div>
 </div>
 <div class="modal-footer">

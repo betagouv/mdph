@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, request, DroitService, prestations, requestSteps) {
+  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, request, DroitService, prestations, requestSteps, Partenaire) {
     $scope.request = request;
     $scope.allFiles = requestSteps;
 
@@ -43,12 +43,14 @@ angular.module('impactApp')
           $scope.file = file;
           $scope.partenaires = Partenaire.query();
           $scope.chosenPartenaire = {};
+          $scope.newPartenaire = {};
           $scope.radioModel ='';
 
           $scope.ok = function() {
             var answers = {
               label: $scope.radioModel,
-              chosenPartenaire: $scope.chosenPartenaire
+              chosenPartenaire: $scope.chosenPartenaire,
+              newPartenaire: $scope.newPartenaire
             };
             $modalInstance.close(answers);
           };
@@ -60,8 +62,15 @@ angular.module('impactApp')
       });
 
       modalInstance.result.then(function (answers) {
-        if(answers.chosenPartenaire){
+        if(answers.chosenPartenaire.email){
           file.assignment = answers.chosenPartenaire.email;
+        }
+        else {
+          if(answers.newPartenaire.email){
+            var newPartenaire = new Partenaire(answers.newPartenaire);
+            newPartenaire.$save();
+            file.assignment = newPartenaire.email;
+          }
         }
         file.assignmentLabel = answers.label;
       });

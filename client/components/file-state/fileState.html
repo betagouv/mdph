@@ -6,9 +6,12 @@
   </div>
   <div ng-repeat="(idx, file) in files" ng-if="files.length > 0" ng-mouseleave="showButtons = false" ng-mouseover="showButtons = true" class="list-group-item">
     <div class="row backoffice-pj">
-      <div class="col-md-6" ng-if="file.state === 'demande' ">
+      <div class="col-md-9" ng-if="file.state === 'demande' ">
         {{file.name | documentFilter}}
         <small>(En attente)</small>
+      </div>
+      <div class="col-md-3" ng-if="file.state === 'demande' && file.assignment">
+        <small>Demandé à {{file.assignment}}</small>
       </div>
       <div class="col-md-8" ng-if="file.state !== 'demande' ">
         <a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a> <small ng-if="file.partenaire">({{file.partenaire.email}} - {{file.partenaire.certified}})</small>
