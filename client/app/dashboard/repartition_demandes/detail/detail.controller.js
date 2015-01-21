@@ -61,6 +61,14 @@ angular.module('impactApp')
             $modalInstance.close(answers);
           };
 
+          $scope.checkIfDisabled = function() {
+            return !$scope.assignmentForm.$valid ||
+              ($scope.radioModel !== 'Demandeur' && !$scope.chosenPartenaire.email && !$scope.newPartenaire.email) ||
+              ($scope.radioModel === 'Nouveau partenaire' && !$scope.newPartenaire.email) ||
+              ($scope.radioModel === 'Partenaire connu' && !$scope.chosenPartenaire.email) ||
+              ($scope.chosenPartenaire.email === '' && !$scope.newPartenaire.email);
+          };
+
           $scope.cancel = function () {
             $modalInstance.dismiss();
           };
@@ -68,11 +76,11 @@ angular.module('impactApp')
       });
 
       modalInstance.result.then(function (answers) {
-        if(answers.chosenPartenaire.email){
+        if(answers.label !== 'Demandeur' && answers.chosenPartenaire.email){
           file.assignment = answers.chosenPartenaire.email;
         }
         else {
-          if(answers.newPartenaire.email){
+          if(answers.label !== 'Demandeur' && answers.newPartenaire.email){
             var newPartenaire = new Partenaire(answers.newPartenaire);
             newPartenaire.$save();
             file.assignment = newPartenaire.email;
