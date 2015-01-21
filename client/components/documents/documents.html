@@ -15,9 +15,13 @@
       <div ng-if="!file.path">
         <em>Pas de document</em>
       </div>
-      <div ng-if="file.path">
+      <div ng-if="file.path && currentStep.id !== 'complementaire'">
         <span class="glyphicon glyphicon-file"></span>
         <span><strong>Document reçu</strong></span>
+      </div>
+      <div ng-if="file.path && currentStep.id === 'complementaire'">
+        <span class="glyphicon glyphicon-file"></span>
+        <a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a> <small ng-if="file.partenaire"> - ajouté par {{file.partenaire}}</small>
       </div>
     </div>
   </div>
