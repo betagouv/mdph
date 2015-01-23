@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, prestations, requestSteps, Partenaire) {
+  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, prestations, requestSteps, Partenaire, Notification) {
     $scope.request = request;
     $scope.allFiles = requestSteps;
 
@@ -31,6 +31,12 @@ angular.module('impactApp')
           envoiAssignation(file);
         }
       });
+
+      var notification = new Notification();
+      notification.userId = $scope.request.user._id;
+      notification.requestId = $scope.request._id;
+      notification.state = 'coucou';
+      notification.$save();
     };
 
     $scope.remove = function(files, index) {
@@ -97,4 +103,5 @@ angular.module('impactApp')
         subject: 'Demande d\'ajout de pièces'
       });
     };
+
   });

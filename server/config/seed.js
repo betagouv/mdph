@@ -956,6 +956,7 @@ var createBobRequest = function(cb) {
       },
       'envoi':true
     },
+    evaluator: alice,
     updatedAt: new Date(),
     "steps": [
       {

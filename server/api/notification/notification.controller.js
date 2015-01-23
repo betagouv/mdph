@@ -2,33 +2,18 @@
 
 var Notification = require('./notification.model');
 
-// Get a notification
-exports.showAll = function(req, res, next) {
-  var search = {};
-  if(req.request){
-    search.request = req.request.shortId;
-  }
-  if(req.user){
-    search.user = req.user._id
-  }
-  Notification.find(search)
-  .exec(function(err, notification) {
-    if(err) { return next(err); }
-    if(!notification) { return res.send(404); }
-    return res.json(notification);
+// Get list of partenaires
+exports.index = function(req, res) {
+  Notification.find().exec(function(err, notifications) {
+    if(err) { return handleError(res, err); }
+    return res.json(notifications);
   });
 };
 
+
 // Get a list of notifications
 exports.show = function(req, res, next) {
-  var search = {};
-  if(req.request){
-    search.request = req.request.shortId;
-  }
-  if(req.user){
-    search.user = req.user._id
-  }
-  Notification.findOne(search)
+  Notification.findById(req.param.id)
   .exec(function(err, notification) {
     if(err) { return next(err); }
     if(!notification) { return res.send(404); }
@@ -38,14 +23,7 @@ exports.show = function(req, res, next) {
 
 // Deletes a notification from the DB.
 exports.destroy = function(req, res) {
-  var search = {};
-  if(req.request){
-    search.request = req.request.shortId;
-  }
-  if(req.user){
-    search.user = req.user._id
-  }
-  Notification.findOne(search, function (err, notification) {
+  Notification.findById(req.param.id, function (err, notification) {
     if(err) { return handleError(res, err); }
     if(!notification) { return res.send(404); }
     notification.remove(function(err) {
@@ -58,12 +36,12 @@ exports.destroy = function(req, res) {
 /**
  * Save notification
  */
-exports.save = function(req, res, next) {
+exports.create = function(req, res, next) {
   var notification = new Notification();
 
-  notification.user = req.user._id;
-  notification.request = req.request.shortId;
-  notification.state =  req.state;
+  notification.user = req.body.userId;
+  notification.request = req.body.requestId;
+  notification.state =  req.body.state;
 
   notification.save(function(err, data) {
     if(err) return res.send(500, err);

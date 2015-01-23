@@ -25,6 +25,13 @@ angular.module('impactApp')
           controller: 'requests'
         },
         isArray: true
+      },
+      queryNotifications: {
+        method: 'GET',
+        params: {
+          controller: 'notifications'
+        },
+        isArray: true
       }
 	  });
   });
