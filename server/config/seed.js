@@ -9,6 +9,7 @@ var User = require('../api/user/user.model');
 var Mdph = require('../api/mdph/mdph.model');
 var Partenaire = require('../api/partenaire/partenaire.model');
 var Request = require('../api/request/request.model');
+var Notification = require('../api/notification/notification.model');
 var async = require('async');
 
 var mdphNord, mdphCalvados,
@@ -39,6 +40,13 @@ var deleteRequests = function(cb) {
 var deleteMdphs = function(cb) {
   Mdph.find({}).remove(function() {
     console.log('finished deleting mdphs');
+    cb();
+  });
+};
+
+var deleteNotifications = function(cb) {
+  Notification.find({}).remove(function() {
+    console.log('finished deleting notifications');
     cb();
   });
 };
@@ -1286,6 +1294,7 @@ async.series([
   deleteRequests,
   deleteMdphs,
   deletePartenaires,
+  deleteNotifications,
 
   createMdphNord,
   createMdphCalvados,
