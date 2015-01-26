@@ -2,7 +2,7 @@
   .logo {
     padding: 2px;
   }
-  
+
   img {
     height: 46px;
     border: 0;
@@ -43,7 +43,7 @@
   a {
     color: white;
     &:hover {
-      text-decoration: underline;  
+      text-decoration: underline;
     }
   }
 
@@ -61,5 +61,11 @@
 .intro {
   -webkit-transition:all linear 0.6s;
   transition:all linear 0.6s;
+}
+
+.notif-badge {
+   background: #D05158;
+   position: relative;
+   top: -10px;
 }
 

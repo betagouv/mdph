@@ -26,8 +26,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Inscription</a></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Connexion</a></li>
-        <li ng-show="isLoggedIn()"><p class="navbar-text">Bonjour, {{ getCurrentUser().name }}</p> </li>
-        <li ng-show="isLoggedIn() && !isAdminMdph()" ui-sref-active="active"><a ui-sref="liste_demandes" title="Mes demandes"><span class="glyphicon glyphicon-folder-open"></span></a></li>
+        <li ng-show="isLoggedIn()"><p class="navbar-text">Bonjour, {{ user.name }}</p> </li>
+        <li ng-show="isLoggedIn() && !isAdminMdph()" ui-sref-active="active">
+          <a ui-sref="liste_demandes" title="Mes demandes">
+            <span class="glyphicon glyphicon-folder-open"></span>
+            <span class="badge notif-badge">{{notifications.length}}</span>
+          </a>
+        </li>
         <li ng-show="isAdminMdph()" ui-sref-active="active"><a ui-sref="dashboard" title="Tableau de bord"><span class="glyphicon glyphicon-th-list"></span></a></li>
         <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings" title="Paramètres"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="isLoggedIn()"><a href="" ng-click="logout()">Se déconnecter</a></li>

@@ -6,7 +6,7 @@ var Notification = require('./notification.model');
 exports.index = function(req, res) {
   Notification.find().exec(function(err, notifications) {
     if(err) { return handleError(res, err); }
-    return res.json(notifications);
+    return res.status(200).json(notifications);
   });
 };
 
@@ -17,7 +17,7 @@ exports.show = function(req, res, next) {
   .exec(function(err, notification) {
     if(err) { return next(err); }
     if(!notification) { return res.send(404); }
-    return res.json(notification);
+    return res.status(200).json(notification);
   });
 };
 
@@ -42,10 +42,11 @@ exports.create = function(req, res, next) {
   notification.user = req.body.userId;
   notification.request = req.body.requestId;
   notification.state =  req.body.state;
+  notification.message =  req.body.message;
 
   notification.save(function(err, data) {
     if(err) return res.send(500, err);
-    return res.send(200, data);
+    return res.status(200).json(data);
   });
 };
 

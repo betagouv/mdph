@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
 var NotificationSchema = new Schema({
   user:       { type: Schema.Types.ObjectId, ref: 'User' },
   request:    { type: Schema.Types.ObjectId, ref: 'Request' },
-  state:      { type: String }
+  state:      { type: String },
+  message:    { type: String }
 });
 
 module.exports = mongoose.model('Notification', NotificationSchema);

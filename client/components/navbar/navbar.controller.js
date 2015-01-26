@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout, User) {
     $scope.menu = [
     {
       'title': 'Accueil',
@@ -12,8 +12,17 @@ angular.module('impactApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.isAdminMdph = Auth.isAdminMdph;
-    $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.user = Auth.getCurrentUser();
     $scope.$storage = $localStorage;
+    $scope.notifications = [];
+
+    if ($scope.user.$promise) {
+      $scope.user.$promise.then(function(data) {
+        User.queryNotifications({id: data._id}, function(notifications) {
+           $scope.notifications = notifications;
+        });
+      });
+    }
 
     angular.element(document).ready(function() {
       $timeout(function() {
@@ -49,5 +58,4 @@ angular.module('impactApp')
         return 'main';
       }
     };
-
   });
