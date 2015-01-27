@@ -1294,7 +1294,7 @@ var createNotifBob = function (cb){
   Notification.create({
     user: bob._id,
     message: 'Votre dossier a été affecté.',
-    state: 'Test',
+    state: 'liste_demandes.demande.obligatoire',
     request: bobRequest._id
   }, function(err, data) {
     notifBob = data;

@@ -10,7 +10,8 @@ angular.module('impactApp')
         nextStepStatus: '=',
         nextStatus: '=',
         saveStep: '=',
-        notificationMessage: '='
+        notificationMessage: '=',
+        notificationState: '='
       },
       templateUrl: 'components/file-state/fileState.html',
       restrict: 'EA',
@@ -45,7 +46,7 @@ angular.module('impactApp')
             var notification = new Notification();
             notification.userId = $scope.request.user._id;
             notification.requestId = $scope.request._id;
-            notification.state = 'coucou';
+            notification.state = $scope.notificationState;
             notification.message = $scope.notificationMessage;
             notification.$save();
           });

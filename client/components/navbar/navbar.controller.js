@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout, User, Notification) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout, $state, User, Notification, RequestService) {
     $scope.menu = [
     {
       'title': 'Accueil',
@@ -68,5 +68,17 @@ angular.module('impactApp')
           $scope.showNotifications = false;
         }
       });
+    };
+
+    $scope.goState = function (notification){
+      var requests = RequestService.getUserRequests();
+      if(requests.$promise){
+        requests.$promise.then(function(data){
+          var result = _.find(data, { '_id': notification.request });
+          if(result){
+            $state.go(notification.state, { shortId: result.shortId });
+          }
+        });
+      }
     };
   });

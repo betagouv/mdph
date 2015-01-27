@@ -44,7 +44,7 @@ angular.module('impactApp')
         var notification = new Notification();
         notification.userId = request.user._id;
         notification.requestId = request._id;
-        notification.state = 'coucou';
+        notification.state = 'liste_demandes.demande.questionnaire';
         notification.message = 'Votre demande a été affectée.';
         notification.$save();
       });
