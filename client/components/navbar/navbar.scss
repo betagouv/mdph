@@ -64,8 +64,48 @@
 }
 
 .notif-badge {
-   background: #D05158;
-   position: relative;
-   top: -10px;
+  background: #D05158;
+  position: relative;
 }
 
+.notifications {
+  ul {
+    list-style-type: none;
+    position: absolute;
+    z-index: 1;
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    outline: none;
+    right: 0;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-user-select: text;
+    padding: 5px;
+
+    li {
+      background: #fff;
+      padding: 5px;
+      margin: 3px;
+      border: 1px solid #e7e7e7;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+  }
+  i {
+    color: #c7c7c7;
+  }
+}
+
+div {
+  .arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 22px 10px;
+    border-color: transparent transparent #f8f8f8 transparent;
+    left: 15px;
+  }
+}

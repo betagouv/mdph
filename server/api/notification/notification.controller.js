@@ -13,7 +13,7 @@ exports.index = function(req, res) {
 
 // Get a list of notifications
 exports.show = function(req, res, next) {
-  Notification.findById(req.param.id)
+  Notification.findById(req.params.id)
   .exec(function(err, notification) {
     if(err) { return next(err); }
     if(!notification) { return res.send(404); }
@@ -23,10 +23,18 @@ exports.show = function(req, res, next) {
 
 // Deletes a notification from the DB.
 exports.destroy = function(req, res) {
-  Notification.findById(req.param.id, function (err, notification) {
-    if(err) { return handleError(res, err); }
-    if(!notification) { return res.send(404); }
+  console.log(req.params);
+  Notification.findById(req.params.id, function (err, notification) {
+    if(err) {
+      console.log(err);
+      return handleError(res, err);
+    }
+    if(!notification) {
+      console.log('dommage');
+      return res.send(404);
+    }
     notification.remove(function(err) {
+      console.log('cool');
       if(err) { return handleError(res, err); }
       return res.send(204);
     });

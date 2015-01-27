@@ -14,7 +14,8 @@ var async = require('async');
 
 var mdphNord, mdphCalvados,
     admin, foo, nord, bar, alice, bob, martin, rox, sophie, jeanne, francoise, arnaud, emma, jerome, ella, tanguy, pierre, thibault, florian,
-    bobRequest, fooRequest,  francoiseRequest,  emmaRequest;
+    bobRequest, fooRequest, francoiseRequest, emmaRequest,
+    notifBob;
 
 var deletePartenaires = function(cb) {
   Partenaire.find({}).remove(function() {
@@ -1289,6 +1290,22 @@ var createJean = function(cb) {
   });
 };
 
+var createNotifBob = function (cb){
+  Notification.create({
+    user: bob._id,
+    message: 'Votre dossier a été affecté.',
+    state: 'Test',
+    request: bobRequest._id
+  }, function(err, data) {
+    notifBob = data;
+    if (err) {
+      console.log(err);
+    }
+    console.log('finished creating notif for bob');
+    cb();
+  })
+}
+
 async.series([
   deleteUsers,
   deleteRequests,
@@ -1337,5 +1354,7 @@ async.series([
   createJeromeOldRequest,
   createPierreOldRequest,
   createThibaultOldRequest,
-  createTanguyOldRequest
+  createTanguyOldRequest,
+
+  createNotifBob
 ]);

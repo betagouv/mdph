@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout, User) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout, User, Notification) {
     $scope.menu = [
     {
       'title': 'Accueil',
@@ -15,6 +15,8 @@ angular.module('impactApp')
     $scope.user = Auth.getCurrentUser();
     $scope.$storage = $localStorage;
     $scope.notifications = [];
+
+    $scope.showNotifications = false;
 
     if ($scope.user.$promise) {
       $scope.user.$promise.then(function(data) {
@@ -57,5 +59,14 @@ angular.module('impactApp')
       } else {
         return 'main';
       }
+    };
+
+    $scope.removeNotif = function (notification, index){
+      Notification.delete({id: notification._id}, function(){
+        $scope.notifications.splice(index, 1);
+        if($scope.notifications.length === 0){
+          $scope.showNotifications = false;
+        }
+      });
     };
   });
