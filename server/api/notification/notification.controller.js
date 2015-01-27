@@ -23,18 +23,14 @@ exports.show = function(req, res, next) {
 
 // Deletes a notification from the DB.
 exports.destroy = function(req, res) {
-  console.log(req.params);
   Notification.findById(req.params.id, function (err, notification) {
     if(err) {
-      console.log(err);
       return handleError(res, err);
     }
     if(!notification) {
-      console.log('dommage');
       return res.send(404);
     }
     notification.remove(function(err) {
-      console.log('cool');
       if(err) { return handleError(res, err); }
       return res.send(204);
     });

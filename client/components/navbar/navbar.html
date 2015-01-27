@@ -34,7 +34,7 @@
               <span class="glyphicon glyphicon-folder-open"></span>
             </a>
           </li>
-          <li ng-show="isLoggedIn() && !isAdminMdph() && notifications.length > 0">
+          <li ng-show="isLoggedIn() && notifications.length > 0">
             <a href="" ng-click="showNotifications = !showNotifications" title="Notifications non lues"><span class="badge notif-badge">{{notifications.length}}</span></a>
             <div class="arrow" ng-show="showNotifications"></div>
           </li>

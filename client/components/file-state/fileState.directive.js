@@ -9,11 +9,12 @@ angular.module('impactApp')
         nextStepName: '=',
         nextStepStatus: '=',
         nextStatus: '=',
-        saveStep: '='
+        saveStep: '=',
+        notificationMessage: '='
       },
       templateUrl: 'components/file-state/fileState.html',
       restrict: 'EA',
-      controller: function($scope, $http, $state, requestSteps, Partenaire) {
+      controller: function($scope, $http, $state, requestSteps, Partenaire, Notification) {
         $scope.requestStep = _.find($scope.request.steps, {'name': $scope.currentStepName});
         $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
 
@@ -40,7 +41,14 @@ angular.module('impactApp')
               $scope.request.steps.push({name: $scope.nextStepName, state: $scope.nextStepStatus});
             }
           }
-          $scope.request.$update();
+          $scope.request.$update(function(){
+            var notification = new Notification();
+            notification.userId = $scope.request.user._id;
+            notification.requestId = $scope.request._id;
+            notification.state = 'coucou';
+            notification.message = $scope.notificationMessage;
+            notification.$save();
+          });
         };
 
         $scope.showSave = function() {
