@@ -50,7 +50,9 @@
     <div class="row">
       <div class="col-md-5 col-md-offset-7">
         <ul>
-          <li ng-repeat="(idx, notification) in notifications"><a href="" ng-click="goState(notification)">{{notification.message}}</a> <a href="" ng-click="removeNotif(notification, idx)"><i class="fa fa-times-circle pull-right"></i></a></li>
+          <li ng-repeat="(idx, notification) in notifications">
+            <span ng-click="goState(notification)">{{notification.message}}</span> <i class="fa fa-times-circle fa-lg" ng-click="removeNotif(notification, idx)"></i>
+          </li>
         </ul>
       </div>
     </div>

@@ -95,6 +95,9 @@
   }
   i {
     color: #c7c7c7;
+    float: right;
+    margin-top: 3px;
+    margin-left: 10px;
   }
 }
 
@@ -108,4 +111,8 @@ div {
     border-color: transparent transparent #f8f8f8 transparent;
     left: 15px;
   }
+}
+
+[ng-click] {
+  cursor: pointer;
 }
