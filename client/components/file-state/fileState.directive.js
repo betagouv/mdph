@@ -45,7 +45,7 @@ angular.module('impactApp')
           $scope.request.$update(function(){
             var notification = new Notification();
             notification.userId = $scope.request.user._id;
-            notification.requestId = $scope.request._id;
+            notification.requestId = $scope.request.shortId;
             notification.state = $scope.notificationState;
             notification.message = $scope.notificationMessage;
             notification.$save();

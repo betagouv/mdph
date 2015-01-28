@@ -35,7 +35,7 @@
             </a>
           </li>
           <li ng-show="isLoggedIn() && notifications.length > 0">
-            <a href="" ng-click="showNotifications = !showNotifications" title="Notifications non lues"><span class="badge notif-badge">{{notifications.length}}</span></a>
+            <a href="" ng-click="showNotifications = !showNotifications" title="{{notifications.length}} notification(s) non lue(s)"><span class="badge notif-badge">{{notifications.length}}</span></a>
             <div class="arrow" ng-show="showNotifications"></div>
           </li>
           <li ng-show="isAdminMdph()" ui-sref-active="active"><a ui-sref="dashboard" title="Tableau de bord"><span class="glyphicon glyphicon-th-list"></span></a></li>

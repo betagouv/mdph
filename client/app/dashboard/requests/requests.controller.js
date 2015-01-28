@@ -43,7 +43,7 @@ angular.module('impactApp')
       request.$update(function(){
         var notification = new Notification();
         notification.userId = request.user._id;
-        notification.requestId = request._id;
+        notification.requestId = request.shortId;
         notification.state = 'liste_demandes.demande.questionnaire';
         notification.message = 'Votre demande a été affectée.';
         notification.$save();

@@ -34,8 +34,8 @@ angular.module('impactApp')
 
       var notification = new Notification();
       notification.userId = $scope.request.user._id;
-      notification.requestId = $scope.request._id;
-      notification.state = 'coucou';
+      notification.requestId = $scope.request.shortId;
+      notification.state = 'liste_demandes.demande.complementaire';
       notification.message = 'Des documents vous ont été demandés par votre MDPH.';
       notification.$save();
     };
