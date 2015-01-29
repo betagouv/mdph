@@ -52,7 +52,7 @@
         <ul>
           <li ng-repeat="(idx, notification) in notifications">
             <span ng-click="goState(notification, idx)">{{notification.message}} <small>{{notification.createdAt | date: "HH:mm" }}</small>
-            <i class="fa fa-times-circle fa-lg" ng-click="removeNotif(notification, idx)"></i></span>
+            <i class="fa fa-times-circle fa-lg pull-right" ng-click="removeNotif(notification, idx)"></i></span>
           </li>
         </ul>
       </div>

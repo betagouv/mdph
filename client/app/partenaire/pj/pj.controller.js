@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, request) {
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, request, NotificationService) {
     $scope.request = request;
     $scope.currentFormStep = _.find($scope.request.steps, {'name': 'complementaire'});
     $scope.files = $scope.currentFormStep.files;
@@ -46,6 +46,9 @@ angular.module('impactApp')
               name: file.name
             },
             file: file.upload
+          }).success(function(){
+            NotificationService.createNotificationAdmin($scope.request, 'dashboard.repartition_demandes.detail', 'Ajout par partenaire');
+            NotificationService.createNotification($scope.request, 'liste_demandes.demande.complementaire', 'Ajout par partenaire');
           });
         }
       });
