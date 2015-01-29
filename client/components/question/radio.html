@@ -1,7 +1,7 @@
 <qtitle></qtitle>
 
 <div class="answer" ng-repeat="answer in question.answers"
-  ng-if="!answer.onlyAdult || isAdult()">
+  ng-if="!isAdmin || !answer.onlyAdult || isAdult()">
   <button
     class="btn btn-default btn-block btn-answer text-capitalize"
     ng-model="sectionModel[question.model]"

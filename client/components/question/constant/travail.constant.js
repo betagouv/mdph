@@ -5,6 +5,7 @@
 angular.module('impactApp').constant('travail', [
   {
     model: 'conditionTravail',
+    neededForAdmin: true,
     titleDefault: 'Avez-vous actuellement un emploi ?',
     titleRep: 'A-t-<%= pronoun %> actuellement un emploi ?',
     type: 'radio',
@@ -82,6 +83,7 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'temps',
+    neededForAdmin: true,
     titleDefault: 'Votre emploi est-il a temps complet ou partiel ?',
     titleRep: 'Son emploi est-il a temps complet ou partiel ?',
     type: 'radio',
@@ -105,6 +107,7 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'adapte',
+    neededForAdmin: true,
     titleDefault: 'Votre emploi est-il adapté à votre handicap ?',
     titleRep: 'Son emploi est-il adapté à son handicap ?',
     type: 'radio',

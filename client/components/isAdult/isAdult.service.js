@@ -7,13 +7,17 @@ angular.module('impactApp')
           angular.isUndefined(contexte.dateNaissance)) {
         return true;
       }
-      var formDate = contexte.dateNaissance;
 
-      var currentYear = new Date().getFullYear();
-
-      var limitDate = new Date();
-      limitDate.setFullYear(currentYear - 20);
-
-      return new Date(formDate).getTime() <= limitDate.getTime();
+      return moment().diff(contexte.dateNaissance, 'years') >= 20;
     };
-});
+  })
+  .factory('isLessThan62', function() {
+    return function(contexte) {
+      if (angular.isUndefined(contexte) ||
+          angular.isUndefined(contexte.dateNaissance)) {
+        return true;
+      }
+
+      return moment().diff(contexte.dateNaissance, 'years') < 62;
+    };
+  });

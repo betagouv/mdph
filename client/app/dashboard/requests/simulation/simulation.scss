@@ -42,12 +42,12 @@
   }
 }
 
-.fixed-top {
-  position: fixed;
-  top: 121px;
-}
-
 .result {
   margin-top: 20px;
   font-size: 13px;
+}
+
+.affix {
+  top: 10px;
+  margin-top: 0;
 }

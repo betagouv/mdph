@@ -7,10 +7,10 @@ angular.module('impactApp')
 
     $scope.submit = function() {
       $http.post('/api/certificats/' + $scope.requestId, $scope.certificat)
-        .success(function(data) {
+        .success(function() {
           $state.go('cm_email', {email: $scope.certificat.coordonnees.email});
         })
-        .error(function(err) {
+        .error(function() {
 
         });
     };

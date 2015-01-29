@@ -1,70 +1,59 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('DroitService', function DroitService($filter, FormService, QuestionService, isAdult) {
+  .factory('DroitService', function DroitService($filter, FormService, QuestionService, isAdult, isLessThan62) {
 
-    // Retourne faux si et seulement on prend en compte le taux et qu'il est trop faible
-    var getFiltreTaux = function(answers, isAdmin) {
+    var getSection = function(isAdmin, answers, sectionModel) {
       if (isAdmin) {
-        return true;
+        return answers;
       }
 
-      var contexte = answers.contexte;
-      if (contexte) {
-        var renouvellement = FormService.estRenouvellement(answers);
-        var connaisTaux = contexte.connaisTaux;
-        var taux = contexte.tauxIncapacite;
-        var contestationTaux = contexte.contestationTaux;
+      var result = _.result(answers, sectionModel);
+      return result ? result : {};
+    };
 
-        var filtreTaux;
-        if (renouvellement && connaisTaux) {
-          filtreTaux = (taux > 50 && contestationTaux === 'stable' || contestationTaux === 'aggrave');
+    var getValue = function(question, answerModel) {
+      var answer = _.result(question, answerModel);
+      return answer ? answer : false;
+    };
+
+    var getValueList = function(question, answerModelList) {
+      var resultList = [];
+      _.forEach(answerModelList, function(model) {
+        var answer = _.result(question, model);
+        if (answer) {
+          resultList.push(answer);
         } else {
-          filtreTaux = true;
+          resultList.push(false);
         }
-        return filtreTaux;
-      } else {
-        return true;
-      }
+      });
+      return resultList;
     };
 
     var getCallbacks = function(answers, isAdmin) {
-      var contexte;
-      var aidant;
-      var vieQuotidienne;
-      var renouvellements;
+      var contexte = getSection(isAdmin, answers, 'contexte');
+      var aidant = getSection(isAdmin, answers, 'aidant');
+      var vieQuotidienne = getSection(isAdmin, answers, 'vieQuotidienne');
+      var renouvellements = getSection(isAdmin, answers, 'prestations');
+      var travail = getSection(isAdmin, answers, 'travail');
 
-      if (isAdmin) {
-        contexte = answers;
-        aidant = answers;
-        vieQuotidienne = answers;
-        renouvellements = answers;
-      } else {
-        contexte = answers.contexte;
-        aidant = answers.aidant;
-        vieQuotidienne = answers.vieQuotidienne;
-        renouvellements = answers.prestations;
-      }
+      var besoinsDeplacement = _.result(vieQuotidienne, 'besoinsDeplacement');
+      var besoinsVie = _.result(vieQuotidienne, 'besoinsVie');
+      var besoinsLieuDeVie = _.result(vieQuotidienne, 'besoinsLieuDeVie');
+      var besoinsSocial = _.result(vieQuotidienne, 'besoinsSocial');
+      var attentesTypeAide = _.result(vieQuotidienne, 'attentesTypeAide');
 
-      var besoinsDeplacement;
-      var besoinsVie;
-      var besoinsSocial;
-      var attentesTypeAide;
-
-      if (vieQuotidienne) {
-        besoinsDeplacement = vieQuotidienne.besoinsDeplacement;
-        besoinsVie = vieQuotidienne.besoinsVie;
-        besoinsSocial = vieQuotidienne.besoinsSocial;
-        attentesTypeAide = vieQuotidienne.attentesTypeAide;
-      }
-
-      var filtreTaux = getFiltreTaux(answers, isAdmin);
       var estAdulte = isAdult(contexte);
       var estEnfant = !estAdulte;
+      var aMoinsDe62Ans = isLessThan62(contexte);
 
       var listeEtBesoins = _.every([
-        besoinsSocial && _.every([besoinsSocial.securite, besoinsSocial.loisirs, besoinsSocial.citoyen]),
-        besoinsVie && _.every([besoinsVie.budget, besoinsVie.courses, besoinsVie.cuisine, besoinsVie.menage, besoinsVie.sante])
+        _.every(
+          getValueList(besoinsSocial, ['securite', 'loisirs', 'citoyen'])
+        ),
+        _.every(
+          getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante'])
+        )
       ]);
 
       var estRenouvellement = function(presta) {
@@ -77,7 +66,61 @@ angular.module('impactApp')
         return res;
       };
 
+      var ou = _.some;
+      var et = _.every;
+
+      var estNonActif = et([
+        aMoinsDe62Ans,
+        ou([
+          false === getValue(travail, 'conditionTravail'),
+          et([
+            false === getValue(travail, 'temps'),
+            false === getValue(travail, 'adapte')
+          ])
+        ])
+      ]);
+
       return {
+        aah: function(droit) {
+          if (estRenouvellement(droit)) {
+            return true;
+          }
+
+          return et([
+            estAdulte,
+            ou([
+              getValue(besoinsVie, 'courant'),
+              getValue(attentesTypeAide, 'financierMinimum'),
+            ]),
+            ou([
+              // MTP ??
+              // PCRTP ??
+              et([
+                getValue(attentesTypeAide, 'humain'),
+                ou([
+                  ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+                  getValue(besoinsDeplacement, 'intraDomicile')
+                ]),
+              ]),
+              et([
+                getValue(besoinsSocial, 'securite'),
+                et([
+                  et( getValueList(besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
+                  et( getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante']) ),
+                  estNonActif
+                ])
+              ]),
+              et([
+                getValue(besoinsLieuDeVie, 'materiel'),
+                et([
+                  et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+                  getValue(besoinsDeplacement, 'public'),
+                  estNonActif
+                ])
+              ])
+            ])
+          ]);
+        },
         carteStationnement: function(droit) {
           return _.some([
             estRenouvellement(droit),
@@ -113,30 +156,7 @@ angular.module('impactApp')
             ]);
           };
 
-          return estEnfant && filtreTaux && auMoinsUneAttente() && auMoinsUnBesoin();
-        },
-        aah: function(droit) {
-          if (estRenouvellement(droit)) {
-            return true;
-          }
-
-          var auMoinsUnBesoinOuAttenteFinancier = function() {
-            return _.some([
-              besoinsVie && besoinsVie.courant,
-              attentesTypeAide && attentesTypeAide.financierHandicap
-            ]);
-          };
-
-          var auMoinsUnBesoin = function() {
-            return _.some([
-              besoinsVie && _.some([besoinsVie.hygiene, besoinsVie.habits, besoinsVie.repas]),
-              besoinsDeplacement && besoinsDeplacement.intraDomicile,
-              besoinsSocial && besoinsSocial.proches,
-              listeEtBesoins
-            ]);
-          };
-
-          return estAdulte && filtreTaux && auMoinsUnBesoinOuAttenteFinancier() && auMoinsUnBesoin();
+          return estEnfant && auMoinsUneAttente() && auMoinsUnBesoin();
         },
         ac: function(droit) {
           if (estRenouvellement(droit)) {
@@ -188,7 +208,7 @@ angular.module('impactApp')
           };
 
           var pchEnfant = function() {
-            return filtreTaux && auMoinsUneAttente() && auMoinsUnBesoin();
+            return auMoinsUneAttente() && auMoinsUnBesoin();
           };
 
           var pchAdulte = function() {
@@ -294,9 +314,6 @@ angular.module('impactApp')
     };
 
     return {
-      // Commodité pour les tests
-      getFiltreTaux: getFiltreTaux,
-
       compute: function(answers, prestations, isAdmin) {
         var callbacks = getCallbacks(answers, isAdmin);
 

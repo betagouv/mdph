@@ -50,13 +50,6 @@
   margin-top: 70px;
 }
 
-/* Menu rules */
-menu.pagemenu.affix {
-  top: 10px;
-  margin-top: 0;
-  width: 15%;
-}
-
 menu.pagemenu {
   li.active > a, li.active > a:hover {
     border-left: 2px solid black;
@@ -79,7 +72,6 @@ menu.pagemenu a:hover {
 }
 
 menu.pagemenu .nav {
-  display: none;
   padding-bottom: 10px;
 }
 
@@ -90,15 +82,15 @@ menu.pagemenu li.active > .nav {
 /* Indendation rules */
 /* Level 1 */
 menu.pagemenu a {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 menu.pagemenu  a:hover {
-  padding-left: 19px;
+  padding-left: 9px;
 }
 
 menu.pagemenu  li.active>a {
-  padding-left: 18px;
+  padding-left: 8px;
 }
 
 /* Level 2 */
@@ -108,13 +100,13 @@ menu.pagemenu .nav {
 
 menu.pagemenu .nav a {
   font-size: 12px;
-  padding-left: 40px;
+  padding-left: 15px;
 }
 
 menu.pagemenu .nav a:hover {
-  padding-left: 39px;
+  padding-left: 14px;
 }
 
 menu.pagemenu .nav li.active>a {
-  padding-left: 38px;
+  padding-left: 13px;
 }
