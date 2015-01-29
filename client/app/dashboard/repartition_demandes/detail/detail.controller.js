@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, prestations, requestSteps, Partenaire, Notification) {
+  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, prestations, requestSteps, Partenaire, NotificationService) {
     $scope.request = request;
     $scope.allFiles = requestSteps;
 
@@ -31,13 +31,7 @@ angular.module('impactApp')
           envoiAssignation(file);
         }
       });
-
-      var notification = new Notification();
-      notification.userId = $scope.request.user._id;
-      notification.requestId = $scope.request.shortId;
-      notification.state = 'liste_demandes.demande.complementaire';
-      notification.message = 'Des documents vous ont été demandés par votre MDPH.';
-      notification.$save();
+      NotificationService.createNotification($scope.request, 'liste_demandes.demande.complementaire', 'Des documents vous ont été demandés par votre MDPH.');
     };
 
     $scope.remove = function(files, index) {

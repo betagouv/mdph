@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestsCtrl', function ($scope, $http, $state, RequestStepService, RequestService, requestSteps, requests, Auth, Notification) {
+  .controller('RequestsCtrl', function ($scope, $http, $state, RequestStepService, RequestService, requestSteps, requests, Auth, NotificationService) {
 
     $scope.updatedAt = RequestService.updatedAtAscending;
     $scope.requests = _.sortBy(requests, $scope.updatedAt);
@@ -34,20 +34,13 @@ angular.module('impactApp')
           }
         }
       }
-
       return true;
     };
 
     $scope.traiterDemande = function (request) {
       request.evaluator = $scope.currentUser;
       request.$update(function(){
-        var notification = new Notification();
-        notification.userId = request.user._id;
-        notification.requestId = request.shortId;
-        notification.state = 'liste_demandes.demande.questionnaire';
-        notification.message = 'Votre demande a été affectée.';
-        notification.$save();
+        NotificationService.createNotification(request, 'liste_demandes.demande.questionnaire', 'Votre demande a été affectée.');
       });
     };
-
   });

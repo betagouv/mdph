@@ -15,7 +15,7 @@ angular.module('impactApp')
       },
       templateUrl: 'components/file-state/fileState.html',
       restrict: 'EA',
-      controller: function($scope, $http, $state, requestSteps, Partenaire, Notification) {
+      controller: function($scope, $http, $state, requestSteps, Partenaire, NotificationService) {
         $scope.requestStep = _.find($scope.request.steps, {'name': $scope.currentStepName});
         $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
 
@@ -42,14 +42,8 @@ angular.module('impactApp')
               $scope.request.steps.push({name: $scope.nextStepName, state: $scope.nextStepStatus});
             }
           }
-          $scope.request.$update(function(){
-            var notification = new Notification();
-            notification.userId = $scope.request.user._id;
-            notification.requestId = $scope.request.shortId;
-            notification.state = $scope.notificationState;
-            notification.message = $scope.notificationMessage;
-            notification.$save();
-          });
+
+          NotificationService.createNotification($scope.request, $scope.notificationState, $scope.notificationMessage);
         };
 
         $scope.showSave = function() {

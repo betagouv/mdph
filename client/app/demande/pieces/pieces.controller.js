@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PiecesCtrl', function ($scope, $upload, RequestService, step, Notification) {
+  .controller('PiecesCtrl', function ($scope, $upload, RequestService, step, NotificationService) {
     $scope.currentStep = $scope.steps[step.id];
     $scope.currentFormStep = _.find($scope.currentRequest.steps, {'name': step.name});
     $scope.files = $scope.currentFormStep.files;
@@ -20,12 +20,8 @@ angular.module('impactApp')
       $scope.$parent.$broadcast('refreshFormStepSection');
 
       if($scope.currentRequest.evaluator){
-        var notification = new Notification();
-        notification.userId = $scope.currentRequest.evaluator;
-        notification.requestId = $scope.currentRequest.shortId;
-        notification.message = step.name === 'complementaire' ? 'Des pièces complémentaires ont été ajoutées à la demande.' : 'Les pièces obligatoires ont été ajoutées à la demande.';
-        notification.state = 'dashboard.repartition_demandes.detail';
-        notification.$save();
+        var message = step.name === 'complementaire' ? 'Des pièces complémentaires ont été ajoutées à la demande.' : 'Les pièces obligatoires ont été ajoutées à la demande.';
+        NotificationService.createNotificationAdmin($scope.currentRequest, 'dashboard.repartition_demandes.detail', message);
       }
 
     };
