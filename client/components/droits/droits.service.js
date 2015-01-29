@@ -43,18 +43,11 @@ angular.module('impactApp')
       var besoinsSocial = _.result(vieQuotidienne, 'besoinsSocial');
       var attentesTypeAide = _.result(vieQuotidienne, 'attentesTypeAide');
 
+      var attentesAidant = _.result(aidant, 'typeAttente');
+
       var estAdulte = isAdult(contexte);
       var estEnfant = !estAdulte;
       var aMoinsDe62Ans = isLessThan62(contexte);
-
-      var listeEtBesoins = _.every([
-        _.every(
-          getValueList(besoinsSocial, ['securite', 'loisirs', 'citoyen'])
-        ),
-        _.every(
-          getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante'])
-        )
-      ]);
 
       var estRenouvellement = function(presta) {
         var res = renouvellements && renouvellements[presta.id];
@@ -121,42 +114,84 @@ angular.module('impactApp')
             ])
           ]);
         },
-        carteStationnement: function(droit) {
-          return _.some([
-            estRenouvellement(droit),
-            besoinsDeplacement && besoinsDeplacement.public,
-            attentesTypeAide && attentesTypeAide.mobilite
-          ]);
-        },
-        carteInvalidite: function(droit) {
-          return _.some([
-            estRenouvellement(droit),
-            besoinsVie && _.some([besoinsVie.hygiene, besoinsVie.habits, besoinsVie.repas]),
-            besoinsDeplacement && besoinsDeplacement.intraDomicile
-          ]);
-        },
         aeeh: function(droit) {
           if (estRenouvellement(droit)) {
             return true;
           }
 
-          var auMoinsUneAttente = function() {
-            return attentesTypeAide && _.some([
-              attentesTypeAide.financierHandicap,
-              attentesTypeAide.humain,
-              attentesTypeAide.materiel,
-              attentesTypeAide.amenagement]);
-          };
+          return et([
+            estEnfant,
+            ou( getValueList(attentesTypeAide, ['financierMinimum', 'financierHandicap', 'humain', 'materiel', 'amenagement']) ),
+            ou([
+              et([
+                getValue(attentesTypeAide, 'humain'),
+                ou([
+                  ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+                  getValue(besoinsDeplacement, 'intraDomicile')
+                ]),
+              ]),
+              et([
+                getValue(besoinsSocial, 'securite'),
+                et([
+                  et( getValueList(besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
+                  et( getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante']) ),
+                  estNonActif
+                ])
+              ]),
+              et([
+                getValue(besoinsLieuDeVie, 'materiel'),
+                et([
+                  et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+                  getValue(besoinsDeplacement, 'public'),
+                  estNonActif
+                ])
+              ])
+            ])
+          ]);
+        },
+        av: function(droit) {
+          // Assurance vieillesse
+          if (estRenouvellement(droit)) {
+            return true;
+          }
 
-          var auMoinsUnBesoin = function() {
-            return _.some([
-              besoinsVie && _.some([besoinsVie.hygiene, besoinsVie.habits, besoinsVie.repas]),
-              besoinsDeplacement && besoinsDeplacement.intraDomicile,
-              listeEtBesoins
-            ]);
-          };
+          return ou([
+            getValue(attentesAidant, 'vieillesse'),
+            et([
+              getValue(aidant, 'emploiDetail'),
+              getValue(aidant, 'vie')
+            ])
+          ]);
+        },
+        carteInvalidite: function(droit) {
+          if (estRenouvellement(droit)) {
+            return true;
+          }
 
-          return estEnfant && auMoinsUneAttente() && auMoinsUnBesoin();
+          return ou([
+            et([
+              getValue(attentesTypeAide, 'humain'),
+              ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+            ]),
+            getValue(besoinsDeplacement, 'intraDomicile')
+          ]);
+        },
+        carteStationnement: function(droit) {
+          if (estRenouvellement(droit)) {
+            return true;
+          }
+
+          return ou([
+            getValue(besoinsDeplacement, 'intraDomicile'),
+            et([
+              getValue(attentesTypeAide, 'humain'),
+              getValue(besoinsDeplacement, 'public')
+            ]),
+            et([
+              getValue(attentesTypeAide, 'humain'),
+              getValue(attentesTypeAide, 'mobilite')
+            ]),
+          ]);
         },
         ac: function(droit) {
           if (estRenouvellement(droit)) {
@@ -297,12 +332,6 @@ angular.module('impactApp')
               besoinsVieQuotidienne()
             ])
           ]);
-        },
-        av: function(droit) {
-          if (estRenouvellement(droit)) {
-            return true;
-          }
-          return aidant && aidant.typeAttente && aidant.typeAttente.vieillesse;
         },
         rqth: function(droit) {
           if (estRenouvellement(droit)) {

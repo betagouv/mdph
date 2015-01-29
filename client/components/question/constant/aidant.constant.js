@@ -28,6 +28,7 @@ angular.module('impactApp').constant('aidant', [
     titleDefault: 'Vivez-vous avec la personne en situation de handicap ?',
     model: 'vie',
     type: 'radio',
+    neededForAdmin: true,
     answers: [
       {
         label: 'Non',
@@ -46,6 +47,7 @@ angular.module('impactApp').constant('aidant', [
     titleDefault: 'Avez-vous un emploi ?',
     model: 'emploi',
     type: 'radio',
+    neededForAdmin: true,
     answers: [
       {
         label: 'Non',
