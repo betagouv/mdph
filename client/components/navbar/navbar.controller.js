@@ -70,8 +70,11 @@ angular.module('impactApp')
       });
     };
 
-    $scope.goState = function (notification){
+    $scope.goState = function (notification, index){
       $state.go(notification.state, { shortId: notification.request });
-      $scope.showNotifications = false;
+      Notification.delete({id: notification._id}, function(){
+        $scope.notifications.splice(index, 1);
+        $scope.showNotifications = false;
+      });
     };
   });
