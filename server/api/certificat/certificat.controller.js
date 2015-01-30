@@ -2,7 +2,13 @@
 
 var Mailjet = require('../../mailjet/mailjet');
 var Request = require('../request/request.model');
-var Config = require('../../config/local.env');
+
+var Config;
+try {
+  Config = require('../../config/local.env');
+} catch (ex) {
+  Config = require('../../config/local.env.sample');
+}
 
 var mailjet = new Mailjet(Config.API_KEY, Config.SECRET_KEY);
 
@@ -26,8 +32,8 @@ exports.save = function(req, res, next) {
 
       mailjet.sendContent(
         req.body.coordonnees.email,
-        'Impact - Validez votre adresse mail', 
-        'Vous venez d\'envoyer un certificat médical sur notre site, merci de valider votre adresse.<a href="http://localhost:9000/cm/' + request.shortId + '/' + request.certificat.secret + '"><h1>Cliquez ici</h1></a></div>' 
+        'Impact - Validez votre adresse mail',
+        'Vous venez d\'envoyer un certificat médical sur notre site, merci de valider votre adresse.<a href="http://localhost:9000/cm/' + request.shortId + '/' + request.certificat.secret + '"><h1>Cliquez ici</h1></a></div>'
       );
 
       return res.json(200, req.body.coordonnees.email);

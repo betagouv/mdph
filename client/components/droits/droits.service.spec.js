@@ -180,7 +180,7 @@ describe('Service: droits || AEEH || ', function () {
     expect(idResult).not.toContain('aeeh');
   });
 });
-*/
+
 describe('Service: droits || AAH || ', function () {
 
   // load the service's module
@@ -199,7 +199,7 @@ describe('Service: droits || AAH || ', function () {
   }));
 
   describe('Premiere attribution || ', function () {
-    /*
+
     it('should not return aah because the user is a child', function () {
       // given
       var answers = {
@@ -235,7 +235,7 @@ describe('Service: droits || AAH || ', function () {
       expect(idResult).not.toContain('aah');
     });
   });
-*/
+
 
   it('should return aah', function () {
     // given
@@ -296,7 +296,7 @@ describe('Service: droits || AAH || ', function () {
     // then
     expect(idResult).toContain('aah');
   });
-  /*
+
 
   it('should return aah', function () {
     // given
@@ -328,10 +328,10 @@ describe('Service: droits || AAH || ', function () {
 
     // then
     expect(idResult).toContain('aah');
-  }); */
+  });
 });
 
-/*
+
 describe('Service: droits || Renouvellements || ', function () {
 
   // load the service's module
@@ -394,6 +394,6 @@ describe('Service: droits || Renouvellements || ', function () {
     expect(idResult).toContain('pch');
     expect(idResult).toContain('ac');
   });
-  */
 });
+*/
 
