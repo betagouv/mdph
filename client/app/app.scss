@@ -59,6 +59,7 @@ $disabled-blue: lighten($light-blue, 30%);
 // injector
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
+@import 'apropos/apropos.scss';
 @import 'cm/form/form.scss';
 @import 'dashboard/dashboard.scss';
 @import 'dashboard/repartition_demandes/evaluation/evaluation.scss';
