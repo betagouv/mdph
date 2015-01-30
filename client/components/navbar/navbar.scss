@@ -64,7 +64,7 @@
 }
 
 .notif-badge {
-  background: #D05158;
+  background: $light-red;
   position: relative;
 }
 
@@ -73,8 +73,7 @@
     list-style-type: none;
     position: absolute;
     z-index: 3;
-    background: #f8f8f8;
-    border: 1px solid #ccc;
+    background: $lighter-grey;
     box-shadow: 0 2px 5px rgba(0,0,0,.2);
     outline: none;
     right: 0;
@@ -111,7 +110,7 @@ div {
     height: 0;
     border-style: solid;
     border-width: 0 10px 22px 10px;
-    border-color: transparent transparent #f8f8f8 transparent;
+    border-color: transparent transparent $lighter-grey transparent;
     left: 15px;
   }
 }
