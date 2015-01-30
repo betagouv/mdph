@@ -1,0 +1,63 @@
+<div class="container">
+  <div ng-if="user.role === 'adminMdph'">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Votre MDPH</h1>
+      </div>
+    </div>
+    <form class="form-horizontal" role="form">
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Nom</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">{{user.mdph.name}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Code Postal</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">{{user.mdph.zipcode}}</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Changer votre mot de passe</h1>
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
+
+        <div class="form-group">
+          <label>Mot de passe actuel</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Nouveau mot de passe</label>
+
+          <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                 ng-minlength="3"
+                 required/>
+          <p class="help-block"
+             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
+            La longueur minimale du mot de passe est de 3 caractères.
+          </p>
+        </div>
+
+        <p class="help-block"> {{ message }} </p>
+
+        <button class="btn btn-lg btn-primary" type="submit">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>

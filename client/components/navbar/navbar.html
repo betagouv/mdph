@@ -34,12 +34,11 @@
               <span class="glyphicon glyphicon-folder-open"></span>
             </a>
           </li>
+          <li ng-show="isLoggedIn() && isAdminMdph()" ui-sref-active="active"><a ui-sref="dashboard" title="Tableau de bord"><span class="glyphicon glyphicon-th-list"></span></a></li>
           <li ng-show="isLoggedIn() && notifications.length > 0">
             <a href="" ng-click="showNotifications = !showNotifications" title="{{notifications.length}} notification(s) non lue(s)"><span class="badge notif-badge">{{notifications.length}}</span></a>
             <div class="arrow" ng-show="showNotifications"></div>
           </li>
-          <li ng-show="isAdminMdph()" ui-sref-active="active"><a ui-sref="dashboard" title="Tableau de bord"><span class="glyphicon glyphicon-th-list"></span></a></li>
-          <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings" title="Paramètres"><span class="glyphicon glyphicon-cog"></span></a></li>
           <li ng-show="isLoggedIn()"><a href="" ng-click="logout()">Se déconnecter</a></li>
         </ul>
       </div>
