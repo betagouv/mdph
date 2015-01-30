@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('liste_demandes.demande.complementaire', {
+      .state('espace_perso.liste_demandes.demande.complementaire', {
         url: '/complementaire',
         templateUrl: 'app/demande/pieces/pieces.html',
         controller: 'PiecesCtrl',
@@ -14,7 +14,7 @@ angular.module('impactApp')
         },
         authenticate: true
       })
-      .state('liste_demandes.demande.obligatoire', {
+      .state('espace_perso.liste_demandes.demande.obligatoire', {
         url: '/obligatoire',
         templateUrl: 'app/demande/pieces/pieces.html',
         controller: 'PiecesCtrl',

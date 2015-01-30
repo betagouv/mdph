@@ -41,9 +41,9 @@ angular.module('impactApp')
               $modalInstance.close();
               RequestService.saveCurrent($rootScope);
               if(currentMdph==='Nord'){
-                $state.go('liste_demandes.demande.recapitulatif', {shortId: RequestService.getCurrent().shortId});
+                $state.go('espace_perso.liste_demandes.demande.recapitulatif', {shortId: RequestService.getCurrent().shortId});
               } else {
-                $state.go('liste_demandes.demande.obligatoire', {shortId: RequestService.getCurrent().shortId, step: 'obligatoire'});
+                $state.go('espace_perso.liste_demandes.demande.obligatoire', {shortId: RequestService.getCurrent().shortId, step: 'obligatoire'});
               }
             };
           }

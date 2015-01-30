@@ -10,7 +10,7 @@ angular.module('impactApp')
     };
 
     $scope.listeDemande = function() {
-      $state.go('liste_demandes');
+      $state.go('espace_perso.liste_demandes');
     };
 
     $scope.getMdphName = function() {

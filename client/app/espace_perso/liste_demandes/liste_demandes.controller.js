@@ -29,10 +29,10 @@ angular.module('impactApp')
 
     $scope.goToRequest = function(request){
       if (!request.mdph || request.mdph.id !== 'nord'){
-        return 'liste_demandes/' + request.shortId + '/' + $scope.getCurrentStep(request).name;
+        return 'espace_perso.liste_demandes.demande.' + $scope.getCurrentStep(request).name + '({shortId: request.shortId })';
       }
       else {
-        return 'liste_demandes/' + request.shortId + '/recapitulatif';
+        return 'espace_perso.liste_demandes.demande.recapitulatif({shortId: request.shortId })';
       }
     };
   });

@@ -31,7 +31,7 @@ angular.module('impactApp')
           envoiAssignation(file);
         }
       });
-      NotificationService.createNotification($scope.request, 'liste_demandes.demande.complementaire', 'Des documents vous ont été demandés par votre MDPH.');
+      NotificationService.createNotification($scope.request, 'espace_perso.liste_demandes.demande.complementaire', 'Des documents vous ont été demandés par votre MDPH.');
     };
 
     $scope.remove = function(files, index) {

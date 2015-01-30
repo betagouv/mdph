@@ -1,5 +1,3 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
 <ui-view>
   <div class="container">
     <h1>Vos demandes</h1>
@@ -11,7 +9,11 @@
     <div class="row" ng-if="requests.length > 0">
       <div class="col-md-12">
         <div class="list-group">
-          <a class="list-group-item" ng-repeat="request in requests" ng-class="{'list-group-item-success': request.opened}" href="{{goToRequest(request)}}">
+          <a
+            class="list-group-item"
+            ng-repeat="request in requests"
+            ng-class="{'list-group-item-success': request.opened}"
+            ui-sref="{{goToRequest(request)}}">
             <div ng-if="request.opened">
               <h4 class="list-group-item-heading">{{getTitle(request)}}</span></h4>
               <p class="list-group-item-text">Etape: {{getCurrentStep(request) | stepFilter}}<br/>

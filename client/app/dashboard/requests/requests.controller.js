@@ -40,7 +40,7 @@ angular.module('impactApp')
     $scope.traiterDemande = function (request) {
       request.evaluator = $scope.currentUser;
       request.$update(function(){
-        NotificationService.createNotification(request, 'liste_demandes.demande.questionnaire', 'Votre demande a été affectée.');
+        NotificationService.createNotification(request, 'espace_perso.liste_demandes.demande.questionnaire', 'Votre demande a été affectée.');
       });
     };
   });

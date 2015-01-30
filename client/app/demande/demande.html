@@ -13,7 +13,7 @@
       <div class="row">
         <step ng-repeat="step in steps">
           <a class="col-md-2 disabled" ng-if="!step.isEnabled">{{step.label}}</a>
-          <a ng-if="step.isEnabled" class="col-md-2" ui-sref="{{step.sref}}">
+          <a ng-if="step.isEnabled" class="col-md-2" ui-sref="{{step.sref}}" ui-sref-active="active">
             <i class="fa" ng-class="{'fa-circle-o': !step.isFinished, 'fa-check-circle-o': step.isFinished}"></i> {{step.label}}
           </a>
         </step>

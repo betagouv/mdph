@@ -30,7 +30,7 @@
           <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Connexion</a></li>
           <li ng-show="isLoggedIn()"><p class="navbar-text">Bonjour, {{ user.name }}</p> </li>
           <li ng-show="isLoggedIn() && !isAdminMdph()" ui-sref-active="active">
-            <a ui-sref="liste_demandes" title="Mes demandes">
+            <a ui-sref="espace_perso" title="Mon espace perso">
               <span class="glyphicon glyphicon-folder-open"></span>
             </a>
           </li>

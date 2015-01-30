@@ -3,9 +3,9 @@
 }
 
 .banner-inverse  {
-  background-color: $medium-red;
-  border-top: 5px solid $dark-red;
-  border-bottom: 3px solid $light-red;
+  background-color: $bg-blue;
+  border-top: none;
+  border-bottom: 3px solid lighten($bg-blue, 10%);
 }
 
 .no-hr {

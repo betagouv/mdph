@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('liste_demandes.demande', {
+      .state('espace_perso.liste_demandes.demande', {
         url: '/:shortId',
         templateUrl: 'app/demande/demande.html',
         controller: 'DemandeCtrl',
