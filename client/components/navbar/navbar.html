@@ -50,9 +50,15 @@
     <div class="row">
       <div class="col-md-5 col-md-offset-7">
         <ul>
-          <li ng-repeat="(idx, notification) in notifications">
-            <span ng-click="goState(notification, idx)">{{notification.message}} <small>{{notification.createdAt | date: "HH:mm" }}</small>
-            <i class="fa fa-times-circle fa-lg pull-right" ng-click="removeNotif(notification, idx)"></i></span>
+          <li ng-click="goState(notification, idx)" ng-repeat="(idx, notification) in notifications">
+            <div class="pull-left">
+              {{notification.message}}
+              <br><small class="text-muted">{{momentFromNow(notification.createdAt)}}</small>
+            </div>
+            <div class="pull-right">
+              <i class="fa fa-times-circle fa-lg text-muted" ng-click="removeNotif(notification, idx)"></i>
+            </div>
+            <div class="clearfix"></div>
           </li>
         </ul>
       </div>

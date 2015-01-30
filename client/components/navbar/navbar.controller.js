@@ -32,6 +32,10 @@ angular.module('impactApp')
       }, 500);
     });
 
+    $scope.momentFromNow = function(date) {
+      return moment(date).fromNow();
+    };
+
     $scope.hideIntro = function() {
       $scope.showIntro = false;
       $scope.$storage.hideIntro = true;
