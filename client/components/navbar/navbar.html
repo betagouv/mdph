@@ -49,8 +49,8 @@
     <div class="row">
       <div class="col-md-5 col-md-offset-7">
         <ul>
-          <li ng-click="goState(notification, idx)" ng-repeat="(idx, notification) in notifications">
-            <div class="pull-left">
+          <li ng-repeat="(idx, notification) in notifications">
+            <div class="pull-left" ng-click="goState(notification, idx)">
               {{notification.message}}
               <br><small class="text-muted">{{momentFromNow(notification.createdAt)}}</small>
             </div>
