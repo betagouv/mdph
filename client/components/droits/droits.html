@@ -22,7 +22,7 @@
               </a>
             </div>
           </div>
-          <div class="panel-body" ng-if="isSelected(prestation) && editable">
+          <div class="panel-body" ng-if="isSelected(prestation) && editable && endDate">
             <label>Date de fin</label>
             <div class="input-group">
               <input type="text" class="form-control"
@@ -34,6 +34,11 @@
               </span>
             </div>
           </div>
+
+          <div class="panel-body" ng-if="isSelected(prestation) && editable && !endDate">
+            <label>{{prestation.title}}</label>
+          </div>
+
           <div class="panel-footer" ng-show="{{prestation.renouvellement}}" ng-if="!editable">
             {{prestation.descRenouvellement}}
           </div>

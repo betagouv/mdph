@@ -14,10 +14,16 @@ angular.module('impactApp')
       'de votre justificatif d\'identité ainsi que celui de la personne handicapée' :
       'de votre justificatif d\'identité';
 
-    $scope.prestations = DroitService.compute($scope.formAnswers, prestations);
     $scope.showAdult = FormService.isAdult($scope.formAnswers);
     $scope.answersToHtml = RecapitulatifService.answersToHtml;
     $scope.currentRequest = RequestService.getCurrent()._id;
+    if(!$scope.formAnswers.prestations){
+      $scope.formAnswers.prestations = [];
+    }
+    $scope.prestations = (DroitService.compute($scope.formAnswers, prestations)).concat($scope.formAnswers.prestations);
+    $scope.prestationsToAdd = _.difference(prestations, $scope.prestations);
+
+    debugger;
 
     $scope.saveCurrent = function() {
       if (Auth.isLoggedIn()) {

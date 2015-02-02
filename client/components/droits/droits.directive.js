@@ -8,7 +8,8 @@ angular.module('impactApp')
         editable: '=',
         width: '=',
         prestations: '=',
-        hideDetailPrestations: '='
+        hideDetailPrestations: '=',
+        endDate: '='
       },
       templateUrl: 'components/droits/droits.html',
       restrict: 'EA',
@@ -26,7 +27,13 @@ angular.module('impactApp')
         };
 
         $scope.select = function(prestation) {
-          $scope.formAnswers.prestations[prestation.id] = {};
+          if(!$scope.endDate){
+            $scope.formAnswers.prestations.push(prestation);
+          }
+          else {
+            $scope.formAnswers.prestations[prestation.id] = {};
+          }
+
         };
 
         $scope.deselect = function(prestation) {
