@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SimulationCtrl', function ($scope, SectionConstants, contexte, vieQuotidienne, renouvellement,
-    travail, vieScolaire, aidant, DroitService, prestations, datepickerConfig, $sessionStorage, $timeout) {
+  .controller('SimulationCtrl', function ($scope, $http, SectionConstants, contexte, vieQuotidienne, renouvellement,
+    travail, vieScolaire, aidant, DroitService, prestations, datepickerConfig, $sessionStorage, $timeout, $modal) {
 
     $scope.sections = [SectionConstants[0], SectionConstants[2], SectionConstants[4], SectionConstants[5]];
 
@@ -44,6 +44,41 @@ angular.module('impactApp')
 
     $scope.submit = function() {
       $scope.prestations = DroitService.compute($scope.sectionModel, prestations, true);
+    };
+
+     $scope.open = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'app/dashboard/requests/simulation/creation.html',
+        controller: function($scope, $modalInstance, scenario, keywords) {
+
+          $scope.test = {
+            expectedResults: _.map(keywords, function(keyword) {
+              return {
+                code: keyword,
+                expectedValue: true
+              };
+            }),
+            keywords: keywords,
+            scenario: scenario
+          };
+
+          $scope.save = function () {
+            $modalInstance.close($scope.test);
+          };
+        },
+        resolve: {
+          scenario: function () {
+            return $scope.sectionModel;
+          },
+          keywords: function () {
+            return _.pluck($scope.prestations, 'id');
+          }
+        }
+      });
+
+      modalInstance.result.then(function (test) {
+        $http.post('http://localhost:5000/api/acceptance-tests', test);
+      });
     };
 
     $timeout(function() {
