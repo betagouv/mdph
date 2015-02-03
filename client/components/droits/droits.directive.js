@@ -27,11 +27,10 @@ angular.module('impactApp')
         };
 
         $scope.select = function(prestation) {
-          if(!$scope.endDate){
-            $scope.formAnswers.prestations.push(prestation);
-          }
-          else {
+          if($scope.endDate){
             $scope.formAnswers.prestations[prestation.id] = {};
+          } else {
+            $scope.formAnswers.prestations[prestation.id] = {status: 'demandé'};
           }
 
         };

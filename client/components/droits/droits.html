@@ -36,10 +36,10 @@
           </div>
 
           <div class="panel-body" ng-if="isSelected(prestation) && editable && !endDate">
-            <label>{{prestation.title}}</label>
+            <label>Demandé</label>
           </div>
 
-          <div class="panel-footer" ng-show="{{prestation.renouvellement}}" ng-if="!editable">
+          <div class="panel-footer" ng-show="{{prestation.renouvellement}}" ng-if="!editable && formAnswers.prestations[prestation.id].date">
             {{prestation.descRenouvellement}}
           </div>
         </div>

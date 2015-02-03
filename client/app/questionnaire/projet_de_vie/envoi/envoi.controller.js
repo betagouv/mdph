@@ -18,12 +18,12 @@ angular.module('impactApp')
     $scope.answersToHtml = RecapitulatifService.answersToHtml;
     $scope.currentRequest = RequestService.getCurrent()._id;
     if(!$scope.formAnswers.prestations){
-      $scope.formAnswers.prestations = [];
+      $scope.formAnswers.prestations = {};
     }
-    $scope.prestations = (DroitService.compute($scope.formAnswers, prestations)).concat($scope.formAnswers.prestations);
-    $scope.prestationsToAdd = _.difference(prestations, $scope.prestations);
 
-    debugger;
+    $scope.prestations = DroitService.compute($scope.formAnswers, prestations);
+
+    $scope.listePrestations = prestations;
 
     $scope.saveCurrent = function() {
       if (Auth.isLoggedIn()) {
