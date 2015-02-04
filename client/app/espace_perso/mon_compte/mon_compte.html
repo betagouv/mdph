@@ -25,20 +25,43 @@
     </form>
   </div>
 
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Vos informations personnelles</h1>
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="nameForm" ng-submit="changePersonalInfo(nameForm)" novalidate>
+
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input id="name" type="text" name="textfield" class="form-control" ng-model="user.newName" ng-minlength="3">
+          <p class="help-block"
+             ng-show="(nameForm.$error.minlength) && (nameForm.$dirty || infoSubmitted)">
+            La longueur minimale du nom est de 3 caractères.
+          </p>
+        </div>
+
+        <p class="help-block"> {{ infoMessage }} </p>
+
+        <button class="btn btn-lg btn-primary" type="submit">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-sm-12">
       <h1>Changer votre mot de passe</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
-
+      <form class="form" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
         <div class="form-group">
           <label>Mot de passe actuel</label>
 
           <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
                  mongoose-error/>
           <p class="help-block" ng-show="form.password.$error.mongoose">
-              {{ errors.other }}
+              {{ errors.password }}
           </p>
         </div>
 
@@ -49,12 +72,12 @@
                  ng-minlength="3"
                  required/>
           <p class="help-block"
-             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
+             ng-show="(passwordForm.$error.minlength || passwordForm.$error.required) && (passwordForm.$dirty || passwordSubmitted)">
             La longueur minimale du mot de passe est de 3 caractères.
           </p>
         </div>
 
-        <p class="help-block"> {{ message }} </p>
+        <p class="help-block"> {{ passwordMessage }} </p>
 
         <button class="btn btn-lg btn-primary" type="submit">Enregistrer</button>
       </form>

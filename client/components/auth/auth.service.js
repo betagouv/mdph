@@ -94,6 +94,44 @@ angular.module('impactApp')
       },
 
       /**
+       * Change email
+       *
+       * @param  {String}   newEmail
+       * @param  {Function} callback    - optional
+       * @return {Promise}
+       */
+      changeEmail: function(newEmail, callback) {
+        var cb = callback || angular.noop;
+
+        return User.changeEmail({ id: currentUser._id }, {
+          newEmail: newEmail
+        }, function(user) {
+          return cb(user);
+        }, function(err) {
+          return cb(err);
+        }).$promise;
+      },
+
+      /**
+       * Change name
+       *
+       * @param  {String}   newName
+       * @param  {Function} callback    - optional
+       * @return {Promise}
+       */
+      changeName: function(newName, callback) {
+        var cb = callback || angular.noop;
+
+        return User.changeName({ id: currentUser._id }, {
+          newName: newName,
+        }, function(user) {
+          return cb(user);
+        }, function(err) {
+          return cb(err);
+        }).$promise;
+      },
+
+      /**
        * Gets all available info on authenticated user
        *
        * @return {Object} user

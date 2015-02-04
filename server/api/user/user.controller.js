@@ -87,6 +87,38 @@ exports.changePassword = function(req, res, next) {
 };
 
 /**
+ * Change a user's name
+ */
+exports.changeName = function(req, res, next) {
+  var userId = req.user._id;
+  var newName = String(req.body.newName);
+
+  User.findById(userId, function (err, user) {
+    user.name = newName;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+  });
+};
+
+/**
+ * Change a user's email
+ */
+exports.changeEmail = function(req, res, next) {
+  var userId = req.user._id;
+  var newEmail = String(req.body.newEmail);
+
+  User.findById(userId, function (err, user) {
+    user.email = newEmail;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+  });
+};
+
+/**
  * Get my info
  */
 exports.me = function(req, res, next) {

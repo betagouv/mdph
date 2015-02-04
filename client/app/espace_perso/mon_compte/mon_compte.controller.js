@@ -6,16 +6,26 @@ angular.module('impactApp')
     $scope.user = Auth.getCurrentUser();
 
     $scope.changePassword = function(form) {
-      $scope.submitted = true;
+      $scope.passwordSubmitted = true;
       if(form.$valid) {
         Auth.changePassword( $scope.user.oldPassword, $scope.user.newPassword )
         .then( function() {
-          $scope.message = 'Votre mot de passe a été modifié.';
+          $scope.passwordMessage = 'Votre mot de passe a été modifié.';
         })
         .catch( function() {
           form.password.$setValidity('mongoose', false);
-          $scope.errors.other = 'Mot de passe incorrect';
-          $scope.message = '';
+          $scope.errors.password = 'Mot de passe incorrect';
+          $scope.passwordMessage = '';
+        });
+      }
+    };
+
+    $scope.changePersonalInfo = function(form){
+      $scope.infoSubmitted = true;
+      if(form.$valid){
+        Auth.changeName($scope.user.newName)
+        .then(function(){
+          $scope.infoMessage = 'Votre nom a été modifié.';
         });
       }
     };
