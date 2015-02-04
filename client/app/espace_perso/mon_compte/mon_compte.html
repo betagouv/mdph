@@ -30,14 +30,14 @@
     <div class="col-sm-12">
       <h1>Vos informations personnelles</h1>
     </div>
-    <div class="col-sm-12">
-      <form class="form" name="nameForm" ng-submit="changePersonalInfo(nameForm)" novalidate>
+    <div class="col-sm-8">
+      <form class="form" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
 
         <div class="form-group">
           <label for="name">Nom</label>
           <input id="name" type="text" name="textfield" class="form-control" ng-model="user.newName" ng-minlength="3">
           <p class="help-block"
-             ng-show="(nameForm.$error.minlength) && (nameForm.$dirty || nameSubmitted)">
+             ng-show="(infoForm.$error.minlength) && (infoForm.$dirty || nameSubmitted)">
             La longueur minimale du nom est de 3 caractères.
           </p>
         </div>
@@ -45,18 +45,34 @@
         <div class="form-group">
           <label for="email">Email</label>
           <div class="input-group margin-bottom-sm">
-            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
             <input id="email" type="email" name="textfield" class="form-control" ng-model="user.newEmail">
+            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
           </div>
           <p class="help-block"
-             ng-show="(nameForm.$error.email) && (nameForm.$dirty || emailSubmitted)">
+             ng-show="(infoForm.$error.email) && (infoForm.$dirty || emailSubmitted)">
             L'adresse email saisie est incorrecte.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="birthDate">Date de naissance</label>
+          <div class="input-group margin-bottom-sm">
+            <input id="birthDate" type="date" name="textfield" class="form-control" ng-model="user.newBirthDate">
+            <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+          </div>
+          <p class="help-block"
+             ng-show="(infoForm.$error.birthDate) && (infoForm.$dirty || birthDateSubmitted)">
+            La date de naissance saisie est incorrecte.
+          </p>
+          <p class="help-block" ng-show="infoForm.$error.date">
+              {{ errors.date }}
           </p>
         </div>
 
         <p class="help-block"> {{ infoMessage }} </p>
 
         <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
+
       </form>
     </div>
   </div>
@@ -65,7 +81,7 @@
     <div class="col-sm-12">
       <h1>Changer votre mot de passe</h1>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-8">
       <form class="form" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
         <div class="form-group">
           <label for="oldPassword">Mot de passe actuel</label>

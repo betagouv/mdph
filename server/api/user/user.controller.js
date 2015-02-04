@@ -93,6 +93,7 @@ exports.changeInfo = function(req, res, next) {
   var userId = req.user._id;
   var newName = String(req.body.newName);
   var newEmail = String(req.body.newEmail);
+  var newBirthDate = req.body.newBirthDate;
 
   User.findById(userId, function (err, user) {
     if(newName !== 'undefined'){
@@ -100,6 +101,9 @@ exports.changeInfo = function(req, res, next) {
     }
     if(newEmail !== 'undefined'){
       user.email = newEmail;
+    }
+    if(newBirthDate){
+      user.birthDate = newBirthDate;
     }
 
     user.save(function(err) {

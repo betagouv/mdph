@@ -12,7 +12,8 @@ var UserSchema = new Schema({
   salt:  String,
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
-  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' }
+  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
+  birthDate: { type: Date, default: Date.now }
 });
 
 /**

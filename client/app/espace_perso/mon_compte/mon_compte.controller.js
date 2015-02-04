@@ -27,11 +27,16 @@ angular.module('impactApp')
       if($scope.user.newEmail){
         $scope.emailSubmitted = true;
       }
-      if(form.$valid){
-        Auth.changeInfo($scope.user.newName, $scope.user.newEmail)
+      if($scope.user.newBirthDate){
+        $scope.birthDateSubmitted = true;
+      }
+      if(form.$valid && ($scope.user.newName || $scope.user.newEmail || $scope.user.newBirthDate)){
+        Auth.changeInfo($scope.user.newName, $scope.user.newEmail, $scope.user.newBirthDate)
         .then(function(){
           $scope.infoMessage = 'Vos informations ont bien été modifiées.';
         });
+      } else {
+        $scope.infoMessage = 'Aucune information à changer.';
       }
     };
   });
