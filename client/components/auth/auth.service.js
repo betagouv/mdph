@@ -100,30 +100,12 @@ angular.module('impactApp')
        * @param  {Function} callback    - optional
        * @return {Promise}
        */
-      changeEmail: function(newEmail, callback) {
+      changeInfo: function(newName, newEmail, callback) {
         var cb = callback || angular.noop;
 
-        return User.changeEmail({ id: currentUser._id }, {
-          newEmail: newEmail
-        }, function(user) {
-          return cb(user);
-        }, function(err) {
-          return cb(err);
-        }).$promise;
-      },
-
-      /**
-       * Change name
-       *
-       * @param  {String}   newName
-       * @param  {Function} callback    - optional
-       * @return {Promise}
-       */
-      changeName: function(newName, callback) {
-        var cb = callback || angular.noop;
-
-        return User.changeName({ id: currentUser._id }, {
+        return User.changeInfo({ id: currentUser._id }, {
           newName: newName,
+          newEmail: newEmail
         }, function(user) {
           return cb(user);
         }, function(err) {

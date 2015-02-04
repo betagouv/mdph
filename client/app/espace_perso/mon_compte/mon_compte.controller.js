@@ -21,11 +21,16 @@ angular.module('impactApp')
     };
 
     $scope.changePersonalInfo = function(form){
-      $scope.infoSubmitted = true;
+      if($scope.user.newName){
+        $scope.nameSubmitted = true;
+      }
+      if($scope.user.newEmail){
+        $scope.emailSubmitted = true;
+      }
       if(form.$valid){
-        Auth.changeName($scope.user.newName)
+        Auth.changeInfo($scope.user.newName, $scope.user.newEmail)
         .then(function(){
-          $scope.infoMessage = 'Votre nom a été modifié.';
+          $scope.infoMessage = 'Vos informations ont bien été modifiées.';
         });
       }
     };

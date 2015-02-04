@@ -13,8 +13,7 @@ router.delete('/:id', auth.hasRole('adminMdph'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
-router.put('/:id/name', auth.isAuthenticated(), controller.changeName);
-router.put('/:id/email', auth.isAuthenticated(), controller.changeEmail);
+router.put('/:id/info', auth.isAuthenticated(), controller.changeInfo);
 
 router.get('/me/requests', auth.isAuthenticated(), requestController.showUserRequests);
 

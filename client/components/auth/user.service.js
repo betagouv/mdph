@@ -12,16 +12,10 @@ angular.module('impactApp')
           controller: 'password'
         }
       },
-      changeName: {
+      changeInfo: {
         method: 'PUT',
         params: {
-          controller: 'name'
-        }
-      },
-      changeEmail: {
-        method: 'PUT',
-        params: {
-          controller: 'email'
+          controller: 'info'
         }
       },
       get: {

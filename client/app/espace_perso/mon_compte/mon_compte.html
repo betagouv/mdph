@@ -37,8 +37,20 @@
           <label for="name">Nom</label>
           <input id="name" type="text" name="textfield" class="form-control" ng-model="user.newName" ng-minlength="3">
           <p class="help-block"
-             ng-show="(nameForm.$error.minlength) && (nameForm.$dirty || infoSubmitted)">
+             ng-show="(nameForm.$error.minlength) && (nameForm.$dirty || nameSubmitted)">
             La longueur minimale du nom est de 3 caractères.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+            <input id="email" type="email" name="textfield" class="form-control" ng-model="user.newEmail">
+          </div>
+          <p class="help-block"
+             ng-show="(nameForm.$error.email) && (nameForm.$dirty || emailSubmitted)">
+            L'adresse email saisie est incorrecte.
           </p>
         </div>
 
@@ -58,9 +70,12 @@
         <div class="form-group">
           <label>Mot de passe actuel</label>
 
-          <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.password.$error.mongoose">
+          <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+            <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                   mongoose-error/>
+          </div>
+          <p class="help-block" ng-show="passwordForm.$error.mongoose">
               {{ errors.password }}
           </p>
         </div>
@@ -68,9 +83,12 @@
         <div class="form-group">
           <label>Nouveau mot de passe</label>
 
-          <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
-                 ng-minlength="3"
-                 required/>
+          <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+            <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                   ng-minlength="3"
+                   required/>
+          </div>
           <p class="help-block"
              ng-show="(passwordForm.$error.minlength || passwordForm.$error.required) && (passwordForm.$dirty || passwordSubmitted)">
             La longueur minimale du mot de passe est de 3 caractères.
