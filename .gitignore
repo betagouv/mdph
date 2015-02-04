@@ -31,3 +31,5 @@ Temporary Items
 
 .env
 .foreman
+*.sublime-project
+*.sublime-workspace

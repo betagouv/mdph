@@ -3,11 +3,7 @@
 angular.module('impactApp')
   .factory('DroitService', function DroitService($filter, FormService, QuestionService, isAdult, isLessThan62) {
 
-    var getSection = function(isAdmin, answers, sectionModel) {
-      if (isAdmin) {
-        return answers;
-      }
-
+    var getSection = function(answers, sectionModel) {
       var result = _.result(answers, sectionModel);
       return result ? result : {};
     };
@@ -30,12 +26,12 @@ angular.module('impactApp')
       return resultList;
     };
 
-    var getCallbacks = function(answers, isAdmin) {
-      var contexte = getSection(isAdmin, answers, 'contexte');
-      var aidant = getSection(isAdmin, answers, 'aidant');
-      var vieQuotidienne = getSection(isAdmin, answers, 'vieQuotidienne');
-      var renouvellements = getSection(isAdmin, answers, 'prestations');
-      var travail = getSection(isAdmin, answers, 'travail');
+    var getCallbacks = function(answers) {
+      var contexte = getSection(answers, 'contexte');
+      var aidant = getSection(answers, 'aidant');
+      var vieQuotidienne = getSection(answers, 'vieQuotidienne');
+      var renouvellements = getSection(answers, 'prestations');
+      var travail = getSection(answers, 'travail');
 
       var besoinsDeplacement = _.result(vieQuotidienne, 'besoinsDeplacement');
       var besoinsVie = _.result(vieQuotidienne, 'besoinsVie');
@@ -343,8 +339,8 @@ angular.module('impactApp')
     };
 
     return {
-      compute: function(answers, prestations, isAdmin) {
-        var callbacks = getCallbacks(answers, isAdmin);
+      compute: function(answers, prestations) {
+        var callbacks = getCallbacks(answers);
 
         return _.filter(prestations, function(prestation) {
           var callback = callbacks[prestation.id];

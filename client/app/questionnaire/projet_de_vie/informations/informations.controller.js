@@ -7,4 +7,5 @@ angular.module('impactApp')
     }
 
     $scope.sectionModel = $scope.formAnswers.contexte;
+    $scope.section = { id: 'contexte' };
   });

@@ -1,7 +1,7 @@
-<qtitle></qtitle>
+<qtitle ng-hide="hideTitle"></qtitle>
 
 <textarea class="form-control" rows="20"
   placeholder="{{placeholder}}"
-  ng-model="sectionModel['autresRenseignements']"></textarea>
+  ng-model="formAnswers[section.id]['autresRenseignements']"></textarea>
 
-<nav-steps></nav-steps>
+<nav-steps ng-hide="hideSteps"></nav-steps>

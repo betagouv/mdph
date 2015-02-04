@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .controller('SimulationCtrl', function ($scope, $http, SectionConstants, contexte, vieQuotidienne, renouvellement,
-    travail, vieScolaire, aidant, DroitService, prestations, datepickerConfig, $sessionStorage, $timeout, $modal) {
+    travail, vieScolaire, aidant, DroitService, prestations, datepickerConfig, $sessionStorage, $timeout, $window) {
 
     $scope.sections = [SectionConstants[0], SectionConstants[2], SectionConstants[4], SectionConstants[5]];
 
@@ -16,12 +16,13 @@ angular.module('impactApp')
     };
 
     $scope.hideSteps = true;
+    $scope.hideTitle = true;
 
     $scope.$storage = $sessionStorage.$default({
-      sectionModel: {}
+      formAnswers: {}
     });
 
-    $scope.sectionModel = $scope.$storage.sectionModel;
+    $scope.formAnswers = $scope.$storage.formAnswers;
 
     datepickerConfig.datepickerMode = 'year';
     $scope.open = function($event) {
@@ -43,41 +44,26 @@ angular.module('impactApp')
     };
 
     $scope.submit = function() {
-      $scope.prestations = DroitService.compute($scope.sectionModel, prestations, true);
+      $scope.prestations = DroitService.compute($scope.formAnswers, prestations);
     };
 
-     $scope.open = function () {
-      var modalInstance = $modal.open({
-        templateUrl: 'app/dashboard/requests/simulation/creation.html',
-        controller: function($scope, $modalInstance, scenario, keywords) {
-
-          $scope.test = {
-            expectedResults: _.map(keywords, function(keyword) {
-              return {
-                code: keyword,
-                expectedValue: true
-              };
-            }),
-            keywords: keywords,
-            scenario: scenario
-          };
-
-          $scope.save = function () {
-            $modalInstance.close($scope.test);
-          };
-        },
-        resolve: {
-          scenario: function () {
-            return $scope.sectionModel;
-          },
-          keywords: function () {
-            return _.pluck($scope.prestations, 'id');
-          }
-        }
+    $scope.createTest = function () {
+      var keywords =  _.pluck($scope.prestations, 'id');
+      var expectedResults = _.map(keywords, function(keyword) {
+        return {
+          code: keyword,
+          expectedValue: true
+        };
       });
 
-      modalInstance.result.then(function (test) {
-        $http.post('http://localhost:5000/api/acceptance-tests', test);
+      $http.post('http://localhost:5000/api/public/acceptance-tests', {
+        keywords:  keywords,
+        expectedResults: expectedResults,
+        scenario: $scope.formAnswers
+      }).success(function(data) {
+        $window.open('http://localhost:5000/' + data._id + '/edit');
+      }).error(function(data) {
+        $window.alert(data);
       });
     };
 

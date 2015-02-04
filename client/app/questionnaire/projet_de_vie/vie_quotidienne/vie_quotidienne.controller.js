@@ -36,4 +36,5 @@ angular.module('impactApp')
     }
 
     $scope.sectionModel = $scope.formAnswers.vieQuotidienne;
+    $scope.section = { id: 'vieQuotidienne' };
   });

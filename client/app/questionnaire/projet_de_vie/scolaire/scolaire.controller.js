@@ -28,4 +28,5 @@ angular.module('impactApp')
     }
 
     $scope.sectionModel = $scope.formAnswers.scolaire;
+    $scope.section = { id: 'scolaire' };
   });

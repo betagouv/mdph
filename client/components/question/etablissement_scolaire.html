@@ -1,5 +1,5 @@
 <div class="container">
-  <qtitle></qtitle>
+  <qtitle ng-hide="hideTitle"></qtitle>
 
   <div class="answer form-horizontal" ng-repeat="etablissement in model.etablissements">
     <input type="text" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement">
@@ -10,6 +10,6 @@
     </div>
   </div>
 
-  <nav-steps></nav-steps>
+  <nav-steps ng-hide="hideSteps"></nav-steps>
 
 </div>

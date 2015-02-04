@@ -1,11 +1,10 @@
-<qtitle></qtitle>
+<qtitle ng-hide="hideTitle"></qtitle>
 
 <p class="input-group">
-  <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="sectionModel[question.model]" is-open="opened" placeholder="DD/MM/YYYY" max-date="{{date}}" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+  <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="formAnswers[section.id][question.model]" is-open="opened" placeholder="DD/MM/YYYY" max-date="{{date}}" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
   <span class="input-group-btn">
     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
   </span>
 </p>
 
-<nav-steps ng-if="!hideSteps"></nav-steps>
-
+<nav-steps ng-hide="hideSteps"></nav-steps>

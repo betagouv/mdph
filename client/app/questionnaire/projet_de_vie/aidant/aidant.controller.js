@@ -30,4 +30,5 @@ angular.module('impactApp')
     $scope.colClass = 'col-md-6';
 
     $scope.sectionModel = $scope.formAnswers.aidant;
+    $scope.section = { id: 'aidant' };
   });

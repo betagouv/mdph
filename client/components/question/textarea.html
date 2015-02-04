@@ -1,7 +1,7 @@
-<qtitle></qtitle>
+<qtitle ng-hide="hideTitle"></qtitle>
 
 <label for="inputid" ng-if="label" class="control-label">{{label}}</label>
 <textarea type="text" id="inputid" class="form-control"
-    rows="{{rows}}" ng-model="sectionModel[question.model]" placeholder="{{placeholder}}"></textarea>
+    rows="{{rows}}" ng-model="formAnswers[section.id][question.model]" placeholder="{{placeholder}}"></textarea>
 
-<nav-steps></nav-steps>
+<nav-steps ng-hide="hideSteps"></nav-steps>

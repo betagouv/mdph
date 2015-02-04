@@ -1,9 +1,9 @@
-<qtitle></qtitle>
+<qtitle ng-hide="hideTitle"></qtitle>
 
 <div class="form-horizontal">
   <div class="form-group">
-    <input type="text" id="inputid" class="col-md-8 form-control" ng-model="sectionModel[question.model]" placeholder="{{question.placeholder}}">
+    <input type="text" id="inputid" class="col-md-8 form-control" ng-model="formAnswers[section.id][question.model]" placeholder="{{question.placeholder}}">
   </div>
 </div>
 
-<nav-steps></nav-steps>
+<nav-steps ng-hide="hideSteps"></nav-steps>
