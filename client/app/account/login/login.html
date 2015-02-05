@@ -9,15 +9,15 @@
       <form class="form" name="form" ng-submit="login(form)" novalidate>
 
         <div class="form-group">
-          <label>Email</label>
+          <label for="email">Email</label>
 
-          <input type="email" name="email" class="form-control" ng-model="user.email" required>
+          <input id="email" type="email" name="email" value="" class="form-control" ng-model="user.email" required>
         </div>
 
         <div class="form-group">
-          <label>Mot de passe</label>
+          <label for="password">Mot de passe</label>
 
-          <input type="password" name="password" class="form-control" ng-model="user.password" required>
+          <input id="password" type="password" name="password" value="" class="form-control" ng-model="user.password" required>
         </div>
 
         <div class="form-group has-error">
@@ -32,10 +32,9 @@
         </div>
 
         <div>
-          <button class="btn btn-primary btn-lg btn-login" type="submit">
-            Se connecter
-          </button>
-          <a class="btn btn-default btn-lg btn-register" href="/signup">
+          <input class="btn btn-primary btn-lg btn-login" type="submit" value="Se connecter">
+          </input>
+          <a role="button" class="btn btn-default btn-lg btn-register" href="/signup">
             Inscription
           </a>
         </div>
