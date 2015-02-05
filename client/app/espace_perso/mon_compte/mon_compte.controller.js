@@ -4,6 +4,10 @@ angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, User, Auth, datepickerConfig) {
     $scope.errors = {};
     $scope.user = Auth.getCurrentUser();
+    $scope.user.newName = $scope.user.name;
+    $scope.user.newEmail = $scope.user.email;
+    $scope.user.newBirthDate = $scope.user.birthDate;
+
 
     datepickerConfig.datepickerMode = 'year';
     $scope.open = function($event) {

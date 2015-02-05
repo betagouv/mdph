@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DateNaissanceCtrl', function($scope, $state, datepickerConfig, QuestionService) {
+  .controller('DateNaissanceCtrl', function($scope, $state, datepickerConfig, QuestionService, Auth) {
 
     $scope.question = QuestionService.get('contexte', 'dateNaissance', $scope.formAnswers);
+    var user = Auth.getCurrentUser();
+    if(user && !$scope.$parent.sectionModel.dateNaissance){
+      $scope.$parent.sectionModel.dateNaissance = user.birthDate;
+    }
 
     datepickerConfig.datepickerMode = 'year';
     $scope.open = function($event) {
