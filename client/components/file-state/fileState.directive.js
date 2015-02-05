@@ -18,7 +18,6 @@ angular.module('impactApp')
       controller: function($scope, $http, $state, requestSteps, Partenaire, NotificationService) {
         $scope.requestStep = _.find($scope.request.steps, {'name': $scope.currentStepName});
         $scope.step = _.find(requestSteps, {'id': $scope.requestStep.name});
-
         $scope.files = $scope.requestStep.files;
 
 
@@ -43,6 +42,7 @@ angular.module('impactApp')
             }
           }
 
+          $scope.request.$update();
           NotificationService.createNotification($scope.request, $scope.notificationState, $scope.notificationMessage);
         };
 
