@@ -68,7 +68,7 @@
 
       <div id="complementaire" ng-if="request.steps.length >= 3">
         <h2>Pièces complémentaires</h2>
-        <small class="text-muted-primary">{{getStep('complementaire').files.length}} documents demandés</small>
+        <small class="text-muted-primary">{{getStep('complementaire').files.length || 0}} documents demandés</small>
 
         <div ng-if="getStep('complementaire').state === 'pre_evaluation'">
           <div class="list-group-item" ng-if="getStep('complementaire').files.length === 0">
