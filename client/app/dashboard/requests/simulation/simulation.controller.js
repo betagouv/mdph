@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .controller('SimulationCtrl', function ($scope, $http, SectionConstants, contexte, vieQuotidienne, renouvellement,
-    travail, vieScolaire, aidant, DroitService, prestations, datepickerConfig, $sessionStorage, $timeout, $window) {
+    travail, vieScolaire, aidant, DroitService, datepickerConfig, $sessionStorage, $timeout, $window) {
 
     $scope.sections = [SectionConstants[0], SectionConstants[2], SectionConstants[4], SectionConstants[5]];
 
@@ -44,7 +44,9 @@ angular.module('impactApp')
     };
 
     $scope.submit = function() {
-      $scope.prestations = DroitService.compute($scope.formAnswers, prestations);
+      DroitService.compute($scope.formAnswers).success(function(result) {
+        $scope.prestations = result;
+      });
     };
 
     $scope.createTest = function () {

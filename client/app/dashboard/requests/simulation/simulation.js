@@ -7,13 +7,6 @@ angular.module('impactApp')
         url: '/simulation',
         templateUrl: 'app/dashboard/requests/simulation/simulation.html',
         controller: 'SimulationCtrl',
-        authenticate: true,
-        resolve: {
-          prestations: function($http) {
-            return $http.get('/api/prestations').then(function(prestations) {
-              return prestations.data;
-            });
-          }
-        }
+        authenticate: true
       });
   });

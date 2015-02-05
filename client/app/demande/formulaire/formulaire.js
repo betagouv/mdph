@@ -7,13 +7,6 @@ angular.module('impactApp')
         url: '/questionnaire',
         templateUrl: 'app/demande/formulaire/formulaire.html',
         controller: 'FormulaireCtrl',
-        resolve: {
-          prestations: function($http) {
-            return $http.get('/api/prestations').then(function(prestations) {
-              return prestations.data;
-            });
-          }
-        },
         authenticate: true
       });
   });

@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailCtrl', function ($scope, $http, request, DroitService, prestations) {
+  .controller('DetailCtrl', function ($scope, $http, request, DroitService) {
     $scope.request = request;
     if($scope.request.formAnswers){
-      $scope.prestations = DroitService.compute($scope.request.formAnswers, prestations);
+      DroitService.compute($scope.request.formAnswers).success(function(result) {
+        $scope.prestations = result;
+      });
     }
   });

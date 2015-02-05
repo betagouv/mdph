@@ -21,8 +21,9 @@ angular.module('impactApp')
       $scope.formAnswers.prestations = {};
     }
 
-    $scope.prestations = DroitService.compute($scope.formAnswers, prestations);
-
+    DroitService.compute($scope.formAnswers).success(function(result) {
+      $scope.prestations = result;
+    });
     $scope.listePrestations = prestations;
 
     $scope.saveCurrent = function() {

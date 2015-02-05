@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, prestations, requestSteps, Partenaire, NotificationService) {
+  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, requestSteps, Partenaire, NotificationService) {
     $scope.request = request;
     $scope.allFiles = requestSteps;
 
     if($scope.request.formAnswers){
-      $scope.prestations = DroitService.compute($scope.request.formAnswers, prestations);
+      DroitService.compute($scope.request.formAnswers).success(function(result) {
+        $scope.prestations = result;
+      });
     }
 
     $scope.getStep = function(name) {

@@ -14,7 +14,7 @@ angular.module('impactApp')
 });
 
 angular.module('impactApp')
-  .controller('EvaluationDemandeCtrl', function ($scope, GevaService, DroitService, prestations, sections, request, vieQuotidienne) {
+  .controller('EvaluationDemandeCtrl', function ($scope, GevaService, DroitService, sections, request, vieQuotidienne) {
     var situationAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
     $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
@@ -32,5 +32,7 @@ angular.module('impactApp')
       $scope.renouvellement = 'Première demande';
     }
 
-    $scope.prestations = DroitService.compute(request.formAnswers, prestations);
+    DroitService.compute(request.formAnswers).success(function(result) {
+      $scope.prestations = result;
+    });
   });

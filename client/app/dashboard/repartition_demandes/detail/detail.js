@@ -10,11 +10,6 @@ angular.module('impactApp')
         resolve: {
           request: function(RequestResource, $stateParams) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
-          },
-          prestations: function($http) {
-            return $http.get('/api/prestations').then(function(prestations) {
-              return prestations.data;
-            });
           }
         }
       });
