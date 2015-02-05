@@ -20,26 +20,34 @@
 
       <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav">
-          <li><a ui-sref="{{getIndexSref()}}" class="logo" title="Acceuil"><img ng-src="{{getLogoSrc()}}"></a></li>
-          <li><a ui-sref="{{getIndexSref()}}" class="title"><em>Maisons Départementales des Personnes Handicapées</em></a></li>
+          <li><a ui-sref="{{getIndexSref()}}" class="logo" title="Accueil"><img ng-src="{{getLogoSrc()}}" alt="logo république française"> <em>Maisons Départementales des Personnes Handicapées</em></a></li>
           <li ng-show="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Inscription</a></li>
-          <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Connexion</a></li>
+          <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup" title="S'inscrire">Inscription</a></li>
+          <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login" title="Se connecter">Connexion</a></li>
           <li ng-show="isLoggedIn()"><p class="navbar-text">Bonjour, {{ user.name }}</p> </li>
           <li ng-show="isLoggedIn() && !isAdminMdph()" ui-sref-active="active">
             <a ui-sref="espace_perso" title="Mon espace perso">
+              <span class="sr-only">Mon espace perso</span>
               <span class="glyphicon glyphicon-folder-open"></span>
             </a>
           </li>
-          <li ng-show="isLoggedIn() && isAdminMdph()" ui-sref-active="active"><a ui-sref="dashboard" title="Tableau de bord"><span class="glyphicon glyphicon-th-list"></span></a></li>
-          <li ng-show="isLoggedIn() && notifications.length > 0">
-            <a href="" ng-click="showNotifications = !showNotifications" title="{{notifications.length}} notification(s) non lue(s)"><span class="badge notif-badge">{{notifications.length}}</span></a>
+          <li ng-show="isLoggedIn() && isAdminMdph()" ui-sref-active="active">
+            <a ui-sref="dashboard" title="Tableau de bord">
+              <span class="sr-only">Mon tableau de bord</span>
+              <span class="glyphicon glyphicon-th-list"></span>
+            </a>
+          </li>
+          <li ng-show="isLoggedIn() && notifications.length > 0" aria-label="notifications">
+            <a href="" ng-click="showNotifications = !showNotifications" title="{{notifications.length}} notification(s) non lue(s)">
+              <span class="sr-only">Mes notifications</span>
+              <span class="badge notif-badge">{{notifications.length}}</span>
+            </a>
             <div class="arrow" ng-show="showNotifications"></div>
           </li>
-          <li ng-show="isLoggedIn()"><a href="" ng-click="logout()">Se déconnecter</a></li>
+          <li ng-show="isLoggedIn()"><a href="" ng-click="logout()" title="Se déconnecter">Déconnexion</a></li>
         </ul>
       </div>
     </div>
@@ -50,13 +58,14 @@
       <div class="col-md-5 col-md-offset-7">
         <ul>
           <li ng-repeat="(idx, notification) in notifications">
-            <div class="pull-left" ng-click="goState(notification, idx)">
+            <a href class="pull-left" title="Consulter la notification" ng-click="goState(notification, idx)">
               {{notification.message}}
               <br><small class="text-muted">{{momentFromNow(notification.createdAt)}}</small>
-            </div>
-            <div class="pull-right">
-              <i class="fa fa-times-circle fa-lg text-muted" ng-click="removeNotif(notification, idx)"></i>
-            </div>
+            </a>
+            <a href class="pull-right" title="Supprimer" ng-click="removeNotif(notification, idx)">
+              <span class="sr-only">Supprimer la notification</span>
+              <i class="fa fa-times-circle fa-lg text-muted" alt="Icône suppression"></i>
+            </a>
             <div class="clearfix"></div>
           </li>
         </ul>
