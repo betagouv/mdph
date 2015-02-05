@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $state) {
+  .controller('LoginCtrl', function ($rootScope, $scope, Auth, $location, $state) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -15,7 +15,9 @@ angular.module('impactApp')
         })
         .then( function(data) {
           // Logged in, redirect
-          if (data.role === 'adminMdph') {
+          if ($rootScope.returnToState) {
+            $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
+          } else if (data.role === 'adminMdph') {
             $state.go('dashboard');
           } else if (data.role === 'admin') {
             $state.go('admin');

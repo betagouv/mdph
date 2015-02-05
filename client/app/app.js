@@ -57,17 +57,21 @@ angular.module('impactApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth, $sessionStorage) {
-    // Redirect to login if route requires auth and you're not logged in
-    $rootScope.$on('$stateChangeStart', function (event, next) {
-      Auth.isLoggedInAsync(function(loggedIn) {
-        if (next.authenticate && !loggedIn) {
-          $location.path('/login');
-        }
-      });
+  .run(function ($rootScope, $state, Auth, $sessionStorage) {
+    $sessionStorage.$default({
+        formAnswers: {}
+    });
 
-      $sessionStorage.$default({
-          formAnswers: {}
+    // Redirect to login if route requires auth and you're not logged in
+    $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+      Auth.isLoggedInAsync(function(loggedIn) {
+        if (toState.authenticate && !loggedIn) {
+          $rootScope.returnToState = toState;
+          $rootScope.returnToStateParams = toStateParams;
+
+          event.preventDefault();
+          $state.go('login');
+        }
       });
     });
   });
