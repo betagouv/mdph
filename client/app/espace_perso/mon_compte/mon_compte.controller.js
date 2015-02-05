@@ -1,9 +1,16 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($scope, User, Auth) {
+  .controller('MonCompteCtrl', function($scope, User, Auth, datepickerConfig) {
     $scope.errors = {};
     $scope.user = Auth.getCurrentUser();
+
+    datepickerConfig.datepickerMode = 'year';
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
 
     $scope.changePassword = function(form) {
       $scope.passwordSubmitted = true;

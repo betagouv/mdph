@@ -56,10 +56,13 @@
 
         <div class="form-group">
           <label for="birthDate">Date de naissance</label>
-          <div class="input-group margin-bottom-sm">
-            <input id="birthDate" type="date" name="textfield" class="form-control" ng-model="user.newBirthDate">
-            <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-          </div>
+
+          <p class="input-group">
+            <input id="birthDate" type="text" name="textfield" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="user.newBirthDate" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
+            <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button>
+            </span>
+          </p>
+
           <p class="help-block"
              ng-show="(infoForm.$error.birthDate) && (infoForm.$dirty || birthDateSubmitted)">
             La date de naissance saisie est incorrecte.
