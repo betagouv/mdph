@@ -6,6 +6,6 @@ var controller = require('./prestation.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.post('/simulation', controller.simalate);
+router.post('/simulation', controller.simulate);
 
 module.exports = router;
