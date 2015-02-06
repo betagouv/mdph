@@ -21,39 +21,39 @@
       <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main" role="menubar">
         <ul class="nav navbar-nav">
           <li role="menuitem"><a ui-sref="{{getIndexSref()}}" class="logo" title="Accueil"><img ng-src="{{getLogoSrc()}}" alt="logo république française"> <em>Maisons Départementales des Personnes Handicapées</em></a></li>
-          <li role="menuitem" ng-show="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
+          <li role="menuitem" ng-if="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li role="menuitem" ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup" title="S'inscrire">Inscription</a></li>
-          <li role="menuitem" ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login" title="Se connecter">Connexion</a></li>
-          <li role="menuitem" ng-show="isLoggedIn()"><p class="navbar-text">Bonjour, {{ user.name }}</p> </li>
-          <li role="menuitem"ng-show="isLoggedIn() && !isAdminMdph()" ui-sref-active="active">
+          <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="signup" title="S'inscrire">Inscription</a></li>
+          <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="login" title="Se connecter">Connexion</a></li>
+          <li role="menuitem" ng-if="isLoggedIn()"><p class="navbar-text">Bonjour, {{ user.name }}</p> </li>
+          <li role="menuitem" ng-if="isLoggedIn() && !isAdminMdph()" ui-sref-active="active">
             <a ui-sref="espace_perso" title="Mon espace perso">
               <span class="sr-only">Mon espace perso</span>
               <span class="glyphicon glyphicon-folder-open"></span>
             </a>
           </li>
-          <li role="menuitem" ng-show="isLoggedIn() && isAdminMdph()" ui-sref-active="active">
+          <li role="menuitem" ng-if="isLoggedIn() && isAdminMdph()" ui-sref-active="active">
             <a ui-sref="dashboard" title="Tableau de bord">
               <span class="sr-only">Mon tableau de bord</span>
               <span class="glyphicon glyphicon-th-list"></span>
             </a>
           </li>
-          <li role="menuitem" ng-show="isLoggedIn() && notifications.length > 0" aria-label="notifications" aria-haspopup="true">
+          <li role="menuitem" ng-if="isLoggedIn() && notifications.length > 0" aria-label="notifications" aria-haspopup="true">
             <a href="" ng-click="showNotifications = !showNotifications" title="{{notifications.length}} notification(s) non lue(s)">
               <span class="sr-only">Mes notifications</span>
               <span class="badge notif-badge">{{notifications.length}}</span>
             </a>
-            <div class="arrow" ng-show="showNotifications"></div>
+            <div class="arrow" ng-if="showNotifications"></div>
           </li>
-          <li role="menuitem" ng-show="isLoggedIn()"><a href="" ng-click="logout()" title="Se déconnecter">Déconnexion</a></li>
+          <li role="menuitem" ng-if="isLoggedIn()"><a href="" ng-click="logout()" title="Se déconnecter">Déconnexion</a></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <div class="container notifications" ng-show="showNotifications">
+  <div class="container notifications" ng-if="showNotifications">
     <div class="row">
       <div class="col-md-5 col-md-offset-7">
         <ul role="menu">
