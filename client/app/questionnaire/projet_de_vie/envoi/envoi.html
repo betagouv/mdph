@@ -19,10 +19,10 @@
 
   <div ng-if="currentMdph.id !== 'nord'">
     <p class="lead">
-      Souhaitez-vous que la MDPH étudie un ou des droit(s) ou prestation(s) supplémentaires ?
+      Souhaitez-vous que la MDPH étudie un ou des droit(s) ou prestation(s) <span ng-if="prestations.length > 0">supplémentaire(s)</span> ?
     </p>
 
-    <show-prestations form-answers="formAnswers" prestations="listePrestations" width="3" editable="true"></show-prestations>
+    <show-prestations form-answers="formAnswers" prestations="listePrestations" width="4" editable="true"></show-prestations>
   </div>
 
   <div id="recapitulatif" class="panel panel-primary">
