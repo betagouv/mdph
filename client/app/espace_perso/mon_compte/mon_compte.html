@@ -28,10 +28,10 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h1>Vos informations personnelles</h1>
+      <h1 id="infoPerso">Vos informations personnelles</h1>
     </div>
     <div class="col-sm-8">
-      <form class="form" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
+      <form aria-labelledby="infoPerso" class="form" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
 
         <div class="form-group">
           <label for="name">Nom</label>
@@ -82,10 +82,10 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h1>Changer votre mot de passe</h1>
+      <h1 id="changePassword">Changer votre mot de passe</h1>
     </div>
     <div class="col-sm-8">
-      <form class="form" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
+      <form aria-labelledby="changePassword" class="form" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
         <div class="form-group">
           <label for="oldPassword">Mot de passe actuel</label>
 
