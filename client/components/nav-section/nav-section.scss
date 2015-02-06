@@ -23,11 +23,21 @@
     margin: 0 -3px;
     padding: 5px 20px;
 
+    a {
+      color: $lighter-blue;
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
     &.selected {
       z-index: 2;
       border-bottom-color: $bg-blue;
       background-color: $bg-blue;
-      color: white;
+      a {
+        color: white;
+      }
     }
 
     &:before {
@@ -48,25 +58,37 @@
     }
 
     &.optionnal {
-      color: $lighter-blue;
-      font-weight: 300;
-      font-style: italic;
+
+      a {
+        color: $lighter-blue;
+        font-weight: 300;
+        font-style: italic;
+      }
+
       background-color: lighten($lighter-blue, 60%);
 
       &.selected {
         z-index: 2;
         border-bottom-color: $bg-blue;
         background-color: $bg-blue;
-        color: white;
+        a {
+          color: white;
+        }
+
       }
     }
 
     &.form-send {
-      color: $light-red;
+      a {
+        color: $light-red;
+      }
 
       &.selected {
-        color: white;
-        text-shadow: 0 0 3px $light-red;
+        a {
+          color: white;
+          text-shadow: 0 0 3px $light-red;
+        }
+
       }
     }
   }
