@@ -31,13 +31,13 @@
       <h1 id="infoPerso">Vos informations personnelles</h1>
     </div>
     <div class="col-sm-8">
-      <form aria-labelledby="infoPerso" class="form" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
+      <form aria-labelledby="infoPerso" class="form" name="infoForm" ng-submit="changePersonalInfo(infoForm)">
 
         <div class="form-group">
           <label for="name">Nom</label>
-          <input id="name" type="text" name="textfield" class="form-control" ng-model="user.newName" ng-minlength="3">
+          <input id="name" type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="3" required>
           <p class="help-block"
-             ng-show="(infoForm.$error.minlength) && (infoForm.$dirty || nameSubmitted)">
+             ng-show="(infoForm.$error.minlength || infoForm.name.$error.required) && (infoForm.$dirty || nameSubmitted)">
             La longueur minimale du nom est de 3 caractères.
           </p>
         </div>
@@ -45,11 +45,11 @@
         <div class="form-group">
           <label for="email">Email</label>
           <div class="input-group margin-bottom-sm">
-            <input id="email" type="email" name="textfield" class="form-control" ng-model="user.newEmail">
+            <input id="email" type="email" name="email" class="form-control" ng-model="user.email" required>
             <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
           </div>
           <p class="help-block"
-             ng-show="(infoForm.$error.email) && (infoForm.$dirty || emailSubmitted)">
+             ng-show="(infoForm.$error.email || infoForm.email.$error.required) && (infoForm.$dirty || emailSubmitted)">
             L'adresse email saisie est incorrecte.
           </p>
         </div>
@@ -58,13 +58,13 @@
           <label for="birthDate">Date de naissance</label>
 
           <p class="input-group">
-            <input id="birthDate" type="text" name="textfield" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="user.newBirthDate" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
+            <input id="birthDate" type="text" name="birthDate" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="user.birthDate" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false" required/>
             <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button>
             </span>
           </p>
 
           <p class="help-block"
-             ng-show="(infoForm.$error.birthDate) && (infoForm.$dirty || birthDateSubmitted)">
+             ng-show="(infoForm.$error.birthDate || infoForm.birthDate.$error.required) && (infoForm.$dirty || birthDateSubmitted)">
             La date de naissance saisie est incorrecte.
           </p>
           <p class="help-block" ng-show="infoForm.$error.date">
@@ -75,7 +75,7 @@
         <p class="help-block"> {{ infoMessage }} </p>
 
         <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
-
+        <pre>{{infoForm|json}}</pre>
       </form>
     </div>
   </div>

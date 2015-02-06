@@ -91,24 +91,12 @@ exports.changePassword = function(req, res, next) {
  */
 exports.changeInfo = function(req, res, next) {
   var userId = req.user._id;
-  var newName = String(req.body.newName);
-  var newEmail = String(req.body.newEmail);
-  var newBirthDate = req.body.newBirthDate;
 
   User.findById(userId, function (err, user) {
-    if(newName !== 'undefined'){
-      user.name = newName;
-    }
-    if(newEmail !== 'undefined'){
-      user.email = newEmail;
-    }
-    if(newBirthDate){
-      user.birthDate = newBirthDate;
-    }
-
-    user.save(function(err) {
+    var updated = _.merge(user, req.body);
+    updated.save(function(err, result) {
       if (err) return validationError(res, err);
-      res.send(200);
+      res.json(result);
     });
   });
 };

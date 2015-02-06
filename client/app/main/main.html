@@ -6,10 +6,10 @@
     ng-class="getMdphBgClass()">
     <div class="container">
       <h1>{{'Votre demande à la MDPH' + getMdphName()}}</h1>
-      <div class="btn btn-outline-inverse btn-lg" ng-click="isLoggedIn() ? listeDemande() : start()">
+      <button class="btn btn-outline-inverse btn-lg" ng-click="isLoggedIn() ? listeDemande() : start()">
         {{isLoggedIn() ? 'Voir vos demandes' : 'Commencer'}}
-      </div>
-      <a class="btn btn-outline-inverse btn-lg" ui-sref="partenaire">
+      </button>
+      <a role="button" class="btn btn-outline-inverse btn-lg" ui-sref="partenaire">
         Partenaire ?
       </a>
     </div>
@@ -20,16 +20,16 @@
       <h2>Un suivi en ligne de votre dossier</h2>
       <div class="row">
         <div class="col-lg-4">
-          <h1><i class="fa fa-home fa-2x"></i></h1>
+          <h3><i class="fa fa-home fa-3x"></i></h3>
       	  <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
             Elle peut répondre aux besoins liés à votre handicap.</p>
         </div>
         <div class="col-lg-4">
-          <h1><i class="fa fa-comments-o fa-2x"></i></h1>
+          <h3><i class="fa fa-comments-o fa-3x"></i></h3>
           <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise automatiquement votre dossier.</p>
         </div>
         <div class="col-lg-4">
-          <h1><i class="fa fa-users fa-2x"></i></h1>
+          <h3><i class="fa fa-users fa-3x"></i></h3>
           <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
         </div>
       </div>
@@ -39,18 +39,38 @@
   <div ng-hide="false">
     <div class="liste-prestations">
       <div class ="container">
-        <h1>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h1>
+        <h2>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h2>
         <div class="row">
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Allocation d'éducation de l'enfant handicapé (AEEH)</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Allocation aux adultes handicapées (AAH) et son complément</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Carte d'invalidité/ de priorité/ de stationnement</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Orientation vers un établissement ou service médico-social (ESMS)</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Prestation de compensation du handicap (PCH)</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Renouvellement d'allocation compensatrice (ACTP ou ACFP)</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Projet personnalisé de scolarisation – parcours et aides à la scolarisation</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Orientation professionnelle et/ou formation professionnelle</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Reconnaissance de la qualité de travailleur handicapé (RQTH)</div></div>
-          <div class="col-lg-6 col-md-4 elem"><div class="elem-body"><i class="fa fa-circle"></i> Affiliation gratuite à l'assurance vieillesse des parents au foyer (AVPF)</div></div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Allocation d'éducation de l'enfant handicapé (<abbr>AEEH</abbr>)</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Allocation aux adultes handicapées (<abbr>AAH</abbr>) et son complément</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Carte d'invalidité/ de priorité/ de stationnement</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Orientation vers un établissement ou service médico-social (<abbr>ESMS</abbr>)</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Prestation de compensation du handicap (<abbr>PCH</abbr>)</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Renouvellement d'allocation compensatrice (<abbr>ACTP</abbr> ou <abbr>ACFP</abbr>)</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Projet personnalisé de scolarisation – parcours et aides à la scolarisation</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Orientation professionnelle et/ou formation professionnelle</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Reconnaissance de la qualité de travailleur handicapé (<abbr>RQTH</abbr>)</div>
+          </div>
+          <div class="col-lg-6 col-md-4 elem">
+            <div class="elem-body"><i class="fa fa-circle"></i> Affiliation gratuite à l'assurance vieillesse des parents au foyer (<abbr>AVPF</abbr>)</div>
+          </div>
         </div>
       </div>
     </div>
@@ -58,9 +78,9 @@
   <footer class="footer">
     <div class="container">
       <p>
-        <a ui-sref="a_propos">À propos</a>
+        <a ui-sref="a_propos" title="A propos">À propos</a>
          |
-        <a href="mailto:del.florian+impact@gmail.com">Contact</a>
+        <a href="mailto:del.florian+impact@gmail.com" title="Contact">Contact</a>
       </p>
     </div>
   </footer>

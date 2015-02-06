@@ -13,10 +13,7 @@ angular.module('impactApp')
         }
       },
       changeInfo: {
-        method: 'PUT',
-        params: {
-          controller: 'info'
-        }
+        method: 'PUT'
       },
       get: {
         method: 'GET',

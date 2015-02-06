@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/espace_perso',
         templateUrl: 'app/espace_perso/espace_perso.html',
         controller: 'EspacePersoCtrl',
-        authenticate: true
+        authenticate: true,
+        abstract: true
       });
   });

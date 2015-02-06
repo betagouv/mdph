@@ -1,13 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($scope, User, Auth, datepickerConfig) {
+  .controller('MonCompteCtrl', function($scope, User, Auth, datepickerConfig, currentUser) {
     $scope.errors = {};
-    $scope.user = Auth.getCurrentUser();
-    $scope.user.newName = $scope.user.name;
-    $scope.user.newEmail = $scope.user.email;
-    $scope.user.newBirthDate = $scope.user.birthDate;
-
+    $scope.user = currentUser;
 
     datepickerConfig.datepickerMode = 'year';
     $scope.open = function($event) {
@@ -32,18 +28,9 @@ angular.module('impactApp')
     };
 
     $scope.changePersonalInfo = function(form){
-      if($scope.user.newName){
-        $scope.nameSubmitted = true;
-      }
-      if($scope.user.newEmail){
-        $scope.emailSubmitted = true;
-      }
-      if($scope.user.newBirthDate){
-        $scope.birthDateSubmitted = true;
-      }
-      if(form.$valid && ($scope.user.newName || $scope.user.newEmail || $scope.user.newBirthDate)){
-        Auth.changeInfo($scope.user.newName, $scope.user.newEmail, $scope.user.newBirthDate)
-        .then(function(){
+
+      if(form.$valid){
+        $scope.user.$changeInfo(function(){
           $scope.infoMessage = 'Vos informations ont bien été modifiées.';
         });
       } else {

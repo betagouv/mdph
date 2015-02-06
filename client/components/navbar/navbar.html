@@ -20,7 +20,7 @@
 
       <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main" role="menubar">
         <ul class="nav navbar-nav">
-          <li role="menuitem"><a ui-sref="{{getIndexSref()}}" class="logo" title="Accueil"><img ng-src="{{getLogoSrc()}}" alt="logo république française"> <em>Maisons Départementales des Personnes Handicapées</em></a></li>
+          <li role="menuitem"><a ui-sref="{{getIndexSref()}}" class="logo" title="Accueil"><img ng-src="{{getLogoSrc()}}" alt="Accueil"> <em>Maisons Départementales des Personnes Handicapées</em></a></li>
           <li role="menuitem" ng-if="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
         </ul>
 
@@ -29,7 +29,7 @@
           <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="login" title="Se connecter">Connexion</a></li>
           <li role="menuitem" ng-if="isLoggedIn()"><p class="navbar-text">Bonjour, {{ user.name }}</p> </li>
           <li role="menuitem" ng-if="isLoggedIn() && !isAdminMdph()" ui-sref-active="active">
-            <a ui-sref="espace_perso" title="Mon espace perso">
+            <a ui-sref="espace_perso.mon_compte" title="Mon espace perso">
               <span class="sr-only">Mon espace perso</span>
               <span class="glyphicon glyphicon-folder-open"></span>
             </a>
