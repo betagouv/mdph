@@ -41,7 +41,7 @@
             </a>
           </li>
           <li role="menuitem" ng-if="isLoggedIn() && notifications.length > 0" aria-label="notifications" aria-haspopup="true">
-            <a href="" ng-click="showNotifications = !showNotifications" title="{{notifications.length}} notification(s) non lue(s)">
+            <a href="" ng-click="toggleNotifications()" title="{{notifications.length}} notification(s) non lue(s)">
               <span class="sr-only">Mes notifications</span>
               <span class="badge notif-badge">{{notifications.length}}</span>
             </a>

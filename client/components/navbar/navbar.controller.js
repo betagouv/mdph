@@ -32,6 +32,10 @@ angular.module('impactApp')
       }, 500);
     });
 
+    $scope.toggleNotifications = function() {
+      $scope.showNotifications = !$scope.showNotifications;
+    };
+
     $scope.momentFromNow = function(date) {
       return moment(date).fromNow();
     };
