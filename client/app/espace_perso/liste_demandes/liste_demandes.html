@@ -8,16 +8,21 @@
     </div>
     <div class="row" ng-if="requests.length > 0">
       <div class="col-md-12">
-        <div class="list-group">
+        <div class="list-group demande">
           <a
             class="list-group-item"
             ng-repeat="request in requests"
             ng-class="{'list-group-item-success': request.opened}"
             ui-sref="{{goToRequest(request)}}">
-            <div ng-if="request.opened">
-              <h4 class="list-group-item-heading">{{getTitle(request)}}</span></h4>
-              <p class="list-group-item-text">Etape: {{getCurrentStep(request) | stepFilter}}<br/>
-              Dernière modification {{updatedAt(request)}}</p>
+            <div class="row" ng-if="request.opened">
+              <div class="col-md-9">
+                <h2 class="list-group-item-heading">{{getTitle(request)}}</span></h2>
+                <p class="list-group-item-text">Etape: {{getCurrentStep(request) | stepFilter}}<br/>
+                Dernière modification {{updatedAt(request)}}</p>
+              </div>
+              <div class="col-md-3">
+                <h3 class="list-group-item-heading">Référence demande : {{request.shortId}}</h3>
+              </div>
             </div>
             <div ng-if="!request.opened">
               <p class="list-group-item-text">
