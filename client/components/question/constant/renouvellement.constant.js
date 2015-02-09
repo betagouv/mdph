@@ -11,13 +11,13 @@ angular.module('impactApp').constant('renouvellement', [
     answers:
     [
       {
-        labelRep: 'Son état de santé à changé',
-        label: 'Votre état de santé à changé',
+        labelRep: 'Son état de santé a changé',
+        label: 'Votre état de santé a changé',
         value: 'sante'
       },
       {
-        labelRep: 'Son handicap est stable mais à de nouvelles répercussions sur sa vie quotidienne',
-        label: 'Votre handicap est stable mais à de nouvelles répercussions sur votre vie quotidienne',
+        labelRep: 'Son handicap est stable mais a de nouvelles répercussions sur sa vie quotidienne',
+        label: 'Votre handicap est stable mais a de nouvelles répercussions sur votre vie quotidienne',
         value: 'repercussions'
       },
       {

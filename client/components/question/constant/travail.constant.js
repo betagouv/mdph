@@ -126,8 +126,8 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'difficultes',
-    titleRep: 'Quelles sont les difficultées liées à son handicap ?',
-    titleDefault: 'Quelles sont les difficultées liées à votre handicap ?',
+    titleRep: 'Quelles sont les difficultés liées à son handicap ?',
+    titleDefault: 'Quelles sont les difficultés liées à votre handicap ?',
     type: 'text'
   },
   {
@@ -262,8 +262,8 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
-    titleRep: 'Pour quoi a-t-<%= pronoun %> besoin de soutien ?',
-    titleDefault: 'Pour quoi avez-vous besoin de soutien ?',
+    titleRep: 'Pourquoi a-t-<%= pronoun %> besoin de soutien ?',
+    titleDefault: 'Pourquoi avez-vous besoin de soutien ?',
     model: 'besoinSoutien',
     type: 'checkbox',
     answers:
@@ -329,7 +329,7 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
-    titleRep: 'A-t-<%= pronoun %> déjà travaillé<%= fem %> ?',
+    titleRep: 'A-t-<%= pronoun %> déjà travaillé',
     titleDefault: 'Avez-vous déjà travaillé ?',
     type: 'radio',
     model: 'passe',

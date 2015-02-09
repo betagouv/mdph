@@ -219,7 +219,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
   },
   {
     model: 'structures',
-    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?',
+    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?',
     type: 'checkbox'
   },
   {
