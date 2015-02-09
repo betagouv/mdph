@@ -6,17 +6,17 @@
     </input>
     <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
   </div>
-
+  <h1 id="choix_mdph">Choississez votre MDPH</h1>
   <div class="row">
     <region ng-repeat="(region, mdphs) in filterRegions()">
       <div class="col-sm-4">
         <dl>
           <dt>
-            <h3>{{region}}</h3>
+            <h3 id="{{region}}">{{region}}</h3>
           </dt>
           <dd ng-repeat="mdph in mdphs | filter:query">
             <a
-              ng-click="resetCurrentRequest(mdph)">
+              ng-click="resetCurrentRequest(mdph)" href title="MDPH {{mdph.nom_du_departement}}">
                 {{mdph.nom_du_departement}}
             </a>
           </dd>
