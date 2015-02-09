@@ -1,0 +1,25 @@
+
+
+<div class="modal-container">
+  <form>
+    <div class="form-group">
+      <label for="title">Nom du test</label>
+      <input type="text" class="form-control" id="title" ng-model="test.name">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" rows="3" ng-model="test.description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Questionnaire</label>
+      <pre>{{test.scenario | json}}</pre>
+    </div>
+    <div class="form-group">
+      <label>Prestations attendues</label>
+      <pre>{{test.expectedResults | json}}</pre>
+    </div>
+
+    <button type="submit" ng-click="save()" class="btn btn-default">Valider</button>
+  </form>
+</div>
