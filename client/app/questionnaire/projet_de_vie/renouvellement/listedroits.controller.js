@@ -11,6 +11,10 @@ angular.module('impactApp')
     datepickerConfig.datepickerMode = 'day';
 
     $scope.nextStep = function() {
-      $state.go('^.taux');
+      if ($scope.sectionModel.evolution === 'stable') {
+        $state.go('^.preciser_projet');
+      } else {
+        $state.go('^.^.vie_quotidienne.situation.vie_famille');
+      }
     };
   });

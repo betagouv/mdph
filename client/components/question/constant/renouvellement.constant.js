@@ -21,8 +21,8 @@ angular.module('impactApp').constant('renouvellement', [
         value: 'repercussions'
       },
       {
-        labelRep: 'Son état est stable',
-        label: 'Votre état est stable',
+        labelRep: 'Sa situation est stable',
+        label: 'Votre situation est stable',
         value: 'stable'
       }
     ]
@@ -32,5 +32,20 @@ angular.module('impactApp').constant('renouvellement', [
     titleDefault: 'De quelles prestations bénéficiez-vous actuellement ?',
     titleRep: 'De quelles prestations bénéficie-t-<%= pronoun %> actuellement ?',
     type: 'checkbox'
+  },
+  {
+    model: 'preciserProjet',
+    titleDefault: 'Souhaitez-vous préciser votre projet de vie ?',
+    type: 'radio',
+    answers: [
+      {
+        label: 'Oui',
+        value: true
+      },
+      {
+        label: 'Non',
+        value: false
+      }
+    ]
   }
 ]);

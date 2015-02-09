@@ -34,5 +34,10 @@ angular.module('impactApp')
       url: '/date_naissance',
       templateUrl: 'components/question/date_naissance.html',
       controller: 'DateNaissanceCtrl'
+    })
+    .state(index + '.urgences', {
+      url: '/urgences',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'UrgencesCtrl'
     });
   });

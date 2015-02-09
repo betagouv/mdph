@@ -27,14 +27,19 @@ angular.module('impactApp')
         }
       }
     })
-    .state(index + '.taux', {
-      url: '/taux',
+    .state(index + '.preciser_projet', {
+      url: '/preciser_projet',
       templateUrl: 'components/question/radio.html',
-      controller: 'TauxCtrl'
-    })
-    .state(index + '.contestationTaux', {
-      url: '/votre_avis',
-      templateUrl: 'components/question/radio.html',
-      controller: 'ContestationTauxCtrl'
+      controller: 'PreciserProjetCtrl'
     });
+    // .state(index + '.taux', {
+    //   url: '/taux',
+    //   templateUrl: 'components/question/radio.html',
+    //   controller: 'TauxCtrl'
+    // })
+    // .state(index + '.contestationTaux', {
+    //   url: '/votre_avis',
+    //   templateUrl: 'components/question/radio.html',
+    //   controller: 'ContestationTauxCtrl'
+    // });
   });

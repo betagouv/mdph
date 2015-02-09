@@ -17,11 +17,7 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      if ($scope.currentRequest.renouvellement) {
-        $state.go('^.^.renouvellement.evolution');
-      } else {
-        $state.go('^.^.vie_quotidienne.situation.vie_famille');
-      }
+        $state.go('^.urgences');
     };
   });
 
