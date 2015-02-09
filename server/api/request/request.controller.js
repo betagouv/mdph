@@ -27,17 +27,20 @@ exports.index = function(req, res) {
 
     search.mdph =  req.user.mdph;
     Request.find(search)
-      .select('shortId user mdph steps requestStatus updatedAt')
+      .select('shortId user mdph steps requestStatus createdAt updatedAt')
       .populate('user mdph', '-password -salt')
+      .sort('createdAt')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
         res.json(200, requests);
       });
   } else {
-    Request.find({mdph: req.user.mdph}).exec(function(err, requests) {
-      if(err) return res.send(500, err);
-      res.json(200, requests);
-    });
+    Request.find({mdph: req.user.mdph})
+      .sort('createdAt')
+      .exec(function(err, requests) {
+        if(err) return res.send(500, err);
+        res.json(200, requests);
+      });
   }
 };
 
@@ -139,6 +142,7 @@ exports.save = function(req, res, next) {
   request.opened = true;
   request.user = req.user._id;
   request.updatedAt = new Date();
+  request.createdAt = new Date();
   request.formAnswers = req.body.formAnswers;
   request.mdph = req.body.mdph._id;
   request.steps = req.body.steps;

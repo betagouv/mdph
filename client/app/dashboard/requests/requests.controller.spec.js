@@ -12,7 +12,7 @@ describe('Controller: request', function () {
     var scope = {};
     var requests= [
       {
-        user: {name: "toto"},
+        user: {name: 'toto'},
         steps: [
           {
             name: 'questionnaire',
@@ -89,7 +89,7 @@ describe('Controller: request', function () {
     var scope = {};
     var requests= [
       {
-        user: {name: "toto"},
+        user: {name: 'toto'},
         steps: [
           {
             name: 'questionnaire',
@@ -99,7 +99,7 @@ describe('Controller: request', function () {
 
       },
       {
-        user: {name: "alice"},
+        user: {name: 'alice'},
         steps: [
           {
             name: 'questionnaire',
@@ -112,7 +112,7 @@ describe('Controller: request', function () {
         ]
       },
       {
-        user: {name: "Aristote"},
+        user: {name: 'Aristote'},
         steps: []
       }
     ];

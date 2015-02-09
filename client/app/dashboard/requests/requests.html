@@ -31,7 +31,7 @@
               <i class="fa fa-1x fa-folder"></i>
               {{request.user.name}}
               <br/>
-              <small class="text-muted"><i>{{request.updatedAt | date : format : timezone}}</i></small>
+              <small class="text-muted"><i>Émise le {{request.createdAt | date : format : timezone}}</i></small>
             </div>
           </a>
           <div class="col-sm-2">

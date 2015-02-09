@@ -24,6 +24,7 @@ var RequestSchema = new Schema({
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
   mdph:           { type: Schema.Types.ObjectId, ref: 'Mdph' },
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
+  createdAt:      { type: Date },
   updatedAt:      { type: Date },
   steps:          [ StepSchema ],
   opened:         { type: Boolean },

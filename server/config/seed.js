@@ -412,6 +412,7 @@ var createFooRequest = function(cb) {
     user: foo,
     mdph: mdphNord,
     updatedAt: new Date(),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-1)),
     steps: [
       {
         name: 'questionnaire',
@@ -436,6 +437,7 @@ var createBobOldRequest = function(cb) {
     user: bob,
     mdph: mdphCalvados,
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    createdAt: new Date(new Date().setDate(new Date().getDate()-4)),
     steps: [
       {
         name: 'evaluation',
@@ -544,6 +546,7 @@ var createMartinOldRequest = function(cb) {
     requestStatus: 'Complète',
     evaluator: jeanne,
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    createdAt: new Date(new Date().setDate(new Date().getDate()-2)),
     steps: [
       {
         name: 'questionnaire',
@@ -576,6 +579,7 @@ var createRoxOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate())),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-4)),
     steps: [
       {
         name: 'questionnaire',
@@ -614,6 +618,7 @@ var createArnaudOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-50)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-50)),
     steps: [
       {
         name: 'questionnaire',
@@ -652,6 +657,7 @@ var createJeromeOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-10)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
     steps: [
       {
         name: 'questionnaire',
@@ -690,6 +696,7 @@ var createEllaOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
     steps: [
       {
         name: 'questionnaire',
@@ -728,6 +735,7 @@ var createTanguyOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    createdAt: new Date(new Date().setDate(new Date().getDate()-2)),
     steps: [
       {
         name: 'questionnaire',
@@ -766,6 +774,7 @@ var createThibaultOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    createdAt: new Date(new Date().setDate(new Date().getDate()-2)),
     steps: [
       {
         name: 'questionnaire',
@@ -804,6 +813,7 @@ var createFlorianOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
     steps: [
       {
         name: 'questionnaire',
@@ -842,6 +852,7 @@ var createPierreOldRequest = function(cb) {
     opened: true,
     requestStatus: 'Emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    createdAt: new Date(new Date().setDate(new Date().getDate()-3)),
     steps: [
       {
         name: 'questionnaire',
@@ -967,6 +978,7 @@ var createBobRequest = function(cb) {
     },
     evaluator: alice,
     updatedAt: new Date(),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
     "steps": [
       {
         "name": "questionnaire",
@@ -1089,6 +1101,7 @@ var createFrancoiseRequest = function(cb) {
       'envoi':true
     },
     updatedAt: new Date(),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
     "steps": [
       {
         "name": "questionnaire",
@@ -1215,6 +1228,7 @@ var createEmmaRequest = function(cb) {
       'envoi':true
     },
     updatedAt: new Date(),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-1)),
     "steps": [
       {
         "name": "questionnaire",
