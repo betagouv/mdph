@@ -27,8 +27,9 @@ exports.index = function(req, res) {
 
     search.mdph =  req.user.mdph;
     Request.find(search)
-      .select('shortId user mdph steps requestStatus createdAt updatedAt')
-      .populate('user mdph', '-password -salt')
+      .select('shortId user mdph steps requestStatus createdAt updatedAt formAnswers.contexte.urgences')
+      .populate('user', 'name')
+      .populate('mdph')
       .sort('createdAt')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);

@@ -30,7 +30,7 @@
         <div class="panel-title">
           {{request.user.name}}
         </div>
-        <small class="pull-left">Dernière modification {{updatedAt(request)}}</small>
+        <small class="pull-left">Dernière modification {{request.updatedAt | date : format : timezone}}</small>
       </div>
     </div>
   </div>
