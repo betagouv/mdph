@@ -6,22 +6,26 @@ angular.module('impactApp')
     {
       id: 'situation',
       label: 'Situation',
-      model: {}
+      model: {},
+      placement: 'left'
     },
     {
       id: 'environnement',
       label: 'Environnement',
-      model: {}
+      model: {},
+      placement: 'right'
     },
     {
       id: 'aides',
       label: 'Aides actuelles',
-      model: {}
+      model: {},
+      placement: 'left'
     },
     {
       id: 'besoins',
       label: 'Besoins',
-      model: {}
+      model: {},
+      placement: 'right'
     }];
 
     var sectionsByLabel = _.indexBy(sections, 'label');

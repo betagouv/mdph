@@ -66,7 +66,7 @@
         <div class="col-md-8">
           <div class="geva-pie" id="geva-pie">
             <a
-              tooltip-trigger tooltip-placement="left" tooltip-html-unsafe="{{section.tooltip}}" ng-repeat="(idx, section) in sections"
+              ng-repeat="(idx, section) in sections" tooltip-trigger tooltip-placement="{{section.placement}}" tooltip-html-unsafe="{{section.tooltip}}"
               class="geva-section" id="geva-section-{{idx + 1}}"
               ui-sref="dashboard.repartition_demandes.detail.evaluation.section({sectionId: section.id})">
               <span class="geva-section-id">{{idx + 1}}</span>
