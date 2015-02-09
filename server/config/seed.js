@@ -1289,7 +1289,7 @@ var createJean = function(cb) {
 var createNotifBob = function (cb){
   Notification.create({
     user: bob._id,
-    message: 'Votre dossier a été affecté.',
+    message: 'Votre dossier est en cours d\'instruction.',
     state: 'espace_perso.liste_demandes.demande.obligatoire',
     request: bobRequest.shortId
   }, function(err, data) {
