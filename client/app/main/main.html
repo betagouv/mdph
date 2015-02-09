@@ -9,11 +9,25 @@
       <button class="btn btn-outline-inverse btn-lg" ng-click="isLoggedIn() ? listeDemande() : start()">
         {{isLoggedIn() ? 'Voir vos demandes' : 'Commencer'}}
       </button>
-      <a role="button" class="btn btn-outline-inverse btn-lg" ui-sref="partenaire">
-        Partenaire ?
-      </a>
     </div>
   </header>
+
+  <div class="action">
+    <div class ="container">
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-outline btn-lg" ng-click="isLoggedIn() ? listeDemande() : start()">
+            Vous souhaitez remplir le questionnaire<br>pour faire une nouvelle demande ?
+          </button>
+        </div>
+        <div class="col-md-6">
+          <a class="btn btn-outline btn-lg" ui-sref="partenaire">
+            Vous souhaitez fournir des pièces complémentaires<br>pour compléter une demande ?
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="features">
     <div class ="container">

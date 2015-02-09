@@ -42,6 +42,14 @@
   }
 }
 
+.action {
+    padding: 40px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    background-color: lighten($light-blue, 70%);
+}
+
 .features {
     margin-top: 50px;
     font-size: 16px;
@@ -103,6 +111,18 @@
         border-radius: 8px;
         text-shadow: 0 1px 0 rgba(0,0,0,.1)
       }
+    }
+}
+
+.btn-outline {
+    font-weight: 200;
+    color: $light-blue;
+    background-color: #fff;
+
+    &:hover {
+      -webkit-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
+      -moz-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
+      box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
     }
 }
 
