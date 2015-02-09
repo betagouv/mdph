@@ -3,37 +3,21 @@
     <h4>{{file.document.label}}</h4>
   </div>
 
-  <div ng-if="file.state === 'delegate'">
-    <div class="panel-body delegate">
-      <h3>{{request.shortId}}</h3>
-      <p>Utilisez ce code pour communiquer avec votre médecin.</p>
+  <div class="panel-body">
+    <div ng-if="!file.path">
+      <em>Pas de document</em>
+    </div>
+    <div ng-if="file.path">
+      <span class="glyphicon glyphicon-file"></span>
+      <a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a> <small> - ajouté par {{file.partenaire ?
+      file.partenaire : 'vous'}}</small>
     </div>
   </div>
-
-  <div ng-if="file.state !== 'delegate'">
-    <div class="panel-body">
-      <div ng-if="!file.path">
-        <em>Pas de document</em>
-      </div>
-      <div ng-if="file.path && currentStep.id !== 'complementaire'">
-        <span class="glyphicon glyphicon-file"></span>
-        <span><strong>Document reçu</strong></span>
-      </div>
-      <div ng-if="file.path && currentStep.id === 'complementaire'">
-        <span class="glyphicon glyphicon-file"></span>
-        <a href="{{file.path}}" target="_blank">{{file.name | documentFilter}}</a> <small ng-if="file.partenaire"> - ajouté par {{file.partenaire}}</small>
-      </div>
-    </div>
-  </div>
-  <div class="panel-footer">
-    <div class="btn-group btn-group-justified" ng-if="!currentStep.isFinished && file.state !== 'valide'">
+  <div class="panel-footer" ng-if="!currentStep.isFinished && file.state !== 'valide'">
+    <div class="btn-group btn-group-justified">
       <div ng-file-select="onFileSelect($files, file)" data-multiple="false" class="btn btn-default">
-        <span ng-if="file.state !== 'delegate' || (file.state === 'delegate' && !request.certificat)">
-          <span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</span>
-        </span>
-        <span ng-if="file.state === 'delegate' && request.certificat">Certificat reçu</span>
+        <span class="glyphicon glyphicon-paperclip"></span> Attacher un fichier</span>
       </div>
-      <div class="btn btn-primary" ng-click="transmitFile(file)" ng-if="file.document.canDelegate && file.state !== 'delegate'">Transmettre</div>
     </div>
   </div>
 </div>

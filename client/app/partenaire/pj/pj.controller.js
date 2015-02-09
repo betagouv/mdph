@@ -3,8 +3,19 @@
 angular.module('impactApp')
   .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, request, NotificationService) {
     $scope.request = request;
-    $scope.currentFormStep = _.find($scope.request.steps, {'name': 'complementaire'});
-    $scope.files = $scope.currentFormStep.files;
+
+    var stepId = 'complementaire';
+    var stepComplementaire = _.find($scope.request.steps, {'name': 'complementaire'});
+
+    if (!stepComplementaire) {
+      stepId = 'obligatoire';
+      $scope.currentFormStep = _.find($scope.request.steps, {'name': 'obligatoire'});
+      $scope.files = [_.find($scope.currentFormStep.files, {'name': 'certificatMedical'})];
+    } else {
+      $scope.currentFormStep = stepComplementaire;
+      $scope.files = $scope.currentFormStep.files;
+    }
+
     $scope.partenaire = {};
 
     $scope.onFileSelect = function($files, currentFile) {
@@ -41,7 +52,7 @@ angular.module('impactApp')
             url: 'api/requests/' + $scope.request.shortId + '/document',
             withCredentials: true,
             data: {
-              step: 'complementaire',
+              step: stepId,
               partenaire: partenaire.email,
               name: file.name
             },

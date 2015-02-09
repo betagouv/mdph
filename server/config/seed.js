@@ -974,19 +974,15 @@ var createBobRequest = function(cb) {
       },
       {
         "name": "obligatoire",
-        "state": "a_valider",
+        "state": "en_cours",
         "files": [
           {
             "name": "certificatMedical",
-            "state": "telecharge",
-            "path": "martin.jpg",
-            uploaderType: "Demandeur"
+            "state": "demande"
           },
           {
             "name": "carteIdentite",
-            "state": "telecharge",
-            "path": "martin.jpg",
-            uploaderType: "Demandeur"
+            "state": "demande"
           }
         ]
       }
