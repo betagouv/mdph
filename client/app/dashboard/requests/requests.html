@@ -1,52 +1,18 @@
-<div class="container">
-  <div ui-view>
-
-    <div class="list-group">
-      <div class="list-group-item request-searchbox">
-        <div class="input-group">
-          <input class="form-control" type="text" ng-model="query" placeholder="Recherche">
-          </input>
-          <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
-        </div>
-
-        <accordion close-others="oneAtATime" class="filtre-accordeon">
-          <accordion-group heading="Filtrer" is-open="false">
-            <div class="filters small">
-              <span class="checkbox" ng-repeat="filter in availableFilters">
-                <label>
-                  <input type="checkbox" ng-model="selectedFilters[filter.id]"> {{filter.label}}
-                </label>
-              </span>
-            </div>
-          </accordion-group>
-        </accordion>
-      </div>
-    </div>
-
-    <div ng-repeat="request in requests | filter:filtres" >
-      <div class="request-item"
-        ng-class="{'sent': request.requestStatus=='Emise', 'admissible': request.requestStatus=='Recevable', 'complete': request.requestStatus=='Complète'}">
-        <div class="row" ng-mouseleave="showButtons = false" ng-mouseover="showButtons = true">
-          <a class="col-sm-10" ui-sref="dashboard.requests.detail({shortId: request.shortId})">
-            <i class="fa fa-1x fa-folder"></i>
-            {{request.user.name}}
-            <br/>
-            <small class="text-muted">
-              <i>Émise le {{request.createdAt | date : format : timezone}}</i>
-              <span class="label label-danger" ng-repeat="(urgence, val) in request.formAnswers.contexte.urgences">{{urgence}}</span>
-            </small>
+<div class="container-demandes">
+  <div class="row">
+    <div class="col-sm-2 menu-demandes">
+      <h2>Répertoires</h2>
+      <ul>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.requests.list({userId: 'non_attribue'})">
+            Non attribuées <span class="label label-danger pull-right">{{requests.length}}</span>
           </a>
-          <div class="col-sm-2">
-            <div class="btn btn-primary btn-block" ng-if="showButtons && !request.evaluator" ng-click="traiterDemande(request, $index)">
-              Assigner
-            </div>
-            <div class="btn btn-success btn-block" ng-if="request.evaluator">
-              <i class="fa fa-thumbs-up"></i>
-              <span>Assignée</span>
-            </div>
-          </div>
-        </div>
-      </div>
+        </li>
+        <li ng-repeat="user in users"><a ui-sref-active="active" ui-sref="dashboard.requests.list({userId: user._id})">{{user.name}}</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-10">
+      <div ui-view class="main-demandes"></div>
     </div>
   </div>
 </div>

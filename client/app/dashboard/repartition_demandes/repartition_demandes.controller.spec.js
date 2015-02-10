@@ -2,7 +2,7 @@
 
 /* global _ */
 
-describe('Controller: request', function () {
+describe('Controller: Mes demandes', function () {
 
   // load the service's module
   beforeEach(module('impactApp'));
@@ -10,7 +10,7 @@ describe('Controller: request', function () {
   it('should render initial data', function () {
     //given
     var scope = {};
-    var requests= [
+    var userRequests= [
       {
         user: {name: 'toto'},
         steps: [
@@ -40,21 +40,21 @@ describe('Controller: request', function () {
 
     //when
     inject(function($controller){
-      $controller('RequestsCtrl', {
+      $controller('RepartitionDemandesCtrl', {
         $scope: scope,
-        requests: requests
+        userRequests: userRequests
       });
     });
 
     //then
-    expect(scope.requests.length).toBe(1);
+    expect(scope.userRequests.length).toBe(1);
 
   });
 
   it('should filter data on name', function () {
     //given
     var scope = {};
-    var requests= [
+    var userRequests= [
       {
         user: {name: 'toto'}
       },
@@ -68,14 +68,14 @@ describe('Controller: request', function () {
 
     //when
     inject(function($controller){
-      $controller('RequestsCtrl', {
+      $controller('RepartitionDemandesCtrl', {
         $scope: scope,
-        requests: requests
+        userRequests: userRequests
       });
     });
     scope.query = 'tot';
 
-    var result = _.map(requests, function(request) {
+    var result = _.map(userRequests, function(request) {
       return scope.filtres(request);
     });
 
@@ -87,7 +87,7 @@ describe('Controller: request', function () {
   it('should filter data on steps', function () {
     //given
     var scope = {};
-    var requests= [
+    var userRequests= [
       {
         user: {name: 'toto'},
         steps: [
@@ -119,16 +119,16 @@ describe('Controller: request', function () {
 
     //when
     inject(function($controller){
-      $controller('RequestsCtrl', {
+      $controller('RepartitionDemandesCtrl', {
         $scope: scope,
-        requests: requests
+        userRequests: userRequests
       });
     });
     scope.selectedFilters = {
       'obligatoire': true
     };
 
-    var result = _.map(requests, function(request) {
+    var result = _.map(userRequests, function(request) {
       return scope.filtres(request);
     });
 

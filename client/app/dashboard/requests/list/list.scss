@@ -1,0 +1,55 @@
+.list-header {
+  padding: 30px 20px 20px 20px;
+
+  h2 {
+    margin-top: 0px;
+    font-size: 24px;
+    font-weight: 200;
+  }
+
+  .search {
+    max-width: 300px;
+  }
+}
+
+.list-main {
+   table {
+    width: 100%;
+    max-width: 100%;
+
+    tr {
+      border-top: 1px solid #e7eaec;
+      border-bottom: 1px solid #e7eaec;
+
+      &:hover {
+        background-color: whitesmoke;
+      }
+    }
+
+    td {
+      padding: 12px;
+
+      i, .user {
+        cursor: pointer;
+      }
+
+      .label {
+        margin-left: 5px;
+      }
+    }
+
+    [ng-click] {
+      cursor: default;
+    }
+  }
+
+  .check-request {
+    padding-left: 20px;
+    color: lighten($lighter-blue, 20%);
+  }
+
+  .date-request {
+    text-align: right;
+    padding-right: 20px;
+  }
+}
