@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestsCtrl', function ($scope, $http, requestSteps, users, currentUser) {
+  .controller('RequestsCtrl', function ($scope, users) {
     $scope.users = users;
-    $scope.currentUser = currentUser;
 
     // $scope.traiterDemande = function (request) {
     //   request.evaluator = $scope.currentUser;

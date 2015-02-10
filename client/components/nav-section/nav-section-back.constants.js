@@ -4,7 +4,7 @@
 
 angular.module('impactApp').constant('SectionBackConstants', [
   {
-    sref: 'dashboard.requests',
+    sref: 'dashboard.requests.list({userId: \'me\'})',
     include: 'dashboard.requests.**',
     fa: 'fa-folder',
     label: 'Demandes en cours',

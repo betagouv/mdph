@@ -10,9 +10,6 @@ angular.module('impactApp')
         resolve: {
           users: function(Auth) {
             return Auth.getAllUsers();
-          },
-          currentUser: function(Auth) {
-            return Auth.getCurrentUser();
           }
         },
         authenticate: true
