@@ -194,8 +194,8 @@ angular.module('impactApp').constant('vieQuotidienne', [
       {label: 'Une aide technique, du matériel ou équipement', model: 'materiel'},
       {label: 'Vivre en établissement', model: 'etablissement'},
       {
-        label: 'Une aide financière, afin de vous\'assurer un revenu minimum',
-        labelRep: 'Une aide financière, afin de lui\'assurer un revenu minimum',
+        label: 'Une aide financière, afin de vous assurer un revenu minimum',
+        labelRep: 'Une aide financière, afin de lui assurer un revenu minimum',
         model: 'financierMinimum'
       },
       {
@@ -209,12 +209,12 @@ angular.module('impactApp').constant('vieQuotidienne', [
         model: 'financierHandicap'
       },
       {
-        label: 'Une aide humaine, avec quelqu\'un qui vient vous aider',
-        labelRep: 'Une aide humaine, avec quelqu\'un qui vient l\'aider',
+        label: 'Une aide humaine, avec quelqu\'un qui vous aide',
+        labelRep: 'Une aide humaine, avec quelqu\'un qui l\'aide',
         model: 'humain'
       },
       {label: 'Une aide à la mobilité', model: 'mobilite'},
-      {label: 'Autre besoin', model: 'autre', detailModel: 'attentesTypeAide_autre', detailUrl: 'components/detail/precisez.html'}
+      {label: 'Autre attente', model: 'autre', detailModel: 'attentesTypeAide_autre', detailUrl: 'components/detail/precisez.html'}
     ]
   },
   {
