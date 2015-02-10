@@ -29,6 +29,9 @@ angular.module('impactApp')
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
               return user.data;
             });
+          },
+          currentUser: function(Auth) {
+            return Auth.getCurrentUser();
           }
         },
         authenticate: true
