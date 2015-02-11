@@ -88,7 +88,7 @@ angular.module('impactApp')
           return answer.value === value;
         });
 
-        if (answer && answer.detailModel && !section[answer.detailModel]) {
+        if (answer && answer.detailModel && angular.isUndefined(section[answer.detailModel])) {
           return true;
         }
 

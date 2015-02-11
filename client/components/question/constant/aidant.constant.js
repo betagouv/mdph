@@ -21,12 +21,14 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     model: 'lien',
-    titleDefault: 'Quel est votre lien avec <%= name %> ?',
+    titleDefault: 'Quel est votre lien avec la personne en situation de handicap ?',
+    titleRep: 'Quel est votre lien avec <%= name %> ?',
     placeholder: 'Je suis...',
     type: 'text'
   },
   {
-    titleDefault: 'Vivez-vous avec <%= name %> ?',
+    titleDefault: 'Vivez-vous avec la personne en situation de handicap ?',
+    titleRep: 'Vivez-vous avec <%= name %> ?',
     model: 'vie',
     type: 'radio',
     neededForAdmin: true,
@@ -40,7 +42,8 @@ angular.module('impactApp').constant('aidant', [
         value: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'vieDetail',
-        detailLabel: 'Depuis quand ?'
+        detailLabel: 'Depuis quand ?',
+        type: 'date'
       }
     ]
   },
@@ -104,7 +107,8 @@ angular.module('impactApp').constant('aidant', [
     ]
   },
   {
-    titleDefault: 'Quelqu\'un participe-t-il avec vous à l\'accompagnement de <%= name %> ?',
+    titleDefault: 'Quelqu\'un participe-t-il avec vous à son accompagnement ?',
+    titleRep: 'Quelqu\'un participe-t-il avec vous à l\'accompagnement de <%= name %> ?',
     model: 'accompagnement',
     type: 'checkbox',
     'answers':[
@@ -192,6 +196,6 @@ angular.module('impactApp').constant('aidant', [
   {
     model: 'autresRenseignements',
     type: 'text',
-    titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant :'
+    titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant'
   }
 ]);

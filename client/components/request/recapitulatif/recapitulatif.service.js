@@ -23,6 +23,7 @@ angular.module('impactApp')
             questionAnswer.answer = {};
             questionAnswer.answer.value = answerConstant.label;
             questionAnswer.answer.detail = getDetailAnswer(sectionId, questionConstant, answerConstant, request);
+            questionAnswer.answer.detailType = getDetailType(sectionId, questionConstant, answerConstant, request);
           }
         });
       }
@@ -55,15 +56,29 @@ angular.module('impactApp')
       return null;
     };
 
-    var questionToHtml = function(answer, question, sectionId, request) {
-      var questionAnswer = getQuestionAnswer(question, answer, sectionId, request);
+    var getDetailType = function(sectionId, questionConstant, answerConstant, request){
+      if (answerConstant.detailModel && answerConstant.type  && request.formAnswers[sectionId][answerConstant.detailModel]) {
+        return answerConstant.type;
+      }
+      return null;
+    };
 
+    var questionToHtml = function(answer, question, sectionId, request) {
+
+      var questionAnswer = getQuestionAnswer(question, answer, sectionId, request);
       if (questionAnswer && questionAnswer.answer) {
         if (questionAnswer.type === 'radio') {
           var radioBuilder = questionAnswer.title + ' : ' + questionAnswer.answer.value;
           if (questionAnswer.answer.detail) {
-            radioBuilder += '<ul><li>' + questionAnswer.answer.detail + '</li></ul>';
+            if(questionAnswer.answer.detailType === 'date'){
+              radioBuilder += '<ul><li>' + moment(questionAnswer.answer.detail).format('DD/MM/YYYY') + '</li></ul>';
+            }
+            else {
+              radioBuilder += '<ul><li>' + questionAnswer.answer.detail + '</li></ul>';
+            }
+
           }
+
           return radioBuilder;
         }
         else if (questionAnswer.type === 'checkbox') {

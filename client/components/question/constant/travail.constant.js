@@ -163,7 +163,8 @@ angular.module('impactApp').constant('travail', [
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'arretDeTravailDetail',
-        detailLabel: 'Depuis quand ?'
+        detailLabel: 'Depuis quand ?',
+        type: 'date'
       }
     ]
   },
@@ -182,7 +183,8 @@ angular.module('impactApp').constant('travail', [
         value: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'indemniteJournaliereDetail',
-        detailLabel: 'Depuis quand ?'
+        detailLabel: 'Depuis quand ?',
+        type: 'date'
       }
     ]
   },
@@ -201,7 +203,8 @@ angular.module('impactApp').constant('travail', [
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'accidentTravailDetail',
-        detailLabel: 'Depuis quand ?'
+        detailLabel: 'Depuis quand ?',
+        type: 'date'
       }
     ]
   },
@@ -220,7 +223,8 @@ angular.module('impactApp').constant('travail', [
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'profesionnelSocialDetail',
-        detailLabel: 'A quelle date ?'
+        detailLabel: 'A quelle date ?',
+        type: 'date'
       }
     ]
   },
@@ -239,7 +243,8 @@ angular.module('impactApp').constant('travail', [
         'value': true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'medecinTravailDetail',
-        detailLabel: 'A quelle date ?'
+        detailLabel: 'A quelle date ?',
+        type: 'date'
       }
     ]
   },
@@ -284,8 +289,8 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'autresRenseignements',
-    titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer :',
-    titleRep: 'Autres renseignements concernant sa vie au travail que vous souhaiteriez nous communiquer :',
+    titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer',
+    titleRep: 'Autres renseignements concernant sa vie au travail que vous souhaiteriez nous communiquer',
     type: 'text'
   },
   {
