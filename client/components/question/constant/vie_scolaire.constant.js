@@ -31,12 +31,12 @@ angular.module('impactApp').constant('vieScolaire', [
         value: 'tropJeune',
 
         detailModel: 'raisonNonScolaireTropJeune',
-        placeholder: 'A partir de quand sera-t-<%= pronoun %> scolarisé ?',
+        placeholder: 'A partir de quand sera-t-<%= pronoun %> scolarisé<%= fem %> ?',
         detailUrl: 'components/detail/precisez.html'
       },
       {
         label: 'Vous ne trouvez pas de solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
-        labelRep: '<%= pronoun %> ne trouve pas solution d\'accueil en établissement',
+        labelRep: '<%= pronoun %> ne trouve pas de solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
         value: 'etablissement',
 
         detailModel: 'raisonNonScolaireEtablissement',

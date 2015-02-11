@@ -331,7 +331,7 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
-    titleRep: 'A-t-<%= pronoun %> déjà travaillé',
+    titleRep: 'A-t-<%= pronoun %> déjà travaillé ?',
     titleDefault: 'Avez-vous déjà travaillé ?',
     type: 'radio',
     model: 'passe',

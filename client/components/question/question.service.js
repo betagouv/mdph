@@ -43,6 +43,13 @@ angular.module('impactApp')
       return question.titleDefault;
     };
 
+    var computePlaceholder = function(question, formAnswers) {
+      if (FormService.estRepresentant(formAnswers) && angular.isDefined(question.placeholder)) {
+        return loadAshCompile(question.placeholder, formAnswers);
+      }
+      return question.placeholder;
+    };
+
     var capitaliseFirstLetter = function (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     };
@@ -56,6 +63,9 @@ angular.module('impactApp')
         question.title = capitaliseFirstLetter(computeTitle(question, formAnswers));
         angular.forEach(question.answers, function(answer) {
           answer.label = capitaliseFirstLetter(computeLabel(answer, formAnswers));
+          if(answer.placeholder){
+            answer.placeholder = capitaliseFirstLetter(computePlaceholder(answer, formAnswers));
+          }
         });
         return question;
       },

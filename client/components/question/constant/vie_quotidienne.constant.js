@@ -56,7 +56,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'logement',
     neededForAdmin: true,
     titleDefault: 'Votre logement',
-    titleRep: 'Votre logement',
+    titleRep: 'Son logement',
     type: 'radio',
     answers: [
       {
@@ -220,9 +220,9 @@ angular.module('impactApp').constant('vieQuotidienne', [
       {label: 'Une aide technique, du matériel ou équipement', model: 'materiel'},
       {label: 'Vivre en établissement', model: 'etablissement'},
       {
-        label: 'Une aide financière, afin de vous assurer un revenu minimum',
-        labelRep: 'Une aide financière, afin de lui assurer un revenu minimum',
-        model: 'financierMinimum'
+        label: 'Bénéficier d\'un revenu minimum',
+        model: 'financierMinimum',
+        onlyAdult: true
       },
       {
         label: 'Un aménagement de votre lieu de vie',
