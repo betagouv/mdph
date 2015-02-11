@@ -4,21 +4,36 @@ var _ = require('lodash');
 var Partenaire = require('./partenaire.model');
 var path = require('path');
 
-// Get list of partenaires
-exports.index = function(req, res) {
-  Partenaire.find().sort('email').exec(function(err, partenaires) {
-    if(err) { return handleError(res, err); }
-    return res.json(partenaires);
-  });
-};
 
 // Get list of partenaires
+exports.index = function(req, res) {
+  if (req.query.status) {
+    Partenaire.find({certified: req.query.status}).sort('email').exec(function(err, partenaires) {
+      if(err) { return handleError(res, err); }
+      return res.json(partenaires);
+    });
+  } else {
+    Partenaire.find().sort('email').exec(function(err, partenaires) {
+      if(err) { return handleError(res, err); }
+      return res.json(partenaires);
+    });
+  }
+};
+
 exports.show = function(req, res) {
-  Partenaire.findOne({email: req.params.email}, function (err, partenaire) {
-    if (err) { return handleError(res, err); }
-    if(!partenaire) { return res.send(404); }
-    return res.json(partenaire);
-  });
+  if (req.params.email) {
+    Partenaire.findOne({email: req.params.email}, function (err, partenaire) {
+      if (err) { return handleError(res, err); }
+      if(!partenaire) { return res.send(404); }
+      return res.json(partenaire);
+    });
+  } else {
+    Partenaire.findById(req.params.id, function (err, partenaire) {
+      if (err) { return handleError(res, err); }
+      if(!partenaire) { return res.send(404); }
+      return res.json(partenaire);
+    });
+  }
 };
 
 // Creates a new partenaire in the DB.
@@ -50,13 +65,9 @@ exports.update = function(req, res) {
 
 // Deletes a partenaire from the DB.
 exports.destroy = function(req, res) {
-  Partenaire.find({email: req.params.email}, function (err, partenaire) {
+  Partenaire.remove({email: req.params.email}, function(err) {
     if(err) { return handleError(res, err); }
-    if(!partenaire) { return res.send(404); }
-    partenaire.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.send(204);
-    });
+    return res.send(204);
   });
 };
 

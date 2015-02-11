@@ -1348,8 +1348,9 @@ var createEmmaRequest = function(cb) {
 
 var createMarc = function(cb) {
   Partenaire.create({
+    name: 'Marco Livier',
     email: 'marc@marc.fr',
-    certified: 'En attente'
+    certified: 'en_attente'
   }, function(err, data) {
     console.log('finished creating user marc');
     cb();
@@ -1358,8 +1359,9 @@ var createMarc = function(cb) {
 
 var createAnne = function(cb) {
   Partenaire.create({
+    name: 'Anne Rox',
     email: 'anne@anne.fr',
-    certified: 'En attente'
+    certified: 'en_attente'
   }, function(err, data) {
     console.log('finished creating user anne');
     cb();
@@ -1368,8 +1370,9 @@ var createAnne = function(cb) {
 
 var createLeo = function(cb) {
   Partenaire.create({
+    name: 'Mu Fasa',
     email: 'leo@leo.fr',
-    certified: 'Certifié'
+    certified: 'certifie'
   }, function(err, data) {
     console.log('finished creating user leo');
     cb();
@@ -1378,8 +1381,9 @@ var createLeo = function(cb) {
 
 var createJean = function(cb) {
   Partenaire.create({
+    name: 'Jean Bon',
     email: 'jean@jean.fr',
-    certified: 'Refusé'
+    certified: 'refuse'
   }, function(err, data) {
     console.log('finished creating user bobo');
     cb();

@@ -36,7 +36,7 @@ angular.module('impactApp')
       })
       .state('dashboard.requests.list.non_attribue.detail', {
         url: '/:shortId',
-        templateUrl: 'app/dashboard/requests/detail/detail.html',
+        templateUrl: 'app/dashboard/requests/list/detail/detail.html',
         controller: 'DetailDemandeCtrl',
         resolve: {
           request: function($http, $stateParams) {
@@ -64,7 +64,7 @@ angular.module('impactApp')
       })
       .state('dashboard.requests.list.user.detail', {
         url: '/:shortId',
-        templateUrl: 'app/dashboard/requests/detail/detail.html',
+        templateUrl: 'app/dashboard/requests/list/detail/detail.html',
         controller: 'DetailDemandeCtrl',
         resolve: {
           request: function($http, $stateParams) {

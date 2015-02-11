@@ -1,50 +1,27 @@
-<div class="container">
-  <h1>Partenaires en attente</h1>
-  <div class="list-group">
-    <div class="list-group-item" ng-repeat="partenaire in partenaires | filter:{certified: 'En attente'}">
-      <div class="row">
-        <div class="col-sm-2">
-          {{partenaire.email}}
-          <br/>
-          <small class="text-muted"><i>{{partenaire.certified}}</i></small>
-        </div>
-        <div class="col-sm-offset-6 col-sm-2">
-          <div class="btn btn-success btn-block" ng-click="certifier(partenaire)">
-            Certifier
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <div class="btn btn-danger btn-block" ng-click="refuser(partenaire)">
-            Refuser
-          </div>
-        </div>
-      </div>
+<div class="container-dashboard">
+  <div class="row">
+    <div class="col-sm-2 menu-dashboard">
+      <h2>Partenaires</h2>
+      <ul>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.partenaires.list({status: 'en_attente'})">
+            En attente <span class="label label-danger pull-right">{{requests.length}}</span>
+          </a>
+        </li>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.partenaires.list({status: 'certifie'})">
+            Certifiés
+          </a>
+        </li>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.partenaires.list({status: 'refuse'})">
+            Refusés
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
-
-  <h1>Partenaires certifiés</h1>
-  <div class="list-group">
-    <div class="list-group-item" ng-repeat="partenaire in partenaires | filter:{certified: 'Certifié'}">
-      <div class="row">
-        <div class="col-sm-2">
-          {{partenaire.email}}
-          <br/>
-          <small class="text-muted"><i>{{partenaire.certified}}</i></small>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <h1>Partenaires refusés</h1>
-  <div class="list-group">
-    <div class="list-group-item" ng-repeat="partenaire in partenaires | filter:{certified: 'Refusé'}">
-      <div class="row">
-        <div class="col-sm-2">
-          {{partenaire.email}}
-          <br/>
-          <small class="text-muted"><i>{{partenaire.certified}}</i></small>
-        </div>
-      </div>
+    <div class="col-sm-10">
+      <div ui-view class="main-dashboard"></div>
     </div>
   </div>
 </div>

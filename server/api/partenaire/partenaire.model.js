@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 
 var PartenaireSchema = new Schema({
   email:      { type: String, unique: true },
-  certified:  { type: String, enum: ['En attente', 'Certifié', 'Refusé'], default: 'En attente' }
+  name:       { type: String },
+  certified:  { type: String, enum: ['en_attente', 'certifie', 'refuse'], default: 'en_attente' }
 });
 
 module.exports = mongoose.model('Partenaire', PartenaireSchema);

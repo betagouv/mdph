@@ -10,7 +10,7 @@ angular.module('impactApp').constant('SectionBackConstants', [
     label: 'Demandes en cours',
   },
   {
-    sref: 'dashboard.partenaires',
+    sref: 'dashboard.partenaires.list({status: \'en_attente\'})',
     include: 'dashboard.partenaires.**',
     fa: 'fa-briefcase',
     label: 'Gestion des partenaires'

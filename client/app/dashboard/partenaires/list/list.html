@@ -1,0 +1,29 @@
+<ui-view>
+  <div class="list-header">
+    <form class="pull-right">
+      <div class="input-group search">
+        <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-sm btn-primary">
+            Ok
+          </button>
+        </div>
+      </div>
+    </form>
+    <h2>{{title}}</h2>
+  </div>
+
+  <div class="list-main">
+    <table>
+      <tbody>
+        <tr ng-repeat="partenaire in partenaires | filter:query">
+          <td class="check-request" ng-click="partenaire.isSelected = !partenaire.isSelected">
+            <i class="fa" ng-class="{'fa-square': !partenaire.isSelected, 'fa-check-square': partenaire.isSelected}"></i>
+          </td>
+          <td class="text-left"><a ui-sref="dashboard.partenaires.list.edit({email: partenaire.email})">{{partenaire.name}}</a></td>
+          <td class="text-right"><a ui-sref="dashboard.partenaires.list.edit({email: partenaire.email})">{{partenaire.email}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ui-view>

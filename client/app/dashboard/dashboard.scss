@@ -1,3 +1,46 @@
+.container-dashboard {
+  @extend .container-fluid;
+  background-color: whitesmoke;
+  padding-top: 15px;
+  min-height: 700px;
+}
+
+.menu-dashboard {
+  h2 {
+    @extend .text-muted;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  ul {
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  li {
+    border-bottom: 1px solid #e7eaec;
+    display: block;
+
+    a {
+      padding: 5px;
+      display: block;
+
+      &.active {
+        background-color: #EFEFEF;
+      }
+    }
+  }
+}
+
+.main-dashboard {
+  background-color: white;
+  border: 1px solid $lighter-grey;
+  margin-bottom: 20px;
+}
+
 .list-header {
   padding: 30px 20px 20px 20px;
 

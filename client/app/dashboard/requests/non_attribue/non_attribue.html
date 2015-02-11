@@ -12,7 +12,7 @@
     </form>
     <h2>Non attribuées</h2>
     <div class="tools">
-      <button class="btn btn-sm btn-default">
+      <button class="btn btn-sm btn-primary">
         <i class="fa fa-download" ng-click="assigner(requests)"></i> Assigner
       </button>
       <button class="btn btn-sm btn-default" btn-checkbox ng-model="onlyUrgences">
@@ -24,8 +24,7 @@
   <div class="list-main">
     <table>
       <tbody>
-        <tr
-          ng-repeat="request in filteredRequests = (requests | filter:query | filter:filtreUrgences)">
+        <tr ng-repeat="request in filteredRequests = (requests | filter:query | filter:filtreUrgences)">
           <td class="check-request" ng-click="request.isSelected = !request.isSelected">
             <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
           </td>
