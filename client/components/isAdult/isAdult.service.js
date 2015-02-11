@@ -7,7 +7,6 @@ angular.module('impactApp')
           angular.isUndefined(contexte.dateNaissance)) {
         return true;
       }
-
       return moment().diff(contexte.dateNaissance, 'years') >= 20;
     };
   })

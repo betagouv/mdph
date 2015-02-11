@@ -5,6 +5,7 @@ angular.module('impactApp')
     travail, vieScolaire, aidant, DroitService, datepickerConfig, $sessionStorage, $timeout, $window) {
 
     $scope.sections = [SectionConstants[0], SectionConstants[2], SectionConstants[4], SectionConstants[5]];
+    $scope.isAdmin = true;
 
     $scope.questionsBySectionId = {
       contexte: contexte,
