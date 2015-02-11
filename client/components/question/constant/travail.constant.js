@@ -84,8 +84,8 @@ angular.module('impactApp').constant('travail', [
   {
     model: 'temps',
     neededForAdmin: true,
-    titleDefault: 'Votre emploi est-il a temps complet ou partiel ?',
-    titleRep: 'Son emploi est-il a temps complet ou partiel ?',
+    titleDefault: 'Votre emploi est-il à temps complet ou partiel ?',
+    titleRep: 'Son emploi est-il à temps complet ou partiel ?',
     type: 'radio',
     answers: [
       {
@@ -149,7 +149,7 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
-    titleDefault: 'Etes-vous actuellement en arrêt de travail ?',
+    titleDefault: 'Êtes-vous actuellement en arrêt de travail ?',
     titleRep: 'Est-<%= pronoun %> actuellement en arrêt de travail ?',
     model: 'arretDeTravail',
     type: 'radio',
@@ -188,7 +188,7 @@ angular.module('impactApp').constant('travail', [
   },
   {
     titleRep: 'Est-<%= pronoun %> en arrêt suite à un accident du travail ou une maladie professionnelle ?',
-    titleDefault: 'Etes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?',
+    titleDefault: 'Êtes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?',
     model: 'accidentTravail',
     type: 'radio',
     'answers': [
@@ -279,16 +279,18 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'structure',
-    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?'
+    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?',
+    titleRep: 'A-t-<%= pronoun %> déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?'
   },
   {
     model: 'autresRenseignements',
     titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer',
+    titleRep: 'Autres renseignements concernant sa vie au travail que vous souhaiteriez nous communiquer',
     type: 'text'
   },
   {
     titleRep: 'Est-<%= pronoun %> dans une des situations suivantes ?',
-    titleDefault: 'Etes-vous dans une des situations suivantes ?',
+    titleDefault: 'Êtes-vous dans une des situations suivantes ?',
     model: 'situationSansEmploi',
     type: 'checkbox',
     answers:
@@ -309,7 +311,7 @@ angular.module('impactApp').constant('travail', [
   },
   {
     titleRep: 'Est-<%= pronoun %> dans une des situations suivantes ?',
-    titleDefault: 'Etes-vous dans une des situations suivantes ?',
+    titleDefault: 'Êtes-vous dans une des situations suivantes ?',
     model: 'situationSansEmploi',
     type: 'checkbox',
     answers:

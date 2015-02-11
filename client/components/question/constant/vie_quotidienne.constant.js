@@ -54,8 +54,8 @@ angular.module('impactApp').constant('vieQuotidienne', [
   {
     model: 'logement',
     neededForAdmin: true,
-    titleDefault: 'Où logez-vous ?',
-    titleRep: 'Où loge-t-<%= pronoun %> ?',
+    titleDefault: 'Votre logement',
+    titleRep: 'Votre logement',
     type: 'radio',
     answers: [
       {
@@ -66,8 +66,8 @@ angular.module('impactApp').constant('vieQuotidienne', [
         detailModel: 'logement_independant'
       },
       {
-        label: 'Vous êtes hébergé(e) au domicile par une autre personne',
-        labelRep: '<%= pronoun %> est hébergé<%= fem %> au domicile par une autre personne',
+        label: 'Vous êtes hébergé(e) au domicile',
+        labelRep: '<%= pronoun %> est hébergé<%= fem %> au domicile',
         value: 'domicile',
         detailUrl: 'components/detail/domicile.html',
         detailModel: 'logement_domicile'
@@ -84,7 +84,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'besoinsVie',
     neededForAdmin: true,
     titleDefault: 'Vous avez besoin d\'aide dans votre vie quotidienne :',
-    titleRep: 'Elle a besoin d\'aide dans sa vie quotidienne :',
+    titleRep: '<%= pronoun %> a besoin d\'aide dans sa vie quotidienne :',
     type: 'checkbox',
     answers: [
       {
@@ -173,7 +173,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
         labelRep: 'Pour s\'équiper d\'un matériel spécifique',
         model: 'materiel'
       },
-      {label: 'Pour adapter le véhicule pour pouvoir conduire', model: 'conduite', 'onlyAdult': true},
+      {label: 'Pour adapter le véhicule pour pouvoir conduire ou être transporté', model: 'conduite', 'onlyAdult': true},
       {
         label: 'Pour aménager votre lieu de vie',
         labelRep: 'Pour aménager son lieu de vie',

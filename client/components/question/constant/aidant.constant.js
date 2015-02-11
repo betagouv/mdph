@@ -6,6 +6,7 @@ angular.module('impactApp').constant('aidant', [
   {
     model: 'condition',
     titleDefault: 'Votre aidant familial souhaite-t-il s\'exprimer ?',
+    titleRep: 'L\'aidant familial de <%= name %> souhaite-t-il s\'exprimer ?',
     type: 'radio',
     answers: [
       {
@@ -21,7 +22,7 @@ angular.module('impactApp').constant('aidant', [
   {
     model: 'lien',
     titleDefault: 'Quel est votre lien avec la personne en situation de handicap ?',
-    placeholder: 'Frère',
+    placeholder: 'Je suis...',
     type: 'text'
   },
   {
