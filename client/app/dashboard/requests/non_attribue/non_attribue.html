@@ -10,10 +10,10 @@
         </div>
       </div>
     </form>
-    <h2>{{user.name}}</h2>
+    <h2>Non attribuées</h2>
     <div class="tools">
       <button class="btn btn-sm btn-default">
-        <i class="fa fa-arrow-right" ng-click="assigner(requests)"></i> Transférer
+        <i class="fa fa-download" ng-click="assigner(requests)"></i> Assigner
       </button>
       <button class="btn btn-sm btn-default" btn-checkbox ng-model="onlyUrgences">
         <i class="fa fa-warning"></i> Urgences
@@ -30,13 +30,12 @@
             <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
           </td>
           <td>
-            <span class="user"><a ui-sref="dashboard.requests.list.user.detail({shortId: request.shortId})">{{request.user.name}}</a></span>
+            <span class="user">
+              <a ui-sref="dashboard.requests.list.non_attribue.detail({shortId: request.shortId})">{{request.user.name}}</a>
+            </span>
             <span ng-repeat="(urgence, val) in request.formAnswers.contexte.urgences">
               <span class="label label-danger" ng-if="val" >{{urgence}}</span>
             </span>
-          </td>
-          <td class="status">
-            {{request.requestStatus}}
           </td>
           <td class="date-request">{{request.createdAt | date}}</td>
         </tr>

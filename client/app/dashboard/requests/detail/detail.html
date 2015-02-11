@@ -1,49 +1,137 @@
-<div class="row">
-	<div class="col-lg-5 col-md-5 col-xs-8">
-		<div ng-if="request.requestStatus==='Emise'">
-			<h1 class="no-hr text-danger">Demande émise</h1>
-		</div>
-		<div ng-if="request.requestStatus==='Recevable'">
-			<h1 class="no-hr text-warning">Demande recevable</h1>
-		</div>
-		<div ng-if="request.requestStatus==='Complète'">
-			<h1 class="no-hr text-complete">Demande complète</h1>
-		</div>
-	</div>
-	<div class="col-lg-1 col-xs-1  col-xs-offset-3 sent">
-		<h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Emise', 'fa-folder-o': request.requestStatus!='Emise'}"></i></h1>
-	</div>
-	<div class="col-lg-1 col-xs-1 admissible">
-		<h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Recevable', 'fa-folder-o': request.requestStatus!='Recevable'}"></i></h1>
-	</div>
-	<div class="col-lg-1 col-xs-1 complete">
-		<h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Complète', 'fa-folder-o': request.requestStatus!='Complète'}"></i></h1>
-	</div>
-	<div class="col-lg-1 col-xs-1 archived">
-		<h1><i class="fa fa-folder-o"></i></h1>
-	</div>
-</div>
-<div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
-  <div class="panel-heading clearfix">
+<div class="detail-demande">
+  <a ui-sref="^">Retour</a>
+  <ui-view>
     <div class="row">
-      <div class="col-sm-8">
-        <div class="panel-title">
-          {{request.user.name}}
+      <div class="col-lg-5 col-md-5 col-xs-8">
+        <div ng-if="request.requestStatus==='Emise'">
+          <h1 class="no-hr text-danger">Demande émise</h1>
         </div>
-        <small class="pull-left">Dernière modification {{request.updatedAt | date : format : timezone}}</small>
+        <div ng-if="request.requestStatus==='Recevable'">
+          <h1 class="no-hr text-warning">Demande recevable</h1>
+        </div>
+        <div ng-if="request.requestStatus==='Complète'">
+          <h1 class="no-hr text-complete">Demande complète</h1>
+        </div>
+      </div>
+      <div class="col-lg-1 col-xs-1  col-xs-offset-3 sent">
+        <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Emise', 'fa-folder-o': request.requestStatus!='Emise'}"></i></h1>
+      </div>
+      <div class="col-lg-1 col-xs-1 admissible">
+        <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Recevable', 'fa-folder-o': request.requestStatus!='Recevable'}"></i></h1>
+      </div>
+      <div class="col-lg-1 col-xs-1 complete">
+        <h1><i class="fa fa-1x" ng-class="{'fa-folder': request.requestStatus==='Complète', 'fa-folder-o': request.requestStatus!='Complète'}"></i></h1>
+      </div>
+      <div class="col-lg-1 col-xs-1 archived">
+        <h1><i class="fa fa-folder-o"></i></h1>
       </div>
     </div>
-  </div>
-</div>
-<div id="formCard">
-  <div class="panel panel-default panel-body">
-    <div id="questionnaire">
-      <h2>Quitus</h2>
-      <ul>
-        <li ng-repeat="prestation in prestations">
-          {{prestation.label}}
-        </li>
-      </ul>
+    <div class="panel" ng-class="{'panel-danger': request.requestStatus=='Emise', 'panel-warning': request.requestStatus=='Recevable', 'panel-complete': request.requestStatus=='Complète'}">
+      <div class="panel-heading clearfix">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="panel-title">
+              {{request.user.name}}
+            </div>
+            <small class="pull-left">Dernière modification {{request.updatedAt | date: format: timezone}}</small>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div id="formCard">
+      <div class="panel panel-default panel-body">
+        <div id="questionnaire">
+          <h2>Quitus</h2>
+          <div class="list-group">
+            <div class="list-group-item" ng-if="prestations.length === 0">
+              Pas de prestations
+            </div>
+            <div class="list-group-item" ng-if="prestations.length > 0" ng-repeat="prestation in prestations">
+              {{prestation.title}}
+            </div>
+          </div>
+        </div>
+
+        <div id="obligatoire" ng-if="request.steps.length >= 2">
+          <h2>
+            Pièces obligatoires
+          </h2>
+          <file-state
+            request="request"
+            current-step-name="'obligatoire'"
+            next-step-name="'complementaire'"
+            next-step-status="'pre_evaluation'"
+            next-status="'Recevable'"
+            notification-message="'Vos pièces obligatoires ont été validées.'"
+            notification-state="'espace_perso.liste_demandes.demande.obligatoire'">
+          </file-state>
+        </div>
+
+        <div id="complementaire" ng-if="request.steps.length >= 3">
+          <h2>Pièces complémentaires</h2>
+          <small class="text-muted-primary">{{getStep('complementaire').files.length || 0}} documents demandés</small>
+
+          <div ng-if="getStep('complementaire').state === 'pre_evaluation'">
+            <div class="list-group-item" ng-if="getStep('complementaire').files.length === 0">
+              <div class="backoffice-pj">
+                <em>Aucun document sélectionné, utilisez l'outil ci-dessous pour ajouter des pièces justificatives à la demande.</em>
+              </div>
+            </div>
+            <div ng-repeat="(idx, file) in getStep('complementaire').files" ng-if="getStep('complementaire').files.length > 0" class="list-group-item">
+              <div class="row backoffice-pj">
+                <div class="col-md-8" ng-if="file.state === 'demande' ">
+                  {{file.name | documentFilter}}
+                </div>
+                <div class="col-md-2">
+                  <a ng-if="!file.assignmentLabel" class="btn btn-info btn-block" ng-click="assignDocument(file)"><i class="fa fa-pencil"></i> Assigner...</a>
+                  <div ng-if="file.assignmentLabel === 'Demandeur'"><small>{{file.assignmentLabel}}</small></div>
+                  <div ng-if="file.assignmentLabel && file.assignmentLabel !== 'Demandeur'"><small> Demandé à {{file.assignment}}</small></div>
+                </div>
+                <div class="col-md-2">
+                  <a class="btn btn-warning btn-block" ng-click="remove(getStep('complementaire').files, idx)"><i class="fa fa-times"></i> Supprimer</a>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-sm-2 col-sm-offset-10">
+                <a class="btn btn-success btn-block" ng-click="save()">
+                  <i class="fa fa-check"></i> Enregistrer
+                </a>
+              </div>
+            </div>
+
+            <br>
+
+            <document-search form="form" callback="addRequestedFile"></document-search>
+          </div>
+
+          <div ng-if="getStep('complementaire').state !== 'pre_evaluation'">
+            <file-state
+              request="request"
+              current-step-name="'complementaire'"
+              next-step-name="'evaluation'"
+              next-step-status="'en_cours'"
+              next-status="'Complète'"
+              remove-file="true"
+              notification-message="'Vos pièces complémentaires ont été validées.'"
+              notification-state="'espace_perso.liste_demandes.demande.complementaire'">
+            </file-state>
+          </div>
+
+        </div>
+        <div id="evaluation" ng-if="request.steps.length >= 4">
+          <h2>
+            Evaluation
+          </h2>
+          <a class="btn btn-success pull-right" ng-click="goNext()">
+            <span>Commencer l'évaluation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </ui-view>
 </div>

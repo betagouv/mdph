@@ -1,14 +1,24 @@
 <div class="container-demandes">
   <div class="row">
     <div class="col-sm-2 menu-demandes">
-      <h2>Répertoires</h2>
+      <h2>Mes dossiers</h2>
       <ul>
         <li>
-          <a ui-sref-active="active" ui-sref="dashboard.requests.list({userId: 'non_attribue'})">
+          <a ui-sref-active="active" ui-sref="dashboard.requests.list.user({userId: 'me'})">
+            Mes demandes
+          </a>
+        </li>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.requests.list.non_attribue">
             Non attribuées <span class="label label-danger pull-right">{{requests.length}}</span>
           </a>
         </li>
-        <li ng-repeat="user in users"><a ui-sref-active="active" ui-sref="dashboard.requests.list({userId: user._id})">{{user.name}}</a></li>
+      </ul>
+
+      <h2>Organisation</h2>
+      <ul>
+        <li ng-repeat="user in users" ng-if="user._id !== currentUser._id"><a ui-sref-active="active"
+          ui-sref="dashboard.requests.list.user({userId: user._id})">{{user.name}}</a></li>
       </ul>
     </div>
     <div class="col-sm-10">

@@ -10,12 +10,6 @@ angular.module('impactApp').constant('SectionBackConstants', [
     label: 'Demandes en cours',
   },
   {
-    sref: 'dashboard.repartition_demandes',
-    include: 'dashboard.repartition_demandes.**',
-    fa: 'fa-pie-chart',
-    label: 'Mes demandes'
-  },
-  {
     sref: 'dashboard.partenaires',
     include: 'dashboard.partenaires.**',
     fa: 'fa-briefcase',
