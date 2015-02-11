@@ -20,7 +20,8 @@ angular.module('impactApp').constant('vieQuotidienne', [
         label: 'Seul(e)',
         labelRepMasc: 'Seul',
         labelRepFem: 'Seule',
-        value: 'seul'
+        value: 'seul',
+        onlyAdult: true
       },
       {
         label: 'En couple',
@@ -63,7 +64,8 @@ angular.module('impactApp').constant('vieQuotidienne', [
         labelRep: '<%= pronoun %> a un logement indépendant',
         value: 'independant', // TODO a verifier onlyAdult: true,
         detailUrl: 'components/detail/independant.html',
-        detailModel: 'logement_independant'
+        detailModel: 'logement_independant',
+        onlyAdult: true
       },
       {
         label: 'Vous êtes hébergé(e) au domicile',
@@ -92,20 +94,39 @@ angular.module('impactApp').constant('vieQuotidienne', [
         model: 'courant',
         onlyAdult: true
       },
-      {label: 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )', model: 'budget', onlyAdult: true},
+      {
+        label: 'Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )',
+        model: 'budget',
+        onlyAdult: true
+      },
       {
         label: 'Pour l\'hygiène corporelle (se laver, aller aux toilette)',
         model: 'hygiene'
       },
       {
-        label: 'Pour vous habiller (mettre et ôter vos vêtements, les choisir ....)',
-        labelRep: 'Pour s\'habiller (mettre et ôter ses vêtements, les choisir ....)',
+        label: 'Pour vous habiller (mettre et ôter vos vêtements, les choisir ...)',
+        labelRep: 'Pour s\'habiller (mettre et ôter ses vêtements, les choisir ...)',
         model: 'habits'
       },
-      {label: 'Pour faire les courses', model: 'courses'},
-      {label: 'Pour préparer les repas', model: 'cuisine', onlyAdult: true},
-      {label: 'Pour prendre les repas', model: 'repas'},
-      {label: 'Pour faire le ménage et l\'entretien des vêtements', model: 'menage', onlyAdult: true},
+      {
+        label: 'Pour faire les courses',
+        model: 'courses',
+        onlyAdult: true
+      },
+      {
+        label: 'Pour préparer les repas',
+        model: 'cuisine',
+        onlyAdult: true
+      },
+      {
+        label: 'Pour prendre les repas',
+        model: 'repas'
+      },
+      {
+        label: 'Pour faire le ménage et l\'entretien des vêtements',
+        model: 'menage',
+        onlyAdult: true
+      },
       {
         label: 'Pour prendre soin de votre santé (suivre un traitement, aller en consultation... )',
         labelRep: 'Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )',
@@ -146,12 +167,14 @@ angular.module('impactApp').constant('vieQuotidienne', [
       {
         label: 'Pour vous occuper de votre famille',
         labelRep: 'Pour s\'occuper de sa famille',
-        model: 'famille', 'onlyAdult': true
+        model: 'famille',
+        onlyAdult: true
       },
       {
         label: 'Pour vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative ...)',
         labelRep: 'Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative ...)',
-        model: 'citoyen', 'onlyAdult': true
+        model: 'citoyen',
+        onlyAdult: true
       },
       {
         label: 'Pour assurer votre sécurité',
@@ -173,7 +196,10 @@ angular.module('impactApp').constant('vieQuotidienne', [
         labelRep: 'Pour s\'équiper d\'un matériel spécifique',
         model: 'materiel'
       },
-      {label: 'Pour adapter le véhicule pour pouvoir conduire ou être transporté', model: 'conduite', 'onlyAdult': true},
+      {
+        label: 'Pour adapter le véhicule pour pouvoir conduire ou être transporté',
+        model: 'conduite'
+      },
       {
         label: 'Pour aménager votre lieu de vie',
         labelRep: 'Pour aménager son lieu de vie',

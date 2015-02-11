@@ -21,12 +21,12 @@ angular.module('impactApp').constant('aidant', [
   },
   {
     model: 'lien',
-    titleDefault: 'Quel est votre lien avec la personne en situation de handicap ?',
+    titleDefault: 'Quel est votre lien avec <%= name %> ?',
     placeholder: 'Je suis...',
     type: 'text'
   },
   {
-    titleDefault: 'Vivez-vous avec la personne en situation de handicap ?',
+    titleDefault: 'Vivez-vous avec <%= name %> ?',
     model: 'vie',
     type: 'radio',
     neededForAdmin: true,
@@ -104,7 +104,7 @@ angular.module('impactApp').constant('aidant', [
     ]
   },
   {
-    titleDefault: 'Quelqu\'un participe-t-il avec vous à l\'accompagnement de la personne aidée ?',
+    titleDefault: 'Quelqu\'un participe-t-il avec vous à l\'accompagnement de <%= name %> ?',
     model: 'accompagnement',
     type: 'checkbox',
     'answers':[
@@ -122,7 +122,7 @@ angular.module('impactApp').constant('aidant', [
     ]
   },
   {
-    titleDefault: 'En cas d\'empêchement, avez-vous prévu une solution pour vous remplacer ?',
+    titleDefault: 'En cas d\'empêchement, avez-vous une solution pour vous remplacer ?',
     model: 'empechement',
     type: 'radio',
     answers: [
@@ -165,7 +165,7 @@ angular.module('impactApp').constant('aidant', [
   {
     model: 'structure',
     type: 'structure',
-    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes?'
+    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?'
   },
   {
     titleDefault: 'Quelles sont vos attentes en tant qu\'aidant familial ?',
@@ -192,6 +192,6 @@ angular.module('impactApp').constant('aidant', [
   {
     model: 'autresRenseignements',
     type: 'text',
-    titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant'
+    titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant :'
   }
 ]);

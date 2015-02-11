@@ -284,8 +284,8 @@ angular.module('impactApp').constant('travail', [
   },
   {
     model: 'autresRenseignements',
-    titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer',
-    titleRep: 'Autres renseignements concernant sa vie au travail que vous souhaiteriez nous communiquer',
+    titleDefault: 'Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer :',
+    titleRep: 'Autres renseignements concernant sa vie au travail que vous souhaiteriez nous communiquer :',
     type: 'text'
   },
   {

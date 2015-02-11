@@ -128,7 +128,8 @@ angular.module('impactApp').constant('contexte', [
         detailModel: 'travailDetail',
         detailUrl: 'components/detail/precisez_big.html',
         placeholder: 'Expliquez la difficulté',
-        model: 'travail'
+        model: 'travail',
+        onlyAdult: true
       },
       {
         label: 'Vous commencez bientôt une nouvelle formation',
@@ -136,7 +137,8 @@ angular.module('impactApp').constant('contexte', [
         detailModel: 'formationDetail',
         detailUrl: 'components/detail/precisez_date.html',
         detailLabel: 'Date d\'entrée prévue',
-        model: 'formation'
+        model: 'formation',
+        onlyAdult: true
       }
     ]
   },

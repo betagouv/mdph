@@ -76,7 +76,7 @@ angular.module('impactApp').constant('vieScolaire', [
 
         detailUrl: 'components/detail/precisez_yes_no.html',
         detailModel: 'vieScolaireTypeInternat',
-        detailLabel: 'Les frais de séjour sont-ils intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale?'
+        detailLabel: 'Les frais de séjour sont-ils intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale ?'
       },
       {
         label: 'Avec accompagnement par un établissement médico-social',
