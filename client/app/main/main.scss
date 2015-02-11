@@ -140,17 +140,6 @@
     }
 }
 
-$footer-height: 60px;
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: $footer-height;
-}
-
 .footer {
     text-align: center;
     padding: 20px 0;
@@ -158,14 +147,5 @@ body {
       color: #eee;
     }
     background-color: $light-blue;
-
-    // Stick it
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: $footer-height;
 }
 
-#push {
-    height: 60px;
-}

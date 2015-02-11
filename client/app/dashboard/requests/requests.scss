@@ -2,7 +2,7 @@
   @extend .container-fluid;
   background-color: whitesmoke;
   padding-top: 15px;
-  min-height: 600px;
+  min-height: 700px;
 }
 
 .menu-demandes {
@@ -38,6 +38,6 @@
 .main-demandes {
   background-color: white;
   border: 1px solid $lighter-grey;
-  min-height: 500px;
+  margin-bottom: 20px;
 }
 
