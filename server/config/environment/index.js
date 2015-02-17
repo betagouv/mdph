@@ -41,6 +41,9 @@ var all = {
     }
   },
 
+  // Cerfa form filler
+  cerfaFormFillerUrl: process.env.CERFA_FORM_FILLER_URL
+
 };
 
 // Export the config object based on the NODE_ENV

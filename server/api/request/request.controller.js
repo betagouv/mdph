@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var path = require('path');
+var superagent = require('superagent');
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var Request = require('./request.model');
@@ -182,6 +183,16 @@ exports.saveDocument = function (req, res, next) {
         res.send(request);
       });
     });
+};
+
+exports.getCerfa = function(req, res) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    superagent
+        .post(config.cerfaFormFillerUrl + '/impact')
+        .send(request)
+        .on('error', handleError)
+        .pipe(res);
+  });
 };
 
 function handleError(res, err) {
