@@ -1,1 +1,73 @@
-<h1>Hello world</h1>
+<div class="nav-questionnaire">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a ui-sref="departement.questionnaire">Questionnaire</a></li>
+      <li class="active">Identité</li>
+    </ol>
+  </div>
+</div>
+
+<div class="questionnaire">
+  <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
+
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Sexe</label>
+      <div class="col-sm-10">
+        <label class="checkbox-inline">
+          <input type="checkbox" id="inlineCheckbox3" value="option3"> Masculin
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="inlineCheckbox3" value="option3"> Féminin
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Nom</label>
+      <div class="col-sm-10">
+        <input id="name" type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="3" required>
+        <div ng-messages="infoForm.name.$error" ng-if="infoForm.$dirty">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 3 caractères.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <div class="input-group margin-bottom-sm">
+          <input id="email" type="email" name="email" class="form-control" ng-model="user.email" required>
+          <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+        </div>
+        <div ng-messages="infoForm.email.$error" ng-if="infoForm.$dirty">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="birthDate" class="col-sm-2 control-label">Date de naissance</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input id="birthDate" type="text" name="birthDate" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="user.birthDate" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
+          <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button>
+          </span>
+        </div>
+
+        <div ng-messages="infoForm.birthDate.$error" ng-if="infoForm.$dirty">
+          <p class="help-block" ng-message='date'>Le format de date est invalide.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="help-block"> {{ infoMessage }} </p>
+
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-10">
+        <button type="submit" name="submit" alt="Valider" class="btn btn-block btn-success">Valider</button>
+      </div>
+    </div>
+  </form>
+</div>
