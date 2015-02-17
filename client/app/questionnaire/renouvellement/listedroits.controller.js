@@ -6,15 +6,12 @@ angular.module('impactApp')
       $scope.formAnswers.prestations = {};
     }
 
+    $scope.isLastQuestion = true;
     $scope.prestations = prestations;
     $scope.question = QuestionService.get('renouvellement', 'finDroits', $scope.formAnswers);
     datepickerConfig.datepickerMode = 'day';
 
     $scope.nextStep = function() {
-      if ($scope.sectionModel.evolution === 'stable') {
-        $state.go('^.preciser_projet');
-      } else {
-        $state.go('^.^.vie_quotidienne.situation.vie_famille');
-      }
+      $state.go('departement.questionnaire');
     };
   });

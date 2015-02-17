@@ -32,20 +32,5 @@ angular.module('impactApp').constant('renouvellement', [
     titleDefault: 'De quelles prestations bénéficiez-vous actuellement ?',
     titleRep: 'De quelles prestations bénéficie-t-<%= pronoun %> actuellement ?',
     type: 'checkbox'
-  },
-  {
-    model: 'preciserProjet',
-    titleDefault: 'Souhaitez-vous préciser votre projet de vie ?',
-    type: 'radio',
-    answers: [
-      {
-        label: 'Oui',
-        value: true
-      },
-      {
-        label: 'Non',
-        value: false
-      }
-    ]
   }
 ]);

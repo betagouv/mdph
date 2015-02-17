@@ -7,9 +7,5 @@ angular.module('impactApp')
         url: '/questionnaire',
         templateUrl: 'app/questionnaire/questionnaire.html',
         controller: 'QuestionnaireCtrl'
-      })
-      .state('departement.questionnaire.question_renouvellement', {
-        url: '/renouvellement',
-        templateUrl: 'app/questionnaire/question_renouvellement.html'
       });
   });

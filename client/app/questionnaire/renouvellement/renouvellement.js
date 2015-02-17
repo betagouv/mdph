@@ -2,16 +2,16 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-  var index = 'departement.questionnaire.projet_de_vie.renouvellement';
+  var index = 'departement.questionnaire.renouvellement';
   $stateProvider
     .state(index, {
       url: '/renouvellement',
-      template: '<div class="container"><ui-view/></div>',
+      templateUrl: 'app/questionnaire/renouvellement/renouvellement.html',
       controller: 'RenouvellementsCtrl',
       abstract: true
     })
     .state(index + '.evolution', {
-      url: '',
+      url: '/evolution',
       templateUrl: 'components/question/radio.html',
       controller: 'EvolutionCtrl'
     })
@@ -26,12 +26,8 @@ angular.module('impactApp')
           });
         }
       }
-    })
-    .state(index + '.preciser_projet', {
-      url: '/preciser_projet',
-      templateUrl: 'components/question/radio.html',
-      controller: 'PreciserProjetCtrl'
     });
+
     // .state(index + '.taux', {
     //   url: '/taux',
     //   templateUrl: 'components/question/radio.html',
