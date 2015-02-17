@@ -315,27 +315,6 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
-    titleRep: 'Est-<%= pronoun %> dans une des situations suivantes ?',
-    titleDefault: 'Êtes-vous dans une des situations suivantes ?',
-    model: 'situationSansEmploi',
-    type: 'checkbox',
-    answers:
-    [
-      {
-        label: 'Inscrit à pôle emploi',
-        model: 'poleEmploi'
-      },
-      {
-        label: 'En formation continue',
-        model: 'formation'
-      },
-      {
-        label: 'Etudiant',
-        model: 'etudiant'
-      }
-    ]
-  },
-  {
     titleRep: 'A-t-<%= pronoun %> déjà travaillé ?',
     titleDefault: 'Avez-vous déjà travaillé ?',
     type: 'radio',

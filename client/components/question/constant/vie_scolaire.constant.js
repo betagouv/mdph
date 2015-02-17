@@ -100,6 +100,7 @@ angular.module('impactApp').constant('vieScolaire', [
   },
   {
     model: 'etablissement',
-    titleDefault: 'Dans quel(s) établissement(s) ?'
+    titleDefault: 'Dans quel(s) établissement(s) ?',
+    type:'text'
   }
 ]);

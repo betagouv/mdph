@@ -251,6 +251,6 @@ angular.module('impactApp').constant('vieQuotidienne', [
   {
     model: 'autresRenseignements',
     titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer',
-    type: 'checkbox'
+    type: 'text'
   }
 ]);

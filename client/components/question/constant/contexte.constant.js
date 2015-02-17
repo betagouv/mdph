@@ -43,12 +43,6 @@ angular.module('impactApp').constant('contexte', [
     ]
   },
   {
-    model: 'mdph',
-    titleDefault: 'Quelle est votre Mdph ?',
-    titleRep: 'Quelle est la Mdph de <%= name %> ?',
-    type: 'mdph'
-  },
-  {
     model: 'nouveauDossier',
     titleDefault: 'Est-ce votre premier dossier ?',
     titleRep: 'Est-ce son premier dossier ?',
