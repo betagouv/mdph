@@ -12,5 +12,6 @@ angular.module('impactApp')
 
     RequestService.setCurrentMdph($scope.currentMdph);
 
+    $scope.currentRequest.identite = {completion: 50};
     $scope.formAnswers = $scope.currentRequest.formAnswers;
   });

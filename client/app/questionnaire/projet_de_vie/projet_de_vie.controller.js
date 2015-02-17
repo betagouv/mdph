@@ -12,8 +12,4 @@ angular.module('impactApp')
     $scope.encode = function(json) {
       return encodeURIComponent(JSON.stringify(json));
     };
-
-    $scope.previousStep = function() {
-      $window.history.back();
-    };
   });

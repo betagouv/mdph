@@ -6,7 +6,7 @@ angular.module('impactApp')
       templateUrl: 'components/subsection/subsection.html',
       restrict: 'EA',
       controller: function ($scope, $state) {
-        $scope.isSelected = function(subsection) {
+        $scope.isActive = function(subsection) {
           return $state.includes(subsection.include);
         };
 

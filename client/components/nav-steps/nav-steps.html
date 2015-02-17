@@ -1,12 +1,13 @@
 <div class="row nav-steps">
-  <div class="col-sm-2" ng-hide="hidePrecedent">
+  <div class="col-sm-2" ng-if="!hideBack">
     <button class="btn btn-default btn-block" ng-click="previousStep()">
       Précédent
     </button>
   </div>
-  <div class="col-sm-2" ng-class="{'col-sm-offset-10': hidePrecedent, 'col-sm-offset-8': !hidePrecedent}">
-    <button class="btn btn-primary btn-block" ng-disabled="isNextStepDisabled()" ng-click="nextStep()">
-      Suivant
+  <div class="col-sm-2" ng-class="{'col-sm-offset-10': hideBack, 'col-sm-offset-8': !hideBack}">
+    <button class="btn btn-block" ng-disabled="isNextStepDisabled()" ng-click="nextStep()"
+      ng-class="{'btn-primary': !isLastQuestion, 'btn-success': isLastQuestion}">
+      {{isLastQuestion ? 'Valider' : 'Suivant'}}
     </button>
   </div>
 </div>

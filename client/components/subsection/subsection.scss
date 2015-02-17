@@ -1,8 +1,3 @@
-.section-nav-steps {
-  background-color: $bg-blue;
-  padding: 10px 0;
-}
-
 .nav-section {
   margin-right: 7px;
   position: relative;
@@ -18,8 +13,7 @@
     height: 32px;
     padding: 6px 15px;
     float: left;
-    color: white;
-    background: $disabled-blue;
+    background-color: whitesmoke;
 
     span {
       padding: 0 15px;
@@ -38,8 +32,8 @@
     &.showBefore:before {
       width: 0;
       height: 0;
-      border-top: 16px solid $disabled-blue;
-      border-bottom: 16px solid $disabled-blue;
+      border-top: 16px solid whitesmoke;
+      border-bottom: 16px solid whitesmoke;
       border-left: 16px solid transparent;
       position: absolute;
       content: "";
@@ -48,12 +42,7 @@
     }
 
     &.active.showBefore:before {
-      border-color: $light-red;
-      border-left:16px solid transparent;
-    }
-
-    &.active:hover:before {
-      border-color: $medium-red;
+      border-color: darken(whitesmoke, 10%);
       border-left:16px solid transparent;
     }
 
@@ -62,7 +51,7 @@
       height: 0;
       border-top: 16px solid transparent;
       border-bottom: 16px solid transparent;
-      border-left:16px solid $disabled-blue;
+      border-left:16px solid whitesmoke;
       position: absolute;
       content: "";
       top: 0px;
@@ -70,19 +59,11 @@
     }
 
     &.active:after {
-      border-left:16px solid $light-red;
-    }
-
-    &.active:hover:after {
-      border-left:16px solid $medium-red;
+      border-left:16px solid darken(whitesmoke, 10%);
     }
 
     &.active {
-      background: $light-red;
-      color: $active-text !important;
-      &:hover {
-        background-color: $medium-red;
-      }
+      background-color: darken(whitesmoke, 10%);
     }
   }
 }

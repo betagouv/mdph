@@ -45,10 +45,7 @@ $disabled-blue: lighten($light-blue, 30%);
 .banner {
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     color: $light-white;
-    border-top: 5px solid $dark-blue;
     background: $light-blue;
-    border-bottom: 3px solid $lighter-blue;
-    margin-top: -20px;
 }
 
 .row.push-down {
@@ -82,6 +79,7 @@ $disabled-blue: lighten($light-blue, 30%);
 @import 'qtitle/qtitle.scss';
 @import 'question/droits.scss';
 @import 'question/structure.scss';
+@import 'section-progress-bar/section-progress-bar.scss';
 @import 'subsection/subsection.scss';
 @import 'well/well.scss';
 // endinjector

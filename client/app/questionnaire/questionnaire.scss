@@ -1,92 +1,85 @@
-.row-pull-down {
-  margin-top: 20px;
+.nav-questionnaire {
+  background-color: rgb(231, 231, 231);
 
-  div {
-    padding: 10px;
+  ol {
+    margin: 0;
   }
 
-  .btn {
-    color: $lighter-blue;
+  .breadcrumb {
+    background-color: rgb(231, 231, 231);
+    margin: 3px 0;
+    float: left;
+  }
+
+  .sub-sections {
+    padding-top: 5px;
+    float: right;
   }
 }
 
-.nav-form {
-  border-radius: 0;
-  border-left: 0;
-  border-right: 0;
-  padding: 10px 0;
-  margin-top: 0;
+.questionnaire {
+  @extend .container;
+  margin-top: 20px;
+  margin-bottom: 30px;
 
-  .navbar-collapse {
-    text-align: center;
-    border: 0;
+  .category {
+    margin-bottom: 2em;
+    border: 1px solid $light-grey;
   }
 
-  p {
-    margin: 0;
-    font-size: 15px;
-  }
+  .section {
+    display: block;
+    border-bottom: 1px solid #EAEAEA;
 
-  a {
-    display: inline-block;
-    color: $light-white;
-    text-align: center;
-    padding: 5px;
-    min-width: 140px;
-
-    &.active {
-      background-color: $light-blue;
-      border-radius: 5px;
-      text-decoration: none;
+    .fa-chevron-circle-right {
+      font-size: 24px;
+      color: lighten($light-blue, 45%);
     }
 
     &:hover {
-      background-color: lighten($light-blue, 3%);
-      border-radius: 5px;
+      background-color: whitesmoke;
       text-decoration: none;
-    }
 
-    &.disabled {
-      color: white;
-      font-weight: 100;
-      opacity: 0.7;
-      cursor: default;
-      p {
-        opacity: 0.7;
-      }
-      p:hover {
-        text-decoration: none;
-      }
-    }
-
-    &.optionnal {
-      p {
-        font-weight: 100;
-        font-style: italic !important;
+      .fa-chevron-circle-right {
+        color: lighten($light-blue, 15%);
       }
     }
   }
-}
 
-.btn-answer {
-  padding-left: 15px;
-  border-bottom: 2px solid $light-grey;
-  text-align: left;
-  i {
-    color: $light-grey;
-    margin-right: 15px;
-  }
+  .section-body {
+    padding: 10px;
 
-  &.active {
-    border-bottom: 2px solid $primary;
-    background-color: white;
-
-    i {
-      color: $primary;
+    .left {
+      float: left;
+      margin-right: 15px;
     }
   }
-}
 
-.answer {
-  margin-bottom: 8px;
+  h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    margin: 0;
+    color: $light-blue;
+  }
+
+  p {
+    color: #333;
+    font-size: 0.9em;
+    font-style: italic;
+  }
+
+  .abstract-footer {
+    text-align: right;
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+
+  .footer-required {
+    @extend .abstract-footer;
+    font-weight: 600;
+  }
 }

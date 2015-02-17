@@ -6,11 +6,10 @@ angular.module('impactApp')
       .state('departement.questionnaire', {
         url: '/questionnaire',
         templateUrl: 'app/questionnaire/questionnaire.html',
-        controller: 'QuestionnaireCtrl',
-        abstract: true
+        controller: 'QuestionnaireCtrl'
       })
       .state('departement.questionnaire.question_renouvellement', {
-        url: '',
+        url: '/renouvellement',
         templateUrl: 'app/questionnaire/question_renouvellement.html'
       });
   });

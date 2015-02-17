@@ -1,3 +1,115 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<ui-view></ui-view>
+<ui-view>
+
+<div class="nav-questionnaire">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="active">Questionnaire</li>
+    </ol>
+  </div>
+</div>
+
+<div class="questionnaire">
+
+  <h1>Renseignements obligatoires</h1>
+  <div class="category">
+    <a class="section" ui-sref=".identite">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h2>Identité</h2>
+          <p>Identité de l'enfant ou de l'adulte concerné par la demande</p>
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-4">
+              <section-progress-bar section="currentRequest.identite"></section-progress-bar>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a class="section" ui-sref=".autorite">  <!-- ng-if="estMineur" -->
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h2>Autorité parentale</h2>
+          <p>Identité de l'autorité parentale ou délégation d'autorité parentale</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="section" ui-sref=".vie_quotidienne.situation.vie_famille">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h2>Vie quotidienne</h2>
+          <p></p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <h1>Renseignements optionnels</h1>
+  <div class="category">
+    <a class="section" ui-sref=".vie_scolaire.situation.condition">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h2>Vie scolaire ou étudiante</h2>
+          <p>Si votre demande concerne votre scolarité ou vie étudiante</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="section" ui-sref=".vie_au_travail.situation_professionnelle.condition">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h2>Vie au travail</h2>
+          <p>Si votre demande concerne votre projet professionnel</p>
+        </div>
+      </div>
+    </a>
+    <a class="section" ui-sref=".aidant.situation.lien">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h2>Vie de votre aidant familial</h2>
+          <p>Si vous souhaitez exprimer des besoins en tant qu'aidant familial</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="section" ui-sref=".aide_partenaire">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h2>Vous êtes aidés dans vos démarches</h2>
+          <p>Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="text-right">
+    <a class="btn btn-lg btn-default">Sauvegarder</a>
+    <a class="btn btn-lg btn-primary">Envoyer</a>
+  </div>
+</div>
+
+</ui-view>
