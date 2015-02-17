@@ -19,7 +19,8 @@
     Questionnaire
   </h1>
 
-  <a class="btn btn-primary btn-lg" ui-sref="departement.questionnaire.projet_de_vie.informations.representant({codeDepartement: currentRequest.mdph.zipcode})">
+  <a class="btn btn-primary btn-lg" ui-sref="departement.questionnaire({codeDepartement: currentRequest.mdph.zipcode,
+    id: currentRequest.shortId})">
     Consultez votre questionnaire
   </a>
 

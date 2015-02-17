@@ -5,17 +5,11 @@ angular.module('impactApp')
     $stateProvider
       .state('departement', {
         url: '/mdph/:codeDepartement',
-        templateUrl: 'app/main/main.html',
+        templateUrl: 'app/departement/departement.html',
         controller: 'DepartementCtrl',
         resolve: {
-          mdph: function(Mdph, $stateParams, $state) {
-            return Mdph.get({codeDepartement: $stateParams.codeDepartement},
-              function(data) {
-                return data;
-              },
-              function() {
-                $state.go('choix_mdph');
-            });
+          mdph: function(Mdph, $stateParams) {
+            return Mdph.get({codeDepartement: $stateParams.codeDepartement});
           }
         }
       });

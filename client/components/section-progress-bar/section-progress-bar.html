@@ -1,10 +1,11 @@
+<span class="progress-desc" ng-if="completion === 0">Non renseigné</span>
+<span class="progress-desc" ng-if="completion === 50">En cours</span>
+<span class="progress-desc" ng-if="completion === 100">Complet</span>
+
 <div class="progress">
   <div class="progress-bar progress-bar-info progress-bar-striped"
     role="progressbar"
-    aria-valuenow="{{section.completion}}" aria-valuemin="0" aria-valuemax="100"
-    style="width: {{section.completion}}%">
-    <span class="sr-only" ng-if="section.completion === 0">Section non renseignée</span>
-    <span class="sr-only" ng-if="section.completion === 0">Section en cours de renseignement</span>
-    <span class="sr-only" ng-if="section.completion === 0">Section renseignée</span>
+    aria-valuenow="{{completion}}" aria-valuemin="0" aria-valuemax="100"
+    style="width: {{completion}}%">
   </div>
 </div>

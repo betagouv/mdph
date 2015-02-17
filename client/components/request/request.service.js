@@ -70,10 +70,6 @@ angular.module('impactApp')
         if (cb) { cb(); }
       },
 
-      setCurrentMdph: function(mdph) {
-        currentRequest.mdph = mdph;
-      },
-
       getCurrentStep: function(request) {
         if (!request || !request.steps) {
           return undefined;

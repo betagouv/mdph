@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ChoixMdphCtrl', function ($scope, $state, $filter, mdphs, RequestService) {
+  .controller('ChoixMdphCtrl', function ($scope, $state, $filter, mdphs) {
     $scope.mdphs = mdphs;
     $scope.regions = _.groupBy(mdphs, 'nom_de_la_region');
 
@@ -18,11 +18,5 @@ angular.module('impactApp')
       });
 
       return filteredRegions;
-    };
-
-    $scope.resetCurrentRequest = function(mdph) {
-      RequestService.resetCurrent(function () {
-        $state.go('departement.questionnaire.question_renouvellement', {codeDepartement: mdph.code_departement});
-      });
     };
 });

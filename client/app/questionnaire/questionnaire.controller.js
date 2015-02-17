@@ -1,17 +1,15 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('QuestionnaireCtrl', function ($scope, RequestService, RequestResource) {
-    $scope.currentRequest = RequestService.getCurrent();
-
-    if (!$scope.currentRequest) {
-      $scope.currentRequest = new RequestResource();
-      $scope.currentRequest.formAnswers = {};
-      RequestService.setCurrent($scope.currentRequest);
-    }
-
-    RequestService.setCurrentMdph($scope.currentMdph);
-
-    $scope.currentRequest.identite = {completion: 50};
+  .controller('QuestionnaireCtrl', function ($scope, request) {
+    $scope.currentRequest = request;
     $scope.formAnswers = $scope.currentRequest.formAnswers;
+
+    $scope.getCompletion = function(section) {
+      if (typeof $scope.formAnswers[section] === 'undefined') {
+        return 0;
+      }
+
+      return 50;
+    };
   });
