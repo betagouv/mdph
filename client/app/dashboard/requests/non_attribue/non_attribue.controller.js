@@ -15,7 +15,7 @@ angular.module('impactApp')
         }
       });
 
-      $state.go('dashboard.requests.list', {userId: $scope.currentUser._id});
+      $state.go('dashboard.requests.list.user', {userId: $scope.currentUser._id});
     };
 
     $scope.filtreUrgences = function(value) {

@@ -16,7 +16,7 @@
     cursor: pointer;
     z-index: 0;
     border: 1px solid $border-blue;
-    background: #FFF;
+    background-color: $bg-blue;
     display: inline-block;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -24,7 +24,7 @@
 
     a {
       padding: 10px 20px;
-      color: $lighter-blue;
+      color: white;
       text-decoration: none;
       &:hover {
         text-decoration: none;
@@ -33,10 +33,10 @@
 
     &.selected {
       z-index: 2;
-      border-bottom-color: $bg-blue;
-      background-color: $bg-blue;
+      border-bottom-color: whitesmoke;
+      background-color: whitesmoke;
       a {
-        color: white;
+        color: black;
       }
     }
 
@@ -60,19 +60,19 @@
     &.optionnal {
 
       a {
-        color: $lighter-blue;
+        color: white;
         font-weight: 300;
         font-style: italic;
       }
 
-      background-color: lighten($lighter-blue, 60%);
+      background-color: lighten($lighter-blue, 20%);
 
       &.selected {
         z-index: 2;
-        border-bottom-color: $bg-blue;
-        background-color: $bg-blue;
+        border-bottom-color: whitesmoke;
+        background-color: whitesmoke;
         a {
-          color: white;
+          color: black;
         }
 
       }
@@ -111,24 +111,24 @@
 .tabrow li:before {
   border-bottom-right-radius: 6px;
   border-width: 0 1px 1px 0;
-  box-shadow: 2px 0px 0 #FFF;
+  box-shadow: 2px 0px 0 $bg-blue;
 }
 
 .tabrow li:after {
   border-bottom-left-radius: 6px;
   border-width: 0 0 1px 1px;
-  box-shadow: -2px 0px 0 #FFF;
+  box-shadow: -2px 0px 0 $bg-blue;
 }
 
 .tabrow li.selected:before {
-  box-shadow: 2px 2px 0 $bg-blue;
+  box-shadow: 2px 2px 0 whitesmoke;
 }
 
 .tabrow li.selected:after {
-  box-shadow: -2px 2px 0 $bg-blue;
+  box-shadow: -2px 2px 0 whitesmoke;
 }
 
 #push-down {
   height: 5px;
-  background-color: $bg-blue;
+  background-color: whitesmoke;
 }

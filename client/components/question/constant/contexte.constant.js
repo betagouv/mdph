@@ -35,7 +35,7 @@ angular.module('impactApp').constant('contexte', [
         value: 'tuteur'
       },
       {
-        label: 'Vous êtes un ami, proche, curateur, établissement de santé, etc...',
+        label: 'Vous êtes un ami, proche, curateur, établissement de santé, etc.',
         value: 'autre',
         detailModel: 'consentementDetail',
         detailUrl: 'components/detail/consentement.html'

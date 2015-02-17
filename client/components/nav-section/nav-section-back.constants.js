@@ -19,7 +19,7 @@ angular.module('impactApp').constant('SectionBackConstants', [
     sref: 'dashboard.users',
     include: 'dashboard.users.**',
     fa: 'fa-user',
-    label: 'Gestion des utilisateurs'
+    label: 'Gestion des collaborateurs'
   },
   {
     sref: 'dashboard.simulation',

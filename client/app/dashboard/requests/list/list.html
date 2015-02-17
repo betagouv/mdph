@@ -10,7 +10,7 @@
         </div>
       </div>
     </form>
-    <h2>{{user.name}}</h2>
+    <h2>{{user._id === 'me' ? 'Vos demandes' : user.name}}</h2>
     <div class="tools">
       <button class="btn btn-sm btn-default">
         <i class="fa fa-arrow-right" ng-click="assigner(requests)"></i> Transférer
@@ -30,7 +30,14 @@
             <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
           </td>
           <td>
-            <span class="user"><a ui-sref="dashboard.requests.list.user.detail({shortId: request.shortId})">{{request.user.name}}</a></span>
+            <span class="user">
+              <a ui-sref="dashboard.requests.list.user.detail({shortId: request.shortId})">
+                <span ng-if="request.formAnswers.contexte.urgences">
+                  <i class="fa fa-warning"></i>
+                </span>
+                {{request.user.name}}
+              </a>
+            </span>
             <span ng-repeat="(urgence, val) in request.formAnswers.contexte.urgences">
               <span class="label label-danger" ng-if="val" >{{urgence}}</span>
             </span>

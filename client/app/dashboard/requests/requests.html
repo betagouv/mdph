@@ -1,11 +1,11 @@
 <div class="container-dashboard">
   <div class="row">
     <div class="col-sm-2 menu-dashboard">
-      <h2>Mes dossiers</h2>
+      <h2>Demandes en cours</h2>
       <ul>
         <li>
           <a ui-sref-active="active" ui-sref="dashboard.requests.list.user({userId: 'me'})">
-            Mes demandes
+            Vos demandes
           </a>
         </li>
         <li>
@@ -15,7 +15,7 @@
         </li>
       </ul>
 
-      <h2>Organisation</h2>
+      <h2>Collaborateurs</h2>
       <ul>
         <li ng-repeat="user in users" ng-if="user._id !== currentUser._id"><a ui-sref-active="active"
           ui-sref="dashboard.requests.list.user({userId: user._id})">{{user.name}}</a></li>

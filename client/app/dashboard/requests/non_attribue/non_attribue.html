@@ -12,8 +12,8 @@
     </form>
     <h2>Non attribuées</h2>
     <div class="tools">
-      <button class="btn btn-sm btn-primary">
-        <i class="fa fa-download" ng-click="assigner(requests)"></i> Assigner
+      <button class="btn btn-sm btn-primary" ng-click="assigner(requests)">
+        <i class="fa fa-download"></i> Assigner
       </button>
       <button class="btn btn-sm btn-default" btn-checkbox ng-model="onlyUrgences">
         <i class="fa fa-warning"></i> Urgences
@@ -30,6 +30,9 @@
           </td>
           <td>
             <span class="user">
+              <span ng-if="request.formAnswers.contexte.urgences">
+                <i class="fa fa-warning"></i>
+              </span>
               <a ui-sref="dashboard.requests.list.non_attribue.detail({shortId: request.shortId})">{{request.user.name}}</a>
             </span>
             <span ng-repeat="(urgence, val) in request.formAnswers.contexte.urgences">
