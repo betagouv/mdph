@@ -16,29 +16,13 @@ var mailjet = new Mailjet(Config.API_KEY, Config.SECRET_KEY);
 /**
  * Send answers by mail
  */
-exports.sendMail = function(req, res, next) {
-  if (!req.body.html) {
-    return res.status(400).send('No html given');
-  }
-  if (!req.body.mdph) {
-    return res.status(400).send('No mdph given');
-  }
-
-  var html = req.body.html;
-
-  var handleResponse = function(error, success) {
-    if (error) {
-      return handleError(res, error);
-    }
-    return res.status(200).send(success);
-  }
-
+exports.sendMail = function(html, mailUser) {
   return mailjet.sendContent(
-    [req.body.mdph.email, req.body.user.email],
-    'Nouvelle demande',
-    req.body.html,
+    mailUser,
+    'Récapitulatif de votre demande à la MDPH',
+    html,
     true,
-    handleResponse
+    null
   );
 };
 

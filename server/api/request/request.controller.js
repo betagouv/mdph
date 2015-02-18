@@ -7,7 +7,7 @@ var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var Request = require('./request.model');
 var User = require('../user/user.model');
-
+var Mailer = require('../send-mail/send-mail.controller');
 
 /**
  * Get list of requests
@@ -116,7 +116,12 @@ var updateIfn = function(request, body, field) {
 
 exports.update = function(req, res, next) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if(err) return res.send(500, err);
+    if (err) return res.send(500, err);
+    if (!request) return res.send(400);
+
+    if (req.body.html) {
+      Mailer.sendMail(req.body.html, req.user.email);
+    }
 
     updateIfn(request, req.body, 'user');
     updateIfn(request, req.body, 'mdph');
@@ -145,13 +150,17 @@ exports.save = function(req, res, next) {
   request.user = req.user._id;
   request.updatedAt = new Date();
   request.createdAt = new Date();
-  console.log(req.body.formAnswers);
   request.formAnswers = req.body.formAnswers;
   request.mdph = req.body.mdph._id;
   request.steps = req.body.steps;
 
   request.save(function(err, data) {
     if(err) return res.send(500, err);
+
+    if (req.body.html) {
+      Mailer.sendMail(req.body.html, req.user.email);
+    }
+
     return res.send(200, data);
   });
 };

@@ -156,8 +156,7 @@ angular.module('impactApp')
     };
 
     return {
-      answersToHtml: function() {
-        var request = RequestService.getCurrent();
+      answersToHtml: function(request) {
         var html = '';
         angular.forEach(SectionConstants, function(section) {
           html += sectionToHtml(section, request);

@@ -41,10 +41,10 @@ Mailjet.prototype.sendContent = function(to, subject, content, hasAttachments, c
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
         console.log(error);
-        cb(error, null);
+        if (cb) cb(error, null);
     } else {
         console.log('Message sent: ' + info.response);
-        cb(null, info.response);
+        if (cb) cb(null, info.response);
     }
   });
 };

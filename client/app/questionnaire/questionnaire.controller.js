@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('QuestionnaireCtrl', function ($rootScope, $scope, $state, $timeout, $window, RequestResource, SectionConstants, Auth, isAdult, request) {
+  .controller('QuestionnaireCtrl', function ($rootScope, $scope, $state, $timeout, $window, RequestResource, SectionConstants, Auth, isAdult, RecapitulatifService, request) {
     $scope.currentRequest = request;
     $scope.formAnswers = $scope.currentRequest.formAnswers;
 
@@ -76,7 +76,11 @@ angular.module('impactApp')
       var isComplete = true;
       var incompleteSections = [];
       $scope.sectionsObligatoires.forEach(function(section) {
-        if (!$scope.currentRequest.formAnswers[section] || !$scope.currentRequest.formAnswers[section].__completion) {
+        if (!$scope.shouldShow(section)) {
+          return;
+        }
+
+        if (!$scope.currentRequest.formAnswers[section.id] || !$scope.currentRequest.formAnswers[section.id].__completion) {
           isComplete = false;
           incompleteSections.push(section);
         }
@@ -90,21 +94,23 @@ angular.module('impactApp')
 
         $window.alert(str);
       } else {
-        if (Auth.isLoggedIn()) {
-          $scope.currentRequest.steps = [
-            {
-              name: 'questionnaire',
-              state: 'complet'
-            },
-            {
-            name: 'obligatoire',
-            state: 'en_cours',
-            files: [
-              { name: 'certificatMedical', state: 'demande' },
-              { name: 'carteIdentite', state: 'demande' }
-            ]
-          }];
+        $scope.currentRequest.steps = [
+          {
+            name: 'questionnaire',
+            state: 'complet'
+          },
+          {
+          name: 'obligatoire',
+          state: 'en_cours',
+          files: [
+            { name: 'certificatMedical', state: 'demande' },
+            { name: 'carteIdentite', state: 'demande' }
+          ]
+        }];
 
+        $scope.currentRequest.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + $scope.mdph.zipcode;
+
+        if (Auth.isLoggedIn()) {
           saveRequestAndAlert();
         } else {
           $state.go('departement.questionnaire.modal.login');
