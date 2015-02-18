@@ -3,8 +3,9 @@
 <span class="progress-desc" ng-if="completion === 100">Complet</span>
 
 <div class="progress">
-  <div class="progress-bar progress-bar-info progress-bar-striped"
+  <div class="progress-bar"
     role="progressbar"
+    ng-class="{'progress-bar-info': completion === 50, 'progress-bar-success': completion === 100}"
     aria-valuenow="{{completion}}" aria-valuemin="0" aria-valuemax="100"
     style="width: {{completion}}%">
   </div>

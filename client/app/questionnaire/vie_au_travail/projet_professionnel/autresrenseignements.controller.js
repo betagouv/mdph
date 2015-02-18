@@ -14,6 +14,7 @@ angular.module('impactApp')
     $scope.isLastQuestion = true;
 
     $scope.nextStep = function() {
+      $scope.sectionModel.__completion = true;
       $state.go('departement.questionnaire');
     };
   });
