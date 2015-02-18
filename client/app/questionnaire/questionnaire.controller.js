@@ -26,17 +26,18 @@ angular.module('impactApp')
       $window.alert(err.data.message);
     };
 
-    var onSuccess = function() {
+    var onSuccess = function(next) {
       $timeout(function() {
         $window.alert('Votre questionnaire à été sauvegardé');
+        if (next) { next(); }
       }, 100);
     };
 
-    var saveRequestAndAlert = function() {
+    var saveRequestAndAlert = function(next) {
       if ($scope.currentRequest._id) {
-        $scope.currentRequest.$update(onSuccess, onError);
+        $scope.currentRequest.$update(onSuccess(next), onError);
       } else {
-        $scope.currentRequest.$save(onSuccess, onError);
+        $scope.currentRequest.$save(onSuccess(next), onError);
       }
     };
 
@@ -51,24 +52,44 @@ angular.module('impactApp')
     };
 
     $scope.envoyer = function() {
-      if (Auth.isLoggedIn()) {
-        $scope.currentRequest.steps = [
-          {
-            name: 'questionnaire',
-            state: 'complet'
-          },
-          {
-          name: 'obligatoire',
-          state: 'en_cours',
-          files: [
-            { name: 'certificatMedical', state: 'demande' },
-            { name: 'carteIdentite', state: 'demande' }
-          ]
-        }];
+      var isComplete = true;
+      var incompleteSections = [];
+      $scope.sectionsObligatoires.forEach(function(section) {
+        if (!$scope.currentRequest.formAnswers[section] || !$scope.currentRequest.formAnswers[section].__completion) {
+          isComplete = false;
+          incompleteSections.push(section);
+        }
+      });
 
-        saveRequestAndAlert();
+      if (!isComplete) {
+        var str= 'Votre questionnaire ne peut être envoyé car il n\'est pas complet.\nVeuillez renseigner les sections:\n';
+        incompleteSections.forEach(function(section) {
+          str += '\t -' + section.label + '\n';
+        });
+
+        $window.alert(str);
       } else {
-        $state.go('departement.questionnaire.modal.login');
+        if (Auth.isLoggedIn()) {
+          $scope.currentRequest.steps = [
+            {
+              name: 'questionnaire',
+              state: 'complet'
+            },
+            {
+            name: 'obligatoire',
+            state: 'en_cours',
+            files: [
+              { name: 'certificatMedical', state: 'demande' },
+              { name: 'carteIdentite', state: 'demande' }
+            ]
+          }];
+
+          saveRequestAndAlert(function() {
+            $state.go('espace_perso.liste_demandes');
+          });
+        } else {
+          $state.go('departement.questionnaire.modal.login');
+        }
       }
     };
   });
