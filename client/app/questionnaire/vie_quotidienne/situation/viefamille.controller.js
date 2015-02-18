@@ -8,7 +8,6 @@ angular.module('impactApp')
 
     $scope.nextStep = function() {
       if ($scope.sectionModel[$scope.question.model] === 'etablissement') {
-        $scope.subsections[1].isEnabled = true;
         $state.go('^.^.vos_besoins.quotidien');
       } else {
         $state.go('^.logement');
