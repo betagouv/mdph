@@ -57,6 +57,6 @@ angular.module('impactApp').constant('SectionConstants', [
     sref: '.aide_partenaire',
     label: 'Vous êtes aidés dans vos démarches',
     desc: 'Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation',
-    optionnal: true
+    optional: true
   }
 ]);

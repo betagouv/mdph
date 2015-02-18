@@ -41,6 +41,20 @@ angular.module('impactApp')
           }
         }
       })
+      .state('departement.questionnaire.autorite', {
+        url: '/autorite',
+        templateUrl: 'app/questionnaire/autorite/autorite.html',
+        controller: 'AutoriteCtrl',
+        resolve: {
+          sectionModel: function($sessionStorage) {
+            if (angular.isUndefined($sessionStorage.request.formAnswers.autorite)) {
+              $sessionStorage.request.formAnswers.autorite = {};
+            }
+
+            return $sessionStorage.request.formAnswers.autorite;
+          }
+        }
+      })
       .state('departement.questionnaire.vie_quotidienne', {
         url: '/vie_quotidienne',
         templateUrl: 'app/questionnaire/vie_quotidienne/vie_quotidienne.html',
@@ -113,6 +127,20 @@ angular.module('impactApp')
             }
 
             return $sessionStorage.request.formAnswers.aidant;
+          }
+        }
+      })
+      .state('departement.questionnaire.aide_partenaire', {
+        url: '/contact_partenaire',
+        templateUrl: 'app/questionnaire/aide_partenaire/aide_partenaire.html',
+        controller: 'AidePartenaireCtrl',
+        resolve: {
+          sectionModel: function($sessionStorage) {
+            if (angular.isUndefined($sessionStorage.request.formAnswers.aidePartenaire)) {
+              $sessionStorage.request.formAnswers.aidePartenaire = {};
+            }
+
+            return $sessionStorage.request.formAnswers.aidePartenaire;
           }
         }
       })

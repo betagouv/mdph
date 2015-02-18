@@ -38,18 +38,18 @@ angular.module('impactApp')
       $window.alert(err.data.message);
     };
 
-    var onSuccess = function(next) {
+    var onSuccess = function() {
       $timeout(function() {
         $window.alert('Votre questionnaire à été sauvegardé');
-        if (next) { next(); }
+        $state.go('departement.questionnaire', {id: $scope.currentRequest.shortId});
       }, 100);
     };
 
-    var saveRequestAndAlert = function(next) {
+    var saveRequestAndAlert = function() {
       if ($scope.currentRequest._id) {
-        $scope.currentRequest.$update(onSuccess(next), onError);
+        $scope.currentRequest.$update(onSuccess, onError);
       } else {
-        $scope.currentRequest.$save(onSuccess(next), onError);
+        $scope.currentRequest.$save(onSuccess, onError);
       }
     };
 
@@ -96,9 +96,7 @@ angular.module('impactApp')
             ]
           }];
 
-          saveRequestAndAlert(function() {
-            $state.go('espace_perso.liste_demandes');
-          });
+          saveRequestAndAlert();
         } else {
           $state.go('departement.questionnaire.modal.login');
         }
