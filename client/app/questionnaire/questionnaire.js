@@ -10,8 +10,8 @@ angular.module('impactApp')
         resolve: {
           request: function($stateParams, $sessionStorage, RequestResource, mdph) {
             if ($stateParams.id === 'nouvelle_demande') {
-              if (typeof $sessionStorage.request !== 'undefined') {
-                $sessionStorage.request = { formAnswers: {}, steps: [{ name: 'questionnaire', state: 'complet' }], mdph: mdph};
+              if (typeof $sessionStorage.request === 'undefined') {
+                $sessionStorage.request = { formAnswers: {}, steps: [{ name: 'questionnaire', state: 'en_cours' }], mdph: mdph};
               }
               return new RequestResource($sessionStorage.request);
             }
