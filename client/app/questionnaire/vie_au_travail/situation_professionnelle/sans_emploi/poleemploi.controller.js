@@ -21,7 +21,7 @@ angular.module('impactApp')
       if ($scope.model.stagiaire) {
         $state.go('^.stage');
       } else {
-        $state.go('^.^.^.projet_professionnel.description');
+        $state.go('^.accompagnement');
       }
 
     };

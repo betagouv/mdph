@@ -21,5 +21,10 @@ angular.module('impactApp')
       url: '/stage',
       templateUrl: 'components/question/textinput.html',
       controller: 'StageCtrl'
+    })
+    .state(index + '.sans_emploi.accompagnement', {
+      url: '/accompagnement',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'AccompagnementCtrl'
     });
   });

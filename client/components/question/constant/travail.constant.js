@@ -351,6 +351,42 @@ angular.module('impactApp').constant('travail', [
     placeholder: 'Nom de l\'organisme'
   },
   {
+    titleRep: 'Son accompagnement vers l\'emploi ou son maintien dans l\'emploi est réalisé par',
+    titleDefault: 'Votre accompagnement vers l\'emploi ou votre maintien dans l\'emploi est réalisé par',
+    model: 'situationAccompagnement',
+    type: 'checkbox',
+    answers:
+    [
+      {
+        label: 'Mission locale',
+        model: 'mission'
+      },
+      {
+        label: 'Pôle emploi',
+        model: 'poleEmploi'
+      },
+      {
+        label: 'Cap emploi',
+        model: 'capEmploi'
+      },
+      {
+        label: 'Un référent RSA désigné par le Conseil Général',
+        model: 'rsa',
+      },
+      {
+        label: 'Le service d\'appui au maintien dans l\'emploi des travailleurs handicapés (SAMETH)',
+        model: 'sameth',
+      },
+      {
+        label: 'Autre',
+        model: 'autre',
+        detailUrl: 'components/detail/precisez.html',
+        detailModel: 'autreDetail',
+        detailLabel: 'Autre situation'
+      }
+    ]
+  },
+  {
     titleRep: 'A-t-<%= pronoun %> déjà travaillé ?',
     titleDefault: 'Avez-vous déjà travaillé ?',
     type: 'radio',
