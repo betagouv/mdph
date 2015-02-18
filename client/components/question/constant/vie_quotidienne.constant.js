@@ -139,7 +139,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'besoinsDeplacement',
     neededForAdmin: true,
     titleDefault: 'Vous avez besoin d\'aide pour vous déplacer :',
-    titleRep: 'Elle a besoin d\'aide pour se déplacer :',
+    titleRep: '<%= pronoun %> a besoin d\'aide pour se déplacer :',
     type: 'checkbox',
     answers:[
       {label: 'Pour se déplacer à l\'intérieur du domicile', model: 'intraDomicile'},
@@ -149,6 +149,23 @@ angular.module('impactApp').constant('vieQuotidienne', [
       {label: 'Pour utiliser les transports en commun', model: 'transports'},
       {label: 'Pour partir en vacances', model: 'vacances'},
       {label: 'Autre besoin', model: 'autre', detailModel: 'besoinsDeplacement_autre', detailUrl: 'components/detail/precisez.html'}
+    ]
+  },
+  {
+    model: 'besoinsTransports',
+    neededForAdmin: true,
+    titleDefault: 'Utilisez-vous les transports adaptés proposés localement pour vous déplacer ?',
+    titleRep: 'Utilise-t-<%= pronoun %> les transports adaptés proposés localement pour se déplacer ?',
+    type: 'radio',
+    answers: [
+      {
+        label: 'Oui',
+        value: true,
+      },
+      {
+        label: 'Non',
+        value: false
+      }
     ]
   },
   {
@@ -247,6 +264,27 @@ angular.module('impactApp').constant('vieQuotidienne', [
     model: 'structures',
     titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?',
     type: 'checkbox'
+  },
+  {
+    model: 'attentesCarte',
+    neededForAdmin: true,
+    titleDefault: 'Votre demande concerne seulement :',
+    titleRep: 'Sa demande concerne seulement :',
+    type: 'radio',
+    answers: [
+      {
+        label: 'Une carte de stationnement',
+        value: 'stationnement', // TODO a verifier onlyAdult: true,
+      },
+      {
+        label: 'Une carte d\'invalidité ou de priorité',
+        value: 'invalidite'
+      },
+      {
+        label: 'Je n\'ai pas d\'autre demande',
+        value: 'aucune'
+      }
+    ]
   },
   {
     model: 'autresRenseignements',
