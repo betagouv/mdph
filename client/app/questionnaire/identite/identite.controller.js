@@ -12,7 +12,7 @@ angular.module('impactApp')
     };
 
     $scope.submit = function(form) {
-      if (form.$error) {
+      if (form.$invalid) {
         form.showError = true;
       } else {
         $scope.sectionModel.__completion = true;

@@ -12,7 +12,7 @@
 
     <h1>Renseignements obligatoires</h1>
     <div class="category">
-      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsObligatoires">
+      <a class="section" ui-sref="{{section.sref}}" ng-if="shouldShow(section)" ng-repeat="section in sectionsObligatoires">
         <div class="section-body">
           <div class="left">
             <i class="fa fa-chevron-circle-right"></i>

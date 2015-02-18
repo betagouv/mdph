@@ -8,6 +8,18 @@ angular.module('impactApp')
     $scope.sectionsOptionnelles = _.filter(SectionConstants, {optional: true});
     $scope.sectionsObligatoires = _.filter(SectionConstants, {optional: false});
 
+    $scope.shouldShow = function(section) {
+      if (section.id !== 'autorite') {
+        return true;
+      }
+
+      if ($scope.formAnswers.identite && moment().diff($scope.formAnswers.identite.birthDate, 'years') < 18) {
+        return true;
+      }
+
+      return false;
+    };
+
     $scope.isAdult = function() {
       return isAdult($scope.formAnswers.contexte);
     };
