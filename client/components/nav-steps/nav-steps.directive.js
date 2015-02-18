@@ -6,9 +6,13 @@ angular.module('impactApp')
       transclude: true,
       templateUrl: 'components/nav-steps/nav-steps.html',
       restrict: 'EA',
-      controller: function($scope, QuestionService, $window) {
-        $scope.isNextStepDisabled = function() {
-          return QuestionService.isNextStepDisabled($scope.question, $scope.sectionModel, $scope.checkNextStep);
+      controller: function($scope, $window) {
+        $scope.check = function(form) {
+          if (form.$invalid) {
+            form.showError = true;
+          } else {
+            $scope.nextStep();
+          }
         };
 
         $scope.previousStep = function() {

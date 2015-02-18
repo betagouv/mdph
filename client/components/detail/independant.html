@@ -1,12 +1,14 @@
 <div class="row form-horizontal">
   <label class="col-md-4 control-label">En tant que</label>
   <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'proprietaire'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'proprietaire'"
+      ng-required="!sectionModel[answer.detailModel]">
       Propriétaire
     </button>
   </div>
   <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'locataire'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'locataire'"
+      ng-required="!sectionModel[answer.detailModel]">
       Locataire
     </button>
   </div>

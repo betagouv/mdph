@@ -1,21 +1,25 @@
 <div class="row">
   <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'parents'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'parents'"
+      ng-required="!sectionModel[answer.detailModel]">
       Des parents
     </button>
   </div>
   <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'ami'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'ami'"
+      ng-required="!sectionModel[answer.detailModel]">
       D'un(e) ami(e)
     </button>
   </div>
   <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'autreMembreFamille'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'autreMembreFamille'"
+      ng-required="!sectionModel[answer.detailModel]">
       D'un autre membre de<br>la famille
     </button>
   </div>
   <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'familleAccueill'">
+    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'familleAccueill'"
+      ng-required="!sectionModel[answer.detailModel]">
       D'une famille d'accueil
     </button>
   </div>
@@ -25,7 +29,8 @@
         ng-if="debug || showAdult"
         ng-disabled="!showAdult"
         ng-model="sectionModel[answer.detailModel]"
-        btn-radio="'enfants'">
+        btn-radio="'enfants'"
+        ng-required="!sectionModel[answer.detailModel]">
         Des enfants
       </button>
     </div>

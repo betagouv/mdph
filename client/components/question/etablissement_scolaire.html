@@ -1,8 +1,11 @@
-<div class="container">
-  <qtitle ng-hide="hideTitle"></qtitle>
+<qtitle ng-hide="hideTitle"></qtitle>
 
-  <div class="answer form-horizontal" ng-repeat="etablissement in model.etablissements">
-    <input type="text" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement">
+<form name="questionForm" novalidate>
+  <div class="answer form-horizontal" ng-repeat="(idx, etablissement) in model.etablissements">
+    <input type="text" name="input{{idx}}" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement" required>
+    <div ng-messages="questionForm['input' + idx].$error" ng-if="questionForm.showError">
+      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
@@ -11,5 +14,4 @@
   </div>
 
   <nav-steps ng-hide="hideSteps"></nav-steps>
-
-</div>
+</form>

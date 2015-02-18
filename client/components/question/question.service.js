@@ -70,35 +70,6 @@ angular.module('impactApp')
         return question;
       },
 
-      isNextStepDisabled: function(question, section, next) {
-        if (question.type === 'checkbox') {
-          return false;
-        }
-
-        if (!section) {
-          return true;
-        }
-
-        var value = section[question.model];
-        if (angular.isUndefined(value)) {
-          return true;
-        }
-
-        var answer = _.find(question.answers, function(answer) {
-          return answer.value === value;
-        });
-
-        if (answer && answer.detailModel && angular.isUndefined(section[answer.detailModel])) {
-          return true;
-        }
-
-        if (next) {
-          return next(value);
-        } else {
-          return false;
-        }
-      },
-
       getAnswer: function(section, model, formAnswers) {
         if (formAnswers[section] && formAnswers[section][model]) {
           return formAnswers[section][model];

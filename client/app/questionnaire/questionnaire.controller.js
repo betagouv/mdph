@@ -55,6 +55,15 @@ angular.module('impactApp')
 
     $scope.$on('logged-in-save-request', saveRequestAndAlert);
 
+    $scope.saveSection = function(sectionModel) {
+      sectionModel.__completion = true;
+      if ($scope.currentRequest._id) {
+        $scope.currentRequest.$update(onSuccess, onError);
+      } else {
+        $state.go('departement.questionnaire');
+      }
+    };
+
     $scope.sauvegarder = function() {
       if (Auth.isLoggedIn()) {
         saveRequestAndAlert();

@@ -1,7 +1,9 @@
 <qtitle ng-hide="hideTitle"></qtitle>
 
-<textarea class="form-control" rows="20"
-  placeholder="{{placeholder}}"
-  ng-model="sectionModel['autresRenseignements']"></textarea>
+<form name="questionForm" novalidate>
+  <textarea class="form-control" rows="20"
+    placeholder="{{placeholder}}"
+    ng-model="sectionModel['autresRenseignements']"></textarea>
 
-<nav-steps ng-hide="hideSteps"></nav-steps>
+  <nav-steps ng-hide="hideSteps"></nav-steps>
+</form>

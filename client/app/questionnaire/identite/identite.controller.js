@@ -15,8 +15,7 @@ angular.module('impactApp')
       if (form.$invalid) {
         form.showError = true;
       } else {
-        $scope.sectionModel.__completion = true;
-        $state.go('departement.questionnaire');
+        $scope.$parent.saveSection($scope.sectionModel);
       }
     };
   });

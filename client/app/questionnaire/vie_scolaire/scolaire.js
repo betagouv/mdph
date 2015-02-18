@@ -35,7 +35,7 @@ angular.module('impactApp')
       }).state(index + '.vos_attentes.structure', {
         url: '/structure',
         templateUrl: 'components/question/structure.html',
-        controller: 'AttenteStructureCtrl'
+        controller: 'AttenteStructureScolaireCtrl'
       }).state(index + '.vos_attentes.autres_renseignements', {
         url: '/autres_renseignements',
         templateUrl: 'components/question/autres_renseignements.html',

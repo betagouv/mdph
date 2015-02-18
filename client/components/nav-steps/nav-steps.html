@@ -5,7 +5,7 @@
     </button>
   </div>
   <div class="col-sm-2" ng-class="{'col-sm-offset-10': hideBack, 'col-sm-offset-8': !hideBack}">
-    <button class="btn btn-block" ng-disabled="isNextStepDisabled()" ng-click="nextStep()"
+    <button class="btn btn-block" type="submit" ng-click="check(questionForm)"
       ng-class="{'btn-primary': !isLastQuestion, 'btn-success': isLastQuestion}">
       {{isLastQuestion ? 'Valider' : 'Suivant'}}
     </button>

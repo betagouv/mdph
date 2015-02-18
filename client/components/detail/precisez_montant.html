@@ -1,7 +1,14 @@
 <div class="row form-horizontal">
   <label class="col-md-2 control-label">{{answer.detailLabel || 'Montant'}}</label>
-  <div class="col-md-10 input-group">
-    <input type="number" class="form-control" ng-model="sectionModel[answer.detailModel]" placeholder="{{answer.placeholder}}">
-    <div class="input-group-addon">€/Mois</div>
+  <div class="col-md-10">
+    <div class="input-group">
+      <input type="number" name="montant" class="form-control" min="0" ng-model="sectionModel[answer.detailModel]" placeholder="{{answer.placeholder}}" required>
+      <div class="input-group-addon">€/Mois</div>
+    </div>
+    <div ng-messages="questionForm.montant.$error" ng-if="questionForm.showError">
+      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+      <div class="help-block" ng-message='number'><i class="fa fa-warning"></i> Montant invalide</div>
+      <div class="help-block" ng-message='min'><i class="fa fa-warning"></i> Montant invalide</div>
+    </div>
   </div>
 </div>

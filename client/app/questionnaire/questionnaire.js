@@ -20,7 +20,6 @@ angular.module('impactApp')
               if (!request.formAnswers) {
                 request.formAnswers = {};
               }
-              $sessionStorage.request = request;
             }).$promise;
           }
         }
@@ -32,12 +31,12 @@ angular.module('impactApp')
         templateUrl: 'app/questionnaire/identite/identite.html',
         controller: 'IdentiteCtrl',
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.identite)) {
-              $sessionStorage.request.formAnswers.identite = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.identite)) {
+              request.formAnswers.identite = {};
             }
 
-            return $sessionStorage.request.formAnswers.identite;
+            return request.formAnswers.identite;
           }
         }
       })
@@ -46,12 +45,12 @@ angular.module('impactApp')
         templateUrl: 'app/questionnaire/autorite/autorite.html',
         controller: 'AutoriteCtrl',
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.autorite)) {
-              $sessionStorage.request.formAnswers.autorite = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.autorite)) {
+              request.formAnswers.autorite = {};
             }
 
-            return $sessionStorage.request.formAnswers.autorite;
+            return request.formAnswers.autorite;
           }
         }
       })
@@ -61,12 +60,12 @@ angular.module('impactApp')
         controller: 'VieQuotidienneCtrl',
         abstract: true,
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.vieQuotidienne)) {
-              $sessionStorage.request.formAnswers.vieQuotidienne = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.vieQuotidienne)) {
+              request.formAnswers.vieQuotidienne = {};
             }
 
-            return $sessionStorage.request.formAnswers.vieQuotidienne;
+            return request.formAnswers.vieQuotidienne;
           }
         }
       })
@@ -76,12 +75,12 @@ angular.module('impactApp')
         controller: 'ScolaireCtrl',
         abstract: true,
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.scolaire)) {
-              $sessionStorage.request.formAnswers.scolaire = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.scolaire)) {
+              request.formAnswers.scolaire = {};
             }
 
-            return $sessionStorage.request.formAnswers.scolaire;
+            return request.formAnswers.scolaire;
           }
         }
       })
@@ -91,12 +90,12 @@ angular.module('impactApp')
         controller: 'TravailCtrl',
         abstract: true,
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.travail)) {
-              $sessionStorage.request.formAnswers.travail = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.travail)) {
+              request.formAnswers.travail = {};
             }
 
-            return $sessionStorage.request.formAnswers.travail;
+            return request.formAnswers.travail;
           }
         }
       })
@@ -106,12 +105,12 @@ angular.module('impactApp')
         controller: 'RenouvellementsCtrl',
         abstract: true,
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.detailRenouvellement)) {
-              $sessionStorage.request.formAnswers.detailRenouvellement = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.detailRenouvellement)) {
+              request.formAnswers.detailRenouvellement = {};
             }
 
-            return $sessionStorage.request.formAnswers.detailRenouvellement;
+            return request.formAnswers.detailRenouvellement;
           }
         }
       })
@@ -121,12 +120,12 @@ angular.module('impactApp')
         controller: 'AidantCtrl',
         abstract: true,
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.aidant)) {
-              $sessionStorage.request.formAnswers.aidant = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.aidant)) {
+              request.formAnswers.aidant = {};
             }
 
-            return $sessionStorage.request.formAnswers.aidant;
+            return request.formAnswers.aidant;
           }
         }
       })
@@ -135,12 +134,12 @@ angular.module('impactApp')
         templateUrl: 'app/questionnaire/aide_partenaire/aide_partenaire.html',
         controller: 'AidePartenaireCtrl',
         resolve: {
-          sectionModel: function($sessionStorage) {
-            if (angular.isUndefined($sessionStorage.request.formAnswers.aidePartenaire)) {
-              $sessionStorage.request.formAnswers.aidePartenaire = {};
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.aidePartenaire)) {
+              request.formAnswers.aidePartenaire = {};
             }
 
-            return $sessionStorage.request.formAnswers.aidePartenaire;
+            return request.formAnswers.aidePartenaire;
           }
         }
       })

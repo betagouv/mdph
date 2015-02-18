@@ -1,17 +1,25 @@
 <qtitle ng-hide="hideTitle"></qtitle>
 
-<div class="answer" ng-repeat="answer in question.answers"
-  ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && isAdult())">
-  <button
-    class="btn btn-default btn-block btn-answer text-capitalize"
-    ng-model="sectionModel[question.model]"
-    btn-radio="answer.value">
-    <i class="fa" ng-class="{'fa-dot-circle-o': sectionModel[question.model] === answer.value, 'fa-circle-o': sectionModel[question.model] !== answer.value}"></i>
-    {{answer.label}}
-  </button>
-  <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.value">
-    <div ng-include="answer.detailUrl"></div>
+<form name="questionForm" novalidate>
+  <div class="answer" ng-repeat="answer in question.answers"
+    ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && isAdult())">
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      btn-radio="answer.value"
+      ng-model="sectionModel[question.model]"
+      ng-required="!sectionModel[question.model]">
+        <i class="fa" ng-class="{
+          'fa-dot-circle-o': sectionModel[question.model] === answer.value,
+          'fa-circle-o': sectionModel[question.model] !== answer.value
+        }"></i>
+        {{answer.label}}
+    </button>
+    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.value">
+      <div ng-include="answer.detailUrl"></div>
+    </div>
   </div>
-</div>
 
-<nav-steps transclude ng-hide="hideSteps" hide-back="hideBack"></nav-steps>
+  <div role="alert" ng-if="questionForm.showError && questionForm.$invalid" class="text-danger text-right"><i class="fa fa-warning"></i> Veuillez sélectionner une des options ou préciser votre réponse</div>
+
+  <nav-steps transclude ng-hide="hideSteps" hide-back="hideBack"></nav-steps>
+</form>

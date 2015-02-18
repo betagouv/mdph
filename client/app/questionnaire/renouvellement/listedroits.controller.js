@@ -12,7 +12,6 @@ angular.module('impactApp')
     datepickerConfig.datepickerMode = 'day';
 
     $scope.nextStep = function() {
-      $scope.sectionModel.__completion = true;
-      $state.go('departement.questionnaire');
+      $scope.$parent.saveSection($scope.sectionModel);
     };
   });

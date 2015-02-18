@@ -1,6 +1,9 @@
 <div class="row form-horizontal">
   <label class="col-md-2 control-label">{{answer.detailLabel || 'Précisez'}}</label>
   <div class="col-md-10">
-    <textarea rows="4" class="form-control" ng-model="sectionModel[answer.detailModel]" placeholder="{{answer.placeholder}}"></textarea>
+    <textarea rows="4" name="detail" class="form-control" ng-model="sectionModel[answer.detailModel]" placeholder="{{answer.placeholder}}" required></textarea>
+    <div ng-messages="questionForm.detail.$error" ng-if="questionForm.showError">
+      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+    </div>
   </div>
 </div>

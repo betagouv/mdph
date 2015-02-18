@@ -1,9 +1,12 @@
 <qtitle ng-hide="hideTitle"></qtitle>
 
-<form>
+<form name="questionForm" novalidate>
   <div class="form-group">
-    <input type="text" id="inputid" class="form-control" ng-model="sectionModel[question.model]"
-      placeholder="{{question.placeholder}}">
+    <input type="text" name="inputname" id="inputid" class="form-control" ng-model="sectionModel[question.model]"
+      placeholder="{{question.placeholder}}" required>
+    <div ng-messages="questionForm.inputname.$error" ng-if="questionForm.showError">
+      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+    </div>
   </div>
 
   <nav-steps ng-hide="hideSteps"></nav-steps>

@@ -4,7 +4,8 @@
     <button
         class="btn btn-default btn-block"
         ng-model="sectionModel[answer.detailModel]"
-        btn-radio="true">
+        btn-radio="true"
+        ng-required="!sectionModel[answer.detailModel]">
         Oui
     </button>
   </div>
@@ -12,7 +13,8 @@
     <button
         class="btn btn-default btn-block"
         ng-model="sectionModel[answer.detailModel]"
-        btn-radio="false">
+        btn-radio="false"
+        ng-required="!sectionModel[answer.detailModel]">
         Non
     </button>
   </div>

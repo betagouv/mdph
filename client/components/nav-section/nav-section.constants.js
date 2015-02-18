@@ -25,7 +25,7 @@ angular.module('impactApp').constant('SectionConstants', [
     optional: false
   },
   {
-    id: 'renouvellement',
+    id: 'detailRenouvellement',
     sref: '.renouvellement.evolution',
     label: 'Renouvellement',
     desc: 'Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement',
