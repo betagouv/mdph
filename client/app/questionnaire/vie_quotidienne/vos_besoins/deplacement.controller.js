@@ -10,6 +10,6 @@ angular.module('impactApp')
     $scope.question = QuestionService.get('vieQuotidienne', 'besoinsDeplacement', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      $state.go('^.social');
+      $state.go('^.transport');
     };
   });

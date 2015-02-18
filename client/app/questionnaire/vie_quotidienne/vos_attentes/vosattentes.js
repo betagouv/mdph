@@ -15,6 +15,10 @@ angular.module('impactApp')
       url: '/structure',
       templateUrl: 'components/question/structure.html',
       controller: 'AttenteStructureCtrl'
+    }).state(index + '.vos_attentes.carte', {
+      url: '/carte',
+      templateUrl: 'components/question/radio.html',
+      controller: 'CarteCtrl'
     }).state(index + '.vos_attentes.autres_renseignements', {
       url: '/autres_renseignements',
       templateUrl: 'components/question/autres_renseignements.html',

@@ -16,6 +16,10 @@ angular.module('impactApp')
       url: '/deplacement',
       templateUrl: 'components/question/checkbox.html',
       controller: 'DeplacementCtrl'
+    }).state(index + '.vos_besoins.transport', {
+      url: '/transport',
+      templateUrl: 'components/question/radio.html',
+      controller: 'TransportCtrl'
     }).state(index + '.vos_besoins.social', {
       url: '/social',
       templateUrl: 'components/question/checkbox.html',

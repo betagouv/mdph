@@ -23,6 +23,6 @@ angular.module('impactApp')
     };
 
     $scope.nextStep = function() {
-      $state.go('^.autres_renseignements');
+      $state.go('^.carte');
     };
   });
