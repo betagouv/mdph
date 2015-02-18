@@ -18,6 +18,11 @@ angular.module('impactApp')
     $scope.model = $scope.sectionModel.situationSansEmploi;
 
     $scope.nextStep = function() {
-      $state.go('^.^.^.projet_professionnel.description');
+      if ($scope.model.stagiaire) {
+        $state.go('^.stage');
+      } else {
+        $state.go('^.^.^.projet_professionnel.description');
+      }
+
     };
   });

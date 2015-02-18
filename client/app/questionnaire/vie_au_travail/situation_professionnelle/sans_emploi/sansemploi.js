@@ -16,5 +16,10 @@ angular.module('impactApp')
       url: '/pole_emploi',
       templateUrl: 'components/question/checkbox.html',
       controller: 'PoleEmploiCtrl'
+    })
+    .state(index + '.sans_emploi.stage', {
+      url: '/stage',
+      templateUrl: 'components/question/textinput.html',
+      controller: 'StageCtrl'
     });
   });

@@ -302,17 +302,37 @@ angular.module('impactApp').constant('travail', [
     [
       {
         label: 'Inscrit à pôle emploi',
-        model: 'poleEmploi'
+        model: 'poleEmploi',
+        detailUrl: 'components/detail/precisez_big.html',
+        detailModel: 'poleEmploiDetail',
       },
       {
         label: 'En formation continue',
-        model: 'formation'
+        model: 'formation',
+        detailUrl: 'components/detail/precisez_big.html',
+        detailModel: 'formationDetail',
       },
       {
         label: 'Etudiant',
-        model: 'etudiant'
+        model: 'etudiant',
+        detailUrl: 'components/detail/precisez_big.html',
+        detailModel: 'etudiantDetail',
+      },
+      {
+        label: 'Stagiaire',
+        model: 'stagiaire',
+        detailUrl: 'components/detail/precisez_yes_no.html',
+        detailModel: 'stagiaireDetail',
+        detailLabel: 'Êtes-vous rémunéré ?'
       }
     ]
+  },
+  {
+    model: 'situationStage',
+    titleDefault: 'Au sein de quel organisme effectuez-vous votre stage ?',
+    titleRep: 'Au sein de quel organisme effectue-t-<%= pronoun %> son stage ?',
+    type: 'text',
+    placeholder: 'Nom de l\'organisme'
   },
   {
     titleRep: 'A-t-<%= pronoun %> déjà travaillé ?',
