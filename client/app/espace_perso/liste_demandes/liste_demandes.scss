@@ -1,10 +1,11 @@
-.demande {
+.list-group-demande {
+  @extend .list-group;
+
   h2 {
     font-size: 20px;
   }
 
-  h3 {
-    font-size: 18px;
-    text-align: right;
+  .fa-plus-circle {
+    font-size: 24px;
   }
 }

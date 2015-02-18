@@ -1,38 +1,29 @@
 <ui-view>
-  <div class="container">
-    <h1>Vos demandes</h1>
-    <a class="btn btn-primary" title="Nouvelle demande" ui-sref="choix_mdph">Nouvelle demande</a>
-    <hr>
-    <div ng-if="requests.length === 0">
-      <em>Pas de demandes</em>
-    </div>
-    <div class="row" ng-if="requests.length > 0">
-      <div class="col-md-12">
-        <div class="list-group demande">
-          <a
-            class="list-group-item"
-            ng-repeat="request in requests"
-            ng-class="{'list-group-item-success': request.opened}"
-            ui-sref="{{goToRequest(request)}}">
-            <div class="row" ng-if="request.opened">
-              <div class="col-md-9">
-                <h2 class="list-group-item-heading">{{getTitle(request)}}</span></h2>
-                <p class="list-group-item-text">Etape: {{getCurrentStep(request) | stepFilter}}<br/>
-                Dernière modification {{updatedAt(request)}}</p>
-              </div>
-              <div class="col-md-3">
-                <h3 class="list-group-item-heading">Référence demande : {{request.shortId}}</h3>
-              </div>
-            </div>
-            <div ng-if="!request.opened">
-              <p class="list-group-item-text">
-                <strong>Ancienne demande à la MDPH du {{request.mdph.name}}</strong><br/>
-                Dernière modification {{updatedAt(request)}}
-              </p>
-            </div>
-          </a>
+  <div class="questionnaire">
+    <div class="list-group-demande">
+      <a class="list-group-item list-group-item-info" ui-sref="choix_mdph">
+        <div class="row">
+          <div class="col-sm-1">
+            <i class="fa fa-plus-circle"></i>
+          </div>
+          <div class="col-sm-11">
+            <h2 class="list-group-item-heading">Nouvelle demande</h2>
+          </div>
         </div>
-      </div>
+      </a>
+      <a class="list-group-item section" ng-repeat="request in requests"
+        ui-sref="{{'espace_perso.liste_demandes.demande.' + getCurrentStep(request).name + '({shortId: request.shortId })'}}">
+        <div class="row">
+          <div class="col-sm-1">
+            <i class="fa fa-chevron-circle-right"></i>
+          </div>
+          <div class="col-sm-11">
+            <h2 class="list-group-item-heading">Référence demande {{request.shortId}}</h2>
+            <p class="list-group-item-text">Etape: {{getCurrentStep(request) | stepFilter}}<br/>
+            Dernière modification {{updatedAt(request)}}</p>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </ui-view>
