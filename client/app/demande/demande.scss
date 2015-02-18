@@ -3,9 +3,8 @@
 }
 
 .banner-inverse  {
-  background-color: $bg-blue;
+  background-color: whitesmoke;
   border-top: none;
-  border-bottom: 3px solid lighten($bg-blue, 10%);
 }
 
 .no-hr {
@@ -14,4 +13,58 @@
 
 .step-disabled {
   color: $dark-red;
+}
+
+.nav-form {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  padding: 10px 0;
+  margin-top: 0;
+
+  .navbar-collapse {
+    text-align: center;
+    border: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  a {
+    display: inline-block;
+    text-align: center;
+    color: #333;
+    padding: 5px;
+    min-width: 140px;
+    border-radius: 5px;
+
+    &.active {
+      background-color: darken(whitesmoke, 10%);
+    }
+
+    &:hover {
+      background-color: darken(whitesmoke, 5%);
+      text-decoration: none;
+    }
+
+    &.disabled {
+      font-weight: 100;
+      cursor: default;
+
+      &.disabled:hover {
+        background-color: whitesmoke;
+        text-decoration: none;
+      }
+
+    }
+
+    &.optionnal {
+      p {
+        font-weight: 100;
+        font-style: italic !important;
+      }
+    }
+  }
 }
