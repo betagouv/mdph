@@ -12,110 +12,40 @@
 
     <h1>Renseignements obligatoires</h1>
     <div class="category">
-      <a class="section" ui-sref=".identite">
+      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsObligatoires">
         <div class="section-body">
           <div class="left">
             <i class="fa fa-chevron-circle-right"></i>
           </div>
           <div class="right">
-            <h2>Identité</h2>
-            <p>Identité de l'enfant ou de l'adulte concerné par la demande</p>
+            <h2>{{section.label}}</h2>
+            <p>{{section.desc}}</p>
             <div class="row">
               <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion('identite')"></section-progress-bar>
+                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
               </div>
             </div>
-          </div>
-        </div>
-      </a>
-
-      <a class="section" ui-sref=".autorite">  <!-- ng-if="estMineur" -->
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h2>Autorité parentale</h2>
-            <p>Identité de l'autorité parentale ou délégation d'autorité parentale</p>
-          </div>
-        </div>
-      </a>
-
-      <a class="section" ui-sref=".vie_quotidienne.situation.vie_famille">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h2>Vie quotidienne</h2>
-            <p></p>
-            <div class="row">
-              <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion('vieQuotidienne')"></section-progress-bar>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a class="section" ui-sref=".renouvellement.evolution">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h2>Renouvellement</h2>
-            <p>Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement</p>
           </div>
         </div>
       </a>
     </div>
 
     <h1>Renseignements optionnels</h1>
+
     <div class="category">
-      <a class="section" ui-sref=".vie_scolaire.situation.condition">
+      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsOptionnelles">
         <div class="section-body">
           <div class="left">
             <i class="fa fa-chevron-circle-right"></i>
           </div>
           <div class="right">
-            <h2>Vie scolaire ou étudiante</h2>
-            <p>Si votre demande concerne votre scolarité ou vie étudiante</p>
-          </div>
-        </div>
-      </a>
-
-      <a class="section" ui-sref=".vie_au_travail.situation_professionnelle.condition">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h2>Vie au travail</h2>
-            <p>Si votre demande concerne votre projet professionnel</p>
-          </div>
-        </div>
-      </a>
-      <a class="section" ui-sref=".aidant.situation.lien">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h2>Vie de votre aidant familial</h2>
-            <p>Si vous souhaitez exprimer des besoins en tant qu'aidant familial</p>
-          </div>
-        </div>
-      </a>
-
-      <a class="section" ui-sref=".aide_partenaire">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h2>Vous êtes aidés dans vos démarches</h2>
-            <p>Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation</p>
+            <h2>{{section.label}}</h2>
+            <p>{{section.desc}}</p>
+            <div class="row">
+              <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-9">
+                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+              </div>
+            </div>
           </div>
         </div>
       </a>

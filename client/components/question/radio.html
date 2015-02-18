@@ -4,12 +4,12 @@
   ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && isAdult())">
   <button
     class="btn btn-default btn-block btn-answer text-capitalize"
-    ng-model="formAnswers[section.id][question.model]"
+    ng-model="sectionModel[question.model]"
     btn-radio="answer.value">
-    <i class="fa" ng-class="{'fa-dot-circle-o': formAnswers[section.id][question.model] === answer.value, 'fa-circle-o': formAnswers[section.id][question.model] !== answer.value}"></i>
+    <i class="fa" ng-class="{'fa-dot-circle-o': sectionModel[question.model] === answer.value, 'fa-circle-o': sectionModel[question.model] !== answer.value}"></i>
     {{answer.label}}
   </button>
-  <div class="well well-detail slide" ng-if="answer.detailUrl && formAnswers[section.id][question.model] === answer.value">
+  <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.value">
     <div ng-include="answer.detailUrl"></div>
   </div>
 </div>

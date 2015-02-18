@@ -5,13 +5,6 @@ angular.module('impactApp')
     var index = 'departement.questionnaire.aidant';
 
     $stateProvider
-      .state(index, {
-        url: '/aidant',
-        templateUrl: 'app/questionnaire/aidant/aidant.html',
-        controller: 'AidantCtrl',
-        abstract: true
-      })
-
       // Situation
       .state(index + '.situation', {
         url: '/situation',

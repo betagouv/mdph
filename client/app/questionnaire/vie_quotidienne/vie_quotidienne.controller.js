@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('VieQuotidienneCtrl', function ($scope, FormService) {
-
-    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie quotidienne' : 'Votre vie quotidienne';
-
+  .controller('VieQuotidienneCtrl', function ($scope, sectionModel) {
     $scope.subsections = [
       {
         sref: '.situation.vie_famille',
@@ -31,10 +28,5 @@ angular.module('impactApp')
     ];
     $scope.colClass = 'col-md-4';
 
-    if (angular.isUndefined($scope.formAnswers.vieQuotidienne)) {
-      $scope.formAnswers.vieQuotidienne = {};
-    }
-
-    $scope.sectionModel = $scope.formAnswers.vieQuotidienne;
-    $scope.section = { id: 'vieQuotidienne' };
+    $scope.sectionModel = sectionModel;
   });

@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TravailCtrl', function ($scope, FormService) {
-
-    $scope.title = FormService.estRepresentant($scope.formAnswers) ? 'Sa vie au travail' : 'Votre vie au travail';
-
+  .controller('TravailCtrl', function ($scope, sectionModel) {
     $scope.subsections = [
       {
         sref: 'departement.questionnaire.vie_au_travail.situation_professionnelle.condition',
@@ -23,10 +20,5 @@ angular.module('impactApp')
     ];
     $scope.colClass = 'col-md-6';
 
-    if (angular.isUndefined($scope.formAnswers.travail)) {
-      $scope.formAnswers.travail = {};
-    }
-
-    $scope.sectionModel = $scope.formAnswers.travail;
-    $scope.section = { id: 'travail' };
+    $scope.sectionModel = sectionModel;
   });

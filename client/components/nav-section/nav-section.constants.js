@@ -4,57 +4,59 @@
 
 angular.module('impactApp').constant('SectionConstants', [
   {
-    id: 'contexte',
-    sref: 'departement.questionnaire.projet_de_vie.informations.representant',
-    include: 'departement.questionnaire.projet_de_vie.informations.*',
-    fa: 'fa-user',
-    label: 'Informations personnelles',
+    id: 'identite',
+    sref: '.identite',
+    label: 'Identité',
+    desc: 'Identité de l\'enfant ou de l\'adulte concerné par la demande',
+    optional: false
   },
   {
-    id: 'renouvellement',
-    sref: 'departement.questionnaire.projet_de_vie.renouvellement.evolution',
-    include: 'departement.questionnaire.projet_de_vie.renouvellement.*',
-    fa: 'fa-history',
-    label: 'Renouvellement',
-    renew: true
+    id: 'autorite',
+    sref: '.autorite',
+    label: 'Autorité parentale',
+    desc: 'Identité de l\'autorité parentale ou délégation d\'autorité parentale',
+    optional: false
   },
   {
     id: 'vieQuotidienne',
-    sref: 'departement.questionnaire.projet_de_vie.vie_quotidienne.situation.vie_famille',
-    include: 'departement.questionnaire.projet_de_vie.vie_quotidienne.**',
-    fa: 'fa-home',
-    label: 'Vie quotidienne'
+    sref: '.vie_quotidienne.situation.vie_famille',
+    label: 'Vie quotidienne',
+    desc: '',
+    optional: false
+  },
+  {
+    id: 'renouvellement',
+    sref: '.renouvellement.evolution',
+    label: 'Renouvellement',
+    desc: 'Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement',
+    optional: true
   },
   {
     id: 'scolaire',
-    sref: 'departement.questionnaire.projet_de_vie.scolarite.situation.condition',
-    include: 'departement.questionnaire.projet_de_vie.scolarite.**',
-    fa: 'fa-user',
+    sref: '.vie_scolaire.situation.condition',
     label: 'Vie scolaire ou étudiante',
-    isOptionnal: true
+    desc: 'Si votre demande concerne votre scolarité ou vie étudiante',
+    optional: true
   },
   {
     id: 'travail',
-    sref: 'departement.questionnaire.projet_de_vie.travail.situation_professionnelle.condition',
-    include: 'departement.questionnaire.projet_de_vie.travail.**',
-    fa: 'fa-briefcase',
+    sref: '.vie_au_travail.situation_professionnelle.condition',
     label: 'Vie au travail',
-    isOptionnal: true
+    desc: 'Si votre demande concerne votre projet professionnel',
+    optional: true
   },
   {
     id: 'aidant',
-    sref: 'departement.questionnaire.projet_de_vie.aidant.condition',
-    include: 'departement.questionnaire.projet_de_vie.aidant.**',
-    fa: 'fa-male',
-    label: 'Aidant familial',
-    isOptionnal: true
+    sref: '.aidant.situation.lien',
+    label: 'Vie de votre aidant familial',
+    desc: 'Si vous souhaitez exprimer des besoins en tant qu\'aidant familial',
+    optional: true
   },
   {
-    id: 'envoi',
-    sref: 'departement.questionnaire.projet_de_vie.envoi',
-    include: 'departement.questionnaire.projet_de_vie.envoi',
-    fa: 'fa-send',
-    label: 'Envoi',
-    isSend: true
+    id: 'aidePartenaire',
+    sref: '.aide_partenaire',
+    label: 'Vous êtes aidés dans vos démarches',
+    desc: 'Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation',
+    optionnal: true
   }
 ]);

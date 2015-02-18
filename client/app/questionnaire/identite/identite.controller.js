@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('IdentiteCtrl', function () {
-
+  .controller('IdentiteCtrl', function ($scope, sectionModel) {
+    $scope.sectionModel = sectionModel;
   });

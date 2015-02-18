@@ -1,14 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AidantCtrl', function ($scope) {
-
-    $scope.title = 'Cette partie s\'adresse  à(aux) l\'aidant(s) de la personne en situation de handicap';
-
-    if (angular.isUndefined($scope.formAnswers.aidant)) {
-      $scope.formAnswers.aidant = {};
-    }
-
+  .controller('AidantCtrl', function ($scope, sectionModel) {
     $scope.subsections = [
       {
         sref: 'departement.questionnaire.aidant.situation.lien',
@@ -28,6 +21,5 @@ angular.module('impactApp')
 
     $scope.colClass = 'col-md-6';
 
-    $scope.sectionModel = $scope.formAnswers.aidant;
-    $scope.section = { id: 'aidant' };
+    $scope.sectionModel = sectionModel;
   });

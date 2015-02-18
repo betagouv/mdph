@@ -27,8 +27,7 @@
             ng-repeat="question in questionsBySectionId[section.id]"
             ng-if="question.titleDefault && question.neededForAdmin">
             <h2 id="{{section.id + '-' + question.model}}" class="pageitem subpageitem">{{question.titleDefault}}</h2>
-            <div ng-include="getTemplate(question)">
-            </div>
+            <div ng-include="getTemplate(question)"></div>
           </div>
         </div>
       </div>

@@ -5,12 +5,7 @@ angular.module('impactApp')
 
     var index = 'departement.questionnaire.vie_scolaire';
     $stateProvider
-      .state('departement.questionnaire.vie_scolaire', {
-        url: '/vie_scolaire',
-        templateUrl: 'app/questionnaire/vie_scolaire/scolaire.html',
-        controller: 'ScolaireCtrl',
-      })
-
+      // Situation
       .state(index + '.situation', {
         url: '/situation',
         template: '<ui-view/>',
@@ -33,6 +28,7 @@ angular.module('impactApp')
         controller: 'RaisonNonScolaireCtrl'
       })
 
+      // Vos Attentes
       .state(index + '.vos_attentes', {
         url: '/vos_attentes',
         template: '<ui-view/>',

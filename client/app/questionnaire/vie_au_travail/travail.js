@@ -5,12 +5,6 @@ angular.module('impactApp')
     var index = 'departement.questionnaire.vie_au_travail';
 
     $stateProvider
-      .state(index, {
-        url: '/vie_au_travail',
-        templateUrl: 'app/questionnaire/vie_au_travail/travail.html',
-        controller: 'TravailCtrl',
-      })
-
       // Situation professionnelle
       .state(index + '.situation_professionnelle', {
         url: '/situation_professionnelle',
