@@ -145,10 +145,10 @@ exports.save = function(req, res, next) {
   request.user = req.user._id;
   request.updatedAt = new Date();
   request.createdAt = new Date();
+  console.log(req.body.formAnswers);
   request.formAnswers = req.body.formAnswers;
   request.mdph = req.body.mdph._id;
   request.steps = req.body.steps;
-  request.renouvellement = req.body.renouvellement;
 
   request.save(function(err, data) {
     if(err) return res.send(500, err);

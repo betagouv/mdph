@@ -14,16 +14,19 @@ angular.module('impactApp')
           return;
         }
 
-        currentRequest.steps = [{ name: 'questionnaire', state: 'complet' }];
-
-        currentRequest.steps.push({
+        currentRequest.steps = [
+          {
+            name: 'questionnaire',
+            state: 'complet'
+          },
+          {
           name: 'obligatoire',
           state: 'en_cours',
           files: [
             { name: 'certificatMedical', state: 'demande' },
             { name: 'carteIdentite', state: 'demande' }
           ]
-        });
+        }];
 
         var success = function() {
           if (next) {

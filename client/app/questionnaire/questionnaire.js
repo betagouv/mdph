@@ -8,21 +8,25 @@ angular.module('impactApp')
         templateUrl: 'app/questionnaire/questionnaire.html',
         controller: 'QuestionnaireCtrl',
         resolve: {
-          request: function($stateParams, $sessionStorage, RequestResource) {
+          request: function($stateParams, $sessionStorage, RequestResource, mdph) {
             if ($stateParams.id === 'nouvelle_demande') {
-              if (typeof $sessionStorage.request === 'undefined') {
-                $sessionStorage.request = new RequestResource();
-                $sessionStorage.request.formAnswers = {};
+              if (typeof $sessionStorage.request !== 'undefined') {
+                $sessionStorage.request = { formAnswers: {}, steps: [{ name: 'questionnaire', state: 'complet' }], mdph: mdph};
               }
-              return $sessionStorage.request;
+              return new RequestResource($sessionStorage.request);
             }
 
             return RequestResource.get({shortId: $stateParams.id}, function(request) {
+              if (!request.formAnswers) {
+                request.formAnswers = {};
+              }
               $sessionStorage.request = request;
             }).$promise;
           }
         }
       })
+
+      // Sections
       .state('departement.questionnaire.identite', {
         url: '/identite',
         templateUrl: 'app/questionnaire/identite/identite.html',
@@ -109,6 +113,40 @@ angular.module('impactApp')
             }
 
             return $sessionStorage.request.formAnswers.aidant;
+          }
+        }
+      })
+
+      // Modale de login/signup
+      .state('departement.questionnaire.modal', {
+        abstract: true,
+        onEnter: function($rootScope, $modal, $state) {
+          $modal.open({
+            template: '<div ui-view="modal"></div>',
+            backdrop: true,
+            windowClass: 'right fade',
+            controller: 'ModalLoginCtrl'
+          }).result.then(function() {
+            $rootScope.$broadcast('logged-in-save-request');
+            $state.go('departement.questionnaire');
+          }, function() {
+            $state.go('departement.questionnaire');
+          });
+        }
+      })
+      .state('departement.questionnaire.modal.login', {
+        url: '/login',
+        views: {
+          'modal@': {
+            templateUrl: 'components/modal/login.html'
+          }
+        }
+      })
+      .state('departement.questionnaire.modal.signup', {
+        url: '/signup',
+        views: {
+          'modal@': {
+            templateUrl: 'components/modal/signup.html'
           }
         }
       });
