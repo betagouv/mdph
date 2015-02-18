@@ -8,11 +8,11 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AccidentDeTravailCtrl', function($scope, $state, QuestionService) {
+  .controller('CongeMaterniteCtrl', function($scope, $state, QuestionService) {
 
-    $scope.question = QuestionService.get('travail', 'accidentTravail', $scope.formAnswers);
+    $scope.question = QuestionService.get('travail', 'congeMaternite', $scope.formAnswers);
 
     $scope.nextStep = function() {
-      $state.go('^.conge_maternite');
+      $state.go('^.professionnel_social');
     };
   });

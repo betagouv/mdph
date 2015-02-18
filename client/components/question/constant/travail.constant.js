@@ -209,6 +209,22 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
+    titleRep: 'Est-<%= pronoun %> en arrêt pour congé maternité ?',
+    titleDefault: 'Êtes-vous en arrêt pour congé maternité ?',
+    model: 'congeMaternite',
+    type: 'radio',
+    'answers': [
+      {
+        'label': 'Non',
+        'value': false
+      },
+      {
+        'label': 'Oui',
+        'value': true
+      }
+    ]
+  },
+  {
     titleRep: 'A-t-<%= pronoun %> rencontré un professionnel du service social de la CARSAT ?',
     titleDefault: 'Avez-vous rencontré un professionnel du service social de la CARSAT ?',
     model: 'profesionnelSocial',

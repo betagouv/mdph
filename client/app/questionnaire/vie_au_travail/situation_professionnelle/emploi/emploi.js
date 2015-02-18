@@ -53,6 +53,11 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'AccidentDeTravailCtrl'
     })
+    .state(index + '.emploi.conge_maternite', {
+      url: '/conge_maternite',
+      templateUrl: 'components/question/radio.html',
+      controller: 'CongeMaterniteCtrl'
+    })
     .state(index + '.emploi.professionnel_social', {
       url: '/professionnel_social',
       templateUrl: 'components/question/radio.html',
