@@ -201,7 +201,7 @@ exports.getCerfa = function(req, res) {
 
     superagent
         .post(config.cerfaFormFillerUrl + '/impact')
-        .send(request)
+        .send(flattenedAnswers)
         .on('error', function() {
             res.send(500);
         })
