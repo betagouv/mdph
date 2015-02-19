@@ -1,20 +1,4 @@
 <div class="container">
-  <div id="#quitus" ng-if="prestations.length > 0">
-    <h1 class="page-header no-hr">
-      Récapitulatif
-    </h1>
-
-    <p class="lead">
-      Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
-    </p>
-    <blockquote>
-      <p>
-        Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
-      </p>
-    </blockquote>
-    <show-prestations form-answers="currentRequest.formAnswers" prestations="prestations" width="4"></show-prestations>
-  </div>
-
   <h1 class="page-header no-hr">
     Questionnaire
   </h1>
@@ -32,6 +16,19 @@
     <span>Télécharger ma demande</span>
   </a>
 
-  <embed ng-src="{{content}}" style="width:200px;height:200px;"></embed>
+  <div id="#quitus" ng-if="false">
+    <h1 class="page-header no-hr">
+      Récapitulatif
+    </h1>
 
+    <p class="lead">
+      Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront automatiquement étudiés par l’équipe d’évaluation de la MDPH.
+    </p>
+    <blockquote>
+      <p>
+        Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
+      </p>
+    </blockquote>
+    <show-prestations form-answers="currentRequest.formAnswers" prestations="prestations" width="4"></show-prestations>
+  </div>
 </div>
