@@ -143,6 +143,29 @@ angular.module('impactApp')
           }
         }
       })
+      .state('departement.questionnaire.situations_particulieres', {
+        url: '/situations_particulieres',
+        templateUrl: 'app/questionnaire/situations_particulieres/situations_particulieres.html',
+        controller: 'SituationsParticulieresCtrl',
+        resolve: {
+          sectionModel: function(request) {
+            if (angular.isUndefined(request.formAnswers.situationsParticulieres)) {
+              request.formAnswers.situationsParticulieres = {};
+            }
+
+            return request.formAnswers.situationsParticulieres;
+          },
+          question: function(QuestionService, request) {
+            return QuestionService.get('contexte', 'urgences', request.formAnswers);
+          },
+          hideBack: function() {
+            return true;
+          },
+          isLastQuestion: function() {
+            return true;
+          }
+        }
+      })
 
       // Modale de login/signup
       .state('departement.questionnaire.modal', {

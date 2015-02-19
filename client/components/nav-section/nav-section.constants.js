@@ -58,5 +58,12 @@ angular.module('impactApp').constant('SectionConstants', [
     label: 'Vous êtes aidés dans vos démarches',
     desc: 'Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation',
     optional: true
+  },
+  {
+    id: 'situationsParticulieres',
+    sref: '.situations_particulieres',
+    label: 'Situations particulières',
+    desc: 'Si vous vous trouvez dans une situation nécessitant une attention particulière',
+    optional: true
   }
 ]);

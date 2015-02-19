@@ -202,7 +202,9 @@ exports.getCerfa = function(req, res) {
     superagent
         .post(config.cerfaFormFillerUrl + '/impact')
         .send(flattenedAnswers)
-        .on('error', handleError)
+        .on('error', function(err) {
+          res.send(500, err);
+        })
         .pipe(res);
   });
 };
