@@ -197,17 +197,18 @@ exports.saveDocument = function (req, res, next) {
 
 exports.getCerfa = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-
     var flattenedAnswers = Flattener.flatten(request.formAnswers);
 
     superagent
         .post(config.cerfaFormFillerUrl + '/impact')
         .send(request)
-        .on('error', handleError)
+        .on('error', function() {
+            res.send(500);
+        })
         .pipe(res);
   });
 };
 
 function handleError(res, err) {
-  return res.send(500, err);
+  res.send(500, err);
 }
