@@ -10,7 +10,7 @@ module.exports = {
   SESSION_SECRET:         'impact-secret',
   API_KEY:                'mailjet-api-key',
   SECRET_KEY:             'mailjet-secret-key',
-  CERFA_FORM_FILLER_URL:  'http://localhost:9001',
+  CERFA_FORM_FILLER_URL:  'https://sgmap-dds-cerfa-form-filler.herokuapp.com',
 
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
