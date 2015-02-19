@@ -8,6 +8,7 @@ var config = require('../../config/environment');
 var Request = require('./request.model');
 var User = require('../user/user.model');
 var Mailer = require('../send-mail/send-mail.controller');
+var Flattener = require('../../components/flatten');
 
 /**
  * Get list of requests
@@ -196,6 +197,9 @@ exports.saveDocument = function (req, res, next) {
 
 exports.getCerfa = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
+
+    var flattenedAnswers = Flattener.flatten(request.formAnswers);
+
     superagent
         .post(config.cerfaFormFillerUrl + '/impact')
         .send(request)

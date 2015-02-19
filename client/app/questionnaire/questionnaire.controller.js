@@ -55,6 +55,58 @@ angular.module('impactApp')
 
     $scope.$on('logged-in-save-request', saveRequestAndAlert);
 
+    $scope.formatForCerfa = function() {
+      return flatten($scope.formAnswers);
+    };
+
+    var flatten = (function (isArray, wrapped) {
+        function reduce(path, accumulator, table) {
+            if (isArray(table)) {
+                var length = table.length;
+
+                if (length) {
+                    var index = 0;
+
+                    while (index < length) {
+                        var property = path, item = table[index++];
+                        if (wrapped(item) !== item) {
+                          accumulator[property] = item;
+                        }
+                        else {
+                          reduce(property, accumulator, item);
+                        }
+                    }
+                } else {
+                  accumulator[path] = table;
+                }
+            } else {
+                var empty = true;
+
+                if (path) {
+                    for (var property in table) {
+                        var item = table[property], property = path + '.' + property, empty = false;
+                        if (wrapped(item) !== item) accumulator[property] = item;
+                        else reduce(property, accumulator, item);
+                    }
+                } else {
+                    for (var property in table) {
+                        var item = table[property], empty = false;
+                        if (wrapped(item) !== item) accumulator[property] = item;
+                        else reduce(property, accumulator, item);
+                    }
+                }
+
+                if (empty) accumulator[path] = table;
+            }
+
+            return accumulator;
+        }
+
+        return function (table) {
+            return reduce('', {}, table);
+        };
+    }(Array.isArray, Object));
+
     $scope.saveSection = function(sectionModel) {
       sectionModel.__completion = true;
       if ($scope.currentRequest._id) {
