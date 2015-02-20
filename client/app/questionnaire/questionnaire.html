@@ -51,14 +51,6 @@
       </a>
     </div>
 
-    <a
-      class="btn btn-primary btn-lg"
-      target="_blank"
-      href="api/requests/{{currentRequest.shortId}}/cerfa.pdf">
-      <i class="fa fa-download"></i>
-      <span>Télécharger ma demande</span>
-    </a>
-
     <div class="text-right" ng-if="currentRequest.steps[0].state === 'en_cours'">
       <button class="btn btn-lg btn-default" ng-click="sauvegarder()">Sauvegarder</button>
       <button class="btn btn-lg btn-primary" ng-click="envoyer()">Envoyer</button>
