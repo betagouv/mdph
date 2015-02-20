@@ -1,6 +1,6 @@
-<qtitle ng-hide="hideTitle"></qtitle>
-
 <form name="questionForm" novalidate>
+  <qtitle ng-hide="hideTitle"></qtitle>
+
   <div class="answer form-horizontal" ng-repeat="(idx, etablissement) in model.etablissements">
     <input type="text" name="input{{idx}}" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement" required>
     <div ng-messages="questionForm['input' + idx].$error" ng-if="questionForm.showError">

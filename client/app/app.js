@@ -57,10 +57,9 @@ angular.module('impactApp', [
     };
   })
 
-  .run(function ($rootScope, $state, Auth, $sessionStorage) {
-    $sessionStorage.$default({
-        formAnswers: {}
-    });
+  .run(function ($rootScope, $state, Auth, datepickerConfig) {
+    datepickerConfig.datepickerMode = 'year';
+    datepickerConfig.showWeeks = false;
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {

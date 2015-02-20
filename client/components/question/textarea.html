@@ -1,6 +1,5 @@
-<qtitle ng-hide="hideTitle"></qtitle>
-
 <form name="questionForm" novalidate>
+  <qtitle ng-hide="hideTitle"></qtitle>
   <label for="inputid" ng-if="label" class="control-label">{{label}}</label>
   <textarea type="text" name="inputname" id="inputid" class="form-control"
       rows="{{rows}}" ng-model="sectionModel[question.model]" placeholder="{{placeholder}}" required></textarea>

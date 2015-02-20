@@ -31,6 +31,7 @@ angular.module('impactApp').constant('vieScolaire', [
         value: 'tropJeune',
 
         detailModel: 'raisonNonScolaireTropJeune',
+        placeholderDefault: 'A partir de quand serez-vous scolarisé(e) ?',
         placeholder: 'A partir de quand sera-t-<%= pronoun %> scolarisé<%= fem %> ?',
         detailUrl: 'components/detail/precisez.html'
       },

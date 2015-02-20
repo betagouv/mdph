@@ -1,12 +1,38 @@
 'use strict';
 
 angular.module('impactApp')
+  .factory('SaveSectionService', function SaveSectionService($state, $window, $timeout) {
+    return {
+      saveSection: function(sectionModel, request) {
+        var onError = function(err) {
+          $window.alert(err.data.message);
+        };
+
+        var onSuccess = function() {
+          $timeout(function() {
+            $window.alert('Votre questionnaire à été sauvegardé');
+            $state.go('departement.questionnaire', {id: request.shortId});
+          }, 100);
+        };
+
+        sectionModel.__completion = true;
+        if (request._id) {
+          request.$update(onSuccess, onError);
+        } else {
+          $state.go('departement.questionnaire');
+        }
+      }
+    };
+  })
   .config(function ($stateProvider) {
     $stateProvider
       .state('departement.questionnaire', {
         url: '/questionnaire/:id',
         templateUrl: 'app/questionnaire/questionnaire.html',
         controller: 'QuestionnaireCtrl',
+        data: {
+          hideBack: false
+        },
         resolve: {
           request: function($stateParams, $sessionStorage, RequestResource, mdph) {
             if ($stateParams.id === 'nouvelle_demande') {
@@ -37,6 +63,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.identite;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -51,6 +82,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.autorite;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -66,6 +102,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.vieQuotidienne;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -81,6 +122,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.scolaire;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -96,6 +142,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.travail;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -111,6 +162,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.detailRenouvellement;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -126,6 +182,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.aidant;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -140,6 +201,11 @@ angular.module('impactApp')
             }
 
             return request.formAnswers.aidePartenaire;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })
@@ -163,6 +229,11 @@ angular.module('impactApp')
           },
           isLastQuestion: function() {
             return true;
+          },
+          saveSection: function(SaveSectionService, sectionModel, request) {
+            return function () {
+              SaveSectionService.saveSection(sectionModel, request);
+            };
           }
         }
       })

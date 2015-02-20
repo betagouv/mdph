@@ -47,7 +47,7 @@ angular.module('impactApp')
       if (FormService.estRepresentant(formAnswers) && angular.isDefined(question.placeholder)) {
         return loadAshCompile(question.placeholder, formAnswers);
       }
-      return question.placeholder;
+      return question.placeholderDefault ? question.placeholderDefault : question.placeholder;
     };
 
     var capitaliseFirstLetter = function (string) {
