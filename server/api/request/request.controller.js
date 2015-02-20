@@ -198,9 +198,9 @@ exports.saveDocument = function (req, res, next) {
 exports.getCerfa = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     var flattenedAnswers = Flattener.flatten(request.formAnswers);
-
+    var url = config.cerfaFormFillerUrl ? config.cerfaFormFillerUrl + '/impact' : 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
     superagent
-        .post(config.cerfaFormFillerUrl + '/impact')
+        .post(url)
         .send(flattenedAnswers)
         .on('error', function(err) {
           res.send(500, err);
