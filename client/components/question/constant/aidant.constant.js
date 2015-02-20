@@ -109,7 +109,7 @@ angular.module('impactApp').constant('aidant', [
   {
     titleDefault: 'Quelqu\'un participe-t-il avec vous à son accompagnement ?',
     titleRep: 'Quelqu\'un participe-t-il avec vous à l\'accompagnement de <%= name %> ?',
-    model: 'accompagnement',
+    model: 'accompagnementAidant',
     type: 'checkbox',
     'answers':[
       {label: 'Oui, un (des) professionnel(s)', model: 'professionnel'},

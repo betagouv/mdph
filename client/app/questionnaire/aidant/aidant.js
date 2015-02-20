@@ -40,7 +40,7 @@ angular.module('impactApp')
       .state(index + '.situation.accompagnement', {
         url: '/accompagnement',
         templateUrl: 'components/question/checkbox.html',
-        controller: 'AccompagnementCtrl'
+        controller: 'AccompagnementAidantCtrl'
       })
       .state(index + '.situation.soutien', {
         url: '/soutien',
