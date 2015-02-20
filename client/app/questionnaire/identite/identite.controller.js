@@ -14,7 +14,7 @@ angular.module('impactApp')
       if (form.$invalid) {
         form.showError = true;
       } else {
-        saveSection($scope.sectionModel);
+        saveSection();
       }
     };
   });

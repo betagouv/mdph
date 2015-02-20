@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AutoriteCtrl', function ($scope, $state, datepickerConfig, sectionModel) {
+  .controller('AutoriteCtrl', function ($scope, $state, datepickerConfig, sectionModel, saveSection) {
     $scope.sectionModel = sectionModel;
 
     datepickerConfig.datepickerMode = 'year';
@@ -15,7 +15,7 @@ angular.module('impactApp')
       if (form.$invalid) {
         form.showError = true;
       } else {
-        $scope.$parent.saveSection($scope.sectionModel);
+        saveSection();
       }
     };
   });
