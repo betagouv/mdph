@@ -8,7 +8,7 @@
  * Controller of the impactApp
  */
 angular.module('impactApp')
-  .controller('AutresRenseignementsAidantCtrl', function ($scope, $state, QuestionService) {
+  .controller('AutresRenseignementsAidantCtrl', function ($scope, $state, QuestionService, saveSection) {
 
     $scope.question = QuestionService.get('aidant', 'autresRenseignements', $scope.formAnswers);
     $scope.isLastQuestion = true;
@@ -18,6 +18,6 @@ angular.module('impactApp')
     }
 
     $scope.nextStep = function() {
-      $scope.$parent.saveSection($scope.sectionModel);
+      saveSection();
     };
   });
