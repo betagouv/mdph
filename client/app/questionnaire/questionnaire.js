@@ -31,7 +31,8 @@ angular.module('impactApp')
         templateUrl: 'app/questionnaire/questionnaire.html',
         controller: 'QuestionnaireCtrl',
         data: {
-          hideBack: false
+          hideBack: false,
+          isLastQuestion: false
         },
         resolve: {
           request: function($stateParams, $sessionStorage, RequestResource, mdph) {
@@ -215,6 +216,10 @@ angular.module('impactApp')
         url: '/situations_particulieres',
         templateUrl: 'app/questionnaire/situations_particulieres/situations_particulieres.html',
         controller: 'SituationsParticulieresCtrl',
+        data: {
+          hideBack: true,
+          isLastQuestion: true
+        },
         resolve: {
           sectionModel: function(request) {
             if (angular.isUndefined(request.formAnswers.situationsParticulieres)) {
@@ -226,15 +231,14 @@ angular.module('impactApp')
           question: function(QuestionService, request) {
             return QuestionService.get('contexte', 'urgences', request.formAnswers);
           },
-          hideBack: function() {
-            return true;
-          },
-          isLastQuestion: function() {
-            return true;
-          },
           saveSection: function(SaveSectionService, sectionModel, request) {
             return function () {
               SaveSectionService.saveSection(sectionModel, request);
+            };
+          },
+          nextStep: function(saveSection) {
+            return function() {
+              saveSection();
             };
           }
         }
