@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, prestations) {
+  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, prestations, saveSection) {
     if (!$scope.formAnswers.prestations) {
       $scope.formAnswers.prestations = {};
     }
@@ -12,6 +12,6 @@ angular.module('impactApp')
     datepickerConfig.datepickerMode = 'day';
 
     $scope.nextStep = function() {
-      $scope.$parent.saveSection($scope.sectionModel);
+      saveSection();
     };
   });
