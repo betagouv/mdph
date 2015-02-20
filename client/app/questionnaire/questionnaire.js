@@ -153,7 +153,9 @@ angular.module('impactApp')
       .state('departement.questionnaire.renouvellement', {
         url: '/renouvellement',
         templateUrl: 'app/questionnaire/renouvellement/renouvellement.html',
-        controller: 'RenouvellementsCtrl',
+        controller: function($scope, sectionModel) {
+          $scope.sectionModel = sectionModel;
+        },
         abstract: true,
         resolve: {
           sectionModel: function(request) {
