@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
 var User = require('../api/user/user.model');
+var Request = require('../api/request/request.model');
 var validateJwt = expressJwt({ secret: config.secrets.session });
 
 /**
@@ -31,6 +32,43 @@ function isAuthenticated() {
 
         req.user = user;
         next();
+      });
+    });
+}
+
+/**
+ * Attaches the user object to the request if authenticated
+ * Otherwise returns 401
+ */
+function isAuthenticatedAndRequestOwner() {
+  return compose()
+    // Validate jwt
+    .use(function(req, res, next) {
+      // allow access_token to be passed through query parameter as well
+      if(req.query && req.query.hasOwnProperty('access_token')) {
+        req.headers.authorization = 'Bearer ' + req.query.access_token;
+      }
+      validateJwt(req, res, next);
+    })
+    // Attach user to request
+    .use(function(req, res, next) {
+      User.findById(req.user._id, function (err, user) {
+        if (err) return next(err);
+        if (!user) return res.send(401);
+        if (user.role === 'adminMdph') {
+          req.user = user;
+          next();
+        } else {
+          Request.findOne({
+            shortId: req.params.shortId
+          }).exec(function(err, request) {
+            if (err) { return next(err); }
+            if (!request) { return res.send(404); }
+            if (user.id !== '' + request.user) { return res.send(401); }
+            req.user = user;
+            next();
+          });
+        }
       });
     });
 }
@@ -71,6 +109,7 @@ function setTokenCookie(req, res) {
 }
 
 exports.isAuthenticated = isAuthenticated;
+exports.isAuthenticatedAndRequestOwner = isAuthenticatedAndRequestOwner;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
