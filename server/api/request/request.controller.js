@@ -36,6 +36,8 @@ exports.index = function(req, res) {
       .sort('createdAt')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
+
+        res.set('count', requests.length);
         res.json(200, requests);
       });
   } else {
@@ -43,6 +45,8 @@ exports.index = function(req, res) {
       .sort('createdAt')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
+
+        res.set('count', requests.length);
         res.json(200, requests);
       });
   }

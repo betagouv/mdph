@@ -13,6 +13,11 @@ angular.module('impactApp')
           },
           currentUser: function(Auth) {
             return Auth.getCurrentUser();
+          },
+          pendingRequests: function($http) {
+            return $http({method: 'HEAD', url: '/api/requests', params: {opened: true, evaluator: 'null'}}).then(function(result) {
+              return result.headers('count');
+            });
           }
         },
         authenticate: true
@@ -30,7 +35,7 @@ angular.module('impactApp')
         resolve: {
           requests: function(RequestResource) {
             return RequestResource.query({opened: true, evaluator: 'null'}).$promise;
-          },
+          }
         },
         authenticate: true
       })

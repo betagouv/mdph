@@ -14,7 +14,7 @@ angular.module('impactApp')
           });
         }
       });
-
+      $scope.$emit('assign-request');
       $state.go('dashboard.requests.list.user', {userId: $scope.currentUser._id});
     };
 
