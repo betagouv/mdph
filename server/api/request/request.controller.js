@@ -211,8 +211,7 @@ exports.getCerfa = function(req, res) {
 };
 
 exports.postPdf = function(req, res) {
-  wkhtmltopdf(req.body.htmlAnswers).pipe(res);
-
+  wkhtmltopdf(req.body.htmlAnswers, {encoding: 'UTF-8'}).pipe(res);
 };
 
 function handleError(res, err) {
