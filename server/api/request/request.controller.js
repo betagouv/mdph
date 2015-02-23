@@ -9,6 +9,7 @@ var Request = require('./request.model');
 var User = require('../user/user.model');
 var Mailer = require('../send-mail/send-mail.controller');
 var Flattener = require('../../components/flatten');
+var wkhtmltopdf = require('wkhtmltopdf');
 
 /**
  * Get list of requests
@@ -207,6 +208,11 @@ exports.getCerfa = function(req, res) {
         })
         .pipe(res);
   });
+};
+
+exports.postPdf = function(req, res) {
+  wkhtmltopdf(req.body.htmlAnswers).pipe(res);
+
 };
 
 function handleError(res, err) {

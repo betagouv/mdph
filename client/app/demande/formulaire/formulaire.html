@@ -13,8 +13,13 @@
     target="_blank"
     href="api/requests/{{currentRequest.shortId}}/cerfa.pdf">
     <i class="fa fa-download"></i>
-    <span>Télécharger ma demande</span>
+    <span>Télécharger ma demande - format CERFA</span>
   </a>
+
+  <button class="btn btn-primary btn-lg" ng-click="telechargerPDF()">
+    <i class="fa fa-download"></i>
+    <span>Télécharger ma demande - format simplifié</span>
+  </button>
 
   <div id="#quitus" ng-if="false">
     <h1 class="page-header no-hr">

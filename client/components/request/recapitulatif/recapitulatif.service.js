@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RecapitulatifService', function RecapitulatifService(RequestService, SectionConstants, QuestionService) {
+  .factory('RecapitulatifService', function RecapitulatifService(SectionConstants, QuestionService) {
 
     var getQuestionAnswer = function(question, answer, sectionId, request) {
       var answers = request.formAnswers;
