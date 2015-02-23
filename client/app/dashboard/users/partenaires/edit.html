@@ -1,6 +1,6 @@
 <div class="edit-partenaire">
-  <div class="back">
-    <a ui-sref="^">Retour</a>
+  <div class="list-header">
+    <h2>Edition d'un partenaire</h2>
   </div>
   <form class="form-horizontal">
     <div class="form-group">
@@ -25,11 +25,16 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-offset-10 col-sm-1">
-        <button class="btn btn-default" type="button" ng-click="delete()">Supprimer</button>
-      </div>
       <div class="col-sm-1">
-        <button class="btn btn-primary" type="submit" ng-click="update()">Sauver</button>
+        <a class="btn btn-default" ui-sref="^">Annuler</a>
+      </div>
+      <div class="col-sm-11 text-right">
+        <button class="btn btn-danger" type="button" ng-click="delete()">
+          <i class="fa fa-trash"></i> Supprimer
+        </button>
+        <button class="btn btn-primary" type="submit" ng-click="update()">
+          <i class="fa fa-save"></i> Sauver
+        </button>
       </div>
     </div>
   </form>

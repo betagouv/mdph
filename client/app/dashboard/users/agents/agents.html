@@ -1,0 +1,29 @@
+<ui-view>
+  <div class="list-header">
+    <form class="pull-right">
+      <div class="input-group search">
+        <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-sm btn-primary">
+            Ok
+          </button>
+        </div>
+      </div>
+    </form>
+    <h2>Liste des agents</h2>
+  </div>
+
+  <div class="list-main">
+    <table>
+      <tbody>
+        <tr ng-repeat="user in users | filter:query">
+          <td class="check-request" ng-click="user.isSelected = !user.isSelected">
+            <i class="fa" ng-class="{'fa-square': !user.isSelected, 'fa-check-square': user.isSelected}"></i>
+          </td>
+          <td class="text-left"><a ui-sref="dashboard.users.agents.edit({id: user._id})">{{user.name}}</a></td>
+          <td class="text-right"><a ui-sref="dashboard.users.agents.edit({id: user._id})">{{user.email}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ui-view>
