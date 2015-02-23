@@ -6,6 +6,16 @@ angular.module('impactApp')
       .state('dashboard.users', {
         url: '/utilisateurs',
         templateUrl: 'app/dashboard/users/users.html',
+        controller: function($scope, pending) {
+          $scope.pending = pending;
+        },
+        resolve: {
+          pending: function($http) {
+            return $http({method: 'HEAD', url: '/api/partenaires', params: {status: 'en_attente'}}).then(function(result) {
+              return result.headers('count');
+            });
+          }
+        },
         authenticate: true,
         abstract: true
       })

@@ -10,11 +10,13 @@ exports.index = function(req, res) {
   if (req.query.status) {
     Partenaire.find({certified: req.query.status}).sort('email').exec(function(err, partenaires) {
       if(err) { return handleError(res, err); }
+      res.set('count', partenaires.length);
       return res.json(partenaires);
     });
   } else {
     Partenaire.find().sort('email').exec(function(err, partenaires) {
       if(err) { return handleError(res, err); }
+      res.set('count', partenaires.length);
       return res.json(partenaires);
     });
   }
