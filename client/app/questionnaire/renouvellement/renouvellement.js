@@ -26,11 +26,22 @@ angular.module('impactApp')
       url: '/liste_droits',
       templateUrl: 'components/question/droits.html',
       controller: 'ListeDroitsCtrl',
+      data: {
+        isLastQuestion: true
+      },
       resolve: {
+        question: function(QuestionService, request) {
+          return QuestionService.get('renouvellement', 'finDroits', request.formAnswers);
+        },
         prestations: function($http) {
           return $http.get('/api/prestations').then(function(prestations) {
             return prestations.data;
           });
+        },
+        nextStep: function(saveSection) {
+          return function() {
+            saveSection();
+          };
         }
       }
     });

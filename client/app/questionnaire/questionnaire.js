@@ -215,7 +215,7 @@ angular.module('impactApp')
       .state('departement.questionnaire.situations_particulieres', {
         url: '/situations_particulieres',
         templateUrl: 'app/questionnaire/situations_particulieres/situations_particulieres.html',
-        controller: 'SituationsParticulieresCtrl',
+        controller: 'SimpleSectionQuestionCtrl',
         data: {
           hideBack: true,
           isLastQuestion: true

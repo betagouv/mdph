@@ -2,7 +2,7 @@
   <qtitle ng-hide="hideTitle"></qtitle>
   <label for="inputid" ng-if="label" class="control-label">{{label}}</label>
   <textarea type="text" name="inputname" id="inputid" class="form-control"
-      rows="{{rows}}" ng-model="sectionModel[question.model]" placeholder="{{placeholder}}" required></textarea>
+    rows="4" ng-model="sectionModel[question.model]" placeholder="{{question.placeholder}}" required></textarea>
   <div ng-messages="questionForm.inputname.$error" ng-if="questionForm.showError">
     <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
   </div>

@@ -5,18 +5,23 @@ angular.module('impactApp')
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
   })
-  .controller('CheckboxQuestionCtrl', function($scope, $state, question, nextStep) {
+  .controller('CheckboxQuestionCtrl', function($scope, $state,question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[question.model] = {};
     }
   })
-  .controller('StructureQuestionCtrl', function ($scope, question, nextStep) {
+  .controller('StructureQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
+    $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
@@ -35,19 +40,23 @@ angular.module('impactApp')
       );
     };
   })
-  .controller('RenseignementsQuestionCtrl', function ($scope, question, nextStep) {
+  .controller('RenseignementsQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
-    $scope.isLastQuestion = true;
+    $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+
     $scope.placeholder = 'Autres renseignements';
 
     if (angular.isUndefined($scope.sectionModel.autresRenseignements)) {
       $scope.sectionModel.autresRenseignements = '';
     }
   })
-  .controller('EtablissementScolaireCtrl', function($scope, question, nextStep) {
+  .controller('EtablissementScolaireCtrl', function($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
+    $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
 
     if (angular.isUndefined($scope.sectionModel.etablissement)) {
       $scope.sectionModel.etablissement = {
@@ -64,4 +73,11 @@ angular.module('impactApp')
         { 'name': '' }
       );
     };
+  })
+  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionmodel, question, nextStep) {
+    $scope.sectionmodel = sectionmodel;
+    $scope.question = question;
+    $scope.nextStep = nextStep;
+    $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
   });

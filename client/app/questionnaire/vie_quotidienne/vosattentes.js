@@ -53,6 +53,9 @@ angular.module('impactApp')
       url: '/autres_renseignements',
       templateUrl: 'components/question/autres_renseignements.html',
       controller: 'RenseignementsQuestionCtrl',
+      data: {
+        isLastQuestion: true
+      },
       resolve: {
         question: function(QuestionService, request) {
           return QuestionService.get('vieQuotidienne', 'autresRenseignements', request.formAnswers);

@@ -1,17 +1,15 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, prestations, saveSection) {
+  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, prestations, question, nextStep) {
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.nextStep = nextStep;
+    $scope.question = question;
+
     if (!$scope.formAnswers.prestations) {
       $scope.formAnswers.prestations = {};
     }
 
-    $scope.isLastQuestion = true;
     $scope.prestations = prestations;
-    $scope.question = QuestionService.get('renouvellement', 'finDroits', $scope.formAnswers);
     datepickerConfig.datepickerMode = 'day';
-
-    $scope.nextStep = function() {
-      saveSection();
-    };
   });
