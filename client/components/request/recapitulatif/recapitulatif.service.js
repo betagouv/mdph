@@ -80,7 +80,7 @@ angular.module('impactApp')
 
           }
 
-          return radioBuilder;
+          return '<p>' + radioBuilder + '</p>';
         }
         else if (questionAnswer.type === 'checkbox') {
           if (!questionAnswer.answer || questionAnswer.answer.length === 0) {
@@ -95,20 +95,20 @@ angular.module('impactApp')
           });
 
           checkboxBuilder += '</ul>';
-          return checkboxBuilder;
+          return '<p>' + checkboxBuilder + '</p>';
         }
         else if (questionAnswer.type === 'text') {
-          return questionAnswer.title + ' : ' + questionAnswer.answer.value;
+          return '<p>' + questionAnswer.title + ' : ' + questionAnswer.answer.value + '</p>';
         }
         else if (questionAnswer.type === 'date') {
-          return questionAnswer.title + ' : ' + moment(questionAnswer.answer.value).format('DD/MM/YYYY');
+          return '<p>' + questionAnswer.title + ' : ' + moment(questionAnswer.answer.value).format('DD/MM/YYYY') + '</p>';
         }
         else if (questionAnswer.type === 'employeur') {
-          return (questionAnswer.title +
+          return ('<p>' + questionAnswer.title +
             '<ul><li>' + questionAnswer.answer.value.nom.label + ' : ' + questionAnswer.answer.value.nom.value +
             '</li><li>' + questionAnswer.answer.value.adresse.label + ' : ' + questionAnswer.answer.value.adresse.value  +
             '</li><li>' + questionAnswer.answer.value.medecin.label + ' : ' + questionAnswer.answer.value.medecin.value  +
-            '</li></ul>');
+            '</li></ul></p>');
         }
         else if (questionAnswer.type === 'structure'){
           var structureBuilder = questionAnswer.title +'<ul>';
@@ -116,7 +116,7 @@ angular.module('impactApp')
             structureBuilder += '<li>' + questionAnswer.answer.value.structures[i].name + '</li>';
           }
           structureBuilder += '</ul>';
-          return structureBuilder;
+          return '<p>' + structureBuilder + '</p>';
         }
       }
 
@@ -139,11 +139,11 @@ angular.module('impactApp')
       var sectionAnswers = answers[section.id];
 
       if (!sectionAnswers) {
-        return html + '<em>Section non renseignée</em>';
+        return html + '<p><em>Section non renseignée</em></p>';
       }
 
       if (section.id === 'aidant' && !sectionAnswers.condition) {
-        return html + '<em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em>';
+        return html + '<p><em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em></p>';
       }
 
       angular.forEach(sectionAnswers, function(answer, question) {
@@ -166,6 +166,12 @@ angular.module('impactApp')
               }\
               h2 {\
                 font-size: 28px;\
+              }\
+              p {\
+                font-size: 24px;\
+              }\
+              ul {\
+                font-size: 24px;\
               }\
             </style>\
           </head>\
