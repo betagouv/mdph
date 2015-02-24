@@ -1,4 +1,5 @@
 'use strict';
+// jshint multistr:true
 
 angular.module('impactApp')
   .factory('RecapitulatifService', function RecapitulatifService(SectionConstants, QuestionService) {
@@ -134,7 +135,7 @@ angular.module('impactApp')
 
       var answers = request.formAnswers;
 
-      var html = '<h1>' + section.label + '</h1>';
+      var html = '<h2>' + section.label + '</h2>';
       var sectionAnswers = answers[section.id];
 
       if (!sectionAnswers) {
@@ -157,11 +158,23 @@ angular.module('impactApp')
 
     return {
       answersToHtml: function(request) {
-        var html = '';
+        var html = '<html>\
+          <head>\
+            <style>\
+              h1 {\
+                font-size: 30px;\
+              }\
+              h2 {\
+                font-size: 28px;\
+              }\
+            </style>\
+          </head>\
+          <body>\
+            <h1>Vos réponses au questionaire MDPH</h1>';
         angular.forEach(SectionConstants, function(section) {
           html += sectionToHtml(section, request);
         });
-        return html;
+        return html + '</body></html>';
       }
     };
   });
