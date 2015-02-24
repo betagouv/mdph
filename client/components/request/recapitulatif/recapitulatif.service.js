@@ -80,7 +80,7 @@ angular.module('impactApp')
 
           }
 
-          return '<p>' + radioBuilder + '</p>';
+          return '<div class="question"><p>' + radioBuilder + '</p></div>';
         }
         else if (questionAnswer.type === 'checkbox') {
           if (!questionAnswer.answer || questionAnswer.answer.length === 0) {
@@ -95,20 +95,20 @@ angular.module('impactApp')
           });
 
           checkboxBuilder += '</ul>';
-          return '<p>' + checkboxBuilder + '</p>';
+          return '<div class="question"><p>' + checkboxBuilder + '</p></div>';
         }
         else if (questionAnswer.type === 'text') {
-          return '<p>' + questionAnswer.title + ' : ' + questionAnswer.answer.value + '</p>';
+          return '<div class="question"><p>' + questionAnswer.title + ' : ' + questionAnswer.answer.value + '</p></div>';
         }
         else if (questionAnswer.type === 'date') {
-          return '<p>' + questionAnswer.title + ' : ' + moment(questionAnswer.answer.value).format('DD/MM/YYYY') + '</p>';
+          return '<div class="question"><p>' + questionAnswer.title + ' : ' + moment(questionAnswer.answer.value).format('DD/MM/YYYY') + '</p></div>';
         }
         else if (questionAnswer.type === 'employeur') {
-          return ('<p>' + questionAnswer.title +
+          return ('<div class="question"><p>' + questionAnswer.title +
             '<ul><li>' + questionAnswer.answer.value.nom.label + ' : ' + questionAnswer.answer.value.nom.value +
             '</li><li>' + questionAnswer.answer.value.adresse.label + ' : ' + questionAnswer.answer.value.adresse.value  +
             '</li><li>' + questionAnswer.answer.value.medecin.label + ' : ' + questionAnswer.answer.value.medecin.value  +
-            '</li></ul></p>');
+            '</li></ul></p></div>');
         }
         else if (questionAnswer.type === 'structure'){
           var structureBuilder = questionAnswer.title +'<ul>';
@@ -116,7 +116,7 @@ angular.module('impactApp')
             structureBuilder += '<li>' + questionAnswer.answer.value.structures[i].name + '</li>';
           }
           structureBuilder += '</ul>';
-          return '<p>' + structureBuilder + '</p>';
+          return '<div class="question"><p>' + structureBuilder + '</p></div>';
         }
       }
 
@@ -135,15 +135,15 @@ angular.module('impactApp')
 
       var answers = request.formAnswers;
 
-      var html = '<h2>' + section.label + '</h2>';
+      var html = '<div class="section"><h2>' + section.label + '</h2>';
       var sectionAnswers = answers[section.id];
 
       if (!sectionAnswers) {
-        return html + '<p><em>Section non renseignée</em></p>';
+        return html + '<p><em>Section non renseignée</em></p></div>';
       }
 
       if (section.id === 'aidant' && !sectionAnswers.condition) {
-        return html + '<p><em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em></p>';
+        return html + '<p><em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em></p></div>';
       }
 
       angular.forEach(sectionAnswers, function(answer, question) {
@@ -153,7 +153,7 @@ angular.module('impactApp')
         }
       });
 
-      return html;
+      return html + '</div>';
     };
 
     return {
@@ -162,16 +162,31 @@ angular.module('impactApp')
           <head>\
             <style>\
               h1 {\
-                font-size: 30px;\
+                text-align: center;\
+                font-size: 34px;\
+                color: #4f6083;\
               }\
               h2 {\
                 font-size: 28px;\
+                color: #323d53;\
               }\
               p {\
                 font-size: 24px;\
               }\
               ul {\
                 font-size: 24px;\
+              }\
+              .section {\
+                color: #333;\
+                background-color: #F5F5F5;\
+                padding: 2px 10px;\
+                border-radius: 5px;\
+                margin: 5px 0px;\
+              }\
+              .question {\
+                background-color: white;\
+                padding: 2px 16px;\
+                border-radius: 6px;\
               }\
             </style>\
           </head>\
