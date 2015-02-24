@@ -74,8 +74,8 @@ angular.module('impactApp')
       );
     };
   })
-  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionmodel, question, nextStep) {
-    $scope.sectionmodel = sectionmodel;
+  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep) {
+    $scope.sectionModel = sectionModel;
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.hideBack = $state.current.data.hideBack;

@@ -5,8 +5,9 @@ angular.module('impactApp')
     $scope.currentRequest = request;
     $scope.formAnswers = $scope.currentRequest.formAnswers;
 
-    $scope.sectionsOptionnelles = _.filter(SectionConstants, {optional: true});
-    $scope.sectionsObligatoires = _.filter(SectionConstants, {optional: false});
+    $scope.sectionsObligatoires = _.filter(SectionConstants, {section: 'obligatoire'});
+    $scope.sectionsComplementaires = _.filter(SectionConstants, {section: 'complementaire'});
+    $scope.sectionsBonus = _.filter(SectionConstants, {section: 'autour_de_votre_demande'});
 
     $scope.shouldShow = function(section) {
       if (section.id !== 'autorite') {
@@ -54,58 +55,6 @@ angular.module('impactApp')
     };
 
     $scope.$on('logged-in-save-request', saveRequestAndAlert);
-
-    $scope.formatForCerfa = function() {
-      return flatten($scope.formAnswers);
-    };
-
-    var flatten = (function (isArray, wrapped) {
-        function reduce(path, accumulator, table) {
-            if (isArray(table)) {
-                var length = table.length;
-
-                if (length) {
-                    var index = 0;
-
-                    while (index < length) {
-                        var property = path, item = table[index++];
-                        if (wrapped(item) !== item) {
-                          accumulator[property] = item;
-                        }
-                        else {
-                          reduce(property, accumulator, item);
-                        }
-                    }
-                } else {
-                  accumulator[path] = table;
-                }
-            } else {
-                var empty = true;
-
-                if (path) {
-                    for (var property in table) {
-                        var item = table[property], property = path + '.' + property, empty = false;
-                        if (wrapped(item) !== item) accumulator[property] = item;
-                        else reduce(property, accumulator, item);
-                    }
-                } else {
-                    for (var property in table) {
-                        var item = table[property], empty = false;
-                        if (wrapped(item) !== item) accumulator[property] = item;
-                        else reduce(property, accumulator, item);
-                    }
-                }
-
-                if (empty) accumulator[path] = table;
-            }
-
-            return accumulator;
-        }
-
-        return function (table) {
-            return reduce('', {}, table);
-        };
-    }(Array.isArray, Object));
 
     $scope.sauvegarder = function() {
       if (Auth.isLoggedIn()) {

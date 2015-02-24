@@ -243,6 +243,11 @@ angular.module('impactApp')
           }
         }
       })
+      .state('departement.questionnaire.documents', {
+        url: '/documents',
+        templateUrl: 'app/questionnaire/documents/documents.html',
+        controller: function() {}
+      })
 
       // Modale de login/signup
       .state('departement.questionnaire.modal', {
