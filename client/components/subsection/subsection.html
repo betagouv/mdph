@@ -1,10 +1,14 @@
 <ol class="sub-sections">
   <li class="nav-section" ng-repeat="section in subsections">
-    <a ui-sref="{{section.sref}}"
-      ng-class="{active: isActive(section), showBefore: section.showBefore, showAfter: section.showAfter,
-        first: !section.showBefore, last: !section.showAfter}"
-      tooltip="{{section.tooltip}}">
-      <span>{{getLabel(section)}}</span>
-    </a>
+    <div
+      ng-class="{
+        active: isActive(section),
+        showBefore: section.showBefore,
+        showAfter: section.showAfter,
+        first: !section.showBefore,
+        last: !section.showAfter
+      }">
+      <span>{{section.label}}</span>
+    </div>
   </li>
 </ol>
