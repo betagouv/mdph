@@ -2,7 +2,7 @@
 // jshint multistr:true
 
 angular.module('impactApp')
-  .factory('RecapitulatifService', function RecapitulatifService(SectionConstants, QuestionService) {
+  .factory('RecapitulatifService', function RecapitulatifService($location, SectionConstants, QuestionService) {
 
     var getQuestionAnswer = function(question, answer, sectionId, request) {
       var answers = request.formAnswers;
@@ -158,6 +158,10 @@ angular.module('impactApp')
 
     return {
       answersToHtml: function(request) {
+        var path =  'http://' + $location.host();
+        if($location.host()==='localhost'){
+          path += ':' + $location.port();
+        }
         var html = '<html>\
           <head>\
             <style>\
@@ -188,10 +192,23 @@ angular.module('impactApp')
                 padding: 2px 16px;\
                 border-radius: 6px;\
               }\
+              img {\
+                float: right;\
+                margin-right: 5px;\
+              }\
             </style>\
           </head>\
           <body>\
-            <h1>Vos réponses au questionaire MDPH</h1>';
+            <img src="'+ path +'/assets/images/cerfa.png" width="91,4" height="48,9"></img>\
+            <img src="'+ path +'/assets/images/logo59.jpg" width="88,9" height="48,9"></img>\
+            <h1>Mes réponses au questionaire MDPH</h1>\
+            <p><strong>Les informations que je donne sont confidentielles.\
+            <br>Je peux demander à rencontrer la CDAPH.</strong>\
+            La CDAPH, c’est la Commission des Droits et de l’Autonomie des Personnes Handicapées. Créée par la loi 2005-102 du 11 février\
+            2005, elle prend les décisions d’attribution des droits aux personnes avec un handicap sur la base de l’évaluation et des propositions\
+            de la MDPH.\
+            <br><strong>Une évaluation approfondie va être réalisée par l’équipe de la MDPH, qui vous recontactera si nécessaire.\
+            Nous vous conseillons de conserver une copie de vos réponses.</strong></p>';
         angular.forEach(SectionConstants, function(section) {
           html += sectionToHtml(section, request);
         });
