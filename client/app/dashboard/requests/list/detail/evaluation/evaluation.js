@@ -3,9 +3,9 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('dashboard.repartition_demandes.detail.evaluation', {
+      .state('dashboard.requests.list.user.detail.evaluation', {
         url: '/evaluation',
-        templateUrl: 'app/dashboard/repartition_demandes/evaluation/evaluation.html',
+        templateUrl: 'app/dashboard/requests/list/detail/evaluation/evaluation.html',
         controller: 'EvaluationDemandeCtrl',
         resolve: {
           sections: function(GevaService) {

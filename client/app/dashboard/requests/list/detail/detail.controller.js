@@ -41,7 +41,7 @@ angular.module('impactApp')
     };
 
     $scope.goNext = function() {
-      $state.go('dashboard.repartition_demandes.detail.evaluation', {shortId: $scope.request.shortId});
+      $state.go('dashboard.requests.list.user.detail.evaluation', {shortId: $scope.request.shortId});
     };
 
     $scope.assignDocument = function (file){
