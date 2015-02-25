@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('QuestionService', function QuestionService(FormService, contexte, vieQuotidienne, vieScolaire, travail, aidant, renouvellement) {
+  .factory('QuestionService', function QuestionService(FormService, identite, contexte, vieQuotidienne, vieScolaire, travail, aidant, renouvellement) {
 
     var q = {
+      identite: _.indexBy(identite, 'model'),
       contexte: _.indexBy(contexte, 'model'),
       vieQuotidienne: _.indexBy(vieQuotidienne, 'model'),
       scolaire: _.indexBy(vieScolaire, 'model'),

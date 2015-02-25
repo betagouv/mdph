@@ -61,7 +61,7 @@ angular.module('impactApp').constant('contexte', [
   {
     model: 'raisonRenouvellement',
     type: 'radio',
-    titleDefault: 'Si il eu un changement dans votre situation ?',
+    titleDefault: 'S\'il y a eu un changement dans votre situation ?',
     titleRep: 'Y-a-t-il eu un changement dans sa situation ?',
     answers: [
       {
