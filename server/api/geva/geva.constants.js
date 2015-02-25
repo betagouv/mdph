@@ -1385,7 +1385,7 @@ exports.all = [
   "Reponse":"Troubles de la personnalité et du comportement dus à une affection, une lésion et un dysfonctionnement cérébraux",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":1
 },
 {
   "Section":"Situation",
@@ -1396,7 +1396,7 @@ exports.all = [
   "Reponse":"Maladie d'alzheimer ",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":2
 },
 {
   "Section":"Situation",
@@ -1407,7 +1407,7 @@ exports.all = [
   "Reponse":"autres pathologies avec démence globale",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":3
 },
 {
   "Section":"Situation",
@@ -1418,7 +1418,7 @@ exports.all = [
   "Reponse":"Affection dégénérative du système nerveux, sans précision",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":4
 },
 {
   "Section":"Situation",
@@ -1429,7 +1429,7 @@ exports.all = [
   "Reponse":"dyslexie",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":5
 },
 {
   "Section":"Situation",
@@ -1440,7 +1440,7 @@ exports.all = [
   "Reponse":"dysphasie",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":6
 },
 {
   "Section":"Situation",
@@ -1451,7 +1451,7 @@ exports.all = [
   "Reponse":"dyspraxie",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":7
 },
 {
   "Section":"Situation",
@@ -1462,7 +1462,7 @@ exports.all = [
   "Reponse":"psychose",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":8
 },
 {
   "Section":"Situation",
@@ -1473,7 +1473,7 @@ exports.all = [
   "Reponse":"névrose",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":9
 },
 {
   "Section":"Situation",
@@ -1484,7 +1484,7 @@ exports.all = [
   "Reponse":"dépression",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":10
 },
 {
   "Section":"Situation",
@@ -1495,7 +1495,7 @@ exports.all = [
   "Reponse":"autisme et autres TSA",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":11
 },
 {
   "Section":"Situation",
@@ -1506,7 +1506,7 @@ exports.all = [
   "Reponse":"diabète sucré insulino dépendant",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":12
 },
 {
   "Section":"Situation",
@@ -1517,7 +1517,7 @@ exports.all = [
   "Reponse":"diabète sucré no insulino dépendant",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":13
 },
 {
   "Section":"Situation",
@@ -1528,7 +1528,7 @@ exports.all = [
   "Reponse":"mucoviscidose",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":14
 },
 {
   "Section":"Situation",
@@ -1539,7 +1539,7 @@ exports.all = [
   "Reponse":"hépatites B et C",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":15
 },
 {
   "Section":"Situation",
@@ -1550,7 +1550,7 @@ exports.all = [
   "Reponse":"autres hépatites virales",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":16
 },
 {
   "Section":"Situation",
@@ -1561,7 +1561,7 @@ exports.all = [
   "Reponse":"VIH",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":17
 },
 {
   "Section":"Situation",
@@ -1572,7 +1572,7 @@ exports.all = [
   "Reponse":"Autres maladies du sang et des organes hématopoïétiques",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":18
 },
 {
   "Section":"Situation",
@@ -1583,7 +1583,7 @@ exports.all = [
   "Reponse":"affection néoplasique bronchopulmonaire",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":19
 },
 {
   "Section":"Situation",
@@ -1594,7 +1594,7 @@ exports.all = [
   "Reponse":"cancer du sein",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":20
 },
 {
   "Section":"Situation",
@@ -1605,7 +1605,7 @@ exports.all = [
   "Reponse":"leucémie",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":21
 },
 {
   "Section":"Situation",
@@ -1616,7 +1616,7 @@ exports.all = [
   "Reponse":"autre affection néoplasique",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":22
 },
 {
   "Section":"Situation",
@@ -1627,7 +1627,7 @@ exports.all = [
   "Reponse":"SLA ou autre maladie du motoneurone ",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":23
 },
 {
   "Section":"Situation",
@@ -1638,7 +1638,7 @@ exports.all = [
   "Reponse":"maladies neuromusculaires",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":24
 },
 {
   "Section":"Situation",
@@ -1649,7 +1649,7 @@ exports.all = [
   "Reponse":"SEP",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":25
 },
 {
   "Section":"Situation",
@@ -1660,7 +1660,7 @@ exports.all = [
   "Reponse":"maladie de Parkinson",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":26
 },
 {
   "Section":"Situation",
@@ -1671,7 +1671,7 @@ exports.all = [
   "Reponse":"chorée de Huntington",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":27
 },
 {
   "Section":"Situation",
@@ -1682,7 +1682,7 @@ exports.all = [
   "Reponse":"AVC",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":28
 },
 {
   "Section":"Situation",
@@ -1693,7 +1693,7 @@ exports.all = [
   "Reponse":"rachialgies",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":29
 },
 {
   "Section":"Situation",
@@ -1704,7 +1704,7 @@ exports.all = [
   "Reponse":"fibromyalgie",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":30
 },
 {
   "Section":"Situation",
@@ -1715,7 +1715,7 @@ exports.all = [
   "Reponse":"maladie rare",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":31
 },
 {
   "Section":"Situation",
@@ -1726,7 +1726,7 @@ exports.all = [
   "Reponse":"autres pathologies ",
   "Detail1":"",
   "Detail2":"",
-  "Tri":null
+  "Tri":32
 },
 {
   "Section":"Situation",
