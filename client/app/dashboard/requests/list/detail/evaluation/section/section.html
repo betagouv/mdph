@@ -4,11 +4,13 @@
     <accordion-heading>
       {{question[0].Question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
     </accordion-heading>
+
     <div ng-repeat="answer in question[0].Reponses" class="question-quitus">
       <div ng-if="answer.Details">
+
         <label>{{answer.Reponse}}</label>
         <div ng-repeat="detail in answer.Details">
-          <div ng-if="detail.SousDetails">
+          <div ng-if="detail.SousDetails" class="detail-level">
             <label>{{detail.Detail}}</label>
             <div ng-repeat="sousDetail in detail.SousDetails">
               <button
