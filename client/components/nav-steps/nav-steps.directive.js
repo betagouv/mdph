@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('navSteps', function () {
+  .directive('navSteps', function ($state) {
     return {
       transclude: true,
       templateUrl: 'components/nav-steps/nav-steps.html',
@@ -11,6 +11,7 @@ angular.module('impactApp')
           if (form.$invalid) {
             form.showError = true;
           } else {
+            $scope.saveLastSref($state.current.name);
             $scope.nextStep();
           }
         };

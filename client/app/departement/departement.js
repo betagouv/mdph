@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'DepartementCtrl',
         resolve: {
           mdph: function(Mdph, $stateParams) {
-            return Mdph.get({codeDepartement: $stateParams.codeDepartement});
+            return Mdph.get({codeDepartement: $stateParams.codeDepartement}).$promise;
           }
         }
       });

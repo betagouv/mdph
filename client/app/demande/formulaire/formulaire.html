@@ -3,15 +3,15 @@
     Questionnaire
   </h1>
 
-  <a class="btn btn-primary btn-lg" ui-sref="departement.questionnaire({codeDepartement: currentRequest.mdph.zipcode,
-    id: currentRequest.shortId})">
+  <a class="btn btn-primary btn-lg" ui-sref="departement.questionnaire({codeDepartement: request.mdph.zipcode,
+    id: request.shortId})">
     Consultez votre questionnaire
   </a>
 
   <a
     class="btn btn-primary btn-lg"
     target="_blank"
-    href="api/requests/{{currentRequest.shortId}}/cerfa.pdf">
+    href="api/requests/{{request.shortId}}/cerfa.pdf">
     <i class="fa fa-download"></i>
     <span>Télécharger ma demande - format CERFA</span>
   </a>
@@ -34,6 +34,6 @@
         Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
       </p>
     </blockquote>
-    <show-prestations form-answers="currentRequest.formAnswers" prestations="prestations" width="4"></show-prestations>
+    <show-prestations form-answers="request.formAnswers" prestations="prestations" width="4"></show-prestations>
   </div>
 </div>

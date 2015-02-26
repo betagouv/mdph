@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h1 class="modal-title">Choix du type de document</h1>
+</div>
+<div class="modal-body">
+    <ul>
+        <li ng-repeat="document in documents">
+            <a ng-click="select(document)">{{ document.label }}</a>
+        </li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

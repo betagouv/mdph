@@ -24,10 +24,9 @@ angular.module('impactApp', [
       }
     };
   })
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-    $urlRouterProvider
-      .otherwise('/');
-
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider) {
+    $urlRouterProvider.otherwise('/');
+    $urlMatcherFactoryProvider.strictMode(false);
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })

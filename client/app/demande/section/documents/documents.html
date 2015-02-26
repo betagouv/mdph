@@ -1,0 +1,66 @@
+<div class="nav-questionnaire">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a ui-sref="departement">Accueil du {{mdph.name}}</a></li>
+      <li><a ui-sref="departement.demande">Demande</a></li>
+      <li class="active">Documents</li>
+    </ol>
+  </div>
+</div>
+
+<div class="questionnaire">
+
+  <div class="section-documents">
+    <h1>{{section.label}}</h1>
+
+    <div class="row">
+      <div class="col-sm-4" ng-repeat="document in request.documents">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>{{documentById[document.id].label}}</h3>
+          </div>
+          <div class="panel-body">
+            <p>{{documentById[document.id].desc}}</p>
+            <ul ng-if="!document.files"><li>Pas de document</li></ul>
+            <ul ng-if="document.files">
+              <li ng-repeat="file in document.files">
+                <display-file file="file" request="request"/>
+              </li>
+            </ul>
+          </div>
+          <div class="panel-footer">
+            <div class="text-right">
+              <div ng-file-select="onFileSelect($files[0], document)" data-multiple="false" class="btn btn-default">
+                <i class="fa fa-upload"></i> Attacher un fichier</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>Document complémentaire</h3>
+          </div>
+          <div class="panel-body">
+            <p>Ajouter un nouveau type de document</p>
+          </div>
+          <div class="panel-footer">
+            <div class="text-right">
+              <button class="btn btn-primary" ng-click="chooseType()">
+                <i class="fa fa-plus-circle"></i> Ajouter un document
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-10">
+        <button type="submit" name="submit" alt="Valider" class="btn btn-block btn-success">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>

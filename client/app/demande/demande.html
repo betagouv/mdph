@@ -1,25 +1,105 @@
-<div class="banner banner-inverse navbar navbar-default nav-form" role="navigation" ng-if="!hideBanner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-
-      </button>
+<ui-view>
+  <div class="nav-questionnaire">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a ui-sref="departement">Accueil du {{mdph.name}}</a></li>
+        <li class="active">Demande</li>
+      </ol>
     </div>
-    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-secondary">
-      <div class="row">
-        <step ng-repeat="step in steps">
-          <a class="col-md-2 disabled" ng-if="!step.isEnabled">{{step.label}}</a>
-          <a ng-if="step.isEnabled" class="col-md-2" ui-sref="{{step.sref}}" ui-sref-active="active">
-            <i class="fa" ng-class="{'fa-circle-o': !step.isFinished, 'fa-check-circle-o': step.isFinished}"></i> {{step.label}}
-          </a>
-        </step>
+  </div>
+
+  <div class="questionnaire">
+
+    <h1 ng-if="!nouvelleDemande">Demande <span class="text-muted">{{request.shortId}}</span></h1>
+    <h1 ng-if="nouvelleDemande">Nouvelle demande</h1>
+
+    <!-- TODO: Afficher le statut de la demande -->
+
+    <h2>Renseignements obligatoires pour toutes les demandes</h2>
+    <div class="category">
+      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-if="shouldShow(section)" ng-repeat="section in sectionsObligatoires">
+        <div class="section-body">
+          <div class="left">
+            <i class="fa fa-chevron-circle-right"></i>
+          </div>
+          <div class="right">
+            <h3>{{section.label}}</h3>
+            <p>{{section.desc}}</p>
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
+                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <h2>Renseignements complémentaires, en fonction de votre situation</h2>
+
+    <div class="category">
+      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-repeat="section in sectionsComplementaires">
+        <div class="section-body">
+          <div class="left">
+            <i class="fa fa-chevron-circle-right"></i>
+          </div>
+          <div class="right">
+            <h3>{{section.label}}</h3>
+            <p>{{section.desc}}</p>
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
+                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <h2>Autour de votre demande</h2>
+
+    <div class="category">
+      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-repeat="section in sectionsBonus">
+        <div class="section-body">
+          <div class="left">
+            <i class="fa fa-chevron-circle-right"></i>
+          </div>
+          <div class="right">
+            <h3>{{section.label}}</h3>
+            <p>{{section.desc}}</p>
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
+                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="!nouvelleDemande" ng-repeat="section in sectionsDocuments">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h3>{{section.label}}</h3>
+          <p>{{section.desc}}</p>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
+              <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <div class="demande-footer">
+      <div class="text-right">
+        <button class="btn btn-lg btn-primary" ng-click="sauvegarder()">Sauvegarder la demande en cours</button>
+        <button ng-if="!nouvelleDemande" class="btn btn-lg btn-success" ng-click="envoyer()">Envoyer votre demande</button>
       </div>
     </div>
   </div>
-</div>
 
-<ui-view class="background-demande"></ui-view>
+</ui-view>

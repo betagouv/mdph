@@ -1,12 +1,12 @@
 <ol class="sub-sections">
-  <li class="nav-section" ng-repeat="section in subsections">
+  <li class="nav-section" ng-repeat="(idx, section) in sections">
     <div
       ng-class="{
         active: isActive(section),
-        showBefore: section.showBefore,
-        showAfter: section.showAfter,
-        first: !section.showBefore,
-        last: !section.showAfter
+        showBefore: idx > 0,
+        showAfter: idx < sections.length - 1,
+        first: idx === 0,
+        last: idx === sections.length -1
       }">
       <span>{{section.label}}</span>
     </div>

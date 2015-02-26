@@ -1,0 +1,132 @@
+<div class="nav-questionnaire">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a ui-sref="departement">Accueil du {{mdph.name}}</a></li>
+      <li><a ui-sref="departement.demande">Demande</a></li>
+      <li class="active">{{section.label}}</li>
+    </ol>
+  </div>
+</div>
+
+<div class="questionnaire">
+
+  <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+    <h1>{{section.desc}}</h1>
+
+    <div class="form-group">
+      <label for="name" class="col-sm-2 col-lg-offset-1 control-label" ng-model="sectionModel.sexe">Sexe</label>
+      <div class="col-sm-10 col-lg-7">
+        <label class="radio-inline">
+          <input type="radio" id="inlineCheckboxMasculin" value="masculin" ng-model="sectionModel.sexe"> Masculin
+        </label>
+        <label class="radio-inline">
+          <input type="radio" id="inlineCheckboxFeminin" value="feminin" ng-model="sectionModel.sexe"> Féminin
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nom" class="col-sm-2 col-lg-offset-1 control-label">Nom*</label>
+      <div class="col-sm-10 col-lg-7">
+        <input id="nom" type="text" name="nom" class="form-control" ng-model="sectionModel.nom" ng-minlength="1" required>
+        <div ng-messages="infoForm.nom.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="prenom" class="col-sm-2 col-lg-offset-1 control-label">Prénom*</label>
+      <div class="col-sm-10 col-lg-7">
+        <input id="prenom" type="text" name="prenom" class="form-control" ng-model="sectionModel.prenom" ng-minlength="1" required>
+        <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="col-sm-2 col-lg-offset-1 control-label">Email*</label>
+      <div class="col-sm-10 col-lg-7">
+        <div class="input-group margin-bottom-sm">
+          <input id="email" type="email" name="email" class="form-control" ng-model="sectionModel.email" required>
+          <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+        </div>
+        <div ng-messages="infoForm.email.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="birthDate" class="col-sm-2 col-lg-offset-1 control-label">Date de naissance*</label>
+      <div class="col-sm-10 col-lg-7">
+        <div class="input-group">
+          <input id="birthDate" required type="text" name="birthDate" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="sectionModel.birthDate" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
+          <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button></span>
+        </div>
+
+        <div ng-messages="infoForm.birthDate.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='date'>Le format de date est invalide.</p>
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="adresse" class="col-sm-2 col-lg-offset-1 control-label">Adresse*<br><small>Numéro et rue</small></label>
+      <div class="col-sm-10 col-lg-7">
+        <input id="adresse" type="text" name="adresse" class="form-control" ng-model="sectionModel.adresse" required>
+        <div ng-messages="infoForm.adresse.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="adresse_complement" class="col-sm-2 col-lg-offset-1 control-label">Complément d'adresse</label>
+      <div class="col-sm-10 col-lg-7">
+        <input id="adresse_complement" type="text" name="adresse_complement" class="form-control" ng-model="sectionModel.adresse_complement">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="code_postal" class="col-sm-2 col-lg-offset-1 control-label">Code postal*</label>
+      <div class="col-sm-10 col-lg-7">
+        <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="sectionModel.code_postal" required>
+        <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="commune" class="col-sm-2 col-lg-offset-1 control-label">Commune*</label>
+      <div class="col-sm-10 col-lg-7">
+        <input id="commune" type="text" name="commune" class="form-control" ng-model="sectionModel.commune" required>
+        <div ng-messages="infoForm.commune.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pays" class="col-sm-2 col-lg-offset-1 control-label">Pays*</label>
+      <div class="col-sm-10 col-lg-7">
+        <input id="pays" type="text" name="pays" class="form-control" ng-model="sectionModel.pays" required>
+        <div ng-messages="infoForm.pays.$error" ng-if="infoForm.showError">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-10">
+        <button type="submit" name="submit" alt="Valider" class="btn btn-block btn-success">Valider</button>
+      </div>
+    </div>
+  </form>
+</div>

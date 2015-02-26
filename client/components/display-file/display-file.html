@@ -1,0 +1,7 @@
+<span ng-if="waiting">
+  <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
+</span>
+
+<a ng-if="!waiting">
+  {{file | json}}
+</a>

@@ -17,6 +17,8 @@ router.delete('/:shortId', auth.isAuthenticatedAndRequestOwner(), controller.des
 
 router.get('/:shortId/cerfa.pdf', auth.isAuthenticatedAndRequestOwner(), controller.getCerfa);
 router.post('/:shortId/html_answers.pdf', auth.isAuthenticatedAndRequestOwner(), controller.postPdf);
+
 router.post('/:shortId/document', controller.saveDocument);
+router.get('/:shortId/document/:documentId', auth.isAuthenticatedAndRequestOwner(), controller.showFileData);
 
 module.exports = router;

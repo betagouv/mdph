@@ -4,33 +4,20 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var shortId = require('shortid');
 
-var FileSchema = new Schema({
-  name:           { type: String },
-  path:           { type: String },
-  state:          { type: String },
-  assignment:     { type: String },
-  partenaire:     { type: String }
-});
-
-var StepSchema = new Schema({
-  name:         { type: String },
-  state:        { type: String },
-  files:        [ FileSchema ]
-});
-
 var RequestSchema = new Schema({
-  shortId:        { type: String, unique: true, 'default': shortId.generate },
-  formAnswers:    Schema.Types.Mixed,
+  shortId:        { type: String, unique: true, default: shortId.generate },
+  documents:      [{
+    id:             { type: String, unique: true },
+    files:          [{ type: Schema.Types.ObjectId }]
+  }],
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
   mdph:           { type: Schema.Types.ObjectId, ref: 'Mdph' },
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
   createdAt:      { type: Date },
   updatedAt:      { type: Date },
-  steps:          [ StepSchema ],
-  opened:         { type: Boolean },
-  requestStatus:  { type: String, enum: ['Emise', 'Recevable', 'Complète', 'Réponse'], default: 'Emise' },
-  certificat:     Schema.Types.Mixed,
-  renouvellement: { type: Boolean }
+  status:         { type: String, enum: ['en_cours', 'emise', 'complet', 'reponse'], default: 'en_cours' },
+  formAnswers:    Schema.Types.Mixed,
+  certificat:     Schema.Types.Mixed
 });
 
 module.exports = mongoose.model('Request', RequestSchema);

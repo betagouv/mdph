@@ -12,7 +12,7 @@
   <header class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
     <div class="container">
       <h1>Votre demande à la MDPH {{mdph.name}}</h1>
-      <a ng-if="!isLoggedIn()" class="btn btn-outline-inverse btn-lg" ui-sref=".questionnaire({id: 'nouvelle_demande'})">Commencer</a>
+      <a ng-if="!isLoggedIn()" class="btn btn-outline-inverse btn-lg" ui-sref=".demande({shortId: 'nouvelle_demande'})">Commencer</a>
       <a ng-if="isLoggedIn()" class="btn btn-outline-inverse btn-lg" ui-sref="espace_perso.liste_demandes">Voir vos demandes</a>
     </div>
   </header>
@@ -21,7 +21,7 @@
     <div class ="container">
       <div class="row">
         <div class="col-md-6">
-          <a class="btn btn-outline btn-lg" ui-sref=".questionnaire({id: 'nouvelle_demande'})">
+          <a class="btn btn-outline btn-lg" ui-sref=".demande({shortId: 'nouvelle_demande'})">
             Vous souhaitez remplir le questionnaire<br>pour faire une demande ?
           </a>
         </div>

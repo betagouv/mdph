@@ -1442,19 +1442,19 @@ async.series([
   createLeo,
   createJean,
 
-  createBobOldRequest,
-  createBobRequest,
-  createFooRequest,
-  createMartinOldRequest,
-  createRoxOldRequest,
-  createFrancoiseRequest,
-  createEmmaRequest,
-  createArnaudOldRequest,
-  createEllaOldRequest,
-  createJeromeOldRequest,
-  createPierreOldRequest,
-  createThibaultOldRequest,
-  createTanguyOldRequest,
+  // createBobOldRequest,
+  // createBobRequest,
+  // createFooRequest,
+  // createMartinOldRequest,
+  // createRoxOldRequest,
+  // createFrancoiseRequest,
+  // createEmmaRequest,
+  // createArnaudOldRequest,
+  // createEllaOldRequest,
+  // createJeromeOldRequest,
+  // createPierreOldRequest,
+  // createThibaultOldRequest,
+  // createTanguyOldRequest,
 
-  createNotifBob
+  // createNotifBob
 ]);
