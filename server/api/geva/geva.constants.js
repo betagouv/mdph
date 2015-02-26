@@ -1,4788 +1,2297 @@
 'use strict';
 
-exports.all = [
-{
-  "Section":"Environnement",
-  "Description":"Situation familiale ",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la situation familiale de la personne ?",
-  "Type":"CU",
-  "Reponse":"vit seul",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Situation familiale ",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la situation familiale de la personne ?",
-  "Type":"CU",
-  "Reponse":"vit avec d'autres personnes",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"Domicile personnel",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"Domicile familial",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"Hébergé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"Etablissement médico-social",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"Famille d'accueil",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"SDF",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"Logement accompagné ou supervisé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Environnement",
-  "Description":"Type d'hébergement",
-  "Trajectoire":"toutes",
-  "Question":"Où la personne est-elle hebergée? ",
-  "Type":"CU",
-  "Reponse":"Autre",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Environnement",
-  "Description":"Type logement",
-  "Trajectoire":"toutes",
-  "Question":"Quel est son type de logement?",
-  "Type":"CU",
-  "Reponse":"Maison individuelle",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Type logement",
-  "Trajectoire":"toutes",
-  "Question":"Quel est son type de logement?",
-  "Type":"CU",
-  "Reponse":"Appartement/Studio",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Type logement",
-  "Trajectoire":"toutes",
-  "Question":"Quel est son type de logement?",
-  "Type":"CU",
-  "Reponse":"Autre",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Environnement",
-  "Description":"Typicité du lieu d'Habitat",
-  "Trajectoire":"toutes",
-  "Question":"Habite-t-elle en milieu urbain ou rural?",
-  "Type":"CU",
-  "Reponse":"Habitat en milieu urbain",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Typicité du lieu d'Habitat",
-  "Trajectoire":"toutes",
-  "Question":"Habite-t-elle en milieu urbain ou rural?",
-  "Type":"CU",
-  "Reponse":"Habitat en milieu rural",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Enfant non scolarisé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Scolarisation, formation initiale et/ou autres formations non rémunérées",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"salarié secteur privé",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"salarié secteur public",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"travailleur indépendant",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"salarié entreprise adaptée",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"travailleur en milieu protégé (ESAT)",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"apprentissage",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"formation professionnelle",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"activité non rémunérée",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
-  "Detail1":"arrêt maladie",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Invalidité",
-  "Detail2":"",
-  "Tri":14
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Chômage",
-  "Detail2":"",
-  "Tri":15
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Retraité à l'âge normal",
-  "Detail2":"",
-  "Tri":16
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Retraite anticipée",
-  "Detail2":"",
-  "Tri":17
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Au foyer",
-  "Detail2":"",
-  "Tri":18
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Congé parental",
-  "Detail2":"",
-  "Tri":19
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Autre inactif",
-  "Detail2":"",
-  "Tri":20
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"Non précisé",
-  "Detail2":"",
-  "Tri":21
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"sans activité et a déjà travaillé",
-  "Detail2":"",
-  "Tri":22
-},
-{
-  "Section":"Situation",
-  "Description":"Situation par rapport à l'activité",
-  "Trajectoire":"toutes",
-  "Question":"Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
-  "Type":"CM",
-  "Reponse":"Adulte sans activité ",
-  "Detail1":"sans activité et n'a jamais travaillé",
-  "Detail2":"",
-  "Tri":23
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Sans objet",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Salaire et autre revenu du travail",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Allocation chomage",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Indemnités journalières assurance maladie",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Pension d'invalidité 1er cat",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Pension d'invalidité 2ème cat ",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Pension d'invalidité 3ème cat (MTP)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Allocation supplémentaire d'invalidité (FSI)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Autres pensions (régimes particuliers, assurances …)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Autres pensions avec MTP",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"AAH",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Complément de ressources",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Majoration pour la vie autonome",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":13
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"RSA",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":14
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Autre allocation",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":15
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Retraite",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":16
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Autres revenus",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":17
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Absence de ressource personnelle",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":18
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Prestation familiale",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":19
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de ressource",
-  "Trajectoire":"toutes",
-  "Question":"Quelles sont les ressources dont elle dispose?",
-  "Type":"CM",
-  "Reponse":"Non précisé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":20
-},
-{
-  "Section":"Environnement",
-  "Description":"adaptation du logement",
-  "Trajectoire":"toutes",
-  "Question":"Le logement est-il adapté?",
-  "Type":"CM",
-  "Reponse":"zone extérieure adaptée",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"adaptation du logement",
-  "Trajectoire":"toutes",
-  "Question":"Le logement est-il adapté?",
-  "Type":"CM",
-  "Reponse":"zone extérieure non adaptée",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"adaptation du logement",
-  "Trajectoire":"toutes",
-  "Question":"Le logement est-il adapté?",
-  "Type":"CM",
-  "Reponse":"zone intérieure adaptée",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Environnement",
-  "Description":"adaptation du logement",
-  "Trajectoire":"toutes",
-  "Question":"Le logement est-il adapté?",
-  "Type":"CM",
-  "Reponse":"zone intérieure non adaptée",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Utilise les transports en commun",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Utilise les transports en commun, avec un accompagnateur",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Utilise les transports de substitution",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"N’utilise aucun transport en commun ou de substitution",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Transport scolaire sans objet",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Est accompagné avec le véhicule de la famille",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Utilise les transports scolaires collectifs de droit commun",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Utilise un transport individuel ordinaire avec chauffeur",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Utilise un transport sanitaire avec un accompagnateur",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Utilise un transport sanitaire avec deux accompagnateurs",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Est transporté dans un véhicule spécialement aménagé autre que le véhicule familial",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"N’a pas recours à un véhicule personnel ou familial",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"A recours à un véhicule personnel ou familial comme passager",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":13
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Est conducteur d’un véhicule sans permis",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":14
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Est conducteur d’un véhicule avec permis",
-  "Detail1":"Comportant une mention d’aménagement du véhicule et une durée de validité",
-  "Detail2":"",
-  "Tri":16
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Est conducteur d’un véhicule avec permis",
-  "Detail1":"Comportant une mention d’aménagement du véhicule mais sans durée de validité",
-  "Detail2":"",
-  "Tri":17
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Est conducteur d’un véhicule avec permis",
-  "Detail1":"Ne comportant pas de mention d’aménagement du véhicule mais une durée de validité",
-  "Detail2":"",
-  "Tri":18
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"Est conducteur d’un véhicule avec permis",
-  "Detail1":"Ne comportant ni mention d’aménagement du véhicule ni de durée de validité",
-  "Detail2":"",
-  "Tri":19
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"En cours de formation au permis de conduire",
-  "Detail1":"Avec avis du délégué à la formation routière",
-  "Detail2":"",
-  "Tri":21
-},
-{
-  "Section":"Environnement",
-  "Description":"Caractéristiques transport",
-  "Trajectoire":"toutes",
-  "Question":"Quels sont les moyens de transport utilisés par la personne?",
-  "Type":"CM",
-  "Reponse":"En cours de formation au permis de conduire",
-  "Detail1":"Sans avis du délégué à la formation routière",
-  "Detail2":"",
-  "Tri":22
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"Jamais scolarisé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"école maternelle",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"école élémentaire classe ordinaire",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"école élémentaire CLIS",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"scolarisé en établissement médico-social (IME, IMPRO, ITEP …)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"collège classe ordinaire",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"collège UPI - ULIS",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"lycée classe ordinaire",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"lycée UPI, ULIS",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"enseignement technique ou professionnel court (CAP, BEP ou équivalent)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"enseignement technique ou professionnel long (brevet de technicien, bac pro...)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"Université ou étude supérieures (y compris technique supérieur)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de scolarité suivie",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
-  "Type":"CU",
-  "Reponse":"Non précisé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":13
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Etablissement d’enseignement",
-  "Detail1":"Etablissement scolaire de référence",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Etablissement d’enseignement",
-  "Detail1":"Etablissement scolaire autre que l’établissement scolaire de référence",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Etablissement d’enseignement",
-  "Detail1":"Etablissement de l’enseignement supérieur",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Autre type d’établissement",
-  "Detail1":"Etablissement médico-social",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Autre type d’établissement",
-  "Detail1":"Etablissement sanitaire",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Autre type de scolarisation",
-  "Detail1":"Scolarisation par correspondance",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Autre type de scolarisation",
-  "Detail1":"Scolarisation à domicile avec un service d’aide pédagogique à domicile (SAPAD)",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Autre type de scolarisation",
-  "Detail1":"Autre modalité de scolarisation ou d’études à domicile",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Environnement",
-  "Description":"Type scolarisation",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
-  "Type":"CM",
-  "Reponse":"Autre type de scolarisation",
-  "Detail1":"Autre",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Environnement",
-  "Description":"Evaluation scolarité",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le type de scolarisation ?",
-  "Type":"CU",
-  "Reponse":"Scolarité ordinaire : acuqisitions comparables à la moyenne de la classe d'âge",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Evaluation scolarité",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le type de scolarisation ?",
-  "Type":"CU",
-  "Reponse":"Scolarité avec des aménagements permettant les acquisitions",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Evaluation scolarité",
-  "Trajectoire":"Vie scolaire uniquement",
-  "Question":"Quel est le type de scolarisation ?",
-  "Type":"CU",
-  "Reponse":"Scolarité avec des aménagements, qui ne permet cependant pas d'accéder aux acquisitions constatées pour la moyenne de classe d'âge",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de formation professionnelle ",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le niveau de formation professionnelle de la personne?",
-  "Type":"CU",
-  "Reponse":"Niveau I : Personnel occupant des emplois exigeant normalement une formation de niveau supérieur à celui de la maîtrise.",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de formation professionnelle ",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le niveau de formation professionnelle de la personne?",
-  "Type":"CU",
-  "Reponse":"Niveau II : Personnel occupant des emplois exigeant normalement une formation d'un niveau comparable à celui de la licence ou de la maîtrise.",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de formation professionnelle ",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le niveau de formation professionnelle de la personne?",
-  "Type":"CU",
-  "Reponse":"Niveau III : Personnel occupant des emplois qui exigent normalement des formations du niveau du diplôme des Instituts Universitaires de Technologie (DUT) ou du brevet de technicien supérieur (BTS) ou de fin de premier cycle de l'enseignement supérieur.",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de formation professionnelle ",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le niveau de formation professionnelle de la personne?",
-  "Type":"CU",
-  "Reponse":"Niveau IV : Personnel occupant des emplois de maîtrise ou d'ouvrier hautement qualifié et pouvant attester d'un niveau de formation équivalent à celui du brevet professionnel (BP), du brevet de technicien (BT), du bac professionnel ou du bac technologique.",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de formation professionnelle ",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le niveau de formation professionnelle de la personne?",
-  "Type":"CU",
-  "Reponse":"Niveau V : Personnel occupant des emplois exigeant normalement un niveau de formation équivalent à celui du brevet d'études professionnelles (BEP) ou du certificat d'aptitude professionnelle (CAP), et par assimilation, du certificat de formation professionnelle des ",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de formation professionnelle ",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le niveau de formation professionnelle de la personne?",
-  "Type":"CU",
-  "Reponse":"Niveau V bis : Personnel occupant des emplois supposant une formation spécialisée d'une durée maximum d'un an au delà du premier cycle de l'enseignement du second degré, du niveau du certificat de formation professionnelle.",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Situation",
-  "Description":"Niveau de formation professionnelle ",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le niveau de formation professionnelle de la personne?",
-  "Type":"CU",
-  "Reponse":"Niveau VI : Personnel occupant des emplois n'exigeant pas une formation allant au delà de la scolarité obligatoire",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Situation",
-  "Description":"Souhaits par rapport au travail",
-  "Trajectoire":"Toutes",
-  "Question":"Quels sont les souhaits de la personne par rapport au travail?",
-  "Type":"CU",
-  "Reponse":"Pas de projet professionnel exprimé par la personne",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Situation",
-  "Description":"Souhaits par rapport au travail",
-  "Trajectoire":"Toutes",
-  "Question":"Quels sont les souhaits de la personne par rapport au travail?",
-  "Type":"CU",
-  "Reponse":"Projet professionnel exprimé par la personne",
-  "Detail1":"Souhaite travailler",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Souhaits par rapport au travail",
-  "Trajectoire":"Toutes",
-  "Question":"Quels sont les souhaits de la personne par rapport au travail?",
-  "Type":"CU",
-  "Reponse":"Projet professionnel exprimé par la personne",
-  "Detail1":"Souhaite changer d’activité professionnelle",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Souhaits par rapport au travail",
-  "Trajectoire":"Toutes",
-  "Question":"Quels sont les souhaits de la personne par rapport au travail?",
-  "Type":"CU",
-  "Reponse":"Projet professionnel exprimé par la personne",
-  "Detail1":"Souhaite conserver son activité professionnelle",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Souhaits par rapport au travail",
-  "Trajectoire":"Toutes",
-  "Question":"Quels sont les souhaits de la personne par rapport au travail?",
-  "Type":"CU",
-  "Reponse":"Projet professionnel exprimé par la personne",
-  "Detail1":"Autre",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Apprentissage",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Stagiaire",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Contrat de travail aidé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Contrat à durée déterminée (y compris saisonnier, vacataire...)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Contrat à durée indéterminée (dont titulaire de la fonction publique)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Intérim",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Autre",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Environnement",
-  "Description":"Type de contrat",
-  "Trajectoire":"Vie professionnelle uniquement",
-  "Question":"Quel est le type de contrat de travail de la personne?",
-  "Type":"CM",
-  "Reponse":"Non précisé",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"Troubles de la personnalité et du comportement dus à une affection, une lésion et un dysfonctionnement cérébraux",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"Maladie d'alzheimer ",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"autres pathologies avec démence globale",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"Affection dégénérative du système nerveux, sans précision",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"dyslexie",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"dysphasie",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"dyspraxie",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"psychose",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"névrose",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"dépression",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"autisme et autres TSA",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"diabète sucré insulino dépendant",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"diabète sucré no insulino dépendant",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":13
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"mucoviscidose",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":14
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"hépatites B et C",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":15
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"autres hépatites virales",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":16
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"VIH",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":17
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"Autres maladies du sang et des organes hématopoïétiques",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":18
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"affection néoplasique bronchopulmonaire",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":19
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"cancer du sein",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":20
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"leucémie",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":21
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"autre affection néoplasique",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":22
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"SLA ou autre maladie du motoneurone ",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":23
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"maladies neuromusculaires",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":24
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"SEP",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":25
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"maladie de Parkinson",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":26
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"chorée de Huntington",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":27
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"AVC",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":28
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"rachialgies",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":29
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"fibromyalgie",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":30
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"maladie rare",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":31
-},
-{
-  "Section":"Situation",
-  "Description":"Pathologie",
-  "Trajectoire":"Toutes",
-  "Question":"Quelle est la pathologie principale de la personne?",
-  "Type":"CU",
-  "Reponse":"autres pathologies ",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":32
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Retard mental dont :",
-  "Detail2":"Retard mental profond ( QI inférieur à 20 ou chez les adultes, age mental inférieur à 3 ans)*",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Retard mental dont :",
-  "Detail2":"Retard mental sévère (QI compris entre 20 et 34 ou chez les adultes, age mental de 3 à 6 ans)*",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Retard mental dont :",
-  "Detail2":"Retard mental moyen (QI compris entre 35 et 49 ou chez les adultes, age mental de 6 à 9 ans)*",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Retard mental dont :",
-  "Detail2":"Retard mental léger (QI compris entre 50 et 69 ou chez les adultes, age mental de 9 à 12 ans)*",
-  "Tri":6
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Retard mental dont :",
-  "Detail2":"roubles cognitifs sans retard mental, troubles des acquisitions et des apprentissages ",
-  "Tri":7
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Retard mental dont :",
-  "Detail2":"retard mental non précisé",
-  "Tri":8
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Démence globale ",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Démence lacunaire ou partielle",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Autre déficience de la mémoire",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Déficience du cours de la pensée",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Autres déficiences de l\'intelligence non codées ailleurs",
-  "Detail2":"",
-  "Tri":13
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES INTELLECTUELLES ",
-  "Detail1":"Déficiences intellectuelles non précisées",
-  "Detail2":"",
-  "Tri":14
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficience de la conscience et de la vigilance dont :",
-  "Detail2":"perte de conscience, coma",
-  "Tri":17
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficience de la conscience et de la vigilance dont :",
-  "Detail2":"désorientation temporo-spatiale, confusion mentale",
-  "Tri":18
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficience de la conscience et de la vigilance dont :",
-  "Detail2":"déficience intermittente de la conscience ( épilepsie) ",
-  "Tri":19
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficience de la conscience et de la vigilance dont :",
-  "Detail2":"Autres déficiences de la conscience ",
-  "Tri":20
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficience de la conscience et de la vigilance dont :",
-  "Detail2":"Troubles du comportement, de la personnalité et des capacités relationnelles",
-  "Tri":21
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficience des émotions ou de la volition dont : ",
-  "Detail2":"déficience de l\'émotion, des affects, de l\'humeur ",
-  "Tri":23
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficience des émotions ou de la volition dont : ",
-  "Detail2":"déficiences de la volition (passivité, soumission, compulsion…)",
-  "Tri":24
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"déficiences des fonctions psychomotrices",
-  "Detail2":"",
-  "Tri":25
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Troubles de la perception ou de l’attention",
-  "Detail2":"",
-  "Tri":26
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Troubles des pulsions",
-  "Detail2":"",
-  "Tri":27
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Autres déficiences du psychisme non codées ailleurs",
-  "Detail2":"",
-  "Tri":28
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU PSYCHISME",
-  "Detail1":"Déficiences du psychisme non précisées",
-  "Detail2":"",
-  "Tri":29
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU LANGAGE ET DE LA PAROLE",
-  "Detail1":"déficience sévère de la communication",
-  "Detail2":"",
-  "Tri":27
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU LANGAGE ET DE LA PAROLE",
-  "Detail1":"déficiences de l'apprentissage du langage écrit ou oral",
-  "Detail2":"",
-  "Tri":28
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU LANGAGE ET DE LA PAROLE",
-  "Detail1":"déficience de la voix ou de l'élocution",
-  "Detail2":"",
-  "Tri":29
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU LANGAGE ET DE LA PAROLE",
-  "Detail1":"Autres déficiences du langage ou de la parole non codées ailleurs",
-  "Detail2":"",
-  "Tri":30
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES DU LANGAGE ET DE LA PAROLE",
-  "Detail1":"Déficiences du langage ou de la parole non précisées",
-  "Detail2":"",
-  "Tri":30
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficiences auditives bilatérales dont : ",
-  "Detail2":"déficience auditive profonde  bilatérale (supérieure à 90 Db.)",
-  "Tri":33
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficiences auditives bilatérales dont : ",
-  "Detail2":"déficience auditive sévère bilatérale (comprise entre 71 Db et 90 Db inclus)",
-  "Tri":34
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficiences auditives bilatérales dont : ",
-  "Detail2":"déficience auditive moyenne bilatérale",
-  "Tri":35
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficiences auditives bilatérales dont : ",
-  "Detail2":"déficience auditive légère bilatérale",
-  "Tri":36
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficiences auditives bilatérales dont : ",
-  "Detail2":"déficience auditive bilatérale sans autre indication",
-  "Tri":37
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficiences auditives unilatérales",
-  "Detail2":"",
-  "Tri":38
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Acouphènes",
-  "Detail2":"",
-  "Tri":39
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficience de la fonction vestibulaire et de l'équilibration",
-  "Detail2":"",
-  "Tri":40
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES AUDITIVES",
-  "Detail1":"Déficiences auditives non précisées",
-  "Detail2":"",
-  "Tri":41
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"Déficiences visuelles dont : ",
-  "Detail2":"déficience visuelle profonde des 2 yeux",
-  "Tri":44
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"Déficiences visuelles dont : ",
-  "Detail2":"déficience visuelle profonde d’un œil avec vision faible de l’autre",
-  "Tri":45
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"Déficiences visuelles dont : ",
-  "Detail2":"déficience visuelle moyenne des deux yeux",
-  "Tri":46
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"Déficiences visuelles dont : ",
-  "Detail2":"déficience visuelle d’un œil l’autre étant normal",
-  "Tri":47
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"Déficiences visuelles dont : ",
-  "Detail2":"Déficience de l’acuité visuelle sans précision",
-  "Tri":48
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"déficience du champ visuel",
-  "Detail2":"",
-  "Tri":49
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"déficience de la mobilité oculaire (nystagmus)",
-  "Detail2":"",
-  "Tri":50
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"Autre déficience des fonctions visuelles (strabisme, vision des couleurs..) non codées ailleurs",
-  "Detail2":"",
-  "Tri":51
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISUELLES",
-  "Detail1":"Déficiences visuelles non précisées",
-  "Detail2":"",
-  "Tri":52
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"déficiences  cardiorespiratoires dont ",
-  "Detail2":"déficience de la fonction cardiovasculaire",
-  "Tri":55
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"déficiences  cardiorespiratoires dont ",
-  "Detail2":"déficience de la fonction respiratoire",
-  "Tri":56
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"Déficience hépato-digestives dont : ",
-  "Detail2":"déficience de la fonction digestive",
-  "Tri":58
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"Déficience hépato-digestives dont : ",
-  "Detail2":"déficience des fonctions hépatiques",
-  "Tri":59
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"Déficience rénales ou urinaires ",
-  "Detail2":"déficience des fonctions rénales",
-  "Tri":61
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"Déficience rénales ou urinaires ",
-  "Detail2":"déficience de l'élimination urinaire",
-  "Tri":62
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"déficience métabolique, endocrinienne ou enzymatique",
-  "Detail2":"",
-  "Tri":63
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"déficience hématologique ou du système immunitaire",
-  "Detail2":"",
-  "Tri":64
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES VISCERALES",
-  "Detail1":"Déficiences viscérales non précisées",
-  "Detail2":"",
-  "Tri":65
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"Amputation proximale du membre supérieur",
-  "Tri":66
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"Amputation proximale du membre inférieur",
-  "Tri":67
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"Amputation des parties distales d'un membre",
-  "Tri":68
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"Autres amputations et amputations multiples",
-  "Tri":69
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"Absence complète ou incomplète d'un ou plusieurs membres sans autre indication",
-  "Tri":70
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"agénésie ou amputation partielle ou totale d'un membre supérieur",
-  "Tri":71
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"agénésie ou amputation partielle ou totale d'un membre inférieur",
-  "Tri":72
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"agénésie ou amputation partielle ou totale des 2 membres supérieurs ou inférieurs",
-  "Tri":73
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par absence (amputation, agénésie) dont : ",
-  "Detail2":"agénésie ou amputation partielle ou totale des 4 membres",
-  "Tri":74
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par atteinte de la commande neurologique dont :",
-  "Detail2":"déficience complète des quatre membres",
-  "Tri":76
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par atteinte de la commande neurologique dont :",
-  "Detail2":"déficience incomplète des quatre membres",
-  "Tri":77
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par atteinte de la commande neurologique dont :",
-  "Detail2":"déficience complète des deux membres inférieurs",
-  "Tri":78
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par atteinte de la commande neurologique dont :",
-  "Detail2":"déficience incomplète des deux membres inférieurs",
-  "Tri":79
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par atteinte de la commande neurologique dont :",
-  "Detail2":"déficience complète de deux membres homolatéraux",
-  "Tri":80
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par atteinte de la commande neurologique dont :",
-  "Detail2":"déficience incomplète de deux membres homolatéraux",
-  "Tri":81
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices par atteinte de la commande neurologique dont :",
-  "Detail2":"Autre déficience complète ou incomplète d’un ou plusieurs membres",
-  "Tri":82
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficience motrice de la tête et du tronc",
-  "Detail2":"déficience de la statique et de la posture",
-  "Tri":84
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficience motrice de la tête et du tronc",
-  "Detail2":"Trouble du tonus",
-  "Tri":85
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficience motrice de la tête et du tronc",
-  "Detail2":"autre déficience motrice de la tête ou du tronc",
-  "Tri":86
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences mécaniques dont :",
-  "Detail2":"Ankylose d'un ou plusieurs membres",
-  "Tri":88
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences mécaniques dont :",
-  "Detail2":"Instabilité d'un ou plusieurs membres",
-  "Tri":89
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences mécaniques dont :",
-  "Detail2":"Difformité, déformation d'un ou plusieurs membres",
-  "Tri":90
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences mécaniques dont :",
-  "Detail2":"d'un ou des 2 membres supérieurs",
-  "Tri":91
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences mécaniques dont :",
-  "Detail2":"d'un ou des 2 membres inférieurs",
-  "Tri":86
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences musculaires d'un ou plusieurs membres ",
-  "Detail2":"",
-  "Tri":87
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences complexes de la motricité dont : ",
-  "Detail2":"Mouvements anormaux",
-  "Tri":89
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences complexes de la motricité dont : ",
-  "Detail2":"Autre déficience de la coordination motrice ",
-  "Tri":90
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Autres déficiences motrices non codées ailleurs",
-  "Detail2":"",
-  "Tri":91
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"DEFICIENCES MOTRICES",
-  "Detail1":"Déficiences motrices non précisées",
-  "Detail2":"",
-  "Tri":92
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"AUTRES DEFICIENCES",
-  "Detail1":"Déficiences esthétiques ",
-  "Detail2":"",
-  "Tri":94
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"AUTRES DEFICIENCES",
-  "Detail1":"déficience esthétiques de la tête et du tronc",
-  "Detail2":"",
-  "Tri":95
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"AUTRES DEFICIENCES",
-  "Detail1":"déficiences esthétiques des membres",
-  "Detail2":"",
-  "Tri":96
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"AUTRES DEFICIENCES",
-  "Detail1":"Autres déficiences esthétiques",
-  "Detail2":"",
-  "Tri":97
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"AUTRES DEFICIENCES",
-  "Detail1":"Douleurs chroniques",
-  "Detail2":"",
-  "Tri":98
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"AUTRES DEFICIENCES",
-  "Detail1":"Fatigue chronique",
-  "Detail2":"",
-  "Tri":99
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"AUTRES DEFICIENCES",
-  "Detail1":"Déficiences non précisées",
-  "Detail2":"",
-  "Tri":100
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"surhandicap",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":101
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"plurihandicap",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":102
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"polyhandicap",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":103
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"Etat végétatif chronique",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":104
-},
-{
-  "Section":"Situation",
-  "Description":"Type de déficience",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les types de déficiences que présente la personne?",
-  "Type":"CM",
-  "Reponse":"handicap rare",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":105
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Traitement régulier",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Consultations médicales régulières spécialisées ou non",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Hospitalisations itératives ou programmées",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"prise en charge rééducative ou réadaptative régulière (kinésithérapeute, orthophoniste, ergothérapeute …)",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Infirmier ",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Psychologue",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Necessité d'assurer une prévention",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Autres soins réguliers",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Existence de soins ou de traitements nocturnes",
-  "Detail1":"contrainte liée aux effets secondaires du traitement",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Existence de soins ou de traitements nocturnes",
-  "Detail1":"contrainte liée aux modalités de réalisation du traitement (maintien à proximité d'un dispositif de soin ou d'assistance, temps des soins, horaires, voie d'administration, assistance d'un tiers, appentissage de technique …)",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"appareillage pour les déplacements",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"appareillage pour la communication",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":13
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"appareillage pour l'élimination",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":14
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"appareillage pour l'alimentation",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":15
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"appareillage pour la respiration",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":16
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Autres appareillages ",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":17
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Contraintes alimentaires",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":18
-},
-{
-  "Section":"Besoins",
-  "Description":"type de charge + description de la contrainte",
-  "Trajectoire":"Toutes",
-  "Question":"Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
-  "Type":"CM",
-  "Reponse":"Contraintes liées à l'exposition à des facteurs externes",
-  "Detail1":"",
-  "Detail2":"",
-  "Tri":19
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"S'orienter dans le temps",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"S'orienter dans l'espace",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Fixer son attention",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Mémoriser",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Prendre des décisions",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Prendre des initiatives",
-  "Detail2":"Faire spontanément une demande d’aide",
-  "Tri":8
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Prendre des initiatives",
-  "Detail2":"Entrer spontanément en relation avec autrui ",
-  "Tri":9
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Prendre des initiatives",
-  "Detail2":"Entreprendre spontanément une activité simple",
-  "Tri":10
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Prendre des initiatives",
-  "Detail2":"Entreprendre spontanément une activité complexe",
-  "Tri":11
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Gérer sa sécurité",
-  "Detail2":"Ne pas mettre sa vie et/ou celle des autres en danger",
-  "Tri":13
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Gérer sa sécurité",
-  "Detail2":"Réagir de façon adaptée face à une situation risquée",
-  "Tri":14
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Respecter les règles de vie",
-  "Detail2":"",
-  "Tri":15
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Avoir des relations avec autrui conformes aux règles sociales",
-  "Detail2":"",
-  "Tri":16
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Maîtriser son comportement dans ses relations avec autrui",
-  "Detail2":"",
-  "Tri":17
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Avoir des relations avec ses pairs",
-  "Detail2":"",
-  "Tri":18
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences générales, relation avec autrui",
-  "Detail1":"Avoir des relations affectives et sexuelles",
-  "Detail2":"",
-  "Tri":19
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se mettre debout",
-  "Detail2":"",
-  "Tri":21
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se coucher",
-  "Detail2":"",
-  "Tri":22
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"S'asseoir",
-  "Detail2":"",
-  "Tri":23
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Faire ses transferts",
-  "Detail2":"",
-  "Tri":24
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Changer de point d'appui",
-  "Detail2":"",
-  "Tri":25
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Rester assis",
-  "Detail2":"",
-  "Tri":26
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Rester debout",
-  "Detail2":"",
-  "Tri":27
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Marcher",
-  "Detail2":"",
-  "Tri":28
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se déplacer dans le logement, à l'extérieur",
-  "Detail2":"",
-  "Tri":29
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se déplacer dans le logement",
-  "Detail2":"",
-  "Tri":30
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se déplacer à l'extérieur",
-  "Detail2":"",
-  "Tri":31
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se déplacer en terrain varié",
-  "Detail2":"",
-  "Tri":32
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se déplacer en terrain accidenté",
-  "Detail2":"",
-  "Tri":33
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Se déplacer sur un terrain en pente",
-  "Detail2":"",
-  "Tri":34
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Utiliser des escaliers",
-  "Detail2":"",
-  "Tri":35
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Utiliser les transports en commun",
-  "Detail2":"",
-  "Tri":36
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Utiliser un véhicule particulier",
-  "Detail2":"",
-  "Tri":37
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Conduire un véhicule",
-  "Detail2":"",
-  "Tri":38
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Utiliser la préhension de la main dominante",
-  "Detail2":"",
-  "Tri":39
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Utiliser la préhension de la main non dominante",
-  "Detail2":"",
-  "Tri":40
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Avoir des activités de motricité fine",
-  "Detail2":"",
-  "Tri":41
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Avoir une coordination bi-manuelle",
-  "Detail2":"",
-  "Tri":42
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Mobilité Manipulation",
-  "Detail1":"Soulever et porter des objets (y compris en se déplaçant)",
-  "Detail2":"",
-  "Tri":43
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Se laver",
-  "Detail2":"",
-  "Tri":45
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre soin de son corps",
-  "Detail2":"",
-  "Tri":46
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Assurer l'élimination et Utiliser les toilettes",
-  "Detail2":"",
-  "Tri":47
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"S'habiller / se déshabiller",
-  "Detail2":"",
-  "Tri":48
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre ses repas (Manger, Boire)",
-  "Detail2":"",
-  "Tri":49
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre soin de sa santé",
-  "Detail2":"Utiliser ses fonctions respiratoires",
-  "Tri":51
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre soin de sa santé",
-  "Detail2":"Se soigner",
-  "Tri":52
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre soin de sa santé",
-  "Detail2":"Surveiller son régime alimentaire",
-  "Tri":53
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre soin de sa santé",
-  "Detail2":"Gérer son repos quotidien",
-  "Tri":54
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre soin de sa santé",
-  "Detail2":"Exprimer une demande de soins",
-  "Tri":55
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Entretien personnel",
-  "Detail1":"Prendre soin de sa santé",
-  "Detail2":"Utiliser les différents systèmes de santé",
-  "Tri":56
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Parler",
-  "Detail2":"",
-  "Tri":58
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Entendre (percevoir les sons et comprendre)",
-  "Detail2":"Entendre des sons",
-  "Tri":59
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Entendre (percevoir les sons et comprendre)",
-  "Detail2":"Comprendre la parole en face à face",
-  "Tri":60
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Entendre (percevoir les sons et comprendre)",
-  "Detail2":"Comprendre la parole dans un groupe",
-  "Tri":61
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Entendre (percevoir les sons et comprendre)",
-  "Detail2":"Comprendre la parole en environnement bruyant",
-  "Tri":62
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Entendre (percevoir les sons et comprendre)",
-  "Detail2":"Comprendre la parole en environnement bruyant",
-  "Tri":63
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Entendre (percevoir les sons et comprendre)",
-  "Detail2":"Localiser l'origine des sons",
-  "Tri":64
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Voir (distinguer et identifier)",
-  "Detail2":"",
-  "Tri":66
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Utiliser des appareils et techniques de communication",
-  "Detail2":"Utiliser le téléphone",
-  "Tri":68
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Utiliser des appareils et techniques de communication",
-  "Detail2":"Utiliser les autres appareils et techniques de communication",
-  "Tri":69
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Comprendre une phrase simple",
-  "Detail2":"",
-  "Tri":70
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Mener une conversation",
-  "Detail2":"",
-  "Tri":71
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Communication ",
-  "Detail1":"Produire et recevoir des messages non verbaux",
-  "Detail2":"",
-  "Tri":72
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Faire ses courses",
-  "Detail2":"",
-  "Tri":74
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Préparer un repas simple",
-  "Detail2":"",
-  "Tri":75
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Faire son ménage",
-  "Detail2":"",
-  "Tri":76
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Entretenir son linge et ses vêtements",
-  "Detail2":"",
-  "Tri":77
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"S'occuper de sa famille",
-  "Detail2":"",
-  "Tri":78
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Gérer son budget, faire les démarches administratives",
-  "Detail2":"Gérer son argent au quotidien ",
-  "Tri":80
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Gérer son budget, faire les démarches administratives",
-  "Detail2":"Gérer son compte bancaire",
-  "Tri":81
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Gérer son budget, faire les démarches administratives",
-  "Detail2":"Faire des démarches administratives",
-  "Tri":82
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Vivre seul dans un logement indépendant",
-  "Detail2":"",
-  "Tri":83
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Avoir des relations informelles de voisinage",
-  "Detail2":"",
-  "Tri":84
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Participer à la vie communautaire, sociale et civique",
-  "Detail2":"Gérer son temps libre, avoir des activités récréatives ou participer à des activités culturelles, sportives ou de loisir",
-  "Tri":86
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Participer à la vie communautaire, sociale et civique",
-  "Detail2":"Exprimer une demande liée à ses droits",
-  "Tri":87
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Participer à la vie communautaire, sociale et civique",
-  "Detail2":"Participer à la vie locale",
-  "Tri":88
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Vie domestique et vie courante",
-  "Detail1":"Participer à la vie communautaire, sociale et civique",
-  "Detail2":"Partir en vacances",
-  "Tri":89
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Application des connaissances, apprentissage",
-  "Detail1":"Lire",
-  "Detail2":"",
-  "Tri":91
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Application des connaissances, apprentissage",
-  "Detail1":"Ecrire",
-  "Detail2":"",
-  "Tri":92
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Application des connaissances, apprentissage",
-  "Detail1":"Calculer",
-  "Detail2":"",
-  "Tri":93
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Application des connaissances, apprentissage",
-  "Detail1":"Acquérir un savoir-faire",
-  "Detail2":"",
-  "Tri":94
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Application des connaissances, apprentissage",
-  "Detail1":"Appliquer un savoir-faire",
-  "Detail2":"",
-  "Tri":95
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Apprendre à lire",
-  "Detail2":"",
-  "Tri":97
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Apprendre à écrire",
-  "Detail2":"",
-  "Tri":98
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Apprendre à calculer",
-  "Detail2":"",
-  "Tri":99
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Apprendre des techniques de communication",
-  "Detail2":"",
-  "Tri":100
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Apprendre les règles sociales de base",
-  "Detail2":"",
-  "Tri":101
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Etre ponctuel",
-  "Tri":103
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Etre assidu",
-  "Tri":104
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Organiser son travail",
-  "Tri":105
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Contrôler son travail",
-  "Tri":106
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Accepter des consignes",
-  "Tri":107
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Suivre des consignes",
-  "Tri":108
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"S’adapter à la vie scolaire",
-  "Tri":109
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Travailler en équipe ",
-  "Tri":110
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Respecter des règles de base",
-  "Detail2":"Respecter les règles scolaires ",
-  "Tri":111
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"S’installer dans la classe",
-  "Detail2":"",
-  "Tri":112
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Utiliser des supports pédagogiques",
-  "Detail2":"",
-  "Tri":113
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Utiliser du matériel adapté à son handicap",
-  "Detail2":"",
-  "Tri":114
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Prendre des notes",
-  "Detail2":"",
-  "Tri":115
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"S’adapter aux conditions d’examen et de contrôle",
-  "Detail2":"",
-  "Tri":116
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Participer à des sorties extra scolaires",
-  "Detail2":"",
-  "Tri":117
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale",
-  "Detail1":"Autre",
-  "Detail2":"",
-  "Tri":118
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Respecter des règles de base ",
-  "Detail2":"Etre ponctuel",
-  "Tri":120
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Respecter des règles de base ",
-  "Detail2":"Etre assidu",
-  "Tri":121
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Respecter des règles de base ",
-  "Detail2":"Respecter des relations hiérarchiques",
-  "Tri":122
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Respecter des règles de base ",
-  "Detail2":"Participer à des réunions ",
-  "Tri":123
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Organiser son travail (en rapport avec le poste de travail)",
-  "Detail2":"",
-  "Tri":125
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Contrôler son travail",
-  "Detail2":"",
-  "Tri":126
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Etre en contact avec le public",
-  "Detail2":"",
-  "Tri":127
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Assurer l’encadrement",
-  "Detail2":"",
-  "Tri":128
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Travailler en équipe ",
-  "Detail2":"",
-  "Tri":129
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Soulever, déplacer des charges",
-  "Tri":131
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Travailler en flexion du tronc",
-  "Tri":132
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Travailler en attitudes variées",
-  "Tri":133
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Travailler accroupi",
-  "Tri":134
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Travailler en hauteur (escabeau, échelle, échafaudage..)",
-  "Tri":135
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Travailler à distance du sol (sur un pont, un toit, un balcon…)",
-  "Tri":136
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Travailler le mb. sup. dominant levé au dessus du niveau des épaules",
-  "Tri":137
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Travailler le mb. sup. non dominant levé au dessus du niveau des épaules",
-  "Tri":138
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches physiques",
-  "Detail2":"Utiliser une commande avec les pieds",
-  "Tri":139
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Voir les couleurs",
-  "Tri":141
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Percevoir le relief",
-  "Tri":142
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Travailler de nuit",
-  "Tri":143
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Assumer des modifications d’horaires",
-  "Tri":144
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Utiliser des outils et/ou machines dangereuses",
-  "Tri":145
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Travailler avec vibrations",
-  "Tri":146
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Travailler en milieu bruyant",
-  "Tri":147
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Travailler dans des contextes  respiratoires particuliers",
-  "Tri":148
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Travailler avec risque cutané",
-  "Tri":149
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"S’exposer aux intempéries, à une atmosphère exceptionnelle",
-  "Tri":150
-},
-{
-  "Section":"Situation",
-  "Description":"Nature de l'Activité humaine",
-  "Trajectoire":"Toutes",
-  "Question":"La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
-  "Type":"CM",
-  "Reponse":"Tâches et exigences relatives au travail",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"Autre",
-  "Tri":151
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Besoins en matière de soins",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"soins médicaux ambulatoires",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"soins médicaux en milieu hospitalier",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"soins paramédicaux ambulatoires",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"soins paramédicaux en milieu hospitalier",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Besoin en matière d'autonomie",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour accomplir ses actes essentiels",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour accomplir ses activités domestiques",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":8
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour vivre dans un logement",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour mener sa vie d'élève",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour vivre sa vie d'étudiant",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":11
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour avoir des activités de jour",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":12
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour vivre une vie professionnellement",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":13
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour accéder à ses droits",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":14
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour mener une vie sociale",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":15
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Besoins transversaux en matière d'autonomie",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":16
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour communiquer",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":17
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour assurer la sécurité",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":18
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour un répit des parents et des aidants",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":19
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Pour assurer une présence des parents et des aidants",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":20
-},
-{
-  "Section":"Besoins",
-  "Description":"Besoins de compensation identifiés",
-  "Trajectoire":"Toutes",
-  "Question":"Quels besoins de compensations ont-ils pu être identifiés?",
-  "Type":"CM",
-  "Reponse":"Besoins en matière de ressources",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":21
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution envisagée",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation est envisagée pour l'avenir?",
-  "Type":"CU",
-  "Reponse":"Evolution envisagée",
-  "Detail1":"Exercer des tâches dans des conditions particulières",
-  "Detail2":"",
-  "Tri":1
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution envisagée",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation est envisagée pour l'avenir?",
-  "Type":"CU",
-  "Reponse":"Evolution envisagée",
-  "Detail1":"amélioration à court terme (inférieur à 1 an)",
-  "Detail2":"",
-  "Tri":2
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution envisagée",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation est envisagée pour l'avenir?",
-  "Type":"CU",
-  "Reponse":"Evolution envisagée",
-  "Detail1":"amélioration à moyen et long terme (supérieur à 1 an)",
-  "Detail2":"",
-  "Tri":3
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution envisagée",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation est envisagée pour l'avenir?",
-  "Type":"CU",
-  "Reponse":"Evolution envisagée",
-  "Detail1":"aggravation à court terme (inférieur à 1 an)",
-  "Detail2":"",
-  "Tri":4
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution envisagée",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation est envisagée pour l'avenir?",
-  "Type":"CU",
-  "Reponse":"Evolution envisagée",
-  "Detail1":"aggravation à moyen et long terme (supérieur à 1 an)",
-  "Detail2":"",
-  "Tri":5
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution envisagée",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation est envisagée pour l'avenir?",
-  "Type":"CU",
-  "Reponse":"Evolution envisagée",
-  "Detail1":"stabilité",
-  "Detail2":"",
-  "Tri":6
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution envisagée",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation est envisagée pour l'avenir?",
-  "Type":"CU",
-  "Reponse":"Evolution envisagée",
-  "Detail1":"inconnue",
-  "Detail2":"",
-  "Tri":7
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution depuis la précédente demande",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation a pu être constatée depui la précédente demande?",
-  "Type":"CU",
-  "Reponse":"Evolution depuis la précédente demande",
-  "Detail1":"amélioration",
-  "Detail2":"",
-  "Tri":9
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution depuis la précédente demande",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation a pu être constatée depui la précédente demande?",
-  "Type":"CU",
-  "Reponse":"Evolution depuis la précédente demande",
-  "Detail1":"aggravation",
-  "Detail2":"",
-  "Tri":10
-},
-{
-  "Section":"Situation",
-  "Description":"Evolution depuis la précédente demande",
-  "Trajectoire":"toutes",
-  "Question":"Quelle évolution de la situation a pu être constatée depui la précédente demande?",
-  "Type":"CU",
-  "Reponse":"Evolution depuis la précédente demande",
-  "Detail1":"stabilité",
-  "Detail2":"",
-  "Tri":11
-}]
+exports.all =
+  [
+    {
+      "Section": "Environnement",
+      "Description": "Situation familiale ",
+      "Trajectoire": "toutes",
+      "Question": "Quelle est la situation familiale de la personne ?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "vit seul",
+          "Tri": 1
+        },
+        {
+          "Reponse": "vit avec d'autres personnes",
+          "Tri": 2
+        },
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Type d'hébergement",
+      "Trajectoire": "toutes",
+      "Question": "Où la personne est-elle hebergée? ",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Domicile personnel",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Domicile familial",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Hébergé",
+          "Tri": 3
+        },
+        {
+          "Reponse": "Etablissement médico-social",
+          "Tri": 4
+        },
+        {
+          "Reponse": "Famille d'accueil",
+          "Tri": 5
+        },
+        {
+          "Reponse": "SDF",
+          "Tri": 6
+        },
+        {
+          "Reponse": "Logement accompagné ou supervisé",
+          "Tri": 7
+        },
+        {
+          "Reponse": "Autre",
+          "Tri": 8
+        },
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Type logement",
+      "Trajectoire": "toutes",
+      "Question": "Quel est son type de logement?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Maison individuelle",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Appartement/Studio",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Autre",
+          "Tri": 3
+        }
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Typicité du lieu d'Habitat",
+      "Trajectoire": "toutes",
+      "Question": "Habite-t-elle en milieu urbain ou rural?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Habitat en milieu urbain",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Habitat en milieu rural",
+          "Tri": 2
+        }
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Type de ressource",
+      "Trajectoire": "toutes",
+      "Question": "Quelles sont les ressources dont elle dispose?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Sans objet",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Salaire et autre revenu du travail",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Allocation chomage",
+          "Tri": 3
+        },
+        {
+          "Reponse": "Indemnités journalières assurance maladie",
+          "Tri": 4
+        },
+        {
+          "Reponse": "Pension d'invalidité 1er cat",
+          "Tri": 5
+        },
+        {
+          "Reponse": "Pension d'invalidité 2ème cat ",
+          "Tri": 6
+        },
+        {
+          "Reponse": "Pension d'invalidité 3ème cat (MTP)",
+          "Tri": 7
+        },
+        {
+          "Reponse": "Allocation supplémentaire d'invalidité (FSI)",
+          "Tri": 8
+        },
+        {
+          "Reponse": "Autres pensions (régimes particuliers, assurances …)",
+          "Tri": 9
+        },
+        {
+          "Reponse": "Autres pensions avec MTP",
+          "Tri": 10
+        },
+        {
+          "Reponse": "AAH",
+          "Tri": 11
+        },
+        {
+          "Reponse": "Complément de ressources",
+          "Tri": 12
+        },
+        {
+          "Reponse": "Majoration pour la vie autonome",
+          "Tri": 13
+        },
+        {
+          "Reponse": "RSA",
+          "Tri": 14
+        },
+        {
+          "Reponse": "Autre allocation",
+          "Tri": 15
+        },
+        {
+          "Reponse": "Retraite",
+          "Tri": 16
+        },
+        {
+          "Reponse": "Autres revenus",
+          "Tri": 17
+        },
+        {
+          "Reponse": "Absence de ressource personnelle",
+          "Tri": 18
+        },
+        {
+          "Reponse": "Prestation familiale",
+          "Tri": 19
+        },
+        {
+          "Reponse": "Non précisé",
+          "Tri": 20
+        }
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "adaptation du logement",
+      "Trajectoire": "toutes",
+      "Question": "Le logement est-il adapté?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "zone extérieure adaptée",
+          "Tri": 1
+        },
+        {
+          "Reponse": "zone extérieure non adaptée",
+          "Tri": 2
+        },
+        {
+          "Reponse": "zone intérieure adaptée",
+          "Tri": 8
+        },
+        {
+          "Reponse": "zone intérieure non adaptée",
+          "Tri": 9
+        }
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Caractéristiques transport",
+      "Trajectoire": "toutes",
+      "Question": "Quels sont les moyens de transport utilisés par la personne?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Utilise les transports en commun",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Utilise les transports en commun, avec un accompagnateur",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Utilise les transports de substitution",
+          "Tri": 3
+        },
+        {
+          "Reponse": "N’utilise aucun transport en commun ou de substitution",
+          "Tri": 4
+        },
+        {
+          "Reponse": "Transport scolaire sans objet",
+          "Tri": 5
+        },
+        {
+          "Reponse": "Est accompagné avec le véhicule de la famille",
+          "Tri": 6
+        },
+        {
+          "Reponse": "Utilise les transports scolaires collectifs de droit commun",
+          "Tri": 7
+        },
+        {
+          "Reponse": "Utilise un transport individuel ordinaire avec chauffeur",
+          "Tri": 8
+        },
+        {
+          "Reponse": "Utilise un transport sanitaire avec un accompagnateur",
+          "Tri": 9
+        },
+        {
+          "Reponse": "Utilise un transport sanitaire avec deux accompagnateurs",
+          "Tri": 10
+        },
+        {
+          "Reponse": "Est transporté dans un véhicule spécialement aménagé autre que le véhicule familial",
+          "Tri": 11
+        },
+        {
+          "Reponse": "N’a pas recours à un véhicule personnel ou familial",
+          "Tri": 12
+        },
+        {
+          "Reponse": "A recours à un véhicule personnel ou familial comme passager",
+          "Tri": 13
+        },
+        {
+          "Reponse": "Est conducteur d’un véhicule sans permis",
+          "Tri": 14
+        },
+        {
+          "Reponse": "Est conducteur d’un véhicule avec permis",
+          "Details": [
+            {
+              "Detail": "Comportant une mention d’aménagement du véhicule et une durée de validité",
+              "Tri": 16
+            },
+            {
+              "Detail": "Comportant une mention d’aménagement du véhicule mais sans durée de validité",
+              "Tri": 17
+            },
+            {
+              "Detail": "Ne comportant pas de mention d’aménagement du véhicule mais une durée de validité",
+              "Tri": 18
+            },
+            {
+              "Detail": "Ne comportant ni mention d’aménagement du véhicule ni de durée de validité",
+              "Tri": 19
+            },
+          ]
+        },
+        {
+          "Reponse": "En cours de formation au permis de conduire",
+          "Details": [
+            {
+              "Detail": "Avec avis du délégué à la formation routière",
+              "Tri": 21
+            },
+            {
+              "Detail": "Sans avis du délégué à la formation routière",
+              "Tri": 22
+            }
+          ]
+        },
+
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Type scolarisation",
+      "Trajectoire": "Vie scolaire uniquement",
+      "Question": "Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Etablissement d’enseignement",
+          "Details": [
+            {
+              "Detail": "Etablissement scolaire de référence",
+              "Tri": 2
+            },
+            {
+              "Detail": "Etablissement scolaire autre que l’établissement scolaire de référence",
+              "Tri": 3
+            },
+            {
+              "Detail": "Etablissement de l’enseignement supérieur",
+              "Tri": 4
+            },
+          ]
+        },
+        {
+          "Reponse": "Autre type d’établissement",
+          "Details": [
+            {
+              "Detail": "Etablissement médico-social",
+              "Tri": 6
+            },
+            {
+              "Detail": "Etablissement sanitaire",
+              "Tri": 7
+            },
+          ]
+        },
+
+        {
+          "Reponse": "Autre type de scolarisation",
+          "Details": [
+            {
+              "Detail": "Scolarisation par correspondance",
+              "Tri": 9
+            },
+            {
+              "Detail": "Scolarisation à domicile avec un service d’aide pédagogique à domicile (SAPAD)",
+              "Tri": 10
+            },
+            {
+              "Detail": "Autre modalité de scolarisation ou d’études à domicile",
+              "Tri": 11
+            },
+            {
+              "Detail": "Autre",
+              "Tri": 12
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Evaluation scolarité",
+      "Trajectoire": "Vie scolaire uniquement",
+      "Question": "Quel est le type de scolarisation ?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Scolarité ordinaire : acuqisitions comparables à la moyenne de la classe d'âge",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Scolarité avec des aménagements permettant les acquisitions",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Scolarité avec des aménagements, qui ne permet cependant pas d'accéder aux acquisitions constatées pour la moyenne de classe d'âge",
+          "Tri": 3
+        }
+      ]
+    },
+    {
+      "Section": "Environnement",
+      "Description": "Type de contrat",
+      "Trajectoire": "Vie professionnelle uniquement",
+      "Question": "Quel est le type de contrat de travail de la personne?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Apprentissage",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Stagiaire",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Contrat de travail aidé",
+          "Tri": 3
+        },
+        {
+          "Reponse": "Contrat à durée déterminée (y compris saisonnier, vacataire...)",
+          "Tri": 4
+        },
+        {
+          "Reponse": "Contrat à durée indéterminée (dont titulaire de la fonction publique)",
+          "Tri": 5
+        },
+        {
+          "Reponse": "Intérim",
+          "Tri": 6
+        },
+        {
+          "Reponse": "Autre",
+          "Tri": 7
+        },
+        {
+          "Reponse": "Non précisé",
+          "Tri": 8
+        }
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Situation par rapport à l'activité",
+      "Trajectoire": "toutes",
+      "Question": "Quelle est la Situation par rapport à l'activité scolaire ou professionnelle?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Enfant non scolarisé",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Scolarisation, formation initiale et/ou autres formations non rémunérées",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
+          "Details": [
+            {
+              "Detail": "salarié secteur privé",
+              "Tri": 4
+            },
+            {
+              "Detail": "salarié secteur public",
+              "Tri": 5
+            },
+            {
+              "Detail": "travailleur indépendant",
+              "Tri": 6
+            },
+            {
+              "Detail": "salarié entreprise adaptée",
+              "Tri": 7
+            },
+            {
+              "Detail": "travailleur en milieu protégé (ESAT)",
+              "Tri": 8
+            },
+            {
+              "Detail": "apprentissage",
+              "Tri": 9
+            },
+            {
+              "Detail": "formation professionnelle",
+              "Tri": 10
+            },
+            {
+              "Detail": "activité non rémunérée",
+              "Tri": 11
+            },
+            {
+              "Detail": "arrêt maladie",
+              "Tri": 12
+            },
+          ]
+        },
+        {
+          "Reponse": "Adulte sans activité ",
+          "Details": [
+            {
+              "Detail": "Invalidité",
+              "Tri": 14
+            },
+            {
+              "Detail": "Chômage",
+              "Tri": 15
+            },
+            {
+              "Detail": "Retraité à l'âge normal",
+              "Tri": 16
+            },
+            {
+              "Detail": "Retraite anticipée",
+              "Tri": 17
+            },
+            {
+              "Detail": "Au foyer",
+              "Tri": 18
+            },
+            {
+              "Detail": "Congé parental",
+              "Tri": 19
+            },
+            {
+              "Detail": "Autre inactif",
+              "Tri": 20
+            },
+            {
+              "Detail": "Non précisé",
+              "Tri": 21
+            },
+            {
+              "Detail": "sans activité et a déjà travaillé",
+              "Tri": 22
+            },
+            {
+              "Detail": "sans activité et n'a jamais travaillé",
+              "Tri": 23
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Niveau de scolarité suivie",
+      "Trajectoire": "Vie scolaire uniquement",
+      "Question": "Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Jamais scolarisé",
+          "Tri": 1
+        },
+        {
+          "Reponse": "école maternelle",
+          "Tri": 2
+        },
+        {
+          "Reponse": "école élémentaire classe ordinaire",
+          "Tri": 3
+        },
+        {
+          "Reponse": "école élémentaire CLIS",
+          "Tri": 4
+        },
+        {
+          "Reponse": "scolarisé en établissement médico-social (IME, IMPRO, ITEP …)",
+          "Tri": 5
+        },
+        {
+          "Reponse": "collège classe ordinaire",
+          "Tri": 6
+        },
+        {
+          "Reponse": "collège UPI - ULIS",
+          "Tri": 7
+        },
+        {
+          "Reponse": "lycée classe ordinaire",
+          "Tri": 8
+        },
+        {
+          "Reponse": "lycée UPI, ULIS",
+          "Tri": 9
+        },
+        {
+          "Reponse": "enseignement technique ou professionnel court (CAP, BEP ou équivalent)",
+          "Tri": 10
+        },
+        {
+          "Reponse": "enseignement technique ou professionnel long (brevet de technicien, bac pro...)",
+          "Tri": 11
+        },
+        {
+          "Reponse": "Université ou étude supérieures (y compris technique supérieur)",
+          "Tri": 12
+        },
+        {
+          "Reponse": "Non précisé",
+          "Tri": 13
+        }
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Niveau de formation professionnelle ",
+      "Trajectoire": "Vie professionnelle uniquement",
+      "Question": "Quel est le niveau de formation professionnelle de la personne?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Niveau I : Personnel occupant des emplois exigeant normalement une formation de niveau supérieur à celui de la maîtrise.",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Niveau II : Personnel occupant des emplois exigeant normalement une formation d'un niveau comparable à celui de la licence ou de la maîtrise.",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Niveau III : Personnel occupant des emplois qui exigent normalement des formations du niveau du diplôme des Instituts Universitaires de Technologie (DUT) ou du brevet de technicien supérieur (BTS) ou de fin de premier cycle de l'enseignement supérieur.",
+          "Tri": 3
+        },
+        {
+          "Reponse": "Niveau IV : Personnel occupant des emplois de maîtrise ou d'ouvrier hautement qualifié et pouvant attester d'un niveau de formation équivalent à celui du brevet professionnel (BP), du brevet de technicien (BT), du bac professionnel ou du bac technologique.",
+          "Tri": 4
+        },
+        {
+          "Reponse": "Niveau V : Personnel occupant des emplois exigeant normalement un niveau de formation équivalent à celui du brevet d'études professionnelles (BEP) ou du certificat d'aptitude professionnelle (CAP), et par assimilation, du certificat de formation professionnelle des ",
+          "Tri": 5
+        },
+        {
+          "Reponse": "Niveau V bis : Personnel occupant des emplois supposant une formation spécialisée d'une durée maximum d'un an au delà du premier cycle de l'enseignement du second degré, du niveau du certificat de formation professionnelle.",
+          "Tri": 6
+        },
+        {
+          "Reponse": "Niveau VI : Personnel occupant des emplois n'exigeant pas une formation allant au delà de la scolarité obligatoire",
+          "Tri": 7
+        }
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Souhaits par rapport au travail",
+      "Trajectoire": "Toutes",
+      "Question": "Quels sont les souhaits de la personne par rapport au travail?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Pas de projet professionnel exprimé par la personne",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Projet professionnel exprimé par la personne",
+          "Details": [
+            {
+              "Detail": "Souhaite travailler",
+              "Tri": 3
+            },
+            {
+              "Detail": "Souhaite changer d’activité professionnelle",
+              "Tri": 4
+            },
+            {
+              "Detail": "Souhaite conserver son activité professionnelle",
+              "Tri": 5
+            },
+            {
+              "Detail": "Autre",
+              "Tri": 6
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Pathologie",
+      "Trajectoire": "Toutes",
+      "Question": "Quelle est la pathologie principale de la personne?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Troubles de la personnalité et du comportement dus à une affection, une lésion et un dysfonctionnement cérébraux",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Maladie d'alzheimer ",
+          "Tri": 2
+        },
+        {
+          "Reponse": "autres pathologies avec démence globale",
+          "Tri": 3
+        },
+        {
+          "Reponse": "Affection dégénérative du système nerveux, sans précision",
+          "Tri": 4
+        },
+        {
+          "Reponse": "dyslexie",
+          "Tri": 5
+        },
+        {
+          "Reponse": "dysphasie",
+          "Tri": 6
+        },
+        {
+          "Reponse": "dyspraxie",
+          "Tri": 7
+        },
+        {
+          "Reponse": "psychose",
+          "Tri": 8
+        },
+        {
+          "Reponse": "névrose",
+          "Tri": 9
+        },
+        {
+          "Reponse": "dépression",
+          "Tri": 10
+        },
+        {
+          "Reponse": "autisme et autres TSA",
+          "Tri": 11
+        },
+        {
+          "Reponse": "diabète sucré insulino dépendant",
+          "Tri": 12
+        },
+        {
+          "Reponse": "diabète sucré no insulino dépendant",
+          "Tri": 13
+        },
+        {
+          "Reponse": "mucoviscidose",
+          "Tri": 14
+        },
+        {
+          "Reponse": "hépatites B et C",
+          "Tri": 15
+        },
+        {
+          "Reponse": "autres hépatites virales",
+          "Tri": 16
+        },
+        {
+          "Reponse": "VIH",
+          "Tri": 17
+        },
+        {
+          "Reponse": "Autres maladies du sang et des organes hématopoïétiques",
+          "Tri": 18
+        },
+        {
+          "Reponse": "affection néoplasique bronchopulmonaire",
+          "Tri": 19
+        },
+        {
+          "Reponse": "cancer du sein",
+          "Tri": 20
+        },
+        {
+          "Reponse": "leucémie",
+          "Tri": 21
+        },
+        {
+          "Reponse": "autre affection néoplasique",
+          "Tri": 22
+        },
+        {
+          "Reponse": "SLA ou autre maladie du motoneurone ",
+          "Tri": 23
+        },
+        {
+          "Reponse": "maladies neuromusculaires",
+          "Tri": 24
+        },
+        {
+          "Reponse": "SEP",
+          "Tri": 25
+        },
+        {
+          "Reponse": "maladie de Parkinson",
+          "Tri": 26
+        },
+        {
+          "Reponse": "chorée de Huntington",
+          "Tri": 27
+        },
+        {
+          "Reponse": "AVC",
+          "Tri": 28
+        },
+        {
+          "Reponse": "rachialgies",
+          "Tri": 29
+        },
+        {
+          "Reponse": "fibromyalgie",
+          "Tri": 30
+        },
+        {
+          "Reponse": "maladie rare",
+          "Tri": 31
+        },
+        {
+          "Reponse": "autres pathologies ",
+          "Tri": 32
+        }
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Type de déficience",
+      "Trajectoire": "Toutes",
+      "Question": "Quelles sont les types de déficiences que présente la personne?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "DEFICIENCES INTELLECTUELLES ",
+          "Details": [
+            {
+              "Detail": "Retard mental dont :",
+              "SousDetails": [
+                {
+                  "SousDetail": "Retard mental profond ( QI inférieur à 20 ou chez les adultes, age mental inférieur à 3 ans)*",
+                  "Tri": 3
+                },
+                {
+                  "SousDetail": "Retard mental sévère (QI compris entre 20 et 34 ou chez les adultes, age mental de 3 à 6 ans)*",
+                  "Tri": 4
+                },
+                {
+                  "SousDetail": "Retard mental moyen (QI compris entre 35 et 49 ou chez les adultes, age mental de 6 à 9 ans)*",
+                  "Tri": 5
+                },
+                {
+                  "SousDetail": "Retard mental léger (QI compris entre 50 et 69 ou chez les adultes, age mental de 9 à 12 ans)*",
+                  "Tri": 6
+                },
+                {
+                  "SousDetail": "roubles cognitifs sans retard mental, troubles des acquisitions et des apprentissages ",
+                  "Tri": 7
+                },
+                {
+                  "SousDetail": "retard mental non précisé",
+                  "Tri": 8
+                },
+              ]
+            },
+            {
+              "Detail": "Démence globale ",
+              "Tri": 9
+            },
+            {
+              "Detail": "Démence lacunaire ou partielle",
+              "Tri": 10
+            },
+            {
+              "Detail": "Autre déficience de la mémoire",
+              "Tri": 11
+            },
+            {
+              "Detail": "Déficience du cours de la pensée",
+              "Tri": 12
+            },
+            {
+              "Detail": "Autres déficiences de l'intelligence non codées ailleurs",
+              "Tri": 13
+            },
+            {
+              "Detail": "Déficiences intellectuelles non précisées",
+              "Tri": 14
+            },
+          ]
+        },
+        {
+          "Reponse": "DEFICIENCES DU PSYCHISME",
+          "Details": [
+            {
+              "Detail": "Déficience de la conscience et de la vigilance dont :",
+              "SousDetails": [
+                {
+                  "SousDetail": "perte de conscience, coma",
+                  "Tri": 17
+                },
+                {
+                  "SousDetail": "désorientation temporo-spatiale, confusion mentale",
+                  "Tri": 18
+                },
+                {
+                  "SousDetail": "déficience intermittente de la conscience ( épilepsie) ",
+                  "Tri": 19
+                },
+                {
+                  "SousDetail": "Autres déficiences de la conscience ",
+                  "Tri": 20
+                },
+                {
+                  "SousDetail": "Troubles du comportement, de la personnalité et des capacités relationnelles",
+                  "Tri": 21
+                },
+              ]
+            },
+            {
+              "Detail": "Déficience des émotions ou de la volition dont : ",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience de l'émotion, des affects, de l'humeur ",
+                  "Tri": 23
+                },
+                {
+                  "SousDetail": "déficiences de la volition (passivité, soumission, compulsion…)",
+                  "Tri": 24
+                }
+              ]
+            },
+            {
+              "Detail": "déficiences des fonctions psychomotrices",
+              "Tri": 25
+            },
+            {
+              "Detail": "Troubles de la perception ou de l’attention",
+              "Tri": 26
+            },
+            {
+              "Detail": "Troubles des pulsions",
+              "Tri": 27
+            },
+            {
+              "Detail": "Autres déficiences du psychisme non codées ailleurs",
+              "Tri": 28
+            },
+            {
+              "Detail": "Déficiences du psychisme non précisées",
+              "Tri": 29
+            },
+          ]
+        },
+        {
+          "Reponse": "DEFICIENCES DU LANGAGE ET DE LA PAROLE",
+          "Details": [
+            {
+              "Detail": "déficience sévère de la communication",
+              "Tri": 27
+            },
+            {
+              "Detail": "déficiences de l'apprentissage du langage écrit ou oral",
+              "Tri": 28
+            },
+            {
+              "Detail": "déficience de la voix ou de l'élocution",
+              "Tri": 29
+            },
+            {
+              "Detail": "Autres déficiences du langage ou de la parole non codées ailleurs",
+              "Tri": 30
+            },
+            {
+              "Detail": "Déficiences du langage ou de la parole non précisées",
+              "Tri": 30
+            },
+          ]
+        },
+        {
+          "Reponse": "DEFICIENCES AUDITIVES",
+          "Details": [
+            {
+              "Detail": "Déficiences auditives bilatérales dont : ",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience auditive profonde  bilatérale (supérieure à 90 Db.)",
+                  "Tri": 33
+                },
+                {
+                  "SousDetail": "déficience auditive sévère bilatérale (comprise entre 71 Db et 90 Db inclus)",
+                  "Tri": 34
+                },
+                {
+                  "SousDetail": "déficience auditive moyenne bilatérale",
+                  "Tri": 35
+                },
+                {
+                  "SousDetail": "déficience auditive légère bilatérale",
+                  "Tri": 36
+                },
+                {
+                  "SousDetail": "déficience auditive bilatérale sans autre indication",
+                  "Tri": 37
+                },
+              ]
+            },
+            {
+              "Detail": "Déficiences auditives unilatérales",
+              "Tri": 38
+            },
+            {
+              "Detail": "Acouphènes",
+              "Tri": 39
+            },
+            {
+              "Detail": "Déficience de la fonction vestibulaire et de l'équilibration",
+              "Tri": 40
+            },
+            {
+              "Detail": "Déficiences auditives non précisées",
+              "Tri": 41
+            },
+          ]
+        },
+        {
+          "Reponse": "DEFICIENCES VISUELLES",
+          "Details": [
+            {
+              "Detail": "Déficiences visuelles dont : ",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience visuelle profonde des 2 yeux",
+                  "Tri": 44
+                },
+                {
+                  "SousDetail": "déficience visuelle profonde d’un œil avec vision faible de l’autre",
+                  "Tri": 45
+                },
+                {
+                  "SousDetail": "déficience visuelle moyenne des deux yeux",
+                  "Tri": 46
+                },
+                {
+                  "SousDetail": "déficience visuelle d’un œil l’autre étant normal",
+                  "Tri": 47
+                },
+                {
+                  "SousDetail": "Déficience de l’acuité visuelle sans précision",
+                  "Tri": 48
+                },
+              ]
+            },
+            {
+              "Detail": "déficience du champ visuel",
+              "Tri": 49
+            },
+            {
+              "Detail": "déficience de la mobilité oculaire (nystagmus)",
+              "Tri": 50
+            },
+            {
+              "Detail": "Autre déficience des fonctions visuelles (strabisme, vision des couleurs..) non codées ailleurs",
+              "Tri": 51
+            },
+            {
+              "Detail": "Déficiences visuelles non précisées",
+              "Tri": 52
+            },
+          ]
+        },
+        {
+          "Reponse": "DEFICIENCES VISCERALES",
+          "Details": [
+            {
+              "Detail": "déficiences  cardiorespiratoires dont ",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience de la fonction cardiovasculaire",
+                  "Tri": 55
+                },
+                {
+                  "SousDetail": "déficience de la fonction respiratoire",
+                  "Tri": 56
+                },
+              ]
+            },
+            {
+              "Detail": "Déficience hépato-digestives dont : ",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience de la fonction digestive",
+                  "Tri": 58
+                },
+                {
+                  "SousDetail": "déficience des fonctions hépatiques",
+                  "Tri": 59
+                },
+              ]
+            },
+            {
+              "Detail": "Déficience rénales ou urinaires ",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience des fonctions rénales",
+                  "Tri": 61
+                },
+                {
+                  "SousDetail": "déficience de l'élimination urinaire",
+                  "Tri": 62
+                }
+              ]
+            },
+            {
+              "Detail": "déficience métabolique, endocrinienne ou enzymatique",
+              "Tri": 63
+            },
+            {
+              "Detail": "déficience hématologique ou du système immunitaire",
+              "Tri": 64
+            },
+            {
+              "Detail": "Déficiences viscérales non précisées",
+              "Tri": 65
+            },
+          ]
+        },
+        {
+          "Reponse": "DEFICIENCES MOTRICES",
+          "Details": [
+            {
+              "Detail": "Déficiences motrices par absence (amputation, agénésie) dont : ",
+              "SousDetails": [
+                {
+                  "SousDetail": "Amputation proximale du membre supérieur",
+                  "Tri": 66
+                },
+                {
+                  "SousDetail": "Amputation proximale du membre inférieur",
+                  "Tri": 67
+                },
+                {
+                  "SousDetail": "Amputation des parties distales d'un membre",
+                  "Tri": 68
+                },
+                {
+                  "SousDetail": "Autres amputations et amputations multiples",
+                  "Tri": 69
+                },
+                {
+                  "SousDetail": "Absence complète ou incomplète d'un ou plusieurs membres sans autre indication",
+                  "Tri": 70
+                },
+                {
+                  "SousDetail": "agénésie ou amputation partielle ou totale d'un membre supérieur",
+                  "Tri": 71
+                },
+                {
+                  "SousDetail": "agénésie ou amputation partielle ou totale d'un membre inférieur",
+                  "Tri": 72
+                },
+                {
+                  "SousDetail": "agénésie ou amputation partielle ou totale des 2 membres supérieurs ou inférieurs",
+                  "Tri": 73
+                },
+                {
+                  "SousDetail": "agénésie ou amputation partielle ou totale des 4 membres",
+                  "Tri": 74
+                },
+              ]
+            },
+            {
+              "Detail": "Déficiences motrices par atteinte de la commande neurologique dont :",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience complète des quatre membres",
+                  "Tri": 76
+                },
+                {
+                  "SousDetail": "déficience incomplète des quatre membres",
+                  "Tri": 77
+                },
+                {
+                  "SousDetail": "déficience complète des deux membres inférieurs",
+                  "Tri": 78
+                },
+                {
+                  "SousDetail": "déficience incomplète des deux membres inférieurs",
+                  "Tri": 79
+                },
+                {
+                  "SousDetail": "déficience complète de deux membres homolatéraux",
+                  "Tri": 80
+                },
+                {
+                  "SousDetail": "déficience incomplète de deux membres homolatéraux",
+                  "Tri": 81
+                },
+                {
+                  "SousDetail": "Autre déficience complète ou incomplète d’un ou plusieurs membres",
+                  "Tri": 82
+                },
+              ]
+            },
+            {
+              "Detail": "Déficience motrice de la tête et du tronc",
+              "SousDetails": [
+                {
+                  "SousDetail": "déficience de la statique et de la posture",
+                  "Tri": 84
+                },
+                {
+                  "SousDetail": "Trouble du tonus",
+                  "Tri": 85
+                },
+                {
+                  "SousDetail": "autre déficience motrice de la tête ou du tronc",
+                  "Tri": 86
+                },
+              ]
+            },
+            {
+              "Detail": "Déficiences mécaniques dont :",
+              "SousDetails": [
+                {
+                  "SousDetail": "Ankylose d'un ou plusieurs membres",
+                  "Tri": 88
+                },
+                {
+                  "SousDetail": "Instabilité d'un ou plusieurs membres",
+                  "Tri": 89
+                },
+                {
+                  "SousDetail": "Difformité, déformation d'un ou plusieurs membres",
+                  "Tri": 90
+                },
+                {
+                  "SousDetail": "d'un ou des 2 membres supérieurs",
+                  "Tri": 91
+                },
+                {
+                  "SousDetail": "d'un ou des 2 membres inférieurs",
+                  "Tri": 86
+                },
+              ]
+            },
+            {
+              "Detail": "Déficiences musculaires d'un ou plusieurs membres ",
+              "Tri": 87
+            },
+            {
+              "Detail": "Déficiences complexes de la motricité dont : ",
+              "SousDetails": [
+                {
+                  "SousDetail": "Mouvements anormaux",
+                  "Tri": 89
+                },
+                {
+                  "SousDetail": "Autre déficience de la coordination motrice ",
+                  "Tri": 90
+                },
+              ]
+            },
+
+            {
+              "Detail": "Autres déficiences motrices non codées ailleurs",
+              "Tri": 91
+            },
+            {
+              "Detail": "Déficiences motrices non précisées",
+              "Tri": 92
+            },
+          ]
+        },
+        {
+          "Reponse": "AUTRES DEFICIENCES",
+          "Details": [
+            {
+              "Detail": "Déficiences esthétiques ",
+              "Tri": 94
+            },
+            {
+              "Detail": "déficience esthétiques de la tête et du tronc",
+              "Tri": 95
+            },
+            {
+              "Detail": "déficiences esthétiques des membres",
+              "Tri": 96
+            },
+            {
+              "Detail": "Autres déficiences esthétiques",
+              "Tri": 97
+            },
+            {
+              "Detail": "Douleurs chroniques",
+              "Tri": 98
+            },
+            {
+              "Detail": "Fatigue chronique",
+              "Tri": 99
+            },
+            {
+              "Detail": "Déficiences non précisées",
+              "Tri": 100
+            },
+          ]
+        },
+        {
+          "Reponse": "surhandicap",
+          "Tri": 101
+        },
+        {
+          "Reponse": "plurihandicap",
+          "Tri": 102
+        },
+        {
+          "Reponse": "polyhandicap",
+          "Tri": 103
+        },
+        {
+          "Reponse": "Etat végétatif chronique",
+          "Tri": 104
+        },
+        {
+          "Reponse": "handicap rare",
+          "Tri": 105
+        }
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Nature de l'Activité humaine",
+      "Trajectoire": "Toutes",
+      "Question": "La personne est-elle autonomie par rapport aux domaines d'activité suivantes?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Tâches et exigences générales, relation avec autrui",
+          "Details": [
+            {
+              "Detail": "S'orienter dans le temps",
+              "Tri": 2
+            },
+            {
+              "Detail": "S'orienter dans l'espace",
+              "Tri": 3
+            },
+            {
+              "Detail": "Fixer son attention",
+              "Tri": 4
+            },
+            {
+              "Detail": "Mémoriser",
+              "Tri": 5
+            },
+            {
+              "Detail": "Prendre des décisions",
+              "Tri": 6
+            },
+            {
+              "Detail": "Prendre des initiatives",
+              "SousDetails": [
+                {
+                  "SousDetail": "Faire spontanément une demande d’aide",
+                  "Tri": 8
+                },
+                {
+                  "SousDetail": "Entrer spontanément en relation avec autrui ",
+                  "Tri": 9
+                },
+                {
+                  "SousDetail": "Entreprendre spontanément une activité simple",
+                  "Tri": 10
+                },
+                {
+                  "SousDetail": "Entreprendre spontanément une activité complexe",
+                  "Tri": 11
+                },
+              ]
+            },
+            {
+              "Detail": "Gérer sa sécurité",
+              "SousDetails": [
+                {
+                  "SousDetail": "Ne pas mettre sa vie et/ou celle des autres en danger",
+                  "Tri": 13
+                },
+                {
+                  "SousDetail": "Réagir de façon adaptée face à une situation risquée",
+                  "Tri": 14
+                },
+              ]
+            },
+            {
+              "Detail": "Respecter les règles de vie",
+              "Tri": 15
+            },
+            {
+              "Detail": "Avoir des relations avec autrui conformes aux règles sociales",
+              "Tri": 16
+            },
+            {
+              "Detail": "Maîtriser son comportement dans ses relations avec autrui",
+              "Tri": 17
+            },
+            {
+              "Detail": "Avoir des relations avec ses pairs",
+              "Tri": 18
+            },
+            {
+              "Detail": "Avoir des relations affectives et sexuelles",
+              "Tri": 19
+            },
+          ]
+        },
+        {
+          "Reponse": "Mobilité Manipulation",
+          "Details": [
+            {
+              "Detail": "Se mettre debout",
+              "Tri": 21
+            },
+            {
+              "Detail": "Se coucher",
+              "Tri": 22
+            },
+            {
+              "Detail": "S'asseoir",
+              "Tri": 23
+            },
+            {
+              "Detail": "Faire ses transferts",
+              "Tri": 24
+            },
+            {
+              "Detail": "Changer de point d'appui",
+              "Tri": 25
+            },
+            {
+              "Detail": "Rester assis",
+              "Tri": 26
+            },
+            {
+              "Detail": "Rester debout",
+              "Tri": 27
+            },
+            {
+              "Detail": "Marcher",
+              "Tri": 28
+            },
+            {
+              "Detail": "Se déplacer dans le logement, à l'extérieur",
+              "Tri": 29
+            },
+            {
+              "Detail": "Se déplacer dans le logement",
+              "Tri": 30
+            },
+            {
+              "Detail": "Se déplacer à l'extérieur",
+              "Tri": 31
+            },
+            {
+              "Detail": "Se déplacer en terrain varié",
+              "Tri": 32
+            },
+            {
+              "Detail": "Se déplacer en terrain accidenté",
+              "Tri": 33
+            },
+            {
+              "Detail": "Se déplacer sur un terrain en pente",
+              "Tri": 34
+            },
+            {
+              "Detail": "Utiliser des escaliers",
+              "Tri": 35
+            },
+            {
+              "Detail": "Utiliser les transports en commun",
+              "Tri": 36
+            },
+            {
+              "Detail": "Utiliser un véhicule particulier",
+              "Tri": 37
+            },
+            {
+              "Detail": "Conduire un véhicule",
+              "Tri": 38
+            },
+            {
+              "Detail": "Utiliser la préhension de la main dominante",
+              "Tri": 39
+            },
+            {
+              "Detail": "Utiliser la préhension de la main non dominante",
+              "Tri": 40
+            },
+            {
+              "Detail": "Avoir des activités de motricité fine",
+              "Tri": 41
+            },
+            {
+              "Detail": "Avoir une coordination bi-manuelle",
+              "Tri": 42
+            },
+            {
+              "Detail": "Soulever et porter des objets (y compris en se déplaçant)",
+              "Tri": 43
+            },
+          ]
+        },
+        {
+          "Reponse": "Entretien personnel",
+          "Details": [
+            {
+              "Detail": "Se laver",
+              "Tri": 45
+            },
+            {
+              "Detail": "Prendre soin de son corps",
+              "Tri": 46
+            },
+            {
+              "Detail": "Assurer l'élimination et Utiliser les toilettes",
+              "Tri": 47
+            },
+            {
+              "Detail": "S'habiller / se déshabiller",
+              "Tri": 48
+            },
+            {
+              "Detail": "Prendre ses repas (Manger, Boire)",
+              "Tri": 49
+            },
+            {
+              "Detail": "Prendre soin de sa santé",
+              "SousDetails": [
+                {
+                  "SousDetail": "Utiliser ses fonctions respiratoires",
+                  "Tri": 51
+                },
+                {
+                  "SousDetail": "Se soigner",
+                  "Tri": 52
+                },
+                {
+                  "SousDetail": "Surveiller son régime alimentaire",
+                  "Tri": 53
+                },
+                {
+                  "SousDetail": "Gérer son repos quotidien",
+                  "Tri": 54
+                },
+                {
+                  "SousDetail": "Exprimer une demande de soins",
+                  "Tri": 55
+                },
+                {
+                  "SousDetail": "Utiliser les différents systèmes de santé",
+                  "Tri": 56
+                },
+              ]
+            },
+          ]
+        },
+
+        {
+          "Reponse": "Communication ",
+          "Details": [
+            {
+              "Detail": "Parler",
+              "Tri": 58
+            },
+            {
+              "Detail": "Entendre (percevoir les sons et comprendre)",
+              "SousDetails": [
+                {
+                  "SousDetail": "Entendre des sons",
+                  "Tri": 59
+                },
+                {
+                  "SousDetail": "Comprendre la parole en face à face",
+                  "Tri": 60
+                },
+                {
+                  "SousDetail": "Comprendre la parole dans un groupe",
+                  "Tri": 61
+                },
+                {
+                  "SousDetail": "Comprendre la parole en environnement bruyant",
+                  "Tri": 62
+                },
+                {
+                  "SousDetail": "Comprendre la parole en environnement bruyant",
+                  "Tri": 63
+                },
+                {
+                  "SousDetail": "Localiser l'origine des sons",
+                  "Tri": 64
+                },
+
+              ]
+            },
+            {
+              "Detail": "Voir (distinguer et identifier)",
+              "Tri": 66
+            },
+            {
+              "Detail": "Utiliser des appareils et techniques de communication",
+              "SousDetails": [
+                {
+                  "SousDetail": "Utiliser le téléphone",
+                  "Tri": 68
+                },
+                {
+                  "SousDetail": "Utiliser les autres appareils et techniques de communication",
+                  "Tri": 69
+                },
+              ]
+            },
+            {
+              "Detail": "Comprendre une phrase simple",
+              "Tri": 70
+            },
+            {
+              "Detail": "Mener une conversation",
+              "Tri": 71
+            },
+            {
+              "Detail": "Produire et recevoir des messages non verbaux",
+              "Tri": 72
+            },
+          ]
+        },
+        {
+          "Reponse": "Vie domestique et vie courante",
+          "Details": [
+            {
+              "Detail": "Faire ses courses",
+              "Tri": 74
+            },
+            {
+              "Detail": "Préparer un repas simple",
+              "Tri": 75
+            },
+            {
+              "Detail": "Faire son ménage",
+              "Tri": 76
+            },
+            {
+              "Detail": "Entretenir son linge et ses vêtements",
+              "Tri": 77
+            },
+            {
+              "Detail": "S'occuper de sa famille",
+              "Tri": 78
+            },
+            {
+              "Detail": "Gérer son budget, faire les démarches administratives",
+              "SousDetails": [
+                {
+                  "SousDetail": "Gérer son argent au quotidien ",
+                  "Tri": 80
+                },
+                {
+                  "SousDetail": "Gérer son compte bancaire",
+                  "Tri": 81
+                },
+                {
+                  "SousDetail": "Faire des démarches administratives",
+                  "Tri": 82
+                },
+              ]
+            },
+            {
+              "Detail": "Vivre seul dans un logement indépendant",
+              "Tri": 83
+            },
+            {
+              "Detail": "Avoir des relations informelles de voisinage",
+              "Tri": 84
+            },
+            {
+              "Detail": "Participer à la vie communautaire, sociale et civique",
+              "SousDetails": [
+                {
+                  "SousDetail": "Gérer son temps libre, avoir des activités récréatives ou participer à des activités culturelles, sportives ou de loisir",
+                  "Tri": 86
+                },
+                {
+                  "SousDetail": "Exprimer une demande liée à ses droits",
+                  "Tri": 87
+                },
+                {
+                  "SousDetail": "Participer à la vie locale",
+                  "Tri": 88
+                },
+                {
+                  "SousDetail": "Partir en vacances",
+                  "Tri": 89
+                },
+              ]
+            },
+          ]
+        },
+        {
+          "Reponse": "Application des connaissances, apprentissage",
+          "Details": [
+            {
+              "Detail": "Lire",
+              "Tri": 91
+            },
+            {
+              "Detail": "Ecrire",
+              "Tri": 92
+            },
+            {
+              "Detail": "Calculer",
+              "Tri": 93
+            },
+            {
+              "Detail": "Acquérir un savoir-faire",
+              "Tri": 94
+            },
+            {
+              "Detail": "Appliquer un savoir-faire",
+              "Tri": 95
+            },
+          ]
+        },
+        {
+          "Reponse": "Tâches et exigences en relation avec la scolarité et la formation initiale",
+          "Details": [
+            {
+              "Detail": "Apprendre à lire",
+              "Tri": 97
+            },
+            {
+              "Detail": "Apprendre à écrire",
+              "Tri": 98
+            },
+            {
+              "Detail": "Apprendre à calculer",
+              "Tri": 99
+            },
+            {
+              "Detail": "Apprendre des techniques de communication",
+              "Tri": 100
+            },
+            {
+              "Detail": "Apprendre les règles sociales de base",
+              "Tri": 101
+            },
+            {
+              "Detail": "Respecter des règles de base",
+              "SousDetails": [
+                {
+                  "SousDetail": "Etre ponctuel",
+                  "Tri": 103
+                },
+                {
+                  "SousDetail": "Etre assidu",
+                  "Tri": 104
+                },
+                {
+                  "SousDetail": "Organiser son travail",
+                  "Tri": 105
+                },
+                {
+                  "SousDetail": "Contrôler son travail",
+                  "Tri": 106
+                },
+                {
+                  "SousDetail": "Accepter des consignes",
+                  "Tri": 107
+                },
+                {
+                  "SousDetail": "Suivre des consignes",
+                  "Tri": 108
+                },
+                {
+                  "SousDetail": "S’adapter à la vie scolaire",
+                  "Tri": 109
+                },
+                {
+                  "SousDetail": "Travailler en équipe ",
+                  "Tri": 110
+                },
+                {
+                  "SousDetail": "Respecter les règles scolaires ",
+                  "Tri": 111
+                },
+              ]
+            },
+            {
+              "Detail": "S’installer dans la classe",
+              "Tri": 112
+            },
+            {
+              "Detail": "Utiliser des supports pédagogiques",
+              "Tri": 113
+            },
+            {
+              "Detail": "Utiliser du matériel adapté à son handicap",
+              "Tri": 114
+            },
+            {
+              "Detail": "Prendre des notes",
+              "Tri": 115
+            },
+            {
+              "Detail": "S’adapter aux conditions d’examen et de contrôle",
+              "Tri": 116
+            },
+            {
+              "Detail": "Participer à des sorties extra scolaires",
+              "Tri": 117
+            },
+            {
+              "Detail": "Autre",
+              "Tri": 118
+            },
+          ]
+        },
+        {
+          "Reponse": "Tâches et exigences relatives au travail",
+          "Details": [
+            {
+              "Detail": "Respecter des règles de base ",
+              "SousDetails": [
+                {
+                  "SousDetail": "Etre ponctuel",
+                  "Tri": 120
+                },
+                {
+                  "SousDetail": "Etre assidu",
+                  "Tri": 121
+                },
+                {
+                  "SousDetail": "Respecter des relations hiérarchiques",
+                  "Tri": 122
+                },
+                {
+                  "SousDetail": "Participer à des réunions ",
+                  "Tri": 123
+                },
+              ]
+            },
+            {
+              "Detail": "Organiser son travail (en rapport avec le poste de travail)",
+              "Tri": 125
+            },
+            {
+              "Detail": "Contrôler son travail",
+              "Tri": 126
+            },
+            {
+              "Detail": "Etre en contact avec le public",
+              "Tri": 127
+            },
+            {
+              "Detail": "Assurer l’encadrement",
+              "Tri": 128
+            },
+            {
+              "Detail": "Travailler en équipe ",
+              "Tri": 129
+            },
+            {
+              "Detail": "Exercer des tâches physiques",
+              "SousDetails": [
+                {
+                  "SousDetail": "Soulever, déplacer des charges",
+                  "Tri": 131
+                },
+                {
+                  "SousDetail": "Travailler en flexion du tronc",
+                  "Tri": 132
+                },
+                {
+                  "SousDetail": "Travailler en attitudes variées",
+                  "Tri": 133
+                },
+                {
+                  "SousDetail": "Travailler accroupi",
+                  "Tri": 134
+                },
+                {
+                  "SousDetail": "Travailler en hauteur (escabeau, échelle, échafaudage..)",
+                  "Tri": 135
+                },
+                {
+                  "SousDetail": "Travailler à distance du sol (sur un pont, un toit, un balcon…)",
+                  "Tri": 136
+                },
+                {
+                  "SousDetail": "Travailler le mb. sup. dominant levé au dessus du niveau des épaules",
+                  "Tri": 137
+                },
+                {
+                  "SousDetail": "Travailler le mb. sup. non dominant levé au dessus du niveau des épaules",
+                  "Tri": 138
+                },
+                {
+                  "SousDetail": "Utiliser une commande avec les pieds",
+                  "Tri": 139
+                },
+              ]
+            },
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "SousDetails": [
+                {
+                  "SousDetail": "Voir les couleurs",
+                  "Tri": 141
+                },
+                {
+                  "SousDetail": "Percevoir le relief",
+                  "Tri": 142
+                },
+                {
+                  "SousDetail": "Travailler de nuit",
+                  "Tri": 143
+                },
+                {
+                  "SousDetail": "Assumer des modifications d’horaires",
+                  "Tri": 144
+                },
+                {
+                  "SousDetail": "Utiliser des outils et/ou machines dangereuses",
+                  "Tri": 145
+                },
+                {
+                  "SousDetail": "Travailler avec vibrations",
+                  "Tri": 146
+                },
+                {
+                  "SousDetail": "Travailler en milieu bruyant",
+                  "Tri": 147
+                },
+                {
+                  "SousDetail": "Travailler dans des contextes  respiratoires particuliers",
+                  "Tri": 148
+                },
+                {
+                  "SousDetail": "Travailler avec risque cutané",
+                  "Tri": 149
+                },
+                {
+                  "SousDetail": "S’exposer aux intempéries, à une atmosphère exceptionnelle",
+                  "Tri": 150
+                },
+                {
+                  "SousDetail": "Autre",
+                  "Tri": 151
+                }
+              ]
+            },
+          ]
+        },
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Evolution envisagée",
+      "Trajectoire": "toutes",
+      "Question": "Quelle évolution de la situation est envisagée pour l'avenir?",
+      "Type": "CU",
+
+      "Reponses": [
+        {
+          "Reponse": "Evolution envisagée",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 1
+            },
+            {
+              "Detail": "amélioration à court terme (inférieur à 1 an)",
+              "Tri": 2
+            },
+            {
+              "Detail": "amélioration à moyen et long terme (supérieur à 1 an)",
+              "Tri": 3
+            },
+            {
+              "Detail": "aggravation à court terme (inférieur à 1 an)",
+              "Tri": 4
+            },
+            {
+              "Detail": "aggravation à moyen et long terme (supérieur à 1 an)",
+              "Tri": 5
+            },
+            {
+              "Detail": "stabilité",
+              "Tri": 6
+            },
+            {
+              "Detail": "inconnue",
+              "Tri": 7
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "Section": "Situation",
+      "Description": "Evolution depuis la précédente demande",
+      "Trajectoire": "toutes",
+      "Question": "Quelle évolution de la situation a pu être constatée depui la précédente demande?",
+      "Type": "CU",
+      "Reponses": [
+        {
+          "Reponse": "Evolution depuis la précédente demande",
+          "Details": [
+            {
+              "Detail": "amélioration",
+              "Tri": 9
+            },
+            {
+              "Detail": "aggravation",
+              "Tri": 10
+            },
+            {
+              "Detail": "stabilité",
+              "Tri": 11
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "Section": "Besoins",
+      "Description": "type de charge + description de la contrainte",
+      "Trajectoire": "Toutes",
+      "Question": "Quelles sont les prises en charges et aides dont bénificie la personne et les contraintes rencontrées dans la vie quotidienne?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Traitement régulier",
+          "Tri": 1
+        },
+        {
+          "Reponse": "Consultations médicales régulières spécialisées ou non",
+          "Tri": 2
+        },
+        {
+          "Reponse": "Hospitalisations itératives ou programmées",
+          "Tri": 3
+        },
+        {
+          "Reponse": "prise en charge rééducative ou réadaptative régulière (kinésithérapeute, orthophoniste, ergothérapeute …)",
+          "Tri": 4
+        },
+        {
+          "Reponse": "Infirmier ",
+          "Tri": 5
+        },
+        {
+          "Reponse": "Psychologue",
+          "Tri": 6
+        },
+        {
+          "Reponse": "Necessité d'assurer une prévention",
+          "Tri": 7
+        },
+        {
+          "Reponse": "Autres soins réguliers",
+          "Tri": 8
+        },
+        {
+          "Reponse": "Existence de soins ou de traitements nocturnes",
+          "Details": [
+            {
+              "Detail": "contrainte liée aux effets secondaires du traitement",
+              "Tri": 10
+            },
+            {
+              "Detail": "contrainte liée aux modalités de réalisation du traitement (maintien à proximité d'un dispositif de soin ou d'assistance, temps des soins, horaires, voie d'administration, assistance d'un tiers, appentissage de technique …)",
+              "Tri": 11
+            },
+          ]
+        },
+        {
+          "Reponse": "appareillage pour les déplacements",
+          "Tri": 12
+        },
+        {
+          "Reponse": "appareillage pour la communication",
+          "Tri": 13
+        },
+        {
+          "Reponse": "appareillage pour l'élimination",
+          "Tri": 14
+        },
+        {
+          "Reponse": "appareillage pour l'alimentation",
+          "Tri": 15
+        },
+        {
+          "Reponse": "appareillage pour la respiration",
+          "Tri": 16
+        },
+        {
+          "Reponse": "Autres appareillages ",
+          "Tri": 17
+        },
+        {
+          "Reponse": "Contraintes alimentaires",
+          "Tri": 18
+        },
+        {
+          "Reponse": "Contraintes liées à l'exposition à des facteurs externes",
+          "Tri": 19
+        }
+      ]
+    },
+    {
+      "Section": "Besoins",
+      "Description": "Besoins de compensation identifiés",
+      "Trajectoire": "Toutes",
+      "Question": "Quels besoins de compensations ont-ils pu être identifiés?",
+      "Type": "CM",
+      "Reponses": [
+        {
+          "Reponse": "Besoins en matière de soins",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 1
+            },
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 2
+            },
+          ]
+        },
+
+        {
+          "Reponse": "soins médicaux en milieu hospitalier",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 3
+            }
+          ]
+        },
+        {
+          "Reponse": "soins paramédicaux ambulatoires",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 4
+            }
+          ]
+        },
+        {
+          "Reponse": "soins paramédicaux en milieu hospitalier",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 5
+            }
+          ]
+        },
+        {
+          "Reponse": "Besoin en matière d'autonomie",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 6
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour accomplir ses actes essentiels",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 7
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour accomplir ses activités domestiques",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 8
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour vivre dans un logement",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 9
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour mener sa vie d'élève",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 10
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour vivre sa vie d'étudiant",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 11
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour avoir des activités de jour",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 12
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour vivre une vie professionnellement",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 13
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour accéder à ses droits",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 14
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour mener une vie sociale",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 15
+            }
+          ]
+        },
+        {
+          "Reponse": "Besoins transversaux en matière d'autonomie",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 16
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour communiquer",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 17
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour assurer la sécurité",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 18
+            }
+          ]
+
+        },
+        {
+          "Reponse": "Pour un répit des parents et des aidants",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 19
+            }
+          ]
+        },
+        {
+          "Reponse": "Pour assurer une présence des parents et des aidants",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 20
+            }
+          ]
+        },
+        {
+          "Reponse": "Besoins en matière de ressources",
+          "Details": [
+            {
+              "Detail": "Exercer des tâches dans des conditions particulières",
+              "Tri": 21
+            }
+          ]
+        }
+      ]
+    }
+  ]

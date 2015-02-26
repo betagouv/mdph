@@ -4,23 +4,69 @@
     <accordion-heading>
       {{question[0].Question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
     </accordion-heading>
-    <div ng-repeat="answer in question" class="question-quitus">
-      <button
-        ng-if="answer.Type === 'CM'"
-        class="btn btn-default btn-answer"
-        ng-model="answer.selected"
-        btn-checkbox>
-        <i class="fa" ng-class="{'fa-check-square': answer.selected, 'fa-square-o': !answer.selected}"></i>
-        {{answer.Reponse}}
-      </button>
-      <button
-        ng-if="answer.Type === 'CU'"
-        class="btn btn-default btn-answer"
-        ng-model="question.selected"
-        btn-radio="answer.Tri">
-        <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === answer.Tri, 'fa-circle-o': question.selected !== answer.Tri}"></i>
-        {{answer.Reponse}}
-      </button>
+    <div ng-repeat="answer in question[0].Reponses" class="question-quitus">
+      <div ng-if="answer.Details">
+        <label>{{answer.Reponse}}</label>
+        <div ng-repeat="detail in answer.Details">
+          <div ng-if="detail.SousDetails">
+            <label>{{detail.Detail}}</label>
+            <div ng-repeat="sousDetail in detail.SousDetails">
+              <button
+                ng-if="question[0].Type === 'CM'"
+                class="btn btn-default btn-answer"
+                ng-model="sousDetail.selected"
+                btn-checkbox>
+                <i class="fa" ng-class="{'fa-check-square': sousDetail.selected, 'fa-square-o': !sousDetail.selected}"></i>
+                {{sousDetail.SousDetail}}
+              </button>
+              <button
+                ng-if="question[0].Type === 'CU'"
+                class="btn btn-default btn-answer"
+                ng-model="question.selected"
+                btn-radio="sousDetail.Tri">
+                <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === deail.Tri, 'fa-circle-o': question.selected !== deail.Tri}"></i>
+                {{sousDetail.SousDetail}}
+              </button>
+            </div>
+          </div>
+          <div ng-if="!detail.SousDetails">
+            <button
+              ng-if="question[0].Type === 'CM'"
+              class="btn btn-default btn-answer"
+              ng-model="detail.selected"
+              btn-checkbox>
+              <i class="fa" ng-class="{'fa-check-square': detail.selected, 'fa-square-o': !detail.selected}"></i>
+              {{detail.Detail}}
+            </button>
+            <button
+              ng-if="question[0].Type === 'CU'"
+              class="btn btn-default btn-answer"
+              ng-model="question.selected"
+              btn-radio="detail.Tri">
+              <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === deail.Tri, 'fa-circle-o': question.selected !== deail.Tri}"></i>
+              {{detail.Detail}}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div ng-if="!answer.Details">
+        <button
+          ng-if="question[0].Type === 'CM'"
+          class="btn btn-default btn-answer"
+          ng-model="answer.selected"
+          btn-checkbox>
+          <i class="fa" ng-class="{'fa-check-square': answer.selected, 'fa-square-o': !answer.selected}"></i>
+          {{answer.Reponse}}
+        </button>
+        <button
+          ng-if="question[0].Type === 'CU'"
+          class="btn btn-default btn-answer"
+          ng-model="question.selected"
+          btn-radio="answer.Tri">
+          <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === answer.Tri, 'fa-circle-o': question.selected !== answer.Tri}"></i>
+          {{answer.Reponse}}
+        </button>
+      </div>
     </div>
   </accordion-group>
 </accordion>
