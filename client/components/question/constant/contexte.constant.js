@@ -89,6 +89,15 @@ angular.module('impactApp').constant('contexte', [
     answers:
     [
       {
+        label: 'Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, ...)',
+        labelRep: '<%= pronoun %> arrive dans moins de 2 mois à la fin de ses droits (ex: AEEH, AAH, PCH, RQTH, ...)',
+        model: 'finDroit',
+        detail: true,
+        detailModel: 'finDroitDetail',
+        detailUrl: 'components/detail/precisez_big.html',
+        placeholder: 'Expliquez la difficulté'
+      },
+      {
         label: 'Vous n\'arrivez plus à vivre chez vous',
         labelRep: '<%= pronoun %> n\'arrive plus à vivre à domicile',
         model: 'domicile',
@@ -103,6 +112,15 @@ angular.module('impactApp').constant('contexte', [
         model: 'etablissement',
         detail: true,
         detailModel: 'etablissementDetail',
+        detailUrl: 'components/detail/precisez_big.html',
+        placeholder: 'Expliquez la difficulté'
+      },
+      {
+        label: 'Vous sortez d\'hospitalisation et vous ne pouvez pas retourner chez vous' ,
+        labelRep: '<%= pronoun %> sort d\'hospitalisation et ne peut pas retourner chez <%= pronounTonic %>',
+        model: 'hospitalisation',
+        detail: true,
+        detailModel: 'hospitalisationDetail',
         detailUrl: 'components/detail/precisez_big.html',
         placeholder: 'Expliquez la difficulté'
       },
