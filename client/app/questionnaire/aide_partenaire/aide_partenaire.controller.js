@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AidePartenaireCtrl', function ($scope, $state, datepickerConfig, sectionModel, saveSection) {
+  .controller('AidePartenaireCtrl', function ($scope, $state, datepickerConfig, sectionModel, saveSection, aidePartenaire) {
     $scope.sectionModel = sectionModel;
+    $scope.questions = _.groupBy(aidePartenaire, 'model');
 
     datepickerConfig.datepickerMode = 'year';
     $scope.open = function($event) {

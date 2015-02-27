@@ -4,6 +4,33 @@
 
 angular.module('impactApp').constant('aidePartenaire', [
   {
+    model: 'typeAidant',
+    titleDefault: 'Vous êtes aidé par',
+    type: 'radio',
+    answers: [
+      {
+        label: 'Un proche',
+        value: 'proche'
+      },
+      {
+        label: 'Une association',
+        value: 'association'
+      },
+      {
+        label: 'Un tuteur',
+        value: 'tuteur'
+      },
+      {
+        label: 'Un curateur',
+        value: 'curateur'
+      },
+      {
+        label: 'Autre',
+        value: 'autre'
+      }
+    ]
+  },
+  {
     model: 'nomOrganisme',
     titleDefault: 'Nom de l\'organisme',
     type: 'text'
