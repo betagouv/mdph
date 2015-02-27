@@ -6,8 +6,8 @@ angular.module('impactApp').constant('vieQuotidienne', [
   {
     model: 'famille',
     neededForAdmin: true,
-    titleDefault: 'Avec qui vivez-vous ?',
-    titleRep: 'Avec qui vit-t-<%= pronoun %> ?',
+    titleDefault: 'Vous vivez',
+    titleRep: '<%= pronoun %> vit',
     type: 'radio',
     answers: [
       {
@@ -35,8 +35,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
         onlyAdult: true
       },
       {
-        label: 'Vous vivez dans un établissement',
-        labelRep: '<%= pronoun %> vit dans un établissement',
+        label: 'Dans un établissement',
         labelRecap: 'En établissement',
         value: 'etablissement',
         detailUrl: 'components/detail/precisez_big.html',
@@ -55,8 +54,8 @@ angular.module('impactApp').constant('vieQuotidienne', [
   {
     model: 'logement',
     neededForAdmin: true,
-    titleDefault: 'Votre logement',
-    titleRep: 'Son logement',
+    titleDefault: 'Où vivez-vous ?',
+    titleRep: 'Où vit-<%= pronoun %> ?',
     type: 'radio',
     answers: [
       {
@@ -66,6 +65,13 @@ angular.module('impactApp').constant('vieQuotidienne', [
         detailUrl: 'components/detail/independant.html',
         detailModel: 'logement_independant',
         onlyAdult: true
+      },
+      {
+        label: 'Vous vivez dans un établissement médico-social ou ordinaire',
+        labelRep: '<%= pronoun %> vit dans un établissement médico-social ou ordinaire',
+        value: 'etablissement',
+        detailUrl: 'components/detail/precisez.html',
+        detailModel: 'logement_etablissement'
       },
       {
         label: 'Vous êtes hébergé(e) au domicile',
