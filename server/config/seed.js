@@ -18,35 +18,35 @@ var mdphNord, mdphCalvados,
     notifBob;
 
 var deletePartenaires = function(cb) {
-  Partenaire.find({}).remove(function() {
+  Partenaire.remove({}, function() {
     console.log('finished deleting partenaires');
     cb();
   });
 };
 
 var deleteUsers = function(cb) {
-  User.find({}).remove(function() {
+  User.remove({}, function() {
     console.log('finished deleting users');
     cb();
   });
 };
 
 var deleteRequests = function(cb) {
-  Request.find({}).remove(function() {
+  Request.remove({}, function() {
     console.log('finished deleting requests');
     cb();
   });
 };
 
 var deleteMdphs = function(cb) {
-  Mdph.find({}).remove(function() {
+  Mdph.remove({}, function() {
     console.log('finished deleting mdphs');
     cb();
   });
 };
 
 var deleteNotifications = function(cb) {
-  Notification.find({}).remove(function() {
+  Notification.remove({}, function() {
     console.log('finished deleting notifications');
     cb();
   });
