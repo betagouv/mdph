@@ -64,7 +64,15 @@ angular.module('impactApp')
             return $http.get('/api/requests/' + $stateParams.shortId).then(function(request) {
               return request.data;
             });
+          },
+          sections: function(GevaService) {
+            return GevaService.getSections();
           }
         }
+      })
+      .state('dashboard.requests.detail.section', {
+        url: '/:sectionId',
+        templateUrl: 'app/dashboard/requests/detail/section/section.html',
+        controller: 'RequestSectionCtrl'
       });
   });
