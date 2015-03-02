@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.post('/', auth.isAuthenticated(), controller.save);
-router.get('/:shortId', auth.isAuthorized(), controller.show); // Rajouter regle si user = owner ou adminMdph
+router.get('/:shortId', auth.isAuthorized(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 
 router.put('/:shortId', auth.isAuthorized(), controller.update);
