@@ -64,12 +64,14 @@ angular.module('impactApp').constant('vieQuotidienne', [
         value: 'independant', // TODO a verifier onlyAdult: true,
         detailUrl: 'components/detail/independant.html',
         detailModel: 'logement_independant',
+        labelRecap: 'Un logement indépendant',
         onlyAdult: true
       },
       {
         label: 'Vous vivez dans un établissement médico-social ou ordinaire',
         labelRep: '<%= pronoun %> vit dans un établissement médico-social ou ordinaire',
         value: 'etablissement',
+        labelRecap: 'Un établissement médico-social ou ordinaire',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'logement_etablissement'
       },
@@ -77,6 +79,7 @@ angular.module('impactApp').constant('vieQuotidienne', [
         label: 'Vous êtes hébergé(e) au domicile',
         labelRep: '<%= pronoun %> est hébergé<%= fem %> au domicile',
         value: 'domicile',
+        labelRecap: 'Le domicile d\'une autre personne',
         detailUrl: 'components/detail/domicile.html',
         detailModel: 'logement_domicile'
       },

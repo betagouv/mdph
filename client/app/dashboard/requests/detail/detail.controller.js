@@ -16,12 +16,22 @@ angular.module('impactApp')
     $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
 
-    var situationAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
-    $scope.situationFamiliale = situationAnswers[request.formAnswers.vie_quotidienne.famille];
+    var familleAnswers = _.indexBy(vieQuotidienne[0].answers, 'value');
+    $scope.situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];
+
+    var logementAnswers = _.indexBy(vieQuotidienne[1].answers, 'value');
+    $scope.situationLogement = logementAnswers[request.formAnswers.vie_quotidienne.logement];
+
     if($scope.situationFamiliale.labelRecap){
       $scope.situationFamiliale = $scope.situationFamiliale.labelRecap;
     } else {
       $scope.situationFamiliale = $scope.situationFamiliale.label;
+    }
+
+    if($scope.situationLogement.labelRecap){
+      $scope.situationLogement = $scope.situationLogement.labelRecap;
+    } else {
+      $scope.situationLogement = $scope.situationLogement.label;
     }
 
     if(request.renouvellement){

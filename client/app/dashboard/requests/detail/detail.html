@@ -19,7 +19,8 @@
           <div class="panel-body">
             <p><strong>Nom :</strong> {{request.user.name}}</p>
             <p><strong>Age :</strong> TODO <!-- {{request.formAnswers.contexte.dateNaissance | age}} ans --></p>
-            <p><strong>Situation :</strong> {{situationFamiliale}}</p>
+            <p><strong>Vit :</strong> {{situationFamiliale}}</p>
+            <p><strong>Vit dans :</strong> {{situationLogement}}</p>
             <p>
               <a target="_blank" href="api/requests/{{request.shortId}}/cerfa.pdf">
                 <i class="fa fa-download"></i>
