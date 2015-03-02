@@ -7,72 +7,91 @@
 
     <div ng-repeat="answer in question[0].Reponses" class="question-quitus">
       <div ng-if="answer.Details">
+        <button
+          ng-if="question[0].Type === 'CM'"
+          class="btn btn-default btn-answer"
+          ng-model="answer.selected"
+          btn-checkbox>
+          <i class="fa" ng-class="{'fa-check-square': answer.selected, 'fa-square-o': !answer.selected}"></i>
+          {{answer.Reponse}}
+        </button>
+        <button
+          ng-if="question[0].Type === 'CU'"
+          class="btn btn-default btn-answer"
+          ng-model="question.highLevelSelected"
+          btn-radio="answer.Reponse">
+          <i class="fa" ng-class="{'fa-dot-circle-o': question.highLevelSelected === answer.Reponse, 'fa-circle-o': question.highLevelSelected !== answer.Reponse}"></i>
+          {{answer.Reponse}}
+        </button>
+        <div
+          class="well well-detail slide"
+          ng-if="(question[0].Type === 'CU' && question.highLevelSelected === answer.Reponse) || (question[0].Type === 'CM' && answer.selected)">
+            <div ng-repeat="detail in answer.Details">
+              <div ng-if="detail.SousDetails">
 
-        <label>{{answer.Reponse}}</label>
-        <div ng-repeat="detail in answer.Details">
-          <div ng-if="detail.SousDetails" class="detail-level">
+                <button
+                  ng-if="question[0].Type === 'CM'"
+                  class="btn btn-default btn-answer"
+                  ng-model="detail.selected"
+                  btn-checkbox>
+                  <i class="fa" ng-class="{'fa-check-square': detail.selected, 'fa-square-o': !detail.selected}"></i>
+                  {{detail.Detail}}
+                </button>
+                <button
+                  ng-if="question[0].Type === 'CU'"
+                  class="btn btn-default btn-answer"
+                  ng-model="question.selected"
+                  btn-radio="detail.Tri">
+                  <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === detail.Tri, 'fa-circle-o': question.selected !== detail.Tri}"></i>
+                  {{detail.Detail}}
+                </button>
 
-            <button
-              ng-if="question[0].Type === 'CM'"
-              class="btn btn-default btn-answer"
-              ng-model="detail.selected"
-              btn-checkbox>
-              <i class="fa" ng-class="{'fa-check-square': detail.selected, 'fa-square-o': !detail.selected}"></i>
-              {{detail.Detail}}
-            </button>
-            <button
-              ng-if="question[0].Type === 'CU'"
-              class="btn btn-default btn-answer"
-              ng-model="question.selected"
-              btn-radio="detail.Tri">
-              <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === detail.Tri, 'fa-circle-o': question.selected !== detail.Tri}"></i>
-              {{detail.Detail}}
-            </button>
+                <div
+                  class="well well-detail slide"
+                  ng-if="(question[0].Type === 'CU' && question.selected === detail.Tri) || (question[0].Type === 'CM' && detail.selected)">
+                    <div ng-repeat="sousDetail in detail.SousDetails">
+                      <button
+                        ng-if="question[0].Type === 'CM'"
+                        class="btn btn-default btn-answer"
+                        ng-model="sousDetail.selected"
+                        btn-checkbox>
+                        <i class="fa" ng-class="{'fa-check-square': sousDetail.selected, 'fa-square-o': !sousDetail.selected}"></i>
+                        {{sousDetail.SousDetail}}
+                      </button>
+                      <button
+                        ng-if="question[0].Type === 'CU'"
+                        class="btn btn-default btn-answer"
+                        ng-model="question.selected"
+                        btn-radio="sousDetail.Tri">
+                        <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === detail.Tri, 'fa-circle-o': question.selected !== detail.Tri}"></i>
+                        {{sousDetail.SousDetail}}
+                      </button>
+                      <br><br>
+                    </div>
+                  </div>
 
-            <div
-              class="well well-detail slide"
-              ng-if="(question[0].Type === 'CU' && question.selected === detail.Tri) || (question[0].Type === 'CM' && detail.selected)">
-                <div ng-repeat="sousDetail in detail.SousDetails">
-                  <button
-                    ng-if="question[0].Type === 'CM'"
-                    class="btn btn-default btn-answer"
-                    ng-model="sousDetail.selected"
-                    btn-checkbox>
-                    <i class="fa" ng-class="{'fa-check-square': sousDetail.selected, 'fa-square-o': !sousDetail.selected}"></i>
-                    {{sousDetail.SousDetail}}
-                  </button>
-                  <button
-                    ng-if="question[0].Type === 'CU'"
-                    class="btn btn-default btn-answer"
-                    ng-model="question.selected"
-                    btn-radio="sousDetail.Tri">
-                    <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === detail.Tri, 'fa-circle-o': question.selected !== detail.Tri}"></i>
-                    {{sousDetail.SousDetail}}
-                  </button>
-                  <br><br>
                 </div>
+
+              <div ng-if="!detail.SousDetails">
+                <button
+                  ng-if="question[0].Type === 'CM'"
+                  class="btn btn-default btn-answer"
+                  ng-model="detail.selected"
+                  btn-checkbox>
+                  <i class="fa" ng-class="{'fa-check-square': detail.selected, 'fa-square-o': !detail.selected}"></i>
+                  {{detail.Detail}}
+                </button>
+                <button
+                  ng-if="question[0].Type === 'CU'"
+                  class="btn btn-default btn-answer"
+                  ng-model="question.selected"
+                  btn-radio="detail.Tri">
+                  <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === detail.Tri, 'fa-circle-o': question.selected !== detail.Tri}"></i>
+                  {{detail.Detail}}
+                </button>
               </div>
-
+              <br>
             </div>
-
-          <div ng-if="!detail.SousDetails">
-            <button
-              ng-if="question[0].Type === 'CM'"
-              class="btn btn-default btn-answer"
-              ng-model="detail.selected"
-              btn-checkbox>
-              <i class="fa" ng-class="{'fa-check-square': detail.selected, 'fa-square-o': !detail.selected}"></i>
-              {{detail.Detail}}
-            </button>
-            <button
-              ng-if="question[0].Type === 'CU'"
-              class="btn btn-default btn-answer"
-              ng-model="question.selected"
-              btn-radio="detail.Tri">
-              <i class="fa" ng-class="{'fa-dot-circle-o': question.selected === detail.Tri, 'fa-circle-o': question.selected !== detail.Tri}"></i>
-              {{detail.Detail}}
-            </button>
-          </div>
         </div>
       </div>
       <div ng-if="!answer.Details">
