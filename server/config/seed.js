@@ -78,9 +78,54 @@ var createFakeAnswers = function(nom, prenom) {
         "attentesCarte": "invalidite",
         "autresRenseignements": "Autres renseignements",
         "__completion": true
+      },
+      "vie_au_travail" : {
+        "__completion" : true,
+        "autresRenseignements" : "Test",
+        "structure" : {
+          "structures" : [
+              {
+                  "contact" : false,
+                  "name" : ""
+              }
+          ],
+          "valeur" : false
+        },
+        "besoinSoutien" : {
+          "formation" : true,
+          "environnement" : true
+        },
+        "description" : false,
+        "situationAccompagnement" : {
+          "capEmploi" : true
+        },
+        "formationDetail" : "Test",
+        "situationSansEmploi" : {
+          "formation" : true
+        },
+        "passe" : false,
+        "__lastSref" : "departement.demande.vie_au_travail.projet_professionnel.autres_renseignements",
+        "conditionTravail" : false
+      },
+      "vie_scolaire" : {
+        "__completion" : true,
+        "autresRenseignements" : "Test",
+        "structures" : {
+          "structures" : [
+              {
+                  "contact" : false,
+                  "name" : ""
+              }
+          ],
+          "valeur" : false
+        },
+        "raisonNonScolaireEtablissement" : "Test",
+        "raisonNonScolaire" : "etablissement",
+        "__lastSref" : "departement.demande.vie_scolaire.vos_attentes.autres_renseignements",
+        "condition" : false
       }
     }
-}
+};
 
 var deletePartenaires = function(cb) {
   Partenaire.remove({}, function() {

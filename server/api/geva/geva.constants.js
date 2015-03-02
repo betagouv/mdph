@@ -315,7 +315,7 @@ exports.all =
     {
       "Section": "Environnement",
       "Description": "Type scolarisation",
-      "Trajectoire": "Vie scolaire uniquement",
+      "Trajectoire": "scolaire",
       "Question": "Quel parcours de scolarisation est-il (ou at-t-il été) suivi?",
       "Type": "CM",
       "Reponses": [
@@ -376,7 +376,7 @@ exports.all =
     {
       "Section": "Environnement",
       "Description": "Evaluation scolarité",
-      "Trajectoire": "Vie scolaire uniquement",
+      "Trajectoire": "scolaire",
       "Question": "Quel est le type de scolarisation ?",
       "Type": "CU",
       "Reponses": [
@@ -397,7 +397,7 @@ exports.all =
     {
       "Section": "Environnement",
       "Description": "Type de contrat",
-      "Trajectoire": "Vie professionnelle uniquement",
+      "Trajectoire": "travail",
       "Question": "Quel est le type de contrat de travail de la personne?",
       "Type": "CM",
       "Reponses": [
@@ -541,7 +541,7 @@ exports.all =
     {
       "Section": "Situation",
       "Description": "Niveau de scolarité suivie",
-      "Trajectoire": "Vie scolaire uniquement",
+      "Trajectoire": "scolaire",
       "Question": "Quel est le niveau de scolarité suivie (ou ayant été suivie) par la personne?",
       "Type": "CU",
       "Reponses": [
@@ -602,7 +602,7 @@ exports.all =
     {
       "Section": "Situation",
       "Description": "Niveau de formation professionnelle ",
-      "Trajectoire": "Vie professionnelle uniquement",
+      "Trajectoire": "travail",
       "Question": "Quel est le niveau de formation professionnelle de la personne?",
       "Type": "CU",
       "Reponses": [

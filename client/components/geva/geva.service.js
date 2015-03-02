@@ -40,10 +40,44 @@ angular.module('impactApp')
     };
 
     return {
-      getSections: function() {
+      getSections: function(request) {
         return $http.get('/api/geva', {cache: true}).then(function(result) {
           var gevaSections = _.groupBy(result.data, 'Section');
           _.forEach(gevaSections, function(questions, section) {
+            var trajectoire = {
+              travail: [],
+              scolaire: []
+            };
+            var general = [];
+            questions.forEach(function(question){
+              if(question.Trajectoire==='scolaire'){
+                trajectoire.scolaire.push(question);
+              }
+              else {
+                if(question.Trajectoire==='travail'){
+                  trajectoire.travail.push(question);
+                }
+                else {
+                  general.push(question);
+                }
+              }
+            });
+            if(request.formAnswers['vie_scolaire']){
+              if(request.formAnswers['vie_au_travail']){
+                questions = trajectoire.scolaire.concat(trajectoire.travail, general);
+              }
+              else {
+                questions = trajectoire.scolaire.concat(general, trajectoire.travail);
+              }
+            }
+            else {
+              if(request.formAnswers['vie_au_travail']){
+                questions = trajectoire.travail.concat(trajectoire.scolaire, general);
+              }
+              else {
+                questions = general.concat(trajectoire.scolaire, trajectoire.travail);
+              }
+            }
             var questionsByDesc = _.groupBy(questions, 'Description');
             sectionsByLabel[section].questions = questionsByDesc;
             sectionsByLabel[section].tooltip = getTooltipBySection(sectionsByLabel[section]);

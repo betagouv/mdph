@@ -65,8 +65,8 @@ angular.module('impactApp')
               return request.data;
             });
           },
-          sections: function(GevaService) {
-            return GevaService.getSections();
+          sections: function(GevaService, request) {
+            return GevaService.getSections(request);
           }
         }
       })
