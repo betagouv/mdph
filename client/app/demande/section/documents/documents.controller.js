@@ -18,7 +18,7 @@ angular.module('impactApp')
         },
         file: file
       }).success(function(data) {
-        document.files.push(data);
+        document.files.push(data._id);
       });
     };
 
