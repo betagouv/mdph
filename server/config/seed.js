@@ -17,6 +17,71 @@ var mdphNord, mdphCalvados,
     bobRequest, fooRequest, francoiseRequest, emmaRequest,
     notifBob;
 
+var createFakeAnswers = function(nom, prenom) {
+  return {
+      "identite": {
+        "sexe": "masculin",
+        "nom": nom,
+        "prenom": prenom,
+        "email": nom + '@' + prenom,
+        "birthDate": "1987-01-23T23:00:00.000Z",
+        "adresse": "14, rue pinpon",
+        "code_postal": "75019",
+        "commune": "Paris",
+        "pays": "France",
+        "__completion": true
+      },
+      "vie_quotidienne": {
+        "famille": "parents",
+        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
+        "logement": "independant",
+        "logement_independant": "proprietaire",
+        "besoinsVie": {
+          "budget": true,
+          "courses": true,
+          "repas": true,
+          "cuisine": true,
+          "sante": true,
+          "hygiene": true
+        },
+        "besoinsDeplacement": {
+          "accesDomicile": true,
+          "conduite": true,
+          "transports": true
+        },
+        "besoinsTransports": false,
+        "besoinsSocial": {
+          "proches": true,
+          "securite": true,
+          "citoyen": true,
+          "loisirs": true
+        },
+        "besoinsLieuDeVie": {
+          "amenagement": true,
+          "conduite": true
+        },
+        "attentesTypeAide": {
+          "humain": true,
+          "financierMinimum": true,
+          "materiel": true,
+          "domicile": true
+        },
+        "structures": {
+          "valeur": false,
+          "structures": [
+            {
+              "name": "",
+              "contact": false
+            }
+          ]
+        },
+        "attentesCarte": "invalidite",
+        "autresRenseignements": "Autres renseignements",
+        "__completion": true
+      }
+    }
+}
+
 var deletePartenaires = function(cb) {
   Partenaire.remove({}, function() {
     console.log('finished deleting partenaires');
@@ -374,7 +439,7 @@ var createJeanne = function(cb) {
 
 var createBobOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('bob', 'duchemin'),
     user: bob,
     mdph: '14',
     documents: [],
@@ -389,68 +454,7 @@ var createBobOldRequest = function(cb) {
 
 var createMartinOldRequest = function(cb) {
   Request.create({
-    formAnswers: {
-      "identite": {
-        "sexe": "masculin",
-        "nom": "Duchemin",
-        "prenom": "Bob",
-        "email": "bob@bob.fr",
-        "birthDate": "1987-01-23T23:00:00.000Z",
-        "adresse": "14, rue pinpon",
-        "code_postal": "75019",
-        "commune": "Paris",
-        "pays": "France",
-        "__completion": true
-      },
-      "vie_quotidienne": {
-        "famille": "parents",
-        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
-        "logement": "independant",
-        "logement_independant": "proprietaire",
-        "besoinsVie": {
-          "budget": true,
-          "courses": true,
-          "repas": true,
-          "cuisine": true,
-          "sante": true,
-          "hygiene": true
-        },
-        "besoinsDeplacement": {
-          "accesDomicile": true,
-          "conduite": true,
-          "transports": true
-        },
-        "besoinsTransports": false,
-        "besoinsSocial": {
-          "proches": true,
-          "securite": true,
-          "citoyen": true,
-          "loisirs": true
-        },
-        "besoinsLieuDeVie": {
-          "amenagement": true,
-          "conduite": true
-        },
-        "attentesTypeAide": {
-          "humain": true,
-          "financierMinimum": true,
-          "materiel": true,
-          "domicile": true
-        },
-        "structures": {
-          "valeur": false,
-          "structures": [
-            {
-              "name": "",
-              "contact": false
-            }
-          ]
-        },
-        "attentesCarte": "invalidite",
-        "autresRenseignements": "Autres renseignements",
-        "__completion": true
-      }
-    },
+    formAnswers: createFakeAnswers('martin', 'martin'),
     documents: [
       {
         "type": "certificatMedical"
@@ -473,7 +477,7 @@ var createMartinOldRequest = function(cb) {
 
 var createRoxOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('rox', 'rox'),
     user: rox,
     mdph: "14",
     status: 'en_cours',
@@ -489,7 +493,7 @@ var createRoxOldRequest = function(cb) {
 
 var createArnaudOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('arnaud', 'arnaud'),
     user: arnaud,
     mdph: '14',
     status: 'en_cours',
@@ -506,68 +510,7 @@ var createJeromeOldRequest = function(cb) {
   Request.create({
     user: jerome,
     mdph: '14',
-    formAnswers: {
-      "identite": {
-        "sexe": "masculin",
-        "nom": "Duchemin",
-        "prenom": "Bob",
-        "email": "bob@bob.fr",
-        "birthDate": "1987-01-23T23:00:00.000Z",
-        "adresse": "14, rue pinpon",
-        "code_postal": "75019",
-        "commune": "Paris",
-        "pays": "France",
-        "__completion": true
-      },
-      "vie_quotidienne": {
-        "famille": "parents",
-        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
-        "logement": "independant",
-        "logement_independant": "proprietaire",
-        "besoinsVie": {
-          "budget": true,
-          "courses": true,
-          "repas": true,
-          "cuisine": true,
-          "sante": true,
-          "hygiene": true
-        },
-        "besoinsDeplacement": {
-          "accesDomicile": true,
-          "conduite": true,
-          "transports": true
-        },
-        "besoinsTransports": false,
-        "besoinsSocial": {
-          "proches": true,
-          "securite": true,
-          "citoyen": true,
-          "loisirs": true
-        },
-        "besoinsLieuDeVie": {
-          "amenagement": true,
-          "conduite": true
-        },
-        "attentesTypeAide": {
-          "humain": true,
-          "financierMinimum": true,
-          "materiel": true,
-          "domicile": true
-        },
-        "structures": {
-          "valeur": false,
-          "structures": [
-            {
-              "name": "",
-              "contact": false
-            }
-          ]
-        },
-        "attentesCarte": "invalidite",
-        "autresRenseignements": "Autres renseignements",
-        "__completion": true
-      }
-    },
+    formAnswers: createFakeAnswers('jerome', 'jerome'),
     documents: [
       {
         "type": "certificatMedical"
@@ -588,7 +531,7 @@ var createJeromeOldRequest = function(cb) {
 
 var createEllaOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('ella', 'ella'),
     user: ella,
     mdph: '14',
     status: 'en_cours',
@@ -603,7 +546,7 @@ var createEllaOldRequest = function(cb) {
 
 var createTanguyOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('tanguy', 'tanguy'),
     user: tanguy,
     mdph: '14',
     status: 'en_cours',
@@ -618,7 +561,7 @@ var createTanguyOldRequest = function(cb) {
 
 var createThibaultOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('thibault', 'thibault'),
     user: thibault,
     mdph: '14',
     status: 'en_cours',
@@ -633,7 +576,7 @@ var createThibaultOldRequest = function(cb) {
 
 var createFlorianOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('florian', 'florian'),
     user: florian,
     mdph: '14',
     status: 'en_cours',
@@ -648,7 +591,7 @@ var createFlorianOldRequest = function(cb) {
 
 var createPierreOldRequest = function(cb) {
   Request.create({
-    formAnswers: {},
+    formAnswers: createFakeAnswers('pierre', 'pierre'),
     user: pierre,
     mdph: '14',
     status: 'en_cours',
@@ -666,68 +609,7 @@ var createBobRequest = function(cb) {
     user: bob,
     mdph: '14',
     status: 'evaluation',
-    formAnswers: {
-      "identite": {
-        "sexe": "masculin",
-        "nom": "Duchemin",
-        "prenom": "Bob",
-        "email": "bob@bob.fr",
-        "birthDate": "1987-01-23T23:00:00.000Z",
-        "adresse": "14, rue pinpon",
-        "code_postal": "75019",
-        "commune": "Paris",
-        "pays": "France",
-        "__completion": true
-      },
-      "vie_quotidienne": {
-        "famille": "parents",
-        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
-        "logement": "independant",
-        "logement_independant": "proprietaire",
-        "besoinsVie": {
-          "budget": true,
-          "courses": true,
-          "repas": true,
-          "cuisine": true,
-          "sante": true,
-          "hygiene": true
-        },
-        "besoinsDeplacement": {
-          "accesDomicile": true,
-          "conduite": true,
-          "transports": true
-        },
-        "besoinsTransports": false,
-        "besoinsSocial": {
-          "proches": true,
-          "securite": true,
-          "citoyen": true,
-          "loisirs": true
-        },
-        "besoinsLieuDeVie": {
-          "amenagement": true,
-          "conduite": true
-        },
-        "attentesTypeAide": {
-          "humain": true,
-          "financierMinimum": true,
-          "materiel": true,
-          "domicile": true
-        },
-        "structures": {
-          "valeur": false,
-          "structures": [
-            {
-              "name": "",
-              "contact": false
-            }
-          ]
-        },
-        "attentesCarte": "invalidite",
-        "autresRenseignements": "Autres renseignements",
-        "__completion": true
-      }
-    },
+    formAnswers: createFakeAnswers('bob', 'bob'),
     documents: [
       {
         "type": "certificatMedical"
@@ -752,7 +634,7 @@ var createFrancoiseRequest = function(cb) {
     evaluator: sophie,
     mdph: '14',
     status: 'en_cours',
-    formAnswers: {},
+    formAnswers: createFakeAnswers('francois', 'francois'),
     updatedAt: new Date(),
     createdAt: new Date(new Date().setDate(new Date().getDate()-15))
   }, function(err, data) {
@@ -768,7 +650,7 @@ var createEmmaRequest = function(cb) {
     evaluator: jeanne,
     mdph: '14',
     status: 'en_cours',
-    formAnswers: {},
+    formAnswers: createFakeAnswers('emma', 'emma'),
     updatedAt: new Date(),
     createdAt: new Date(new Date().setDate(new Date().getDate()-1))
   }, function(err, data) {
