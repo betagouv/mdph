@@ -18,7 +18,7 @@
           </div>
           <div class="panel-body">
             <p><strong>Nom :</strong> {{request.user.name}}</p>
-            <p><strong>Age :</strong> TODO <!-- {{request.formAnswers.contexte.dateNaissance | age}} ans --></p>
+            <p><strong>Age :</strong> {{request.formAnswers.identite.birthDate | age}} ans</p>
             <p><strong>Vit :</strong> {{situationFamiliale}}</p>
             <p><strong>Vit dans :</strong> {{situationLogement}}</p>
             <p>
