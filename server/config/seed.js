@@ -13,7 +13,7 @@ var Notification = require('../api/notification/notification.model');
 var async = require('async');
 
 var mdphNord, mdphCalvados,
-    admin, foo, nord, bar, alice, bob, martin, rox, sophie, jeanne, francoise, arnaud, emma, jerome, ella, tanguy, pierre, thibault, florian,
+    admin, nord, alice, bob, martin, rox, sophie, jeanne, francoise, arnaud, emma, jerome, ella, tanguy, pierre, thibault, florian,
     bobRequest, fooRequest, francoiseRequest, emmaRequest,
     notifBob;
 
@@ -54,7 +54,6 @@ var deleteNotifications = function(cb) {
 
 var createMdphNord = function(cb) {
   Mdph.create({
-    id: 'nord',
     name: 'Nord',
     zipcode: '59',
     email: 'nord@nord.fr',
@@ -68,7 +67,6 @@ var createMdphNord = function(cb) {
 
 var createMdphCalvados = function(cb) {
   Mdph.create({
-    id: 'calvados',
     name: 'Calvados',
     zipcode: '14',
     email: 'caen@caen.fr',
@@ -85,44 +83,12 @@ var createAdminNord = function(cb) {
     provider: 'local',
     role: 'adminMdph',
     name: 'Nord',
-    email: 'nord@nord.com',
+    email: 'nord@nord.fr',
     password: 'nord',
     mdph: mdphNord
   }, function(err, data) {
     nord = data;
     console.log('finished creating user nord');
-    cb();
-  });
-};
-
-var createAdminBar = function(cb) {
-  User.create({
-    provider: 'local',
-    role: 'adminMdph',
-    name: 'Bar',
-    email: 'bar@bar.com',
-    password: 'bar',
-    mdph: mdphNord
-  }, function(err, data) {
-    bar = data;
-    console.log('finished creating user bar');
-    cb();
-  });
-};
-
-var createFoo = function(cb) {
-  User.create({
-    provider: 'local',
-    name: 'Foo',
-    email: 'foo@foo.com',
-    password: 'foo',
-    requests: []
-  }, function(err, data) {
-    foo = data;
-    if (err) {
-      console.log(err);
-    }
-    console.log('finished creating user foo');
     cb();
   });
 };
@@ -406,44 +372,15 @@ var createJeanne = function(cb) {
   });
 };
 
-var createFooRequest = function(cb) {
-  Request.create({
-    formAnswers: {},
-    user: foo,
-    mdph: mdphNord,
-    updatedAt: new Date(),
-    createdAt: new Date(new Date().setDate(new Date().getDate()-1)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'en_cours'
-      }
-    ],
-    opened: true
-  }, function(err, data) {
-     fooRequest = data;
-    console.log('finished creating request foo');
-    cb();
-  });
-};
-
 var createBobOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: bob,
-    mdph: mdphCalvados,
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
+    mdph: '14',
+    documents: [],
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
     createdAt: new Date(new Date().setDate(new Date().getDate()-4)),
-    steps: [
-      {
-        name: 'evaluation',
-        state: 'valide'
-      }
-    ]
+    status: 'reponse'
   }, function() {
     console.log('finished creating request old bob');
     cb();
@@ -452,119 +389,82 @@ var createBobOldRequest = function(cb) {
 
 var createMartinOldRequest = function(cb) {
   Request.create({
-
     formAnswers: {
-      'prestations': {
-        'aah': {
-          'date':'2014-09-08T22:00:00.000Z'
-        }
+      "identite": {
+        "sexe": "masculin",
+        "nom": "Duchemin",
+        "prenom": "Bob",
+        "email": "bob@bob.fr",
+        "birthDate": "1987-01-23T23:00:00.000Z",
+        "adresse": "14, rue pinpon",
+        "code_postal": "75019",
+        "commune": "Paris",
+        "pays": "France",
+        "__completion": true
       },
-      'contexte': {
-        'estRepresentant':true,
-        'demandeur': {
-           'prenom':'Bobby',
-           'sexe':'masculin'
+      "vie_quotidienne": {
+        "famille": "parents",
+        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
+        "logement": "independant",
+        "logement_independant": "proprietaire",
+        "besoinsVie": {
+          "budget": true,
+          "courses": true,
+          "repas": true,
+          "cuisine": true,
+          "sante": true,
+          "hygiene": true
         },
-        'mdph': mdphCalvados,
-        'nouveauDossier':false,
-        'numDossier':true,
-        'numeroDossier':'21',
-        'raison': {
-           'finDeVosDroits':true
+        "besoinsDeplacement": {
+          "accesDomicile": true,
+          "conduite": true,
+          "transports": true
         },
-        'connaisTaux':true,
-        'tauxIncapacite':79,
-        'contestationTaux':'stable',
-        'dateNaissance':'1981-05-12T22:00:00.000Z',
-        'urgences': {
-           'domicile':true,
-           'formation':true
+        "besoinsTransports": false,
+        "besoinsSocial": {
+          "proches": true,
+          "securite": true,
+          "citoyen": true,
+          "loisirs": true
         },
-        'formationDetail':'2014-10-21T22:00:00.000Z'
-      },
-      'vieQuotidienne': {
-        'famille':'parents',
-        'logement':'independant',
-        'logement_independant':'proprietaire',
-        'besoinsVie': {
-           'courses':true,
-           'habits':true,
-           'budget':true,
-           'courant':true,
-           'repas':true,
-           'menage':true
+        "besoinsLieuDeVie": {
+          "amenagement": true,
+          "conduite": true
         },
-        'besoinsDeplacement': {
-           'intraDomicile':true,
-           'public':true,
-           'transports':true,
-           'vacances':true
+        "attentesTypeAide": {
+          "humain": true,
+          "financierMinimum": true,
+          "materiel": true,
+          "domicile": true
         },
-        'besoinsSocial': {
-           'communication':true,
-           'proches':true,
-           'securite':true,
-           'citoyen':true
+        "structures": {
+          "valeur": false,
+          "structures": [
+            {
+              "name": "",
+              "contact": false
+            }
+          ]
         },
-        'besoinsLieuDeVie': {
-           'materiel':true,
-           'conduite':true
-        },
-        'attentesTypeAide': {
-           'domicile':true,
-           'amenagement':true,
-           'financierHandicap':true,
-           'mobilite':true,
-           'etablissement':true,
-           'materiel':true
-        },
-        'structures': {
-           'valeur':false,
-           'structures':[
-              {
-                 'name':'',
-                 'contact':false
-              }
-           ]
-        },
-        'autresRenseignements':'',
-        'objetDemande': {
-           'travail':false
-        }
-      },
-      'aidant': {
-        'sectionLabel':'Aidant familial',
-        'answers': {
-           'condition':false
-        }
-      },
-      'envoi':true
-    },
-    user: martin,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Complète',
-    evaluator: jeanne,
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
-    createdAt: new Date(new Date().setDate(new Date().getDate()-2)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'valide'
-      },
-      {
-        name: 'evaluation',
-        state: 'en_cours'
+        "attentesCarte": "invalidite",
+        "autresRenseignements": "Autres renseignements",
+        "__completion": true
       }
-    ]
+    },
+    documents: [
+      {
+        "type": "certificatMedical"
+      },
+      {
+        "type": "carteIdentite"
+      }
+    ],
+    mdph: "14",
+    user: martin,
+    status: 'complet',
+    evaluator: jeanne,
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-2))
   }, function() {
     console.log('finished creating request old martin');
     cb();
@@ -575,36 +475,13 @@ var createRoxOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: rox,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Emise',
+    mdph: "14",
+    status: 'en_cours',
+    documents: [],
     updatedAt: new Date(new Date().setDate(new Date().getDate())),
-    createdAt: new Date(new Date().setDate(new Date().getDate()-4)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    createdAt: new Date(new Date().setDate(new Date().getDate()-4))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old rox: ' + request.shortId);
     cb();
   });
@@ -614,36 +491,12 @@ var createArnaudOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: arnaud,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Emise',
+    mdph: '14',
+    status: 'en_cours',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-50)),
-    createdAt: new Date(new Date().setDate(new Date().getDate()-50)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    createdAt: new Date(new Date().setDate(new Date().getDate()-50))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old arnaud: ' + request.shortId);
     cb();
   });
@@ -652,123 +505,82 @@ var createArnaudOldRequest = function(cb) {
 var createJeromeOldRequest = function(cb) {
   Request.create({
     user: jerome,
-    mdph: mdphCalvados,
+    mdph: '14',
     formAnswers: {
-      'prestations': {
-        'aah': {
-          'date':'2014-09-08T22:00:00.000Z'
-        }
+      "identite": {
+        "sexe": "masculin",
+        "nom": "Duchemin",
+        "prenom": "Bob",
+        "email": "bob@bob.fr",
+        "birthDate": "1987-01-23T23:00:00.000Z",
+        "adresse": "14, rue pinpon",
+        "code_postal": "75019",
+        "commune": "Paris",
+        "pays": "France",
+        "__completion": true
       },
-      'contexte': {
-        'estRepresentant':true,
-        'demandeur': {
-           'prenom':'Bobby',
-           'sexe':'masculin'
+      "vie_quotidienne": {
+        "famille": "parents",
+        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
+        "logement": "independant",
+        "logement_independant": "proprietaire",
+        "besoinsVie": {
+          "budget": true,
+          "courses": true,
+          "repas": true,
+          "cuisine": true,
+          "sante": true,
+          "hygiene": true
         },
-        'mdph': mdphCalvados,
-        'nouveauDossier':false,
-        'numDossier':true,
-        'numeroDossier':'21',
-        'raison': {
-           'finDeVosDroits':true
+        "besoinsDeplacement": {
+          "accesDomicile": true,
+          "conduite": true,
+          "transports": true
         },
-        'connaisTaux':true,
-        'tauxIncapacite':79,
-        'contestationTaux':'stable',
-        'dateNaissance':'1981-05-12T22:00:00.000Z',
-        'urgences': {
-           'domicile':true,
-           'formation':true
+        "besoinsTransports": false,
+        "besoinsSocial": {
+          "proches": true,
+          "securite": true,
+          "citoyen": true,
+          "loisirs": true
         },
-        'formationDetail':'2014-10-21T22:00:00.000Z'
-      },
-      'vieQuotidienne': {
-        'famille':'parents',
-        'logement':'independant',
-        'logement_independant':'proprietaire',
-        'besoinsVie': {
-           'courses':true,
-           'habits':true,
-           'budget':true,
-           'courant':true,
-           'repas':true,
-           'menage':true
+        "besoinsLieuDeVie": {
+          "amenagement": true,
+          "conduite": true
         },
-        'besoinsDeplacement': {
-           'intraDomicile':true,
-           'public':true,
-           'transports':true,
-           'vacances':true
+        "attentesTypeAide": {
+          "humain": true,
+          "financierMinimum": true,
+          "materiel": true,
+          "domicile": true
         },
-        'besoinsSocial': {
-           'communication':true,
-           'proches':true,
-           'securite':true,
-           'citoyen':true
+        "structures": {
+          "valeur": false,
+          "structures": [
+            {
+              "name": "",
+              "contact": false
+            }
+          ]
         },
-        'besoinsLieuDeVie': {
-           'materiel':true,
-           'conduite':true
-        },
-        'attentesTypeAide': {
-           'domicile':true,
-           'amenagement':true,
-           'financierHandicap':true,
-           'mobilite':true,
-           'etablissement':true,
-           'materiel':true
-        },
-        'structures': {
-           'valeur':false,
-           'structures':[
-              {
-                 'name':'',
-                 'contact':false
-              }
-           ]
-        },
-        'autresRenseignements':'',
-        'objetDemande': {
-           'travail':false
-        }
-      },
-      'aidant': {
-        'sectionLabel':'Aidant familial',
-        'answers': {
-           'condition':false
-        }
-      },
-      'envoi':true
-    },
-    opened: true,
-    requestStatus: 'Emise',
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-10)),
-    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
+        "attentesCarte": "invalidite",
+        "autresRenseignements": "Autres renseignements",
+        "__completion": true
       }
-    ]
+    },
+    documents: [
+      {
+        "type": "certificatMedical"
+      },
+      {
+        "type": "carteIdentite"
+      }
+    ],
+    status: 'complet',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-10)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old jerome: ' + request.shortId);
     cb();
   });
@@ -778,36 +590,12 @@ var createEllaOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: ella,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Emise',
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
-    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    mdph: '14',
+    status: 'en_cours',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old ella: ' + request.shortId);
     cb();
   });
@@ -817,36 +605,12 @@ var createTanguyOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: tanguy,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Emise',
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
-    createdAt: new Date(new Date().setDate(new Date().getDate()-2)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    mdph: '14',
+    status: 'en_cours',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-2))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old tanguy: ' + request.shortId);
     cb();
   });
@@ -856,36 +620,12 @@ var createThibaultOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: thibault,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Emise',
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
-    createdAt: new Date(new Date().setDate(new Date().getDate()-2)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    mdph: '14',
+    status: 'en_cours',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-2))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old thibault: ' + request.shortId);
     cb();
   });
@@ -895,36 +635,12 @@ var createFlorianOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: florian,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Emise',
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
-    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    mdph: '14',
+    status: 'en_cours',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old florian: ' + request.shortId);
     cb();
   });
@@ -934,36 +650,12 @@ var createPierreOldRequest = function(cb) {
   Request.create({
     formAnswers: {},
     user: pierre,
-    mdph: mdphCalvados,
-    opened: true,
-    requestStatus: 'Emise',
-    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)), //yesterday
-    createdAt: new Date(new Date().setDate(new Date().getDate()-3)),
-    steps: [
-      {
-        name: 'questionnaire',
-        state: 'complet'
-      },
-      {
-        name: 'obligatoire',
-        state: 'valide'
-      },
-      {
-        name: 'complementaire',
-        state: 'en_cours',
-        files: [
-          {
-            "name": "bilanAccompagnementEnfant",
-            "state": "demande"
-          },
-          {
-            "name": "devis",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    mdph: '14',
+    status: 'en_cours',
+    updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
+    createdAt: new Date(new Date().setDate(new Date().getDate()-3))
   }, function(err, request) {
+    if (err) console.log(err);
     console.log('finished creating request old pierre: ' + request.shortId);
     cb();
   });
@@ -971,120 +663,82 @@ var createPierreOldRequest = function(cb) {
 
 var createBobRequest = function(cb) {
   Request.create({
-    opened: true,
     user: bob,
-    mdph: mdphCalvados,
-    requestStatus: 'Emise',
+    mdph: '14',
+    status: 'evaluation',
     formAnswers: {
-      'prestations': {
-        'aah': {
-          'date':'2014-09-08T22:00:00.000Z'
-        }
+      "identite": {
+        "sexe": "masculin",
+        "nom": "Duchemin",
+        "prenom": "Bob",
+        "email": "bob@bob.fr",
+        "birthDate": "1987-01-23T23:00:00.000Z",
+        "adresse": "14, rue pinpon",
+        "code_postal": "75019",
+        "commune": "Paris",
+        "pays": "France",
+        "__completion": true
       },
-      'contexte': {
-        'estRepresentant':true,
-        'demandeur': {
-           'prenom':'Bobby',
-           'sexe':'masculin'
+      "vie_quotidienne": {
+        "famille": "parents",
+        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
+        "logement": "independant",
+        "logement_independant": "proprietaire",
+        "besoinsVie": {
+          "budget": true,
+          "courses": true,
+          "repas": true,
+          "cuisine": true,
+          "sante": true,
+          "hygiene": true
         },
-        'mdph': mdphCalvados,
-        'nouveauDossier':false,
-        'numDossier':true,
-        'numeroDossier':'21',
-        'raison': {
-           'finDeVosDroits':true
+        "besoinsDeplacement": {
+          "accesDomicile": true,
+          "conduite": true,
+          "transports": true
         },
-        'connaisTaux':true,
-        'tauxIncapacite':79,
-        'contestationTaux':'stable',
-        'dateNaissance':'1981-05-12T22:00:00.000Z',
-        'urgences': {
-           'domicile':false,
-           'formation':true
+        "besoinsTransports": false,
+        "besoinsSocial": {
+          "proches": true,
+          "securite": true,
+          "citoyen": true,
+          "loisirs": true
         },
-        'formationDetail':'2014-10-21T22:00:00.000Z'
-      },
-      'vieQuotidienne': {
-        'famille':'parents',
-        'logement':'independant',
-        'logement_independant':'proprietaire',
-        'besoinsVie': {
-           'courses':true,
-           'habits':true,
-           'budget':true,
-           'courant':true,
-           'repas':true,
-           'menage':true
+        "besoinsLieuDeVie": {
+          "amenagement": true,
+          "conduite": true
         },
-        'besoinsDeplacement': {
-           'intraDomicile':true,
-           'public':true,
-           'transports':true,
-           'vacances':true
+        "attentesTypeAide": {
+          "humain": true,
+          "financierMinimum": true,
+          "materiel": true,
+          "domicile": true
         },
-        'besoinsSocial': {
-           'communication':true,
-           'proches':true,
-           'securite':true,
-           'citoyen':true
+        "structures": {
+          "valeur": false,
+          "structures": [
+            {
+              "name": "",
+              "contact": false
+            }
+          ]
         },
-        'besoinsLieuDeVie': {
-           'materiel':true,
-           'conduite':true
-        },
-        'attentesTypeAide': {
-           'domicile':true,
-           'amenagement':true,
-           'financierHandicap':true,
-           'mobilite':true,
-           'etablissement':true,
-           'materiel':true
-        },
-        'structures': {
-           'valeur':false,
-           'structures':[
-              {
-                 'name':'',
-                 'contact':false
-              }
-           ]
-        },
-        'autresRenseignements':'',
-        'objetDemande': {
-           'travail':false
-        }
-      },
-      'aidant': {
-        'sectionLabel':'Aidant familial',
-        'answers': {
-           'condition':false
-        }
-      },
-      'envoi':true
+        "attentesCarte": "invalidite",
+        "autresRenseignements": "Autres renseignements",
+        "__completion": true
+      }
     },
+    documents: [
+      {
+        "type": "certificatMedical"
+      },
+      {
+        "type": "carteIdentite"
+      }
+    ],
     evaluator: alice,
     updatedAt: new Date(),
-    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
-    "steps": [
-      {
-        "name": "questionnaire",
-        "state": "complet"
-      },
-      {
-        "name": "obligatoire",
-        "state": "en_cours",
-        "files": [
-          {
-            "name": "certificatMedical",
-            "state": "demande"
-          },
-          {
-            "name": "carteIdentite",
-            "state": "demande"
-          }
-        ]
-      }
-    ]
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15))
   }, function(err, data) {
     bobRequest = data;
     console.log('finished creating request bob');
@@ -1094,124 +748,13 @@ var createBobRequest = function(cb) {
 
 var createFrancoiseRequest = function(cb) {
   Request.create({
-    opened: true,
     user: francoise,
     evaluator: sophie,
-    mdph: mdphCalvados,
-    requestStatus: 'Emise',
-    formAnswers: {
-      'prestations': {
-        'aah': {
-          'date':'2014-09-08T22:00:00.000Z'
-        }
-      },
-      'contexte': {
-        'estRepresentant':true,
-        'demandeur': {
-           'prenom':'Francoise',
-           'sexe':'féminin'
-        },
-        'mdph': mdphCalvados,
-        'nouveauDossier':false,
-        'numDossier':true,
-        'numeroDossier':'21',
-        'raison': {
-           'finDeVosDroits':true
-        },
-        'connaisTaux':true,
-        'tauxIncapacite':79,
-        'contestationTaux':'stable',
-        'dateNaissance':'1981-05-12T22:00:00.000Z',
-        'urgences': {
-           'domicile':false,
-           'formation':true
-        },
-        'formationDetail':'2014-10-21T22:00:00.000Z'
-      },
-      'vieQuotidienne': {
-        'famille':'parents',
-        'logement':'independant',
-        'logement_independant':'proprietaire',
-        'besoinsVie': {
-           'courses':true,
-           'habits':true,
-           'budget':true,
-           'courant':true,
-           'repas':true,
-           'menage':true
-        },
-        'besoinsDeplacement': {
-           'intraDomicile':true,
-           'public':true,
-           'transports':true,
-           'vacances':true
-        },
-        'besoinsSocial': {
-           'communication':true,
-           'proches':true,
-           'securite':true,
-           'citoyen':true
-        },
-        'besoinsLieuDeVie': {
-           'materiel':true,
-           'conduite':true
-        },
-        'attentesTypeAide': {
-           'domicile':true,
-           'amenagement':true,
-           'financierHandicap':true,
-           'mobilite':true,
-           'etablissement':true,
-           'materiel':true
-        },
-        'structures': {
-           'valeur':false,
-           'structures':[
-              {
-                 'name':'',
-                 'contact':false
-              }
-           ]
-        },
-        'autresRenseignements':'',
-        'objetDemande': {
-           'travail':false
-        }
-      },
-      'aidant': {
-        'sectionLabel':'Aidant familial',
-        'answers': {
-           'condition':false
-        }
-      },
-      'envoi':true
-    },
+    mdph: '14',
+    status: 'en_cours',
+    formAnswers: {},
     updatedAt: new Date(),
-    createdAt: new Date(new Date().setDate(new Date().getDate()-15)),
-    "steps": [
-      {
-        "name": "questionnaire",
-        "state": "complet"
-      },
-      {
-        "name": "obligatoire",
-        "state": "a_valider",
-        "files": [
-          {
-            "name": "certificatMedical",
-            "state": "telecharge",
-            "path": "francoise.jpg",
-            uploaderType: "Demandeur"
-          },
-          {
-            "name": "carteIdentite",
-            "state": "telecharge",
-            "path": "francoise.jpg",
-            uploaderType: "Demandeur"
-          }
-        ]
-      }
-    ]
+    createdAt: new Date(new Date().setDate(new Date().getDate()-15))
   }, function(err, data) {
     francoiseRequest = data;
     console.log('finished creating request francoise');
@@ -1221,124 +764,13 @@ var createFrancoiseRequest = function(cb) {
 
 var createEmmaRequest = function(cb) {
   Request.create({
-    opened: true,
     user: emma,
     evaluator: jeanne,
-    mdph: mdphCalvados,
-    requestStatus: 'Emise',
-    formAnswers: {
-      'prestations': {
-        'aah': {
-          'date':'2014-09-08T22:00:00.000Z'
-        }
-      },
-      'contexte': {
-        'estRepresentant':true,
-        'demandeur': {
-           'prenom':'Emma',
-           'sexe':'féminin'
-        },
-        'mdph': mdphCalvados,
-        'nouveauDossier':false,
-        'numDossier':true,
-        'numeroDossier':'21',
-        'raison': {
-           'finDeVosDroits':true
-        },
-        'connaisTaux':true,
-        'tauxIncapacite':79,
-        'contestationTaux':'stable',
-        'dateNaissance':'1981-05-12T22:00:00.000Z',
-        'urgences': {
-           'domicile':false,
-           'formation':true
-        },
-        'formationDetail':'2014-10-21T22:00:00.000Z'
-      },
-      'vieQuotidienne': {
-        'famille':'parents',
-        'logement':'independant',
-        'logement_independant':'proprietaire',
-        'besoinsVie': {
-           'courses':true,
-           'habits':true,
-           'budget':true,
-           'courant':true,
-           'repas':true,
-           'menage':true
-        },
-        'besoinsDeplacement': {
-           'intraDomicile':true,
-           'public':true,
-           'transports':true,
-           'vacances':true
-        },
-        'besoinsSocial': {
-           'communication':true,
-           'proches':true,
-           'securite':true,
-           'citoyen':true
-        },
-        'besoinsLieuDeVie': {
-           'materiel':true,
-           'conduite':true
-        },
-        'attentesTypeAide': {
-           'domicile':true,
-           'amenagement':true,
-           'financierHandicap':true,
-           'mobilite':true,
-           'etablissement':true,
-           'materiel':true
-        },
-        'structures': {
-           'valeur':false,
-           'structures':[
-              {
-                 'name':'',
-                 'contact':false
-              }
-           ]
-        },
-        'autresRenseignements':'',
-        'objetDemande': {
-           'travail':false
-        }
-      },
-      'aidant': {
-        'sectionLabel':'Aidant familial',
-        'answers': {
-           'condition':false
-        }
-      },
-      'envoi':true
-    },
+    mdph: '14',
+    status: 'en_cours',
+    formAnswers: {},
     updatedAt: new Date(),
-    createdAt: new Date(new Date().setDate(new Date().getDate()-1)),
-    "steps": [
-      {
-        "name": "questionnaire",
-        "state": "complet"
-      },
-      {
-        "name": "obligatoire",
-        "state": "a_valider",
-        "files": [
-          {
-            "name": "certificatMedical",
-            "state": "telecharge",
-            "path": "francoise.jpg",
-            uploaderType: "Demandeur"
-          },
-          {
-            "name": "carteIdentite",
-            "state": "telecharge",
-            "path": "francoise.jpg",
-            uploaderType: "Demandeur"
-          }
-        ]
-      }
-    ]
+    createdAt: new Date(new Date().setDate(new Date().getDate()-1))
   }, function(err, data) {
     emmaRequest = data;
     console.log('finished creating request Emma');
@@ -1416,9 +848,7 @@ async.series([
   createMdphNord,
   createMdphCalvados,
 
-  createFoo,
   createAdminNord,
-  createAdminBar,
   createAlice,
   createBob,
   createFlo,
@@ -1442,19 +872,18 @@ async.series([
   createLeo,
   createJean,
 
-  // createBobOldRequest,
-  // createBobRequest,
-  // createFooRequest,
-  // createMartinOldRequest,
-  // createRoxOldRequest,
-  // createFrancoiseRequest,
-  // createEmmaRequest,
-  // createArnaudOldRequest,
-  // createEllaOldRequest,
-  // createJeromeOldRequest,
-  // createPierreOldRequest,
-  // createThibaultOldRequest,
-  // createTanguyOldRequest,
+  createBobOldRequest,
+  createBobRequest,
+  createMartinOldRequest,
+  createFrancoiseRequest,
+  createEmmaRequest,
+  createRoxOldRequest,
+  createArnaudOldRequest,
+  createEllaOldRequest,
+  createJeromeOldRequest,
+  createPierreOldRequest,
+  createThibaultOldRequest,
+  createTanguyOldRequest,
 
-  // createNotifBob
+  createNotifBob
 ]);

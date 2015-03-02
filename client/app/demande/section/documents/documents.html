@@ -17,10 +17,10 @@
       <div class="col-sm-4" ng-repeat="document in request.documents">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3>{{documentById[document.id].label}}</h3>
+            <h3>{{documentTypesById[document.type].label}}</h3>
           </div>
           <div class="panel-body">
-            <p>{{documentById[document.id].desc}}</p>
+            <p>{{documentTypesById[document.type].desc}}</p>
             <ul ng-if="!document.files"><li>Pas de document</li></ul>
             <ul ng-if="document.files">
               <li ng-repeat="file in document.files">

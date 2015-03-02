@@ -2,23 +2,22 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, request, documents) {
+  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, request, documentTypes) {
     $scope.section = section;
     $scope.request = request;
-    $scope.documents = documents;
-    $scope.documentById = _.indexBy(documents, 'id');
+    $scope.documentTypesById = _.indexBy(documentTypes, 'id');
 
-    $scope.onFileSelect = function(file, document) {
+    $scope.onFileSelect = function(file, type) {
       $upload.upload({
         url: 'api/requests/' + $scope.request.shortId + '/document',
         withCredentials: true,
         data: {
-          'document': document.id,
+          'type': type.id,
           'state': 'telecharge'
         },
         file: file
       }).success(function(data) {
-        document.files.push(data);
+        type.files.push(data);
       });
     };
 
@@ -31,9 +30,9 @@ angular.module('impactApp')
             var filtered = [];
             var requested = _.pluck(request.documents, 'id');
 
-            documents.forEach(function(document) {
-              if (requested.indexOf(document.id) < 0) {
-                filtered.push(document);
+            documentTypes.forEach(function(type) {
+              if (requested.indexOf(type.id) < 0) {
+                filtered.push(type);
               }
             });
 

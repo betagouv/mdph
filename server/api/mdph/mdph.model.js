@@ -4,11 +4,10 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var MdphSchema = new Schema({
-  id: { type: String, unique: true },
-  name: String,
-  zipcode: { type: String, unique: true },
-  email: String,
-  logo: String
+  zipcode:  { type: String, unique: true },
+  name:     { type: String },
+  email:    { type: String },
+  logo:     { type: String }
 });
 
 module.exports = mongoose.model('Mdph', MdphSchema);

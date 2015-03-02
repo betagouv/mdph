@@ -9,12 +9,6 @@ angular.module('impactApp')
       update: {
         method: 'PUT'
       },
-      updateStep: {
-        method: 'PUT',
-        params: {
-          controller: 'step'
-        }
-      },
       getPartenaire: {
         method: 'GET',
         params: {

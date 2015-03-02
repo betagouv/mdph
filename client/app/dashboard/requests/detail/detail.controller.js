@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailDemandeCtrl', function ($scope, $http, $state, $modal, $filter, request, DroitService, requestSteps, Partenaire, NotificationService) {
+  .controller('RequestDetailCtrl', function ($scope, $http, $window, $state, $modal, $filter, request, DroitService, Partenaire, NotificationService, RecapitulatifService) {
     $scope.request = request;
-    $scope.allFiles = requestSteps;
+
+    $scope.back = function() {
+      $window.history.back();
+    };
 
     if($scope.request.formAnswers){
       DroitService.compute($scope.request.formAnswers).success(function(result) {
@@ -11,34 +14,32 @@ angular.module('impactApp')
       });
     }
 
-    $scope.getStep = function(name) {
-      return _.find($scope.request.steps, {'name': name});
-    };
+    $scope.telecharger = RecapitulatifService.telechargerPdf;
 
-    $scope.addRequestedFile = function(file) {
-      var step = $scope.getStep('complementaire');
-      if (!step.files) {
-        step.files = [];
-      }
-      step.files.push({name: file, state: 'demande'});
-    };
+    // $scope.addRequestedFile = function(file) {
+    //   var step = $scope.getStep('complementaire');
+    //   if (!step.files) {
+    //     step.files = [];
+    //   }
+    //   step.files.push({name: file, state: 'demande'});
+    // };
 
-    $scope.save = function() {
-      var step = $scope.getStep('complementaire');
-      step.state = 'en_cours';
-      $scope.request.$update();
+    // $scope.save = function() {
+    //   var step = $scope.getStep('complementaire');
+    //   step.state = 'en_cours';
+    //   $scope.request.$update();
 
-      _.forEach(step.files, function(file){
-        if (file.assignment){
-          envoiAssignation(file);
-        }
-      });
-      NotificationService.createNotification($scope.request, 'espace_perso.liste_demandes.demande.complementaire', 'Des documents vous ont été demandés par votre MDPH.');
-    };
+    //   _.forEach(step.files, function(file){
+    //     if (file.assignment){
+    //       envoiAssignation(file);
+    //     }
+    //   });
+    //   NotificationService.createNotification($scope.request, 'espace_perso.liste_demandes.demande.complementaire', 'Des documents vous ont été demandés par votre MDPH.');
+    // };
 
-    $scope.remove = function(files, index) {
-      files.splice(index, 1);
-    };
+    // $scope.remove = function(files, index) {
+    //   files.splice(index, 1);
+    // };
 
     $scope.goNext = function() {
       $state.go('dashboard.requests.list.user.detail.evaluation', {shortId: $scope.request.shortId});
@@ -46,7 +47,7 @@ angular.module('impactApp')
 
     $scope.assignDocument = function (file){
       var modalInstance = $modal.open({
-        templateUrl: 'app/dashboard/repartition_demandes/detail/assignDocumentModal.html',
+        templateUrl: 'app/dashboard/requests/detail/assignDocumentModal.html',
         size: 'lg',
         controller: function($scope, $modalInstance, Partenaire) {
           $scope.file = file;
@@ -93,12 +94,12 @@ angular.module('impactApp')
       });
     };
 
-    var envoiAssignation = function(file){
-      $http.post('api/send-mail/assignment', {
-        assignment: file.assignment,
-        html: '<h1>Ajout de pièces</h1><p>Bonjour, la MDPH vous demande de fournir une pièce pour compléter la demande de ' + $scope.request.user.name + '. Il s\'agit de '+ angular.lowercase($filter('documentFilter')(file.name)) +' pour la demande ' + $scope.request.shortId + '.</p>',
-        subject: 'Demande d\'ajout de pièces'
-      });
-    };
+    // var envoiAssignation = function(file){
+    //   $http.post('api/send-mail/assignment', {
+    //     assignment: file.assignment,
+    //     html: '<h1>Ajout de pièces</h1><p>Bonjour, la MDPH vous demande de fournir une pièce pour compléter la demande de ' + $scope.request.user.name + '. Il s\'agit de '+ angular.lowercase($filter('documentFilter')(file.name)) +' pour la demande ' + $scope.request.shortId + '.</p>',
+    //     subject: 'Demande d\'ajout de pièces'
+    //   });
+    // };
 
   });

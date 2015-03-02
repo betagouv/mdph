@@ -33,7 +33,7 @@
               <span ng-if="request.formAnswers.contexte.urgences">
                 <i class="fa fa-warning"></i>
               </span>
-              <a ui-sref="dashboard.requests.list.non_attribue.detail({shortId: request.shortId})">{{request.user.name}}</a>
+              <a ui-sref="dashboard.requests.detail({shortId: request.shortId})">{{request.user.name}}</a>
             </span>
             <span ng-repeat="(urgence, val) in request.formAnswers.contexte.urgences">
               <span class="label label-danger" ng-if="val" >{{urgence}}</span>

@@ -111,7 +111,7 @@ angular.module('impactApp')
         $window.alert(str);
       } else {
         request.status = 'emise';
-        request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + $scope.mdph.zipcode;
+        request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + request.mdph;
         request.$update(function () {
           $window.alert('Votre demande à été sauvegardé');
         }, onError);

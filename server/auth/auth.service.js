@@ -40,7 +40,7 @@ function isAuthenticated() {
  * Attaches the user object to the request if authenticated
  * Otherwise returns 401
  */
-function isAuthenticatedAndRequestOwner() {
+function isAuthorized() {
   return compose()
     // Validate jwt
     .use(function(req, res, next) {
@@ -109,7 +109,7 @@ function setTokenCookie(req, res) {
 }
 
 exports.isAuthenticated = isAuthenticated;
-exports.isAuthenticatedAndRequestOwner = isAuthenticatedAndRequestOwner;
+exports.isAuthorized = isAuthorized;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;

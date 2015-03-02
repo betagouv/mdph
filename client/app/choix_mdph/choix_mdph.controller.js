@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ChoixMdphCtrl', function ($scope, $state, $filter, mdphs) {
+  .controller('ChoixMdphCtrl', function ($scope, $state, $sessionStorage, $filter, mdphs) {
+    delete $sessionStorage.request;
     $scope.mdphs = mdphs;
     $scope.regions = _.groupBy(mdphs, 'nom_de_la_region');
 

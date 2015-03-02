@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('documents', [
+angular.module('impactApp').constant('documentTypes', [
   {
     id: 'certificatMedical',
     label: 'Certificat médical',

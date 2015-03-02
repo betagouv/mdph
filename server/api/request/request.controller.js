@@ -7,6 +7,7 @@ var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var Request = require('./request.model');
 var User = require('../user/user.model');
+var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
 var Flattener = require('../../components/flatten');
 var wkhtmltopdf = require('wkhtmltopdf');
@@ -19,37 +20,38 @@ var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
  * Get list of requests
  */
 exports.index = function(req, res) {
-  if (req.query) {
-    var search = {};
 
-    if (req.query.evaluator) {
-      if (req.query.evaluator === 'null') {
-        search.evaluator = undefined;
-      } else {
-        search.evaluator = req.query.evaluator;
+  Mdph.findById(req.user.mdph, function(err, mdph) {
+    if (err) return handleError(res, err);
+    if (!mdph) return res.send(404);
+
+    var search = {
+      mdph: mdph.zipcode
+    };
+
+    var query = req.query;
+
+    if (query) {
+      if (query.evaluator) {
+        if (query.evaluator === 'null') {
+          search.evaluator = undefined;
+        } else {
+          search.evaluator = query.evaluator;
+        }
       }
     }
 
-    search.mdph =  req.user.mdph;
     Request.find(search)
-      .select('shortId user mdph status createdAt updatedAt formAnswers.contexte.urgences')
+      .select('-formAnswers')
+      .populate('user', 'name')
       .sort('createdAt')
       .exec(function(err, requests) {
         if(err) return res.send(500, err);
 
         res.set('count', requests.length);
-        res.json(200, requests);
+        res.json(requests);
       });
-  } else {
-    Request.find({mdph: req.user.mdph})
-      .sort('createdAt')
-      .exec(function(err, requests) {
-        if(err) return res.send(500, err);
-
-        res.set('count', requests.length);
-        res.json(200, requests);
-      });
-  }
+  });
 };
 
 // Get a single request
@@ -57,8 +59,9 @@ exports.show = function(req, res, next) {
   Request.findOne({
     shortId: req.params.shortId
   })
+  .populate('user')
   .exec(function(err, request) {
-    if(err) { return next(err); }
+    if (err) return res.send(500, err);
     if(!request) { return res.send(404); }
     return res.json(request);
   });
@@ -69,8 +72,9 @@ exports.showPartenaire = function(req, res, next) {
   Request.findOne({
     shortId: req.params.shortId
   })
+  .populate('user', 'name')
   .exec(function(err, request) {
-    if(err) { return next(err); }
+    if (err) return res.send(500, err);
     if(!request) { return res.send(404); }
     return res.json(request);
   });
@@ -95,11 +99,13 @@ exports.showUserRequests = function(req, res, next) {
   Request.find({
     user: req.user._id
   })
+  .select('shortId mdph updatedAt createdAt status')
+  .populate('user', 'name')
   .sort('-updatedAt')
   .exec(function(err, requests) {
-    if (err) return next(err);
+    if (err) return res.send(500, err);
     if (!requests) return res.json(401);
-    res.json(200, requests);
+    res.json(requests);
   });
 };
 
@@ -132,24 +138,8 @@ exports.update = function(req, res, next) {
       .set('updatedAt', Date.now())
       .save(function (err) {
         if (err) { return handleError(res, err); }
-        return res.json(200, request);
+        return res.json(request);
       });
-
-    // updateIfn(request, req.body, 'user');
-    // updateIfn(request, req.body, 'mdph');
-    // updateIfn(request, req.body, 'evaluator');
-    // updateIfn(request, req.body, 'status');
-
-    // request
-    //   .set(_.omit(req.body, ['user', 'mdph', 'evaluator']))
-    //   .set('updatedAt', Date.now())
-    //   .save(function(err, data) {
-    //     if(err) return res.send(500, err);
-    //     data.populate('user mdph evaluator', function(err, data) {
-    //       if(err) return res.send(500, err);
-    //       return res.json(data);
-    //     });
-    //   });
   });
 };
 
@@ -192,11 +182,11 @@ exports.saveDocument = function (req, res, next) {
       });
 
       ws.on('close', function (file) {
-        var document = file.metadata.document;
-        var requestDocument = _.find(request.documents, {id: document});
+        var type = file.metadata.type;
+        var requestDocument = _.find(request.documents, {type: type});
 
         if (typeof requestDocument === 'undefined') {
-          request.documents.push({id: document, files: [file]});
+          request.documents.push({type: type, files: [file]});
         } else {
           requestDocument.files.push(file);
         }
@@ -213,7 +203,6 @@ exports.saveDocument = function (req, res, next) {
 
 exports.showFileData = function(req, res) {
   gfs.findOne({ _id: req.params.documentId}, function (err, file) {
-    console.log(req.params.documentId);
     res.send(200, file);
   });
 };

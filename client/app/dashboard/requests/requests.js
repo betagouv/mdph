@@ -15,7 +15,7 @@ angular.module('impactApp')
             return Auth.getCurrentUser();
           },
           pendingRequests: function($http) {
-            return $http({method: 'HEAD', url: '/api/requests', params: {opened: true, evaluator: 'null'}}).then(function(result) {
+            return $http({method: 'HEAD', url: '/api/requests', params: {evaluator: 'null'}}).then(function(result) {
               return result.headers('count');
             });
           }
@@ -34,22 +34,10 @@ angular.module('impactApp')
         controller: 'RequestNonAttribueCtrl',
         resolve: {
           requests: function(RequestResource) {
-            return RequestResource.query({opened: true, evaluator: 'null'}).$promise;
+            return RequestResource.query({evaluator: 'null'}).$promise;
           }
         },
         authenticate: true
-      })
-      .state('dashboard.requests.list.non_attribue.detail', {
-        url: '/:shortId',
-        templateUrl: 'app/dashboard/requests/list/detail/detail.html',
-        controller: 'DetailDemandeCtrl',
-        resolve: {
-          request: function($http, $stateParams) {
-            return $http.get('/api/requests/' + $stateParams.shortId).then(function(request) {
-              return request.data;
-            });
-          }
-        }
       })
       .state('dashboard.requests.list.user', {
         url: '/:userId',
@@ -57,7 +45,7 @@ angular.module('impactApp')
         controller: 'RequestListCtrl',
         resolve: {
           requests: function(RequestResource, user) {
-            return RequestResource.query({opened: true, evaluator: user._id}).$promise;
+            return RequestResource.query({evaluator: user._id}).$promise;
           },
           user: function($http, $stateParams) {
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
@@ -67,10 +55,10 @@ angular.module('impactApp')
         },
         authenticate: true
       })
-      .state('dashboard.requests.list.user.detail', {
+      .state('dashboard.requests.detail', {
         url: '/:shortId',
-        templateUrl: 'app/dashboard/requests/list/detail/detail.html',
-        controller: 'DetailDemandeCtrl',
+        templateUrl: 'app/dashboard/requests/detail/detail.html',
+        controller: 'RequestDetailCtrl',
         resolve: {
           request: function($http, $stateParams) {
             return $http.get('/api/requests/' + $stateParams.shortId).then(function(request) {

@@ -20,7 +20,7 @@ exports.index = function(req, res) {
     mdph: req.user.mdph
   }, '-salt -hashedPassword', function (err, users) {
     if(err) return res.send(500, err);
-    res.json(200, users);
+    res.json(users);
   });
 };
 
@@ -134,6 +134,6 @@ exports.showNotifications = function(req, res, next) {
   }, function (err, notifications) {
     if(err) return res.send(500, err);
     if(!notifications) { return res.send(404); }
-    return res.status(200).json(notifications);
+    return res.json(notifications);
   });
 };

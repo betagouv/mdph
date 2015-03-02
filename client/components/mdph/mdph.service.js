@@ -2,14 +2,10 @@
 
 angular.module('impactApp')
   .factory('Mdph', function ($resource) {
-    return $resource('/api/mdphs/:id/:controller', {
-      id: '@id'
+    return $resource('/api/mdphs/:zipcode/:controller', {
+      zipcode: '@zipcode'
     },
     {
-      queryAll: {
-        method: 'GET',
-        isArray: true
-      },
       queryUsers: {
         method: 'GET',
         isArray: true,

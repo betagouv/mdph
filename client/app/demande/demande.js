@@ -14,14 +14,16 @@ angular.module('impactApp')
         resolve: {
           request: function($stateParams, $sessionStorage, RequestResource, mdph) {
             if ($stateParams.shortId === 'nouvelle_demande') {
-              if (typeof $sessionStorage.request === 'undefined') {
-                $sessionStorage.request = {
+              var request = $sessionStorage.request;
+              if (typeof request === 'undefined') {
+                request = {
                   formAnswers: {},
-                  mdph: mdph._id,
-                  documents: [ {id: 'certificatMedical'}, {id: 'carteIdentite'} ]
+                  documents: [ {type: 'certificatMedical'}, {type: 'carteIdentite'} ]
                 };
               }
-              return new RequestResource($sessionStorage.request);
+
+              request.mdph = mdph.zipcode;
+              return new RequestResource(request);
             }
 
             return RequestResource.get({shortId: $stateParams.shortId}, function(request) {
