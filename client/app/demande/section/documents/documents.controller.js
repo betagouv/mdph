@@ -2,9 +2,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, request, documentTypes) {
+  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, saveSection, request, documentTypes) {
     $scope.section = section;
     $scope.request = request;
+    $scope.saveSection = saveSection;
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
 
     $scope.onFileSelect = function(file, document) {

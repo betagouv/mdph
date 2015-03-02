@@ -206,7 +206,7 @@ exports.saveDocument = function (req, res, next) {
 
 exports.showFileData = function(req, res) {
   gfs.findOne({ _id: req.params.documentId}, function (err, file) {
-    res.pipe(file);
+    res.json(file);
   });
 };
 

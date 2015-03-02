@@ -18,6 +18,7 @@ angular.module('impactApp')
 
     var resolveSaveSection = function(sectionModel, updateRequest) {
       return function() {
+        debugger;
         sectionModel.__completion = true;
         updateRequest();
       };
@@ -125,7 +126,9 @@ angular.module('impactApp')
         templateUrl: 'app/demande/section/documents/documents.html',
         controller: 'DocumentsCtrl',
         resolve: {
-          section: findSection('documents')
+          section: findSection('documents'),
+          sectionModel: resolveSectionModel,
+          saveSection: resolveSaveSection
         }
       });
   });
