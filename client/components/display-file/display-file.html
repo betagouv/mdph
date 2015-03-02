@@ -2,6 +2,6 @@
   <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
 </span>
 
-<a ng-if="!waiting">
-  {{file | json}}
+<a ng-if="!waiting" target="_self" href="api/requests/{{request.shortId}}/document/{{file._id}}/download?access_token={{token}}" download="{{file.filename}}">
+  {{file.filename}}
 </a>

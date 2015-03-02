@@ -64,7 +64,8 @@ function isAuthorized() {
           }).exec(function(err, request) {
             if (err) { return next(err); }
             if (!request) { return res.send(404); }
-            if (user.id !== '' + request.user) { return res.send(401); }
+            if (String(user._id) !== String(request.user)) { return res.send(401); }
+
             req.user = user;
             next();
           });

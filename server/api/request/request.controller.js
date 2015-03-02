@@ -13,6 +13,7 @@ var Flattener = require('../../components/flatten');
 var wkhtmltopdf = require('wkhtmltopdf');
 var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
+var fs = require('fs');
 
 var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
 
@@ -174,12 +175,16 @@ exports.saveDocument = function (req, res, next) {
 
       var file = req.files.file;
 
+      var is = fs.createReadStream(file.path);
+
       var ws = gfs.createWriteStream({
         mode: 'w',
         content_type: file.type,
         filename: file.name,
         metadata: req.body
       });
+
+      is.pipe(ws);
 
       ws.on('close', function (file) {
         var type = file.metadata.type;
@@ -196,23 +201,31 @@ exports.saveDocument = function (req, res, next) {
           res.send(file);
         });
       });
-
-      req.pipe(ws);
     });
 };
 
 exports.showFileData = function(req, res) {
   gfs.findOne({ _id: req.params.documentId}, function (err, file) {
-    res.send(200, file);
+    res.pipe(file);
   });
 };
 
 exports.downloadFile = function(req, res) {
-   var readStream = gfs.createReadStream({
-      _id: req.params.documentId
-   });
+  var readstream = gfs.createReadStream({
+    _id: req.params.documentId
+  });
 
-   readStream.pipe(res);
+  req.on('error', function(err) {
+    console.log(err);
+    res.send(500, err);
+  });
+
+  readstream.on('error', function (err) {
+    console.log(err);
+    res.send(500, err);
+  });
+
+  readstream.pipe(res);
 };
 
 exports.getCerfa = function(req, res) {

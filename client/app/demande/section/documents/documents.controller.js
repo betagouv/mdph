@@ -7,17 +7,17 @@ angular.module('impactApp')
     $scope.request = request;
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
 
-    $scope.onFileSelect = function(file, type) {
+    $scope.onFileSelect = function(file, document) {
       $upload.upload({
         url: 'api/requests/' + $scope.request.shortId + '/document',
         withCredentials: true,
         data: {
-          'type': type.id,
+          'type': document.type,
           'state': 'telecharge'
         },
         file: file
       }).success(function(data) {
-        type.files.push(data);
+        document.files.push(data);
       });
     };
 

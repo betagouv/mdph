@@ -20,5 +20,6 @@ router.post('/:shortId/html_answers.pdf', auth.isAuthorized(), controller.postPd
 
 router.post('/:shortId/document', controller.saveDocument);
 router.get('/:shortId/document/:documentId', auth.isAuthorized(), controller.showFileData);
+router.get('/:shortId/document/:documentId/download', auth.isAuthorized(), controller.downloadFile);
 
 module.exports = router;
