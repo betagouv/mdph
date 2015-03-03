@@ -132,13 +132,12 @@ exports.update = function(req, res, next) {
       Mailer.sendMail(req.body.html, req.user.email);
     }
 
-    var updated = _.merge(request, _.omit(req.body, 'html'));
-
-    updated
+    request
+      .set(_.omit(req.body, 'html'))
       .set('updatedAt', Date.now())
-      .save(function (err) {
+      .save(function (err, result) {
         if (err) { return handleError(res, err); }
-        return res.json(request);
+        return res.json(result);
       });
   });
 };
