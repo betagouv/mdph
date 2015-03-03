@@ -13,15 +13,11 @@ angular.module('impactApp')
       },
       resolve: {
         question: function(QuestionService, request) {
-          return QuestionService.get('contexte', 'urgences', request.formAnswers);
+          return QuestionService.get('situationsParticulieres', 'urgences', request.formAnswers);
         },
-        nextStep: function($state, sectionModel) {
+        nextStep: function(saveSection) {
           return function() {
-            if (sectionModel.condition) {
-              $state.go('^.type_scolaire');
-            } else {
-              $state.go('^.raison_non_scolaire');
-            }
+            saveSection();
           };
         }
       }

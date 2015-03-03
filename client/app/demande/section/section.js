@@ -114,6 +114,7 @@ angular.module('impactApp')
         url: '/situations_particulieres',
         templateUrl: 'app/demande/section/section.html',
         controller: 'SectionCtrl',
+        abstract: true,
         resolve: {
           section: findSection('situations_particulieres'),
           sectionModel: resolveSectionModel,

@@ -74,7 +74,7 @@ angular.module('impactApp').constant('SectionConstants', [
   },
   {
     id: 'situations_particulieres',
-    sref: '.situations_particulieres',
+    sref: '.situations_particulieres.detail',
     label: 'Situations particulières',
     desc: 'Si vous vous trouvez dans une situation nécessitant une attention particulière',
     section: 'complementaire'
