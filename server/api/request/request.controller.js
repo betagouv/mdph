@@ -60,7 +60,6 @@ exports.show = function(req, res, next) {
   Request.findOne({
     shortId: req.params.shortId
   })
-  .populate('user')
   .exec(function(err, request) {
     if (err) return res.send(500, err);
     if(!request) { return res.send(404); }
