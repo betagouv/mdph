@@ -18,7 +18,6 @@ angular.module('impactApp')
 
     var resolveSaveSection = function(sectionModel, updateRequest) {
       return function() {
-        debugger;
         sectionModel.__completion = true;
         updateRequest();
       };
