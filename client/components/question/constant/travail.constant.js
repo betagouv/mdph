@@ -99,13 +99,6 @@ angular.module('impactApp').constant('travail', [
     ]
   },
   {
-    model: 'heures',
-    titleDefault: 'Quelle est votre durée de travail par semaine ?',
-    titleRep: 'Quelle est sa durée de travail par semaine ?',
-    type: 'text',
-    placeholder: 'Durée de travail (en heures/semaine)'
-  },
-  {
     model: 'adapte',
     neededForAdmin: true,
     titleDefault: 'Votre emploi est-il adapté à votre handicap ?',
@@ -165,62 +158,6 @@ angular.module('impactApp').constant('travail', [
         detailModel: 'arretDeTravailDetail',
         detailLabel: 'Depuis quand ?',
         type: 'date'
-      }
-    ]
-  },
-  {
-    titleRep: 'Touche-t-<%= pronoun %> des indemnités journalières ?',
-    titleDefault: 'Touchez vous des indemnités journalières ?',
-    model: 'indemniteJournaliere',
-    type: 'radio',
-    answers: [
-      {
-        label: 'Non',
-        value: false
-      },
-      {
-        label: 'Oui',
-        value: true,
-        detailUrl: 'components/detail/precisez_date.html',
-        detailModel: 'indemniteJournaliereDetail',
-        detailLabel: 'Depuis quand ?',
-        type: 'date'
-      }
-    ]
-  },
-  {
-    titleRep: 'Est-<%= pronoun %> en arrêt suite à un accident du travail ou une maladie professionnelle ?',
-    titleDefault: 'Êtes-vous en arrêt suite à un accident du travail ou une maladie professionnelle ?',
-    model: 'accidentTravail',
-    type: 'radio',
-    'answers': [
-      {
-        'label': 'Non',
-        'value': false
-      },
-      {
-        'label': 'Oui',
-        'value': true,
-        detailUrl: 'components/detail/precisez_date.html',
-        detailModel: 'accidentTravailDetail',
-        detailLabel: 'Depuis quand ?',
-        type: 'date'
-      }
-    ]
-  },
-  {
-    titleRep: 'Est-<%= pronoun %> en arrêt pour congé maternité ?',
-    titleDefault: 'Êtes-vous en arrêt pour congé maternité ?',
-    model: 'congeMaternite',
-    type: 'radio',
-    'answers': [
-      {
-        'label': 'Non',
-        'value': false
-      },
-      {
-        'label': 'Oui',
-        'value': true
       }
     ]
   },
