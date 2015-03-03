@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, SectionConstants, Auth, isAdult, request) {
+  .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, SectionConstants, RecapitulatifService, Auth, isAdult, request) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
+    $scope.telecharger = RecapitulatifService.telechargerPdf;
 
     $scope.sectionsObligatoires = _.filter(SectionConstants, {section: 'obligatoire'});
     $scope.sectionsComplementaires = _.filter(SectionConstants, {section: 'complementaire'});
@@ -11,10 +12,10 @@ angular.module('impactApp')
     $scope.sectionsDocuments = _.filter(SectionConstants, {section: 'documents'});
 
     $scope.getLastSref = function(section) {
-      if (!$scope.formAnswers[section.id]) {
+      if (!request.formAnswers[section.id]) {
         return section.sref;
       } else {
-        return $scope.formAnswers[section.id].__lastSref || section.sref;
+        return request.formAnswers[section.id].__lastSref || section.sref;
       }
     };
 
@@ -23,7 +24,7 @@ angular.module('impactApp')
         case 'autorite':
           var estMineur;
           try {
-            estMineur = moment().diff($scope.formAnswers.identite.birthDate, 'years') < 18;
+            estMineur = moment().diff(request.formAnswers.identite.birthDate, 'years') < 18;
           } catch (e) {
             estMineur = false;
           }
@@ -36,13 +37,13 @@ angular.module('impactApp')
     };
 
     $scope.isAdult = function() {
-      return isAdult($scope.formAnswers.contexte);
+      return isAdult(request.formAnswers.contexte);
     };
 
     $scope.getCompletion = function(section) {
-      if (typeof $scope.formAnswers[section] === 'undefined') {
+      if (typeof request.formAnswers[section] === 'undefined') {
         return 0;
-      } else if ($scope.formAnswers[section].__completion === true) {
+      } else if (request.formAnswers[section].__completion === true) {
         return 100;
       } else {
         return 50;

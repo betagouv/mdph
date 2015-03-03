@@ -12,10 +12,16 @@
 
     <div class="demande-header">
       <h1>Demande à la MDPH du {{mdph.name}}</h1>
-
       <p>Status de la demande: <strong>{{request.status | requestStatus}}</strong></p>
       <p>Date de création: <strong>le {{request.createdAt | moment}}</strong></p>
       <p>Dernière mise à jour: <strong>{{request.updatedAt | momentFromNow}}</strong></p>
+
+      <p ng-if="request.status === 'emise'">
+        <a target="#" ng-click="telecharger(request)">
+          Télécharger votre demande au format PDF <i class="fa fa-download"></i>
+        </a>
+      </p>
+
 
       <div class="text-right">
         <button ng-if="!request.status || request.status === 'en_cours'" class="btn btn-primary" ng-click="sauvegarder()">Sauvegarder</button>

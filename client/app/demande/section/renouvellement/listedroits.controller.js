@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, prestations, question, nextStep) {
+  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, request, prestations, question, nextStep) {
     $scope.isLastQuestion = $state.current.data.isLastQuestion;
     $scope.nextStep = nextStep;
     $scope.question = question;
 
-    if (!$scope.formAnswers.prestations) {
-      $scope.formAnswers.prestations = {};
+    if (!request.formAnswers.prestations) {
+      request.formAnswers.prestations = {};
     }
 
     $scope.prestations = prestations;

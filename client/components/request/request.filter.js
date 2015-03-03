@@ -10,6 +10,8 @@ angular.module('impactApp')
       switch (input) {
         case 'en_cours':
           return 'En cours';
+        case 'emise':
+          return 'Émise';
         default:
           return 'TODO';
       }
