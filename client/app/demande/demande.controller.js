@@ -4,7 +4,6 @@ angular.module('impactApp')
   .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, SectionConstants, Auth, isAdult, request) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
-    $scope.nouvelleDemande = !request._id;
 
     $scope.sectionsObligatoires = _.filter(SectionConstants, {section: 'obligatoire'});
     $scope.sectionsComplementaires = _.filter(SectionConstants, {section: 'complementaire'});
@@ -80,7 +79,6 @@ angular.module('impactApp')
     };
 
     $scope.envoyer = function() {
-      var isComplete = true;
       var incompleteSections = [];
       $scope.sectionsObligatoires.forEach(function(section) {
         if (!$scope.shouldShow(section)) {
@@ -88,21 +86,18 @@ angular.module('impactApp')
         }
 
         if (!request.formAnswers[section.id] || !request.formAnswers[section.id].__completion) {
-          isComplete = false;
           incompleteSections.push(section);
         }
       });
 
       $scope.sectionsDocuments.forEach(function(section) {
         if (!request.formAnswers[section.id] || !request.formAnswers[section.id].__completion) {
-          isComplete = false;
           incompleteSections.push(section);
         }
       });
 
 
-
-      if (!isComplete) {
+      if (incompleteSections.length > 0) {
         var str= 'Votre demande ne peut être envoyé car il n\'est pas complet.\nVeuillez renseigner les sections:\n';
         incompleteSections.forEach(function(section) {
           str += '\t -' + section.label + '\n';

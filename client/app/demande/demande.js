@@ -18,7 +18,8 @@ angular.module('impactApp')
               if (typeof request === 'undefined') {
                 request = {
                   formAnswers: {},
-                  documents: [ {type: 'certificatMedical'}, {type: 'carteIdentite'} ]
+                  documents: [ {type: 'certificatMedical'}, {type: 'carteIdentite'} ],
+                  createdAt: Date.now()
                 };
               }
 
