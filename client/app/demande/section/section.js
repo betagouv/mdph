@@ -4,8 +4,12 @@ angular.module('impactApp')
   .config(function ($stateProvider, SectionConstants) {
 
     var findSection = function(sectionId) {
-      return function() {
-        return _.find(SectionConstants, {id: sectionId});
+      return function($http) {
+        var section = _.find(SectionConstants, {id: sectionId});
+        return $http.get('api/questions/' + sectionId).then(function(result) {
+          section.questions = _.indexBy(result.data, 'model');
+          return section;
+        });
       };
     };
 

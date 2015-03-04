@@ -1,19 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('QuestionService', function QuestionService(FormService, identite, autorite, situationsParticulieres, vieQuotidienne, vieScolaire, travail, aidant, aidePartenaire, renouvellement) {
-
-    var q = {
-      identite: _.indexBy(identite, 'model'),
-      autorite: _.indexBy(autorite, 'model'),
-      situationsParticulieres: _.indexBy(situationsParticulieres, 'model'),
-      vieQuotidienne: _.indexBy(vieQuotidienne, 'model'),
-      scolaire: _.indexBy(vieScolaire, 'model'),
-      travail: _.indexBy(travail, 'model'),
-      aidant: _.indexBy(aidant, 'model'),
-      aidePartenaire: _.indexBy(aidePartenaire, 'model'),
-      renouvellement: _.indexBy(renouvellement, 'model')
-    };
+  .factory('QuestionService', function QuestionService(FormService) {
 
     var loadAshCompile = function(str, formAnswers) {
       var compiled = _.template(str);
@@ -59,7 +47,8 @@ angular.module('impactApp')
 
     return {
       get: function(section, model, formAnswers) {
-        var question = q[section][model];
+        var questions = section.questions;
+        var question = questions[model];
         if (!question) {
           return;
         }

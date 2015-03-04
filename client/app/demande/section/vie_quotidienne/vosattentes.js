@@ -12,8 +12,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'CheckboxQuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('vieQuotidienne', 'attentesTypeAide', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'attentesTypeAide', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -26,8 +26,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/structure.html',
       controller: 'StructureQuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('vieQuotidienne', 'structures', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'structures', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -40,8 +40,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('vieQuotidienne', 'attentesCarte', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'attentesCarte', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -57,8 +57,8 @@ angular.module('impactApp')
         isLastQuestion: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('vieQuotidienne', 'autresRenseignements', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'autresRenseignements', request.formAnswers);
         },
         nextStep: function(saveSection) {
           return function() {

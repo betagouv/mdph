@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('vieScolaire', [
+exports.all = [
   {
     model: 'condition',
     titleDefault: 'Etes-vous actuellement scolarisé ?',
@@ -51,6 +51,11 @@ angular.module('impactApp').constant('vieScolaire', [
         detailUrl: 'components/detail/precisez.html'
       }
     ]
+  },
+  {
+    model: 'structure',
+    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?',
+    titleRep: 'A-t-<%= pronoun %> déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?'
   },
   {
     model: 'vieScolaireAutresRenseignements',
@@ -104,4 +109,4 @@ angular.module('impactApp').constant('vieScolaire', [
     titleDefault: 'Dans quel(s) établissement(s) ?',
     type:'text'
   }
-]);
+];

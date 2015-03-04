@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('aidant', [
+exports.all = [
   {
     model: 'condition',
     titleDefault: 'Votre aidant familial souhaite-t-il s\'exprimer ?',
@@ -198,4 +198,4 @@ angular.module('impactApp').constant('aidant', [
     type: 'text',
     titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d\'aidant'
   }
-]);
+];

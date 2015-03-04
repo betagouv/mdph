@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('vieQuotidienne', [
+exports.all = [
   {
     model: 'famille',
     neededForAdmin: true,
@@ -300,4 +300,4 @@ angular.module('impactApp').constant('vieQuotidienne', [
     titleDefault: 'Autres renseignements que vous souhaiteriez nous communiquer',
     type: 'text'
   }
-]);
+];

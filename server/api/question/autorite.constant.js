@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('identite', [
+exports.all = [
   {
     model: 'sexe',
     titleDefault: 'Sexe',
@@ -63,4 +63,4 @@ angular.module('impactApp').constant('identite', [
     titleDefault: 'Pays',
     type: 'text'
   }
-]);
+];

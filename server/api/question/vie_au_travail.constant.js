@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('travail', [
+exports.all = [
   {
     model: 'conditionTravail',
     neededForAdmin: true,
@@ -342,4 +342,4 @@ angular.module('impactApp').constant('travail', [
       }
     ]
   }
-]);
+];

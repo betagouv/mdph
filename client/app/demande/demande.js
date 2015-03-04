@@ -16,7 +16,7 @@ angular.module('impactApp')
             if ($stateParams.shortId === 'nouvelle_demande') {
               var request = $sessionStorage.request;
               if (typeof request === 'undefined') {
-                request = {
+                request = $sessionStorage.request = {
                   formAnswers: {},
                   documents: [ {type: 'certificatMedical'}, {type: 'carteIdentite'} ],
                   createdAt: Date.now()

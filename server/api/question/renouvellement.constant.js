@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('renouvellement', [
+exports.all = [
   {
     titleRep: 'Comment la situation a-t-elle évolué depuis sa dernière demande ?',
     titleDefault: 'Comment votre situation a-t-elle évolué depuis votre dernière demande ?',
@@ -33,4 +33,4 @@ angular.module('impactApp').constant('renouvellement', [
     titleRep: 'De quelles prestations bénéficie-t-<%= pronoun %> actuellement ?',
     type: 'checkbox'
   }
-]);
+];

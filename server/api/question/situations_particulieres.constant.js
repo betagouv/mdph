@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('situationsParticulieres', [
+exports.all = [
   {
     model: 'urgences',
     titleDefault: 'Vous trouvez-vous dans une des situations suivantes ?',
@@ -75,4 +75,4 @@ angular.module('impactApp').constant('situationsParticulieres', [
       }
     ]
   }
-]);
+];

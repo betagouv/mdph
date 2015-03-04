@@ -18,8 +18,8 @@ angular.module('impactApp')
         hideBack: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('scolaire', 'condition', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'condition', request.formAnswers);
         },
         nextStep: function($state, sectionModel) {
           return function() {
@@ -37,8 +37,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('scolaire', 'vieScolaireType', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'vieScolaireType', request.formAnswers);
         },
         nextStep: function($state, sectionModel, question) {
           return function() {
@@ -56,8 +56,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/etablissement_scolaire.html',
       controller: 'EtablissementScolaireCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('scolaire', 'etablissement', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'etablissement', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -71,8 +71,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('scolaire', 'raisonNonScolaire', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'raisonNonScolaire', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {

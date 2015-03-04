@@ -17,8 +17,8 @@ angular.module('impactApp')
           hideBack: true
         },
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('vieQuotidienne', 'famille', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'famille', request.formAnswers);
           },
           nextStep: function($state, sectionModel, question) {
             return function() {
@@ -36,8 +36,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('vieQuotidienne', 'logement', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'logement', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {

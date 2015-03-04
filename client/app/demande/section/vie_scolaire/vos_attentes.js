@@ -15,8 +15,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/structure.html',
       controller: 'StructureQuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('vieQuotidienne', 'structures', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'structure', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -33,8 +33,8 @@ angular.module('impactApp')
         isLastQuestion: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('scolaire', 'vieScolaireAutresRenseignements', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'vieScolaireAutresRenseignements', request.formAnswers);
         },
         nextStep: function(saveSection) {
           return function() {

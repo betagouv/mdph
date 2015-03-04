@@ -2,42 +2,30 @@
 
 /* jshint multistr: true */
 
-angular.module('impactApp').constant('aidePartenaire', [
+exports.all = [
   {
-    model: 'typeAidant',
-    titleDefault: 'Vous êtes aidé par',
+    model: 'sexe',
+    titleDefault: 'Sexe',
     type: 'radio',
     answers: [
       {
-        label: 'Un proche',
-        value: 'proche'
+        label: 'Féminin',
+        value: 'feminin'
       },
       {
-        label: 'Une association',
-        value: 'association'
-      },
-      {
-        label: 'Un tuteur',
-        value: 'tuteur'
-      },
-      {
-        label: 'Un curateur',
-        value: 'curateur'
-      },
-      {
-        label: 'Autre',
-        value: 'autre'
+        label: 'Masculin',
+        value: 'masculin'
       }
     ]
   },
   {
-    model: 'nomOrganisme',
-    titleDefault: 'Nom de l\'organisme',
+    model: 'nom',
+    titleDefault: 'Nom',
     type: 'text'
   },
   {
-    model: 'nomPersonne',
-    titleDefault: 'Nom de la personne',
+    model: 'prenom',
+    titleDefault: 'Prénom',
     type: 'text'
   },
   {
@@ -75,4 +63,4 @@ angular.module('impactApp').constant('aidePartenaire', [
     titleDefault: 'Pays',
     type: 'text'
   }
-]);
+];
