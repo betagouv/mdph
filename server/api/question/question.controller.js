@@ -2,6 +2,9 @@
 
 var moment = require('moment');
 var _ = require('lodash');
+
+var Sections = require('./sections.constant');
+
 var VieQuotidienne = require('./vie_quotidienne.constant');
 var VieScolaire = require('./vie_scolaire.constant');
 var VieAuTravail = require('./vie_au_travail.constant');
@@ -12,7 +15,7 @@ var Autorite = require('./autorite.constant');
 var ContactPartenaire = require('./contact_partenaire.constant');
 var Aidant = require('./aidant.constant');
 
-var sections = {
+var questionsBySections = {
   'vie_quotidienne': VieQuotidienne.all,
   'vie_scolaire': VieScolaire.all,
   'vie_au_travail': VieAuTravail.all,
@@ -24,7 +27,13 @@ var sections = {
   aidant: Aidant.all
 };
 
+exports.questionsBySections = questionsBySections;
+
 exports.show = function(req, res) {
-  var questions = sections[req.params.sectionId];
+  var questions = questionsBySections[req.params.sectionId];
   return res.json(questions);
 };
+
+exports.index = function(req, res) {
+  return res.json(Sections.all);
+}

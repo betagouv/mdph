@@ -12,6 +12,11 @@ angular.module('impactApp')
           isLastQuestion: false
         },
         resolve: {
+          sections: function($http) {
+            return $http.get('api/questions').then(function(result) {
+              return result.data;
+            });
+          },
           request: function($stateParams, $sessionStorage, RequestResource, mdph) {
             if ($stateParams.shortId === 'nouvelle_demande') {
               var request = $sessionStorage.request;

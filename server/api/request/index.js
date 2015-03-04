@@ -16,7 +16,7 @@ router.put('/:shortId', auth.isAuthorized(), controller.update);
 router.delete('/:shortId', auth.isAuthorized(), controller.destroy);
 
 router.get('/:shortId/cerfa.pdf', auth.isAuthorized(), controller.getCerfa);
-router.post('/:shortId/html_answers.pdf', auth.isAuthorized(), controller.postPdf);
+router.get('/:shortId/questionnaire.pdf', auth.isAuthorized(), controller.getPdf);
 
 router.post('/:shortId/document', controller.saveDocument);
 router.get('/:shortId/document/:documentId', auth.isAuthorized(), controller.showFileData);

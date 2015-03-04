@@ -10,6 +10,7 @@ var User = require('../user/user.model');
 var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
 var Flattener = require('../../components/flatten');
+var Recapitulatif = require('../../components/recapitulatif');
 var wkhtmltopdf = require('wkhtmltopdf');
 var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
@@ -240,8 +241,11 @@ exports.getCerfa = function(req, res) {
   });
 };
 
-exports.postPdf = function(req, res) {
-  wkhtmltopdf(req.body.htmlAnswers, {encoding: 'UTF-8'}).pipe(res);
+exports.getPdf = function(req, res) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    var html = Recapitulatif.answersToHtml(request.formAnswers);
+    wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
+  });
 };
 
 function handleError(res, err) {

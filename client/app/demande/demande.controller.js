@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, SectionConstants, RecapitulatifService, Auth, isAdult, request) {
+  .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, $cookieStore, sections, Auth, isAdult, request) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
-    $scope.telecharger = RecapitulatifService.telechargerPdf;
+    $scope.token = $cookieStore.get('token');
 
-    $scope.sectionsObligatoires = _.filter(SectionConstants, {section: 'obligatoire'});
-    $scope.sectionsComplementaires = _.filter(SectionConstants, {section: 'complementaire'});
-    $scope.sectionsBonus = _.filter(SectionConstants, {section: 'autour_de_votre_demande'});
-    $scope.sectionsDocuments = _.filter(SectionConstants, {section: 'documents'});
+    $scope.sectionsObligatoires = _.filter(sections, {section: 'obligatoire'});
+    $scope.sectionsComplementaires = _.filter(sections, {section: 'complementaire'});
+    $scope.sectionsBonus = _.filter(sections, {section: 'autour_de_votre_demande'});
+    $scope.sectionsDocuments = _.filter(sections, {section: 'documents'});
 
     $scope.getLastSref = function(section) {
       if (!request.formAnswers[section.id]) {

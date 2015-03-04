@@ -17,11 +17,10 @@
       <p>Dernière mise à jour: <strong>{{request.updatedAt | momentFromNow}}</strong></p>
 
       <p ng-if="request.status !== 'en_cours'">
-        <a target="#" ng-click="telecharger(request)">
+        <a target="_blank" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
           Télécharger votre demande au format PDF <i class="fa fa-download"></i>
         </a>
       </p>
-
 
       <div class="text-right">
         <button ng-if="!request.status || request.status === 'en_cours'" class="btn btn-primary" ng-click="sauvegarder()">Sauvegarder</button>
