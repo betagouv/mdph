@@ -5,8 +5,15 @@ angular.module('impactApp')
     var index = 'departement.demande.identites';
     $stateProvider
       .state(index + '.nouvelle_identite', {
-        url: '/nouvelle_identite',
-        templateUrl: 'app/demande/section/identites/nouvelle_identite.html',
-        controller: function() {}
+        url: '/nouvelle_identite/:type',
+        template: '<identity-form title="\'Nouvelle identité\'" section="section"/>',
+        resolve: {
+          identite: function(request, $stateParams){
+            return request.formAnswers.identites[$stateParams.type];
+          }
+        },
+        controller: function($scope, identite){
+          $scope.identite = identite;
+        }
       });
   });

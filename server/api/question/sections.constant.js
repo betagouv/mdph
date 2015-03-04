@@ -17,23 +17,23 @@ exports.all = [
   //   desc: 'Identité de l\'autorité parentale ou délégation d\'autorité parentale',
   //   section: 'obligatoire'
   // },
-  // {
-  //   id: 'aidant',
-  //   sref: '.aidant.situation.lien',
-  //   label: 'Vie de votre aidant familial',
-  //   desc: 'Si vous souhaitez exprimer des besoins en tant qu\'aidant familial',
-  //   section: 'autour_de_votre_demande',
-  //   subSections: [
-  //     {
-  //       include: 'departement.demande.aidant.situation.**',
-  //       label: 'Votre situation'
-  //     },
-  //     {
-  //       include: 'departement.demande.aidant.vos_attentes.**',
-  //       label: 'Vos attentes'
-  //     }
-  //   ]
-  // },
+  {
+    id: 'aidant',
+    sref: '.aidant.situation.lien',
+    label: 'Vie de votre aidant familial',
+    desc: 'Si vous souhaitez exprimer des besoins en tant qu\'aidant familial',
+    section: 'renouvellement',
+    subSections: [
+      {
+        include: 'departement.demande.aidant.situation.**',
+        label: 'Votre situation'
+      },
+      {
+        include: 'departement.demande.aidant.vos_attentes.**',
+        label: 'Vos attentes'
+      }
+    ]
+  },
   // {
   //   id: 'contact_partenaire',
   //   sref: '.contact_partenaire',

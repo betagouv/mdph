@@ -89,7 +89,7 @@
     }
   }
 
-  .section-body {
+  .identity-body {
     padding: 20px;
     background-color: white;
     border-radius: 5px;
@@ -97,7 +97,7 @@
   }
 
   form {
-    @extend .section-body;
+    @extend .identity-body;
   }
 
   >h1 {
