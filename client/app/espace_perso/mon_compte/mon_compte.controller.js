@@ -33,13 +33,12 @@ angular.module('impactApp')
     };
 
     $scope.submit = function(form){
-      debugger;
       if(form.$valid){
         $scope.user.$changeInfo(function(){
           $scope.infoMessage = 'Vos informations ont bien été modifiées.';
         });
       } else {
-        $scope.infoMessage = 'Aucune information à changer.';
+        form.showError = true;
       }
     };
   });
