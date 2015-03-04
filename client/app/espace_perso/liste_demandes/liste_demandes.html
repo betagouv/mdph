@@ -19,7 +19,7 @@
           </div>
           <div class="col-sm-11">
             <h2 class="list-group-item-heading">Référence demande {{request.shortId}}</h2>
-            <p class="list-group-item-text">Status: {{request.status}}<br/>
+            <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
             Dernière modification {{updatedAt(request)}}</p>
           </div>
         </div>

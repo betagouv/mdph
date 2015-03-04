@@ -510,7 +510,7 @@ var createMartinOldRequest = function(cb) {
     ],
     mdph: "14",
     user: martin,
-    status: 'complet',
+    status: 'emise',
     evaluator: jeanne,
     updatedAt: new Date(new Date().setDate(new Date().getDate()-1)),
     createdAt: new Date(new Date().setDate(new Date().getDate()-2))
@@ -564,7 +564,7 @@ var createJeromeOldRequest = function(cb) {
         "type": "carteIdentite"
       }
     ],
-    status: 'complet',
+    status: 'emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-10)),
     createdAt: new Date(new Date().setDate(new Date().getDate()-15))
   }, function(err, request) {
