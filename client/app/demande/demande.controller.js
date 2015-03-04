@@ -8,7 +8,7 @@ angular.module('impactApp')
 
     $scope.sectionsObligatoires = _.filter(sections, {section: 'obligatoire'});
     $scope.sectionsComplementaires = _.filter(sections, {section: 'complementaire'});
-    $scope.sectionsBonus = _.filter(sections, {section: 'autour_de_votre_demande'});
+    $scope.sectionsRenouvellements = _.filter(sections, {section: 'renouvellement'});
     $scope.sectionsDocuments = _.filter(sections, {section: 'documents'});
 
     $scope.getLastSref = function(section) {

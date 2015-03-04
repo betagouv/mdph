@@ -4,19 +4,43 @@
 
 exports.all = [
   {
-    id: 'identite',
-    sref: '.identite',
-    label: 'Identité',
-    desc: 'Identité de l\'enfant ou de l\'adulte concerné par la demande',
+    id: 'identites',
+    sref: '.identites',
+    label: 'Identités',
+    desc: 'Individus et organismes concernés par la demande',
     section: 'obligatoire'
   },
-  {
-    id: 'autorite',
-    sref: '.autorite',
-    label: 'Autorité parentale',
-    desc: 'Identité de l\'autorité parentale ou délégation d\'autorité parentale',
-    section: 'obligatoire'
-  },
+  // {
+  //   id: 'autorite',
+  //   sref: '.autorite',
+  //   label: 'Autorité parentale',
+  //   desc: 'Identité de l\'autorité parentale ou délégation d\'autorité parentale',
+  //   section: 'obligatoire'
+  // },
+  // {
+  //   id: 'aidant',
+  //   sref: '.aidant.situation.lien',
+  //   label: 'Vie de votre aidant familial',
+  //   desc: 'Si vous souhaitez exprimer des besoins en tant qu\'aidant familial',
+  //   section: 'autour_de_votre_demande',
+  //   subSections: [
+  //     {
+  //       include: 'departement.demande.aidant.situation.**',
+  //       label: 'Votre situation'
+  //     },
+  //     {
+  //       include: 'departement.demande.aidant.vos_attentes.**',
+  //       label: 'Vos attentes'
+  //     }
+  //   ]
+  // },
+  // {
+  //   id: 'contact_partenaire',
+  //   sref: '.contact_partenaire',
+  //   label: 'Vous êtes aidés dans vos démarches',
+  //   desc: 'Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation',
+  //   section: 'autour_de_votre_demande'
+  // },
   {
     id: 'vie_quotidienne',
     sref: '.vie_quotidienne.situation.vie_famille',
@@ -84,31 +108,7 @@ exports.all = [
     sref: '.renouvellement.evolution',
     label: 'Renouvellement',
     desc: 'Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement',
-    section: 'autour_de_votre_demande'
-  },
-  {
-    id: 'aidant',
-    sref: '.aidant.situation.lien',
-    label: 'Vie de votre aidant familial',
-    desc: 'Si vous souhaitez exprimer des besoins en tant qu\'aidant familial',
-    section: 'autour_de_votre_demande',
-    subSections: [
-      {
-        include: 'departement.demande.aidant.situation.**',
-        label: 'Votre situation'
-      },
-      {
-        include: 'departement.demande.aidant.vos_attentes.**',
-        label: 'Vos attentes'
-      }
-    ]
-  },
-  {
-    id: 'contact_partenaire',
-    sref: '.contact_partenaire',
-    label: 'Vous êtes aidés dans vos démarches',
-    desc: 'Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation',
-    section: 'autour_de_votre_demande'
+    section: 'renouvellement'
   },
   {
     id: 'documents',

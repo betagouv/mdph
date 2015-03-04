@@ -21,7 +21,7 @@ var questionsBySections = {
   'vie_au_travail': VieAuTravail.all,
   'situations_particulieres': SituationsParticulieres.all,
   renouvellement: Renouvellement.all,
-  identite: Identite.all,
+  identites: Identite.all,
   autorite: Autorite.all,
   'contact_partenaire': ContactPartenaire.all,
   aidant: Aidant.all

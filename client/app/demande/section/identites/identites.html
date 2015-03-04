@@ -1,0 +1,31 @@
+<div class="nav-questionnaire">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a ui-sref="departement">Accueil du {{mdph.name}}</a></li>
+      <li><a ui-sref="departement.demande">Demande</a></li>
+      <li class="active">{{section.label}}</li>
+    </ol>
+  </div>
+</div>
+
+<div class="questionnaire">
+  <div class="section-body">
+    <ui-view>
+      <h1>{{title}}</h1>
+
+      <h2>Vous</h2>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite">
+              <i class="fa fa-3x fa-user"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <h2>Autres</h2>
+    </ui-view>
+  </div>
+</div>

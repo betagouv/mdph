@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider, SectionConstants) {
+  .config(function ($stateProvider) {
 
     var findSection = function(sectionId) {
-      return function($http) {
-        var section = _.find(SectionConstants, {id: sectionId});
+      return function($http, sections) {
+        var section = _.find(sections, {id: sectionId});
         return $http.get('api/questions/' + sectionId).then(function(result) {
           section.questions = _.indexBy(result.data, 'model');
           return section;
@@ -29,12 +29,12 @@ angular.module('impactApp')
 
     $stateProvider
       // Sections
-      .state('departement.demande.identite', {
-        url: '/identite',
-        templateUrl: 'app/demande/section/identite/identite.html',
+      .state('departement.demande.identites', {
+        url: '/identites',
+        templateUrl: 'app/demande/section/identites/identites.html',
         controller: 'FormSectionCtrl',
         resolve: {
-          section: findSection('identite'),
+          section: findSection('identites'),
           sectionModel: resolveSectionModel,
           saveSection: resolveSaveSection
         }

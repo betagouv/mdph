@@ -89,11 +89,15 @@
     }
   }
 
-  form {
+  .section-body {
     padding: 20px;
     background-color: white;
     border-radius: 5px;
     border: 1px solid #DDD;
+  }
+
+  form {
+    @extend .section-body;
   }
 
   >h1 {
