@@ -16,7 +16,7 @@
       <p>Date de création: <strong>le {{request.createdAt | moment}}</strong></p>
       <p>Dernière mise à jour: <strong>{{request.updatedAt | momentFromNow}}</strong></p>
 
-      <p ng-if="request.status === 'emise'">
+      <p ng-if="request.status !== 'en_cours'">
         <a target="#" ng-click="telecharger(request)">
           Télécharger votre demande au format PDF <i class="fa fa-download"></i>
         </a>
