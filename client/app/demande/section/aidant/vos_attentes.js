@@ -15,8 +15,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'CheckboxQuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('aidant', 'typeAttente', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'typeAttente', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -30,8 +30,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/structure.html',
       controller: 'StructureQuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('aidant', 'structure', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'structure', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -48,8 +48,8 @@ angular.module('impactApp')
         isLastQuestion: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('aidant', 'autresRenseignements', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'autresRenseignements', request.formAnswers);
         },
         nextStep: function(saveSection) {
           return function() {

@@ -17,8 +17,8 @@ angular.module('impactApp')
         hideBack: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'description', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'description', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -32,8 +32,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'CheckboxQuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'besoinSoutien', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'besoinSoutien', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -47,8 +47,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/structure.html',
       controller: 'StructureQuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'structure', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'structure', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -65,8 +65,8 @@ angular.module('impactApp')
         isLastQuestion: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'autresRenseignements', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'autresRenseignements', request.formAnswers);
         },
         nextStep: function(saveSection) {
           return function() {

@@ -12,8 +12,8 @@ angular.module('impactApp')
       },
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('renouvellement', 'evolution', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'evolution', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -30,8 +30,8 @@ angular.module('impactApp')
         isLastQuestion: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('renouvellement', 'finDroits', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'finDroits', request.formAnswers);
         },
         prestations: function($http) {
           return $http.get('/api/prestations').then(function(prestations) {

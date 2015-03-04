@@ -18,8 +18,8 @@ angular.module('impactApp')
         hideBack: true
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'conditionTravail', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'conditionTravail', request.formAnswers);
         },
         nextStep: function($state, sectionModel) {
           return function() {
@@ -37,8 +37,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'milieuTravail', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'milieuTravail', request.formAnswers);
         },
         nextStep: function($state, sectionModel) {
           return function() {
@@ -56,8 +56,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'typeTravail', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'typeTravail', request.formAnswers);
         },
         nextStep: function($state, sectionModel) {
           return function() {
@@ -87,8 +87,8 @@ angular.module('impactApp')
         $scope.model = $scope.sectionModel.employeur;
       },
       resolve: {
-        question: function(QuestionService, request) {
-          return QuestionService.get('travail', 'employeur', request.formAnswers);
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'employeur', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {

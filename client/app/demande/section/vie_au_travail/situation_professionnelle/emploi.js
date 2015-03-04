@@ -15,8 +15,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textinput.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'nomPoste', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'nomPoste', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -30,8 +30,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'temps', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'temps', request.formAnswers);
           },
           nextStep: function($state, sectionModel, question) {
             return function() {
@@ -49,8 +49,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textinput.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'heures', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'heures', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -64,8 +64,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'adapte', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'adapte', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -79,8 +79,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'difficultes', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'difficultes', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -94,8 +94,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'amenagement', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'amenagement', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -109,8 +109,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'arretDeTravail', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'arretDeTravail', request.formAnswers);
           },
           nextStep: function($state, sectionModel, question) {
             return function() {
@@ -128,8 +128,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'indemniteJournaliere', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'indemniteJournaliere', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -143,8 +143,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'accidentTravail', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'accidentTravail', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -158,8 +158,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'congeMaternite', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'congeMaternite', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -173,8 +173,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'profesionnelSocial', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'profesionnelSocial', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -188,8 +188,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'medecinTravail', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'medecinTravail', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {

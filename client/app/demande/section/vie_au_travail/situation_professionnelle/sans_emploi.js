@@ -14,8 +14,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'passe', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'passe', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -29,8 +29,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'CheckboxQuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'situationSansEmploi', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'situationSansEmploi', request.formAnswers);
           },
           nextStep: function($state, sectionModel) {
             return function() {
@@ -48,8 +48,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textinput.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'situationStage', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'situationStage', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
@@ -63,8 +63,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'CheckboxQuestionCtrl',
         resolve: {
-          question: function(QuestionService, request) {
-            return QuestionService.get('travail', 'situationAccompagnement', request.formAnswers);
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'situationAccompagnement', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
