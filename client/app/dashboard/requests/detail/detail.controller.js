@@ -11,8 +11,9 @@ angular.module('impactApp')
            return calculAge(dateNaiss);
      };
   })
-  .controller('RequestDetailCtrl', function ($scope, $http, $window, $state, $modal, $filter, request, sections, GevaService, DroitService, Partenaire, NotificationService, vieQuotidienne) {
+  .controller('RequestDetailCtrl', function ($scope, $http, $window, $state, $modal, $filter, request, user, sections, GevaService, DroitService, Partenaire, NotificationService, vieQuotidienne) {
     $scope.request = request;
+    $scope.user = user;
     $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
 

@@ -67,6 +67,16 @@ angular.module('impactApp')
           },
           sections: function(GevaService, request) {
             return GevaService.getSections(request);
+          },
+          vieQuotidienne: function($http) {
+            return $http.get('api/questions/vie_quotidienne').then(function(result) {
+              return result.data;
+            });
+          },
+          user: function($http, request) {
+            return $http.get('api/users/' + request.user).then(function(result) {
+              return result.data;
+            });
           }
         }
       })

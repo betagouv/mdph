@@ -2,7 +2,7 @@
 <div class="list-header">
   <a ng-click="back()">Retour</a>
   <h2>
-    Demande de {{request.user.name}} <br>
+    Demande de {{user.name}} <br>
     <small>Numéro {{request.shortId}}</small> <br>
     <small>Dernière modification {{request.updatedAt | date: format: timezone}}</small>
   </h2>
@@ -17,7 +17,6 @@
             Récapitulatif demande
           </div>
           <div class="panel-body">
-            <p><strong>Nom :</strong> {{request.user.name}}</p>
             <p><strong>Age :</strong> {{request.formAnswers.identite.birthDate | age}} ans</p>
             <p><strong>Vit :</strong> {{situationFamiliale}}</p>
             <p><strong>Vit dans :</strong> {{situationLogement}}</p>
