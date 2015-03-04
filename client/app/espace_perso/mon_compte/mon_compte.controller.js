@@ -4,6 +4,11 @@ angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, User, Auth, datepickerConfig, currentUser) {
     $scope.errors = {};
     $scope.user = currentUser;
+    $scope.sectionModel = currentUser;
+    $scope.section = {
+      id: 'espace_perso'
+    };
+    $scope.title = 'Informations personnelles';
 
     datepickerConfig.datepickerMode = 'year';
     $scope.open = function($event) {
@@ -27,8 +32,8 @@ angular.module('impactApp')
       }
     };
 
-    $scope.changePersonalInfo = function(form){
-
+    $scope.submit = function(form){
+      debugger;
       if(form.$valid){
         $scope.user.$changeInfo(function(){
           $scope.infoMessage = 'Vos informations ont bien été modifiées.';

@@ -7,4 +7,3 @@ angular.module('impactApp')
       restrict: 'EA',
     };
   });
-

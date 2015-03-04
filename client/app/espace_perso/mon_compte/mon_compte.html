@@ -25,78 +25,31 @@
     </form>
   </div>
 
-
   <div class="row">
-    <div class="col-sm-12">
-      <h1 id="infoPerso">Vos informations personnelles</h1>
-    </div>
-    <div class="col-sm-8">
-      <form aria-labelledby="infoPerso" class="form" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
-
-        <div class="form-group">
-          <label for="name">Nom</label>
-          <input id="name" type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="3" required>
-          <div ng-messages="infoForm.name.$error" ng-if="infoForm.$dirty">
-            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-            <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 3 caractères.</p>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <div class="input-group margin-bottom-sm">
-            <input id="email" type="email" name="email" class="form-control" ng-model="user.email" required>
-            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-          </div>
-          <div ng-messages="infoForm.email.$error" ng-if="infoForm.$dirty">
-            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-            <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="birthDate">Date de naissance</label>
-
-          <p class="input-group">
-            <input id="birthDate" type="text" name="birthDate" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="user.birthDate" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
-            <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button>
-            </span>
-          </p>
-
-          <div ng-messages="infoForm.birthDate.$error" ng-if="infoForm.$dirty">
-            <p class="help-block" ng-message='date'>Le format de date est invalide.</p>
-          </div>
-        </div>
-
-        <p class="help-block"> {{ infoMessage }} </p>
-
-        <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
-      </form>
-    </div>
+    <identity-form/>
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
-      <h1 id="changePassword">Changer votre mot de passe</h1>
-    </div>
-    <div class="col-sm-8">
-      <form aria-labelledby="changePassword" class="form" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
-        <div class="form-group">
-          <label for="oldPassword">Mot de passe actuel</label>
+    <h1 id="changePassword">Changer votre mot de passe</h1>
+    <form aria-labelledby="changePassword" class="form-horizontal" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
 
+      <div class="form-group">
+        <label for="oldPassword" class="col-sm-2 col-lg-offset-1 control-label">Mot de passe actuel</label>
+        <div class="col-sm-10 col-lg-7">
           <div class="input-group margin-bottom-sm">
             <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
             <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword"
                    mongoose-error/>
+            <p class="help-block" ng-show="passwordForm.$error.mongoose">
+                {{ errors.password }}
+            </p>
           </div>
-          <p class="help-block" ng-show="passwordForm.$error.mongoose">
-              {{ errors.password }}
-          </p>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="newPassword">Nouveau mot de passe</label>
-
+      <div class="form-group">
+        <label for="newPassword"  class="col-sm-2 col-lg-offset-1 control-label">Nouveau mot de passe</label>
+        <div class="col-sm-10 col-lg-7">
           <div class="input-group margin-bottom-sm">
             <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
             <input id="newPassword" type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
@@ -108,11 +61,13 @@
             La longueur minimale du mot de passe est de 3 caractères.
           </p>
         </div>
-
-        <p class="help-block"> {{ passwordMessage }} </p>
-
-        <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
-      </form>
-    </div>
+      </div>
+      <p class="help-block"> {{ passwordMessage }} </p>
+      <div class="row">
+        <div class="col-sm-2 col-sm-offset-10">
+          <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

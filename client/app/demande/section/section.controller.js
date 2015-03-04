@@ -13,6 +13,7 @@ angular.module('impactApp')
   .controller('FormSectionCtrl', function($scope, $state, $timeout, $window, request, section, sectionModel, saveSection) {
     $scope.section = section;
     $scope.sectionModel = sectionModel;
+    $scope.title = section.desc;
 
     $scope.saveLastSref = function(sref) {
       sectionModel.__lastSref = sref;

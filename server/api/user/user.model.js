@@ -7,6 +7,13 @@ var Request = require('../request/request.model');
 
 var UserSchema = new Schema({
   name: String,
+  sexe: { type: String, enum: ['feminin', 'masculin'] },
+  nationalite : String,
+  adresse: String,
+  adresse_complement: String,
+  code_postal: String,
+  commune: String,
+  pays: String,
   hashedPassword: String,
   provider: String,
   salt:  String,
