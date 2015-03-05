@@ -11,6 +11,12 @@
   <div class="questionnaire">
     <h1>{{section.desc}}</h1>
 
+    <identity-card
+      condition="sectionModel.beneficiaire"
+      type="'beneficiaire'"
+      parent=""
+      section-model="sectionModel"/>
+
     <div class="row-type-identite">
       <div class="col-sm-3" ng-if="!sectionModel.beneficiaire">
         <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'beneficiaire'})">
