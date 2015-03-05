@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('identityForm', function () {
+  .directive('identityForm', function (IdentiteService) {
     return {
       scope: {
         type: '=',
@@ -12,21 +12,7 @@ angular.module('impactApp')
       templateUrl: 'components/identity-form/identity-form.html',
       restrict: 'EA',
       link: function(scope) {
-        var getTitle = function(type) {
-          switch (type) {
-            case 'beneficiaire':
-               return 'Identité de la personne concernée par la demande';
-            case 'autorite':
-               return 'Identité de l\'autorité parentale du bénéficiaire';
-            case 'aidantDemarche':
-               return 'Identité de la personne vous aidant dans votre démarche';
-            default:
-              return 'TODO';
-          }
-        };
-
-        scope.title = getTitle(scope.type);
-
+        scope.desc = IdentiteService.getDesc(scope.type);
         scope.open = function($event) {
           $event.preventDefault();
           $event.stopPropagation();

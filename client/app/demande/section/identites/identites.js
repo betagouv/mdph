@@ -8,27 +8,12 @@ angular.module('impactApp')
         url: '/:type?id',
         template: '<identity-form type="type" submit="submit" section="section" identite="tempIdentite"/>',
         resolve: {
-          submit: function($state, sectionModel, tempIdentite, type, currentId) {
+          submit: function($state, IdentiteService, sectionModel, tempIdentite, type, currentId) {
             return function(form) {
               if (form.$invalid) {
                 form.showError = true;
               } else {
-                switch (type) {
-                  case 'beneficiaire':
-                    sectionModel.beneficiaire = tempIdentite;
-                    break;
-                  case 'autorite':
-                    sectionModel.autorite[currentId] = tempIdentite;
-                    break;
-                  case 'aidantDemarche':
-                    if (currentId === sectionModel.aidantDemarche.length) {
-                      sectionModel.aidantDemarche.push(tempIdentite);
-                    } else {
-                      sectionModel.aidantDemarche[currentId] = tempIdentite;
-                    }
-                    break;
-                }
-
+                IdentiteService.mergeModifications(type, sectionModel, currentId, tempIdentite);
                 $state.go('^');
               }
             };
@@ -43,33 +28,8 @@ angular.module('impactApp')
             }
             return $stateParams.id;
           },
-          identite: function(sectionModel, type, $stateParams, currentId){
-            switch (type) {
-              case 'beneficiaire':
-                return sectionModel.beneficiaire ? sectionModel.beneficiaire : {};
-              case 'autorite':
-                if (!sectionModel.autorite) {
-                  sectionModel.autorite = {};
-                }
-
-                if(!sectionModel.autorite[currentId]){
-                  sectionModel.autorite[currentId] = {};
-                }
-
-                return sectionModel.autorite[currentId];
-              case 'aidantDemarche':
-                if (!sectionModel.aidantDemarche) {
-                  sectionModel.aidantDemarche = [];
-                }
-
-                var aidant = sectionModel.aidantDemarche[currentId];
-                if (!aidant) {
-                  aidant = {};
-                  sectionModel.aidantDemarche.push(aidant);
-                }
-
-                return aidant;
-            }
+          identite: function(IdentiteService, type, sectionModel, currentId){
+            return IdentiteService.getIdentite(type, sectionModel, currentId);
           },
           tempIdentite: function(identite) {
             return _.clone(identite, true);
