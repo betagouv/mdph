@@ -28,7 +28,7 @@
 
   .category {
     margin-bottom: 2em;
-    border: 1px solid $light-grey;
+    box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.26);
   }
 
   .section {
@@ -142,7 +142,6 @@
 
 .demande-header {
   @extend .well;
-  background-color: white;
 
   h1 {
     margin: 0;
