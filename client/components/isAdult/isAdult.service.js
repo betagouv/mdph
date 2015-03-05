@@ -3,7 +3,6 @@
 angular.module('impactApp')
   .factory('isAdult', function($window) {
     return function(contexte) {
-
       $window.alert('deprecated');
       if (angular.isUndefined(contexte) ||
           angular.isUndefined(contexte.dateNaissance)) {
@@ -17,5 +16,14 @@ angular.module('impactApp')
     return function(birthDate) {
       return moment().diff(birthDate, 'years') < 18;
     };
-  });
+  })
+  .factory('isLessThan62', function() {
+    return function(contexte) {
+      if (angular.isUndefined(contexte) ||
+          angular.isUndefined(contexte.dateNaissance)) {
+        return true;
+      }
 
+      return moment().diff(contexte.dateNaissance, 'years') < 62;
+    };
+  });
