@@ -8,8 +8,4 @@ angular.module('impactApp')
     $scope.estMineur = estMineur;
     $scope.sectionModel = sectionModel;
 
-    /*
-    $scope.beneficiaire = sectionModel.beneficiaire;
-    $scope.aidantDemarche = sectionModel.aidantDemarche;
-    $scope.autorite = sectionModel.autorite;*/
   });

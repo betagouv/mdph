@@ -53,19 +53,44 @@
           <div class="col-sm-3">
             <a role="button" ng-if="estMineur(sectionModel.beneficiaire.dateNaissance)" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'autorite', parent: 'parent1'})">
               <span class="left">
-                <i class="fa fa-2x fa-user-plus pull-left"></i>
+                <i class="fa fa-2x fa-user pull-left"></i>
               </span>
               <span class="right">
               {{sectionModel.autorite.parent1.nom}}
               {{sectionModel.autorite.parent1.prenom}} <br>
-              Bénéficiaire
+              Autorité parentale
             </span>
             </a>
           </div>
+
+          <div ng-if="!sectionModel.autorite.parent2">
+            <div class="col-sm-3">
+              <a role="button" ng-if="estMineur(sectionModel.beneficiaire.dateNaissance)" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'autorite', parent: 'parent2'})">
+                <span class="left">
+                  <i class="fa fa-2x fa-user-plus pull-left"></i>
+                </span>
+                <span class="right">
+                  Autorité parentale
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div ng-if="sectionModel.autorite.parent2">
+            <div class="col-sm-3">
+              <a role="button" ng-if="estMineur(sectionModel.beneficiaire.dateNaissance)" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'autorite', parent: 'parent2'})">
+                <span class="left">
+                  <i class="fa fa-2x fa-user pull-left"></i>
+                </span>
+                <span class="right">
+                {{sectionModel.autorite.parent2.nom}}
+                {{sectionModel.autorite.parent2.prenom}} <br>
+                Autorité parentale
+              </span>
+              </a>
+            </div>
+          </div>
         </div>
-
-
-
 
         <div class="col-sm-3">
           <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'aidantDemarche'})">
@@ -79,30 +104,6 @@
         </div>
       </div>
     </div>
-<!--
-    <h2>Autorité parentale</h2>
-
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="card">
-          <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite({type: 'autorite'})">
-            <i class="fa fa-3x fa-user"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <h2>Personne(s) qui vous aide(nt) dans votre démarche</h2>
-
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="card">
-          <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite({type: 'aidant_demarche'})">
-            <i class="fa fa-3x fa-user"></i>
-          </a>
-        </div>
-      </div>
-    </div>-->
   </div>
 </ui-view>
 <pre>{{sectionModel|json}}</pre>
