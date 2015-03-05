@@ -6,14 +6,18 @@ angular.module('impactApp')
     $stateProvider
       .state(index + '.nouvelle_identite', {
         url: '/nouvelle_identite/:type',
-        template: '<identity-form title="\'Nouvelle identité\'" section="section"/>',
+        template: '<identity-form type="type" section="section"/>',
         resolve: {
-          identite: function(request, $stateParams){
-            return request.formAnswers.identites[$stateParams.type];
+          type: function($stateParams) {
+            return $stateParams.type;
+          },
+          identite: function(request, type){
+            return request.formAnswers.identites[type];
           }
         },
-        controller: function($scope, identite){
+        controller: function($scope, type, identite){
           $scope.identite = identite;
+          $scope.type = type;
         }
       });
   });

@@ -21,6 +21,10 @@
   @extend .container;
   margin-top: 20px;
   margin-bottom: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #DDD;
 
   .category {
     margin-bottom: 2em;
@@ -89,20 +93,9 @@
     }
   }
 
-  .identity-body {
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid #DDD;
-  }
-
-  form {
-    @extend .identity-body;
-  }
-
   >h1 {
     font-size: 1.8em;
-    margin-bottom: 15px;
+    margin: 0 0 15px 0;
   }
 
   h2 {
@@ -122,6 +115,11 @@
     font-size: 1em;
     font-weight: 200;
   }
+}
+
+.btn-identity {
+  font-size: 18px;
+  padding: 20px 0;
 }
 
 .btn-answer {

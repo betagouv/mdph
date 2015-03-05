@@ -9,46 +9,43 @@
 </div>
 <ui-view>
   <div class="questionnaire">
-    <div class="identity-body">
+    <h1>{{title}}</h1>
 
-        <h1>{{title}}</h1>
-
-        <h2>Personne concernée par la demande</h2>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="card">
-              <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite({type: 'beneficiaire'})">
-                <i class="fa fa-3x fa-user"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <h2>Autorité parentale</h2>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="card">
-              <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite({type: 'autorite'})">
-                <i class="fa fa-3x fa-user"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <h2>Personne(s) qui vous aide(nt) dans votre démarche</h2>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="card">
-              <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite({type: 'aidant_demarche'})">
-                <i class="fa fa-3x fa-user"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
+    <div class="row">
+      <div class="col-sm-3">
+        <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".nouvelle_identite({type: 'beneficiaire'})">
+          <span class="left">
+            <i class="fa fa-2x fa-user-plus pull-left"></i>
+          </span>
+          <span class="right">
+            Personne concernée par la demande
+          </span>
+        </a>
+      </div>
     </div>
+<!--
+    <h2>Autorité parentale</h2>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite({type: 'autorite'})">
+            <i class="fa fa-3x fa-user"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <h2>Personne(s) qui vous aide(nt) dans votre démarche</h2>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <a role="button" class="btn btn-block btn-default" ui-sref=".nouvelle_identite({type: 'aidant_demarche'})">
+            <i class="fa fa-3x fa-user"></i>
+          </a>
+        </div>
+      </div>
+    </div>-->
   </div>
 </ui-view>
