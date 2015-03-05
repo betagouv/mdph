@@ -6,7 +6,10 @@ angular.module('impactApp')
     $scope.section = section;
 
     $scope.estMineur = estMineur;
+    $scope.sectionModel = sectionModel;
+
+    /*
     $scope.beneficiaire = sectionModel.beneficiaire;
     $scope.aidantDemarche = sectionModel.aidantDemarche;
-    $scope.autorite = sectionModel.autorite;
+    $scope.autorite = sectionModel.autorite;*/
   });

@@ -3,19 +3,6 @@
   <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="submit(infoForm)" novalidate>
     <h1 id="infoPerso">{{title}}</h1>
 
-    <div class="form-group">
-      <label for="name" class="col-sm-2 col-lg-offset-1 control-label">Vous faites cette demande pour*</label>
-      <div class="col-sm-10 col-lg-7">
-        <label class="radio-inline">
-          <input type="radio" id="inlineRadioDemandeurTrue" value="true" ng-model="identite.estDemandeur" required> Vous
-        </label>
-        <label class="radio-inline">
-          <input type="radio" id="inlineRadioDemandeurFalse" value="false" ng-model="identite.estDemandeur" required> Un autre
-        </label>
-      </div>
-    </div>
-
-
     <div class="form-group" ng-if="section.id !== 'espace_perso'">
       <label for="nom" class="col-sm-2 col-lg-offset-1 control-label">Nom*</label>
       <div class="col-sm-10 col-lg-7">
@@ -37,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-if="type==='beneficiaire'">
       <label for="name" class="col-sm-2 col-lg-offset-1 control-label">Sexe</label>
       <div class="col-sm-10 col-lg-7">
         <label class="radio-inline">
@@ -49,7 +36,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="section.id === 'identites'">
+    <div class="form-group" ng-if="type==='beneficiaire'">
       <label for="nationalite" class="col-sm-2 col-lg-offset-1 control-label">Nationalité</label>
       <div class="col-sm-10 col-lg-7">
         <label class="radio-inline">

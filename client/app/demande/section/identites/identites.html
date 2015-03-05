@@ -12,7 +12,7 @@
     <h1>{{section.desc}}</h1>
 
     <div class="row">
-      <div class="col-sm-3" ng-if="!beneficiaire">
+      <div class="col-sm-3" ng-if="!sectionModel.beneficiaire">
         <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'beneficiaire'})">
           <span class="left">
             <i class="fa fa-2x fa-user-plus pull-left"></i>
@@ -23,29 +23,49 @@
         </a>
       </div>
 
-      <div ng-if="beneficiaire">
+      <div ng-if="sectionModel.beneficiaire">
         <div class="col-sm-3">
           <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'beneficiaire'})">
             <span class="left">
               <i class="fa fa-2x fa-user pull-left"></i>
             </span>
             <span class="right">
-              {{beneficiaire.nom}}
-              {{beneficiaire.prenom}} <br>
+              {{sectionModel.beneficiaire.nom}}
+              {{sectionModel.beneficiaire.prenom}} <br>
               Bénéficiaire
             </span>
           </a>
         </div>
-        <div class="col-sm-3">
-          <a role="button" ng-if="estMineur(beneficiaire.dateNaissance)" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'autorite'})">
-            <span class="left">
-              <i class="fa fa-2x fa-user-plus pull-left"></i>
-            </span>
-            <span class="right">
-              Autorité parentale
-            </span>
-          </a>
+        <div ng-if="!sectionModel.autorite.parent1">
+          <div class="col-sm-3">
+            <a role="button" ng-if="estMineur(sectionModel.beneficiaire.dateNaissance)" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'autorite', parent: 'parent1'})">
+              <span class="left">
+                <i class="fa fa-2x fa-user-plus pull-left"></i>
+              </span>
+              <span class="right">
+                Autorité parentale
+              </span>
+            </a>
+          </div>
         </div>
+
+        <div ng-if="sectionModel.autorite.parent1">
+          <div class="col-sm-3">
+            <a role="button" ng-if="estMineur(sectionModel.beneficiaire.dateNaissance)" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'autorite', parent: 'parent1'})">
+              <span class="left">
+                <i class="fa fa-2x fa-user-plus pull-left"></i>
+              </span>
+              <span class="right">
+              {{sectionModel.autorite.parent1.nom}}
+              {{sectionModel.autorite.parent1.prenom}} <br>
+              Bénéficiaire
+            </span>
+            </a>
+          </div>
+        </div>
+
+
+
 
         <div class="col-sm-3">
           <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'aidantDemarche'})">
@@ -85,4 +105,4 @@
     </div>-->
   </div>
 </ui-view>
-<pre>{{request.formAnswers.identites|json}}</pre>
+<pre>{{sectionModel|json}}</pre>
