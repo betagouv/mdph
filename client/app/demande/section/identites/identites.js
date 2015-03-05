@@ -6,13 +6,23 @@ angular.module('impactApp')
     $stateProvider
       .state(index + '.modification_identite', {
         url: '/:type?id',
-        template: '<identity-form type="type" submit="submit" section="section" identite="identite"/>',
+        template: '<identity-form type="type" submit="submit" section="section" identite="tempIdentite"/>',
         resolve: {
-          submit: function($state) {
+          submit: function($state, sectionModel, tempIdentite, type, currentId) {
             return function(form) {
               if (form.$invalid) {
                 form.showError = true;
               } else {
+                switch (type) {
+                  case 'beneficiaire':
+                    sectionModel.beneficiaire = tempIdentite;
+                    break;
+                  case 'autorite':
+                  case 'aidantDemarche':
+                    sectionModel[type][currentId] = tempIdentite;
+                    break;
+                }
+
                 $state.go('^');
               }
             };
@@ -20,23 +30,20 @@ angular.module('impactApp')
           type: function($stateParams) {
             return $stateParams.type;
           },
-          identite: function(sectionModel, type, $stateParams){
+          currentId: function($stateParams, type) {
+            var id = $stateParams.id;
+            if (!id && type === 'autorite') {
+              return 'parent1';
+            }
+            return $stateParams.id;
+          },
+          identite: function(sectionModel, type, $stateParams, currentId){
             switch (type) {
               case 'beneficiaire':
-                if (!sectionModel.beneficiaire) {
-                  sectionModel.beneficiaire = {};
-                }
-                return sectionModel.beneficiaire;
+                return sectionModel.beneficiaire ? sectionModel.beneficiaire : {};
               case 'autorite':
                 if (!sectionModel.autorite) {
                   sectionModel.autorite = {};
-                }
-                var currentId;
-
-                if($stateParams.id) {
-                  currentId = $stateParams.id;
-                } else {
-                  currentId = 'parent1';
                 }
 
                 if(!sectionModel.autorite[currentId]){
@@ -49,7 +56,7 @@ angular.module('impactApp')
                   sectionModel.aidantDemarche = [];
                 }
 
-                var aidant = sectionModel.aidantDemarche[$stateParams.id];
+                var aidant = sectionModel.aidantDemarche[currentId];
                 if (!aidant) {
                   aidant = {};
                   sectionModel.aidantDemarche.push(aidant);
@@ -58,9 +65,12 @@ angular.module('impactApp')
                 return aidant;
             }
           },
+          tempIdentite: function(identite) {
+            return _.clone(identite, true);
+          }
         },
-        controller: function($scope, type, identite, submit){
-          $scope.identite = identite;
+        controller: function($scope, type, tempIdentite, submit){
+          $scope.tempIdentite = tempIdentite;
           $scope.type = type;
           $scope.submit = submit;
         }
