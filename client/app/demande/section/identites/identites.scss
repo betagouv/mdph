@@ -3,3 +3,8 @@
   padding: 20px 0;
   height: 5em;
 }
+
+.row-type-identite {
+  @extend .row;
+  margin-bottom: 20px;
+}

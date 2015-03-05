@@ -5,29 +5,51 @@ angular.module('impactApp')
     var index = 'departement.demande.identites';
     $stateProvider
       .state(index + '.modification_identite', {
-        url: '/:type?parent',
+        url: '/:type?id',
         template: '<identity-form type="type" section="section" identite="identite"/>',
         resolve: {
           type: function($stateParams) {
             return $stateParams.type;
           },
-          identite: function(request, type, $stateParams){
-            var currentIdentites = request.formAnswers.identites;
-            if(!currentIdentites[type]){
-              currentIdentites[type] = {};
-            }
-            if(type==='autorite'){
-              if($stateParams.parent){
-                if(!currentIdentites[type][$stateParams.parent]){
-                  currentIdentites[type][$stateParams.parent] = {};
+          identite: function(sectionModel, type, $stateParams){
+            switch (type) {
+              case 'beneficiaire':
+                if (!sectionModel.beneficiaire) {
+                  sectionModel.beneficiaire = {};
                 }
-                return currentIdentites[type][$stateParams.parent];
-              }
-              else {
-                return currentIdentites[type].parent1;
-              }
+                return sectionModel.beneficiaire;
+              case 'autorite':
+                if (!sectionModel.autorite) {
+                  sectionModel.autorite = {};
+                }
+                var currentId;
+
+                if($stateParams.id) {
+                  currentId = 'parent' + $stateParams.id;
+                } else {
+                  currentId = 'parent1';
+                }
+
+                if(!sectionModel.autorite[currentId]){
+                  sectionModel.autorite[currentId] = {};
+                }
+
+                return sectionModel.autorite[currentId];
+              case 'aidantDemarche':
+                if (!sectionModel.aidantDemarche) {
+                  sectionModel.aidantDemarche = [];
+                }
+
+                var aidant = sectionModel.aidantDemarche[$stateParams.id];
+                if (aidant) {
+                  return aidant;
+                } else {
+                  aidant = {};
+                  sectionModel.aidantDemarche.push(aidant);
+                }
+
+                return aidant;
             }
-            return currentIdentites[type];
           }
         },
         controller: function($scope, type, identite){
