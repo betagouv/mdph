@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('identityForm', function ($state) {
+  .directive('identityForm', function () {
     return {
       scope: {
         type: '=',
         section: '=',
-        identite: '='
+        identite: '=',
+        submit: '='
       },
       templateUrl: 'components/identity-form/identity-form.html',
       restrict: 'EA',
@@ -24,15 +25,13 @@ angular.module('impactApp')
           }
         };
 
-        scope.submit = function(form) {
-          if (form.$invalid) {
-            form.showError = true;
-          } else {
-            $state.go('^');
-          }
-        };
-
         scope.title = getTitle(scope.type);
+
+        scope.open = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+          scope.opened = true;
+        };
       }
     };
   });

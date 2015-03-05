@@ -6,8 +6,17 @@ angular.module('impactApp')
     $stateProvider
       .state(index + '.modification_identite', {
         url: '/:type?id',
-        template: '<identity-form type="type" section="section" identite="identite"/>',
+        template: '<identity-form type="type" submit="submit" section="section" identite="identite"/>',
         resolve: {
+          submit: function($state) {
+            return function(form) {
+              if (form.$invalid) {
+                form.showError = true;
+              } else {
+                $state.go('^');
+              }
+            };
+          },
           type: function($stateParams) {
             return $stateParams.type;
           },
@@ -25,7 +34,7 @@ angular.module('impactApp')
                 var currentId;
 
                 if($stateParams.id) {
-                  currentId = 'parent' + $stateParams.id;
+                  currentId = $stateParams.id;
                 } else {
                   currentId = 'parent1';
                 }
@@ -41,20 +50,19 @@ angular.module('impactApp')
                 }
 
                 var aidant = sectionModel.aidantDemarche[$stateParams.id];
-                if (aidant) {
-                  return aidant;
-                } else {
+                if (!aidant) {
                   aidant = {};
                   sectionModel.aidantDemarche.push(aidant);
                 }
 
                 return aidant;
             }
-          }
+          },
         },
-        controller: function($scope, type, identite){
+        controller: function($scope, type, identite, submit){
           $scope.identite = identite;
           $scope.type = type;
+          $scope.submit = submit;
         }
       });
   });
