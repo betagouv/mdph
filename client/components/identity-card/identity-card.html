@@ -1,23 +1,27 @@
 <div ng-if="!identite.nom">
-  <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref="{{sref}}">
-    <span class="left">
-      <i class="fa fa-2x fa-user-plus pull-left"></i>
-    </span>
-    <span class="right">
-      {{title}}
-    </span>
+  <a role="button" class="btn btn-block btn-primary ajout-identite" ui-sref="{{sref}}">
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <i class="fa fa-2x fa-user-plus"></i>
+      </div>
+      <div class="col-sm-8">
+        {{title}}
+      </div>
+    </div>
   </a>
 </div>
 
 <div ng-if="identite.nom">
   <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref="{{sref}}">
-    <span class="left">
-      <i class="fa fa-2x fa-user pull-left"></i>
-    </span>
-    <span class="right">
-      {{identite.nom}}
-      {{identite.prenom}}
-      <br><em>{{title}}</em>
-    </span>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+        <i class="fa fa-2x fa-user"></i>
+      </div>
+      <div class="col-sm-8">
+        {{identite.nom}}
+        {{identite.prenom}}
+        <br><em>{{title}}</em>
+      </div>
+    </div>
   </a>
 </div>

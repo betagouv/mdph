@@ -2,9 +2,26 @@
   font-size: 18px;
   padding: 20px 0;
   height: 5em;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
 
 .row-type-identite {
   @extend .row;
   margin-bottom: 20px;
+}
+
+.ajout-identite {
+  @extend .btn-identity;
+  box-shadow: none;
+  background-color: white;
+  color: $medium-heavy-grey;
+  border-style: dashed;
+  border-color: $light-grey;
+  border-radius: 4px;
+  border-width: medium;
+  &:hover{
+    background-color: whitesmoke;
+    color: $medium-heavy-grey;
+    border-color: $light-grey;
+  }
 }
