@@ -6,13 +6,17 @@ angular.module('impactApp')
     $stateProvider
       .state(index + '.nouvelle_identite', {
         url: '/nouvelle_identite/:type',
-        template: '<identity-form type="type" section="section"/>',
+        template: '<identity-form type="type" section="section" identite="identite"/>',
         resolve: {
           type: function($stateParams) {
             return $stateParams.type;
           },
           identite: function(request, type){
-            return request.formAnswers.identites[type];
+            var currentIdentites = request.formAnswers.identites;
+            if(!currentIdentites[type]){
+              currentIdentites[type] = {};
+            }
+            return currentIdentites[type];
           }
         },
         controller: function($scope, type, identite){

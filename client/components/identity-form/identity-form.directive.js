@@ -5,7 +5,8 @@ angular.module('impactApp')
     return {
       scope: {
         type: '=',
-        section: '='
+        section: '=',
+        identite: '='
       },
       templateUrl: 'components/identity-form/identity-form.html',
       restrict: 'EA',
