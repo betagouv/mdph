@@ -82,14 +82,14 @@
     </div>
 
     <div class="form-group">
-      <label for="birthDate" class="col-sm-2 col-lg-offset-1 control-label">Date de naissance*</label>
+      <label for="dateNaissance" class="col-sm-2 col-lg-offset-1 control-label">Date de naissance*</label>
       <div class="col-sm-10 col-lg-7">
         <div class="input-group">
-          <input id="birthDate" required type="text" name="birthDate" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="identite.birthDate" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
+          <input id="dateNaissance" required type="text" name="dateNaissance" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="identite.dateNaissance" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
           <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button></span>
         </div>
 
-        <div ng-messages="infoForm.birthDate.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.dateNaissance.$error" ng-if="infoForm.showError">
           <p class="help-block" ng-message='date'>Le format de date est invalide.</p>
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         </div>

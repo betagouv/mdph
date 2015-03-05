@@ -32,7 +32,7 @@ angular.module('impactApp')
       .state('departement.demande.identites', {
         url: '/identites',
         templateUrl: 'app/demande/section/identites/identites.html',
-        controller: 'FormSectionCtrl',
+        controller: 'IdentitesCtrl',
         resolve: {
           section: findSection('identites'),
           sectionModel: resolveSectionModel,

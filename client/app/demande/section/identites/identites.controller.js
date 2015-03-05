@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('IdentitesCtrl', function($scope, request) {
+  .controller('IdentitesCtrl', function($scope, request, section, sectionModel, estMineur) {
     $scope.request = request;
+    $scope.section = section;
 
-    $scope.beneficiaire = request.beneficiaire ? request.beneficiaire : {};
-    $scope.aidantDemarche = request.aidantDemarche ? request.aidantDemarche : {};
-    $scope.autorite = request.autorite ? request.autorite : {};
+    $scope.estMineur = estMineur;
+    $scope.beneficiaire = sectionModel.beneficiaire;
+    $scope.aidantDemarche = sectionModel.aidantDemarche;
+    $scope.autorite = sectionModel.autorite;
   });

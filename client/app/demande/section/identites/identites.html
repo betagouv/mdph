@@ -9,11 +9,11 @@
 </div>
 <ui-view>
   <div class="questionnaire">
-    <h1>{{title}}</h1>
+    <h1>{{section.desc}}</h1>
 
     <div class="row">
-      <div class="col-sm-3">
-        <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".nouvelle_identite({type: 'beneficiaire'})">
+      <div class="col-sm-3" ng-if="!beneficiaire">
+        <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'beneficiaire'})">
           <span class="left">
             <i class="fa fa-2x fa-user-plus pull-left"></i>
           </span>
@@ -21,6 +21,42 @@
             Personne concernée par la demande
           </span>
         </a>
+      </div>
+
+      <div ng-if="beneficiaire">
+        <div class="col-sm-3">
+          <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'beneficiaire'})">
+            <span class="left">
+              <i class="fa fa-2x fa-user pull-left"></i>
+            </span>
+            <span class="right">
+              {{beneficiaire.nom}}
+              {{beneficiaire.prenom}} <br>
+              Bénéficiaire
+            </span>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a role="button" ng-if="estMineur(beneficiaire.dateNaissance)" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'autorite'})">
+            <span class="left">
+              <i class="fa fa-2x fa-user-plus pull-left"></i>
+            </span>
+            <span class="right">
+              Autorité parentale
+            </span>
+          </a>
+        </div>
+
+        <div class="col-sm-3">
+          <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref=".modification_identite({type: 'aidantDemarche'})">
+            <span class="left">
+              <i class="fa fa-2x fa-user-plus pull-left"></i>
+            </span>
+            <span class="right">
+              Personne vous aidant dans votre démarche
+            </span>
+          </a>
+        </div>
       </div>
     </div>
 <!--
