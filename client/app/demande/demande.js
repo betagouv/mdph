@@ -23,6 +23,7 @@ angular.module('impactApp')
               if (typeof request === 'undefined') {
                 request = $sessionStorage.request = {
                   formAnswers: {},
+                  status: 'en_cours',
                   documents: [ {type: 'certificatMedical'}, {type: 'carteIdentite'} ],
                   createdAt: Date.now()
                 };
