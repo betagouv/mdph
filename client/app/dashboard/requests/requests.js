@@ -78,11 +78,13 @@ angular.module('impactApp')
               return result.data;
             });
           }
-        }
+        },
+        authenticate: true
       })
       .state('dashboard.requests.detail.section', {
         url: '/:sectionId',
         templateUrl: 'app/dashboard/requests/detail/section/section.html',
-        controller: 'RequestSectionCtrl'
+        controller: 'RequestSectionCtrl',
+        authenticate: true
       });
   });
