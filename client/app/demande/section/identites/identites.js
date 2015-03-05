@@ -18,8 +18,14 @@ angular.module('impactApp')
                     sectionModel.beneficiaire = tempIdentite;
                     break;
                   case 'autorite':
+                    sectionModel.autorite[currentId] = tempIdentite;
+                    break;
                   case 'aidantDemarche':
-                    sectionModel[type][currentId] = tempIdentite;
+                    if (currentId === sectionModel.aidantDemarche.length) {
+                      sectionModel.aidantDemarche.push(tempIdentite);
+                    } else {
+                      sectionModel.aidantDemarche[currentId] = tempIdentite;
+                    }
                     break;
                 }
 
