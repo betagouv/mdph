@@ -109,7 +109,9 @@ exports.all = [
       },
       {
         label: 'Une aide à la personne, avec quelqu\'un qui vous aide',
-        model: 'personne'
+        model: 'personne',
+        detailUrl: 'components/detail/aide_personne.html',
+        detailModel: 'personneDetail'
       }
     ]
   },

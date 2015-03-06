@@ -1,0 +1,33 @@
+<div class="row form">
+  <label class="col-md-2 col-md-offset-1 control-label">Vous êtes aidé par</label>
+  <div class="answer col-md-8">
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['famille']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['famille'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['famille']}"></i>
+      Votre famille
+    </button>
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['professionnel']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['professionnel'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['professionnel']}"></i>
+      Un professionnel de soins à domicile
+    </button>
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['medicoSocial']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['medicoSocial'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['medicoSocial']}"></i>
+      Un accompagnement médico-social
+    </button>
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['autre']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['autre'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['autre']}"></i>
+      Autre
+    </button>
+  </div>
+</div>
