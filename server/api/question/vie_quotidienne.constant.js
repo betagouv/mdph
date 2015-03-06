@@ -35,8 +35,8 @@ exports.all = [
         onlyAdult: true
       },
       {
-        label: 'Dans un établissement',
-        labelRecap: 'En établissement',
+        label: 'Dans un établissement médico-social ou ordinaire',
+        labelRecap: 'En établissement médico-social ou ordinaire',
         model: 'etablissement',
         detailUrl: 'components/detail/precisez_big.html',
         detailModel: 'logement_etablissement',
@@ -88,6 +88,28 @@ exports.all = [
         model: 'autre',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'logement_autre'
+      }
+    ]
+  },
+  {
+    model: 'aideActuelle',
+    titleDefault: 'Vous recevez :',
+    titleRep: '<%= pronoun %> reçoit :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Une aide finacière et des ressources',
+        model: 'financiere'
+      },
+      {
+        label: 'Une aide technique, matérielle ou de l\'équipement',
+        model: 'technique',
+        detailUrl: 'components/detail/aide_technique.html',
+        detailModel: 'techniqueDetail'
+      },
+      {
+        label: 'Une aide à la personne, avec quelqu\'un qui vous aide',
+        model: 'personne'
       }
     ]
   },

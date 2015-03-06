@@ -1,0 +1,40 @@
+<div class="row form">
+  <label class="col-md-2 col-md-offset-1 control-label">Cette aide consiste en</label>
+  <div class="answer col-md-8">
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['logement']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['logement'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['logement']}"></i>
+      L'aménagement de mon logement
+    </button>
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['animal']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['animal'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['animal']}"></i>
+      Une aide animalière
+    </button>
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['vehicule']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['vehicule'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['vehicule']}"></i>
+      L'aménagement de mon véhicule
+    </button>
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['technique']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['technique'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['technique']}"></i>
+      Une aide technique <small>(ex: barre d'appui, déambulateur, etc.)</small>
+    </button>
+    <button
+      class="btn btn-default btn-block btn-answer text-capitalize"
+      ng-model="sectionModel[question.model][answer.detailModel]['autre']"
+      btn-checkbox>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['autre'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['autre']}"></i>
+      Autre
+    </button>
+  </div>
+</div>

@@ -41,6 +41,21 @@ angular.module('impactApp')
           },
           nextStep: function($state) {
             return function() {
+              $state.go('^.aides');
+            };
+          }
+        }
+      })
+      .state(index + '.situation.aides', {
+        url: '/aides',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'aideActuelle', request.formAnswers);
+          },
+          nextStep: function($state) {
+            return function() {
               $state.go('^.^.vos_besoins.quotidien');
             };
           }
