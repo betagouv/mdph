@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, $cookieStore, sections, Auth, isAdult, request) {
+  .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, $cookieStore, sections, Auth, estAdulte, request) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
     $scope.token = $cookieStore.get('token');
@@ -19,25 +19,12 @@ angular.module('impactApp')
       }
     };
 
-    $scope.shouldShow = function(section) {
-      switch (section.id) {
-        case 'autorite':
-          var estMineur;
-          try {
-            estMineur = moment().diff(request.formAnswers.identite.birthDate, 'years') < 18;
-          } catch (e) {
-            estMineur = false;
-          }
-          return estMineur;
-        case 'documents':
-          return request.status === 'emise';
+    $scope.estAdulte = function() {
+      if (request.formAnswers.identites && request.formAnswers.identites.beneficiaire) {
+        return estAdulte(request.formAnswers.identites.beneficiaire.dateNaissance);
+      } else {
+        return true;
       }
-
-      return true;
-    };
-
-    $scope.isAdult = function() {
-      return isAdult(request.formAnswers.contexte);
     };
 
     $scope.getCompletion = function(section) {
@@ -82,10 +69,6 @@ angular.module('impactApp')
     $scope.envoyer = function() {
       var incompleteSections = [];
       $scope.sectionsObligatoires.forEach(function(section) {
-        if (!$scope.shouldShow(section)) {
-          return;
-        }
-
         if (!request.formAnswers[section.id] || !request.formAnswers[section.id].__completion) {
           incompleteSections.push(section);
         }

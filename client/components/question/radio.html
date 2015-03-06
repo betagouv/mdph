@@ -1,7 +1,7 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <div class="answer" ng-repeat="answer in question.answers"
-    ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && isAdult())">
+    ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && estAdulte())">
     <button
       class="btn btn-default btn-block btn-answer text-capitalize"
       btn-radio="answer.value"

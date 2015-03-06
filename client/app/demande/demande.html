@@ -33,7 +33,7 @@
 
     <h2>Renseignements obligatoires pour toutes les demandes</h2>
     <div class="category">
-      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-if="shouldShow(section)" ng-repeat="section in sectionsObligatoires">
+      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-repeat="section in sectionsObligatoires">
         <div class="section-body">
           <div class="left">
             <i class="fa fa-chevron-circle-right"></i>
@@ -93,7 +93,7 @@
       </a>
     </div>
 
-    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="request.status" ng-repeat="section in sectionsDocuments">
+    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="request.status !== 'en_cours'" ng-repeat="section in sectionsDocuments">
       <div class="section-body">
         <div class="left">
           <i class="fa fa-chevron-circle-right"></i>
@@ -111,3 +111,5 @@
     </a>
   </div>
 </ui-view>
+
+<pre>{{request | json}}</pre>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('FormService', function RequestService(isAdult) {
+  .factory('FormService', function RequestService() {
     return {
       getRepresentant: function(answers) {
         if (angular.isUndefined(answers.contexte)) {
@@ -42,10 +42,6 @@ angular.module('impactApp')
           return false;
         }
         return answers.contexte.estRepresentant;
-      },
-
-      isAdult: function(answers) {
-        return isAdult(answers.contexte);
       },
 
       estRenouvellement: function(formAnswers) {
