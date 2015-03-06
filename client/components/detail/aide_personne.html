@@ -24,10 +24,19 @@
     </button>
     <button
       class="btn btn-default btn-block btn-answer text-capitalize"
-      ng-model="sectionModel[question.model][answer.detailModel]['autre']"
+      ng-model="sectionModel[question.model][answer.detailModel]['autre']['value']"
       btn-checkbox>
-      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['autre'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['autre']}"></i>
+      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.detailModel]['autre']['value'], 'fa-square-o': !sectionModel[question.model][answer.detailModel]['autre']['value']}"></i>
       Autre
     </button>
+    <div ng-if="sectionModel[question.model][answer.detailModel]['autre']['value']" class="slide">
+      <div class="row">
+        <br><label class="col-md-2 control-label">Précisez</label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" name="detail"
+            ng-model="sectionModel[question.model][answer.detailModel]['autre']['detail']" required>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
