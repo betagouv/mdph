@@ -3,11 +3,16 @@
 /* jshint multistr: true */
 
 var _ = require('lodash');
+var os = require('os');
+var fs = require('fs');
+var path = require('path')
+var async = require('async');
 var moment = require('moment');
+var mustache = require('mustache');
+
 var Sections = require('../api/question/sections.constant');
 var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
 var Identites = require('./identites');
-var os = require("os");
 
 var questionToHtml = function(answer, question, sectionId, request) {
   var html = '<div class="question">'
@@ -69,58 +74,31 @@ var sectionToHtml = function(section, request) {
   return html + '</div>';
 };
 
-exports.answersToHtml = function(request, path) {
-  var html = '<html>\
-    <head>\
-      <style>\
-        h1 {\
-          text-align: center;\
-          font-size: 17px;\
-          color: #4f6083;\
-        }\
-        h2 {\
-          font-size: 14px;\
-          color: #323d53;\
-        }\
-        p {\
-          font-size: 12px;\
-        }\
-        ul {\
-          font-size: 12px;\
-        }\
-        .section {\
-          color: #333;\
-          background-color: #F5F5F5;\
-          padding: 2px 10px;\
-          border-radius: 5px;\
-          margin: 5px 0px;\
-        }\
-        .question {\
-          background-color: white;\
-          padding: 2px 16px;\
-          border-radius: 6px;\
-        }\
-        img {\
-          float: right;\
-          margin-right: 5px;\
-        }\
-      </style>\
-    </head>\
-    <body>\
-      <img src="http://'+ path +'/assets/images/cerfa.png" width="91,4" height="48,9"></img>\
-      <img src="http://'+ path +'/assets/images/logo59.jpg" width="88,9" height="48,9"></img>\
-      <h1>Mes réponses au questionaire MDPH</h1>\
-      <p><strong>Les informations que je donne sont confidentielles.\
-      <br>Je peux demander à rencontrer la CDAPH.</strong>\
-      La CDAPH, c’est la Commission des Droits et de l’Autonomie des Personnes Handicapées. Créée par la loi 2005-102 du 11 février\
-      2005, elle prend les décisions d’attribution des droits aux personnes avec un handicap sur la base de l’évaluation et des propositions\
-      de la MDPH.\
-      <br><strong>Une évaluation approfondie va être réalisée par l’équipe de la MDPH, qui vous recontactera si nécessaire.\
-      Nous vous conseillons de conserver une copie de vos réponses.</strong></p>';
+var renderTemplate = function(name, scope, templates) {
+  fs.readFile(path.join(__dirname, name), function (err, html) {
 
-  Sections.all.forEach(function(section) {
-    html += sectionToHtml(section, request);
   });
+};
 
-  return html + '</body></html>';
+var readFile = function(name, callback) {
+  fs.readFile(path.join(__dirname, name), function (err, html) {
+    callback(err, String(html));
+  });
+}
+
+exports.answersToHtml = function(request, path, next) {
+
+  async.series({
+    answersTemplate: function(callback){
+      readFile('answers.html', callback);
+    },
+    sectionTemplate: function(callback){
+      readFile('section.html', callback);
+    }
+  },
+  function(err, results){
+    if (err) { next(err); }
+    var html = mustache.render(results.answersTemplate, {path: path, sections: Sections.all}, {section: results.sectionTemplate});
+    next(null, html);
+  });
 };
