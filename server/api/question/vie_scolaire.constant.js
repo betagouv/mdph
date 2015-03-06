@@ -11,11 +11,11 @@ exports.all = [
     'answers': [
       {
         'label': 'Oui',
-        'value': true
+        model: true
       },
       {
         'label': 'Non',
-        'value': false
+        model: false
       }
     ]
   },
@@ -28,7 +28,7 @@ exports.all = [
       {
         label: 'Vous êtes trop jeune',
         labelRep: '<%= pronoun %> est trop jeune',
-        value: 'tropJeune',
+        model: 'tropJeune',
 
         detailModel: 'raisonNonScolaireTropJeune',
         placeholderDefault: 'A partir de quand serez-vous scolarisé(e) ?',
@@ -38,14 +38,14 @@ exports.all = [
       {
         label: 'Vous ne trouvez pas de solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
         labelRep: '<%= pronoun %> ne trouve pas de solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
-        value: 'etablissement',
+        model: 'etablissement',
 
         detailModel: 'raisonNonScolaireEtablissement',
         detailUrl: 'components/detail/precisez_big.html'
       },
       {
         label: 'Autre',
-        value: 'autre',
+        model: 'autre',
 
         detailModel: 'raisonNonScolaireAutre',
         detailUrl: 'components/detail/precisez.html'
@@ -70,15 +70,15 @@ exports.all = [
     answers: [
       {
         label: 'En milieu ordinaire',
-        value: 'ordinaire'
+        model: 'ordinaire'
       },
       {
         label: 'A domicile',
-        value: 'domicile'
+        model: 'domicile'
       },
       {
         label: 'En internat',
-        value: 'internat',
+        model: 'internat',
 
         detailUrl: 'components/detail/precisez_yes_no.html',
         detailModel: 'vieScolaireTypeInternat',
@@ -86,19 +86,19 @@ exports.all = [
       },
       {
         label: 'Avec accompagnement par un établissement médico-social',
-        value: 'etablissement'
+        model: 'etablissement'
       },
       {
         label: 'En temps partagé entre l’établissement médico-social et le milieu ordinaire ou domicile',
-        value: 'etablissementPartiel',
+        model: 'etablissementPartiel',
       },
       {
         label: 'En formation supérieure',
-        value: 'superieur',
+        model: 'superieur',
       },
       {
         label: 'Autre',
-        value: 'autre',
+        model: 'autre',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'vieScolaireAutre'
       }

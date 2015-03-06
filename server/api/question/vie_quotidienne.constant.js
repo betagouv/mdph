@@ -14,30 +14,30 @@ exports.all = [
         label: 'Avec vos parents',
         labelRecap: 'Avec ses parents',
         labelRep: 'Avec ses parents',
-        value: 'parents'
+        model: 'parents'
       },
       {
         label: 'Seul(e)',
         labelRepMasc: 'Seul',
         labelRepFem: 'Seule',
-        value: 'seul',
+        model: 'seul',
         onlyAdult: true
       },
       {
         label: 'En couple',
-        value: 'couple',
+        model: 'couple',
         onlyAdult: true
       },
       {
         label: 'Avec vos enfants (ou l\'un d\'entre eux)',
         labelRep: 'Avec ses enfants (ou l\'un d\'entre eux)',
-        value: 'enfants',
+        model: 'enfants',
         onlyAdult: true
       },
       {
         label: 'Dans un établissement',
         labelRecap: 'En établissement',
-        value: 'etablissement',
+        model: 'etablissement',
         detailUrl: 'components/detail/precisez_big.html',
         detailModel: 'logement_etablissement',
         placeholder: 'Nom de l\'établissement, type et lieu',
@@ -45,7 +45,7 @@ exports.all = [
       },
       {
         label: 'Autre',
-        value: 'autre',
+        model: 'autre',
         detailModel: 'famille_autre',
         detailUrl: 'components/detail/precisez.html'
       }
@@ -61,7 +61,7 @@ exports.all = [
       {
         label: 'Vous avez un logement indépendant',
         labelRep: '<%= pronoun %> a un logement indépendant',
-        value: 'independant', // TODO a verifier onlyAdult: true,
+        model: 'independant', // TODO a verifier onlyAdult: true,
         detailUrl: 'components/detail/independant.html',
         detailModel: 'logement_independant',
         labelRecap: 'Un logement indépendant',
@@ -70,7 +70,7 @@ exports.all = [
       {
         label: 'Vous vivez dans un établissement médico-social ou ordinaire',
         labelRep: '<%= pronoun %> vit dans un établissement médico-social ou ordinaire',
-        value: 'etablissement',
+        model: 'etablissement',
         labelRecap: 'Un établissement médico-social ou ordinaire',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'logement_etablissement'
@@ -78,14 +78,14 @@ exports.all = [
       {
         label: 'Vous êtes hébergé(e) au domicile',
         labelRep: '<%= pronoun %> est hébergé<%= fem %> au domicile',
-        value: 'domicile',
+        model: 'domicile',
         labelRecap: 'Le domicile d\'une autre personne',
         detailUrl: 'components/detail/domicile.html',
         detailModel: 'logement_domicile'
       },
       {
         label: 'Autre',
-        value: 'autre',
+        model: 'autre',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'logement_autre'
       }
@@ -169,11 +169,11 @@ exports.all = [
     answers: [
       {
         label: 'Oui',
-        value: true,
+        model: true,
       },
       {
         label: 'Non',
-        value: false
+        model: false
       }
     ]
   },
@@ -283,15 +283,15 @@ exports.all = [
     answers: [
       {
         label: 'Une carte de stationnement',
-        value: 'stationnement', // TODO a verifier onlyAdult: true,
+        model: 'stationnement', // TODO a verifier onlyAdult: true,
       },
       {
         label: 'Une carte d\'invalidité ou de priorité',
-        value: 'invalidite'
+        model: 'invalidite'
       },
       {
         label: 'Je n\'ai pas d\'autre demande',
-        value: 'aucune'
+        model: 'aucune'
       }
     ]
   },

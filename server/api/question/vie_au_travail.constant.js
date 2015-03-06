@@ -12,11 +12,11 @@ exports.all = [
     answers: [
       {
         'label': 'Oui',
-        'value': true
+        model: true
       },
       {
         'label': 'Non',
-        'value': false
+        model: false
       }
     ]
   },
@@ -28,15 +28,15 @@ exports.all = [
     answers: [
       {
         label: 'En milieu ordinaire',
-        value: 'ordinaire'
+        model: 'ordinaire'
       },
       {
         label: 'En entreprise adaptée',
-        value: 'adaptee'
+        model: 'adaptee'
       },
       {
         label: 'En milieu protégé (Etablissements et services d’aide par le travail - ESAT)',
-        value: 'etablissement'
+        model: 'etablissement'
       }
     ]
   },
@@ -48,23 +48,23 @@ exports.all = [
     answers: [
       {
         label: 'CDI',
-        value: 'cdi'
+        model: 'cdi'
       },
       {
         label: 'CDD',
-        value: 'cdd'
+        model: 'cdd'
       },
       {
         label: 'Interim',
-        value: 'interim'
+        model: 'interim'
       },
       {
         label: 'Contrat aidé',
-        value: 'contrat_aide'
+        model: 'contrat_aide'
       },
       {
         label: 'Travailleur indépendant',
-        value: 'independant'
+        model: 'independant'
       }
     ]
   },
@@ -90,11 +90,11 @@ exports.all = [
     answers: [
       {
         'label': 'Temps complet',
-        'value': true
+        model: true
       },
       {
         'label': 'Temps partiel',
-        'value': false
+        model: false
       }
     ]
   },
@@ -107,13 +107,13 @@ exports.all = [
     answers: [
       {
         label: 'Non',
-        value: false,
+        model: false,
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'adapteDetail'
       },
       {
         label: 'Oui',
-        value: true
+        model: true
       }
     ]
   },
@@ -131,11 +131,11 @@ exports.all = [
     answers: [
       {
         label: 'Non',
-        value: false
+        model: false
       },
       {
         label: 'Oui',
-        value: true,
+        model: true,
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'amenagementDetail'
       }
@@ -149,11 +149,11 @@ exports.all = [
     answers: [
       {
         'label': 'Non',
-        'value': false
+        model: false
       },
       {
         'label': 'Oui',
-        'value': true,
+        model: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'arretDeTravailDetail',
         detailLabel: 'Depuis quand ?',
@@ -169,11 +169,11 @@ exports.all = [
     'answers': [
       {
         'label': 'Non',
-        'value': false
+        model: false
       },
       {
         'label': 'Oui',
-        'value': true,
+        model: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'profesionnelSocialDetail',
         detailLabel: 'A quelle date ?',
@@ -189,11 +189,11 @@ exports.all = [
     'answers': [
       {
         'label': 'Non',
-        'value': false
+        model: false
       },
       {
         'label': 'Oui',
-        'value': true,
+        model: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'medecinTravailDetail',
         detailLabel: 'A quelle date ?',
@@ -209,11 +209,11 @@ exports.all = [
     'answers': [
       {
         'label': 'Non',
-        'value': false
+        model: false
       },
       {
         'label': 'Oui',
-        'value': true,
+        model: true,
         detailUrl: 'components/detail/precisez_big.html',
         detailModel: 'descriptionDetail'
       }
@@ -331,14 +331,14 @@ exports.all = [
     'answers': [
       {
         'label': 'Oui',
-        'value': true,
+        model: true,
         detailUrl: 'components/detail/precisez_big.html',
         detailModel: 'passeDetail',
         detailLabel: 'Pourquoi êtes-vous actuellement sans emploi et depuis quand ?'
       },
       {
         'label': 'Non',
-        'value': false
+        model: false
       }
     ]
   }

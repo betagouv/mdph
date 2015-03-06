@@ -10,23 +10,23 @@ exports.all = [
     answers: [
       {
         label: 'Un proche',
-        value: 'proche'
+        model: 'proche'
       },
       {
         label: 'Une association',
-        value: 'association'
+        model: 'association'
       },
       {
         label: 'Un tuteur',
-        value: 'tuteur'
+        model: 'tuteur'
       },
       {
         label: 'Un curateur',
-        value: 'curateur'
+        model: 'curateur'
       },
       {
         label: 'Autre',
-        value: 'autre'
+        model: 'autre'
       }
     ]
   },

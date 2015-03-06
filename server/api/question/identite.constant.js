@@ -10,11 +10,11 @@ exports.all = [
     answers: [
       {
         label: 'Féminin',
-        value: 'feminin'
+        model: 'feminin'
       },
       {
         label: 'Masculin',
-        value: 'masculin'
+        model: 'masculin'
       }
     ]
   },

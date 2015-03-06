@@ -4,16 +4,16 @@
     ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && estAdulte())">
     <button
       class="btn btn-default btn-block btn-answer text-capitalize"
-      btn-radio="answer.value"
+      btn-radio="answer.model"
       ng-model="sectionModel[question.model]"
       ng-required="!sectionModel[question.model]">
         <i class="fa" ng-class="{
-          'fa-dot-circle-o': sectionModel[question.model] === answer.value,
-          'fa-circle-o': sectionModel[question.model] !== answer.value
+          'fa-dot-circle-o': sectionModel[question.model] === answer.model,
+          'fa-circle-o': sectionModel[question.model] !== answer.model
         }"></i>
         {{answer.label}}
     </button>
-    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.value">
+    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.model">
       <div ng-include="answer.detailUrl"></div>
     </div>
   </div>

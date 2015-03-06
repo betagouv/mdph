@@ -11,11 +11,11 @@ exports.all = [
     answers: [
       {
         label: 'Oui',
-        'value': true
+        model: true
       },
       {
         label: 'Non',
-        'value': false
+        model: false
       }
     ]
   },
@@ -35,11 +35,11 @@ exports.all = [
     answers: [
       {
         label: 'Non',
-        value: false
+        model: false
       },
       {
         label: 'Oui',
-        value: true,
+        model: true,
         detailUrl: 'components/detail/precisez_date.html',
         detailModel: 'vieDetail',
         detailLabel: 'Depuis quand ?',
@@ -55,11 +55,11 @@ exports.all = [
     answers: [
       {
         label: 'Non',
-        value: false
+        model: false
       },
       {
         label: 'Oui',
-        value: true,
+        model: true,
         detailUrl: 'components/detail/precisez_yes_no.html',
         detailModel: 'emploiDetail',
         detailLabel: 'Réduction d’activité liée à la prise en charge de la personne aidée'
@@ -95,11 +95,11 @@ exports.all = [
     answers: [
       {
         label: 'Non',
-        value: false
+        model: false
       },
       {
         label: 'Oui',
-        value: true,
+        model: true,
         detailUrl: 'components/detail/precisez_montant.html',
         detailModel: 'dedommagementDetail',
         placeholder: 'Montant mensuel'
@@ -132,11 +132,11 @@ exports.all = [
     answers: [
       {
         label: 'Non',
-        value: false
+        model: false
       },
       {
         label: 'Oui',
-        value: true,
+        model: true,
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'empechementDetail',
         placeholder: 'Laquelle'

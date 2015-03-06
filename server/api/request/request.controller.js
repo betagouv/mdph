@@ -243,7 +243,7 @@ exports.getCerfa = function(req, res) {
 
 exports.getPdf = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    var html = Recapitulatif.answersToHtml(request.formAnswers);
+    var html = Recapitulatif.answersToHtml(request, req.headers.host);
     wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
   });
 };

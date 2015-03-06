@@ -13,17 +13,17 @@ exports.all = [
       {
         labelRep: 'Son état de santé a changé',
         label: 'Votre état de santé a changé',
-        value: 'sante'
+        model: 'sante'
       },
       {
         labelRep: 'Son handicap est stable mais a de nouvelles répercussions sur sa vie quotidienne',
         label: 'Votre handicap est stable mais a de nouvelles répercussions sur votre vie quotidienne',
-        value: 'repercussions'
+        model: 'repercussions'
       },
       {
         labelRep: 'Sa situation est stable',
         label: 'Votre situation est stable',
-        value: 'stable'
+        model: 'stable'
       }
     ]
   },

@@ -2,182 +2,91 @@
 
 /* jshint multistr: true */
 
+var _ = require('lodash');
 var moment = require('moment');
 var Sections = require('../api/question/sections.constant');
 var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
-
-var getDetailAnswer = function(sectionId, questionConstant, answerConstant, request) {
-  if (answerConstant.detailModel && request.formAnswers[sectionId][answerConstant.detailModel]) {
-    return request.formAnswers[sectionId][answerConstant.detailModel];
-  }
-  return null;
-};
-
-var getDetailType = function(sectionId, questionConstant, answerConstant, request){
-  if (answerConstant.detailModel && answerConstant.type  && request.formAnswers[sectionId][answerConstant.detailModel]) {
-    return answerConstant.type;
-  }
-  return null;
-};
-
-var getQuestionAnswer = function(question, answer, sectionId, request) {
-  var answers = request.formAnswers;
-  var questionAnswer = {};
-
-  if (sectionId === 'contexte' && question === 'demandeur') {
-    return 'Détails du demandeur';
-  }
-  var questionConstant = QuestionsBySections[sectionId][question];
-  if (!questionConstant) {
-    return;
-  }
-  questionAnswer.title = questionConstant.titleDefault;
-  questionAnswer.type = questionConstant.type;
-
-  if (questionConstant.type === 'radio') {
-    questionConstant.answers.forEach(function(answerConstant) {
-      if (answerConstant.value === answer) {
-        questionAnswer.answer = {};
-        questionAnswer.answer.value = answerConstant.label;
-        questionAnswer.answer.detail = getDetailAnswer(sectionId, questionConstant, answerConstant, request);
-        questionAnswer.answer.detailType = getDetailType(sectionId, questionConstant, answerConstant, request);
-      }
-    });
-  }
-  else if (questionConstant.type === 'checkbox') {
-    questionAnswer.answer = [];
-    questionConstant.forEach(function(answerConstant) {
-      if (answer[answerConstant.model]) {
-        var checkboxAnswer = {};
-        checkboxAnswer.value = answerConstant.label;
-        checkboxAnswer.detail = getDetailAnswer(sectionId, questionConstant, answerConstant, request);
-        questionAnswer.answer.push(checkboxAnswer);
-      }
-    });
-  }
-  else if (questionConstant.type === 'text' ||
-      questionConstant.type === 'employeur' ||
-      questionConstant.type === 'structure' ||
-      questionConstant.type === 'date') {
-    questionAnswer.answer = {};
-    questionAnswer.answer.value = answer;
-  }
-
-  return questionAnswer;
-};
+var Identites = require('./identites');
+var os = require("os");
 
 var questionToHtml = function(answer, question, sectionId, request) {
+  var html = '<div class="question">'
 
-  var questionAnswer = getQuestionAnswer(question, answer, sectionId, request);
-  if (questionAnswer && questionAnswer.answer) {
-    if (questionAnswer.type === 'radio') {
-      var radioBuilder = questionAnswer.title + ' : ' + questionAnswer.answer.value;
-      if (questionAnswer.answer.detail) {
-        if(questionAnswer.answer.detailType === 'date'){
-          radioBuilder += '<ul><li>' + moment()(questionAnswer.answer.detail).format('DD/MM/YYYY') + '</li></ul>';
-        }
-        else {
-          radioBuilder += '<ul><li>' + questionAnswer.answer.detail + '</li></ul>';
-        }
+  html += '<h3>' + question.titleDefault + '</h3>';
 
+  if (!question.answers) {
+    console.log(question);
+  } else {
+    question.answers.forEach(function(constant) {
+      if (answer[constant.model]) {
+        html += '<p>' + constant.label + '</p>';
       }
-
-      return '<div class="question"><p>' + radioBuilder + '</p></div>';
-    }
-    else if (questionAnswer.type === 'checkbox') {
-      if (!questionAnswer.answer || questionAnswer.answer.length === 0) {
-        return '';
-      }
-      var checkboxBuilder = questionAnswer.title +'<ul>';
-      questionAnswer.answer.forEach(function(checkboxAnswer){
-        checkboxBuilder += '<li>' + checkboxAnswer.value + '</li>';
-        if(checkboxAnswer.detail){
-          checkboxBuilder += '<ul><li>' + checkboxAnswer.detail + '</li></ul>';
-        }
-      });
-
-      checkboxBuilder += '</ul>';
-      return '<div class="question"><p>' + checkboxBuilder + '</p></div>';
-    }
-    else if (questionAnswer.type === 'text') {
-      return '<div class="question"><p>' + questionAnswer.title + ' : ' + questionAnswer.answer.value + '</p></div>';
-    }
-    else if (questionAnswer.type === 'date') {
-      return '<div class="question"><p>' + questionAnswer.title + ' : ' + moment()(questionAnswer.answer.value).format('DD/MM/YYYY') + '</p></div>';
-    }
-    else if (questionAnswer.type === 'employeur') {
-      return ('<div class="question"><p>' + questionAnswer.title +
-        '<ul><li>' + questionAnswer.answer.value.nom.label + ' : ' + questionAnswer.answer.value.nom.value +
-        '</li><li>' + questionAnswer.answer.value.adresse.label + ' : ' + questionAnswer.answer.value.adresse.value  +
-        '</li><li>' + questionAnswer.answer.value.medecin.label + ' : ' + questionAnswer.answer.value.medecin.value  +
-        '</li></ul></p></div>');
-    }
-    else if (questionAnswer.type === 'structure'){
-      var structureBuilder = questionAnswer.title +'<ul>';
-      for(var i = 0 ; i < questionAnswer.answer.value.structures.length ; i++){
-        structureBuilder += '<li>' + questionAnswer.answer.value.structures[i].name + '</li>';
-      }
-      structureBuilder += '</ul>';
-      return '<div class="question"><p>' + structureBuilder + '</p></div>';
-    }
+    });
   }
 
-  return '';
+  html += '</div>';
+
+  return html;
 };
 
 var sectionToHtml = function(section, request) {
-
-  if (section.id === 'envoi') {
-    return '';
-  }
-
-  if (section.id === 'renouvellement' && !request.estRenouvellement) {
-    return '';
-  }
-
   var answers = request.formAnswers;
 
-  var html = '<div class="section"><h2>' + section.label + '</h2>';
+  if (section.id === 'identites') {
+    return Identites.sectionToHtml(answers.identites);
+  }
+
+  if (section.id === 'documents') {
+    return '';
+  }
+
+  var html = '<div class="section">'
+
+  html += '<h2>' + section.label + '</h2>';
+
   var sectionAnswers = answers[section.id];
+  var sectionQuestions = QuestionsBySections[section.id];
 
   if (!sectionAnswers) {
-    return html + '<p><em>Section non renseignée</em></p></div>';
+    return html + '<div class="question"><p>Section non renseignée</p></div>';
   }
 
   if (section.id === 'aidant' && !sectionAnswers.condition) {
-    return html + '<p><em>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</em></p></div>';
+    return html + '<p>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</p>';
   }
 
-  sectionAnswers.forEach(function(answer, question) {
-    var questionHtml = questionToHtml(answer, question, section.id, request);
+  sectionQuestions.forEach(function(question) {
+    var answer = sectionAnswers[question.model];
+    if (!answer) {
+      return;
+    }
+    var questionHtml = questionToHtml(answer, question);
     if (questionHtml) {
-      html += questionToHtml(answer, question, section.id, request) + '<br>';
+      html += questionHtml + '<br>';
     }
   });
 
   return html + '</div>';
 };
 
-exports.answersToHtml = function(request) {
-  var path =  'http://localhost:9000'; // TODO
-
+exports.answersToHtml = function(request, path) {
   var html = '<html>\
     <head>\
       <style>\
         h1 {\
           text-align: center;\
-          font-size: 34px;\
+          font-size: 17px;\
           color: #4f6083;\
         }\
         h2 {\
-          font-size: 28px;\
+          font-size: 14px;\
           color: #323d53;\
         }\
         p {\
-          font-size: 24px;\
+          font-size: 12px;\
         }\
         ul {\
-          font-size: 24px;\
+          font-size: 12px;\
         }\
         .section {\
           color: #333;\
@@ -198,8 +107,8 @@ exports.answersToHtml = function(request) {
       </style>\
     </head>\
     <body>\
-      <img src="'+ path +'/assets/images/cerfa.png" width="91,4" height="48,9"></img>\
-      <img src="'+ path +'/assets/images/logo59.jpg" width="88,9" height="48,9"></img>\
+      <img src="http://'+ path +'/assets/images/cerfa.png" width="91,4" height="48,9"></img>\
+      <img src="http://'+ path +'/assets/images/logo59.jpg" width="88,9" height="48,9"></img>\
       <h1>Mes réponses au questionaire MDPH</h1>\
       <p><strong>Les informations que je donne sont confidentielles.\
       <br>Je peux demander à rencontrer la CDAPH.</strong>\
@@ -209,21 +118,9 @@ exports.answersToHtml = function(request) {
       <br><strong>Une évaluation approfondie va être réalisée par l’équipe de la MDPH, qui vous recontactera si nécessaire.\
       Nous vous conseillons de conserver une copie de vos réponses.</strong></p>';
 
-  // Sections.all.forEach(function(section) {
-  //   html += sectionToHtml(section, request);
-  // });
+  Sections.all.forEach(function(section) {
+    html += sectionToHtml(section, request);
+  });
 
   return html + '</body></html>';
 };
-
-// telechargerPdf: function(request) {
-//   $http.post(
-//     'api/requests/' + request.shortId + '/html_answers.pdf',
-//     { htmlAnswers: answersToHtml(request) },
-//     { responseType: 'arraybuffer' })
-//   .success(function(data) {
-//     var file = new Blob([data], { type: 'application/pdf' });
-//     var fileURL = URL.createObjectURL(file);
-//     $window.open(fileURL);
-//   });
-// }

@@ -10,13 +10,6 @@ exports.all = [
     desc: 'Individus et organismes concernés par la demande',
     section: 'obligatoire'
   },
-  // {
-  //   id: 'autorite',
-  //   sref: '.autorite',
-  //   label: 'Autorité parentale',
-  //   desc: 'Identité de l\'autorité parentale ou délégation d\'autorité parentale',
-  //   section: 'obligatoire'
-  // },
   {
     id: 'aidant',
     sref: '.aidant.situation.lien',
@@ -34,13 +27,6 @@ exports.all = [
       }
     ]
   },
-  // {
-  //   id: 'contact_partenaire',
-  //   sref: '.contact_partenaire',
-  //   label: 'Vous êtes aidés dans vos démarches',
-  //   desc: 'Si vous acceptez que nous contactons ces personnes afin de mieux évaluer votre situation',
-  //   section: 'autour_de_votre_demande'
-  // },
   {
     id: 'vie_quotidienne',
     sref: '.vie_quotidienne.situation.vie_famille',
