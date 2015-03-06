@@ -4,18 +4,6 @@ angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, User, Auth, datepickerConfig, currentUser) {
     $scope.errors = {};
     $scope.user = currentUser;
-    $scope.sectionModel = currentUser;
-    $scope.section = {
-      id: 'espace_perso'
-    };
-    $scope.title = 'Informations personnelles';
-
-    datepickerConfig.datepickerMode = 'year';
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened = true;
-    };
 
     $scope.changePassword = function(form) {
       $scope.passwordSubmitted = true;
@@ -32,7 +20,7 @@ angular.module('impactApp')
       }
     };
 
-    $scope.submit = function(form){
+    $scope.changePersonalInfo = function(form){
       if(form.$valid){
         $scope.user.$changeInfo(function(){
           $scope.infoMessage = 'Vos informations ont bien été modifiées.';

@@ -1,4 +1,4 @@
-<div ng-class="{questionnaire: section.id !== 'espace_perso'}">
+<div class="questionnaire">
 
   <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="submit(infoForm)" novalidate>
     <h1 id="infoPerso">{{desc}}</h1>
@@ -143,7 +143,7 @@
           type="submit"
           name="submit"
           alt="Valider"
-          ng-class="{'btn btn-lg btn-primary' : section.id === 'espace_perso', 'btn btn-block btn-success' : section.id !== 'espace_perso'}">
+          class="btn btn-block btn-success">
             Valider
         </button>
       </div>
