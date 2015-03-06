@@ -19,17 +19,29 @@ var mdphNord, mdphCalvados,
 
 var createFakeAnswers = function(nom, prenom) {
   return {
-      "identite": {
-        "sexe": "masculin",
-        "nom": nom,
-        "prenom": prenom,
-        "email": nom + '@' + prenom,
-        "birthDate": "1987-01-23T23:00:00.000Z",
-        "adresse": "14, rue pinpon",
-        "code_postal": "75019",
-        "commune": "Paris",
-        "pays": "France",
-        "__completion": true
+      "identites": {
+        "beneficiaire": {
+          "nom": nom,
+          "prenom": prenom,
+          "sexe": "masculin",
+          "nationalite": "francaise",
+          "dateNaissance": "2008-01-20T23:00:00.000Z",
+          "adresse": "Chez papa bob",
+          "code_postal": "75011",
+          "commune": "Paris",
+          "pays": "France"
+        },
+        "autorite": {
+          "parent1": {
+            "nom": "Duchemin",
+            "prenom": "Bob",
+            "dateNaissance": "1914-05-06T22:00:00.000Z",
+            "adresse": "14, rue de bob",
+            "code_postal": "75017",
+            "commune": "Paris",
+            "pays": "France"
+          }
+        }
       },
       "vie_quotidienne": {
         "famille": "parents",
