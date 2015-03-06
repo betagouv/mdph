@@ -35,9 +35,12 @@
         <div class="col-md-10">
           <input type="text" class="form-control" name="detail"
             ng-model="sectionModel[question.model][answer.detailModel]['technique']['detail']" required>
+          <div ng-messages="questionForm.detail.$error" ng-if="questionForm.showError">
+            <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+          </div>
         </div>
       </div>
-    </div><br>
+    </div>
     <button
       class="btn btn-default btn-block btn-answer text-capitalize"
       ng-model="sectionModel[question.model][answer.detailModel]['autre']['value']"
@@ -51,6 +54,9 @@
         <div class="col-md-10">
           <input type="text" class="form-control" name="detail"
             ng-model="sectionModel[question.model][answer.detailModel]['autre']['detail']" required>
+          <div ng-messages="questionForm.detail.$error" ng-if="questionForm.showError">
+            <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+          </div>
         </div>
       </div>
     </div>
