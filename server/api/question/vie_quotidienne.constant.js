@@ -308,8 +308,8 @@ exports.all = [
     titleRep: '<%= pronoun %> a besoin d\'aide pour se déplacer :',
     type: 'checkbox',
     answers:[
-      {label: 'Pour se déplacer à l\'intérieur du domicile', model: 'intraDomicile'},
-      {label: 'Pour sortir du domicile et y accéder', model: 'accesDomicile'},
+      {label: 'Pour se déplacer dans le domicile', model: 'intraDomicile'},
+      {label: 'Pour sortir du domicile ou y entrer', model: 'accesDomicile'},
       {label: 'Pour se déplacer à l\'extérieur du domicile', model: 'public'},
       {label: 'Pour utiliser un véhicule', model: 'conduite'},
       {label: 'Pour utiliser les transports en commun', model: 'transports'},
@@ -342,7 +342,7 @@ exports.all = [
     titleRep: '<%= pronoun %> a besoin d\'aide pour sa vie sociale :',
     answers: [
       { label: 'Pour communiquer (s\'exprimer, se faire comprendre)', model: 'communication' },
-      { label: 'Pour avoir des activités culturelles, sportives et de loisirs', model: 'loisirs' },
+      { label: 'Pour avoir des activités sportives et de loisirs', model: 'loisirs' },
       {
         label: 'Pour les relations avec les autres',
         model: 'proches'
@@ -368,30 +368,6 @@ exports.all = [
     ]
   },
   {
-    model: 'besoinsLieuDeVie',
-    neededForAdmin: true,
-    type: 'checkbox',
-    titleDefault: 'Vous avez besoin d\'aide pour adapter votre environnement :',
-    titleRep: '<%= pronoun %> a besoin d\'aide pour adapter son environnement :',
-    answers: [
-      {
-        label: 'Pour vous équiper d\'un matériel spécifique',
-        labelRep: 'Pour s\'équiper d\'un matériel spécifique',
-        model: 'materiel'
-      },
-      {
-        label: 'Pour adapter le véhicule pour pouvoir conduire ou être transporté',
-        model: 'conduite'
-      },
-      {
-        label: 'Pour aménager votre lieu de vie',
-        labelRep: 'Pour aménager son lieu de vie',
-        model: 'amenagement'
-      },
-      {label: 'Autre besoin', model: 'autre', detailModel: 'besoinsLieuDeVie_autre', detailUrl: 'components/detail/precisez.html'}
-    ]
-  },
-  {
     model: 'attentesTypeAide',
     neededForAdmin: true,
     type: 'checkbox',
@@ -400,29 +376,34 @@ exports.all = [
     answers:
     [
       {label: 'Vivre à domicile', model: 'domicile'},
-      {label: 'Une aide technique, du matériel ou équipement', model: 'materiel'},
-      {label: 'Vivre en établissement', model: 'etablissement'},
-      {
-        label: 'Bénéficier d\'un revenu minimum',
-        model: 'financierMinimum',
-        onlyAdult: true
-      },
       {
         label: 'Un aménagement de votre lieu de vie',
         labelRep: 'Un aménagement de son lieu de vie',
         model: 'amenagement'
       },
+      {label: 'Réaliser un bilan des capacités dans la vie quotidienne', model: 'bilan'},
+      {
+        label: 'une aide financière afin d\'assurer un revenu minimum',
+        model: 'financierMinimum',
+        onlyAdult: true
+      },
+      {label: 'Une aide pour se déplacer', model: 'mobilite'},
+      {label: 'Un accompagnement pour l\'adptation / réadaptation à la vie quotidienne', model: 'accompagement'},
+      {
+        label: 'Une aide humaine : quelqu\'un qui vous aide',
+        labelRep: 'Une aide humaine : quelqu\'un qui l\'aide',
+        model: 'humain'
+      },
+      {label: 'Vivre en établissement', model: 'etablissement'},
+      {label: 'Du matériel ou équipement', model: 'materiel'},
       {
         label: 'Une aide financière pour des dépenses liées à votre handicap',
         labelRep: 'Une aide financière pour des dépenses liées à son handicap',
         model: 'financierHandicap'
       },
-      {
-        label: 'Une aide humaine, avec quelqu\'un qui vous aide',
-        labelRep: 'Une aide humaine, avec quelqu\'un qui l\'aide',
-        model: 'humain'
-      },
-      {label: 'Une aide à la mobilité', model: 'mobilite'},
+      {label: 'Un accueil temporaire', model: 'accueil'},
+      {label: 'Une carte de stationnement', model: 'stationnement'},
+      {label: 'Une carte d\'invalidité ou de priorité', model: 'invalidite'},
       {label: 'Autre attente', model: 'autre', detailModel: 'attentesTypeAide_autre', detailUrl: 'components/detail/precisez.html'}
     ]
   },
@@ -430,27 +411,6 @@ exports.all = [
     model: 'structures',
     titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?',
     type: 'checkbox'
-  },
-  {
-    model: 'attentesCarte',
-    neededForAdmin: true,
-    titleDefault: 'Votre demande concerne seulement :',
-    titleRep: 'Sa demande concerne seulement :',
-    type: 'radio',
-    answers: [
-      {
-        label: 'Une carte de stationnement',
-        model: 'stationnement', // TODO a verifier onlyAdult: true,
-      },
-      {
-        label: 'Une carte d\'invalidité ou de priorité',
-        model: 'invalidite'
-      },
-      {
-        label: 'Je n\'ai pas d\'autre demande',
-        model: 'aucune'
-      }
-    ]
   },
   {
     model: 'autresRenseignements',

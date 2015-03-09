@@ -60,7 +60,7 @@ angular.module('impactApp')
               if (sectionModel[question.model] && sectionModel[question.model].financiere) {
                 $state.go('^.aideFinancierePresent');
               } else {
-                $state.go('^.^.vos_besoins.quotidien');
+                $state.go('^.fraisHandicap');
               }
 
             };
@@ -125,7 +125,7 @@ angular.module('impactApp')
               if (sectionModel[question.model]) {
                 $state.go('^.aidesRetraite');
               } else {
-                $state.go('^.^.vos_besoins.quotidien');
+                $state.go('^.fraisHandicap');
               }
             };
           }
