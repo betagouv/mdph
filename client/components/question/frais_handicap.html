@@ -1,0 +1,42 @@
+<form name="questionForm" novalidate>
+  <qtitle ng-hide="hideTitle"></qtitle>
+  <em>{{question.placeholder}}</em>
+  <table class="table my-table-striped">
+    <thead>
+      <th>Frais engagés</th>
+      <th>Fréquence</th>
+      <th>Montant total</th>
+      <th>Montant remboursé</th>
+      <th>Précisions</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="frais in model.listeFrais">
+        <td>
+          <input type="text" class="form-control" ng-model="frais.nom" placeholder="Libellé des frais">
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="frais.frequence" placeholder="Fréquence des frais">
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="frais.total" placeholder="Montant">
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="frais.rembourse" placeholder="Montant remboursé">
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="frais.detail" placeholder="Précisions">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-4">
+      <button class="btn btn-default btn-block" ng-click="retirerFrais()">-</button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-default btn-block" ng-click="ajouterFrais()">+</button>
+    </div><br>
+  </div>
+  <nav-steps ng-hide="hideSteps"></nav-steps>
+
+</form>

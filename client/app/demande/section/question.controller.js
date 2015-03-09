@@ -40,6 +40,42 @@ angular.module('impactApp')
       );
     };
   })
+  .controller('FraisQuestionCtrl', function ($scope, $state, question, nextStep) {
+    $scope.question = question;
+    $scope.nextStep = nextStep;
+
+    if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[$scope.question.model] = {
+        valeur: false,
+        listeFrais: [
+          {
+            'nom': '',
+            'frequence': '',
+            'total': '',
+            'rembourse': '',
+            'detail': ''
+          }
+        ]
+      };
+    }
+
+    $scope.model = $scope.sectionModel[question.model];
+    $scope.ajouterFrais = function() {
+      $scope.model.listeFrais.push(
+        {
+            'nom': '',
+            'frequence': '',
+            'total': '',
+            'rembourse': '',
+            'detail': ''
+          }
+      );
+    };
+    $scope.retirerFrais = function(){
+      var lastIndex = $scope.model.listeFrais.indexOf(_.last($scope.model.listeFrais));
+      $scope.model.listeFrais.splice(lastIndex, 1);
+    };
+  })
   .controller('RenseignementsQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;

@@ -141,6 +141,21 @@ angular.module('impactApp')
           },
           nextStep: function($state) {
             return function() {
+              $state.go('^.fraisHandicap');
+            };
+          }
+        }
+      })
+      .state(index + '.situation.fraisHandicap', {
+        url: '/frais_handicap',
+        templateUrl: 'components/question/frais_handicap.html',
+        controller: 'FraisQuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'fraisHandicap', request.formAnswers);
+          },
+          nextStep: function($state) {
+            return function() {
               $state.go('^.^.vos_besoins.quotidien');
             };
           }

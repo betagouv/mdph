@@ -244,6 +244,11 @@ exports.all = [
     ]
   },
   {
+    model: 'fraisHandicap',
+    titleDefault: 'Frais liés au handicap et restant à charge',
+    placeholder: 'Indiquez les frais non remboursés ou, le cas échéant, remboursés partiellement par votre assurance maladie ou mutuelle complémentaire. Précisez notamment si vous recourez à l\'emploi rémunéré d\'une tierce personne, motivé par votre situation de handicap.'
+  },
+  {
     model: 'besoinsVie',
     neededForAdmin: true,
     titleDefault: 'Vous avez besoin d\'aide dans votre vie quotidienne :',
