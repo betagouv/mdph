@@ -120,7 +120,7 @@ exports.answersToHtml = function(request, path, next) {
   },
   function(err, results){
     if (err) { next(err); }
-    console.log(results);
+
     var ansersTemplate = results.answersTemplate;
     var subTemplates = _.omit(results, 'answersTemplate');
 
