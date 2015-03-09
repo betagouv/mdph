@@ -116,6 +116,122 @@ exports.all = [
     ]
   },
   {
+    model: 'aideFinancierePresent',
+    titleDefault: 'Vous recevez les aides, ressources et/ou prestations suivantes :',
+    titleRep: '<%= pronoun %> reçoit les aides, ressources et/ou prestations suivantes :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Allocation Adulte Handicapé (AAH)',
+        model: 'aah'
+      },
+      {
+        label: 'Revenu de Solidarité Active (RSA)',
+        model: 'rsa'
+      },
+      {
+        label: 'Allocation chômage versée par Pôle Emploi',
+        model: 'chomage'
+      },
+      {
+        label: 'Allocation de Solidarité Spécifique (ASS)',
+        model: 'ass'
+      },
+      {
+        label: 'Retraite pour inaptitude dans la fonction publique ou anticipée',
+        model: 'retraite'
+      }
+    ]
+  },
+  {
+    model: 'aideFinancierePasse',
+    titleDefault: 'Dans les 12 mois précédant votre demande, vous avez perçu :',
+    titleRep: 'Dans les 12 mois précédant votre demande, <%= pronoun %> a perçu :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Un revenu d\'activité',
+        model: 'revenu'
+      },
+      {
+        label: 'Des indemnités journalières',
+        model: 'indemnites'
+      },
+      {
+        label: 'Un revenu issu d\'une activité en ESAT',
+        model: 'esat',
+      }
+    ]
+  },
+  {
+    model: 'pensionInvalidite',
+    titleDefault: 'Vous percevez une ou plusieurs des aides suivantes :',
+    titleRep: '<%= pronoun %> perçoit une ou plusieurs des aides suivantes :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Une pension d\'invalidité',
+        model: 'invalidite'
+      },
+      {
+        label: 'Un autre pension de ce type',
+        model: 'autre'
+      },
+      {
+        label: 'Une Majoration Tierce Personne',
+        model: 'mtp'
+      },
+      {
+        label: 'Une Allocation Supplémentaire d\'Invalidité',
+        model: 'asi'
+      },
+      {
+        label: 'Une rente d\'accident ou de maladie professionnelle',
+        model: 'renteAccident'
+      },
+      {
+        label: 'Une Prestation Complémentaire de Recours à Tierce Personne',
+        model: 'pcrtp'
+      },
+    ]
+  },
+  {
+    model: 'retraite',
+    titleDefault: 'Vous êtes à la retraite :',
+    titleRep: '<%= pronoun %> est à la retraite :',
+    type: 'radio',
+    answers: [
+      {
+        label: 'Oui',
+        model: true,
+      },
+      {
+        label: 'Non',
+        model: false
+      }
+    ]
+  },
+  {
+    model: 'aidesRetraite',
+    titleDefault: 'Vous percevez une ou plusieurs des aides suivantes :',
+    titleRep: '<%= pronoun %> perçoit une ou plusieurs des aides suivantes :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'L\'ASPA (Allocation de Solidarité pour les Personnes Agées)',
+        model: 'aspa',
+      },
+      {
+        label: 'L\'APA (Allocation Personnalisée d\'Autonomie)',
+        model: 'apa'
+      },
+      {
+        label: 'Vous avez demandé une pension de retraite',
+        model: 'pensionRetraite'
+      }
+    ]
+  },
+  {
     model: 'besoinsVie',
     neededForAdmin: true,
     titleDefault: 'Vous avez besoin d\'aide dans votre vie quotidienne :',

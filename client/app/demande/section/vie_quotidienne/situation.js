@@ -54,6 +54,91 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aideActuelle', request.formAnswers);
           },
+          nextStep: function($state, sectionModel, question) {
+            return function() {
+
+              if (sectionModel[question.model].financiere) {
+                $state.go('^.aideFinancierePresent');
+              } else {
+                $state.go('^.^.vos_besoins.quotidien');
+              }
+
+            };
+          }
+        }
+      })
+      .state(index + '.situation.aideFinancierePresent', {
+        url: '/aides_financieres',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'aideFinancierePresent', request.formAnswers);
+          },
+          nextStep: function($state) {
+            return function() {
+              $state.go('^.aideFinancierePasse');
+            };
+          }
+        }
+      })
+      .state(index + '.situation.aideFinancierePasse', {
+        url: '/revenus',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'aideFinancierePasse', request.formAnswers);
+          },
+          nextStep: function($state) {
+            return function() {
+              $state.go('^.pensionInvalidite');
+            };
+          }
+        }
+      })
+      .state(index + '.situation.pensionInvalidite', {
+        url: '/pension_invalidite',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'pensionInvalidite', request.formAnswers);
+          },
+          nextStep: function($state) {
+            return function() {
+              $state.go('^.retraite');
+            };
+          }
+        }
+      })
+      .state(index + '.situation.retraite', {
+        url: '/retraite',
+        templateUrl: 'components/question/radio.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'retraite', request.formAnswers);
+          },
+          nextStep: function($state, sectionModel, question) {
+            return function() {
+              if (sectionModel[question.model]) {
+                $state.go('^.aidesRetraite');
+              } else {
+                $state.go('^.^.vos_besoins.quotidien');
+              }
+            };
+          }
+        }
+      })
+      .state(index + '.situation.aidesRetraite', {
+        url: '/aides_retraite',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'aidesRetraite', request.formAnswers);
+          },
           nextStep: function($state) {
             return function() {
               $state.go('^.^.vos_besoins.quotidien');
