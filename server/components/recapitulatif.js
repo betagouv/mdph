@@ -108,6 +108,9 @@ exports.answersToHtml = function(request, path, next) {
     autorite: function(callback){
       readFile('autorite.html', callback);
     },
+    question: function(callback){
+      readFile('question.html', callback);
+    },
     requestIdentites: function(callback) {
       var identites = request.formAnswers.identites;
 
@@ -116,17 +119,52 @@ exports.answersToHtml = function(request, path, next) {
       formatDateNaissance(identites.autorite.parent2);
 
       callback(null, identites);
+    },
+    trajectoires: function(callback) {
+      var toutesTrajectoires = Sections.trajectoires;
+      var trajectoires = [];
+
+      toutesTrajectoires.forEach(function(trajectoire) {
+        var questions = [];
+        var answers = request.formAnswers[trajectoire.id];
+
+        if (answers) {
+          var toutesQuestions = QuestionsBySections[trajectoire.id];
+          toutesQuestions.forEach(function(question) {
+            var answer = answers[question.model];
+
+            if (answer) {
+              var filteredAnswers = _.filter(question.answers, function(constant) {
+                if (typeof answer === 'string') {
+                  return answer === constant.model;
+                } else {
+                  return answer[constant.model] === true;
+                }
+              })
+              question.answers = filteredAnswers;
+              questions.push(question)
+            }
+          });
+
+          if (questions.length > 0) {
+            trajectoire.questions = questions;
+            trajectoires.push(trajectoire);
+          }
+        }
+      });
+
+      callback(null, trajectoires);
     }
   },
   function(err, results){
     if (err) { next(err); }
 
     var ansersTemplate = results.answersTemplate;
-    var subTemplates = _.omit(results, 'answersTemplate');
+    var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires');
 
     var html = mustache.render(
       results.answersTemplate,
-      {path: path, sections: Sections.all, identites: results.requestIdentites},
+      {path: path, sections: results.trajectoires, identites: results.requestIdentites},
       subTemplates
     );
     next(null, html);
