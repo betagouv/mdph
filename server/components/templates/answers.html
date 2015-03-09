@@ -10,6 +10,10 @@
         font-size: 14px;
         color: #323d53;
       }
+      h3 {
+        font-size: 12px;
+        color: #323d53;
+      }
       p {
         font-size: 12px;
       }
@@ -48,8 +52,12 @@
       Nous vous conseillons de conserver une copie de vos réponses.</strong>
     </p>
 
-    {{#sections}}
+    {{#identites}}
+      {{> identites}}
+    {{/identites}}
+
+   <!--  {{#sections}}
       {{> section}}
-    {{/sections}}
+    {{/sections}} -->
   </body>
 </html>

@@ -12,7 +12,6 @@ var mustache = require('mustache');
 
 var Sections = require('../api/question/sections.constant');
 var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
-var Identites = require('./identites');
 
 var questionToHtml = function(answer, question, sectionId, request) {
   var html = '<div class="question">'
@@ -37,9 +36,9 @@ var questionToHtml = function(answer, question, sectionId, request) {
 var sectionToHtml = function(section, request) {
   var answers = request.formAnswers;
 
-  if (section.id === 'identites') {
-    return Identites.sectionToHtml(answers.identites);
-  }
+  // if (section.id === 'identites') {
+  //   return Identites.sectionToHtml(answers.identites);
+  // }
 
   if (section.id === 'documents') {
     return '';
@@ -81,24 +80,41 @@ var renderTemplate = function(name, scope, templates) {
 };
 
 var readFile = function(name, callback) {
-  fs.readFile(path.join(__dirname, name), function (err, html) {
+  fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
     callback(err, String(html));
   });
 }
 
 exports.answersToHtml = function(request, path, next) {
-
   async.series({
     answersTemplate: function(callback){
       readFile('answers.html', callback);
     },
-    sectionTemplate: function(callback){
+    section: function(callback){
       readFile('section.html', callback);
+    },
+    identites: function(callback){
+      readFile('identites.html', callback);
+    },
+    identite: function(callback){
+      readFile('identite.html', callback);
+    },
+    autorite: function(callback){
+      readFile('autorite.html', callback);
     }
   },
   function(err, results){
     if (err) { next(err); }
-    var html = mustache.render(results.answersTemplate, {path: path, sections: Sections.all}, {section: results.sectionTemplate});
+
+    var ansersTemplate = results.answersTemplate;
+    var subTemplates = _.omit(results, 'answersTemplate');
+    console.log(subTemplates);
+
+    var html = mustache.render(
+      results.answersTemplate,
+      {path: path, sections: Sections.all, identites: request.formAnswers.identites},
+      subTemplates
+    );
     next(null, html);
   });
 };
