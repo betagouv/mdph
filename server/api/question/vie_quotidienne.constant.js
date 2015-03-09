@@ -212,6 +212,10 @@ exports.all = [
       {
         label: 'Oui',
         model: true,
+        detailUrl: 'components/detail/precisez_date.html',
+        detailModel: 'retraiteDetail',
+        detailLabel: 'Depuis quand ?',
+        type: 'date'
       },
       {
         label: 'Non',
