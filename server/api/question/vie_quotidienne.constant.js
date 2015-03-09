@@ -174,11 +174,16 @@ exports.all = [
     answers: [
       {
         label: 'Une pension d\'invalidité',
-        model: 'invalidite'
+        model: 'invalidite',
+        detailUrl: 'components/detail/pension_invalidite.html',
+        detailModel: 'categorie',
       },
       {
         label: 'Un autre pension de ce type',
-        model: 'autre'
+        model: 'autre',
+        detailUrl: 'components/detail/precisez.html',
+        detailModel: 'amenagementDetail',
+        placeholder : 'Pension des deux tiers, d\'incapacité, ...'
       },
       {
         label: 'Une Majoration Tierce Personne',
