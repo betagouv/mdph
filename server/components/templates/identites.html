@@ -1,12 +1,16 @@
 <div class="section">
   <h2>Identité</h2>
   <h3>Bénéficiaire</h3>
-  {{#beneficiaire}}
-    {{>identite}}
-  {{/beneficiaire}}
+  <div class="question">
+    {{#beneficiaire}}
+      {{>identite}}
+    {{/beneficiaire}}
+  </div>
 
   <h3>Autorité parentale</h3>
-  {{#autorite}}
-    {{>autorite}}
-  {{/autorite}}
+  <div class="question">
+    {{#autorite}}
+      {{>autorite}}
+    {{/autorite}}
+  </div>
 </div>

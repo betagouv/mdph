@@ -85,6 +85,12 @@ var readFile = function(name, callback) {
   });
 }
 
+var formatDateNaissance = function(identite) {
+  if (identite && identite.dateNaissance) {
+    identite.dateNaissance = moment(identite.dateNaissance).format('DD/MM/YYYY');
+  }
+}
+
 exports.answersToHtml = function(request, path, next) {
   async.series({
     answersTemplate: function(callback){
@@ -101,18 +107,26 @@ exports.answersToHtml = function(request, path, next) {
     },
     autorite: function(callback){
       readFile('autorite.html', callback);
+    },
+    requestIdentites: function(callback) {
+      var identites = request.formAnswers.identites;
+
+      formatDateNaissance(identites.beneficiaire);
+      formatDateNaissance(identites.autorite.parent1);
+      formatDateNaissance(identites.autorite.parent2);
+
+      callback(null, identites);
     }
   },
   function(err, results){
     if (err) { next(err); }
-
+    console.log(results);
     var ansersTemplate = results.answersTemplate;
     var subTemplates = _.omit(results, 'answersTemplate');
-    console.log(subTemplates);
 
     var html = mustache.render(
       results.answersTemplate,
-      {path: path, sections: Sections.all, identites: request.formAnswers.identites},
+      {path: path, sections: Sections.all, identites: results.requestIdentites},
       subTemplates
     );
     next(null, html);
