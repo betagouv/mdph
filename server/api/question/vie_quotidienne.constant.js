@@ -98,7 +98,7 @@ exports.all = [
     type: 'checkbox',
     answers: [
       {
-        label: 'Une aide finacière et des ressources',
+        label: 'Une aide financière et des ressources',
         model: 'financiere'
       },
       {
@@ -155,7 +155,10 @@ exports.all = [
       },
       {
         label: 'Des indemnités journalières',
-        model: 'indemnites'
+        model: 'indemnites',
+        detailUrl: 'components/detail/precisez_duree.html',
+        detailModel: 'duree',
+        type: 'date'
       },
       {
         label: 'Un revenu issu d\'une activité en ESAT',

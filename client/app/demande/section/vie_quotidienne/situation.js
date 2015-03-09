@@ -57,7 +57,7 @@ angular.module('impactApp')
           nextStep: function($state, sectionModel, question) {
             return function() {
 
-              if (sectionModel[question.model].financiere) {
+              if (sectionModel[question.model] && sectionModel[question.model].financiere) {
                 $state.go('^.aideFinancierePresent');
               } else {
                 $state.go('^.^.vos_besoins.quotidien');
