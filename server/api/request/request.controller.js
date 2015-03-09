@@ -51,7 +51,7 @@ exports.index = function(req, res) {
         if(err) return res.send(500, err);
 
         res.set('count', requests.length);
-        res.json(requests);
+        return res.send(requests);
       });
   });
 };

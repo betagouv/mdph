@@ -15,7 +15,6 @@ var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
-var multipart = require('connect-multiparty');
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -29,10 +28,6 @@ module.exports = function(app) {
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
-
-  app.use(multipart({
-    uploadDir: path.join(config.root, config.uploadDir)
-  }));
 
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
