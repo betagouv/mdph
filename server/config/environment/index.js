@@ -13,7 +13,7 @@ function requiredProcessEnv(name) {
 // All configurations will extend these options
 // ============================================
 var all = {
-  env: process.env.NODE_ENV || 'production',
+  env: process.env.NODE_ENV,
 
   // Root path of server
   root: path.normalize(__dirname + '/../../..'),
