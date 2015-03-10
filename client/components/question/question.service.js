@@ -1,24 +1,59 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('QuestionService', function QuestionService(FormService) {
+  .factory('QuestionService', function QuestionService(estMineur) {
+
+    var getName = function(formAnswers) {
+      try {
+        return formAnswers.identites.beneficiaire.prenom;
+      } catch(e) {
+        return 'le bénéficiaire de la demande';
+      }
+    };
+
+    var estMasculin = function(formAnswers) {
+      try {
+        return formAnswers.identites.beneficiaire.sexe === 'masculin';
+      } catch(e) {
+        return true;
+      }
+    };
+
+    var getPronoun = function(formAnswers, capitalized) {
+      if (capitalized) {
+        return estMasculin(formAnswers) ? 'Il' : 'Elle';
+      }
+      return estMasculin(formAnswers) ? 'il' : 'elle';
+    };
+
+    var getPronounTonic = function(formAnswers) {
+      return estMasculin(formAnswers) ? 'lui' : 'elle';
+    };
 
     var loadAshCompile = function(str, formAnswers) {
       var compiled = _.template(str);
       return compiled({
-        'name': FormService.getName(formAnswers),
-        'pronoun': FormService.getPronoun(formAnswers),
-        'pronounTonic': FormService.getPronounTonic(formAnswers),
-        'fem': FormService.estMasculin(formAnswers) ? '' : 'e'
+        'name': getName(formAnswers),
+        'pronoun': getPronoun(formAnswers),
+        'pronounTonic': getPronounTonic(formAnswers),
+        'fem': estMasculin(formAnswers) ? '' : 'e'
       });
     };
 
+    var estRepresentant = function(formAnswers) {
+      try {
+        return estMineur(formAnswers.identites.beneficiaire.dateNaissance);
+      } catch(e) {
+        return true;
+      }
+    };
+
     var computeLabel = function(answer, formAnswers) {
-      if (FormService.estRepresentant(formAnswers)) {
+      if (estRepresentant(formAnswers)) {
         if (answer.labelRep) {
           return loadAshCompile(answer.labelRep, formAnswers);
         }
-        if (FormService.estMasculin(formAnswers) && answer.labelRepMasc) {
+        if (estMasculin(formAnswers) && answer.labelRepMasc) {
           return loadAshCompile(answer.labelRepMasc, formAnswers);
         } else if (answer.labelRepFem){
           return loadAshCompile(answer.labelRepFem, formAnswers);
@@ -28,14 +63,14 @@ angular.module('impactApp')
     };
 
     var computeTitle = function(question, formAnswers) {
-      if (FormService.estRepresentant(formAnswers) && angular.isDefined(question.titleRep)) {
+      if (estRepresentant(formAnswers) && angular.isDefined(question.titleRep)) {
         return loadAshCompile(question.titleRep, formAnswers);
       }
       return question.titleDefault;
     };
 
     var computePlaceholder = function(question, formAnswers) {
-      if (FormService.estRepresentant(formAnswers) && angular.isDefined(question.placeholder)) {
+      if (estRepresentant(formAnswers) && angular.isDefined(question.placeholder)) {
         return loadAshCompile(question.placeholder, formAnswers);
       }
       return question.placeholderDefault ? question.placeholderDefault : question.placeholder;

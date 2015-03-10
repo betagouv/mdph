@@ -9,8 +9,8 @@ angular.module('impactApp')
         controller: 'ListeDemandesCtrl',
         authenticate: true,
         resolve: {
-          requests: function(RequestService) {
-            return RequestService.getUserRequests();
+          requests: function(User) {
+            return User.queryRequests().$promise;
           }
         }
       });
