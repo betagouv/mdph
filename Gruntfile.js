@@ -42,7 +42,7 @@ module.exports = function (grunt) {
       },
       prod: {
         options: {
-          script: 'server/app.js'
+          script: 'dist/server/app.js'
         }
       }
     },
@@ -305,7 +305,8 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/assets/images',
           src: ['generated/*']
-        }, {
+        },
+        {
           expand: true,
           dest: '<%= yeoman.dist %>',
           src: [
