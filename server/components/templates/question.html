@@ -3,9 +3,16 @@
   <ul>
     {{#answers}}
       <li>{{label}}</li>
-      {{#detail}}
-      <li>Détail : {{detail}}</li>
-      {{/detail}}
+      <ul>
+        {{#detail}}
+          <li>{{detail}}</li>
+        {{/detail}}
+      </ul>
+      <ul>
+        {{#details}}
+          <li>{{.}}</li>
+        {{/details}}
+      </ul>
     {{/answers}}
   </ul>
 </div>

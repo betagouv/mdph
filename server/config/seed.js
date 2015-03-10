@@ -21,16 +21,16 @@ var createFakeAnswers = function(nom, prenom) {
   return {
       "identites": {
         "beneficiaire": {
-          "nom": "aze",
-          "prenom": "zda",
+          "nom": nom,
+          "prenom": prenom,
           "sexe": "feminin",
           "nationalite": "francaise",
           "dateNaissance": "1979-12-31T23:00:00.000Z",
-          "adresse": "kjs",
-          "adresse_complement": "klf",
-          "code_postal": "knld",
-          "commune": ";ndc",
-          "pays": "m"
+          "adresse": "3 rue des Pommiers",
+          "adresse_complement": "chez Dudu",
+          "code_postal": "75016",
+          "commune": "Paris",
+          "pays": "France"
         },
         "aidantDemarche": [],
         "__completion": true

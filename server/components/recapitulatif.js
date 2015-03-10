@@ -139,7 +139,18 @@ exports.answersToHtml = function(request, path, next) {
               filteredAnswers.forEach(function(rawAnswer){
                 if(rawAnswer.detailModel){
                   if(answer[rawAnswer.detailModel]){
-                    rawAnswer.detail = answer[rawAnswer.detailModel];
+                    if(typeof answer[rawAnswer.detailModel] === 'object'){
+                      rawAnswer.details = [];
+                      _.forEach(answer[rawAnswer.detailModel], function(n, key){
+                        if(n){
+                          rawAnswer.details.push(key);
+                        }
+                      });
+                    }
+                    else {
+                      rawAnswer.detail = answer[rawAnswer.detailModel];
+                    }
+
                   }
                   else {
                     rawAnswer.detail = answers[rawAnswer.detailModel];
