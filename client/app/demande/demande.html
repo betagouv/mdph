@@ -23,7 +23,7 @@
       </p>
 
       <div class="text-right">
-        <button ng-if="!request.status || request.status === 'en_cours'" class="btn btn-primary" ng-click="sauvegarder()">Sauvegarder</button>
+        <button ng-if="request.status === 'en_cours'" class="btn btn-primary" ng-click="sauvegarder()">Sauvegarder</button>
         <button ng-if="request.status === 'en_cours'" class="btn btn-success" ng-click="envoyer()">Envoyer</button>
         <button ng-if="request.status === 'a_completer'" class="btn btn-success" ng-click="envoyer()">Valider vos modifications</button>
       </div>
@@ -93,7 +93,7 @@
       </a>
     </div>
 
-    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="request.status !== 'en_cours'" ng-repeat="section in sectionsDocuments">
+    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="request._id" ng-repeat="section in sectionsDocuments">
       <div class="section-body">
         <div class="left">
           <i class="fa fa-chevron-circle-right"></i>
