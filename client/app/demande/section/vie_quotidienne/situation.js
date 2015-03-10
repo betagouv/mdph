@@ -23,7 +23,7 @@ angular.module('impactApp')
           nextStep: function($state, sectionModel, question) {
             return function() {
               if (sectionModel[question.model] === 'etablissement') {
-                $state.go('^.^.vos_besoins.quotidien');
+                $state.go('^.aides');
               } else {
                 $state.go('^.logement');
               }

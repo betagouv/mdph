@@ -21,62 +21,61 @@ var createFakeAnswers = function(nom, prenom) {
   return {
       "identites": {
         "beneficiaire": {
-          "nom": nom,
-          "prenom": prenom,
-          "sexe": "masculin",
+          "nom": "aze",
+          "prenom": "zda",
+          "sexe": "feminin",
           "nationalite": "francaise",
-          "dateNaissance": "2008-01-20T23:00:00.000Z",
-          "adresse": "Chez papa bob",
-          "code_postal": "75011",
-          "commune": "Paris",
-          "pays": "France"
+          "dateNaissance": "1979-12-31T23:00:00.000Z",
+          "adresse": "kjs",
+          "adresse_complement": "klf",
+          "code_postal": "knld",
+          "commune": ";ndc",
+          "pays": "m"
         },
-        "autorite": {
-          "parent1": {
-            "nom": "Duchemin",
-            "prenom": "Bob",
-            "dateNaissance": "1914-05-06T22:00:00.000Z",
-            "adresse": "14, rue de bob",
-            "code_postal": "75017",
-            "commune": "Paris",
-            "pays": "France"
-          }
-        }
+        "aidantDemarche": [],
+        "__completion": true
       },
       "vie_quotidienne": {
-        "famille": "parents",
+        "famille": "couple",
         "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
-        "logement": "independant",
-        "logement_independant": "proprietaire",
+        "logement": "domicile",
+        "logement_domicile": "parents",
+        "aideActuelle": {
+          "technique": true,
+          "techniqueDetail": {
+            "animal": true,
+            "vehicule": true
+          }
+        },
+        "fraisHandicap": {
+          "valeur": false,
+          "listeFrais": [
+            {
+              "nom": "Coucou",
+              "frequence": "1 par mois",
+              "total": "160",
+              "rembourse": "100",
+              "detail": "izqskl"
+            }
+          ]
+        },
         "besoinsVie": {
-          "budget": true,
-          "courses": true,
-          "repas": true,
           "cuisine": true,
-          "sante": true,
-          "hygiene": true
+          "repas": true
         },
         "besoinsDeplacement": {
-          "accesDomicile": true,
-          "conduite": true,
-          "transports": true
+          "vacances": true
         },
         "besoinsTransports": false,
         "besoinsSocial": {
           "proches": true,
-          "securite": true,
-          "citoyen": true,
-          "loisirs": true
-        },
-        "besoinsLieuDeVie": {
-          "amenagement": true,
-          "conduite": true
+          "famille": true,
+          "securite": true
         },
         "attentesTypeAide": {
+          "accompagement": true,
           "humain": true,
-          "financierMinimum": true,
-          "materiel": true,
-          "domicile": true
+          "etablissement": true
         },
         "structures": {
           "valeur": false,
@@ -87,10 +86,10 @@ var createFakeAnswers = function(nom, prenom) {
             }
           ]
         },
-        "attentesCarte": "invalidite",
-        "autresRenseignements": "Autres renseignements",
+        "autresRenseignements": "qsdfghjklm",
         "__completion": true
       },
+
       "vie_au_travail" : {
         "__completion" : true,
         "autresRenseignements" : "Test",

@@ -73,12 +73,6 @@ var sectionToHtml = function(section, request) {
   return html + '</div>';
 };
 
-var renderTemplate = function(name, scope, templates) {
-  fs.readFile(path.join(__dirname, name), function (err, html) {
-
-  });
-};
-
 var readFile = function(name, callback) {
   fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
     callback(err, String(html));
@@ -113,10 +107,11 @@ exports.answersToHtml = function(request, path, next) {
     },
     requestIdentites: function(callback) {
       var identites = request.formAnswers.identites;
-
       formatDateNaissance(identites.beneficiaire);
-      formatDateNaissance(identites.autorite.parent1);
-      formatDateNaissance(identites.autorite.parent2);
+      if(identites.autorite){
+        formatDateNaissance(identites.autorite.parent1);
+        formatDateNaissance(identites.autorite.parent2);
+      }
 
       callback(null, identites);
     },
@@ -140,7 +135,17 @@ exports.answersToHtml = function(request, path, next) {
                 } else {
                   return answer[constant.model] === true;
                 }
-              })
+              });
+              filteredAnswers.forEach(function(rawAnswer){
+                if(rawAnswer.detailModel){
+                  if(answer[rawAnswer.detailModel]){
+                    rawAnswer.detail = answer[rawAnswer.detailModel];
+                  }
+                  else {
+                    rawAnswer.detail = answers[rawAnswer.detailModel];
+                  }
+                }
+              });
               question.answers = filteredAnswers;
               questions.push(question)
             }
@@ -158,10 +163,8 @@ exports.answersToHtml = function(request, path, next) {
   },
   function(err, results){
     if (err) { next(err); }
-
     var ansersTemplate = results.answersTemplate;
-    var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires');
-
+    var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires', 'requestIdentites');
     var html = mustache.render(
       results.answersTemplate,
       {path: path, sections: results.trajectoires, identites: results.requestIdentites},
