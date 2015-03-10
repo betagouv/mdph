@@ -62,20 +62,6 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
-            $state.go('^.lieu_de_vie');
-          };
-        }
-      }
-    }).state(index + '.vos_besoins.lieu_de_vie', {
-      url: '/lieu_de_vie',
-      templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
-      resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'besoinsLieuDeVie', request.formAnswers);
-        },
-        nextStep: function($state) {
-          return function() {
             $state.go('^.^.vos_attentes.type_aide');
           };
         }

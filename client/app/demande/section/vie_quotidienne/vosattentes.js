@@ -31,20 +31,6 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
-            $state.go('^.carte');
-          };
-        }
-      }
-    }).state(index + '.vos_attentes.carte', {
-      url: '/carte',
-      templateUrl: 'components/question/radio.html',
-      controller: 'QuestionCtrl',
-      resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'attentesCarte', request.formAnswers);
-        },
-        nextStep: function($state) {
-          return function() {
             $state.go('^.autres_renseignements');
           };
         }
