@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('navSection', function (SectionConstants, $state) {
+  .directive('navSection', function ($state) {
     return {
       scope: {
         sections: '=',

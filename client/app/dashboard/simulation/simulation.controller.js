@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SimulationCtrl', function ($scope, $http, SectionConstants, situationsParticulieres, vieQuotidienne, renouvellement,
+  .controller('SimulationCtrl', function ($scope, $http, sections, situationsParticulieres, vieQuotidienne, renouvellement,
     travail, vieScolaire, aidant, DroitService, datepickerConfig, $sessionStorage, $timeout, $window) {
 
-    $scope.sections = [SectionConstants[0], SectionConstants[2], SectionConstants[4], SectionConstants[5]];
+    $scope.sections = [sections[0], sections[2], sections[4], sections[5]];
     $scope.isAdmin = true;
 
     $scope.questionsBySectionId = {
