@@ -2,7 +2,9 @@
   <h3>{{titleDefault}}</h3>
   <ul>
     {{#answers}}
-      <li>{{label}}</li>
+      {{#label}}
+        <li>{{label}}</li>
+      {{/label}}
       <ul>
         {{#detail}}
           <li>{{detail}}</li>

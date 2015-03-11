@@ -128,8 +128,8 @@ exports.answersToHtml = function(request, path, next) {
           toutesQuestions.forEach(function(question) {
 
             var answer = answers[question.model];
-
             if (answer) {
+
               var filteredAnswers = _.filter(question.answers, function(constant) {
                 if (typeof answer === 'string') {
                   return answer === constant.model;
@@ -143,6 +143,13 @@ exports.answersToHtml = function(request, path, next) {
                   model: 'fraisHandicap',
                   detailModel: 'listeFrais'
                 });
+              }
+              else {
+                if(question.model === 'autresRenseignements'){
+                  filteredAnswers.push({
+                    label: answer
+                  });
+                }
               }
               filteredAnswers.forEach(function(rawAnswer){
                 if(rawAnswer.detailModel){
