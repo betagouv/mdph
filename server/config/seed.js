@@ -56,6 +56,13 @@ var createFakeAnswers = function(nom, prenom) {
               "total": "160",
               "rembourse": "100",
               "detail": "izqskl"
+            },
+            {
+              "nom": "Coucou",
+              "frequence": "2 par an",
+              "total": "260",
+              "rembourse": "50",
+              "detail": "Héhéh"
             }
           ]
         },

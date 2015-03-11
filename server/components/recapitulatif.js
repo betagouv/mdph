@@ -126,6 +126,7 @@ exports.answersToHtml = function(request, path, next) {
         if (answers) {
           var toutesQuestions = QuestionsBySections[trajectoire.id];
           toutesQuestions.forEach(function(question) {
+
             var answer = answers[question.model];
 
             if (answer) {
@@ -136,14 +137,27 @@ exports.answersToHtml = function(request, path, next) {
                   return answer[constant.model] === true;
                 }
               });
+              if(answer.listeFrais){
+                filteredAnswers.push({
+                  label: 'Liste des frais',
+                  model: 'fraisHandicap',
+                  detailModel: 'listeFrais'
+                });
+              }
               filteredAnswers.forEach(function(rawAnswer){
                 if(rawAnswer.detailModel){
                   if(answer[rawAnswer.detailModel]){
                     if(typeof answer[rawAnswer.detailModel] === 'object'){
                       rawAnswer.details = [];
+                      rawAnswer.detailsFrais = [];
                       _.forEach(answer[rawAnswer.detailModel], function(n, key){
                         if(n){
-                          rawAnswer.details.push(key);
+                          if(typeof n === 'object'){
+                            rawAnswer.detailsFrais.push(n)
+                          }
+                          else {
+                            rawAnswer.details.push(key);
+                          }
                         }
                       });
                     }
