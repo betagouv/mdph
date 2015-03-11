@@ -2,9 +2,7 @@
   <h3>{{titleDefault}}</h3>
   <ul>
     {{#answers}}
-      {{#label}}
-        <li>{{label}}</li>
-      {{/label}}
+      <li>{{label}}</li>
       <ul>
         {{#detail}}
           <li>{{detail}}</li>
@@ -14,6 +12,9 @@
         {{#details}}
           <li>{{.}}</li>
         {{/details}}
+        {{#detailsObject}}
+          <li>{{label}} : {{detail}}</li>
+        {{/detailsObject}}
         {{#detailsFrais}}
           <li> Frais :
             <ul>

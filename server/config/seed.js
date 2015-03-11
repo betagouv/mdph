@@ -19,130 +19,213 @@ var mdphNord, mdphCalvados,
 
 var createFakeAnswers = function(nom, prenom) {
   return {
-      "identites": {
-        "beneficiaire": {
-          "nom": nom,
-          "prenom": prenom,
-          "sexe": "feminin",
-          "nationalite": "francaise",
+    "identites": {
+      "beneficiaire": {
+        "nom": nom,
+        "prenom": prenom,
+        "sexe": "masculin",
+        "nationalite": "francaise",
+        "email": "bobby@bob.com",
+        "dateNaissance": "2009-12-31T23:00:00.000Z",
+        "adresse": "3 rue des bobbys",
+        "adresse_complement": "Chez Grand Bob",
+        "code_postal": "75000",
+        "commune": "Paris",
+        "pays": "France"
+      },
+      "autorite": {
+        "parent1": {
+          "nom": "Grand",
+          "prenom": "Bob",
+          "email": "grand@bob.fr",
           "dateNaissance": "1979-12-31T23:00:00.000Z",
-          "adresse": "3 rue des Pommiers",
-          "adresse_complement": "chez Dudu",
-          "code_postal": "75016",
+          "adresse": "3 rue des bobbys",
+          "code_postal": "75000",
           "commune": "Paris",
           "pays": "France"
         },
-        "aidantDemarche": [],
-        "__completion": true
+        "parent2": {
+          "nom": "Grande",
+          "prenom": "Bob",
+          "email": "grande@bob.com",
+          "dateNaissance": "1969-12-31T23:00:00.000Z",
+          "adresse": "3 rue des bobbys",
+          "code_postal": "75000",
+          "commune": "Paris",
+          "pays": "France"
+        }
       },
-      "vie_quotidienne": {
-        "famille": "couple",
-        "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
-        "logement": "domicile",
-        "logement_domicile": "parents",
-        "aideActuelle": {
-          "technique": true,
-          "techniqueDetail": {
-            "animal": true,
-            "vehicule": true
+      "aidantDemarche": [],
+      "__completion": true
+    },
+    "vie_quotidienne": {
+      "famille": "autre",
+      "famille_autre": "Il vit dans un autre établissement.",
+      "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
+      "logement": "autre",
+      "logement_autre": "Il vit à un autre endroit.",
+      "aideActuelle": {
+        "financiere": true,
+        "technique": true,
+        "techniqueDetail": {
+          "logement": true,
+          "animal": true,
+          "vehicule": true,
+          "technique": {
+            "value": true,
+            "detail": "Il bénéficie d'une aide technique dont voici le détail."
+          },
+          "autre": {
+            "value": false
           }
-        },
-        "fraisHandicap": {
-          "valeur": false,
-          "listeFrais": [
-            {
-              "nom": "Coucou",
-              "frequence": "1 par mois",
-              "total": "160",
-              "rembourse": "100",
-              "detail": "izqskl"
-            },
-            {
-              "nom": "Coucou",
-              "frequence": "2 par an",
-              "total": "260",
-              "rembourse": "50",
-              "detail": "Héhéh"
-            }
-          ]
-        },
-        "besoinsVie": {
-          "cuisine": true,
-          "repas": true
-        },
-        "besoinsDeplacement": {
-          "vacances": true
-        },
-        "besoinsTransports": false,
-        "besoinsSocial": {
-          "proches": true,
-          "famille": true,
-          "securite": true
-        },
-        "attentesTypeAide": {
-          "accompagement": true,
-          "humain": true,
-          "etablissement": true
-        },
-        "structures": {
-          "valeur": false,
-          "structures": [
-            {
-              "name": "",
-              "contact": false
-            }
-          ]
-        },
-        "autresRenseignements": "qsdfghjklm",
-        "__completion": true
+        }
       },
-
-      "vie_au_travail" : {
-        "__completion" : true,
-        "autresRenseignements" : "Test",
-        "structure" : {
-          "structures" : [
-              {
-                  "contact" : false,
-                  "name" : ""
-              }
-          ],
-          "valeur" : false
-        },
-        "besoinSoutien" : {
-          "formation" : true,
-          "environnement" : true
-        },
-        "description" : false,
-        "situationAccompagnement" : {
-          "capEmploi" : true
-        },
-        "formationDetail" : "Test",
-        "situationSansEmploi" : {
-          "formation" : true
-        },
-        "passe" : false,
-        "__lastSref" : "departement.demande.vie_au_travail.projet_professionnel.autres_renseignements",
-        "conditionTravail" : false
+      "aideFinancierePresent": {
+        "rsa": true,
+        "aah": true,
+        "ass": true,
+        "chomage": true
       },
-      "vie_scolaire" : {
-        "__completion" : true,
-        "autresRenseignements" : "Test",
-        "structures" : {
-          "structures" : [
-              {
-                  "contact" : false,
-                  "name" : ""
-              }
-          ],
-          "valeur" : false
-        },
-        "raisonNonScolaireEtablissement" : "Test",
-        "raisonNonScolaire" : "etablissement",
-        "__lastSref" : "departement.demande.vie_scolaire.vos_attentes.autres_renseignements",
-        "condition" : false
-      }
+      "aideFinancierePasse": {
+        "revenu": true,
+        "indemnites": true
+      },
+      "duree": {
+        "debut": "2001-07-16T22:00:00.000Z",
+        "fin": "2008-08-04T22:00:00.000Z"
+      },
+      "pensionInvalidite": {
+        "invalidite": true,
+        "autre": true,
+        "mtp": true,
+        "asi": true,
+        "renteAccident": true
+      },
+      "categorie": "categorie1",
+      "amenagementDetail": "Il bénéficie d'une autre pension de ce type dont voici le détail.",
+      "retraite": true,
+      "retraiteDetail": "2006-04-04T22:00:00.000Z",
+      "aidesRetraite": {
+        "aspa": true,
+        "apa": true
+      },
+      "fraisHandicap": {
+        "valeur": false,
+        "listeFrais": [
+          {
+            "nom": "Frais 1",
+            "frequence": "Tous les deux mois",
+            "total": "170€",
+            "rembourse": "100€",
+            "detail": "Je suis une précision."
+          },
+          {
+            "nom": "Frais 2",
+            "frequence": "Tous les quatre mois",
+            "total": "1360€",
+            "rembourse": "900€",
+            "detail": "Je suis une précision."
+          }
+        ]
+      },
+      "besoinsVie": {
+        "hygiene": true,
+        "habits": true,
+        "autre": true
+      },
+      "besoinsVie_autre": "Il a un autre besoin d'aide dans sa vie quotidienne dont voici le détail.",
+      "besoinsDeplacement": {
+        "accesDomicile": true,
+        "public": true,
+        "conduite": true,
+        "autre": true
+      },
+      "besoinsDeplacement_autre": "Il a un autre besoin d'aide pour se déplacer dont voici le détail.",
+      "besoinsTransports": false,
+      "besoinsSocial": {
+        "communication": true,
+        "securite": true,
+        "autre": true
+      },
+      "besoinsSocial_autre": "Il a un autre besoin d'aide pour sa vie sociale dont voici le détail.",
+      "attentesTypeAide": {
+        "amenagement": true,
+        "mobilite": true,
+        "accompagement": true,
+        "autre": true
+      },
+      "attentesTypeAide_autre": "Je suis une autre attente dont voici le détail.",
+      "structures": {
+        "valeur": false,
+        "structures": [
+          {
+            "name": "",
+            "contact": false
+          }
+        ]
+      },
+      "autresRenseignements": "Je suis un autre type de renseignements. Coucou c'est moi le renseignement de la vie quotidienne !",
+      "__completion": true
+    },
+    "vie_scolaire": {
+      "condition": false,
+      "__lastSref": "departement.demande.vie_scolaire.vos_attentes.autres_renseignements",
+      "raisonNonScolaire": "tropJeune",
+      "raisonNonScolaireTropJeune": "Je suis trop jeune pour travailler.",
+      "structure": {
+        "valeur": false,
+        "structures": [
+          {
+            "name": "",
+            "contact": false
+          }
+        ]
+      },
+      "autresRenseignements": "Je suis un autre renseignement. Coucou c'est moi le renseignement de la vie scolaire !",
+      "__completion": true
+    },
+    "vie_au_travail": {
+      "conditionTravail": true,
+      "__lastSref": "departement.demande.vie_au_travail.projet_professionnel.autres_renseignements",
+      "milieuTravail": "etablissement",
+      "nomPoste": "Je suis le nom du poste qu'il occupe.",
+      "temps": true,
+      "adapte": false,
+      "adapteDetail": "Je suis un emploi inadapté.",
+      "difficultes": "Je suis une difficulté liée au handicap.",
+      "amenagement": false,
+      "arretDeTravail": false,
+      "description": true,
+      "descriptionDetail": "Je suis un projet professionnel.",
+      "besoinSoutien": {
+        "formation": true,
+        "emploi": true,
+        "autre": true
+      },
+      "besoinSoutienAutre": "Je suis un autre besoin de soutien.",
+      "structure": {
+        "valeur": false,
+        "structures": [
+          {
+            "name": "",
+            "contact": false
+          }
+        ]
+      },
+      "autresRenseignements": "Je suis un autre renseignement. Coucou le renseignement de la vie professionnelle !",
+      "__completion": true
+    },
+    "situations_particulieres": {
+      "urgences": {
+        "finDroit": true,
+        "ecole": true
+      },
+      "finDroitDetail": "Je suis une difficulté.",
+      "ecoleDetail": "Je suis une autre difficulté !",
+      "__lastSref": "departement.demande.situations_particulieres.detail",
+      "__completion": true
     }
+  }
 };
 
 var deletePartenaires = function(cb) {

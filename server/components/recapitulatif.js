@@ -156,14 +156,21 @@ exports.answersToHtml = function(request, path, next) {
                   if(answer[rawAnswer.detailModel]){
                     if(typeof answer[rawAnswer.detailModel] === 'object'){
                       rawAnswer.details = [];
+                      rawAnswer.detailsObject = [];
                       rawAnswer.detailsFrais = [];
                       _.forEach(answer[rawAnswer.detailModel], function(n, key){
                         if(n){
-                          if(typeof n === 'object'){
+                          if(typeof key === 'number'){
                             rawAnswer.detailsFrais.push(n)
                           }
                           else {
-                            rawAnswer.details.push(key);
+                            if(typeof n === 'object'){
+                              if(n.value)
+                                rawAnswer.detailsObject.push({'label' : key, 'detail' : n.detail});
+                            }
+                            else {
+                              rawAnswer.details.push(key);
+                            }
                           }
                         }
                       });
