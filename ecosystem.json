@@ -2,7 +2,7 @@
   "apps" : [
     {
       "name"      : "APP",
-      "script"    : "server/app.js",
+      "script"    : "dist/server/app.js",
       "env": {
         "COMMON_VARIABLE": "true"
       },
@@ -19,7 +19,7 @@
       "ref"  : "origin/master",
       "repo" : "git@github.com:sgmap/impact.git",
       "path" : "/etc/nginx/sites-available/impact",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : "deploy.sh"
     }
   }
 }
