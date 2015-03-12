@@ -19,7 +19,7 @@
       "ref"  : "origin/master",
       "repo" : "git@github.com:sgmap/impact.git",
       "path" : "/etc/nginx/sites-available/impact",
-      "post-deploy" : "/etc/nginx/sites-available/impact/deploy.sh"
+      "post-deploy" : "./deploy.sh"
     }
   }
 }
