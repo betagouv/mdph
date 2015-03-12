@@ -2,7 +2,14 @@
   "apps" : [
     {
       "name"      : "APP",
-      "script"    : "dist/server/app.js"
+      "script"    : "dist/server/app.js",
+      "env": {
+        "COMMON_VARIABLE": "true",
+      },
+      "env_production" : {
+        "NODE_ENV": "production",
+        "PORT": 9000
+      }
     }
   ],
 
@@ -15,7 +22,8 @@
       "path" : "/etc/nginx/sites-available/impact",
       "post-deploy" : "./deploy.sh",
       "env" : {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "PORT": 9000
       }
     }
   }
