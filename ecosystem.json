@@ -4,8 +4,7 @@
       "name"      : "APP",
       "script"    : "dist/server/app.js",
       "env": {
-        "COMMON_VARIABLE": "true",
-        "NODE_ENV": "production",
+        "NODE_ENV": "production"
       }
     }
   ],
