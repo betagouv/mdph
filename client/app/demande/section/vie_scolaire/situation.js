@@ -61,6 +61,81 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
+            $state.go('^.type_etudes');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.type_etudes', {
+      url: '/type_etudes',
+      templateUrl: 'components/question/textinput.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'typeEtudes', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.diplomes_passes');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.diplomes_passes', {
+      url: '/diplomes_passes',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'diplomePasse', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.diplome_present');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.diplome_present', {
+      url: '/diplome',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'diplomePresent', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.diplome_etablissement');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.diplome_etablissement', {
+      url: '/diplome_etablissement',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'diplomeEtablissement', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.parcours');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.parcours', {
+      url: '/parcours',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'parcoursEtudes', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
             $state.go('^.^.vos_attentes.structure');
           };
         }

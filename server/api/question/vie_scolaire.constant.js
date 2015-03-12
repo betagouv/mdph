@@ -36,8 +36,8 @@ exports.all = [
         detailUrl: 'components/detail/precisez.html'
       },
       {
-        label: 'Vous ne trouvez pas de solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
-        labelRep: '<%= pronoun %> ne trouve pas de solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
+        label: 'Vous êtes sans solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
+        labelRep: '<%= pronoun %> est sans solution d\'accueil en établissement scolaire, universitaire, ou médico-social',
         model: 'etablissement',
 
         detailModel: 'raisonNonScolaireEtablissement',
@@ -64,8 +64,8 @@ exports.all = [
   },
   {
     model: 'vieScolaireType',
-    titleDefault: 'Où êtes-vous scolarisé ?',
-    titleRep: 'Où est-<%= pronoun %> scolarisé<%= fem %> ?',
+    titleDefault: 'Vous êtes actuellement scolarisé',
+    titleRep: '<%= pronoun %> est actuellement scolarisé<%= fem %>',
     type: 'radio',
     answers: [
       {
@@ -85,12 +85,16 @@ exports.all = [
         detailLabel: 'Les frais de séjour sont-ils intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale ?'
       },
       {
-        label: 'Avec accompagnement par un établissement médico-social',
+        label: 'Avec accompagnement par un service de soin ou un établissement médico-social',
         model: 'etablissement'
       },
       {
         label: 'En temps partagé entre l’établissement médico-social et le milieu ordinaire ou domicile',
         model: 'etablissementPartiel',
+      },
+      {
+        label: 'En temps partagé entre le service de soin et le milieu ordinaire',
+        model: 'serviceSoinPartiel',
       },
       {
         label: 'En formation supérieure',
@@ -107,6 +111,35 @@ exports.all = [
   {
     model: 'etablissement',
     titleDefault: 'Dans quel(s) établissement(s) ?',
+    type:'text'
+  },
+  {
+    model: 'typeEtudes',
+    titleDefault: 'Quel type d\'études suivez-vous ?',
+    titleRep: 'Quel type d\'études suit-<%= pronoun %> ?',
+    type:'text'
+  },
+  {
+    model: 'diplomePasse',
+    titleDefault: 'Quel(s) diplôme(s) avez-vous obtenu(s) ?',
+    titleRep: 'Quel(s) diplôme(s) a-t-<%= pronoun %> obtenu(s) ?',
+    type:'text'
+  },
+  {
+    model: 'diplomePresent',
+    titleDefault: 'Quel(s) diplôme(s) préparez-vous ?',
+    titleRep: 'Quel(s) diplôme(s) prépare-t-<%= pronoun %> ?',
+    type:'text'
+  },
+  {
+    model: 'diplomeEtablissement',
+    titleDefault: 'Dans quel(s) établissement(s) ?',
+    type:'text'
+  },
+  {
+    model: 'parcoursEtudes',
+    titleDefault: 'Décrivez votre parcours d\'étudiant ou d\'apprenti',
+    titleRep: 'Décrivez son parcours d\'étudiant ou d\'apprenti',
     type:'text'
   }
 ];
