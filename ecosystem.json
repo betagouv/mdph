@@ -1,0 +1,25 @@
+{
+  "apps" : [
+    {
+      "name"      : "APP",
+      "script"    : "app.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production" : {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+
+  "deploy" : {
+    "production" : {
+      "user" : "impact",
+      "host" : "192.168.111.222",
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:sgmap/impact.git",
+      "path" : "/etc/nginx/sites-available/impact",
+      "post-deploy" : "pm2 startOrRestart ecosystem.json5 --env production"
+    }
+  }
+}
