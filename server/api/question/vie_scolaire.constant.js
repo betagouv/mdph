@@ -58,11 +58,6 @@ exports.all = [
     titleRep: 'A-t-<%= pronoun %> déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?'
   },
   {
-    model: 'vieScolaireAutresRenseignements',
-    titleDefault: 'Autres renseignements concernant la scolarité que vous souhaiteriez nous communiquer',
-    type: 'text'
-  },
-  {
     model: 'vieScolaireType',
     titleDefault: 'Vous êtes actuellement scolarisé',
     titleRep: '<%= pronoun %> est actuellement scolarisé<%= fem %>',
@@ -141,5 +136,186 @@ exports.all = [
     titleDefault: 'Décrivez votre parcours d\'étudiant ou d\'apprenti',
     titleRep: 'Décrivez son parcours d\'étudiant ou d\'apprenti',
     type:'text'
-  }
+  },
+  {
+    model: 'accompagnement',
+    titleDefault: 'Êtes-vous accompagné et recevez-vous des soins ? Si oui, lesquels ?',
+    titleRep: 'Êtes-<%= pronoun %> accompagné<%= fem %> et reçoit-<%= pronoun %> des soins ? Si oui, lesquels ?',
+    type:'checkbox',
+    answers: [
+      {
+        label: 'Des soins hospitaliers',
+        model: 'hopital',
+      },
+      {
+        label: 'Des soins en libéral',
+        model: 'liberal',
+      },
+      {
+        label: 'Autre',
+        model: 'autre',
+
+        detailModel: 'accompagnementAutre',
+        detailUrl: 'components/detail/precisez.html'
+      }
+    ]
+  },
+  {
+    model: 'adaptation',
+    titleDefault: 'Des adaptations ont-elles été effectuées au niveau de vos conditions matérielles ? Si oui, lesquelles ?',
+    titleRep: 'Des adaptations ont-elles été effectuées au niveau de ses conditions matérielles ? Si oui, lesquelles ?',
+    type:'checkbox',
+    answers: [
+      {
+        label: 'Aménagement et adaptations pédagogiques',
+        model: 'pedagogie',
+      },
+      {
+        label: 'Outils de communication',
+        model: 'communication',
+      },
+      {
+        label: 'Matériel informatique et audiovisuel',
+        model: 'informatique',
+      },
+      {
+        label: 'Matériel déficience auditive',
+        model: 'audition',
+      },
+      {
+        label: 'Matériel déficience visuelle',
+        model: 'vision',
+      },
+      {
+        label: 'Mobilier et petits matériels',
+        model: 'mobilier',
+      },
+      {
+        label: 'Transport',
+        model: 'transport',
+      },
+      {
+        label: 'Autre',
+        model: 'autre',
+
+        detailModel: 'adaptationAutre',
+        detailUrl: 'components/detail/precisez.html'
+      }
+    ]
+  },
+  {
+    model: 'emploiDuTemps',
+    titleDefault: 'Décrivez votre emploi du temps (accompagnement et soins, lieux...)',
+    titleRep: 'Décrivez son emploi du temps (accompagnement et soins, lieux...)',
+    type:'text'
+  },
+  {
+    model: 'besoinsScolarite',
+    neededForAdmin: true,
+    titleDefault: 'Vous avez besoin d\'aide dans votre scolarité :',
+    titleRep: '<%= pronoun %> a besoin d\'aide dans sa scolarité :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Pour lire',
+        model: 'lire'
+      },
+      {
+        label: 'Pour écrire, prendre des notes',
+        model: 'ecrire'
+      },
+      {
+        label: 'Pour calculer',
+        model: 'calculer'
+      },
+      {
+        label: 'Pour comprendre, suivre les consignes',
+        model: 'comprendre'
+      },
+      {
+        label: 'Pour organiser, contrôler son travail',
+        model: 'organiser'
+      },
+      {
+        label: 'Pour l\'utilisation du matériel',
+        model: 'materiel'
+      },
+      {label: 'Autre besoin', model: 'autre', detailModel: 'besoinsScolariteAutre', detailUrl: 'components/detail/precisez.html'}
+    ]
+  },
+  {
+    model: 'besoinsCommunication',
+    neededForAdmin: true,
+    titleDefault: 'Vous avez besoin d\'aide dans votre scolarité :',
+    titleRep: '<%= pronoun %> a besoin d\'aide dans sa scolarité :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Pour communiquer (s\'exprimer, se faire comprendre)',
+        model: 'communiquer'
+      },
+      {
+        label: 'Pour les relations avec les autres',
+        model: 'relation'
+      },
+      {
+        label: 'Pour assurer sa sécurité',
+        model: 'securite'
+      },
+      {label: 'Autre besoin', model: 'autre', detailModel: 'besoinsCommunicationAutre', detailUrl: 'components/detail/precisez.html'}
+    ]
+  },
+  {
+    model: 'besoinsEntretien',
+    neededForAdmin: true,
+    titleDefault: 'Vous avez besoin d\'aide pour votre entretien personnel :',
+    titleRep: '<%= pronoun %> a besoin d\'aide pour son entretien personnel :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Pour l\'hygiène corporelle (aller aux toilettes)',
+        model: 'hygiene'
+      },
+      {
+        label: 'Pour s\'habiller (mettre et ôter des vêtements)',
+        model: 'habiller'
+      },
+      {
+        label: 'Pour les repas (manger et boire)',
+        model: 'repas'
+      },
+      {
+        label: 'Pour prendre soin de sa santé',
+        model: 'sante'
+      },
+      {label: 'Autre besoin', model: 'autre', detailModel: 'besoinsEntretienAutre', detailUrl: 'components/detail/precisez.html'}
+    ]
+  },
+  {
+    model: 'besoinsDeplacement',
+    neededForAdmin: true,
+    titleDefault: 'Vous avez besoin d\'aide pour les déplacements :',
+    titleRep: '<%= pronoun %> a besoin d\'aide pour les déplacements :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Pour se déplacer à l\'intérieur des locaux',
+        model: 'intraLocaux'
+      },
+      {
+        label: 'Pour se déplacer à l\'extérieur des locaux',
+        model: 'extraLocaux'
+      },
+      {
+        label: 'Pour utiliser les transports en commun',
+        model: 'transports'
+      },
+      {label: 'Autre besoin', model: 'autre', detailModel: 'besoinsEntretienAutre', detailUrl: 'components/detail/precisez.html'}
+    ]
+  },
+  {
+    model: 'vieScolaireAutresRenseignements',
+    titleDefault: 'Autres renseignements concernant la scolarité que vous souhaiteriez nous communiquer',
+    type: 'text'
+  },
 ];

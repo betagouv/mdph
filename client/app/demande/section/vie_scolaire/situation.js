@@ -136,7 +136,52 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
-            $state.go('^.^.vos_attentes.structure');
+            $state.go('^.accompagnement');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.accompagnement', {
+      url: '/accompagnement',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'CheckboxQuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'accompagnement', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.adaptation');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.adaptation', {
+      url: '/adaptation',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'CheckboxQuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'adaptation', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.emploi_du_temps');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.emploi_du_temps', {
+      url: '/emploi_du_temps',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'emploiDuTemps', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.^.vos_besoins.scolarite');
           };
         }
       }
@@ -151,7 +196,7 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
-            $state.go('^.^.vos_attentes.structure');
+            $state.go('^.^.vos_besoins.scolarite');
           };
         }
       }

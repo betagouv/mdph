@@ -58,11 +58,15 @@ var vieScolaire = {
   section: 'complementaire',
   subSections: [
     {
-      include: '.vie_scolaire.situation.**',
+      include: 'departement.demande.vie_scolaire.situation.**',
       label: 'Votre situation'
     },
     {
-      include: '.vie_scolaire.vos_attentes.**',
+      include: 'departement.demande.vie_scolaire.vos_besoins.**',
+      label: 'Vos besoins'
+    },
+    {
+      include: 'departement.demande.vie_scolaire.vos_attentes.**',
       label: 'Vos attentes'
     }
   ]
