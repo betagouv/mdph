@@ -19,7 +19,7 @@
       "host" : "192.168.111.222",
       "ref"  : "origin/master",
       "repo" : "git@github.com:sgmap/impact.git",
-      "path" : "/etc/nginx/sites-available/impact",
+      "path" : "/home/impact",
       "post-deploy" : "./deploy.sh",
       "env" : {
         "NODE_ENV": "production",
