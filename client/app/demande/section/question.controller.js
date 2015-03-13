@@ -93,21 +93,36 @@ angular.module('impactApp')
     $scope.nextStep = nextStep;
     $scope.hideBack = $state.current.data.hideBack;
     $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    var currentModel = question.model;
 
-    if (angular.isUndefined($scope.sectionModel.etablissement)) {
-      $scope.sectionModel.etablissement = {
+    if (angular.isUndefined($scope.sectionModel[currentModel])) {
+      $scope.sectionModel[currentModel] = {
         valeur: false,
         etablissements: [
-          { 'name': '' }
+          {
+            nom: '',
+            rue: '',
+            ville: '',
+            date: ''
+          }
         ]
       };
     }
 
-    $scope.model = $scope.sectionModel.etablissement;
-    $scope.addEtablissement = function() {
+    $scope.model = $scope.sectionModel[currentModel];
+    $scope.ajouterEtablissement = function() {
       $scope.model.etablissements.push(
-        { 'name': '' }
+        {
+          nom: '',
+          rue: '',
+          ville: '',
+          date: ''
+        }
       );
+    };
+    $scope.retirerEtablissement = function(){
+      var lastIndex = $scope.model.etablissements.indexOf(_.last($scope.model.etablissements));
+      $scope.model.etablissements.splice(lastIndex, 1);
     };
   })
   .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep) {

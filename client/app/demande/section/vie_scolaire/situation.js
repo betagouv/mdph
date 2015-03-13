@@ -113,8 +113,8 @@ angular.module('impactApp')
     })
     .state(index + '.situation.diplome_etablissement', {
       url: '/diplome_etablissement',
-      templateUrl: 'components/question/textarea.html',
-      controller: 'QuestionCtrl',
+      templateUrl: 'components/question/etablissement_scolaire.html',
+      controller: 'EtablissementScolaireCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'diplomeEtablissement', request.formAnswers);

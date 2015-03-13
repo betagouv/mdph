@@ -1,17 +1,49 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
-
-  <div class="answer form-horizontal" ng-repeat="(idx, etablissement) in model.etablissements">
-    <input type="text" name="input{{idx}}" class="form-control" ng-model="etablissement.name" placeholder="Nom de l'établissement" required>
-    <div ng-messages="questionForm['input' + idx].$error" ng-if="questionForm.showError">
-      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
-    </div>
-  </div>
+  <table class="table my-table-striped">
+    <thead>
+      <th>Nom</th>
+      <th>Rue</th>
+      <th>Ville</th>
+      <th>Depuis le</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(idx, etablissement) in model.etablissements">
+        <td>
+          <input name="nom{{idx}}" type="text" class="form-control" ng-model="etablissement.nom" placeholder="Nom de l'établissement" required>
+          <div ng-messages="questionForm['nom' + idx].$error" ng-if="questionForm.showError">
+            <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+          </div>
+        </td>
+        <td>
+          <input name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue" required>
+          <div ng-messages="questionForm['rue' + idx].$error" ng-if="questionForm.showError">
+            <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+          </div>
+        </td>
+        <td>
+          <input name="ville{{idx}}" type="text" class="form-control" ng-model="etablissement.ville" placeholder="Ville" required>
+          <div ng-messages="questionForm['ville' + idx].$error" ng-if="questionForm.showError">
+            <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+          </div>
+        </td>
+        <td>
+          <input name="date{{idx}}" type="date" class="form-control" ng-model="etablissement.date" placeholder="jj/MM/AAAA" required>
+          <div ng-messages="questionForm['date' + idx].$error" ng-if="questionForm.showError">
+            <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <div class="row">
-    <div class="col-md-offset-4 col-md-4">
-      <label class="btn btn-default center-block" ng-click="addEtablissement()">+</label>
+    <div class="col-md-offset-2 col-md-4">
+      <button class="btn btn-default btn-block" ng-click="retirerEtablissement()">-</button>
     </div>
+    <div class="col-md-4">
+      <button class="btn btn-default btn-block" ng-click="ajouterEtablissement()">+</button>
+    </div><br>
   </div>
-
   <nav-steps ng-hide="hideSteps"></nav-steps>
+
 </form>
