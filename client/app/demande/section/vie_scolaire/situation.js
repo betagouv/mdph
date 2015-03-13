@@ -173,8 +173,8 @@ angular.module('impactApp')
     })
     .state(index + '.situation.emploi_du_temps', {
       url: '/emploi_du_temps',
-      templateUrl: 'components/question/textarea.html',
-      controller: 'QuestionCtrl',
+      templateUrl: 'components/question/emploi_du_temps.html',
+      controller: 'EmploiDuTempsCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'emploiDuTemps', request.formAnswers);

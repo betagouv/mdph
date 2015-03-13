@@ -1,0 +1,28 @@
+<form name="questionForm" novalidate>
+  <qtitle ng-hide="hideTitle"></qtitle>
+  <table class="table my-table-striped">
+    <thead>
+      <th></th>
+      <th>Matin</th>
+      <th>Midi</th>
+      <th>Après-midi</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(idx, jour) in jours">
+        <td>{{jour}}</td>
+        <td>
+          <input name="matin{{idx}}" type="text" class="form-control" ng-model="model.jours[jour]['matin']">
+        </td>
+        <td>
+          <input name="midi{{idx}}" type="text" class="form-control" ng-model="model.jours[jour]['midi']">
+        </td>
+        <td>
+          <input name="aprem{{idx}}" type="text" class="form-control" ng-model="model.jours[jour]['aprem']">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav-steps ng-hide="hideSteps"></nav-steps>
+
+</form>

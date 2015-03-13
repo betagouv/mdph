@@ -125,6 +125,29 @@ angular.module('impactApp')
       $scope.model.etablissements.splice(lastIndex, 1);
     };
   })
+  .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep) {
+    $scope.jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    $scope.question = question;
+    $scope.nextStep = nextStep;
+    $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.currentModel = question.model;
+
+    if (angular.isUndefined($scope.sectionModel[$scope.currentModel])) {
+      $scope.sectionModel[$scope.currentModel] = {
+        valeur: false,
+        jours: {}
+      };
+      _.forEach($scope.jours, function(jour){
+        $scope.sectionModel[$scope.currentModel].jours[jour] = {
+          matin: '',
+          midi: '',
+          aprem: ''
+        };
+      });
+    }
+    $scope.model = $scope.sectionModel[$scope.currentModel];
+  })
   .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep) {
     $scope.sectionModel = sectionModel;
     $scope.question = question;
