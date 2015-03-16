@@ -12,7 +12,10 @@ exports.all = [
     answers: [
       {
         'label': 'Oui',
-        model: true
+        model: true,
+        detailUrl: 'components/detail/precisez_date.html',
+        detailModel: 'conditionTravailDetail',
+        detailLabel: 'Depuis quand ?',
       },
       {
         'label': 'Non',
@@ -64,7 +67,10 @@ exports.all = [
       },
       {
         label: 'Travailleur indépendant',
-        model: 'independant'
+        model: 'independant',
+        detailUrl: 'components/detail/precisez.html',
+        detailModel: 'independantDetail',
+        detailLabel: 'Régime :'
       }
     ]
   },
@@ -162,8 +168,32 @@ exports.all = [
     ]
   },
   {
-    titleRep: 'A-t-<%= pronoun %> rencontré un professionnel du service social de la CARSAT ?',
-    titleDefault: 'Avez-vous rencontré un professionnel du service social de la CARSAT ?',
+    titleDefault: 'Pour quelle raison êtes-vous en arrêt de travail ?',
+    titleRep: 'Pour quelle raison est-<%= pronoun %> en arrêt de travail ?',
+    model: 'arretDeTravailRaison',
+    type: 'radio',
+    answers: [
+      {
+        label: 'Arrêt maladie avec indemnités journalières',
+        model: 'avecIndemnites'
+      },
+      {
+        label: 'Arrêt maladie sans indemnités journalières',
+        model: 'sansIndemnites'
+      },
+      {
+        label: 'Vous êtes en arrêt suite à un accident du travail ou une maladie professionnelle',
+        model: 'accidentTravail'
+      },
+      {
+        label: 'Congé maternité/congé d\'adoption/autre',
+        model: 'autre'
+      }
+    ]
+  },
+  {
+    titleRep: 'A-t-<%= pronoun %> rencontré un professionnel du service social de votre caisse de retraite ?',
+    titleDefault: 'Avez-vous rencontré un professionnel du service social de votre caisse de retraite ?',
     model: 'profesionnelSocial',
     type: 'radio',
     'answers': [

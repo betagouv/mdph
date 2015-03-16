@@ -44,21 +44,6 @@ angular.module('impactApp')
           }
         }
       })
-      .state(index + '.heures', {
-        url: '/heures',
-        templateUrl: 'components/question/textinput.html',
-        controller: 'QuestionCtrl',
-        resolve: {
-          question: function(QuestionService, request, section) {
-            return QuestionService.get(section, 'heures', request.formAnswers);
-          },
-          nextStep: function($state) {
-            return function() {
-              $state.go('^.adapte');
-            };
-          }
-        }
-      })
       .state(index + '.adapte', {
         url: '/adapte',
         templateUrl: 'components/question/radio.html',
@@ -115,7 +100,7 @@ angular.module('impactApp')
           nextStep: function($state, sectionModel, question) {
             return function() {
               if (sectionModel[question.model]) {
-                $state.go('^.indemnite_journaliere');
+                $state.go('^.raison_arret_de_travail');
               } else {
                 $state.go('^.^.^.projet_professionnel.description');
               }
@@ -123,43 +108,13 @@ angular.module('impactApp')
           }
         }
       })
-      .state(index + '.indemnite_journaliere', {
-        url: '/indemnite_journaliere',
+      .state(index + '.raison_arret_de_travail', {
+        url: '/raison_arret_de_travail',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
           question: function(QuestionService, request, section) {
-            return QuestionService.get(section, 'indemniteJournaliere', request.formAnswers);
-          },
-          nextStep: function($state) {
-            return function() {
-              $state.go('^.accident_de_travail');
-            };
-          }
-        }
-      })
-      .state(index + '.accident_de_travail', {
-        url: '/accident_de_travail',
-        templateUrl: 'components/question/radio.html',
-        controller: 'QuestionCtrl',
-        resolve: {
-          question: function(QuestionService, request, section) {
-            return QuestionService.get(section, 'accidentTravail', request.formAnswers);
-          },
-          nextStep: function($state) {
-            return function() {
-              $state.go('^.conge_maternite');
-            };
-          }
-        }
-      })
-      .state(index + '.conge_maternite', {
-        url: '/conge_maternite',
-        templateUrl: 'components/question/radio.html',
-        controller: 'QuestionCtrl',
-        resolve: {
-          question: function(QuestionService, request, section) {
-            return QuestionService.get(section, 'congeMaternite', request.formAnswers);
+            return QuestionService.get(section, 'arretDeTravailRaison', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {
