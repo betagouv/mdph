@@ -65,7 +65,7 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
-            $state.go('^.^.vos_attentes.structure');
+            $state.go('^.^.vos_attentes.scolarite');
           };
         }
       }

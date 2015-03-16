@@ -45,7 +45,7 @@ angular.module('impactApp')
             if (sectionModel[question.model] !== 'domicile') {
               $state.go('^.etablissement');
             } else {
-              $state.go('^.^.vos_attentes.structure');
+              $state.go('^.^.vos_besoins.scolarite');
             }
           };
         }

@@ -314,6 +314,49 @@ exports.all = [
     ]
   },
   {
+    model: 'attentesVieScolaire',
+    neededForAdmin: true,
+    titleDefault: 'Vous souhaitez :',
+    titleRep: '<%= pronoun %> souhaite :',
+    type: 'checkbox',
+    answers: [
+      {
+        label: 'Une adaptation de la scolarité',
+        model: 'adaptation'
+      },
+      {
+        label: 'Une orientation scolaire différente',
+        model: 'orientation'
+      },
+      {
+        label: 'Une aide humaine',
+        model: 'aideHumaine'
+      },
+      {
+        label: 'Une aide matérielle',
+        model: 'aideMateriel'
+      },
+      {
+        label: 'Un accompagnement pour une réadaptation/une réeducation',
+        model: 'readaptation'
+      },
+      {
+        label: 'Une prise en charge par un établissement sans hébergement',
+        model: 'etablissementSansHebergement'
+      },
+      {
+        label: 'Une prise en charge par un établissement avec hébergement',
+        model: 'etablissementAvecHebergement'
+      },
+      {
+        label: 'Autre besoin',
+        model: 'autre',
+        detailModel: 'besoinsEntretienAutre',
+        detailUrl: 'components/detail/precisez.html'
+      }
+    ]
+  },
+  {
     model: 'vieScolaireAutresRenseignements',
     titleDefault: 'Autres renseignements concernant la scolarité que vous souhaiteriez nous communiquer',
     type: 'text'

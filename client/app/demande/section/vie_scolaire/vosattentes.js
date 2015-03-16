@@ -10,6 +10,21 @@ angular.module('impactApp')
       template: '<ui-view/>',
       abstract: true
     })
+    .state(index + '.vos_attentes.scolarite', {
+      url: '/scolarite',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'CheckboxQuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'attentesVieScolaire', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.structure');
+          };
+        }
+      }
+    })
     .state(index + '.vos_attentes.structure', {
       url: '',
       templateUrl: 'components/question/structure.html',
