@@ -1,0 +1,11 @@
+<ui-view>
+  <div class="geva-pie" id="geva-pie">
+    <a
+      ng-repeat="(idx, section) in sections" tooltip-trigger tooltip-placement="{{section.placement}}" tooltip-html-unsafe="{{section.tooltip}}"
+      class="geva-section" id="geva-section-{{idx + 1}}"
+      ui-sref=".section({sectionId: section.id})">
+      <span class="geva-section-id">{{idx + 1}}</span>
+      <p class="text-center">{{section.label}}</p>
+    </a>
+  </div>
+</ui-view>

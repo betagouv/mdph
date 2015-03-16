@@ -58,30 +58,52 @@ angular.module('impactApp')
       .state('dashboard.requests.detail', {
         url: '/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
-        controller: 'RequestDetailCtrl',
+        controller: function($scope, $window, request, user) {
+          $scope.request = request;
+          $scope.user = user;
+
+          $scope.back = function() {
+            $window.history.back();
+          };
+        },
         resolve: {
           request: function($http, $stateParams) {
             return $http.get('/api/requests/' + $stateParams.shortId).then(function(request) {
               return request.data;
             });
           },
-          sections: function(GevaService, request) {
-            return GevaService.getSections(request);
+          user: function($http, request) {
+            return $http.get('api/users/' + request.user).then(function(result) {
+              return result.data;
+            });
           },
           vieQuotidienne: function($http) {
             return $http.get('api/questions/vie_quotidienne').then(function(result) {
               return result.data;
             });
-          },
-          user: function($http, request) {
-            return $http.get('api/users/' + request.user).then(function(result) {
-              return result.data;
-            });
+          }
+        },
+        abstract: true,
+        authenticate: true
+      })
+      .state('dashboard.requests.detail.pre_evaluation', {
+        url: '/evaluation',
+        templateUrl: 'app/dashboard/requests/detail/pre_evaluation/pre_evaluation.html',
+        controller: 'RequestPreEvaluationCtrl',
+        authenticate: true
+      })
+      .state('dashboard.requests.detail.evaluation', {
+        url: '/evaluation',
+        templateUrl: 'app/dashboard/requests/detail/evaluation/evaluation.html',
+        controller: 'RequestEvaluationCtrl',
+        resolve: {
+          sections: function(GevaService, request) {
+            return GevaService.getSections(request);
           }
         },
         authenticate: true
       })
-      .state('dashboard.requests.detail.section', {
+      .state('dashboard.requests.detail.evaluation.section', {
         url: '/:sectionId',
         templateUrl: 'app/dashboard/requests/detail/section/section.html',
         controller: 'RequestSectionCtrl',

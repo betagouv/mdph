@@ -41,7 +41,7 @@
               <span ng-if="request.formAnswers.situationsParticulieres.urgences">
                 <i class="fa fa-warning"></i>
               </span>
-              <a ui-sref="dashboard.requests.detail({shortId: request.shortId})">{{request.user.name}}</a>
+              <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">{{request.user.name}}</a>
             </span>
             <span ng-repeat="(urgence, val) in request.formAnswers.situationsParticulieres.urgences">
               <span class="label label-danger" ng-if="val" >{{urgence}}</span>

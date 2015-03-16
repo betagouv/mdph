@@ -1,105 +1,18 @@
-
 <div class="list-header">
-  <a ng-click="back()">Retour</a>
-  <h2>
-    Demande de {{user.name}} <br>
-    <small>Numéro {{request.shortId}}</small> <br>
-    <small>Dernière modification {{request.updatedAt | date: format: timezone}}</small>
-  </h2>
+  <a ng-click="back()"><i class="fa fa-chevron-circle-left"></i> Retour</a>
+  <div class="well">
+    <h2>Demande de {{user.name}}</h2>
+    {{request.shortId}} / Dernière modification {{request.updatedAt | date: format: timezone}}
+  </div>
 </div>
 
 <div class="detail-main">
-  <ui-view>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading clearfix">
-            Récapitulatif demande
-          </div>
-          <div class="panel-body">
-            <p><strong>Age :</strong> {{request.formAnswers.identites.beneficiaire.dateNaissance | age}} ans</p>
-            <p><strong>Vit :</strong> {{situationFamiliale}}</p>
-            <p><strong>Vit dans :</strong> {{situationLogement}}</p>
-            <p>
-              <a target="_blank" href="api/requests/{{request.shortId}}/cerfa.pdf">
-                <i class="fa fa-download"></i>
-                <span>Télécharger - format CERFA</span>
-              </a>
-            </p>
-            <p>
-              <a target="#" ng-click="telecharger(request)">
-                <i class="fa fa-download"></i>
-                <span>Télécharger - format simplifié</span>
-              </a>
-            </p>
-          </div>
-        </div>
+  <ul class="nav nav-tabs">
+    <li role="presentation" ui-sref-active="active"><a ui-sref=".pre_evaluation">Détails de la demande</a></li>
+    <li role="presentation" ui-sref-active="active"><a ui-sref=".evaluation">Synthèse de l'évaluation</a></li>
+  </ul>
 
-        <div class="panel panel-default">
-          <div class="panel-heading clearfix">
-            Points saillants
-          </div>
-          <div class="panel-body">
-            <ul>
-              <li>
-                Situation d'urgence
-              </li>
-              <li>
-                {{renouvellement}}
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="panel panel-default" ng-if="prestations.length > 0">
-          <div class="panel-heading clearfix">
-            Quitus
-          </div>
-          <div class="panel-body">
-            <ul>
-              <li ng-repeat="prestation in prestations">
-                {{prestation.label}}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="geva-pie" id="geva-pie">
-              <a
-                ng-repeat="(idx, section) in sections" tooltip-trigger tooltip-placement="{{section.placement}}" tooltip-html-unsafe="{{section.tooltip}}"
-                class="geva-section" id="geva-section-{{idx + 1}}"
-                ui-sref=".section({sectionId: section.id})">
-                <span class="geva-section-id">{{idx + 1}}</span>
-                <p class="text-center">{{section.label}}</p>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-heading clearfix">
-                Action à mener
-              </div>
-              <div class="panel-body">
-                <ul>
-                  <li>Visite médicale</li>
-                  <li>Visite à domicile</li>
-                </ul>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                Complétude
-              </div>
-              <div class="panel-body">
-                {{computeCompletion(questions)}} %
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ui-view>
+  <div class="detail-tab">
+    <ui-view/>
+  </div>
 </div>
