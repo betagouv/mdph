@@ -8,4 +8,11 @@
       <p class="text-center">{{section.label}}</p>
     </a>
   </div>
+
+  <form class="synthese">
+    <h2>Synthèse</h2>
+    <div class="form-group">
+      <textarea id="syntheseEval"class="form-control" rows="5" ng-disabled="computeCompletion() !== 100"></textarea>
+    </div>
+  </form>
 </ui-view>

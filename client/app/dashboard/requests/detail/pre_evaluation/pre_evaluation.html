@@ -26,7 +26,7 @@
     <div class="pull-right">
       <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/cerfa.pdf?access_token={{token}}">
         <i class="fa fa-download"></i>
-        <span>Télécharger - format CERFA</span>
+        Télécharger - format CERFA
       </a>
       <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}">
         <i class="fa fa-download"></i>
@@ -41,7 +41,7 @@
     Quitus
   </div>
   <div class="panel-body">
-    <ul>2
+    <ul>
       <li ng-repeat="prestation in prestations">
         {{prestation.label}}
       </li>
