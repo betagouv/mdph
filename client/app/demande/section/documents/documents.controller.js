@@ -8,6 +8,10 @@ angular.module('impactApp')
     $scope.saveSection = saveSection;
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
 
+    $scope.demandePartenaire = function(document) {
+      document.asked = true;
+    };
+
     $scope.onFileSelect = function(file, document) {
       $upload.upload({
         url: 'api/requests/' + $scope.request.shortId + '/document',

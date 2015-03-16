@@ -21,17 +21,25 @@
           </div>
           <div class="panel-body">
             <p>{{documentTypesById[document.type].desc}}</p>
-            <ul ng-if="!document.files"><li>Pas de document</li></ul>
-            <ul ng-if="document.files">
-              <li ng-repeat="file in document.files">
-                <display-file file="file" request="request"/>
-              </li>
-            </ul>
+            <div ng-if="document.asked">
+              Vous avez autorisé un partenaire à transférer ce document.
+            </div>
+            <div ng-if="!document.asked">
+              <ul ng-if="!document.files"><li>Pas de document</li></ul>
+              <ul ng-if="document.files">
+                <li ng-repeat="file in document.files">
+                  <display-file file="file" request="request"/>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="panel-footer">
+          <div class="panel-footer" ng-if="!document.asked">
             <div class="text-right">
               <div ng-file-select="onFileSelect($files[0], document)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
                 <i class="fa fa-upload"></i> Attacher un fichier</span>
+              </div>
+              <div class="btn btn-success" ng-if="document.type === 'certificatMedical'"ng-click="demandePartenaire(document)">
+                <i class="fa fa-user"></i> Transférer</span>
               </div>
             </div>
           </div>

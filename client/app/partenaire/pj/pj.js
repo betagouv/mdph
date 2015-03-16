@@ -10,6 +10,9 @@ angular.module('impactApp')
         resolve: {
           request: function($stateParams, RequestResource) {
             return RequestResource.getPartenaire({shortId: $stateParams.shortId}).$promise;
+          },
+          mdph: function(request, Mdph) {
+            return Mdph.get({zipcode: request.mdph});
           }
         }
       });

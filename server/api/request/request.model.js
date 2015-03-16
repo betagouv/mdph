@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 var shortId = require('shortid');
 
 var DocumentSchema = new Schema({
+  asked:          { type: Boolean, default: false},
   type:           { type: String },
   files:          [{ type: Schema.Types.ObjectId }]
 });

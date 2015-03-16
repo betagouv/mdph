@@ -1,21 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, request, NotificationService) {
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, documentTypes, request, mdph, NotificationService) {
     $scope.request = request;
-
-    var stepId = 'complementaire';
-    var stepComplementaire = _.find($scope.request.steps, {'name': 'complementaire'});
-
-    if (!stepComplementaire) {
-      stepId = 'obligatoire';
-      $scope.currentFormStep = _.find($scope.request.steps, {'name': 'obligatoire'});
-      $scope.files = [_.find($scope.currentFormStep.files, {'name': 'certificatMedical'})];
-    } else {
-      $scope.currentFormStep = stepComplementaire;
-      $scope.files = $scope.currentFormStep.files;
-    }
-
+    $scope.documents = [{type: 'certificatMedical'}];
+    $scope.documentTypesById = _.indexBy(documentTypes, 'id');
+    debugger;
+    $scope.mdph = mdph;
     $scope.partenaire = {};
 
     $scope.onFileSelect = function($files, currentFile) {
@@ -52,7 +43,6 @@ angular.module('impactApp')
             url: 'api/requests/' + $scope.request.shortId + '/document',
             withCredentials: true,
             data: {
-              step: stepId,
               partenaire: partenaire.email,
               name: file.name
             },
