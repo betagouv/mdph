@@ -1,58 +1,52 @@
-<div class="row">
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        Récapitulatif demande
-      </div>
-      <div class="panel-body">
-        <p><strong>Age :</strong> {{request.formAnswers.identites.beneficiaire.dateNaissance | age}} ans</p>
-        <p><strong>Vit :</strong> {{situationFamiliale}}</p>
-        <p><strong>Vit dans :</strong> {{situationLogement}}</p>
-        <p>
-          <a target="_blank" href="api/requests/{{request.shortId}}/cerfa.pdf">
-            <i class="fa fa-download"></i>
-            <span>Télécharger - format CERFA</span>
-          </a>
-        </p>
-        <p>
-          <a target="_blank" href="api/requests/{{request.shortId}}/questionnaire.pdf">
-            <i class="fa fa-download"></i>
-            Télécharger - format simplifié
-          </a>
-        </p>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        Points saillants
-      </div>
-      <div class="panel-body">
-        <ul>
-          <li>
-            Situation d'urgence
-          </li>
-          <li>
-            {{renouvellement}}
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="panel panel-default" ng-if="prestations.length > 0">
-      <div class="panel-heading clearfix">
-        Quitus
-      </div>
-      <div class="panel-body">
-        <ul>
-          <li ng-repeat="prestation in prestations">
-            {{prestation.label}}
-          </li>
-        </ul>
-      </div>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    Récapitulatif demande
   </div>
-  <div class="col-md-9">
-
+  <div class="panel-body">
+    <p><strong>Age :</strong> {{request.formAnswers.identites.beneficiaire.dateNaissance | age}} ans</p>
+    <p><strong>Vit :</strong> {{situationFamiliale}}</p>
+    <p><strong>Vit dans :</strong> {{situationLogement}}</p>
+    <p>
+      <a target="_blank" href="api/requests/{{request.shortId}}/cerfa.pdf?access_token={{token">
+        <i class="fa fa-download"></i>
+        <span>Télécharger - format CERFA</span>
+      </a>
+    </p>
+    <p>
+      <a target="_blank" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}">
+        <i class="fa fa-download"></i>
+        Télécharger - format simplifié
+      </a>
+    </p>
   </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    Points saillants
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li>
+        Situation d'urgence
+      </li>
+      <li>
+        {{renouvellement}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-default" ng-if="prestations.length > 0">
+  <div class="panel-heading clearfix">
+    Quitus
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li ng-repeat="prestation in prestations">
+        {{prestation.label}}
+      </li>
+    </ul>
+  </div>
+</div>
 </div>
