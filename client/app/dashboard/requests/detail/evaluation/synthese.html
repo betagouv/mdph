@@ -14,7 +14,11 @@
         <tbody>
           <tr ng-repeat="item in prestaDemande">
             <td>
-              <input ng-model="item.label" type="text" class="form-control">
+              <select class="form-control" ng-model="item.label">
+                <option ng-repeat="prestation in prestations">
+                  {{prestation.label}} - {{prestation.title}}
+                </option>
+              </select>
             </td>
             <td>
               <input ng-model="item.eligibilite" type="text" class="form-control">
@@ -43,7 +47,11 @@
         <tbody>
           <tr ng-repeat="item in prestaAutre">
             <td>
-              <input ng-model="item.label" type="text" class="form-control">
+              <select class="form-control" ng-model="item.label">
+                <option ng-repeat="prestation in prestations">
+                  {{prestation.label}} - {{prestation.title}}
+                </option>
+              </select>
             </td>
             <td>
               <input ng-model="item.motivation" type="text" class="form-control">

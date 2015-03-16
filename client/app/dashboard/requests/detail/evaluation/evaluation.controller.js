@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function ($scope, $modal, sections, GevaService) {
+  .controller('RequestEvaluationCtrl', function ($scope, $modal, sections, GevaService, prestations) {
     $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
 
@@ -10,15 +10,15 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/requests/detail/evaluation/synthese.html',
         controller: 'ModalSyntheseCtrl',
         resolve: {
-          sections: function () {
-            return $scope.sections;
+          prestations: function () {
+            return prestations;
           }
         }
       });
     };
   })
-  .controller('ModalSyntheseCtrl', function ($scope, $modalInstance, sections) {
-    $scope.sections = sections;
+  .controller('ModalSyntheseCtrl', function ($scope, $modalInstance, prestations) {
+    $scope.prestations = prestations;
     $scope.prestaDemande = [
       {
         label: '',
