@@ -232,6 +232,44 @@ exports.all = [
     ]
   },
   {
+    titleRep: 'Bénéficie-t-<%= pronoun %> d\'une ou des prestations suivantes ?',
+    titleDefault: 'Bénéficiez-vous d\'une ou des prestations suivantes ?',
+    model: 'prestations',
+    type: 'checkbox',
+    'answers': [
+      {
+        label: 'Aides de l\'association de gestion du fonds pour l\'insertion professionnelle handicapées (AGEFIPH)',
+        model: 'agefiph'
+      },
+      {
+        label: 'Aides du fonds pour l\'insertion des personnes handicapées dans la fonction publique (FIPHFP)',
+        model: 'fiphfp'
+      },
+      {
+        label: 'Autre',
+        model: 'autre',
+        detailUrl: 'components/detail/precisez.html',
+        detailModel: 'prestationsDetail'
+      }
+    ]
+  },
+  {
+    titleRep: 'Bénéficie-t-<%= pronoun %> d\'une reconnaissance de la qualité de travailleur handicapé (RQTH) ?',
+    titleDefault: 'Bénéficiez-vous d\'une reconnaissance de la qualité de travailleur handicapé (RQTH) ?',
+    model: 'rqth',
+    type: 'radio',
+    'answers': [
+      {
+        'label': 'Non',
+        model: false
+      },
+      {
+        'label': 'Oui',
+        model: true
+      }
+    ]
+  },
+  {
     titleRep: 'A-t-<%= pronoun %> un ou plusieurs projet(s) professionnel(s) ?',
     titleDefault: 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?',
     model: 'description',
@@ -329,27 +367,23 @@ exports.all = [
         model: 'mission'
       },
       {
-        label: 'Pôle emploi',
-        model: 'poleEmploi'
-      },
-      {
         label: 'Cap emploi',
         model: 'capEmploi'
+      },
+      {
+        label: 'Pôle emploi',
+        model: 'poleEmploi'
       },
       {
         label: 'Un référent RSA désigné par le Conseil Général',
         model: 'rsa',
       },
       {
-        label: 'Le service d\'appui au maintien dans l\'emploi des travailleurs handicapés (SAMETH)',
-        model: 'sameth',
-      },
-      {
         label: 'Autre',
         model: 'autre',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'autreDetail',
-        detailLabel: 'Autre situation'
+        detailLabel: 'Préciser :'
       }
     ]
   },

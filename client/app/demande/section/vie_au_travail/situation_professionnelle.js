@@ -96,5 +96,35 @@ angular.module('impactApp')
           };
         }
       }
+    })
+    .state(index + '.situation_professionnelle.prestations', {
+      url: '/prestaions',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'CheckboxQuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'prestations', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.rqth');
+          };
+        }
+      }
+    })
+    .state(index + '.situation_professionnelle.rqth', {
+      url: '/rqth',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'rqth', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.^.projet_professionnel.description');
+          };
+        }
+      }
     });
   });
