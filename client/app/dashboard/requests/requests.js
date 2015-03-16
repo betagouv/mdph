@@ -105,7 +105,7 @@ angular.module('impactApp')
       })
       .state('dashboard.requests.detail.evaluation.section', {
         url: '/:sectionId',
-        templateUrl: 'app/dashboard/requests/detail/section/section.html',
+        templateUrl: 'app/dashboard/requests/detail/evaluation/section/section.html',
         controller: 'RequestSectionCtrl',
         authenticate: true
       });
