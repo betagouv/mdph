@@ -48,110 +48,110 @@
     font-size: 1em;
     font-weight: 200;
   }
-}
 
-.category {
-  margin-bottom: 2em;
-  box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.26);
-}
-
-.section {
-  display: block;
-  background-color: white;
-  border-bottom: 1px solid #EAEAEA;
-
-  .fa {
-    font-size: 24px;
-    color: lighten($light-blue, 45%);
+  .category {
+    margin-bottom: 2em;
+    box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.26);
   }
 
-  &:hover {
-    background-color: whitesmoke;
-    text-decoration: none;
-
-    .fa {
-      color: lighten($light-blue, 15%);
-    }
-  }
-}
-
-.section-inverse {
-  display: block;
-  color: white;
-  background-color: lighten($light-blue, 30%);
-  border: 1px solid lighten($light-blue, 25%);
-
-  h3 {
-    color: white;
-  }
-
-  p {
-    color: white;
-  }
-
-  span {
-    color: white;
-  }
-
-  .fa {
-    font-size: 24px;
-    color: white;
-  }
-
-  &:hover {
-    background-color: lighten($light-blue, 25%);
-    text-decoration: none;
-
-    .fa {
-      color: lighten($light-blue, 15%);
-    }
-  }
-}
-
-.section-body {
-  padding: 10px;
-
-  .left {
-    float: left;
-    margin-right: 15px;
-  }
-}
-
-.btn-answer {
-  padding-left: 15px;
-  border-bottom: 2px solid $light-grey;
-  text-align: left;
-  i {
-    color: $light-grey;
-    margin-right: 15px;
-  }
-
-  &.active {
-    border-bottom: 2px solid $primary;
+  .section {
+    display: block;
     background-color: white;
+    border-bottom: 1px solid #EAEAEA;
 
-    i {
-      color: $primary;
+    .fa {
+      font-size: 24px;
+      color: lighten($light-blue, 45%);
+    }
+
+    &:hover {
+      background-color: whitesmoke;
+      text-decoration: none;
+
+      .fa {
+        color: lighten($light-blue, 15%);
+      }
     }
   }
-}
 
-.answer {
-  margin-bottom: 8px;
-}
+  .section-inverse {
+    display: block;
+    color: white;
+    background-color: lighten($light-blue, 30%);
+    border: 1px solid lighten($light-blue, 25%);
 
-.demande-header {
-  @extend .well;
+    h3 {
+      color: white;
+    }
 
-  h1 {
-    margin: 0;
-    font-size: 2em;
+    p {
+      color: white;
+    }
+
+    span {
+      color: white;
+    }
+
+    .fa {
+      font-size: 24px;
+      color: white;
+    }
+
+    &:hover {
+      background-color: lighten($light-blue, 25%);
+      text-decoration: none;
+
+      .fa {
+        color: lighten($light-blue, 15%);
+      }
+    }
   }
 
-  p {
-    margin: 0;
-    strong {
-      font-wight: 500;
+  .section-body {
+    padding: 10px;
+
+    .left {
+      float: left;
+      margin-right: 15px;
+    }
+  }
+
+  .btn-answer {
+    padding-left: 15px;
+    border-bottom: 2px solid $light-grey;
+    text-align: left;
+    i {
+      color: $light-grey;
+      margin-right: 15px;
+    }
+
+    &.active {
+      border-bottom: 2px solid $primary;
+      background-color: white;
+
+      i {
+        color: $primary;
+      }
+    }
+  }
+
+  .answer {
+    margin-bottom: 8px;
+  }
+
+  .demande-header {
+    @extend .well;
+
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    p {
+      margin: 0;
+      strong {
+        font-wight: 500;
+      }
     }
   }
 }

@@ -229,6 +229,7 @@ exports.downloadFile = function(req, res) {
 
 exports.getRecapitulatif = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if (!request) return res.send(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'inline', function(err, html) {
       if (err) { res.send(500, err); }
       res.send(html).status(200);
@@ -238,6 +239,7 @@ exports.getRecapitulatif = function(req, res) {
 
 exports.getCerfa = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if (!request) return res.send(404);
     var flattenedAnswers = Flattener.flatten(request.formAnswers);
     var url = config.cerfaFormFillerUrl ? config.cerfaFormFillerUrl : 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
     superagent
@@ -252,6 +254,7 @@ exports.getCerfa = function(req, res) {
 
 exports.getPdf = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if (!request) return res.send(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
       if (err) { res.send(500, err); }
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);

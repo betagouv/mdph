@@ -1,0 +1,25 @@
+.recapitulatif {
+  background-color: lighten($light-blue, 25%);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  .section {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    h2 {
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 15px;
+    }
+
+    h4 {
+      font-size: 14px;
+    }
+  }
+}
