@@ -8,7 +8,7 @@
       <table class="table my-table-striped">
         <thead>
           <th>Demande(s) formulée(s)</th>
-          <th>Eligibilité</th>
+          <th>Eligible</th>
           <th>Motivation</th>
         </thead>
         <tbody>
@@ -21,7 +21,10 @@
               </select>
             </td>
             <td>
-              <input ng-model="item.eligibilite" type="text" class="form-control">
+              <select class="form-control" ng-model="item.eligibilite">
+                <option>Oui</option>
+                <option>Non</option>
+              </select>
             </td>
             <td>
               <input ng-model="item.motivation" type="text" class="form-control">
