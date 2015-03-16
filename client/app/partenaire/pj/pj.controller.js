@@ -5,7 +5,6 @@ angular.module('impactApp')
     $scope.request = request;
     $scope.documents = [{type: 'certificatMedical'}];
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
-    debugger;
     $scope.mdph = mdph;
     $scope.partenaire = {};
 
