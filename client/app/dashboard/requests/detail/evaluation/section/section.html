@@ -1,4 +1,12 @@
 <h2 class="no-hr">{{currentSection.label}}</h2>
+
+<div ng-if="currentSection.id === 'aides'">
+  <ul>
+    <li ng-repeat="prestation in request.prestations">
+      {{prestation}}
+    </li>
+</div>
+
 <accordion ng-repeat="question in currentSection.questions" class="section-quitus">
   <accordion-group is-open="status.open">
     <accordion-heading>
