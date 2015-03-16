@@ -85,10 +85,14 @@ var formatDateNaissance = function(identite) {
   }
 }
 
-exports.answersToHtml = function(request, path, next) {
+exports.answersToHtml = function(request, path, output, next) {
   async.series({
     answersTemplate: function(callback){
-      readFile('answers.html', callback);
+      if (output === 'pdf') {
+        readFile('pdfAnswers.html', callback);
+      } else {
+        readFile('inlineAnswers.html', callback);
+      }
     },
     section: function(callback){
       readFile('section.html', callback);

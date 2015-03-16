@@ -90,6 +90,13 @@ angular.module('impactApp')
         url: '/pre_evaluation',
         templateUrl: 'app/dashboard/requests/detail/pre_evaluation/pre_evaluation.html',
         controller: 'RequestPreEvaluationCtrl',
+        resolve: {
+          recapitulatif: function($http, $stateParams) {
+            return $http.get('/api/requests/' + $stateParams.shortId + '/recapitulatif').then(function(request) {
+              return request.data;
+            });
+          }
+        },
         authenticate: true
       })
       .state('dashboard.requests.detail.evaluation', {

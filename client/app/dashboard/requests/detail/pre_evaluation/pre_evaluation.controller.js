@@ -11,8 +11,10 @@ angular.module('impactApp')
            return calculAge(dateNaiss);
      };
   })
-  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, request, DroitService, vieQuotidienne) {
+  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, DroitService, vieQuotidienne) {
     $scope.token = $cookieStore.get('token');
+    $scope.recapitulatif = recapitulatif;
+    $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
 
     var familleAnswers = _.indexBy(vieQuotidienne[0].answers, 'model');
     $scope.situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];
