@@ -26,3 +26,38 @@
     background-color: whitesmoke;
   }
 }
+
+.presta-choice {
+  display: block;
+  float: left;
+  margin: 2px 3px;
+  padding: 2px 5px;
+  border: 1px solid #D6D6D6;
+  background-color: #DEE7F8;
+  cursor: pointer;
+}
+
+.presta-choice-select {
+  @extend .presta-choice;
+  font-size: 10px;
+  background-color: #DDDDDD;
+}
+
+.presta-show {
+  color: #777;
+  font-size: 10px;
+  font-style: italic;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.presta-show-list {
+  margin: 0;
+  padding: 0;
+  background: inherit;
+  overflow: auto;
+  list-style: none;
+}

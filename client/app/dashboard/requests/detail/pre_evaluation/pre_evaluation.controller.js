@@ -11,10 +11,11 @@ angular.module('impactApp')
            return calculAge(dateNaiss);
      };
   })
-  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, DroitService, NotificationService, vieQuotidienne) {
+  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, DroitService, NotificationService, vieQuotidienne, prestations) {
     $scope.token = $cookieStore.get('token');
     $scope.recapitulatif = recapitulatif;
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
+    $scope.toutesPrestations = prestations;
 
     var familleAnswers = _.indexBy(vieQuotidienne[0].answers, 'model');
     $scope.situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];
@@ -43,6 +44,20 @@ angular.module('impactApp')
     DroitService.compute(request.formAnswers).success(function(result) {
       $scope.prestations = result;
     });
+
+     $scope.isSelected = function(prestation) {
+        return false === request.prestations.indexOf(prestation.label) >= 0;
+    };
+
+    $scope.removePrestation = function(index) {
+      request.prestations.splice(index, 1);
+      request.$update();
+    };
+
+    $scope.addPrestation = function(prestation) {
+      request.prestations.push(prestation.label);
+      request.$update();
+    };
 
     $scope.assigner = function() {
       request.evaluator = $scope.currentUser._id;

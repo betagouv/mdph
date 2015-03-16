@@ -14,6 +14,29 @@
   </div>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Aides actuelles
+  </div>
+  <div class="panel-body">
+    <ul class="presta-list" ng-if="request.prestations.length > 0">
+      <li class="presta-choice" ng-repeat="(idx, prestation) in request.prestations" ng-click="removePrestation(idx)">
+        {{prestation}} <i class="fa fa-close"></i>
+      </li>
+    </ul>
+    <p ng-if="!request.prestations || request.prestations.length === 0">
+      Aucune prestation
+    </p>
+  </div>
+  <div class="panel-footer">
+    <ul class="presta-show-list">
+      <li class="presta-choice-select" ng-repeat="prestation in toutesPrestations | filter:isSelected" ng-click="addPrestation(prestation)">
+        {{prestation.label}} <i class="fa fa-plus"></i>
+      </li>
+    </ul>
+  </div>
+</div>
+
 <div class="panel panel-default panel-smoke">
   <div class="panel-heading">
     Récapitulatif demande
