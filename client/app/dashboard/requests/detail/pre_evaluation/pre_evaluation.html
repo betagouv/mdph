@@ -1,7 +1,24 @@
 <div class="panel panel-default">
-  <div class="panel-heading clearfix">
+  <div class="panel-heading">
+    Points saillants
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li>
+        Situation d'urgence
+      </li>
+      <li>
+        {{renouvellement}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-default panel-smoke">
+  <div class="panel-heading">
     Récapitulatif demande
   </div>
+
   <div class="panel-body">
 
     <div ng-bind-html="recapitulatifHtml"></div>
@@ -19,24 +36,8 @@
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading clearfix">
-    Points saillants
-  </div>
-  <div class="panel-body">
-    <ul>
-      <li>
-        Situation d'urgence
-      </li>
-      <li>
-        {{renouvellement}}
-      </li>
-    </ul>
-  </div>
-</div>
-
 <div class="panel panel-default" ng-if="prestations.length > 0">
-  <div class="panel-heading clearfix">
+  <div class="panel-heading">
     Quitus
   </div>
   <div class="panel-body">

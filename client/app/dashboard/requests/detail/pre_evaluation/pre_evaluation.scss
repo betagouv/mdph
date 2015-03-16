@@ -1,7 +1,4 @@
 .recapitulatif {
-  background-color: lighten($light-blue, 25%);
-  border-radius: 5px;
-  padding: 10px;
   margin-bottom: 10px;
 
   .section {
@@ -21,5 +18,11 @@
     h4 {
       font-size: 14px;
     }
+  }
+}
+
+.panel-smoke {
+  .panel-body {
+    background-color: whitesmoke;
   }
 }
