@@ -87,7 +87,7 @@ angular.module('impactApp')
         authenticate: true
       })
       .state('dashboard.requests.detail.pre_evaluation', {
-        url: '/evaluation',
+        url: '/pre_evaluation',
         templateUrl: 'app/dashboard/requests/detail/pre_evaluation/pre_evaluation.html',
         controller: 'RequestPreEvaluationCtrl',
         authenticate: true
