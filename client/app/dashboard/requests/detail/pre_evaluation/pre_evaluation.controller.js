@@ -11,7 +11,7 @@ angular.module('impactApp')
            return calculAge(dateNaiss);
      };
   })
-  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, DroitService, vieQuotidienne) {
+  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, DroitService, NotificationService, vieQuotidienne) {
     $scope.token = $cookieStore.get('token');
     $scope.recapitulatif = recapitulatif;
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
@@ -43,4 +43,11 @@ angular.module('impactApp')
     DroitService.compute(request.formAnswers).success(function(result) {
       $scope.prestations = result;
     });
+
+    $scope.assigner = function() {
+      request.evaluator = $scope.currentUser._id;
+      request.$update(function() {
+        NotificationService.createNotification(request, 'espace_perso.liste_demandes.demande.questionnaire', 'Votre demande est en cours d\'instruction.');
+      });
+    };
   });

@@ -67,10 +67,8 @@ angular.module('impactApp')
           };
         },
         resolve: {
-          request: function($http, $stateParams) {
-            return $http.get('/api/requests/' + $stateParams.shortId).then(function(request) {
-              return request.data;
-            });
+          request: function($http, $stateParams, RequestResource) {
+            return RequestResource.get({shortId: $stateParams.shortId}).$promise;
           },
           user: function($http, request) {
             return $http.get('api/users/' + request.user).then(function(result) {
