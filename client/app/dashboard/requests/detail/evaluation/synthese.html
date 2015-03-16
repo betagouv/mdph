@@ -1,0 +1,72 @@
+<div class="modal-header">
+    <h3 class="modal-title">Synthèse</h3>
+</div>
+
+<div class="modal-body">
+  <form class="synthese">
+    <div class="form-group">
+      <table class="table my-table-striped">
+        <thead>
+          <th>Demande(s) formulée(s)</th>
+          <th>Eligibilité</th>
+          <th>Motivation</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in prestaDemande">
+            <td>
+              <input ng-model="item.label" type="text" class="form-control">
+            </td>
+            <td>
+              <input ng-model="item.eligibilite" type="text" class="form-control">
+            </td>
+            <td>
+              <input ng-model="item.motivation" type="text" class="form-control">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-offset-5 col-md-1">
+          <button class="btn btn-default btn-block"  ng-click="retirerPresta(prestaDemande)">-</button>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-default btn-block" ng-click="ajouterPrestaDemande()">+</button>
+        </div><br>
+      </div>
+    </div>
+    <div class="form-group">
+      <table class="table my-table-striped">
+        <thead>
+          <th>Autres droit/prestations éligibles</th>
+          <th>Motivation</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in prestaAutre">
+            <td>
+              <input ng-model="item.label" type="text" class="form-control">
+            </td>
+            <td>
+              <input ng-model="item.motivation" type="text" class="form-control">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-offset-5 col-md-1">
+          <button class="btn btn-default btn-block"  ng-click="retirerPresta(prestaAutre)">-</button>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-default btn-block" ng-click="ajouterPrestaAutre()">+</button>
+        </div><br>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="syntheseEval">Autres préconisations</label>
+      <textarea id="syntheseEval" class="form-control" rows="5" ng-model="preconisations"></textarea>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" type ="submit" ng-click="ok()">OK</button>
+</div>
