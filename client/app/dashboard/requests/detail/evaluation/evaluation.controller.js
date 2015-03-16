@@ -34,4 +34,9 @@ angular.module('impactApp')
       });
     };
 
+    $scope.retirerPresta = function(type){
+      var lastIndex = type.indexOf(_.last(type));
+      type.splice(lastIndex, 1);
+    };
+
   });
