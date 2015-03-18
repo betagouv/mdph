@@ -10,8 +10,7 @@ angular.module('impactApp', [
   'ngAnimate',
   'angularFileUpload',
   'ngMessages',
-  'ngScrollSpy',
-  //'ngAria'
+  'ngScrollSpy'
 ])
   // Fix compatibility angular bootstrap/angular 1.3
   .directive('datepickerPopup', function (){
@@ -24,9 +23,8 @@ angular.module('impactApp', [
       }
     };
   })
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
-    $urlMatcherFactoryProvider.strictMode(false);
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })

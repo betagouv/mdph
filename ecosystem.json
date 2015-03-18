@@ -1,12 +1,10 @@
 {
   "apps" : [
     {
-      "name"      : "APP",
+      "name"      : "Impact",
       "script"    : "dist/server/app.js",
       "env": {
         "COMMON_VARIABLE": "true",
-      },
-      "env_production" : {
         "NODE_ENV": "production",
         "PORT": 9000
       }
@@ -21,11 +19,7 @@
       "ref"  : "origin/master",
       "repo" : "git@github.com:sgmap/impact.git",
       "path" : "/home/impact",
-      "post-deploy" : "./deploy.sh",
-      "env" : {
-        "NODE_ENV": "production",
-        "PORT": 9000
-      }
+      "post-deploy" : "./deploy.sh"
     },
 
     "production" : {

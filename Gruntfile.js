@@ -130,11 +130,11 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'cdnify',
     'cssmin',
     'uglify',
     'rev',
-    'usemin',
-    'imagemin'
+    'usemin'
   ]);
 
   grunt.registerTask('default', [
