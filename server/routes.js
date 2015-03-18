@@ -30,6 +30,7 @@ module.exports = function(app) {
   // All other routes should redirect to the index.html
   app.route('/*')
     .get(function(req, res) {
-      res.sendFile(app.get('appPath'), 'index.html');
+      var indexPath = path.join(app.get('appPath'), 'index.html');
+      res.sendFile(indexPath);
     });
 };

@@ -2,7 +2,7 @@
   "apps" : [
     {
       "name"      : "Impact",
-      "script"    : "dist/server/app.js",
+      "script"    : "server/app.js",
       "env": {
         "COMMON_VARIABLE": "true",
         "NODE_ENV": "production",

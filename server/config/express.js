@@ -30,9 +30,9 @@ module.exports = function(app) {
   app.use(passport.initialize());
 
   if ('production' === env) {
-    app.use(favicon(path.join(config.root, 'favicon.ico')));
-    app.use(express.static(path.join(config.root), 'client'));
-    app.set('appPath', config.root + '/client');
+    app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
+    app.use(express.static(path.join(config.root, 'dist')));
+    app.set('appPath', config.root + '/dist');
     app.use(morgan('dev'));
   }
 

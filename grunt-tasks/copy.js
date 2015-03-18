@@ -18,14 +18,6 @@ module.exports = {
       cwd: '.tmp/images',
       dest: '<%= app.dirs.dist %>/assets/images',
       src: ['generated/*']
-    },
-    {
-      expand: true,
-      dest: '<%= app.dirs.dist %>',
-      src: [
-        'package.json',
-        'server/**/*'
-      ]
     }]
   },
   styles: {

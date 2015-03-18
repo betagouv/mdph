@@ -10,7 +10,7 @@ module.exports = {
   },
   prod: {
     options: {
-      script: 'dist/server/app.js'
+      script: 'server/app.js'
     }
   }
 };
