@@ -15,9 +15,10 @@
             <h3 id="{{region}}">{{region}}</h3>
           </dt>
           <dd ng-repeat="mdph in mdphs | filter:query">
-            <a ui-sref="departement.demande({codeDepartement: mdph.code_departement, shortId: 'nouvelle_demande'})" title="MDPH {{mdph.nom_du_departement}}">
+            <a ng-if="mdph.enabled" ui-sref="departement.demande({codeDepartement: mdph.code_departement, shortId: 'nouvelle_demande'})" title="MDPH {{mdph.nom_du_departement}}">
               {{mdph.nom_du_departement}}
             </a>
+            <span class="text-muted" ng-if="!mdph.enabled">{{mdph.nom_du_departement}}</span>
           </dd>
         </dl>
       </div>
