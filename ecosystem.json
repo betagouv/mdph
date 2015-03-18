@@ -14,6 +14,20 @@
   ],
 
   "deploy" : {
+
+    "preprod" : {
+      "user" : "impact",
+      "host" : "192.168.111.222",
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:sgmap/impact.git",
+      "path" : "/home/impact",
+      "post-deploy" : "./deploy.sh",
+      "env" : {
+        "NODE_ENV": "production",
+        "PORT": 9000
+      }
+    },
+
     "production" : {
       "user" : "impact",
       "host" : "srv1.sgmap.fr",
