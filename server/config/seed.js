@@ -25,136 +25,107 @@ var createFakeAnswers = function(nom, prenom) {
         "prenom": prenom,
         "sexe": "masculin",
         "nationalite": "francaise",
-        "email": "bobby@bob.com",
-        "dateNaissance": "2009-12-31T23:00:00.000Z",
-        "adresse": "3 rue des bobbys",
-        "adresse_complement": "Chez Grand Bob",
-        "code_postal": "75000",
+        "email": "bob@bob.com",
+        "dateNaissance": "1999-12-31T23:00:00.000Z",
+        "adresse": "3 rue des pommiers",
+        "adresse_complement": "Chez Papa",
+        "code_postal": "90000",
         "commune": "Paris",
         "pays": "France"
       },
       "autorite": {
         "parent1": {
-          "nom": "Grand",
-          "prenom": "Bob",
-          "email": "grand@bob.fr",
+          "nom": "Dudu",
+          "prenom": "Papa",
           "dateNaissance": "1979-12-31T23:00:00.000Z",
-          "adresse": "3 rue des bobbys",
-          "code_postal": "75000",
+          "adresse": "3 rue des pommiers",
+          "code_postal": "90000",
           "commune": "Paris",
           "pays": "France"
         },
         "parent2": {
-          "nom": "Grande",
-          "prenom": "Bob",
-          "email": "grande@bob.com",
+          "nom": "Dudu",
+          "prenom": "Maman",
           "dateNaissance": "1969-12-31T23:00:00.000Z",
-          "adresse": "3 rue des bobbys",
-          "code_postal": "75000",
+          "adresse": "3 rue des pommiers",
+          "code_postal": "80000",
           "commune": "Paris",
           "pays": "France"
         }
       },
-      "aidantDemarche": [],
+      "aidantDemarche": [
+        {
+          "nom": "Toto",
+          "prenom": "Titi",
+          "dateNaissance": "1979-12-31T23:00:00.000Z",
+          "adresse": "3 rue des poiriers",
+          "code_postal": "60900",
+          "commune": "Paris",
+          "pays": "France"
+        }
+      ],
       "__completion": true
     },
     "vie_quotidienne": {
-      "famille": "autre",
-      "famille_autre": "Il vit dans un autre établissement.",
+      "famille": "parents",
       "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
-      "logement": "autre",
-      "logement_autre": "Il vit à un autre endroit.",
+      "logement": "domicile",
+      "logement_domicile": "parents",
       "aideActuelle": {
         "financiere": true,
         "technique": true,
         "techniqueDetail": {
-          "logement": true,
           "animal": true,
-          "vehicule": true,
-          "technique": {
-            "value": true,
-            "detail": "Il bénéficie d'une aide technique dont voici le détail."
-          },
-          "autre": {
-            "value": false
-          }
+          "vehicule": true
         }
       },
       "aideFinancierePresent": {
-        "rsa": true,
-        "aah": true,
-        "ass": true,
-        "chomage": true
+        "chomage": true,
+        "rsa": true
       },
       "aideFinancierePasse": {
-        "revenu": true,
-        "indemnites": true
+        "revenu": false
       },
-      "duree": {
-        "debut": "2001-07-16T22:00:00.000Z",
-        "fin": "2008-08-04T22:00:00.000Z"
-      },
-      "pensionInvalidite": {
-        "invalidite": true,
-        "autre": true,
-        "mtp": true,
-        "asi": true,
-        "renteAccident": true
-      },
-      "categorie": "categorie1",
-      "amenagementDetail": "Il bénéficie d'une autre pension de ce type dont voici le détail.",
-      "retraite": true,
-      "retraiteDetail": "2006-04-04T22:00:00.000Z",
-      "aidesRetraite": {
-        "aspa": true,
-        "apa": true
-      },
+      "retraite": false,
       "fraisHandicap": {
         "valeur": false,
         "listeFrais": [
           {
             "nom": "Frais 1",
-            "frequence": "Tous les deux mois",
-            "total": "170€",
-            "rembourse": "100€",
-            "detail": "Je suis une précision."
+            "frequence": "Fréquence 1",
+            "total": "100",
+            "rembourse": "0",
+            "detail": "Précisions 1"
           },
           {
             "nom": "Frais 2",
-            "frequence": "Tous les quatre mois",
-            "total": "1360€",
-            "rembourse": "900€",
-            "detail": "Je suis une précision."
+            "frequence": "Fréquence 2",
+            "total": "90",
+            "rembourse": "90",
+            "detail": "Précisions 2"
           }
         ]
       },
       "besoinsVie": {
-        "hygiene": true,
-        "habits": true,
-        "autre": true
+        "repas": true,
+        "habits": true
       },
-      "besoinsVie_autre": "Il a un autre besoin d'aide dans sa vie quotidienne dont voici le détail.",
       "besoinsDeplacement": {
+        "intraDomicile": true,
         "accesDomicile": true,
-        "public": true,
-        "conduite": true,
-        "autre": true
+        "public": true
       },
-      "besoinsDeplacement_autre": "Il a un autre besoin d'aide pour se déplacer dont voici le détail.",
-      "besoinsTransports": false,
+      "besoinsTransports": true,
       "besoinsSocial": {
-        "communication": true,
-        "securite": true,
-        "autre": true
+        "loisirs": true,
+        "proches": true
       },
-      "besoinsSocial_autre": "Il a un autre besoin d'aide pour sa vie sociale dont voici le détail.",
       "attentesTypeAide": {
-        "amenagement": true,
+        "bilan": true,
         "mobilite": true,
         "accompagement": true,
-        "autre": true
+        "materiel": true
       },
-      "attentesTypeAide_autre": "Je suis une autre attente dont voici le détail.",
       "structures": {
         "valeur": false,
         "structures": [
@@ -164,45 +135,102 @@ var createFakeAnswers = function(nom, prenom) {
           }
         ]
       },
-      "autresRenseignements": "Je suis un autre type de renseignements. Coucou c'est moi le renseignement de la vie quotidienne !",
+      "autresRenseignements": "azertyuiop",
       "__completion": true
     },
     "vie_scolaire": {
-      "condition": false,
+      "condition": true,
       "__lastSref": "departement.demande.vie_scolaire.vos_attentes.autres_renseignements",
-      "raisonNonScolaire": "tropJeune",
-      "raisonNonScolaireTropJeune": "Je suis trop jeune pour travailler.",
-      "structure": {
+      "vieScolaireType": "etablissementPartiel",
+      "etablissement": {
         "valeur": false,
-        "structures": [
+        "etablissements": [
           {
-            "name": "",
-            "contact": false
+            "nom": "Boko",
+            "rue": "^kp",
+            "ville": "pookpo",
+            "date": "1991-11-30T23:00:00.000Z"
           }
         ]
       },
-      "autresRenseignements": "Je suis un autre renseignement. Coucou c'est moi le renseignement de la vie scolaire !",
-      "__completion": true
-    },
-    "vie_au_travail": {
-      "conditionTravail": true,
-      "__lastSref": "departement.demande.vie_au_travail.projet_professionnel.autres_renseignements",
-      "milieuTravail": "etablissement",
-      "nomPoste": "Je suis le nom du poste qu'il occupe.",
-      "temps": true,
-      "adapte": false,
-      "adapteDetail": "Je suis un emploi inadapté.",
-      "difficultes": "Je suis une difficulté liée au handicap.",
-      "amenagement": false,
-      "arretDeTravail": false,
-      "description": true,
-      "descriptionDetail": "Je suis un projet professionnel.",
-      "besoinSoutien": {
-        "formation": true,
-        "emploi": true,
+      "typeEtudes": "qsdfgjklm",
+      "diplomePasse": "azekozpdj paoùâkaz",
+      "diplomePresent": "azpodjzo^d",
+      "diplomeEtablissement": {
+        "valeur": false,
+        "etablissements": [
+          {
+            "nom": "aze",
+            "rue": "zopep",
+            "ville": "zea",
+            "date": "2012-12-31T23:00:00.000Z"
+          }
+        ]
+      },
+      "parcoursEtudes": "zahiaz",
+      "accompagnement": {
+        "hopital": true
+      },
+      "adaptation": {
+        "communication": true,
+        "informatique": true
+      },
+      "emploiDuTemps": {
+        "valeur": false,
+        "jours": {
+          "Lundi": {
+            "matin": "Coucou",
+            "midi": "Coucou2",
+            "aprem": "Coucou3"
+          },
+          "Mardi": {
+            "matin": "Coucou4",
+            "midi": "Coucou5",
+            "aprem": "Coucou6"
+          },
+          "Mercredi": {
+            "matin": "Coucou7",
+            "midi": "Coucou8",
+            "aprem": "Coucou9"
+          },
+          "Jeudi": {
+            "matin": "Coucou10",
+            "midi": "Coucou11",
+            "aprem": "Coucou12"
+          },
+          "Vendredi": {
+            "matin": "Coucou13",
+            "midi": "Coucou14",
+            "aprem": "Coucou15"
+          },
+          "Samedi": {
+            "matin": "Coucou16",
+            "midi": "Coucou17",
+            "aprem": "Coucou18"
+          }
+        }
+      },
+      "besoinsScolarite": {
+        "calculer": true
+      },
+      "besoinsCommunication": {
+        "securite": true
+      },
+      "besoinsEntretien": {
+        "repas": true
+      },
+      "besoinsDeplacement": {
+        "extraLocaux": true,
+        "transports": true,
+        "intraLocaux": true,
         "autre": true
       },
-      "besoinSoutienAutre": "Je suis un autre besoin de soutien.",
+      "besoinsEntretienAutre": "Coucou",
+      "attentesVieScolaire": {
+        "aideMateriel": true,
+        "readaptation": true,
+        "etablissementSansHebergement": true
+      },
       "structure": {
         "valeur": false,
         "structures": [
@@ -212,20 +240,11 @@ var createFakeAnswers = function(nom, prenom) {
           }
         ]
       },
-      "autresRenseignements": "Je suis un autre renseignement. Coucou le renseignement de la vie professionnelle !",
-      "__completion": true
-    },
-    "situations_particulieres": {
-      "urgences": {
-        "finDroit": true,
-        "ecole": true
-      },
-      "finDroitDetail": "Je suis une difficulté.",
-      "ecoleDetail": "Je suis une autre difficulté !",
-      "__lastSref": "departement.demande.situations_particulieres.detail",
+      "autresRenseignements": "aspo",
       "__completion": true
     }
   }
+
 };
 
 var deletePartenaires = function(cb) {

@@ -26,7 +26,10 @@ angular.module('impactApp')
       },
       getSref: function(type, id) {
         var sref = '.modification_identite({type: "' + type + '"';
-        if (id || type ==='aidantDemarche') {
+        if(!id && type ==='aidantDemarche'){
+          sref += ', id: "0"';
+        }
+        if (id) {
           sref += ', id: "' + id + '"';
         }
         sref += '})';

@@ -85,6 +85,33 @@ var formatDateNaissance = function(identite) {
   }
 }
 
+var matchAnswersToQuestions = function(question, answer){
+  var answersAndQuestions = _.filter(question.answers, function(constant) {
+    if (typeof answer === 'string') {
+      return answer === constant.model;
+    } else {
+      return answer[constant.model] === true;
+    }
+  });
+  if(question.type === 'text'){
+    answersAndQuestions.push({
+      label: answer
+    });
+  }
+
+  else {
+    if(answer.listeFrais){
+      answersAndQuestions.push({
+        label: 'Liste des frais',
+        model: 'fraisHandicap',
+        detailModel: 'listeFrais'
+      });
+    }
+  }
+
+  return answersAndQuestions;
+}
+
 exports.answersToHtml = function(request, path, output, next) {
   async.series({
     answersTemplate: function(callback){
@@ -126,35 +153,14 @@ exports.answersToHtml = function(request, path, output, next) {
       toutesTrajectoires.forEach(function(trajectoire) {
         var questions = [];
         var answers = request.formAnswers[trajectoire.id];
-
         if (answers) {
           var toutesQuestions = QuestionsBySections[trajectoire.id];
           toutesQuestions.forEach(function(question) {
 
             var answer = answers[question.model];
             if (answer) {
+              var filteredAnswers = matchAnswersToQuestions(question, answer);
 
-              var filteredAnswers = _.filter(question.answers, function(constant) {
-                if (typeof answer === 'string') {
-                  return answer === constant.model;
-                } else {
-                  return answer[constant.model] === true;
-                }
-              });
-              if(answer.listeFrais){
-                filteredAnswers.push({
-                  label: 'Liste des frais',
-                  model: 'fraisHandicap',
-                  detailModel: 'listeFrais'
-                });
-              }
-              else {
-                if(question.model === 'autresRenseignements'){
-                  filteredAnswers.push({
-                    label: answer
-                  });
-                }
-              }
               filteredAnswers.forEach(function(rawAnswer){
                 if(rawAnswer.detailModel){
                   if(answer[rawAnswer.detailModel]){
