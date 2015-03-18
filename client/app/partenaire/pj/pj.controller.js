@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, documentTypes, request, mdph, NotificationService) {
     $scope.request = request;
-    $scope.documents = [{type: 'certificatMedical'}];
+    $scope.documents = (request.documents && request.documents.length > 0) ? request.documents : [{type: 'certificatMedical'}];
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.mdph = mdph;
     $scope.partenaire = {};

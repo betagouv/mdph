@@ -8,25 +8,23 @@ describe('Controller: pj', function () {
   it('should render initial data', function () {
     //given
     var scope = {};
-    var files =  ['rox', 'anne'];
+    var documents =  [{type: 'carteIdentite'}];
     var request = {
           shortId: 'AAAA',
-          steps: [
-            {name: 'complementaire', files: files}
-          ]
+          documents : documents
         };
 
     //when
     inject(function($controller){
       $controller('PieceJointeCtrl', {
         $scope: scope,
-        request: request
+        request: request,
+        mdph: {}
       });
     });
 
     //then
-    expect(scope.files).toBe(files);
-
+    expect(scope.documents).toBe(documents);
   });
 
 });
