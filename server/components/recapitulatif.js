@@ -86,36 +86,46 @@ var formatDateNaissance = function(identite) {
 }
 
 var matchAnswersToQuestions = function(question, answer){
+  var added = false;
   var answersAndQuestions = _.filter(question.answers, function(constant) {
     if (typeof answer === 'string') {
+      added = true;
       return answer === constant.model;
     } else {
+      added = true;
       return answer[constant.model] === true;
     }
   });
-  switch (question.type){
-    case 'text':
-      answersAndQuestions.push({
-        label: answer
-      });
-    break;
-    case 'radio':
-      if(typeof answer === 'boolean'){
-        answer = answer ? 'Oui' : 'Non'
-      }
-      answersAndQuestions.push({
-        label: answer
-      });
-    break;
-    default:
-      if(answer.listeFrais){
+  if(!added){
+    switch (question.type){
+      case 'text':
         answersAndQuestions.push({
-          label: 'Liste des frais',
-          model: 'fraisHandicap',
-          detailModel: 'listeFrais'
+          label: answer
         });
-      }
-    break;
+      break;
+      case 'radio':
+        var answerInfos = _.indexBy(question.answers, 'model');
+        if(answerInfos[answer].labelRecap){
+          answersAndQuestions.push({
+            label: answerInfos.labelRecap
+          });
+        }
+        else {
+          answersAndQuestions.push({
+            label: answerInfos[answer].label
+          });
+        }
+      break;
+      default:
+        if(answer.listeFrais){
+          answersAndQuestions.push({
+            label: 'Liste des frais',
+            model: 'fraisHandicap',
+            detailModel: 'listeFrais'
+          });
+        }
+      break;
+    }
   }
 
   return answersAndQuestions;
