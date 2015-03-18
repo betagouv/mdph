@@ -26,7 +26,7 @@ angular.module('impactApp')
       },
       getSref: function(type, id) {
         var sref = '.modification_identite({type: "' + type + '"';
-        if (id) {
+        if (id || type ==='aidantDemarche') {
           sref += ', id: "' + id + '"';
         }
         sref += '})';
@@ -50,8 +50,7 @@ angular.module('impactApp')
             if (!sectionModel.aidantDemarche) {
               sectionModel.aidantDemarche = [];
             }
-
-            return sectionModel.aidantDemarche[currentId] || {};
+            return  sectionModel.aidantDemarche[currentId] || {};
         }
       },
       mergeModifications: function(type, sectionModel, currentId, tempIdentite) {
