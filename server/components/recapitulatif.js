@@ -93,23 +93,65 @@ var matchAnswersToQuestions = function(question, answer){
       return answer[constant.model] === true;
     }
   });
-  if(question.type === 'text'){
-    answersAndQuestions.push({
-      label: answer
-    });
-  }
-
-  else {
-    if(answer.listeFrais){
+  switch (question.type){
+    case 'text':
       answersAndQuestions.push({
-        label: 'Liste des frais',
-        model: 'fraisHandicap',
-        detailModel: 'listeFrais'
+        label: answer
       });
-    }
+    break;
+    case 'radio':
+      if(typeof answer === 'boolean'){
+        answer = answer ? 'Oui' : 'Non'
+      }
+      answersAndQuestions.push({
+        label: answer
+      });
+    break;
+    default:
+      if(answer.listeFrais){
+        answersAndQuestions.push({
+          label: 'Liste des frais',
+          model: 'fraisHandicap',
+          detailModel: 'listeFrais'
+        });
+      }
+    break;
   }
 
   return answersAndQuestions;
+}
+
+var addDetailsToAnswers = function(answers, answer, detailedAnswer){
+  if(answer[detailedAnswer.detailModel]){
+    if(typeof answer[detailedAnswer.detailModel] === 'object'){
+      detailedAnswer.details = [];
+      detailedAnswer.detailsObject = [];
+      detailedAnswer.detailsFrais = [];
+      _.forEach(answer[detailedAnswer.detailModel], function(n, key){
+        if(n){
+          if(typeof key === 'number'){
+            detailedAnswer.detailsFrais.push(n)
+          }
+          else {
+            if(typeof n === 'object'){
+              if(n.value)
+                detailedAnswer.detailsObject.push({'label' : key, 'detail' : n.detail});
+            }
+            else {
+              detailedAnswer.details.push(key);
+            }
+          }
+        }
+      });
+    }
+    else {
+      detailedAnswer.detail = answer[detailedAnswer.detailModel];
+    }
+
+  }
+  else {
+    detailedAnswer.detail = answers[detailedAnswer.detailModel];
+  }
 }
 
 exports.answersToHtml = function(request, path, output, next) {
@@ -163,36 +205,7 @@ exports.answersToHtml = function(request, path, output, next) {
 
               filteredAnswers.forEach(function(rawAnswer){
                 if(rawAnswer.detailModel){
-                  if(answer[rawAnswer.detailModel]){
-                    if(typeof answer[rawAnswer.detailModel] === 'object'){
-                      rawAnswer.details = [];
-                      rawAnswer.detailsObject = [];
-                      rawAnswer.detailsFrais = [];
-                      _.forEach(answer[rawAnswer.detailModel], function(n, key){
-                        if(n){
-                          if(typeof key === 'number'){
-                            rawAnswer.detailsFrais.push(n)
-                          }
-                          else {
-                            if(typeof n === 'object'){
-                              if(n.value)
-                                rawAnswer.detailsObject.push({'label' : key, 'detail' : n.detail});
-                            }
-                            else {
-                              rawAnswer.details.push(key);
-                            }
-                          }
-                        }
-                      });
-                    }
-                    else {
-                      rawAnswer.detail = answer[rawAnswer.detailModel];
-                    }
-
-                  }
-                  else {
-                    rawAnswer.detail = answers[rawAnswer.detailModel];
-                  }
+                  addDetailsToAnswers(answers, answer, rawAnswer);
                 }
               });
               question.answers = filteredAnswers;
