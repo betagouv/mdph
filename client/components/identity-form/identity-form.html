@@ -3,40 +3,43 @@
   <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="submit(infoForm)" novalidate>
     <h1 id="infoPerso">{{desc}}</h1>
 
-    <div class="form-group required">
+    <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
       <label for="nom" class="col-sm-2 col-lg-offset-1 control-label">Nom</label>
       <div class="col-sm-10 col-lg-7">
         <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
-        <div ng-messages="infoForm.nom.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
         </div>
       </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group required" ng-class="{'has-error': infoForm.prenom.$invalid && infoForm.$submitted}">
       <label for="prenom" class="col-sm-2 col-lg-offset-1 control-label">Prénom</label>
       <div class="col-sm-10 col-lg-7">
         <input id="prenom" type="text" name="prenom" class="form-control" ng-model="identite.prenom" ng-minlength="1" required>
-        <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
         </div>
       </div>
     </div>
-    <div class="form-group required" ng-if="type==='beneficiaire'">
+    <div class="form-group required" ng-if="type==='beneficiaire'" ng-class="{'has-error': !identite.sexe && infoForm.$submitted}">
       <label for="name" class="col-sm-2 col-lg-offset-1 control-label">Sexe</label>
       <div class="col-sm-10 col-lg-7">
         <label class="radio-inline">
-          <input type="radio" id="inlineRadioMasculin" value="masculin" ng-model="identite.sexe"> Masculin
+          <input type="radio" id="inlineRadioMasculin" value="masculin" ng-required="identite.sexe" ng-model="identite.sexe"> Masculin
         </label>
         <label class="radio-inline">
-          <input type="radio" id="inlineRadioFeminin" value="feminin" ng-model="identite.sexe"> Féminin
+          <input type="radio" id="inlineRadioFeminin" value="feminin" ng-required="identite.sexe" ng-model="identite.sexe"> Féminin
         </label>
+        <div ng-if="!identite.sexe && infoForm.$submitted">
+          <p class="help-block">Ce champ est obligatoire.</p>
+        </div>
       </div>
     </div>
 
-    <div class="form-group required" ng-if="type==='beneficiaire'">
+    <div class="form-group required" ng-if="type==='beneficiaire'" ng-class="{'has-error': !identite.nationalite && infoForm.$submitted}">
       <label for="nationalite" class="col-sm-2 col-lg-offset-1 control-label">Nationalité</label>
       <div class="col-sm-10 col-lg-7">
         <label class="radio-inline">
@@ -48,7 +51,7 @@
         <label class="radio-inline">
           <input type="radio" id="inlineRadioAutre" value="autre" ng-model="identite.nationalite" ng-required="!identite.nationalite"> Autre
         </label>
-        <div ng-if="infoForm.showError && !identite.nationalite">
+        <div ng-if="infoForm.$submitted && !identite.nationalite">
           <p class="help-block">Ce champ est obligatoire.</p>
         </div>
       </div>
@@ -61,13 +64,13 @@
           <input id="email" type="email" name="email" class="form-control" ng-model="identite.email">
           <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
         </div>
-        <div ng-messages="infoForm.email.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.email.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
         </div>
       </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group required" ng-class="{'has-error': infoForm.dateNaissance.$invalid && infoForm.$submitted}">
       <label for="dateNaissance" class="col-sm-2 col-lg-offset-1 control-label">Date de naissance</label>
       <div class="col-sm-10 col-lg-7">
         <div class="input-group">
@@ -75,18 +78,18 @@
           <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button></span>
         </div>
 
-        <div ng-messages="infoForm.dateNaissance.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.dateNaissance.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='date'>Le format de date est invalide.</p>
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         </div>
       </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group required" ng-class="{'has-error': infoForm.adresse.$invalid && infoForm.$submitted}">
       <label for="adresse" class="col-sm-2 col-lg-offset-1 control-label">Adresse</label>
       <div class="col-sm-10 col-lg-7">
         <input id="adresse" type="text" name="adresse" class="form-control" ng-model="identite.adresse" placeholder="Numéro et rue" required>
-        <div ng-messages="infoForm.adresse.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.adresse.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         </div>
       </div>
@@ -99,31 +102,31 @@
       </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group required" ng-class="{'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
       <label for="code_postal" class="col-sm-2 col-lg-offset-1 control-label">Code postal</label>
       <div class="col-sm-10 col-lg-7">
         <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal" required>
-        <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         </div>
       </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group required" ng-class="{'has-error': infoForm.commune.$invalid && infoForm.$submitted}">
       <label for="commune" class="col-sm-2 col-lg-offset-1 control-label">Commune</label>
       <div class="col-sm-10 col-lg-7">
         <input id="commune" type="text" name="commune" class="form-control" ng-model="identite.commune" required>
-        <div ng-messages="infoForm.commune.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.commune.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         </div>
       </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group required" ng-class="{'has-error': infoForm.pays.$invalid && infoForm.$submitted}">
       <label for="pays" class="col-sm-2 col-lg-offset-1 control-label">Pays</label>
       <div class="col-sm-10 col-lg-7">
         <input id="pays" type="text" name="pays" class="form-control" ng-model="identite.pays" required>
-        <div ng-messages="infoForm.pays.$error" ng-if="infoForm.showError">
+        <div ng-messages="infoForm.pays.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         </div>
       </div>
