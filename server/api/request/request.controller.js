@@ -15,6 +15,7 @@ var wkhtmltopdf = require('wkhtmltopdf');
 var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
 var fs = require('fs');
+var Busboy = require('busboy');
 
 var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
 
@@ -168,39 +169,48 @@ exports.save = function(req, res, next) {
 /**
  * File upload
  */
-exports.saveDocument = function (req, res, next) {
-    Request.findOne({shortId: req.params.shortId}, function (err, request) {
-      if (err) return next(err);
+exports.saveFile = function (req, res, next) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
 
-      var file = req.files.file;
+    var busboy = new Busboy({ headers: req.headers });
+    busboy.on('file', function(fieldname, stream, filename, encoding, contentType) {
 
-      var is = fs.createReadStream(file.path);
+      console.log('POST ' + req.originalUrl + ' File: '+ filename + ' Field: ' + fieldname);
+      console.log('Metadata :')
+      console.log(req.body);
 
       var ws = gfs.createWriteStream({
         mode: 'w',
-        content_type: file.type,
-        filename: file.name,
-        metadata: req.body
+        content_type: contentType,
+        filename: filename
       });
 
-      is.pipe(ws);
-
-      ws.on('close', function (file) {
-        var type = file.metadata.type;
+      ws.on('close', function (data) {
+        var type = req.params.documentId;
         var requestDocument = _.find(request.documents, {type: type});
 
         if (typeof requestDocument === 'undefined') {
-          request.documents.push({type: type, files: [file]});
+          request.documents.push({type: type, files: [data]});
         } else {
-          requestDocument.files.push(file);
+          requestDocument.files.push(data);
         }
 
         request.save(function(err) {
-          if (err) {return handleError(res, err); }
-          res.send(file);
+          if (err) { return handleError(res, err); }
+          res.json(data);
         });
       });
+
+      stream.pipe(ws);
+
+      // form error (ie fileupload-cancel)
+      busboy.on('error', function(err) {
+        res.send(500, 'Error', err);
+      });
     });
+
+   req.pipe(busboy);
+ });
 };
 
 exports.showFileData = function(req, res) {

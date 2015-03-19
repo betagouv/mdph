@@ -14,14 +14,16 @@ angular.module('impactApp')
 
     $scope.onFileSelect = function(file, document) {
       $upload.upload({
-        url: 'api/requests/' + $scope.request.shortId + '/document',
-        withCredentials: true,
-        data: {
-          'type': document.type,
-          'state': 'telecharge'
-        },
-        file: file
-      }).success(function(data) {
+          url: 'api/requests/' + $scope.request.shortId + '/document/' + document.type,
+          withCredentials: true,
+          file: file
+      })
+      // TODO: Afficher progression
+      // .progress(function (evt) {
+      //     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+      //     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+      // })
+      .success(function (data) {
         document.files.push(data._id);
       });
     };
