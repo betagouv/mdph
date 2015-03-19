@@ -86,48 +86,53 @@ var formatDateNaissance = function(identite) {
 }
 
 var matchAnswersToQuestions = function(question, answer){
-  var added = false;
   var answersAndQuestions = _.filter(question.answers, function(constant) {
     if (typeof answer === 'string') {
-      added = true;
       return answer === constant.model;
     } else {
-      added = true;
       return answer[constant.model] === true;
     }
   });
-  if(!added){
-    switch (question.type){
-      case 'text':
+
+  switch (question.type){
+    case 'text':
+      answersAndQuestions.push({
+        label: answer
+      });
+    break;
+    case 'radio':
+      if(typeof answer === 'boolean'){
+        var labels = _.indexBy(question.answers, 'model');
+        answer = labels[answer].label;
         answersAndQuestions.push({
           label: answer
         });
-      break;
-      case 'radio':
-        var answerInfos = _.indexBy(question.answers, 'model');
-        if(answerInfos[answer].labelRecap){
-          answersAndQuestions.push({
-            label: answerInfos.labelRecap
-          });
-        }
-        else {
-          answersAndQuestions.push({
-            label: answerInfos[answer].label
-          });
-        }
-      break;
-      default:
-        if(answer.listeFrais){
-          answersAndQuestions.push({
-            label: 'Liste des frais',
-            model: 'fraisHandicap',
-            detailModel: 'listeFrais'
-          });
-        }
-      break;
-    }
+      }
+    break;
+    case 'frais':
+      if(answer.listeFrais){
+        answersAndQuestions.push({
+          label: 'Liste des frais',
+          model: 'fraisHandicap',
+          detailModel: 'listeFrais'
+        });
+      }
+    break;
+    case 'structure':
+      if(answer.valeur){
+        answersAndQuestions.push({
+          label: 'Oui',
+          model: 'structures',
+          detailModel: 'structures'
+        });
+      }
+      else {
+        answersAndQuestions.push({
+          label: 'Non'
+        });
+      }
+    break;
   }
-
   return answersAndQuestions;
 }
 
@@ -137,10 +142,22 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
       detailedAnswer.details = [];
       detailedAnswer.detailsObject = [];
       detailedAnswer.detailsFrais = [];
+      detailedAnswer.detailsStructures = [];
       _.forEach(answer[detailedAnswer.detailModel], function(n, key){
         if(n){
           if(typeof key === 'number'){
-            detailedAnswer.detailsFrais.push(n)
+            if(answer.listeFrais){
+              detailedAnswer.detailsFrais.push(n);
+            }
+            else {
+              if(answer.structures){
+                n.contact = n.contact ? 'Oui' : 'Non';
+                detailedAnswer.detailsStructures.push(n);
+              }
+              else {
+                detailedAnswer.details.push(n)
+              }
+            }
           }
           else {
             if(typeof n === 'object'){

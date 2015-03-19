@@ -167,9 +167,9 @@ exports.all = [
     ]
   },
   {
-    model: 'structure',
+    model: 'structures',
     type: 'structure',
-    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?'
+    titleDefault: 'Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?',
   },
   {
     titleDefault: 'Quelles sont vos attentes en tant qu\'aidant familial ?',

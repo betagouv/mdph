@@ -231,11 +231,15 @@ var createFakeAnswers = function(nom, prenom) {
         "readaptation": true,
         "etablissementSansHebergement": true
       },
-      "structure": {
-        "valeur": false,
+      "structures": {
+        "valeur": true,
         "structures": [
           {
-            "name": "",
+            "name": "Structure 1",
+            "contact": true
+          },
+          {
+            "name": "Structure 2",
             "contact": false
           }
         ]
