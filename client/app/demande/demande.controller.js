@@ -101,7 +101,7 @@ angular.module('impactApp')
         request.status = 'emise';
         request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + request.mdph;
         request.$update(function () {
-          $window.alert('Votre demande à été sauvegardé');
+          $window.alert('Votre demande à été sauvegardée');
         }, onError);
       }
     };
