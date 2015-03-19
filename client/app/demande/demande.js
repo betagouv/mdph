@@ -60,38 +60,5 @@ angular.module('impactApp')
             };
           }
         }
-      })
-      // Modale de login/signup
-      .state('departement.demande.modal', {
-        abstract: true,
-        onEnter: function($rootScope, $modal, $state) {
-          $modal.open({
-            template: '<div ui-view="modal"></div>',
-            backdrop: true,
-            windowClass: 'right fade',
-            controller: 'ModalLoginCtrl'
-          }).result.then(function() {
-            $rootScope.$broadcast('logged-in-save-request');
-            $state.go('departement.demande');
-          }, function() {
-            $state.go('departement.demande');
-          });
-        }
-      })
-      .state('departement.demande.modal.login', {
-        url: '/login',
-        views: {
-          'modal@': {
-            templateUrl: 'components/modal/login.html'
-          }
-        }
-      })
-      .state('departement.demande.modal.signup', {
-        url: '/signup',
-        views: {
-          'modal@': {
-            templateUrl: 'components/modal/signup.html'
-          }
-        }
       });
   });

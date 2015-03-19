@@ -24,12 +24,24 @@
 
       <div class="text-right">
         <button ng-if="request.status === 'en_cours'" class="btn btn-primary" ng-click="sauvegarder()">Sauvegarder</button>
-        <button ng-if="request.status === 'en_cours'" class="btn btn-success" ng-click="envoyer()">Envoyer</button>
+        <button ng-if="request.status === 'en_cours' && request._id" class="btn btn-success" ng-click="envoyer()">Envoyer</button>
         <button ng-if="request.status === 'a_completer'" class="btn btn-success" ng-click="envoyer()">Valider vos modifications</button>
       </div>
     </div>
 
     <!-- TODO: Afficher le statut de la demande -->
+
+    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="request._id" ng-repeat="section in sectionsDocuments">
+      <div class="section-body">
+        <div class="left">
+          <i class="fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="right">
+          <h3>{{section.label}}</h3>
+          <p>{{section.desc}}</p>
+        </div>
+      </div>
+    </a>
 
     <h2>Renseignements obligatoires pour toutes les demandes</h2>
     <div class="category">
@@ -92,22 +104,5 @@
         </div>
       </a>
     </div>
-
-    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="request._id" ng-repeat="section in sectionsDocuments">
-      <div class="section-body">
-        <div class="left">
-          <i class="fa fa-chevron-circle-right"></i>
-        </div>
-        <div class="right">
-          <h3>{{section.label}}</h3>
-          <p>{{section.desc}}</p>
-          <div class="row">
-            <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
-              <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
-            </div>
-          </div>
-        </div>
-      </div>
-    </a>
   </div>
 </ui-view>

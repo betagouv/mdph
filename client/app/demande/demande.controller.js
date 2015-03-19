@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $timeout, $window, $cookieStore, sections, Auth, estAdulte, request) {
+  .controller('DemandeCtrl', function ($scope, $state, $window, $cookieStore, $modal, sections, Auth, estAdulte, request) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
     $scope.token = $cookieStore.get('token');
@@ -10,6 +10,22 @@ angular.module('impactApp')
     $scope.sectionsComplementaires = _.filter(sections, {section: 'complementaire'});
     $scope.sectionsRenouvellements = _.filter(sections, {section: 'renouvellement'});
     $scope.sectionsDocuments = _.filter(sections, {section: 'documents'});
+
+
+    var login = function (next) {
+      $modal.open({
+        templateUrl: 'components/modal/login.html',
+        backdrop: true,
+        windowClass: 'right fade',
+        controller: 'ModalLoginCtrl'
+      }).result.then(function() {
+        // Ok - logged in
+        next();
+      }, function() {
+        // Cancel
+        $state.go('departement.demande');
+      });
+    };
 
     $scope.getLastSref = function(section) {
       if (!request.formAnswers[section.id]) {
@@ -37,32 +53,30 @@ angular.module('impactApp')
       }
     };
 
+    var afterSave = function() {
+      $window.alert('Votre demande à été sauvegardée');
+      $state.go('departement.demande', {shortId: request.shortId});
+    };
+
     var onError = function(err) {
       $window.alert(err.data.message);
     };
 
-    var onSuccess = function() {
-      $timeout(function() {
-        $window.alert('Votre demande à été sauvegardée');
-        $state.go('departement.demande', {shortId: request.shortId});
-      }, 100);
-    };
-
-    var saveRequestAndAlert = function() {
+    var saveRequestAndAlert = function(next) {
       if (request._id) {
-        request.$update(onSuccess, onError);
+        request.$update(next, onError);
       } else {
-        request.$save(onSuccess, onError);
+        request.$save(next, onError);
       }
     };
 
-    $scope.$on('logged-in-save-request', saveRequestAndAlert);
-
     $scope.sauvegarder = function() {
       if (Auth.isLoggedIn()) {
-        saveRequestAndAlert();
+        saveRequestAndAlert(afterSave);
       } else {
-        $state.go('departement.demande.modal.login');
+        login(function() {
+          saveRequestAndAlert(afterSave);
+        });
       }
     };
 
@@ -74,12 +88,7 @@ angular.module('impactApp')
         }
       });
 
-      $scope.sectionsDocuments.forEach(function(section) {
-        if (!request.formAnswers[section.id] || !request.formAnswers[section.id].__completion) {
-          incompleteSections.push(section);
-        }
-      });
-
+      // Todo verifier qu'il y a au moins un fichier dans le doc carteIdentite et certificatMedical (ou qu'il a ete transmis)
 
       if (incompleteSections.length > 0) {
         var str= 'Votre demande ne peut être envoyé car il n\'est pas complet.\nVeuillez renseigner les sections:\n';
