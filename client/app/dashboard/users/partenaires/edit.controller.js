@@ -5,14 +5,16 @@ angular.module('impactApp')
     $scope.partenaire = partenaire;
 
     $scope.update = function() {
-      $scope.partenaire.$update();
-      envoiNotification(partenaire);
-      $state.go('^', {}, {reload: true});
+      $scope.partenaire.$save(function() {
+        envoiNotification(partenaire);
+        $state.go('^', {}, {reload: true});
+      });
     };
 
     $scope.delete = function() {
-      $scope.partenaire.$delete();
-      $state.go('^', {}, {reload: true});
+      $scope.partenaire.$delete(function() {
+        $state.go('^', {}, {reload: true});
+      });
     };
 
     var envoiNotification = function(partenaire) {

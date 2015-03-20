@@ -68,12 +68,12 @@ angular.module('impactApp')
         authenticate: true
       })
       .state('dashboard.users.partenaires.edit', {
-        url: '/:email',
+        url: '/:id',
         templateUrl: 'app/dashboard/users/partenaires/edit.html',
         controller: 'PartenairesEditCtrl',
         resolve: {
           partenaire: function($stateParams, Partenaire) {
-            return Partenaire.get({email: $stateParams.email});
+            return Partenaire.get({id: $stateParams.id});
           }
         },
         authenticate: true

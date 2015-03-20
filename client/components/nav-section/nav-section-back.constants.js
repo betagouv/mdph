@@ -14,11 +14,11 @@ angular.module('impactApp').constant('SectionBackConstants', [
     include: 'dashboard.users.**',
     fa: 'fa-user',
     label: 'Gestion des utilisateurs'
-  },
-  {
-    sref: 'dashboard.simulation',
-    include: 'dashboard.simulation.**',
-    fa: 'fa-rocket',
-    label: 'Simulation'
   }
+  // {
+  //   sref: 'dashboard.simulation',
+  //   include: 'dashboard.simulation.**',
+  //   fa: 'fa-rocket',
+  //   label: 'Simulation'
+  // }
 ]);

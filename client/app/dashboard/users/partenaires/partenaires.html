@@ -20,8 +20,8 @@
           <td class="check-request" ng-click="partenaire.isSelected = !partenaire.isSelected">
             <i class="fa" ng-class="{'fa-square': !partenaire.isSelected, 'fa-check-square': partenaire.isSelected}"></i>
           </td>
-          <td class="text-left"><a ui-sref="dashboard.users.partenaires.edit({email: partenaire.email})">{{partenaire.name}}</a></td>
-          <td class="text-right"><a ui-sref="dashboard.users.partenaires.edit({email: partenaire.email})">{{partenaire.email}}</a></td>
+          <td class="text-left"><a ui-sref="dashboard.users.partenaires.edit({id: partenaire._id})">{{partenaire.email}}</a></td>
+          <td class="text-right"><a ui-sref="dashboard.users.partenaires.edit({id: partenaire._id})">{{partenaire.name}}</a></td>
         </tr>
       </tbody>
     </table>

@@ -20,17 +20,18 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   Partenaire.findById(req.params.id, function (err, partenaire) {
     if (err) { return handleError(res, err); }
-    if(!partenaire) { return res.send(404); }
+    if(!partenaire) { return res.sendStatus(404); }
     return res.json(partenaire);
   });
 };
 
 // Updates an existing partenaire in the DB.
 exports.update = function(req, res) {
-  Partenaire.findById({id: req.params.id}, function (err, partenaire) {
+  Partenaire.findById(req.params.id, function (err, partenaire) {
     if (err) { return handleError(res, err); }
-    if(!partenaire) { return res.send(404); }
+    if(!partenaire) { return res.sendStatus(404); }
     var updated = _.merge(partenaire, req.body);
+    console.log(updated);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(partenaire);
@@ -57,11 +58,11 @@ exports.create = function(req, res) {
 exports.destroy = function(req, res) {
   Partenaire.remove({id: req.params.id}, function(err) {
     if(err) { return handleError(res, err); }
-    return res.send(204);
+    return res.sendStatus(204);
   });
 };
 
 function handleError(res, err) {
-  return res.send(500, err);
+  return res.sendStatus(500, err);
 }
 
