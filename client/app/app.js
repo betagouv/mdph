@@ -23,10 +23,11 @@ angular.module('impactApp', [
       }
     };
   })
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider) {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    $urlMatcherFactoryProvider.strictMode(false);
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore) {
