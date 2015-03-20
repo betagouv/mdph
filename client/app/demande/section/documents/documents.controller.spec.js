@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: pj', function () {
+describe('Controller: documents', function () {
 
   // load the service's module
   beforeEach(module('impactApp'));
@@ -9,21 +9,22 @@ describe('Controller: pj', function () {
     //given
     var scope = {};
     var request = {
-          shortId: 'AAAA',
-          documents : [{type: 'carteIdentite'}]
-        };
+      shortId: 'AAAA',
+      documents : [{type: 'carteIdentite'}]
+    };
 
     //when
     inject(function($controller){
-      $controller('PieceJointeCtrl', {
+      $controller('DocumentsCtrl', {
         $scope: scope,
         request: request,
-        mdph: {}
+        section: {},
+        documentTypes: [{id: 'carteIdentite'}]
       });
     });
 
     //then
-    expect(scope.documents[0].type).toBe('carteIdentite');
+    expect(scope.documents.carteIdentite[0].type).toBe('carteIdentite');
   });
 
 });
