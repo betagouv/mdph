@@ -24,7 +24,7 @@ angular.module('impactApp')
                 request = $sessionStorage.request = {
                   formAnswers: {},
                   status: 'en_cours',
-                  documents: [ {type: 'certificatMedical'}, {type: 'carteIdentite'} ],
+                  documents: [],
                   createdAt: Date.now()
                 };
               }
