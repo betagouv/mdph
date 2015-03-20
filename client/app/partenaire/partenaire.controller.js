@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PartenaireCtrl', function ($scope, $location, RequestResource, $state) {
+  .controller('PartenaireCtrl', function ($scope, $location, Partenaire, RequestResource, $state) {
     $scope.shortId = '';
     $scope.errorMsg = '';
-    $scope.partenaire = {};
+    $scope.partenaire = new Partenaire();
+
 
     var success = function(request) {
       $state.go('partenaire.pj', {shortId: request.shortId});
@@ -12,7 +13,9 @@ angular.module('impactApp')
 
     $scope.enterShortId = function(form) {
       if(form.$valid) {
-        RequestResource.getPartenaire({shortId: form.shortId.$modelValue}, success);
+        $scope.partenaire.$save(function() {
+          RequestResource.getPartenaire({shortId: form.shortId.$modelValue}, success);
+        });
       }
     };
   });

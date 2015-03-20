@@ -228,13 +228,14 @@ exports.saveFile = function (req, res, next) {
         request.documents = [];
       }
 
-      // if (req.query.partenaire) {
-      //   re.
-      // }
       var document = {
         gridFile: file._id,
         type: field.type
       };
+
+      if (req.query.partenaire) {
+        document.partenaire = field.partenaire;
+      }
 
       request.documents.push(document);
 
