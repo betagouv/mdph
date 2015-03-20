@@ -5,9 +5,10 @@ var mongoose = require('mongoose'),
 var shortId = require('shortid');
 
 var DocumentSchema = new Schema({
-  asked:          { type: Boolean, default: false},
+  partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
+  status:         { type: String, enum: ['validé', 'rejet', 'a_traiter'], default: 'a_traiter' },
   type:           { type: String },
-  files:          [{ type: Schema.Types.ObjectId }]
+  gridFile:       { type: Schema.Types.ObjectId }
 });
 
 var RequestSchema = new Schema({

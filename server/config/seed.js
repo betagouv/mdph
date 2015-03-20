@@ -624,14 +624,6 @@ var createBobOldRequest = function(cb) {
 var createMartinOldRequest = function(cb) {
   Request.create({
     formAnswers: createFakeAnswers('martin', 'martin'),
-    documents: [
-      {
-        "type": "certificatMedical"
-      },
-      {
-        "type": "carteIdentite"
-      }
-    ],
     mdph: "14",
     user: martin,
     status: 'emise',
@@ -680,14 +672,6 @@ var createJeromeOldRequest = function(cb) {
     user: jerome,
     mdph: '14',
     formAnswers: createFakeAnswers('jerome', 'jerome'),
-    documents: [
-      {
-        "type": "certificatMedical"
-      },
-      {
-        "type": "carteIdentite"
-      }
-    ],
     status: 'emise',
     updatedAt: new Date(new Date().setDate(new Date().getDate()-10)),
     createdAt: new Date(new Date().setDate(new Date().getDate()-15))
@@ -779,14 +763,6 @@ var createBobRequest = function(cb) {
     mdph: '14',
     status: 'evaluation',
     formAnswers: createFakeAnswers('bob', 'bob'),
-    documents: [
-      {
-        "type": "certificatMedical"
-      },
-      {
-        "type": "carteIdentite"
-      }
-    ],
     evaluator: alice,
     updatedAt: new Date(),
     createdAt: new Date(new Date().setDate(new Date().getDate()-15))

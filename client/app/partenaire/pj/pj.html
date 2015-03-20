@@ -1,47 +1,40 @@
-<div class="row">
-	<div class="col-lg-10 col-lg-offset-2 col-sm-12">
-    <div id="recapitulatif" class="panel panel-primary">
-		  <div class="panel-heading">Récapitulatif</div>
-		  <div class="panel-body">
-		    <p><strong>Demandeur :</strong> {{request.user.name}}</p>
-		    <p><strong>MDPH :</strong> {{mdph.name}}</p>
-		    <p><strong>Demande faite le :</strong> {{request.updatedAt | date : format : timezone}}</p>
-      </div>
-		</div>
+<div class="container">
+  <form name="documentForm" id="form-document" ng-submit="envoiConfirmation(documentForm)" novalidate>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h1>Demande {{request.shortId}}</h1>
+        </div>
 
-    <form role="form">
-      <div class="row">
-        <div class="col-sm-6" ng-repeat="document in documents">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3>{{documentTypesById[document.type].label}}</h3>
-            </div>
-            <div class="panel-body">
-              <p>{{documentTypesById[document.type].desc}}</p>
-              <ul ng-if="!document.files"><li>Pas de document</li></ul>
-              <ul ng-if="document.files">
-                <li ng-repeat="file in document.files">
-                  <display-file file="file" request="request"/>
-                </li>
-              </ul>
-            </div>
-            <div class="panel-footer">
-              <div class="text-right">
-                <div ng-file-select="onFileSelect($files[0], document)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
-                  <i class="fa fa-upload"></i> Attacher un fichier</span>
-                </div>
-              </div>
-            </div>
+        <p>
+          <strong>Demandeur :</strong> {{request.user.name}} <br>
+          <strong>MDPH :</strong> {{mdph.name}}  <br>
+          <strong>Demande faite le :</strong> {{request.createdAt | date : format : timezone}}  <br>
+        </p>
+      </div>
+
+      <div class="panel-body">
+        <div class="form-group" ng-class="{'has-error': documentForm.$submitted && documentForm.selectType.$error.required}">
+          <label for="selectType">Type</label>
+          <select name="selectType" class="form-control" ng-options="documentType as documentType.label for documentType in documentTypes track by documentType.id" ng-model="selectedType" required></select>
+          <div ng-messages="documentForm.selectType.$error" ng-if="documentForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           </div>
         </div>
+        <div class="form-group" ng-class="{'has-error': documentForm.$submitted && files.length !== 1}">
+          <label for="inputFile">Choisir le fichier</label>
+          <div class="clearfix"></div>
+          <span class="btn btn-default" ng-file-select ng-model="files" accept=".jpg,.png,.pdf" ng-multiple="false"><i class="fa fa-upload"></i> Choisir fichier</span>
+          <span ng-repeat="file in files">{{file.name}}</span>
+          <p class="help-block" ng-if="documentForm.$submitted && files.length !== 1">Veuillez sélectionner un fichier</p>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="inputEmail">E-mail</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="partenaire.email">
+
+      <div class="panel-footer">
+        <button type="submit" class="btn btn-primary pull-right">Ajouter ce fichier</button>
+        <div class="clearfix"></div>
       </div>
-      <button class="btn btn-primary btn-lg" ng-disabled="checkIfDisabled()" ng-click="envoiConfirmation(partenaire)">
-        Certifier mon e-mail
-      </button>
-    </form>
-	</div>
+    </div>
+  </form>
+
 </div>

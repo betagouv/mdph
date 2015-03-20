@@ -1,56 +1,45 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, documentTypes, request, mdph, NotificationService) {
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, Partenaire, documentTypes, request, mdph) {
     $scope.request = request;
-    $scope.documents = (request.documents && request.documents.length > 0) ? request.documents : [{type: 'certificatMedical'}];
-    $scope.documentTypesById = _.indexBy(documentTypes, 'id');
+    $scope.documentTypes = documentTypes;
     $scope.mdph = mdph;
-    $scope.partenaire = {};
 
-    $scope.onFileSelect = function($files, currentFile) {
-      currentFile.upload = $files[0];
-      currentFile.path = currentFile.upload.name;
-    };
-
-    $scope.checkIfDisabled = function() {
-      return !$scope.partenaire.email || !_.some($scope.files, 'path');
-    };
-
-    $scope.envoiConfirmation = function(partenaire) {
-      var confirmationSent = false;
-      _.forEach($scope.files, function(file) {
-        if (file.upload) {
-          if (confirmationSent === false) {
-            confirmationSent = true;
-            $http.post('api/send-mail/confirmation', {
-              partenaire: partenaire,
+    $scope.envoiConfirmation = function(form) {
+      if (form.$valid) {
+        debugger;
+        $upload.upload({
+            url: 'api/requests/' + $scope.request.shortId + '/document/' + $scope.selectedType + '?partenaire=true',
+            file: $scope.files[0],
+            data: {
+              partenaire: $scope.partenaire,
               html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
               subject: 'Ajout de documents - confirmation'
-            }).success(function() {
-              $modal.open({
-                templateUrl: 'app/partenaire/pj/confirmationModal.html',
-                controller: function($scope, $modalInstance) {
-                  $scope.ok = function() {
-                    $modalInstance.close();
-                  };
-                }
-              });
-            });
-          }
-          $upload.upload({
-            url: 'api/requests/' + $scope.request.shortId + '/document',
-            withCredentials: true,
-            data: {
-              partenaire: partenaire.email,
-              name: file.name
-            },
-            file: file.upload
-          }).success(function(){
-            NotificationService.createNotificationAdmin($scope.request, 'dashboard.repartition_demandes.detail', 'Ajout par partenaire');
-            NotificationService.createNotification($scope.request, 'liste_demandes.demande.complementaire', 'Ajout par partenaire');
-          });
-        }
-      });
+            }
+        });
+        // TODO: Afficher progression
+        // .progress(function (evt) {
+        //     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        //     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+        // })
+        // .success(function (data) {
+        //   document.files.push(data._id);
+        // });
+
+        // $http.post('api/requests/' + $scope.request.shortId + '/document/' + $scope.selectedType, {
+        //   partenaire: $scope.partenaire,
+
+        // }).success(function() {
+        //   $modal.open({
+        //     templateUrl: 'app/partenaire/pj/confirmationModal.html',
+        //     controller: function($scope, $modalInstance) {
+        //       $scope.ok = function() {
+        //         $modalInstance.close();
+        //       };
+        //     }
+        //   });
+        // });
+      }
     };
   });

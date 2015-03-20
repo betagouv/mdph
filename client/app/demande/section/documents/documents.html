@@ -14,28 +14,25 @@
     <h1>{{section.label}}</h1>
 
     <div class="row">
-      <div class="col-sm-4" ng-repeat="document in request.documents">
+      <div class="col-sm-4" ng-repeat="(type, files) in documents">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3>{{documentTypesById[document.type].label}}</h3>
+            <h3>{{documentTypesById[type].label}}</h3>
           </div>
           <div class="panel-body">
-            <p>{{documentTypesById[document.type].desc}}</p>
-            <div ng-if="document.asked">
-              Vous avez autorisé un partenaire à transférer ce document.
-            </div>
-            <div ng-if="!document.asked">
-              <ul ng-if="!document.files"><li>Pas de document</li></ul>
-              <ul ng-if="document.files">
-                <li ng-repeat="file in document.files">
-                  <display-file file="file" request="request"/>
-                </li>
-              </ul>
-            </div>
+            <p>{{documentTypesById[type].desc}}</p>
+
+            <ul ng-if="!files"><li>Pas de document</li></ul>
+            <ul ng-if="files">
+              <li ng-repeat="file in files">
+                <display-file file="file" request="request"/>
+              </li>
+            </ul>
+
           </div>
-          <div class="panel-footer" ng-if="!document.asked">
+          <div class="panel-footer" ng-if="!file.asked">
             <div class="text-right">
-              <div ng-file-select="onFileSelect($files[0], document)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
+              <div ng-file-select="onFileSelect($files[0], type)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
                 <i class="fa fa-upload"></i> Attacher un fichier</span>
               </div>
               <div class="btn btn-success" ng-if="document.type === 'certificatMedical'"ng-click="demandePartenaire(document)">
@@ -47,7 +44,7 @@
       </div>
 
       <div class="col-sm-4">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
           <div class="panel-heading">
             <h3>Document complémentaire</h3>
           </div>

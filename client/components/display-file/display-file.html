@@ -1,7 +1,7 @@
-<span ng-if="waiting">
+<span ng-if="!gridFileObj">
   <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
 </span>
 
-<a ng-if="!waiting" target="_self" href="api/requests/{{request.shortId}}/document/{{file._id}}/download?access_token={{token}}" download="{{file.filename}}">
-  {{file.filename}}
+<a target="_self" ng-if="gridFileObj" href="api/requests/{{request.shortId}}/document/{{file.gridFile}}/download?access_token={{token}}" download="{{gridFileObj.filename}}">
+  {{gridFileObj.filename}}
 </a>

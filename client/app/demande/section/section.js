@@ -187,9 +187,6 @@ angular.module('impactApp')
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
-          },
-          saveSection: function(SectionUtils, sectionModel, updateRequest) {
-            return SectionUtils.resolveSaveSection(sectionModel, updateRequest);
           }
         }
       });

@@ -1,35 +1,42 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container">
-  <ui-view>
-    <div class="row">
-      <div class="col-lg-10 col-lg-offset-2 col-sm-12">
-        <h1>Partenaire</h1>
-      </div>
-      <div class="col-lg-10 col-lg-offset-2 col-sm-12">
-        <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
+<ui-view>
+  <div class="questionnaire">
+      <h1>Partenaire</h1>
 
-          <div class="form-group">
-            <label>Veuillez saisir le code client du demandeur</label>
+      <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
+        <div class="form-group">
+          <label>Code client du demandeur</label>
+          <input type="text" name="shortId" class="form-control" ng-model="shortId" required>
+        </div>
 
-            <input type="text" name="shortId" class="form-control" ng-model="shortId" required>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.shortId.$error.required && form.$submitted">
+             Veuillez saisir votre code client.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="inputEmail">Votre e-mail</label>
+          <input type="email" class="form-control" name="inputEmail" placeholder="Email" required ng-model="partenaire.email">
+        </div>
+
+        <div class="form-group has-error">
+          <div ng-messages="form.inputEmail.$error" ng-if="form.inputEmail.$error.email && form.$submitted">
+            <p class="help-block">L'adresse email saisie est incorrecte.</p>
           </div>
 
-          <div class="form-group has-error">
-            <p class="help-block" ng-show="form.shortId.$error.required && submitted">
-               Veuillez saisir votre code client.
-            </p>
-            <p class="help-block">{{ errorMsg }}</p>
+          <div ng-messages="form.inputEmail.$error" ng-if="form.inputEmail.$error.required && form.$submitted">
+            <p class="help-block">L'adresse email est obligatoire.</p>
           </div>
+        </div>
 
-          <div>
-            <button class="btn btn-primary btn-lg btn-login" type="submit">
-              Valider
-            </button>
-          </div>
-
-        </form>
-      </div>
+        <div>
+          <button class="btn btn-primary btn-lg btn-login" type="submit">
+            Valider
+          </button>
+        </div>
+      </form>
     </div>
-  </ui-view>
-</div>
+  </div>
+</ui-view>

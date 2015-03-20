@@ -19,8 +19,8 @@ router.get('/:shortId/cerfa.pdf', auth.isAuthorized(), controller.getCerfa);
 router.get('/:shortId/questionnaire.pdf', auth.isAuthorized(), controller.getPdf);
 router.get('/:shortId/recapitulatif', auth.isAuthorized(), controller.getRecapitulatif);
 
-router.post('/:shortId/document/:documentId', controller.saveFile);
-router.get('/:shortId/document/:documentId', auth.isAuthorized(), controller.showFileData);
-router.get('/:shortId/document/:documentId/download', auth.isAuthorized(), controller.downloadFile);
+router.post('/:shortId/document', controller.saveFile);
+router.get('/:shortId/document/:fileId', auth.isAuthorized(), controller.showFileData);
+router.get('/:shortId/document/:fileId/download', auth.isAuthorized(), controller.downloadFile);
 
 module.exports = router;

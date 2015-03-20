@@ -170,14 +170,28 @@ exports.save = function(req, res, next) {
  * File upload
  */
 exports.saveFile = function (req, res, next) {
+  var processingFiles = 0;
+
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if (err) return res.send(500, err);
+    if (!request) return res.send(404);
 
     var busboy = new Busboy({ headers: req.headers });
-    busboy.on('file', function(fieldname, stream, filename, encoding, contentType) {
 
+    var field;
+    var file;
+
+    busboy.on('field', function(fieldname, val) {
+      try {
+        field = JSON.parse(val);
+      } catch (e) {
+        field = val;
+      }
+    });
+
+    busboy.on('file', function(fieldname, stream, filename, encoding, contentType) {
+      processingFiles++;
       console.log('POST ' + req.originalUrl + ' File: '+ filename + ' Field: ' + fieldname);
-      console.log('Metadata :')
-      console.log(req.body);
 
       var ws = gfs.createWriteStream({
         mode: 'w',
@@ -186,51 +200,72 @@ exports.saveFile = function (req, res, next) {
       });
 
       ws.on('close', function (data) {
-        var type = req.params.documentId;
-        var requestDocument = _.find(request.documents, {type: type});
-
-        if (typeof requestDocument === 'undefined') {
-          request.documents.push({type: type, files: [data]});
-        } else {
-          requestDocument.files.push(data);
-        }
-
-        request.save(function(err) {
-          if (err) { return handleError(res, err); }
-          res.json(data);
-        });
+        file = data;
+        processingFiles--;
       });
 
       stream.pipe(ws);
-
-      // form error (ie fileupload-cancel)
-      busboy.on('error', function(err) {
-        res.send(500, 'Error', err);
-      });
     });
 
-   req.pipe(busboy);
+    // form error (ie fileupload-cancel)
+    busboy.on('error', function(err) {
+      res.send(500, 'Error', err);
+    });
+
+    var finish = function() {
+
+      // wait until all files are finished
+      if (processingFiles > 0) {
+        setTimeout(finish, 200);
+        return;
+      }
+
+      if (res.finished) {
+        return;
+      }
+
+      if (typeof request.documents === 'undefined') {
+        request.documents = [];
+      }
+
+      // if (req.query.partenaire) {
+      //   re.
+      // }
+      var document = {
+        gridFile: file._id,
+        type: field.type
+      };
+
+      request.documents.push(document);
+
+      request.save(function(err, saved) {
+        if (err) { return handleError(res, err); }
+        res.json(document);
+      });
+    };
+
+    busboy.on('finish', finish);
+
+    req.pipe(busboy);
  });
 };
 
 exports.showFileData = function(req, res) {
-  gfs.findOne({ _id: req.params.documentId}, function (err, file) {
+  gfs.findOne({ _id: req.params.fileId}, function (err, file) {
     res.json(file);
   });
 };
 
 exports.downloadFile = function(req, res) {
   var readstream = gfs.createReadStream({
-    _id: req.params.documentId
+    _id: req.params.fileId
   });
 
   req.on('error', function(err) {
-    console.log(err);
     res.send(500, err);
   });
 
   readstream.on('error', function (err) {
-    console.log(err);
     res.send(500, err);
   });
 

@@ -1,22 +1,31 @@
-
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, saveSection, request, documentTypes) {
+  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, request, documentTypes) {
     $scope.section = section;
     $scope.request = request;
-    $scope.saveSection = saveSection;
+
+    $scope.saveSection = function() {
+      $state.go('^');
+    };
+
+    $scope.documents = _.groupBy(request.documents, 'type');
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
 
     $scope.demandePartenaire = function(document) {
       document.asked = true;
+      document.files = []; // TODO supprimer fichiers dejas uploadés
+      $scope.request.$update();
     };
 
     $scope.onFileSelect = function(file, document) {
       $upload.upload({
-          url: 'api/requests/' + $scope.request.shortId + '/document/' + document.type,
-          withCredentials: true,
-          file: file
+          url: 'api/requests/' + $scope.request.shortId + '/document',
+          method: 'POST',
+          file: file,
+          data: {
+            type: document
+          }
       })
       // TODO: Afficher progression
       // .progress(function (evt) {
@@ -24,7 +33,8 @@ angular.module('impactApp')
       //     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
       // })
       .success(function (data) {
-        document.files.push(data._id);
+        $scope.request.documents.push(data);
+        $scope.documents[document].push(data);
       });
     };
 
@@ -35,7 +45,7 @@ angular.module('impactApp')
         resolve: {
           documents: function () {
             var filtered = [];
-            var requested = _.pluck(request.documents, 'id');
+            var requested = _.keys($scope.documents);
 
             documentTypes.forEach(function(type) {
               if (requested.indexOf(type.id) < 0) {
@@ -49,7 +59,7 @@ angular.module('impactApp')
       });
 
       modalInstance.result.then(function (selected) {
-        request.documents.push({id: selected});
+        $scope.documents[selected] = [];
       });
     };
   })

@@ -8,10 +8,9 @@ describe('Controller: pj', function () {
   it('should render initial data', function () {
     //given
     var scope = {};
-    var documents =  [{type: 'carteIdentite'}];
     var request = {
           shortId: 'AAAA',
-          documents : documents
+          documents : [{type: 'carteIdentite'}]
         };
 
     //when
@@ -24,7 +23,7 @@ describe('Controller: pj', function () {
     });
 
     //then
-    expect(scope.documents).toBe(documents);
+    expect(scope.documents[0].type).toBe('carteIdentite');
   });
 
 });
