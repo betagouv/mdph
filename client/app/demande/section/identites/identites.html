@@ -51,9 +51,13 @@
       </div>
     </div>
 
+    <div ng-if="error.show">
+      <div class="help-block"><i class="fa fa-warning"></i>{{error.message}}</div>
+    </div>
+
     <div class="row nav-steps">
       <div class="col-sm-2 col-sm-offset-10">
-        <button class="btn btn-block btn-success" type="submit" ng-click="saveSection()">
+        <button class="btn btn-block btn-success" type="submit" ng-click="checkIdentities()">
           Valider
         </button>
       </div>
