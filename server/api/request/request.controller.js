@@ -26,7 +26,7 @@ exports.index = function(req, res) {
 
   Mdph.findById(req.user.mdph, function(err, mdph) {
     if (err) return handleError(res, err);
-    if (!mdph) return res.send(404);
+    if (!mdph) return res.sendStatus(404);
 
     var search = {
       mdph: mdph.zipcode
@@ -49,7 +49,7 @@ exports.index = function(req, res) {
       .populate('user', 'name')
       .sort('createdAt')
       .exec(function(err, requests) {
-        if(err) return res.send(500, err);
+        if(err) return res.status(500).send(err);
 
         res.set('count', requests.length);
         return res.send(requests);
@@ -63,8 +63,8 @@ exports.show = function(req, res, next) {
     shortId: req.params.shortId
   })
   .exec(function(err, request) {
-    if (err) return res.send(500, err);
-    if(!request) { return res.send(404); }
+    if (err) return res.status(500).send(err);
+    if(!request) { return res.sendStatus(404); }
     return res.json(request);
   });
 };
@@ -76,8 +76,8 @@ exports.showPartenaire = function(req, res, next) {
   })
   .populate('user', 'name')
   .exec(function(err, request) {
-    if (err) return res.send(500, err);
-    if(!request) { return res.send(404); }
+    if (err) return res.status(500).send(err);
+    if(!request) { return res.sendStatus(404); }
     return res.json(request);
   });
 };
@@ -86,10 +86,10 @@ exports.showPartenaire = function(req, res, next) {
 exports.destroy = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if(err) { return handleError(res, err); }
-    if(!request) { return res.send(404); }
+    if(!request) { return res.sendStatus(404); }
     request.remove(function(err) {
       if(err) { return handleError(res, err); }
-      return res.send(204);
+      return res.sendStatus(204);
     });
   });
 };
@@ -105,7 +105,7 @@ exports.showUserRequests = function(req, res, next) {
   .populate('user', 'name')
   .sort('-updatedAt')
   .exec(function(err, requests) {
-    if (err) return res.send(500, err);
+    if (err) return res.status(500).send(err);
     if (!requests) return res.json(401);
     res.json(requests);
   });
@@ -127,8 +127,8 @@ var updateIfn = function(request, body, field) {
 
 exports.update = function(req, res, next) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) return res.send(500, err);
-    if (!request) return res.send(404);
+    if (err) return res.status(500).send(err);
+    if (!request) return res.sendStatus(404);
 
     if (req.body.html) {
       Mailer.sendMail(req.body.html, req.user.email);
@@ -156,13 +156,13 @@ exports.save = function(req, res, next) {
   );
 
   Request.create(newRequest, function(err, request) {
-    if(err) return res.send(500, err);
+    if(err) return res.status(500).send(err);
 
     if (req.body.html) {
       Mailer.sendMail(req.body.html, req.user.email);
     }
 
-    return res.send(201, request);
+    return res.status(201).send(request);
   });
 };
 
@@ -173,8 +173,8 @@ exports.saveFile = function (req, res, next) {
   var processingFiles = 0;
 
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) return res.send(500, err);
-    if (!request) return res.send(404);
+    if (err) return res.status(500).send(err);
+    if (!request) return res.sendStatus(404);
 
     var busboy = new Busboy({ headers: req.headers });
 
@@ -209,7 +209,7 @@ exports.saveFile = function (req, res, next) {
 
     // form error (ie fileupload-cancel)
     busboy.on('error', function(err) {
-      res.send(500, 'Error', err);
+      res.status(500).send(err);
     });
 
     var finish = function() {
@@ -263,11 +263,11 @@ exports.downloadFile = function(req, res) {
   });
 
   req.on('error', function(err) {
-    res.send(500, err);
+    res.status(500).send(err);
   });
 
   readstream.on('error', function (err) {
-    res.send(500, err);
+    res.status(500).send(err);
   });
 
   readstream.pipe(res);
@@ -275,9 +275,9 @@ exports.downloadFile = function(req, res) {
 
 exports.getRecapitulatif = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (!request) return res.send(404);
+    if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'inline', function(err, html) {
-      if (err) { res.send(500, err); }
+      if (err) { res.status(500).send(err); }
       res.send(html).status(200);
     });
   });
@@ -285,14 +285,14 @@ exports.getRecapitulatif = function(req, res) {
 
 exports.getCerfa = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (!request) return res.send(404);
+    if (!request) return res.sendStatus(404);
     var flattenedAnswers = Flattener.flatten(request.formAnswers);
     var url = config.cerfaFormFillerUrl ? config.cerfaFormFillerUrl : 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
     superagent
         .post(url + '/impact')
         .send(flattenedAnswers)
         .on('error', function(err) {
-          res.send(500, err);
+          res.status(500).send(err);
         })
         .pipe(res);
   });
@@ -300,14 +300,14 @@ exports.getCerfa = function(req, res) {
 
 exports.getPdf = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (!request) return res.send(404);
+    if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
-      if (err) { res.send(500, err); }
+      if (err) { res.status(500).send(err); }
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
     });
   });
 };
 
 function handleError(res, err) {
-  res.send(500, err);
+  return res.status(500).send(err);
 }
