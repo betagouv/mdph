@@ -301,7 +301,7 @@ exports.getCerfa = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (!request) return res.sendStatus(404);
     var flattenedAnswers = Flattener.flatten(request.formAnswers);
-    var url = config.cerfaFormFillerUrl ? config.cerfaFormFillerUrl : 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
+    var url = 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
     superagent
         .post(url + '/impact')
         .send(flattenedAnswers)

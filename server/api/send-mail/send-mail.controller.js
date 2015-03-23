@@ -4,14 +4,11 @@ var Mailjet = require('../../mailjet/mailjet');
 var Mdph = require('../mdph/mdph.model');
 var Partenaire = require('../partenaire/partenaire.model');
 
-var Config;
-try {
-  Config = require('../../config/local.env');
-} catch (ex) {
-  Config = require('../../config/local.env.sample');
-}
+var config = require('../../config/local.env.sample');
 
-var mailjet = new Mailjet(Config.API_KEY, Config.SECRET_KEY);
+var apiKey = process.env.API_KEY || config.API_KEY;
+var secretKey = process.env.SECRET_KEY || config.SECRET_KEY;
+var mailjet = new Mailjet(apiKey, secretKey);
 
 exports.sendMail = function(mail, title, body) {
   return mailjet.sendContent(

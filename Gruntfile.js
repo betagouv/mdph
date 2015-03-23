@@ -6,14 +6,21 @@ var _ = require('lodash');
 function loadConfig(path) {
   var config = {};
   fs.readdirSync(path).forEach(function(file) {
-    config[file.replace(/\.js$/, '')] = require(path + file);
+    var taskName = file.replace(/\.js$/, '');
+    config[taskName] = require(path + file);
   });
   return config;
 }
 
 module.exports = function (grunt) {
   // Load grunt tasks automatically
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  require('jit-grunt')(grunt, {
+    express: 'grunt-express-server',
+    useminPrepare: 'grunt-usemin',
+    ngtemplates: 'grunt-angular-templates',
+    protractor: 'grunt-protractor-runner',
+    injector: 'grunt-asset-injector'
+  });
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
