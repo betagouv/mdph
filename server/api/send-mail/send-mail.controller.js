@@ -26,6 +26,17 @@ exports.sendMail = function(html, mailUser) {
   );
 };
 
+/**
+ * Send new password by mail
+ */
+exports.sendPassword = function(mail) {
+  return mailjet.sendContent(
+    mail.user,
+    mail.subject,
+    mail.body
+  );
+};
+
 exports.sendConfirmation = function(req, res, next) {
   if (!req.body.html) {
     return res.status(400).send('No html given');

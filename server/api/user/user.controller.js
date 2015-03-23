@@ -7,6 +7,7 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var shortid = require('shortid');
+var Mailer = require('../send-mail/send-mail.controller');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -153,7 +154,11 @@ exports.generatePassword = function(req, res, next) {
     user.password = newPass;
     user.save(function(err) {
       if (err) return validationError(res, err);
-      console.log(newPass);
+      Mailer.sendPassword({
+        user: user.email,
+        subject: '[Impact] Nouveau mot de passe',
+        body: 'Voici votre nouveau mot de passe : <strong>' + user.password + '</strong>. Veuillez le changer dès réception de cet email.'
+      });
       res.sendStatus(200);
     });
   });
