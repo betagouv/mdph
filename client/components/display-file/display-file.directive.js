@@ -13,6 +13,12 @@ angular.module('impactApp')
         $http.get('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file.gridFile).then(function(result) {
           $scope.gridFileObj = result.data;
         });
+
+        if ($scope.file.partenaire) {
+          $http.get('/api/partenaires/' + $scope.file.partenaire).then(function(result) {
+            $scope.partenaireObj = result.data;
+          });
+        }
       }
     };
   });

@@ -2,6 +2,14 @@
   <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
 </span>
 
-<a target="_self" ng-if="gridFileObj" href="api/requests/{{request.shortId}}/document/{{file.gridFile}}/download?access_token={{token}}" download="{{gridFileObj.filename}}">
+<a target="_self" ng-if="gridFileObj" download="{{gridFileObj.filename}}"
+  href="api/requests/{{request.shortId}}/document/{{file.gridFile}}/download?access_token={{token}}">
   {{gridFileObj.filename}}
 </a>
+
+<span ng-if="file.partenaire">
+  <span ng-if="!partenaireObj">
+    <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
+  </span>
+  <span ng-if="partenaireObj">- Ajouté par {{partenaireObj.email}}</span>
+</span>
