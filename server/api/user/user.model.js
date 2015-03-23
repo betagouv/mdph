@@ -20,7 +20,8 @@ var UserSchema = new Schema({
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
   mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
-  birthDate: { type: Date, default: Date.now }
+  birthDate: { type: Date, default: Date.now },
+  newPasswordToken: {type: String, select: false}
 });
 
 /**

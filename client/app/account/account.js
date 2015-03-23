@@ -17,5 +17,10 @@ angular.module('impactApp')
         url: '/mot_de_passe_oublie',
         templateUrl: 'app/account/forgotten_password/forgotten_password.html',
         controller: 'ForgottenPasswordCtrl'
+      })
+      .state('reset_password', {
+        url: '/nouveau_mot_de_passe/:userId/:newPasswordToken',
+        templateUrl: 'app/account/reset_password/reset_password.html',
+        controller: 'ResetPasswordCtrl'
       });
   });

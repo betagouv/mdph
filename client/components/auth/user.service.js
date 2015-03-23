@@ -36,10 +36,10 @@ angular.module('impactApp')
         },
         isArray: true
       },
-      generatePassword: {
+      generateToken: {
         method: 'POST',
         params: {
-          id: 'generate_password'
+          id: 'generate_token'
         }
       }
 	  });

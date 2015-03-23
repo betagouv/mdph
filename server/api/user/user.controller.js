@@ -143,23 +143,39 @@ exports.showNotifications = function(req, res, next) {
 /**
  * Post to check if email exists
  */
-exports.generatePassword = function(req, res, next) {
+exports.generateToken = function(req, res, next) {
   var email = req.body.email;
   User.findOne({
     email: email
   }, function(err, user) {
     if (err) return next(err);
     if (!user) return res.sendStatus(200);
-    var newPass = shortid.generate();
-    user.password = newPass;
+    var newPasswordToken = shortid.generate();
+    user.newPasswordToken = newPasswordToken;
     user.save(function(err) {
       if (err) return validationError(res, err);
+      var confirmationUrl = 'http://' + req.headers.host + '/nouveau_mot_de_passe/' + user._id + '/' + user.newPasswordToken;
       Mailer.sendMail(
         user.email,
         'Nouveau mot de passe',
-        'Voici votre nouveau mot de passe : <strong>' + user.password + '</strong>. Veuillez le changer dès réception de cet email.'
+        'Veuillez cliquer ici :' + confirmationUrl
       );
       res.sendStatus(200);
     });
   });
+};
+
+exports.resetPassword = function(req, res) {
+  User.findById(req.params.id, '+newPasswordToken', function(err, user) {
+    if (err) return res.status(500).send(err);
+    if (!user) return res.sendStatus(404);
+    if (!req.params.secret) return res.sendStatus(400);
+    if (req.params.secret !== user.newPasswordToken) return res.sendStatus(400);
+    user.password = req.body.newPassword;
+    user.newPasswordToken = '';
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      return res.sendStatus(200);
+    })
+  })
 };

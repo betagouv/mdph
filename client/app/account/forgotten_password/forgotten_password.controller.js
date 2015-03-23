@@ -9,7 +9,7 @@ angular.module('impactApp')
       $scope.submitted = true;
 
       if(form.$valid) {
-        User.generatePassword({email: $scope.user.email});
+        User.generateToken({email: $scope.user.email});
       }
     };
   });
