@@ -18,6 +18,10 @@ angular.module('impactApp')
         templateUrl: 'app/account/forgotten_password/forgotten_password.html',
         controller: 'ForgottenPasswordCtrl'
       })
+      .state('forgotten_password.confirmation', {
+        url: '/confirmation',
+        templateUrl: 'app/account/forgotten_password/confirmation.html'
+      })
       .state('reset_password', {
         url: '/nouveau_mot_de_passe/:userId/:newPasswordToken',
         templateUrl: 'app/account/reset_password/reset_password.html',
