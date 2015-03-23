@@ -11,7 +11,16 @@
   <div class="question">
     {{#autorite}}
       {{>autorite}}
+      <div>Type: {{type}}</div>
     {{/autorite}}
     {{^autorite}}Non renseigné{{/autorite}}
+  </div>
+
+  <h3>Personne accompagnant la demande</h3>
+  <div class="question">
+    {{#aidantDemarche}}
+      {{>aidantDemarche}}
+    {{/aidantDemarche}}
+    {{^aidantDemarche}}Non renseigné{{/aidantDemarche}}
   </div>
 </div>

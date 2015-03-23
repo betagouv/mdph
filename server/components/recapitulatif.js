@@ -103,10 +103,12 @@ var matchAnswersToQuestions = function(question, answer){
     case 'radio':
       if(typeof answer === 'boolean'){
         var labels = _.indexBy(question.answers, 'model');
-        answer = labels[answer].label;
-        answersAndQuestions.push({
-          label: answer
-        });
+        if (labels) {
+          answer = labels[answer].label;
+          answersAndQuestions.push({
+            label: answer
+          });
+        }
       }
     break;
     case 'frais':
@@ -204,6 +206,9 @@ exports.answersToHtml = function(request, path, output, next) {
     },
     question: function(callback){
       readFile('question.html', callback);
+    },
+    aidantDemarche: function(callback){
+      readFile('aidantDemarche.html', callback);
     },
     requestIdentites: function(callback) {
       var identites = request.formAnswers.identites;
