@@ -211,6 +211,10 @@ exports.answersToHtml = function(request, path, output, next) {
       readFile('aidantDemarche.html', callback);
     },
     requestIdentites: function(callback) {
+      if (!request.formAnswers) {
+        callback(null, []);
+      }
+
       var identites = request.formAnswers.identites;
       formatDateNaissance(identites.beneficiaire);
       if(identites.autorite){

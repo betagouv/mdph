@@ -22,8 +22,6 @@
         </a>
       </p>
 
-      <pre>{{formAnswers.identites | json}}</pre>
-
       <div class="text-right">
         <button ng-if="request.status === 'en_cours'" class="btn btn-primary" ng-click="sauvegarder()">Sauvegarder</button>
         <button ng-if="request.status === 'en_cours' && request._id" class="btn btn-success" ng-click="envoyer()">Envoyer</button>
