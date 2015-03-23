@@ -35,6 +35,12 @@ angular.module('impactApp')
           controller: 'notifications'
         },
         isArray: true
+      },
+      generatePassword: {
+        method: 'POST',
+        params: {
+          id: 'generate_password'
+        }
       }
 	  });
   });

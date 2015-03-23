@@ -6,6 +6,7 @@ var Notification = require('../notification/notification.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var shortid = require('shortid');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -133,7 +134,27 @@ exports.showNotifications = function(req, res, next) {
     user: req.params.id
   }, function (err, notifications) {
     if(err) return res.send(500, err);
-    if(!notifications) { return res.send(404); }
+    if(!notifications) { return res.sendStatus(404); }
     return res.json(notifications);
+  });
+}
+
+/**
+ * Post to check if email exists
+ */
+exports.generatePassword = function(req, res, next) {
+  var email = req.body.email;
+  User.findOne({
+    email: email
+  }, function(err, user) {
+    if (err) return next(err);
+    if (!user) return res.sendStatus(200);
+    var newPass = shortid.generate();
+    user.password = newPass;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      console.log(newPass);
+      res.sendStatus(200);
+    });
   });
 };

@@ -12,5 +12,10 @@ angular.module('impactApp')
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl'
+      })
+      .state('forgotten_password', {
+        url: '/mot_de_passe_oublie',
+        templateUrl: 'app/account/forgotten_password/forgotten_password.html',
+        controller: 'ForgottenPasswordCtrl'
       });
   });

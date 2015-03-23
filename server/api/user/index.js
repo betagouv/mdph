@@ -12,6 +12,7 @@ router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.delete('/:id', auth.hasRole('adminMdph'), controller.destroy);
 router.put('/:id', auth.isAuthenticated(), controller.changeInfo);
 router.get('/me', auth.isAuthenticated(), controller.me);
+router.post('/generate_password', controller.generatePassword);
 
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 
