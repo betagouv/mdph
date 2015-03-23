@@ -54,8 +54,8 @@ angular.module('impactApp')
     $scope.getLogoSrc = function() {
       var assetDir = 'assets/images/';
       var defaultLogo = 'logo_marianne.png';
-      if ($scope.currentMdph && $scope.currentMdph.$resolved === true) {
-        return assetDir + $scope.currentMdph.logo;
+      if ($scope.mdph && $scope.mdph.$resolved === true) {
+        return assetDir + $scope.mdph.logo;
       } else {
         return assetDir + defaultLogo;
       }

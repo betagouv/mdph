@@ -20,7 +20,11 @@
 
       <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main" role="menubar">
         <ul class="nav navbar-nav">
-          <li role="menuitem"><a ui-sref="{{getIndexSref()}}" class="logo" title="Accueil"><img ng-src="{{getLogoSrc()}}" alt="Accueil"> <em>Maisons Départementales des Personnes Handicapées</em></a></li>
+          <li role="menuitem">
+            <a ui-sref="{{getIndexSref()}}" class="logo" title="Accueil"><img ng-src="{{getLogoSrc()}}" alt="Accueil">
+              <em>Maisons Départementales des Personnes Handicapées</em>
+            </a>
+          </li>
           <li role="menuitem" ng-if="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
         </ul>
 
