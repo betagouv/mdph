@@ -68,7 +68,7 @@ exports.confirm = function(req, res) {
 
     if (req.params.secret === partenaire.secret) {
       partenaire.secret = '';
-      partenaire.certified = 'mail_valide';
+      partenaire.certified = 'en_attente';
       partenaire.save(function (err) {
         if (err) { return handleError(res, err); }
         res.redirect('http://' + req.headers.host + '/partenaire/mail_valide');

@@ -242,8 +242,6 @@ exports.saveFile = function (req, res, next) {
             if (err) { return handleError(res, err); }
 
             var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
-
-            console.log(confirmationUrl);
             Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
               '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
           });
