@@ -154,11 +154,11 @@ exports.generatePassword = function(req, res, next) {
     user.password = newPass;
     user.save(function(err) {
       if (err) return validationError(res, err);
-      Mailer.sendPassword({
-        user: user.email,
-        subject: '[Impact] Nouveau mot de passe',
-        body: 'Voici votre nouveau mot de passe : <strong>' + user.password + '</strong>. Veuillez le changer dès réception de cet email.'
-      });
+      Mailer.sendMail(
+        user.email,
+        'Nouveau mot de passe',
+        'Voici votre nouveau mot de passe : <strong>' + user.password + '</strong>. Veuillez le changer dès réception de cet email.'
+      );
       res.sendStatus(200);
     });
   });

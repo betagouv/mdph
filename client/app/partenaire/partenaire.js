@@ -7,5 +7,9 @@ angular.module('impactApp')
         url: '/partenaire',
         templateUrl: 'app/partenaire/partenaire.html',
         controller: 'PartenaireCtrl'
+      })
+      .state('partenaire.mail_valide', {
+        url: '/mail_valide',
+        templateUrl: 'app/partenaire/mail_valide.html'
       });
   });

@@ -31,7 +31,6 @@ exports.update = function(req, res) {
     if (err) { return handleError(res, err); }
     if(!partenaire) { return res.sendStatus(404); }
     var updated = _.merge(partenaire, req.body);
-    console.log(updated);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(partenaire);
@@ -61,6 +60,24 @@ exports.destroy = function(req, res) {
     return res.sendStatus(204);
   });
 };
+
+exports.confirm = function(req, res) {
+  Partenaire.findById(req.params.id, '+secret', function (err, partenaire) {
+    if (err) { return handleError(res, err); }
+    if(!partenaire) { return res.sendStatus(404); }
+
+    if (req.params.secret === partenaire.secret) {
+      partenaire.secret = '';
+      partenaire.certified = 'mail_valide';
+      partenaire.save(function (err) {
+        if (err) { return handleError(res, err); }
+        res.redirect('http://' + req.headers.host + '/partenaire/mail_valide');
+      });
+    } else {
+      res.sendStatus(400);
+    }
+  });
+}
 
 function handleError(res, err) {
   return res.sendStatus(500, err);

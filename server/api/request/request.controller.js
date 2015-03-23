@@ -7,6 +7,7 @@ var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var Request = require('./request.model');
 var User = require('../user/user.model');
+var Partenaire = require('../partenaire/partenaire.model');
 var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
 var Flattener = require('../../components/flatten');
@@ -16,6 +17,7 @@ var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var Busboy = require('busboy');
+var shortid = require('shortid');
 
 var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
 
@@ -131,7 +133,7 @@ exports.update = function(req, res, next) {
     if (!request) return res.sendStatus(404);
 
     if (req.body.html) {
-      Mailer.sendMail(req.body.html, req.user.email);
+      Mailer.sendMail(req.user.email, 'Récapitulatif de votre demande à la MDPH', req.body.html);
     }
 
     request
@@ -157,11 +159,6 @@ exports.save = function(req, res, next) {
 
   Request.create(newRequest, function(err, request) {
     if(err) return res.status(500).send(err);
-
-    if (req.body.html) {
-      Mailer.sendMail(req.body.html, req.user.email);
-    }
-
     return res.status(201).send(request);
   });
 };
@@ -235,6 +232,23 @@ exports.saveFile = function (req, res, next) {
 
       if (req.query.partenaire) {
         document.partenaire = field.partenaire;
+        // Mail
+        Partenaire.findById(field.partenaire, function(err, partenaire) {
+          if (err) { res.sendStatus(500); }
+          if (!partenaire) { res.sendStatus(404); }
+
+          partenaire.secret = shortid.generate();
+          partenaire.save(function(err) {
+            if (err) { return handleError(res, err); }
+
+            var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
+
+            console.log(confirmationUrl);
+            Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
+              '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
+          });
+
+        });
       }
 
       request.documents.push(document);

@@ -12,4 +12,6 @@ router.post('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
+router.get('/:id/:secret', controller.confirm);
+
 module.exports = router;

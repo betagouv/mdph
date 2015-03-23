@@ -13,102 +13,10 @@ try {
 
 var mailjet = new Mailjet(Config.API_KEY, Config.SECRET_KEY);
 
-/**
- * Send answers by mail
- */
-exports.sendMail = function(html, mailUser) {
+exports.sendMail = function(mail, title, body) {
   return mailjet.sendContent(
-    mailUser,
-    'Récapitulatif de votre demande à la MDPH',
-    html,
-    true,
-    null
+    mail,
+    'Impact - ' + title,
+    body
   );
 };
-
-/**
- * Send new password by mail
- */
-exports.sendPassword = function(mail) {
-  return mailjet.sendContent(
-    mail.user,
-    mail.subject,
-    mail.body
-  );
-};
-
-exports.sendConfirmation = function(req, res, next) {
-  if (!req.body.html) {
-    return res.status(400).send('No html given');
-  }
-  if (req.body.partenaire){
-    Partenaire.findOne({email: req.body.partenaire}, function(error, result){
-      if(error){
-        return handleError(res, error);
-      }
-      else {
-        if(!result){
-          var partenaire = new Partenaire({email: req.body.partenaire.email});
-          partenaire.save();
-        }
-      }
-    });
-  }
-
-  var html = req.body.html;
-
-  var handleResponse = function(error, success) {
-    if (error) {
-      return handleError(res, error);
-    }
-    return res.status(200).send(success);
-  }
-
-  return mailjet.sendContent(
-    req.body.partenaire.email,
-    req.body.subject,
-    req.body.html,
-    false,
-    handleResponse
-  );
-};
-
-exports.sendAssignment = function(req, res, next) {
-  if (!req.body.html) {
-    return res.status(400).send('No html given');
-  }
-  /*if (req.body.assignment){
-    Partenaire.findOne({email: req.body.assignment}, function(error, result){
-      if(error){
-        return handleError(res, error);
-      }
-      else {
-        if(!result){
-          var partenaire = new Partenaire({email: req.body.assignment});
-          partenaire.save();
-        }
-      }
-    });
-  }*/
-
-  var html = req.body.html;
-
-  var handleResponse = function(error, success) {
-    if (error) {
-      return handleError(res, error);
-    }
-    return res.status(200).send(success);
-  }
-
-  return mailjet.sendContent(
-    req.body.assignment,
-    req.body.subject,
-    req.body.html,
-    false,
-    handleResponse
-  );
-};
-
-function handleError(res, err) {
-  return res.send(500, err);
-}
