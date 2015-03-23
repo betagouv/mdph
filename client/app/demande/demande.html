@@ -31,7 +31,7 @@
 
     <!-- TODO: Afficher le statut de la demande -->
 
-    <a class="section-inverse" ui-sref="{{ getLastSref(section) }}" ng-if="request._id" ng-repeat="section in sectionsDocuments">
+    <a class="section-inverse" ui-sref="{{section.sref}}" ng-if="request._id" ng-repeat="section in sectionsDocuments">
       <div class="section-body">
         <div class="left">
           <i class="fa fa-chevron-circle-right"></i>
@@ -45,7 +45,7 @@
 
     <h2>Renseignements obligatoires pour toutes les demandes</h2>
     <div class="category">
-      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-repeat="section in sectionsObligatoires">
+      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsObligatoires">
         <div class="section-body">
           <div class="left">
             <i class="fa fa-chevron-circle-right"></i>
@@ -66,7 +66,7 @@
     <h2>Renseignements complémentaires, en fonction de votre situation</h2>
 
     <div class="category">
-      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-repeat="section in sectionsComplementaires">
+      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsComplementaires">
         <div class="section-body">
           <div class="left">
             <i class="fa fa-chevron-circle-right"></i>
@@ -87,7 +87,7 @@
     <h2>Renouvellements</h2>
 
     <div class="category">
-      <a class="section" ui-sref="{{ getLastSref(section) }}" ng-repeat="section in sectionsRenouvellements">
+      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsRenouvellements">
         <div class="section-body">
           <div class="left">
             <i class="fa fa-chevron-circle-right"></i>

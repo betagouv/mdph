@@ -27,14 +27,6 @@ angular.module('impactApp')
       });
     };
 
-    $scope.getLastSref = function(section) {
-      if (!request.formAnswers[section.id]) {
-        return section.sref;
-      } else {
-        return request.formAnswers[section.id].__lastSref || section.sref;
-      }
-    };
-
     $scope.estAdulte = function() {
       if (request.formAnswers.identites && request.formAnswers.identites.beneficiaire) {
         return estAdulte(request.formAnswers.identites.beneficiaire.dateNaissance);

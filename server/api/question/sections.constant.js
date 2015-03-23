@@ -19,6 +19,7 @@ var aidant =   {
   subSections: [
     {
       include: 'departement.demande.aidant.situation.**',
+      sref: 'departement.demande.aidant.situation',
       label: 'Votre situation'
     },
     {
@@ -37,6 +38,7 @@ var vieQuotidienne =   {
   subSections: [
     {
       include: 'departement.demande.vie_quotidienne.situation.**',
+      sref: 'departement.demande.vie_quotidienne.situation.vie_famille',
       label: 'Votre situation'
     },
     {
