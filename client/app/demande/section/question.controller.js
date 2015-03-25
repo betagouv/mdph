@@ -79,6 +79,8 @@ angular.module('impactApp')
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.ajoutEnCours = false;
+    var modification = false;
+    var index = -1;
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
@@ -94,13 +96,18 @@ angular.module('impactApp')
 
     $scope.modifierExperience = function(experience) {
       $scope.tempExp = experience;
-      var index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
-      $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+      modification = true;
       $scope.ajoutEnCours = true;
+      index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
+
     };
 
     $scope.validerExperience = function(form) {
-      if(form.$valid){
+      if (form.$valid) {
+        if (modification) {
+          $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+          modification = false;
+        }
         var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
         $scope.sectionModel[$scope.question.model].experiences[lastIndex+1] = $scope.tempExp;
         $scope.tempExp = {};

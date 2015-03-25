@@ -2,11 +2,18 @@
   <qtitle ng-hide="hideTitle"></qtitle>
   <div class="row">
     <div class="list-group col-sm-offset-1 col-sm-10">
-      <a ng-repeat="experience in experiences" ng-click="modifierExperience(experience)" class="list-group-item row">
+      <a ng-repeat="experience in experiences | orderBy:'-debut'" ng-click="modifierExperience(experience)" class="list-group-item row">
         <span class="list-group-item-heading col-md-6"><strong>{{experience.intitule}}</strong> - {{experience.employeur}}</span>
-        <span class="list-group-item-heading col-md-6 text-right">{{experience.debut | date:'dd/MM/yyyy'}} - {{experience.fin | date:'dd/MM/yyyy'}}</span>
-        <span class="list-group-item-heading col-md-10">{{experience.motif}}</span>
-        <span class="list-group-item-heading col-md-2 text-right">{{experience.contrat}}</span>
+        <span class="list-group-item-text col-md-6 text-right">{{experience.debut | date:'dd/MM/yyyy'}}
+          <span ng-if="experience.fin">
+             - {{experience.fin | date:'dd/MM/yyyy'}}
+          </span>
+          <span ng-if="!experience.fin">
+             - Aujourd'hui
+          </span>
+        </span>
+        <span class="list-group-item-text col-md-10">{{experience.motif}}</span>
+        <span class="list-group-item-text col-md-2 text-right">{{experience.contrat}}</span>
       </a>
     </div>
     <div ng-if="ajoutEnCours">
@@ -44,16 +51,13 @@
         </div>
       </div>
       <div class="form-group col-md-offset-1 col-md-10">
-        <label class="control-label" for="fin">Date de fin</label>
+        <label class="control-label" for="fin">Date de fin <small>(Ne pas renseigner si vous êtes toujours en poste)</small></label>
         <p class="input-group">
-          <input type="text" name="fin" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="tempExp.fin" is-open="opened2" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+          <input type="text" name="fin" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="tempExp.fin" is-open="opened2" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open($event, 2)"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
-        <div ng-messages="questionForm.fin.$error" ng-if="questionForm.showError">
-          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
-        </div>
       </div>
       <div class="form-group col-md-offset-1 col-md-10">
         <label for="contrat" class="control-label">Motif de fin d'activité</label>
@@ -75,6 +79,6 @@
       <button class="btn btn-default btn-block" ng-click="ajouterExperience()">Ajouter une expérience</button>
     </div>
   </div>
-  <nav-steps ng-hide="hideSteps"></nav-steps>
+  <nav-steps ng-if="!ajoutEnCours" ng-hide="hideSteps"></nav-steps>
 
 </form>
