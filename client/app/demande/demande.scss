@@ -9,6 +9,11 @@
     background-color: rgb(231, 231, 231);
     margin: 3px 0;
     float: left;
+
+    li.active {
+      color: black;
+      font-weight: 500;
+    }
   }
 }
 
