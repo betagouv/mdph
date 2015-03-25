@@ -2,7 +2,7 @@
   <qtitle ng-hide="hideTitle"></qtitle>
   <div class="row">
     <div class="list-group col-sm-offset-1 col-sm-10">
-      <a ng-repeat="experience in experiences" href="#" class="list-group-item row">
+      <a ng-repeat="experience in experiences" ng-click="modifierExperience(experience)" class="list-group-item row">
         <span class="list-group-item-heading col-md-6"><strong>{{experience.intitule}}</strong> - {{experience.employeur}}</span>
         <span class="list-group-item-heading col-md-6 text-right">{{experience.debut | date:'dd/MM/yyyy'}} - {{experience.fin | date:'dd/MM/yyyy'}}</span>
         <span class="list-group-item-heading col-md-10">{{experience.motif}}</span>

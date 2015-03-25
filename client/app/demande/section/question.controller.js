@@ -92,6 +92,13 @@ angular.module('impactApp')
       $scope.tempExp = {};
     };
 
+    $scope.modifierExperience = function(experience) {
+      $scope.tempExp = experience;
+      var index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
+      $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+      $scope.ajoutEnCours = true;
+    };
+
     $scope.validerExperience = function(form) {
       if(form.$valid){
         var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
@@ -102,7 +109,6 @@ angular.module('impactApp')
       else {
         form.showError = true;
       }
-
     };
 
     $scope.annuler = function() {
