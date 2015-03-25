@@ -13,8 +13,9 @@
   <div class="section-documents">
     <h1>{{section.label}}</h1>
 
+    <h2>Documents obligatoires</h2>
     <div class="row">
-      <div class="col-sm-4" ng-repeat="(type, files) in documents">
+      <div class="col-sm-4" ng-repeat="type in documentsObligatoires">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3>{{documentTypesById[type].label}}</h3>
@@ -22,10 +23,10 @@
           <div class="panel-body">
             <p>{{documentTypesById[type].desc}}</p>
 
-            <ul ng-if="!files"><li>Pas de document</li></ul>
-            <ul ng-if="files">
-              <li ng-repeat="file in files">
-                <display-file file="file" request="request"/>
+            <ul ng-if="!filesVM[type]"><li>Pas de document</li></ul>
+            <ul ng-if="filesVM[type]">
+              <li ng-repeat="file in filesVM[type]">
+                <display-file file="file" request="request"></display-file>
               </li>
             </ul>
 
@@ -42,7 +43,39 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <h2>Documents complémentaires</h2>
+    <div class="row">
+
+      <div ng-repeat="type in documentsComplementaires">
+        <div class="col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h3>{{documentTypesById[type].label}}</h3></div>
+            <div class="panel-body">
+              <p>{{documentTypesById[type].desc}}</p>
+              <ul ng-if="!filesVM[type]"><li>Pas de document</li></ul>
+              <ul ng-if="filesVM[type]">
+                <li ng-repeat="file in filesVM[type]">
+                  <display-file file="file" request="request"></display-file>
+                </li>
+              </ul>
+            </div>
+            <div class="panel-footer" ng-if="!file.asked">
+              <div class="text-right">
+                <div ng-file-select="onFileSelect($files[0], type)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
+                  <i class="fa fa-upload"></i> Attacher un fichier</span>
+                </div>
+                <div class="btn btn-success" ng-if="document.type === 'certificatMedical'"ng-click="demandePartenaire(document)">
+                  <i class="fa fa-user"></i> Transférer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix" ng-if="$index % 3 === 2"></div>
+      </div>
       <div class="col-sm-4">
         <div class="panel panel-info">
           <div class="panel-heading">

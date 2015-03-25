@@ -9,8 +9,21 @@ angular.module('impactApp')
       $state.go('^');
     };
 
-    $scope.documents = _.groupBy(request.documents, 'type');
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
+    $scope.filesVM = _.groupBy(request.documents, 'type');
+
+    // Initialisation documents obligatoires
+    var typesObligatoires = _.filter(documentTypes, {type: 'obligatoire'});
+    $scope.documentsObligatoires = _.pluck(typesObligatoires, 'id');
+
+    // Initialisation documents complementaires
+    var typesComplementaires = _.reject(documentTypes, {type: 'obligatoire'});
+    $scope.documentsComplementaires = [];
+    typesComplementaires.forEach(function(type) {
+      if ($scope.filesVM[type.id]) {
+        $scope.documentsComplementaires.push(type.id);
+      }
+    });
 
     $scope.demandePartenaire = function(document) {
       document.asked = true;
@@ -34,7 +47,10 @@ angular.module('impactApp')
       // })
       .success(function (data) {
         $scope.request.documents.push(data);
-        $scope.documents[document].push(data);
+        if (!$scope.filesVM[document]) {
+          $scope.filesVM[document] = [];
+        }
+        $scope.filesVM[document].push(data);
       });
     };
 
@@ -45,10 +61,10 @@ angular.module('impactApp')
         resolve: {
           documents: function () {
             var filtered = [];
-            var requested = _.keys($scope.documents);
+            var requested = $scope.documentsComplementaires;
 
             documentTypes.forEach(function(type) {
-              if (requested.indexOf(type.id) < 0) {
+              if (requested.indexOf(type.id) < 0 && type.type !== 'obligatoire') {
                 filtered.push(type);
               }
             });
@@ -59,7 +75,7 @@ angular.module('impactApp')
       });
 
       modalInstance.result.then(function (selected) {
-        $scope.documents[selected] = [];
+        $scope.documentsComplementaires.push(selected);
       });
     };
   })
