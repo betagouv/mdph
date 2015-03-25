@@ -46,7 +46,6 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
-        valeur: false,
         listeFrais: [
           {
             'nom': '',
@@ -79,6 +78,30 @@ angular.module('impactApp')
   .controller('CvQuestionCtrl', function ($scope, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
+    $scope.ajoutEnCours = false;
+
+    if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[$scope.question.model] = {
+        experiences: []
+      };
+    }
+    $scope.experiences = $scope.sectionModel[$scope.question.model].experiences;
+
+    $scope.ajouterExperience = function() {
+      $scope.ajoutEnCours = true;
+      $scope.tempExp = {};
+    };
+
+    $scope.validerExperience = function() {
+      var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
+      $scope.sectionModel[$scope.question.model].experiences[lastIndex+1] = $scope.tempExp;
+      $scope.tempExp = {};
+      $scope.ajoutEnCours = false;
+    };
+
+    $scope.annuler = function() {
+      $scope.ajoutEnCours = false;
+    };
   })
   .controller('RenseignementsQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;
