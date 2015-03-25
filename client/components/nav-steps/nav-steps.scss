@@ -1,3 +1,21 @@
 .nav-steps {
   margin-top: 44px;
 }
+
+.btn-invalid {
+  color: white;
+}
+
+.btn-valid-primary {
+  @extend .btn-valid;
+  @extend .btn-primary;
+}
+
+.btn-valid-success {
+  @extend .btn-valid;
+  @extend .btn-success;
+}
+
+.btn-valid:before {
+  content: "✓"
+}

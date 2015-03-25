@@ -72,6 +72,11 @@ exports.all = [
         detailLabel: 'Date d\'entrée prévue',
         model: 'formation',
         onlyAdult: true
+      },
+      {
+        label: 'Aucune des situations ne me correspond',
+        labelRep: 'Aucune des situations ne lui correspond',
+        model: 'aucun'
       }
     ]
   }

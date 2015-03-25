@@ -15,7 +15,7 @@ var aidant =   {
   sref: '.aidant.situation.lien',
   label: 'Vie de votre aidant familial',
   desc: 'Si vous souhaitez exprimer des besoins en tant qu\'aidant familial',
-  section: 'renouvellement',
+  section: 'complements',
   subSections: [
     {
       include: 'departement.demande.aidant.situation.**',
@@ -99,7 +99,7 @@ var situationsParticulieres = {
   sref: '.situations_particulieres.detail',
   label: 'Situations particulières',
   desc: 'Si vous vous trouvez dans une situation nécessitant une attention particulière',
-  section: 'complementaire'
+  section: 'obligatoire'
 };
 
 var renouvellement = {
@@ -107,7 +107,7 @@ var renouvellement = {
   sref: '.renouvellement.evolution',
   label: 'Renouvellement',
   desc: 'Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement',
-  section: 'renouvellement'
+  section: 'complements'
 };
 
 var documents = {

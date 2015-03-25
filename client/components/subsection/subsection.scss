@@ -19,7 +19,7 @@
     height: 32px;
     padding: 6px 15px;
     float: left;
-    background-color: whitesmoke;
+    background-color: white;
 
     span {
       padding: 0 15px;
@@ -38,8 +38,8 @@
     &.showBefore:before {
       width: 0;
       height: 0;
-      border-top: 16px solid whitesmoke;
-      border-bottom: 16px solid whitesmoke;
+      border-top: 16px solid white;
+      border-bottom: 16px solid white;
       border-left: 16px solid transparent;
       position: absolute;
       content: "";
@@ -48,7 +48,7 @@
     }
 
     &.active.showBefore:before {
-      border-color: darken(whitesmoke, 10%);
+      border-color: darken(white, 10%);
       border-left:16px solid transparent;
     }
 
@@ -57,7 +57,7 @@
       height: 0;
       border-top: 16px solid transparent;
       border-bottom: 16px solid transparent;
-      border-left:16px solid whitesmoke;
+      border-left:16px solid white;
       position: absolute;
       content: "";
       top: 0px;
@@ -65,11 +65,11 @@
     }
 
     &.active:after {
-      border-left:16px solid darken(whitesmoke, 10%);
+      border-left:16px solid darken(white, 10%);
     }
 
     &.active {
-      background-color: darken(whitesmoke, 10%);
+      background-color: darken(white, 10%);
     }
   }
 }

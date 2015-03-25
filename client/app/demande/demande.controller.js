@@ -8,7 +8,7 @@ angular.module('impactApp')
 
     $scope.sectionsObligatoires = _.filter(sections, {section: 'obligatoire'});
     $scope.sectionsComplementaires = _.filter(sections, {section: 'complementaire'});
-    $scope.sectionsRenouvellements = _.filter(sections, {section: 'renouvellement'});
+    $scope.sectionsComplements = _.filter(sections, {section: 'complements'});
     $scope.sectionsDocuments = _.filter(sections, {section: 'documents'});
 
 

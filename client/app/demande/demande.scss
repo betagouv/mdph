@@ -22,7 +22,7 @@
   margin-top: 20px;
   margin-bottom: 30px;
   padding: 20px;
-  background-color: white;
+  background-color: whitesmoke;
   border-radius: 5px;
   border: 1px solid #DDD;
 
@@ -141,6 +141,7 @@
 
   .demande-header {
     @extend .well;
+    background-color: white;
 
     h1 {
       margin: 0;
@@ -153,5 +154,9 @@
         font-wight: 500;
       }
     }
+  }
+
+  .well-detail {
+    background-color: white;
   }
 }
