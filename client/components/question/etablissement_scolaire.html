@@ -9,26 +9,31 @@
     </thead>
     <tbody>
       <tr ng-repeat="(idx, etablissement) in model.etablissements">
-        <td>
+        <td class="col-md-3">
           <input name="nom{{idx}}" type="text" class="form-control" ng-model="etablissement.nom" placeholder="Nom de l'établissement" required>
           <div ng-messages="questionForm['nom' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
-        <td>
+        <td class="col-md-3">
           <input name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue" required>
           <div ng-messages="questionForm['rue' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
-        <td>
+        <td class="col-md-3">
           <input name="ville{{idx}}" type="text" class="form-control" ng-model="etablissement.ville" placeholder="Ville" required>
           <div ng-messages="questionForm['ville' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
-        <td>
-          <input name="date{{idx}}" type="date" class="form-control" ng-model="etablissement.date" placeholder="jj/MM/AAAA" required>
+        <td class="col-md-3">
+          <div class="input-group">
+            <input type="text" name="date{{idx}}" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="etablissement.date" is-open="opened" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
           <div ng-messages="questionForm['date' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>

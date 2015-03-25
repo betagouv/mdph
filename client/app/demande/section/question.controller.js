@@ -95,6 +95,12 @@ angular.module('impactApp')
     $scope.isLastQuestion = $state.current.data.isLastQuestion;
     var currentModel = question.model;
 
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
+
     if (angular.isUndefined($scope.sectionModel[currentModel])) {
       $scope.sectionModel[currentModel] = {
         valeur: false,
