@@ -58,12 +58,18 @@ angular.module('impactApp')
       .state('dashboard.requests.detail', {
         url: '/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
-        controller: function($scope, $window, request, user) {
+        controller: function($scope, $state, $window, request, user) {
           $scope.request = request;
           $scope.user = user;
 
           $scope.back = function() {
             $window.history.back();
+          };
+
+          $scope.supprimer = function(request) {
+            request.$delete(function() {
+              $state.go('dashboard.requests.list.non_attribue', {}, {reload: true});
+            });
           };
         },
         resolve: {

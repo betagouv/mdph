@@ -3,6 +3,7 @@
   <div class="well">
     <h2>Demande de {{user.name}}</h2>
     {{request.shortId}} / Dernière modification {{request.updatedAt | date: format: timezone}}
+    <button class="btn btn-danger pull-right" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
   </div>
 </div>
 

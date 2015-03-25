@@ -32,19 +32,13 @@
   <div class="list-main">
     <table>
       <tbody>
-        <tr ng-repeat="request in filteredRequests = (requests | filter:query | filter:filtreUrgences)">
+        <tr ng-repeat="(idx, request) in filteredRequests = (requests | filter:query)">
           <td class="check-request" ng-click="request.isSelected = !request.isSelected">
             <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
           </td>
           <td>
             <span class="user">
-              <span ng-if="request.formAnswers.situationsParticulieres.urgences">
-                <i class="fa fa-warning"></i>
-              </span>
               <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">{{request.user.name}}</a>
-            </span>
-            <span ng-repeat="(urgence, val) in request.formAnswers.situationsParticulieres.urgences">
-              <span class="label label-danger" ng-if="val" >{{urgence}}</span>
             </span>
           </td>
           <td class="date-request">{{request.createdAt | date}}</td>

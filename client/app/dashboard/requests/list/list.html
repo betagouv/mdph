@@ -11,35 +11,21 @@
       </div>
     </form>
     <h2>{{user._id === 'me' ? 'Vos demandes' : user.name}}</h2>
-    <div class="tools">
-      <button class="btn btn-sm btn-default">
-        <i class="fa fa-arrow-right" ng-click="assigner(requests)"></i> Transférer
-      </button>
-      <button class="btn btn-sm btn-default" btn-checkbox ng-model="onlyUrgences">
-        <i class="fa fa-warning"></i> Urgences
-      </button>
-    </div>
   </div>
 
   <div class="list-main">
     <table>
       <tbody>
         <tr
-          ng-repeat="request in filteredRequests = (requests | filter:query | filter:filtreUrgences)">
+          ng-repeat="request in filteredRequests = (requests | filter:query)">
           <td class="check-request" ng-click="request.isSelected = !request.isSelected">
             <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
           </td>
           <td>
             <span class="user">
               <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
-                <span ng-if="request.formAnswers.situationsParticulieres.urgences">
-                  <i class="fa fa-warning"></i>
-                </span>
                 {{request.user.name}}
               </a>
-            </span>
-            <span ng-repeat="(urgence, val) in request.formAnswers.situationsParticulieres.urgences">
-              <span class="label label-danger" ng-if="val" >{{urgence}}</span>
             </span>
           </td>
           <td class="status">

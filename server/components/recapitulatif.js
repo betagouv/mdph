@@ -103,7 +103,7 @@ var matchAnswersToQuestions = function(question, answer){
     case 'radio':
       if(typeof answer === 'boolean'){
         var labels = _.indexBy(question.answers, 'model');
-        if (labels) {
+        if (labels && labels[answer]) {
           answer = labels[answer].label;
           answersAndQuestions.push({
             label: answer

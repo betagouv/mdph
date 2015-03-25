@@ -18,21 +18,25 @@ angular.module('impactApp')
     $scope.toutesPrestations = prestations;
 
     var familleAnswers = _.indexBy(vieQuotidienne[0].answers, 'model');
-    $scope.situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];
+    var situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];
 
     var logementAnswers = _.indexBy(vieQuotidienne[1].answers, 'model');
-    $scope.situationLogement = logementAnswers[request.formAnswers.vie_quotidienne.logement];
+    var situationLogement = logementAnswers[request.formAnswers.vie_quotidienne.logement];
 
-    if($scope.situationFamiliale.labelRecap){
-      $scope.situationFamiliale = $scope.situationFamiliale.labelRecap;
-    } else {
-      $scope.situationFamiliale = $scope.situationFamiliale.label;
+    if (situationFamiliale) {
+      if(situationFamiliale.labelRecap){
+        $scope.situationFamiliale = situationFamiliale.labelRecap;
+      } else {
+        $scope.situationFamiliale = situationFamiliale.label;
+      }
     }
 
-    if($scope.situationLogement.labelRecap){
-      $scope.situationLogement = $scope.situationLogement.labelRecap;
-    } else {
-      $scope.situationLogement = $scope.situationLogement.label;
+    if (situationLogement) {
+      if(situationLogement.labelRecap){
+        $scope.situationLogement = situationLogement.labelRecap;
+      } else {
+        $scope.situationLogement = situationLogement.label;
+      }
     }
 
     if(request.renouvellement){
