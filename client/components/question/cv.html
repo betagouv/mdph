@@ -1,20 +1,27 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <div class="row">
-    <div class="list-group col-sm-offset-1 col-sm-10">
-      <a ng-repeat="experience in experiences | orderBy:'-debut'" ng-click="modifierExperience(experience)" class="list-group-item row">
-        <span class="list-group-item-heading col-md-6"><strong>{{experience.intitule}}</strong> - {{experience.employeur}}</span>
-        <span class="list-group-item-text col-md-6 text-right">{{experience.debut | date:'dd/MM/yyyy'}}
-          <span ng-if="experience.fin">
-             - {{experience.fin | date:'dd/MM/yyyy'}}
+    <div class="list-group col-sm-offset-1 col-sm-10 cv">
+      <div ng-repeat="experience in experiences | orderBy:'-debut'" class="list-group-item row">
+        <a ng-click="modifierExperience(experience)" class="col-md-11">
+          <span class="list-group-item-heading col-md-6">
+            <strong>{{experience.intitule}}</strong> - {{experience.employeur}}
           </span>
-          <span ng-if="!experience.fin">
-             - Aujourd'hui
+          <span class="list-group-item-text col-md-6 text-right">{{experience.debut | date:'dd/MM/yyyy'}}
+            <span ng-if="experience.fin">
+               - {{experience.fin | date:'dd/MM/yyyy'}}
+            </span>
+            <span ng-if="!experience.fin">
+               - Aujourd'hui
+            </span>
           </span>
+          <span class="list-group-item-text col-md-10">{{experience.motif}}</span>
+          <span class="list-group-item-text col-md-2 text-right">{{experience.contrat}}</span>
+        </a>
+        <span class="col-md-1">
+          <a ng-click="supprimerExperience(experience)"><i class="fa fa-times-circle-o fa-lg"></i></a>
         </span>
-        <span class="list-group-item-text col-md-10">{{experience.motif}}</span>
-        <span class="list-group-item-text col-md-2 text-right">{{experience.contrat}}</span>
-      </a>
+      </div>
     </div>
     <div ng-if="ajoutEnCours">
       <div class="form-group form-group col-md-offset-1 col-md-10">

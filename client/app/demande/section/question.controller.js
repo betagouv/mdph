@@ -118,6 +118,11 @@ angular.module('impactApp')
       }
     };
 
+    $scope.supprimerExperience = function(experience) {
+      index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
+      $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+    };
+
     $scope.annuler = function() {
       $scope.ajoutEnCours = false;
     };
