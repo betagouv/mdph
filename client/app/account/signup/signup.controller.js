@@ -5,6 +5,10 @@ angular.module('impactApp')
     $scope.user = {};
     $scope.errors = {};
 
+    $scope.resetMongooseError = function(form, field) {
+      form[field].$setValidity('mongoose', true);
+    };
+
     $scope.register = function(form) {
       $scope.submitted = true;
 
