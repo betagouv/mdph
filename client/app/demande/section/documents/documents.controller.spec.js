@@ -24,7 +24,7 @@ describe('Controller: documents', function () {
     });
 
     //then
-    expect(scope.documents.carteIdentite[0].type).toBe('carteIdentite');
+    expect(scope.filesVM.carteIdentite[0].type).toBe('carteIdentite');
   });
 
 });
