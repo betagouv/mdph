@@ -36,7 +36,7 @@ angular.module('impactApp')
     };
 
     $scope.getCompletion = function(section) {
-      if (typeof request.formAnswers[section] === 'undefined') {
+      if (typeof request.formAnswers[section] === 'undefined' || _.keys(request.formAnswers[section]).length === 0) {
         return 0;
       } else if (request.formAnswers[section].__completion === true) {
         return 100;
