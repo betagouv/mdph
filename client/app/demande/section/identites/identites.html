@@ -11,33 +11,48 @@
   <div class="questionnaire">
     <h1>{{section.desc}}</h1>
 
+    <h2>Identité du bénéficiaire</h2>
     <div class="row-type-identite">
       <div class="col-sm-3">
         <identity-card
+          title="'Bénéficiaire'"
           type="'beneficiaire'"
           section-model="sectionModel"></identity-card>
       </div>
     </div>
 
-    <div class="row-type-identite" ng-if="sectionModel.beneficiaire && estMineur(sectionModel.beneficiaire.dateNaissance)">
+    <h2>Autorité parentale ou délégation d'identité</h2>
+    <div class="row-type-identite">
       <div class="col-sm-3">
         <identity-card
+          title="'Parent 1'"
           type="'autorite'"
           current-id="'parent1'"
           section-model="sectionModel"></identity-card>
       </div>
 
       <div class="col-sm-3">
-        <identity-card ng-if="sectionModel.autorite.parent1.nom"
+        <identity-card
+          title="'Parent 2'"
           type="'autorite'"
           current-id="'parent2'"
           section-model="sectionModel"></identity-card>
       </div>
+
+      <div class="col-sm-3">
+        <identity-card
+          title="'Autre'"
+          type="'autorite'"
+          current-id="'autre'"
+          section-model="sectionModel"></identity-card>
+      </div>
     </div>
 
-    <div class="row-type-identite" ng-if="sectionModel.beneficiaire">
+    <h2>Personne vous aidant dans votre démarche de demande</h2>
+    <div class="row-type-identite">
       <div class="col-sm-3" ng-repeat="(idx, aidant) in sectionModel.aidantDemarche">
         <identity-card
+          title="aidant.type"
           type="'aidantDemarche'"
           current-id="idx"
           section-model="sectionModel"></identity-card>
@@ -45,6 +60,7 @@
 
       <div class="col-sm-3">
         <identity-card
+          title="'Ajouter une personne'"
           type="'aidantDemarche'"
           current-id="sectionModel.aidantDemarche.length"
           section-model="sectionModel"></identity-card>

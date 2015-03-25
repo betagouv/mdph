@@ -4,15 +4,12 @@ angular.module('impactApp')
   .factory('IdentiteService', function IdentiteService() {
     var types = {
       beneficiaire: {
-        title: 'Bénéficiaire',
         desc: 'Identité de la personne concernée par la demande'
       },
       autorite: {
-        title: 'Autorité parentale',
         desc: 'Identité de l\'autorité parentale du bénéficiaire'
       },
       aidantDemarche: {
-        title: 'Personne qui vous aide',
         desc: 'Identité de la personne vous aidant dans votre démarche'
       }
     };
@@ -20,9 +17,6 @@ angular.module('impactApp')
     return {
       getDesc: function(type) {
         return types[type].desc;
-      },
-      getTitle: function(type) {
-        return types[type].title;
       },
       getSref: function(type, id) {
         var sref = '.modification_identite({type: "' + type + '"';

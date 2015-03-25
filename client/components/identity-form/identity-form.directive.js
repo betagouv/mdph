@@ -7,7 +7,8 @@ angular.module('impactApp')
         type: '=',
         section: '=',
         identite: '=',
-        submit: '='
+        submit: '=',
+        id: '='
       },
       templateUrl: 'components/identity-form/identity-form.html',
       restrict: 'EA',

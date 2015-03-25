@@ -3,6 +3,27 @@
   <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="submit(infoForm)" novalidate>
     <h1 id="infoPerso">{{desc}}</h1>
 
+    <div class="form-group required" ng-if="type==='autorite' && id === 'autre'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
+      <label for="type" class="col-sm-2 col-lg-offset-1 control-label">Vous êtes</label>
+      <div class="col-sm-10 col-lg-7">
+        <label class="radio-inline">
+          <input type="radio" value="tuteur" ng-required="identite.type" ng-model="identite.type"> Le tuteur
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="curateur" ng-required="identite.type" ng-model="identite.type"> Le curateur
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="organisme" ng-required="identite.type" ng-model="identite.type"> Un organisme
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="autre" ng-required="identite.type" ng-model="identite.type"> Autre
+        </label>
+        <div ng-if="!identite.type && infoForm.$submitted">
+          <p class="help-block">Ce champ est obligatoire.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="form-group required" ng-if="type==='aidantDemarche'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
       <label for="type" class="col-sm-2 col-lg-offset-1 control-label">Vous êtes</label>
       <div class="col-sm-10 col-lg-7">
@@ -11,12 +32,6 @@
         </label>
         <label class="radio-inline">
           <input type="radio" value="association" ng-required="identite.type" ng-model="identite.type"> Une association
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="tuteur" ng-required="identite.type" ng-model="identite.type"> Le tuteur
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="curateur" ng-required="identite.type" ng-model="identite.type"> Le curateur
         </label>
         <label class="radio-inline">
           <input type="radio" value="autre" ng-required="identite.type" ng-model="identite.type"> Autre

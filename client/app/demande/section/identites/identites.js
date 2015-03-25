@@ -6,7 +6,7 @@ angular.module('impactApp')
     $stateProvider
       .state(index + '.modification_identite', {
         url: '/:type?id',
-        template: '<identity-form type="type" submit="submit" section="section" identite="tempIdentite"/>',
+        template: '<identity-form id="currentId" type="type" submit="submit" section="section" identite="tempIdentite"/>',
         resolve: {
           submit: function($state, IdentiteService, sectionModel, tempIdentite, type, currentId) {
             return function(form) {
@@ -35,9 +35,10 @@ angular.module('impactApp')
             return _.clone(identite, true);
           }
         },
-        controller: function($scope, type, tempIdentite, submit){
+        controller: function($scope, type, tempIdentite, submit, currentId){
           $scope.tempIdentite = tempIdentite;
           $scope.type = type;
+          $scope.currentId = currentId;
           $scope.submit = submit;
         }
       });

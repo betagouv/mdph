@@ -11,6 +11,10 @@ angular.module('impactApp')
       message: ''
     };
 
+    function exists(identite) {
+      return typeof identite !== 'undefined' &&  typeof identite.nom !== 'undefined';
+    }
+
     $scope.checkIdentities = function(){
       var formIdentites = request.formAnswers.identites;
       if (!formIdentites.beneficiaire || !formIdentites.beneficiaire.nom){
@@ -19,14 +23,16 @@ angular.module('impactApp')
       }
       else {
         if (estMineur(formIdentites.beneficiaire.dateNaissance)){
-          if (!formIdentites.autorite || !formIdentites.autorite.parent1 || !formIdentites.autorite.parent1 ||!formIdentites.autorite.parent1.nom|| !formIdentites.autorite.parent2 || !formIdentites.autorite.parent2.nom){
+          var autorite = formIdentites.autorite;
+          if (!autorite || !(exists(autorite.parent1) || !exists(autorite.parent2) || !exists(autorite.autre))){
             $scope.error.show = true;
-            $scope.error.message = 'Veuillez renseigner deux autorités parentales pour un bénéficiaire mineur.';
+            $scope.error.message = 'Le bénéficiaire est mineur, veuillez renseigner au moins une autorité parentale ou une délégation d\'autorité parentale.';
           }
         }
-        else {
-          saveSection();
-        }
+      }
+
+      if (!$scope.error.show) {
+        saveSection();
       }
     };
   });

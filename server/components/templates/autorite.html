@@ -9,3 +9,10 @@
   {{>identite}}
 {{/parent2}}
 {{^parent2}}Pas de parent 2{{/parent2}}
+
+<h4>Délégation d'autorité</h4>
+{{#autre}}
+  {{>identite}}
+  <div>Type: {{type}}</div>
+{{/autre}}
+{{^autre}}Pas de délégation d'autorité{{/autre}}
