@@ -12,7 +12,7 @@ angular.module('impactApp')
     })
     .state(index + '.lien', {
       url: '/lien',
-      templateUrl: 'components/question/textinput.html',
+      templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       data: {
         hideBack: true

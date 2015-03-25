@@ -12,7 +12,7 @@ angular.module('impactApp')
       })
       .state(index + '.nom_poste', {
         url: '/nom_poste',
-        templateUrl: 'components/question/textinput.html',
+        templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
           question: function(QuestionService, request, section) {

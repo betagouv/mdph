@@ -38,7 +38,7 @@ exports.all = [
         label: 'Dans un établissement médico-social ou ordinaire',
         labelRecap: 'En établissement médico-social ou ordinaire',
         model: 'etablissement',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         detailModel: 'logement_etablissement',
         placeholder: 'Nom de l\'établissement, type et lieu',
         documents: [{category: 'sante', id: 'bilanAccompagnementEnfant'}]

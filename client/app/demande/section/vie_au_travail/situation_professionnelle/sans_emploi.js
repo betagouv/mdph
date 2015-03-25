@@ -45,7 +45,7 @@ angular.module('impactApp')
       })
       .state(index + '.stage', {
         url: '/stage',
-        templateUrl: 'components/question/textinput.html',
+        templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
           question: function(QuestionService, request, section) {

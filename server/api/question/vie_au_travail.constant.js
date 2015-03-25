@@ -288,7 +288,7 @@ exports.all = [
       {
         'label': 'Oui',
         model: true,
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         detailModel: 'descriptionDetail'
       }
     ]
@@ -331,19 +331,19 @@ exports.all = [
       {
         label: 'Inscrit à pôle emploi',
         model: 'poleEmploi',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         detailModel: 'poleEmploiDetail',
       },
       {
         label: 'En formation continue',
         model: 'formation',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         detailModel: 'formationDetail',
       },
       {
         label: 'Etudiant',
         model: 'etudiant',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         detailModel: 'etudiantDetail',
       },
       {
@@ -403,7 +403,7 @@ exports.all = [
       {
         'label': 'Oui',
         model: true,
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         detailModel: 'passeDetail',
         detailLabel: 'Pourquoi êtes-vous actuellement sans emploi et depuis quand ?'
       },

@@ -41,7 +41,7 @@ exports.all = [
         model: 'etablissement',
 
         detailModel: 'raisonNonScolaireEtablissement',
-        detailUrl: 'components/detail/precisez_big.html'
+        detailUrl: 'components/detail/precisez.html'
       },
       {
         label: 'Autre',

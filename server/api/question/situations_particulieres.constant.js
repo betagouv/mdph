@@ -15,7 +15,7 @@ exports.all = [
         model: 'finDroit',
         detail: true,
         detailModel: 'finDroitDetail',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         placeholder: 'Expliquez la difficulté'
       },
       {
@@ -24,7 +24,7 @@ exports.all = [
         model: 'domicile',
         detail: true,
         detailModel: 'domicileDetail',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         placeholder: 'Expliquez la difficulté'
       },
       {
@@ -33,7 +33,7 @@ exports.all = [
         model: 'etablissement',
         detail: true,
         detailModel: 'etablissementDetail',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         placeholder: 'Expliquez la difficulté'
       },
       {
@@ -42,7 +42,7 @@ exports.all = [
         model: 'hospitalisation',
         detail: true,
         detailModel: 'hospitalisationDetail',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         placeholder: 'Expliquez la difficulté'
       },
       {
@@ -50,7 +50,7 @@ exports.all = [
         labelRep: 'Son école ne peut plus l\'accueillir',
         detail: true,
         detailModel: 'ecoleDetail',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         placeholder: 'Expliquez la difficulté',
         model: 'ecole'
       },
@@ -59,7 +59,7 @@ exports.all = [
         labelRep: '<%= pronoun %> risque de perdre son travail',
         detail: true,
         detailModel: 'travailDetail',
-        detailUrl: 'components/detail/precisez_big.html',
+        detailUrl: 'components/detail/precisez.html',
         placeholder: 'Expliquez la difficulté',
         model: 'travail',
         onlyAdult: true
