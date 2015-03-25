@@ -19,11 +19,11 @@ var aidant =   {
   subSections: [
     {
       include: 'departement.demande.aidant.situation.**',
-      label: 'Votre situation'
+      label: 'Situation'
     },
     {
       include: 'departement.demande.aidant.vos_attentes.**',
-      label: 'Vos attentes'
+      label: 'Attentes'
     }
   ]
 };
@@ -37,15 +37,15 @@ var vieQuotidienne =   {
   subSections: [
     {
       include: 'departement.demande.vie_quotidienne.situation.**',
-      label: 'Votre situation'
+      label: 'Situation'
     },
     {
       include: 'departement.demande.vie_quotidienne.vos_besoins.**',
-      label: 'Vos besoins'
+      label: 'Besoins'
     },
     {
       include: 'departement.demande.vie_quotidienne.vos_attentes.**',
-      label: 'Vos attentes'
+      label: 'Attentes'
     }
   ]
 };
@@ -59,15 +59,15 @@ var vieScolaire = {
   subSections: [
     {
       include: 'departement.demande.vie_scolaire.situation.**',
-      label: 'Votre situation'
+      label: 'Situation'
     },
     {
       include: 'departement.demande.vie_scolaire.vos_besoins.**',
-      label: 'Vos besoins'
+      label: 'Besoins'
     },
     {
       include: 'departement.demande.vie_scolaire.vos_attentes.**',
-      label: 'Vos attentes'
+      label: 'Attentes'
     }
   ]
 };
@@ -81,11 +81,15 @@ var vieAuTravail = {
   subSections: [
     {
       include: 'departement.demande.vie_au_travail.situation_professionnelle.**',
-      label: 'Votre situation professionnelle'
+      label: 'Situation professionnelle'
+    },
+    {
+      include: 'departement.demande.vie_au_travail.parcours_professionnel.**',
+      label: 'Parcours professionnel'
     },
     {
       include: 'departement.demande.vie_au_travail.projet_professionnel.**',
-      label: 'Votre projet professionnel'
+      label: 'Projet professionnel'
     }
   ]
 };

@@ -40,7 +40,7 @@ angular.module('impactApp')
       );
     };
   })
-  .controller('FraisQuestionCtrl', function ($scope, $state, question, nextStep) {
+  .controller('FraisQuestionCtrl', function ($scope, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
 
@@ -75,6 +75,10 @@ angular.module('impactApp')
       var lastIndex = $scope.model.listeFrais.indexOf(_.last($scope.model.listeFrais));
       $scope.model.listeFrais.splice(lastIndex, 1);
     };
+  })
+  .controller('CvQuestionCtrl', function ($scope, question, nextStep) {
+    $scope.question = question;
+    $scope.nextStep = nextStep;
   })
   .controller('RenseignementsQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;

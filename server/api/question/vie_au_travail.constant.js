@@ -270,6 +270,12 @@ exports.all = [
     ]
   },
   {
+    titleDefault: 'Précisez ses expériences professionnelles, y compris les stages et structures d\'insertion.',
+    titleRep: 'Précisez vos expériences professionnelles, y compris les stages et structures d\'insertion.',
+    model: 'cv',
+    type: 'cv'
+  },
+  {
     titleRep: 'A-t-<%= pronoun %> un ou plusieurs projet(s) professionnel(s) ?',
     titleDefault: 'Avez-vous un ou plusieurs projet(s) professionnel(s) ?',
     model: 'description',

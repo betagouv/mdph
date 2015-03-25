@@ -122,7 +122,7 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
-            $state.go('^.^.projet_professionnel.description');
+            $state.go('^.^.parcours_professionnel.cv');
           };
         }
       }
