@@ -3,54 +3,78 @@
   <div class="row">
     <div class="list-group col-sm-offset-1 col-sm-10">
       <a ng-repeat="experience in experiences" href="#" class="list-group-item row">
-        <span class="list-group-item-heading col-md-6">{{experience.intitule}} - {{experience.employeur}}</span>
-        <span class="list-group-item-heading col-md-6 text-right">{{experience.debut}} - {{experience.fin}}</span>
+        <span class="list-group-item-heading col-md-6"><strong>{{experience.intitule}}</strong> - {{experience.employeur}}</span>
+        <span class="list-group-item-heading col-md-6 text-right">{{experience.debut | date:'dd/MM/yyyy'}} - {{experience.fin | date:'dd/MM/yyyy'}}</span>
         <span class="list-group-item-heading col-md-10">{{experience.motif}}</span>
         <span class="list-group-item-heading col-md-2 text-right">{{experience.contrat}}</span>
       </a>
     </div>
-  </div>
-  <div class="row">
     <div ng-if="ajoutEnCours">
-      <div class="col-lg-12">
-        <div class="form-group form-group col-md-12">
-          <label class="control-label" for="intitule">Intitulé</label>
-          <input name="intitule" type="text" class="form-control" ng-model="tempExp.intitule" placeholder="Intitulé">
+      <div class="form-group form-group col-md-offset-1 col-md-10">
+        <label class="control-label" for="intitule">Intitulé</label>
+        <input name="intitule" type="text" class="form-control" ng-model="tempExp.intitule" placeholder="Intitulé" required>
+        <div ng-messages="questionForm.intitule.$error" ng-if="questionForm.showError">
+          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
-        <div class="form-group form-group col-md-12">
-          <label class="control-label" for="employeur">Employeur</label>
-          <input name="employeur" type="text" class="form-control" ng-model="tempExp.employeur" placeholder="Entreprise">
+      </div>
+      <div class="form-group form-group col-md-offset-1 col-md-5">
+        <label class="control-label" for="employeur">Employeur</label>
+        <input name="employeur" type="text" class="form-control" ng-model="tempExp.employeur" placeholder="Entreprise" required>
+        <div ng-messages="questionForm.employeur.$error" ng-if="questionForm.showError">
+          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
-        <div class="form-group col-md-3">
-          <label class="control-label" for="debut">Date de début</label>
-          <input name="debut" type="text" class="form-control" ng-model="tempExp.debut">
+      </div>
+      <div class="form-group col-md-5">
+        <label for="contrat" class="control-label">Type de contrat</label>
+        <input name="contrat" type="text" class="form-control" ng-model="tempExp.contrat" placeholder="CDI, CDD, ..." required>
+        <div ng-messages="questionForm.contrat.$error" ng-if="questionForm.showError">
+          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
-        <div class="form-group col-md-3">
-          <label class="control-label" for="fin">Date de fin</label>
-          <input name="fin" type="text" class="form-control" ng-model="tempExp.fin">
+      </div>
+      <div class="form-group col-md-offset-1 col-md-10">
+        <label class="control-label" for="debut">Date de début</label>
+        <p class="input-group">
+          <input type="text" name="debut" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="tempExp.debut" is-open="opened1" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event, 1)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+        <div ng-messages="questionForm.debut.$error" ng-if="questionForm.showError">
+          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="contrat" class="control-label">Type de contrat</label>
-          <input name="contrat" type="text" class="form-control" ng-model="tempExp.contrat" placeholder="CDI, CDD, ...">
+      </div>
+      <div class="form-group col-md-offset-1 col-md-10">
+        <label class="control-label" for="fin">Date de fin</label>
+        <p class="input-group">
+          <input type="text" name="fin" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="tempExp.fin" is-open="opened2" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event, 2)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+        <div ng-messages="questionForm.fin.$error" ng-if="questionForm.showError">
+          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
-        <div class="form-group col-md-12">
-          <label for="contrat" class="control-label">Motif de fin d'activité</label>
-          <textarea name="motif" type="text" class="form-control" ng-model="tempExp.motif" placeholder="Motif"></textarea>
+      </div>
+      <div class="form-group col-md-offset-1 col-md-10">
+        <label for="contrat" class="control-label">Motif de fin d'activité</label>
+        <textarea name="motif" type="text" class="form-control" ng-model="tempExp.motif" placeholder="Motif" required></textarea>
+        <div ng-messages="questionForm.motif.$error" ng-if="questionForm.showError">
+          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
       </div>
       <div class="col-md-offset-2 col-md-4">
         <button class="btn btn-default btn-block" ng-click="annuler()">Annuler</button>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-default btn-block" ng-click="validerExperience()">Valider l'expérience</button>
+        <button class="btn btn-default btn-block" ng-click="validerExperience(questionForm)">Valider l'expérience</button>
       </div>
     </div>
 
     <div class="col-md-offset-4 col-md-4" ng-if="!ajoutEnCours">
+
       <button class="btn btn-default btn-block" ng-click="ajouterExperience()">Ajouter une expérience</button>
     </div>
   </div>
-
   <nav-steps ng-hide="hideSteps"></nav-steps>
 
 </form>

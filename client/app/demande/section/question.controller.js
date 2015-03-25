@@ -92,15 +92,32 @@ angular.module('impactApp')
       $scope.tempExp = {};
     };
 
-    $scope.validerExperience = function() {
-      var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
-      $scope.sectionModel[$scope.question.model].experiences[lastIndex+1] = $scope.tempExp;
-      $scope.tempExp = {};
-      $scope.ajoutEnCours = false;
+    $scope.validerExperience = function(form) {
+      if(form.$valid){
+        var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
+        $scope.sectionModel[$scope.question.model].experiences[lastIndex+1] = $scope.tempExp;
+        $scope.tempExp = {};
+        $scope.ajoutEnCours = false;
+      }
+      else {
+        form.showError = true;
+      }
+
     };
 
     $scope.annuler = function() {
       $scope.ajoutEnCours = false;
+    };
+
+    $scope.open = function($event, number) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      switch(number){
+        case 1 : $scope.opened1 = true;
+          break;
+        case 2: $scope.opened2 = true;
+          break;
+      }
     };
   })
   .controller('RenseignementsQuestionCtrl', function ($scope, $state, question, nextStep) {
