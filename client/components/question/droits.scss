@@ -9,8 +9,11 @@ $analog-4-border: #6E2B2E;
 
 @mixin panel-color($color) {
   .panel-heading {
-    color: white;
     background-color: $color;
+  }
+
+  .panel-title {
+    color: white;
   }
 
   &.panel-action:hover {
