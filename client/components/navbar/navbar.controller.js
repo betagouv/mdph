@@ -62,8 +62,8 @@ angular.module('impactApp')
     };
 
     $scope.getIndexSref = function() {
-      if ($scope.currentMdph && $scope.currentMdph.$resolved === true) {
-        return 'departement({codeDepartement: ' + $scope.currentMdph.zipcode + '})';
+      if ($scope.mdph && $scope.mdph.$resolved === true) {
+        return 'departement({codeDepartement: ' + $scope.mdph.zipcode + '})';
       } else {
         return 'main';
       }
