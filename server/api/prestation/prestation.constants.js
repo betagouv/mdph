@@ -1,5 +1,7 @@
 'use strict';
 
+/* jshint multistr: true */
+
 exports.all = [
   {
     id: 'carteStationnement',
