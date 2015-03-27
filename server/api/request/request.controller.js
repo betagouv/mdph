@@ -137,7 +137,7 @@ exports.update = function(req, res, next) {
     }
 
     request
-      .set(_.omit(req.body, 'html'))
+      .set(_.omit(req.body, 'html', 'user'))
       .set('updatedAt', Date.now())
       .save(function (err, result) {
         if (err) { return handleError(res, err); }
