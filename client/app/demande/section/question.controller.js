@@ -205,15 +205,16 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.sectionModel[$scope.currentModel])) {
       $scope.sectionModel[$scope.currentModel] = {
-        valeur: false,
-        jours: {}
+        jours: []
       };
       _.forEach($scope.jours, function(jour){
-        $scope.sectionModel[$scope.currentModel].jours[jour] = {
+        debugger;
+        $scope.sectionModel[$scope.currentModel].jours.push({
+          jour : jour,
           matin: '',
           midi: '',
           aprem: ''
-        };
+        });
       });
     }
     $scope.model = $scope.sectionModel[$scope.currentModel];

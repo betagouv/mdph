@@ -11,18 +11,18 @@
       <tr ng-repeat="(idx, jour) in jours">
         <td>{{jour}}</td>
         <td>
-          <input name="matin{{idx}}" type="text" class="form-control" ng-model="model.jours[jour]['matin']">
+          <input name="matin{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['matin']">
         </td>
         <td>
-          <input name="midi{{idx}}" type="text" class="form-control" ng-model="model.jours[jour]['midi']">
+          <input name="midi{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['midi']">
         </td>
         <td>
-          <input name="aprem{{idx}}" type="text" class="form-control" ng-model="model.jours[jour]['aprem']">
+          <input name="aprem{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['aprem']">
         </td>
       </tr>
     </tbody>
   </table>
-
+  <pre>{{model.jours | json}}</pre>
   <nav-steps ng-hide="hideSteps"></nav-steps>
 
 </form>
