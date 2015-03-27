@@ -189,6 +189,15 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
   }
   else {
     if (answer.experiences) {
+      _.forEach(answer.experiences, function(experience) {
+        experience.debut = moment(experience.debut).format('DD/MM/YYYY');
+        if (experience.fin) {
+          experience.fin = moment(experience.fin).format('DD/MM/YYYY');
+        }
+        else {
+          experience.fin = 'toujours en poste';
+        }
+      })
       detailedAnswer.detailsCV = answer.experiences;
     }
     else {
