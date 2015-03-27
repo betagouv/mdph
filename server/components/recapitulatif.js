@@ -101,7 +101,7 @@ var matchAnswersToQuestions = function(question, answer){
       });
     break;
     case 'radio':
-      if(typeof answer === 'boolean'){
+      if (typeof answer === 'boolean') {
         var labels = _.indexBy(question.answers, 'model');
         if (labels && labels[answer]) {
           answer = labels[answer].label;
@@ -112,7 +112,7 @@ var matchAnswersToQuestions = function(question, answer){
       }
     break;
     case 'frais':
-      if(answer.listeFrais){
+      if (answer.listeFrais) {
         answersAndQuestions.push({
           label: 'Liste des frais',
           model: 'fraisHandicap',
@@ -120,8 +120,17 @@ var matchAnswersToQuestions = function(question, answer){
         });
       }
     break;
+    case 'cv':
+      if (answer.experiences) {
+        answersAndQuestions.push({
+          label: 'CV',
+          model: 'cv',
+          detailModel: 'listeCv'
+        });
+      }
+    break;
     case 'structure':
-      if(answer.valeur){
+      if (answer.valeur) {
         answersAndQuestions.push({
           label: 'Oui',
           model: 'structures',
@@ -139,20 +148,20 @@ var matchAnswersToQuestions = function(question, answer){
 }
 
 var addDetailsToAnswers = function(answers, answer, detailedAnswer){
-  if(answer[detailedAnswer.detailModel]){
-    if(typeof answer[detailedAnswer.detailModel] === 'object'){
+  if (answer[detailedAnswer.detailModel]) {
+    if (typeof answer[detailedAnswer.detailModel] === 'object') {
       detailedAnswer.details = [];
       detailedAnswer.detailsObject = [];
       detailedAnswer.detailsFrais = [];
       detailedAnswer.detailsStructures = [];
       _.forEach(answer[detailedAnswer.detailModel], function(n, key){
-        if(n){
-          if(typeof key === 'number'){
-            if(answer.listeFrais){
+        if (n) {
+          if (typeof key === 'number') {
+            if (answer.listeFrais) {
               detailedAnswer.detailsFrais.push(n);
             }
             else {
-              if(answer.structures){
+              if (answer.structures) {
                 n.contact = n.contact ? 'Oui' : 'Non';
                 detailedAnswer.detailsStructures.push(n);
               }
@@ -162,8 +171,8 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
             }
           }
           else {
-            if(typeof n === 'object'){
-              if(n.value)
+            if (typeof n === 'object') {
+              if (n.value)
                 detailedAnswer.detailsObject.push({'label' : key, 'detail' : n.detail});
             }
             else {
@@ -179,7 +188,12 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
 
   }
   else {
-    detailedAnswer.detail = answers[detailedAnswer.detailModel];
+    if (answer.experiences) {
+      detailedAnswer.detailsCV = answer.experiences;
+    }
+    else {
+      detailedAnswer.detail = answers[detailedAnswer.detailModel];
+    }
   }
 }
 
@@ -238,9 +252,8 @@ exports.answersToHtml = function(request, path, output, next) {
             var answer = answers[question.model];
             if (answer) {
               var filteredAnswers = matchAnswersToQuestions(question, answer);
-
               filteredAnswers.forEach(function(rawAnswer){
-                if(rawAnswer.detailModel){
+                if (rawAnswer.detailModel) {
                   addDetailsToAnswers(answers, answer, rawAnswer);
                 }
               });
