@@ -4,7 +4,7 @@
     <button class="btn btn-default btn-block btn-answer"
       ng-model="model['valeur']" btn-radio="true" ng-required="!model['valeur']">
       <i class="fa" ng-class="{
-        'fa-dot-circle-o': model['valeur'],
+        'fa-dot-circle-o': model['valeur'] === true,
         'fa-circle-o': !model['valeur']
       }"></i>
       Oui
@@ -41,8 +41,8 @@
   <div class="answer">
     <button class="btn btn-default btn-block btn-answer" ng-model="model['valeur']" btn-radio="false" ng-required="!model['valeur']">
       <i class="fa" ng-class="{
-        'fa-dot-circle-o': !model['valeur'],
-        'fa-circle-o': model['valeur']
+        'fa-dot-circle-o': model['valeur'] === false,
+        'fa-circle-o': !model['valeur'] || model['valeur'] === true
       }"></i>
       Non
     </button>

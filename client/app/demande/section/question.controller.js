@@ -25,7 +25,7 @@ angular.module('impactApp')
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
-        valeur: false,
+
         structures: [
           {'name': '', 'contact': false}
         ]
