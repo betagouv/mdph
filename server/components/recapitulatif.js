@@ -129,6 +129,11 @@ var matchAnswersToQuestions = function(question, answer){
         });
       }
     break;
+    case 'employeur':
+      answersAndQuestions.push({
+        label: answer.nom.value + ', ' + answer.adresse.value + ', ' + answer.medecin.value + ' (service/médecin)'
+      });
+    break;
     case 'structure':
       if (answer.valeur) {
         answersAndQuestions.push({
