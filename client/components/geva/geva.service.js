@@ -62,8 +62,8 @@ angular.module('impactApp')
                 }
               }
             });
-            if(request.formAnswers['vie_scolaire']){
-              if(request.formAnswers['vie_au_travail']){
+            if(request.formAnswers.vie_scolaire){
+              if(request.formAnswers.vie_au_travail){
                 questions = trajectoire.scolaire.concat(trajectoire.travail, general);
               }
               else {
@@ -71,7 +71,7 @@ angular.module('impactApp')
               }
             }
             else {
-              if(request.formAnswers['vie_au_travail']){
+              if(request.formAnswers.vie_au_travail){
                 questions = trajectoire.travail.concat(trajectoire.scolaire, general);
               }
               else {
