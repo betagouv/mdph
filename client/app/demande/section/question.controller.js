@@ -131,9 +131,11 @@ angular.module('impactApp')
       $event.preventDefault();
       $event.stopPropagation();
       switch(number){
-        case 1 : $scope.opened1 = true;
+        case 1 :
+          $scope.opened1 = true;
           break;
-        case 2: $scope.opened2 = true;
+        case 2:
+          $scope.opened2 = true;
           break;
       }
     };
