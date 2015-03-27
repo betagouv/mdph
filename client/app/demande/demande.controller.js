@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $window, $cookieStore, $modal, sections, Auth, estAdulte, request) {
+  .controller('DemandeCtrl', function ($scope, $state, $window, $cookieStore, $modal, sections, Auth, estAdulte, request, RequestService) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
     $scope.token = $cookieStore.get('token');
@@ -73,28 +73,27 @@ angular.module('impactApp')
     };
 
     $scope.envoyer = function() {
-      var incompleteSections = [];
-      $scope.sectionsObligatoires.forEach(function(section) {
-        if (!request.formAnswers[section.id] || !request.formAnswers[section.id].__completion) {
-          incompleteSections.push(section);
+      var documentsObligatoires = [
+        {
+          id: 'certificatMedical',
+          label: 'Certificat médical'
+        },
+        {
+          id: 'carteIdentite',
+          label: 'Carte d\'identité'
+        }
+      ];
+
+      RequestService.isReadyToSend(request, $scope.sectionsObligatoires, documentsObligatoires, function(err) {
+        if (err) {
+          $window.alert(err);
+        } else {
+          request.status = 'emise';
+          request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + request.mdph;
+          request.$update(function () {
+            $window.alert('Votre demande à été sauvegardée');
+          }, onError);
         }
       });
-
-      // Todo verifier qu'il y a au moins un fichier dans le doc carteIdentite et certificatMedical (ou qu'il a ete transmis)
-
-      if (incompleteSections.length > 0) {
-        var str= 'Votre demande ne peut être envoyé car il n\'est pas complet.\nVeuillez renseigner les sections:\n';
-        incompleteSections.forEach(function(section) {
-          str += '\t -' + section.label + '\n';
-        });
-
-        $window.alert(str);
-      } else {
-        request.status = 'emise';
-        request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + request.mdph;
-        request.$update(function () {
-          $window.alert('Votre demande à été sauvegardée');
-        }, onError);
-      }
     };
   });
