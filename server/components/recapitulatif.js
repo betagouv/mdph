@@ -93,7 +93,6 @@ var matchAnswersToQuestions = function(question, answer){
       return answer[constant.model] === true;
     }
   });
-
   switch (question.type){
     case 'text':
       answersAndQuestions.push({
@@ -155,6 +154,13 @@ var matchAnswersToQuestions = function(question, answer){
         detailModel: 'jours'
       });
     break;
+    case 'etablissement':
+      answersAndQuestions.push({
+          label: 'Etablissements',
+          model: 'etablissement',
+          detailModel: 'listeEtablissements'
+        });
+    break;
   }
   return answersAndQuestions;
 }
@@ -162,18 +168,20 @@ var matchAnswersToQuestions = function(question, answer){
 var addDetailsToAnswers = function(answers, answer, detailedAnswer){
   if (answer[detailedAnswer.detailModel]) {
     if (typeof answer[detailedAnswer.detailModel] === 'object') {
-      detailedAnswer.details = [];
-      detailedAnswer.detailsObject = [];
-      detailedAnswer.detailsFrais = [];
-      detailedAnswer.detailsStructures = [];
       _.forEach(answer[detailedAnswer.detailModel], function(n, key){
         if (n) {
           if (typeof key === 'number') {
             if (answer.listeFrais) {
+              if (!detailedAnswer.detailsFrais) {
+                detailedAnswer.detailsFrais = [];
+              }
               detailedAnswer.detailsFrais.push(n);
             }
             else {
               if (answer.structures) {
+                if (!detailedAnswer.detailsStructures) {
+                  detailedAnswer.detailsStructures = [];
+                }
                 n.contact = n.contact ? 'Oui' : 'Non';
                 detailedAnswer.detailsStructures.push(n);
               }
@@ -185,6 +193,9 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
                   detailedAnswer.detailsEDT.push(n);
                 }
                 else {
+                  if (!detailedAnswer.details) {
+                    detailedAnswer.details = [];
+                  }
                   detailedAnswer.details.push(n)
                 }
               }
@@ -193,10 +204,16 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
           else {
             if (typeof n === 'object') {
               if (n.value) {
+                if (!detailedAnswer.detailsObject) {
+                  detailedAnswer.detailsObject = [];
+                }
                 detailedAnswer.detailsObject.push({'label' : key, 'detail' : n.detail});
               }
             }
             else {
+              if (!detailedAnswer.details) {
+                detailedAnswer.details = [];
+              }
               detailedAnswer.details.push(key);
             }
           }
@@ -221,7 +238,15 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
       detailedAnswer.detailsCV = answer.experiences;
     }
     else {
-      detailedAnswer.detail = answers[detailedAnswer.detailModel];
+      if (answer.etablissements) {
+        _.forEach(answer.etablissements, function(etablissement) {
+          etablissement.date = moment(etablissement.date).format('DD/MM/YYYY');
+        })
+        detailedAnswer.detailsEtablissement = answer.etablissements;
+      }
+      else {
+        detailedAnswer.detail = answers[detailedAnswer.detailModel];
+      }
     }
   }
 }

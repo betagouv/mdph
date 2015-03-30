@@ -107,7 +107,7 @@ module.exports = [
   {
     model: 'etablissement',
     titleDefault: 'Dans quel(s) établissement(s) ?',
-    type:'text'
+    type:'etablissement'
   },
   {
     model: 'typeEtudes',
@@ -130,7 +130,7 @@ module.exports = [
   {
     model: 'diplomeEtablissement',
     titleDefault: 'Dans quel(s) établissement(s) ?',
-    type:'text'
+    type:'etablissement'
   },
   {
     model: 'parcoursEtudes',
