@@ -21,7 +21,7 @@ exports.index = function(req, res) {
   User.find({
     mdph: req.user.mdph
   }, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.send(500, err);
+    if(err) return handleError(req, res, err);
     res.json(users);
   });
 };
@@ -59,7 +59,7 @@ exports.show = function (req, res, next) {
  */
 exports.destroy = function(req, res) {
   User.findById(req.params.id, function(err, user) {
-    if(err) return res.send(500, err);
+    if(err) return handleError(req, res, err);
     if (user) {
       user.remove();
     }
@@ -134,7 +134,7 @@ exports.showNotifications = function(req, res, next) {
   Notification.find({
     user: req.params.id
   }, function (err, notifications) {
-    if(err) return res.send(500, err);
+    if(err) return handleError(req, res, err);
     if(!notifications) { return res.sendStatus(404); }
     return res.json(notifications);
   });
@@ -167,7 +167,7 @@ exports.generateToken = function(req, res, next) {
 
 exports.resetPassword = function(req, res) {
   User.findById(req.params.id, '+newPasswordToken', function(err, user) {
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(req, res, err);
     if (!user) return res.sendStatus(404);
     if (!req.params.secret) return res.sendStatus(400);
     if (req.params.secret !== user.newPasswordToken) return res.sendStatus(400);
@@ -179,3 +179,8 @@ exports.resetPassword = function(req, res) {
     })
   })
 };
+
+function handleError(req, res, err) {
+  req.log.error(err);
+  return res.status(500).send(err);
+}
