@@ -29,7 +29,7 @@ var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
 exports.index = function(req, res) {
 
   Mdph.findById(req.user.mdph, function(err, mdph) {
-    if (err) return handleError(res, err);
+    if (err) return handleError(req, res, err);
     if (!mdph) return res.sendStatus(404);
 
     var search = {
@@ -53,7 +53,7 @@ exports.index = function(req, res) {
       .populate('user', 'name')
       .sort('createdAt')
       .exec(function(err, requests) {
-        if(err) return res.status(500).send(err);
+        if(err) return handleError(req, res, err);
 
         res.set('count', requests.length);
         return res.send(requests);
@@ -67,7 +67,7 @@ exports.show = function(req, res, next) {
     shortId: req.params.shortId
   })
   .exec(function(err, request) {
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(req, res, err);
     if(!request) { return res.sendStatus(404); }
     return res.json(request);
   });
@@ -80,7 +80,7 @@ exports.showPartenaire = function(req, res, next) {
   })
   .populate('user', 'name')
   .exec(function(err, request) {
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(req, res, err);
     if(!request) { return res.sendStatus(404); }
     return res.json(request);
   });
@@ -89,10 +89,10 @@ exports.showPartenaire = function(req, res, next) {
 // Deletes a request from the DB.
 exports.destroy = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if(err) { return handleError(res, err); }
-    if(!request) { return res.sendStatus(404); }
+    if(err) return handleError(req, res, err);
+    if(!request) return res.sendStatus(404);
     request.remove(function(err) {
-      if(err) { return handleError(res, err); }
+      if(err) { return handleError(req, res, err); }
       return res.sendStatus(204);
     });
   });
@@ -109,7 +109,7 @@ exports.showUserRequests = function(req, res, next) {
   .populate('user', 'name')
   .sort('-updatedAt')
   .exec(function(err, requests) {
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(req, res, err);
     if (!requests) return res.json(401);
     res.json(requests);
   });
@@ -131,7 +131,7 @@ var updateIfn = function(request, body, field) {
 
 exports.update = function(req, res, next) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(req, res, err);
     if (!request) return res.sendStatus(404);
 
     if (req.body.html) {
@@ -139,10 +139,10 @@ exports.update = function(req, res, next) {
     }
 
     request
-      .set(_.omit(req.body, 'html', 'user'))
+      .set(_.omit(req.body, 'html', 'user', 'documents'))
       .set('updatedAt', Date.now())
       .save(function (err, result) {
-        if (err) { return handleError(res, err); }
+        if (err) { return handleError(req, res, err); }
         return res.json(result);
       });
   });
@@ -160,7 +160,7 @@ exports.save = function(req, res, next) {
   );
 
   Request.create(newRequest, function(err, request) {
-    if(err) return res.status(500).send(err);
+    if(err) return handleError(req, res, err);
     return res.status(201).send(request);
   });
 };
@@ -172,7 +172,7 @@ exports.saveFile = function (req, res, next) {
   var processingFiles = 0;
 
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(req, res, err);
     if (!request) return res.sendStatus(404);
 
     var busboy = new Busboy({ headers: req.headers });
@@ -208,7 +208,7 @@ exports.saveFile = function (req, res, next) {
 
     // form error (ie fileupload-cancel)
     busboy.on('error', function(err) {
-      res.status(500).send(err);
+      handleError(req, res, err);
     });
 
     var finish = function() {
@@ -236,12 +236,12 @@ exports.saveFile = function (req, res, next) {
         document.partenaire = field.partenaire;
         // Mail
         Partenaire.findById(field.partenaire, function(err, partenaire) {
-          if (err) { res.sendStatus(500); }
+          if (err) { handleError(req, res, err); }
           if (!partenaire) { res.sendStatus(404); }
 
           partenaire.secret = shortid.generate();
           partenaire.save(function(err) {
-            if (err) { return handleError(res, err); }
+            if (err) { return handleError(req, res, err); }
 
             var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
             Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
@@ -254,7 +254,7 @@ exports.saveFile = function (req, res, next) {
       request.documents.push(document);
 
       request.save(function(err, saved) {
-        if (err) { return handleError(res, err); }
+        if (err) { return handleError(req, res, err); }
         res.json(document);
       });
     };
@@ -277,11 +277,11 @@ exports.downloadFile = function(req, res) {
   });
 
   req.on('error', function(err) {
-    res.status(500).send(err);
+    handleError(req, res, err);
   });
 
   readstream.on('error', function (err) {
-    res.status(500).send(err);
+    handleError(req, res, err);
   });
 
   readstream.pipe(res);
@@ -291,7 +291,7 @@ exports.getRecapitulatif = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'inline', function(err, html) {
-      if (err) { res.status(500).send(err); }
+      if (err) { handleError(req, res, err); }
       res.send(html).status(200);
     });
   });
@@ -316,12 +316,13 @@ exports.getPdf = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
-      if (err) { res.status(500).send(err); }
+      if (err) { handleError(req, res, err); }
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
     });
   });
 };
 
-function handleError(res, err) {
+function handleError(req, res, err) {
+  req.log.error(err);
   return res.status(500).send(err);
 }

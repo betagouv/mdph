@@ -39,6 +39,7 @@ var requestLogger = function (req, res, next) {
     };
     logger.info(data, '%s %s %d %dms - %d', data.req.method, data.req.url, data.res.statusCode, data.responseTime, data.contentLength);
   };
+  req.log = logger;
   next();
 };
 
