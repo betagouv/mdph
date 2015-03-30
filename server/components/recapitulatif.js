@@ -148,6 +148,13 @@ var matchAnswersToQuestions = function(question, answer){
         });
       }
     break;
+    case 'emploiDuTemps':
+      answersAndQuestions.push({
+        label: 'Emploi du temps',
+        model: 'emploiDuTemps',
+        detailModel: 'jours'
+      });
+    break;
   }
   return answersAndQuestions;
 }
@@ -171,14 +178,23 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
                 detailedAnswer.detailsStructures.push(n);
               }
               else {
-                detailedAnswer.details.push(n)
+                if (answer.jours) {
+                  if (!detailedAnswer.detailsEDT) {
+                    detailedAnswer.detailsEDT = [];
+                  }
+                  detailedAnswer.detailsEDT.push(n);
+                }
+                else {
+                  detailedAnswer.details.push(n)
+                }
               }
             }
           }
           else {
             if (typeof n === 'object') {
-              if (n.value)
+              if (n.value) {
                 detailedAnswer.detailsObject.push({'label' : key, 'detail' : n.detail});
+              }
             }
             else {
               detailedAnswer.details.push(key);
@@ -190,7 +206,6 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
     else {
       detailedAnswer.detail = answer[detailedAnswer.detailModel];
     }
-
   }
   else {
     if (answer.experiences) {
@@ -261,7 +276,7 @@ exports.answersToHtml = function(request, path, output, next) {
         var answers = request.formAnswers[trajectoire.id];
         if (answers) {
           var toutesQuestions = QuestionsBySections[trajectoire.id];
-          toutesQuestions.forEach(function(question) {
+          _.forEach(toutesQuestions, function(question) {
 
             var answer = answers[question.model];
             if (answer) {

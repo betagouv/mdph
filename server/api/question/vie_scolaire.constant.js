@@ -208,7 +208,7 @@ module.exports = [
     model: 'emploiDuTemps',
     titleDefault: 'Décrivez votre emploi du temps (accompagnement et soins, lieux...)',
     titleRep: 'Décrivez son emploi du temps (accompagnement et soins, lieux...)',
-    type:'text'
+    type:'emploiDuTemps'
   },
   {
     model: 'besoinsScolarite',

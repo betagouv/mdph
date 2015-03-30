@@ -25,226 +25,252 @@ var createFakeAnswers = function(nom, prenom) {
         "prenom": prenom,
         "sexe": "masculin",
         "nationalite": "francaise",
-        "email": "bob@bob.com",
-        "dateNaissance": "1999-12-31T23:00:00.000Z",
+        "dateNaissance": "1989-12-31T23:00:00.000Z",
         "adresse": "3 rue des pommiers",
-        "adresse_complement": "Chez Papa",
-        "code_postal": "90000",
+        "adresse_complement": "",
+        "code_postal": "75000",
         "commune": "Paris",
         "pays": "France"
       },
-      "autorite": {
-        "parent1": {
-          "nom": "Dudu",
-          "prenom": "Papa",
-          "dateNaissance": "1979-12-31T23:00:00.000Z",
-          "adresse": "3 rue des pommiers",
-          "code_postal": "90000",
-          "commune": "Paris",
-          "pays": "France"
-        },
-        "parent2": {
-          "nom": "Dudu",
-          "prenom": "Maman",
-          "dateNaissance": "1969-12-31T23:00:00.000Z",
-          "adresse": "3 rue des pommiers",
-          "code_postal": "80000",
-          "commune": "Paris",
-          "pays": "France"
-        }
-      },
-      "aidantDemarche": [
-        {
-          "nom": "Toto",
-          "prenom": "Titi",
-          "dateNaissance": "1979-12-31T23:00:00.000Z",
-          "adresse": "3 rue des poiriers",
-          "code_postal": "60900",
-          "commune": "Paris",
-          "pays": "France"
-        }
-      ],
       "__completion": true
     },
     "vie_quotidienne": {
-      "famille": "parents",
-      "__lastSref": "departement.demande.vie_quotidienne.vos_attentes.autres_renseignements",
+      "famille": "couple",
       "logement": "domicile",
       "logement_domicile": "parents",
       "aideActuelle": {
-        "financiere": true,
         "technique": true,
         "techniqueDetail": {
-          "animal": true,
           "vehicule": true
         }
       },
-      "aideFinancierePresent": {
-        "chomage": true,
-        "rsa": true
-      },
-      "aideFinancierePasse": {
-        "revenu": false
-      },
-      "retraite": false,
       "fraisHandicap": {
-        "valeur": false,
         "listeFrais": [
           {
             "nom": "Frais 1",
             "frequence": "Fréquence 1",
-            "total": "100",
-            "rembourse": "0",
+            "total": "Montant total 1",
+            "rembourse": "Montant remboursé 1",
             "detail": "Précisions 1"
           },
           {
             "nom": "Frais 2",
             "frequence": "Fréquence 2",
-            "total": "90",
-            "rembourse": "90",
+            "total": "Montant total 2",
+            "rembourse": "Montant remboursé 2",
             "detail": "Précisions 2"
           }
         ]
       },
       "besoinsVie": {
-        "repas": true,
+        "budget": true,
+        "hygiene": true,
         "habits": true
       },
       "besoinsDeplacement": {
-        "intraDomicile": true,
-        "accesDomicile": true,
-        "public": true
+        "public": true,
+        "conduite": true,
+        "transports": true
       },
-      "besoinsTransports": true,
+      "besoinsTransports": false,
       "besoinsSocial": {
-        "loisirs": true,
-        "proches": true
+        "famille": true,
+        "proches": true,
+        "loisirs": true
       },
       "attentesTypeAide": {
-        "bilan": true,
-        "mobilite": true,
         "accompagement": true,
-        "materiel": true
+        "mobilite": true,
+        "financierMinimum": true
       },
       "structures": {
-        "valeur": false,
         "structures": [
           {
             "name": "",
             "contact": false
           }
-        ]
+        ],
+        "valeur": false
       },
       "autresRenseignements": "azertyuiop",
       "__completion": true
     },
+    "situations_particulieres": {
+      "urgences": {
+        "ecole": true,
+        "hospitalisation": true
+      },
+      "hospitalisationDetail": "aaaa",
+      "ecoleDetail": "zzzz",
+      "__completion": true
+    },
     "vie_scolaire": {
       "condition": true,
-      "__lastSref": "departement.demande.vie_scolaire.vos_attentes.autres_renseignements",
-      "vieScolaireType": "etablissementPartiel",
-      "etablissement": {
-        "valeur": false,
-        "etablissements": [
-          {
-            "nom": "Boko",
-            "rue": "^kp",
-            "ville": "pookpo",
-            "date": "1991-11-30T23:00:00.000Z"
-          }
-        ]
-      },
-      "typeEtudes": "qsdfgjklm",
-      "diplomePasse": "azekozpdj paoùâkaz",
-      "diplomePresent": "azpodjzo^d",
-      "diplomeEtablissement": {
-        "valeur": false,
-        "etablissements": [
-          {
-            "nom": "aze",
-            "rue": "zopep",
-            "ville": "zea",
-            "date": "2012-12-31T23:00:00.000Z"
-          }
-        ]
-      },
-      "parcoursEtudes": "zahiaz",
-      "accompagnement": {
-        "hopital": true
-      },
-      "adaptation": {
-        "communication": true,
-        "informatique": true
-      },
-      "emploiDuTemps": {
-        "valeur": false,
-        "jours": {
-          "Lundi": {
-            "matin": "Coucou",
-            "midi": "Coucou2",
-            "aprem": "Coucou3"
-          },
-          "Mardi": {
-            "matin": "Coucou4",
-            "midi": "Coucou5",
-            "aprem": "Coucou6"
-          },
-          "Mercredi": {
-            "matin": "Coucou7",
-            "midi": "Coucou8",
-            "aprem": "Coucou9"
-          },
-          "Jeudi": {
-            "matin": "Coucou10",
-            "midi": "Coucou11",
-            "aprem": "Coucou12"
-          },
-          "Vendredi": {
-            "matin": "Coucou13",
-            "midi": "Coucou14",
-            "aprem": "Coucou15"
-          },
-          "Samedi": {
-            "matin": "Coucou16",
-            "midi": "Coucou17",
-            "aprem": "Coucou18"
-          }
-        }
-      },
+      "vieScolaireType": "ordinaire",
       "besoinsScolarite": {
-        "calculer": true
+        "calculer": true,
+        "comprendre": true
       },
       "besoinsCommunication": {
-        "securite": true
+        "relation": true
       },
       "besoinsEntretien": {
-        "repas": true
+        "sante": true,
+        "repas": true,
+        "habiller": true
       },
       "besoinsDeplacement": {
         "extraLocaux": true,
-        "transports": true,
-        "intraLocaux": true,
-        "autre": true
+        "transports": true
       },
-      "besoinsEntretienAutre": "Coucou",
       "attentesVieScolaire": {
+        "aideHumaine": true,
         "aideMateriel": true,
         "readaptation": true,
         "etablissementSansHebergement": true
       },
-      "structures": {
-        "valeur": true,
+      "structure": {
         "structures": [
           {
-            "name": "Structure 1",
-            "contact": true
-          },
-          {
-            "name": "Structure 2",
+            "name": "",
             "contact": false
+          }
+        ],
+        "valeur": false
+      },
+      "autresRenseignements": "hiohio",
+      "__completion": true,
+      "etablissement": {
+        "valeur": false,
+        "etablissements": [
+          {
+            "nom": "Etablissement 1",
+            "rue": "Rue 1",
+            "ville": "Ville 1",
+            "date": "2009-12-31T23:00:00.000Z"
           }
         ]
       },
-      "autresRenseignements": "aspo",
+      "typeEtudes": "ezr",
+      "diplomePasse": "zer",
+      "diplomePresent": "zetrfecds",
+      "diplomeEtablissement": {
+        "valeur": false,
+        "etablissements": [
+          {
+            "nom": "Etablissement 2",
+            "rue": "Rue 2",
+            "ville": "Ville 2",
+            "date": "2009-12-31T23:00:00.000Z"
+          },
+          {
+            "nom": "Etablissement 3",
+            "rue": "Rue 3",
+            "ville": "Ville 3",
+            "date": "2013-12-31T23:00:00.000Z"
+          }
+        ]
+      },
+      "parcoursEtudes": "efsdwx",
+      "accompagnement": {
+        "liberal": true,
+        "hopital": false
+      },
+      "adaptation": {
+        "communication": true,
+        "informatique": true,
+        "audition": true
+      },
+      "emploiDuTemps": {
+        "jours": [
+          {
+            "jour": "Lundi",
+            "matin": "1",
+            "midi": "2",
+            "aprem": "3"
+          },
+          {
+            "jour": "Mardi",
+            "matin": "4",
+            "midi": "5",
+            "aprem": "6"
+          },
+          {
+            "jour": "Mercredi",
+            "matin": "7",
+            "midi": "8",
+            "aprem": "9"
+          },
+          {
+            "jour": "Jeudi",
+            "matin": "10",
+            "midi": "11",
+            "aprem": "12"
+          },
+          {
+            "jour": "Vendredi",
+            "matin": "13",
+            "midi": "14",
+            "aprem": "15"
+          },
+          {
+            "jour": "Samedi",
+            "matin": "16",
+            "midi": "17",
+            "aprem": "18"
+          }
+        ]
+      }
+    },
+    "vie_au_travail": {
+      "conditionTravail": false,
+      "passe": false,
+      "situationSansEmploi": {
+        "etudiant": true
+      },
+      "etudiantDetail": "klnùùml",
+      "situationAccompagnement": {
+        "poleEmploi": true,
+        "capEmploi": true
+      },
+      "prestations": {
+        "fiphfp": true
+      },
+      "rqth": false,
+      "cv": {
+        "experiences": [
+          {
+            "intitule": "Expérience 1",
+            "employeur": "Entreprise 1",
+            "contrat": "CDI",
+            "debut": "2011-12-31T23:00:00.000Z",
+            "fin": "2013-12-30T23:00:00.000Z",
+            "motif": "Motif 1"
+          },
+          {
+            "intitule": "Expérience 2",
+            "employeur": "Entreprise 2",
+            "contrat": "CDI",
+            "debut": "2013-12-31T23:00:00.000Z",
+            "motif": "Motif 2"
+          }
+        ]
+      },
+      "description": false,
+      "besoinSoutien": {
+        "precisions": true,
+        "environnement": true
+      },
+      "structures": {
+        "structures": [
+          {
+            "name": "",
+            "contact": false
+          }
+        ],
+        "valeur": false
+      },
+      "autresRenseignements": "fgbhjn,k",
       "__completion": true
     }
   }

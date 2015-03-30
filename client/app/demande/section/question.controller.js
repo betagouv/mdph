@@ -208,7 +208,6 @@ angular.module('impactApp')
         jours: []
       };
       _.forEach($scope.jours, function(jour){
-        debugger;
         $scope.sectionModel[$scope.currentModel].jours.push({
           jour : jour,
           matin: '',
