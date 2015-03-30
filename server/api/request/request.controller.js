@@ -3,21 +3,23 @@
 var _ = require('lodash');
 var path = require('path');
 var superagent = require('superagent');
-var auth = require('../../auth/auth.service');
-var config = require('../../config/environment');
-var Request = require('./request.model');
-var User = require('../user/user.model');
-var Partenaire = require('../partenaire/partenaire.model');
-var Mdph = require('../mdph/mdph.model');
-var Mailer = require('../send-mail/send-mail.controller');
-var Flattener = require('../../components/flatten');
-var Recapitulatif = require('../../components/recapitulatif');
 var wkhtmltopdf = require('wkhtmltopdf');
 var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var Busboy = require('busboy');
 var shortid = require('shortid');
+
+var auth = require('../../auth/auth.service');
+var config = require('../../config/environment');
+var Flattener = require('../../components/flatten');
+var Recapitulatif = require('../../components/recapitulatif');
+
+var Request = require('./request.model');
+var User = require('../user/user.model');
+var Partenaire = require('../partenaire/partenaire.model');
+var Mdph = require('../mdph/mdph.model');
+var Mailer = require('../send-mail/send-mail.controller');
 
 var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
 

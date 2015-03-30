@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-exports.all = [
+module.exports = [
   {
     model: 'urgences',
     titleDefault: 'Vous trouvez-vous dans une des situations suivantes ?',

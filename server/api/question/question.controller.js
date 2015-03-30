@@ -3,31 +3,37 @@
 var moment = require('moment');
 var _ = require('lodash');
 
-var Sections = require('./sections.constant');
+var sections = require('../sections/sections.constant').all;
 
-var VieQuotidienne = require('./vie_quotidienne.constant');
-var VieScolaire = require('./vie_scolaire.constant');
-var VieAuTravail = require('./vie_au_travail.constant');
-var SituationsParticulieres = require('./situations_particulieres.constant');
-var Renouvellement = require('./renouvellement.constant');
-var Identite = require('./identite.constant');
-var Autorite = require('./autorite.constant');
-var ContactPartenaire = require('./contact_partenaire.constant');
-var Aidant = require('./aidant.constant');
+var vieQuotidienne = require('./vie_quotidienne.constant');
+var vieScolaire = require('./vie_scolaire.constant');
+var vieAuTravail = require('./vie_au_travail.constant');
+var situationsParticulieres = require('./situations_particulieres.constant');
+var renouvellement = require('./renouvellement.constant');
+var aidant = require('./aidant.constant');
+
+function index(questions) {
+  return _.indexBy(questions, 'model');
+}
+
+function linkSectionsQuestions(sections, questionsBySections) {
+  sections.forEach(function(section) {
+    section.questions =  questionsBySections[section.id];
+  });
+
+  return sections;
+}
 
 var questionsBySections = {
-  'vie_quotidienne': VieQuotidienne.all,
-  'vie_scolaire': VieScolaire.all,
-  'vie_au_travail': VieAuTravail.all,
-  'situations_particulieres': SituationsParticulieres.all,
-  renouvellement: Renouvellement.all,
-  identites: Identite.all,
-  autorite: Autorite.all,
-  'contact_partenaire': ContactPartenaire.all,
-  aidant: Aidant.all
+  'vie_quotidienne': index(vieQuotidienne),
+  'vie_scolaire': index(vieScolaire),
+  'vie_au_travail': index(vieAuTravail),
+  'situations_particulieres': index(situationsParticulieres),
+  'renouvellement': index(renouvellement),
+  'aidant': index(aidant)
 };
 
-exports.questionsBySections = questionsBySections;
+var sectionsWithQuestions = linkSectionsQuestions(sections, questionsBySections);
 
 exports.show = function(req, res) {
   var questions = questionsBySections[req.params.sectionId];
@@ -35,5 +41,7 @@ exports.show = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  return res.json(Sections.all);
+  return res.json(sectionsWithQuestions);
 }
+
+exports.questionsBySections = questionsBySections;

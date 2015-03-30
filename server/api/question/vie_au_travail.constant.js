@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-exports.all = [
+module.exports = [
   {
     model: 'conditionTravail',
     neededForAdmin: true,

@@ -2,10 +2,9 @@
 
 /* jshint multistr: true */
 
-exports.all = [
+module.exports = [
   {
     model: 'famille',
-    neededForAdmin: true,
     titleDefault: 'Vous vivez',
     titleRep: '<%= pronoun %> vit',
     type: 'radio',
@@ -53,7 +52,6 @@ exports.all = [
   },
   {
     model: 'logement',
-    neededForAdmin: true,
     titleDefault: 'Où vivez-vous ?',
     titleRep: 'Où vit-<%= pronoun %> ?',
     type: 'radio',
@@ -251,7 +249,6 @@ exports.all = [
   },
   {
     model: 'besoinsVie',
-    neededForAdmin: true,
     titleDefault: 'Vous avez besoin d\'aide dans votre vie quotidienne :',
     titleRep: '<%= pronoun %> a besoin d\'aide dans sa vie quotidienne :',
     type: 'checkbox',
@@ -304,7 +301,6 @@ exports.all = [
   },
   {
     model: 'besoinsDeplacement',
-    neededForAdmin: true,
     titleDefault: 'Vous avez besoin d\'aide pour vous déplacer :',
     titleRep: '<%= pronoun %> a besoin d\'aide pour se déplacer :',
     type: 'checkbox',
@@ -320,7 +316,6 @@ exports.all = [
   },
   {
     model: 'besoinsTransports',
-    neededForAdmin: true,
     titleDefault: 'Utilisez-vous les transports adaptés proposés localement pour vous déplacer ?',
     titleRep: 'Utilise-t-<%= pronoun %> les transports adaptés proposés localement pour se déplacer ?',
     type: 'radio',
@@ -337,7 +332,6 @@ exports.all = [
   },
   {
     model: 'besoinsSocial',
-    neededForAdmin: true,
     type: 'checkbox',
     titleDefault: 'Vous avez besoin d\'aide pour votre vie sociale :',
     titleRep: '<%= pronoun %> a besoin d\'aide pour sa vie sociale :',
@@ -370,7 +364,6 @@ exports.all = [
   },
   {
     model: 'attentesTypeAide',
-    neededForAdmin: true,
     type: 'checkbox',
     titleDefault: 'Quelles sont vos attentes pour compenser votre handicap ?',
     titleRep: 'Quelles sont ses attentes pour compenser son handicap ?',

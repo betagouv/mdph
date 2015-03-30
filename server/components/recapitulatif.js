@@ -10,7 +10,7 @@ var async = require('async');
 var moment = require('moment');
 var mustache = require('mustache');
 
-var Sections = require('../api/question/sections.constant');
+var Sections = require('../api/sections/sections.constant');
 var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
 
 var questionToHtml = function(answer, question, sectionId, request) {

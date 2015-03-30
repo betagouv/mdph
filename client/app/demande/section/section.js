@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('SectionUtils', function SectionUtils($http) {
+  .factory('SectionUtils', function SectionUtils() {
     return {
       resolveSaveSection: function(sectionModel, updateRequest) {
         return function() {
@@ -14,13 +14,6 @@ angular.module('impactApp')
             request.formAnswers[section.id] = {};
           }
           return request.formAnswers[section.id];
-      },
-      findSection: function(sections, sectionId) {
-        var section = _.find(sections, {id: sectionId});
-        return $http.get('api/questions/' + sectionId).then(function(result) {
-          section.questions = _.indexBy(result.data, 'model');
-          return section;
-        });
       }
     };
   })
@@ -33,7 +26,7 @@ angular.module('impactApp')
         controller: 'IdentitesCtrl',
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'identites');
+            return _.find(sections, {id: 'identites'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -49,7 +42,7 @@ angular.module('impactApp')
         controller: 'FormSectionCtrl',
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'autorite');
+            return _.find(sections, {id: 'autorite'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -66,7 +59,7 @@ angular.module('impactApp')
         abstract: true,
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'vie_quotidienne');
+            return _.find(sections, {id: 'vie_quotidienne'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -83,7 +76,7 @@ angular.module('impactApp')
         abstract: true,
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'vie_scolaire');
+            return _.find(sections, {id: 'vie_scolaire'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -100,7 +93,7 @@ angular.module('impactApp')
         abstract: true,
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'vie_au_travail');
+            return _.find(sections, {id: 'vie_au_travail'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -117,7 +110,7 @@ angular.module('impactApp')
         abstract: true,
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'renouvellement');
+            return _.find(sections, {id: 'renouvellement'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -134,23 +127,7 @@ angular.module('impactApp')
         abstract: true,
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'aidant');
-          },
-          sectionModel: function(SectionUtils, request, section) {
-            return SectionUtils.resolveSectionModel(request, section);
-          },
-          saveSection: function(SectionUtils, sectionModel, updateRequest) {
-            return SectionUtils.resolveSaveSection(sectionModel, updateRequest);
-          }
-        }
-      })
-      .state('departement.demande.contact_partenaire', {
-        url: '/contact_partenaire',
-        templateUrl: 'app/demande/section/contact_partenaire/contact_partenaire.html',
-        controller: 'FormSectionCtrl',
-        resolve: {
-          section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'contact_partenaire');
+            return _.find(sections, {id: 'aidant'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -167,7 +144,7 @@ angular.module('impactApp')
         abstract: true,
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'situations_particulieres');
+            return _.find(sections, {id: 'situations_particulieres'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
@@ -183,7 +160,7 @@ angular.module('impactApp')
         controller: 'DocumentsCtrl',
         resolve: {
           section: function(SectionUtils, sections) {
-            return SectionUtils.findSection(sections, 'documents');
+            return _.find(sections, {id: 'documents'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);

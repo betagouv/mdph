@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-exports.all = [
+module.exports = [
   {
     model: 'condition',
     titleDefault: 'Votre aidant familial souhaite-t-il s\'exprimer ?',
