@@ -22,7 +22,8 @@ var RequestSchema = new Schema({
   status:         { type: String, enum: ['en_cours', 'emise', 'a_completer', 'evaluation', 'reponse'], default: 'en_cours' },
   formAnswers:    Schema.Types.Mixed,
   prestations:    [{ type: String }],
-  certificat:     Schema.Types.Mixed
+  certificat:     Schema.Types.Mixed,
+  synthese:       Schema.Types.Mixed
 });
 
 module.exports = mongoose.model('Request', RequestSchema);

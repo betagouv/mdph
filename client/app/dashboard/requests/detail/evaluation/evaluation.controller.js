@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function ($scope, $modal, sections, GevaService, prestations) {
+  .controller('RequestEvaluationCtrl', function ($scope, $modal, sections, GevaService, prestations, request) {
     $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
 
@@ -9,33 +9,50 @@ angular.module('impactApp')
       $modal.open({
         templateUrl: 'app/dashboard/requests/detail/evaluation/synthese.html',
         controller: 'ModalSyntheseCtrl',
+        size: 'lg',
         resolve: {
           prestations: function () {
             return prestations;
+          },
+          request : function () {
+            return request;
           }
         }
       });
     };
   })
-  .controller('ModalSyntheseCtrl', function ($scope, $modalInstance, prestations) {
+  .controller('ModalSyntheseCtrl', function ($scope, $modalInstance, prestations, request) {
     $scope.prestations = prestations;
-    $scope.prestaDemande = [
-      {
-        label: '',
-        eligibilite: '',
-        motivation: ''
-      }
-    ];
-    $scope.prestaAutre = [
-      {
-        label: '',
-        motivation: ''
-      }
-    ];
-    $scope.preconisations = '';
+    if (!request.synthese) {
+      request.synthese = {};
+    }
+    $scope.synthese = request.synthese;
+    if (!$scope.synthese.prestaDemande) {
+      $scope.synthese.prestaDemande = [
+        {
+          label: '',
+          motivation: ''
+        }
+      ];
+    }
+
+    if (!$scope.synthese.prestaAutre) {
+      $scope.synthese.prestaAutre = [
+        {
+          label: '',
+          motivation: ''
+        }
+      ];
+    }
+
+    if (!$scope.synthese.preconisations) {
+      $scope.synthese.preconisations = '';
+    }
+
+
 
     $scope.ajouterPrestaDemande = function(){
-      $scope.prestaDemande.push({
+      $scope.synthese.prestaDemande.push({
         label: '',
         eligibilite: '',
         motivation: ''
@@ -48,13 +65,15 @@ angular.module('impactApp')
     };
 
     $scope.ajouterPrestaAutre = function(){
-      $scope.prestaAutre.push({
+      $scope.synthese.prestaAutre.push({
         label: '',
         motivation: ''
       });
     };
 
     $scope.ok = function() {
+      request.synthese = $scope.synthese;
+      request.$update();
       $modalInstance.close();
     };
   });

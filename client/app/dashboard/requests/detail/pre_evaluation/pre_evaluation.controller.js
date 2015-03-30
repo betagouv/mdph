@@ -17,10 +17,10 @@ angular.module('impactApp')
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
     $scope.toutesPrestations = prestations;
 
-    var familleAnswers = _.indexBy(vieQuotidienne[0].answers, 'model');
+    var familleAnswers = _.indexBy(vieQuotidienne.famille.answers, 'model');
     var situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];
 
-    var logementAnswers = _.indexBy(vieQuotidienne[1].answers, 'model');
+    var logementAnswers = _.indexBy(vieQuotidienne.logement.answers, 'model');
     var situationLogement = logementAnswers[request.formAnswers.vie_quotidienne.logement];
 
     if (situationFamiliale) {
