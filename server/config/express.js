@@ -6,7 +6,6 @@
 
 var express = require('express');
 var favicon = require('serve-favicon');
-var morgan = require('morgan');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -15,6 +14,38 @@ var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
+var bunyan = require('bunyan');
+
+var logger = bunyan.createLogger({
+  name: 'impact-dev',
+  streams: [
+    { stream: process.stdout }
+  ],
+  serializers: bunyan.stdSerializers
+});
+
+var requestLogger = function (req, res, next) {
+  var start = new Date();
+  var end = res.end;
+  res.end = function (chunk, encoding) {
+    var responseTime = (new Date()).getTime() - start.getTime();
+    end.call(res, chunk, encoding);
+    var contentLength = parseInt(res.getHeader('Content-Length'), 10);
+    var data = {
+      res: res,
+      req: req,
+      responseTime: responseTime,
+      contentLength: isNaN(contentLength) ? 0 : contentLength
+    };
+    logger.info(data, '%s %s %d %dms - %d', data.req.method, data.req.url, data.res.statusCode, data.responseTime, data.contentLength);
+  };
+  next();
+};
+
+var errorLogger = function (err, req, res, next) {
+  logger.error({ req: req, res: res, error: err }, err.stack);
+  next(err);
+};
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -33,7 +64,7 @@ module.exports = function(app) {
     app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'dist')));
     app.set('appPath', config.root + '/dist');
-    app.use(morgan('dev'));
+    app.use(requestLogger);
   }
 
   if ('development' === env || 'test' === env) {
@@ -41,7 +72,7 @@ module.exports = function(app) {
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.join(config.root, 'client')));
     app.set('appPath', config.root + '/client');
-    app.use(morgan('dev'));
+    app.use(requestLogger);
     app.use(errorHandler()); // Error handler - has to be last
   }
 

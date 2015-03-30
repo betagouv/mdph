@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var _ = require('lodash');
+var spawn = require('child_process').spawn;
 
 function loadConfig(path) {
   var config = {};
@@ -61,6 +62,21 @@ module.exports = function (grunt) {
     this.async();
   });
 
+  grunt.registerTask('bunyan', function () {
+    var path = './node_modules/bunyan/bin/bunyan';
+    if (!fs.existsSync(path)) {
+        throw new Error('bundle binary not found');
+    }
+
+    var child = spawn(path, [], {
+        stdio: ['pipe', process.stdout, process.stderr]
+    });
+
+    process.stdout.write = function () {
+        child.stdin.write.apply(child.stdin, arguments);
+    };
+  });
+
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
@@ -74,6 +90,7 @@ module.exports = function (grunt) {
       'injector',
       'wiredep',
       'autoprefixer',
+      'bunyan',
       'express:dev',
       'wait',
       'open',
