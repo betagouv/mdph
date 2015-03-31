@@ -65,15 +65,15 @@ module.exports = function (grunt) {
   grunt.registerTask('bunyan', function () {
     var path = './node_modules/bunyan/bin/bunyan';
     if (!fs.existsSync(path)) {
-        throw new Error('bundle binary not found');
+      throw new Error('bundle binary not found');
     }
 
-    var child = spawn(path, [], {
-        stdio: ['pipe', process.stdout, process.stderr]
+    var child = spawn(path, ['-oshort'], {
+      stdio: ['pipe', process.stdout, process.stderr]
     });
 
     process.stdout.write = function () {
-        child.stdin.write.apply(child.stdin, arguments);
+      child.stdin.write.apply(child.stdin, arguments);
     };
   });
 
@@ -90,7 +90,6 @@ module.exports = function (grunt) {
       'injector',
       'wiredep',
       'autoprefixer',
-      'bunyan',
       'express:dev',
       'wait',
       'open',
