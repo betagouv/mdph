@@ -1,0 +1,21 @@
+<div class="section">
+  <h2>Synthèse de l'évaluation</h2>
+  <h3>Prestations demandées</h3>
+  <div class="question">
+    {{#prestaDemande}}
+      {{>prestaDemande}}
+    {{/prestaDemande}}
+  </div>
+
+  <h3>Prestations suggérées</h3>
+  <div class="question">
+    {{#prestaAutre}}
+      {{>prestaAutre}}
+    {{/prestaAutre}}
+  </div>
+
+  <h3>Préconisations</h3>
+  <div class="question">
+    <div>{{preconisations}}</div>
+  </div>
+</div>

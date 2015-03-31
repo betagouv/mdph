@@ -25,24 +25,41 @@ var formatDateNaissance = function(identite) {
   }
 }
 
-exports.answersToHtml = function(request, path, output, next) {
+exports.answersToHtml = function (request, path, output, next) {
   async.series({
-    syntheseTemplate: function(callback){
+    syntheseTemplate: function (callback) {
       readFile('pdfSynthese.html', callback);
     },
-    identites: function(callback){
+    identites: function (callback) {
       readFile('identites.html', callback);
     },
-    identite: function(callback){
+    identite: function (callback) {
       readFile('identite.html', callback);
     },
-    autorite: function(callback){
+    autorite: function (callback) {
       readFile('autorite.html', callback);
     },
-    aidantDemarche: function(callback){
+    aidantDemarche: function (callback) {
       readFile('aidantDemarche.html', callback);
     },
-    requestInformations: function(callback){
+    reponses: function (callback) {
+      readFile('reponses.html', callback);
+    },
+    prestaDemande: function (callback) {
+      readFile('prestaDemande.html', callback);
+    },
+    prestaAutre: function (callback) {
+      readFile('prestaAutre.html', callback);
+    },
+    synthese: function (callback) {
+      if (!request.synthese) {
+        callback(null, []);
+      }
+
+      var synthese = request.synthese;
+      callback(null, synthese);
+    },
+    requestInformations: function (callback) {
       if (!request.formAnswers) {
         callback(null, []);
       }
@@ -68,13 +85,12 @@ exports.answersToHtml = function(request, path, output, next) {
               }
             );
           }
-
         }
       });
 
       callback(null, informations);
     },
-    requestIdentites: function(callback) {
+    requestIdentites: function (callback) {
       if (!request.formAnswers) {
         callback(null, []);
       }
@@ -88,7 +104,7 @@ exports.answersToHtml = function(request, path, output, next) {
 
       callback(null, identites);
     },
-    informations: function(callback){
+    informations: function (callback){
       readFile('informations.html', callback);
     },
   },
@@ -98,7 +114,7 @@ exports.answersToHtml = function(request, path, output, next) {
     var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'requestInformations');
     var html = mustache.render(
       results.syntheseTemplate,
-      {path: path, identites: results.requestIdentites, informations: results.requestInformations},
+      {path: path, identites: results.requestIdentites, informations: results.requestInformations, reponses: results.synthese},
       subTemplates
     );
     next(null, html);
