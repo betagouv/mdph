@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $sessionStorage, $localStorage, $timeout, $state, User, Notification) {
+  .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth, $sessionStorage, $localStorage, $timeout, $state, User, Notification) {
     $scope.menu = [
     {
       'title': 'Accueil',
@@ -12,18 +12,24 @@ angular.module('impactApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.isAdminMdph = Auth.isAdminMdph;
-    $scope.user = Auth.getCurrentUser();
     $scope.$storage = $localStorage;
     $scope.notifications = [];
-
     $scope.showNotifications = false;
+    $scope.getCurrentUser = Auth.getCurrentUser;
 
-    if ($scope.user.$promise) {
-      $scope.user.$promise.then(function(data) {
-        User.queryNotifications({id: data._id}, function(notifications) {
-           $scope.notifications = notifications;
-        });
+    function queryNotifications(user) {
+      User.queryNotifications({id: user._id}, function(notifications) {
+         $scope.notifications = notifications;
       });
+    }
+
+    var user = $scope.getCurrentUser();
+    if (user.$resolved === false) {
+      Auth.getCurrentUser().$promise.then(function(data) {
+        queryNotifications(data);
+      });
+    } else {
+      queryNotifications(user);
     }
 
     angular.element(document).ready(function() {

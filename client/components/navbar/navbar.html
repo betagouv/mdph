@@ -31,7 +31,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="signup" title="S'inscrire">Inscription</a></li>
           <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="login" title="Se connecter">Connexion</a></li>
-          <li role="menuitem" ng-if="isLoggedIn()"><p class="navbar-text">Bonjour, {{ user.name }}</p> </li>
+          <li role="menuitem" ng-if="isLoggedIn()"><p class="navbar-text">Bonjour, {{ getCurrentUser().name }}</p> </li>
           <li role="menuitem" ng-if="isLoggedIn() && !isAdminMdph()" ui-sref-active="active">
             <a ui-sref="espace_perso.mon_compte" title="Mon espace perso">
               <span class="sr-only">Mon espace perso</span>

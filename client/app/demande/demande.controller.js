@@ -11,7 +11,6 @@ angular.module('impactApp')
     $scope.sectionsComplements = _.filter(sections, {section: 'complements'});
     $scope.sectionsDocuments = _.filter(sections, {section: 'documents'});
 
-
     var login = function (next) {
       $modal.open({
         templateUrl: 'components/modal/login.html',
