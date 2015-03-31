@@ -62,7 +62,6 @@ angular.module('impactApp')
 
         return User.save(user,
           function(data) {
-            $rootScope.$broadcast('user-change', user);
             $cookieStore.put('token', data.token);
             currentUser = User.get();
             return cb(user);
