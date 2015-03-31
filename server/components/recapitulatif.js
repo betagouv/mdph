@@ -324,6 +324,12 @@ exports.answersToHtml = function(request, path, output, next) {
       });
 
       callback(null, trajectoires);
+    },
+    mdph: function (callback) {
+      if (!request.mdph) {
+        callback(null, []);
+      }
+      callback(null, request.mdph);
     }
   },
   function(err, results){
@@ -332,7 +338,7 @@ exports.answersToHtml = function(request, path, output, next) {
     var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires', 'requestIdentites');
     var html = mustache.render(
       results.answersTemplate,
-      {path: path, sections: results.trajectoires, identites: results.requestIdentites},
+      {path: path, sections: results.trajectoires, identites: results.requestIdentites, mdph: results.mdph},
       subTemplates
     );
     next(null, html);

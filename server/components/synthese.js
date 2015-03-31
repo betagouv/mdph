@@ -107,6 +107,12 @@ exports.answersToHtml = function (request, path, output, next) {
     informations: function (callback){
       readFile('informations.html', callback);
     },
+    mdph: function (callback) {
+      if (!request.mdph) {
+        callback(null, []);
+      }
+      callback(null, request.mdph);
+    }
   },
   function(err, results){
     if (err) { next(err); }
@@ -114,7 +120,7 @@ exports.answersToHtml = function (request, path, output, next) {
     var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'requestInformations');
     var html = mustache.render(
       results.syntheseTemplate,
-      {path: path, identites: results.requestIdentites, informations: results.requestInformations, reponses: results.synthese},
+      {path: path, identites: results.requestIdentites, informations: results.requestInformations, reponses: results.synthese, mdph: results.mdph},
       subTemplates
     );
     next(null, html);
