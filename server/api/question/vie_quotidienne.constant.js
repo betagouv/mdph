@@ -62,14 +62,14 @@ module.exports = [
         model: 'independant', // TODO a verifier onlyAdult: true,
         detailUrl: 'components/detail/independant.html',
         detailModel: 'logement_independant',
-        labelRecap: 'Un logement indépendant',
+        labelRecap: 'Dans un logement indépendant',
         onlyAdult: true
       },
       {
         label: 'Vous vivez dans un établissement médico-social ou ordinaire',
         labelRep: '<%= pronoun %> vit dans un établissement médico-social ou ordinaire',
         model: 'etablissement',
-        labelRecap: 'Un établissement médico-social ou ordinaire',
+        labelRecap: 'Dans un établissement médico-social ou ordinaire',
         detailUrl: 'components/detail/precisez.html',
         detailModel: 'logement_etablissement'
       },
@@ -77,7 +77,7 @@ module.exports = [
         label: 'Vous êtes hébergé(e) au domicile',
         labelRep: '<%= pronoun %> est hébergé<%= fem %> au domicile',
         model: 'domicile',
-        labelRecap: 'Le domicile d\'une autre personne',
+        labelRecap: 'Au domicile d\'une autre personne',
         detailUrl: 'components/detail/domicile.html',
         detailModel: 'logement_domicile'
       },

@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function ($scope, $modal, sections, GevaService, prestations, request) {
+  .controller('RequestEvaluationCtrl', function ($scope, $modal, $cookieStore, sections, GevaService, prestations, request) {
     $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
+    $scope.request = request;
+    $scope.token = $cookieStore.get('token');
+
+    $scope.autoriserTelechargement = function () {
+      return !request.synthese ? true : false;
+    };
 
     $scope.afficherSynthese = function () {
       $modal.open({

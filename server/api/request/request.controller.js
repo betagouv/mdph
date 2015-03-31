@@ -14,6 +14,7 @@ var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var Flattener = require('../../components/flatten');
 var Recapitulatif = require('../../components/recapitulatif');
+var Synthese = require('../../components/synthese');
 
 var Request = require('./request.model');
 var User = require('../user/user.model');
@@ -316,6 +317,16 @@ exports.getPdf = function(req, res) {
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
+      if (err) { handleError(req, res, err); }
+      wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
+    });
+  });
+};
+
+exports.getSynthesePdf = function (req, res) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if (!request) return res.sendStatus(404);
+    Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
       if (err) { handleError(req, res, err); }
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
     });
