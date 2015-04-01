@@ -14,7 +14,7 @@ var Sections = require('../api/sections/sections.constant');
 var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
 
 var readFile = function(name, callback) {
-  fs.readFile(path.join(__dirname, 'synthese_templates', name), function (err, html) {
+  fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
     callback(err, String(html));
   });
 }
