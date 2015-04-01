@@ -14,8 +14,8 @@ function linkSectionsQuestions(sections, questionsBySections) {
 }
 
 exports.show = function(req, res) {
-  var questions = _.indexBy(questions[req.params.sectionId], 'model');
-  return res.json(questions);
+  var sectionQuestions = _.indexBy(questions[req.params.sectionId], 'model');
+  return res.json(sectionQuestions);
 };
 
 exports.index = function(req, res) {
