@@ -275,6 +275,21 @@ exports.answersToHtml = function(request, path, output, next) {
     question: function(callback){
       readFile('question.html', callback);
     },
+    detailsFrais: function (callback) {
+      readFile('detailsFrais.html', callback);
+    },
+    detailsStructures: function (callback) {
+      readFile('detailsStructures.html', callback);
+    },
+    detailsEtablissement: function (callback) {
+      readFile('detailsEtablissement.html', callback);
+    },
+    detailsEDT: function (callback) {
+      readFile('detailsEDT.html', callback);
+    },
+    detailsCV: function (callback) {
+      readFile('detailsCV.html', callback);
+    },
     aidantDemarche: function(callback){
       readFile('aidantDemarche.html', callback);
     },

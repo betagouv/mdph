@@ -12,55 +12,31 @@
         {{#details}}
           <li>{{.}}</li>
         {{/details}}
+
         {{#detailsObject}}
           <li>{{label}} : {{detail}}</li>
         {{/detailsObject}}
+
         {{#detailsFrais}}
-          <li> Frais :
-            <ul>
-              <li>Nom : {{nom}}</li>
-              <li>Fréquence : {{frequence}}</li>
-              <li>Total : {{total}}</li>
-              <li>Remboursé : {{rembourse}}</li>
-              <li>Précisions : {{detail}}</li>
-            </ul>
-          </li>
+          {{>detailsFrais}}
         {{/detailsFrais}}
+
         {{#detailsCV}}
-          <li> Expérience :
-            <ul>
-              <li>Intitulé : {{intitule}}</li>
-              <li>Employeur : {{employeur}}</li>
-              <li>Date de début : {{debut}}</li>
-              <li>Date de fin : {{fin}}</li>
-              <li>Motif de fin d'activité : {{motif}}</li>
-            </ul>
-          </li>
+          {{>detailsCV}}
         {{/detailsCV}}
+
         {{#detailsEDT}}
-          <li> {{jour}}
-            <ul>
-              <li>Matin : {{matin}}</li>
-              <li>Midi : {{midi}}</li>
-              <li>Après-midi : {{aprem}}</li>
-            </ul>
-          </li>
+          {{>detailsEDT}}
         {{/detailsEDT}}
+
         {{#detailsEtablissement}}
-          <li> {{nom}}
-            <ul>
-              <li>{{rue}}, {{ville}}, depuis le <strong>{{date}}</strong></li>
-            </ul>
-          </li>
+          {{>detailsEtablissement}}
         {{/detailsEtablissement}}
+
         {{#detailsStructures}}
-          <li> Structures :
-            <ul>
-              <li>Nom : {{name}}</li>
-              <li>Contact : {{contact}}</li>
-            </ul>
-          </li>
+          {{>detailsStructures}}
         {{/detailsStructures}}
+
       </ul>
     {{/answers}}
   </ul>
