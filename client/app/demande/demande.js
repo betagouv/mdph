@@ -14,7 +14,11 @@ angular.module('impactApp')
         resolve: {
           sections: function($http) {
             return $http.get('api/questions').then(function(result) {
-              return result.data;
+              var sections = result.data;
+              sections.forEach(function(section) {
+                section.questions = _.indexBy(section.questions, 'model');
+              });
+              return sections;
             });
           },
           request: function($stateParams, $sessionStorage, RequestResource, mdph) {
