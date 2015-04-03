@@ -2,6 +2,15 @@
   <div class="list-header">
     <h2>Préparation à l'évaluation</h2>
   </div>
+
+  <div class="questionnaire" ng-if="docsList">
+    <ul>
+      <li ng-repeat="document in docsList">
+        {{document.label}}
+      </li>
+    </ul>
+  </div>
+
   <form class="form-horizontal questionnaire">
     <div class="form-group">
       <label for="inputName" class="col-sm-2 control-label">Age</label>
@@ -81,5 +90,6 @@
         </div>
       </div>
     </div>
+    <button class="btn btn-primary" type ="submit" ng-click="checkDocs()">OK</button>
   </form>
 </div>
