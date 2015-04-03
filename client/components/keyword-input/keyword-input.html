@@ -1,0 +1,28 @@
+<label for="new-keyword-input" class="col-sm-{{labelWidth ? labelWidth : 2}} control-label">{{inputLabel}}</label>
+<div class="col-sm-{{inputWidth ? inputWidth : 9}}">
+  <ul class="keyword-list" ng-click="setFocusOnInput('new-keyword-input')">
+    <li class="keyword-choice" ng-repeat="(idx, keyword) in selectedKeywords" ng-click="removeKeyword(idx)">
+      <span ng-if="isObject(keyword)">{{keyword.name}}</span>
+      <span ng-if="!isObject(keyword)">{{keyword}}</span>
+      <i class="fa fa-close"></i>
+    </li>
+    <li class="keyword-new" ng-if="showNew">
+      <input
+        id="new-keyword-input"
+        class="keyword-input"
+        type="text"
+        ng-input-enter="addKeyword()"
+        ng-model="currentKeyword">
+    </li>
+  </ul>
+  <p class="help-block" ng-if="showHelp">Appuyez sur entrée après la saisie d'un {{keywordName}} pour le rajouter manuellement.</p>
+  <div ng-if="showTags">
+    <ul class="keyword-show-list">
+      <li class="keyword-choice-select" ng-repeat="keyword in keywords | filter:isSelected" ng-click="addKeyword(keyword)">
+        <span ng-if="isObject(keyword)">{{keyword.name}}</span>
+        <span ng-if="!isObject(keyword)">{{keyword}}</span>
+        <i class="fa fa-close"></i>
+      </li>
+    </ul>
+  </div>
+</div>

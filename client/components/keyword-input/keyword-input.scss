@@ -1,0 +1,68 @@
+.keyword-list {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #D6D6D6;
+  background: inherit;
+  padding: 1px 5px;
+  margin: 0;
+  min-height: 33px;
+  overflow: auto;
+  list-style: none;
+  cursor: text;
+  background-color: white;
+}
+
+.keyword-choice {
+  display: block;
+  float: left;
+  margin: 2px 3px;
+  padding: 2px 5px;
+  border: 1px solid #D6D6D6;
+  background-color: #DEE7F8;
+  cursor: pointer;
+}
+
+.keyword-choice-select {
+  @extend .keyword-choice;
+  font-size: 10px;
+  background-color: #DDDDDD;
+}
+
+.keyword-new {
+  display: block;
+  float: left;
+  padding: 2px 3px;
+  margin: 2px 3px;
+
+  .keyword-input {
+    width: 100%;
+    font-size: 10px;
+    background: none;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    padding: 1px 5px;
+  }
+}
+
+.keyword-show {
+  color: #777;
+  font-size: 10px;
+  font-style: italic;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.keyword-show-list {
+  margin: 0;
+  padding: 0;
+  background: inherit;
+  overflow: auto;
+  list-style: none;
+}

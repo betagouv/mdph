@@ -1,0 +1,35 @@
+<div class="edit-partenaire">
+  <div class="list-header">
+    <h2 ng-if="dispatchRule._id">
+      Modification d'une règle de dispatch
+    </h2>
+    <h2 ng-if="!dispatchRule._id">
+      Création d'une règle de dispatch
+    </h2>
+  </div>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <keyword-input input-label="'Agents associés'" keyword-name="'agent'"
+        keywords="evaluators" selected-keywords="selectedEvaluators" show-new="false"></keyword-input>
+    </div>
+    <div class="form-group">
+      <keyword-input input-label="'Codes postaux'" keyword-name="'code postal'"
+        keywords="zipcodes" selected-keywords="selectedZipcodes" show-help="true"></keyword-input>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2">
+        <button class="btn btn-default" type="button" ng-click="cancel()">
+          <i class="fa fa-trash"></i> Annuler
+        </button>
+      </div>
+      <div class="col-sm-10 text-right">
+        <button class="btn btn-danger" type="button" ng-click="delete()">
+          <i class="fa fa-trash"></i> Supprimer
+        </button>
+        <button class="btn btn-primary" type="submit" ng-click="save()">
+          <i class="fa fa-save"></i> Sauver
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

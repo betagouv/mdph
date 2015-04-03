@@ -15,12 +15,17 @@ angular.module('impactApp').constant('SectionBackConstants', [
     fa: 'fa-user',
     label: 'Gestion des utilisateurs'
   },
-
   {
     sref: 'dashboard.preparation_evaluation',
     include: 'dashboard.preparation_evaluation.**',
     fa: 'fa-crosshairs',
     label: 'Préparation à l\'évaluation'
+  },
+  {
+    sref: 'dashboard.dispatch',
+    include: 'dashboard.dispatch.**',
+    fa: 'fa-code-fork',
+    label: 'Dispatch des demandes'
   }
   // {
   //   sref: 'dashboard.simulation',
