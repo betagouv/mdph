@@ -8,7 +8,7 @@ var path = require('path');
 exports.index = function(req, res) {
   DispatchRule
     .find()
-    .populate('evaluators')
+    .populate('evaluator')
     .sort('createdAt')
     .exec(function(err, rules) {
       if(err) { return handleError(req, res, err); }
@@ -19,7 +19,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   DispatchRule
     .findById(req.params.id)
-    .populate('evaluators')
+    .populate('evaluator')
     .exec(function (err, rule) {
     if (err) { return handleError(req, res, err); }
     if(!rule) { return res.sendStatus(404); }
@@ -33,7 +33,7 @@ exports.update = function(req, res) {
     if(!rule) { return res.sendStatus(404); }
 
     rule.zipcodes = req.body.zipcodes;
-    rule.evaluators = req.body.evaluators;
+    rule.evaluator = req.body.evaluator;
 
     rule.save(function (err) {
       if (err) { return handleError(req, res, err); }

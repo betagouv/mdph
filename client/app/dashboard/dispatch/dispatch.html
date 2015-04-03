@@ -37,7 +37,7 @@
               <tr ng-repeat="(idx, dispatchRule) in filteredRules = (dispatchRules | filter:query)">
                 <td>
                   <a ui-sref="dashboard.dispatch.edit({id: dispatchRule._id})">
-                    <span class="td-item" ng-repeat="evaluator in dispatchRule.evaluators">{{evaluator.name}}</span>
+                    {{dispatchRule.evaluator.name}}
                   </a>
                 </td>
                 <td>

@@ -9,11 +9,13 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var Busboy = require('busboy');
 var shortid = require('shortid');
+var async = require('async');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var Flattener = require('../../components/flatten');
 var Recapitulatif = require('../../components/recapitulatif');
+var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
 
 var Request = require('./request.model');
@@ -119,33 +121,54 @@ exports.showUserRequests = function(req, res, next) {
 /**
  * Update request
  */
-var compare = function(current, value) {
-  return !value ? current: value._id;
-}
-
-var updateIfn = function(request, body, field) {
-  var newValue = compare(request[field], body[field]);
-  if (newValue) {
-    request.set(field, newValue);
-  }
-}
-
 exports.update = function(req, res, next) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  async.waterfall([
+    function(callback){
+      Request.findOne({shortId: req.params.shortId}).exec(callback);
+    },
+    // Check is request exists
+    function(request, callback){
+      if (!request) {
+        return res.sendStatus(404);
+      }
+
+      callback(null, request);
+    },
+    // Find evaluator through dispatcher
+    function(request, callback) {
+      if (req.query.isSendingRequest) {
+        Dispatcher.findEvaluator(request, function(evaluator) {
+          callback(null, request, evaluator);
+        });
+      } else {
+        callback(null, request);
+      }
+    },
+    // Set new request attributes
+    function(request, evaluator, callback){
+      if (evaluator) {
+        request.set('evaluator', evaluator);
+        // TODO Send mail to evaluator
+      }
+
+      request
+        .set(_.omit(req.body, 'html', 'user', 'documents'))
+        .set('updatedAt', Date.now());
+
+      callback(null, request);
+    },
+    // Save request
+    function(request, callback) {
+      request.save(callback);
+    }
+  ], function (err, request) {
     if (err) return handleError(req, res, err);
-    if (!request) return res.sendStatus(404);
 
     if (req.body.html) {
       Mailer.sendMail(req.user.email, 'Récapitulatif de votre demande à la MDPH', req.body.html);
     }
 
-    request
-      .set(_.omit(req.body, 'html', 'user', 'documents'))
-      .set('updatedAt', Date.now())
-      .save(function (err, result) {
-        if (err) { return handleError(req, res, err); }
-        return res.json(result);
-      });
+    res.json(request);
   });
 };
 
@@ -157,7 +180,15 @@ exports.save = function(req, res, next) {
 
   var newRequest = _.assign(
     _.omit(req.body, 'html'),
-    {'updatedAt': now}, {'createdAt': now}, {'user': req.user._id}
+    {
+      'updatedAt': now
+    },
+    {
+      'createdAt': now
+    },
+    {
+      'user': req.user._id
+    }
   );
 
   Request.create(newRequest, function(err, request) {
@@ -165,6 +196,8 @@ exports.save = function(req, res, next) {
     return res.status(201).send(request);
   });
 };
+
+
 
 /**
  * File upload

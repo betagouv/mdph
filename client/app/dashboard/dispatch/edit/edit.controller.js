@@ -2,16 +2,16 @@
 
 angular.module('impactApp')
   .controller('DispatchRuleEditCtrl', function ($scope, $state, dispatchRule, evaluators, zipcodes) {
-    $scope.dipatchRule = dispatchRule;
+    $scope.dispatchRule = dispatchRule;
     $scope.evaluators = evaluators;
     $scope.zipcodes = zipcodes;
 
-    $scope.selectedEvaluators = dispatchRule.evaluators ? dispatchRule.evaluators : [];
+    $scope.selectedEvaluator = dispatchRule.evaluator ? dispatchRule.evaluator._id : null;
     $scope.selectedZipcodes = dispatchRule.zipcodes ? dispatchRule.zipcodes : [];
 
     $scope.save = function() {
       dispatchRule.zipcodes = $scope.selectedZipcodes;
-      dispatchRule.evaluators = _.pluck($scope.selectedEvaluators, '_id');
+      dispatchRule.evaluator = $scope.selectedEvaluator;
       dispatchRule.$save(function() {
         $state.go('^', {}, {reload: true});
       });

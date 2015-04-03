@@ -9,8 +9,10 @@
   </div>
   <form class="form-horizontal">
     <div class="form-group">
-      <keyword-input input-label="'Agents associés'" keyword-name="'agent'"
-        keywords="evaluators" selected-keywords="selectedEvaluators" show-new="false"></keyword-input>
+      <label for="inputName" class="col-sm-2 control-label">Agent associé</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="selectedEvaluator" ng-options="evaluator._id as evaluator.name for evaluator in evaluators"></select>
+      </div>
     </div>
     <div class="form-group">
       <keyword-input input-label="'Codes postaux'" keyword-name="'code postal'"
