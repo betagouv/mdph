@@ -1,0 +1,85 @@
+<div class="edit-partenaire">
+  <div class="list-header">
+    <h2>Préparation à l'évaluation</h2>
+  </div>
+  <form class="form-horizontal questionnaire">
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Age</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="answers.age" ng-options="ageOption.value as ageOption.label for ageOption in evalQuestions.ageOptions"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Protection de la personne</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="answers.protection" ng-options="protectionOption.value as protectionOption.label for protectionOption in evalQuestions.protectionOptions"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Domicile</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="answers.domicile" ng-options="domicileOption.value as domicileOption.label for domicileOption in evalQuestions.domicileOptions"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Accompagnement</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="answers.accompagnement" ng-options="accompagnementOption.value as accompagnementOption.label for accompagnementOption in evalQuestions.accompagnementOptions"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Situation professionnelle</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="answers.situationPro" ng-options="situationProOption.value as situationProOption.label for situationProOption in evalQuestions.situationProOptions"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Milieu professionnel</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="answers.milieuPro" ng-options="milieuProOption.value as milieuProOption.label for milieuProOption in evalQuestions.milieuProOptions"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Aides actuelles</label>
+      <div class="col-sm-4">
+        <div ng-repeat="aidesOption in evalQuestions.aidesOptions">
+          <button
+            class="btn btn-default btn-block btn-answer text-capitalize"
+            ng-model="answers['aides'][aidesOption.value]"
+            btn-checkbox>
+            <i class="fa" ng-class="{'fa-check-square': answers['aides'][aidesOption.value], 'fa-square-o': !answers['aides'][aidesOption.value]}"></i>
+            {{aidesOption.label}}
+          </button> </br>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Etat de santé et suivi</label>
+      <div class="col-sm-4">
+        <div ng-repeat="santeOption in evalQuestions.santeOptions">
+          <button
+            class="btn btn-default btn-block btn-answer text-capitalize"
+            ng-model="answers['sante'][santeOption.value]"
+            btn-checkbox>
+            <i class="fa" ng-class="{'fa-check-square': answers['sante'][santeOption.value], 'fa-square-o': !answers['sante'][santeOption.value]}"></i>
+            {{santeOption.label}}
+          </button> </br>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2 control-label">Attentes</label>
+      <div class="col-sm-4">
+        <div ng-repeat="attentesOption in evalQuestions.attentesOptions">
+          <button
+            class="btn btn-default btn-block btn-answer text-capitalize"
+            ng-model="answers['attentes'][attentesOption.value]"
+            btn-checkbox>
+            <i class="fa" ng-class="{'fa-check-square': answers['attentes'][attentesOption.value], 'fa-square-o': !answers['attentes'][attentesOption.value]}"></i>
+            {{attentesOption.label}}
+          </button> </br>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

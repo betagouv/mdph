@@ -1,0 +1,137 @@
+{
+  "ageOptions": [
+    {
+      "label": "> 20 ans",
+      "value": "plus20"
+    },
+    {
+      "label": "< 20 ans",
+      "value": "moins20"
+    }
+  ],
+
+  "protectionOptions": [
+    {
+      "label": "ASE ou PMI ou PJJ",
+      "value": "ase"
+    },
+    {
+      "label": "Tutelle ou curatelle",
+      "value": "Tutelle"
+    }
+  ],
+  "domicileOptions": [
+    {
+      "label": "Dans un établissement",
+      "value": "etablissement"
+    },
+    {
+      "label": "Locataire",
+      "value": "locataire"
+    },
+    {
+      "label": "Autre",
+      "value": "autre"
+    }
+  ],
+
+  "accompagnementOptions": [
+    {
+      "label": "CMPP ou CAMSP",
+      "value": "cmpp"
+    },
+    {
+      "label": "Acompagnement médico-social",
+      "value": "medicosocial"
+    }
+  ],
+
+  "situationProOptions": [
+    {
+      "label": "En emploi",
+      "value": "emploi"
+    },
+    {
+      "label": "Sans emploi",
+      "value": "sansEmploi"
+    },
+    {
+      "label": "En arrêt de travail",
+      "value": "arret"
+    }],
+
+  "milieuProOptions":[
+    {
+      "label": "Emploi non adapté au handicap  ou des aménagements ont été réalisés sur votre poste de travail ",
+      "value": "inadapte"
+    },
+    {
+      "label": "En entreprise adaptée  ou en milieu protégé",
+      "value": "adapte"
+    },
+    {
+      "label": "Accompagnement vers l'emploi",
+      "value": "accompagnement"
+    },
+    {
+      "label": "Rencontre avec le médecin du travail en visite de préreprise ",
+      "value": "medecin"
+    },
+    {
+      "label": "Fonction élective",
+      "value": "elective"
+    }
+  ],
+  "aidesOptions": [
+    {
+      "label": "Aides dans les démarches",
+      "value": "demarche"
+    },
+    {
+      "label": "Aides techniques, matériel ou équipement",
+      "value": "technique"
+    },
+    {
+      "label": "APA",
+      "value": "apa"
+    },
+    {
+      "label": "Professionnel de soin ou service d'aide à domicile",
+      "value": "domicile"
+    },
+    {
+      "label": "Un professionnel participe avec l'aidant à l'accompagnement de la personne",
+      "value": "accompagnement"
+    }
+  ],
+
+  "santeOptions": [
+    {
+      "label": "Handicap psychologique",
+      "value": "psy"
+    },
+    {
+      "label": "Hospitalisation, CMP, HDJ, CATTP, suivis médicaux ou paramédicaux",
+      "value": "suivi"
+    },
+    {
+      "label": "UEROS",
+      "value": "ueros"
+    }
+  ],
+
+  "attentesOptions": [
+    {
+      "label": "Aménager un véhicule (poste de conduite)",
+      "value": "conduite"
+    },
+    {
+      "label": "Aménager un véhicule",
+      "value": "vehicule"
+    },
+    {
+      "label": "Aménager le lieu de vie",
+      "value": "vie"
+    }
+  ]
+}

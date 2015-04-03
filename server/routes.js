@@ -19,6 +19,7 @@ module.exports = function(app) {
   app.use('/api/geva', require('./api/geva'));
   app.use('/api/notification', require('./api/notification'));
   app.use('/api/questions', require('./api/question'));
+  app.use('/api/questions-preparation-evaluation', require('./api/questions_preparation_evaluation'));
 
   app.use('/auth', require('./auth'));
 
