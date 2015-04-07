@@ -69,6 +69,21 @@ angular.module('impactApp')
           },
           nextStep: function($state) {
             return function() {
+              $state.go('^.conservation');
+            };
+          }
+        }
+      })
+      .state(index + '.conservation', {
+        url: '/conservation_emploi',
+        templateUrl: 'components/question/radio.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'conservation', request.formAnswers);
+          },
+          nextStep: function($state) {
+            return function() {
               $state.go('^.amenagement');
             };
           }

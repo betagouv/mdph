@@ -19,6 +19,51 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
+            $state.go('^.qualification');
+          };
+        }
+      }
+    })
+    .state(index + '.parcours_professionnel.qualification', {
+      url: '/qualification',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'qualification', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.derniereClasse');
+          };
+        }
+      }
+    })
+    .state(index + '.parcours_professionnel.derniereClasse', {
+      url: '/derniere_classe',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'derniereClasse', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.formations');
+          };
+        }
+      }
+    })
+    .state(index + '.parcours_professionnel.formations', {
+      url: '/formations',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'formations', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
             $state.go('^.^.projet_professionnel.description');
           };
         }

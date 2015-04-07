@@ -899,8 +899,8 @@
     },
     {
       "model":"milieuTravail",
-      "titleDefault":"Où êtes-vous employé ?",
-      "titleRep":"Où est-<%= pronoun %> employé<%= fem %> ?",
+      "titleDefault":"Vous avez un emploi :",
+      "titleRep":"<%= pronoun %> a un emploi :",
       "type":"radio",
       "answers":[
         {
@@ -1002,9 +1002,25 @@
       "type":"text"
     },
     {
+      "model":"conservation",
+      "titleDefault":"Accompagnement pour conserver votre emploi :",
+      "titleRep":"Accompagnement pour conserver son emploi :",
+      "type":"radio",
+      "answers":[
+        {
+          "label":"Par la médecine du travail",
+          "model": "medecineTravail"
+        },
+        {
+          "label":"Par le service d'appui au maintien dans l'emploi des travailleurs handicapés (SAMETH)",
+          "model": "sameth"
+        }
+      ]
+    },
+    {
       "model":"amenagement",
-      "titleRep":"Des aménagements ont-ils été réalisés sur son poste de travail ?",
-      "titleDefault":"Des aménagements ont-ils été réalisés sur votre poste de travail ?",
+      "titleRep":"Des aménagements ont été réalisés sur son poste de travail :",
+      "titleDefault":"Des aménagements ont été réalisés sur votre poste de travail :",
       "type":"radio",
       "answers":[
         {
@@ -1040,8 +1056,8 @@
       ]
     },
     {
-      "titleDefault":"Pour quelle raison êtes-vous en arrêt de travail ?",
-      "titleRep":"Pour quelle raison est-<%= pronoun %> en arrêt de travail ?",
+      "titleDefault":"Vous êtes actuellement en arrêt de travail :",
+      "titleRep":"<%= pronoun %> est actuellement en arrêt de travail :",
       "model":"arretDeTravailRaison",
       "type":"radio",
       "answers":[
@@ -1142,10 +1158,54 @@
       ]
     },
     {
-      "titleDefault":"Précisez ses expériences professionnelles, y compris les stages et structures d'insertion.",
-      "titleRep":"Précisez vos expériences professionnelles, y compris les stages et structures d'insertion.",
+      "titleRep":"Précisez ses expériences professionnelles, y compris les stages et structures d'insertion.",
+      "titleDefault":"Précisez vos expériences professionnelles, y compris les stages et structures d'insertion.",
       "model":"cv",
       "type":"cv"
+    },
+    {
+      "titleRep":"Son niveau de qualification",
+      "titleDefault":"Votre niveau de qualification",
+      "model":"qualification",
+      "type":"radio",
+      "answers":[
+        {
+          "label": "Primaire",
+          "model": "primaire"
+        },
+        {
+          "label": "Secondaire",
+          "model": "secondaire"
+        },
+        {
+          "label": "Supérieur",
+          "model": "superieur"
+        }
+      ]
+    },
+    {
+      "model":"derniereClasse",
+      "titleDefault":"Dernière classe fréquentée :",
+      "type":"text"
+    },
+    {
+      "titleRep":"A-t-<%= pronoun %> suivi une (des) formation(s) professionnelle(s) ?",
+      "titleDefault":"Avez-vous suivi une (des) formation(s) professionnelle(s) ?",
+      "model":"formations",
+      "type":"radio",
+      "answers":[
+        {
+          "label":"Non",
+          "model":false
+        },
+        {
+          "label":"Oui",
+          "model":true,
+          "detailUrl":"components/detail/precisez.html",
+          "detailModel":"formationsDetail",
+          "detailLabel": "Laquelle/lesquelles ?"
+        }
+      ]
     },
     {
       "titleRep":"A-t-<%= pronoun %> un ou plusieurs projet(s) professionnel(s) ?",
@@ -1219,9 +1279,7 @@
       "answers":[
         {
           "label":"Inscrit à pôle emploi",
-          "model":"poleEmploi",
-          "detailUrl":"components/detail/precisez.html",
-          "detailModel":"poleEmploiDetail"
+          "model":"poleEmploi"
         },
         {
           "label":"En formation continue",
@@ -1231,9 +1289,7 @@
         },
         {
           "label":"Etudiant",
-          "model":"etudiant",
-          "detailUrl":"components/detail/precisez.html",
-          "detailModel":"etudiantDetail"
+          "model":"etudiant"
         },
         {
           "label":"Stagiaire",
@@ -1252,8 +1308,8 @@
       "placeholder":"Nom de l'organisme"
     },
     {
-      "titleRep":"Son accompagnement vers l'emploi ou son maintien dans l'emploi est réalisé par",
-      "titleDefault":"Votre accompagnement vers l'emploi ou votre maintien dans l'emploi est réalisé par",
+      "titleRep":"Son accompagnement vers l'emploi est réalisé par",
+      "titleDefault":"Votre accompagnement vers l'emploi est réalisé par",
       "model":"situationAccompagnement",
       "type":"checkbox",
       "answers":[
