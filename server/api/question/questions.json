@@ -7,12 +7,6 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Avec vos parents",
-          "labelRecap":"Avec ses parents",
-          "labelRep":"Avec ses parents",
-          "model":"parents"
-        },
-        {
           "label":"Seul(e)",
           "labelRepMasc":"Seul",
           "labelRepFem":"Seule",
@@ -20,9 +14,10 @@
           "onlyAdult":true
         },
         {
-          "label":"En couple",
-          "model":"couple",
-          "onlyAdult":true
+          "label":"Avec vos parents (ou l'un d'entre eux)",
+          "labelRecap":"Avec ses parents (ou l'un d'entre eux)",
+          "labelRep":"Avec ses parents (ou l'un d'entre eux)",
+          "model":"parents"
         },
         {
           "label":"Avec vos enfants (ou l'un d'entre eux)",
@@ -31,15 +26,12 @@
           "onlyAdult":true
         },
         {
-          "label":"Dans un établissement médico-social ou ordinaire",
-          "labelRecap":"En établissement médico-social ou ordinaire",
-          "model":"etablissement",
-          "detailUrl":"components/detail/precisez.html",
-          "detailModel":"logement_etablissement",
-          "placeholder":"Nom de l'établissement, type et lieu"
+          "label":"En couple",
+          "model":"couple",
+          "onlyAdult":true
         },
         {
-          "label":"Autre",
+          "label":"Autre situation",
           "model":"autre",
           "detailModel":"famille_autre",
           "detailUrl":"components/detail/precisez.html"
@@ -62,12 +54,13 @@
           "onlyAdult":true
         },
         {
-          "label":"Vous vivez dans un établissement médico-social ou ordinaire",
-          "labelRep":"<%= pronoun %> vit dans un établissement médico-social ou ordinaire",
+          "label":"Vous vivez dans un établissement médico-social ou de soin",
+          "labelRep":"<%= pronoun %> vit dans un établissement médico-social ou de soin",
           "model":"etablissement",
-          "labelRecap":"Dans un établissement médico-social ou ordinaire",
+          "labelRecap":"Dans un établissement médico-social ou de soin",
           "detailUrl":"components/detail/precisez.html",
-          "detailModel":"logement_etablissement"
+          "detailModel":"logement_etablissement",
+          "detailLabel": "Précisez le nom, le type et le lieu"
         },
         {
           "label":"Vous êtes hébergé(e) au domicile",
@@ -78,7 +71,7 @@
           "detailModel":"logement_domicile"
         },
         {
-          "label":"Autre",
+          "label":"Autre situation",
           "model":"autre",
           "detailUrl":"components/detail/precisez.html",
           "detailModel":"logement_autre"
@@ -139,8 +132,8 @@
     },
     {
       "model":"aideFinancierePasse",
-      "titleDefault":"Dans les 12 mois précédant votre demande, vous avez perçu :",
-      "titleRep":"Dans les 12 mois précédant votre demande, <%= pronoun %> a perçu :",
+      "titleDefault":"Dans les 12 mois précédant votre demande, avez-vous perçu :",
+      "titleRep":"Dans les 12 mois précédant votre demande, a-t-<%= pronoun %> perçu :",
       "type":"checkbox",
       "answers":[
         {
@@ -250,17 +243,17 @@
       "type":"checkbox",
       "answers":[
         {
-          "label":"Pour faire face aux dépenses courantes (loyer, énergie, habillement, alimentation, ...)",
+          "label":"Pour régler les dépenses courantes (loyer, énergie, habillement, alimentation, ...)",
           "model":"courant",
           "onlyAdult":true
         },
         {
-          "label":"Pour gérer votre budget et répondre à vos obligations (assurances, impôts... )",
+          "label":"Pour gérer votre budget et répondre à vos obligations (démarches administratives, assurances, impôts... )",
           "model":"budget",
           "onlyAdult":true
         },
         {
-          "label":"Pour l'hygiène corporelle (se laver, aller aux toilette)",
+          "label":"Pour l'hygiène corporelle (se laver, aller aux toilettes)",
           "model":"hygiene"
         },
         {
@@ -365,7 +358,7 @@
           "model":"communication"
         },
         {
-          "label":"Pour avoir des activités sportives et de loisirs",
+          "label":"Pour avoir des activités sportives et des loisirs",
           "model":"loisirs"
         },
         {
@@ -443,8 +436,8 @@
           "model":"materiel"
         },
         {
-          "label":"Une aide financière pour des dépenses liées à votre handicap",
-          "labelRep":"Une aide financière pour des dépenses liées à son handicap",
+          "label":"Une aide financière pour des dépenses liées au handicap",
+          "labelRep":"Une aide financière pour des dépenses liées au handicap",
           "model":"financierHandicap"
         },
         {
@@ -475,7 +468,7 @@
     },
     {
       "model":"autresRenseignements",
-      "titleDefault":"Autres renseignements que vous souhaiteriez nous communiquer",
+      "titleDefault":"Vous avez d'autres renseignements importants (situation, attentes, projets) concernant votre vie quotidienne, indiquez-les ici:",
       "type":"text"
     }
   ],

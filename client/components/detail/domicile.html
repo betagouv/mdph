@@ -2,7 +2,13 @@
   <div class="col-md-4">
     <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'parents'"
       ng-required="!sectionModel[answer.detailModel]">
-      Des parents
+      De vos parents (ou l'un d'entre eux)
+    </button>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'enfants'"
+      ng-required="!sectionModel[answer.detailModel]">
+      De vos enfants (ou l'un d'entre eux)
     </button>
   </div>
   <div class="col-md-4">
@@ -14,7 +20,7 @@
   <div class="col-md-4">
     <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'autreMembreFamille'"
       ng-required="!sectionModel[answer.detailModel]">
-      D'un autre membre de<br>la famille
+      D'un autre membre de<br>votre famille
     </button>
   </div>
   <div class="col-md-4">
