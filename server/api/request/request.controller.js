@@ -141,7 +141,7 @@ exports.update = function(req, res, next) {
           callback(null, request, evaluator);
         });
       } else {
-        callback(null, request);
+        callback(null, request, null);
       }
     },
     // Set new request attributes
