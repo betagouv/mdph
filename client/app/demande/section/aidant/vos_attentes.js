@@ -31,7 +31,7 @@ angular.module('impactApp')
       controller: 'StructureQuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'structure', request.formAnswers);
+          return QuestionService.get(section, 'structures', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
