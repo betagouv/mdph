@@ -2,3 +2,19 @@
    content:" *";
    color:red;
 }
+
+fieldset {
+  legend.control-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    border-bottom:none;
+  }
+
+  .radio-inline {
+    padding-left: 0;
+    padding-right: 10px;
+  }
+}

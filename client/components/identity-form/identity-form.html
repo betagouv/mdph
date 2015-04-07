@@ -1,194 +1,266 @@
 <div class="questionnaire">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+      <form aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+        <h1 id="infoPerso">{{desc}}</h1>
 
-  <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="submit(infoForm)" novalidate>
-    <h1 id="infoPerso">{{desc}}</h1>
-
-    <div class="form-group required" ng-if="type==='autorite' && id === 'autre'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
-      <label for="type" class="col-sm-2 col-lg-offset-1 control-label">Vous êtes</label>
-      <div class="col-sm-10 col-lg-7">
-        <label class="radio-inline">
-          <input type="radio" value="tuteur" ng-required="identite.type" ng-model="identite.type"> Le tuteur
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="curateur" ng-required="identite.type" ng-model="identite.type"> Le curateur
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="organisme" ng-required="identite.type" ng-model="identite.type"> Un organisme
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="autre" ng-required="identite.type" ng-model="identite.type"> Autre
-        </label>
-        <div ng-if="!identite.type && infoForm.$submitted">
-          <p class="help-block">Ce champ est obligatoire.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group required" ng-if="type==='aidantDemarche'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
-      <label for="type" class="col-sm-2 col-lg-offset-1 control-label">Vous êtes</label>
-      <div class="col-sm-10 col-lg-7">
-        <label class="radio-inline">
-          <input type="radio" value="proche" ng-required="identite.type" ng-model="identite.type"> Un proche
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="association" ng-required="identite.type" ng-model="identite.type"> Une association
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="autre" ng-required="identite.type" ng-model="identite.type"> Autre
-        </label>
-        <div ng-if="!identite.type && infoForm.$submitted">
-          <p class="help-block">Ce champ est obligatoire.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
-      <label for="nom" class="col-sm-2 col-lg-offset-1 control-label">Nom</label>
-      <div class="col-sm-10 col-lg-7">
-        <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
-        <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group required" ng-class="{'has-error': infoForm.prenom.$invalid && infoForm.$submitted}">
-      <label for="prenom" class="col-sm-2 col-lg-offset-1 control-label">Prénom</label>
-      <div class="col-sm-10 col-lg-7">
-        <input id="prenom" type="text" name="prenom" class="form-control" ng-model="identite.prenom" ng-minlength="1" required>
-        <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
-        </div>
-      </div>
-    </div>
-    <div class="form-group required" ng-if="type==='beneficiaire'" ng-class="{'has-error': !identite.sexe && infoForm.$submitted}">
-      <label for="name" class="col-sm-2 col-lg-offset-1 control-label">Sexe</label>
-      <div class="col-sm-10 col-lg-7">
-        <label class="radio-inline">
-          <input type="radio" id="inlineRadioMasculin" value="masculin" ng-required="identite.sexe" ng-model="identite.sexe"> Masculin
-        </label>
-        <label class="radio-inline">
-          <input type="radio" id="inlineRadioFeminin" value="feminin" ng-required="identite.sexe" ng-model="identite.sexe"> Féminin
-        </label>
-        <div ng-if="!identite.sexe && infoForm.$submitted">
-          <p class="help-block">Ce champ est obligatoire.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group required" ng-if="type==='beneficiaire'" ng-class="{'has-error': !identite.nationalite && infoForm.$submitted}">
-      <label for="nationalite" class="col-sm-2 col-lg-offset-1 control-label">Nationalité</label>
-      <div class="col-sm-10 col-lg-7">
-        <label class="radio-inline">
-          <input type="radio" id="inlineRadioFrance" value="francaise" ng-model="identite.nationalite" ng-required="!identite.nationalite"> Française
-        </label>
-        <label class="radio-inline">
-          <input type="radio" id="inlineRadioUE" value="UE" ng-model="identite.nationalite" ng-required="!identite.nationalite"> Union Européenne
-        </label>
-        <label class="radio-inline">
-          <input type="radio" id="inlineRadioAutre" value="autre" ng-model="identite.nationalite" ng-required="!identite.nationalite"> Autre
-        </label>
-        <div ng-if="infoForm.$submitted && !identite.nationalite">
-          <p class="help-block">Ce champ est obligatoire.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="email" class="col-sm-2 col-lg-offset-1 control-label">Email</label>
-      <div class="col-sm-10 col-lg-7">
-        <div class="input-group margin-bottom-sm">
-          <input id="email" type="email" name="email" class="form-control" ng-model="identite.email">
-          <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-        </div>
-        <div ng-messages="infoForm.email.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group required" ng-class="{'has-error': infoForm.dateNaissance.$invalid && infoForm.$submitted}">
-      <label for="dateNaissance" class="col-sm-2 col-lg-offset-1 control-label">Date de naissance</label>
-      <div class="col-sm-10 col-lg-7">
-        <div class="input-group">
-          <input id="dateNaissance" required type="text" name="dateNaissance" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="identite.dateNaissance" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
-          <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button></span>
+        <div class="form-group required" ng-if="type==='autorite' && id === 'autre'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
+          <fieldset>
+            <legend class="control-label">Vous êtes</legend>
+            <input type="radio" name="type_autorite_tuteur" id="type_autorite_tuteur" ng-model="identite.type" ng-required="!identite.type" value="tuteur">
+            <label class="radio-inline" for="type_autorite_tuteur">Le tuteur</label>
+            <input type="radio" name="type_autorite_curateur" id="type_autorite_curateur" ng-model="identite.type" ng-required="!identite.type" value="curateur">
+            <label class="radio-inline" for="type_autorite_curateur">Le curateur</label>
+            <input type="radio" name="type_autorite_organisme" id="type_autorite_organisme" ng-model="identite.type" ng-required="!identite.type" value="organisme">
+            <label class="radio-inline" for="type_autorite_organisme">Un organisme</label>
+            <input type="radio" name="type_autorite_autre" id="type_autorite_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
+            <label class="radio-inline" for="type_autorite_autre">Autre</label>
+          </fieldset>
+          <div ng-if="!identite.type && infoForm.$submitted">
+            <p class="help-block">Ce champ est obligatoire.</p>
+          </div>
         </div>
 
-        <div ng-messages="infoForm.dateNaissance.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='date'>Le format de date est invalide.</p>
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <div class="form-group required" ng-if="type==='aidantDemarche'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
+          <fieldset>
+            <legend class="control-label">Vous êtes</legend>
+            <input type="radio" name="type_aidant_proche" id="type_aidant_proche" ng-model="identite.type" ng-required="!identite.type" value="proche">
+            <label class="radio-inline" for="type_aidant_proche">Un proche</label>
+            <input type="radio" name="type_aidant_association" id="type_aidant_association" ng-model="identite.type" ng-required="!identite.type" value="association">
+            <label class="radio-inline" for="type_aidant_association">Une association</label>
+            <input type="radio" name="type_aidant_autre" id="type_aidant_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
+            <label class="radio-inline" for="type_aidant_autre">Autre</label>
+          </fieldset>
+          <div ng-if="!identite.type && infoForm.$submitted">
+            <p class="help-block">Ce champ est obligatoire.</p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group required" ng-class="{'has-error': infoForm.adresse.$invalid && infoForm.$submitted}">
-      <label for="adresse" class="col-sm-2 col-lg-offset-1 control-label">Adresse</label>
-      <div class="col-sm-10 col-lg-7">
-        <input id="adresse" type="text" name="adresse" class="form-control" ng-model="identite.adresse" placeholder="Numéro et rue" required>
-        <div ng-messages="infoForm.adresse.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <div class="form-group required" ng-if="type === 'beneficiaire'" ng-class="{'has-error': !identite.sexe && infoForm.$submitted}">
+          <fieldset>
+            <legend class="control-label">Sexe</legend>
+            <input type="radio" name="sexe" id="sexe-m" ng-model="identite.sexe" ng-required="!identite.sexe" value="masculin">
+            <label class="radio-inline" for="sexe-m">Masculin</label>
+            <input type="radio" name="sexe" id="sexe-f" ng-model="identite.sexe" ng-required="!identite.sexe" value="feminin">
+            <label class="radio-inline" for="sexe-f">Féminin</label>
+          </fieldset>
+          <div ng-if="!identite.sexe && infoForm.$submitted">
+            <p class="help-block">Ce champ est obligatoire.</p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="adresse_complement" class="col-sm-2 col-lg-offset-1 control-label">Complément d'adresse</label>
-      <div class="col-sm-10 col-lg-7">
-        <input id="adresse_complement" type="text" name="adresse_complement" class="form-control" ng-model="identite.adresse_complement">
-      </div>
-    </div>
-
-    <div class="form-group required" ng-class="{'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
-      <label for="code_postal" class="col-sm-2 col-lg-offset-1 control-label">Code postal</label>
-      <div class="col-sm-10 col-lg-7">
-        <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal" required>
-        <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
+          <label for="nom" class="control-label">Nom <small>(figurant sur la carte d'identité/passeport)</small></label>
+          <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
+          <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group required" ng-class="{'has-error': infoForm.commune.$invalid && infoForm.$submitted}">
-      <label for="commune" class="col-sm-2 col-lg-offset-1 control-label">Commune</label>
-      <div class="col-sm-10 col-lg-7">
-        <input id="commune" type="text" name="commune" class="form-control" ng-model="identite.commune" required>
-        <div ng-messages="infoForm.commune.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <div class="form-group" ng-if="type === 'beneficiaire'">
+          <label for="nom_usage" class="control-label">Nom d'usage</label>
+          <input id="nom_usage" type="text" name="nom_usage" class="form-control" ng-model="identite.nom_usage" ng-minlength="1">
         </div>
-      </div>
-    </div>
 
-    <div class="form-group required" ng-class="{'has-error': infoForm.pays.$invalid && infoForm.$submitted}">
-      <label for="pays" class="col-sm-2 col-lg-offset-1 control-label">Pays</label>
-      <div class="col-sm-10 col-lg-7">
-        <input id="pays" type="text" name="pays" class="form-control" ng-model="identite.pays" required>
-        <div ng-messages="infoForm.pays.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <div class="form-group required" ng-class="{'has-error': infoForm.prenom.$invalid && infoForm.$submitted}">
+          <label for="prenom" class="control-label">Prénom</label>
+          <input id="prenom" type="text" name="prenom" class="form-control" ng-model="identite.prenom" ng-minlength="1" required>
+          <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-6">
-        <a
-          ui-sref="^"
-          class="btn btn-block btn-default"
-          role="button">
-            Annuler
-        </a>
-      </div>
-      <div class="col-sm-2">
-        <button
-          type="submit"
-          name="submit"
-          alt="Valider"
-          class="btn btn-block btn-success">
-            Valider
-        </button>
-      </div>
+        <div class="form-group required" ng-if="type === 'beneficiaire'" ng-class="{'has-error': !identite.nationalite && infoForm.$submitted}">
+          <fieldset>
+            <legend class="control-label">Nationalité</legend>
+            <input type="radio" name="nationalite_francaise" id="nationalite_francaise" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="francaise">
+            <label class="radio-inline" for="nationalite_francaise">Française</label>
+            <input type="radio" name="nationalite_union_europeene" id="nationalite_union_europeene" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="ue">
+            <label class="radio-inline" for="nationalite_union_europeene">Union Européenne</label>
+            <input type="radio" name="nationalite_autre" id="nationalite_autre" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="autre">
+            <label class="radio-inline" for="nationalite_autre">Autre</label>
+          </fieldset>
+          <div ng-if="infoForm.$submitted && !identite.nationalite">
+            <p class="help-block">Ce champ est obligatoire.</p>
+          </div>
+        </div>
+
+        <div class="form-group required" ng-if="type === 'beneficiaire'" ng-class="{'has-error': infoForm.dateNaissance.$invalid && infoForm.$submitted}">
+          <label for="dateNaissance" class="control-label">Date de naissance</label>
+          <div class="input-group">
+            <input id="dateNaissance" required type="text" name="dateNaissance" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="identite.dateNaissance" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
+            <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button></span>
+          </div>
+          <div ng-messages="infoForm.dateNaissance.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='date'>Le format de date est invalide.</p>
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          </div>
+        </div>
+
+        <div class="row" ng-if="type === 'beneficiaire'">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="lieu_naissance" class="control-label">Lieu de naissance</label>
+              <input id="lieu_naissance" type="text" name="lieu_naissance" class="form-control" ng-model="identite.lieu_naissance">
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="lieu_naissance_cp" class="control-label">Code postal du lieu de naissance</label>
+              <input id="lieu_naissance_cp" type="text" name="lieu_naissance_cp" class="form-control" ng-model="identite.lieu_naissance_cp">
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group required" ng-class="{'has-error': infoForm.adresse.$invalid && infoForm.$submitted}">
+          <label for="adresse" class="control-label">Adresse</label>
+          <input id="adresse" type="text" name="adresse" class="form-control" ng-model="identite.adresse" placeholder="Numéro et rue" required>
+          <div ng-messages="infoForm.adresse.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adresse_complement" class="control-label">Complément d'adresse</label>
+          <input id="adresse_complement" type="text" name="adresse_complement" class="form-control" ng-model="identite.adresse_complement">
+        </div>
+
+        <div class="form-group required" ng-class="{'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
+          <label for="code_postal" class="control-label">Code postal</label>
+          <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal" required>
+          <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          </div>
+        </div>
+
+        <div class="form-group required" ng-class="{'has-error': infoForm.commune.$invalid && infoForm.$submitted}">
+          <label for="commune" class="control-label">Commune</label>
+          <input id="commune" type="text" name="commune" class="form-control" ng-model="identite.commune" required>
+          <div ng-messages="infoForm.commune.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          </div>
+        </div>
+
+        <div class="form-group required" ng-class="{'has-error': infoForm.pays.$invalid && infoForm.$submitted}">
+          <label for="pays" class="control-label">Pays</label>
+          <input id="pays" type="text" name="pays" class="form-control" ng-model="identite.pays" required>
+          <div ng-messages="infoForm.pays.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="control-label">Email</label>
+          <div class="input-group margin-bottom-sm">
+            <input id="email" type="email" name="email" class="form-control" ng-model="identite.email">
+            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+          </div>
+          <div ng-messages="infoForm.email.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tel_1" class="control-label">Téléphone 1</label>
+          <input id="tel_1" type="text" name="tel_1" class="form-control" ng-model="identite.tel_1">
+        </div>
+
+        <div class="form-group">
+          <label for="tel_2" class="control-label">Téléphone 2</label>
+          <input id="tel_2" type="text" name="tel_2" class="form-control" ng-model="identite.tel_2">
+        </div>
+
+        <hr>
+
+        <div class="form-group" ng-if="type === 'beneficiaire'">
+          <fieldset>
+            <legend class="control-label">Si besoin, comment souhaitez-vous être contacté par la MDPH ?</legend>
+            <input type="radio" name="mode_contact_email" id="mode_contact_email" ng-model="identite.mode_contact" value="email">
+            <label class="radio-inline" for="mode_contact_email">E-mail</label>
+            <input type="radio" name="mode_contact_telephone" id="mode_contact_telephone" ng-model="identite.mode_contact" value="telephone">
+            <label class="radio-inline" for="mode_contact_telephone">Appel telephonique</label>
+            <input type="radio" name="mode_contact_sms" id="mode_contact_sms" ng-model="identite.mode_contact" value="sms">
+            <label class="radio-inline" for="mode_contact_sms">SMS</label>
+            <input type="radio" name="mode_contact_courrier" id="mode_contact_courrier" ng-model="identite.mode_contact" value="courrier">
+            <label class="radio-inline" for="mode_contact_courrier">Courrier</label>
+          </fieldset>
+        </div>
+
+        <div class="form-group" ng-if="type === 'beneficiaire'">
+          <label for="domicile_organisme" class="control-label">Si vous avez élu domicile auprès d'un organisme, précisez lequel</label>
+          <input id="domicile_organisme" type="text" name="domicile_organisme" class="form-control" ng-model="identite.domicile_organisme" placeholder="Association, centre d’hébergement ou d’action sociale">
+        </div>
+
+        <hr>
+
+        <div class="form-group" ng-if="type === 'beneficiaire'">
+          <fieldset>
+            <legend class="control-label">Organisme payeur de prestations familiales</legend>
+            <input type="radio" name="prestations_familiales_caf" id="prestations_familiales_caf" ng-model="identite.prestations_familiales" value="caf">
+            <label class="radio-inline" for="prestations_familiales_caf">CAF</label>
+            <input type="radio" name="prestations_familiales_msa" id="prestations_familiales_msa" ng-model="identite.prestations_familiales" value="msa">
+            <label class="radio-inline" for="prestations_familiales_msa">MSA</label>
+            <input type="radio" name="prestations_familiales_autre" id="prestations_familiales_autre" ng-model="identite.prestations_familiales" value="autre">
+            <label class="radio-inline" for="prestations_familiales_autre">Autre</label>
+          </fieldset>
+        </div>
+
+        <div class="form-group" ng-if="type === 'beneficiaire'">
+          <label for="numero_allocataire" class="control-label">N° Allocataire</label>
+          <input id="numero_allocataire" type="text" name="numero_allocataire" class="form-control" ng-model="identite.numero_allocataire">
+        </div>
+
+        <hr>
+
+        <div class="form-group" ng-if="type === 'beneficiaire'">
+          <fieldset>
+            <legend class="control-label">Organisme d'assurance maladie</legend>
+            <input type="radio" name="assurance_caf" id="assurance_caf" ng-model="identite.assurance" value="caf">
+            <label class="radio-inline" for="assurance_caf">CPAM</label>
+            <input type="radio" name="assurance_msa" id="assurance_msa" ng-model="identite.assurance" value="msa">
+            <label class="radio-inline" for="assurance_msa">MSA</label>
+            <input type="radio" name="assurance_rsi" id="assurance_rsi" ng-model="identite.assurance" value="rsi">
+            <label class="radio-inline" for="assurance_rsi">RSI</label>
+            <input type="radio" name="assurance_autre" id="assurance_autre" ng-model="identite.assurance" value="autre">
+            <label class="radio-inline" for="assurance_autre">Autre</label>
+          </fieldset>
+        </div>
+
+        <div class="form-group" ng-if="type === 'beneficiaire' && identite.assurance === 'autre'">
+          <label for="prestations_familiales_precisez" class="control-label">Précisez</label>
+          <input id="prestations_familiales_precisez" type="text" name="prestations_familiales_precisez" class="form-control" ng-model="identite.prestations_familiales_precisez">
+        </div>
+
+        <div class="form-group" ng-if="type === 'beneficiaire'">
+          <label for="numero_secu" class="control-label">Numéro de Sécurité Sociale</label>
+          <input id="numero_secu" type="text" name="numero_secu" class="form-control" ng-model="identite.numero_secu">
+        </div>
+
+        <div class="row">
+          <div class="col-lg-2 col-lg-offset-8 col-sm-2 col-sm-offset-8 col-xs-4 col-xs-offset-4">
+            <a
+              ui-sref="^"
+              class="btn btn-block btn-default"
+              role="button">
+                Annuler
+            </a>
+          </div>
+          <div class="col-sm-2 col-xs-4">
+            <button
+              type="submit"
+              name="submit"
+              alt="Valider"
+              class="btn btn-block btn-success">
+                Valider
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
