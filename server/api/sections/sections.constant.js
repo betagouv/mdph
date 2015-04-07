@@ -14,7 +14,7 @@ var aidant =   {
   id: 'aidant',
   sref: '.aidant.situation.lien',
   label: 'Vie de votre aidant familial',
-  desc: 'Si vous souhaitez exprimer des besoins en tant qu\'aidant familial',
+  desc: 'Si votre aidant familial (la personne qui s’occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins',
   section: 'complements',
   subSections: [
     {
