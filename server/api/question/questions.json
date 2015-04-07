@@ -540,13 +540,6 @@
           "model":"domicile"
         },
         {
-          "label":"En internat",
-          "model":"internat",
-          "detailUrl":"components/detail/precisez_yes_no.html",
-          "detailModel":"vieScolaireTypeInternat",
-          "detailLabel":"Les frais de séjour sont-ils intégralement pris en charge par l'assurance maladie, l'Etat ou l'aide sociale ?"
-        },
-        {
           "label":"Avec accompagnement par un service de soin ou un établissement médico-social",
           "model":"etablissement"
         },
@@ -574,6 +567,24 @@
       "model":"etablissement",
       "titleDefault":"Dans quel(s) établissement(s) ?",
       "type":"etablissement"
+    },
+    {
+      "model":"internat",
+      "titleDefault":"L'enfant est-il placé en internat ?",
+      "type":"radio",
+      "answers":[
+        {
+          "label":"Oui",
+          "model":true,
+          "detailModel": "internatFrais",
+          "detailUrl":"components/detail/precisez_yes_no.html",
+          "detailLabel": "Ses frais de séjour sont-ils intégralement pris en charge par l'assurance maladie, l'Etat ou l'aide sociale ?"
+        },
+        {
+          "label":"Non",
+          "model":false
+        }
+      ]
     },
     {
       "model":"typeEtudes",
@@ -606,16 +617,16 @@
     },
     {
       "model":"accompagnement",
-      "titleDefault":"Êtes-vous accompagné et recevez-vous des soins ? Si oui, lesquels ?",
-      "titleRep":"Êtes-<%= pronoun %> accompagné<%= fem %> et reçoit-<%= pronoun %> des soins ? Si oui, lesquels ?",
+      "titleDefault":"Vous disposez actuellement d'accompagnement et de soins",
+      "titleRep":"<%= pronoun %> disposez actuellement d'accompagnement et de soins",
       "type":"checkbox",
       "answers":[
         {
-          "label":"Des soins hospitaliers",
+          "label":"Soins hospitaliers",
           "model":"hopital"
         },
         {
-          "label":"Des soins en libéral",
+          "label":"Soins en libéral",
           "model":"liberal"
         },
         {
@@ -628,8 +639,8 @@
     },
     {
       "model":"adaptation",
-      "titleDefault":"Des adaptations ont-elles été effectuées au niveau de vos conditions matérielles ? Si oui, lesquelles ?",
-      "titleRep":"Des adaptations ont-elles été effectuées au niveau de ses conditions matérielles ? Si oui, lesquelles ?",
+      "titleDefault":"Vous disposez actuellement d'adaptations des conditions matérielles",
+      "titleRep":"<%= pronoun %> dispose actuellement d'adaptations des conditions matérielles",
       "type":"checkbox",
       "answers":[
         {
@@ -676,8 +687,8 @@
     },
     {
       "model":"besoinsScolarite",
-      "titleDefault":"Vous avez besoin d'aide dans votre scolarité :",
-      "titleRep":"<%= pronoun %> a besoin d'aide dans sa scolarité :",
+      "titleDefault":"Vous avez des besoins en lien avec la scolarité :",
+      "titleRep":"<%= pronoun %> des besoins en lien avec la scolarité :",
       "type":"checkbox",
       "answers":[
         {
@@ -714,8 +725,8 @@
     },
     {
       "model":"besoinsCommunication",
-      "titleDefault":"Vous avez besoin d'aide dans votre scolarité :",
-      "titleRep":"<%= pronoun %> a besoin d'aide dans sa scolarité :",
+      "titleDefault":"Vous avez des besoins pour communiquer :",
+      "titleRep":"<%= pronoun %> a des besoins pour communiquer :",
       "type":"checkbox",
       "answers":[
         {
@@ -740,8 +751,8 @@
     },
     {
       "model":"besoinsEntretien",
-      "titleDefault":"Vous avez besoin d'aide pour votre entretien personnel :",
-      "titleRep":"<%= pronoun %> a besoin d'aide pour son entretien personnel :",
+      "titleDefault":"Vous avez des besoin pour l'entretien personnel :",
+      "titleRep":"<%= pronoun %> a des besoin pour l'entretien personnel :",
       "type":"checkbox",
       "answers":[
         {
@@ -839,12 +850,30 @@
     {
       "model":"structure",
       "type":"structure",
-      "titleDefault":"Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?",
-      "titleRep":"A-t-<%= pronoun %> déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
+      "titleDefault":"Avez-vous déjà identifié un établissement scolaire, universitaire ou médico-social qui pourrait répondre à vos attentes ? Si oui, lequel ?",
+      "titleRep":"A-t-<%= pronoun %> déjà identifié un établissement scolaire, universitaire ou médico-social qui pourrait répondre à ses attentes ?  Si oui, lequel ?"
+    },
+    {
+      "model":"referent",
+      "titleDefault":"Avez vous pu prendre contact avec votre eseignant référent ?",
+      "type":"radio",
+      "answers":[
+        {
+          "label":"Oui",
+          "model":true
+        },
+        {
+          "label":"Non",
+          "model":false,
+          "detailModel": "referentRaison",
+          "detailUrl":"components/detail/precisez.html",
+          "detailLabel": "Pourquoi ?"
+        }
+      ]
     },
     {
       "model":"vieScolaireAutresRenseignements",
-      "titleDefault":"Autres renseignements concernant la scolarité que vous souhaiteriez nous communiquer",
+      "titleDefault":"Vous avez d'autres renseignements importants(situation, attentes, projets) concernant votre vie scolaire, étudiante ou en apprentissage, indiquez-les ici :",
       "type":"text"
     }
   ],

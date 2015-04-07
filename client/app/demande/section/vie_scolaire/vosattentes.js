@@ -35,6 +35,21 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
+            $state.go('^.referent');
+          };
+        }
+      }
+    })
+    .state(index + '.vos_attentes.referent', {
+      url: '',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'referent', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
             $state.go('^.autres_renseignements');
           };
         }

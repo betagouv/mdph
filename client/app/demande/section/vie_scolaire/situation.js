@@ -43,7 +43,17 @@ angular.module('impactApp')
         nextStep: function($state, sectionModel, question) {
           return function() {
             if (sectionModel[question.model] !== 'domicile') {
-              $state.go('^.etablissement');
+              if (sectionModel[question.model] === 'ordinaire') {
+                $state.go('^.internat');
+              }
+              else {
+                if (sectionModel[question.model] === 'superieur') {
+                  $state.go('^.type_etudes');
+                }
+                else {
+                  $state.go('^.etablissement');
+                }
+              }
             } else {
               $state.go('^.^.vos_besoins.scolarite');
             }
@@ -61,7 +71,22 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
-            $state.go('^.type_etudes');
+            $state.go('^.accompagnement');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.internat', {
+      url: '/internat',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'internat', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.etablissement');
           };
         }
       }
