@@ -984,14 +984,14 @@
       "type":"radio",
       "answers":[
         {
+          "label":"Oui",
+          "model":true
+        },
+        {
           "label":"Non",
           "model":false,
           "detailUrl":"components/detail/precisez.html",
           "detailModel":"adapteDetail"
-        },
-        {
-          "label":"Oui",
-          "model":true
         }
       ]
     },
@@ -1024,14 +1024,14 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez.html",
           "detailModel":"amenagementDetail"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1042,16 +1042,16 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez_date.html",
           "detailModel":"arretDeTravailDetail",
           "detailLabel":"Depuis quand ?",
           "type":"date"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1086,16 +1086,16 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez_date.html",
           "detailModel":"profesionnelSocialDetail",
           "detailLabel":"A quelle date ?",
           "type":"date"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1106,16 +1106,16 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez_date.html",
           "detailModel":"medecinTravailDetail",
           "detailLabel":"A quelle date ?",
           "type":"date"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1148,12 +1148,12 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1195,15 +1195,15 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez.html",
           "detailModel":"formationsDetail",
           "detailLabel": "Laquelle/lesquelles ?"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1214,14 +1214,14 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez.html",
           "detailModel":"descriptionDetail"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1493,34 +1493,35 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez_date.html",
           "detailModel":"vieDetail",
-          "detailLabel":"Depuis quand ?",
+          "detailLabel":"Depuis le",
           "type":"date"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
     {
-      "titleDefault":"Avez-vous un emploi ?",
+      "titleDefault":"Êtes-vous actuellement en emploi ?",
       "model":"emploi",
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
+          "label":"Oui",
+          "model":"oui"
         },
         {
-          "label":"Oui",
-          "model":true,
-          "detailUrl":"components/detail/precisez_yes_no.html",
-          "detailModel":"emploiDetail",
-          "detailLabel":"Réduction d’activité liée à la prise en charge de la personne aidée"
+          "label":"Non",
+          "model":"non"
+        },
+        {
+          "label":"Réduction d’activité liée à la prise en charge de la personne aidée",
+          "model":"reductionActivite"
         }
       ]
     },
@@ -1558,7 +1559,7 @@
           "model":"repasPrise"
         },
         {
-          "label":"Coordination des intervenants professionnels à l’extérieur",
+          "label":"Coordination des intervenants professionnels",
           "model":"professionnels"
         },
         {
@@ -1582,7 +1583,7 @@
           "model":"medical"
         },
         {
-          "label":"Autres",
+          "label":"Autre",
           "model":"autre",
           "detailModel":"natureAideDetail",
           "detailUrl":"components/detail/precisez.html"
@@ -1595,46 +1596,52 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez_montant.html",
           "detailModel":"dedommagementDetail",
           "placeholder":"Montant mensuel"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
     {
-      "titleDefault":"Quelqu'un participe-t-il avec vous à son accompagnement ?",
-      "titleRep":"Quelqu'un participe-t-il avec vous à l'accompagnement de <%= name %> ?",
+      "titleDefault":"Qui participe avec vous à l'accompagnement de la personne aidée ?",
+      "titleRep":"Qui participe avec vous à l'accompagnement de <%= name %> ?",
       "model":"accompagnementAidant",
       "type":"checkbox",
       "answers":[
         {
-          "label":"Oui, un (des) professionnel(s)",
+          "label":"Un (des) professionnel(s)",
           "model":"professionnel"
         },
         {
-          "label":"Oui, un (ou plusieurs) autre(s) proche(s)",
+          "label":"Un (ou plusieurs) autre(s) proche(s)",
           "model":"proches"
+        },
+        {
+          "label":"Je suis le seul aidant du demandeur",
+          "model":"seul"
         }
       ]
     },
     {
       "titleDefault":"Etes-vous soutenu dans votre fonction d’aidant ?",
       "model":"soutien",
-      "type":"checkbox",
+      "type":"radio",
       "answers":[
         {
-          "label":"Vous participez à des rencontres avec d’autres aidants",
-          "model":"rencontres"
+          "label":"Oui",
+          "model":true,
+          "detailUrl":"components/detail/precisez.html",
+          "detailModel":"soutienDetail"
         },
         {
-          "label":"Vous êtes soutenu individuellement",
-          "model":"individuel"
+          "label":"Non",
+          "model":false
         }
       ]
     },
@@ -1644,20 +1651,20 @@
       "type":"radio",
       "answers":[
         {
-          "label":"Non",
-          "model":false
-        },
-        {
           "label":"Oui",
           "model":true,
           "detailUrl":"components/detail/precisez.html",
           "detailModel":"empechementDetail",
           "placeholder":"Laquelle"
+        },
+        {
+          "label":"Non",
+          "model":false
         }
       ]
     },
     {
-      "titleDefault":"Serez-vous prochainement dans une des situations suivantes ?",
+      "titleDefault":"Vous êtes ou serez prochainement dans l'une des situations suivantes :",
       "model":"situationFuture",
       "type":"checkbox",
       "answers":[
@@ -1670,6 +1677,10 @@
           "model":"indisponible"
         },
         {
+          "label":"Changement majeur dans la situation personnelle (séparation, décès du conjoint, départ en établissement de retraite ...)",
+          "model":"personnel"
+        },
+        {
           "label":"Problème de santé",
           "model":"sante"
         },
@@ -1678,34 +1689,13 @@
           "model":"professionnelle"
         },
         {
-          "label":"Changement majeur dans la situation personnelle (séparation, départ en établissement de retraite ...)",
-          "model":"personnel"
+          "label":"Difficulté à assurer l'accompagnement actuel (épuisement, avancée en âge, ...)",
+          "model":"difficulté"
         },
         {
-          "label":"Autres changements prochains de situation",
+          "label":"Autre",
           "model":"autre",
           "detailModel":"situationDetail",
-          "detailUrl":"components/detail/precisez.html"
-        }
-      ]
-    },
-    {
-      "titleDefault":"Avez-vous besoin de mieux connaitre les aides et dispositifs existants ?",
-      "model":"demandesAides",
-      "type":"checkbox",
-      "answers":[
-        {
-          "label":"Pour vous",
-          "model":"eloignement"
-        },
-        {
-          "label":"Pour la personne aidée",
-          "model":"indisponible"
-        },
-        {
-          "label":"Autres",
-          "model":"autre",
-          "detailModel":"aidesDetail",
           "detailUrl":"components/detail/precisez.html"
         }
       ]
@@ -1716,7 +1706,22 @@
       "titleDefault":"Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?"
     },
     {
-      "titleDefault":"Quelles sont vos attentes en tant qu'aidant familial ?",
+      "titleDefault":"Vous souhaitez mieux connaitre les dispositifs et aides existants :",
+      "model":"demandesAides",
+      "type":"checkbox",
+      "answers":[
+        {
+          "label":"Pour vous",
+          "model":"pour_vous"
+        },
+        {
+          "label":"Pour la personne aidée",
+          "model":"pour_la_personne"
+        }
+      ]
+    },
+    {
+      "titleDefault":"Vos attentes en tant qu'aidant familial :",
       "model":"typeAttente",
       "type":"checkbox",
       "answers":[
@@ -1725,11 +1730,15 @@
           "model":"repos"
         },
         {
-          "label":"Pouvoir vous faire remplacer en cas d’un imprévu",
+          "label":"Pouvoir vous faire remplacer en cas d’imprévu",
           "model":"imprevu"
         },
         {
-          "label":"Pouvoir vous faire remplacer pour partir en week-end/vacances",
+          "label":"Vous faire remplacer en cas de besoin",
+          "model":"vacances"
+        },
+        {
+          "label":"Vous faire remplacer pour partir en week-end/vacances",
           "model":"vacances"
         },
         {
@@ -1749,19 +1758,23 @@
           "model":"echanges"
         },
         {
+          "label":"Echanger avec les professionnels qui suivent mon proche",
+          "model":"echanges_professionnel"
+        },
+        {
           "label":"Avoir un soutien psychologique",
           "model":"psychologique"
         },
         {
-          "label":"Etre conseillé pour mieux faire face au handicap de votre proche",
+          "label":"Être conseillé pour mieux faire face au handicap de votre proche",
           "model":"conseil"
         },
         {
-          "label":"Etre affilié gratuitement à l’assurance vieillesse",
+          "label":"Être affilié gratuitement à l’assurance vieillesse",
           "model":"vieillesse"
         },
         {
-          "label":"Autre attente",
+          "label":"Autre",
           "model":"autre",
           "detailModel":"attentesDetail",
           "detailUrl":"components/detail/precisez.html"

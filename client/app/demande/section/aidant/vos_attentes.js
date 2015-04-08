@@ -35,6 +35,21 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
+            $state.go('^.renseignements');
+          };
+        }
+      }
+    })
+    .state(index + '.renseignements', {
+      url: '/renseignements',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'CheckboxQuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'demandesAides', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
             $state.go('^.autres_renseignements');
           };
         }

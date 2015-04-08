@@ -135,8 +135,8 @@ angular.module('impactApp')
     })
     .state(index + '.soutien', {
       url: '/soutien',
-      templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'soutien', request.formAnswers);
@@ -170,21 +170,6 @@ angular.module('impactApp')
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'situationFuture', request.formAnswers);
-        },
-        nextStep: function($state) {
-          return function() {
-            $state.go('^.renseignements');
-          };
-        }
-      }
-    })
-    .state(index + '.renseignements', {
-      url: '/renseignements',
-      templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
-      resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'demandesAides', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
