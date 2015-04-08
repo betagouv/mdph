@@ -1,3 +1,47 @@
+<div class="panel panel-default panel-smoke">
+  <div class="panel-heading">
+    Récapitulatif demande
+  </div>
+
+  <div class="panel-body">
+
+    <div ng-bind-html="recapitulatifHtml"></div>
+
+    <div class="pull-right">
+      <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
+        <i class="fa fa-download"></i>
+        Télécharger - format simplifié
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Pièces jointes
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li ng-repeat="document in request.documents">
+        {{document.gridFile}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-default" ng-if="prestations.length > 0">
+  <div class="panel-heading">
+    Quitus
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li ng-repeat="prestation in prestations">
+        {{prestation.label}}
+      </li>
+    </ul>
+  </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     Points saillants
@@ -32,37 +76,6 @@
     <ul class="presta-show-list">
       <li class="presta-choice-select" ng-repeat="prestation in toutesPrestations | filter:isSelected" ng-click="addPrestation(prestation)">
         {{prestation.label}} <i class="fa fa-plus"></i>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="panel panel-default panel-smoke">
-  <div class="panel-heading">
-    Récapitulatif demande
-  </div>
-
-  <div class="panel-body">
-
-    <div ng-bind-html="recapitulatifHtml"></div>
-
-    <div class="pull-right">
-      <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
-        <i class="fa fa-download"></i>
-        Télécharger - format simplifié
-      </a>
-    </div>
-  </div>
-</div>
-
-<div class="panel panel-default" ng-if="prestations.length > 0">
-  <div class="panel-heading">
-    Quitus
-  </div>
-  <div class="panel-body">
-    <ul>
-      <li ng-repeat="prestation in prestations">
-        {{prestation.label}}
       </li>
     </ul>
   </div>

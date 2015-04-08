@@ -17,6 +17,12 @@ angular.module('impactApp').constant('documentTypes', [
     desc: 'Une photocopie recto/verso de la carte d\'identité du demandeur'
   },
   {
+    id: 'justificatifDomicile',
+    label: 'Justificatif de domicile',
+    type: 'obligatoire',
+    desc: ''
+  },
+  {
     id: 'gevasco',
     label: 'GEVAsco',
     type: 'scolarite',
