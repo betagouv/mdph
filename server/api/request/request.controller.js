@@ -52,7 +52,6 @@ exports.index = function(req, res) {
     }
 
     Request.find(search)
-      .select('-formAnswers')
       .populate('user', 'name')
       .sort('createdAt')
       .exec(function(err, requests) {

@@ -1,7 +1,9 @@
 <div class="list-header">
   <a ng-click="back()"><i class="fa fa-chevron-circle-left"></i> Retour</a>
   <div class="well">
-    <h2>Demande de {{user.name}}</h2>
+    <h2>Demande de {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+      <br><small>Demande effectuée par {{user.name}}</small>
+    </h2>
     {{request.shortId}} / Dernière modification {{request.updatedAt | date: format: timezone}}
     <button class="btn btn-danger pull-right" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
   </div>

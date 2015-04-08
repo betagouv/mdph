@@ -38,7 +38,9 @@
           </td>
           <td>
             <span class="user">
-              <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">{{request.user.name}}</a>
+              <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
+                {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+              </a>
             </span>
           </td>
           <td class="date-request">{{request.createdAt | date}}</td>

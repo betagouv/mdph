@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/impact-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };
