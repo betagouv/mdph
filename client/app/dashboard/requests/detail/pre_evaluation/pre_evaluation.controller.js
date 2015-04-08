@@ -11,11 +11,14 @@ angular.module('impactApp')
            return calculAge(dateNaiss);
      };
   })
-  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, DroitService, NotificationService, vieQuotidienne, prestations) {
+  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, documentTypes, DroitService, NotificationService, vieQuotidienne, prestations) {
     $scope.token = $cookieStore.get('token');
     $scope.recapitulatif = recapitulatif;
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
     $scope.toutesPrestations = prestations;
+
+    $scope.documentTypesById = _.indexBy(documentTypes, 'id');
+    $scope.filesVM = _.groupBy(request.documents, 'type');
 
     var familleAnswers = _.indexBy(vieQuotidienne.famille.answers, 'model');
     var situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];

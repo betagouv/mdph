@@ -1,3 +1,4 @@
+
 <div class="panel panel-default panel-smoke">
   <div class="panel-heading">
     Récapitulatif demande
@@ -21,11 +22,14 @@
     Pièces jointes
   </div>
   <div class="panel-body">
-    <ul>
-      <li ng-repeat="document in request.documents">
-        {{document.gridFile}}
-      </li>
-    </ul>
+    <div ng-repeat="(type, files) in filesVM">
+      {{documentTypesById[type].label}}
+      <ul>
+        <li ng-repeat="document in files">
+          <display-file file="document" request="request"></display-file>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 
