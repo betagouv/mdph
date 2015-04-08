@@ -12,7 +12,7 @@ var identites = {
 
 var aidant =   {
   id: 'aidant',
-  sref: '.aidant.situation.lien',
+  sref: '.aidant.situation.nom_aidant',
   label: 'Vie de votre aidant familial',
   desc: 'Si votre aidant familial (la personne qui s’occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins',
   section: 'complements',

@@ -7,7 +7,7 @@ angular.module('impactApp')
     $scope.hideBack = $state.current.data.hideBack;
     $scope.isLastQuestion = $state.current.data.isLastQuestion;
   })
-  .controller('CheckboxQuestionCtrl', function($scope, $state,question, nextStep) {
+  .controller('CheckboxQuestionCtrl', function($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.hideBack = $state.current.data.hideBack;
@@ -16,6 +16,19 @@ angular.module('impactApp')
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[question.model] = {};
     }
+  })
+  .controller('DateQuestionCtrl', function($scope, $state, datepickerConfig, question, nextStep) {
+    $scope.question = question;
+    $scope.nextStep = nextStep;
+    $scope.hideBack = $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+
+    datepickerConfig.datepickerMode = 'year';
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
   })
   .controller('StructureQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;

@@ -1,0 +1,16 @@
+<form name="questionForm" novalidate>
+  <qtitle ng-hide="hideTitle"></qtitle>
+  <label for="inputid" ng-if="label" class="control-label">{{label}}</label>
+
+  <p class="input-group">
+    <input type="text" name="detail" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="sectionModel[question.model]" is-open="opened" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false" required>
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+  </p>
+  <div ng-messages="questionForm.inputname.$error" ng-if="questionForm.showError">
+    <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+  </div>
+
+  <nav-steps ng-hide="hideSteps"></nav-steps>
+</form>

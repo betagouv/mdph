@@ -1469,20 +1469,15 @@
   ],
   "aidant":[
     {
-      "model":"condition",
-      "titleDefault":"Votre aidant familial souhaite-t-il s'exprimer ?",
-      "titleRep":"L'aidant familial de <%= name %> souhaite-t-il s'exprimer ?",
-      "type":"radio",
-      "answers":[
-        {
-          "label":"Oui",
-          "model":true
-        },
-        {
-          "label":"Non",
-          "model":false
-        }
-      ]
+      "model":"nomAidant",
+      "titleDefault":"Comment vous appelez-vous ?",
+      "placeholder":"Nom et Prénom",
+      "type":"text"
+    },
+    {
+      "model":"dateNaissanceAidant",
+      "titleDefault":"Date de naissance",
+      "type":"date"
     },
     {
       "model":"lien",

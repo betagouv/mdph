@@ -10,13 +10,43 @@ angular.module('impactApp')
       template: '<ui-view/>',
       abstract: true
     })
-    .state(index + '.lien', {
-      url: '/lien',
-      templateUrl: 'components/question/textarea.html',
+    .state(index + '.nom_aidant', {
+      url: '/',
+      templateUrl: 'components/question/textinput.html',
       controller: 'QuestionCtrl',
       data: {
         hideBack: true
       },
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'nomAidant', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.date_naissance_aidant');
+          };
+        }
+      }
+    })
+    .state(index + '.date_naissance_aidant', {
+      url: '/date_naissance_aidant',
+      templateUrl: 'components/question/date.html',
+      controller: 'DateQuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'dateNaissanceAidant', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
+            $state.go('^.lien');
+          };
+        }
+      }
+    })
+    .state(index + '.lien', {
+      url: '/lien',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'lien', request.formAnswers);
