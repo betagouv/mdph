@@ -56,13 +56,18 @@ angular.module('impactApp')
           },
           nextStep: function($state, sectionModel, question) {
             return function() {
-
-              if (sectionModel[question.model] && sectionModel[question.model].financiere) {
+              var answer = sectionModel[question.model];
+              if (!answer) {
+                $state.go('^.fraisHandicap');
+              } else if (answer.financiere) {
                 $state.go('^.aideFinancierePresent');
+              } else if (answer.technique) {
+                $state.go('^.aideTechnique');
+              } else if (answer.personne) {
+                $state.go('^.aidePersonne');
               } else {
                 $state.go('^.fraisHandicap');
               }
-
             };
           }
         }
@@ -89,6 +94,48 @@ angular.module('impactApp')
         resolve: {
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aideFinancierePasse', request.formAnswers);
+          },
+          nextStep: function($state, sectionModel) {
+            return function() {
+              var answerAideActuelle = sectionModel.aideActuelle;
+              if (answerAideActuelle.technique) {
+                $state.go('^.aideTechnique');
+              } else if (answerAideActuelle.personne) {
+                $state.go('^.aidePersonne');
+              } else {
+                $state.go('^.pensionInvalidite');
+              }
+            };
+          }
+        }
+      })
+      .state(index + '.situation.aideTechnique', {
+        url: '/aides_techniques',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'aideTechnique', request.formAnswers);
+          },
+          nextStep: function($state, sectionModel) {
+            return function() {
+              var answerAideActuelle = sectionModel.aideActuelle;
+              if (answerAideActuelle.personne) {
+                $state.go('^.aidePersonne');
+              } else {
+                $state.go('^.pensionInvalidite');
+              }
+            };
+          }
+        }
+      })
+      .state(index + '.situation.aidePersonne', {
+        url: '/aides_personnes',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'aidePersonne', request.formAnswers);
           },
           nextStep: function($state) {
             return function() {

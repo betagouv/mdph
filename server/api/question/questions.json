@@ -86,15 +86,11 @@
         },
         {
           "label":"Une aide technique, matérielle ou de l'équipement",
-          "model":"technique",
-          "detailUrl":"components/detail/aide_technique.html",
-          "detailModel":"techniqueDetail"
+          "model":"technique"
         },
         {
           "label":"Une aide à la personne, avec quelqu'un qui vous aide",
-          "model":"personne",
-          "detailUrl":"components/detail/aide_personne.html",
-          "detailModel":"personneDetail"
+          "model":"personne"
         }
       ]
     },
@@ -146,6 +142,64 @@
         {
           "label":"Un revenu issu d'une activité en ESAT",
           "model":"esat"
+        }
+      ]
+    },
+    {
+      "model":"aideTechnique",
+      "titleDefault":"Vous avez indiqué recevoir une aide technique, matérielle ou de l'équipement, cette aide consiste en :",
+      "titleRep":"Vous avez indiqué que <%= pronoun %> reçoit une aide technique, matérielle ou de l'équipement, cette aide consiste en :",
+      "type":"checkbox",
+      "answers":[
+        {
+          "label":"Un aménagement de logement",
+          "model":"aideTechnique_logement"
+        },
+        {
+          "label":"Une aide animalière",
+          "model":"aideTechnique_animal"
+        },
+        {
+          "label":"Un aménagement de véhicule",
+          "model":"aideTechnique_vehicule"
+        },
+        {
+          "label":"Une aide technique (ex: barre d'appui, déambulateur, etc.)",
+          "model":"aideTechnique_technique",
+          "detailUrl":"components/detail/precisez.html",
+          "detailModel":"aideTechnique_techniqueDetail"
+        },
+        {
+          "label":"Autre",
+          "model":"aideTechnique_autre",
+          "detailUrl":"components/detail/precisez.html",
+          "detailModel":"aideTechnique_autreDetail"
+        }
+      ]
+    },
+    {
+      "model":"aidePersonne",
+      "titleDefault":"Vous avez indiqué recevoir une aide à la personne, vous êtes aidé par :",
+      "titleRep":"Vous avez indiqué que <%= pronoun %> reçoit une aide à la personne, <%= pronoun %> est aidé<%= fem %> par :",
+      "type":"checkbox",
+      "answers":[
+        {
+          "label":"Votre famille",
+          "model":"aidePersonne_famille"
+        },
+        {
+          "label":"Un professionnel de soins à domicile",
+          "model":"aidePersonne_professionnel"
+        },
+        {
+          "label":"Un accompagnement médico-social",
+          "model":"aidePersonne_medicoSociale"
+        },
+        {
+          "label":"Autre",
+          "model":"aidePersonne_autre",
+          "detailUrl":"components/detail/precisez.html",
+          "detailModel":"aidePersonne_autreDetail"
         }
       ]
     },
