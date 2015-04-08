@@ -128,6 +128,15 @@ var matchAnswersToQuestions = function(question, answer){
         });
       }
     break;
+    case 'diplomes':
+      if (answer.listeDiplomes) {
+        answersAndQuestions.push({
+          label: 'Diplômes',
+          model: 'diplomes',
+          detailModel: 'listeDiplomes'
+        });
+      }
+    break;
     case 'employeur':
       answersAndQuestions.push({
         label: answer.nom.value + ', ' + answer.adresse.value + ', ' + answer.medecin.value + ' (service/médecin)'
@@ -193,10 +202,21 @@ var addDetailsToAnswers = function(answers, answer, detailedAnswer){
                   detailedAnswer.detailsEDT.push(n);
                 }
                 else {
-                  if (!detailedAnswer.details) {
-                    detailedAnswer.details = [];
+                  if (answer.listeDiplomes) {
+                    if (!detailedAnswer.detailsDiplomes) {
+                      detailedAnswer.detailsDiplomes = [];
+                    }
+                    if (n.annee) {
+                      n.annee = moment(n.annee).format('DD/MM/YYYY');
+                    }
+                    detailedAnswer.detailsDiplomes.push(n);
                   }
-                  detailedAnswer.details.push(n)
+                  else {
+                    if (!detailedAnswer.details) {
+                      detailedAnswer.details = [];
+                    }
+                    detailedAnswer.details.push(n);
+                  }
                 }
               }
             }
@@ -281,6 +301,9 @@ exports.answersToHtml = function(request, path, output, next) {
     },
     detailsFrais: function (callback) {
       readFile('detailsFrais.html', callback);
+    },
+    detailsDiplomes: function (callback) {
+      readFile('detailsDiplomes.html', callback);
     },
     detailsStructures: function (callback) {
       readFile('detailsStructures.html', callback);

@@ -84,7 +84,7 @@ angular.module('impactApp')
       );
     };
     $scope.retirerFrais = function(){
-      var lastIndex = $scope.model.listeFrais.indexOf(_.last($scope.model.listeFrais));
+      var lastIndex = $scope.model.listeFrais.length-1;
       $scope.model.listeFrais.splice(lastIndex, 1);
     };
   })
@@ -94,18 +94,20 @@ angular.module('impactApp')
     $scope.opened = [];
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[$scope.question.model] = [
-        {
-          'nom': '',
-          'annee': '',
-          'domaine': ''
-        }
-      ];
+      $scope.sectionModel[$scope.question.model] = {
+        listeDiplomes: [
+          {
+            'nom': '',
+            'annee': '',
+            'domaine': ''
+          }
+        ]
+      };
     }
 
     $scope.model = $scope.sectionModel[question.model];
     $scope.ajouterDiplome = function() {
-      $scope.model.push(
+      $scope.model.listeDiplomes.push(
         {
           'nom': '',
           'annee': '',
@@ -114,8 +116,8 @@ angular.module('impactApp')
       );
     };
     $scope.retirerDiplome = function(){
-      var lastIndex = $scope.model.indexOf(_.last($scope.model));
-      $scope.model.splice(lastIndex, 1);
+      var lastIndex = $scope.model.length-1;
+      $scope.model.listeDiplomes.splice(lastIndex, 1);
     };
     $scope.open = function($event, idx) {
       $event.preventDefault();

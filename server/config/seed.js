@@ -20,27 +20,55 @@ var mdphNord, mdphCalvados,
 var createFakeAnswers = function(nom, prenom) {
   return {
     "identites": {
+      "autorite": {
+        "parent1": {},
+        "parent2": {},
+        "autre": {}
+      },
+      "aidantDemarche": [],
       "beneficiaire": {
-        "nom": nom,
-        "prenom": prenom,
         "sexe": "masculin",
+        "nom": nom,
+        "nom_usage": "Toto",
+        "prenom": prenom,
         "nationalite": "francaise",
         "dateNaissance": "1989-12-31T23:00:00.000Z",
+        "lieu_naissance": "Paris",
+        "lieu_naissance_cp": "75000",
         "adresse": "3 rue des pommiers",
-        "adresse_complement": "",
+        "adresse_complement": "chez dudu",
         "code_postal": "75000",
         "commune": "Paris",
-        "pays": "France"
+        "pays": "France",
+        "email": "toto@toto.com",
+        "tel_1": "0000000000",
+        "tel_2": "000000000",
+        "mode_contact": "email",
+        "domicile_organisme": "Association cool",
+        "prestations_familiales": "caf",
+        "numero_allocataire": "0000000000000000",
+        "assurance": "caf",
+        "numero_secu": "000000000000000"
       },
       "__completion": true
     },
+    "situations_particulieres": {
+      "urgences": {
+        "ecole": true,
+        "hospitalisation": true
+      },
+      "ecoleDetail": "Raison valable !",
+      "hospitalisationDetail": "Raison valable !",
+      "__completion": true
+    },
     "vie_quotidienne": {
-      "famille": "couple",
-      "logement": "domicile",
-      "logement_domicile": "parents",
+      "famille": "seul",
+      "logement": "etablissement",
+      "logement_etablissement": "Etablissement Y, hôpital, Paris",
       "aideActuelle": {
         "technique": true,
         "techniqueDetail": {
+          "animal": true,
           "vehicule": true
         }
       },
@@ -63,25 +91,27 @@ var createFakeAnswers = function(nom, prenom) {
         ]
       },
       "besoinsVie": {
-        "budget": true,
         "hygiene": true,
-        "habits": true
+        "habits": true,
+        "courses": true
       },
       "besoinsDeplacement": {
-        "public": true,
+        "transports": true,
         "conduite": true,
-        "transports": true
+        "public": true
       },
       "besoinsTransports": false,
       "besoinsSocial": {
-        "famille": true,
+        "loisirs": true,
         "proches": true,
-        "loisirs": true
+        "famille": true
       },
       "attentesTypeAide": {
-        "accompagement": true,
+        "humain": true,
+        "etablissement": true,
+        "materiel": true,
         "mobilite": true,
-        "financierMinimum": true
+        "domicile": true
       },
       "structures": {
         "structures": [
@@ -92,54 +122,14 @@ var createFakeAnswers = function(nom, prenom) {
         ],
         "valeur": false
       },
-      "autresRenseignements": "azertyuiop",
-      "__completion": true
-    },
-    "situations_particulieres": {
-      "urgences": {
-        "ecole": true,
-        "hospitalisation": true
-      },
-      "hospitalisationDetail": "aaaa",
-      "ecoleDetail": "zzzz",
+      "autresRenseignements": "qazsertyuikop",
       "__completion": true
     },
     "vie_scolaire": {
       "condition": true,
       "vieScolaireType": "ordinaire",
-      "besoinsScolarite": {
-        "calculer": true,
-        "comprendre": true
-      },
-      "besoinsCommunication": {
-        "relation": true
-      },
-      "besoinsEntretien": {
-        "sante": true,
-        "repas": true,
-        "habiller": true
-      },
-      "besoinsDeplacement": {
-        "extraLocaux": true,
-        "transports": true
-      },
-      "attentesVieScolaire": {
-        "aideHumaine": true,
-        "aideMateriel": true,
-        "readaptation": true,
-        "etablissementSansHebergement": true
-      },
-      "structure": {
-        "structures": [
-          {
-            "name": "",
-            "contact": false
-          }
-        ],
-        "valeur": false
-      },
-      "autresRenseignements": "hiohio",
-      "__completion": true,
+      "internat": true,
+      "internatFrais": true,
       "etablissement": {
         "valeur": false,
         "etablissements": [
@@ -147,34 +137,18 @@ var createFakeAnswers = function(nom, prenom) {
             "nom": "Etablissement 1",
             "rue": "Rue 1",
             "ville": "Ville 1",
-            "date": "2009-12-31T23:00:00.000Z"
-          }
-        ]
-      },
-      "typeEtudes": "ezr",
-      "diplomePasse": "zer",
-      "diplomePresent": "zetrfecds",
-      "diplomeEtablissement": {
-        "valeur": false,
-        "etablissements": [
+            "date": "1999-12-31T23:00:00.000Z"
+          },
           {
             "nom": "Etablissement 2",
             "rue": "Rue 2",
             "ville": "Ville 2",
-            "date": "2009-12-31T23:00:00.000Z"
-          },
-          {
-            "nom": "Etablissement 3",
-            "rue": "Rue 3",
-            "ville": "Ville 3",
-            "date": "2013-12-31T23:00:00.000Z"
+            "date": "1999-12-31T23:00:00.000Z"
           }
         ]
       },
-      "parcoursEtudes": "efsdwx",
       "accompagnement": {
-        "liberal": true,
-        "hopital": false
+        "liberal": true
       },
       "adaptation": {
         "communication": true,
@@ -185,81 +159,130 @@ var createFakeAnswers = function(nom, prenom) {
         "jours": [
           {
             "jour": "Lundi",
-            "matin": "1",
-            "midi": "2",
-            "aprem": "3"
+            "matin": "Lundi matin",
+            "midi": "Lundi midi",
+            "aprem": "Lundi aprèm"
           },
           {
             "jour": "Mardi",
-            "matin": "4",
-            "midi": "5",
-            "aprem": "6"
+            "matin": "Mardi matin",
+            "midi": "Mardi midi",
+            "aprem": "Mardi aprèm"
           },
           {
             "jour": "Mercredi",
-            "matin": "7",
-            "midi": "8",
-            "aprem": "9"
+            "matin": "Mercredi matin",
+            "midi": "Mercredi midi",
+            "aprem": "Mercredi aprèm"
           },
           {
             "jour": "Jeudi",
-            "matin": "10",
-            "midi": "11",
-            "aprem": "12"
+            "matin": "Jeudi matin",
+            "midi": "Jeudi midi",
+            "aprem": "Jeudi aprèm"
           },
           {
             "jour": "Vendredi",
-            "matin": "13",
-            "midi": "14",
-            "aprem": "15"
+            "matin": "Vendredi matin",
+            "midi": "Vendredi midi",
+            "aprem": "Vendredi aprèm"
           },
           {
             "jour": "Samedi",
-            "matin": "16",
-            "midi": "17",
-            "aprem": "18"
+            "matin": "Samedi matin",
+            "midi": "Samedi midi",
+            "aprem": "Samedi aprèm"
           }
         ]
-      }
+      },
+      "besoinsScolarite": {
+        "comprendre": true,
+        "materiel": true,
+        "organiser": true
+      },
+      "besoinsCommunication": {
+        "securite": true,
+        "relation": true
+      },
+      "besoinsEntretien": {
+        "sante": true,
+        "repas": true,
+        "habiller": true
+      },
+      "besoinsDeplacement": {
+        "transports": true
+      },
+      "attentesVieScolaire": {
+        "aideMateriel": true,
+        "aideHumaine": true
+      },
+      "structure": {
+        "structures": [
+          {
+            "name": "",
+            "contact": false
+          }
+        ],
+        "valeur": false
+      },
+      "referent": true,
+      "autresRenseignements": "qazertyuji",
+      "__completion": true
     },
     "vie_au_travail": {
       "conditionTravail": false,
-      "passe": false,
+      "passe": true,
+      "passeDetail": "Raison valable !",
       "situationSansEmploi": {
         "etudiant": true
       },
-      "etudiantDetail": "klnùùml",
       "situationAccompagnement": {
-        "poleEmploi": true,
-        "capEmploi": true
+        "capEmploi": true,
+        "poleEmploi": true
       },
       "prestations": {
-        "fiphfp": true
+        "fiphfp": true,
+        "agefiph": true
       },
-      "rqth": false,
+      "rqth": true,
       "cv": {
         "experiences": [
           {
             "intitule": "Expérience 1",
             "employeur": "Entreprise 1",
             "contrat": "CDI",
-            "debut": "2011-12-31T23:00:00.000Z",
-            "fin": "2013-12-30T23:00:00.000Z",
-            "motif": "Motif 1"
+            "debut": "1989-12-31T23:00:00.000Z",
+            "fin": "1994-12-31T23:00:00.000Z",
+            "motif": "Raison valable !"
           },
           {
             "intitule": "Expérience 2",
             "employeur": "Entreprise 2",
-            "contrat": "CDI",
-            "debut": "2013-12-31T23:00:00.000Z",
-            "motif": "Motif 2"
+            "contrat": "CDD",
+            "debut": "1994-12-31T23:00:00.000Z",
+            "fin": "1999-12-31T23:00:00.000Z",
+            "motif": "Raison valable !"
+          }
+        ]
+      },
+      "qualification": "secondaire",
+      "derniereClasse": "Terminale",
+      "formations": true,
+      "formationsDetail": "Formations géniales !",
+      "diplomes": {
+        "listeDiplomes": [
+          {
+            "nom": "Diplôme 1",
+            "annee": "1989-12-31T23:00:00.000Z",
+            "domaine": "Agriculture"
           }
         ]
       },
       "description": false,
       "besoinSoutien": {
         "precisions": true,
-        "environnement": true
+        "environnement": true,
+        "emploi": true
       },
       "structures": {
         "structures": [
@@ -270,7 +293,7 @@ var createFakeAnswers = function(nom, prenom) {
         ],
         "valeur": false
       },
-      "autresRenseignements": "fgbhjn,k",
+      "autresRenseignements": "Renseignements très très utiles et importants.",
       "__completion": true
     }
   }
