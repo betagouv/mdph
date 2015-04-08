@@ -119,4 +119,4 @@ var documents = {
 };
 
 exports.trajectoires = [vieQuotidienne, vieScolaire, vieAuTravail];
-exports.all = [identites, aidant, vieQuotidienne, vieScolaire, vieAuTravail, situationsParticulieres, renouvellement, documents];
+exports.all = [identites, situationsParticulieres, vieQuotidienne, vieScolaire, vieAuTravail, renouvellement, aidant, documents];
