@@ -33,13 +33,9 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'temps', request.formAnswers);
           },
-          nextStep: function($state, sectionModel, question) {
+          nextStep: function($state) {
             return function() {
-              if (sectionModel[question.model]) {
-                $state.go('^.adapte');
-              } else {
-                $state.go('^.heures');
-              }
+              $state.go('^.adapte');
             };
           }
         }

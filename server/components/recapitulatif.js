@@ -13,263 +13,116 @@ var mustache = require('mustache');
 var Sections = require('../api/sections/sections.constant');
 var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
 
-var questionToHtml = function(answer, question, sectionId, request) {
-  var html = '<div class="question">'
-
-  html += '<h3>' + question.titleDefault + '</h3>';
-
-  if (!question.answers) {
-    console.log(question);
-  } else {
-    question.answers.forEach(function(constant) {
-      if (answer[constant.model]) {
-        html += '<p>' + constant.label + '</p>';
-      }
-    });
-  }
-
-  html += '</div>';
-
-  return html;
-};
-
-var sectionToHtml = function(section, request) {
-  var answers = request.formAnswers;
-
-  // if (section.id === 'identites') {
-  //   return Identites.sectionToHtml(answers.identites);
-  // }
-
-  if (section.id === 'documents') {
-    return '';
-  }
-
-  var html = '<div class="section">'
-
-  html += '<h2>' + section.label + '</h2>';
-
-  var sectionAnswers = answers[section.id];
-  var sectionQuestions = QuestionsBySections[section.id];
-
-  if (!sectionAnswers) {
-    return html + '<div class="question"><p>Section non renseignée</p></div>';
-  }
-
-  if (section.id === 'aidant' && !sectionAnswers.condition) {
-    return html + '<p>Vous avez choisi de ne pas renseigner de détails sur votre aidant familial</p>';
-  }
-
-  sectionQuestions.forEach(function(question) {
-    var answer = sectionAnswers[question.model];
-    if (!answer) {
-      return;
-    }
-    var questionHtml = questionToHtml(answer, question);
-    if (questionHtml) {
-      html += questionHtml + '<br>';
-    }
-  });
-
-  return html + '</div>';
-};
-
-var readFile = function(name, callback) {
+function readFile(name, callback) {
   fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
     callback(err, String(html));
   });
 }
 
-var formatDateNaissance = function(identite) {
+function formatDateNaissance(identite) {
   if (identite && identite.dateNaissance) {
     identite.dateNaissance = moment(identite.dateNaissance).format('DD/MM/YYYY');
   }
 }
 
-var matchAnswersToQuestions = function(question, answer){
-  var answersAndQuestions = _.filter(question.answers, function(constant) {
-    if (typeof answer === 'string') {
-      return answer === constant.model;
-    } else {
-      return answer[constant.model] === true;
-    }
-  });
+function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){
     case 'text':
-      answersAndQuestions.push({
-        label: answer
-      });
-    break;
+      return [{label: questionAnswers}];
     case 'radio':
-      if (typeof answer === 'boolean') {
-        var labels = _.indexBy(question.answers, 'model');
-        if (labels && labels[answer]) {
-          answer = labels[answer].label;
-          answersAndQuestions.push({
-            label: answer
-          });
+      var constantAnswer = _.find(question.answers, {model: questionAnswers});
+      return [{label: constantAnswer.label, detailModel: constantAnswer.detailModel}];
+    case 'checkbox':
+      var answers = [];
+      question.answers.forEach(function(constantAnswer) {
+        if (questionAnswers[constantAnswer.model]) {
+          answers.push({label: constantAnswer.label, detailModel: constantAnswer.detailModel});
         }
-      }
-    break;
+      });
+      return answers;
     case 'frais':
-      if (answer.listeFrais) {
-        answersAndQuestions.push({
-          label: 'Liste des frais',
-          model: 'fraisHandicap',
-          detailModel: 'listeFrais'
-        });
-      }
-    break;
+      return [{label: 'Liste des frais', listeFrais: questionAnswers.listeFrais}];
     case 'cv':
-      if (answer.experiences) {
-        answersAndQuestions.push({
-          label: 'CV',
-          model: 'cv',
-          detailModel: 'listeCv'
-        });
-      }
-    break;
+      return [{label: 'Curriculum vitae', listeCv: questionAnswers.experiences}];
     case 'diplomes':
-      if (answer.listeDiplomes) {
-        answersAndQuestions.push({
-          label: 'Diplômes',
-          model: 'diplomes',
-          detailModel: 'listeDiplomes'
-        });
-      }
-    break;
+      return [{label: 'Diplômes', listeDiplomes: questionAnswers.listeDiplomes}];
     case 'employeur':
-      answersAndQuestions.push({
-        label: answer.nom.value + ', ' + answer.adresse.value + ', ' + answer.medecin.value + ' (service/médecin)'
-      });
-    break;
+      return [{label: questionAnswers.nom.value + ', ' + questionAnswers.adresse.value}];
     case 'structure':
-      if (answer.valeur) {
-        answersAndQuestions.push({
+      if (questionAnswers.valeur) {
+        return [{
           label: 'Oui',
-          model: 'structures',
-          detailModel: 'structures'
-        });
+          structures: questionAnswers.structures
+        }];
       }
-      else {
-        answersAndQuestions.push({
-          label: 'Non'
-        });
-      }
-    break;
+      return [{label: 'Non'}];
     case 'emploiDuTemps':
-      answersAndQuestions.push({
+      return [{
         label: 'Emploi du temps',
-        model: 'emploiDuTemps',
-        detailModel: 'jours'
-      });
-    break;
+        jours: questionAnswers.jours
+      }];
     case 'etablissement':
-      answersAndQuestions.push({
-          label: 'Etablissements',
-          model: 'etablissement',
-          detailModel: 'listeEtablissements'
-        });
-    break;
+      return [{
+        label: 'Etablissements',
+        etablissements: questionAnswers.etablissements
+      }];
   }
-  return answersAndQuestions;
 }
 
-var addDetailsToAnswers = function(answers, answer, detailedAnswer){
-  if (answer[detailedAnswer.detailModel]) {
-    if (typeof answer[detailedAnswer.detailModel] === 'object') {
-      _.forEach(answer[detailedAnswer.detailModel], function(n, key){
-        if (n) {
-          if (typeof key === 'number') {
-            if (answer.listeFrais) {
-              if (!detailedAnswer.detailsFrais) {
-                detailedAnswer.detailsFrais = [];
-              }
-              detailedAnswer.detailsFrais.push(n);
-            }
-            else {
-              if (answer.structures) {
-                if (!detailedAnswer.detailsStructures) {
-                  detailedAnswer.detailsStructures = [];
-                }
-                n.contact = n.contact ? 'Oui' : 'Non';
-                detailedAnswer.detailsStructures.push(n);
-              }
-              else {
-                if (answer.jours) {
-                  if (!detailedAnswer.detailsEDT) {
-                    detailedAnswer.detailsEDT = [];
-                  }
-                  detailedAnswer.detailsEDT.push(n);
-                }
-                else {
-                  if (answer.listeDiplomes) {
-                    if (!detailedAnswer.detailsDiplomes) {
-                      detailedAnswer.detailsDiplomes = [];
-                    }
-                    if (n.annee) {
-                      n.annee = moment(n.annee).format('DD/MM/YYYY');
-                    }
-                    detailedAnswer.detailsDiplomes.push(n);
-                  }
-                  else {
-                    if (!detailedAnswer.details) {
-                      detailedAnswer.details = [];
-                    }
-                    detailedAnswer.details.push(n);
-                  }
-                }
-              }
-            }
-          }
-          else {
-            if (typeof n === 'object') {
-              if (n.value) {
-                if (!detailedAnswer.detailsObject) {
-                  detailedAnswer.detailsObject = [];
-                }
-                detailedAnswer.detailsObject.push({'label' : key, 'detail' : n.detail});
-              }
-            }
-            else {
-              if (!detailedAnswer.details) {
-                detailedAnswer.details = [];
-              }
-              detailedAnswer.details.push(key);
-            }
-          }
-        }
+function computeAnswers(question, trajectoireAnswers) {
+  var questionAnswers = trajectoireAnswers[question.model];
+  if (typeof questionAnswers === 'undefined') {
+    return [];
+  }
+
+  var filteredAnswers = rebuildAnswersFromModel(question, questionAnswers);
+
+  filteredAnswers.forEach(function(answer){
+    if (answer.detailModel) {
+      answer.detail = trajectoireAnswers[answer.detailModel];
+    }
+  });
+
+  return filteredAnswers;
+}
+
+function computeQuestions(request, trajectoireId) {
+  var trajectoireAnswers = request.formAnswers[trajectoireId];
+  if (!trajectoireAnswers) {
+    return [];
+  }
+
+  var questions = [];
+  var toutesQuestions = QuestionsBySections[trajectoireId];
+  _.forEach(toutesQuestions, function(question) {
+    var answers = computeAnswers(question, trajectoireAnswers);
+
+    if (answers && answers.length > 0) {
+      questions.push({
+        title: question.titleDefault,
+        answers: answers
       });
     }
-    else {
-      detailedAnswer.detail = answer[detailedAnswer.detailModel];
-    }
-  }
-  else {
-    if (answer.experiences) {
-      _.forEach(answer.experiences, function(experience) {
-        experience.debut = moment(experience.debut).format('DD/MM/YYYY');
-        if (experience.fin) {
-          experience.fin = moment(experience.fin).format('DD/MM/YYYY');
-        }
-        else {
-          experience.fin = 'toujours en poste';
-        }
-      })
-      detailedAnswer.detailsCV = answer.experiences;
-    }
-    else {
-      if (answer.etablissements) {
-        _.forEach(answer.etablissements, function(etablissement) {
-          etablissement.date = moment(etablissement.date).format('DD/MM/YYYY');
-        })
-        detailedAnswer.detailsEtablissement = answer.etablissements;
-      }
-      else {
-        detailedAnswer.detail = answers[detailedAnswer.detailModel];
-      }
-    }
-  }
+  });
+
+  return questions;
 }
+
+function computeTrajectoires(request) {
+  var trajectoires = [];
+
+  Sections.trajectoires.forEach(function(trajectoire) {
+    var questions = computeQuestions(request, trajectoire.id);
+
+    if (questions.length > 0) {
+      trajectoire.questions = questions;
+      trajectoires.push(trajectoire);
+    }
+  });
+
+  return trajectoires;
+}
+
 
 exports.answersToHtml = function(request, path, output, next) {
   if (!request.formAnswers) {
@@ -331,36 +184,7 @@ exports.answersToHtml = function(request, path, output, next) {
       callback(null, identites);
     },
     trajectoires: function(callback) {
-      var toutesTrajectoires = Sections.trajectoires;
-      var trajectoires = [];
-
-      toutesTrajectoires.forEach(function(trajectoire) {
-        var questions = [];
-        var answers = request.formAnswers[trajectoire.id];
-        if (answers) {
-          var toutesQuestions = QuestionsBySections[trajectoire.id];
-          _.forEach(toutesQuestions, function(question) {
-
-            var answer = answers[question.model];
-            if (answer) {
-              var filteredAnswers = matchAnswersToQuestions(question, answer);
-              filteredAnswers.forEach(function(rawAnswer){
-                if (rawAnswer.detailModel) {
-                  addDetailsToAnswers(answers, answer, rawAnswer);
-                }
-              });
-              question.answers = filteredAnswers;
-              questions.push(question)
-            }
-          });
-
-          if (questions.length > 0) {
-            trajectoire.questions = questions;
-            trajectoires.push(trajectoire);
-          }
-        }
-      });
-
+      var trajectoires = computeTrajectoires(request);
       callback(null, trajectoires);
     },
     mdph: function (callback) {

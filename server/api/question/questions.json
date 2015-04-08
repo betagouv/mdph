@@ -15,7 +15,6 @@
         },
         {
           "label":"Avec vos parents (ou l'un d'entre eux)",
-          "labelRecap":"Avec ses parents (ou l'un d'entre eux)",
           "labelRep":"Avec ses parents (ou l'un d'entre eux)",
           "model":"parents"
         },
@@ -50,14 +49,12 @@
           "model":"independant",
           "detailUrl":"components/detail/independant.html",
           "detailModel":"logement_independant",
-          "labelRecap":"Dans un logement indépendant",
           "onlyAdult":true
         },
         {
           "label":"Vous vivez dans un établissement médico-social ou de soin",
           "labelRep":"<%= pronoun %> vit dans un établissement médico-social ou de soin",
           "model":"etablissement",
-          "labelRecap":"Dans un établissement médico-social ou de soin",
           "detailUrl":"components/detail/precisez.html",
           "detailModel":"logement_etablissement",
           "detailLabel": "Précisez le nom, le type et le lieu"
@@ -66,7 +63,6 @@
           "label":"Vous êtes hébergé(e) au domicile",
           "labelRep":"<%= pronoun %> est hébergé<%= fem %> au domicile",
           "model":"domicile",
-          "labelRecap":"Au domicile d'une autre personne",
           "detailUrl":"components/detail/domicile.html",
           "detailModel":"logement_domicile"
         },
@@ -1369,6 +1365,7 @@
       "model":"urgences",
       "titleDefault": "Merci de cocher si vous êtes dans l'une des situations d'urgence suivantes :",
       "titleRep": "Merci de cocher si <%= pronoun %> est dans l'une des situations d'urgence suivantes :",
+      "type": "checkbox",
       "answers":[
         {
           "label":"Vous n'arrivez plus à vivre chez vous",

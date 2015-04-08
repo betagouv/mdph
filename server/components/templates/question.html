@@ -1,5 +1,5 @@
 <div class="question">
-  <h3>{{titleDefault}}</h3>
+  <h3>{{title}}</h3>
   <ul>
     {{#answers}}
       <li>{{label}}</li>
@@ -17,29 +17,29 @@
           <li>{{label}} : {{detail}}</li>
         {{/detailsObject}}
 
-        {{#detailsFrais}}
+        {{#listeFrais}}
           {{>detailsFrais}}
-        {{/detailsFrais}}
+        {{/listeFrais}}
 
-        {{#detailsDiplomes}}
+        {{#listeDiplomes}}
           {{>detailsDiplomes}}
-        {{/detailsDiplomes}}
+        {{/listeDiplomes}}
 
-        {{#detailsCV}}
+        {{#listeCv}}
           {{>detailsCV}}
-        {{/detailsCV}}
+        {{/listeCv}}
 
-        {{#detailsEDT}}
+        {{#jours}}
           {{>detailsEDT}}
-        {{/detailsEDT}}
+        {{/jours}}
 
-        {{#detailsEtablissement}}
+        {{#etablissements}}
           {{>detailsEtablissement}}
-        {{/detailsEtablissement}}
+        {{/etablissements}}
 
-        {{#detailsStructures}}
+        {{#structures}}
           {{>detailsStructures}}
-        {{/detailsStructures}}
+        {{/structures}}
 
       </ul>
     {{/answers}}
