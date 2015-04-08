@@ -88,6 +88,42 @@ angular.module('impactApp')
       $scope.model.listeFrais.splice(lastIndex, 1);
     };
   })
+  .controller('DiplomesQuestionCtrl', function ($scope, question, nextStep) {
+    $scope.question = question;
+    $scope.nextStep = nextStep;
+    $scope.opened = [];
+
+    if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[$scope.question.model] = [
+        {
+          'nom': '',
+          'annee': '',
+          'domaine': ''
+        }
+      ];
+    }
+
+    $scope.model = $scope.sectionModel[question.model];
+    $scope.ajouterDiplome = function() {
+      $scope.model.push(
+        {
+          'nom': '',
+          'annee': '',
+          'domaine': ''
+        }
+      );
+    };
+    $scope.retirerDiplome = function(){
+      var lastIndex = $scope.model.indexOf(_.last($scope.model));
+      $scope.model.splice(lastIndex, 1);
+    };
+    $scope.open = function($event, idx) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened[idx] = true;
+    };
+
+  })
   .controller('CvQuestionCtrl', function ($scope, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;

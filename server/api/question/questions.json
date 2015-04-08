@@ -1208,6 +1208,12 @@
       ]
     },
     {
+      "titleRep":"Précisez son/ses dernier(s) diplôme(s) obtenu(s) :",
+      "titleDefault":"Précisez votre/vos dernier(s) diplôme(s) obtenu(s) :",
+      "model":"diplomes",
+      "type":"diplomes"
+    },
+    {
       "titleRep":"A-t-<%= pronoun %> un ou plusieurs projet(s) professionnel(s) ?",
       "titleDefault":"Avez-vous un ou plusieurs projet(s) professionnel(s) ?",
       "model":"description",

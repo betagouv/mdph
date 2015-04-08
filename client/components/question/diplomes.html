@@ -1,0 +1,38 @@
+<form name="questionForm" novalidate>
+  <qtitle ng-hide="hideTitle"></qtitle>
+  <table class="table my-table-striped">
+    <thead>
+      <th>Diplômes</th>
+      <th>Année d'obtention</th>
+      <th>Domaine</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(idx, diplome) in model">
+        <td class="col-md-4">
+          <input type="text" class="form-control" ng-model="diplome.nom" placeholder="Intitulé du diplôme">
+        </td>
+        <td class="col-md-4">
+          <div class="input-group">
+            <input type="text" name="annee" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="diplome.annee" is-open="opened[idx]" placeholder="JJ/MM/AAAA" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event, idx)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+        </td>
+        <td class="col-md-4">
+          <input type="text" class="form-control" ng-model="diplome.domaine" placeholder="Domaine d'étude">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-4">
+      <button class="btn btn-default btn-block" ng-click="retirerDiplome()">-</button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-default btn-block" ng-click="ajouterDiplome()">+</button>
+    </div><br>
+  </div>
+  <nav-steps ng-hide="hideSteps"></nav-steps>
+
+</form>

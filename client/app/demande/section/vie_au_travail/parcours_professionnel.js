@@ -64,6 +64,21 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
+            $state.go('^.diplomes');
+          };
+        }
+      }
+    })
+    .state(index + '.parcours_professionnel.diplomes', {
+      url: '/diplomes',
+      templateUrl: 'components/question/diplomes.html',
+      controller: 'DiplomesQuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'diplomes', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
             $state.go('^.^.projet_professionnel.description');
           };
         }
