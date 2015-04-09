@@ -24,9 +24,16 @@ angular.module('impactApp')
       else {
         if (estMineur(formIdentites.beneficiaire.dateNaissance)){
           var autorite = formIdentites.autorite;
-          if (!autorite || !(exists(autorite.parent1) || !exists(autorite.parent2) || !exists(autorite.autre))){
+          if (!autorite) {
             $scope.error.show = true;
             $scope.error.message = 'Le bénéficiaire est mineur, veuillez renseigner au moins une autorité parentale ou une délégation d\'autorité parentale.';
+          }
+          else if (!(exists(autorite.parent1) || exists(autorite.parent2) || exists(autorite.autre))){
+            $scope.error.show = true;
+            $scope.error.message = 'Le bénéficiaire est mineur, veuillez renseigner au moins une autorité parentale ou une délégation d\'autorité parentale.';
+          }
+          else {
+            $scope.error.show = false;
           }
         }
       }
