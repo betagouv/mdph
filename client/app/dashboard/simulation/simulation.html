@@ -1,37 +1,53 @@
-<div class="container">
-  <form name="form" no-validation>
-    <div class="row">
-      <div class="col-sm-5">
-        <div affix>
-          <pagemenu class="quitus-pagemenu" ng-if="showPagemenu"></pagemenu>
-          <div class="btn btn-primary" ng-click="submit()">
-            Calculer les prestations
-          </div>
-          <div class="btn btn-success" ng-click="createTest()">
-            Enregistrer
-          </div>
-          <div class="result" ng-if="prestations.length > 0">
-            Liste des prestations :
-            <ul>
-              <li ng-repeat="prestation in prestations">
-                {{prestation.label}}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-7" pageitems selector="pageitem" topmargin="20">
-        <div class="section-quitus" ng-repeat="section in sections">
-          <h1 id="{{section.id}}" class="pageitem">{{section.label}}</h1>
-          <div class="question-quitus"
-            ng-repeat="question in questionsBySectionId[section.id]"
-            ng-if="question.titleDefault && question.neededForAdmin">
-            <h2 id="{{section.id + '-' + question.model}}" class="pageitem subpageitem">{{question.titleDefault}}</h2>
-            <div ng-include="getTemplate(question)"></div>
-          </div>
-        </div>
-      </div>
-
+<div class="container-dashboard">
+  <div class="row">
+    <div class="col-sm-2 menu-dashboard">
+      <h2>Simulation</h2>
+      <ul>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.simulation">
+            Simulation
+          </a>
+        </li>
+      </ul>
     </div>
-  </form>
+    <div class="col-sm-10">
+      <div class="main-dashboard">
+        <div class="list-header">
+          <form class="pull-right">
+            <div class="input-group search">
+              <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-sm btn-primary">
+                  Ok
+                </button>
+              </div>
+            </div>
+          </form>
+          <h2>Simulation</h2>
+          <div class="tools">
+            <div class="btn btn-primary" ng-click="submit()">
+              Calculer les prestations
+            </div>
+          </div>
+          <ul>
+            <li ng-repeat="prestation in prestations">
+              {{prestation.label}}
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-main">
+          <div class="section-quitus" ng-repeat="section in sections">
+            <h1 id="{{section.id}}" class="pageitem">{{section.label}}</h1>
+            <div class="question-quitus"
+              ng-repeat="question in questionsBySectionId[section.id]"
+              ng-if="question.titleDefault && question.neededForAdmin">
+              <h2 id="{{section.id + '-' + question.model}}" class="pageitem subpageitem">{{question.titleDefault}}</h2>
+              <div ng-include="getTemplate(question)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
