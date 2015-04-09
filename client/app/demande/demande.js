@@ -12,14 +12,11 @@ angular.module('impactApp')
           isLastQuestion: false
         },
         resolve: {
-          sections: function($http) {
-            return $http.get('api/questions').then(function(result) {
-              var sections = result.data;
-              sections.forEach(function(section) {
-                section.questions = _.indexBy(section.questions, 'model');
-              });
-              return sections;
+          sections: function(sectionsQuestions) {
+            sectionsQuestions.forEach(function(section) {
+              section.questions = _.indexBy(section.questions, 'model');
             });
+            return sectionsQuestions;
           },
           request: function($stateParams, $sessionStorage, RequestResource, mdph) {
             if ($stateParams.shortId === 'nouvelle_demande') {
