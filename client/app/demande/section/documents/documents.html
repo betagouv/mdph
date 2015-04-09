@@ -13,6 +13,15 @@
   <div class="section-documents">
     <h1>{{section.label}}</h1>
 
+    <div ng-if="docsList.length > 0">
+      <label>Suggestions de documents à fournir</label>
+      <ul>
+        <li ng-repeat="document in docsList">
+          {{document.label}}
+        </li>
+      </ul>
+    </div>
+
     <h2>Documents obligatoires</h2>
     <div class="row">
       <div class="col-sm-4" ng-repeat="type in documentsObligatoires">

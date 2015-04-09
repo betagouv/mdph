@@ -62,11 +62,11 @@
 
   "milieuProOptions":[
     {
-      "label": "Emploi non adapté au handicap  ou des aménagements ont été réalisés sur votre poste de travail ",
+      "label": "Emploi non adapté au handicap ou des aménagements ont été réalisés sur votre poste de travail ",
       "value": "inadapte"
     },
     {
-      "label": "En entreprise adaptée  ou en milieu protégé",
+      "label": "En entreprise adaptée ou en milieu protégé",
       "value": "adapte"
     },
     {
@@ -101,7 +101,7 @@
     },
     {
       "label": "Un professionnel participe avec l'aidant à l'accompagnement de la personne",
-      "value": "accompagnement"
+      "value": "accompagnementAidant"
     }
   ],
 

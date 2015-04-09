@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, request, documentTypes) {
+  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, request, documentTypes, PreparationEvaluationService) {
     $scope.section = section;
     $scope.request = request;
+    $scope.docsList =  PreparationEvaluationService.getSuggestedDocsList($scope.request.formAnswers);
 
     $scope.saveSection = function() {
       $state.go('^');
@@ -30,6 +31,7 @@ angular.module('impactApp')
       document.files = []; // TODO supprimer fichiers dejas uploadés
       $scope.request.$update();
     };
+
 
     $scope.onFileSelect = function(file, document) {
       $upload.upload({
@@ -89,4 +91,5 @@ angular.module('impactApp')
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
+
   });

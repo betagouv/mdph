@@ -24,7 +24,7 @@ angular.module('impactApp').constant('DocumentsPreparationEvalConstants', [
   },
   {
     label: 'Compte-rendu SSIAD, HAD, service d\'aide à domicile',
-    situations: [['domicile'], ['accompagnement']]
+    situations: [['domicile'], ['accompagnementAidant']]
   },
   {
     label: 'Compte-rendu service social, service de protection ',

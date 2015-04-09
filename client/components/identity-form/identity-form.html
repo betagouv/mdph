@@ -154,13 +154,14 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group required" ng-class="{'has-error': infoForm.email.$invalid && infoForm.$submitted}">
           <label for="email" class="control-label">Email</label>
           <div class="input-group margin-bottom-sm">
-            <input id="email" type="email" name="email" class="form-control" ng-model="identite.email">
+            <input id="email" type="email" name="email" class="form-control" ng-model="identite.email" required>
             <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
           </div>
           <div ng-messages="infoForm.email.$error" ng-if="infoForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
             <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
           </div>
         </div>
