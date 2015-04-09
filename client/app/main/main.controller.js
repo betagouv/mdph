@@ -2,5 +2,9 @@
 
 angular.module('impactApp')
   .controller('MainCtrl', function ($scope, $state, $sessionStorage, Auth) {
-    $scope.isLoggedIn = Auth.isLoggedIn;
+    if (Auth.isLoggedIn()) {
+      $scope.sref = 'espace_perso.liste_demandes';
+    } else {
+      $scope.sref = 'choix_mdph';
+    }
   });

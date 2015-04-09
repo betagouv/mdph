@@ -4,7 +4,7 @@ angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('partenaire.pj', {
-        url: '/:shortId',
+        url: '/:shortId/:type',
         templateUrl: 'app/partenaire/pj/pj.html',
         controller: 'PieceJointeCtrl',
         resolve: {
@@ -13,6 +13,9 @@ angular.module('impactApp')
           },
           mdph: function(request, Mdph) {
             return Mdph.get({zipcode: request.mdph});
+          },
+          type: function($stateParams) {
+            return $stateParams.type;
           }
         }
       });

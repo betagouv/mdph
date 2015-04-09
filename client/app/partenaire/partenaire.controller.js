@@ -5,10 +5,10 @@ angular.module('impactApp')
     $scope.shortId = '';
     $scope.errorMsg = '';
     $scope.partenaire = new Partenaire();
-
+    var type = $state.current.data ? $state.current.data.type : null;
 
     var success = function(request) {
-      $state.go('partenaire.pj', {shortId: request.shortId});
+      $state.go('partenaire.pj', {shortId: request.shortId, type: type});
     };
 
     $scope.enterShortId = function(form) {

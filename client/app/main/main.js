@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'app/main/main.html',
+        templateUrl: 'app/departement/departement.html',
         controller: 'MainCtrl'
       });
   });

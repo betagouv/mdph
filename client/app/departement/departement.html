@@ -2,30 +2,62 @@
   <div class="nav-questionnaire">
     <div class="container">
       <ol class="breadcrumb">
-        <li class="active">Accueil du {{mdph.name}}</li>
+        <li class="active" ng-if="mdph">Accueil du {{mdph.name}}</li>
+        <li class="active" ng-if="!mdph">Accueil</li>
       </ol>
     </div>
   </div>
 
-  <header class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
+  <header ng-if="!mdph" class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
     <div class="container">
-      <h1>Votre demande à la MDPH {{mdph.name}}</h1>
-      <a ng-if="!isLoggedIn()" class="btn btn-outline-inverse btn-lg" ui-sref=".demande({shortId: 'nouvelle_demande'})">Commencer</a>
-      <a ng-if="isLoggedIn()" class="btn btn-outline-inverse btn-lg" ui-sref="espace_perso.liste_demandes">Voir vos demandes</a>
+      <h1>Service de demande en ligne</h1>
     </div>
   </header>
+  <header ng-if="mdph" class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
+    <div class="container">
+      <h1>Votre demande à la MDPH {{mdph.name}}</h1>
+    </div>
+  </header>
+
+  <div class="action-dark">
+    <div class ="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2><i class="fa fa-user"></i> Vous êtes un usager ?</h2>
+        </div>
+        <div class="col-sm-6">
+          <a class="btn btn-outline-inverse btn-lg" ui-sref="{{sref}}">
+            Remplir le questionnaire
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="action">
     <div class ="container">
       <div class="row">
-        <div class="col-md-6">
-          <a class="btn btn-outline btn-lg" ui-sref=".demande({shortId: 'nouvelle_demande'})">
-            Vous souhaitez remplir le questionnaire<br>pour faire une demande ?
+        <div class="col-sm-6">
+          <h2><i class="fa fa-user-md"></i> Vous êtes un médecin ?</h2>
+        </div>
+        <div class="col-sm-6">
+          <a class="btn btn-outline btn-lg" ui-sref="medecin">
+            Ajouter un certificat médical à une demande
           </a>
         </div>
-        <div class="col-md-6">
+      </div>
+    </div>
+  </div>
+
+  <div class="action-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2><i class="fa fa-group"></i> Vous êtes un partenaire ?</h2>
+        </div>
+        <div class="col-sm-6">
           <a class="btn btn-outline btn-lg" ui-sref="partenaire">
-            Vous souhaitez fournir des pièces complémentaires<br>pour compléter une demande ?
+            Fournir des pièces complémentaires pour compléter une demande
           </a>
         </div>
       </div>
@@ -126,7 +158,7 @@
       <p>
         <a ui-sref="a_propos" title="A propos">À propos</a>
          |
-        <a href="mailto:del.florian+impact@gmail.com" title="Envoyer mail de contact">Contact</a>
+        <a href="mailto:impact@sgmap.fr" title="Envoyer un mail de contact">Nous contacter</a>
       </p>
     </div>
   </footer>

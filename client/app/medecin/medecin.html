@@ -1,0 +1,65 @@
+<div class="questionnaire">
+  <h1 class="page-header">
+    A l’attention des médecins
+  </h1>
+  <p class="text-justify">
+    Ce nouveau certificat médical MDPH est expérimenté depuis octobre 2014 dans les départements du Calvados et du Nord et remplace le formulaire Cerfa N° 13878*01.
+  </p>
+  <p class="text-justify">
+    Vous pouvez le remplir directement en ligne ce qui vous donne la possibilité de le conserver dans votre ordinateur, et de reprendre son contenu pour le modifier lors d’une demande ultérieure du même patient. Condition requise :
+    <a href="http://www.adobe.com/go/getreader" title="Télécharger Adobe Reader">
+      disposer d’Adobe Reader version minimale XI
+    </a>.
+  </p>
+  <p class="text-justify">
+    Ce téléservice va également vous permettre de télétransmettre ce certificat à la MDPH.
+  </p>
+  <p class="text-justify">
+    Si toutefois vous le préférez, vous pouvez imprimer et signer ce certificat, et le remettre à votre patient.
+  </p>
+  <p class="text-justify">
+    En cas de difficulté technique concernant ce téléservice, vous pouvez nous contacter à <a href="mailto:impact@sgmap.fr" title="Envoyer un mail de contact">impact@sgmap.fr</a>
+  </p>
+  <p>
+    <a class="btn btn-primary" target="_blank" download href="/assets/cm/Certificat_Medical_MDPH_version_test_IMPACT_octobre_2014.pdf">
+      Télécharger le nouveau certificat
+    </a>
+  </p>
+
+  <h1 class="page-header">
+    Attacher un certificat médical à une demande en ligne
+  </h1>
+  <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
+    <div class="form-group">
+      <label>Code client du demandeur</label>
+      <input type="text" name="shortId" class="form-control" ng-model="shortId" required>
+    </div>
+
+    <div class="form-group has-error">
+      <p class="help-block" ng-show="form.shortId.$error.required && form.$submitted">
+         Veuillez saisir votre code client.
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="inputEmail">Votre e-mail</label>
+      <input type="email" class="form-control" name="inputEmail" placeholder="Email" required ng-model="partenaire.email">
+    </div>
+
+    <div class="form-group has-error">
+      <div ng-messages="form.inputEmail.$error" ng-if="form.inputEmail.$error.email && form.$submitted">
+        <p class="help-block">L'adresse email saisie est incorrecte.</p>
+      </div>
+
+      <div ng-messages="form.inputEmail.$error" ng-if="form.inputEmail.$error.required && form.$submitted">
+        <p class="help-block">L'adresse email est obligatoire.</p>
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" type="submit">
+        Valider
+      </button>
+    </div>
+  </form>
+</div>

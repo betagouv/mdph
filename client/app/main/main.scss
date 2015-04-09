@@ -1,53 +1,52 @@
 .banner h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
 }
 
 .hero-unit {
-    position: relative;
-    padding: 30px 15px;
-    text-align: center;
+  position: relative;
+  padding: 30px 15px;
+  text-align: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center top;
+  position: relative;
+  min-height: 250px;
 
-    .btn-lg {
-      margin-top: 20px;
-      padding: 13px 18px;
-      font-size: 23px;
-    }
-}
-
-@media (min-width: $screen-md-min) {
-  .hero-unit {
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center top;
-    position: relative;
-    height: 330px;
-
-    h1 {
-      margin-top: 0.67em;
-    }
+  h1 {
+    margin-top: 0.67em;
   }
 
-  .bg {
+  &.bg {
     background-image: url('../assets/images/grass.jpg');
   }
 
-  .bg59 {
+  &.bg59 {
     background-image: url('../assets/images/saint_amand.jpg');
   }
 
-  .bg14 {
+  &.bg14 {
     background-image: url('../assets/images/arromanches.jpg');
   }
 }
 
 .action {
-    padding: 40px 0;
-    font-size: 16px;
-    line-height: 1.5;
-    text-align: center;
-    background-color: lighten($light-blue, 70%);
+  h2 {
+    color: #777;
+    margin: 8px 0;
+  }
+
+  background-color: #fff;
+  padding: 40px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.action-dark {
+  @extend .action;
+  background-color: lighten($light-blue, 70%);
 }
 
 .features {
@@ -117,29 +116,31 @@
 }
 
 .btn-outline {
-    font-weight: 200;
-    color: $light-blue;
-    background-color: #fff;
+  font-weight: 300;
+  color: $light-blue;
+  background-color: #fff;
+  border: 1px solid lighten($light-blue, 20%);
 
-    &:hover {
-      -webkit-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
-      -moz-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
-      box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
-    }
+  &:hover {
+    background-color: whitesmoke;
+    -webkit-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
+    box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.3);
+  }
 }
 
 .btn-outline-inverse {
-    font-weight: 200;
-    color: $light-blue;
-    background-color: #fff;
+  @extend .btn-outline;
+  color: #fff;
+  background-color: lighten($light-blue, 5%);
 
-    &:hover {
-      font-weight: 200;
-      color: #fff;
-      background-color: #fff;
-      background-color: rgba(0, 0, 0, 0.2);
-      border-color: #fff;
-    }
+  &:hover {
+    color: #fff;
+    background-color: $light-blue;
+    -webkit-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.5);
+    box-shadow: 0px 5px 27px -7px rgba(0,0,0,0.5);
+  }
 }
 
 .footer {
