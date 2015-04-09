@@ -2,15 +2,15 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.vie_quotidienne';
-    $stateProvider.state(index + '.vos_besoins', {
+    var index = 'departement.demande.vie_quotidienne.vos_besoins';
+    $stateProvider.state(index, {
       url: '/vos_besoins',
       template: '<ui-view/>',
       controller: function ($scope) {
         $scope.helpTemplate = 'components/help/besoins.html';
       },
       abstract: true
-    }).state(index + '.vos_besoins.quotidien', {
+    }).state(index + '.quotidien', {
       url: '/quotidien',
       templateUrl: 'components/question/checkbox.html',
       controller: 'CheckboxQuestionCtrl',
@@ -24,7 +24,7 @@ angular.module('impactApp')
           };
         }
       }
-    }).state(index + '.vos_besoins.deplacement', {
+    }).state(index + '.deplacement', {
       url: '/deplacement',
       templateUrl: 'components/question/checkbox.html',
       controller: 'CheckboxQuestionCtrl',
@@ -38,7 +38,7 @@ angular.module('impactApp')
           };
         }
       }
-    }).state(index + '.vos_besoins.transport', {
+    }).state(index + '.transport', {
       url: '/transport',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
@@ -52,7 +52,7 @@ angular.module('impactApp')
           };
         }
       }
-    }).state(index + '.vos_besoins.social', {
+    }).state(index + '.social', {
       url: '/social',
       templateUrl: 'components/question/checkbox.html',
       controller: 'CheckboxQuestionCtrl',
