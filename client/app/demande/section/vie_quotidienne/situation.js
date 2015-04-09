@@ -154,6 +154,21 @@ angular.module('impactApp')
           },
           nextStep: function($state) {
             return function() {
+              $state.go('^.ipp');
+            };
+          }
+        }
+      })
+      .state(index + '.ipp', {
+        url: '/taux_ipp',
+        templateUrl: 'components/question/textinput.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, request, section) {
+            return QuestionService.get(section, 'ipp', request.formAnswers);
+          },
+          nextStep: function($state) {
+            return function() {
               $state.go('^.retraite');
             };
           }

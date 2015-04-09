@@ -241,6 +241,12 @@
       ]
     },
     {
+      "model": "ipp",
+      "titleDefault": "Taux d'IPP (Incapacité Permanente Partielle)",
+      "type": "text",
+      "placeholder" : "En %"
+    },
+    {
       "model":"retraite",
       "titleDefault":"Vous êtes à la retraite :",
       "titleRep":"<%= pronoun %> est à la retraite :",
