@@ -90,6 +90,11 @@ angular.module('impactApp')
             return $http.get('api/prestations').then(function(result) {
               return result.data;
             });
+          },
+          prestationsQuitus: function($http, $stateParams) {
+            return $http.get('api/requests/' + $stateParams.shortId + '/simulation').then(function(result) {
+              return result.data;
+            });
           }
         },
         abstract: true,

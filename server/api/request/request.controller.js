@@ -18,6 +18,7 @@ var Recapitulatif = require('../../components/recapitulatif');
 var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
 
+var Prestation = require('../prestation/prestation.controller');
 var Request = require('./request.model');
 var User = require('../user/user.model');
 var Partenaire = require('../partenaire/partenaire.model');
@@ -362,6 +363,14 @@ exports.getSynthesePdf = function (req, res) {
       if (err) { handleError(req, res, err); }
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
     });
+  });
+};
+
+exports.simulate = function (req, res) {
+  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+    if (!request) return res.sendStatus(404);
+    var prestations = Prestation.simulate(request.formAnswers);
+    return res.json(prestations);
   });
 };
 

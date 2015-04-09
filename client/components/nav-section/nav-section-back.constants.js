@@ -26,11 +26,5 @@ angular.module('impactApp').constant('SectionBackConstants', [
     include: 'dashboard.preparation_evaluation.**',
     fa: 'fa-crosshairs',
     label: 'Préparation à l\'évaluation'
-  },
-  {
-    sref: 'dashboard.simulation',
-    include: 'dashboard.simulation.**',
-    fa: 'fa-rocket',
-    label: 'Simulation'
   }
 ]);

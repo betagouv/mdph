@@ -11,11 +11,12 @@ angular.module('impactApp')
            return calculAge(dateNaiss);
      };
   })
-  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, documentTypes, DroitService, NotificationService, vieQuotidienne, prestations) {
+  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, documentTypes, NotificationService, vieQuotidienne, prestations, prestationsQuitus) {
     $scope.token = $cookieStore.get('token');
     $scope.recapitulatif = recapitulatif;
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
     $scope.toutesPrestations = prestations;
+    $scope.prestationsQuitus = prestationsQuitus;
 
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.filesVM = _.groupBy(request.documents, 'type');
@@ -47,10 +48,6 @@ angular.module('impactApp')
     } else {
       $scope.renouvellement = 'Première demande';
     }
-
-    DroitService.compute(request.formAnswers).success(function(result) {
-      $scope.prestations = result;
-    });
 
      $scope.isSelected = function(prestation) {
         return false === request.prestations.indexOf(prestation.label) >= 0;

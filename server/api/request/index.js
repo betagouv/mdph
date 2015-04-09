@@ -24,4 +24,6 @@ router.post('/:shortId/document', controller.saveFile);
 router.get('/:shortId/document/:fileId', auth.isAuthorized(), controller.showFileData);
 router.get('/:shortId/document/:fileId/download', auth.isAuthorized(), controller.downloadFile);
 
+router.get('/:shortId/simulation', auth.isAuthorized(), controller.simulate);
+
 module.exports = router;

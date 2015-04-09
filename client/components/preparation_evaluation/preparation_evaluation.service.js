@@ -34,19 +34,19 @@ angular.module('impactApp')
     function computeVieQuotidienne (answers, filteredAnswers) {
       filteredAnswers.push(answers.vie_quotidienne.logement);
 
-      if (answers.vie_quotidienne.aideActuelle.technique) {
+      if (answers.vie_quotidienne.aideActuelle && answers.vie_quotidienne.aideActuelle.technique) {
         filteredAnswers.push('technique');
       }
 
-      if (answers.vie_quotidienne.aidesRetraite.apa) {
+      if (answers.vie_quotidienne.aidesRetraite && answers.vie_quotidienne.aidesRetraite.apa) {
         filteredAnswers.push('apa');
       }
 
-      if (answers.vie_quotidienne.aideActuelle.technique) {
+      if (answers.vie_quotidienne.aideActuelle && answers.vie_quotidienne.aideActuelle.technique) {
         filteredAnswers.push('technique');
       }
 
-      if (answers.vie_quotidienne.aideTechnique.aideTechnique_logement){
+      if (answers.vie_quotidienne.aideTechnique && answers.vie_quotidienne.aideTechnique.aideTechnique_logement){
         filteredAnswers.push('accompagnement');
       }
 

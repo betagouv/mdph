@@ -68,8 +68,6 @@ $disabled-blue: lighten($light-blue, 30%);
 @import 'dashboard/requests/detail/detail.scss';
 @import 'dashboard/requests/detail/evaluation/evaluation.scss';
 @import 'dashboard/requests/detail/pre_evaluation/pre_evaluation.scss';
-@import 'dashboard/simulation/creation.scss';
-@import 'dashboard/simulation/simulation.scss';
 @import 'dashboard/users/partenaires/edit.scss';
 @import 'demande/demande.scss';
 @import 'demande/section/identites/identites.scss';

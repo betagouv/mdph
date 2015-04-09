@@ -4,17 +4,17 @@ var moment = require('moment');
 var _ = require('lodash');
 var Prestation = require('./prestation.constants');
 
-var getSection = function(answers, sectionModel) {
+function getSection(answers, sectionModel) {
   var result = _.result(answers, sectionModel);
   return result ? result : {};
-};
+}
 
-var getValue = function(question, answerModel) {
+function getValue(question, answerModel) {
   var answer = _.result(question, answerModel);
   return answer ? answer : false;
-};
+}
 
-var getValueList = function(question, answerModelList) {
+function getValueList(question, answerModelList) {
   var resultList = [];
   _.forEach(answerModelList, function(model) {
     var answer = _.result(question, model);
@@ -25,40 +25,31 @@ var getValueList = function(question, answerModelList) {
     }
   });
   return resultList;
-};
+}
 
-var isAdult = function(contexte) {
+function isAdult(identites) {
   var now = moment().startOf('day');
-  if (!contexte || !contexte.dateNaissance) {
+  if (!identites.beneficiaire || !identites.beneficiaire.dateNaissance) {
     return true;
   }
-  return now.diff(contexte.dateNaissance, 'years') >= 20;
-};
+  return now.diff(identites.beneficiaire.dateNaissance, 'years') >= 20;
+}
 
-var isLessThan62 = function(contexte) {
+function isLessThan62(identites) {
   var now = moment().startOf('day');
-  if (!contexte || !contexte.dateNaissance) {
+  if (!identites.beneficiaire || !identites.beneficiaire.dateNaissance) {
     return true;
   }
 
-  return now.diff(contexte.dateNaissance, 'years') < 62;
-};
+  return now.diff(identites.beneficiaire.dateNaissance, 'years') < 62;
+}
 
-var estRenouvellement = function(presta, renouvellements) {
-  var res = renouvellements && renouvellements[presta.id];
-  if (res) {
-    presta.renouvellement = true;
-    var date = renouvellements[presta.id].date;
-    presta.descRenouvellement = '* Etude du renouvellement de votre droit se terminant le ' + moment(date).format('DD/MM/YYYY') + '.';
-  }
-  return res;
-};
 
-var getCallbacks = function(answers) {
-  var contexte = getSection(answers, 'contexte');
+function getCallbacks(answers) {
+  var identites = getSection(answers, 'identites');
   var aidant = getSection(answers, 'aidant');
   var vieQuotidienne = getSection(answers, 'vieQuotidienne');
-  var renouvellements = getSection(answers, 'prestations');
+  var prestations = getSection(answers, 'prestations');
   var travail = getSection(answers, 'travail');
 
   var besoinsDeplacement = getValue(vieQuotidienne, 'besoinsDeplacement');
@@ -68,12 +59,16 @@ var getCallbacks = function(answers) {
   var attentesTypeAide = getValue(vieQuotidienne, 'attentesTypeAide');
 
   var attentesAidant = getValue(aidant, 'typeAttente');
-  var estAdulte = isAdult(contexte);
+  var estAdulte = isAdult(identites);
   var estEnfant = !estAdulte;
-  var aMoinsDe62Ans = isLessThan62(contexte);
+  var aMoinsDe62Ans = isLessThan62(identites);
 
   var ou = _.some;
   var et = _.every;
+
+  function estRenouvellement(presta) {
+    return prestations && prestations[presta.id];
+  }
 
   var estNonActif = et([
     aMoinsDe62Ans,
@@ -88,7 +83,7 @@ var getCallbacks = function(answers) {
 
   return {
     aah: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
 
@@ -128,7 +123,7 @@ var getCallbacks = function(answers) {
       ]);
     },
     aeeh: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
 
@@ -164,7 +159,7 @@ var getCallbacks = function(answers) {
     },
     av: function(droit) {
       // Assurance vieillesse
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
 
@@ -177,7 +172,7 @@ var getCallbacks = function(answers) {
       ]);
     },
     carteInvalidite: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
 
@@ -190,7 +185,7 @@ var getCallbacks = function(answers) {
       ]);
     },
     carteStationnement: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
 
@@ -207,26 +202,26 @@ var getCallbacks = function(answers) {
       ]);
     },
     ac: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       } else {
         return false;
       }
     },
     pps: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
-      return contexte && contexte.ecole;
+      return vieQuotidienne && vieQuotidienne.ecole;
     },
     orp: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
-      return contexte && _.some([contexte.travail, contexte.formation]);
+      return vieQuotidienne && _.some([vieQuotidienne.travail, vieQuotidienne.formation]);
     },
     pch: function(droit) {
-      if (estRenouvellement(droit, renouvellements) || estRenouvellement({id: 'ac'})) {
+      if (estRenouvellement(droit) || estRenouvellement({id: 'ac'})) {
         return true;
       }
 
@@ -266,7 +261,7 @@ var getCallbacks = function(answers) {
       return estEnfant && pchEnfant() || estAdulte && pchAdulte();
     },
     ems: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
 
@@ -299,14 +294,14 @@ var getCallbacks = function(answers) {
         estAdulte,
         _.some([
           attentesTypeAide && attentesTypeAide.etablissement,
-          contexte && _.some([contexte.domicile, contexte.etablissement]),
+          vieQuotidienne && _.some([vieQuotidienne.domicile, vieQuotidienne.etablissement]),
           besoinAidant(),
           besoinsVieQuotidienne()
         ])
       ]);
     },
     sms: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
 
@@ -329,7 +324,7 @@ var getCallbacks = function(answers) {
 
       var besoinsVieQuotidienne = function() {
         return _.every([
-          contexte && contexte.domicile,
+          vieQuotidienne && vieQuotidienne.domicile,
           attentesTypeAide && _.every([attentesTypeAide.domicile, attentesTypeAide.humain]),
           _.some([
             besoinsSocial && _.some([besoinsSocial.loisirs, besoinsSocial.proches, besoinsSocial.citoyen]),
@@ -347,23 +342,23 @@ var getCallbacks = function(answers) {
       ]);
     },
     rqth: function(droit) {
-      if (estRenouvellement(droit, renouvellements)) {
+      if (estRenouvellement(droit)) {
         return true;
       }
-      return contexte && _.some([contexte.travail, contexte.formation]);
+      return vieQuotidienne && _.some([vieQuotidienne.travail, vieQuotidienne.formation]);
     }
   };
-};
+}
 
-exports.simulate = function(req, res) {
-  var callbacks = getCallbacks(req.body);
+exports.simulate = function(answers) {
+  var callbacks = getCallbacks(answers);
 
   var result = _.filter(Prestation.all, function(prestation) {
     var callback = callbacks[prestation.id];
     return callback && callback(prestation);
   });
 
-  return res.json(result);
+  return result;
 };
 
 exports.index = function(req, res) {
