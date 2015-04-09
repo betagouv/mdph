@@ -15,7 +15,7 @@ angular.module('impactApp')
             return Auth.getCurrentUser();
           },
           pendingRequests: function($http) {
-            return $http({method: 'HEAD', url: '/api/requests', params: {evaluator: 'null'}}).then(function(result) {
+            return $http({method: 'HEAD', url: '/api/requests', params: {evaluator: 'null', status: 'emise'}}).then(function(result) {
               return result.headers('count');
             });
           }
@@ -34,7 +34,7 @@ angular.module('impactApp')
         controller: 'RequestNonAttribueCtrl',
         resolve: {
           requests: function(RequestResource) {
-            return RequestResource.query({evaluator: 'null'}).$promise;
+            return RequestResource.query({evaluator: 'null', status: 'emise'}).$promise;
           }
         },
         authenticate: true
@@ -45,7 +45,7 @@ angular.module('impactApp')
         controller: 'RequestListCtrl',
         resolve: {
           requests: function(RequestResource, user) {
-            return RequestResource.query({evaluator: user._id}).$promise;
+            return RequestResource.query({evaluator: user._id, status: 'emise'}).$promise;
           },
           user: function($http, $stateParams) {
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {

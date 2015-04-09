@@ -43,6 +43,10 @@ exports.index = function(req, res) {
     var query = req.query;
 
     if (query) {
+      if (query.status) {
+        search.status = query.status;
+      }
+
       if (query.evaluator) {
         if (query.evaluator === 'null') {
           search.evaluator = undefined;
