@@ -467,8 +467,7 @@
         },
         {
           "label":"une aide financière afin d'assurer un revenu minimum",
-          "model":"financierMinimum",
-          "onlyAdult":true
+          "model":"financierMinimum"
         },
         {
           "label":"Une aide pour se déplacer",
