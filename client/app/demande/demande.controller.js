@@ -6,10 +6,26 @@ angular.module('impactApp')
     $scope.formAnswers = request.formAnswers;
     $scope.token = $cookieStore.get('token');
 
-    $scope.sectionsObligatoires = _.filter(sections, {section: 'obligatoire'});
-    $scope.sectionsComplementaires = _.filter(sections, {section: 'complementaire'});
-    $scope.sectionsComplements = _.filter(sections, {section: 'complements'});
-    $scope.sectionsDocuments = _.filter(sections, {section: 'documents'});
+    if (!request || !request.formAnswers.etatRenouvellement){
+      $scope.formAnswers.etatRenouvellement = 'Première demande';
+    }
+
+    $scope.checkSections = function (state) {
+      if (state === 'Renouvellement') {
+        $scope.sectionsObligatoires = _.filter(sections, {sectionRenouvellement: 'obligatoire'});
+        $scope.sectionsComplementaires = _.filter(sections, {sectionRenouvellement: 'complementaire'});
+        $scope.sectionsComplements = _.filter(sections, {sectionRenouvellement: 'complements'});
+        $scope.sectionsDocuments = _.filter(sections, {sectionRenouvellement: 'documents'});
+      }
+      else {
+        $scope.sectionsObligatoires = _.filter(sections, {sectionDefault: 'obligatoire'});
+        $scope.sectionsComplementaires = _.filter(sections, {sectionDefault: 'complementaire'});
+        $scope.sectionsComplements = _.filter(sections, {sectionDefault: 'complements'});
+        $scope.sectionsDocuments = _.filter(sections, {sectionDefault: 'documents'});
+      }
+    };
+
+    $scope.checkSections($scope.formAnswers.etatRenouvellement);
 
     var login = function (next) {
       $modal.open({

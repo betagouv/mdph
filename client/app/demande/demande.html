@@ -29,6 +29,7 @@
       </div>
     </div>
 
+
     <!-- TODO: Afficher le statut de la demande -->
 
     <a class="section-inverse" ui-sref="{{section.sref}}" ng-if="request._id" ng-repeat="section in sectionsDocuments">
@@ -42,6 +43,15 @@
         </div>
       </div>
     </a>
+
+    <h2>Nature de la demande</h2>
+    <div class="btn-group">
+      <label class="btn btn-primary" ng-model="formAnswers.etatRenouvellement" btn-radio="'Première demande'" ng-click="checkSections('Première demande')">Première demande</label>
+      <label class="btn btn-primary" ng-model="formAnswers.etatRenouvellement" btn-radio="'Renouvellement'" ng-click="checkSections('Renouvellement')">Renouvellement</label>
+    </div>
+    <div ng-if="formAnswers.etatRenouvellement == 'Renouvellement'">
+      <p><em>Remplissez la section 'Identités' et joignez les documents nécessaires à votre demande. Vous avez aussi la possibilité de remplir tout le formulaire.</em></p>
+    </div>
 
     <h2>Renseignements obligatoires pour toutes les demandes</h2>
     <div class="category">

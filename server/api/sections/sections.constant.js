@@ -7,7 +7,8 @@ var identites = {
   sref: '.identites',
   label: 'Identités',
   desc: 'Individus et organismes concernés par la demande',
-  section: 'obligatoire'
+  sectionDefault: 'obligatoire',
+  sectionRenouvellement: 'obligatoire'
 };
 
 var aidant =   {
@@ -15,7 +16,8 @@ var aidant =   {
   sref: '.aidant.situation.nom_aidant',
   label: 'Vie de votre aidant familial',
   desc: 'Si votre aidant familial (la personne qui s’occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins',
-  section: 'complements',
+  sectionDefault: 'complements',
+  sectionRenouvellement: 'complements',
   subSections: [
     {
       include: 'departement.demande.aidant.situation.**',
@@ -33,7 +35,8 @@ var vieQuotidienne =   {
   sref: '.vie_quotidienne.situation.vie_famille',
   label: 'Vie quotidienne',
   desc: '',
-  section: 'obligatoire',
+  sectionDefault: 'obligatoire',
+  sectionRenouvellement: 'complementaire',
   subSections: [
     {
       include: 'departement.demande.vie_quotidienne.situation.**',
@@ -55,7 +58,8 @@ var vieScolaire = {
   sref: '.vie_scolaire.situation.condition',
   label: 'Vie scolaire ou étudiante',
   desc: 'Si votre demande concerne votre scolarité ou vie étudiante',
-  section: 'complementaire',
+  sectionDefault: 'complementaire',
+  sectionRenouvellement: 'complementaire',
   subSections: [
     {
       include: 'departement.demande.vie_scolaire.situation.**',
@@ -77,7 +81,8 @@ var vieAuTravail = {
   sref: '.vie_au_travail.situation_professionnelle.condition',
   label: 'Vie au travail',
   desc: 'Si votre demande concerne votre projet professionnel',
-  section: 'complementaire',
+  sectionDefault: 'complementaire',
+  sectionRenouvellement: 'complementaire',
   subSections: [
     {
       include: 'departement.demande.vie_au_travail.situation_professionnelle.**',
@@ -99,7 +104,8 @@ var situationsParticulieres = {
   sref: '.situations_particulieres.detail',
   label: 'Situations particulières',
   desc: 'Si vous vous trouvez dans une situation nécessitant une attention particulière',
-  section: 'obligatoire'
+  sectionDefault: 'obligatoire',
+  sectionRenouvellement: 'obligatoire',
 };
 
 var renouvellement = {
@@ -107,7 +113,8 @@ var renouvellement = {
   sref: '.renouvellement.evolution',
   label: 'Renouvellement',
   desc: 'Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement',
-  section: 'complements'
+  sectionDefault: 'absent',
+  sectionRenouvellement: 'obligatoire'
 };
 
 var documents = {
@@ -115,7 +122,8 @@ var documents = {
   sref: '.documents',
   label: 'Documents liés à votre demande',
   desc: 'Pour nous transmettre les documents justificatifs obligatoires et complémentaires',
-  section: 'documents'
+  sectionDefault: 'documents',
+  sectionRenouvellement: 'documents'
 };
 
 exports.trajectoires = [vieQuotidienne, vieScolaire, vieAuTravail];

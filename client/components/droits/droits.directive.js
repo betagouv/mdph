@@ -32,7 +32,6 @@ angular.module('impactApp')
           } else {
             $scope.formAnswers.prestations[prestation.id] = {status: 'demandé'};
           }
-
         };
 
         $scope.deselect = function(prestation) {
