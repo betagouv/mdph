@@ -50,10 +50,10 @@
       <label class="btn btn-primary" ng-model="formAnswers.etatRenouvellement" btn-radio="'Renouvellement'" ng-click="checkSections('Renouvellement')">Renouvellement</label>
     </div>
     <div ng-if="formAnswers.etatRenouvellement == 'Renouvellement'">
-      <p><em>Remplissez la section 'Identités' et joignez les documents nécessaires à votre demande. Vous avez aussi la possibilité de remplir tout le formulaire.</em></p>
+      <p><em>Remplissez les sections obligatoires et joignez les documents nécessaires à votre demande. Vous avez aussi la possibilité de remplir les sections complémentaires.</em></p>
     </div>
 
-    <h2>Renseignements obligatoires pour toutes les demandes</h2>
+    <h2>Renseignements obligatoires pour votre demande</h2>
     <div class="category">
       <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsObligatoires">
         <div class="section-body">
