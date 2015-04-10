@@ -1,5 +1,6 @@
 <form name="questionForm" novalidate>
-  <qtitle ng-hide="hideTitle"></qtitle>
+  <label class="question-legend" for="inputid">{{question.title}}</label>
+
   <div class="form-group">
     <input type="text" name="inputname" id="inputid" class="form-control" ng-model="sectionModel[question.model]"
       placeholder="{{question.placeholder}}" required>

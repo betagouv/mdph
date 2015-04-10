@@ -1,9 +1,10 @@
 <form name="questionForm" novalidate>
-  <qtitle ng-hide="hideTitle"></qtitle>
-  <label for="inputid" ng-if="label" class="control-label">{{label}}</label>
+  <label class="question-legend" for="inputdate">{{question.title}}</label>
 
   <p class="input-group">
-    <input type="text" name="detail" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="sectionModel[question.model]" is-open="opened" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false" required>
+    <input type="text" name="inputdate" class="form-control" datepicker-popup="dd/MM/yyyy" id="inputdate"
+    ng-model="sectionModel[question.model]" is-open="opened" placeholder="DD/MM/YYYY" datepicker-options="dateOptions"
+    close-text="Fermer" show-button-bar="false" required>
     <span class="input-group-btn">
       <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
     </span>

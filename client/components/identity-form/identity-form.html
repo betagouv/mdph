@@ -113,9 +113,9 @@
               <input id="lieu_naissance_cp" type="text" name="lieu_naissance_cp" class="form-control" ng-model="identite.lieu_naissance_cp">
             </div>
           </div>
-        </div>
 
-        <hr>
+          <hr>
+        </div>
 
         <div class="form-group required" ng-class="{'has-error': infoForm.adresse.$invalid && infoForm.$submitted}">
           <label for="adresse" class="control-label">Adresse</label>
@@ -176,9 +176,8 @@
           <input id="tel_2" type="text" name="tel_2" class="form-control" ng-model="identite.tel_2">
         </div>
 
-        <hr>
-
         <div class="form-group" ng-if="type === 'beneficiaire'">
+          <hr>
           <fieldset>
             <legend class="control-label">Si besoin, comment souhaitez-vous être contacté par la MDPH ?</legend>
             <input type="radio" name="mode_contact_email" id="mode_contact_email" ng-model="identite.mode_contact" value="email">
@@ -195,9 +194,8 @@
         <div class="form-group" ng-if="type === 'beneficiaire'">
           <label for="domicile_organisme" class="control-label">Si vous avez élu domicile auprès d'un organisme, précisez lequel</label>
           <input id="domicile_organisme" type="text" name="domicile_organisme" class="form-control" ng-model="identite.domicile_organisme" placeholder="Association, centre d’hébergement ou d’action sociale">
+          <hr>
         </div>
-
-        <hr>
 
         <div class="form-group" ng-if="type === 'beneficiaire'">
           <fieldset>
@@ -214,9 +212,8 @@
         <div class="form-group" ng-if="type === 'beneficiaire'">
           <label for="numero_allocataire" class="control-label">N° Allocataire</label>
           <input id="numero_allocataire" type="text" name="numero_allocataire" class="form-control" ng-model="identite.numero_allocataire">
+          <hr>
         </div>
-
-        <hr>
 
         <div class="form-group" ng-if="type === 'beneficiaire'">
           <fieldset>

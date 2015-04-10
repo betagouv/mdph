@@ -1,24 +1,29 @@
 <form name="questionForm" novalidate>
-  <qtitle ng-hide="hideTitle"></qtitle>
-  <div class="answer" ng-repeat="answer in question.answers"
-    ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && estAdulte())">
-    <button
-      class="btn btn-default btn-block btn-answer text-capitalize"
-      btn-radio="answer.model"
-      ng-model="sectionModel[question.model]"
-      ng-required="!sectionModel[question.model]">
-        <i class="fa" ng-class="{
-          'fa-dot-circle-o': sectionModel[question.model] === answer.model,
-          'fa-circle-o': sectionModel[question.model] !== answer.model
-        }"></i>
-        {{answer.label}}
-    </button>
-    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.model">
-      <div ng-include="answer.detailUrl"></div>
-    </div>
-  </div>
+  <fieldset>
+    <legend ng-hide="hideTitle" class="question-legend">{{question.title}}</legend>
 
-  <div role="alert" ng-if="questionForm.showError && questionForm.$invalid" class="text-danger text-right"><i class="fa fa-warning"></i> Veuillez sélectionner une des options ou préciser votre réponse</div>
+    <ul class="answers">
+      <div class="answer" ng-repeat="answer in question.answers">
+        <li
+          class="btn-answer" ng-class="{'active': sectionModel[question.model] === answer.model}"
+          ng-click="sectionModel[question.model] = answer.model"
+          ng-if="!answer.onlyAdult || (answer.onlyAdult && estAdulte())">
+          <input type="radio" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
+            ng-model="sectionModel[question.model]" ng-value="answer.model"
+            ng-required="!sectionModel[question.model]"/>
+          <label for="{{question.model}}-{{answer.model}}">{{answer.label}}</label>
+        </li>
+
+        <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model] === answer.model">
+          <div ng-include="answer.detailUrl"></div>
+        </div>
+      </div>
+    </ul>
+  </fieldset>
+
+  <div role="alert" ng-if="questionForm.showError && questionForm.$invalid" class="text-danger text-right">
+    <i class="fa fa-warning"></i> Veuillez sélectionner une des options ou préciser votre réponse
+  </div>
 
   <nav-steps transclude ng-hide="hideSteps" hide-back="hideBack"></nav-steps>
 </form>

@@ -1,19 +1,28 @@
 <form name="questionForm" novalidate>
-  <qtitle ng-hide="hideTitle"></qtitle>
-  <div class="answer" ng-repeat="answer in question.answers" ng-if="isAdmin || !answer.onlyAdult || (answer.onlyAdult && estAdulte())">
-    <button
-      class="btn btn-default btn-block btn-answer text-capitalize"
-      ng-model="sectionModel[question.model][answer.model]"
-      btn-checkbox>
-      <i class="fa" ng-class="{'fa-check-square': sectionModel[question.model][answer.model], 'fa-square-o': !sectionModel[question.model][answer.model]}"></i>
-      {{answer.label}}
-    </button>
-    <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model]">
-      <div class="row form-horizontal">
-        <div ng-include="answer.detailUrl"></div>
+  <fieldset>
+    <legend ng-hide="hideTitle" class="question-legend">{{question.title}}</legend>
+
+    <ul class="answers">
+      <div class="answer" ng-repeat="answer in question.answers">
+        <li
+          class="btn-answer" ng-class="{'active': sectionModel[question.model][answer.model]}"
+          ng-click="sectionModel[question.model][answer.model] = !sectionModel[question.model][answer.model]"
+          ng-if="!answer.onlyAdult || (answer.onlyAdult && estAdulte())">
+          <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
+            ng-model="sectionModel[question.model][answer.model]" ng-value="answer.label" />
+          <label for="{{question.model}}-{{answer.model}}">{{answer.label}}</label>
+        </li>
+
+        <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model]">
+          <div ng-include="answer.detailUrl"></div>
+        </div>
       </div>
-    </div>
+    </ul>
+  </fieldset>
+
+  <div role="alert" ng-if="questionForm.showError && questionForm.$invalid" class="text-danger text-right">
+    <i class="fa fa-warning"></i> Veuillez sélectionner une des options ou préciser votre réponse
   </div>
 
-  <nav-steps ng-hide="hideSteps"></nav-steps>
+  <nav-steps transclude ng-hide="hideSteps" hide-back="hideBack"></nav-steps>
 </form>

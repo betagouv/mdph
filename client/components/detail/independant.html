@@ -1,15 +1,17 @@
-<div class="row form-horizontal">
-  <label class="col-md-4 control-label">Et vous êtes</label>
-  <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'proprietaire'"
+<fieldset>
+  <legend ng-hide="hideTitle" class="control-label">Et vous êtes</legend>
+
+  <div>
+    <input type="radio" name="proprietaire" id="domicile-proprietaire"
+      ng-model="sectionModel[answer.detailModel]" value="'proprietaire'"
       ng-required="!sectionModel[answer.detailModel]">
-      Propriétaire
-    </button>
+    <label for="domicile-proprietaire">Propriétaire</label>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'locataire'"
+
+  <div>
+    <input type="radio" name="locataire" id="domicile-locataire"
+      ng-model="sectionModel[answer.detailModel]" value="'locataire'"
       ng-required="!sectionModel[answer.detailModel]">
-      Locataire
-    </button>
+    <label for="domicile-locataire">Locataire</label>
   </div>
-</div>
+</fieldset>

@@ -1,7 +1,7 @@
 <form name="questionForm" novalidate>
-  <qtitle ng-hide="hideTitle"></qtitle>
-
+  <label class="question-legend" for="autresrenseignements">{{question.title}}</label>
   <textarea class="form-control" rows="20"
+    name="autresrenseignements" id="autresrenseignements"
     placeholder="{{placeholder}}"
     ng-model="sectionModel['autresRenseignements']"></textarea>
 

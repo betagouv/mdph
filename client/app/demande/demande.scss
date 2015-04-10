@@ -31,6 +31,16 @@
     margin: 0 0 15px 0;
   }
 
+  .question-legend {
+    font-size: 1.8em;
+    font-weight: 400;
+    width: 100%;
+    margin: 0 0 15px 0;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
   h2 {
     font-size: 1.5em;
     font-weight: 200;
@@ -117,26 +127,41 @@
   }
 
   .btn-answer {
+    @extend .btn;
+    @extend .btn-default;
+    @extend .btn-block;
+
     padding-left: 15px;
     border-bottom: 2px solid $light-grey;
     text-align: left;
-    i {
-      color: $light-grey;
-      margin-right: 15px;
-    }
 
     &.active {
       border-bottom: 2px solid $primary;
       background-color: white;
-
-      i {
-        color: $primary;
-      }
     }
   }
 
   .answer {
     margin-bottom: 8px;
+  }
+
+  ul.answers {
+    padding-left: 0;
+  }
+
+  input[type=radio] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  input[type=checkbox] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  label {
+    font-weight: 400;
+    cursor: pointer;
   }
 
   .demande-header {
@@ -156,7 +181,12 @@
     }
   }
 
+  label.control-label {
+    font-weight: bold;
+  }
+
   .well-detail {
     background-color: white;
+    border-bottom: 2px solid $primary;
   }
 }

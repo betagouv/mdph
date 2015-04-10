@@ -1,44 +1,38 @@
-<div class="row">
-  <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'parents'"
+<fieldset>
+  <legend ng-hide="hideTitle" class="control-label">Précisez le domicile</legend>
+
+  <div>
+    <input type="radio" name="parents" id="domicile-parents"
+      ng-model="sectionModel[answer.detailModel]" value="'parents'"
       ng-required="!sectionModel[answer.detailModel]">
-      De vos parents (ou l'un d'entre eux)
-    </button>
+    <label for="domicile-parents">De vos parents (ou l'un d'entre eux)</label>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'enfants'"
+
+  <div>
+    <input type="radio" name="enfants" id="domicile-enfants"
+      ng-model="sectionModel[answer.detailModel]" value="'enfants'"
       ng-required="!sectionModel[answer.detailModel]">
-      De vos enfants (ou l'un d'entre eux)
-    </button>
+    <label for="domicile-enfants">De vos enfants (ou l'un d'entre eux)</label>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'ami'"
+
+  <div>
+    <input type="radio" name="ami" id="domicile-ami"
+      ng-model="sectionModel[answer.detailModel]" value="'ami'"
       ng-required="!sectionModel[answer.detailModel]">
-      D'un(e) ami(e)
-    </button>
+    <label for="domicile-ami">D'un(e) ami(e)</label>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'autreMembreFamille'"
+
+  <div>
+    <input type="radio" name="autreMembreFamille" id="domicile-autreMembreFamille"
+      ng-model="sectionModel[answer.detailModel]" value="'autreMembreFamille'"
       ng-required="!sectionModel[answer.detailModel]">
-      D'un autre membre de<br>votre famille
-    </button>
+    <label for="domicile-autreMembreFamille">D'un autre membre de votre famille</label>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'familleAccueill'"
+
+  <div>
+    <input type="radio" name="familleAccueill" id="domicile-familleAccueill"
+      ng-model="sectionModel[answer.detailModel]" value="'familleAccueill'"
       ng-required="!sectionModel[answer.detailModel]">
-      D'une famille d'accueil
-    </button>
+    <label for="domicile-familleAccueill">D'une famille d'accueil</label>
   </div>
-  <div class="col-md-4">
-    <div tooltip="{{debug ? debugAdultText : ''}}">
-      <button class="btn btn-default btn-block"
-        ng-if="debug || showAdult"
-        ng-disabled="!showAdult"
-        ng-model="sectionModel[answer.detailModel]"
-        btn-radio="'enfants'"
-        ng-required="!sectionModel[answer.detailModel]">
-        Des enfants
-      </button>
-    </div>
-  </div>
-</div>
+</fieldset>

@@ -1,53 +1,58 @@
 <form name="questionForm" novalidate>
-  <qtitle ng-hide="hideTitle"></qtitle>
-  <div class="answer">
-    <button class="btn btn-default btn-block btn-answer"
-      ng-model="model['valeur']" btn-radio="true" ng-required="!model['valeur']">
-      <i class="fa" ng-class="{
-        'fa-dot-circle-o': model['valeur'] === true,
-        'fa-circle-o': !model['valeur']
-      }"></i>
-      Oui
-    </button>
-    <div class="well well-detail slide" ng-if="model['valeur']">
-      <table class="table my-table-striped">
-        <thead>
-          <th>Nom de la structure</th>
-          <th colspan="2">Etes-vous déjà en contact ?</th>
-        </thead>
-        <tbody>
-          <tr ng-repeat="structure in model.structures">
-            <td>
-              <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
-            </td>
-            <td>
-              <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'oui'">
-                Oui
-              </button>
-            </td>
-            <td>
-              <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'non'">
-                Non
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="row col-md-offset-4 col-md-4">
-        <button class="btn btn-default btn-block" ng-click="addStructure()">+</button>
+  <fieldset>
+    <legend ng-hide="hideTitle" class="question-legend">{{question.title}}</legend>
+
+    <ul class="answers">
+      <li
+        class="btn-answer" ng-class="{'active': model['valeur'] === true}"
+        ng-click="model['valeur'] = true">
+        <input type="radio" name="{{question.model}}" id="{{question.model}}-oui"
+          ng-model="model['valeur']" ng-value="true" ng-required="!model['valeur']"/>
+        <label for="{{question.model}}-oui">Oui</label>
+      </li>
+      <div class="well well-detail slide" ng-if="model['valeur']">
+        <table class="table my-table-striped">
+          <thead>
+            <th>Nom de la structure</th>
+            <th colspan="2">Etes-vous déjà en contact ?</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="structure in model.structures">
+              <td>
+                <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
+              </td>
+              <td>
+                <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'oui'">
+                  Oui
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'non'">
+                  Non
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-xs-offset-4 col-xs-4">
+            <button class="btn btn-default btn-block" ng-click="addStructure()">Ajouter une structure</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="answer">
-    <button class="btn btn-default btn-block btn-answer" ng-model="model['valeur']" btn-radio="false" ng-required="!model['valeur']">
-      <i class="fa" ng-class="{
-        'fa-dot-circle-o': model['valeur'] === false,
-        'fa-circle-o': !model['valeur'] || model['valeur'] === true
-      }"></i>
-      Non
-    </button>
+      <li
+        class="btn-answer" ng-class="{'active': model['valeur'] === false}"
+        ng-click="model['valeur'] = false">
+        <input type="radio" name="{{question.model}}" id="{{question.model}}-non"
+          ng-model="model['valeur']" ng-value="false" ng-required="!model['valeur']"/>
+        <label for="{{question.model}}-non">Non</label>
+      </li>
+    </ul>
+  </fieldset>
+
+  <div role="alert" ng-if="questionForm.showError && questionForm.$invalid" class="text-danger text-right">
+    <i class="fa fa-warning"></i> Veuillez sélectionner une des options ou préciser votre réponse
   </div>
 
-  <nav-steps ng-hide="hideSteps"></nav-steps>
-
+  <nav-steps transclude ng-hide="hideSteps" hide-back="hideBack"></nav-steps>
 </form>
