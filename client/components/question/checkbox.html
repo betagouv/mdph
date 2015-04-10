@@ -1,4 +1,4 @@
-<form name="questionForm" novalidate>
+<form name="questionForm" ng-submit="check(questionForm)" novalidate>
   <fieldset>
     <legend ng-hide="hideTitle" class="question-legend">{{question.title}}</legend>
 
@@ -7,6 +7,8 @@
         <li
           class="btn-answer" ng-class="{'active': sectionModel[question.model][answer.model]}"
           ng-click="sectionModel[question.model][answer.model] = !sectionModel[question.model][answer.model]"
+          ng-keypress="sectionModel[question.model][answer.model] = !sectionModel[question.model][answer.model]"
+          ng-keyup=""
           ng-if="!answer.onlyAdult || (answer.onlyAdult && estAdulte())">
           <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
             ng-model="sectionModel[question.model][answer.model]" ng-value="answer.label" />
