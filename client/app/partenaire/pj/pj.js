@@ -4,7 +4,7 @@ angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('partenaire.pj', {
-        url: '/:shortId/:type',
+        url: '/:shortId/:partenaireId/:type',
         templateUrl: 'app/partenaire/pj/pj.html',
         controller: 'PieceJointeCtrl',
         resolve: {
@@ -16,6 +16,9 @@ angular.module('impactApp')
           },
           type: function($stateParams) {
             return $stateParams.type;
+          },
+          partenaire: function($stateParams, Partenaire) {
+            return Partenaire.get({id: $stateParams.partenaireId}).$promise;
           }
         }
       });

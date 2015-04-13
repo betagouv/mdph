@@ -25,24 +25,17 @@ exports.show = function(req, res) {
   });
 };
 
-// Updates an existing partenaire in the DB.
-exports.update = function(req, res) {
-  Partenaire.findById(req.params.id, function (err, partenaire) {
-    if (err) { return handleError(req, res, err); }
-    if(!partenaire) { return res.sendStatus(404); }
-    var updated = _.merge(partenaire, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(req, res, err); }
-      return res.status(200).json(partenaire);
-    });
-  });
-};
-
-// Creates a new partenaire in the DB.
-exports.create = function(req, res) {
+// Save a partenaire in the DB.
+exports.save = function(req, res) {
   Partenaire.findOne({email: req.body.email}).exec(function(err, partenaire) {
+    if (err) { return handleError(req, res, err); }
+
     if (partenaire) {
-      return res.status(200).json(partenaire);
+      var updated = _.merge(partenaire, req.body);
+      updated.save(function (err) {
+        if (err) { return handleError(req, res, err); }
+        return res.status(200).json(partenaire);
+      });
     } else {
       Partenaire.create(req.body, function(err, partenaire) {
         if (err) { return handleError(req, res, err); }

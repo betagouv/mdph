@@ -272,6 +272,7 @@ exports.saveFile = function (req, res, next) {
 
       if (req.query.partenaire) {
         document.partenaire = field.partenaire;
+        console.log(field.partenaire);
         // Mail
         Partenaire.findById(field.partenaire, function(err, partenaire) {
           if (err) { handleError(req, res, err); }

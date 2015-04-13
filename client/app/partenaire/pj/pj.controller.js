@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, $state, Partenaire, documentTypes, request, mdph, type) {
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, $state, Partenaire, documentTypes, request, mdph, type, partenaire) {
     $scope.request = request;
+    $scope.partenaire = partenaire;
+
     if (type) {
       $scope.documentTypes = _.filter(documentTypes, {id: type});
       $scope.selectedType = documentTypes[0];
@@ -20,7 +22,7 @@ angular.module('impactApp')
           method: 'POST',
           file: $scope.files[0],
           data: {
-            partenaire: $scope.partenaire._id,
+            partenaire: partenaire._id,
             type: $scope.selectedType.id,
             email: {
               html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
@@ -33,7 +35,7 @@ angular.module('impactApp')
             controller: function($scope, $modalInstance) {
               $scope.ok = function() {
                 $modalInstance.close();
-                $state.go('^');
+                $state.go('main');
               };
             }
           });
