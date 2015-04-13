@@ -7,16 +7,6 @@ angular.module('impactApp')
     $scope.hideBack = $state.current.data.hideBack;
     $scope.isLastQuestion = $state.current.data.isLastQuestion;
   })
-  .controller('CheckboxQuestionCtrl', function($scope, $state, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
-
-    if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[question.model] = {};
-    }
-  })
   .controller('DateQuestionCtrl', function($scope, $state, datepickerConfig, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;

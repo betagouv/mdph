@@ -13,7 +13,7 @@ angular.module('impactApp')
     }).state(index + '.quotidien', {
       url: '/quotidien',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsVie', request.formAnswers);
@@ -27,7 +27,7 @@ angular.module('impactApp')
     }).state(index + '.deplacement', {
       url: '/deplacement',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsDeplacement', request.formAnswers);
@@ -55,7 +55,7 @@ angular.module('impactApp')
     }).state(index + '.social', {
       url: '/social',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsSocial', request.formAnswers);

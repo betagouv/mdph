@@ -27,7 +27,7 @@ angular.module('impactApp')
     .state(index + '.projet_professionnel.besoin_soutien', {
       url: '/besoin_soutien',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinSoutien', request.formAnswers);

@@ -13,7 +13,7 @@ angular.module('impactApp')
     .state(index + '.vos_attentes.scolarite', {
       url: '/scolarite',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'attentesVieScolaire', request.formAnswers);

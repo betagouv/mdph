@@ -13,7 +13,7 @@ angular.module('impactApp')
     .state(index + '.type_attente', {
       url: '/type_attente',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'typeAttente', request.formAnswers);
@@ -43,7 +43,7 @@ angular.module('impactApp')
     .state(index + '.renseignements', {
       url: '/renseignements',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'demandesAides', request.formAnswers);

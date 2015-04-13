@@ -91,7 +91,7 @@ angular.module('impactApp')
     .state(index + '.nature_aide', {
       url: '/nature_aide',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'natureAide', request.formAnswers);
@@ -121,7 +121,7 @@ angular.module('impactApp')
     .state(index + '.accompagnement', {
       url: '/accompagnement',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'accompagnementAidant', request.formAnswers);
@@ -166,7 +166,7 @@ angular.module('impactApp')
     .state(index + '.situation_future', {
       url: '/situation_future',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'situationFuture', request.formAnswers);

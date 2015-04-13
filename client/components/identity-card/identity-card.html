@@ -1,10 +1,10 @@
 <div ng-if="!identite.nom">
-  <a role="button" class="btn btn-block btn-primary ajout-identite" ui-sref="{{sref}}">
+  <a role="button" class="btn btn-block btn-primary ajout-identite" ui-sref="{{sref}}" ng-attr-title="{{title}}">
     <div class="row">
-      <div class="col-sm-2 col-sm-offset-1">
+      <div class="col-xs-2 col-xs-offset-1">
         <i class="fa fa-2x fa-user-plus"></i>
       </div>
-      <div class="col-sm-8">
+      <div class="col-xs-8">
         {{title}}
       </div>
     </div>
@@ -12,12 +12,12 @@
 </div>
 
 <div ng-if="identite.nom">
-  <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref="{{sref}}">
+  <a role="button" class="btn btn-block btn-primary btn-identity" ui-sref="{{sref}}" ng-attr-title="{{title}}">
     <div class="row">
-      <div class="col-sm-2 col-sm-offset-1">
+      <div class="col-xs-2 col-xs-offset-1">
         <i class="fa fa-2x fa-user"></i>
       </div>
-      <div class="col-sm-8">
+      <div class="col-xs-8">
         {{identite.nom}}
         {{identite.prenom}}
         <div class="identite-card-title">{{title}}</div>

@@ -27,7 +27,7 @@ angular.module('impactApp')
       .state(index + '.pole_emploi', {
         url: '/pole_emploi',
         templateUrl: 'components/question/checkbox.html',
-        controller: 'CheckboxQuestionCtrl',
+        controller: 'QuestionCtrl',
         resolve: {
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'situationSansEmploi', request.formAnswers);
@@ -61,7 +61,7 @@ angular.module('impactApp')
       .state(index + '.accompagnement', {
         url: '/accompagnement',
         templateUrl: 'components/question/checkbox.html',
-        controller: 'CheckboxQuestionCtrl',
+        controller: 'QuestionCtrl',
         resolve: {
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'situationAccompagnement', request.formAnswers);

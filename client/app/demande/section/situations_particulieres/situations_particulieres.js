@@ -6,7 +6,7 @@ angular.module('impactApp')
     $stateProvider.state('departement.demande.situations_particulieres.detail', {
       url: '',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       data: {
         hideBack: true,
         isLastQuestion: true

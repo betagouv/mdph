@@ -16,7 +16,7 @@ angular.module('impactApp')
     }).state(index + '.vos_besoins.scolarite', {
       url: '/scolarite',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsScolarite', request.formAnswers);
@@ -30,7 +30,7 @@ angular.module('impactApp')
     }).state(index + '.vos_besoins.communication', {
       url: '/communication',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsCommunication', request.formAnswers);
@@ -44,7 +44,7 @@ angular.module('impactApp')
     }).state(index + '.vos_besoins.entretien', {
       url: '/entretien',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsEntretien', request.formAnswers);
@@ -58,7 +58,7 @@ angular.module('impactApp')
     }).state(index + '.vos_besoins.deplacement', {
       url: '/deplacement',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsDeplacement', request.formAnswers);

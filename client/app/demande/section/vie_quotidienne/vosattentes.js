@@ -10,7 +10,7 @@ angular.module('impactApp')
     }).state(index + '.type_aide', {
       url: '/type_aide',
       templateUrl: 'components/question/checkbox.html',
-      controller: 'CheckboxQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'attentesTypeAide', request.formAnswers);
