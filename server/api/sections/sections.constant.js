@@ -36,7 +36,7 @@ var vieQuotidienne =   {
   label: 'Vie quotidienne',
   desc: '',
   sectionDefault: 'obligatoire',
-  sectionRenouvellement: 'complementaire',
+  sectionRenouvellement: 'obligatoire',
   subSections: [
     {
       include: 'departement.demande.vie_quotidienne.situation.**',
@@ -114,7 +114,7 @@ var renouvellement = {
   label: 'Renouvellement',
   desc: 'Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement',
   sectionDefault: 'absent',
-  sectionRenouvellement: 'obligatoire'
+  sectionRenouvellement: 'complements'
 };
 
 var documents = {
