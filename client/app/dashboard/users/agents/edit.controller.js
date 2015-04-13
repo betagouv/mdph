@@ -10,6 +10,7 @@ angular.module('impactApp')
           $state.go('^', {}, {reload: true});
         });
       } else {
+        $scope.user.role = 'adminMdph';
         $scope.user.mdph = currentUser.mdph._id;
         $scope.user.$save(function() {
           $state.go('^', {}, {reload: true});

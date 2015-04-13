@@ -26,5 +26,11 @@ angular.module('impactApp').constant('SectionBackConstants', [
     include: 'dashboard.preparation_evaluation.**',
     fa: 'fa-crosshairs',
     label: 'Préparation à l\'évaluation'
+  },
+  {
+    sref: 'dashboard.espace_perso.mon_compte',
+    include: 'dashboard.espace_perso.mon_compte.**',
+    fa: 'fa-cogs',
+    label: 'Mon compte',
   }
 ]);
