@@ -10,7 +10,6 @@ angular.module('impactApp')
           $state.go('^', {}, {reload: true});
         });
       } else {
-        debugger;
         $scope.user.mdph = currentUser.mdph._id;
         $scope.user.$save(function() {
           $state.go('^', {}, {reload: true});
