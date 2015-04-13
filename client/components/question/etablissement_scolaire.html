@@ -2,35 +2,35 @@
   <qtitle ng-hide="hideTitle"></qtitle>
   <table class="table my-table-striped">
     <thead>
-      <th>Nom</th>
-      <th>Rue</th>
-      <th>Ville</th>
-      <th>Depuis le</th>
+      <th id="nom">Nom</th>
+      <th id="rue">Rue</th>
+      <th id="ville">Ville</th>
+      <th id="duree">Depuis le</th>
     </thead>
     <tbody>
       <tr ng-repeat="(idx, etablissement) in model.etablissements">
         <td class="col-md-3">
-          <input name="nom{{idx}}" type="text" class="form-control" ng-model="etablissement.nom" placeholder="Nom de l'établissement" required>
+          <input aria-labelledby="nom" name="nom{{idx}}" type="text" class="form-control" ng-model="etablissement.nom" placeholder="Nom de l'établissement" required>
           <div ng-messages="questionForm['nom' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
         <td class="col-md-3">
-          <input name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue" required>
+          <input aria-labelledby="rue" name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue" required>
           <div ng-messages="questionForm['rue' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
         <td class="col-md-3">
-          <input name="ville{{idx}}" type="text" class="form-control" ng-model="etablissement.ville" placeholder="Ville" required>
+          <input aria-labelledby="ville" name="ville{{idx}}" type="text" class="form-control" ng-model="etablissement.ville" placeholder="Ville" required>
           <div ng-messages="questionForm['ville' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
         <td class="col-md-3">
           <div class="input-group">
-            <input type="text" name="date{{idx}}" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="etablissement.date" is-open="opened" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
-            <span class="input-group-btn">
+            <input  aria-labelledby="duree" type="text" name="date{{idx}}" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="etablissement.date" is-open="opened" placeholder="DD/MM/YYYY" datepicker-options="dateOptions" ng-required="true" close-text="Fermer" show-button-bar="false"/>
+            <span class="input-group-btn" aria-hidden="true">
               <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </div>
@@ -43,10 +43,10 @@
   </table>
   <div class="row">
     <div class="col-md-offset-2 col-md-4">
-      <button class="btn btn-default btn-block" ng-click="retirerEtablissement()">-</button>
+      <button aria-label="Retirer le dernier établissement" class="btn btn-default btn-block" ng-click="retirerEtablissement()">-</button>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-default btn-block" ng-click="ajouterEtablissement()">+</button>
+      <button aria-label="Ajouter un établissement" class="btn btn-default btn-block" ng-click="ajouterEtablissement()">+</button>
     </div><br>
   </div>
   <nav-steps ng-hide="hideSteps"></nav-steps>
