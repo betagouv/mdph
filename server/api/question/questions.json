@@ -242,7 +242,8 @@
     },
     {
       "model": "ipp",
-      "titleDefault": "Taux d'IPP (Incapacité Permanente Partielle)",
+      "titleDefault": "Quel est votre taux d'IPP (Incapacité Permanente Partielle) ?",
+      "titleRep":"Quel est son taux d'IPP (Incapacité Permanente Partielle) ?",
       "type": "text",
       "placeholder" : "En %"
     },
