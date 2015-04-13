@@ -1,6 +1,6 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
-  <table class="table my-table-striped">
+  <table aria-label="Emploi du temps" class="table my-table-striped">
     <thead>
       <th></th>
       <th>Matin</th>
@@ -11,13 +11,13 @@
       <tr ng-repeat="(idx, jour) in jours">
         <td>{{jour}}</td>
         <td>
-          <input name="matin{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['matin']">
+          <input aria-label="{{jour}} matin" name="matin{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['matin']">
         </td>
         <td>
-          <input name="midi{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['midi']">
+          <input aria-label="{{jour}} midi" name="midi{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['midi']">
         </td>
         <td>
-          <input name="aprem{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['aprem']">
+          <input aria-label="{{jour}} après-midi" name="aprem{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['aprem']">
         </td>
       </tr>
     </tbody>
