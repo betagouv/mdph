@@ -13,13 +13,18 @@
   }
 
   .question-legend {
-    font-size: 1.8em;
     font-weight: 400;
     width: 100%;
     margin: 0 0 15px 0;
     color: #333333;
     border: 0;
     border-bottom: 1px solid #e5e5e5;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .question-legend {
+      font-size: 1.8em;
+    }
   }
 
   h2 {
