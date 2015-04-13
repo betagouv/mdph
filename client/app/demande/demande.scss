@@ -1,22 +1,3 @@
-.nav-questionnaire {
-  background-color: rgb(231, 231, 231);
-
-  ol {
-    margin: 0;
-  }
-
-  .breadcrumb {
-    background-color: rgb(231, 231, 231);
-    margin: 3px 0;
-    float: left;
-
-    li.active {
-      color: black;
-      font-weight: 500;
-    }
-  }
-}
-
 .questionnaire {
   @extend .container;
   margin-top: 20px;
