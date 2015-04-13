@@ -3,38 +3,38 @@
   <em>{{question.placeholder}}</em>
   <table class="table my-table-striped">
     <thead>
-      <th>Frais engagés</th>
-      <th>Fréquence</th>
-      <th>Montant total</th>
-      <th>Montant remboursé</th>
-      <th>Précisions</th>
+      <th id="frais">Frais engagés</th>
+      <th id="frequence">Fréquence</th>
+      <th id="montant1">Montant total</th>
+      <th id="montant2">Montant remboursé</th>
+      <th id="precisions">Précisions</th>
     </thead>
     <tbody>
       <tr ng-repeat="frais in model.listeFrais">
         <td>
-          <input type="text" class="form-control" ng-model="frais.nom" placeholder="Libellé des frais">
+          <input type="text" class="form-control" ng-model="frais.nom" placeholder="Libellé des frais" aria-labelledby="frais">
         </td>
         <td>
-          <input type="text" class="form-control" ng-model="frais.frequence" placeholder="Fréquence des frais">
+          <input type="text" class="form-control" ng-model="frais.frequence" placeholder="Fréquence des frais" aria-labelledby="frequence">
         </td>
         <td>
-          <input type="text" class="form-control" ng-model="frais.total" placeholder="Montant">
+          <input type="text" class="form-control" ng-model="frais.total" placeholder="Montant" aria-labelledby="montant1">
         </td>
         <td>
-          <input type="text" class="form-control" ng-model="frais.rembourse" placeholder="Montant remboursé">
+          <input type="text" class="form-control" ng-model="frais.rembourse" placeholder="Montant remboursé" aria-labelledby="montant2">
         </td>
         <td>
-          <input type="text" class="form-control" ng-model="frais.detail" placeholder="Précisions">
+          <input type="text" class="form-control" ng-model="frais.detail" placeholder="Précisions" aria-labelledby="precisions">
         </td>
       </tr>
     </tbody>
   </table>
   <div class="row">
     <div class="col-md-offset-2 col-md-4">
-      <button class="btn btn-default btn-block" ng-click="retirerFrais()">-</button>
+      <button class="btn btn-default btn-block" ng-click="retirerFrais()" aria-label="Supprimer le dernier frais">-</button>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-default btn-block" ng-click="ajouterFrais()">+</button>
+      <button class="btn btn-default btn-block" ng-click="ajouterFrais()" aria-label="Ajouter un frais">+</button>
     </div><br>
   </div>
   <nav-steps ng-hide="hideSteps"></nav-steps>
