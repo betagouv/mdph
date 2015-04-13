@@ -1,12 +1,21 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AgentsEditCtrl', function ($scope, $state, user) {
+  .controller('AgentsEditCtrl', function ($scope, $state, user, currentUser) {
     $scope.user = user;
 
     $scope.update = function() {
-      $scope.user.$changeInfo();
-      $state.go('^', {}, {reload: true});
+      if ($scope.user._id) {
+        $scope.user.$changeInfo(function() {
+          $state.go('^', {}, {reload: true});
+        });
+      } else {
+        debugger;
+        $scope.user.mdph = currentUser.mdph._id;
+        $scope.user.$save(function() {
+          $state.go('^', {}, {reload: true});
+        });
+      }
     };
 
     $scope.delete = function() {

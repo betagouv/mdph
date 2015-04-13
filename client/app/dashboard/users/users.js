@@ -38,7 +38,14 @@ angular.module('impactApp')
         controller: 'AgentsEditCtrl',
         resolve: {
           user: function(User, $stateParams) {
-            return User.get({id: $stateParams.id});
+            if ($stateParams.id) {
+              return User.get({id: $stateParams.id}).$promise;
+            } else {
+              return new User();
+            }
+          },
+          currentUser: function(Auth) {
+            return Auth.getCurrentUser();
           }
         },
         authenticate: true
