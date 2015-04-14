@@ -26,6 +26,7 @@ angular.module('impactApp').constant('documentTypes', [
     id: 'gevasco',
     label: 'GEVAsco',
     type: 'scolarite',
+    emptyDoc: '356_joe201502110016-arretegevasco.pdf',
     desc: 'Documents à remplir avec l\'enseignant référent et l\'équipe de suivi de la scolarisation de votre enfant. Vous pouvez demander au directeur de l\'école le contact de votre enseignant référent.'
   },
   {
