@@ -47,8 +47,14 @@
 
     <h2>Nature de la demande</h2>
     <div class="btn-group">
-      <label class="btn btn-primary" ng-model="formAnswers.etatRenouvellement" btn-radio="'Première demande'" ng-click="checkSections('Première demande')">Première demande</label>
-      <label class="btn btn-primary" ng-model="formAnswers.etatRenouvellement" btn-radio="'Renouvellement'" ng-click="checkSections('Renouvellement')">Renouvellement</label>
+      <label class="btn btn-primary" ng-model="formAnswers.etatRenouvellement" btn-radio="'Première demande'"
+        ng-change="checkSections('Première demande')">
+        Première demande
+      </label>
+      <label class="btn btn-primary" ng-model="formAnswers.etatRenouvellement" btn-radio="'Renouvellement'"
+        ng-change="checkSections('Renouvellement')">
+        Renouvellement
+      </label>
     </div>
     <div ng-if="formAnswers.etatRenouvellement == 'Renouvellement'">
       <p><em>Remplissez les sections obligatoires et joignez les documents nécessaires à votre demande. Vous avez aussi la possibilité de remplir les sections complémentaires.</em></p>

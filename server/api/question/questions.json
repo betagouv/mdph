@@ -1512,8 +1512,8 @@
           "model":"sante"
         },
         {
-          "labelRep":"Son handicap est stable mais a de nouvelles répercussions sur sa vie quotidienne",
-          "label":"Votre handicap est stable mais a de nouvelles répercussions sur votre vie quotidienne",
+          "labelRep":"Son état de santé est stable mais son handicap a de nouvelles répercussions sur sa vie quotidienne",
+          "label":"Votre état de santé est stable mais votre handicap a de nouvelles répercussions sur votre vie quotidienne",
           "model":"repercussions"
         },
         {
