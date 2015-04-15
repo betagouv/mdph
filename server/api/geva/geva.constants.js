@@ -134,6 +134,8 @@ exports.all =
     "Reponses": [
       {
         "Reponse":"Enfant non scolarisé",
+        "Tri":1,
+        "CodeValeur":"II.2.1",
         "Details": [
           {
             "Detail":"enfant jamais scolarisé",
@@ -154,6 +156,8 @@ exports.all =
       },
       {
         "Reponse":"Activité professionnelle même non rémunérée (y compris ESAT, apprentissage, formation professionnelle rémunérée, arrêt maladie)",
+        "Tri":5,
+        "CodeValeur":"II.2.3",
         "Details": [
           {
             "Detail":"salarié secteur privé",
@@ -184,6 +188,8 @@ exports.all =
       },
       {
         "Reponse":"Adulte sans activité ",
+        "Tri":11,
+        "CodeValeur":"II.2.4",
         "Details": [
           {
             "Detail":"Invalidité",
@@ -238,6 +244,8 @@ exports.all =
       },
       {
         "Reponse":"ressources non issues du travail",
+        "Tri":3,
+        "CodeValeur":"II.3.3",
         "Details":[
           {
             "Detail":"Allocation chômage",
@@ -251,36 +259,38 @@ exports.all =
           },
           {
             "Detail":"pension d'invalidité, rente AT ou MP",
+            "Tri":6,
+            "CodeValeur":"II.3.3.c",
             "SousDetails":[
               {
                 "SousDetail":"Pension d'invalidité 1er cat",
-                "Tri":6,
-                "CodeValeur":"II.3.3.c"
-              },
-              {
-                "SousDetail":"Pension d'invalidité 2ème cat ",
                 "Tri":7,
                 "CodeValeur":"II.3.3.c.1"
               },
               {
-                "SousDetail":"Pension d'invalidité 3ème cat (MTP)",
+                "SousDetail":"Pension d'invalidité 2ème cat ",
                 "Tri":8,
                 "CodeValeur":"II.3.3.c.2"
               },
               {
-                "SousDetail":"Allocation supplémentaire d'invalidité (FSI)",
+                "SousDetail":"Pension d'invalidité 3ème cat (MTP)",
                 "Tri":9,
                 "CodeValeur":"II.3.3.c.3"
               },
               {
-                "SousDetail":"Autres pensions (régimes particuliers, assurances …)",
+                "SousDetail":"Allocation supplémentaire d'invalidité (FSI)",
                 "Tri":10,
                 "CodeValeur":"II.3.3.c.4"
               },
               {
-                "SousDetail":"Autres pensions avec MTP",
+                "SousDetail":"Autres pensions (régimes particuliers, assurances …)",
                 "Tri":11,
                 "CodeValeur":"II.3.3.c.5"
+              },
+              {
+                "SousDetail":"Autres pensions avec MTP",
+                "Tri":12,
+                "CodeValeur":"II.3.3.c.6"
               }
             ]
           },
@@ -342,6 +352,8 @@ exports.all =
     "Reponses":[
       {
         "Reponse":" transports en commun",
+        "Tri":1,
+        "CodeValeur":"IV.2",
         "Details":[
           {
             "Detail":"Utilise les transports en commun",
@@ -367,6 +379,8 @@ exports.all =
       },
       {
         "Reponse":"transports scolaires",
+        "Tri":6,
+        "CodeValeur":"IV.2.bis",
         "Details":[
           {
             "Detail":"Transport scolaire sans objet",
@@ -407,6 +421,8 @@ exports.all =
       },
       {
         "Reponse":"véhicule personnel ou familial",
+        "Tri":14,
+        "CodeValeur":"IV.2.ter",
         "Details":[
           {
             "Detail":"N’a pas recours à un véhicule personnel ou familial",
@@ -425,39 +441,48 @@ exports.all =
           },
           {
             "Detail":"Est conducteur d’un véhicule avec permis",
-            "SousDetail":"Comportant une mention d’aménagement du véhicule et une durée de validité",
-            "Tri":19,
-            "CodeValeur":"IV.2.ter.4.a "
-          },
-          {
-            "Detail":"Est conducteur d’un véhicule avec permis",
-            "SousDetail":"Comportant une mention d’aménagement du véhicule mais sans durée de validité",
-            "Tri":20,
-            "CodeValeur":"IV.2.ter.4.b "
-          },
-          {
-            "Detail":"Est conducteur d’un véhicule avec permis",
-            "SousDetail":"Ne comportant pas de mention d’aménagement du véhicule mais une durée de validité",
-            "Tri":21,
-            "CodeValeur":"IV.2.ter.4.c "
-          },
-          {
-            "Detail":"Est conducteur d’un véhicule avec permis",
-            "SousDetail":"Ne comportant ni mention d’aménagement du véhicule ni de durée de validité",
-            "Tri":22,
-            "CodeValeur":"IV.2.ter.4.d "
+            "Tri":18,
+            "CodeValeur":"IV.2.ter.4",
+            "SousDetails":[
+              {
+                "SousDetail":"Comportant une mention d’aménagement du véhicule et une durée de validité",
+                "Tri":19,
+                "CodeValeur":"IV.2.ter.4.a "
+              },
+              {
+                "SousDetail":"Comportant une mention d’aménagement du véhicule mais sans durée de validité",
+                "Tri":20,
+                "CodeValeur":"IV.2.ter.4.b "
+              },
+              {
+                "SousDetail":"Ne comportant pas de mention d’aménagement du véhicule mais une durée de validité",
+                "Tri":21,
+                "CodeValeur":"IV.2.ter.4.c "
+              },
+              {
+                "SousDetail":"Ne comportant ni mention d’aménagement du véhicule ni de durée de validité",
+                "Tri":22,
+                "CodeValeur":"IV.2.ter.4.d "
+              }
+
+            ]
           },
           {
             "Detail":"En cours de formation au permis de conduire",
-            "SousDetail":"Avec avis du délégué à la formation routière",
-            "Tri":24,
-            "CodeValeur":"IV.2.ter.5.a"
-          },
-          {
-            "Detail":"En cours de formation au permis de conduire",
-            "SousDetail":"Sans avis du délégué à la formation routière",
-            "Tri":25,
-            "CodeValeur":"IV.2.ter.5.b"
+            "Tri":23,
+            "CodeValeur":"IV.2.ter.5",
+            "SousDetails":[
+              {
+                "SousDetail":"Avec avis du délégué à la formation routière",
+                "Tri":24,
+                "CodeValeur":"IV.2.ter.5.a"
+              },
+              {
+                "SousDetail":"Sans avis du délégué à la formation routière",
+                "Tri":25,
+                "CodeValeur":"IV.2.ter.5.b"
+              }
+            ]
           }
         ]
       }
@@ -472,34 +497,38 @@ exports.all =
     "Reponses":[
       {
         "Reponse":"établissement d'enseignement",
+        "Tri":1,
+        "CodeValeur":"V.1.bis.1",
         "Details":[
           {
             "Detail":"Classe ordinaire",
+            "Tri":2,
+            "CodeValeur":"V.1.bis.1.a",
             "SousDetails":[
               {
                 "SousDetail":"1er degré",
-                "Tri":2,
-                "CodeValeur":"V.1.bis.1.a"
-              },
-              {
-                "SousDetail":"2ème degré collège",
                 "Tri":3,
                 "CodeValeur":"V.1.bis.1.a.1"
               },
               {
-                "SousDetail":"2ème degré lycée générale et technologique",
+                "SousDetail":"2ème degré collège",
                 "Tri":4,
                 "CodeValeur":"V.1.bis.1.a.2"
               },
               {
-                "SousDetail":"2ème degré lycée professionnel",
+                "SousDetail":"2ème degré lycée générale et technologique",
                 "Tri":5,
                 "CodeValeur":"V.1.bis.1.a.3"
               },
               {
-                "SousDetail":"post bac",
+                "SousDetail":"2ème degré lycée professionnel",
                 "Tri":6,
                 "CodeValeur":"V.1.bis.1.a.4"
+              },
+              {
+                "SousDetail":"post bac",
+                "Tri":7,
+                "CodeValeur":"V.1.bis.1.a.5"
               }
             ]
           },
@@ -547,6 +576,8 @@ exports.all =
       },
       {
         "Reponse":"Autre type d’établissement",
+        "Tri":16,
+        "CodeValeur":"V.1.bis.2",
         "Details":[
           {
             "Detail":"Etablissement médico-social",
@@ -562,16 +593,18 @@ exports.all =
       },
       {
         "Reponse":"autre type de scolarisation",
+        "Tri":19,
+        "CodeValeur":"V.1.bis.3",
         "Details":[
           {
             "Detail":"enseignement par le CNED ",
             "Tri":20,
-            "CodeValeur":"V.1bis3a"
+            "CodeValeur":"V.1.bis.3.a"
           },
           {
             "Detail":"enseignement à domicile (SAPAD, autres…) ",
             "Tri":21,
-            "CodeValeur":"V.1bis 3b "
+            "CodeValeur":"V.1.bis.3.b "
           }
         ]
       }
@@ -870,16 +903,18 @@ exports.all =
       },
       {
         "Reponse":"reconversion professionnelle",
+        "Tri":4,
+        "CodeValeur":"VI.5.4",
         "Details":[
           {
             "Detail":"formation professionnelle de droit commun",
-            "Tri":4,
-            "CodeValeur":"VI.5.4"
+            "Tri":5,
+            "CodeValeur":"VI.5.4.a"
           },
           {
             "Detail":"formation professionnelle en CRP",
-            "Tri":5,
-            "CodeValeur":"VI.5.4.a"
+            "Tri":6,
+            "CodeValeur":"VI.5.4.b"
           }
         ]
       },
@@ -1128,39 +1163,43 @@ exports.all =
     "Reponses":[
       {
         "Reponse":"DEFICIENCES INTELLECTUELLES ",
+        "Tri":1,
+        "CodeValeur":"VII.9.1",
         "Details":[
           {
             "Detail":"Retard mental dont :",
+            "Tri":2,
+            "CodeValeur":"VII.9.1.1",
             "SousDetails":[
               {
                 "SousDetail":"Retard mental profond ( QI inférieur à 20 ou chez les adultes, âge mental inférieur à 3 ans)*",
-                "Tri":1,
-                "CodeValeur":"VII.9.1"
+                "Tri":3,
+                "CodeValeur":"VII.9.1.1.a"
               },
               {
                 "SousDetail":"Retard mental sévère (QI compris entre 20 et 34 ou chez les adultes, âge mental de 3 à 6 ans)*",
-                "Tri":2,
-                "CodeValeur":"VII.9.1.1 "
+                "Tri":4,
+                "CodeValeur":"VII.9.1.1.b"
               },
               {
                 "SousDetail":"Retard mental moyen (QI compris entre 35 et 49 ou chez les adultes, âge mental de 6 à 9 ans)*",
-                "Tri":3,
-                "CodeValeur":"VII.9.1.1.a "
+                "Tri":5,
+                "CodeValeur":"VII.9.1.1.c"
               },
               {
                 "SousDetail":"Retard mental léger (QI compris entre 50 et 69 ou chez les adultes, âge mental de 9 à 12 ans)*",
-                "Tri":4,
-                "CodeValeur":"VII.9.1.1.b "
+                "Tri":6,
+                "CodeValeur":"VII.9.1.1.d"
               },
               {
                 "SousDetail":"roubles cognitifs sans retard mental, troubles des acquisitions et des apprentissages ",
-                "Tri":5,
-                "CodeValeur":"VII.9.1.1.c "
+                "Tri":7,
+                "CodeValeur":"VII.9.1.1.e"
               },
               {
                 "SousDetail":"retard mental non précisé",
-                "Tri":6,
-                "CodeValeur":"VII.9.1.1.d "
+                "Tri":8,
+                "CodeValeur":"VII.9.1.1.f"
               }
             ]
           },
@@ -1187,479 +1226,520 @@ exports.all =
           {
             "Detail":"Déficiences intellectuelles non précisées",
             "Tri":13,
-            "CodeValeur":"VII.9.1.7 "
+            "CodeValeur":"VII.9.1.7"
           }
         ]
       },
       {
         "Reponse":"DEFICIENCES DU PSYCHISME",
+        "Tri":14,
+        "CodeValeur":"VII.9.2",
         "Details":[
           {
             "Detail":"Déficience de la conscience et de la vigilance dont :",
+            "Tri":15,
+            "CodeValeur":"VII.9.2.1",
             "SousDetails":[
               {
                 "SousDetail":"perte de conscience, coma",
-                "Tri":14,
-                "CodeValeur":"VII.9.2 "
+                "Tri":16,
+                "CodeValeur":"VII.9.2.1.a"
               },
               {
                 "SousDetail":"désorientation temporo-spatiale, confusion mentale",
-                "Tri":15,
-                "CodeValeur":"VII.9.2.1 "
+                "Tri":17,
+                "CodeValeur":"VII.9.2.1.b"
               },
               {
                 "SousDetail":"déficience intermittente de la conscience ( épilepsie) ",
-                "Tri":16,
-                "CodeValeur":"VII.9.2.1.a "
+                "Tri":18,
+                "CodeValeur":"VII.9.2.1.c"
               },
               {
                 "SousDetail":"Autres déficiences de la conscience ",
-                "Tri":17,
-                "CodeValeur":"VII.9.2.1.b "
+                "Tri":19,
+                "CodeValeur":"VII.9.2.1.d"
               },
               {
                 "SousDetail":"Troubles du comportement, de la personnalité et des capacités relationnelles",
-                "Tri":18,
-                "CodeValeur":"VII.9.2.1.c "
+                "Tri":20,
+                "CodeValeur":"VII.9.2.2"
               }
             ]
           },
           {
             "Detail":"Déficience des émotions ou de la volition dont : ",
+            "Tri":21,
+            "CodeValeur":"VII.9.2.3",
             "SousDetails":[
               {
                 "SousDetail":"déficience de l'émotion, des affects, de l'humeur ",
-                "Tri":19,
-                "CodeValeur":"VII.9.2.1.d "
+                "Tri":22,
+                "CodeValeur":"VII.9.2.3.a"
               },
               {
                 "SousDetail":"déficiences de la volition (passivité, soumission, compulsion…)",
-                "Tri":20,
-                "CodeValeur":"VII.9.2.2 "
+                "Tri":23,
+                "CodeValeur":"VII.9.2.3.b"
               }
             ]
           },
           {
             "Detail":"déficiences des fonctions psychomotrices",
-            "Tri":21,
-            "CodeValeur":"VII.9.2.3 "
+            "Tri":24,
+            "CodeValeur":"VII.9.2.4"
           },
           {
             "Detail":"Troubles de la perception ou de l’attention",
-            "Tri":22,
-            "CodeValeur":"VII.9.2.3.a "
+            "Tri":25,
+            "CodeValeur":"VII.9.2.5"
           },
           {
             "Detail":"Troubles des pulsions",
-            "Tri":23,
-            "CodeValeur":"VII.9.2.3.b "
+            "Tri":26,
+            "CodeValeur":"VII.9.2.6"
           },
           {
             "Detail":"Déficiences du psychisme non précisées",
-            "Tri":24,
-            "CodeValeur":"VII.9.2.4 "
+            "Tri":27,
+            "CodeValeur":"VII.9.2.8"
           }
         ]
       },
       {
         "Reponse":"DEFICIENCES DU LANGAGE ET DE LA PAROLE",
+        "Tri":28,
+        "CodeValeur":"VII.9.3",
         "Details":[
           {
             "Detail":"déficience sévère de la communication",
-            "Tri":28,
-            "CodeValeur":"VII.9.3 "
-          },
-          {
-            "Detail":"déficiences de l'apprentissage du langage écrit ou oral",
             "Tri":29,
             "CodeValeur":"VII.9.3.1 "
           },
           {
-            "Detail":"déficience de la voix ou de l'élocution",
+            "Detail":"déficiences de l'apprentissage du langage écrit ou oral",
             "Tri":30,
             "CodeValeur":"VII.9.3.2 "
           },
           {
-            "Detail":"Déficiences du langage ou de la parole non précisées",
+            "Detail":"déficience de la voix ou de l'élocution",
             "Tri":31,
             "CodeValeur":"VII.9.3.3 "
+          },
+          {
+            "Detail":"Déficiences du langage ou de la parole non précisées",
+            "Tri":32,
+            "CodeValeur":"VII.9.3.5"
           }
         ]
       },
       {
         "Reponse":"DEFICIENCES AUDITIVES",
+        "Tri":33,
+        "CodeValeur":"VII.9.4",
         "Details":[
           {
             "Detail":"Déficiences auditives bilatérales dont : ",
+            "Tri":34,
+            "CodeValeur":"VII.9.4.1",
             "SousDetails":[
               {
                 "SousDetail":"déficience auditive profonde  bilatérale (supérieure à 90 Db.)",
-                "Tri":33,
-                "CodeValeur":"VII.9.4. "
-              },
-              {
-                "SousDetail":"déficience auditive sévère bilatérale (comprise entre 71 Db et 90 Db inclus)",
-                "Tri":34,
-                "CodeValeur":"VII.9.4.1 "
-              },
-              {
-                "SousDetail":"déficience auditive moyenne bilatérale",
                 "Tri":35,
                 "CodeValeur":"VII.9.4.1.a "
               },
               {
-                "SousDetail":"déficience auditive légère bilatérale",
+                "SousDetail":"déficience auditive sévère bilatérale (comprise entre 71 Db et 90 Db inclus)",
                 "Tri":36,
                 "CodeValeur":"VII.9.4.1.b "
               },
               {
-                "SousDetail":"déficience auditive bilatérale sans autre indication",
+                "SousDetail":"déficience auditive moyenne bilatérale",
                 "Tri":37,
                 "CodeValeur":"VII.9.4.1.c "
+              },
+              {
+                "SousDetail":"déficience auditive légère bilatérale",
+                "Tri":38,
+                "CodeValeur":"VII.9.4.1.d "
+              },
+              {
+                "SousDetail":"déficience auditive bilatérale sans autre indication",
+                "Tri":39,
+                "CodeValeur":"VII.9.4.1.e "
               }
             ]
           },
           {
             "Detail":"Déficiences auditives unilatérales",
-            "Tri":38,
-            "CodeValeur":"VII.9.4.1.d "
-          },
-          {
-            "Detail":"Acouphènes",
-            "Tri":39,
-            "CodeValeur":"VII.9.4.1.e "
-          },
-          {
-            "Detail":"Déficience de la fonction vestibulaire et de l'équilibration",
             "Tri":40,
             "CodeValeur":"VII.9.4.2 "
           },
           {
-            "Detail":"Déficiences auditives non précisées",
+            "Detail":"Acouphènes",
             "Tri":41,
             "CodeValeur":"VII.9.4.3 "
+          },
+          {
+            "Detail":"Déficience de la fonction vestibulaire et de l'équilibration",
+            "Tri":42,
+            "CodeValeur":"VII.9.4.4"
+          },
+          {
+            "Detail":"Déficiences auditives non précisées",
+            "Tri":43,
+            "CodeValeur":"VII.9.4.6"
           }
         ]
       },
       {
         "Reponse":"DEFICIENCES VISUELLES",
+        "Tri":44,
+        "CodeValeur":"VII.9.5 ",
         "Details":[
           {
             "Detail":"Déficiences visuelles dont : ",
+            "Tri":45,
+            "CodeValeur":"VII.9.5.1 ",
             "SousDetails":[
               {
-                "Detail":"déficience visuelle profonde des 2 yeux",
-                "Tri":44,
-                "CodeValeur":"VII.9.5 "
-              },
-              {
-                "Detail":"déficience visuelle profonde d’un œil avec vision faible de l’autre",
-                "Tri":45,
-                "CodeValeur":"VII.9.5.1 "
-              },
-              {
-                "Detail":"déficience visuelle moyenne des deux yeux",
+                "SousDetail":"déficience visuelle profonde des 2 yeux",
                 "Tri":46,
                 "CodeValeur":"VII.9.5.1.a "
               },
               {
-                "Detail":"déficience visuelle d’un œil l’autre étant normal",
+                "SousDetail":"déficience visuelle profonde d’un œil avec vision faible de l’autre",
                 "Tri":47,
                 "CodeValeur":"VII.9.5.1.b "
               },
               {
-                "Detail":"Déficience de l’acuité visuelle sans précision",
+                "SousDetail":"déficience visuelle moyenne des deux yeux",
                 "Tri":48,
                 "CodeValeur":"VII.9.5.1.c "
+              },
+              {
+                "SousDetail":"déficience visuelle d’un œil l’autre étant normal",
+                "Tri":49,
+                "CodeValeur":"VII.9.5.1.d "
+              },
+              {
+                "SousDetail":"Déficience de l’acuité visuelle sans précision",
+                "Tri":50,
+                "CodeValeur":"VII.9.5.1.e "
               }
             ]
           },
           {
             "Detail":"déficience du champ visuel",
-            "Tri":50,
-            "CodeValeur":"VII.9.5.1.e "
-          },
-          {
-            "Detail":"déficience de la mobilité oculaire (nystagmus)",
             "Tri":51,
             "CodeValeur":"VII.9.5.2 "
           },
           {
-            "Detail":"Déficiences visuelles non précisées",
+            "Detail":"déficience de la mobilité oculaire (nystagmus)",
             "Tri":52,
             "CodeValeur":"VII.9.5.3 "
+          },
+          {
+            "Detail":"Déficiences visuelles non précisées",
+            "Tri":53,
+            "CodeValeur":"VII.9.5.5 "
           }
         ]
       },
       {
         "Reponse":"DEFICIENCES VISCERALES",
+        "Tri":54,
+        "CodeValeur":"VII.9.6 ",
         "Details": [
           {
             "Detail":"déficiences  cardiorespiratoires dont ",
+            "Tri":55,
+            "CodeValeur":"VII.9.6.1 ",
             "SousDetails":[
               {
                 "SousDetail":"déficience de la fonction cardiovasculaire",
-                "Tri":54,
-                "CodeValeur":"VII.9.6 "
-              },
-              {
-                "SousDetail":"déficience de la fonction respiratoire",
-                "Tri":55,
-                "CodeValeur":"VII.9.6.1 "
-              }
-            ]
-          },
-          {
-            "Detail":"Déficience hépato-digestives dont : ",
-            "SousDetails":[
-              {
-                "SousDetail":"déficience de la fonction digestive",
                 "Tri":56,
                 "CodeValeur":"VII.9.6.1.a "
               },
               {
-                "SousDetail":"déficience des fonctions hépatiques",
+                "SousDetail":"déficience de la fonction respiratoire",
                 "Tri":58,
                 "CodeValeur":"VII.9.6.1.b "
               }
             ]
           },
           {
+            "Detail":"Déficience hépato-digestives dont : ",
+            "Tri":59,
+            "CodeValeur":"VII.9.6.2 ",
+            "SousDetails":[
+              {
+                "SousDetail":"déficience de la fonction digestive",
+                "Tri":60,
+                "CodeValeur":"VII.9.6.2.a "
+              },
+              {
+                "SousDetail":"déficience des fonctions hépatiques",
+                "Tri":61,
+                "CodeValeur":"VII.9.6.2.b "
+              }
+            ]
+          },
+          {
             "Detail":"Déficience rénales ou urinaires ",
+            "Tri":62,
+            "CodeValeur":"VII.9.6.3 ",
             "SousDetails":[
               {
                 "SousDetail":"déficience des fonctions rénales",
-                "Tri":59,
-                "CodeValeur":"VII.9.6.2 "
+                "Tri":63,
+                "CodeValeur":"VII.9.6.3.a "
               },
               {
                 "SousDetail":"déficience de l'élimination urinaire",
-                "Tri":60,
-                "CodeValeur":"VII.9.6.2.a "
+                "Tri":64,
+                "CodeValeur":"VII.9.6.2.b "
               }
             ]
           },
           {
             "Detail":"déficience métabolique, endocrinienne ou enzymatique",
-            "Tri":61,
-            "CodeValeur":"VII.9.6.2.b "
+            "Tri":65,
+            "CodeValeur":"VII.9.6.4"
           },
           {
             "Detail":"déficience hématologique ou du système immunitaire",
-            "Tri":62,
-            "CodeValeur":"VII.9.6.3 "
+            "Tri":66,
+            "CodeValeur":"VII.9.6.5"
           },
           {
             "Detail":"Déficiences viscérales non précisées",
-            "Tri":63,
-            "CodeValeur":"VII.9.6.3.a "
+            "Tri":67,
+            "CodeValeur":"VII.9.6.7"
           }
         ]
       },
       {
         "Reponse":"DEFICIENCES MOTRICES",
+        "Tri":68,
+        "CodeValeur":"VII.9.7 ",
         "Details":[
           {
             "Detail":"Déficiences motrices par absence (amputation, agénésie) dont : ",
+            "Tri":69,
+            "CodeValeur":"VII.9.7.1 ",
             "SousDetails":[
               {
                 "SousDetail":"Amputation proximale d'un membre supérieur (amputation totale)",
-                "Tri":68,
-                "CodeValeur":"VII.9.7 "
-              },
-              {
-                "SousDetail":"Amputation proximale d'un membre inférieur (amputation totale)",
-                "Tri":69,
-                "CodeValeur":"VII.9.7.1 "
-              },
-              {
-                "SousDetail":"Amputation des parties distales d'un membre",
                 "Tri":70,
                 "CodeValeur":"VII.9.7.1.a "
               },
               {
-                "SousDetail":"Autres amputations et amputations multiples",
+                "SousDetail":"Amputation proximale d'un membre inférieur (amputation totale)",
                 "Tri":71,
                 "CodeValeur":"VII.9.7.1.b "
               },
               {
-                "SousDetail":"Absence complète ou incomplète d'un ou plusieurs membres sans autre indication",
+                "SousDetail":"Amputation des parties distales d'un membre",
                 "Tri":72,
                 "CodeValeur":"VII.9.7.1.c"
               },
               {
-                "SousDetail":"agénésie ou amputation partielle d'un membre supérieur",
+                "SousDetail":"Autres amputations et amputations multiples",
                 "Tri":73,
                 "CodeValeur":"VII.9.7.1.d "
               },
               {
-                "SousDetail":"agénésie ou amputation partielle d'un membre inférieur",
+                "SousDetail":"Absence complète ou incomplète d'un ou plusieurs membres sans autre indication",
                 "Tri":74,
                 "CodeValeur":"VII.9.7.1.e "
               },
               {
-                "SousDetail":"agénésie ou amputation partielle ou totale des 2 membres supérieurs ou inférieurs",
+                "SousDetail":"agénésie ou amputation partielle d'un membre supérieur",
                 "Tri":75,
                 "CodeValeur":"VII.9.7.1.f "
               },
               {
-                "SousDetail":"agénésie ou amputation partielle ou totale des 4 membres",
+                "SousDetail":"agénésie ou amputation partielle d'un membre inférieur",
                 "Tri":76,
                 "CodeValeur":"VII.9.7.1.g "
+              },
+              {
+                "SousDetail":"agénésie ou amputation partielle ou totale des 2 membres supérieurs ou inférieurs",
+                "Tri":77,
+                "CodeValeur":"VII.9.7.1.h "
+              },
+              {
+                "SousDetail":"agénésie ou amputation partielle ou totale des 4 membres",
+                "Tri":78,
+                "CodeValeur":"VII.9.7.1.i "
               }
             ]
           },
           {
             "Detail":"Déficiences motrices par atteinte de la commande neurologique dont :",
+            "Tri":79,
+            "CodeValeur":"VII.9.7.2 ",
             "SousDetails":[
               {
                 "SousDetail":"déficience complète des quatre membres",
-                "Tri":77,
-                "CodeValeur":"VII.9.7.1.h"
-              },
-              {
-                "SousDetail":"déficience incomplète des quatre membres",
-                "Tri":78,
-                "CodeValeur":"VII.9.7.1.i "
-              },
-              {
-                "SousDetail":"déficience complète des deux membres inférieurs",
-                "Tri":79,
-                "CodeValeur":"VII.9.7.2 "
-              },
-              {
-                "SousDetail":"déficience incomplète des deux membres inférieurs",
                 "Tri":80,
                 "CodeValeur":"VII.9.7.2.a "
               },
               {
-                "SousDetail":"déficience complète de deux membres homolatéraux",
+                "SousDetail":"déficience incomplète des quatre membres",
                 "Tri":81,
                 "CodeValeur":"VII.9.7.2.b "
               },
               {
-                "SousDetail":"déficience incomplète de deux membres homolatéraux",
+                "SousDetail":"déficience complète des deux membres inférieurs",
                 "Tri":82,
                 "CodeValeur":"VII.9.7.2.c "
               },
               {
-                "SousDetail":"Autre déficience complète ou incomplète d’un ou plusieurs membres",
+                "SousDetail":"déficience incomplète des deux membres inférieurs",
                 "Tri":83,
                 "CodeValeur":"VII.9.7.2.d "
-              }
-            ]
-          },
-          {
-            "Detail":"Déficience motrice de la tête et du tronc",
-            "SousDetails":[
+              },
               {
-                "SousDetail":"déficience de la statique et de la posture",
+                "SousDetail":"déficience complète de deux membres homolatéraux",
                 "Tri":84,
                 "CodeValeur":"VII.9.7.2.e "
               },
               {
-                "SousDetail":"Trouble du tonus",
+                "SousDetail":"déficience incomplète de deux membres homolatéraux",
                 "Tri":85,
                 "CodeValeur":"VII.9.7.2.f "
               },
               {
-                "SousDetail":"autre déficience motrice de la tête ou du tronc",
+                "SousDetail":"Autre déficience complète ou incomplète d’un ou plusieurs membres",
                 "Tri":86,
                 "CodeValeur":"VII.9.7.2.g "
               }
             ]
           },
           {
-            "Detail":"Déficiences mécaniques dont :",
+            "Detail":"Déficience motrice de la tête et du tronc",
+            "Tri":87,
+            "CodeValeur":"VII.9.7.3 ",
             "SousDetails":[
               {
-                "SousDetail":"Ankylose d'un ou plusieurs membres",
-                "Tri":87,
-                "CodeValeur":"VII.9.7.3 "
-              },
-              {
-                "SousDetail":"Instabilité d'un ou plusieurs membres",
+                "SousDetail":"déficience de la statique et de la posture",
                 "Tri":88,
                 "CodeValeur":"VII.9.7.3.a "
               },
               {
-                "SousDetail":"Difformité, déformation d'un ou plusieurs membres",
+                "SousDetail":"Trouble du tonus",
                 "Tri":89,
                 "CodeValeur":"VII.9.7.3.b "
               },
               {
-                "SousDetail":"d'un ou des 2 membres supérieurs",
+                "SousDetail":"autre déficience motrice de la tête ou du tronc",
                 "Tri":90,
                 "CodeValeur":"VII.9.7.3.c "
+              }
+            ]
+          },
+          {
+            "Detail":"Déficiences mécaniques dont :",
+            "Tri":91,
+            "CodeValeur":"VII.9.7.4",
+            "SousDetails":[
+              {
+                "SousDetail":"Ankylose d'un ou plusieurs membres",
+                "Tri":92,
+                "CodeValeur":"VII.9.7.4.a "
+              },
+              {
+                "SousDetail":"Instabilité d'un ou plusieurs membres",
+                "Tri":93,
+                "CodeValeur":"VII.9.7.4.b "
+              },
+              {
+                "SousDetail":"Difformité, déformation d'un ou plusieurs membres",
+                "Tri":94,
+                "CodeValeur":"VII.9.7.4.c "
+              },
+              {
+                "SousDetail":"d'un ou des 2 membres supérieurs",
+                "Tri":95,
+                "CodeValeur":"VII.9.7.3.d "
               },
               {
                 "SousDetail":"d'un ou des 2 membres inférieurs",
-                "Tri":91,
-                "CodeValeur":"VII.9.7.4"
+                "Tri":96,
+                "CodeValeur":"VII.9.7.3.e "
               }
             ]
           },
           {
             "Detail":"Déficiences musculaires d'un ou plusieurs membres ",
-            "Tri":92,
-            "CodeValeur":"VII.9.7.4.a "
+            "Tri":97,
+            "CodeValeur":"VII.9.7.5 "
           },
           {
             "Detail":"Déficiences complexes de la motricité dont : ",
-            "SousDetail":"Mouvements anormaux",
-            "Tri":93,
-            "CodeValeur":"VII.9.7.4.b "
-          },
-          {
-            "Detail":"Déficiences complexes de la motricité dont : ",
-            "SousDetail":"Autre déficience de la coordination motrice ",
-            "Tri":94,
-            "CodeValeur":"VII.9.7.4.c "
+            "Tri":98,
+            "CodeValeur":"VII.9.7.6",
+            "SousDetails":[
+              {
+                "SousDetail":"Mouvements anormaux",
+                "Tri":99,
+                "CodeValeur":"VII.9.7.6.a"
+              },
+              {
+                "SousDetail":"Autre déficience de la coordination motrice ",
+                "Tri":100,
+                "CodeValeur":"VII.9.7.6.b"
+              }
+            ]
           },
           {
             "Detail":"Déficiences motrices non précisées",
-            "Tri":96,
-            "CodeValeur":"VII.9.7.4.e "
+            "Tri":101,
+            "CodeValeur":"VII.9.7.8"
           }
         ]
       },
       {
         "Reponse":"AUTRES DEFICIENCES",
+        "Tri":102,
+        "CodeValeur":"VII.9.8 ",
         "Details":[
           {
             "Detail":"Déficiences esthétiques ",
-            "Tri":102,
-            "CodeValeur":"VII.9.8 "
-          },
-          {
-            "Detail":"déficience esthétiques de la tête et du tronc",
             "Tri":103,
             "CodeValeur":"VII.9.8.1 "
           },
           {
-            "Detail":"déficiences esthétiques des membres",
+            "Detail":"déficience esthétiques de la tête et du tronc",
             "Tri":104,
             "CodeValeur":"VII.9.8.1.a "
           },
           {
-            "Detail":"Autres déficiences esthétiques",
+            "Detail":"déficiences esthétiques des membres",
             "Tri":105,
             "CodeValeur":"VII.9.8.1.b "
           },
           {
-            "Detail":"Douleurs chroniques",
+            "Detail":"Autres déficiences esthétiques",
             "Tri":106,
             "CodeValeur":"VII.9.8.1.c"
           },
           {
-            "Detail":"Fatigue chronique",
+            "Detail":"Douleurs chroniques",
             "Tri":107,
             "CodeValeur":"VII.9.8.2 "
           },
           {
-            "Detail":"Déficiences non précisées",
+            "Detail":"Fatigue chronique",
             "Tri":108,
             "CodeValeur":"VII.9.8.3 "
+          },
+          {
+            "Detail":"Déficiences non précisées",
+            "Tri":109,
+            "CodeValeur":"VII.9.8.5"
           }
         ]
       },
@@ -1699,81 +1779,89 @@ exports.all =
       },
       {
         "Reponse":"Hospitalisations itératives ou programmées",
+        "Tri":2,
+        "CodeValeur":"VII.10.4",
         "Details":[
           {
             "Detail":"hospitalisation mensuelle",
-            "Tri":2,
-            "CodeValeur":"VII.10.4"
-          },
-          {
-            "Detail":"hospitalisation trimestrielle",
             "Tri":3,
             "CodeValeur":"VI.10.4.a"
           },
           {
-            "Detail":"hospitalisation annuelle",
+            "Detail":"hospitalisation trimestrielle",
             "Tri":4,
             "CodeValeur":"VI.10.4.b"
           },
           {
-            "Detail":"hospitalisation autre",
+            "Detail":"hospitalisation annuelle",
             "Tri":5,
             "CodeValeur":"VI.10.4.c"
+          },
+          {
+            "Detail":"hospitalisation autre",
+            "Tri":6,
+            "CodeValeur":"VI.10.4.d"
           }
         ]
       },
       {
         "Reponse":"kinésithérapeute",
+        "Tri":7,
+        "CodeValeur":"VII.10.5",
         "Details":[
           {
             "Detail":"kinésithérapeute hebdomadaire",
-            "Tri":7,
-            "CodeValeur":"VII.10.5"
-          },
-          {
-            "Detail":"kinésithérapeute mensuelle",
             "Tri":8,
             "CodeValeur":"VII.10.5.a"
           },
           {
-            "Detail":"kinésithérapeute trimestrielle",
+            "Detail":"kinésithérapeute mensuelle",
             "Tri":9,
             "CodeValeur":"VII.10.5.b"
           },
           {
-            "Detail":"kinésithérapeute autre",
+            "Detail":"kinésithérapeute trimestrielle",
             "Tri":10,
             "CodeValeur":"VII.10.5.c"
+          },
+          {
+            "Detail":"kinésithérapeute autre",
+            "Tri":11,
+            "CodeValeur":"VII.10.5.d"
           }
         ]
       },
       {
         "Reponse":"Infirmier ",
+        "Tri":12,
+        "CodeValeur":"VII.10.6",
         "Details":[
           {
             "Detail":"Infirmier hebdomadaire",
-            "Tri":12,
-            "CodeValeur":"VII.10.6"
-          },
-          {
-            "Detail":"Infirmier mensuelle",
             "Tri":13,
             "CodeValeur":"VII.10.6.a"
           },
           {
-            "Detail":"Infirmier trimestrielle",
+            "Detail":"Infirmier mensuelle",
             "Tri":14,
             "CodeValeur":"VII.10.6.b"
           },
           {
-            "Detail":"Infirmier autre",
+            "Detail":"Infirmier trimestrielle",
             "Tri":15,
             "CodeValeur":"VII.10.6.c"
+          },
+          {
+            "Detail":"Infirmier autre",
+            "Tri":16,
+            "CodeValeur":"VII.10.6.d"
           }
         ]
       },
       {
         "Reponse":"orthophoniste",
+        "Tri":17,
+        "CodeValeur":"VII.10.7",
         "Details":[
           {
             "Detail":"orthophoniste hebdomadaire",
@@ -1799,6 +1887,8 @@ exports.all =
       },
       {
         "Reponse":"psychologue",
+        "Tri":22,
+        "CodeValeur":"VII.10.8",
         "Details":[
           {
             "Detail":"Psychologue hebdomadaire",
@@ -1824,6 +1914,8 @@ exports.all =
       },
       {
         "Reponse":"ergothérapeute",
+        "Tri":29,
+        "CodeValeur":"VII.10.9",
         "Details":[
           {
             "Detail":"ergothérapeute hebdomadaire",
@@ -1849,6 +1941,8 @@ exports.all =
       },
       {
         "Reponse":"autre prise en charge régulière par un professionnel",
+        "Tri":32,
+        "CodeValeur":"VII.10.10",
         "Details":[
           {
             "Detail":"autre prise en charge régulière par un professionnel hebdomadaire",
@@ -1874,6 +1968,8 @@ exports.all =
       },
       {
         "Reponse":"Necessité d'assurer une prévention",
+        "Tri":37,
+        "CodeValeur":"VII.10.11",
         "Details":[
           {
             "Detail":"cutanée",
@@ -1914,6 +2010,8 @@ exports.all =
       },
       {
         "Reponse":"accompagnement par une structure ou un service",
+        "Tri":45,
+        "CodeValeur":"VII.10.13",
         "Details":[
           {
             "Detail":"CAMSP",
@@ -1957,51 +2055,53 @@ exports.all =
           },
           {
             "Detail":"établissement médico social",
+            "Tri":54,
+            "CodeValeur":"VII.10.13 i",
             "SousDetails":[
               {
                 "SousDetail":"IME",
-                "Tri":54,
-                "CodeValeur":"VII.10.13 i"
-              },
-              {
-                "SousDetail":"ITEP",
                 "Tri":55,
                 "CodeValeur":"VII.10.13 i.1"
               },
               {
-                "SousDetail":"IEM",
+                "SousDetail":"ITEP",
                 "Tri":56,
                 "CodeValeur":"VII.10.13 i.2"
               },
               {
-                "SousDetail":"CRDV",
+                "SousDetail":"IEM",
                 "Tri":57,
                 "CodeValeur":"VII.10.13 i.3"
               },
               {
-                "SousDetail":"autre établissement médico-social enfant",
+                "SousDetail":"CRDV",
                 "Tri":58,
                 "CodeValeur":"VII.10.13 i.4"
               },
               {
-                "SousDetail":"FH",
+                "SousDetail":"autre établissement médico-social enfant",
                 "Tri":59,
                 "CodeValeur":"VII.10.13 i.5"
               },
               {
-                "SousDetail":"FO",
+                "SousDetail":"FH",
                 "Tri":60,
                 "CodeValeur":"VII.10.13 i.6"
               },
               {
-                "SousDetail":"FAM",
+                "SousDetail":"FO",
                 "Tri":61,
                 "CodeValeur":"VII.10.13 i.7"
               },
               {
-                "SousDetail":"MAS",
+                "SousDetail":"FAM",
                 "Tri":62,
                 "CodeValeur":"VII.10.13 i.8"
+              },
+              {
+                "SousDetail":"MAS",
+                "Tri":63,
+                "CodeValeur":"VII.10.13 i.9"
               }
             ]
           },
@@ -2034,76 +2134,80 @@ exports.all =
       },
       {
         "Reponse":"contrainte liée aux modalités de réalisation du traitement (maintien à proximité d'un dispositif de soin ou d'assistance, temps des soins, horaires, voie d'administration, assistance d'un tiers, appentissage de technique …)",
+        "Tri":69,
+        "CodeValeur":"VI.11.4",
         "Details":[
           {
             "Detail":"temps consacré aux soins",
-            "Tri":69,
-            "CodeValeur":"VI.11.4"
-          },
-          {
-            "Detail":"horaires",
             "Tri":70,
             "CodeValeur":"VI.11.4.a"
           },
           {
-            "Detail":"voie d'administration",
+            "Detail":"horaires",
             "Tri":71,
             "CodeValeur":"VI.11.4.b"
           },
           {
-            "Detail":"apprentiissage de technique",
+            "Detail":"voie d'administration",
             "Tri":72,
             "CodeValeur":"VI.11.4.c"
           },
           {
-            "Detail":"assistance d'un tiers",
+            "Detail":"apprentiissage de technique",
             "Tri":73,
             "CodeValeur":"VI.11.4.d"
           },
           {
-            "Detail":"charge affective",
+            "Detail":"assistance d'un tiers",
             "Tri":74,
             "CodeValeur":"VI.11.4.e"
           },
           {
-            "Detail":"autre",
+            "Detail":"charge affective",
             "Tri":75,
             "CodeValeur":"VI.11.4.f"
+          },
+          {
+            "Detail":"autre",
+            "Tri":76,
+            "CodeValeur":"VI.11.4.g"
           }
         ]
       },
       {
         "Reponse":"appareillage",
+        "Tri":77,
+        "CodeValeur":"VII.11.bis",
         "Details":[
           {
             "Detail":"appareillage pour les déplacements",
-            "Tri":77,
-            "CodeValeur":"VII.11.bis"
-          },
-          {
-            "Detail":"appareillage pour la communication",
             "Tri":78,
             "CodeValeur":"VII.11.bis.15"
           },
           {
-            "Detail":"appareillage pour l'élimination",
+            "Detail":"appareillage pour la communication",
             "Tri":79,
             "CodeValeur":"VII.11.bis.16"
           },
           {
-            "Detail":"appareillage pour l'alimentation",
+            "Detail":"appareillage pour l'élimination",
             "Tri":80,
             "CodeValeur":"VII.11.bis.17"
           },
           {
-            "Detail":"appareillage pour la respiration",
+            "Detail":"appareillage pour l'alimentation",
             "Tri":81,
             "CodeValeur":"VII.11.bis.18"
           },
           {
-            "Detail":"Autres appareillages ",
+            "Detail":"appareillage pour la respiration",
             "Tri":82,
             "CodeValeur":"VII.11.bis.19"
+          },
+          {
+            "Detail":"Autres appareillages ",
+            "Tri":83,
+            "CodeValeur":"VII.11.bis.20"
           }
         ]
       },
@@ -2125,7 +2229,6 @@ exports.all =
     ]
   },
   {
-
     "Section":"Vie personnelle",
     "Description":"Activités (CAPTYP)",
     "Trajectoire":"toutes",
@@ -2134,59 +2237,65 @@ exports.all =
     "Reponses":[
       {
         "Reponse":"Tâches et exigences générales, relation avec autrui : gère ces activités sans difficulté",
+        "Tri":2,
+        "CodeValeur":"IX.1.bis",
         "Details":[
           {
             "Detail":"S'orienter dans le temps",
-            "Tri":2,
-            "CodeValeur":"IX.1.bis"
-          },
-          {
-            "Detail":"S'orienter dans l'espace",
             "Tri":3,
             "CodeValeur":"IX.1.bis.1"
           },
           {
-            "Detail":"Fixer son attention",
+            "Detail":"S'orienter dans l'espace",
             "Tri":4,
             "CodeValeur":"IX.1.bis.2"
           },
           {
-            "Detail":"Mémoriser",
+            "Detail":"Fixer son attention",
             "Tri":5,
             "CodeValeur":"IX.1.bis.3"
           },
           {
-            "Detail":"Prendre des décisions",
+            "Detail":"Mémoriser",
             "Tri":6,
-            "CodeValeur":"IX.1bis..4"
+            "CodeValeur":"IX.1bis.4"
+          },
+          {
+            "Detail":"Prendre des décisions",
+            "Tri":7,
+            "CodeValeur":"IX.1.bis.5"
           },
           {
             "Detail":"Prendre des initiatives",
+            "Tri":8,
+            "CodeValeur":"IX.1.bis.6",
             "SousDetails":[
               {
                 "SousDetail":"Faire spontanément une demande d’aide",
-                "Tri":7,
-                "CodeValeur":"IX.1.bis.5"
-              },
-              {
-                "SousDetail":"Entrer spontanément en relation avec autrui ",
-                "Tri":8,
-                "CodeValeur":"IX.1.bis.6"
-              },
-              {
-                "SousDetail":"Entreprendre spontanément une activité simple",
                 "Tri":9,
                 "CodeValeur":"IX.1.bis.6.1"
               },
               {
-                "SousDetail":"Entreprendre spontanément une activité complexe",
+                "SousDetail":"Entrer spontanément en relation avec autrui ",
                 "Tri":10,
                 "CodeValeur":"IX.1.bis.6.2"
+              },
+              {
+                "SousDetail":"Entreprendre spontanément une activité simple",
+                "Tri":11,
+                "CodeValeur":"IX.1.bis.6.3"
+              },
+              {
+                "SousDetail":"Entreprendre spontanément une activité complexe",
+                "Tri":12,
+                "CodeValeur":"IX.1.bis.6.4"
               }
             ]
           },
           {
             "Detail":"Gérer sa sécurité",
+            "Tri":13,
+            "CodeValeur":"IX.1.bis.7",
             "SousDetails":[
               {
                 "SousDetail":"Ne pas mettre sa vie et/ou celle des autres en danger",
@@ -2226,105 +2335,112 @@ exports.all =
             "CodeValeur":"IX.1.bis.12"
           }
         ]
-
       },
       {
         "Reponse":"Tâches et exigences générales, relation avec autrui : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":21,
+        "CodeValeur":"IX.1.ter",
         "Details":[
           {
             "Detail":"S'orienter dans le temps",
-            "Tri":21,
-            "CodeValeur":"IX.1.ter"
-          },
-          {
-            "Detail":"S'orienter dans l'espace",
             "Tri":22,
             "CodeValeur":"IX.1.ter.1"
           },
           {
-            "Detail":"Fixer son attention",
+            "Detail":"S'orienter dans l'espace",
             "Tri":23,
             "CodeValeur":"IX.1.ter.2"
           },
           {
-            "Detail":"Mémoriser",
+            "Detail":"Fixer son attention",
             "Tri":24,
             "CodeValeur":"IX.1.ter.3"
           },
           {
-            "Detail":"Prendre des décisions",
+            "Detail":"Mémoriser",
             "Tri":25,
             "CodeValeur":"IX.1.ter.4"
           },
           {
+            "Detail":"Prendre des décisions",
+            "Tri":26,
+            "CodeValeur":"IX.1.ter.5"
+          },
+          {
             "Detail":"Prendre des initiatives",
+            "Tri":27,
+            "CodeValeur":"IX.1.ter.6",
             "SousDetails":[
               {
                 "SousDetail":"Faire spontanément une demande d’aide",
-                "Tri":26,
-                "CodeValeur":"IX.1.ter.5"
-              },
-              {
-                "SousDetail":"Entrer spontanément en relation avec autrui ",
-                "Tri":27,
-                "CodeValeur":"IX.1.ter.6"
-              },
-              {
-                "SousDetail":"Entreprendre spontanément une activité simple",
                 "Tri":28,
                 "CodeValeur":"IX.1.ter.6.1"
               },
               {
-                "SousDetail":"Entreprendre spontanément une activité complexe",
+                "SousDetail":"Entrer spontanément en relation avec autrui ",
                 "Tri":29,
                 "CodeValeur":"IX.1.ter.6.2"
+              },
+              {
+                "SousDetail":"Entreprendre spontanément une activité simple",
+                "Tri":30,
+                "CodeValeur":"IX.1.ter.6.3"
+              },
+              {
+                "SousDetail":"Entreprendre spontanément une activité complexe",
+                "Tri":31,
+                "CodeValeur":"IX.1.ter.6.4"
               }
             ]
           },
           {
             "Detail":"Gérer sa sécurité",
+            "Tri":32,
+            "CodeValeur":"IX.1.ter.7",
             "SousDetails":[
               {
                 "SousDetail":"Ne pas mettre sa vie et/ou celle des autres en danger",
-                "Tri":31,
-                "CodeValeur":"IX.1.ter.6.4"
+                "Tri":33,
+                "CodeValeur":"IX.1.ter.7.1"
               },
               {
                 "SousDetail":"Réagir de façon adaptée face à une situation risquée",
-                "Tri":32,
-                "CodeValeur":"IX.1.ter.7"
+                "Tri":34,
+                "CodeValeur":"IX.1.ter.7.2"
               }
             ]
           },
           {
             "Detail":"Respecter les règles de vie",
-            "Tri":34,
-            "CodeValeur":"IX.1.ter.7.2"
-          },
-          {
-            "Detail":"Avoir des relations avec autrui conformes aux règles sociales",
             "Tri":35,
             "CodeValeur":"IX.1.ter.8"
           },
           {
-            "Detail":"Maîtriser son comportement dans ses relations avec autrui",
+            "Detail":"Avoir des relations avec autrui conformes aux règles sociales",
             "Tri":36,
             "CodeValeur":"IX.1.ter.9"
           },
           {
-            "Detail":"Avoir des relations avec ses pairs",
+            "Detail":"Maîtriser son comportement dans ses relations avec autrui",
             "Tri":37,
             "CodeValeur":"IX.1.ter.10"
           },
           {
-            "Detail":"Avoir des relations affectives et sexuelles",
+            "Detail":"Avoir des relations avec ses pairs",
             "Tri":38,
             "CodeValeur":"IX.1.ter.11"
+          },
+          {
+            "Detail":"Avoir des relations affectives et sexuelles",
+            "Tri":39,
+            "CodeValeur":"IX.1.ter.12"
           }
         ]
       },
       {
         "Reponse":"Tâches et exigences générales, relation avec autrui : ne gère pas ces activités de façon autonome ",
+        "Tri":40,
+        "CodeValeur":"IX.1.quater",
         "Details":[
           {
             "Detail":"S'orienter dans le temps",
@@ -2353,41 +2469,45 @@ exports.all =
           },
           {
             "Detail":"Prendre des initiatives",
+            "Tri":46,
+            "CodeValeur":"IX.1.quater.6",
             "SousDetails":[
               {
                 "SousDetail":"Faire spontanément une demande d’aide",
-                "Tri":46,
-                "CodeValeur":"IX.1.quater.6"
-              },
-              {
-                "SousDetail":"Entrer spontanément en relation avec autrui ",
                 "Tri":47,
                 "CodeValeur":"IX.1.quater.6.1"
               },
               {
-                "SousDetail":"Entreprendre spontanément une activité simple",
+                "SousDetail":"Entrer spontanément en relation avec autrui ",
                 "Tri":48,
                 "CodeValeur":"IX.1.quater.6.2"
               },
               {
-                "SousDetail":"Entreprendre spontanément une activité complexe",
+                "SousDetail":"Entreprendre spontanément une activité simple",
                 "Tri":49,
                 "CodeValeur":"IX.1.quater.6.3"
+              },
+              {
+                "SousDetail":"Entreprendre spontanément une activité complexe",
+                "Tri":50,
+                "CodeValeur":"IX.1.quater.6.4"
               }
             ]
           },
           {
             "Detail":"Gérer sa sécurité",
+            "Tri":51,
+            "CodeValeur":"IX.1.quater.7",
             "SousDetails":[
               {
                 "SousDetail":"Ne pas mettre sa vie et/ou celle des autres en danger",
-                "Tri":51,
-                "CodeValeur":"IX.1.quater.7"
+                "Tri":52,
+                "CodeValeur":"IX.1.quater.7.1"
               },
               {
                 "SousDetail":"Réagir de façon adaptée face à une situation risquée",
-                "Tri":52,
-                "CodeValeur":"IX.1.quater.7.1"
+                "Tri":53,
+                "CodeValeur":"IX.1.quater.7.2"
               }
             ]
           },
@@ -2420,9 +2540,13 @@ exports.all =
       },
       {
         "Reponse":"Mobilité Manipulation : gère ces activités sans difficulté",
+        "Tri":60,
+        "CodeValeur":"IX.2.bis",
         "Details":[
           {
             "Detail":"Se mettre debout",
+            "Tri":61,
+            "CodeValeur":"IX.2.bis.1",
             "SousDetails":[
               {
                 "SousDetail":"Se coucher",
@@ -2463,71 +2587,77 @@ exports.all =
           },
           {
             "Detail":"Se déplacer dans le logement, à l'extérieur",
+            "Tri":69,
+            "CodeValeur":"IX.2.bis.7",
             "SousDetails":[
               {
                 "SousDetail":"Se déplacer dans le logement",
-                "Tri":69,
-                "CodeValeur":"IX.2.bis.7"
+                "Tri":70,
+                "CodeValeur":"IX.2.bis.7.1"
               },
               {
                 "SousDetail":"Se déplacer à l'extérieur",
-                "Tri":70,
-                "CodeValeur":"IX.2.bis.7.1"
+                "Tri":71,
+                "CodeValeur":"IX.2.bis.7.2"
               }
             ]
           },
           {
             "Detail":"Utiliser des escaliers",
-            "Tri":71,
-            "CodeValeur":"IX.2.bis.7.2"
-          },
-          {
-            "Detail":"Utiliser les transports en commun",
-            "Tri":72,
+            "Tri":75,
             "CodeValeur":"IX.2.bis.7.2.a"
           },
           {
-            "Detail":"Utiliser un véhicule particulier",
-            "Tri":73,
+            "Detail":"Utiliser les transports en commun",
+            "Tri":76,
             "CodeValeur":"IX.2.bis.7.2.b"
           },
           {
-            "Detail":"Conduire un véhicule",
-            "Tri":74,
+            "Detail":"Utiliser un véhicule particulier",
+            "Tri":77,
             "CodeValeur":"IX.2.bis.7.2.c"
           },
           {
-            "Detail":"Utiliser la préhension de la main dominante",
-            "Tri":75,
+            "Detail":"Conduire un véhicule",
+            "Tri":78,
             "CodeValeur":"IX.2.bis.8"
           },
           {
-            "Detail":"Utiliser la préhension de la main non dominante",
-            "Tri":76,
+            "Detail":"Utiliser la préhension de la main dominante",
+            "Tri":79,
             "CodeValeur":"IX.2.bis.9"
           },
           {
-            "Detail":"Avoir des activités de motricité fine",
-            "Tri":77,
+            "Detail":"Utiliser la préhension de la main non dominante",
+            "Tri":80,
             "CodeValeur":"IX.2.bis.10"
           },
           {
-            "Detail":"Avoir une coordination bi-manuelle",
-            "Tri":78,
+            "Detail":"Avoir des activités de motricité fine",
+            "Tri":81,
             "CodeValeur":"IX.2.bis.11"
           },
           {
+            "Detail":"Avoir une coordination bi-manuelle",
+            "Tri":82,
+            "CodeValeur":"IX.2.bis.12"
+          },
+          {
             "Detail":"Soulever et porter des objets (y compris en se déplaçant)",
-            "Tri":79,
+            "Tri":83,
             "CodeValeur":"IX.2.bis.12"
           }
         ]
       },
       {
         "Reponse":"Mobilité Manipulation : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":84,
+        "CodeValeur":"IX.2.ter",
         "Details":[
           {
             "Detail":"Se mettre debout",
+            "Tri":85,
+            "CodeValeur":"IX.2.ter.1",
             "SousDetails":[
               {
                 "SousDetail":"Se coucher",
@@ -2568,16 +2698,18 @@ exports.all =
           },
           {
             "Detail":"Se déplacer dans le logement, à l'extérieur",
+            "Tri":93,
+            "CodeValeur":"IX.2.ter.7",
             "SousDetails":[
               {
                 "SousDetail":"Se déplacer dans le logement",
-                "Tri":93,
-                "CodeValeur":"IX.2.ter.7"
+                "Tri":94,
+                "CodeValeur":"IX.2.ter.7.1"
               },
               {
                 "SousDetail":"Se déplacer à l'extérieur",
-                "Tri":94,
-                "CodeValeur":"IX.2.ter.7.1"
+                "Tri":95,
+                "CodeValeur":"IX.2.ter.7.2"
               }
             ]
           },
@@ -2630,62 +2762,67 @@ exports.all =
       },
       {
         "Reponse":"Mobilité Manipulation : ne gère pas ces activités de façon autonome ",
+        "Tri":108,
+        "CodeValeur":"IX.2.quater",
         "Details":[
           {
             "Detail":"Se mettre debout",
+            "Tri":109,
+            "CodeValeur":"IX.2.quater.1",
             "SousDetails":[
               {
                 "SousDetail":"Se coucher",
-                "Tri":108,
-                "CodeValeur":"IX.2.quater"
+                "Tri":110,
+                "CodeValeur":"IX.2.quater.1.1"
               },
               {
                 "SousDetail":"S'asseoir",
-                "Tri":109,
-                "CodeValeur":"IX.2.quater.1"
+                "Tri":111,
+                "CodeValeur":"IX.2.quater.1.2"
               }
             ]
           },
           {
             "Detail":"Faire ses transferts",
-            "Tri":110,
-            "CodeValeur":"IX.2.quater.1.1"
-          },
-          {
-            "Detail":"Changer de point d'appui",
-            "Tri":111,
-            "CodeValeur":"IX.2.quater.1.2"
-          },
-          {
-            "Detail":"Rester assis",
             "Tri":112,
             "CodeValeur":"IX.2.quater.2"
           },
           {
-            "Detail":"Rester debout",
+            "Detail":"Changer de point d'appui",
             "Tri":113,
             "CodeValeur":"IX.2.quater.3"
           },
           {
-            "Detail":"Marcher",
+            "Detail":"Rester assis",
             "Tri":114,
             "CodeValeur":"IX.2.quater.4"
           },
           {
+            "Detail":"Rester debout",
+            "Tri":115,
+            "CodeValeur":"IX.2.quater.5"
+          },
+          {
+            "Detail":"Marcher",
+            "Tri":116,
+            "CodeValeur":"IX.2.quater.6"
+          },
+          {
             "Detail":"Se déplacer dans le logement, à l'extérieur",
+            "Tri":117,
+            "CodeValeur":"IX.2.quater.7",
             "SousDetails":[
               {
                 "SousDetail":"Se déplacer dans le logement",
-                "Tri":115,
-                "CodeValeur":"IX.2.quater.5"
+                "Tri":118,
+                "CodeValeur":"IX.2.quater.7.1"
               },
               {
                 "SousDetail":"Se déplacer à l'extérieur",
-                "Tri":116,
-                "CodeValeur":"IX.2.quater.6"
+                "Tri":119,
+                "CodeValeur":"IX.2.quater.7.2"
               }
             ]
-
           },
           {
             "Detail":"Utiliser des escaliers",
@@ -2736,6 +2873,8 @@ exports.all =
       },
       {
         "Reponse":"Entretien personnel : gère ces activités sans difficulté",
+        "Tri":133,
+        "CodeValeur":"IX.3.bis",
         "Details":[
           {
             "Detail":"Se laver",
@@ -2764,50 +2903,48 @@ exports.all =
           },
           {
             "Detail":"Prendre soin de sa santé",
+            "Tri":139,
+            "CodeValeur":"IX.3.bis.6",
             "SousDetails":[
               {
                 "SousDetail":"Utiliser ses fonctions respiratoires",
-                "Tri":139,
-                "CodeValeur":"IX.3.bis.6"
-              },
-              {
-                "SousDetail":"Se soigner",
                 "Tri":140,
                 "CodeValeur":"IX.3.bis.6.1"
               },
               {
-                "SousDetail":"Surveiller son régime alimentaire",
+                "SousDetail":"Se soigner",
                 "Tri":141,
                 "CodeValeur":"IX.3.bis.6.2"
               },
               {
-                "SousDetail":"Gérer son repos quotidien",
+                "SousDetail":"Surveiller son régime alimentaire",
                 "Tri":142,
                 "CodeValeur":"IX.3.bis.6.3"
               },
               {
-                "SousDetail":"Exprimer une demande de soins",
+                "SousDetail":"Gérer son repos quotidien",
                 "Tri":143,
                 "CodeValeur":"IX.3.bis.6.4"
               },
               {
-                "SousDetail":"Utiliser les différents systèmes de santé",
+                "SousDetail":"Exprimer une demande de soins",
                 "Tri":144,
                 "CodeValeur":"IX.3.bis.6.5"
+              },
+              {
+                "SousDetail":"Utiliser les différents systèmes de santé",
+                "Tri":145,
+                "CodeValeur":"IX.3.bis.6.6"
               }
             ]
           }
         ]
-
       },
       {
         "Reponse":"Entretien personnel : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":146,
+        "CodeValeur":"IX.3.ter",
         "Details":[
-          {
-            "Detail":"Prendre soin de sa santé",
-            "Tri":146,
-            "CodeValeur":"IX.3.ter"
-          },
           {
             "Detail":"Se laver",
             "Tri":147,
@@ -2835,36 +2972,38 @@ exports.all =
           },
           {
             "Detail":"Prendre soin de sa santé",
+            "Tri":152,
+            "CodeValeur":"IX.3.ter.6",
             "SousDetails":[
               {
                 "SousDetail":"Utiliser ses fonctions respiratoires",
-                "Tri":152,
-                "CodeValeur":"IX.3.ter.6"
-              },
-              {
-                "SousDetail":"Se soigner",
                 "Tri":153,
                 "CodeValeur":"IX.3.ter.6.1"
               },
               {
-                "SousDetail":"Surveiller son régime alimentaire",
+                "SousDetail":"Se soigner",
                 "Tri":154,
                 "CodeValeur":"IX.3.ter.6.2"
               },
               {
-                "SousDetail":"Gérer son repos quotidien",
+                "SousDetail":"Surveiller son régime alimentaire",
                 "Tri":155,
                 "CodeValeur":"IX.3.ter.6.3"
               },
               {
-                "SousDetail":"Exprimer une demande de soins",
+                "SousDetail":"Gérer son repos quotidien",
                 "Tri":156,
                 "CodeValeur":"IX.3.ter.6.4"
               },
               {
-                "SousDetail":"Utiliser les différents systèmes de santé",
+                "SousDetail":"Exprimer une demande de soins",
                 "Tri":157,
                 "CodeValeur":"IX.3.ter.6.5"
+              },
+              {
+                "SousDetail":"Utiliser les différents systèmes de santé",
+                "Tri":158,
+                "CodeValeur":"IX.3.ter.6.6"
               }
             ]
 
@@ -2873,6 +3012,8 @@ exports.all =
       },
       {
         "Reponse":"Entretien personnel : ne gère pas ces activités de façon autonome ",
+        "Tri":159,
+        "CodeValeur":"IX.3.quater",
         "Details":[
           {
             "Detail":"Se laver",
@@ -2901,36 +3042,38 @@ exports.all =
           },
           {
             "Detail":"Prendre soin de sa santé",
+            "Tri":165,
+            "CodeValeur":"IX.3.quater.6",
             "SousDetails":[
               {
                 "SousDetail":"Utiliser ses fonctions respiratoires",
-                "Tri":165,
-                "CodeValeur":"IX.3.quater.6"
-              },
-              {
-                "SousDetail":"Se soigner",
                 "Tri":166,
                 "CodeValeur":"IX.3.quater.6.1"
               },
               {
-                "SousDetail":"Surveiller son régime alimentaire",
+                "SousDetail":"Se soigner",
                 "Tri":167,
                 "CodeValeur":"IX.3.quater.6.2"
               },
               {
-                "SousDetail":"Gérer son repos quotidien",
+                "SousDetail":"Surveiller son régime alimentaire",
                 "Tri":168,
                 "CodeValeur":"IX.3.quater.6.3"
               },
               {
-                "SousDetail":"Exprimer une demande de soins",
+                "SousDetail":"Gérer son repos quotidien",
                 "Tri":169,
                 "CodeValeur":"IX.3.quater.6.4"
               },
               {
-                "SousDetail":"Utiliser les différents systèmes de santé",
+                "SousDetail":"Exprimer une demande de soins",
                 "Tri":170,
                 "CodeValeur":"IX.3.quater.6.5"
+              },
+              {
+                "SousDetail":"Utiliser les différents systèmes de santé",
+                "Tri":171,
+                "CodeValeur":"IX.3.quater.6.6"
               }
             ]
           }
@@ -2938,6 +3081,8 @@ exports.all =
       },
       {
         "Reponse":"Communication : gère ces activités sans difficulté",
+        "Tri":173,
+        "CodeValeur":"IX.4.bis.1",
         "Details":[
           {
             "Detail":"Parler",
@@ -2946,228 +3091,246 @@ exports.all =
           },
           {
             "Detail":"Entendre (percevoir les sons et comprendre)",
+            "Tri":175,
+            "CodeValeur":"IX.4.bis.2",
             "SousDetails":[
               {
                 "SousDetail":"Entendre des sons",
-                "Tri":175,
-                "CodeValeur":"IX.4.bis.2"
-              },
-              {
-                "SousDetail":"Comprendre la parole en face à face",
                 "Tri":176,
                 "CodeValeur":"IX.4.bis.2.1"
               },
               {
-                "SousDetail":"Comprendre la parole dans un groupe",
+                "SousDetail":"Comprendre la parole en face à face",
                 "Tri":177,
                 "CodeValeur":"IX.4.bis.2.2"
               },
               {
-                "SousDetail":"Comprendre la parole en environnement bruyant",
+                "SousDetail":"Comprendre la parole dans un groupe",
                 "Tri":178,
                 "CodeValeur":"IX.4.bis.2.3"
               },
               {
-                "SousDetail":"Localiser l'origine des sons",
+                "SousDetail":"Comprendre la parole en environnement bruyant",
                 "Tri":179,
                 "CodeValeur":"IX.4.bis.2.4"
+              },
+              {
+                "SousDetail":"Localiser l'origine des sons",
+                "Tri":180,
+                "CodeValeur":"IX.4.bis.2.5"
               }
             ]
           },
           {
             "Detail":"Voir (distinguer et identifier)",
-            "Tri":180,
-            "CodeValeur":"IX.4.bis.2.5"
+            "Tri":181,
+            "CodeValeur":"IX.4.bis.3"
           },
           {
             "Detail":"Utiliser des appareils et techniques de communication",
+            "Tri":182,
+            "CodeValeur":"IX.4.bis.4",
             "SousDetails":[
               {
                 "SousDetail":"Utiliser le téléphone",
-                "Tri":181,
-                "CodeValeur":"IX.4.bis.3"
+                "Tri":183,
+                "CodeValeur":"IX.4.bis.4.1"
               },
               {
                 "SousDetail":"Utiliser les autres appareils et techniques de communication",
-                "Tri":182,
-                "CodeValeur":"IX.4.bis.4"
+                "Tri":184,
+                "CodeValeur":"IX.4.bis.4.2"
               }
             ]
           },
           {
             "Detail":"Comprendre une phrase simple",
-            "Tri":183,
-            "CodeValeur":"IX.4.bis.4.1"
+            "Tri":185,
+            "CodeValeur":"IX.4.bis.5"
           },
           {
             "Detail":"Mener une conversation",
-            "Tri":184,
-            "CodeValeur":"IX.4.bis.4.2"
+            "Tri":186,
+            "CodeValeur":"IX.4.bis.6"
           },
           {
             "Detail":"Produire et recevoir des messages non verbaux",
-            "Tri":185,
-            "CodeValeur":"IX.4.bis.5"
+            "Tri":187,
+            "CodeValeur":"IX.4.bis.7"
           }
         ]
       },
       {
         "Reponse":"Communication : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":188,
+        "CodeValeur":"IX.4.ter",
         "Details":[
           {
             "Detail":"Parler",
-            "Tri":188,
-            "CodeValeur":"IX.4.ter"
+            "Tri":189,
+            "CodeValeur":"IX.4.ter.1"
           },
           {
             "Detail":"Entendre (percevoir les sons et comprendre)",
+            "Tri":190,
+            "CodeValeur":"IX.4.ter.2",
             "SousDetails":[
               {
                 "SousDetail":"Entendre des sons",
-                "Tri":189,
-                "CodeValeur":"IX.4.ter.1"
-              },
-              {
-                "SousDetail":"Comprendre la parole en face à face",
-                "Tri":190,
-                "CodeValeur":"IX.4.ter.2"
-              },
-              {
-                "SousDetail":"Comprendre la parole dans un groupe",
                 "Tri":191,
                 "CodeValeur":"IX.4.ter.2.1"
               },
               {
-                "SousDetail":"Comprendre la parole en environnement bruyant",
+                "SousDetail":"Comprendre la parole en face à face",
                 "Tri":192,
                 "CodeValeur":"IX.4.ter.2.2"
               },
               {
-                "SousDetail":"Localiser l'origine des sons",
+                "SousDetail":"Comprendre la parole dans un groupe",
                 "Tri":193,
                 "CodeValeur":"IX.4.ter.2.3"
+              },
+              {
+                "SousDetail":"Comprendre la parole en environnement bruyant",
+                "Tri":194,
+                "CodeValeur":"IX.4.ter.2.4"
+              },
+              {
+                "SousDetail":"Localiser l'origine des sons",
+                "Tri":195,
+                "CodeValeur":"IX.4.ter.2.5"
               }
             ]
           },
           {
             "Detail":"Voir (distinguer et identifier)",
-            "Tri":194,
-            "CodeValeur":"IX.4.ter.2.4"
+            "Tri":196,
+            "CodeValeur":"IX.4.ter.3"
           },
           {
             "Detail":"Utiliser des appareils et techniques de communication",
+            "Tri":197,
+            "CodeValeur":"IX.4.ter.4",
             "SousDetails":[
               {
                 "SousDetail":"Utiliser le téléphone",
-                "Tri":195,
-                "CodeValeur":"IX.4.ter.2.5"
+                "Tri":198,
+                "CodeValeur":"IX.4.ter.4.1"
               },
               {
                 "SousDetail":"Utiliser les autres appareils et techniques de communication",
-                "Tri":196,
-                "CodeValeur":"IX.4.ter.3"
+                "Tri":199,
+                "CodeValeur":"IX.4.ter.4.2"
               }
             ]
           },
           {
             "Detail":"Comprendre une phrase simple",
-            "Tri":197,
-            "CodeValeur":"IX.4.ter.4"
+            "Tri":200,
+            "CodeValeur":"IX.4.ter.5"
           },
           {
             "Detail":"Mener une conversation",
-            "Tri":198,
-            "CodeValeur":"IX.4.ter.4.1"
+            "Tri":201,
+            "CodeValeur":"IX.4.ter.6"
           },
           {
             "Detail":"Produire et recevoir des messages non verbaux",
-            "Tri":199,
-            "CodeValeur":"IX.4.ter.4.2"
+            "Tri":202,
+            "CodeValeur":"IX.4.ter.7"
           }
         ]
       },
       {
         "Reponse":"Communication : ne gère pas ces activités de façon autonome ",
+        "Tri":203,
+        "CodeValeur":"IX.4.quater",
         "Details":[
           {
             "Detail":"Parler",
-            "Tri":203,
-            "CodeValeur":"IX.4.quater"
+            "Tri":204,
+            "CodeValeur":"IX.4.quater.1"
           },
           {
             "Detail":"Entendre (percevoir les sons et comprendre)",
+            "Tri":205,
+            "CodeValeur":"IX.4.quater.2",
             "SousDetails":[
               {
                 "SousDetail":"Entendre des sons",
-                "Tri":204,
-                "CodeValeur":"IX.4.quater.1"
-              },
-              {
-                "SousDetail":"Comprendre la parole en face à face",
-                "Tri":205,
-                "CodeValeur":"IX.4.quater.2"
-              },
-              {
-                "SousDetail":"Comprendre la parole dans un groupe",
                 "Tri":206,
                 "CodeValeur":"IX.4.quater.2.1"
               },
               {
-                "SousDetail":"Comprendre la parole en environnement bruyant",
+                "SousDetail":"Comprendre la parole en face à face",
                 "Tri":207,
                 "CodeValeur":"IX.4.quater.2.2"
               },
               {
-                "SousDetail":"Comprendre la parole en environnement bruyant",
+                "SousDetail":"Comprendre la parole dans un groupe",
                 "Tri":208,
                 "CodeValeur":"IX.4.quater.2.3"
               },
               {
-                "SousDetail":"Localiser l'origine des sons",
+                "SousDetail":"Comprendre la parole en environnement bruyant",
                 "Tri":209,
                 "CodeValeur":"IX.4.quater.2.4"
+              },
+              {
+                "SousDetail":"Comprendre la parole en environnement bruyant",
+                "Tri":210,
+                "CodeValeur":"IX.4.quater.2.4"
+              },
+              {
+                "SousDetail":"Localiser l'origine des sons",
+                "Tri":211,
+                "CodeValeur":"IX.4.quater.2.5"
               }
             ]
           },
           {
             "Detail":"Voir (distinguer et identifier)",
-            "Tri":210,
-            "CodeValeur":"IX.4.quater.2.4"
+            "Tri":212,
+            "CodeValeur":"IX.4.quater.3"
           },
           {
             "Detail":"Utiliser des appareils et techniques de communication",
+            "Tri":213,
+            "CodeValeur":"IX.4.quater.4",
             "SousDetails":[
               {
                 "SousDetail":"Utiliser le téléphone",
-                "Tri":211,
-                "CodeValeur":"IX.4.quater.2.5"
+                "Tri":214,
+                "CodeValeur":"IX.4.quater.4.1"
               },
               {
                 "SousDetail":"Utiliser les autres appareils et techniques de communication",
-                "Tri":212,
-                "CodeValeur":"IX.4.quater.3"
+                "Tri":215,
+                "CodeValeur":"IX.4.quater.4.2"
               }
             ]
           },
           {
             "Detail":"Comprendre une phrase simple",
-            "Tri":213,
-            "CodeValeur":"IX.4.quater.4"
+            "Tri":216,
+            "CodeValeur":"IX.4.quater.5"
           },
           {
             "Detail":"Mener une conversation",
-            "Tri":214,
-            "CodeValeur":"IX.4.quater.4.1"
+            "Tri":217,
+            "CodeValeur":"IX.4.quater.6"
           },
           {
             "Detail":"Produire et recevoir des messages non verbaux",
-            "Tri":215,
-            "CodeValeur":"IX.4.quater.4.2"
+            "Tri":218,
+            "CodeValeur":"IX.4.quater.7"
           }
         ]
       },
       {
         "Reponse":"Vie domestique et vie courante : gère ces activités sans difficulté",
+        "Tri":220,
+        "CodeValeur":"IX.5.bis",
         "Details":[
           {
             "Detail":"Faire ses courses",
@@ -3196,21 +3359,23 @@ exports.all =
           },
           {
             "Detail":"Gérer son budget, faire les démarches administratives",
+            "Tri":226,
+            "CodeValeur":"IX.5.bis.6",
             "SousDetails":[
               {
                 "SousDetail":"Gérer son argent au quotidien ",
-                "Tri":226,
-                "CodeValeur":"IX.5.bis.6"
-              },
-              {
-                "SousDetail":"Gérer son compte bancaire",
                 "Tri":227,
                 "CodeValeur":"IX.5.bis.6.1"
               },
               {
-                "SousDetail":"Faire des démarches administratives",
+                "SousDetail":"Gérer son compte bancaire",
                 "Tri":228,
                 "CodeValeur":"IX.5.bis.6.2"
+              },
+              {
+                "SousDetail":"Faire des démarches administratives",
+                "Tri":229,
+                "CodeValeur":"IX.5.bis.6.3"
               }
             ]
           },
@@ -3226,33 +3391,37 @@ exports.all =
           },
           {
             "Detail":"Participer à la vie communautaire, sociale et civique",
+            "Tri":232,
+            "CodeValeur":"IX.5.bis.9",
             "SousDetails":[
               {
                 "SousDetail":"Gérer son temps libre, avoir des activités récréatives ou participer à des activités culturelles, sportives ou de loisir",
-                "Tri":232,
-                "CodeValeur":"IX.5.bis.9"
-              },
-              {
-                "SousDetail":"Exprimer une demande liée à ses droits",
                 "Tri":233,
                 "CodeValeur":"IX.5.bis.9.1"
               },
               {
-                "SousDetail":"Participer à la vie locale",
+                "SousDetail":"Exprimer une demande liée à ses droits",
                 "Tri":234,
                 "CodeValeur":"IX.5.bis.9.2"
+              },
+              {
+                "SousDetail":"Participer à la vie locale",
+                "Tri":235,
+                "CodeValeur":"IX.5.bis.9.3"
               }
             ]
           },
           {
             "Detail":"Partir en vacances",
-            "Tri":235,
-            "CodeValeur":"IX.5.bis9.3"
+            "Tri":236,
+            "CodeValeur":"IX.5.bis.10"
           }
         ]
       },
       {
         "Reponse":"Vie domestique et vie courante : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":238,
+        "CodeValeur":"IX.5.ter",
         "Details":[
           {
             "Detail":"Faire ses courses",
@@ -3281,6 +3450,8 @@ exports.all =
           },
           {
             "Detail":"Gérer son budget, faire les démarches administratives",
+            "Tri":244,
+            "CodeValeur":"IX.5.ter.6",
             "SousDetails":[
               {
                 "SousDetail":"Gérer son argent au quotidien ",
@@ -3311,6 +3482,8 @@ exports.all =
           },
           {
             "Detail":"Participer à la vie communautaire, sociale et civique",
+            "Tri":250,
+            "CodeValeur":"IX.5.ter.9",
             "SousDetails":[
               {
                 "SousDetail":"Gérer son temps libre, avoir des activités récréatives ou participer à des activités culturelles, sportives ou de loisir",
@@ -3338,6 +3511,8 @@ exports.all =
       },
       {
         "Reponse":"Vie domestique et vie courante : ne gère pas ces activités de façon autonome ",
+        "Tri":255,
+        "CodeValeur":"IX.5.quater",
         "Details":[
           {
             "Detail":"Faire ses courses",
@@ -3366,6 +3541,8 @@ exports.all =
           },
           {
             "Detail":"Gérer son budget, faire les démarches administratives",
+            "Tri":260,
+            "CodeValeur":"IX.5.quater.6",
             "SousDetails":[
               {
                 "SousDetail":"Gérer son argent au quotidien ",
@@ -3396,6 +3573,8 @@ exports.all =
           },
           {
             "Detail":"Participer à la vie communautaire, sociale et civique",
+            "Tri":266,
+            "CodeValeur":"IX.5.quater.9",
             "SousDetails":[
               {
                 "SousDetail":"Gérer son temps libre, avoir des activités récréatives ou participer à des activités culturelles, sportives ou de loisir",
@@ -3423,6 +3602,8 @@ exports.all =
       },
       {
         "Reponse":"Application des connaissances, apprentissage : gère ces activités sans difficulté",
+        "Tri":272,
+        "CodeValeur":"IX.6.bis",
         "Details":[
           {
             "Detail":"Lire",
@@ -3453,6 +3634,8 @@ exports.all =
       },
       {
         "Reponse":"Application des connaissances, apprentissage : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":278,
+        "CodeValeur":"IX.6.ter",
         "Details":[
           {
             "Detail":"Lire",
@@ -3483,6 +3666,8 @@ exports.all =
       },
       {
         "Reponse":"Application des connaissances, apprentissage : ne gère pas ces activités de façon autonome ",
+        "Tri":284,
+        "CodeValeur":"IX.6.quater",
         "Details":[
           {
             "Detail":"Lire",
@@ -3513,6 +3698,8 @@ exports.all =
       },
       {
         "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale : gère ces activités sans difficulté",
+        "Tri":291,
+        "CodeValeur":"IX.7.bis",
         "Details":[
           {
             "Detail":"Apprendre à lire",
@@ -3541,6 +3728,8 @@ exports.all =
           },
           {
             "Detail":"Respecter des règles de base",
+            "Tri":297,
+            "CodeValeur":"IX.7.bis.6",
             "SousDetails":[
               {
                 "SousDetail":"Etre ponctuel",
@@ -3628,6 +3817,8 @@ exports.all =
       },
       {
         "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":314,
+        "CodeValeur":"IX.7.ter",
         "Details":[
           {
             "Detail":"Apprendre à lire",
@@ -3656,6 +3847,8 @@ exports.all =
           },
           {
             "Detail":"Respecter des règles de base",
+            "Tri":320,
+            "CodeValeur":"IX.7.ter.6",
             "SousDetails":[
               {
                 "SousDetail":"Etre ponctuel",
@@ -3743,6 +3936,8 @@ exports.all =
       },
       {
         "Reponse":"Tâches et exigences en relation avec la scolarité et la formation initiale : ne gère pas ces activités de façon autonome ",
+        "Tri":337,
+        "CodeValeur":"IX.7.quater",
         "Details":[
           {
             "Detail":"Apprendre à lire",
@@ -3771,51 +3966,53 @@ exports.all =
           },
           {
             "Detail":"Respecter des règles de base",
+            "Tri":343,
+            "CodeValeur":"IX.7.quater.6",
             "SousDetails":[
               {
                 "SousDetail":"Etre ponctuel",
-                "Tri":343,
-                "CodeValeur":"IX.7.quater.6"
-              },
-              {
-                "SousDetail":"Etre assidu",
                 "Tri":344,
                 "CodeValeur":"IX.7.quater.6.1"
               },
               {
-                "SousDetail":"Organiser son travail",
+                "SousDetail":"Etre assidu",
                 "Tri":345,
                 "CodeValeur":"IX.7.quater.6.2"
               },
               {
-                "SousDetail":"Contrôler son travail",
+                "SousDetail":"Organiser son travail",
                 "Tri":346,
                 "CodeValeur":"IX.7.quater.6.3"
               },
               {
-                "SousDetail":"Accepter des consignes",
+                "SousDetail":"Contrôler son travail",
                 "Tri":347,
                 "CodeValeur":"IX.7.quater.6.4"
               },
               {
-                "SousDetail":"Suivre des consignes",
+                "SousDetail":"Accepter des consignes",
                 "Tri":348,
                 "CodeValeur":"IX.7.quater.6.5"
               },
               {
-                "SousDetail":"S’adapter à la vie scolaire",
+                "SousDetail":"Suivre des consignes",
                 "Tri":349,
                 "CodeValeur":"IX.7.quater.6.6"
               },
               {
-                "SousDetail":"Travailler en équipe ",
+                "SousDetail":"S’adapter à la vie scolaire",
                 "Tri":350,
                 "CodeValeur":"IX.7.quater.6.7"
               },
               {
-                "SousDetail":"Respecter les règles scolaires ",
+                "SousDetail":"Travailler en équipe ",
                 "Tri":351,
                 "CodeValeur":"IX.7.quater.6.8"
+              },
+              {
+                "SousDetail":"Respecter les règles scolaires ",
+                "Tri":352,
+                "CodeValeur":"IX.7.quater.6.9"
               }
             ]
           },
@@ -3858,9 +4055,13 @@ exports.all =
       },
       {
         "Reponse":"Tâches et exigences relatives au travail : gère ces activités sans difficulté",
+        "Tri":361,
+        "CodeValeur":"IX.8.bis",
         "Details":[
           {
             "Detail":"Respecter des règles de base ",
+            "Tri":362,
+            "CodeValeur":"IX.8.bis.1",
             "SousDetails":[
               {
                 "SousDetail":"Etre ponctuel",
@@ -3911,6 +4112,8 @@ exports.all =
           },
           {
             "Detail":"Exercer des tâches physiques",
+            "Tri":372,
+            "CodeValeur":"IX.8.bis.7",
             "SousDetails":[
               {
                 "SousDetail":"Soulever, déplacer des charges",
@@ -3961,6 +4164,8 @@ exports.all =
           },
           {
             "Detail":"Exercer des tâches dans des conditions particulières",
+            "Tri":382,
+            "CodeValeur":"IX.8.bis.8",
             "SousDetails":[
               {
                 "SousDetail":"Voir les couleurs",
@@ -4015,7 +4220,7 @@ exports.all =
               {
                 "SousDetail":"Autre",
                 "Tri":393,
-                "CodeValeur":"IX.8.8bis..11"
+                "CodeValeur":"IX.8.8.bis.11"
               }
             ]
           }
@@ -4023,9 +4228,13 @@ exports.all =
       },
       {
         "Reponse":"Tâches et exigences relatives au travail : gère ces activités avec difficultés mais de façon autonome",
+        "Tri":394,
+        "CodeValeur":"IX.8.ter",
         "Details":[
           {
             "Detail":"Respecter des règles de base ",
+            "Tri":395,
+            "CodeValeur":"IX.8.ter.1",
             "SousDetails":[
               {
                 "SousDetail":"Etre ponctuel",
@@ -4076,6 +4285,8 @@ exports.all =
           },
           {
             "Detail":"Exercer des tâches physiques",
+            "Tri":405,
+            "CodeValeur":"IX.8.ter.7",
             "SousDetails":[
               {
                 "SousDetail":"Soulever, déplacer des charges",
@@ -4126,6 +4337,8 @@ exports.all =
           },
           {
             "Detail":"Exercer des tâches dans des conditions particulières",
+            "Tri":415,
+            "CodeValeur":"IX.8.ter.8",
             "SousDetails":[
               {
                 "SousDetail":"Voir les couleurs",
@@ -4188,9 +4401,13 @@ exports.all =
       },
       {
         "Reponse":"Tâches et exigences relatives au travail : ne gère pas ces activités de façon autonome ",
+        "Tri":427,
+        "CodeValeur":"IX.8.quater",
         "Details":[
           {
             "Detail":"Respecter des règles de base ",
+            "Tri":428,
+            "CodeValeur":"IX.8.quater.1",
             "SousDetails":[
               {
                 "SousDetail":"Etre ponctuel",
@@ -4241,6 +4458,8 @@ exports.all =
           },
           {
             "Detail":"Exercer des tâches physiques",
+            "Tri":438,
+            "CodeValeur":"IX.8.quater.7",
             "SousDetails":[
               {
                 "SousDetail":"Soulever, déplacer des charges",
@@ -4291,6 +4510,8 @@ exports.all =
           },
           {
             "Detail":"Exercer des tâches dans des conditions particulières",
+            "Tri":448,
+            "CodeValeur":"IX.8.quater.8",
             "SousDetails":[
               {
                 "SousDetail":"Voir les couleurs",
@@ -4362,6 +4583,8 @@ exports.all =
     "Reponses":[
       {
         "Reponse":"Besoins en matière de soins",
+        "Tri":2,
+        "CodeValeur":"XI.1.bis.1",
         "Details":[
           {
             "Detail":"soins médicaux ambulatoires",
@@ -4387,6 +4610,8 @@ exports.all =
       },
       {
         "Reponse":"Besoin en matière d'autonomie",
+        "Tri":6,
+        "CodeValeur":"XI.1.bis.2",
         "Details":[
           {
             "Detail":"Pour accomplir ses actes essentiels",
@@ -4437,6 +4662,8 @@ exports.all =
       },
       {
         "Reponse":"Besoins transversaux en matière d'autonomie",
+        "Tri":16,
+        "CodeValeur":"XI.1.bis.3",
         "Details":[
           {
             "Detail":"Pour communiquer",
@@ -4491,16 +4718,18 @@ exports.all =
       },
       {
         "Reponse":"aggravation",
+        "Tri":4,
+        "CodeValeur":"VII.7.4",
         "Details":[
           {
             "Detail":"aggravation dans un délai inférieur à 1 an",
-            "Tri":4,
-            "CodeValeur":"VII.7.4"
+            "Tri":5,
+            "CodeValeur":"VII.7.4.a"
           },
           {
             "Detail":"aggravation dans un délai supérieur à 1 an",
-            "Tri":5,
-            "CodeValeur":"VII.7.4.a"
+            "Tri":6,
+            "CodeValeur":"VII.7.4.b"
           }
         ]
       },

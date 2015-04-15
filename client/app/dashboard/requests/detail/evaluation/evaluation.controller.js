@@ -6,6 +6,14 @@ angular.module('impactApp')
     $scope.computeCompletion = GevaService.computeCompletion;
     $scope.request = request;
     $scope.token = $cookieStore.get('token');
+    if (!request.synthese) {
+      request.synthese = {
+        geva: {}
+      };
+    }
+    else if (!request.synthese.geva) {
+      request.synthese.geva = {};
+    }
 
     $scope.autoriserTelechargement = function () {
       return !request.synthese ? true : false;
