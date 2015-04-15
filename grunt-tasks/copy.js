@@ -10,7 +10,7 @@ module.exports = {
         '.htaccess',
         'bower_components/**/*',
         'assets/images/{,*/}*.{webp}',
-        'assets/cm/**/*',
+        'assets/documents/**/*',
         'index.html'
       ]
     }, {
