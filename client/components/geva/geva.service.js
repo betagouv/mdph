@@ -5,7 +5,7 @@ angular.module('impactApp')
     var sections = [
     {
       id: 'situation',
-      label: 'Situation',
+      label: 'Vie personnelle',
       model: {},
       placement: 'left'
     },
@@ -17,13 +17,13 @@ angular.module('impactApp')
     },
     {
       id: 'aides',
-      label: 'Aides actuelles',
+      label: 'Vie scolaire ou professionnelle',
       model: {},
       placement: 'left'
     },
     {
       id: 'besoins',
-      label: 'Besoins',
+      label: 'Evolution et besoins',
       model: {},
       placement: 'right'
     }];
