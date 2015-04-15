@@ -669,7 +669,8 @@
       "model":"parcoursEtudes",
       "titleDefault":"Décrivez votre parcours d'étudiant ou d'apprenti",
       "titleRep":"Décrivez son parcours d'étudiant ou d'apprenti",
-      "type":"text"
+      "type":"text",
+      "placeholder": "Année, établissement"
     },
     {
       "model":"accompagnement",
@@ -911,7 +912,7 @@
     },
     {
       "model":"referent",
-      "titleDefault":"Avez vous pu prendre contact avec votre eseignant référent ?",
+      "titleDefault":"Avez-vous pu prendre contact avec votre enseignant référent ?",
       "type":"radio",
       "answers":[
         {

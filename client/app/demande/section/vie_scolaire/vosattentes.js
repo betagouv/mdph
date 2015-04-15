@@ -41,7 +41,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.vos_attentes.referent', {
-      url: '',
+      url: '/enseignant_referent',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
