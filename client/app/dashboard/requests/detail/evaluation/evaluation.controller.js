@@ -16,7 +16,7 @@ angular.module('impactApp')
     }
 
     $scope.autoriserTelechargement = function () {
-      return !request.synthese ? true : false;
+      return ! request.synthese.proposition ? true : false;
     };
 
     $scope.afficherSynthese = function () {
@@ -37,12 +37,12 @@ angular.module('impactApp')
   })
   .controller('ModalSyntheseCtrl', function ($scope, $modalInstance, prestations, request) {
     $scope.prestations = prestations;
-    if (!request.synthese) {
-      request.synthese = {};
+    if (!request.synthese.proposition) {
+      request.synthese.proposition = {};
     }
-    $scope.synthese = request.synthese;
-    if (!$scope.synthese.prestaDemande) {
-      $scope.synthese.prestaDemande = [
+    $scope.proposition = request.synthese.proposition;
+    if (!$scope.proposition.prestaDemande) {
+      $scope.proposition.prestaDemande = [
         {
           label: '',
           motivation: ''
@@ -50,8 +50,8 @@ angular.module('impactApp')
       ];
     }
 
-    if (!$scope.synthese.prestaAutre) {
-      $scope.synthese.prestaAutre = [
+    if (!$scope.proposition.prestaAutre) {
+      $scope.proposition.prestaAutre = [
         {
           label: '',
           motivation: ''
@@ -59,14 +59,14 @@ angular.module('impactApp')
       ];
     }
 
-    if (!$scope.synthese.preconisations) {
-      $scope.synthese.preconisations = '';
+    if (!$scope.proposition.preconisations) {
+      $scope.proposition.preconisations = '';
     }
 
 
 
     $scope.ajouterPrestaDemande = function(){
-      $scope.synthese.prestaDemande.push({
+      $scope.proposition.prestaDemande.push({
         label: '',
         eligibilite: '',
         motivation: ''
@@ -79,14 +79,14 @@ angular.module('impactApp')
     };
 
     $scope.ajouterPrestaAutre = function(){
-      $scope.synthese.prestaAutre.push({
+      $scope.proposition.prestaAutre.push({
         label: '',
         motivation: ''
       });
     };
 
     $scope.ok = function() {
-      request.synthese = $scope.synthese;
+      request.synthese.proposition = $scope.proposition;
       request.$update();
       $modalInstance.close();
     };
