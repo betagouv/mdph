@@ -66,6 +66,9 @@ exports.answersToHtml = function (request, path, output, next) {
     aidantDemarche: function (callback) {
       readFile('aidantDemarche.html', callback);
     },
+    gevaAnswers: function(callback) {
+      readFile('gevaAnswers.html', callback);
+    },
     propositions: function (callback) {
       readFile('propositions.html', callback);
     },
@@ -75,7 +78,7 @@ exports.answersToHtml = function (request, path, output, next) {
     prestaAutre: function (callback) {
       readFile('prestaAutre.html', callback);
     },
-    gevaAnswers: function (callback) {
+    geva: function (callback) {
       if (!request.synthese.geva) {
         callback(null, []);
       }
@@ -151,13 +154,7 @@ exports.answersToHtml = function (request, path, output, next) {
     var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'requestInformations');
     var html = mustache.render(
       results.syntheseTemplate,
-      {
-        path: path,
-        identites: results.requestIdentites,
-        informations: results.requestInformations,
-        gevaAnswers: results.gevaAnswers,
-        propositions: results.proposition,
-        mdph: results.mdph},
+      {path: path, identites: results.requestIdentites, informations: results.requestInformations, gevaAnswers: results.geva, propositions: results.proposition, mdph: results.mdph},
       subTemplates
     );
     next(null, html);
