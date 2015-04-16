@@ -63,8 +63,6 @@ angular.module('impactApp')
       $scope.proposition.preconisations = '';
     }
 
-
-
     $scope.ajouterPrestaDemande = function(){
       $scope.proposition.prestaDemande.push({
         label: '',

@@ -42,8 +42,8 @@ exports.answersToHtml = function (request, path, output, next) {
     aidantDemarche: function (callback) {
       readFile('aidantDemarche.html', callback);
     },
-    reponses: function (callback) {
-      readFile('reponses.html', callback);
+    propositions: function (callback) {
+      readFile('propositions.html', callback);
     },
     prestaDemande: function (callback) {
       readFile('prestaDemande.html', callback);
@@ -51,13 +51,13 @@ exports.answersToHtml = function (request, path, output, next) {
     prestaAutre: function (callback) {
       readFile('prestaAutre.html', callback);
     },
-    synthese: function (callback) {
-      if (!request.synthese) {
+    proposition: function (callback) {
+      if (!request.synthese.proposition) {
         callback(null, []);
       }
 
-      var synthese = request.synthese;
-      callback(null, synthese);
+      var proposition = request.synthese.proposition;
+      callback(null, proposition);
     },
     requestInformations: function (callback) {
       if (!request.formAnswers) {
@@ -120,7 +120,7 @@ exports.answersToHtml = function (request, path, output, next) {
     var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'requestInformations');
     var html = mustache.render(
       results.syntheseTemplate,
-      {path: path, identites: results.requestIdentites, informations: results.requestInformations, reponses: results.synthese, mdph: results.mdph},
+      {path: path, identites: results.requestIdentites, informations: results.requestInformations, propositions: results.proposition, mdph: results.mdph},
       subTemplates
     );
     next(null, html);
