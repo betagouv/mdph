@@ -12,6 +12,8 @@ var mustache = require('mustache');
 
 var Sections = require('../api/sections/sections.constant');
 var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
+var questionsByDescription = require('../api/geva/geva.controller').questionsByDescription;
+var getFlattenedAnswers = require('../api/geva/geva.controller').getFlattenedAnswers;
 
 var readFile = function(name, callback) {
   fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
@@ -23,6 +25,28 @@ var formatDateNaissance = function(identite) {
   if (identite && identite.dateNaissance) {
     identite.dateNaissance = moment(identite.dateNaissance).format('DD/MM/YYYY');
   }
+}
+
+function getGevaAnswers (gevaSections) {
+  var gevaAnswers = [];
+  _.forEach (gevaSections, function (section) {
+    _.forEach (section, function(n, key) {
+      var question = questionsByDescription(key);
+      var flattenedAnswers = getFlattenedAnswers(question.Reponses);
+      flattenedAnswers = _.indexBy(flattenedAnswers, 'CodeValeur');
+      if (n.length > 0) {
+        var questionAnswers = [];
+        n.forEach ( function (codeValeur) {
+          questionAnswers.push(flattenedAnswers[codeValeur]);
+        })
+        gevaAnswers.push({
+          label: question.Question,
+          answers: questionAnswers
+        })
+      }
+    });
+  });
+  return gevaAnswers;
 }
 
 exports.answersToHtml = function (request, path, output, next) {
@@ -50,6 +74,13 @@ exports.answersToHtml = function (request, path, output, next) {
     },
     prestaAutre: function (callback) {
       readFile('prestaAutre.html', callback);
+    },
+    gevaAnswers: function (callback) {
+      if (!request.synthese.geva) {
+        callback(null, []);
+      }
+      var answers = getGevaAnswers(request.synthese.geva);
+      callback(null, answers);
     },
     proposition: function (callback) {
       if (!request.synthese.proposition) {
@@ -120,7 +151,13 @@ exports.answersToHtml = function (request, path, output, next) {
     var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'requestInformations');
     var html = mustache.render(
       results.syntheseTemplate,
-      {path: path, identites: results.requestIdentites, informations: results.requestInformations, propositions: results.proposition, mdph: results.mdph},
+      {
+        path: path,
+        identites: results.requestIdentites,
+        informations: results.requestInformations,
+        gevaAnswers: results.gevaAnswers,
+        propositions: results.proposition,
+        mdph: results.mdph},
       subTemplates
     );
     next(null, html);

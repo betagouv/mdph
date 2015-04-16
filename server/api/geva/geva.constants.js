@@ -10,27 +10,27 @@ exports.all =
     "Question":"Quelle est la situation familiale de la personne ?",
     "Type":"CM",
     "Reponses": [
-          {
+      {
         "Reponse": "vit seul",
         "Tri": 1,
         "CodeValeur":"II.1 bis.1"
-          },
-          {
-              "Reponse":"vit avec d'autres personnes",
+      },
+      {
+        "Reponse":"vit avec d'autres personnes",
         "Tri":2,
         "CodeValeur":"II.1 bis.2"
-          },
-          {
+      },
+      {
         "Reponse":"a des relations familiales ou amicales",
         "Tri":3,
         "CodeValeur":"II.1 bis.4"
-          },
-          {
+      },
+      {
         "Reponse":"n'a pas de relation familiale ou amicale",
         "Tri":4,
         "CodeValeur":"II.1 bis.5"
-          },
-          {
+      },
+      {
         "Reponse":"âge < 16 ans ",
         "Tri":5,
         "CodeValeur":"II.1 bis.6"
@@ -45,7 +45,7 @@ exports.all =
         "Tri":7,
         "CodeValeur":"II.1 bis.8"
       }
-        ]
+    ]
   },
   {
     "Section":"Environnement",
