@@ -66,8 +66,8 @@ exports.answersToHtml = function (request, path, output, next) {
     aidantDemarche: function (callback) {
       readFile('aidantDemarche.html', callback);
     },
-    gevaAnswers: function(callback) {
-      readFile('gevaAnswers.html', callback);
+    geva: function(callback) {
+      readFile('geva.html', callback);
     },
     propositions: function (callback) {
       readFile('propositions.html', callback);
@@ -78,12 +78,17 @@ exports.answersToHtml = function (request, path, output, next) {
     prestaAutre: function (callback) {
       readFile('prestaAutre.html', callback);
     },
-    geva: function (callback) {
+    gevaAnswers: function (callback) {
+      readFile('gevaAnswers.html', callback);
+    },
+    syntheseGeva: function (callback) {
       if (!request.synthese.geva) {
         callback(null, []);
       }
-      var answers = getGevaAnswers(request.synthese.geva);
-      callback(null, answers);
+      var synthese = {
+        answers: getGevaAnswers(request.synthese.geva)
+      };
+      callback(null, synthese);
     },
     proposition: function (callback) {
       if (!request.synthese.proposition) {
@@ -154,7 +159,7 @@ exports.answersToHtml = function (request, path, output, next) {
     var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'requestInformations');
     var html = mustache.render(
       results.syntheseTemplate,
-      {path: path, identites: results.requestIdentites, informations: results.requestInformations, gevaAnswers: results.geva, propositions: results.proposition, mdph: results.mdph},
+      {path: path, identites: results.requestIdentites, informations: results.requestInformations, syntheseGeva: results.syntheseGeva, propositions: results.proposition, mdph: results.mdph},
       subTemplates
     );
     next(null, html);
