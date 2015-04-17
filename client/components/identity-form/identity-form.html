@@ -117,9 +117,17 @@
           <hr>
         </div>
 
-        <div class="form-group required" ng-class="{'has-error': infoForm.adresse.$invalid && infoForm.$submitted}">
+        <div class="form-group" ng-if="type === 'autorite'">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="identite.adresseInconnue"> Je ne connais pas l'adresse
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{'required': !disableAddress(),'has-error': infoForm.adresse.$invalid && infoForm.$submitted}">
           <label for="adresse" class="control-label">Adresse</label>
-          <input id="adresse" type="text" name="adresse" class="form-control" ng-model="identite.adresse" placeholder="Numéro et rue" required>
+          <input id="adresse" type="text" name="adresse" class="form-control" ng-model="identite.adresse" placeholder="Numéro et rue" ng-disabled="disableAddress()" ng-required="!disableAddress()">
           <div ng-messages="infoForm.adresse.$error" ng-if="infoForm.$submitted">
             <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           </div>
@@ -127,28 +135,28 @@
 
         <div class="form-group">
           <label for="adresse_complement" class="control-label">Complément d'adresse</label>
-          <input id="adresse_complement" type="text" name="adresse_complement" class="form-control" ng-model="identite.adresse_complement">
+          <input id="adresse_complement" type="text" name="adresse_complement" class="form-control" ng-model="identite.adresse_complement" ng-disabled="disableAddress()">
         </div>
 
-        <div class="form-group required" ng-class="{'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
+        <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
           <label for="code_postal" class="control-label">Code postal</label>
-          <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal" required>
+          <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal" ng-disabled="disableAddress()" ng-required="!disableAddress()">
           <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
             <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           </div>
         </div>
 
-        <div class="form-group required" ng-class="{'has-error': infoForm.commune.$invalid && infoForm.$submitted}">
+        <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.commune.$invalid && infoForm.$submitted}">
           <label for="commune" class="control-label">Commune</label>
-          <input id="commune" type="text" name="commune" class="form-control" ng-model="identite.commune" required>
+          <input id="commune" type="text" name="commune" class="form-control" ng-model="identite.commune" ng-disabled="disableAddress()" ng-required="!disableAddress()">
           <div ng-messages="infoForm.commune.$error" ng-if="infoForm.$submitted">
             <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           </div>
         </div>
 
-        <div class="form-group required" ng-class="{'has-error': infoForm.pays.$invalid && infoForm.$submitted}">
+        <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.pays.$invalid && infoForm.$submitted}">
           <label for="pays" class="control-label">Pays</label>
-          <input id="pays" type="text" name="pays" class="form-control" ng-model="identite.pays" required>
+          <input id="pays" type="text" name="pays" class="form-control" ng-model="identite.pays"  ng-disabled="disableAddress()" ng-required="!disableAddress()">
           <div ng-messages="infoForm.pays.$error" ng-if="infoForm.$submitted">
             <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           </div>

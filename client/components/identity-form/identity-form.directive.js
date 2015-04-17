@@ -19,6 +19,9 @@ angular.module('impactApp')
           $event.stopPropagation();
           scope.opened = true;
         };
+        scope.disableAddress = function() {
+          return (scope.identite.adresseInconnue ? true : false);
+        };
       }
     };
   });
