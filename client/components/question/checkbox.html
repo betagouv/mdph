@@ -5,14 +5,13 @@
     <ul class="answers">
       <div class="answer" ng-repeat="answer in question.answers">
         <li
-          class="btn-answer" ng-class="{'active': sectionModel[question.model][answer.model]}"
-          ng-click="sectionModel[question.model][answer.model] = !sectionModel[question.model][answer.model]"
-          ng-keypress="sectionModel[question.model][answer.model] = !sectionModel[question.model][answer.model]"
-          ng-keyup=""
           ng-if="!answer.onlyAdult || (answer.onlyAdult && estAdulte())">
-          <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
+          <label for="{{question.model}}-{{answer.model}}" class="btn-answer"
+            ng-class="{'active': sectionModel[question.model][answer.model]}">
+            <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
             ng-model="sectionModel[question.model][answer.model]" ng-value="answer.label" />
-          <label for="{{question.model}}-{{answer.model}}">{{answer.label}}</label>
+            <span>{{answer.label}}</span>
+          </label>
         </li>
 
         <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model]">
