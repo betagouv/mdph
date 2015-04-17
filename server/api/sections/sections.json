@@ -4,8 +4,7 @@
     "sref": ".identites",
     "label": "Identités",
     "desc": "Individus et organismes concernés par la demande",
-    "sectionDefault": "obligatoire",
-    "sectionRenouvellement": "obligatoire",
+    "group": "obligatoire",
     "questions": {}
   },
   {
@@ -13,8 +12,7 @@
     "sref": ".situations_particulieres.detail",
     "label": "Situations particulières",
     "desc": "Si vous vous trouvez dans une situation nécessitant une attention particulière",
-    "sectionDefault": "obligatoire",
-    "sectionRenouvellement": "obligatoire",
+    "group": "obligatoire",
     "questions": {
       "urgences": {
         "model": "urgences",
@@ -100,8 +98,7 @@
     "sref": ".vie_quotidienne.situation.vie_famille",
     "label": "Vie quotidienne",
     "desc": "",
-    "sectionDefault": "obligatoire",
-    "sectionRenouvellement": "obligatoire",
+    "group": "obligatoire",
     "trajectoire": true,
     "subSections": [
       {
@@ -652,8 +649,7 @@
     "sref": ".vie_scolaire.situation.condition",
     "label": "Vie scolaire ou étudiante",
     "desc": "Si votre demande concerne votre scolarité ou vie étudiante",
-    "sectionDefault": "complementaire",
-    "sectionRenouvellement": "complementaire",
+    "group": "complementaire",
     "trajectoire": true,
     "subSections": [
       {
@@ -1081,8 +1077,7 @@
     "sref": ".vie_au_travail.situation_professionnelle.condition",
     "label": "Vie au travail",
     "desc": "Si votre demande concerne votre projet professionnel",
-    "sectionDefault": "complementaire",
-    "sectionRenouvellement": "complementaire",
+    "group": "complementaire",
     "trajectoire": true,
     "subSections": [
       {
@@ -1591,8 +1586,8 @@
     "sref": ".renouvellement.evolution",
     "label": "Renouvellement",
     "desc": "Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement",
-    "sectionDefault": "absent",
-    "sectionRenouvellement": "complements",
+    "group": "complements",
+    "hideForFirstRequest": true,
     "questions": {
       "evolution": {
         "titleRep": "Comment la situation a-t-elle évolué depuis sa dernière demande ?",
@@ -1630,8 +1625,7 @@
     "sref": ".aidant.situation.nom_aidant",
     "label": "Vie de votre aidant familial",
     "desc": "Si votre aidant familial (la personne qui s’occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins",
-    "sectionDefault": "complements",
-    "sectionRenouvellement": "complements",
+    "group": "complements",
     "subSections": [
       {
         "include": "departement.demande.aidant.situation.**",
@@ -1968,8 +1962,7 @@
     "sref": ".documents",
     "label": "Documents liés à votre demande",
     "desc": "Pour nous transmettre les documents justificatifs obligatoires et complémentaires",
-    "sectionDefault": "documents",
-    "sectionRenouvellement": "documents",
+    "group": "documents",
     "questions": {}
   }
 ]
