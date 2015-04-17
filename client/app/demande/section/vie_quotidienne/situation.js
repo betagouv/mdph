@@ -80,9 +80,20 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aideFinancierePresent', request.formAnswers);
           },
-          nextStep: function($state) {
+          nextStep: function(RequestService, request, $state, sectionModel) {
             return function() {
-              $state.go('^.aideFinancierePasse');
+              if (RequestService.estAdulte(request)) {
+                $state.go('^.aideFinancierePasse');
+              } else {
+                var answerAideActuelle = sectionModel.aideActuelle;
+                if (answerAideActuelle.technique) {
+                  $state.go('^.aideTechnique');
+                } else if (answerAideActuelle.personne) {
+                  $state.go('^.aidePersonne');
+                } else {
+                  $state.go('^.pensionInvalidite');
+                }
+              }
             };
           }
         }
@@ -167,9 +178,13 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'ipp', request.formAnswers);
           },
-          nextStep: function($state) {
+          nextStep: function(RequestService, request, $state) {
             return function() {
-              $state.go('^.retraite');
+              if (RequestService.estAdulte(request)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.fraisHandicap');
+              }
             };
           }
         }

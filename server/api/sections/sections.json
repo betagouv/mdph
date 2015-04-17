@@ -16,8 +16,8 @@
     "questions": {
       "urgences": {
         "model": "urgences",
-        "titleDefault": "Merci de cocher si vous êtes dans l'une des situations d'urgence suivantes :",
-        "titleRep": "Merci de cocher si <%= pronoun %> est dans l'une des situations d'urgence suivantes :",
+        "titleDefault": "Merci de cocher si vous êtes dans l'une des situations suivantes :",
+        "titleRep": "Merci de cocher si <%= name %> est dans l'une des situations suivantes :",
         "type": "checkbox",
         "answers": [
           {
@@ -118,7 +118,7 @@
       "famille": {
         "model": "famille",
         "titleDefault": "Vous vivez",
-        "titleRep": "{{firstname}} vit",
+        "titleRep": "<%= name %> vit",
         "type": "radio",
         "answers": [
           {
@@ -155,7 +155,7 @@
       "logement": {
         "model": "logement",
         "titleDefault": "Où vivez-vous ?",
-        "titleRep": "Où vit-<%= pronoun %> ?",
+        "titleRep": "Où vit <%= name %> ?",
         "type": "radio",
         "answers": [
           {
@@ -192,7 +192,7 @@
       "aideActuelle": {
         "model": "aideActuelle",
         "titleDefault": "Vous recevez :",
-        "titleRep": "<%= pronoun %> reçoit :",
+        "titleRep": "<%= name %> reçoit :",
         "type": "checkbox",
         "answers": [
           {
@@ -205,6 +205,7 @@
           },
           {
             "label": "Une aide à la personne, avec quelqu'un qui vous aide",
+            "labelRep": "Une aide à la personne, avec quelqu'un qui l'aide",
             "model": "personne"
           }
         ]
@@ -212,35 +213,50 @@
       "aideFinancierePresent": {
         "model": "aideFinancierePresent",
         "titleDefault": "Vous recevez les aides, ressources et/ou prestations suivantes :",
-        "titleRep": "<%= pronoun %> reçoit les aides, ressources et/ou prestations suivantes :",
+        "titleRep": "<%= name %> reçoit les aides, ressources et/ou prestations suivantes :",
         "type": "checkbox",
         "answers": [
           {
             "label": "Allocation Adulte Handicapé (AAH)",
-            "model": "aah"
+            "model": "aah",
+            "onlyAdult": true
+          },
+          {
+            "label": "Allocation d'éducation de l'enfant handicapé (AEEH)",
+            "model": "aeeh",
+            "onlyChild": true
+          },
+          {
+            "label": "Une PCH enfant",
+            "model": "pch_enfant",
+            "onlyChild": true
           },
           {
             "label": "Revenu de Solidarité Active (RSA)",
-            "model": "rsa"
+            "model": "rsa",
+            "onlyAdult": true
           },
           {
             "label": "Allocation chômage versée par Pôle Emploi",
-            "model": "chomage"
+            "model": "chomage",
+            "onlyAdult": true
           },
           {
             "label": "Allocation de Solidarité Spécifique (ASS)",
-            "model": "ass"
+            "model": "ass",
+            "onlyAdult": true
           },
           {
             "label": "Retraite pour inaptitude dans la fonction publique ou anticipée",
-            "model": "retraite"
+            "model": "retraite",
+            "onlyAdult": true
           }
         ]
       },
       "aideFinancierePasse": {
         "model": "aideFinancierePasse",
         "titleDefault": "Dans les 12 mois précédant votre demande, avez-vous perçu :",
-        "titleRep": "Dans les 12 mois précédant votre demande, a-t-<%= pronoun %> perçu :",
+        "titleRep": "Dans les 12 mois précédant votre demande, <%= name %> a-t-<%= pronoun %> perçu<%= fem %> :",
         "type": "checkbox",
         "answers": [
           {
@@ -263,7 +279,7 @@
       "aideTechnique": {
         "model": "aideTechnique",
         "titleDefault": "Vous avez indiqué recevoir une aide technique, matérielle ou de l'équipement, cette aide consiste en :",
-        "titleRep": "Vous avez indiqué que <%= pronoun %> reçoit une aide technique, matérielle ou de l'équipement, cette aide consiste en :",
+        "titleRep": "Vous avez indiqué que <%= name %> reçoit une aide technique, matérielle ou de l'équipement, cette aide consiste en :",
         "type": "checkbox",
         "answers": [
           {
@@ -295,7 +311,7 @@
       "aidePersonne": {
         "model": "aidePersonne",
         "titleDefault": "Vous avez indiqué recevoir une aide à la personne, vous êtes aidé par :",
-        "titleRep": "Vous avez indiqué que <%= pronoun %> reçoit une aide à la personne, <%= pronoun %> est aidé<%= fem %> par :",
+        "titleRep": "Vous avez indiqué que <%= name %> reçoit une aide à la personne, <%= pronoun %> est aidé<%= fem %> par :",
         "type": "checkbox",
         "answers": [
           {
@@ -321,7 +337,7 @@
       "pensionInvalidite": {
         "model": "pensionInvalidite",
         "titleDefault": "Vous percevez une ou plusieurs des aides suivantes :",
-        "titleRep": "<%= pronoun %> perçoit une ou plusieurs des aides suivantes :",
+        "titleRep": "<%= name %> perçoit une ou plusieurs des aides suivantes :",
         "type": "checkbox",
         "answers": [
           {
@@ -331,7 +347,7 @@
             "detailModel": "categorie"
           },
           {
-            "label": "Un autre pension de ce type",
+            "label": "Une autre pension de ce type",
             "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "amenagementDetail",
@@ -385,7 +401,7 @@
       "aidesRetraite": {
         "model": "aidesRetraite",
         "titleDefault": "Vous percevez une ou plusieurs des aides suivantes :",
-        "titleRep": "<%= pronoun %> perçoit une ou plusieurs des aides suivantes :",
+        "titleRep": "<%= name %> perçoit une ou plusieurs des aides suivantes :",
         "type": "checkbox",
         "answers": [
           {
@@ -411,7 +427,7 @@
       "besoinsVie": {
         "model": "besoinsVie",
         "titleDefault": "Vous avez besoin d'aide dans votre vie quotidienne :",
-        "titleRep": "<%= pronoun %> a besoin d'aide dans sa vie quotidienne :",
+        "titleRep": "<%= name %> a besoin d'aide dans sa vie quotidienne :",
         "type": "checkbox",
         "answers": [
           {
@@ -468,7 +484,7 @@
       "besoinsDeplacement": {
         "model": "besoinsDeplacement",
         "titleDefault": "Vous avez besoin d'aide pour vous déplacer :",
-        "titleRep": "<%= pronoun %> a besoin d'aide pour se déplacer :",
+        "titleRep": "<%= name %> a besoin d'aide pour se déplacer :",
         "type": "checkbox",
         "answers": [
           {
@@ -506,7 +522,7 @@
       "besoinsTransports": {
         "model": "besoinsTransports",
         "titleDefault": "Utilisez-vous les transports adaptés proposés localement pour vous déplacer ?",
-        "titleRep": "Utilise-t-<%= pronoun %> les transports adaptés proposés localement pour se déplacer ?",
+        "titleRep": "<%= name %> utilise-t-<%= pronoun %> les transports adaptés proposés localement pour se déplacer ?",
         "type": "radio",
         "answers": [
           {
@@ -523,7 +539,7 @@
         "model": "besoinsSocial",
         "type": "checkbox",
         "titleDefault": "Vous avez besoin d'aide pour votre vie sociale :",
-        "titleRep": "<%= pronoun %> a besoin d'aide pour sa vie sociale :",
+        "titleRep": "<%= name %> a besoin d'aide pour sa vie sociale :",
         "answers": [
           {
             "label": "Pour communiquer (s'exprimer, se faire comprendre)",
@@ -635,7 +651,7 @@
         "model": "structures",
         "type": "structure",
         "titleDefault": "Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?",
-        "titleRep": "A-t-<%= pronoun %> déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
+        "titleRep": "Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre aux attentes de <%= name %> ?"
       },
       "autresRenseignements": {
         "model": "autresRenseignements",
@@ -669,7 +685,7 @@
       "condition": {
         "model": "condition",
         "titleDefault": "Etes-vous actuellement scolarisé ?",
-        "titleRep": "Est-<%= pronoun %> actuellement scolarisé<%= fem %> ?",
+        "titleRep": "<%= name %> est-<%= pronoun %> actuellement scolarisé<%= fem %> ?",
         "type": "radio",
         "answers": [
           {
@@ -685,7 +701,7 @@
       "raisonNonScolaire": {
         "model": "raisonNonScolaire",
         "titleDefault": "Pourquoi n'êtes vous pas scolarisé ?",
-        "titleRep": "Pourquoi n'est-<%= pronoun %> pas scolarisé<%= fem %> ?",
+        "titleRep": "Pourquoi <%= name %> n'est-<%= pronoun %> pas scolarisé<%= fem %> ?",
         "type": "radio",
         "answers": [
           {
@@ -716,12 +732,12 @@
         "model": "structures",
         "type": "structure",
         "titleDefault": "Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?",
-        "titleRep": "A-t-<%= pronoun %> déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
+        "titleRep": "Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre aux attentes de <%= name %> ?"
       },
       "vieScolaireType": {
         "model": "vieScolaireType",
         "titleDefault": "Vous êtes actuellement scolarisé",
-        "titleRep": "<%= pronoun %> est actuellement scolarisé<%= fem %>",
+        "titleRep": "<%= name %> est actuellement scolarisé<%= fem %>",
         "type": "radio",
         "answers": [
           {
@@ -763,7 +779,7 @@
       },
       "internat": {
         "model": "internat",
-        "titleDefault": "L'enfant est-il placé en internat ?",
+        "titleDefault": "Est-il placé en internat ?",
         "type": "radio",
         "answers": [
           {
@@ -782,19 +798,19 @@
       "typeEtudes": {
         "model": "typeEtudes",
         "titleDefault": "Quel type d'études suivez-vous ?",
-        "titleRep": "Quel type d'études suit-<%= pronoun %> ?",
+        "titleRep": "Quel type d'études suit <%= name %> ?",
         "type": "text"
       },
       "diplomePasse": {
         "model": "diplomePasse",
         "titleDefault": "Quel(s) diplôme(s) avez-vous obtenu(s) ?",
-        "titleRep": "Quel(s) diplôme(s) a-t-<%= pronoun %> obtenu(s) ?",
+        "titleRep": "Quel(s) diplôme(s) <%= name %> a-t-<%= pronoun %> obtenu(s) ?",
         "type": "text"
       },
       "diplomePresent": {
         "model": "diplomePresent",
         "titleDefault": "Quel(s) diplôme(s) préparez-vous ?",
-        "titleRep": "Quel(s) diplôme(s) prépare-t-<%= pronoun %> ?",
+        "titleRep": "Quel(s) diplôme(s) <%= name %> prépare-t-<%= pronoun %> ?",
         "type": "text"
       },
       "diplomeEtablissement": {
@@ -812,7 +828,7 @@
       "accompagnement": {
         "model": "accompagnement",
         "titleDefault": "Vous disposez actuellement d'accompagnement et de soins",
-        "titleRep": "<%= pronoun %> disposez actuellement d'accompagnement et de soins",
+        "titleRep": "<%= name %> dispose actuellement d'accompagnement et de soins",
         "type": "checkbox",
         "answers": [
           {
@@ -834,7 +850,7 @@
       "adaptation": {
         "model": "adaptation",
         "titleDefault": "Vous disposez actuellement d'adaptations des conditions matérielles",
-        "titleRep": "<%= pronoun %> dispose actuellement d'adaptations des conditions matérielles",
+        "titleRep": "<%= name %> dispose actuellement d'adaptations des conditions matérielles",
         "type": "checkbox",
         "answers": [
           {
@@ -882,7 +898,7 @@
       "besoinsScolarite": {
         "model": "besoinsScolarite",
         "titleDefault": "Vous avez des besoins en lien avec la scolarité :",
-        "titleRep": "<%= pronoun %> des besoins en lien avec la scolarité :",
+        "titleRep": "<%= name %> a des besoins en lien avec la scolarité :",
         "type": "checkbox",
         "answers": [
           {
@@ -920,7 +936,7 @@
       "besoinsCommunication": {
         "model": "besoinsCommunication",
         "titleDefault": "Vous avez des besoins pour communiquer :",
-        "titleRep": "<%= pronoun %> a des besoins pour communiquer :",
+        "titleRep": "<%= name %> a des besoins pour communiquer :",
         "type": "checkbox",
         "answers": [
           {
@@ -946,7 +962,7 @@
       "besoinsEntretien": {
         "model": "besoinsEntretien",
         "titleDefault": "Vous avez des besoin pour l'entretien personnel :",
-        "titleRep": "<%= pronoun %> a des besoin pour l'entretien personnel :",
+        "titleRep": "<%= name %> a des besoin pour l'entretien personnel :",
         "type": "checkbox",
         "answers": [
           {
@@ -976,7 +992,7 @@
       "besoinsDeplacement": {
         "model": "besoinsDeplacement",
         "titleDefault": "Vous avez besoin d'aide pour les déplacements :",
-        "titleRep": "<%= pronoun %> a besoin d'aide pour les déplacements :",
+        "titleRep": "<%= name %> a besoin d'aide pour les déplacements :",
         "type": "checkbox",
         "answers": [
           {
@@ -1002,7 +1018,7 @@
       "attentesVieScolaire": {
         "model": "attentesVieScolaire",
         "titleDefault": "Vous souhaitez :",
-        "titleRep": "<%= pronoun %> souhaite :",
+        "titleRep": "Vous souhaitez pour <%= name %> :",
         "type": "checkbox",
         "answers": [
           {
@@ -1044,8 +1060,8 @@
       "structure": {
         "model": "structure",
         "type": "structure",
-        "titleDefault": "Avez-vous déjà identifié un établissement scolaire, universitaire ou médico-social qui pourrait répondre à vos attentes ? Si oui, lequel ?",
-        "titleRep": "A-t-<%= pronoun %> déjà identifié un établissement scolaire, universitaire ou médico-social qui pourrait répondre à ses attentes ?  Si oui, lequel ?"
+        "titleDefault": "Avez-vous déjà identifié un établissement scolaire, universitaire ou médico-social qui pourrait répondre à vos attentes ?",
+        "titleRep": "Avez-vous déjà identifié un établissement scolaire, universitaire ou médico-social qui pourrait répondre à vos attentes pour <%= name %> ? "
       },
       "referent": {
         "model": "referent",

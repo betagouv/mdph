@@ -26,8 +26,13 @@
             <legend class="control-label">Vous êtes</legend>
             <input type="radio" name="type_aidant_proche" id="type_aidant_proche" ng-model="identite.type" ng-required="!identite.type" value="proche">
             <label class="radio-inline" for="type_aidant_proche">Un proche</label>
+
             <input type="radio" name="type_aidant_association" id="type_aidant_association" ng-model="identite.type" ng-required="!identite.type" value="association">
             <label class="radio-inline" for="type_aidant_association">Une association</label>
+
+            <input type="radio" name="type_aidant_enseignant" id="type_aidant_enseignant" ng-model="identite.type" ng-required="!identite.type" value="enseignant">
+            <label class="radio-inline" for="type_aidant_enseignant">Un enseignant référent</label>
+
             <input type="radio" name="type_aidant_autre" id="type_aidant_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
             <label class="radio-inline" for="type_aidant_autre">Autre</label>
           </fieldset>

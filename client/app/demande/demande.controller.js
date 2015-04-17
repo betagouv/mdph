@@ -1,14 +1,21 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $window, $cookieStore, $modal, documentTypes, sections, Auth, estAdulte, request, RequestService) {
+  .controller('DemandeCtrl', function ($scope, $state, $window, $cookieStore, $modal, documentTypes, sections, Auth, request, RequestService) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
     $scope.token = $cookieStore.get('token');
+    $scope.getCompletion = RequestService.getCompletion;
+    $scope.estAdulte = function() {
+      return RequestService.estAdulte(request);
+    };
+
     $scope.sectionsObligatoires = _.filter(sections, {group: 'obligatoire'});
     $scope.sectionsComplementaires = _.filter(sections, {group: 'complementaire'});
     $scope.sectionsComplements = _.filter(sections, {group: 'complements'});
     $scope.sectionsDocuments = _.filter(sections, {group: 'documents'});
+
+    var documentsObligatoires = _.filter(documentTypes, {type: 'obligatoire'});
 
     function login(next) {
       $modal.open({
@@ -42,23 +49,6 @@ angular.module('impactApp')
       }
     }
 
-    $scope.estAdulte = function() {
-      if (request.formAnswers.identites && request.formAnswers.identites.beneficiaire) {
-        return estAdulte(request.formAnswers.identites.beneficiaire.dateNaissance);
-      } else {
-        return true;
-      }
-    };
-
-    $scope.getCompletion = function(section) {
-      if (typeof request.formAnswers[section] === 'undefined' || _.keys(request.formAnswers[section]).length === 0) {
-        return 0;
-      } else if (request.formAnswers[section].__completion === true) {
-        return 100;
-      } else {
-        return 50;
-      }
-    };
 
     $scope.sauvegarder = function() {
       if (Auth.isLoggedIn()) {
@@ -71,8 +61,6 @@ angular.module('impactApp')
     };
 
     $scope.envoyer = function() {
-      var documentsObligatoires = _.filter(documentTypes, {type: 'obligatoire'});
-
       RequestService.isReadyToSend(request, $scope.sectionsObligatoires, documentsObligatoires, function(err) {
         if (err) {
           $window.alert(err);

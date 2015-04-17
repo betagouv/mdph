@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RequestService', function RequestService() {
+  .factory('RequestService', function RequestService(estAdulte) {
     function checkSections(request, sectionsObligatoires, cb) {
       var incompleteSections = [];
       sectionsObligatoires.forEach(function(section) {
@@ -48,6 +48,14 @@ angular.module('impactApp')
     }
 
     return {
+      estAdulte: function(request) {
+        if (request.formAnswers.identites && request.formAnswers.identites.beneficiaire) {
+          return estAdulte(request.formAnswers.identites.beneficiaire.dateNaissance);
+        } else {
+          return true;
+        }
+      },
+
       updatedAt: function(request) {
         return moment(request.updatedAt).fromNow();
       },
@@ -70,6 +78,16 @@ angular.module('impactApp')
           return cb();
         } else {
           return cb(errorStr);
+        }
+      },
+
+      getCompletion: function(section, request) {
+        if (typeof request.formAnswers[section] === 'undefined' || _.keys(request.formAnswers[section]).length === 0) {
+          return 0;
+        } else if (request.formAnswers[section].__completion === true) {
+          return 100;
+        } else {
+          return 50;
         }
       }
     };

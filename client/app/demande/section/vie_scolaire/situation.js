@@ -34,7 +34,7 @@ angular.module('impactApp')
     })
     .state(index + '.situation.type_scolaire', {
       url: '/type_scolaire',
-      templateUrl: 'components/question/radio.html',
+      templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {

@@ -12,7 +12,7 @@
 
     <div class="demande-header">
       <h1>Demande à la MDPH du {{mdph.name}}</h1>
-      <p>Référence de la demande: <strong>{{request.shortId}}</strong></p>
+      <p>Référence de la demande: <strong>{{request.shortId || 'Sauvegardez votre demande pour obtenir un identifiant de référence'}}</strong></p>
       <p>Statut de la demande: <strong>{{request.status | requestStatus}}</strong></p>
       <p>Date de création: <strong>le {{request.createdAt | moment}}</strong></p>
       <p>Dernière mise à jour: <strong>{{request.updatedAt | momentFromNow}}</strong></p>
@@ -70,7 +70,7 @@
             <p>{{section.desc}}</p>
             <div class="row">
               <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+                <section-progress-bar completion="getCompletion(section.id, request)"></section-progress-bar>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
             <p>{{section.desc}}</p>
             <div class="row">
               <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+                <section-progress-bar completion="getCompletion(section.id, request)"></section-progress-bar>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@
             <p>{{section.desc}}</p>
             <div class="row">
               <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion(section.id)"></section-progress-bar>
+                <section-progress-bar completion="getCompletion(section.id, request)"></section-progress-bar>
               </div>
             </div>
           </div>

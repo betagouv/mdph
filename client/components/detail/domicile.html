@@ -5,14 +5,15 @@
     <input type="radio" name="parents" id="domicile-parents"
       ng-model="sectionModel[answer.detailModel]" value="'parents'"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-parents">De vos parents (ou l'un d'entre eux)</label>
+    <label for="domicile-parents" ng-if="estAdulte()">De vos parents (ou l'un d'entre eux)</label>
+    <label for="domicile-parents" ng-if="!estAdulte()">De ses parents (ou l'un d'entre eux)</label>
   </div>
 
-  <div>
+  <div ng-if="estAdulte()">
     <input type="radio" name="enfants" id="domicile-enfants"
       ng-model="sectionModel[answer.detailModel]" value="'enfants'"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-enfants">De vos enfants (ou l'un d'entre eux)</label>
+    <label for="domicile-enfants" >De vos enfants (ou l'un d'entre eux)</label>
   </div>
 
   <div>
@@ -26,7 +27,8 @@
     <input type="radio" name="autreMembreFamille" id="domicile-autreMembreFamille"
       ng-model="sectionModel[answer.detailModel]" value="'autreMembreFamille'"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-autreMembreFamille">D'un autre membre de votre famille</label>
+    <label for="domicile-autreMembreFamille" ng-if="estAdulte()">D'un autre membre de votre famille</label>
+    <label for="domicile-autreMembreFamille" ng-if="!estAdulte()">D'un autre membre de sa famille</label>
   </div>
 
   <div>
