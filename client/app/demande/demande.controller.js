@@ -5,6 +5,7 @@ angular.module('impactApp')
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
     $scope.token = $cookieStore.get('token');
+    $scope.sections = sections;
 
     if (!request || !request.formAnswers.etatRenouvellement){
       $scope.formAnswers.etatRenouvellement = 'Première demande';

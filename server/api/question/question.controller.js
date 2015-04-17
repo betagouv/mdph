@@ -1,26 +1,19 @@
 'use strict';
 
-var moment = require('moment');
 var _ = require('lodash');
 
-var sections = require('../sections/sections.constant').all;
-var questions = require('./questions.json')
-
-function linkSectionsQuestions(sections, questionsBySections) {
-  sections.forEach(function(section) {
-    section.questions =  _.indexBy(questions[section.id], 'model');
-  });
-  return sections;
-}
+var sectionsWithQuestions = require('./questions.json')
 
 exports.show = function(req, res) {
-  var sectionQuestions = _.indexBy(questions[req.params.sectionId], 'model');
-  return res.json(sectionQuestions);
+  var section = _.find(sectionsWithQuestions, function(current) {
+    return current.id === req.params.sectionId;
+  });
+
+  return res.json(section);
 };
 
 exports.index = function(req, res) {
-  var sectionsWithQuestions = linkSectionsQuestions(sections, questions);
   return res.json(sectionsWithQuestions);
 }
 
-exports.questionsBySections = questions;
+exports.sectionsWithQuestions = sectionsWithQuestions;

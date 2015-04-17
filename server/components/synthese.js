@@ -98,37 +98,6 @@ exports.answersToHtml = function (request, path, output, next) {
       var proposition = request.synthese.proposition;
       callback(null, proposition);
     },
-    requestInformations: function (callback) {
-      if (!request.formAnswers) {
-        callback(null, []);
-      }
-
-      var logementAnswers = request.formAnswers.vie_quotidienne.logement;
-      var informations = [];
-      var vieQuotidienneQuestions = _.indexBy(QuestionsBySections['vie_quotidienne'], 'model');
-      vieQuotidienneQuestions.logement.answers.forEach(function (answer) {
-        if (logementAnswers === answer.model) {
-          if (answer.labelRecap) {
-            informations.push(
-              {
-                label: 'Vit',
-                answer: answer.labelRecap
-              }
-            );
-          }
-          else {
-            informations.push(
-              {
-                label: 'Vit',
-                answer: answer.label
-              }
-            );
-          }
-        }
-      });
-
-      callback(null, informations);
-    },
     requestIdentites: function (callback) {
       if (!request.formAnswers) {
         callback(null, []);
@@ -156,10 +125,10 @@ exports.answersToHtml = function (request, path, output, next) {
   function(err, results){
     if (err) { next(err); }
     var ansersTemplate = results.syntheseTemplate;
-    var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'requestInformations');
+    var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites');
     var html = mustache.render(
       results.syntheseTemplate,
-      {path: path, identites: results.requestIdentites, informations: results.requestInformations, syntheseGeva: results.syntheseGeva, propositions: results.proposition, mdph: results.mdph},
+      {path: path, identites: results.requestIdentites, syntheseGeva: results.syntheseGeva, propositions: results.proposition, mdph: results.mdph},
       subTemplates
     );
     next(null, html);

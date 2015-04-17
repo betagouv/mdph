@@ -11,7 +11,7 @@ angular.module('impactApp')
            return calculAge(dateNaiss);
      };
   })
-  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, documentTypes, NotificationService, vieQuotidienne, prestations, prestationsQuitus) {
+  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $cookieStore, $sce, request, recapitulatif, documentTypes, NotificationService, prestations, prestationsQuitus) {
     $scope.token = $cookieStore.get('token');
     $scope.recapitulatif = recapitulatif;
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
@@ -20,28 +20,6 @@ angular.module('impactApp')
 
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.filesVM = _.groupBy(request.documents, 'type');
-
-    var familleAnswers = _.indexBy(vieQuotidienne.famille.answers, 'model');
-    var situationFamiliale = familleAnswers[request.formAnswers.vie_quotidienne.famille];
-
-    var logementAnswers = _.indexBy(vieQuotidienne.logement.answers, 'model');
-    var situationLogement = logementAnswers[request.formAnswers.vie_quotidienne.logement];
-
-    if (situationFamiliale) {
-      if(situationFamiliale.labelRecap){
-        $scope.situationFamiliale = situationFamiliale.labelRecap;
-      } else {
-        $scope.situationFamiliale = situationFamiliale.label;
-      }
-    }
-
-    if (situationLogement) {
-      if(situationLogement.labelRecap){
-        $scope.situationLogement = situationLogement.labelRecap;
-      } else {
-        $scope.situationLogement = situationLogement.label;
-      }
-    }
 
     if(request.renouvellement){
       $scope.renouvellement = 'Renouvellement';

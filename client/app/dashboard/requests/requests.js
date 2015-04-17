@@ -81,11 +81,6 @@ angular.module('impactApp')
               return result.data;
             });
           },
-          vieQuotidienne: function($http) {
-            return $http.get('api/questions/vie_quotidienne').then(function(result) {
-              return result.data;
-            });
-          },
           prestations: function($http) {
             return $http.get('api/prestations').then(function(result) {
               return result.data;
