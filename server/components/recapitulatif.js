@@ -10,8 +10,7 @@ var async = require('async');
 var moment = require('moment');
 var mustache = require('mustache');
 
-var Sections = require('../api/sections/sections.constant');
-var SectionsWithQuestions = require('../api/question/question.controller').sectionsWithQuestions;
+var sections = require('../api/sections/sections.json');
 
 function readFile(name, callback) {
   fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
@@ -93,7 +92,7 @@ function computeQuestions(request, trajectoireId) {
   }
 
   var questions = [];
-  var toutesQuestions = _.find(SectionsWithQuestions, function(current) {
+  var toutesQuestions = _.find(sections, function(current) {
     return current.id === trajectoireId;
   }).questions;
 
@@ -114,7 +113,9 @@ function computeQuestions(request, trajectoireId) {
 function computeTrajectoires(request) {
   var trajectoires = [];
 
-  Sections.trajectoires.forEach(function(trajectoire) {
+  var toutesTrajectoires = _.filter(sections, 'trajectoire');
+
+  toutesTrajectoires.forEach(function(trajectoire) {
     var questions = computeQuestions(request, trajectoire.id);
 
     if (questions.length > 0) {

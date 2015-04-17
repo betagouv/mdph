@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $window, $cookieStore, $modal, sections, Auth, estAdulte, request, RequestService) {
+  .controller('DemandeCtrl', function ($scope, $state, $window, $cookieStore, $modal, documentTypes, sections, Auth, estAdulte, request, RequestService) {
     $scope.request = request;
     $scope.formAnswers = request.formAnswers;
     $scope.token = $cookieStore.get('token');
@@ -28,7 +28,7 @@ angular.module('impactApp')
 
     $scope.checkSections($scope.formAnswers.etatRenouvellement);
 
-    var login = function (next) {
+    function login(next) {
       $modal.open({
         templateUrl: 'components/modal/login.html',
         backdrop: true,
@@ -41,7 +41,24 @@ angular.module('impactApp')
         // Cancel
         $state.go('departement.demande');
       });
-    };
+    }
+
+    function afterSave() {
+      $window.alert('Votre demande à été sauvegardée');
+      $state.go('departement.demande', {shortId: request.shortId});
+    }
+
+    function onError(err) {
+      $window.alert(err.data.message);
+    }
+
+    function saveRequestAndAlert(next) {
+      if (request._id) {
+        request.$update(next, onError);
+      } else {
+        request.$save(next, onError);
+      }
+    }
 
     $scope.estAdulte = function() {
       if (request.formAnswers.identites && request.formAnswers.identites.beneficiaire) {
@@ -61,23 +78,6 @@ angular.module('impactApp')
       }
     };
 
-    var afterSave = function() {
-      $window.alert('Votre demande à été sauvegardée');
-      $state.go('departement.demande', {shortId: request.shortId});
-    };
-
-    var onError = function(err) {
-      $window.alert(err.data.message);
-    };
-
-    var saveRequestAndAlert = function(next) {
-      if (request._id) {
-        request.$update(next, onError);
-      } else {
-        request.$save(next, onError);
-      }
-    };
-
     $scope.sauvegarder = function() {
       if (Auth.isLoggedIn()) {
         saveRequestAndAlert(afterSave);
@@ -89,16 +89,7 @@ angular.module('impactApp')
     };
 
     $scope.envoyer = function() {
-      var documentsObligatoires = [
-        {
-          id: 'certificatMedical',
-          label: 'Certificat médical'
-        },
-        {
-          id: 'carteIdentite',
-          label: 'Carte d\'identité'
-        }
-      ];
+      var documentsObligatoires = _.filter(documentTypes, {type: 'obligatoire'});
 
       RequestService.isReadyToSend(request, $scope.sectionsObligatoires, documentsObligatoires, function(err) {
         if (err) {

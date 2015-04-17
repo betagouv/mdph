@@ -1,7 +1,7 @@
 'use strict';
 
-var sections = require('./sections.constant');
+var sections = require('./sections.json')
 
 exports.index = function(req, res) {
-  return res.json(sections.all);
+  return res.json(sections);
 }

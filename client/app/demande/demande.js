@@ -13,7 +13,7 @@ angular.module('impactApp')
         },
         resolve: {
           sections: function($http) {
-            return $http.get('/api/questions').then(function(result) {
+            return $http.get('/api/sections').then(function(result) {
               return result.data;
             });
           },

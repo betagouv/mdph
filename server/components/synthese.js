@@ -3,15 +3,12 @@
 /* jshint multistr: true */
 
 var _ = require('lodash');
-var os = require('os');
 var fs = require('fs');
 var path = require('path')
 var async = require('async');
 var moment = require('moment');
 var mustache = require('mustache');
 
-var Sections = require('../api/sections/sections.constant');
-var QuestionsBySections = require('../api/question/question.controller').questionsBySections;
 var questionsByDescription = require('../api/geva/geva.controller').questionsByDescription;
 var getFlattenedAnswers = require('../api/geva/geva.controller').getFlattenedAnswers;
 

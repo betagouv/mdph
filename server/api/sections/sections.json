@@ -102,6 +102,7 @@
     "desc": "",
     "sectionDefault": "obligatoire",
     "sectionRenouvellement": "obligatoire",
+    "trajectoire": true,
     "subSections": [
       {
         "include": "departement.demande.vie_quotidienne.situation.**",
@@ -120,7 +121,7 @@
       "famille": {
         "model": "famille",
         "titleDefault": "Vous vivez",
-        "titleRep": "<%= pronoun %> vit",
+        "titleRep": "{{firstname}} vit",
         "type": "radio",
         "answers": [
           {
@@ -653,6 +654,7 @@
     "desc": "Si votre demande concerne votre scolarité ou vie étudiante",
     "sectionDefault": "complementaire",
     "sectionRenouvellement": "complementaire",
+    "trajectoire": true,
     "subSections": [
       {
         "include": "departement.demande.vie_scolaire.situation.**",
@@ -1081,6 +1083,7 @@
     "desc": "Si votre demande concerne votre projet professionnel",
     "sectionDefault": "complementaire",
     "sectionRenouvellement": "complementaire",
+    "trajectoire": true,
     "subSections": [
       {
         "include": "departement.demande.vie_au_travail.situation_professionnelle.**",
