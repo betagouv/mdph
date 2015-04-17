@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h1 class="modal-title">Autre document</h1>
+</div>
+
+<form name="documentForm" id="form-document" ng-submit="valider(documentForm)" novalidate>
+  <div class="modal-body">
+    <div class="form-group required" ng-class="{'has-error': documentForm.documentTitle.$invalid && documentForm.$submitted}">
+      <label for="documentTitle" class="control-label">Document ajouté</label>
+      <input id="documentTitle" type="text" name="documentTitle" class="form-control" ng-model="label" ng-minlength="1" required>
+      <div ng-messages="documentForm.documentTitle.$error" ng-if="documentForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="submit"
+      name="submit"
+      alt="Valider"
+      class="btn btn-success">
+        Valider
+    </button>
+  </div>
+</form>

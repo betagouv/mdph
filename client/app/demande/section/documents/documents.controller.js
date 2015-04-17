@@ -78,6 +78,12 @@ angular.module('impactApp')
 
       modalInstance.result.then(function (selected) {
         $scope.documentsComplementaires.push(selected);
+        if (selected === 'autre') {
+          $modal.open({
+            templateUrl: 'app/demande/section/documents/modal_autre.html',
+            controller: 'ModalInstanceAutreCtrl'
+          });
+        }
       });
     };
   })
@@ -92,4 +98,11 @@ angular.module('impactApp')
       $modalInstance.dismiss('cancel');
     };
 
+  })
+  .controller('ModalInstanceAutreCtrl', function ($scope, $modalInstance){
+    $scope.valider = function (form) {
+      if (form.$valid){
+        $modalInstance.close();
+      }
+    };
   });
