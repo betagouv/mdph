@@ -131,5 +131,10 @@ angular.module('impactApp').constant('documentTypes', [
     type: 'travail',
     label: 'Bilans d\'accompagnement professionnel (stages, bilans d\'orientation, ...)',
     desc: 'Bilans d\'accompagnement professionnel (stages, bilans d\'orientation, bilans de compétences, bilans de formation de tous opérateurs - GRETA, AFIPA, Pôle emploi, Cap Emploi, Mission locale, entreprise adaptée…)'
+  },
+  {
+    id: 'autre',
+    type: 'autre',
+    label: 'Autre document'
   }
 ]);

@@ -21,6 +21,17 @@
             <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           </div>
         </div>
+
+        <div class="form-group required" ng-if="selectedType && selectedType.type === 'autre'" ng-class="{'has-error': documentForm.documentTitle.$invalid && documentForm.$submitted}">
+          <label for="documentTitle" class="control-label">Document ajouté</label>
+          <input id="documentTitle" type="text" name="documentTitle" class="form-control" ng-model="label" ng-minlength="1" required>
+          <div ng-messages="documentForm.documentTitle.$error" ng-if="documentForm.$submitted">
+            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+          </div>
+        </div>
+
+
         <div class="form-group" ng-class="{'has-error': documentForm.$submitted && files.length !== 1}">
           <label for="inputFile">Choisir le fichier</label>
           <div class="clearfix"></div>
