@@ -97,8 +97,6 @@ function computeQuestions(request, trajectoireId) {
     return current.id === trajectoireId;
   }).questions;
 
-  console.log(toutesQuestions);
-
   _.forEach(toutesQuestions, function(question) {
     var answers = computeAnswers(question, trajectoireAnswers);
 
