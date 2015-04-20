@@ -21,6 +21,7 @@ module.exports = function(app) {
   app.use('/api/questions-preparation-evaluation', require('./api/questions_preparation_evaluation'));
   app.use('/api/dispatch-rules', require('./api/dispatch-rule'));
   app.use('/api/sections', require('./api/sections'));
+  app.use('/api/secteurs', require('./api/secteur'));
 
   app.use('/auth', require('./auth'));
 

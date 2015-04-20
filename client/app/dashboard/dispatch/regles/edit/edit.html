@@ -9,14 +9,26 @@
   </div>
   <form class="form-horizontal">
     <div class="form-group">
-      <label for="inputName" class="col-sm-2 control-label">Agent associé</label>
+      <label for="inputName" class="col-sm-2 control-label">Secteur enfant</label>
       <div class="col-sm-4">
-        <select class="form-control" ng-model="selectedEvaluator" ng-options="evaluator._id as evaluator.name for evaluator in evaluators"></select>
+        <select class="form-control" ng-model="secteurEnfant" ng-options="secteur._id as secteur.name for secteur in secteurs">
+        </select>
+      </div>
+      <label for="inputName" class="col-sm-2 control-label">Secteur adulte</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="secteurAdulte" ng-options="secteur._id as secteur.name for secteur in secteurs">
+        </select>
       </div>
     </div>
     <div class="form-group">
-      <keyword-input input-label="'Codes postaux'" keyword-name="'code postal'"
-        keywords="zipcodes" selected-keywords="selectedZipcodes" show-help="true"></keyword-input>
+      <label for="inputName" class="col-sm-2 control-label">Commune</label>
+      <div class="col-sm-4">
+        <input class="form-control" type="text" ng-model="commune.nom" />
+      </div>
+      <label for="inputName" class="col-sm-2 control-label">Code Postal</label>
+      <div class="col-sm-4">
+        <input class="form-control" type="text" ng-model="commune.codePostal" />
+      </div>
     </div>
     <div class="form-group">
       <div class="col-sm-2">

@@ -1,0 +1,47 @@
+<ui-view>
+  <div class="list-header">
+    <form class="pull-right">
+      <div class="input-group search">
+        <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-sm btn-primary">
+            Ok
+          </button>
+        </div>
+      </div>
+    </form>
+    <h2>Secteurs</h2>
+    <div class="tools">
+      <a class="btn btn-sm btn-primary" ui-sref="dashboard.dispatch.secteurs.edit">
+        <i class="fa fa-plus"></i> Nouveau secteur
+      </a>
+    </div>
+  </div>
+
+  <div class="list-main">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Agents associés</th>
+          <th>Créé le</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(idx, secteur) in filteredRules = (secteurs | filter:query)">
+          <td>
+            <a ui-sref="dashboard.dispatch.secteurs.edit({id: secteur._id})">
+              {{secteur.name}}
+            </a>
+          </td>
+          <td>
+            <a ui-sref="dashboard.dispatch.secteurs.edit({id: secteur._id})">
+              <span class="td-item" ng-repeat="evaluator in secteur.evaluators">{{evaluator.name}}</span>
+            </a>
+          </td>
+          <td>{{secteur.createdAt | date}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ui-view>

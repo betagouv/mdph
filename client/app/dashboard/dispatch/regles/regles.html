@@ -1,0 +1,57 @@
+<ui-view>
+  <div class="list-header">
+    <form class="pull-right">
+      <div class="input-group search">
+        <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-sm btn-primary">
+            Ok
+          </button>
+        </div>
+      </div>
+    </form>
+    <h2>Règles de dispatch automatique</h2>
+    <div class="tools">
+      <a class="btn btn-sm btn-primary" ui-sref="dashboard.dispatch.regles.edit">
+        <i class="fa fa-plus"></i> Nouvelle règle
+      </a>
+    </div>
+  </div>
+
+  <div class="list-main">
+    <table>
+      <thead>
+        <tr>
+          <th>Commune</th>
+          <th>Code Postal</th>
+          <th>Adulte</th>
+          <th>Enfant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(idx, dispatchRule) in filteredRules = (dispatchRules | filter:query)">
+          <td>
+            <a ui-sref="dashboard.dispatch.regles.edit({id: dispatchRule._id})">
+              {{dispatchRule.commune.nom}}
+            </a>
+          </td>
+          <td>
+            <a ui-sref="dashboard.dispatch.regles.edit({id: dispatchRule._id})">
+              {{dispatchRule.commune.codePostal}}
+            </a>
+          </td>
+          <td>
+            <a ui-sref="dashboard.dispatch.regles.edit({id: dispatchRule._id})">
+              {{dispatchRule.secteurEnfant.name}}
+            </a>
+          </td>
+          <td>
+            <a ui-sref="dashboard.dispatch.regles.edit({id: dispatchRule._id})">
+              {{dispatchRule.secteurAdulte.name}}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ui-view>

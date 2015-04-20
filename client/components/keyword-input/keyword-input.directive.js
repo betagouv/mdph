@@ -41,12 +41,14 @@ angular.module('impactApp')
       };
 
       $scope.setFocusOnInput = function(id) {
-        $timeout(function() {
-          var element = document.getElementById(id);
-          if (element) {
-            element.focus();
-          }
-        });
+        if ($scope.showNew) {
+          $timeout(function() {
+            var element = document.getElementById(id);
+            if (element) {
+              element.focus();
+            }
+          });
+        }
       };
 
       $scope.toggleShowTags = function() {

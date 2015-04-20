@@ -2,7 +2,7 @@
 
 var auth = require('../../auth/auth.service');
 var express = require('express');
-var controller = require('./dispatch-rule.controller');
+var controller = require('./secteur.controller');
 
 var router = express.Router();
 

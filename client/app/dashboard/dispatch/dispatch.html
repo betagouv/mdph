@@ -4,53 +4,22 @@
       <h2>Règles de dispatch automatique</h2>
       <ul>
         <li>
-          <a ui-sref-active="active" ui-sref="dashboard.dispatch">
+          <a ui-sref-active="active" ui-sref="dashboard.dispatch.regles">
             Toutes les régles
+          </a>
+        </li>
+      </ul>
+      <h2>Secteurs</h2>
+      <ul>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.dispatch.secteurs">
+            Gestion des secteurs
           </a>
         </li>
       </ul>
     </div>
     <div class="col-sm-10">
-      <div ui-view class="main-dashboard">
-        <div class="list-header">
-          <form class="pull-right">
-            <div class="input-group search">
-              <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
-              <div class="input-group-btn">
-                <button type="submit" class="btn btn-sm btn-primary">
-                  Ok
-                </button>
-              </div>
-            </div>
-          </form>
-          <h2>Règles de dispatch automatique</h2>
-          <div class="tools">
-            <a class="btn btn-sm btn-primary" ui-sref="dashboard.dispatch.edit">
-              <i class="fa fa-plus"></i> Nouvelle règle
-            </a>
-          </div>
-        </div>
-
-        <div class="list-main">
-          <table>
-            <tbody>
-              <tr ng-repeat="(idx, dispatchRule) in filteredRules = (dispatchRules | filter:query)">
-                <td>
-                  <a ui-sref="dashboard.dispatch.edit({id: dispatchRule._id})">
-                    {{dispatchRule.evaluator.name}}
-                  </a>
-                </td>
-                <td>
-                  <a ui-sref="dashboard.dispatch.edit({id: dispatchRule._id})">
-                    <span class="td-item" ng-repeat="code in dispatchRule.zipcodes">{{code}}</span>
-                  </a>
-                </td>
-                <td class="date-request">{{dispatchRule.createdAt | date}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <div ui-view class="main-dashboard"></div>
     </div>
   </div>
 </div>

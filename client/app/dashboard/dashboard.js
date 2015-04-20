@@ -10,6 +10,14 @@ angular.module('impactApp')
         authenticate: true,
         controller: function($scope, SectionBackConstants) {
           $scope.sections = SectionBackConstants;
+        },
+        resolve: {
+          currentUser: function(Auth) {
+            return Auth.getCurrentUser().$promise;
+          },
+          currentMdph: function(currentUser) {
+            return currentUser.mdph;
+          }
         }
       });
   });
