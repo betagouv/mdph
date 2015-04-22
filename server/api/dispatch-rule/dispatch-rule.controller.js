@@ -27,7 +27,7 @@ exports.show = function(req, res) {
   });
 };
 
-exports.update = function(req, res) {
+var update = function(req, res) {
   DispatchRule.findById(req.params.id, function (err, rule) {
     if (err) { return handleError(req, res, err); }
     if(!rule) { return res.sendStatus(404); }
@@ -43,12 +43,18 @@ exports.update = function(req, res) {
   });
 };
 
+exports.update = update;
+
 // Creates a new partenaire in the DB.
 exports.create = function(req, res) {
-  DispatchRule.create(req.body, function(err, rule) {
-    if (err) { return handleError(req, res, err); }
-    return res.status(201).json(rule);
-  });
+  if (req.body._id) {
+    return update(req, res);
+  } else {
+    DispatchRule.create(req.body, function(err, rule) {
+      if (err) { return handleError(req, res, err); }
+      return res.status(201).json(rule);
+    });
+  }
 };
 
 // Deletes a partenaire from the DB.
