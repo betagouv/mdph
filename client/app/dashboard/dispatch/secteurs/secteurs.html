@@ -23,7 +23,8 @@
       <thead>
         <tr>
           <th>Nom</th>
-          <th>Agents associés</th>
+          <th>Agents - Adultes</th>
+          <th>Agents - Enfance</th>
           <th>Créé le</th>
         </tr>
       </thead>
@@ -36,7 +37,12 @@
           </td>
           <td>
             <a ui-sref="dashboard.dispatch.secteurs.edit({id: secteur._id})">
-              <span class="td-item" ng-repeat="evaluator in secteur.evaluators">{{evaluator.name}}</span>
+              <span class="td-item" ng-repeat="evaluator in secteur.evaluators.adulte">{{evaluator.name}}</span>
+            </a>
+          </td>
+          <td>
+            <a ui-sref="dashboard.dispatch.secteurs.edit({id: secteur._id})">
+              <span class="td-item" ng-repeat="evaluator in secteur.evaluators.enfant">{{evaluator.name}}</span>
             </a>
           </td>
           <td>{{secteur.createdAt | date}}</td>

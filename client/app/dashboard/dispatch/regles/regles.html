@@ -24,8 +24,8 @@
         <tr>
           <th>Commune</th>
           <th>Code Postal</th>
-          <th>Adulte</th>
-          <th>Enfant</th>
+          <th>Secteur - Adultes</th>
+          <th>Secteur - Enfance</th>
         </tr>
       </thead>
       <tbody>
@@ -42,12 +42,12 @@
           </td>
           <td>
             <a ui-sref="dashboard.dispatch.regles.edit({id: dispatchRule._id})">
-              {{dispatchRule.secteurEnfant.name}}
+              {{dispatchRule.secteur.adulte.name}}
             </a>
           </td>
           <td>
             <a ui-sref="dashboard.dispatch.regles.edit({id: dispatchRule._id})">
-              {{dispatchRule.secteurAdulte.name}}
+              {{dispatchRule.secteur.enfant.name}}
             </a>
           </td>
         </tr>

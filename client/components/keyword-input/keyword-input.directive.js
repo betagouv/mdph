@@ -6,21 +6,25 @@ angular.module('impactApp')
     restrict: 'E',
     templateUrl: 'components/keyword-input/keyword-input.html',
     scope: {
-      inputLabel: '=',
-      keywordName: '=',
-      keywords: '=',
-      selectedKeywords: '=',
       labelWidth: '=',
       inputWidth: '=',
+
       showHelp: '=',
-      showNew: '='
+      inputLabel: '=',
+      keywordLabel: '=',
+
+      keywords: '=',
+      isMongo: '=areKeywordsMongoDocuments',
+      selectedKeywords: '=',
+      canAddKeywords: '='
     },
     controller: function($scope) {
-      $scope.showTags = true;
 
-      $scope.isObject = function(keyword) {
-        return typeof keyword !== 'string';
-      };
+      if ($scope.isMongo) {
+        $scope.availableKeyword = _.clone($scope.keywords, true);
+      } else {
+        $scope.availableKeyword = $scope.keywords;
+      }
 
       $scope.addKeyword = function(keyword) {
         var newKeyword;
@@ -51,12 +55,12 @@ angular.module('impactApp')
         }
       };
 
-      $scope.toggleShowTags = function() {
-        $scope.showTags = !$scope.showTags;
-      };
-
       $scope.isSelected = function(keyword) {
-        return false === $scope.selectedKeywords.indexOf(keyword) >= 0;
+        if ($scope.isMongo) {
+          return false === _.where($scope.selectedKeywords, {'_id': keyword._id}).length > 0;
+        } else {
+          return false === $scope.selectedKeywords.indexOf(keyword) >= 0;
+        }
       };
     }
   };

@@ -5,14 +5,16 @@ angular.module('impactApp')
     $scope.dispatchRule = dispatchRule;
     $scope.secteurs = secteurs;
 
-    $scope.secteurEnfant = dispatchRule.secteurEnfant ? dispatchRule.secteurEnfant._id : null;
-    $scope.secteurAdulte = dispatchRule.secteurAdulte ? dispatchRule.secteurAdulte._id : null;
+    $scope.secteurEnfant = dispatchRule.secteur && dispatchRule.secteur.enfant ? dispatchRule.secteur.enfant._id : null;
+    $scope.secteurAdulte = dispatchRule.secteur && dispatchRule.secteur.adulte ? dispatchRule.secteur.adulte._id : null;
     $scope.commune = dispatchRule.commune ? dispatchRule.commune : {};
 
     $scope.save = function() {
       dispatchRule.commune = $scope.commune;
-      dispatchRule.secteurEnfant = $scope.secteurEnfant;
-      dispatchRule.secteurAdulte = $scope.secteurAdulte;
+      dispatchRule.secteur = {
+        adulte: $scope.secteurAdulte,
+        enfant: $scope.secteurEnfant,
+      };
       dispatchRule.mdph = currentMdph._id;
       dispatchRule.$save(function() {
         $state.go('^', {}, {reload: true});

@@ -15,7 +15,24 @@
       </div>
     </div>
     <div class="form-group">
-      <keyword-input input-label="'Agents'" show-new="false" keyword-name="'agent'" keywords="evaluators" selected-keywords="selectedEvaluators"></keyword-input>
+      <keyword-input
+        input-label="'Agents adultes'"
+        can-add-keywords="false"
+        keyword-label="'agent'"
+        keywords="evaluators"
+        selected-keywords="selectedEvaluatorsAdultes"
+        are-keywords-mongo-documents="true">
+      </keyword-input>
+    </div>
+    <div class="form-group">
+      <keyword-input
+        input-label="'Agents enfance'"
+        can-add-keywords="false"
+        keyword-label="'agent'"
+        keywords="evaluators"
+        selected-keywords="selectedEvaluatorsEnfants"
+        are-keywords-mongo-documents="true">
+      </keyword-input>
     </div>
     <div class="form-group">
       <div class="col-sm-2">

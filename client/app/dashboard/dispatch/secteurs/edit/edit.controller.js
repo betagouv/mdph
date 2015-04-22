@@ -3,13 +3,18 @@
 angular.module('impactApp')
   .controller('SecteurEditCtrl', function ($scope, $state, secteur, evaluators, currentMdph) {
     $scope.secteur = secteur;
+    $scope.name = secteur.name;
     $scope.evaluators = evaluators;
 
-    $scope.name = secteur.name;
-    $scope.selectedEvaluators = secteur.evaluators ? secteur.evaluators : [];
+    $scope.selectedEvaluatorsAdultes = secteur.evaluators && secteur.evaluators.adulte ? secteur.evaluators.adulte : [];
+    $scope.selectedEvaluatorsEnfants = secteur.evaluators && secteur.evaluators.enfant ? secteur.evaluators.enfant : [];
 
     $scope.save = function() {
-      secteur.evaluators = _.pluck($scope.selectedEvaluators, '_id');
+      secteur.evaluators = {
+        adulte: _.pluck($scope.selectedEvaluatorsAdultes, '_id'),
+        enfant: _.pluck($scope.selectedEvaluatorsEnfants, '_id'),
+      };
+
       secteur.name = $scope.name;
       secteur.mdph = currentMdph._id;
       secteur.$save(function() {

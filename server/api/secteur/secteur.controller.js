@@ -7,7 +7,7 @@ exports.index = function(req, res) {
   Secteur
     .find()
     .sort('name')
-    .populate('evaluators')
+    .populate('evaluators.enfant evaluators.adulte')
     .exec(function(err, secteurs) {
       if(err) { return handleError(req, res, err); }
       return res.json(secteurs);
@@ -17,7 +17,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   Secteur
     .findById(req.params.id)
-    .populate('evaluators')
+    .populate('evaluators.enfant evaluators.adulte')
     .exec(function (err, secteur) {
     if (err) { return handleError(req, res, err); }
     if(!secteur) { return res.sendStatus(404); }
@@ -25,7 +25,7 @@ exports.show = function(req, res) {
   });
 };
 
-exports.update = function(req, res) {
+var update = function(req, res) {
   Secteur.findById(req.params.id, function (err, secteur) {
     if (err) { return handleError(req, res, err); }
     if(!secteur) { return res.sendStatus(404); }
@@ -41,12 +41,18 @@ exports.update = function(req, res) {
   });
 };
 
+exports.update = update;
+
 // Creates a new partenaire in the DB.
 exports.create = function(req, res) {
-  Secteur.create(req.body, function(err, secteur) {
-    if (err) { return handleError(req, res, err); }
-    return res.status(201).json(secteur);
-  });
+  if (req.body._id) {
+    return update(req, res);
+  } else {
+    Secteur.create(req.body, function(err, secteur) {
+      if (err) { return handleError(req, res, err); }
+      return res.status(201).json(secteur);
+    });
+  }
 };
 
 // Deletes a partenaire from the DB.

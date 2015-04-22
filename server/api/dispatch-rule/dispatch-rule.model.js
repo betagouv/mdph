@@ -11,8 +11,10 @@ var DispatchRuleSchema = new Schema({
     nom: String,
     codePostal: String
   },
-  secteurEnfant:  { type: Schema.Types.ObjectId, ref: 'Secteur' },
-  secteurAdulte:  { type: Schema.Types.ObjectId, ref: 'Secteur' }
+  secteur:  {
+    enfant: { type: Schema.Types.ObjectId, ref: 'Secteur' },
+    adulte: { type: Schema.Types.ObjectId, ref: 'Secteur' }
+  }
 });
 
 module.exports = mongoose.model('DispatchRule', DispatchRuleSchema);

@@ -9,14 +9,14 @@
   </div>
   <form class="form-horizontal">
     <div class="form-group">
-      <label for="inputName" class="col-sm-2 control-label">Secteur enfant</label>
-      <div class="col-sm-4">
-        <select class="form-control" ng-model="secteurEnfant" ng-options="secteur._id as secteur.name for secteur in secteurs">
-        </select>
-      </div>
-      <label for="inputName" class="col-sm-2 control-label">Secteur adulte</label>
+      <label for="inputName" class="col-sm-2 control-label">Secteur adultes</label>
       <div class="col-sm-4">
         <select class="form-control" ng-model="secteurAdulte" ng-options="secteur._id as secteur.name for secteur in secteurs">
+        </select>
+      </div>
+      <label for="inputName" class="col-sm-2 control-label">Secteur enfance</label>
+      <div class="col-sm-4">
+        <select class="form-control" ng-model="secteurEnfant" ng-options="secteur._id as secteur.name for secteur in secteurs">
         </select>
       </div>
     </div>
