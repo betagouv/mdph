@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestNonAttribueCtrl', function ($scope, requests, currentUser, NotificationService, $state) {
+  .controller('PendingRequestsCtrl', function ($scope, requests, currentUser, NotificationService, $state) {
     $scope.requests = requests;
     $scope.onlyUrgences = false;
 
@@ -15,6 +15,6 @@ angular.module('impactApp')
           $scope.$emit('assign-request');
         }
       });
-      $state.go('dashboard.requests.list.user', {userId: $scope.currentUser._id});
+      $state.go('dashboard.requests.user', {userId: $scope.currentUser._id});
     };
   });

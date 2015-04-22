@@ -2,10 +2,12 @@
 
 var _ = require('lodash');
 var Secteur = require('./secteur.model');
+var Request = require('../request/request.model');
+var Mdph = require('../mdph/mdph.model');
 
 exports.index = function(req, res) {
   Secteur
-    .find()
+    .find({mdph: req.user.mdph})
     .sort('name')
     .populate('evaluators.enfant evaluators.adulte')
     .exec(function(err, secteurs) {
@@ -68,3 +70,17 @@ function handleError(req, res, err) {
   return res.status(500).send(err);
 }
 
+exports.listRequests = function(req, res) {
+  Mdph.findById(req.user.mdph, function(err, mdph) {
+    if (err) return handleError(req, res, err);
+    if (!mdph) return res.sendStatus(404);
+
+    var secteurId = req.params.id !== 'null' ? req.params.id : null;
+    Request.find({secteur: secteurId, evaluator: null, status: 'emise', mdph: mdph.zipcode}, function (err, requests) {
+      if (err) return handleError(req, res, err);
+
+      res.set('count', requests.length);
+      return res.send(requests);
+    });
+  });
+}

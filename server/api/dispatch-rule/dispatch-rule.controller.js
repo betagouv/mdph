@@ -7,7 +7,7 @@ var path = require('path');
 // Get list of DispatchRule
 exports.index = function(req, res) {
   DispatchRule
-    .find()
+    .find({mdph: req.user.mdph})
     .populate('secteur.enfant secteur.adulte')
     .sort('createdAt')
     .exec(function(err, rules) {

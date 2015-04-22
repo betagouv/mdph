@@ -18,7 +18,7 @@ angular.module('impactApp')
           if ($rootScope.returnToState) {
             $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
           } else if (data.role === 'adminMdph') {
-            $state.go('dashboard.requests.list.user', {userId: data.id});
+            $state.go('dashboard.requests.user', {userId: data.id});
           } else if (data.role === 'admin') {
             $state.go('admin');
           } else {

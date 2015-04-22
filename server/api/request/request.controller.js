@@ -61,8 +61,6 @@ exports.index = function(req, res) {
       .sort('createdAt')
       .exec(function(err, requests) {
         if(err) return handleError(req, res, err);
-
-        res.set('count', requests.length);
         return res.send(requests);
       });
   });

@@ -11,36 +11,31 @@ angular.module('impactApp')
           users: function(Auth) {
             return Auth.getAllUsers();
           },
+          secteurs: function(SecteurResource) {
+            return SecteurResource.query().$promise;
+          },
           currentUser: function(Auth) {
             return Auth.getCurrentUser();
-          },
-          pendingRequests: function($http) {
-            return $http({method: 'HEAD', url: '/api/requests', params: {evaluator: 'null', status: 'emise'}}).then(function(result) {
-              return result.headers('count');
+          }
+        },
+        authenticate: true
+      })
+      .state('dashboard.requests.pending', {
+        url: '/en_attente/:secteurId',
+        templateUrl: 'app/dashboard/requests/pending/pending.html',
+        controller: 'PendingRequestsCtrl',
+        resolve: {
+          requests: function($http, $stateParams) {
+            var secteurId = $stateParams.secteurId !== 'autres' ? $stateParams.secteurId : 'null';
+            return $http.get('/api/secteurs/' + secteurId + '/requests').then(function(result) {
+              return result.data;
             });
           }
         },
         authenticate: true
       })
-      .state('dashboard.requests.list', {
-        url: '/liste',
-        abstract: true,
-        template: '<ui-view></ui-view>',
-        authenticate: true
-      })
-      .state('dashboard.requests.list.non_attribue', {
-        url: '/non_attribue',
-        templateUrl: 'app/dashboard/requests/non_attribue/non_attribue.html',
-        controller: 'RequestNonAttribueCtrl',
-        resolve: {
-          requests: function(RequestResource) {
-            return RequestResource.query({evaluator: 'null', status: 'emise'}).$promise;
-          }
-        },
-        authenticate: true
-      })
-      .state('dashboard.requests.list.user', {
-        url: '/:userId',
+      .state('dashboard.requests.user', {
+        url: '/utilisateur/:userId',
         templateUrl: 'app/dashboard/requests/list/list.html',
         controller: 'RequestListCtrl',
         resolve: {
@@ -56,7 +51,7 @@ angular.module('impactApp')
         authenticate: true
       })
       .state('dashboard.requests.detail', {
-        url: '/:shortId',
+        url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
         controller: function($scope, $state, $window, request, user) {
           $scope.request = request;
@@ -68,7 +63,7 @@ angular.module('impactApp')
 
           $scope.supprimer = function(request) {
             request.$delete(function() {
-              $state.go('dashboard.requests.list.non_attribue', {}, {reload: true});
+              $state.go('dashboard.requests', {}, {reload: true});
             });
           };
         },

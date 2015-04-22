@@ -1,16 +1,30 @@
 <div class="container-dashboard">
   <div class="row">
     <div class="col-sm-2 menu-dashboard">
-      <h2>Demandes en cours</h2>
+      <h2>Vos demandes</h2>
       <ul>
         <li>
-          <a ui-sref-active="active" ui-sref="dashboard.requests.list.user({userId: currentUser._id})">
-            Vos demandes
+          <a ui-sref-active="active" ui-sref="dashboard.requests.user({userId: currentUser._id})">
+            En cours
           </a>
         </li>
-        <li>
-          <a ui-sref-active="active" ui-sref="dashboard.requests.list.non_attribue">
-            Non attribuées <span class="label label-danger pull-right">{{pendingRequests}}</span>
+      </ul>
+
+      <h2>Demandes non attribuées</h2>
+      <ul>
+        <li ng-repeat="secteur in secteurs">
+          <a
+            ui-sref-active="active"
+            ui-sref="dashboard.requests.pending({secteurId: secteur._id || 'autres'})">
+            {{secteur.name}}
+            <span
+              ng-class="{
+                'label-danger': secteur.pendingRequests >= 10,
+                'label-success': secteur.pendingRequests == 0,
+                'label-warning': secteur.pendingRequests > 0 && secteur.pendingRequests < 10}"
+              class="label pull-right">
+              {{secteur.pendingRequests}}
+            </span>
           </a>
         </li>
       </ul>
@@ -18,7 +32,7 @@
       <h2>Collaborateurs</h2>
       <ul>
         <li ng-repeat="user in users" ng-if="user._id !== currentUser._id"><a ui-sref-active="active"
-          ui-sref="dashboard.requests.list.user({userId: user._id})">{{user.name}}</a></li>
+          ui-sref="dashboard.requests.user({userId: user._id})">{{user.name}}</a></li>
       </ul>
     </div>
     <div class="col-sm-10">
