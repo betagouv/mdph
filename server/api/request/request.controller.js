@@ -141,18 +141,18 @@ exports.update = function(req, res, next) {
     // Find evaluator through dispatcher
     function(request, callback) {
       if (req.query.isSendingRequest) {
-        Dispatcher.findEvaluator(request, function(evaluator) {
-          callback(null, request, evaluator);
+        Dispatcher.findSecteur(request.formAnswers.identites, function(secteur) {
+          callback(null, request, secteur);
         });
       } else {
         callback(null, request, null);
       }
     },
     // Set new request attributes
-    function(request, evaluator, callback){
-      if (evaluator) {
-        request.set('evaluator', evaluator);
-        // TODO Send mail to evaluator
+    function(request, secteur, callback){
+      if (secteur) {
+        request.set('secteur', secteur);
+        // TODO Send mail to evaluators
       }
 
       request

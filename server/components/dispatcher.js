@@ -1,21 +1,29 @@
 'use strict';
 
 var _ = require('lodash');
+var moment = require('moment');
+var DispatchRuleModel = require('../api/dispatch-rule/dispatch-rule.model');
+var SecteurModel = require('../api/secteur/secteur.model');
 
-var DispatchRule = require('../api/dispatch-rule/dispatch-rule.model');
+exports.findSecteur = function(identites, callback) {
+  var dateNaissance = identites.beneficiaire.dateNaissance;
+  var codePostal = identites.beneficiaire.code_postal;
+  var estAdulte = moment().diff(dateNaissance, 'years') >= 18;
+  var type = estAdulte ? 'adulte' : 'enfant';
 
-exports.findEvaluator = function(request, callback) {
-  var evaluator = null;
+  var secteur = null;
+  var query = DispatchRuleModel.where({'commune.codePostal': codePostal});
 
-  DispatchRule.find({}, function(err, rules) {
-    if (rules) {
-      rules.forEach(function(rule) {
-        if (_.contains(rule.zipcodes, request.formAnswers.identites.beneficiaire.code_postal)) {
-          evaluator = rule.evaluator;
-        }
-      });
+  query.findOne(function(err, rule) {
+    if (err || !rule) {
+      return callback(null);
     }
 
-    callback(evaluator);
+    var secteur = SecteurModel.findById(rule.secteur[type], function(err, secteur) {
+      if (err || !secteur) {
+        return callback(null);
+      }
+      return callback(secteur);
+    });
   });
 }
