@@ -35,10 +35,19 @@ module.exports = function(app) {
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
-  app.use(bodyParser.json({limit: '5mb'}));
-  app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+  app.use(bodyParser.json({limit: '20mb'}));
+  app.use(bodyParser.urlencoded({limit: '20mb', extended: true}));
   app.use(multer({
-    dest: config.root + '/server/uploads/'
+    dest: config.root + '/server/uploads/',
+    onFileUploadStart: function (file) {
+      console.log(file.originalname + ' is starting ...')
+    },
+    onFileUploadComplete: function (file) {
+      console.log(file.fieldname + ' uploaded to  ' + file.path)
+    },
+    onFilesLimit: function () {
+      console.log('Crossed file limit!')
+    }
   }));
 
 
