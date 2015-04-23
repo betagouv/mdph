@@ -15,6 +15,7 @@ var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 var bunyan = require('bunyan');
+var multer  = require('multer')
 
 var logger = bunyan.createLogger({
   name: 'impact-dev',
@@ -31,11 +32,15 @@ module.exports = function(app) {
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
   app.use(compression());
-  app.use(bodyParser.json({limit: '50mb'}));
-  app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
+  app.use(bodyParser.json({limit: '5mb'}));
+  app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+  app.use(multer({
+    dest: config.root + '/server/uploads/'
+  }));
+
 
   var requestLogger = function (req, res, next) {
     var start = new Date();

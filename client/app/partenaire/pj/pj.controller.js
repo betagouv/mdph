@@ -23,11 +23,7 @@ angular.module('impactApp')
           file: $scope.files[0],
           data: {
             partenaire: partenaire._id,
-            type: $scope.selectedType.id,
-            email: {
-              html: '<h1>Ajout de documents pour une demande à la MDPH</h1><p>Merci d\'avoir complété cette demande.</p>',
-              subject: 'Ajout de documents - confirmation'
-            }
+            type: $scope.selectedType.id
           }
         }).success(function() {
           $modal.open({

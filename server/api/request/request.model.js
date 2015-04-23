@@ -8,7 +8,14 @@ var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
   status:         { type: String, enum: ['validé', 'rejet', 'a_traiter'], default: 'a_traiter' },
   type:           { type: String },
-  gridFile:       { type: Schema.Types.ObjectId }
+
+  originalname:   { type: String },
+  name:           { type: String },
+  encoding:       { type: String },
+  mimetype:       { type: String },
+  path:           { type: String },
+  extension:      { type: String },
+  size:           { type: Number }
 });
 
 var RequestSchema = new Schema({

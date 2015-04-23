@@ -21,7 +21,6 @@ router.get('/:shortId/recapitulatif', auth.isAuthorized(), controller.getRecapit
 router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthesePdf);
 
 router.post('/:shortId/document', controller.saveFile);
-router.get('/:shortId/document/:fileId', auth.isAuthorized(), controller.showFileData);
 router.get('/:shortId/document/:fileId/download', auth.isAuthorized(), controller.downloadFile);
 
 router.get('/:shortId/simulation', auth.isAuthorized(), controller.simulate);

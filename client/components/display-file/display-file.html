@@ -1,10 +1,6 @@
-<span ng-if="!gridFileObj">
-  <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
-</span>
-
-<a target="_self" ng-if="gridFileObj" download="{{gridFileObj.filename}}"
-  href="api/requests/{{request.shortId}}/document/{{file.gridFile}}/download?access_token={{token}}">
-  {{gridFileObj.filename}}
+<a target="_self" ng-if="file.name" download="{{file.originalname}}"
+  href="api/requests/{{request.shortId}}/document/{{file.name}}/download?access_token={{token}}">
+  {{file.originalname}}
 </a>
 
 <span ng-if="file.partenaire">

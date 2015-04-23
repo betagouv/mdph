@@ -7,7 +7,6 @@ var wkhtmltopdf = require('wkhtmltopdf');
 var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
 var fs = require('fs');
-var Busboy = require('busboy');
 var shortid = require('shortid');
 var async = require('async');
 
@@ -205,123 +204,53 @@ exports.save = function(req, res, next) {
  * File upload
  */
 exports.saveFile = function (req, res, next) {
-  var processingFiles = 0;
+  if (!req.files || req.files.length === 0) {
+    return res.sendStatus(304);
+  }
 
   Request.findOne({shortId: req.params.shortId}, function (err, request) {
     if (err) return handleError(req, res, err);
     if (!request) return res.sendStatus(404);
 
-    var busboy = new Busboy({ headers: req.headers });
+    var data = JSON.parse(req.body.data);
+    var document = _.extend(req.files.file, {'type': data.type});
 
-    var field;
-    var file;
+    if (req.query.partenaire) {
+      document.partenaire = data.partenaire;
+      // Mail
+      Partenaire.findById(document.partenaire, function(err, partenaire) {
+        if (err) { handleError(req, res, err); }
+        if (!partenaire) { res.sendStatus(404); }
 
-    busboy.on('field', function(fieldname, val) {
-      try {
-        field = JSON.parse(val);
-      } catch (e) {
-        field = val;
-      }
-    });
+        partenaire.secret = shortid.generate();
+        partenaire.save(function(err) {
+          if (err) { return handleError(req, res, err); }
 
-    busboy.on('file', function(fieldname, stream, filename, encoding, contentType) {
-      processingFiles++;
-      console.log('POST ' + req.originalUrl + ' File: '+ filename + ' Field: ' + fieldname);
-
-      var ws = gfs.createWriteStream({
-        mode: 'w',
-        content_type: contentType,
-        filename: filename
-      });
-
-      ws.on('close', function (data) {
-        file = data;
-        processingFiles--;
-      });
-
-      stream.pipe(ws);
-    });
-
-    // form error (ie fileupload-cancel)
-    busboy.on('error', function(err) {
-      handleError(req, res, err);
-    });
-
-    var finish = function() {
-
-      // wait until all files are finished
-      if (processingFiles > 0) {
-        setTimeout(finish, 200);
-        return;
-      }
-
-      if (res.finished) {
-        return;
-      }
-
-      if (typeof request.documents === 'undefined') {
-        request.documents = [];
-      }
-
-      var document = {
-        gridFile: file._id,
-        type: field.type
-      };
-
-      if (req.query.partenaire) {
-        document.partenaire = field.partenaire;
-        console.log(field.partenaire);
-        // Mail
-        Partenaire.findById(field.partenaire, function(err, partenaire) {
-          if (err) { handleError(req, res, err); }
-          if (!partenaire) { res.sendStatus(404); }
-
-          partenaire.secret = shortid.generate();
-          partenaire.save(function(err) {
-            if (err) { return handleError(req, res, err); }
-
-            var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
-            Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
-              '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
-          });
-
+          var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
+          Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
+            '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
         });
-      }
-
-      request.documents.push(document);
-
-      request.save(function(err, saved) {
-        if (err) { return handleError(req, res, err); }
-        res.json(document);
       });
-    };
+    }
 
-    busboy.on('finish', finish);
-
-    req.pipe(busboy);
+    request.documents.push(document);
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
+      return res.json(document);
+    });
  });
 };
 
-exports.showFileData = function(req, res) {
-  gfs.findOne({ _id: req.params.fileId}, function (err, file) {
-    res.json(file);
-  });
-};
-
 exports.downloadFile = function(req, res) {
-  var readstream = gfs.createReadStream({
-    _id: req.params.fileId
+  var filePath = path.join(config.root + '/server/uploads/', req.params.fileId);
+  var stat = fs.statSync(filePath);
+
+  res.writeHead(200, {
+    'Content-Length': stat.size
   });
 
-  req.on('error', function(err) {
-    handleError(req, res, err);
-  });
-
-  readstream.on('error', function (err) {
-    handleError(req, res, err);
-  });
-
-  readstream.pipe(res);
+  var readStream = fs.createReadStream(filePath);
+  readStream.pipe(res);
 };
 
 exports.getRecapitulatif = function(req, res) {

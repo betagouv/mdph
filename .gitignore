@@ -7,6 +7,8 @@ ecosystem.json
 client/bower_components
 dist
 server/config/local.env.js
+server/uploads/*
+!server/uploads/.gitkeep
 
 #OSX
 .DS_Store
