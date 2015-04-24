@@ -23,7 +23,7 @@ Mailjet.prototype.sendContent = function(to, subject, content, cb) {
   }));
 
   var mailOptions = {
-    from: 'tech@apientreprise.fr',
+    from: 'impact@sgmap.fr',
     to: to,
     subject: subject,
     html: content
