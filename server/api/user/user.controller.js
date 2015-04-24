@@ -94,7 +94,7 @@ exports.changeInfo = function(req, res, next) {
   var userId = req.user._id;
 
   User.findById(userId, function (err, user) {
-    var updated = _.merge(user, req.body);
+    var updated = _.merge(user, _.pick(req.body, 'name', 'email'));
     updated.save(function(err, result) {
       if (err) return validationError(res, err);
       res.json(result);
