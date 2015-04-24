@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var shortid = require('shortid');
 var async = require('async');
+var scissors = require('scissors');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
@@ -283,7 +284,14 @@ exports.getPdf = function(req, res) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
       if (err) { handleError(req, res, err); }
-      wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
+      var outputFile = '.tmp/' + request.shortId + '.pdf';
+      wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
+
+        var pdfA = scissors('server/components/templates/sep_cerfa.pdf'),
+            pdfB = scissors(outputFile);
+
+        return scissors.join(pdfA, pdfB).pdfStream().pipe(res);
+      });
     });
   });
 };
