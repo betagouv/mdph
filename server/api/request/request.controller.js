@@ -71,7 +71,7 @@ exports.index = function(req, res) {
         return res.send(requests);
       });
   });
-};
+}
 
 // Get a single request
 exports.show = function(req, res, next) {
@@ -80,7 +80,7 @@ exports.show = function(req, res, next) {
     if(!request) { return res.sendStatus(404); }
     return res.json(request);
   });
-};
+}
 
 // Get a single request
 exports.showPartenaire = function(req, res, next) {
@@ -93,7 +93,7 @@ exports.showPartenaire = function(req, res, next) {
     if(!request) { return res.sendStatus(404); }
     return res.json(request);
   });
-};
+}
 
 // Deletes a request from the DB.
 exports.destroy = function(req, res) {
@@ -105,7 +105,7 @@ exports.destroy = function(req, res) {
       return res.sendStatus(204);
     });
   });
-};
+}
 
 /**
  * Get user requests
@@ -122,7 +122,7 @@ exports.showUserRequests = function(req, res, next) {
     if (!requests) return res.json(401);
     res.json(requests);
   });
-};
+}
 
 /**
  * Update request
@@ -176,7 +176,7 @@ exports.update = function(req, res, next) {
 
     res.json(request);
   });
-};
+}
 
 /**
  * Save request
@@ -201,7 +201,7 @@ exports.save = function(req, res, next) {
     if(err) return handleError(req, res, err);
     return res.status(201).send(request);
   });
-};
+}
 
 
 
@@ -244,7 +244,7 @@ exports.saveFile = function (req, res, next) {
       return res.json(document);
     });
  });
-};
+}
 
 exports.downloadFile = function(req, res) {
   var filePath = path.join(config.root + '/server/uploads/', req.params.fileName);
@@ -256,7 +256,7 @@ exports.downloadFile = function(req, res) {
 
   var readStream = fs.createReadStream(filePath);
   readStream.pipe(res);
-};
+}
 
 exports.deleteFile = function(req, res) {
   findRequest(req, function (err, request) {
@@ -305,7 +305,7 @@ exports.getCerfa = function(req, res) {
         })
         .pipe(res);
   });
-};
+}
 
 exports.getPdf = function(req, res) {
   findRequest(req, function (err, request) {
@@ -313,7 +313,7 @@ exports.getPdf = function(req, res) {
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
       if (err) { return handleError(req, res, err); }
 
-      if (request.mdph === '59') {
+      if (request.mdph === '59' && req.user.role === 'adminMdph') {
         var outputFile = '.tmp/' + request.shortId + '.pdf';
         wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
 
@@ -327,7 +327,7 @@ exports.getPdf = function(req, res) {
       }
     });
   });
-};
+}
 
 exports.getSynthesePdf = function (req, res) {
   findRequest(req, function (err, request) {
@@ -337,7 +337,7 @@ exports.getSynthesePdf = function (req, res) {
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
     });
   });
-};
+}
 
 exports.simulate = function (req, res) {
   findRequest(req, function (err, request) {
@@ -345,7 +345,7 @@ exports.simulate = function (req, res) {
     var prestations = Prestation.simulate(request.formAnswers);
     return res.json(prestations);
   });
-};
+}
 
 function handleError(req, res, err) {
   req.log.error(err);
