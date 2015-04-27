@@ -10,6 +10,7 @@ var fs = require('fs');
 var shortid = require('shortid');
 var async = require('async');
 var scissors = require('scissors');
+var Canvas = require('canvas');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
@@ -364,15 +365,35 @@ function groupDocuments(request, outputFile) {
     }
   });
 
-  var scissorDocuments = [];
+  var localDocuments = [];
   groupsFor59.forEach(function(group) {
     if (group.documents.length > 0) {
-      scissorDocuments.push(scissors(path.join(config.root + '/server/components/pdf_templates/' + group.separator)));
+      localDocuments.push(path.join(config.root + '/server/components/pdf_templates/' + group.separator));
       group.documents.forEach(function(document) {
-        var filePath = path.join(config.root + '/server/uploads/', document.name);
-        scissorDocuments.push(scissors(filePath));
+        if (document.mimetype !== 'application/pdf') {
+          var data = fs.readFileSync(path.join(config.root + '/server/uploads/', document.name));
+          var img = new Canvas.Image();
+          img.src = data;
+
+          var canvas = new Canvas(img.width, img.height, 'pdf');
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, img.width / 4, img.height / 4);
+
+          var newPdfPath = path.join(config.root + '/server/uploads/' + document.name + '.pdf');
+          fs.writeFileSync(newPdfPath, canvas.toBuffer());
+
+          localDocuments.push(newPdfPath);
+        } else {
+          localDocuments.push(path.join(config.root + '/server/uploads/', document.name));
+        }
       });
     }
+  });
+
+  console.log(localDocuments)
+  var scissorDocuments = [];
+  localDocuments.forEach(function(documentPath) {
+    scissorDocuments.push(scissors(documentPath));
   });
   return scissorDocuments;
 }
