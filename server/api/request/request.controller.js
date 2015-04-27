@@ -284,14 +284,19 @@ exports.getPdf = function(req, res) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
       if (err) { handleError(req, res, err); }
-      var outputFile = '.tmp/' + request.shortId + '.pdf';
-      wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
 
-        var pdfA = scissors('server/components/templates/sep_cerfa.pdf'),
-            pdfB = scissors(outputFile);
+      if (request.mdph === '59') {
+        var outputFile = '.tmp/' + request.shortId + '.pdf';
+        wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
 
-        return scissors.join(pdfA, pdfB).pdfStream().pipe(res);
-      });
+          var pdfA = scissors(path.join(config.root + '/server/components/pdf_templates/sep_cerfa.pdf')),
+              pdfB = scissors(outputFile);
+
+          return scissors.join(pdfA, pdfB).pdfStream().pipe(res);
+        });
+      } else {
+        wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
+      }
     });
   });
 };
