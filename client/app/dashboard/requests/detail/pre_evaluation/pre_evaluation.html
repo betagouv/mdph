@@ -5,15 +5,7 @@
   </div>
 
   <div class="panel-body">
-
     <div ng-bind-html="recapitulatifHtml"></div>
-
-    <div class="pull-right">
-      <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
-        <i class="fa fa-download"></i>
-        Télécharger
-      </a>
-    </div>
   </div>
 </div>
 
@@ -89,9 +81,10 @@
   <button class="btn btn-primary" ng-if="request.evaluator !== currentUser._id" ng-click="assigner()">
     <i class="fa fa-download"></i> S'assigner cette demande
   </button>
-  <button class="btn btn-primary">
-    <i class="fa fa-clock-o"></i> Planifier une action
-  </button>
+  <a target="_blank" class="btn btn-success" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
+    <i class="fa fa-download"></i>
+    Télécharger
+  </a>
 </div>
 
 <div class="clearfix"></div>
