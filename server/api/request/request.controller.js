@@ -218,7 +218,7 @@ exports.saveFile = function (req, res, next) {
     if (!request) return res.sendStatus(404);
 
     var data = JSON.parse(req.body.data);
-    var document = _.extend(req.files.file, {'type': data.type});
+    var document = _.extend(req.files.file, {'type': data.type, 'category': data.category});
 
     if (req.query.partenaire) {
       document.partenaire = data.partenaire;
@@ -263,6 +263,10 @@ exports.deleteFile = function(req, res) {
     if (!request) return res.sendStatus(404);
 
     var file = request.documents.id(req.params.fileId);
+    if (!file) {
+      return res.sendStatus(304);
+    }
+
     var filePath = path.join(config.root + '/server/uploads/', file.name);
 
     fs.unlink(filePath, function (err) {
@@ -307,6 +311,72 @@ exports.getCerfa = function(req, res) {
   });
 }
 
+function groupDocuments(request, outputFile) {
+  if (!request.documents) {
+    return [];
+  }
+
+  var groupsFor59 = [
+    {
+      separator: 'sep_justificatifs.pdf',
+      category: 'justificatifs',
+      documents: []
+    },
+    {
+      separator: 'sep_certificat.pdf',
+      category: 'certificat',
+      documents: []
+    },
+    {
+      separator: 'sep_autres_bilans_medicaux.pdf',
+      category: 'autres_bilans_medicaux',
+      documents: []
+    },
+    {
+      separator: 'sep_scolarite.pdf',
+      category: 'scolarite',
+      documents: []
+    },
+    {
+      separator: 'sep_vie_pro.pdf',
+      category: 'vie_pro',
+      documents: []
+    },
+    {
+      separator: 'sep_bilan_ems_sms.pdf',
+      category: 'bilan_ems_sms',
+      documents: []
+    },
+    {
+      separator: 'sep_autres.pdf',
+      category: 'autres',
+      documents: []
+    }
+  ];
+
+  var groupsFor59ByIdx = _.indexBy(groupsFor59, 'category');
+
+  request.documents.forEach(function(document) {
+    if (groupsFor59ByIdx[document.category]) {
+      groupsFor59ByIdx[document.category].documents.push(document);
+    } else {
+      groupsFor59ByIdx.autres.documents.push(document);
+    }
+  });
+
+  var scissorDocuments = [];
+  groupsFor59.forEach(function(group) {
+    if (group.documents.length > 0) {
+      scissorDocuments.push(scissors(path.join(config.root + '/server/components/pdf_templates/' + group.separator)));
+      group.documents.forEach(function(document) {
+        var filePath = path.join(config.root + '/server/uploads/', document.name);
+        scissorDocuments.push(scissors(filePath));
+      });
+    }
+  });
+  return scissorDocuments;
+}
+
 exports.getPdf = function(req, res) {
   findRequest(req, function (err, request) {
     if (!request) return res.sendStatus(404);
@@ -315,12 +385,22 @@ exports.getPdf = function(req, res) {
 
       if (request.mdph === '59' && req.user.role === 'adminMdph') {
         var outputFile = '.tmp/' + request.shortId + '.pdf';
+
+
         wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
+          var scissorDocuments = [
+            scissors(path.join(config.root + '/server/components/pdf_templates/sep_cerfa.pdf')),
+            scissors(outputFile)
+          ];
 
-          var pdfA = scissors(path.join(config.root + '/server/components/pdf_templates/sep_cerfa.pdf')),
-              pdfB = scissors(outputFile);
+          var otherDocuments = groupDocuments(request, outputFile);
+          if (otherDocuments && otherDocuments.length > 0) {
+            otherDocuments.forEach(function(scissorDoc) {
+              scissorDocuments.push(scissorDoc);
+            });
+          }
 
-          return scissors.join(pdfA, pdfB).pdfStream().pipe(res);
+          return scissors.join.apply(scissors, scissorDocuments).pdfStream().pipe(res);
         });
       } else {
         wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);

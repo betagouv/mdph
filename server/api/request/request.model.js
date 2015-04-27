@@ -8,6 +8,7 @@ var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
   status:         { type: String, enum: ['validé', 'rejet', 'a_traiter'], default: 'a_traiter' },
   type:           { type: String },
+  category:       { type: String },
 
   originalname:   { type: String },
   name:           { type: String },

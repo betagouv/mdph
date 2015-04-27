@@ -3,8 +3,12 @@
   'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
   'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'
 }"></i>
+<div ng-if="file.sending">
+  <i class="fa fa-spin fa-circle-o-notch"></i> Envoi en cours...
+</div>
 <a
   target="_self"
+  ng-if="!file.sending"
   download="{{file.originalname}}"
   href="api/requests/{{request.shortId}}/document/{{file.name}}?access_token={{token}}">
   {{file.originalname}}

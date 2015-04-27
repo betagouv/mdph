@@ -24,8 +24,8 @@
   <div class="panel-body">
     <div ng-repeat="(type, files) in filesVM">
       {{documentTypesById[type].label}}
-      <ul>
-        <li ng-repeat="document in files">
+      <ul class="list-group">
+        <li ng-repeat="document in files" class="list-group-item">
           <display-file file="document" request="request"></display-file>
         </li>
       </ul>

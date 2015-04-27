@@ -14,11 +14,11 @@ angular.module('impactApp')
     $scope.filesVM = _.groupBy(request.documents, 'type');
 
     // Initialisation documents obligatoires
-    var typesObligatoires = _.filter(documentTypes, {type: 'obligatoire'});
-    $scope.documentsObligatoires = _.pluck(typesObligatoires, 'id');
+    var documentsObligatoires = _.filter(documentTypes, {mandatory: true});
+    $scope.documentsObligatoires = _.pluck(documentsObligatoires, 'id');
 
     // Initialisation documents complementaires
-    var typesComplementaires = _.reject(documentTypes, {type: 'obligatoire'});
+    var typesComplementaires = _.reject(documentTypes, {mandatory: true});
     $scope.documentsComplementaires = [];
     typesComplementaires.forEach(function(type) {
       if ($scope.filesVM[type.id]) {
@@ -28,18 +28,26 @@ angular.module('impactApp')
 
     $scope.demandePartenaire = function(document) {
       document.asked = true;
-      document.files = []; // TODO supprimer fichiers dejas uploadés
+      document.files = [];
       $scope.request.$update();
     };
 
-
     $scope.onFileSelect = function(file, document) {
+      var current = {sending: true};
+      if (!$scope.filesVM[document]) {
+        $scope.filesVM[document] = [];
+      }
+      var type = $scope.filesVM[document];
+      var length = type.length;
+      type.push(current);
+
       $upload.upload({
           url: 'api/requests/' + $scope.request.shortId + '/document',
           method: 'POST',
           file: file,
           data: {
-            type: document
+            type: document,
+            category: $scope.documentTypesById[document].category
           }
       })
       // TODO: Afficher progression
@@ -49,10 +57,7 @@ angular.module('impactApp')
       // })
       .success(function (data) {
         $scope.request.documents.push(data);
-        if (!$scope.filesVM[document]) {
-          $scope.filesVM[document] = [];
-        }
-        $scope.filesVM[document].push(data);
+        type[length] = data;
       });
     };
 
