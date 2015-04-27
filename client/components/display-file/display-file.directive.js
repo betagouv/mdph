@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('displayFile', function () {
+  .directive('displayFile', function ($state) {
     return {
       scope: {
         file: '=',
@@ -16,6 +16,12 @@ angular.module('impactApp')
             $scope.partenaireObj = result.data;
           });
         }
+
+        $scope.delete = function() {
+          $http.delete('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id).success(function() {
+            $state.go($state.current, {}, {reload: true});
+          });
+        };
       }
     };
   });

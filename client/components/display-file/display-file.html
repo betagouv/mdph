@@ -1,11 +1,25 @@
-<a target="_self" ng-if="file.name" download="{{file.originalname}}"
-  href="api/requests/{{request.shortId}}/document/{{file.name}}/download?access_token={{token}}">
+<i class="fa" ng-class="{
+  'fa-file-pdf-o': file.mimetype === 'application/pdf',
+  'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
+  'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'
+}"></i>
+<a
+  target="_self"
+  download="{{file.originalname}}"
+  href="api/requests/{{request.shortId}}/document/{{file.name}}?access_token={{token}}">
   {{file.originalname}}
 </a>
 
+<div class="pull-right">
+  <a class="trash" ng-click="delete()">
+    <span class="glyphicon glyphicon-trash"></span>
+  </a>
+</div>
+
 <span ng-if="file.partenaire">
+  <br>
   <span ng-if="!partenaireObj">
     <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
   </span>
-  <span ng-if="partenaireObj">- Ajouté par {{partenaireObj.email}}</span>
+  <span ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</span>
 </span>

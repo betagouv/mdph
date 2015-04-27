@@ -27,6 +27,13 @@ var Mailer = require('../send-mail/send-mail.controller');
 
 var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
 
+function findRequest(req, callback) {
+  if (req.request) {
+    return callback(null, req.request);
+  }
+  return Request.findOne({shortId: req.params.shortId}).exec(callback);
+}
+
 /**
  * Get list of requests
  */
@@ -68,10 +75,7 @@ exports.index = function(req, res) {
 
 // Get a single request
 exports.show = function(req, res, next) {
-  Request.findOne({
-    shortId: req.params.shortId
-  })
-  .exec(function(err, request) {
+  findRequest(req, function(err, request) {
     if (err) return handleError(req, res, err);
     if(!request) { return res.sendStatus(404); }
     return res.json(request);
@@ -93,7 +97,7 @@ exports.showPartenaire = function(req, res, next) {
 
 // Deletes a request from the DB.
 exports.destroy = function(req, res) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  findRequest(req, function (err, request) {
     if(err) return handleError(req, res, err);
     if(!request) return res.sendStatus(404);
     request.remove(function(err) {
@@ -126,7 +130,7 @@ exports.showUserRequests = function(req, res, next) {
 exports.update = function(req, res, next) {
   async.waterfall([
     function(callback){
-      Request.findOne({shortId: req.params.shortId}).exec(callback);
+      findRequest(req, callback);
     },
     // Check is request exists
     function(request, callback){
@@ -209,7 +213,7 @@ exports.saveFile = function (req, res, next) {
     return res.sendStatus(304);
   }
 
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  findRequest(req, function (err, request) {
     if (err) return handleError(req, res, err);
     if (!request) return res.sendStatus(404);
 
@@ -220,7 +224,7 @@ exports.saveFile = function (req, res, next) {
       document.partenaire = data.partenaire;
       // Mail
       Partenaire.findById(document.partenaire, function(err, partenaire) {
-        if (err) { handleError(req, res, err); }
+        if (err) { return handleError(req, res, err); }
         if (!partenaire) { res.sendStatus(404); }
 
         partenaire.secret = shortid.generate();
@@ -243,7 +247,7 @@ exports.saveFile = function (req, res, next) {
 };
 
 exports.downloadFile = function(req, res) {
-  var filePath = path.join(config.root + '/server/uploads/', req.params.fileId);
+  var filePath = path.join(config.root + '/server/uploads/', req.params.fileName);
   var stat = fs.statSync(filePath);
 
   res.writeHead(200, {
@@ -254,18 +258,42 @@ exports.downloadFile = function(req, res) {
   readStream.pipe(res);
 };
 
+exports.deleteFile = function(req, res) {
+  findRequest(req, function (err, request) {
+    if (!request) return res.sendStatus(404);
+
+    var file = request.documents.id(req.params.fileId);
+    var filePath = path.join(config.root + '/server/uploads/', file.name);
+
+    fs.unlink(filePath, function (err) {
+      if (err) {
+        req.log.info(req.user + ', not deleted, not found: ' + filePath);
+      } else {
+        req.log.info(req.user + ', successfully deleted: ' + filePath);
+      }
+
+      file.remove();
+
+      request.save(function(err, saved) {
+        if (err) { return handleError(req, res, err); }
+        return res.send(file).status(200);
+      });
+    });
+  });
+};
+
 exports.getRecapitulatif = function(req, res) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  findRequest(req, function (err, request) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'inline', function(err, html) {
-      if (err) { handleError(req, res, err); }
+      if (err) { return handleError(req, res, err); }
       res.send(html).status(200);
     });
   });
 }
 
 exports.getCerfa = function(req, res) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  findRequest(req, function (err, request) {
     if (!request) return res.sendStatus(404);
     var flattenedAnswers = Flattener.flatten(request.formAnswers);
     var url = 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
@@ -280,10 +308,10 @@ exports.getCerfa = function(req, res) {
 };
 
 exports.getPdf = function(req, res) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  findRequest(req, function (err, request) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
-      if (err) { handleError(req, res, err); }
+      if (err) { return handleError(req, res, err); }
 
       if (request.mdph === '59') {
         var outputFile = '.tmp/' + request.shortId + '.pdf';
@@ -302,17 +330,17 @@ exports.getPdf = function(req, res) {
 };
 
 exports.getSynthesePdf = function (req, res) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  findRequest(req, function (err, request) {
     if (!request) return res.sendStatus(404);
     Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
-      if (err) { handleError(req, res, err); }
+      if (err) { return handleError(req, res, err); }
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
     });
   });
 };
 
 exports.simulate = function (req, res) {
-  Request.findOne({shortId: req.params.shortId}, function (err, request) {
+  findRequest(req, function (err, request) {
     if (!request) return res.sendStatus(404);
     var prestations = Prestation.simulate(request.formAnswers);
     return res.json(prestations);

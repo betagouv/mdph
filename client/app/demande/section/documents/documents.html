@@ -37,8 +37,8 @@
               </a>
             </p>
             <ul ng-if="!filesVM[type]"><li>Pas de document</li></ul>
-            <ul ng-if="filesVM[type]">
-              <li ng-repeat="file in filesVM[type]">
+            <ul ng-if="filesVM[type]" class="list-group">
+              <li ng-repeat="file in filesVM[type]" class="list-group-item">
                 <display-file file="file" request="request"></display-file>
               </li>
             </ul>
@@ -74,8 +74,8 @@
               </p>
 
               <ul ng-if="!filesVM[type]"><li>Pas de document</li></ul>
-              <ul ng-if="filesVM[type]">
-                <li ng-repeat="file in filesVM[type]">
+              <ul ng-if="filesVM[type]" class="list-group">
+                <li ng-repeat="file in filesVM[type]" class="list-group-item">
                   <display-file file="file" request="request"></display-file>
                 </li>
               </ul>
