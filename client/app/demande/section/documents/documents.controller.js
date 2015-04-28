@@ -66,34 +66,29 @@ angular.module('impactApp')
         templateUrl: 'app/demande/section/documents/modal_type.html',
         controller: 'ModalInstanceCtrl',
         resolve: {
-          documents: function () {
+          categories: function () {
             var filtered = [];
             var requested = $scope.documentsComplementaires;
 
             documentTypes.forEach(function(type) {
-              if (requested.indexOf(type.id) < 0 && type.type !== 'obligatoire') {
+              if (requested.indexOf(type.id) < 0 || type.mandatory !== true || type.category !== 'autre') {
                 filtered.push(type);
               }
             });
 
-            return filtered;
+            var categories = _.groupBy(filtered, 'category');
+            return categories;
           }
         }
       });
 
       modalInstance.result.then(function (selected) {
         $scope.documentsComplementaires.push(selected);
-        if (selected === 'autre') {
-          $modal.open({
-            templateUrl: 'app/demande/section/documents/modal_autre.html',
-            controller: 'ModalInstanceAutreCtrl'
-          });
-        }
       });
     };
   })
-  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, documents) {
-    $scope.documents = documents;
+  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, categories) {
+    $scope.categories = categories;
 
     $scope.select = function(selected) {
       $modalInstance.close(selected.id);
@@ -103,11 +98,4 @@ angular.module('impactApp')
       $modalInstance.dismiss('cancel');
     };
 
-  })
-  .controller('ModalInstanceAutreCtrl', function ($scope, $modalInstance){
-    $scope.valider = function (form) {
-      if (form.$valid){
-        $modalInstance.close();
-      }
-    };
   });

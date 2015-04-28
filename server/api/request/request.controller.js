@@ -11,6 +11,7 @@ var shortid = require('shortid');
 var async = require('async');
 var scissors = require('scissors');
 var Canvas = require('canvas');
+var moment = require('moment');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
@@ -129,6 +130,7 @@ exports.showUserRequests = function(req, res, next) {
  * Update request
  */
 exports.update = function(req, res, next) {
+
   async.waterfall([
     function(callback){
       findRequest(req, callback);
@@ -143,20 +145,31 @@ exports.update = function(req, res, next) {
     },
     // Find evaluator through dispatcher
     function(request, callback) {
+      var identites = request.formAnswers.identites;
+      var dateNaissance = identites.beneficiaire.dateNaissance;
+      var codePostal = identites.beneficiaire.code_postal;
+      var estAdulte = moment().diff(dateNaissance, 'years') >= 18;
+      var type = estAdulte ? 'adulte' : 'enfant';
+
       if (req.query.isSendingRequest) {
-        Dispatcher.findSecteur(request.formAnswers.identites, function(secteur) {
-          callback(null, request, secteur);
+        Dispatcher.findSecteur(type, codePostal, function(secteur) {
+          if (secteur) {
+            request.set('secteur', secteur);
+
+            if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
+              var evaluators = secteur.evaluators[type].length;
+              evaluators.forEach(function(evaluator) {
+                Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Test');
+              });
+            }
+          }
         });
-      } else {
-        callback(null, request, null);
       }
+
+      callback(null, request);
     },
     // Set new request attributes
     function(request, secteur, callback){
-      if (secteur) {
-        request.set('secteur', secteur);
-        // TODO Send mail to evaluators
-      }
 
       request
         .set(_.omit(req.body, 'html', 'user', 'documents'))

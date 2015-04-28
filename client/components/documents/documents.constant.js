@@ -26,7 +26,7 @@ angular.module('impactApp').constant('documentTypes', [
   },
   {
     id: 'acte_deces_mariage',
-    label: 'Acte de décès / acte de mariage',
+    label: 'Acte de décès / acte de mariage',
     category: 'justificatifs'
   },
   {
@@ -233,7 +233,7 @@ angular.module('impactApp').constant('documentTypes', [
   {
     id: 'bilan_ems_sms',
     category: 'bilan_ems_sms',
-    label: 'Synthèses Etablissements et services (EMS, SMS, SAVS, SAMSAH, etc.)'
+    label: 'Synthèses Etablissements et services (EMS, SMS, SAVS, SAMSAH, etc.)'
   },
 
   {

@@ -64,7 +64,7 @@
       <div ng-repeat="id in documentsComplementaires">
         <div class="col-sm-4">
           <div class="panel panel-default">
-            <div class="panel-heading"><h3>{{documentTypesById[id].label}}</h3></div>
+            <div class="panel-heading"><h3>{{documentTypesById[id].label || 'Autre'}}</h3></div>
             <div class="panel-body">
               <p>{{documentTypesById[id].desc}}</p>
               <p ng-if="documentTypesById[id].emptyDoc">
