@@ -169,7 +169,7 @@ exports.update = function(req, res, next) {
       callback(null, request);
     },
     // Set new request attributes
-    function(request, secteur, callback){
+    function(request, callback){
 
       request
         .set(_.omit(req.body, 'html', 'user', 'documents'))

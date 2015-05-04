@@ -26,10 +26,15 @@ function formatDateNaissance(identite) {
 
 function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){
+    case 'date':
+      return [{label: moment(questionAnswers).format('DD/MM/YYYY')}];
     case 'text':
       return [{label: questionAnswers}];
     case 'radio':
       var constantAnswer = _.find(question.answers, {model: questionAnswers});
+      if (!constantAnswer) {
+        return [];
+      }
       return [{label: constantAnswer.label, detailModel: constantAnswer.detailModel}];
     case 'checkbox':
       var answers = [];
@@ -75,6 +80,11 @@ function computeAnswers(question, trajectoireAnswers) {
   }
 
   var filteredAnswers = rebuildAnswersFromModel(question, questionAnswers);
+  if (!filteredAnswers) {
+    console.log(question);
+    console.log(questionAnswers);
+    return [];
+  }
 
   filteredAnswers.forEach(function(answer){
     if (answer.detailModel) {

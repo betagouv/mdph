@@ -738,7 +738,7 @@
         "model": "vieScolaireType",
         "titleDefault": "Vous êtes actuellement scolarisé",
         "titleRep": "<%= name %> est actuellement scolarisé<%= fem %>",
-        "type": "radio",
+        "type": "checkbox",
         "answers": [
           {
             "label": "En milieu ordinaire",
@@ -1642,6 +1642,7 @@
     "label": "Vie de votre aidant familial",
     "desc": "Si votre aidant familial (la personne qui s’occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins",
     "group": "complements",
+    "trajectoire": true,
     "subSections": [
       {
         "include": "departement.demande.aidant.situation.**",
