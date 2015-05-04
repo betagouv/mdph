@@ -32,6 +32,7 @@ exports.index = function(req, res) {
 exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
+  newUser.unconfirmed = true;
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
@@ -109,7 +110,7 @@ exports.me = function(req, res, next) {
   var userId = req.user._id;
   User.findOne({
     _id: userId
-  }, '-salt -hashedPassword')// don't ever give out the password or salt)
+  }, '-salt -hashedPassword') // don't ever give out the password or salt)
   .populate('mdph')
   .exec(function(err, user) {
     if (err) return next(err);
@@ -139,10 +140,32 @@ exports.showNotifications = function(req, res, next) {
   });
 }
 
+exports.generateTokenForMail = function(req, res, next) {
+  var email = req.body.email;
+  User.findOne({
+    email: email
+  }, function(err, user) {
+    if (err) return next(err);
+    if (!user) return res.sendStatus(200);
+    var newMailToken = shortid.generate();
+    user.newMailToken = newMailToken;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+      Mailer.sendMail(
+        user.email,
+        'Validation de votre adresse',
+        'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
+      );
+      res.sendStatus(200);
+    });
+  });
+};
+
 /**
  * Post to check if email exists
  */
-exports.generateToken = function(req, res, next) {
+exports.generateTokenForPassword = function(req, res, next) {
   var email = req.body.email;
   User.findOne({
     email: email
@@ -157,7 +180,7 @@ exports.generateToken = function(req, res, next) {
       Mailer.sendMail(
         user.email,
         'Nouveau mot de passe',
-        'Veuillez cliquer ici :' + confirmationUrl
+        'Veuillez cliquer ici pour continuer votre changement de mot de passe :<br>' + confirmationUrl
       );
       res.sendStatus(200);
     });
@@ -172,6 +195,21 @@ exports.resetPassword = function(req, res) {
     if (req.params.secret !== user.newPasswordToken) return res.sendStatus(400);
     user.password = req.body.newPassword;
     user.newPasswordToken = '';
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      return res.sendStatus(200);
+    })
+  })
+};
+
+exports.confirmMail = function(req, res) {
+  User.findById(req.params.id, '+newMailToken', function(err, user) {
+    if (err) return handleError(req, res, err);
+    if (!user) return res.sendStatus(404);
+    if (!req.params.secret) return res.sendStatus(400);
+    if (req.params.secret !== user.newMailToken) return res.sendStatus(400);
+    user.unconfirmed = false;
+    user.newMailToken = '';
     user.save(function(err) {
       if (err) return validationError(res, err);
       return res.sendStatus(200);

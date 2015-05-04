@@ -41,6 +41,12 @@ angular.module('impactApp')
         params: {
           id: 'generate_token'
         }
+      },
+      generateTokenForMail: {
+        method: 'POST',
+        params: {
+          id: 'generate_token_mail'
+        }
       }
 	  });
   });

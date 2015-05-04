@@ -18,6 +18,15 @@ angular.module('impactApp')
         templateUrl: 'app/account/forgotten_password/forgotten_password.html',
         controller: 'ForgottenPasswordCtrl'
       })
+      .state('envoi_confirmation', {
+        url: '/envoi_confirmation',
+        templateUrl: 'app/account/confirmer_mail/confirmation.html'
+      })
+      .state('confirmer_mail', {
+        url: '/confirmer_mail/:userId/:newMailToken',
+        templateUrl: 'app/account/confirmer_mail/confirmer_mail.html',
+        controller: 'ConfirmerMailCtrl'
+      })
       .state('forgotten_password.confirmation', {
         url: '/confirmation',
         templateUrl: 'app/account/forgotten_password/confirmation.html'

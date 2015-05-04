@@ -15,13 +15,15 @@ var UserSchema = new Schema({
   commune: String,
   pays: String,
   hashedPassword: String,
+  unconfirmed: { type: Boolean },
   provider: String,
   salt:  String,
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
   mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
   birthDate: { type: Date, default: Date.now },
-  newPasswordToken: {type: String, select: false},
+  newPasswordToken: { type: String, select: false },
+  newMailToken: { type: String, select: false },
   secteurs: [{ type: Schema.Types.ObjectId, ref: 'Secteur' }]
 });
 
@@ -71,14 +73,14 @@ UserSchema
   .path('email')
   .validate(function(email) {
     return email.length;
-  }, 'Email cannot be blank');
+  }, 'Le mail ne peut pas être vide.');
 
 // Validate empty password
 UserSchema
   .path('hashedPassword')
   .validate(function(hashedPassword) {
     return hashedPassword.length;
-  }, 'Password cannot be blank');
+  }, 'Le mot de passe ne peut pas être vide.');
 
 // Validate email is not taken
 UserSchema
@@ -93,7 +95,7 @@ UserSchema
       }
       respond(true);
     });
-}, 'The specified email address is already in use.');
+}, 'Cette adresse est déjà utilisée.');
 
 var validatePresenceOf = function(value) {
   return value && value.length;
@@ -107,7 +109,7 @@ UserSchema
     if (!this.isNew) return next();
 
     if (!validatePresenceOf(this.hashedPassword))
-      next(new Error('Invalid password'));
+      next(new Error('Mot de passe incorrect'));
     else
       next();
   });
