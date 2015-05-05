@@ -183,7 +183,7 @@ exports.update = function(req, res, next) {
       if (req.query.isSendingRequest) {
         Dispatcher.findSecteur(type, codePostal, function(secteur) {
           if (secteur) {
-            request.set('secteur', secteur);
+            request.set('secteur', secteur._id);
 
             if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
               var evaluators = secteur.evaluators[type];
@@ -191,7 +191,6 @@ exports.update = function(req, res, next) {
                 if (request.mdph === '59') {
                   generatePdf(request, {role: 'adminMdph'}, req.headers.host, function(err, pdfStream) {
                     if (err) { return handleError(req, res, err); }
-                    console.log(evaluator);
 
                     Mailer.sendMail(
                       evaluator.email,
