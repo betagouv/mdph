@@ -183,7 +183,7 @@ exports.update = function(req, res, next) {
       if (req.query.isSendingRequest) {
         Dispatcher.findSecteur(type, codePostal, function(secteur) {
           if (secteur) {
-            request.set('secteur', secteur._id);
+            request.set('secteur', secteur);
 
             if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
               var evaluators = secteur.evaluators[type];
@@ -209,10 +209,13 @@ exports.update = function(req, res, next) {
               });
             }
           }
-        });
-      }
 
-      callback(null, request);
+          callback(null, request);
+        });
+
+      } else {
+        callback(null, request);
+      }
     },
     // Set new request attributes
     function(request, callback){
@@ -231,7 +234,7 @@ exports.update = function(req, res, next) {
     if (err) return handleError(req, res, err);
 
     if (req.body.html) {
-      Mailer.sendMail(req.user.email, 'Récapitulatif de votre demande à la MDPH', req.body.html);
+      Mailer.sendMail(req.user.email, 'Accusé de réception du téléservice', req.body.html);
     }
 
     res.json(request);
