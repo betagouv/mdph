@@ -13,7 +13,6 @@ module.exports = function(app) {
   app.use('/api/mdphs', require('./api/mdph'));
   app.use('/api/requests', require('./api/request'));
   app.use('/api/users', require('./api/user'));
-  app.use('/api/certificats', require('./api/certificat'));
   app.use('/api/prestations', require('./api/prestation'));
   app.use('/api/partenaires', require('./api/partenaire'));
   app.use('/api/geva', require('./api/geva'));
