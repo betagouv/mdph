@@ -33,8 +33,11 @@
             <p>{{documentTypesById[id].desc}}</p>
             <div ng-if="id === 'certificatMedical' && mdph.zipcode === '14'">
               <p>Vous pouvez également demander à votre médecin de le télétransmettre directement.
+                <br>
+                Présentez vous à votre rendez-vous médical avec la brochure d'explication jointe et pensez à vous munir de la référence de votre demande: <strong>{{request.shortId}}</strong>
+
                 <a target="_blank" download href="/assets/documents/teleservice_medecin.pdf">
-                  En savoir plus
+                  Télecharger la brochure
                 </a>
               </p>
             </div>
