@@ -28,6 +28,7 @@ var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
 
 var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
+var domain = process.env.DOMAIN || config.DOMAIN;
 
 function findRequest(req, callback) {
   if (req.request) {
@@ -126,6 +127,34 @@ exports.showUserRequests = function(req, res, next) {
   });
 }
 
+var generatePdf = function(request, user, host, callback) {
+  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
+    if (err) { return callback(err); }
+
+    if (request.mdph === '59' && user.role === 'adminMdph') {
+      var outputFile = '.tmp/' + request.shortId + '.pdf';
+
+      wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
+        var scissorDocuments = [
+          scissors(path.join(config.root + '/server/components/pdf_templates/sep_cerfa.pdf')),
+          scissors(outputFile)
+        ];
+
+        var otherDocuments = groupDocuments(request, outputFile);
+        if (otherDocuments && otherDocuments.length > 0) {
+          otherDocuments.forEach(function(scissorDoc) {
+            scissorDocuments.push(scissorDoc);
+          });
+        }
+
+        return callback(null, scissors.join.apply(scissors, scissorDocuments).pdfStream());
+      });
+    } else {
+      return callback(null, wkhtmltopdf(html, {encoding: 'UTF-8'}));
+    }
+  });
+}
+
 /**
  * Update request
  */
@@ -157,9 +186,27 @@ exports.update = function(req, res, next) {
             request.set('secteur', secteur);
 
             if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-              var evaluators = secteur.evaluators[type].length;
+              var evaluators = secteur.evaluators[type];
               evaluators.forEach(function(evaluator) {
-                Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Test');
+                if (request.mdph === '59') {
+                  generatePdf(request, {role: 'adminMdph'}, req.headers.host, function(err, pdfStream) {
+                    if (err) { return handleError(req, res, err); }
+                    console.log(evaluator);
+
+                    Mailer.sendMail(
+                      evaluator.email,
+                      'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
+                      [
+                        {
+                          filename: request.shortId + '.pdf',
+                          content: pdfStream
+                        }
+                      ]
+                    );
+                  })
+                } else {
+                  Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
+                }
               });
             }
           }
@@ -403,7 +450,6 @@ function groupDocuments(request, outputFile) {
     }
   });
 
-  console.log(localDocuments)
   var scissorDocuments = [];
   localDocuments.forEach(function(documentPath) {
     scissorDocuments.push(scissors(documentPath));
@@ -411,37 +457,18 @@ function groupDocuments(request, outputFile) {
   return scissorDocuments;
 }
 
-exports.getPdf = function(req, res) {
+var getPdf = function(req, res) {
   findRequest(req, function (err, request) {
     if (!request) return res.sendStatus(404);
-    Recapitulatif.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
+
+    generatePdf(request, req.user, req.headers.host, function(err, pdfStream) {
       if (err) { return handleError(req, res, err); }
-
-      if (request.mdph === '59' && req.user.role === 'adminMdph') {
-        var outputFile = '.tmp/' + request.shortId + '.pdf';
-
-
-        wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
-          var scissorDocuments = [
-            scissors(path.join(config.root + '/server/components/pdf_templates/sep_cerfa.pdf')),
-            scissors(outputFile)
-          ];
-
-          var otherDocuments = groupDocuments(request, outputFile);
-          if (otherDocuments && otherDocuments.length > 0) {
-            otherDocuments.forEach(function(scissorDoc) {
-              scissorDocuments.push(scissorDoc);
-            });
-          }
-
-          return scissors.join.apply(scissors, scissorDocuments).pdfStream().pipe(res);
-        });
-      } else {
-        wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
-      }
-    });
+      pdfStream.pipe(res);
+    })
   });
 }
+
+exports.getPdf = getPdf;
 
 exports.getSynthesePdf = function (req, res) {
   findRequest(req, function (err, request) {

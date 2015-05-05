@@ -11,7 +11,7 @@ var Mailjet = function(apiKey, secretKey) {
 Mailjet.prototype = {};
 
 // Email sending code
-Mailjet.prototype.sendContent = function(to, subject, content, cb) {
+Mailjet.prototype.sendContent = function(to, subject, body, attachments, cb) {
   var transporter = nodemailer.createTransport(smtpTransport({
       port: 465,
       host: 'in.mailjet.com',
@@ -26,17 +26,12 @@ Mailjet.prototype.sendContent = function(to, subject, content, cb) {
     from: 'impact@sgmap.fr',
     to: to,
     subject: subject,
-    html: content
+    html: body
   };
 
-  // if (hasAttachments){
-  // 	mailOptions.attachments = [
-  //     {
-  //       filename: 'demande.pdf',
-  //       content: wkhtmltopdf(content)
-  //     }
-  //   ];
-  // }
+  if (attachments) {
+  	mailOptions.attachments = attachments;
+  }
 
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {

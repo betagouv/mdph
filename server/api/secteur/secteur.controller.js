@@ -35,6 +35,7 @@ var update = function(req, res) {
     secteur
       .set('name', req.body.name)
       .set('evaluators', req.body.evaluators)
+      .set('default', req.body.default)
       .set('updatedAt', Date.now())
       .save(function (err) {
         if (err) { return handleError(req, res, err); }

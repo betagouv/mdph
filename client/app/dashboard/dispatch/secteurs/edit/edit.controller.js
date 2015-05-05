@@ -5,6 +5,7 @@ angular.module('impactApp')
     $scope.secteur = secteur;
     $scope.name = secteur.name;
     $scope.evaluators = evaluators;
+    $scope.default = secteur.default;
 
     $scope.selectedEvaluatorsAdultes = secteur.evaluators && secteur.evaluators.adulte ? secteur.evaluators.adulte : [];
     $scope.selectedEvaluatorsEnfants = secteur.evaluators && secteur.evaluators.enfant ? secteur.evaluators.enfant : [];
@@ -16,6 +17,7 @@ angular.module('impactApp')
       };
 
       secteur.name = $scope.name;
+      secteur.default = $scope.default;
       secteur.mdph = currentMdph._id;
       secteur.$save(function() {
         $state.go('^', {}, {reload: true});

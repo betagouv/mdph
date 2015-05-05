@@ -15,21 +15,14 @@ exports.findSecteur = function(type, codePostal, callback) {
     }
 
     if (!rule) {
-      var queryDefaultRule = DispatchRuleModel.where({'commune.codePostal': '*'});
-      query.findOne(function(err, defaultRule) {
-        if (err || !rule) {
+      SecteurModel.findOne({default: true}).populate('evaluators.' + type).exec(function(err, secteur) {
+        if (err || !secteur) {
           return callback(null);
         }
-
-        var secteur = SecteurModel.findById(defaultRule.secteur[type], function(err, secteur) {
-          if (err || !secteur) {
-            return callback(null);
-          }
-          return callback(secteur);
-        });
+        return callback(secteur);
       });
     } else {
-      var secteur = SecteurModel.findById(rule.secteur[type], function(err, secteur) {
+      SecteurModel.findById(rule.secteur[type]).populate('evaluators.' + type).exec(function(err, secteur) {
         if (err || !secteur) {
           return callback(null);
         }

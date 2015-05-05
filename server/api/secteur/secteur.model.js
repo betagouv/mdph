@@ -8,6 +8,7 @@ var SecteurSchema = new Schema({
   createdAt:      { type: Date, default: Date.now},
   updatedAt:      { type: Date },
   name:           { type: String, unique: true, required: true },
+  default:        Boolean,
   evaluators:     {
     enfant: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     adulte: [{ type: Schema.Types.ObjectId, ref: 'User' }]
