@@ -55,9 +55,14 @@ angular.module('impactApp', [
     };
   })
 
-  .run(function ($rootScope, $state, Auth, datepickerConfig) {
+  .run(function ($rootScope, $state, $window, $location, Auth, datepickerConfig) {
     datepickerConfig.datepickerMode = 'year';
     datepickerConfig.showWeeks = false;
+
+    $rootScope.$on('$stateChangeSuccess', function(){
+      if (!$window.ga) { return; }
+      $window.ga('send', 'pageview', { page: $location.path() });
+    });
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
