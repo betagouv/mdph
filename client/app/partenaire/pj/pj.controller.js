@@ -28,11 +28,18 @@ angular.module('impactApp')
         }).success(function() {
           $modal.open({
             templateUrl: 'app/partenaire/pj/confirmationModal.html',
-            controller: function($scope, $modalInstance) {
+            controller: function($scope, $modalInstance, type) {
+              $scope.type = type;
+              debugger;
               $scope.ok = function() {
                 $modalInstance.close();
                 $state.go('main');
               };
+            },
+            resolve: {
+              type: function() {
+                return $scope.selectedType.id;
+              }
             }
           });
         });

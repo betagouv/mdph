@@ -11,7 +11,7 @@ angular.module('impactApp')
       if(form.$valid) {
         $scope.partenaire.$save(function(data) {
           RequestResource.getPartenaire({shortId: form.shortId.$modelValue}, function(request) {
-            $state.go('partenaire.pj', {shortId: request.shortId, partenaireId:data._id, type:type});
+            $state.go('partenaire.pj', {shortId: request.shortId, partenaireId: data._id, type: type});
           });
         });
       }
