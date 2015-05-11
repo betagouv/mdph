@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ModalLoginCtrl', function ($scope, Auth, $modalInstance) {
+  .controller('ModalLoginCtrl', function ($scope, $state, User, Auth, $modalInstance) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -36,7 +36,9 @@ angular.module('impactApp')
           password: $scope.user.password
         })
         .then( function() {
-          $modalInstance.close();
+          // Account created, redirect to home
+          User.generateTokenForMail({email: $scope.user.email});
+          $state.go('envoi_confirmation');
         })
         .catch( function(err) {
           err = err.data;

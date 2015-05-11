@@ -30,7 +30,6 @@ angular.module('impactApp')
             templateUrl: 'app/partenaire/pj/confirmationModal.html',
             controller: function($scope, $modalInstance, type) {
               $scope.type = type;
-              debugger;
               $scope.ok = function() {
                 $modalInstance.close();
                 $state.go('main');
