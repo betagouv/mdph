@@ -124,8 +124,9 @@ function computeTrajectoires(request) {
   var trajectoires = [];
 
   var toutesTrajectoires = _.filter(sections, 'trajectoire');
+  var filteredTrajectoires = _.cloneDeep(toutesTrajectoires);
 
-  toutesTrajectoires.forEach(function(trajectoire) {
+  filteredTrajectoires.forEach(function(trajectoire) {
     var questions = computeQuestions(request, trajectoire.id);
 
     if (questions.length > 0) {
@@ -210,7 +211,6 @@ exports.answersToHtml = function(request, path, output, next) {
   },
   function(err, results){
     if (err) { next(err); }
-    var ansersTemplate = results.answersTemplate;
     var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires', 'requestIdentites');
     var html = mustache.render(
       results.answersTemplate,

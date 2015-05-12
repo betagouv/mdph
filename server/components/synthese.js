@@ -121,7 +121,6 @@ exports.answersToHtml = function (request, path, output, next) {
   },
   function(err, results){
     if (err) { next(err); }
-    var ansersTemplate = results.syntheseTemplate;
     var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites');
     var html = mustache.render(
       results.syntheseTemplate,

@@ -14,6 +14,10 @@
     Pièces jointes
   </div>
   <div class="panel-body">
+
+    <div ng-if="request.documents.length === 0">
+      Aucune pièce jointe
+    </div>
     <div ng-repeat="(type, files) in filesVM">
       {{documentTypesById[type].label}}
       <ul class="list-group">
@@ -25,12 +29,15 @@
   </div>
 </div>
 
-<div class="panel panel-default" ng-if="prestationsQuitus.length > 0">
+<div class="panel panel-default" ng-if="currentMdph.zipcode === '14'">
   <div class="panel-heading">
     Quitus
   </div>
   <div class="panel-body">
     <ul>
+      <li ng-if="prestationsQuitus.length === 0">
+        Aucune prestation
+      </li>
       <li ng-repeat="prestation in prestationsQuitus">
         {{prestation.label}}
       </li>
@@ -54,7 +61,7 @@
   </div>
 </div>
 
-<div class="panel panel-default" ng-hide="true">
+<div class="panel panel-default" ng-if="currentMdph.zipcode === '14'">
   <div class="panel-heading">
     Aides actuelles
   </div>
@@ -86,5 +93,7 @@
     Télécharger
   </a>
 </div>
+
+<pre>{{request.formAnswers | json}}</pre>
 
 <div class="clearfix"></div>

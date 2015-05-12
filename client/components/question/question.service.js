@@ -89,7 +89,6 @@ angular.module('impactApp')
     return {
       get: function(section, model, formAnswers) {
         var question = section.questions[model];
-
         var title = compileTitle(question, formAnswers);
         question.title = capitaliseFirstLetter(title);
 

@@ -4,8 +4,6 @@ var DispatchRuleModel = require('../api/dispatch-rule/dispatch-rule.model');
 var SecteurModel = require('../api/secteur/secteur.model');
 
 exports.findSecteur = function(type, codePostal, callback) {
-
-
   var secteur = null;
   var query = DispatchRuleModel.where({'commune.codePostal': codePostal});
 

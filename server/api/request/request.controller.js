@@ -19,6 +19,7 @@ var Flattener = require('../../components/flatten');
 var Recapitulatif = require('../../components/recapitulatif');
 var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
+var DateUtils = require('../../components/dateUtils');
 
 var Prestation = require('../prestation/prestation.controller');
 var Request = require('./request.model');
@@ -175,9 +176,8 @@ exports.update = function(req, res, next) {
     // Find evaluator through dispatcher
     function(request, callback) {
       var identites = request.formAnswers.identites;
-      var dateNaissance = identites.beneficiaire.dateNaissance;
       var codePostal = identites.beneficiaire.code_postal;
-      var estAdulte = moment().diff(dateNaissance, 'years') >= 18;
+      var estAdulte = DateUtils.estAdulte(request.formAnswers);
       var type = estAdulte ? 'adulte' : 'enfant';
 
       if (req.query.isSendingRequest) {

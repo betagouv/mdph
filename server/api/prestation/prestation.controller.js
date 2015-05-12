@@ -83,44 +83,6 @@ function getCallbacks(answers) {
 
   return {
     aah: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-
-      return et([
-        estAdulte,
-        ou([
-          getValue(besoinsVie, 'courant'),
-          getValue(attentesTypeAide, 'financierMinimum'),
-        ]),
-        ou([
-          // MTP ??
-          // PCRTP ??
-          et([
-            getValue(attentesTypeAide, 'humain'),
-            ou([
-              ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
-              getValue(besoinsDeplacement, 'intraDomicile')
-            ]),
-          ]),
-          et([
-            getValue(besoinsSocial, 'securite'),
-            et([
-              et( getValueList(besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
-              et( getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante']) ),
-              estNonActif
-            ])
-          ]),
-          et([
-            getValue(besoinsLieuDeVie, 'materiel'),
-            et([
-              et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
-              getValue(besoinsDeplacement, 'public'),
-              estNonActif
-            ])
-          ])
-        ])
-      ]);
     },
     aeeh: function(droit) {
       if (estRenouvellement(droit)) {
