@@ -175,14 +175,12 @@ exports.update = function(req, res, next) {
     },
     // Find evaluator through dispatcher
     function(request, callback) {
-      var identites = request.formAnswers.identites;
-      var codePostal = identites.beneficiaire.code_postal;
-      var mdph = request.mdph;
+
       var estAdulte = DateUtils.estAdulte(request.formAnswers);
       var type = estAdulte ? 'adulte' : 'enfant';
 
       if (req.query.isSendingRequest) {
-        Dispatcher.findSecteur(type, codePostal, mdph, function(secteur) {
+        Dispatcher.findSecteur(request, function(secteur) {
           if (secteur) {
             request.set('secteur', secteur);
 

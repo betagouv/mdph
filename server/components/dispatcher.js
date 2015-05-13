@@ -1,40 +1,55 @@
 'use strict';
 
+var async = require('async');
+
+var DateUtils = require('./dateUtils');
+
 var DispatchRuleModel = require('../api/dispatch-rule/dispatch-rule.model');
 var SecteurModel = require('../api/secteur/secteur.model');
 var MdphModel = require('../api/mdph/mdph.model');
 
-exports.findSecteur = function(type, codePostal, mdphZipcode, callback) {
-  var secteur = null;
-  var query = DispatchRuleModel.where({'commune.codePostal': codePostal});
+exports.findSecteur = function(request, callback) {
+  var identites = request.formAnswers.identites;
+  var codePostal = identites.beneficiaire.code_postal;
+  var mdphZipcode = request.mdph;
+  var estAdulte = DateUtils.estAdulte(request.formAnswers);
+  var type = estAdulte ? 'adulte' : 'enfant';
 
-  query.findOne(function(err, rule) {
+  async.waterfall([
+    function(cb){
+      MdphModel.findOne({zipcode: mdphZipcode}).exec(cb);
+    },
+
+    function(mdph, cb){
+      DispatchRuleModel.findOne({'commune.codePostal': codePostal, mdph: mdph}).exec(function(err, dispatchRule) {
+        cb(err, dispatchRule, mdph);
+      });
+    },
+
+    function(dispatchRule, mdph, cb){
+      if (!dispatchRule) {
+        SecteurModel.findOne({default: true, mdph: mdph}).populate('evaluators.' + type).exec(function(err, defaultSecteur) {
+          if (err || !defaultSecteur) {
+            cb(true);
+          } else {
+            cb(null, defaultSecteur);
+          }
+        });
+      } else {
+        SecteurModel.findById(dispatchRule.secteur[type]).populate('evaluators.' + type).exec(function(err, secteur) {
+          if (err || !secteur) {
+            cb(true);
+          } else {
+            cb(null, secteur);
+          }
+        });
+      }
+    }
+  ], function (err, secteur) {
     if (err) {
       return callback(null);
-    }
-
-    if (!rule) {
-      MdphModel.findOne({zipcode: mdphZipcode}, function(err, mdph) {
-        if (err || !mdph) {
-          return callback(null);
-        }
-        console.log(mdph);
-
-        SecteurModel.findOne({default: true, mdph: mdph}).populate('evaluators.' + type).exec(function(err, secteur) {
-          console.log(secteur);
-          if (err || !secteur) {
-            return callback(null);
-          }
-          return callback(secteur);
-        });
-      });
     } else {
-      SecteurModel.findById(rule.secteur[type]).populate('evaluators.' + type).exec(function(err, secteur) {
-        if (err || !secteur) {
-          return callback(null);
-        }
-        return callback(secteur);
-      });
+      return callback(secteur);
     }
   });
 }

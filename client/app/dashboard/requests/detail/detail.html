@@ -3,7 +3,7 @@
   <div class="well dashboard-demande-header">
     <h2>Demande de {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
     </h2>
-    <p>Demande effectuée par : <strong>{{user.name}}</strong></p>
+    <p>Demande effectuée par : <strong>{{user.name}}</strong> - {{user.email}}</p>
     <p>Référence de la demande: <strong>{{request.shortId}}</strong></p>
     <p>Dernière mise à jour: <strong>{{request.updatedAt | date: format: timezone}}</strong>
       <button class="btn btn-danger pull-right" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
