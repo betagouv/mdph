@@ -60,8 +60,10 @@ angular.module('impactApp', [
     datepickerConfig.showWeeks = false;
 
     $rootScope.$on('$stateChangeSuccess', function(){
-      if (!$window.ga) { return; }
-      $window.ga('send', 'pageview', { page: $location.path() });
+      if ($window._paq) {
+        $window._paq.push(['setCustomUrl', $location.path()]);
+        $window._paq.push(['trackPageView']);
+      }
     });
 
     // Redirect to login if route requires auth and you're not logged in
