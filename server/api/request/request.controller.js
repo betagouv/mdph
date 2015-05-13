@@ -455,9 +455,11 @@ function groupDocuments(request, outputFile) {
           var img = new Canvas.Image();
           img.src = data;
 
-          var canvas = new Canvas(img.width, img.height, 'pdf');
+          var width = img.width / 4;
+          var height = img.height / 4;
+          var canvas = new Canvas(width, height, 'pdf');
           var ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
+          ctx.drawImage(img, 0, 0, width, height);
 
           var newPdfPath = path.join(config.root + '/server/uploads/' + currentDocument.name + '.pdf');
           fs.writeFileSync(newPdfPath, canvas.toBuffer());
