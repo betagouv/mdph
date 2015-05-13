@@ -25,5 +25,6 @@ router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downl
 router.delete('/:shortId/document/:fileId', auth.isAuthorized(), controller.deleteFile);
 
 router.get('/:shortId/simulation', auth.isAuthorized(), controller.simulate);
+router.get('/:shortId/resend-mail', auth.isAuthorized(), controller.resendMail);
 
 module.exports = router;

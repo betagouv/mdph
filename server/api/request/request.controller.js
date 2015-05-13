@@ -156,6 +156,43 @@ var generatePdf = function(request, user, host, callback) {
   });
 }
 
+function sendMailNotification(request, host, log, callback) {
+  Dispatcher.findSecteur(request, function(secteur) {
+    if (secteur) {
+
+      var estAdulte = DateUtils.estAdulte(request.formAnswers);
+      var type = estAdulte ? 'adulte' : 'enfant';
+
+      if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
+        var evaluators = secteur.evaluators[type];
+        evaluators.forEach(function(evaluator) {
+          if (request.mdph === '59') {
+            generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfStream) {
+              if (err) { log.error(err); }
+
+              Mailer.sendMail(
+                evaluator.email,
+                'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
+                [
+                  {
+                    filename: request.shortId + '.pdf',
+                    content: pdfStream
+                  }
+                ]
+              );
+            })
+          } else {
+            Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
+          }
+        });
+      }
+      callback(secteur);
+    } else {
+      callback();
+    }
+  });
+}
+
 /**
  * Update request
  */
@@ -176,42 +213,13 @@ exports.update = function(req, res, next) {
     // Find evaluator through dispatcher
     function(request, callback) {
 
-      var estAdulte = DateUtils.estAdulte(request.formAnswers);
-      var type = estAdulte ? 'adulte' : 'enfant';
-
       if (req.query.isSendingRequest) {
-        Dispatcher.findSecteur(request, function(secteur) {
+        sendMailNotification(request, req.headers.host, req.log, function(secteur) {
           if (secteur) {
             request.set('secteur', secteur);
-
-            if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-              var evaluators = secteur.evaluators[type];
-              evaluators.forEach(function(evaluator) {
-                if (request.mdph === '59') {
-                  generatePdf(request, {role: 'adminMdph'}, req.headers.host, function(err, pdfStream) {
-                    if (err) { return handleError(req, res, err); }
-
-                    Mailer.sendMail(
-                      evaluator.email,
-                      'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
-                      [
-                        {
-                          filename: request.shortId + '.pdf',
-                          content: pdfStream
-                        }
-                      ]
-                    );
-                  })
-                } else {
-                  Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-                }
-              });
-            }
           }
-
           callback(null, request);
         });
-
       } else {
         callback(null, request);
       }
@@ -237,6 +245,17 @@ exports.update = function(req, res, next) {
     }
 
     res.json(request);
+  });
+}
+
+/**
+ * Resend mail notification
+ */
+exports.resendMail = function(req, res, next) {
+  findRequest(req, function (err, request) {
+    sendMailNotification(request, req.headers.host, req.log, function() {
+      res.sendStatus(200);
+    });
   });
 }
 
@@ -382,37 +401,37 @@ function groupDocuments(request, outputFile) {
     {
       separator: 'sep_justificatifs.pdf',
       category: 'justificatifs',
-      documents: []
+      documentList: []
     },
     {
       separator: 'sep_certificat.pdf',
       category: 'certificat',
-      documents: []
+      documentList: []
     },
     {
       separator: 'sep_autres_bilans_medicaux.pdf',
       category: 'autres_bilans_medicaux',
-      documents: []
+      documentList: []
     },
     {
       separator: 'sep_scolarite.pdf',
       category: 'scolarite',
-      documents: []
+      documentList: []
     },
     {
       separator: 'sep_vie_pro.pdf',
       category: 'vie_pro',
-      documents: []
+      documentList: []
     },
     {
       separator: 'sep_bilan_ems_sms.pdf',
       category: 'bilan_ems_sms',
-      documents: []
+      documentList: []
     },
     {
       separator: 'sep_autres.pdf',
       category: 'autres',
-      documents: []
+      documentList: []
     }
   ];
 
@@ -420,19 +439,19 @@ function groupDocuments(request, outputFile) {
 
   request.documents.forEach(function(document) {
     if (groupsFor59ByIdx[document.category]) {
-      groupsFor59ByIdx[document.category].documents.push(document);
+      groupsFor59ByIdx[document.category].documentList.push(document);
     } else {
-      groupsFor59ByIdx.autres.documents.push(document);
+      groupsFor59ByIdx.autres.documentList.push(document);
     }
   });
 
   var localDocuments = [];
   groupsFor59.forEach(function(group) {
-    if (group.documents.length > 0) {
+    if (group.documentList.length > 0) {
       localDocuments.push(path.join(config.root + '/server/components/pdf_templates/' + group.separator));
-      group.documents.forEach(function(document) {
-        if (document.mimetype !== 'application/pdf') {
-          var data = fs.readFileSync(path.join(config.root + '/server/uploads/', document.name));
+      group.documentList.forEach(function(currentDocument) {
+        if (currentDocument.mimetype !== 'application/pdf') {
+          var data = fs.readFileSync(path.join(config.root + '/server/uploads/', currentDocument.name));
           var img = new Canvas.Image();
           img.src = data;
 
@@ -440,12 +459,12 @@ function groupDocuments(request, outputFile) {
           var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, img.width / 4, img.height / 4);
 
-          var newPdfPath = path.join(config.root + '/server/uploads/' + document.name + '.pdf');
+          var newPdfPath = path.join(config.root + '/server/uploads/' + currentDocument.name + '.pdf');
           fs.writeFileSync(newPdfPath, canvas.toBuffer());
 
           localDocuments.push(newPdfPath);
         } else {
-          localDocuments.push(path.join(config.root + '/server/uploads/', document.name));
+          localDocuments.push(path.join(config.root + '/server/uploads/', currentDocument.name));
         }
       });
     }
