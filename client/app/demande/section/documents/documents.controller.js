@@ -33,13 +33,11 @@ angular.module('impactApp')
     };
 
     $scope.onFileSelect = function(file, document) {
-      var current = {sending: true};
       if (!$scope.filesVM[document]) {
         $scope.filesVM[document] = [];
       }
       var type = $scope.filesVM[document];
       var length = type.length;
-      type.push(current);
 
       $upload.upload({
           url: 'api/requests/' + $scope.request.shortId + '/document',

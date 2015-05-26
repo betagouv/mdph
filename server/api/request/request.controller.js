@@ -290,7 +290,7 @@ exports.save = function(req, res, next) {
  * File upload
  */
 exports.saveFile = function (req, res, next) {
-  if (!req.files || req.files.length === 0) {
+  if (!req.files || !req.files.file) {
     return res.sendStatus(304);
   }
 
@@ -319,7 +319,10 @@ exports.saveFile = function (req, res, next) {
       });
     }
 
-    request.documents.push(document);
+    if (document !== null) {
+      request.documents.push(document);
+    }
+
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
       return res.json(document);
