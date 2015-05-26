@@ -4,11 +4,15 @@
   </h1>
 
   <p class="text-justify">
-    Ce nouveau certificat médical MDPH est expérimenté depuis octobre 2014 dans les départements du Calvados et du Nord et remplace le formulaire Cerfa N° 13878*01.
+    Ce nouveau certificat médical MDPH est en cours d’expérimentation et vise à remplace le Cerfa N° 13878*01.
     <br>
-    Vous pouvez le remplir directement en ligne ce qui vous donne la possibilité de le conserver dans votre ordinateur, et de reprendre son contenu pour le modifier lors d’une demande ultérieure du même patient.
-    <br>
-    Ce service vous permet également de télétransmettre ce certificat à la MDPH.
+    Il permet :
+    <ul>
+      <li>Un remplissage direct en ligne</li>
+      <li>Une historisation du document sur votre poste de travail, dans vos dossiers patients</li>
+      <li>Un pré-remplissage lors d’une demande ultérieure du même patient</li>
+      <li>Une télétransmission à la MDPH</li>
+    </ul>
   </p>
 
   <h2>Étape 1 : remplir le certificat médical en ligne</h2>
@@ -28,19 +32,13 @@
 
   <h2>Étape 2 : joindre le certificat médical à la demande de votre patient</h2>
   <p class="text-justify">
-    Pour joindre ce certificat rempli à une demande, il vous suffit de demander à votre patient son nom et la référence de sa demande en ligne (8 charactères, chiffres et lettres, ex: <em>Qyq1v096</em>).
-  </p>
-
-  <p class="text-justify">
-    Si toutefois vous le préférez, vous pouvez imprimer et signer ce nouveau certificat, et le remettre à votre patient.
-    <br>
-    Pour information, le certificat médical actuel N° 13878*01 reste valable. Vous pouvez le remplir et le signer, votre patient devra le scanner pour le joindre à sa demande en ligne.
+    Une fois le certificat rempli, pour le joindre à la demande de votre patient, saisissez :
   </p>
 
   <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
     <div class="form-group">
-      <label>Référence demande du patient</label>
-      <input type="text" name="shortId" class="form-control" ng-model="shortId" placeholder="Ex: Qyq1v096" required>
+      <label>La référence demande du patient</label>
+      <input type="text" name="shortId" class="form-control" ng-model="shortId" placeholder="8 caractères, chiffres et lettres, ex: Qyq1v096" required>
     </div>
 
     <div class="form-group has-error">
@@ -73,7 +71,7 @@
 
   <h2>Étape 3 : télé-transmettre le certificat à la MDPH</h2>
   <p class="text-justify">
-    Pour télétransmettre, vous devez renseigner votre adresse email. Une fois le certificat ajouté, un mail vous sera envoyé afin que vous confirmiez l'ajout du document.
+    Une fois le certificat ajouté, un mail vous sera automatiquement envoyé pour vous authentifier et pour que vous confirmiez l'ajout du document.
     <br>
     <i class="fa fa-warning"></i> Le certificat ne sera ajouté à la demande que si le mail envoyé sur votre boîte mail est validé.
   </p>
