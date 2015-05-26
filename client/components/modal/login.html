@@ -1,7 +1,8 @@
 <div class="container modal-container">
   <div class="row">
     <div class="col-sm-11">
-      <h1>Connexion</h1>
+      <h1 ng-if="!signup">Connexion</h1>
+      <h1 ng-if="signup">Inscription</h1>
     </div>
     <div class="col-sm-1">
       <i class="fa fa-times fa-2x close-modal" ng-click="cancel()"></i>

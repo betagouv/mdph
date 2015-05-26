@@ -4,6 +4,7 @@ angular.module('impactApp')
   .controller('ModalLoginCtrl', function ($scope, $state, User, Auth, $modalInstance) {
     $scope.user = {};
     $scope.errors = {};
+    $scope.signup = true;
 
     $scope.resetMongooseError = function(form, field) {
       form[field].$setValidity('mongoose', true);
