@@ -68,6 +68,18 @@ angular.module('impactApp')
           request.status = 'emise';
           request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + request.mdph;
           request.$update({isSendingRequest: true}, function () {
+            $modal.open({
+              template: '<div class="modal-header"><h2 class="modal-title">Votre demande a été envoyée</h2></div>' +
+              '<div class="modal-body">Si vous souhaitez faire des retours pour améliorer ce service, vous pouvez remplir <a target="_blank" href="https://sphinxdeclic.com/d/s/ribiwe" title="Questionnaire de satisfaction">ce bref questionnaire</a>.</div>' +
+              '<div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Ok</button></div>',
+              backdrop: true,
+              windowClass: 'right fade',
+              controller: function($modalInstance, $scope) {
+                $scope.ok = function() {
+                  $modalInstance.close();
+                };
+              }
+            });
             $window.alert('Votre demande à été sauvegardée');
           }, onError);
         }
