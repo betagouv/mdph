@@ -48,15 +48,16 @@ function isLessThan62(identites) {
 function getCallbacks(answers) {
   var identites = getSection(answers, 'identites');
   var aidant = getSection(answers, 'aidant');
-  var vieQuotidienne = getSection(answers, 'vieQuotidienne');
+  var vieQuotidienne = getSection(answers, 'vie_quotidienne');
   var prestations = getSection(answers, 'prestations');
-  var travail = getSection(answers, 'travail');
+  var vieAuTravail = getSection(answers, 'vie_au_travail');
 
   var besoinsDeplacement = getValue(vieQuotidienne, 'besoinsDeplacement');
   var besoinsVie = getValue(vieQuotidienne, 'besoinsVie');
   var besoinsLieuDeVie = getValue(vieQuotidienne, 'besoinsLieuDeVie');
   var besoinsSocial = getValue(vieQuotidienne, 'besoinsSocial');
   var attentesTypeAide = getValue(vieQuotidienne, 'attentesTypeAide');
+  var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
 
   var attentesAidant = getValue(aidant, 'typeAttente');
   var estAdulte = isAdult(identites);
@@ -73,16 +74,47 @@ function getCallbacks(answers) {
   var estNonActif = et([
     aMoinsDe62Ans,
     ou([
-      false === getValue(travail, 'conditionTravail'),
+      false === getValue(vieAuTravail, 'conditionTravail'),
       et([
-        false === getValue(travail, 'temps'),
-        false === getValue(travail, 'adapte')
+        false === getValue(vieAuTravail, 'temps'),
+        false === getValue(vieAuTravail, 'adapte')
       ])
     ])
   ]);
 
   return {
     aah: function(droit) {
+      return et([
+        estAdulte,
+        ou( [besoinsVie && besoinsVie.courant, attentesTypeAide && attentesTypeAide.financierMinimum] ),
+        ou([
+          pensionInvalidite && pensionInvalidite.mtp,
+          pensionInvalidite && pensionInvalidite.pcrtp,
+          et( [besoinsVie && besoinsVie.hygiene, attentesTypeAide && attentesTypeAide.humain] ),
+          et( [besoinsVie && besoinsVie.habits, attentesTypeAide && attentesTypeAide.humain] ),
+          et( [besoinsVie && besoinsVie.repas, attentesTypeAide && attentesTypeAide.humain] ),
+          et( [besoinsDeplacement && besoinsDeplacement.intraDomicile, attentesTypeAide && attentesTypeAide.humain] ),
+          et([
+            et( getValueList(besoinsVie, ["habits","cuisine","repas","budget","courses","menage","sante"]) ),
+            et( getValueList(besoinsSocial, ["securite","proches","loisirs","citoyen"]) ),
+            aMoinsDe62Ans,
+            ou([
+              vieAuTravail && vieAuTravail.conditionTravail === false,
+              vieAuTravail && vieAuTravail.conditionTravail && vieAuTravail.temps === false && vieAuTravail.adapte === false
+            ])
+          ]),
+          et([
+            besoinsVie && besoinsVie.hygiene && besoinsVie.habits && besoinsVie.repas,
+            besoinsDeplacement && besoinsDeplacement.deplacementExterieur,
+            attentesTypeAide && attentesTypeAide.materiel,
+            aMoinsDe62Ans,
+            ou([
+              vieAuTravail && vieAuTravail.conditionTravail === false,
+              vieAuTravail && vieAuTravail.conditionTravail && vieAuTravail.temps === false && vieAuTravail.adapte === false
+            ])
+          ])
+        ])
+      ]);
     },
     aeeh: function(droit) {
       if (estRenouvellement(droit)) {
