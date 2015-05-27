@@ -28,7 +28,11 @@
           <td>
             <span class="user">
               <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
-                {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                Demande de {{request.user.name}}
+                <em ng-if="request.formAnswers.identites.beneficiaire">
+                  pour {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                </em>
+
               </a>
             </span>
           </td>

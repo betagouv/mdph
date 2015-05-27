@@ -76,8 +76,13 @@ exports.listRequests = function(req, res) {
     if (err) return handleError(req, res, err);
     if (!mdph) return res.sendStatus(404);
 
-    var secteurId = req.params.id !== 'null' ? req.params.id : null;
-    Request.find({secteur: secteurId, evaluator: null, status: 'emise', mdph: mdph.zipcode}, function (err, requests) {
+    var secteurId = req.params.id === 'null' ? null : req.params.id;
+    var status = req.query && req.query.status ? 'en_cours' : 'emise';
+
+    Request
+      .find({secteur: secteurId, evaluator: null, status: status, mdph: mdph.zipcode})
+      .populate("user")
+      .exec(function (err, requests) {
       if (err) return handleError(req, res, err);
 
       res.set('count', requests.length);

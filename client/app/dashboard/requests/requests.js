@@ -16,6 +16,9 @@ angular.module('impactApp')
           },
           currentUser: function(Auth) {
             return Auth.getCurrentUser();
+          },
+          incomplete: function(RequestResource) {
+            return RequestResource.query().$promise;
           }
         },
         authenticate: true
@@ -26,10 +29,20 @@ angular.module('impactApp')
         controller: 'PendingRequestsCtrl',
         resolve: {
           requests: function($http, $stateParams) {
-            var secteurId = $stateParams.secteurId !== 'autres' ? $stateParams.secteurId : 'null';
-            return $http.get('/api/secteurs/' + secteurId + '/requests').then(function(result) {
-              return result.data;
-            });
+            var secteurId = $stateParams.secteurId;
+            if (secteurId === 'en_cours') {
+              return $http.get('/api/secteurs/null/requests?status=en_cours').then(function(result) {
+                return result.data;
+              });
+            } else {
+              if (secteurId === 'autres') {
+                secteurId = 'null';
+              }
+
+              return $http.get('/api/secteurs/' + secteurId + '/requests').then(function(result) {
+                return result.data;
+              });
+            }
           }
         },
         authenticate: true

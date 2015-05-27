@@ -6,11 +6,12 @@ angular.module('impactApp')
       return input.substring(0,1).toUpperCase()+input.substring(1);
     };
   })
-  .controller('RequestsCtrl', function ($scope, $http, users, secteurs, currentUser) {
+  .controller('RequestsCtrl', function ($scope, $http, users, secteurs, currentUser, incomplete) {
     secteurs.push({_id: null, name: 'Sans secteur'});
     $scope.users = users;
     $scope.secteurs = secteurs;
     $scope.currentUser = currentUser;
+    $scope.incomplete = incomplete;
 
     secteurs.forEach(function (secteur) {
       $http({method: 'HEAD', url: '/api/secteurs/' + secteur._id + '/requests'}).then(function(result) {
