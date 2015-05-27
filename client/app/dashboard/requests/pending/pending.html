@@ -20,6 +20,12 @@
 
   <div class="list-main">
     <table>
+      <thead>
+        <th></th>
+        <th>Initiateur</th>
+        <th>Bénéficiaire</th>
+        <th>Émise le</th>
+      </thead>
       <tbody>
         <tr ng-repeat="(idx, request) in filteredRequests = (requests | filter:query)">
           <td class="check-request" ng-click="request.isSelected = !request.isSelected">
@@ -28,11 +34,19 @@
           <td>
             <span class="user">
               <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
-                Demande de {{request.user.name}}
-                <em ng-if="request.formAnswers.identites.beneficiaire">
-                  pour {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
-                </em>
-
+                {{request.user.name}} ({{request.user.email}})
+              </a>
+            </span>
+          </td>
+          <td>
+            <span class="user">
+              <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
+                <span ng-if="request.formAnswers.identites.beneficiaire">
+                  {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                </span>
+                <span ng-if="!request.formAnswers.identites.beneficiaire">
+                  Demande incomplète, bénéficiaire non remplis
+                </span>
               </a>
             </span>
           </td>
