@@ -1612,18 +1612,13 @@
         "type": "radio",
         "answers": [
           {
-            "labelRep": "Son état de santé a changé",
-            "label": "Votre état de santé a changé",
-            "model": "sante"
+            "labelRep": "Ma situation médicale, administrative, familiale ou mon projet a changé",
+            "label": "Sa situation médicale, administrative, familiale ou son projet a changé",
+            "model": "changement"
           },
           {
-            "labelRep": "Son état de santé est stable mais son handicap a de nouvelles répercussions sur sa vie quotidienne",
-            "label": "Votre état de santé est stable mais votre handicap a de nouvelles répercussions sur votre vie quotidienne",
-            "model": "repercussions"
-          },
-          {
-            "labelRep": "Sa situation est stable",
-            "label": "Votre situation est stable",
+            "labelRep": "Je demande le renouvellement de mes droits à l’identique, car j’estime que ma situation n’a pas changé",
+            "label": "Je demande le renouvellement de mes droits à l’identique, car j’estime que ma situation n’a pas changé",
             "model": "stable"
           }
         ]

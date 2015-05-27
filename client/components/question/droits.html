@@ -1,7 +1,7 @@
-<qtitle ng-hide="hideTitle"></qtitle>
-
-<show-prestations form-answers="formAnswers" prestations="prestations" editable="true" width="4" end-date="true"></show-prestations>
-
 <form name="questionForm" novalidate>
+  <label class="question-legend">{{question.title}}</label>
+
+  <show-prestations form-answers="formAnswers" prestations="prestations" editable="true" width="4" end-date="true"></show-prestations>
+
   <nav-steps ng-hide="hideSteps"></nav-steps>
 </form>
