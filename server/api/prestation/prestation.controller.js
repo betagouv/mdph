@@ -50,7 +50,9 @@ function getCallbacks(answers) {
   var aidant = getSection(answers, 'aidant');
   var vieQuotidienne = getSection(answers, 'vie_quotidienne');
   var prestations = getSection(answers, 'prestations');
+  var situationsParticulieres = getSection(answers, 'situations_particulieres');
   var vieAuTravail = getSection(answers, 'vie_au_travail');
+
 
   var besoinsDeplacement = getValue(vieQuotidienne, 'besoinsDeplacement');
   var besoinsVie = getValue(vieQuotidienne, 'besoinsVie');
@@ -59,6 +61,8 @@ function getCallbacks(answers) {
   var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
   var aideTechnique = getValue(vieQuotidienne, 'aideTechnique');
   var attentesAidant = getValue(aidant, 'typeAttente');
+  var natureAideAidant = getValue(aidant, 'natureAide');
+  var urgences = getValue(situationsParticulieres, 'urgences');
 
   var estAdulte = isAdult(identites);
   var estEnfant = !estAdulte;
@@ -127,8 +131,7 @@ function getCallbacks(answers) {
             ]),
           ]),
           et([
-            getValue(besoinsSocial, 'securite'),
-            et( getValueList(besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
+            et( getValueList(besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
             et( getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante']) ),
           ]),
           et([
@@ -178,6 +181,32 @@ function getCallbacks(answers) {
         et([
           getValue(attentesTypeAide, 'humain'),
           getValue(attentesTypeAide, 'mobilite')
+        ])
+      ]);
+    },
+    ems: function(droit) {
+      return _.every([
+        estAdulte,
+        ou([
+          getValue(attentesTypeAide, 'etablissement'),
+          et([
+            getValue(urgences, 'domicile'),
+            et( getValueList(besoinsSocial, ['securite', 'proches']) ),
+            ou([
+              getValue(besoinsSocial, 'loisirs'),
+              et([
+                getValue(attentesTypeAide, 'humain'),
+                ou([
+                  ou(getValueList(besoinsVie, ['hygiene', 'habits', 'repas'])),
+                  getValue(besoinsDeplacement, 'intraDomicile')
+                ])
+              ])
+            ])
+          ]),
+          et([
+            ou(getValueList(attentesAidant, ['imprevu', 'vacances', 'professionnel'])),
+            ou(getValueList(natureAideAidant, ['surveillance', 'deplacementExterieur', 'deplacementInterieur', 'loisirs', 'hygiene', 'social', 'repasPrise']))
+          ])
         ])
       ]);
     },
@@ -239,46 +268,6 @@ function getCallbacks(answers) {
       };
 
       return estEnfant && pchEnfant() || estAdulte && pchAdulte();
-    },
-    ems: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-
-      var besoinAidant = function() {
-        return aidant && _.every([
-          aidant.typeAttente && _.some([aidant.typeAttente.imprevu, aidant.typeAttente.vacances, aidant.typeAttente.professionnel]),
-          aidant.natureAide && _.some([
-            aidant.natureAide.surveillance,
-            aidant.natureAide.deplacementInterieur,
-            aidant.natureAide.deplacementExterieur,
-            aidant.natureAide.loisirs,
-            aidant.natureAide.hygiene,
-            aidant.natureAide.social,
-            aidant.natureAide.repasPrise
-          ])
-        ]);
-      };
-
-      var besoinsVieQuotidienne = function() {
-        return _.every([
-          besoinsSocial && _.every([besoinsSocial.loisirs, besoinsSocial.securite, besoinsSocial.proches]),
-          _.some([
-            besoinsVie && _.some(besoinsVie.hygiene, besoinsVie.habits, besoinsVie.repas),
-            besoinsDeplacement && besoinsDeplacement.intraDomicile
-          ])
-        ]);
-      };
-
-      return _.every([
-        estAdulte,
-        _.some([
-          attentesTypeAide && attentesTypeAide.etablissement,
-          vieQuotidienne && _.some([vieQuotidienne.domicile, vieQuotidienne.etablissement]),
-          besoinAidant(),
-          besoinsVieQuotidienne()
-        ])
-      ]);
     },
     sms: function(droit) {
       if (estRenouvellement(droit)) {

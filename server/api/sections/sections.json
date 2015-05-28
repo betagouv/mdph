@@ -1915,10 +1915,6 @@
             "model": "imprevu"
           },
           {
-            "label": "Vous faire remplacer en cas de besoin",
-            "model": "vacances"
-          },
-          {
             "label": "Vous faire remplacer pour partir en week-end/vacances",
             "model": "vacances"
           },
