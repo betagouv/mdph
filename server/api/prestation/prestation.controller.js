@@ -57,8 +57,8 @@ function getCallbacks(answers) {
   var besoinsSocial = getValue(vieQuotidienne, 'besoinsSocial');
   var attentesTypeAide = getValue(vieQuotidienne, 'attentesTypeAide');
   var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
-
   var attentesAidant = getValue(aidant, 'typeAttente');
+
   var estAdulte = isAdult(identites);
   var estEnfant = !estAdulte;
   var aMoinsDe62Ans = isLessThan62(identites);
@@ -139,15 +139,10 @@ function getCallbacks(answers) {
       ]);
     },
     av: function(droit) {
-      // Assurance vieillesse
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-
       return ou([
         getValue(attentesAidant, 'vieillesse'),
         et([
-          getValue(aidant, 'emploiDetail'),
+          getValue(aidant, 'emploi') === 'reductionActivite',
           getValue(aidant, 'vie')
         ])
       ]);

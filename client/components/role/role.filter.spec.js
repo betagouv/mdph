@@ -2,18 +2,23 @@
 
 describe('Filter: role', function () {
 
-  // load the filter's module
-  beforeEach(module('impactApp'));
+  var $filter;
 
-  // initialize a new instance of the filter before each test
-  var role;
-  beforeEach(inject(function ($filter) {
-    role = $filter('role');
-  }));
+  beforeEach(function () {
+    module('impactApp');
+
+    inject(function (_$filter_) {
+      $filter = _$filter_;
+    });
+  });
+
 
   it('should return the prettystr version of the adminMdph role', function () {
     var text = 'adminMdph';
-    expect(role(text)).toBe('Gestionnaire MDPH');
+
+    var result = $filter('role')(text);
+
+    expect(result).toBe('Gestionnaire MDPH');
   });
 
 });
