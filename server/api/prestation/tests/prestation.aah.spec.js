@@ -316,7 +316,7 @@ describe('Simulation prestations : AAH ', function() {
         },
         "besoinsDeplacement": {
           "public": true
-        },
+        }
       },
       "vie_au_travail": {
         "conditionTravail": true,

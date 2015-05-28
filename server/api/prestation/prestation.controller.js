@@ -35,15 +35,23 @@ function isAdult(identites) {
   return now.diff(identites.beneficiaire.dateNaissance, 'years') >= 20;
 }
 
-function isLessThan62(identites) {
+function isMoreThan(identites, age) {
   var now = moment().startOf('day');
   if (!identites.beneficiaire || !identites.beneficiaire.dateNaissance) {
     return true;
   }
 
-  return now.diff(identites.beneficiaire.dateNaissance, 'years') < 62;
+  return now.diff(identites.beneficiaire.dateNaissance, 'years') >= age;
 }
 
+function isLessThan(identites, age) {
+  var now = moment().startOf('day');
+  if (!identites.beneficiaire || !identites.beneficiaire.dateNaissance) {
+    return true;
+  }
+
+  return now.diff(identites.beneficiaire.dateNaissance, 'years') < age;
+}
 
 function getCallbacks(answers) {
   var identites = getSection(answers, 'identites');
@@ -60,13 +68,21 @@ function getCallbacks(answers) {
   var attentesTypeAide = getValue(vieQuotidienne, 'attentesTypeAide');
   var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
   var aideTechnique = getValue(vieQuotidienne, 'aideTechnique');
+  var aidePersonne = getValue(vieQuotidienne, 'aidePersonne');
+
   var attentesAidant = getValue(aidant, 'typeAttente');
   var natureAideAidant = getValue(aidant, 'natureAide');
+
   var urgences = getValue(situationsParticulieres, 'urgences');
+
+  var besoinSoutienAuTravail = getValue(vieAuTravail, 'besoinSoutien');
+  var conservationTravail = getValue(vieAuTravail, 'conservation');
 
   var estAdulte = isAdult(identites);
   var estEnfant = !estAdulte;
-  var aMoinsDe62Ans = isLessThan62(identites);
+  var aMoinsDe62Ans = isLessThan(identites, 62);
+  var aPlusDe15Ans = isMoreThan(identites, 15);
+  var aMoinsDe76Ans = isLessThan(identites, 76);
 
   var ou = _.some;
   var et = _.every;
@@ -75,15 +91,12 @@ function getCallbacks(answers) {
     return prestations && prestations[presta.id];
   }
 
-  var estNonActif = et([
-    aMoinsDe62Ans,
-    ou([
-      false === getValue(vieAuTravail, 'conditionTravail'),
-      et([
-        getValue(vieAuTravail, 'conditionTravail'),
-        false === getValue(vieAuTravail, 'temps'),
-        false === getValue(vieAuTravail, 'adapte')
-      ])
+  var estNonActif = ou([
+    false === getValue(vieAuTravail, 'conditionTravail'),
+    et([
+      getValue(vieAuTravail, 'conditionTravail'),
+      false === getValue(vieAuTravail, 'temps'),
+      false === getValue(vieAuTravail, 'adapte')
     ])
   ]);
 
@@ -103,12 +116,13 @@ function getCallbacks(answers) {
             ou([
               ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
               getValue(besoinsDeplacement, 'intraDomicile')
-            ]),
+            ])
           ]),
           et([
             et( getValueList(besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante']) ),
             et( getValueList(besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
-            estNonActif
+            estNonActif,
+            aMoinsDe62Ans
           ]),
           et([
             et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
@@ -152,10 +166,6 @@ function getCallbacks(answers) {
       ]);
     },
     carteInvalidite: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-
       return ou([
         et([
           getValue(attentesTypeAide, 'humain'),
@@ -167,10 +177,6 @@ function getCallbacks(answers) {
       ]);
     },
     carteStationnement: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-
       return ou([
         getValue(aideTechnique, 'aideTechnique_technique'),
         getValue(besoinsDeplacement, 'intraDomicile'),
@@ -185,7 +191,7 @@ function getCallbacks(answers) {
       ]);
     },
     ems: function(droit) {
-      return _.every([
+      return et([
         estAdulte,
         ou([
           getValue(attentesTypeAide, 'etablissement'),
@@ -210,6 +216,113 @@ function getCallbacks(answers) {
         ])
       ]);
     },
+    orp: function(droit) {
+      return ou([
+        getValue(urgences, 'travail'),
+        getValue(urgences, 'formation'),
+        getValue(besoinSoutienAuTravail, 'precisions'),
+        getValue(conservationTravail, 'medecineTravail'),
+        getValue(conservationTravail, 'sameth'),
+        getValue(vieAuTravail, 'amenagement'),
+        // renouvellement aah,
+        et([
+          getValue(aidePersonne, 'aidePersonne_medicoSociale'),
+          getValue(besoinSoutienAuTravail, 'precisions')
+        ]),
+        et([
+          aPlusDe15Ans,
+          ou([
+            getValue(besoinsVie, 'courant'),
+            getValue(attentesTypeAide, 'financierMinimum')
+          ]),
+          ou([
+            getValue(pensionInvalidite, 'mtp'),
+            getValue(pensionInvalidite, 'pcrtp'),
+            et([
+              getValue(attentesTypeAide, 'humain'),
+              ou([
+                ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+                getValue(besoinsDeplacement, 'intraDomicile')
+              ]),
+            ]),
+            et([
+              et( getValueList(besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante']) ),
+              et( getValueList(besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
+              estNonActif
+            ]),
+            et([
+              et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+              getValue(besoinsDeplacement, 'public'),
+              getValue(attentesTypeAide, 'materiel'),
+              estNonActif
+            ])
+          ])
+        ])
+      ]);
+    },
+    pch: function(droit) {
+      if (estEnfant) {
+        return et([
+          ou(getValueList(attentesTypeAide, ['humain', 'materiel', 'amenagement', 'financierHandicap'])),
+          ou([
+            et([
+              getValue(besoinsVie, 'hygiene'),
+              getValue(attentesTypeAide, 'humain'),
+              ou([
+                getValue(aideTechnique, 'aideTechnique_vehicule'),
+                ou(
+                  getValueList(attentesTypeAide, ['humain', 'materiel', 'amenagement', 'financierHandicap'])
+                )
+              ]),
+              ou([
+                ou( getValueList(besoinsVie, ['habits', 'repas']) ),
+                ou( getValueList(besoinsSocial, ['securite', 'proches', 'communication']) ),
+                ou( getValueList(besoinsDeplacement, ['intraDomicile', 'public', 'accesDomicile']) )
+              ]),
+            ]),
+            et([
+              getValue(attentesTypeAide, 'humain'),
+              ou([
+                ou( getValueList(besoinsVie, ['habits', 'repas']) ),
+                getValue(besoinsDeplacement, 'intraDomicile')
+              ]),
+            ]),
+            et([
+              et( getValueList(besoinsVie, ['cuisine', 'budget', 'courses', 'menage', 'sante']) ),
+              et( getValueList(besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) )
+            ]),
+            et([
+              et( getValueList(besoinsVie, ['habits', 'repas', 'hygiene']) ),
+              getValue(besoinsDeplacement, 'public' ),
+              getValue(attentesTypeAide, 'materiel')
+            ])
+          ])
+        ]);
+      } else if (estAdulte && aMoinsDe76Ans) {
+        return et([
+          ou([
+            getValue(aideTechnique, 'aideTechnique_vehicule'),
+            ou(
+              getValueList(attentesTypeAide, ['humain', 'materiel', 'amenagement', 'financierHandicap'])
+            )
+          ]),
+          ou([
+            getValue(pensionInvalidite, 'mtp'),
+            getValue(pensionInvalidite, 'pcrtp'),
+            ou([
+              ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+              ou( getValueList(besoinsSocial, ['securite', 'proches', 'communication']) ),
+              ou( getValueList(besoinsDeplacement, ['intraDomicile', 'public', 'accesDomicile']) )
+            ]),
+          ])
+        ]);
+      } else {
+        return ou([
+          getValue(vieAuTravail, 'conditionTravail'),
+          estRenouvellement({id: 'ac'})
+        ]);
+      }
+    },
     ac: function(droit) {
       if (estRenouvellement(droit)) {
         return true;
@@ -222,52 +335,6 @@ function getCallbacks(answers) {
         return true;
       }
       return vieQuotidienne && vieQuotidienne.ecole;
-    },
-    orp: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-      return vieQuotidienne && _.some([vieQuotidienne.travail, vieQuotidienne.formation]);
-    },
-    pch: function(droit) {
-      if (estRenouvellement(droit) || estRenouvellement({id: 'ac'})) {
-        return true;
-      }
-
-      var auMoinsUneAttente = function() {
-        return _.some([
-          attentesTypeAide && _.some([
-            attentesTypeAide.humain,
-            attentesTypeAide.materiel,
-            attentesTypeAide.amenagement,
-            attentesTypeAide.financierHandicap]),
-          besoinsDeplacement && besoinsDeplacement.vehicule,
-          aidant && aidant.typeAttente && _.some([
-            aidant.typeAttente.finance,
-            aidant.typeAttente.imprevu,
-            aidant.typeAttente.vacances,
-            aidant.typeAttente.professionnel
-          ])
-        ]);
-      };
-
-      var auMoinsUnBesoin = function() {
-        return _.some([
-          besoinsVie && _.some([besoinsVie.hygiene, besoinsVie.habits, besoinsVie.repas]),
-          besoinsDeplacement && _.some([besoinsDeplacement.intraDomicile, besoinsDeplacement.public, besoinsDeplacement.accesDomicile]),
-          besoinsSocial && _.some([besoinsSocial.proches, besoinsSocial.securite, besoinsSocial.communication]),
-        ]);
-      };
-
-      var pchEnfant = function() {
-        return auMoinsUneAttente() && auMoinsUnBesoin();
-      };
-
-      var pchAdulte = function() {
-        return auMoinsUneAttente() && auMoinsUnBesoin();
-      };
-
-      return estEnfant && pchEnfant() || estAdulte && pchAdulte();
     },
     sms: function(droit) {
       if (estRenouvellement(droit)) {
