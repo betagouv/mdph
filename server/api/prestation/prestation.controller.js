@@ -57,6 +57,7 @@ function getCallbacks(answers) {
   var besoinsSocial = getValue(vieQuotidienne, 'besoinsSocial');
   var attentesTypeAide = getValue(vieQuotidienne, 'attentesTypeAide');
   var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
+  var aideTechnique = getValue(vieQuotidienne, 'aideTechnique');
   var attentesAidant = getValue(aidant, 'typeAttente');
 
   var estAdulte = isAdult(identites);
@@ -168,6 +169,7 @@ function getCallbacks(answers) {
       }
 
       return ou([
+        getValue(aideTechnique, 'aideTechnique_technique'),
         getValue(besoinsDeplacement, 'intraDomicile'),
         et([
           getValue(attentesTypeAide, 'humain'),
@@ -176,7 +178,7 @@ function getCallbacks(answers) {
         et([
           getValue(attentesTypeAide, 'humain'),
           getValue(attentesTypeAide, 'mobilite')
-        ]),
+        ])
       ]);
     },
     ac: function(droit) {
