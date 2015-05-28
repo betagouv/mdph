@@ -12,7 +12,7 @@ exports.findSecteur = function(request, callback) {
   var identites = request.formAnswers.identites;
   var codePostal = identites.beneficiaire.code_postal;
   var mdphZipcode = request.mdph;
-  var estAdulte = DateUtils.estAdulte(request.formAnswers);
+  var estAdulte = DateUtils.isAdult(request.formAnswers);
   var type = estAdulte ? 'adulte' : 'enfant';
 
   async.waterfall([

@@ -10,32 +10,28 @@ function getDateNaissance(answers) {
   }
 }
 
- exports.estAdulte = function (answers) {
+function isMoreThan(answers, age) {
   var dateNaissance = getDateNaissance(answers);
 
   if (!dateNaissance) {
     return true;
   } else {
-    return moment().diff(dateNaissance, 'years') >= 18;
+    return moment().diff(dateNaissance, 'years') >= age;
   }
-};
+}
+exports.isMoreThan = isMoreThan;
 
- exports.plusDe20ans = function (answers) {
+ exports.isLessThan = function (answers, age) {
   var dateNaissance = getDateNaissance(answers);
 
   if (!dateNaissance) {
     return true;
   } else {
-    return moment().diff(dateNaissance, 'years') >= 20;
+    return moment().diff(dateNaissance, 'years') < age;
   }
 };
 
- exports.aMoinsDe62Ans = function (answers) {
-  var dateNaissance = getDateNaissance(answers);
-
-  if (!dateNaissance) {
-    return true;
-  } else {
-    return moment().diff(dateNaissance, 'years') < 62;
-  }
+ exports.isAdult = function (answers) {
+  return isMoreThan(answers, 20);
 };
+

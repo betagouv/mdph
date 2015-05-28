@@ -2,7 +2,11 @@
 
 var moment = require('moment');
 var _ = require('lodash');
+var DateUtils = require('../../components/dateUtils');
 var Prestation = require('./prestation.constants');
+
+var ou = _.some;
+var et = _.every;
 
 function getSection(answers, sectionModel) {
   var result = _.result(answers, sectionModel);
@@ -25,32 +29,6 @@ function getValueList(question, answerModelList) {
     }
   });
   return resultList;
-}
-
-function isAdult(identites) {
-  var now = moment().startOf('day');
-  if (!identites.beneficiaire || !identites.beneficiaire.dateNaissance) {
-    return true;
-  }
-  return now.diff(identites.beneficiaire.dateNaissance, 'years') >= 20;
-}
-
-function isMoreThan(identites, age) {
-  var now = moment().startOf('day');
-  if (!identites.beneficiaire || !identites.beneficiaire.dateNaissance) {
-    return true;
-  }
-
-  return now.diff(identites.beneficiaire.dateNaissance, 'years') >= age;
-}
-
-function isLessThan(identites, age) {
-  var now = moment().startOf('day');
-  if (!identites.beneficiaire || !identites.beneficiaire.dateNaissance) {
-    return true;
-  }
-
-  return now.diff(identites.beneficiaire.dateNaissance, 'years') < age;
 }
 
 function getCallbacks(answers) {
@@ -80,14 +58,12 @@ function getCallbacks(answers) {
   var besoinSoutienAuTravail = getValue(vieAuTravail, 'besoinSoutien');
   var conservationTravail = getValue(vieAuTravail, 'conservation');
 
-  var estAdulte = isAdult(identites);
+  var estAdulte = DateUtils.isAdult(answers);
   var estEnfant = !estAdulte;
-  var aMoinsDe62Ans = isLessThan(identites, 62);
-  var aPlusDe15Ans = isMoreThan(identites, 15);
-  var aMoinsDe76Ans = isLessThan(identites, 76);
 
-  var ou = _.some;
-  var et = _.every;
+  var aMoinsDe62Ans = DateUtils.isLessThan(answers, 62);
+  var aPlusDe15Ans = DateUtils.isMoreThan(answers, 15);
+  var aMoinsDe76Ans = DateUtils.isLessThan(answers, 76);
 
   function estRenouvellement(presta) {
     return prestations && prestations[presta.id];

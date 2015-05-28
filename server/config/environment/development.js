@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/impact-dev'
+    uri: 'mongodb://localhost/impact'
   },
 
   seedDB: false
