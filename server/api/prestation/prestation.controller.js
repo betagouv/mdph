@@ -102,6 +102,51 @@ function getCallbacks(answers) {
     ])
   ]);
 
+  function rqthOrOrp() {
+    return ou([
+      getValue(urgences, 'travail'),
+      getValue(urgences, 'formation'),
+      getValue(besoinSoutienAuTravail, 'precisions'),
+      getValue(conservationTravail, 'medecineTravail'),
+      getValue(conservationTravail, 'sameth'),
+      getValue(vieAuTravail, 'amenagement'),
+      // renouvellement aah,
+      et([
+        getValue(aidePersonne, 'aidePersonne_medicoSociale'),
+        getValue(besoinSoutienAuTravail, 'precisions')
+      ]),
+      et([
+        aPlusDe15Ans,
+        ou([
+          getValue(besoinsVie, 'courant'),
+          getValue(attentesTypeAide, 'financierMinimum')
+        ]),
+        ou([
+          getValue(pensionInvalidite, 'mtp'),
+          getValue(pensionInvalidite, 'pcrtp'),
+          et([
+            getValue(attentesTypeAide, 'humain'),
+            ou([
+              ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+              getValue(besoinsDeplacement, 'intraDomicile')
+            ]),
+          ]),
+          et([
+            et( getValueList(besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante']) ),
+            et( getValueList(besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
+            estNonActif
+          ]),
+          et([
+            et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+            getValue(besoinsDeplacement, 'public'),
+            getValue(attentesTypeAide, 'materiel'),
+            estNonActif
+          ])
+        ])
+      ])
+    ]);
+  }
+
   return {
     aah: function(droit) {
       return et([
@@ -219,48 +264,10 @@ function getCallbacks(answers) {
       ]);
     },
     orp: function(droit) {
-      return ou([
-        getValue(urgences, 'travail'),
-        getValue(urgences, 'formation'),
-        getValue(besoinSoutienAuTravail, 'precisions'),
-        getValue(conservationTravail, 'medecineTravail'),
-        getValue(conservationTravail, 'sameth'),
-        getValue(vieAuTravail, 'amenagement'),
-        // renouvellement aah,
-        et([
-          getValue(aidePersonne, 'aidePersonne_medicoSociale'),
-          getValue(besoinSoutienAuTravail, 'precisions')
-        ]),
-        et([
-          aPlusDe15Ans,
-          ou([
-            getValue(besoinsVie, 'courant'),
-            getValue(attentesTypeAide, 'financierMinimum')
-          ]),
-          ou([
-            getValue(pensionInvalidite, 'mtp'),
-            getValue(pensionInvalidite, 'pcrtp'),
-            et([
-              getValue(attentesTypeAide, 'humain'),
-              ou([
-                ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
-                getValue(besoinsDeplacement, 'intraDomicile')
-              ]),
-            ]),
-            et([
-              et( getValueList(besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante']) ),
-              et( getValueList(besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
-              estNonActif
-            ]),
-            et([
-              et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
-              getValue(besoinsDeplacement, 'public'),
-              getValue(attentesTypeAide, 'materiel'),
-              estNonActif
-            ])
-          ])
-        ])
-      ]);
+      return rqthOrOrp();
+    },
+    rqth: function(droit) {
+      return rqthOrOrp();
     },
     pch: function(droit) {
       if (estEnfant) {
@@ -331,59 +338,35 @@ function getCallbacks(answers) {
         ou(getValueList(attentesVieScolaire, ['adaptation', 'orientation', 'readaptation', 'etablissementSansHebergement', 'etablissementAvecHebergement']))
       ]);
     },
+    sms: function(droit) {
+      return et([
+        estAdulte,
+        ou([
+          et([
+            ou([
+              getValue(urgences, 'domicile'),
+              getValue(attentesTypeAide, 'domicile'),
+              getValue(attentesTypeAide, 'humain')
+            ]),
+            ou([
+              ou( getValueList(besoinsVie, ['budget', 'sante']) ),
+              ou( getValueList(besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
+            ])
+          ]),
+          et([
+            ou( getValueList(attentesAidant, ['repos', 'professionnel']) ),
+            et( getValueList(['surveillance', 'juridique', 'deplacementExterieur', 'finances', 'logement', 'loisirs', 'social',
+              'repasPreparation', 'medical']) )
+          ])
+        ])
+      ]);
+    },
     ac: function(droit) {
       if (estRenouvellement(droit)) {
         return true;
       } else {
         return false;
       }
-    },
-    sms: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-
-      var besoinAidant = function() {
-        return aidant && _.every([
-          aidant.typeAttente && _.some([aidant.typeAttente.repos, aidant.typeAttente.professionnel]),
-          aidant.natureAide && _.some([
-            aidant.natureAide.surveillance,
-            aidant.natureAide.juridique,
-            aidant.natureAide.deplacementExterieur,
-            aidant.natureAide.finances,
-            aidant.natureAide.logement,
-            aidant.natureAide.loisirs,
-            aidant.natureAide.social,
-            aidant.natureAide.repasPreparation,
-            aidant.natureAide.medical
-          ])
-        ]);
-      };
-
-      var besoinsVieQuotidienne = function() {
-        return _.every([
-          vieQuotidienne && vieQuotidienne.domicile,
-          attentesTypeAide && _.every([attentesTypeAide.domicile, attentesTypeAide.humain]),
-          _.some([
-            besoinsSocial && _.some([besoinsSocial.loisirs, besoinsSocial.proches, besoinsSocial.citoyen]),
-            besoinsVie && _.some([besoinsVie.sante, besoinsVie.budget])
-          ])
-        ]);
-      };
-
-      return _.every([
-        estAdulte,
-        _.some([
-          besoinAidant(),
-          besoinsVieQuotidienne()
-        ])
-      ]);
-    },
-    rqth: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-      return vieQuotidienne && _.some([vieQuotidienne.travail, vieQuotidienne.formation]);
     }
   };
 }

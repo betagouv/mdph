@@ -92,6 +92,13 @@ exports.all = [
       personne handicapée pourra exercer une activité adaptée à sa situation.'
   },
   {
+    id: 'sms',
+    type: 'presta-accompagnement',
+    label: 'SMS',
+    title: 'Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs',
+    description: ''
+  },
+  {
     id: 'ac',
     type: 'presta-finances',
     label: 'AC',
