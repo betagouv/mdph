@@ -60,7 +60,7 @@ function getCallbacks(answers) {
   var prestations = getSection(answers, 'prestations');
   var situationsParticulieres = getSection(answers, 'situations_particulieres');
   var vieAuTravail = getSection(answers, 'vie_au_travail');
-
+  var vieScolaire = getSection(answers, 'vie_scolaire');
 
   var besoinsDeplacement = getValue(vieQuotidienne, 'besoinsDeplacement');
   var besoinsVie = getValue(vieQuotidienne, 'besoinsVie');
@@ -69,6 +69,8 @@ function getCallbacks(answers) {
   var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
   var aideTechnique = getValue(vieQuotidienne, 'aideTechnique');
   var aidePersonne = getValue(vieQuotidienne, 'aidePersonne');
+
+  var attentesVieScolaire = getValue(vieScolaire, 'attentesVieScolaire');
 
   var attentesAidant = getValue(aidant, 'typeAttente');
   var natureAideAidant = getValue(aidant, 'natureAide');
@@ -323,18 +325,18 @@ function getCallbacks(answers) {
         ]);
       }
     },
+    pps: function(droit) {
+      return ou([
+        ou(getValueList(urgences, ['ecole', 'etablissement'])),
+        ou(getValueList(attentesVieScolaire, ['adaptation', 'orientation', 'readaptation', 'etablissementSansHebergement', 'etablissementAvecHebergement']))
+      ]);
+    },
     ac: function(droit) {
       if (estRenouvellement(droit)) {
         return true;
       } else {
         return false;
       }
-    },
-    pps: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-      return vieQuotidienne && vieQuotidienne.ecole;
     },
     sms: function(droit) {
       if (estRenouvellement(droit)) {
