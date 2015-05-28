@@ -54,7 +54,6 @@ function getCallbacks(answers) {
 
   var besoinsDeplacement = getValue(vieQuotidienne, 'besoinsDeplacement');
   var besoinsVie = getValue(vieQuotidienne, 'besoinsVie');
-  var besoinsLieuDeVie = getValue(vieQuotidienne, 'besoinsLieuDeVie');
   var besoinsSocial = getValue(vieQuotidienne, 'besoinsSocial');
   var attentesTypeAide = getValue(vieQuotidienne, 'attentesTypeAide');
   var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
@@ -76,6 +75,7 @@ function getCallbacks(answers) {
     ou([
       false === getValue(vieAuTravail, 'conditionTravail'),
       et([
+        getValue(vieAuTravail, 'conditionTravail'),
         false === getValue(vieAuTravail, 'temps'),
         false === getValue(vieAuTravail, 'adapte')
       ])
@@ -86,44 +86,37 @@ function getCallbacks(answers) {
     aah: function(droit) {
       return et([
         estAdulte,
-        ou( [besoinsVie && besoinsVie.courant, attentesTypeAide && attentesTypeAide.financierMinimum] ),
         ou([
-          pensionInvalidite && pensionInvalidite.mtp,
-          pensionInvalidite && pensionInvalidite.pcrtp,
-          et( [besoinsVie && besoinsVie.hygiene, attentesTypeAide && attentesTypeAide.humain] ),
-          et( [besoinsVie && besoinsVie.habits, attentesTypeAide && attentesTypeAide.humain] ),
-          et( [besoinsVie && besoinsVie.repas, attentesTypeAide && attentesTypeAide.humain] ),
-          et( [besoinsDeplacement && besoinsDeplacement.intraDomicile, attentesTypeAide && attentesTypeAide.humain] ),
+          getValue(besoinsVie, 'courant'),
+          getValue(attentesTypeAide, 'financierMinimum')
+        ]),
+        ou([
+          getValue(pensionInvalidite, 'mtp'),
+          getValue(pensionInvalidite, 'pcrtp'),
           et([
-            et( getValueList(besoinsVie, ["habits","cuisine","repas","budget","courses","menage","sante"]) ),
-            et( getValueList(besoinsSocial, ["securite","proches","loisirs","citoyen"]) ),
-            aMoinsDe62Ans,
+            getValue(attentesTypeAide, 'humain'),
             ou([
-              vieAuTravail && vieAuTravail.conditionTravail === false,
-              vieAuTravail && vieAuTravail.conditionTravail && vieAuTravail.temps === false && vieAuTravail.adapte === false
-            ])
+              ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+              getValue(besoinsDeplacement, 'intraDomicile')
+            ]),
           ]),
           et([
-            besoinsVie && besoinsVie.hygiene && besoinsVie.habits && besoinsVie.repas,
-            besoinsDeplacement && besoinsDeplacement.deplacementExterieur,
-            attentesTypeAide && attentesTypeAide.materiel,
-            aMoinsDe62Ans,
-            ou([
-              vieAuTravail && vieAuTravail.conditionTravail === false,
-              vieAuTravail && vieAuTravail.conditionTravail && vieAuTravail.temps === false && vieAuTravail.adapte === false
-            ])
+            et( getValueList(besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante']) ),
+            et( getValueList(besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
+            estNonActif
+          ]),
+          et([
+            et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+            getValue(besoinsDeplacement, 'public'),
+            getValue(attentesTypeAide, 'materiel')
           ])
         ])
       ]);
     },
     aeeh: function(droit) {
-      if (estRenouvellement(droit)) {
-        return true;
-      }
-
       return et([
         estEnfant,
-        ou( getValueList(attentesTypeAide, ['financierMinimum', 'financierHandicap', 'humain', 'materiel', 'amenagement']) ),
+        ou( getValueList(attentesTypeAide, ['financierMinimum', 'humain', 'materiel', 'amenagement']) ),
         ou([
           et([
             getValue(attentesTypeAide, 'humain'),
@@ -134,19 +127,13 @@ function getCallbacks(answers) {
           ]),
           et([
             getValue(besoinsSocial, 'securite'),
-            et([
-              et( getValueList(besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
-              et( getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante']) ),
-              estNonActif
-            ])
+            et( getValueList(besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
+            et( getValueList(besoinsVie, ['budget', 'courses', 'cuisine', 'menage', 'sante']) ),
           ]),
           et([
-            getValue(besoinsLieuDeVie, 'materiel'),
-            et([
-              et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
-              getValue(besoinsDeplacement, 'public'),
-              estNonActif
-            ])
+            getValue(attentesTypeAide, 'materiel'),
+            et( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
+            getValue(besoinsDeplacement, 'public'),
           ])
         ])
       ]);

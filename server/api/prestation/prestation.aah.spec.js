@@ -315,7 +315,7 @@ describe('Simulation prestations : AAH ', function() {
           materiel: true
         },
         "besoinsDeplacement": {
-          "deplacementExterieur": true
+          "public": true
         },
       },
       "vie_au_travail": {
