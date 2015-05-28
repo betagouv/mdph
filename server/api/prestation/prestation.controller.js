@@ -157,7 +157,9 @@ function getCallbacks(answers) {
           getValue(attentesTypeAide, 'humain'),
           ou( getValueList(besoinsVie, ['hygiene', 'habits', 'repas']) ),
         ]),
-        getValue(besoinsDeplacement, 'intraDomicile')
+        getValue(besoinsDeplacement, 'intraDomicile'),
+        getValue(pensionInvalidite, 'mtp'),
+        getValue(pensionInvalidite, 'pcrtp')
       ]);
     },
     carteStationnement: function(droit) {
