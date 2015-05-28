@@ -32,6 +32,7 @@ function getValueList(question, answerModelList) {
 }
 
 function getCallbacks(answers) {
+  // Shortcuts to sections
   var identites = getSection(answers, 'identites');
   var aidant = getSection(answers, 'aidant');
   var vieQuotidienne = getSection(answers, 'vie_quotidienne');
@@ -40,6 +41,7 @@ function getCallbacks(answers) {
   var vieAuTravail = getSection(answers, 'vie_au_travail');
   var vieScolaire = getSection(answers, 'vie_scolaire');
 
+  // Shortcuts to answers
   var besoinsDeplacement = getValue(vieQuotidienne, 'besoinsDeplacement');
   var besoinsVie = getValue(vieQuotidienne, 'besoinsVie');
   var besoinsSocial = getValue(vieQuotidienne, 'besoinsSocial');
@@ -47,20 +49,16 @@ function getCallbacks(answers) {
   var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
   var aideTechnique = getValue(vieQuotidienne, 'aideTechnique');
   var aidePersonne = getValue(vieQuotidienne, 'aidePersonne');
-
   var attentesVieScolaire = getValue(vieScolaire, 'attentesVieScolaire');
-
   var attentesAidant = getValue(aidant, 'typeAttente');
   var natureAideAidant = getValue(aidant, 'natureAide');
-
   var urgences = getValue(situationsParticulieres, 'urgences');
-
   var besoinSoutienAuTravail = getValue(vieAuTravail, 'besoinSoutien');
   var conservationTravail = getValue(vieAuTravail, 'conservation');
 
+  // Initialize age variables
   var estAdulte = DateUtils.isAdult(answers);
   var estEnfant = !estAdulte;
-
   var aMoinsDe62Ans = DateUtils.isLessThan(answers, 62);
   var aPlusDe15Ans = DateUtils.isMoreThan(answers, 15);
   var aMoinsDe76Ans = DateUtils.isLessThan(answers, 76);
