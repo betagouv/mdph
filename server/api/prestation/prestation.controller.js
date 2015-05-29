@@ -50,6 +50,7 @@ function computeAnswers(answers) {
   var urgences = getValue(situationsParticulieres, 'urgences');
   var besoinSoutienAuTravail = getValue(vieAuTravail, 'besoinSoutien');
   var conservationTravail = getValue(vieAuTravail, 'conservation');
+  var milieuTravail = getValue(vieAuTravail, 'milieuTravail');
 
   // Initialize age variables
   var estAdulte = isAdult(answers);
@@ -67,8 +68,9 @@ function computeAnswers(answers) {
     ])
   ]);
 
+  var computed = {
+    estRenouvellement: answers.estRenouvellement,
 
-  return {
     estAdulte: estAdulte,
     estEnfant: estEnfant,
     aMoinsDe62Ans: aMoinsDe62Ans,
@@ -96,8 +98,15 @@ function computeAnswers(answers) {
     natureAideAidant: natureAideAidant,
     urgences: urgences,
     besoinSoutienAuTravail: besoinSoutienAuTravail,
-    conservationTravail: conservationTravail
+    conservationTravail: conservationTravail,
+    milieuTravail: milieuTravail
+  };
+
+  if (answers.estRenouvellement) {
+    computed.prestations = _.keys(answers.prestations);
   }
+
+  return computed;
 }
 
 function getCallbacks(answers) {

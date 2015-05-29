@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var Utils = require('./utils');
 
 var ou = Utils.ou;
@@ -8,6 +9,15 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
+  if (computed.estRenouvellement) {
+    if (_.contains(computed.prestations, 'aah')) {
+      return true;
+    }
+    if (computed.estAdulte && getValue(computed.milieuTravail, 'etablissement')) {
+      return true;
+    }
+  }
+
   return et([
     computed.estAdulte,
     ou([

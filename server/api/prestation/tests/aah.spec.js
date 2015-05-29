@@ -329,6 +329,71 @@ describe('Simulation prestations : AAH ', function() {
     quitus.should.containEql(aah);
     done();
   });
+
+  it('should return aah - renouvellement de droit', function(done) {
+    var answers = {
+      estRenouvellement: true,
+      "prestations": {
+        "aah": {
+          "date": "2015-05-11T22:00:00.000Z"
+        }
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(aah);
+    done();
+  });
+
+  it('should return aah - milieu de travail protégé', function(done) {
+    var answers = {
+      estRenouvellement: true,
+      "beneficiaire": {
+        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      },
+      vie_au_travail: {
+        milieuTravail: {
+          etablissement: true
+        }
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(aah);
+    done();
+  });
+
+  it('should not return aah - milieu de travail protégé', function(done) {
+    var answers = {
+      estRenouvellement: false,
+      "beneficiaire": {
+        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      },
+      vie_au_travail: {
+        "milieuTravail": "etablissement"
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.not.containEql(aah);
+    done();
+  });
+
+  it('should not return aah - milieu de travail protégé', function(done) {
+    var answers = {
+      estRenouvellement: true,
+      "beneficiaire": {
+        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      },
+      vie_au_travail: {
+        "milieuTravail": "autre"
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.not.containEql(aah);
+    done();
+  });
 });
 
 
