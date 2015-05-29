@@ -1,0 +1,855 @@
+[4mRunning "test" task[24m
+
+[4mRunning "test:server" (test) task[24m
+
+[4mRunning "env:all" (env) task[24m
+
+[4mRunning "env:test" (env) task[24m
+
+[4mRunning "mochaTest:src" (mochaTest) task[24m
+
+
+  Mdph Model
+{"name":"impact-dev","hostname":"OCTO-FDE.local","pid":46153,"level":30,"msg":"GET /api/mdphs 200 6ms - 2","time":"2015-05-29T09:32:59.669Z","v":0}
+    ✓ should respond with JSON array 
+    ✓ should begin with no mdphs 
+    ✓ should render the rigth number of mdph 
+
+  Simulation prestations : AAH 
+    ✓ should not return aah 
+    ✓ should return aah 
+    ✓ should return aah 
+    ✓ should return aah 
+    ✓ should return aah 
+    ✓ should return aah 
+    ✓ should not return aah 
+    ✓ should return aah 
+    ✓ should not return aah - more than 62 yrs old 
+    ✓ should return aah 
+    ✓ should not return aah 
+    ✓ should return aah 
+
+  Simulation prestations : AEEH 
+    1) should return aeeh
+    ✓ should not return aeeh 
+    ✓ should not return aeeh, too old 
+    2) should return aeeh
+    3) should return aeeh
+    4) should return aeeh
+
+  Simulation prestations : AV 
+    5) should return av
+    ✓ should not return av 
+    6) should return av
+    7) should return av
+
+  Simulation prestations : carteInvalidite 
+    8) should return carteInvalidite
+    9) should return carteInvalidite
+    10) should return carteInvalidite
+    11) should return carteInvalidite
+    12) should return carteInvalidite
+    13) should return carteInvalidite
+
+  Simulation prestations : carteStationnement 
+    14) should return carteStationnement
+    15) should return carteStationnement
+    16) should return carteStationnement
+    17) should return carteStationnement
+
+  Simulation prestations : ems 
+    18) should return ems
+    ✓ should not return ems 
+    19) should return ems
+    20) should return ems
+    ✓ should not return ems 
+    ✓ should not return ems 
+    21) should return ems
+
+  Simulation prestations : orp 
+    22) should return orp
+    23) should return orp
+    24) should return orp
+    25) should return orp
+    26) should return orp
+    ✓ should not return orp 
+
+  Simulation prestations : pch 
+    27) should return pch - more than 76
+    ✓ should not return pch - more than 76 
+    28) should return pch - more than 20 less than 76
+    29) should return pch - less than 20
+    30) should return pch - less than 20
+    ✓ should not return pch - less than 20 
+    31) should return pch - less than 20
+    32) should return pch - less than 20
+
+  Simulation prestations : pps 
+    33) should return pps
+    34) should return pps
+    35) should return pps
+    ✓ should not return pps 
+
+  Simulation prestations : sms 
+    36) should return sms
+    ✓ should not return sms 
+    37) should return sms
+
+  Request Model
+    ✓ should render the rigth number of requests 
+
+  User Model
+    ✓ should begin with no users 
+    ✓ should fail when saving a duplicate user 
+    ✓ should fail when saving without an email 
+    ✓ should authenticate user if password is valid 
+    ✓ should not authenticate user if password is invalid 
+
+  Dispatcher
+    ✓ should find the correct secteur 
+    ✓ should find the correct default secteur even without rules 
+    ✓ should not find the default secteur if it is described in another mdph 
+
+
+  35 passing (225ms)
+  37 failing
+
+  1) Simulation prestations : AEEH  should return aeeh:
+     AssertionError: expected [] to contain {
+  description: 'L\'allocation d\'éducation de l\'enfant handicapé (AEEH) est destinée à soutenir les       personnes qui assurent la charge d\'un enfant en situation de handicap.',
+  id: 'aeeh',
+  label: 'AEEH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml',
+  title: 'Allocation d\'éducation de l\'enfant handicapé',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/aeeh.spec.js:32:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  2) Simulation prestations : AEEH  should return aeeh:
+     AssertionError: expected [] to contain {
+  description: 'L\'allocation d\'éducation de l\'enfant handicapé (AEEH) est destinée à soutenir les       personnes qui assurent la charge d\'un enfant en situation de handicap.',
+  id: 'aeeh',
+  label: 'AEEH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml',
+  title: 'Allocation d\'éducation de l\'enfant handicapé',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/aeeh.spec.js:103:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  3) Simulation prestations : AEEH  should return aeeh:
+     AssertionError: expected [] to contain {
+  description: 'L\'allocation d\'éducation de l\'enfant handicapé (AEEH) est destinée à soutenir les       personnes qui assurent la charge d\'un enfant en situation de handicap.',
+  id: 'aeeh',
+  label: 'AEEH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml',
+  title: 'Allocation d\'éducation de l\'enfant handicapé',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/aeeh.spec.js:127:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  4) Simulation prestations : AEEH  should return aeeh:
+     AssertionError: expected [] to contain {
+  description: 'L\'allocation d\'éducation de l\'enfant handicapé (AEEH) est destinée à soutenir les       personnes qui assurent la charge d\'un enfant en situation de handicap.',
+  id: 'aeeh',
+  label: 'AEEH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml',
+  title: 'Allocation d\'éducation de l\'enfant handicapé',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/aeeh.spec.js:155:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  5) Simulation prestations : AV  should return av:
+     AssertionError: expected [] to contain {
+  description: 'L\'affiliation à l\'assurance vieillesse permet à l\'aidant familial de valider des trimestres       pour sa retraite sans qu\'il ait besoin de verser des cotisations auprès de sa caisse de retraite.',
+  id: 'av',
+  label: 'AV',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2574.xhtml',
+  title: 'Affiliation gratuite à l\'assurance vieillesse',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/av.spec.js:25:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  6) Simulation prestations : AV  should return av:
+     AssertionError: expected [] to contain {
+  description: 'L\'affiliation à l\'assurance vieillesse permet à l\'aidant familial de valider des trimestres       pour sa retraite sans qu\'il ait besoin de verser des cotisations auprès de sa caisse de retraite.',
+  id: 'av',
+  label: 'AV',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2574.xhtml',
+  title: 'Affiliation gratuite à l\'assurance vieillesse',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/av.spec.js:50:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  7) Simulation prestations : AV  should return av:
+     AssertionError: expected [] to contain {
+  description: 'L\'affiliation à l\'assurance vieillesse permet à l\'aidant familial de valider des trimestres       pour sa retraite sans qu\'il ait besoin de verser des cotisations auprès de sa caisse de retraite.',
+  id: 'av',
+  label: 'AV',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2574.xhtml',
+  title: 'Affiliation gratuite à l\'assurance vieillesse',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/av.spec.js:64:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  8) Simulation prestations : carteInvalidite  should return carteInvalidite:
+     AssertionError: expected [] to contain {
+  description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé       et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
+  id: 'carteInvalidite',
+  label: 'Carte d\'invalidité',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml',
+  title: 'Carte d\'invalidité',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteInvalidite.spec.js:26:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  9) Simulation prestations : carteInvalidite  should return carteInvalidite:
+     AssertionError: expected [] to contain {
+  description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé       et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
+  id: 'carteInvalidite',
+  label: 'Carte d\'invalidité',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml',
+  title: 'Carte d\'invalidité',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteInvalidite.spec.js:43:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  10) Simulation prestations : carteInvalidite  should return carteInvalidite:
+     AssertionError: expected [] to contain {
+  description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé       et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
+  id: 'carteInvalidite',
+  label: 'Carte d\'invalidité',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml',
+  title: 'Carte d\'invalidité',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteInvalidite.spec.js:60:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  11) Simulation prestations : carteInvalidite  should return carteInvalidite:
+     AssertionError: expected [] to contain {
+  description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé       et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
+  id: 'carteInvalidite',
+  label: 'Carte d\'invalidité',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml',
+  title: 'Carte d\'invalidité',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteInvalidite.spec.js:74:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  12) Simulation prestations : carteInvalidite  should return carteInvalidite:
+     AssertionError: expected [] to contain {
+  description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé       et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
+  id: 'carteInvalidite',
+  label: 'Carte d\'invalidité',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml',
+  title: 'Carte d\'invalidité',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteInvalidite.spec.js:88:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  13) Simulation prestations : carteInvalidite  should return carteInvalidite:
+     AssertionError: expected [] to contain {
+  description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé       et permet de bénéficier de certains droits spécifiques, notamment dans les transports.',
+  id: 'carteInvalidite',
+  label: 'Carte d\'invalidité',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml',
+  title: 'Carte d\'invalidité',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteInvalidite.spec.js:102:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  14) Simulation prestations : carteStationnement  should return carteStationnement:
+     AssertionError: expected [] to contain {
+  description: 'La carte européenne de stationnement permet à son titulaire ou à la personne qui       l\'accompagne de stationner sur les places réservées aux personnes handicapées.',
+  id: 'carteStationnement',
+  label: 'Carte stationnement',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2891.xhtml',
+  title: 'Carte de stationnement',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteStationnement.spec.js:23:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  15) Simulation prestations : carteStationnement  should return carteStationnement:
+     AssertionError: expected [] to contain {
+  description: 'La carte européenne de stationnement permet à son titulaire ou à la personne qui       l\'accompagne de stationner sur les places réservées aux personnes handicapées.',
+  id: 'carteStationnement',
+  label: 'Carte stationnement',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2891.xhtml',
+  title: 'Carte de stationnement',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteStationnement.spec.js:40:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  16) Simulation prestations : carteStationnement  should return carteStationnement:
+     AssertionError: expected [] to contain {
+  description: 'La carte européenne de stationnement permet à son titulaire ou à la personne qui       l\'accompagne de stationner sur les places réservées aux personnes handicapées.',
+  id: 'carteStationnement',
+  label: 'Carte stationnement',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2891.xhtml',
+  title: 'Carte de stationnement',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteStationnement.spec.js:58:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  17) Simulation prestations : carteStationnement  should return carteStationnement:
+     AssertionError: expected [] to contain {
+  description: 'La carte européenne de stationnement permet à son titulaire ou à la personne qui       l\'accompagne de stationner sur les places réservées aux personnes handicapées.',
+  id: 'carteStationnement',
+  label: 'Carte stationnement',
+  link: 'http://vosdroits.service-public.fr/particuliers/F2891.xhtml',
+  title: 'Carte de stationnement',
+  type: 'presta-carte'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/carteStationnement.spec.js:72:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  18) Simulation prestations : ems  should return ems:
+     AssertionError: expected [] to contain {
+  description: 'Orientation vers un établissement médical de santé.',
+  id: 'ems',
+  label: 'EMS',
+  title: 'Accompagnement par un service ou établissement médico-social',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/ems.spec.js:28:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  19) Simulation prestations : ems  should return ems:
+     AssertionError: expected [] to contain {
+  description: 'Orientation vers un établissement médical de santé.',
+  id: 'ems',
+  label: 'EMS',
+  title: 'Accompagnement par un service ou établissement médico-social',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/ems.spec.js:73:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  20) Simulation prestations : ems  should return ems:
+     AssertionError: expected [] to contain {
+  description: 'Orientation vers un établissement médical de santé.',
+  id: 'ems',
+  label: 'EMS',
+  title: 'Accompagnement par un service ou établissement médico-social',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/ems.spec.js:103:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  21) Simulation prestations : ems  should return ems:
+     AssertionError: expected [] to contain {
+  description: 'Orientation vers un établissement médical de santé.',
+  id: 'ems',
+  label: 'EMS',
+  title: 'Accompagnement par un service ou établissement médico-social',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/ems.spec.js:170:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  22) Simulation prestations : orp  should return orp:
+     AssertionError: expected [] to contain {
+  description: 'La demande d\'Orientation professionnelle vise à définir le milieu de travail dans lequel la       personne handicapée pourra exercer une activité adaptée à sa situation.',
+  id: 'orp',
+  label: 'ORP',
+  title: 'Orientation professionnelle',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/orp.spec.js:23:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  23) Simulation prestations : orp  should return orp:
+     AssertionError: expected [] to contain {
+  description: 'La demande d\'Orientation professionnelle vise à définir le milieu de travail dans lequel la       personne handicapée pourra exercer une activité adaptée à sa situation.',
+  id: 'orp',
+  label: 'ORP',
+  title: 'Orientation professionnelle',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/orp.spec.js:37:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  24) Simulation prestations : orp  should return orp:
+     AssertionError: expected [] to contain {
+  description: 'La demande d\'Orientation professionnelle vise à définir le milieu de travail dans lequel la       personne handicapée pourra exercer une activité adaptée à sa situation.',
+  id: 'orp',
+  label: 'ORP',
+  title: 'Orientation professionnelle',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/orp.spec.js:56:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  25) Simulation prestations : orp  should return orp:
+     AssertionError: expected [] to contain {
+  description: 'La demande d\'Orientation professionnelle vise à définir le milieu de travail dans lequel la       personne handicapée pourra exercer une activité adaptée à sa situation.',
+  id: 'orp',
+  label: 'ORP',
+  title: 'Orientation professionnelle',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/orp.spec.js:78:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  26) Simulation prestations : orp  should return orp:
+     AssertionError: expected [] to contain {
+  description: 'La demande d\'Orientation professionnelle vise à définir le milieu de travail dans lequel la       personne handicapée pourra exercer une activité adaptée à sa situation.',
+  id: 'orp',
+  label: 'ORP',
+  title: 'Orientation professionnelle',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/orp.spec.js:111:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  27) Simulation prestations : pch  should return pch - more than 76:
+     AssertionError: expected [] to contain {
+  description: 'La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à       financer les besoins liés à la perte d\'autonomie des personnes handicapées.',
+  id: 'pch',
+  label: 'PCH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml',
+  title: 'Prestation de compensation du handicap',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pch.spec.js:26:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  28) Simulation prestations : pch  should return pch - more than 20 less than 76:
+     AssertionError: expected [] to contain {
+  description: 'La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à       financer les besoins liés à la perte d\'autonomie des personnes handicapées.',
+  id: 'pch',
+  label: 'PCH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml',
+  title: 'Prestation de compensation du handicap',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pch.spec.js:65:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  29) Simulation prestations : pch  should return pch - less than 20:
+     AssertionError: expected [] to contain {
+  description: 'La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à       financer les besoins liés à la perte d\'autonomie des personnes handicapées.',
+  id: 'pch',
+  label: 'PCH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml',
+  title: 'Prestation de compensation du handicap',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pch.spec.js:91:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  30) Simulation prestations : pch  should return pch - less than 20:
+     AssertionError: expected [] to contain {
+  description: 'La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à       financer les besoins liés à la perte d\'autonomie des personnes handicapées.',
+  id: 'pch',
+  label: 'PCH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml',
+  title: 'Prestation de compensation du handicap',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pch.spec.js:113:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  31) Simulation prestations : pch  should return pch - less than 20:
+     AssertionError: expected [] to contain {
+  description: 'La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à       financer les besoins liés à la perte d\'autonomie des personnes handicapées.',
+  id: 'pch',
+  label: 'PCH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml',
+  title: 'Prestation de compensation du handicap',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pch.spec.js:175:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  32) Simulation prestations : pch  should return pch - less than 20:
+     AssertionError: expected [] to contain {
+  description: 'La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à       financer les besoins liés à la perte d\'autonomie des personnes handicapées.',
+  id: 'pch',
+  label: 'PCH',
+  link: 'http://vosdroits.service-public.fr/particuliers/N14201.xhtml',
+  title: 'Prestation de compensation du handicap',
+  type: 'presta-finances'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pch.spec.js:202:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  33) Simulation prestations : pps  should return pps:
+     AssertionError: expected [] to contain {
+  description: 'Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de       déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales         et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.',
+  id: 'pps',
+  label: 'PPS',
+  title: 'Plan personnalisé de scolarisation',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pps.spec.js:23:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  34) Simulation prestations : pps  should return pps:
+     AssertionError: expected [] to contain {
+  description: 'Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de       déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales         et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.',
+  id: 'pps',
+  label: 'PPS',
+  title: 'Plan personnalisé de scolarisation',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pps.spec.js:37:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  35) Simulation prestations : pps  should return pps:
+     AssertionError: expected [] to contain {
+  description: 'Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de       déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales         et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.',
+  id: 'pps',
+  label: 'PPS',
+  title: 'Plan personnalisé de scolarisation',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/pps.spec.js:51:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  36) Simulation prestations : sms  should return sms:
+     AssertionError: expected [] to contain {
+  description: '',
+  id: 'sms',
+  label: 'SMS',
+  title: 'Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/sms.spec.js:33:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+  37) Simulation prestations : sms  should return sms:
+     AssertionError: expected [] to contain {
+  description: '',
+  id: 'sms',
+  label: 'SMS',
+  title: 'Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs',
+  type: 'presta-accompagnement'
+}
+      at Assertion.fail (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:196:17)
+      at Assertion.prop.(anonymous function) [as containEql] (/Users/delflorian/Work/sgmap/impact/node_modules/should/lib/assertion.js:81:17)
+      at Context.<anonymous> (/Users/delflorian/Work/sgmap/impact/server/api/prestation/tests/sms.spec.js:87:19)
+      at Test.Runnable.run (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runnable.js:233:15)
+      at Runner.runTest (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:387:10)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:470:12
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:312:14)
+      at /Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:322:7
+      at next (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:257:23)
+      at Immediate._onImmediate (/Users/delflorian/Work/sgmap/impact/node_modules/mocha/lib/runner.js:289:5)
+
+
+
+[33mWarning: Task "mochaTest:src" failed. Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+
+
+Execution Time (2015-05-29 09:32:58 UTC)
+loading tasks              76ms  ▇▇▇ 7%
+loading grunt-mocha-test   39ms  ▇▇ 4%
+mochaTest:src             979ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 88%
+Total 1.1s
+

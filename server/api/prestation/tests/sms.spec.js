@@ -69,7 +69,7 @@ describe('Simulation prestations : sms ', function() {
         "natureAide": {
           "surveillance": true,
           "deplacementExterieur": true,
-          "repasPrise": true,
+          "repasPreparation": true,
           "social": true,
           "loisirs": true,
           logement: true,
