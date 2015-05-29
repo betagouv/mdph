@@ -4,7 +4,6 @@ var _ = require('lodash');
 var path = require('path');
 var superagent = require('superagent');
 var wkhtmltopdf = require('wkhtmltopdf');
-var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var shortid = require('shortid');
@@ -28,7 +27,6 @@ var Partenaire = require('../partenaire/partenaire.model');
 var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
 
-var gfs = new Grid(mongoose.connection.db, mongoose.mongo);
 var domain = process.env.DOMAIN || config.DOMAIN;
 
 function findRequest(req, callback) {

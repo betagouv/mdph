@@ -8,21 +8,9 @@ angular.module('impactApp', [
   'ui.bootstrap',
   'ngStorage',
   'ngAnimate',
-  'angularFileUpload',
-  'ngMessages',
-  'ngScrollSpy'
+  'ngFileUpload',
+  'ngMessages'
 ])
-  // Fix compatibility angular bootstrap/angular 1.3
-  .directive('datepickerPopup', function (){
-    return {
-      restrict: 'EAC',
-      require: 'ngModel',
-      link: function(scope, element, attr, controller) {
-        //remove the default formatter from the input directive to prevent conflict
-        controller.$formatters.shift();
-      }
-    };
-  })
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider) {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);

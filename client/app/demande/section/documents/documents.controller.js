@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, $state, $upload, section, request, documentTypes, PreparationEvaluationService) {
+  .controller('DocumentsCtrl', function($scope, $modal, $state, Upload, section, request, documentTypes, PreparationEvaluationService) {
     $scope.section = section;
     $scope.request = request;
     $scope.docsList =  PreparationEvaluationService.getSuggestedDocsList($scope.request.formAnswers);
@@ -32,14 +32,14 @@ angular.module('impactApp')
       $scope.request.$update();
     };
 
-    $scope.onFileSelect = function(file, document) {
+    $scope.upload = function(file, document) {
       if (!$scope.filesVM[document]) {
         $scope.filesVM[document] = [];
       }
       var type = $scope.filesVM[document];
       var length = type.length;
 
-      $upload.upload({
+      Upload.upload({
           url: 'api/requests/' + $scope.request.shortId + '/document',
           method: 'POST',
           file: file,

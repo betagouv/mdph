@@ -95,7 +95,7 @@
         <div class="form-group required" ng-if="type === 'beneficiaire'" ng-class="{'has-error': infoForm.dateNaissance.$invalid && infoForm.$submitted}">
           <label for="dateNaissance" class="control-label">Date de naissance</label>
           <div class="input-group">
-            <input id="dateNaissance" required type="text" name="dateNaissance" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="identite.dateNaissance" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" datepicker-options="dateOptions" close-text="Fermer" show-button-bar="false"/>
+            <input id="dateNaissance" ng-required="true" type="text" name="dateNaissance" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="identite.dateNaissance" is-open="opened" placeholder="jj/mm/aaaa" max-date="{{date}}" close-text="Fermer" show-button-bar="false"/>
             <span class="input-group-addon" ng-click="open($event)" alt="Choisir la date"><i class="fa fa-calendar fa-fw" alt="Calendrier"></i></button></span>
           </div>
           <div ng-messages="infoForm.dateNaissance.$error" ng-if="infoForm.$submitted">

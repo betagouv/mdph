@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('PreparationEvaluationService', function PreparationEvaluationService (DocumentsPreparationEvalConstants, ageFilter) {
+  .factory('PreparationEvaluationService', function PreparationEvaluationService(DocumentsPreparationEvalConstants, ageFilter) {
     var flattenAnswers = function(answers){
       var flattened = [];
       _.forEach(answers, function(answer){
