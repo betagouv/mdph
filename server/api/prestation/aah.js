@@ -16,6 +16,9 @@ exports.simulate = function(computed) {
     if (computed.estAdulte && getValue(computed.milieuTravail, 'etablissement')) {
       return true;
     }
+    if (computed.estAdulte && getValue(computed.vieQuotidienne, 'logement') === 'etablissement') {
+      return true;
+    }
   }
 
   return et([

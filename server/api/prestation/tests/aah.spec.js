@@ -394,6 +394,22 @@ describe('Simulation prestations : AAH ', function() {
     quitus.should.not.containEql(aah);
     done();
   });
+
+  it('should return aah - etablissement medico social', function(done) {
+    var answers = {
+      estRenouvellement: true,
+      "beneficiaire": {
+        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      },
+      vie_quotidienne: {
+        "logement": "etablissement"
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(aah);
+    done();
+  });
 });
 
 

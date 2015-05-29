@@ -29,35 +29,35 @@ var isMoreThan = DateUtils.isMoreThan;
 
 function computeAnswers(answers) {
   // Shortcuts to sections
-  var identites = getSection(answers, 'identites');
-  var aidant = getSection(answers, 'aidant');
-  var vieQuotidienne = getSection(answers, 'vie_quotidienne');
-  var situationsParticulieres = getSection(answers, 'situations_particulieres');
-  var vieAuTravail = getSection(answers, 'vie_au_travail');
-  var vieScolaire = getSection(answers, 'vie_scolaire');
+  var identites =                 getSection(answers, 'identites');
+  var aidant =                    getSection(answers, 'aidant');
+  var vieQuotidienne =            getSection(answers, 'vie_quotidienne');
+  var situationsParticulieres =   getSection(answers, 'situations_particulieres');
+  var vieAuTravail =              getSection(answers, 'vie_au_travail');
+  var vieScolaire =               getSection(answers, 'vie_scolaire');
 
   // Shortcuts to answers
-  var besoinsDeplacement = getValue(vieQuotidienne, 'besoinsDeplacement');
-  var besoinsVie = getValue(vieQuotidienne, 'besoinsVie');
-  var besoinsSocial = getValue(vieQuotidienne, 'besoinsSocial');
-  var attentesTypeAide = getValue(vieQuotidienne, 'attentesTypeAide');
-  var pensionInvalidite = getValue(vieQuotidienne, 'pensionInvalidite');
-  var aideTechnique = getValue(vieQuotidienne, 'aideTechnique');
-  var aidePersonne = getValue(vieQuotidienne, 'aidePersonne');
-  var attentesVieScolaire = getValue(vieScolaire, 'attentesVieScolaire');
-  var attentesAidant = getValue(aidant, 'typeAttente');
-  var natureAideAidant = getValue(aidant, 'natureAide');
-  var urgences = getValue(situationsParticulieres, 'urgences');
-  var besoinSoutienAuTravail = getValue(vieAuTravail, 'besoinSoutien');
-  var conservationTravail = getValue(vieAuTravail, 'conservation');
-  var milieuTravail = getValue(vieAuTravail, 'milieuTravail');
+  var besoinsDeplacement =        getValue(vieQuotidienne, 'besoinsDeplacement');
+  var besoinsVie =                getValue(vieQuotidienne, 'besoinsVie');
+  var besoinsSocial =             getValue(vieQuotidienne, 'besoinsSocial');
+  var attentesTypeAide =          getValue(vieQuotidienne, 'attentesTypeAide');
+  var pensionInvalidite =         getValue(vieQuotidienne, 'pensionInvalidite');
+  var aideTechnique =             getValue(vieQuotidienne, 'aideTechnique');
+  var aidePersonne =              getValue(vieQuotidienne, 'aidePersonne');
+  var attentesVieScolaire =       getValue(vieScolaire, 'attentesVieScolaire');
+  var attentesAidant =            getValue(aidant, 'typeAttente');
+  var natureAideAidant =          getValue(aidant, 'natureAide');
+  var urgences =                  getValue(situationsParticulieres, 'urgences');
+  var besoinSoutienAuTravail =    getValue(vieAuTravail, 'besoinSoutien');
+  var conservationTravail =       getValue(vieAuTravail, 'conservation');
+  var milieuTravail =             getValue(vieAuTravail, 'milieuTravail');
 
   // Initialize age variables
-  var estAdulte = isAdult(answers);
-  var aMoinsDe62Ans = isLessThan(answers, 62);
-  var aPlusDe15Ans = isMoreThan(answers, 15);
-  var aMoinsDe76Ans = isLessThan(answers, 76);
-  var estEnfant = !estAdulte;
+  var estAdulte =       isAdult(answers);
+  var aMoinsDe62Ans =   isLessThan(answers, 62);
+  var aPlusDe15Ans =    isMoreThan(answers, 15);
+  var aMoinsDe76Ans =   isLessThan(answers, 76);
+  var estEnfant =       !estAdulte;
 
   var estNonActif = ou([
     false === getValue(vieAuTravail, 'conditionTravail'),
@@ -113,47 +113,42 @@ function getCallbacks(answers) {
 
   var computed = computeAnswers(answers);
 
-  var prestations = getSection(answers, 'prestations');
-  function estRenouvellement(presta) {
-    return prestations && prestations[presta.id];
-  }
-
   return {
     aah: function() {
       return AAH.simulate(computed);
     },
-    aeeh: function(droit) {
+    aeeh: function() {
       return AEEH.simulate(computed);
     },
-    av: function(droit) {
+    av: function() {
       return AV.simulate(computed);
     },
-    carteInvalidite: function(droit) {
+    carteInvalidite: function() {
       return CarteInvalidite.simulate(computed);
     },
-    carteStationnement: function(droit) {
+    carteStationnement: function() {
       return CarteStationnement.simulate(computed);
     },
-    ems: function(droit) {
+    ems: function() {
       return EMS.simulate(computed);
     },
-    orp: function(droit) {
+    orp: function() {
       return ORP_RQTH.simulate(computed);
     },
-    rqth: function(droit) {
+    rqth: function() {
       return ORP_RQTH.simulate(computed);
     },
-    pch: function(droit) {
+    pch: function() {
       return PCH.simulate(computed);
     },
-    pps: function(droit) {
+    pps: function() {
       return PPS.simulate(computed);
     },
-    sms: function(droit) {
+    sms: function() {
       return SMS.simulate(computed);
     },
-    ac: function(droit) {
-      return estRenouvellement(droit);
+    ac: function() {
+      return _.contains(computed.prestations, 'ac');
     }
   };
 }
@@ -163,7 +158,7 @@ exports.simulate = function(answers) {
 
   var result = _.filter(Prestation.all, function(prestation) {
     var callback = callbacks[prestation.id];
-    return callback && callback(prestation);
+    return callback && callback();
   });
 
   return result;

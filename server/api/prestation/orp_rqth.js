@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var Utils = require('./utils');
 
 var ou = Utils.ou;
@@ -8,6 +9,15 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
+  if (computed.estRenouvellement) {
+    if (_.contains(computed.prestations, 'orp')) {
+      return true;
+    }
+    if (_.contains(computed.prestations, 'rqth')) {
+      return true;
+    }
+  }
+
   return ou([
     getValue(computed.urgences, 'travail'),
     getValue(computed.urgences, 'formation'),
@@ -15,7 +25,7 @@ exports.simulate = function(computed) {
     getValue(computed.conservationTravail, 'medecineTravail'),
     getValue(computed.conservationTravail, 'sameth'),
     getValue(computed.vieAuTravail, 'amenagement'),
-    // renouvellement aah,
+    _.contains(computed.prestations, 'aah'),
     et([
       getValue(computed.aidePersonne, 'aidePersonne_medicoSociale'),
       getValue(computed.besoinSoutienAuTravail, 'precisions')

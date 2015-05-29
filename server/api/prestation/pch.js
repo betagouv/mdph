@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var Utils = require('./utils');
 
 var ou = Utils.ou;
@@ -8,6 +9,12 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
+  if (computed.estRenouvellement) {
+    if (_.contains(computed.prestations, 'pch')) {
+      return true;
+    }
+  }
+
   if (computed.estEnfant) {
     return et([
       ou(getValueList(computed.attentesTypeAide, ['humain', 'materiel', 'amenagement', 'financierHandicap'])),
@@ -66,7 +73,7 @@ exports.simulate = function(computed) {
   } else {
     return ou([
       getValue(computed.vieAuTravail, 'conditionTravail'),
-      // estRenouvellement({id: 'ac'})
+      _.contains(computed.prestations, 'ac')
     ]);
   }
 }
