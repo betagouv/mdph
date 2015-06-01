@@ -97,11 +97,26 @@ exports.showPartenaire = function(req, res, next) {
   });
 }
 
-// Deletes a request from the DB.
+// Deletes a request from the DB and FS
 exports.destroy = function(req, res) {
   findRequest(req, function (err, request) {
     if(err) return handleError(req, res, err);
     if(!request) return res.sendStatus(404);
+
+    if (request.documents && request.documents.length > 0) {
+      request.documents.forEach(function (requestDoc) {
+        var documentPath = config.root + '/server/uploads/' + requestDoc.name + '.pdf';
+        fs.unlink(documentPath, function (err) {
+          if (err) req.log.error(err);
+        });
+
+        var documentPdfPath = config.root + '/server/uploads/' + requestDoc.name;
+        fs.unlink(documentPdfPath, function (err) {
+          if (err) req.log.error(err);
+        });
+      });
+    }
+
     request.remove(function(err) {
       if(err) { return handleError(req, res, err); }
       return res.sendStatus(204);
