@@ -217,6 +217,21 @@ exports.confirmMail = function(req, res) {
   })
 };
 
+exports.resendConfirmation = function(req, res) {
+  User.findById(req.params.id, '+newMailToken', function(err, user) {
+    if (err) return handleError(req, res, err);
+    if (!user) return res.sendStatus(404);
+
+    var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+    Mailer.sendMail(
+      user.email,
+      'Validation de votre adresse',
+      'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
+    );
+    res.sendStatus(200);
+  })
+};
+
 function handleError(req, res, err) {
   req.log.error(err);
   return res.status(500).send(err);

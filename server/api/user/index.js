@@ -26,5 +26,6 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 router.post('/:id/reset_password/:secret', controller.resetPassword);
 router.post('/:id/confirmer_mail/:secret', controller.confirmMail);
+router.post('/:id/resend_confirmation', controller.resendConfirmation);
 
 module.exports = router;

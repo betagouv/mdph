@@ -17,22 +17,22 @@ angular.module('impactApp')
 
     var documentsObligatoires = _.filter(documentTypes, {type: 'obligatoire'});
 
-    function login(next) {
+    function login(afterLogin) {
       $modal.open({
         templateUrl: 'components/modal/login.html',
         backdrop: true,
         windowClass: 'right fade',
         controller: 'ModalLoginCtrl'
-      }).result.then(function() {
+      }).result.then(function(nextStep) {
         // Ok - logged in
-        next();
+        afterLogin(nextStep);
       }, function() {
         // Cancel
         $state.go('departement.demande');
       });
     }
 
-    function afterSave() {
+    function alertAfterSave() {
       $window.alert('Votre demande à été sauvegardée');
       $state.go('departement.demande', {shortId: request.shortId});
     }
@@ -41,26 +41,45 @@ angular.module('impactApp')
       $window.alert(err.data.message);
     }
 
-    function saveRequestAndAlert(next) {
+    function saveRequestAndAlert(afterSave) {
       if (request._id) {
-        request.$update(next, onError);
+        request.$update(afterSave, onError);
       } else {
-        request.$save(next, onError);
+        request.$save(afterSave, onError);
       }
     }
 
-
     $scope.sauvegarder = function() {
       if (Auth.isLoggedIn()) {
-        saveRequestAndAlert(afterSave);
+        saveRequestAndAlert(alertAfterSave);
       } else {
         login(function() {
-          saveRequestAndAlert(afterSave);
+          saveRequestAndAlert(alertAfterSave);
         });
       }
     };
 
     $scope.envoyer = function() {
+      if ($scope.user.unconfirmed) {
+        $modal.open({
+          templateUrl: 'app/demande/modal_envoi_ko.html',
+          backdrop: true,
+          windowClass: 'right fade',
+          controller: function($modalInstance, $scope, user) {
+            $scope.user = user;
+            $scope.ok = function() {
+              $modalInstance.close();
+            };
+          },
+          resolve: {
+            user: function() {
+              return $scope.user;
+            }
+          }
+        });
+        return false;
+      }
+
       RequestService.isReadyToSend(request, $scope.sectionsObligatoires, documentsObligatoires, function(err) {
         if (err) {
           $window.alert(err);
@@ -69,9 +88,7 @@ angular.module('impactApp')
           request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH du ' + request.mdph;
           request.$update({isSendingRequest: true}, function () {
             $modal.open({
-              template: '<div class="modal-header"><h2 class="modal-title">Votre demande a été envoyée</h2></div>' +
-              '<div class="modal-body">Si vous souhaitez faire des retours pour améliorer ce service, vous pouvez remplir <a target="_blank" href="https://sphinxdeclic.com/d/s/ribiwe" title="Questionnaire de satisfaction">ce bref questionnaire</a>.</div>' +
-              '<div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Ok</button></div>',
+              templateUrl: 'app/demande/modal_envoi_ok.html',
               backdrop: true,
               windowClass: 'right fade',
               controller: function($modalInstance, $scope) {

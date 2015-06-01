@@ -39,8 +39,17 @@ angular.module('impactApp')
         .then( function() {
           // Account created, redirect to home
           User.generateTokenForMail({email: $scope.user.email});
-          $state.go('envoi_confirmation');
-          $modalInstance.close();
+
+          Auth.login({
+            email: $scope.user.email,
+            password: $scope.user.password
+          })
+          .then( function() {
+            $modalInstance.close();
+          })
+          .catch( function(err) {
+            $scope.errors.other = err.message;
+          });
         })
         .catch( function(err) {
           err = err.data;

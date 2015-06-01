@@ -35,5 +35,20 @@ angular.module('impactApp')
         url: '/nouveau_mot_de_passe/:userId/:newPasswordToken',
         templateUrl: 'app/account/reset_password/reset_password.html',
         controller: 'ResetPasswordCtrl'
+      })
+      .state('resend_confirmation', {
+        url: '/renvoyer_confirmation/:userId',
+        templateUrl: 'app/account/resend_confirmation/resend_confirmation.html',
+        controller: 'ResendConfirmationCtrl'
+      })
+      .state('resend_confirmation_ok', {
+        url: '/renvoyer_confirmation_ok',
+        templateUrl: 'app/account/resend_confirmation/ok.html',
+        controller: function() {}
+      })
+      .state('resend_confirmation_error', {
+        url: '/renvoyer_confirmation_erreur',
+        templateUrl: 'app/account/resend_confirmation/error.html',
+        controller: function() {}
       });
   });
