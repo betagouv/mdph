@@ -7,7 +7,7 @@ angular.module('impactApp', [
   'ui.router',
   'ui.bootstrap',
   'ngStorage',
-  'ngAnimate',
+  // 'ngAnimate',
   'ngFileUpload',
   'ngMessages'
 ])

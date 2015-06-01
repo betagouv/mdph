@@ -59,6 +59,17 @@ angular.module('impactApp')
       });
     };
 
+    $scope.openBrochure = function() {
+      var instance = $modal.open({
+        templateUrl: 'app/demande/section/documents/modal_brochure.html',
+        controller: function($scope) {
+          $scope.ok = function() {
+            instance.close();
+          };
+        }
+      });
+    };
+
     $scope.chooseType = function () {
       var modalInstance = $modal.open({
         templateUrl: 'app/demande/section/documents/modal_type.html',
