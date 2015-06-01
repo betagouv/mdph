@@ -23,11 +23,7 @@ angular.module('impactApp')
           User.generateTokenForMail({email: $scope.user.email});
 
           // Logged in, redirect
-          if ($rootScope.returnToState) {
-            $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
-          } else {
-            $state.go('espace_perso.liste_demandes');
-          }
+          $state.go('espace_perso.liste_demandes');
         })
         .catch( function(err) {
           err = err.data;

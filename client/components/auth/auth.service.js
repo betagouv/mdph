@@ -61,8 +61,10 @@ angular.module('impactApp')
         var cb = callback || angular.noop;
 
         return User.save(user,
-          function() {
-            return cb();
+          function(data) {
+            $cookieStore.put('token', data.token);
+            currentUser = User.get();
+            return cb(user);
           },
           function(err) {
             this.logout();
