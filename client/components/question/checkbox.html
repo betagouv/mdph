@@ -14,7 +14,7 @@
           </label>
         </li>
 
-        <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model]">
+        <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model] === true">
           <div ng-include="answer.detailUrl"></div>
         </div>
       </div>
