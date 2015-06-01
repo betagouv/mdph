@@ -11,6 +11,7 @@ var moment = require('moment');
 var mustache = require('mustache');
 
 var sections = require('../api/sections/sections.json');
+var Prestation = require('../api/prestation/prestation.controller');
 
 function readFile(name, callback) {
   fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
@@ -207,6 +208,13 @@ exports.answersToHtml = function(request, path, output, next) {
         callback(null, []);
       }
       callback(null, request.mdph);
+    },
+    quitus: function (callback) {
+      var quitus = Prestation.simulate(request.formAnswers);
+      callback(null, quitus);
+    },
+    prestationsTemplate: function(callback){
+      readFile('prestations.html', callback);
     }
   },
   function(err, results){
@@ -214,7 +222,14 @@ exports.answersToHtml = function(request, path, output, next) {
     var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires', 'requestIdentites');
     var html = mustache.render(
       results.answersTemplate,
-      {path: path, sections: results.trajectoires, identites: results.requestIdentites, mdph: results.mdph},
+      {
+        path: path,
+        sections: results.trajectoires,
+        identites: results.requestIdentites,
+        mdph: results.mdph,
+        quitus: results.quitus,
+        prestationsTemplate: results.prestationsTemplate
+      },
       subTemplates
     );
     next(null, html);
