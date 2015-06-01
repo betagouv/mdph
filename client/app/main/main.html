@@ -19,7 +19,32 @@
     </div>
   </header>
 
-  <div class="action-dark">
+  <div class="action-dark" ng-if="user">
+    <div class ="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2><i class="fa fa-user"></i> Bonjour, {{user.name }}</h2>
+        </div>
+        <div class="col-sm-6">
+          <div ng-if="user.role === 'adminMdph'">
+            <a class="btn btn-outline-inverse btn-lg" ng-if="user.role === 'adminMdph'" ui-sref="dashboard.requests.user({userId: user._id})">
+              Accéder à mon tableau de bord
+            </a>
+            <hr>
+          </div>
+
+          <a class="btn btn-outline-inverse btn-lg" ui-sref="espace_perso.liste_demandes">
+            Voir mes demandes
+          </a>
+          <a class="btn btn-outline btn-lg" ui-sref="{{sref}}">
+            Faire une nouvelle demande
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-dark" ng-if="!user">
     <div class ="container">
       <div class="row">
         <div class="col-sm-6">

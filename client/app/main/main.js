@@ -5,7 +5,28 @@ angular.module('impactApp')
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'app/departement/departement.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl',
+        resolve: {
+          mdph: function() {
+            return null;
+          },
+          user: function(Auth) {
+            return Auth.getCurrentUser().$promise;
+          }
+        }
+      })
+      .state('departement', {
+        url: '/mdph/:codeDepartement',
+        templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl',
+        resolve: {
+          mdph: function(Mdph, $stateParams) {
+            return Mdph.get({zipcode: $stateParams.codeDepartement}).$promise;
+          },
+          user: function(Auth) {
+            return Auth.getCurrentUser().$promise;
+          }
+        }
       });
   });

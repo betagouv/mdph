@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MainCtrl', function ($scope, $state, $sessionStorage, Auth) {
-    if (Auth.isLoggedIn()) {
-      $scope.sref = 'espace_perso.liste_demandes';
-    } else {
-      $scope.sref = 'choix_mdph';
-    }
+  .controller('MainCtrl', function ($scope, $state, mdph, user) {
+    $scope.user = user;
+    $scope.mdph = mdph;
+
+    $scope.sref = mdph ? '.demande({shortId: \'nouvelle_demande\'})' : 'choix_mdph';
   });
