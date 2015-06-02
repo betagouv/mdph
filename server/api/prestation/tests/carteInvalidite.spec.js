@@ -4,9 +4,9 @@ var should = require('should');
 var _ = require('lodash');
 
 var controller = require('../prestation.controller');
-var prestations = require('../prestation.constants');
+var prestations = require('../prestations.json');
 
-var carteInvalidite = prestations.all[1];
+var carteInvalidite = prestations[1];
 
 describe('Simulation prestations : carteInvalidite ', function() {
 

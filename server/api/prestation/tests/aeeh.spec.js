@@ -4,9 +4,9 @@ var should = require('should');
 var _ = require('lodash');
 
 var controller = require('../prestation.controller');
-var prestations = require('../prestation.constants');
+var prestations = require('../prestations.json');
 
-var aeeh = prestations.all[2];
+var aeeh = prestations[2];
 
 describe('Simulation prestations : AEEH ', function() {
 
