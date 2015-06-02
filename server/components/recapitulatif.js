@@ -21,14 +21,14 @@ function readFile(name, callback) {
 
 function formatDateNaissance(identite) {
   if (identite && identite.dateNaissance) {
-    identite.dateNaissance = moment(identite.dateNaissance).format('DD/MM/YYYY');
+    identite.dateNaissance = moment(identite.dateNaissance, moment.ISO_8601).format('DD/MM/YYYY');
   }
 }
 
 function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){
     case 'date':
-      return [{label: moment(questionAnswers).format('DD/MM/YYYY')}];
+      return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
     case 'text':
       return [{label: questionAnswers}];
     case 'radio':
@@ -36,12 +36,20 @@ function rebuildAnswersFromModel(question, questionAnswers) {
       if (!constantAnswer) {
         return [];
       }
-      return [{label: constantAnswer.label, detailModel: constantAnswer.detailModel}];
+      return [{
+        label: constantAnswer.label,
+        detailModel: constantAnswer.detailModel,
+        detailType: constantAnswer.detailType
+      }];
     case 'checkbox':
       var answers = [];
       question.answers.forEach(function(constantAnswer) {
         if (questionAnswers[constantAnswer.model]) {
-          answers.push({label: constantAnswer.label, detailModel: constantAnswer.detailModel});
+          answers.push({
+            label: constantAnswer.label,
+            detailModel: constantAnswer.detailModel,
+            detailType: constantAnswer.detailType
+          });
         }
       });
       return answers;
@@ -82,14 +90,18 @@ function computeAnswers(question, trajectoireAnswers) {
 
   var filteredAnswers = rebuildAnswersFromModel(question, questionAnswers);
   if (!filteredAnswers) {
-    console.log(question);
-    console.log(questionAnswers);
     return [];
   }
 
   filteredAnswers.forEach(function(answer){
     if (answer.detailModel) {
-      answer.detail = trajectoireAnswers[answer.detailModel];
+      var detailType = answer.detailType;
+      var detail = trajectoireAnswers[answer.detailModel];
+      if (detailType) {
+        answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+      } else {
+        answer.detail = detail;
+      }
     }
   });
 

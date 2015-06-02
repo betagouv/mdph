@@ -390,7 +390,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "retraiteDetail",
             "detailLabel": "Depuis quand ?",
-            "type": "date"
+            "detailType": "date"
           },
           {
             "label": "Non",
@@ -1121,7 +1121,8 @@
             "model": true,
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "conditionTravailDetail",
-            "detailLabel": "Depuis quand ?"
+            "detailLabel": "Depuis quand ?",
+            "detailType": "date"
           },
           {
             "label": "Non",
@@ -1279,7 +1280,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "arretDeTravailDetail",
             "detailLabel": "Depuis quand ?",
-            "type": "date"
+            "detailType": "date"
           },
           {
             "label": "Non",

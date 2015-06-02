@@ -1,14 +1,14 @@
 'use strict';
 
 var _ = require('lodash');
-var Geva = require('./geva.constants');
+var questions = require('./questions.json');
 
 exports.index = function(req, res) {
-  return res.json(Geva.all);
+  return res.json(questions);
 };
 
 exports.questionsByDescription = function (description) {
-  var allQuestions = Geva.all;
+  var allQuestions = questions;
   allQuestions = _.indexBy(allQuestions, 'Description');
   return allQuestions[description];
 }

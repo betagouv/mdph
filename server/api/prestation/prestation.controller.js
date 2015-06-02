@@ -4,7 +4,7 @@ var moment = require('moment');
 var _ = require('lodash');
 var DateUtils = require('../../components/dateUtils');
 var Utils = require('./utils');
-var Prestation = require('./prestation.constants');
+var prestations = require('./prestations.json');
 
 var AAH = require('./aah');
 var AEEH = require('./aeeh');
@@ -156,7 +156,7 @@ function getCallbacks(answers) {
 exports.simulate = function(answers) {
   var callbacks = getCallbacks(answers);
 
-  var result = _.filter(Prestation.all, function(prestation) {
+  var result = _.filter(prestations, function(prestation) {
     var callback = callbacks[prestation.id];
     return callback && callback();
   });
@@ -165,5 +165,5 @@ exports.simulate = function(answers) {
 };
 
 exports.index = function(req, res) {
-  return res.json(Prestation.all);
+  return res.json(prestations);
 };

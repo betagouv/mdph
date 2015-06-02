@@ -10,7 +10,6 @@ var shortid = require('shortid');
 var async = require('async');
 var scissors = require('scissors');
 var Canvas = require('canvas');
-var moment = require('moment');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
