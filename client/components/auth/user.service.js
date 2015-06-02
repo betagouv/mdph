@@ -15,6 +15,12 @@ angular.module('impactApp')
       changeInfo: {
         method: 'PUT'
       },
+      search: {
+        method: 'GET',
+        params: {
+          id: 'search'
+        }
+      },
       get: {
         method: 'GET',
         params: {

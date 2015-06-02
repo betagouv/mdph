@@ -102,4 +102,44 @@ angular.module('impactApp')
         }
       });
     };
+
+    $scope.transferer = function() {
+      $modal.open({
+        templateUrl: 'app/demande/modal_transfert.html',
+        backdrop: true,
+        windowClass: 'right fade',
+        controller: function($scope, $modalInstance, User, knownUsers) {
+          $scope.knownUsers = knownUsers;
+          $scope.select = function(email) {
+            $scope.email = email;
+          };
+          $scope.ok = function(form) {
+            $scope.userNotFound = false;
+
+            if (form.$valid) {
+              User.search({email: $scope.email}, function(user) {
+                $modalInstance.close(user._id);
+              }, function() {
+                $scope.userNotFound = $scope.email;
+              });
+            }
+          };
+          $scope.cancel = function() {
+            $modalInstance.close();
+          };
+        },
+        resolve: {
+          knownUsers: function() {
+            return request.formAnswers.identites;
+          }
+        }
+      }).result.then(function(newUserId) {
+        // Ok - assign new user
+        request.$transfer({target: newUserId}, function() {
+          $state.go('espace_perso.liste_demandes');
+        });
+      }, function() {
+        // Cancel nothing to do
+      });
+    };
   });

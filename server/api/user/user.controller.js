@@ -120,6 +120,22 @@ exports.me = function(req, res, next) {
 };
 
 /**
+ * Search by email
+ */
+exports.search = function(req, res, next) {
+  var email = req.query.email;
+
+  User.findOne({
+    email: email
+  }, '-salt -hashedPassword') // don't ever give out the password or salt)
+  .exec(function(err, user) {
+    if (err) return next(err);
+    if (!user) return res.sendStatus(404);
+    res.json(user);
+  });
+};
+
+/**
  * Authentication callback
  */
 exports.authCallback = function(req, res, next) {

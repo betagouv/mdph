@@ -8,6 +8,9 @@ var router = express.Router();
 
 router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.post('/', auth.isAuthenticated(), controller.save);
+
+router.post('/:shortId/transfer/:userId', auth.isAuthorized(), controller.transfer);
+
 router.get('/:shortId', auth.isAuthorized(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 

@@ -206,6 +206,25 @@ function sendMailNotification(request, host, log, callback) {
 }
 
 /**
+ * Transfer request
+ */
+exports.transfer = function(req, res, next) {
+  findRequest(req, function(err, request){
+    if (!request) {
+      return res.sendStatus(404);
+    }
+
+    request
+      .set('user', req.params.userId)
+      .set('updatedAt', Date.now())
+      .save(function (err, request) {
+        if (err) return handleError(req, res, err);
+        res.json(request);
+      });
+  });
+}
+
+/**
  * Update request
  */
 exports.update = function(req, res, next) {
