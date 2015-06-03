@@ -23,16 +23,18 @@
             </div>
           </div>
           <div class="panel-body" ng-if="isSelected(prestation) && editable && endDate">
-            <label>Date de fin</label>
-            <div class="input-group">
-              <input type="text" class="form-control"
-                datepicker-popup="dd/MM/yyyy" ng-model="formAnswers.prestations[prestation.id].date"
-                is-open="prestation.opened" placeholder="DD/MM/YYYY" datepicker-options="{{dateOptions}}"
-                close-text="Fermer" show-button-bar="false" ng-required="true"/>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event, prestation)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </div>
+            <label for="date-de-fin">Date de fin</label>
+            <input
+                type="text"
+                class="form-control"
+                name="detailFin"
+                id="date-de-fin"
+                required
+                ng-model="formAnswers.prestations[prestation.id].date"
+                input-date
+                date-autocomplete
+                placeholder="JJ/MM/AAAA"
+                aria-describedby="help-date-de-fin">
           </div>
 
           <div class="panel-body" ng-if="isSelected(prestation) && editable && !endDate">

@@ -9,18 +9,34 @@
     <tbody>
       <tr ng-repeat="(idx, diplome) in model.listeDiplomes">
         <td class="col-md-4">
-          <input aria-labelledby="diplome" type="text" class="form-control" ng-model="diplome.nom" placeholder="Intitulé du diplôme">
-        </td>
-        <td class="col-md-4">
-          <div class="input-group">
-            <input aria-labelledby="annee" type="text" name="annee" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="diplome.annee" is-open="opened[idx]" placeholder="JJ/MM/AAAA" ng-required="true" close-text="Fermer" show-button-bar="false"/>
-            <span class="input-group-btn" aria-hidden="true">
-              <button type="button" class="btn btn-default" ng-click="open($event, idx)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
+          <input aria-labelledby="diplome" name="diplome" aria-describedby="help-diplome" required type="text" class="form-control" ng-model="diplome.nom" placeholder="Intitulé du diplôme">
+          <div ng-messages="questionForm.diplome.$error" ng-if="questionForm.showError">
+            <div class="help-block" id="help-diplome" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
           </div>
         </td>
         <td class="col-md-4">
-          <input aria-labelledby="domaine" type="text" class="form-control" ng-model="diplome.domaine" placeholder="Domaine d'étude">
+          <input
+            type="text"
+            class="form-control"
+            name="annee"
+            id="annee"
+            required
+            ng-model="diplome.annee"
+            input-date
+            date-autocomplete
+            placeholder="JJ/MM/AAAA"
+            aria-labelledby="annee"
+            aria-describedby="help-annee">
+          <div ng-messages="questionForm.annee.$error" ng-if="questionForm.showError">
+            <div class="help-block" id="help-annee" ng-message='inputDate'><i class="fa fa-warning"></i> Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</div>
+            <div class="help-block" id="help-annee" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
+          </div>
+        </td>
+        <td class="col-md-4">
+          <input aria-labelledby="domaine" name="domaine" aria-describedby="help-domaine" required type="text" class="form-control" ng-model="diplome.domaine" placeholder="Domaine d'étude">
+          <div ng-messages="questionForm.domaine.$error" ng-if="questionForm.showError">
+            <div class="help-block" id="help-domaine" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
+          </div>
         </td>
       </tr>
     </tbody>

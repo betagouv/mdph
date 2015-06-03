@@ -222,8 +222,11 @@ exports.answersToHtml = function(request, path, output, next) {
       callback(null, request.mdph);
     },
     quitus: function (callback) {
-      var quitus = Prestation.simulate(request.formAnswers);
-      callback(null, quitus);
+      if (request.mdph && request.mdph === '14') {
+        callback(null, Prestation.simulate(request.formAnswers));
+      } else {
+        callback(null, null);
+      }
     },
     prestationsTemplate: function(callback){
       readFile('prestations.html', callback);

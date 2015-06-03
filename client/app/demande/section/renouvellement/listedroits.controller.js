@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, datepickerConfig, request, prestations, question, nextStep) {
+  .controller('ListeDroitsCtrl', function($scope, $state, QuestionService, request, prestations, question, nextStep) {
     $scope.isLastQuestion = $state.current.data.isLastQuestion;
     $scope.nextStep = nextStep;
     $scope.question = question;
@@ -11,5 +11,4 @@ angular.module('impactApp')
     }
 
     $scope.prestations = prestations;
-    datepickerConfig.datepickerMode = 'day';
   });

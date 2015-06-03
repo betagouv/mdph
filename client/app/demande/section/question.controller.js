@@ -7,19 +7,6 @@ angular.module('impactApp')
     $scope.hideBack = $state.current.data.hideBack;
     $scope.isLastQuestion = $state.current.data.isLastQuestion;
   })
-  .controller('DateQuestionCtrl', function($scope, $state, datepickerConfig, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
-
-    datepickerConfig.datepickerMode = 'year';
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened = true;
-    };
-  })
   .controller('StructureQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;

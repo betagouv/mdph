@@ -12,6 +12,7 @@ angular.module('impactApp', [
   'ngMessages'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider) {
+    moment.locale('fr');
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
@@ -43,10 +44,7 @@ angular.module('impactApp', [
     };
   })
 
-  .run(function ($rootScope, $state, $window, $location, Auth, datepickerConfig) {
-    datepickerConfig.datepickerMode = 'year';
-    datepickerConfig.showWeeks = false;
-
+  .run(function ($rootScope, $state, $window, $location, Auth) {
     $rootScope.$on('$stateChangeSuccess', function(){
       if ($window._paq) {
         $window._paq.push(['setCustomUrl', $location.path()]);

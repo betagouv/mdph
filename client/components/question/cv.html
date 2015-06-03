@@ -45,27 +45,48 @@
           <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
       </div>
+
       <div class="form-group col-md-offset-1 col-md-10">
-        <label class="control-label" for="debut">Date de début</label>
-        <p class="input-group">
-          <input type="text" name="debut" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="tempExp.debut" is-open="opened1" placeholder="DD/MM/YYYY" ng-required="true" close-text="Fermer" show-button-bar="false"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open($event, 1)"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-        <div ng-messages="questionForm.debut.$error" ng-if="questionForm.showError">
-          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+        <label class="control-label" for="date-de-debut">
+          Date de début <span class="small">au format jour/mois/année</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          name="dateDeDebut"
+          id="date-de-debut"
+          required
+          ng-model="tempExp.debut"
+          input-date
+          date-autocomplete
+          placeholder="JJ/MM/AAAA"
+          aria-describedby="help-date-de-debut">
+        <div ng-messages="questionForm.dateDeDebut.$error" ng-if="questionForm.showError">
+          <div class="help-block" id="help-date-de-debut" ng-message='inputDate'><i class="fa fa-warning"></i> Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</div>
+          <div class="help-block" id="help-date-de-debut" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
         </div>
       </div>
+
       <div class="form-group col-md-offset-1 col-md-10">
-        <label class="control-label" for="fin">Date de fin <small>(Ne pas renseigner si vous êtes toujours en poste)</small></label>
-        <p class="input-group">
-          <input type="text" name="fin" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="tempExp.fin" is-open="opened2" placeholder="DD/MM/YYYY" close-text="Fermer" show-button-bar="false"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open($event, 2)"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
+        <label class="control-label" for="date-de-debut">
+          Date de fin <small>(Ne pas renseigner si vous êtes toujours en poste)</small><br><small>au format jour/mois/année</small>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          name="dateDeFin"
+          id="date-de-fin"
+          ng-model="tempExp.fin"
+          input-date
+          date-autocomplete
+          placeholder="JJ/MM/AAAA"
+          aria-describedby="help-date-de-fin">
+        <div ng-messages="questionForm.dateDeFin.$error" ng-if="questionForm.showError">
+          <div class="help-block" id="help-date-de-fin" ng-message='inputDate'><i class="fa fa-warning"></i> Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</div>
+          <div class="help-block" id="help-date-de-fin" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
+        </div>
       </div>
+
       <div class="form-group col-md-offset-1 col-md-10">
         <label for="contrat" class="control-label">Motif de fin d'activité</label>
         <textarea name="motif" type="text" class="form-control" ng-model="tempExp.motif" placeholder="Motif" required></textarea>

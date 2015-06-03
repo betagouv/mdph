@@ -31,7 +31,7 @@ angular.module('impactApp')
     .state(index + '.date_naissance_aidant', {
       url: '/date_naissance_aidant',
       templateUrl: 'components/question/date.html',
-      controller: 'DateQuestionCtrl',
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'dateNaissanceAidant', request.formAnswers);

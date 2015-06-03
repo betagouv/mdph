@@ -1,16 +1,20 @@
 <form name="questionForm" novalidate>
   <label class="question-legend" for="inputdate">{{question.title}}</label>
 
-  <p class="input-group">
-    <input type="text" name="inputdate" class="form-control" datepicker-popup="dd/MM/yyyy" id="inputdate"
-    ng-model="sectionModel[question.model]" is-open="opened" placeholder="DD/MM/YYYY"
-    close-text="Fermer" show-button-bar="false" required>
-    <span class="input-group-btn">
-      <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-    </span>
-  </p>
-  <div ng-messages="questionForm.inputname.$error" ng-if="questionForm.showError">
-    <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+  <input
+    type="text"
+    class="form-control"
+    name="myInputDate"
+    id="input-date"
+    required
+    ng-model="sectionModel[question.model]"
+    input-date
+    date-autocomplete
+    placeholder="JJ/MM/AAAA"
+    aria-describedby="help-input-date">
+  <div ng-messages="questionForm.myInputDate.$error" ng-if="questionForm.showError">
+    <p class="help-block" id="help-input-date" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
+    <p class="help-block" id="help-input-date" ng-message='required'>Ce champ est obligatoire.</p>
   </div>
 
   <nav-steps ng-hide="hideSteps"></nav-steps>
