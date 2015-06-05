@@ -168,8 +168,8 @@ function transformDocumentToPdf(document, tempDirPath, done) {
       img.dataMode = Canvas.Image.MODE_MIME | Canvas.Image.MODE_IMAGE; // Both are tracked
       img.src = documentStream;
 
-      var width = img.width / 10;
-      var height = img.height / 10;
+      var width = img.width / 2;
+      var height = img.height / 2;
       var canvas = new Canvas(width, height, 'pdf');
       var ctx = canvas.getContext('2d');
       ctx.imageSmoothingEnabled = true;
