@@ -9,6 +9,10 @@ dist
 server/config/local.env.js
 server/uploads/*
 !server/uploads/.gitkeep
+!server/uploads/temp
+server/uploads/temp/*
+!server/uploads/temp/.gitkeep
+!server/uploads/run_compress.js
 
 #OSX
 .DS_Store
