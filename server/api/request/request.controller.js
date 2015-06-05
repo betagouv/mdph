@@ -8,8 +8,6 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var shortid = require('shortid');
 var async = require('async');
-var scissors = require('scissors');
-var Canvas = require('canvas');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
@@ -18,6 +16,7 @@ var Recapitulatif = require('../../components/recapitulatif');
 var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
 var DateUtils = require('../../components/dateUtils');
+var MakePdf = require('../../components/make-pdf');
 
 var Prestation = require('../prestation/prestation.controller');
 var Request = require('./request.model');
@@ -140,31 +139,10 @@ exports.showUserRequests = function(req, res, next) {
   });
 }
 
-var generatePdf = function(request, user, host, callback) {
+var generatePdf = function(request, user, host, done) {
   Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
-    if (err) { return callback(err); }
-
-    if (request.mdph === '59' && user.role === 'adminMdph') {
-      var outputFile = '.tmp/' + request.shortId + '.pdf';
-
-      wkhtmltopdf(html, {encoding: 'UTF-8', output: outputFile}, function() {
-        var scissorDocuments = [
-          scissors(path.join(config.root + '/server/components/pdf_templates/sep_cerfa.pdf')),
-          scissors(outputFile)
-        ];
-
-        var otherDocuments = groupDocuments(request, outputFile);
-        if (otherDocuments && otherDocuments.length > 0) {
-          otherDocuments.forEach(function(scissorDoc) {
-            scissorDocuments.push(scissorDoc);
-          });
-        }
-
-        return callback(null, scissors.join.apply(scissors, scissorDocuments).pdfStream());
-      });
-    } else {
-      return callback(null, wkhtmltopdf(html, {encoding: 'UTF-8'}));
-    }
+    if (err) return done(err);
+    return MakePdf.make(request, user, html, done);
   });
 }
 
@@ -426,92 +404,6 @@ exports.getCerfa = function(req, res) {
   });
 }
 
-function groupDocuments(request, outputFile) {
-  if (!request.documents) {
-    return [];
-  }
-
-  var groupsFor59 = [
-    {
-      separator: 'sep_justificatifs.pdf',
-      category: 'justificatifs',
-      documentList: []
-    },
-    {
-      separator: 'sep_certificat.pdf',
-      category: 'certificat',
-      documentList: []
-    },
-    {
-      separator: 'sep_autres_bilans_medicaux.pdf',
-      category: 'autres_bilans_medicaux',
-      documentList: []
-    },
-    {
-      separator: 'sep_scolarite.pdf',
-      category: 'scolarite',
-      documentList: []
-    },
-    {
-      separator: 'sep_vie_pro.pdf',
-      category: 'vie_pro',
-      documentList: []
-    },
-    {
-      separator: 'sep_bilan_ems_sms.pdf',
-      category: 'bilan_ems_sms',
-      documentList: []
-    },
-    {
-      separator: 'sep_autres.pdf',
-      category: 'autres',
-      documentList: []
-    }
-  ];
-
-  var groupsFor59ByIdx = _.indexBy(groupsFor59, 'category');
-
-  request.documents.forEach(function(document) {
-    if (groupsFor59ByIdx[document.category]) {
-      groupsFor59ByIdx[document.category].documentList.push(document);
-    } else {
-      groupsFor59ByIdx.autres.documentList.push(document);
-    }
-  });
-
-  var localDocuments = [];
-  groupsFor59.forEach(function(group) {
-    if (group.documentList.length > 0) {
-      localDocuments.push(path.join(config.root + '/server/components/pdf_templates/' + group.separator));
-      group.documentList.forEach(function(currentDocument) {
-        if (currentDocument.mimetype !== 'application/pdf') {
-          var data = fs.readFileSync(path.join(config.root + '/server/uploads/', currentDocument.name));
-          var img = new Canvas.Image();
-          img.src = data;
-
-          var width = img.width / 4;
-          var height = img.height / 4;
-          var canvas = new Canvas(width, height, 'pdf');
-          var ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-
-          var newPdfPath = path.join(config.root + '/server/uploads/' + currentDocument.name + '.pdf');
-          fs.writeFileSync(newPdfPath, canvas.toBuffer());
-
-          localDocuments.push(newPdfPath);
-        } else {
-          localDocuments.push(path.join(config.root + '/server/uploads/', currentDocument.name));
-        }
-      });
-    }
-  });
-
-  var scissorDocuments = [];
-  localDocuments.forEach(function(documentPath) {
-    scissorDocuments.push(scissors(documentPath));
-  });
-  return scissorDocuments;
-}
 
 var getPdf = function(req, res) {
   findRequest(req, function (err, request) {
