@@ -77,20 +77,6 @@ exports.make = function (request, user, recapitulatifHtml, done) {
 
         printDebug('make: finished building structure:', scissorsStructure);
         cb(null, scissorsStructure);
-      },
-      // Create full pdf stream
-      // Write pdf stream
-      function(scissorsStructure, cb) {
-        var fullPdfTempPath = computeTempPdfPath(request.shortId + '__full');
-
-        scissors
-          .join.apply(scissors, scissorsStructure)
-          .pdfStream()
-          .pipe(fs.createWriteStream(fullPdfTempPath))
-          .on('finish', function() {
-            printDebug('make: finished writing full pdf:', fullPdfTempPath);
-            cb(null, fullPdfTempPath)
-          });
       }
     ], function (err, scissorsStructure) {
       if (err) return done(err);
