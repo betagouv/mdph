@@ -3,6 +3,7 @@
 var fs = require('fs');
 var _ = require('lodash');
 var path = require('path');
+var tmp = require('tmp');
 var async = require('async');
 var Canvas = require('canvas');
 var scissors = require('scissors');
@@ -24,68 +25,77 @@ exports.make = function (request, user, recapitulatifHtml, done) {
   printDebug('makePdf: Transforming html to pdf');
   if (request.mdph === '59' && user.role === 'adminMdph') {
 
-    var requestTempPdfPath = computeTempPdfPath(request.shortId);
-    var requestBuffer = wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath});
-    printDebug('make: Transforming for GED_59');
+    tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
+      if (err) throw err;
 
-    async.waterfall([
-      // Transform everything to pdf stream
-      function(cb){
-        if (request.documents) {
-          return transformDocumentListToPdf(request.documents, [], cb);
-        }
+      var requestTempPdfPath = computeTempPdfPath(request.shortId, tempDirPath);
+      var requestBuffer = wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath});
+      printDebug('make: Transforming for GED_59');
 
-        cb(null, []);
-      },
-      // Group documents by section
-      function(documentList, cb) {
-        if (documentList.length > 0) {
-          return groupDocumentList(documentList, cb);
-        }
-
-        cb(null, {});
-      },
-      // Join everything in one stream
-      function(groups, cb){
-
-        var pdfStructure = [
-          getSeparatorPath('sep_cerfa.pdf'),
-          requestTempPdfPath
-        ];
-
-        groups.forEach(function(group) {
-          if (group.documentList.length > 0) {
-            var separator = getSeparatorPath(group.separator);
-            pdfStructure.push(separator);
-            group.documentList.forEach(function(document) {
-              if (document.tempPdfPath) {
-                pdfStructure.push(document.tempPdfPath);
-              } else {
-                pdfStructure.push(document.actualPdfPath);
-              }
-            });
+      async.waterfall([
+        // Transform everything to pdf stream
+        function(cb){
+          if (request.documents) {
+            return transformDocumentListToPdf(request.documents, [], tempDirPath, cb);
           }
-        });
 
-        return cb(null, pdfStructure);
-      },
-      // Load everything in scissors
-      function(structure, cb){
-        var scissorsStructure = _.map(structure, function(document) {
-          return scissors(document);
-        });
+          cb(null, []);
+        },
+        // Group documents by section
+        function(documentList, cb) {
+          if (documentList.length > 0) {
+            return groupDocumentList(documentList, cb);
+          }
 
-        printDebug('make: finished building structure:', scissorsStructure);
-        cb(null, scissorsStructure);
-      }
-    ], function (err, scissorsStructure) {
-      if (err) return done(err);
-      printDebug('make: finished building pdf');
+          cb(null, {});
+        },
+        // Join everything in one stream
+        function(groups, cb){
 
-      var stream = scissors
-        .join.apply(scissors, scissorsStructure)
-        .pdfStream()
-      return done(null, stream);
+          var pdfStructure = [
+            getSeparatorPath('sep_cerfa.pdf'),
+            requestTempPdfPath
+          ];
+
+          groups.forEach(function(group) {
+            if (group.documentList.length > 0) {
+              var separator = getSeparatorPath(group.separator);
+              pdfStructure.push(separator);
+              group.documentList.forEach(function(document) {
+                if (document.tempPdfPath) {
+                  pdfStructure.push(document.tempPdfPath);
+                } else {
+                  pdfStructure.push(document.actualPdfPath);
+                }
+              });
+            }
+          });
+
+          return cb(null, pdfStructure);
+        },
+        // Load everything in scissors
+        function(structure, cb){
+          var scissorsStructure = _.map(structure, function(document) {
+            return scissors(document);
+          });
+
+          printDebug('make: finished building structure:', scissorsStructure);
+          cb(null, scissorsStructure);
+        },
+      ], function (err, scissorsStructure) {
+        if (err) return done(err);
+        printDebug('make: finished building pdf');
+
+        var stream = scissors
+          .join.apply(scissors, scissorsStructure)
+          .pdfStream();
+
+        setTimeout(function () {
+          cleanupCallback();
+        }, 600000);
+
+        return done(null, stream);
+      });
     });
   } else {
     printDebug('make: No transformation required, returning answers as PDF');
@@ -125,18 +135,18 @@ exports.make = function (request, user, recapitulatifHtml, done) {
 //   });
 // }
 
-function transformDocumentListToPdf(documentList, documentListAsPdf, done) {
+function transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath, done) {
   printDebug('transformDocumentListToPdf: Transforming: ', documentList);
   if (documentList.length > 0) {
     var document = documentList.pop();
-    return transformDocumentToPdf(document, function(err, tempPdfPath, actualPdfPath) {
+    return transformDocumentToPdf(document, tempDirPath, function(err, tempPdfPath, actualPdfPath) {
       if (err) {
         return done(err);
       }
       document.tempPdfPath = tempPdfPath;
       document.actualPdfPath = actualPdfPath;
       documentListAsPdf.push(document);
-      return transformDocumentListToPdf(documentList, documentListAsPdf, done)
+      return transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath, done)
     });
   } else {
     printDebug('transformDocumentListToPdf: Finished: ', documentListAsPdf);
@@ -144,7 +154,7 @@ function transformDocumentListToPdf(documentList, documentListAsPdf, done) {
   }
 }
 
-function transformDocumentToPdf(document, done) {
+function transformDocumentToPdf(document, tempDirPath, done) {
   printDebug('transformDocumentToPdf: transforming: ', document);
   var documentPath = path.join(config.root + '/server/uploads/', document.name);
 
@@ -165,7 +175,7 @@ function transformDocumentToPdf(document, done) {
       ctx.imageSmoothingEnabled = true;
       ctx.drawImage(img, 0, 0, width, height);
 
-      var tempPdfPath = computeTempPdfPath(document.name);
+      var tempPdfPath = computeTempPdfPath(document.name, tempDirPath);
 
       return fs.writeFile(tempPdfPath, canvas.toBuffer('image/jpeg'), function(err) {
         done(err, tempPdfPath, null);
@@ -176,9 +186,9 @@ function transformDocumentToPdf(document, done) {
   }
 }
 
-function computeTempPdfPath(document) {
+function computeTempPdfPath(document, tempDirPath) {
   printDebug('computeTempPdfPath: ', document);
-  return path.join(config.root, '/server/uploads/temp/', document + '.pdf');
+  return tempDirPath + '/' + document + '.pdf';
 }
 
 function groupDocumentList(documentList, done) {
