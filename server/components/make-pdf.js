@@ -11,7 +11,7 @@ var spawn = require('child_process').spawn;
 
 var config = require('../config/environment');
 
-var debug = true;
+var debug = false;
 
 function printDebug(str, obj) {
   if (debug) {
@@ -91,26 +91,14 @@ exports.make = function (request, user, recapitulatifHtml, done) {
             printDebug('make: finished writing full pdf:', fullPdfTempPath);
             cb(null, fullPdfTempPath)
           });
-      },
-      // Compress
-      function(fullPdfTempPath, cb) {
-        var compressedPdfPath = computeTempPdfPath(request.shortId + '__compressed');
-
-        printDebug('make: compressing input:', fullPdfTempPath);
-        printDebug('output input:', compressedPdfPath);
-        compress(fullPdfTempPath, compressedPdfPath, function(err, compressedPdfPath) {
-          cb(err, compressedPdfPath);
-        });
-      },
-      // Read
-      function(compressedPdfPath, cb) {
-
-        printDebug('make: read compressed file:', compressedPdfPath);
-        cb(null, fs.createReadStream(compressedPdfPath));
       }
-    ], function (err, stream) {
+    ], function (err, scissorsStructure) {
       if (err) return done(err);
       printDebug('make: finished building pdf');
+
+      var stream = scissors
+        .join.apply(scissors, scissorsStructure)
+        .pdfStream()
       return done(null, stream);
     });
   } else {
@@ -121,35 +109,35 @@ exports.make = function (request, user, recapitulatifHtml, done) {
   }
 }
 
-function compress(input, output, done) {
-  printDebug('compress:', output);
+// function compress(input, output, done) {
+//   printDebug('compress:', output);
 
-  var gs = spawn('gs', [
-    '-sDEVICE=pdfwrite',
-    '-dCompatibilityLevel=1.5',
-    '-dPDFSETTINGS=/screen',
-    '-dNOPAUSE',
-    '-dBATCH',
-    '-dQUIET',
-    '-sOutputFile=' + output,
-    input
-  ]);
+//   var gs = spawn('gs', [
+//     '-sDEVICE=pdfwrite',
+//     '-dCompatibilityLevel=1.5',
+//     '-dPDFSETTINGS=/screen',
+//     '-dNOPAUSE',
+//     '-dBATCH',
+//     '-dQUIET',
+//     '-sOutputFile=' + output,
+//     input
+//   ]);
 
-  var stdout = '';
+//   var stdout = '';
 
-  gs.stdout.on('data', function(chunk) {
-    stdout += chunk.toString();
-  });
+//   gs.stdout.on('data', function(chunk) {
+//     stdout += chunk.toString();
+//   });
 
-  gs.on('error', function(err) {
-    done(err);
-  });
+//   gs.on('error', function(err) {
+//     done(err);
+//   });
 
-  gs.on('close', function(code) {
-    printDebug('compress: finished');
-    done(null, output);
-  });
-}
+//   gs.on('close', function(code) {
+//     printDebug('compress: finished');
+//     done(null, output);
+//   });
+// }
 
 function transformDocumentListToPdf(documentList, documentListAsPdf, done) {
   printDebug('transformDocumentListToPdf: Transforming: ', documentList);
