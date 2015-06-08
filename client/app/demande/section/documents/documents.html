@@ -87,7 +87,7 @@
             </div>
             <div class="panel-footer" ng-if="!file.asked">
               <div class="text-right">
-                <div ng-file-select="onFileSelect($files[0], id)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
+                <div ngf-select ngf-change="upload($files[0], id)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
                   <i class="fa fa-upload"></i> Attacher un fichier</span>
                 </div>
                 <div class="btn btn-success" ng-if="document.id === 'certificatMedical'"ng-click="demandePartenaire(document)">
