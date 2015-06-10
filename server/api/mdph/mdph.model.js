@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
 var MdphSchema = new Schema({
   zipcode:  { type: String, unique: true },
   name:     { type: String },
-  email:    { type: String },
   logo:     { type: String }
 });
 

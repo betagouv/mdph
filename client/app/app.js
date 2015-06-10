@@ -9,7 +9,8 @@ angular.module('impactApp', [
   'ngStorage',
   'ngAnimate',
   'ngFileUpload',
-  'ngMessages'
+  'ngMessages',
+  'chart.js'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider) {
     moment.locale('fr');

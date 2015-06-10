@@ -7,8 +7,7 @@ var Mdph = require('./mdph.model');
 
 var mdph = new Mdph({
   name: 'FakeMDPH',
-  zipcode: '00000',
-  email: 'test@test.com'
+  zipcode: '00000'
 });
 
 describe('Mdph Model', function() {

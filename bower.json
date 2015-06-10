@@ -20,7 +20,8 @@
     "angular-ui-router": "0.2.15",
     "ngstorage": "0.3.4",
     "moment": "2.10.3",
-    "ng-file-upload": "4.2.4"
+    "ng-file-upload": "4.2.4",
+    "angular-chart.js": "~0.7.1"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
