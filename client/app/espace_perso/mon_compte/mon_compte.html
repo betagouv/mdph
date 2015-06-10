@@ -1,105 +1,105 @@
 <div class="container" id="mon-compte">
 
-  <div class="panel panel-default panel-info" ng-if="user.role === 'adminMdph'">
-    <div class="panel-heading">
-      <h1>Votre MDPH</h1>
-    </div>
-    <div class="panel-body">
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Nom</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">{{user.mdph.name}}</p>
-          </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default panel-info" ng-if="user.role === 'adminMdph'">
+        <div class="panel-heading">
+          <h1>Ma MDPH</h1>
         </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Code Postal</label>
-          <div class="col-sm-10">
-            <p class="form-control-static">{{user.mdph.zipcode}}</p>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="panel panel-default panel-info">
-    <div class="panel-heading">
-      <h1>Vos informations personnelles</h1>
-    </div>
-    <div class="panel-body">
-      <form aria-labelledby="infoPerso" class="form-horizontal" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
-        <div class="form-group">
-          <label for="name" class="col-sm-2 control-label">Nom</label>
-          <div class="col-sm-10">
-            <input id="name" type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="3" required>
-            <div ng-messages="infoForm.name.$error" ng-if="infoForm.$dirty">
-              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-              <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 3 caractères.</p>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="email" class="col-sm-2 control-label">Email</label>
-          <div class="col-sm-10">
-            <div class="input-group margin-bottom-sm">
-              <input id="email" type="email" name="email" class="form-control" ng-model="user.email" required>
-              <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-            </div>
-            <div ng-messages="infoForm.email.$error" ng-if="infoForm.$dirty">
-              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-              <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
-            </div>
-          </div>
-        </div>
-        <p class="help-block"> {{ infoMessage }} </p>
-        <div class="text-right">
-          <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div id="changePassword" class="panel panel-default panel-info">
-    <div class="panel-heading">
-      <h1>Changer votre mot de passe</h1>
-    </div>
-    <div class="panel-body">
-      <form aria-labelledby="changePassword" class="form-horizontal" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
-        <div class="form-group">
-          <label for="oldPassword" class="col-sm-2 control-label">Mot de passe actuel</label>
-          <div class="col-sm-10">
-            <div class="input-group margin-bottom-sm">
-              <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword"
-                     mongoose-error/>
-              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-            </div>
-            <p class="help-block" ng-show="passwordForm.$error.mongoose">
-              {{ errors.password }}
+        <div class="panel-body">
+            <p>{{user.mdph.name}} - {{user.mdph.zipcode}}</p>
+            <p>
+              <a ui-sref="departement({codeDepartement: user.mdph.zipcode})" title="Page d'acceuil de votre MDPH">
+                Page d'acceuil de votre MDPH
+              </a>
             </p>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="newPassword" class="col-sm-2 control-label">Nouveau mot de passe</label>
-          <div class="col-sm-10">
-            <div class="input-group margin-bottom-sm">
-              <input id="newPassword" type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
-                     ng-minlength="3"
-                     required/>
-              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-            </div>
-            <p class="help-block"
-               ng-show="(passwordForm.$error.minlength || passwordForm.$error.required) && (passwordForm.$dirty || passwordSubmitted)">
-              La longueur minimale du mot de passe est de 3 caractères.
+            <p>
+              <a ui-sref="dashboard.requests.user({userId: 'me'})" title="Tableau de bord agent">
+                Tableau de bord agent
+              </a>
             </p>
-          </div>
+          </form>
         </div>
+      </div>
+    </div>
 
-        <p class="help-block"> {{ passwordMessage }} </p>
-        <div class="text-right">
-          <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
+    <div class="col-md-4">
+      <div class="panel panel-default panel-info">
+        <div class="panel-heading">
+          <h1>Mes informations personnelles</h1>
         </div>
-      </form>
+        <div class="panel-body">
+          <form aria-labelledby="infoPerso" name="infoForm" ng-submit="changePersonalInfo(infoForm)" novalidate>
+            <div class="form-group">
+              <label for="email" class="control-label">Email</label>
+              <div>
+                <p class="control-label">{{user.email}}</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="control-label">Nom</label>
+              <div>
+                <input id="name" type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="3" required>
+                <div ng-messages="infoForm.name.$error" ng-if="infoForm.$dirty">
+                  <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+                  <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 3 caractères.</p>
+                </div>
+              </div>
+            </div>
+            <p class="help-block"> {{ infoMessage }} </p>
+            <div class="text-right">
+              <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div id="changePassword" class="panel panel-default panel-info">
+        <div class="panel-heading">
+          <h1>Changer mon mot de passe</h1>
+        </div>
+        <div class="panel-body">
+          <form aria-labelledby="changePassword" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
+            <div class="form-group">
+              <label for="oldPassword" class="control-label">Mot de passe actuel</label>
+              <div>
+                <div class="input-group margin-bottom-sm">
+                  <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                         mongoose-error/>
+                  <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                </div>
+                <p class="help-block" ng-show="passwordForm.$error.mongoose">
+                  {{ errors.password }}
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="newPassword" class="control-label">Nouveau mot de passe</label>
+              <div>
+                <div class="input-group margin-bottom-sm">
+                  <input id="newPassword" type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                         ng-minlength="3"
+                         required/>
+                  <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                </div>
+                <p class="help-block"
+                   ng-show="(passwordForm.$error.minlength || passwordForm.$error.required) && (passwordForm.$dirty || passwordSubmitted)">
+                  La longueur minimale du mot de passe est de 3 caractères.
+                </p>
+              </div>
+            </div>
+
+            <p class="help-block"> {{ passwordMessage }} </p>
+            <div class="text-right">
+              <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
+
 </div>
