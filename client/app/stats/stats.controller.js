@@ -37,4 +37,11 @@ angular.module('impactApp')
     $http.get('/api/stats/site').then(function(result) {
       $scope.site = result.data;
     });
+
+    $http.get('/api/stats/history').then(function(result) {
+      $scope.history = result.data;
+      $scope.historyLabels = _.pluck(result.data, 'date');
+      $scope.historyData = [_.pluck(result.data, 'count')];
+      $scope.historySeries = ['Nombre de demandes'];
+    });
   });

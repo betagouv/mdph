@@ -7,5 +7,6 @@ var router = express.Router();
 
 router.get('/mdph', controller.mdph);
 router.get('/site', controller.site);
+router.get('/history', controller.history);
 
 module.exports = router;

@@ -5,6 +5,7 @@ var async = require('async');
 var Mdph = require('../mdph/mdph.model');
 var User = require('../user/user.model');
 var Request = require('../request/request.model');
+var moment = require('moment');
 
 function countAgents(data, mdphs, done) {
   async.eachSeries(mdphs, function (mdph, callback) {
@@ -77,6 +78,37 @@ exports.site = function(req, res) {
       count: users.length
     };
 
+    res.json(data);
+  });
+};
+
+function getOneWeekAgo() {
+  var oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  return oneWeekAgo;
+}
+
+exports.history = function(req, res) {
+  Request.find({
+    createdAt: {'$gte': getOneWeekAgo()}
+  }).sort('createdAt').exec(function(err, requests) {
+    if (err) { return handleError(req, res, err); }
+    if (!requests) {
+      return res.json({});
+    }
+
+    requests.forEach(function(request) {
+      request.createdAtByDay = moment(request.createdAt).format('DD/MM/YYYY');
+    });
+
+    var groupByDate = _.groupBy(requests, 'createdAtByDay');
+    var data = [];
+    _.forEach(groupByDate, function(requests, date) {
+      data.push({
+        date: date,
+        count: requests.length
+      })
+    });
     res.json(data);
   });
 };

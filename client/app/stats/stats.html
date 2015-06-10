@@ -1,34 +1,45 @@
 <div id="stats-container" class="container">
-  <div class="section">
-    <h1>Impact cumulé</h1>
-    <hr>
-    <div class="row">
-      <div class="col-sm-6">
-        <h2>Nombre de demandes</h2>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Nombre de demandes</h1>
         <div class="bigup">{{sumRequests(mdphs)}}</div>
       </div>
-      <div class="col-sm-6">
-        <h2>Demandes par MDPH</h2>
-        <canvas id="pie" class="chart chart-pie" data="dataTotal" labels="labels"
-          legend="true"></canvas>
-      </div>
-      <div class="col-sm-6">
-        <h2>Nombre d'utilisateurs inscrits</h2>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Nombre d'utilisateurs inscrits</h1>
         <div class="bigup">{{site.count}}</div>
       </div>
-      <div class="col-sm-6">
-        <h2>Nombre de MDPH pilotes</h2>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Nombre de MDPH pilotes</h1>
         <div class="bigup">{{mdphs.length}}</div>
       </div>
     </div>
-  </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Demandes par MDPH</h1>
+        <canvas id="pie" class="chart chart-pie" data="dataTotal" labels="labels"
+          legend="true"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Détail des demandes</h1>
+        <hr>
+        <canvas id="bar" class="chart chart-bar" data="data" labels="labels" series="series" legend="true"></canvas>
+      </div>
+    </div>
 
-  <div class="section">
-    <h1>Détail des demandes</h1>
-    <hr>
-
-    <canvas id="bar" class="chart chart-bar" data="data" labels="labels" series="series"
-      legend="true"></canvas>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Historique des demandes</h1>
+        <hr>
+        <canvas id="line" class="chart chart-line" data="historyData" labels="historyLabels" series="historySeries" legend="true"></canvas>
+      </div>
+    </div>
   </div>
 
 </div>
