@@ -5,6 +5,15 @@ angular.module('impactApp')
     $scope.user = {};
     $scope.errors = {};
     $scope.signup = true;
+    $scope.inputType = 'password';
+
+    $scope.toggleType = function() {
+      if ($scope.inputType === 'password') {
+        $scope.inputType = 'text';
+      } else {
+        $scope.inputType = 'password';
+      }
+    }
 
     $scope.resetMongooseError = function(form, field) {
       form[field].$setValidity('mongoose', true);

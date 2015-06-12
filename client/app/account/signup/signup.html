@@ -39,14 +39,15 @@
         <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
                                             'has-error': form.password.$invalid && submitted }">
           <label for="password">Mot de passe</label>
+          <input id="password" type="{{inputType}}" name="password"
+            class="form-control" ng-model="user.password" ng-minlength="8" required mongoose-error>
 
-          <input id="password" type="password" name="password" class="form-control" ng-model="user.password"
-                 ng-minlength="3"
-                 required
-                 mongoose-error/>
+          <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
+          <label for="checkbox" class="control-label">Afficher le mot de passe</label>
+
           <p class="help-block"
              ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-            Le mot de passe doit être au moins de trois caractères.
+            Le mot de passe doit être au moins de 8 caractères.
           </p>
           <p class="help-block" ng-show="form.password.$error.mongoose">
             {{ errors.password }}
