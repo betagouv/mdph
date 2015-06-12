@@ -12,12 +12,13 @@ angular.module('impactApp', [
   'ngMessages',
   'chart.js'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider) {
     moment.locale('fr');
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
     $urlMatcherFactoryProvider.strictMode(false);
+    $modalProvider.options.animation = false;
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore) {
