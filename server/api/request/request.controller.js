@@ -150,7 +150,7 @@ function sendMailNotification(request, host, log, callback) {
   Dispatcher.findSecteur(request, function(secteur) {
     if (secteur) {
 
-      var estAdulte = DateUtils.estAdulte(request.formAnswers);
+      var estAdulte = DateUtils.isAdult(request.formAnswers);
       var type = estAdulte ? 'adulte' : 'enfant';
 
       if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
