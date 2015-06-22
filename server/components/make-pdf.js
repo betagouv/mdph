@@ -29,72 +29,72 @@ exports.make = function (request, user, recapitulatifHtml, done) {
       if (err) throw err;
 
       var requestTempPdfPath = computeTempPdfPath(request.shortId, tempDirPath);
-      var requestBuffer = wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath});
-      printDebug('make: Transforming for GED_59');
-
-      async.waterfall([
-        // Transform everything to pdf stream
-        function(cb){
-          if (request.documents) {
-            return transformDocumentListToPdf(request.documents, [], tempDirPath, cb);
-          }
-
-          cb(null, []);
-        },
-        // Group documents by section
-        function(documentList, cb) {
-          if (documentList.length > 0) {
-            return groupDocumentList(documentList, cb);
-          }
-
-          cb(null, {});
-        },
-        // Join everything in one stream
-        function(groups, cb){
-
-          var pdfStructure = [
-            getSeparatorPath('sep_cerfa.pdf'),
-            requestTempPdfPath
-          ];
-
-          groups.forEach(function(group) {
-            if (group.documentList.length > 0) {
-              var separator = getSeparatorPath(group.separator);
-              pdfStructure.push(separator);
-              group.documentList.forEach(function(document) {
-                if (document.tempPdfPath) {
-                  pdfStructure.push(document.tempPdfPath);
-                } else {
-                  pdfStructure.push(document.actualPdfPath);
-                }
-              });
+      wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath}, function() {
+        printDebug('make: Transforming for GED_59');
+        async.waterfall([
+          // Transform everything to pdf stream
+          function(cb){
+            if (request.documents) {
+              return transformDocumentListToPdf(request.documents, [], tempDirPath, cb);
             }
-          });
 
-          return cb(null, pdfStructure);
-        },
-        // Load everything in scissors
-        function(structure, cb){
-          var scissorsStructure = _.map(structure, function(document) {
-            return scissors(document);
-          });
+            cb(null, []);
+          },
+          // Group documents by section
+          function(documentList, cb) {
+            if (documentList.length > 0) {
+              return groupDocumentList(documentList, cb);
+            }
 
-          printDebug('make: finished building structure:', scissorsStructure);
-          cb(null, scissorsStructure);
-        },
-      ], function (err, scissorsStructure) {
-        if (err) return done(err);
-        printDebug('make: finished building pdf');
+            cb(null, {});
+          },
+          // Join everything in one stream
+          function(groups, cb){
 
-        var stream = scissors
-          .join.apply(scissors, scissorsStructure)
-          .pdfStream();
+            var pdfStructure = [
+              getSeparatorPath('sep_cerfa.pdf'),
+              requestTempPdfPath
+            ];
 
-        setTimeout(function () {
-          cleanupCallback();
-        }, 600000);
+            groups.forEach(function(group) {
+              if (group.documentList.length > 0) {
+                var separator = getSeparatorPath(group.separator);
+                pdfStructure.push(separator);
+                group.documentList.forEach(function(document) {
+                  if (document.tempPdfPath) {
+                    pdfStructure.push(document.tempPdfPath);
+                  } else {
+                    pdfStructure.push(document.actualPdfPath);
+                  }
+                });
+              }
+            });
 
-        return done(null, stream);
+            return cb(null, pdfStructure);
+          },
+          // Load everything in scissors
+          function(structure, cb){
+            var scissorsStructure = _.map(structure, function(document) {
+              return scissors(document);
+            });
+
+            printDebug('make: finished building structure:', scissorsStructure);
+            cb(null, scissorsStructure);
+          },
+        ], function (err, scissorsStructure) {
+          if (err) return done(err);
+          printDebug('make: finished building pdf');
+
+          var stream = scissors
+            .join.apply(scissors, scissorsStructure)
+            .pdfStream();
+
+          setTimeout(function () {
+            cleanupCallback();
+          }, 600000);
+
+          return done(null, stream);
+        });
       });
     });
   } else {
