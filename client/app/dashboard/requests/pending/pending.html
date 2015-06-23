@@ -22,6 +22,7 @@
     <table>
       <thead>
         <th></th>
+        <th>Référence</th>
         <th>Initiateur</th>
         <th>Bénéficiaire</th>
         <th>Émise le</th>
@@ -30,6 +31,13 @@
         <tr ng-repeat="(idx, request) in filteredRequests = (requests | filter:query)">
           <td class="check-request" ng-click="request.isSelected = !request.isSelected">
             <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
+          </td>
+          <td>
+            <span class="user">
+              <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
+                {{request.shortId}}
+              </a>
+            </span>
           </td>
           <td>
             <span class="user">
