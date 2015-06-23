@@ -179,32 +179,32 @@ angular.module('impactApp').constant('documentTypes', [
     category: 'scolarite'
   },
   {
-    id: '',
-    label: 'Fiche de laison Financement du matériel pédagogique adapté',
+    id: 'fiche_liaison_financement_materiel',
+    label: 'Fiche de liaison Financement du matériel pédagogique adapté',
     category: 'scolarite'
   },
   {
-    id: '',
+    id: 'fiche_eval_autonomie',
     label: 'Fiche d\'évaluation de l\'autonomie de l\'élève (de l\'inspection académique)',
     category: 'scolarite'
   },
   {
-    id: '',
+    id: 'protocoles_accompagnement_eleve_avsi',
     label: 'Protocoles d\'accompagnement d\'un élève handicapé par une AVSI',
     category: 'scolarite'
   },
   {
-    id: '',
+    id: 'plan_individualise_accompagnement',
     label: 'Plan individualisé d\'accompagnement (PIA)',
     category: 'scolarite'
   },
   {
-    id: '',
+    id: 'devoirs_particuliers',
     label: 'Devoirs particuliers (dyslexie, orthophonie, etc.)',
     category: 'scolarite'
   },
   {
-    id: '',
+    id: 'certificat_de_scolarite',
     label: 'Certificat de scolarité, relevé de notes, etc.',
     category: 'scolarite'
   },
