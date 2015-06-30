@@ -43,6 +43,38 @@ function countRequests(data, mdphs, done) {
   });
 }
 
+function countCertificats(data, mdphs, done) {
+  async.eachSeries(mdphs, function (mdph, callback) {
+    Request.find({
+      mdph: mdph.zipcode
+    }, function (err, list) {
+      data[mdph.zipcode].certificats = {partenaire: 0, direct: 0};
+
+      list.forEach(function(request) {
+        if (request.documents && request.documents.length > 0) {
+          request.documents.forEach(function(doc) {
+            if (doc.type === 'certificatMedical') {
+              if (doc.partenaire) {
+                data[mdph.zipcode].certificats.partenaire += 1;
+              } else {
+                data[mdph.zipcode].certificats.direct += 1;
+              }
+            }
+          });
+        }
+      });
+
+      callback();
+    });
+  }, function (err) {
+    if (err) { throw err; }
+    return done();
+  });
+
+
+  return data;
+}
+
 exports.mdph = function(req, res) {
   Mdph.find().sort('zipcode').exec(function(err, mdphs) {
     if(err) { return handleError(req, res, err); }
@@ -63,6 +95,9 @@ exports.mdph = function(req, res) {
       },
       function(cb) {
         countRequests(dataByZipcode, mdphs, cb);
+      },
+      function(cb) {
+        countCertificats(dataByZipcode, mdphs, cb);
       }
     ], function(err) {
       res.json(data);
@@ -112,6 +147,27 @@ exports.history = function(req, res) {
     res.json(data);
   });
 };
+
+exports.certificats = function(req, res) {
+  Request.find().exec(function(err, requests) {
+    if (err) { return handleError(req, res, err); }
+    if (!requests) {
+      return res.json({});
+    }
+    var data = 0;
+    requests.forEach(function(request) {
+      if (request.documents && request.documents.length > 0) {
+        request.documents.forEach(function(doc) {
+          if (doc.type === 'certificatMedical') {
+            data += 1;
+          }
+        });
+      }
+    });
+    res.json(data);
+  });
+};
+
 
 function handleError(req, res, err) {
   req.log.error(err);

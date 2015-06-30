@@ -3,24 +3,28 @@
     <div class="col-sm-4">
       <div class="section">
         <h1>Nombre de demandes</h1>
+        <hr>
         <div class="bigup">{{sumRequests(mdphs)}}</div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="section">
         <h1>Nombre d'utilisateurs inscrits</h1>
+        <hr>
         <div class="bigup">{{site.count}}</div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="section">
         <h1>Nombre de MDPH pilotes</h1>
+        <hr>
         <div class="bigup">{{mdphs.length}}</div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="section">
         <h1>Demandes par MDPH</h1>
+        <hr>
         <canvas id="pie" class="chart chart-pie" data="dataTotal" labels="labels"
           legend="true"></canvas>
       </div>
@@ -38,6 +42,20 @@
         <h1>Historique des demandes</h1>
         <hr>
         <canvas id="line" class="chart chart-line" data="historyData" labels="historyLabels" series="historySeries" legend="true"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Nombre de certificats transmis</h1>
+        <hr>
+        <div class="bigup">{{certificats}}</div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Détail des certificats transmis</h1>
+        <hr>
+        <canvas id="bar" class="chart chart-bar" data="dataCertificats" labels="labels" series="seriesCertificats" legend="true"></canvas>
       </div>
     </div>
   </div>
