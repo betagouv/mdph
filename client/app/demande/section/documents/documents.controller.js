@@ -48,11 +48,14 @@ angular.module('impactApp')
             category: $scope.documentTypesById[document].category
           }
       })
-      // TODO: Afficher progression
-      // .progress(function (evt) {
-      //     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      //     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-      // })
+      .progress(function (evt) {
+        if (evt.config.file) {
+          type[length] = {
+            name: evt.config.file.name,
+            progress: parseInt(100.0 * evt.loaded / evt.total)
+          };
+        }
+      })
       .success(function (data) {
         $scope.request.documents.push(data);
         type[length] = data;

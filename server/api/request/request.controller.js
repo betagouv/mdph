@@ -334,7 +334,7 @@ exports.saveFile = function (req, res, next) {
 
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
-      return res.json(document);
+      return res.json(request.documents[request.documents.length - 1]);
     });
  });
 }
