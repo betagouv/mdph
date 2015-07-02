@@ -35,7 +35,9 @@
         <div class="form-group" ng-class="{'has-error': documentForm.$submitted && files.length !== 1}">
           <label for="inputFile">Choisir le fichier</label>
           <div class="clearfix"></div>
-          <span class="btn btn-default" ng-file-select ng-model="files" accept=".jpg,.png,.pdf" ng-multiple="false"><i class="fa fa-upload"></i> Choisir fichier</span>
+          <span ngf-select ng-model="files" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
+            <i class="fa fa-upload"></i> Choisir un fichier</span>
+          </div>
           <span ng-repeat="file in files">{{file.name}}</span>
           <p class="help-block" ng-if="documentForm.$submitted && files.length !== 1">Veuillez sélectionner un fichier</p>
         </div>

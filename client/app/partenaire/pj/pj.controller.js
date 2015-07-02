@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, $upload, $state, Partenaire, documentTypes, request, mdph, type, partenaire) {
+  .controller('PieceJointeCtrl', function ($scope, $http, $modal, Upload, $state, Partenaire, documentTypes, request, mdph, type, partenaire) {
     $scope.request = request;
     $scope.partenaire = partenaire;
 
@@ -17,7 +17,7 @@ angular.module('impactApp')
 
     $scope.envoiConfirmation = function(form) {
       if (form.$valid) {
-        $upload.upload({
+        Upload.upload({
           url: 'api/requests/' + $scope.request.shortId + '/document?partenaire=true',
           method: 'POST',
           file: $scope.files[0],
