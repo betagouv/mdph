@@ -1,5 +1,4 @@
-var wkhtmltopdf = require('wkhtmltopdf'),
-    nodemailer = require('nodemailer'),
+var nodemailer = require('nodemailer'),
     smtpTransport = require('nodemailer-smtp-transport');
 
 // Initialization class
