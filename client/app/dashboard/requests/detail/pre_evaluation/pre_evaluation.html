@@ -85,16 +85,3 @@
   </div>
 </div>
 
-<div class="pull-right">
-  <button class="btn btn-default" ng-if="request.evaluator !== currentUser._id" ng-click="assigner()">
-    <i class="fa fa-download"></i> S'assigner cette demande
-  </button>
-  <button class="btn btn-default" ng-click="resendMail()">
-    <i class="fa fa-envelope"></i> Renvoyer le mail de notification
-  </button>
-  <a target="_blank" class="btn btn-success" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
-    <i class="fa fa-download"></i> Télécharger
-  </a>
-</div>
-
-<div class="clearfix"></div>

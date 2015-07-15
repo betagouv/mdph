@@ -14,6 +14,7 @@ router.post('/:shortId/transfer/:userId', auth.isAuthorized(), controller.transf
 router.get('/:shortId', auth.isAuthorized(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 
+router.post('/:shortId', auth.isAuthorized(), controller.updateStatus);
 router.put('/:shortId', auth.isAuthorized(), controller.update);
 
 router.delete('/:shortId', auth.isAuthorized(), controller.destroy);

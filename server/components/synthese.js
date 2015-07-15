@@ -79,8 +79,8 @@ exports.answersToHtml = function (request, path, output, next) {
       readFile('gevaAnswers.html', callback);
     },
     syntheseGeva: function (callback) {
-      if (!request.synthese.geva) {
-        callback(null, []);
+      if (!request.synthese || !request.synthese.geva) {
+        return callback(null, []);
       }
       var synthese = {
         answers: getGevaAnswers(request.synthese.geva)
@@ -88,8 +88,8 @@ exports.answersToHtml = function (request, path, output, next) {
       callback(null, synthese);
     },
     proposition: function (callback) {
-      if (!request.synthese.proposition) {
-        callback(null, []);
+      if (!request.synthese || request.synthese.proposition) {
+        return callback(null, []);
       }
 
       var proposition = request.synthese.proposition;
@@ -97,7 +97,7 @@ exports.answersToHtml = function (request, path, output, next) {
     },
     requestIdentites: function (callback) {
       if (!request.formAnswers) {
-        callback(null, []);
+        return callback(null, []);
       }
 
       var identites = request.formAnswers.identites;
@@ -109,12 +109,12 @@ exports.answersToHtml = function (request, path, output, next) {
 
       callback(null, identites);
     },
-    informations: function (callback){
-      readFile('informations.html', callback);
-    },
+    // informations: function (callback){
+    //   readFile('informations.html', callback);
+    // },
     mdph: function (callback) {
       if (!request.mdph) {
-        callback(null, []);
+        return callback(null, []);
       }
       callback(null, request.mdph);
     }

@@ -202,6 +202,24 @@ exports.transfer = function(req, res, next) {
   });
 }
 
+exports.updateStatus = function(req, res, next) {
+  async.waterfall([
+    function(callback){
+      findRequest(req, callback);
+    },
+    // Check is request exists
+    function(request, callback){
+      if (!request) {
+        return res.sendStatus(404);
+      }
+
+      request.set('status', req.body.status).save(callback);
+    }
+  ], function (err, request) {
+    if (err) return handleError(req, res, err);
+    res.json(request);
+  });
+}
 /**
  * Update request
  */

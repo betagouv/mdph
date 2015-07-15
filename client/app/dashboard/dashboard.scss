@@ -92,15 +92,12 @@
         color: #FFA100;
       }
     }
-
-    [ng-click] {
-      cursor: default;
-    }
   }
 
   .check-request {
     padding-left: 20px;
     color: lighten($lighter-blue, 20%);
+    cursor: pointer;
   }
 
   .align-right {

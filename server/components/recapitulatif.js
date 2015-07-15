@@ -217,7 +217,7 @@ exports.answersToHtml = function(request, path, output, next) {
     },
     mdph: function (callback) {
       if (!request.mdph) {
-        callback(null, []);
+        return callback(null, []);
       }
       callback(null, request.mdph);
     },

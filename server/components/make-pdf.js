@@ -23,12 +23,11 @@ function printDebug(str, obj) {
 
 exports.make = function (request, user, recapitulatifHtml, done) {
   printDebug('makePdf: Transforming html to pdf');
-  if (request.mdph === '59' && user.role === 'adminMdph') {
+  tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
+    if (err) throw err;
 
-    tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
-      if (err) throw err;
-
-      var requestTempPdfPath = computeTempPdfPath(request.shortId, tempDirPath);
+    var requestTempPdfPath = computeTempPdfPath(request.shortId, tempDirPath);
+    if (request.mdph === '59' && user.role === 'adminMdph') {
       wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath}, function() {
         printDebug('make: Transforming for GED_59');
         async.waterfall([
@@ -96,13 +95,63 @@ exports.make = function (request, user, recapitulatifHtml, done) {
           return done(null, stream);
         });
       });
-    });
-  } else {
-    printDebug('make: No transformation required, returning answers as PDF');
+    } else {
+      wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath}, function() {
+        printDebug('make: Transforming for non-59');
+        async.waterfall([
+          // Transform everything to pdf stream
+          function(cb){
+            if (request.documents) {
+              return transformDocumentListToPdf(request.documents, [], tempDirPath, cb);
+            }
 
-    var stream = wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8'});
-    return done(null, stream);
-  }
+            cb(null, []);
+          },
+          // Join everything in one stream
+          function(documentList, cb){
+
+            var pdfStructure = [
+              requestTempPdfPath
+            ];
+
+            if (documentList.length > 0) {
+              documentList.forEach(function(document) {
+                if (document.tempPdfPath) {
+                  pdfStructure.push(document.tempPdfPath);
+                } else {
+                  pdfStructure.push(document.actualPdfPath);
+                }
+              });
+            }
+
+            return cb(null, pdfStructure);
+          },
+          // Load everything in scissors
+          function(structure, cb){
+            var scissorsStructure = _.map(structure, function(document) {
+              return scissors(document);
+            });
+
+            printDebug('make: finished building structure:', scissorsStructure);
+            cb(null, scissorsStructure);
+          },
+        ], function (err, scissorsStructure) {
+          if (err) return done(err);
+          printDebug('make: finished building pdf');
+
+          var stream = scissors
+            .join.apply(scissors, scissorsStructure)
+            .pdfStream();
+
+          setTimeout(function () {
+            cleanupCallback();
+          }, 600000);
+
+          return done(null, stream);
+        });
+      });
+    }
+  });
 }
 
 // function compress(input, output, done) {

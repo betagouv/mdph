@@ -21,7 +21,9 @@
   <div class="list-main">
     <table>
       <thead>
-        <th></th>
+        <th class="check-request" ng-click="selectAll()">
+          <i class="fa" ng-class="{'fa-square': !allSelected(), 'fa-check-square': allSelected()}"></i>
+        </th>
         <th>Référence</th>
         <th>Initiateur</th>
         <th>Bénéficiaire</th>

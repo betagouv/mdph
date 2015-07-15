@@ -52,13 +52,38 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/requests/list/list.html',
         controller: 'RequestListCtrl',
         resolve: {
-          requests: function(RequestResource, user) {
-            return RequestResource.query({evaluator: user._id, status: 'emise'}).$promise;
+          requests: function(RequestResource, currentUser, user) {
+            if (currentUser._id === user._id) {
+              return RequestResource.query({evaluator: user._id, status: 'emise'}).$promise;
+            }
+            return RequestResource.query({evaluator: user._id}).$promise;
           },
           user: function($http, $stateParams) {
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
               return user.data;
             });
+          },
+          showArchiveAction: function() {
+            return true;
+          }
+        },
+        authenticate: true
+      })
+      .state('dashboard.requests.userArchive', {
+        url: '/utilisateur/:userId/archive',
+        templateUrl: 'app/dashboard/requests/list/list.html',
+        controller: 'RequestListCtrl',
+        resolve: {
+          requests: function(RequestResource, user) {
+            return RequestResource.query({evaluator: user._id, status: 'evaluation'}).$promise;
+          },
+          user: function($http, $stateParams) {
+            return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
+              return user.data;
+            });
+          },
+          showArchiveAction: function() {
+            return false;
           }
         },
         authenticate: true
@@ -66,12 +91,20 @@ angular.module('impactApp')
       .state('dashboard.requests.detail', {
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
-        controller: function($scope, $state, $window, request, user) {
+        controller: function($scope, $state, $cookieStore, $window, request, user) {
           $scope.request = request;
           $scope.user = user;
+          $scope.token = $cookieStore.get('token');
 
           $scope.back = function() {
             $window.history.back();
+          };
+
+          $scope.archive = function(request) {
+            request.status = 'evaluation';
+            request.$save(function() {
+              $state.go('dashboard.requests', {}, {reload: true});
+            });
           };
 
           $scope.supprimer = function(request) {
