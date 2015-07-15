@@ -27,6 +27,7 @@ var RequestSchema = new Schema({
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
   secteur:        { type: Schema.Types.ObjectId, ref: 'Secteur' },
   createdAt:      { type: Date },
+  submittedAt:    { type: Date },
   updatedAt:      { type: Date },
   status:         { type: String, enum: ['en_cours', 'emise', 'a_completer', 'evaluation', 'reponse'], default: 'en_cours' },
   formAnswers:    Schema.Types.Mixed,

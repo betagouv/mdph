@@ -211,6 +211,10 @@ exports.answersToHtml = function(request, path, output, next) {
 
       callback(null, identites);
     },
+    submittedAt: function(callback) {
+      console.log(request.submittedAt);
+      callback(null, moment(request.submittedAt).format('DD/MM/YYYY à HH:mm'));
+    },
     trajectoires: function(callback) {
       var trajectoires = computeTrajectoires(request);
       callback(null, trajectoires);
@@ -239,11 +243,12 @@ exports.answersToHtml = function(request, path, output, next) {
       results.answersTemplate,
       {
         path: path,
+        submittedAt: results.submittedAt,
         sections: results.trajectoires,
         identites: results.requestIdentites,
         mdph: results.mdph,
         quitus: results.quitus,
-        prestationsTemplate: results.prestationsTemplate
+        prestationsTemplate: results.prestationsTemplate,
       },
       subTemplates
     );

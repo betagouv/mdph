@@ -52,6 +52,13 @@
       Nous vous conseillons de conserver une copie de vos réponses.</strong>
     </p>
 
+
+    {{#submittedAt}}
+      <p>
+        Demande passée le {{submittedAt}}
+      </p>
+    {{/submittedAt}}
+
     {{#identites}}
       {{> identites}}
     {{/identites}}

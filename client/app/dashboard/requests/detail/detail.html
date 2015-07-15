@@ -5,6 +5,7 @@
     </h2>
     <p>Demande effectuée par : <strong>{{user.name}}</strong> - {{user.email}}</p>
     <p>Référence de la demande: <strong>{{request.shortId}}</strong></p>
+    <p ng-if="request.submittedAt">Envoyée le: <strong>{{request.submittedAt | date: format: timezone}}</strong></p>
     <p>Dernière mise à jour: <strong>{{request.updatedAt | date: format: timezone}}</strong></p>
 
     <div class="actions">

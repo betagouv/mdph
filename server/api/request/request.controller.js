@@ -256,13 +256,9 @@ exports.update = function(req, res, next) {
 
       request
         .set(_.omit(req.body, 'html', 'user', 'documents'))
-        .set('updatedAt', Date.now());
-
-      callback(null, request);
-    },
-    // Save request
-    function(request, callback) {
-      request.save(callback);
+        .set('updatedAt', Date.now())
+        .set('submittedAt', Date.now())
+        .save(callback);
     }
   ], function (err, request) {
     if (err) return handleError(req, res, err);
