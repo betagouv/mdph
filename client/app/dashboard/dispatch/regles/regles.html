@@ -29,6 +29,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr ng-if="dispatchRules.$resolved === false">
+          <td><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Chargement en cours…</td>
+        </tr>
         <tr ng-repeat="(idx, dispatchRule) in filteredRules = (dispatchRules | filter:query)">
           <td>
             <a ui-sref="dashboard.dispatch.regles.edit({id: dispatchRule._id})">

@@ -12,13 +12,8 @@ angular.module('impactApp')
       .state('dashboard.dispatch.regles', {
         url: '/regles',
         templateUrl: 'app/dashboard/dispatch/regles/regles.html',
-        controller: function($scope, dispatchRules) {
-          $scope.dispatchRules = dispatchRules;
-        },
-        resolve: {
-          dispatchRules: function(DispatchRuleResource) {
-            return DispatchRuleResource.query().$promise;
-          }
+        controller: function($scope, DispatchRuleResource) {
+          $scope.dispatchRules = DispatchRuleResource.query();
         },
         authenticate: true
       })
