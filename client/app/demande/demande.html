@@ -2,7 +2,7 @@
   <div class="nav-questionnaire">
     <div class="container">
       <ol class="breadcrumb">
-        <li><a ui-sref="departement">Accueil du {{mdph.name}}</a></li>
+        <li><a ui-sref="departement">Accueil {{mdph.name}}</a></li>
         <li class="active">Demande</li>
       </ol>
     </div>
@@ -11,7 +11,7 @@
   <div class="questionnaire">
 
     <div class="demande-header">
-      <h1>Demande à la MDPH du {{mdph.name}}</h1>
+      <h1>Demande à la MDPH {{mdph.name}}</h1>
       <p>Référence de la demande: <strong>{{request.shortId || 'Sauvegardez votre demande pour obtenir un identifiant de référence'}}</strong></p>
       <p>Statut de la demande: <strong>{{request.status | requestStatus}}</strong></p>
       <p>Date de création: <strong>le {{request.createdAt | moment}}</strong></p>

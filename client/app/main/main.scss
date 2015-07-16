@@ -12,6 +12,7 @@
   background-repeat: no-repeat;
   background-position: center top;
   position: relative;
+  background-size: cover;
   min-height: 250px;
 
   h1 {
@@ -28,6 +29,11 @@
 
   &.bg14 {
     background-image: url('../assets/images/arromanches.jpg');
+  }
+
+  &.bg93 {
+    background-image: url('../assets/images/93_bisbis.jpg');
+    width: 100%;
   }
 }
 
