@@ -88,6 +88,25 @@ angular.module('impactApp')
         },
         authenticate: true
       })
+      .state('dashboard.requests.userIncomplete', {
+        url: '/utilisateur/:userId/incomplete',
+        templateUrl: 'app/dashboard/requests/list/list.html',
+        controller: 'RequestListCtrl',
+        resolve: {
+          requests: function(RequestResource, user) {
+            return RequestResource.query({evaluator: user._id, status: 'en_cours'}).$promise;
+          },
+          user: function($http, $stateParams) {
+            return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
+              return user.data;
+            });
+          },
+          showArchiveAction: function() {
+            return false;
+          }
+        },
+        authenticate: true
+      })
       .state('dashboard.requests.detail', {
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',

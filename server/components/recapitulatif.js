@@ -203,7 +203,14 @@ exports.answersToHtml = function(request, path, output, next) {
     },
     requestIdentites: function(callback) {
       var identites = request.formAnswers.identites;
-      formatDateNaissance(identites.beneficiaire);
+      if (!identites) {
+        return callback(null, {});
+      }
+
+      if (identites.beneficiaire) {
+        formatDateNaissance(identites.beneficiaire);
+      }
+
       if(identites.autorite){
         formatDateNaissance(identites.autorite.parent1);
         formatDateNaissance(identites.autorite.parent2);

@@ -56,7 +56,12 @@
           <td>
             <span class="user">
               <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
-                {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                <span ng-if="request.formAnswers.identites.beneficiaire">
+                  {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                </span>
+                <span ng-if="!request.formAnswers.identites.beneficiaire">
+                  Demande incomplète, bénéficiaire non remplis
+                </span>
               </a>
             </span>
           </td>
