@@ -4,8 +4,8 @@ angular.module('impactApp')
   .controller('QuestionCtrl', function($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
   })
   .controller('StructureQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;

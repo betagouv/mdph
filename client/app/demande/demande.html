@@ -1,124 +1,14 @@
-<ui-view>
-  <div class="nav-questionnaire">
-    <div class="container">
-      <ol class="breadcrumb">
-        <li><a ui-sref="departement">Accueil {{mdph.name}}</a></li>
-        <li class="active">Demande</li>
-      </ol>
-    </div>
+<div class="nav-questionnaire">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a ui-sref="departement">Accueil {{mdph.name}}</a></li>
+      <li class="active">Demande</li>
+    </ol>
   </div>
+</div>
 
-  <div class="questionnaire">
-
-    <div class="demande-header">
-      <h1>Demande à la MDPH {{mdph.name}}</h1>
-      <p>Référence de la demande: <strong>{{request.shortId || 'Sauvegardez votre demande pour obtenir un identifiant de référence'}}</strong></p>
-      <p>Statut de la demande: <strong>{{request.status | requestStatus}}</strong></p>
-      <p>Date de création: <strong>le {{request.createdAt | moment}}</strong></p>
-      <p>Dernière mise à jour: <strong>{{request.updatedAt | momentFromNow}}</strong></p>
-
-      <p ng-if="request.status !== 'en_cours'">
-        <a target="_blank" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
-          Télécharger votre demande au format PDF <i class="fa fa-download"></i>
-        </a>
-      </p>
-
-      <div class="text-right">
-        <button ng-if="request._id" class="btn btn-warning" ng-click="transferer()"><i class="fa fa-share"></i> Transférer</button>
-        <button ng-if="request.status === 'en_cours'" class="btn btn-primary" ng-click="sauvegarder()">Sauvegarder</button>
-        <button ng-if="request.status === 'en_cours' && request._id" class="btn btn-success" ng-click="envoyer()">Envoyer</button>
-        <button ng-if="request.status === 'a_completer'" class="btn btn-success" ng-click="envoyer()">Valider vos modifications</button>
-      </div>
-    </div>
-
-  <!-- TODO: Afficher le statut de la demande -->
-
-    <a class="section-inverse" ui-sref="{{section.sref}}" ng-if="request._id" ng-repeat="section in sectionsDocuments">
-      <div class="section-body">
-        <div class="left">
-          <i class="fa fa-chevron-circle-right"></i>
-        </div>
-        <div class="right">
-          <h3>{{section.label}}</h3>
-          <p>{{section.desc}}</p>
-        </div>
-      </div>
-    </a>
-
-    <h2>Nature de la demande</h2>
-    <div class="btn-group">
-      <label class="btn btn-primary" ng-model="formAnswers.estRenouvellement" btn-radio="undefined">
-        Première demande
-      </label>
-      <label class="btn btn-primary" ng-model="formAnswers.estRenouvellement" btn-radio="true">
-        Renouvellement
-      </label>
-    </div>
-    <div ng-if="formAnswers.etatRenouvellement == 'Renouvellement'">
-      <p><em>Remplissez les sections obligatoires et joignez les documents nécessaires à votre demande. Vous avez aussi la possibilité de remplir les sections complémentaires.</em></p>
-    </div>
-
-    <h2>Renseignements obligatoires pour votre demande</h2>
-    <div class="category">
-      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsObligatoires">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h3>{{section.label}}</h3>
-            <p>{{section.desc}}</p>
-            <div class="row">
-              <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion(section.id, request)"></section-progress-bar>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <h2>Renseignements complémentaires, en fonction de votre situation</h2>
-
-    <div class="category">
-      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsComplementaires">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h3>{{section.label}}</h3>
-            <p>{{section.desc}}</p>
-            <div class="row">
-              <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion(section.id, request)"></section-progress-bar>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <h2>Compléments à votre demande</h2>
-
-    <div class="category">
-      <a class="section" ui-sref="{{section.sref}}" ng-repeat="section in sectionsComplements"
-        ng-hide="!formAnswers.estRenouvellement && section.hideForFirstRequest">
-        <div class="section-body">
-          <div class="left">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="right">
-            <h3>{{section.label}}</h3>
-            <p>{{section.desc}}</p>
-            <div class="row">
-              <div class="col-xs-10 col-xs-offset-2 col-sm-3 col-sm-offset-9">
-                <section-progress-bar completion="getCompletion(section.id, request)"></section-progress-bar>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</ui-view>
+<div class="questionnaire">
+  <div ui-view="header"></div>
+  <div ui-view="steps"></div>
+  <div ui-view="body"></div>
+</div>

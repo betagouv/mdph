@@ -5,19 +5,13 @@ angular.module('impactApp')
     $stateProvider
       .state('departement.demande', {
         url: '/:shortId',
-        templateUrl: 'app/demande/demande.html',
-        controller: 'DemandeCtrl',
-        data: {
-          hideBack: false,
-          isLastQuestion: false
-        },
         resolve: {
           sections: function($http) {
             return $http.get('/api/sections').then(function(result) {
               return result.data;
             });
           },
-          request: function($stateParams, $sessionStorage, RequestResource, mdph) {
+          request: function($stateParams, $sessionStorage, RequestResource, mdph, sections) {
             if ($stateParams.shortId === 'nouvelle_demande') {
               var request = $sessionStorage.request;
               if (typeof request === 'undefined') {
@@ -27,17 +21,21 @@ angular.module('impactApp')
                   documents: [],
                   createdAt: Date.now()
                 };
+
+                sections.forEach(function(section) {
+                  request.formAnswers[section.id] = {};
+                });
               }
 
               request.mdph = mdph.zipcode;
               return new RequestResource(request);
+            } else {
+              return RequestResource.get({shortId: $stateParams.shortId}, function(request) {
+                if (!request.formAnswers) {
+                  request.formAnswers = {};
+                }
+              }).$promise;
             }
-
-            return RequestResource.get({shortId: $stateParams.shortId}, function(request) {
-              if (!request.formAnswers) {
-                request.formAnswers = {};
-              }
-            }).$promise;
           },
           updateRequest: function($state, $window, $timeout, request) {
             return function() {
@@ -61,6 +59,22 @@ angular.module('impactApp')
                 $state.go('departement.demande');
               }
             };
+          }
+        },
+        views: {
+          '@': {
+            templateUrl: 'app/demande/demande.html',
+            controller: 'DemandeCtrl'
+          },
+          'header@departement.demande': {
+            templateUrl: 'app/demande/header/header.html',
+            controller: 'HeaderCtrl'
+          },
+          'steps@departement.demande': {
+            templateUrl: 'app/demande/steps/steps.html'
+          },
+          'body@departement.demande': {
+            templateUrl: 'app/demande/body/body.html'
           }
         }
       });

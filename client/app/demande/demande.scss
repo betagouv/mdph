@@ -2,29 +2,13 @@
   @extend .container;
   margin-top: 20px;
   margin-bottom: 30px;
-  padding: 20px;
+  padding: 0;
   background-color: whitesmoke;
-  border-radius: 5px;
   border: 1px solid #DDD;
 
   >h1 {
     font-size: 1.8em;
     margin: 0 0 15px 0;
-  }
-
-  .question-legend {
-    font-weight: 400;
-    width: 100%;
-    margin: 0 0 15px 0;
-    color: #333333;
-    border: 0;
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  @media (min-width: $screen-sm-min) {
-    .question-legend {
-      font-size: 1.8em;
-    }
   }
 
   h2 {
@@ -46,22 +30,19 @@
   }
 
   .category {
-    margin-bottom: 2em;
-    box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.26);
   }
 
   .section {
     display: block;
-    background-color: white;
+    background-color: whitesmoke;
     border-bottom: 1px solid #EAEAEA;
-
     .fa {
       font-size: 24px;
       color: lighten($light-blue, 45%);
     }
 
     &:hover {
-      background-color: whitesmoke;
+      background-color: white;
       text-decoration: none;
 
       .fa {
@@ -73,9 +54,9 @@
   .section-inverse {
     display: block;
     color: white;
+
     background-color: lighten($light-blue, 30%);
     border: 1px solid lighten($light-blue, 25%);
-
     h3 {
       color: white;
     }
@@ -155,12 +136,14 @@
   }
 
   .demande-header {
-    @extend .well;
+    padding: 10px;
     background-color: white;
+    margin-bottom: 0;
+    border-bottom: none;
 
     h1 {
       margin: 0;
-      font-size: 2em;
+      font-size: 1.1em;
     }
 
     p {

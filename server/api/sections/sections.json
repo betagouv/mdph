@@ -1600,12 +1600,23 @@
   },
   {
     "id": "renouvellement",
-    "sref": ".renouvellement.evolution",
     "label": "Renouvellement",
-    "desc": "Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement",
-    "group": "complements",
-    "hideForFirstRequest": true,
     "questions": {
+      "renouvellement": {
+        "titleDefault": "Avez-vous déjà un dossier dans une MDPH ?",
+        "model": "renouvellement",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true
+          },
+          {
+            "label": "Non",
+            "model": false
+          }
+        ]
+      },
       "evolution": {
         "titleRep": "Comment la situation a-t-elle évolué depuis sa dernière demande ?",
         "titleDefault": "Comment votre situation a-t-elle évolué depuis votre dernière demande ?",
