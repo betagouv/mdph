@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('impactApp')
   .controller('SectionCtrl', function($scope, $state, $timeout, $window, request, section, sectionModel) {
     $scope.section = section;

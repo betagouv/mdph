@@ -29,13 +29,15 @@
     font-weight: 200;
   }
 
-  .category {
-  }
-
   .section {
     display: block;
     background-color: whitesmoke;
     border-bottom: 1px solid #EAEAEA;
+
+    &:last-child{
+      border-bottom: 0;
+    }
+
     .fa {
       font-size: 24px;
       color: lighten($light-blue, 45%);
@@ -135,24 +137,6 @@
     cursor: pointer;
   }
 
-  .demande-header {
-    padding: 10px;
-    background-color: white;
-    margin-bottom: 0;
-    border-bottom: none;
-
-    h1 {
-      margin: 0;
-      font-size: 1.1em;
-    }
-
-    p {
-      margin: 0;
-      strong {
-        font-wight: 500;
-      }
-    }
-  }
 
   label.control-label {
     font-weight: bold;

@@ -2,8 +2,24 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.identites';
+    var index = 'departement.demande.obligatoires.identites';
     $stateProvider
+      .state(index, {
+        url: '/identites',
+        templateUrl: 'app/demande/steps/obligatoires/identites/identites.html',
+        controller: 'IdentitesCtrl',
+        resolve: {
+          section: function(sections) {
+            return _.find(sections, {id: 'identites'});
+          },
+          sectionModel: function(SectionUtils, request, section) {
+            return SectionUtils.resolveSectionModel(request, section);
+          },
+          saveSection: function(SectionUtils, sectionModel, updateRequest) {
+            return SectionUtils.resolveSaveSection(sectionModel, updateRequest);
+          }
+        }
+      })
       .state(index + '.modification_identite', {
         url: '/:type?id',
         template: '<identity-form id="currentId" type="type" submit="submit" section="section" identite="tempIdentite"/>',

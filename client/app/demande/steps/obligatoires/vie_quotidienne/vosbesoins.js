@@ -2,14 +2,14 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.vie_quotidienne.vos_besoins';
+    var index = 'departement.demande.obligatoires.vie_quotidienne.vos_besoins';
     $stateProvider.state(index, {
       url: '/vos_besoins',
       template: '<ui-view/>',
       controller: function ($scope) {
         $scope.helpTemplate = 'components/help/besoins.html';
       },
-      abstract: true
+      redirectTo: index + '.quotidien',
     }).state(index + '.quotidien', {
       url: '/quotidien',
       templateUrl: 'components/question/checkbox.html',

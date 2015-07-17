@@ -10,12 +10,11 @@ angular.module('impactApp')
   .controller('StructureQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
-
         structures: [
           {'name': '', 'contact': false}
         ]
@@ -171,8 +170,8 @@ angular.module('impactApp')
   .controller('RenseignementsQuestionCtrl', function ($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
 
     $scope.placeholder = 'Autres renseignements';
 
@@ -183,8 +182,8 @@ angular.module('impactApp')
   .controller('EtablissementScolaireCtrl', function($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
     var currentModel = question.model;
 
     $scope.open = function($event) {
@@ -227,8 +226,8 @@ angular.module('impactApp')
     $scope.jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
     $scope.question = question;
     $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
     $scope.currentModel = question.model;
 
     if (angular.isUndefined($scope.sectionModel[$scope.currentModel])) {
@@ -250,6 +249,6 @@ angular.module('impactApp')
     $scope.sectionModel = sectionModel;
     $scope.question = question;
     $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data.isLastQuestion;
+    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
+    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
   });

@@ -4,22 +4,6 @@ angular.module('impactApp')
   .config(function ($stateProvider) {
     $stateProvider
       // Sections
-      .state('departement.demande.identites', {
-        url: '/identites',
-        templateUrl: 'app/demande/section/identites/identites.html',
-        controller: 'IdentitesCtrl',
-        resolve: {
-          section: function(SectionUtils, sections) {
-            return _.find(sections, {id: 'identites'});
-          },
-          sectionModel: function(SectionUtils, request, section) {
-            return SectionUtils.resolveSectionModel(request, section);
-          },
-          saveSection: function(SectionUtils, sectionModel, updateRequest) {
-            return SectionUtils.resolveSaveSection(sectionModel, updateRequest);
-          }
-        }
-      })
       .state('departement.demande.autorite', {
         url: '/autorite',
         templateUrl: 'app/demande/section/autorite/autorite.html',
@@ -112,23 +96,6 @@ angular.module('impactApp')
         resolve: {
           section: function(SectionUtils, sections) {
             return _.find(sections, {id: 'aidant'});
-          },
-          sectionModel: function(SectionUtils, request, section) {
-            return SectionUtils.resolveSectionModel(request, section);
-          },
-          saveSection: function(SectionUtils, sectionModel, updateRequest) {
-            return SectionUtils.resolveSaveSection(sectionModel, updateRequest);
-          }
-        }
-      })
-      .state('departement.demande.situations_particulieres', {
-        url: '/situations_particulieres',
-        templateUrl: 'app/demande/section/section.html',
-        controller: 'SectionCtrl',
-        abstract: true,
-        resolve: {
-          section: function(SectionUtils, sections) {
-            return _.find(sections, {id: 'situations_particulieres'});
           },
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);

@@ -10,7 +10,6 @@ angular.module('impactApp')
     };
 
     // Todo sortir d'ici
-    $scope.sectionsObligatoires = _.filter(sections, {group: 'obligatoire'});
     $scope.sectionsComplementaires = _.filter(sections, {group: 'complementaire'});
     $scope.sectionsComplements = _.filter(sections, {group: 'complements'});
     $scope.sectionsDocuments = _.filter(sections, {group: 'documents'});
