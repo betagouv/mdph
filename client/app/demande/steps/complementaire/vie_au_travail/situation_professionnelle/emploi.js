@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.vie_au_travail.situation_professionnelle.emploi';
+    var index = 'departement.demande.complementaire.vie_au_travail.situation_professionnelle.emploi';
 
     $stateProvider
       .state(index, {

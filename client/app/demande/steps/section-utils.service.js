@@ -10,10 +10,10 @@ angular.module('impactApp')
         };
       },
       resolveSectionModel: function(request, section) {
-          if (typeof request.formAnswers[section.id] === 'undefined') {
-            request.formAnswers[section.id] = {};
-          }
-          return request.formAnswers[section.id];
+        if (typeof request.formAnswers[section.id] === 'undefined') {
+          request.formAnswers[section.id] = {};
+        }
+        return request.formAnswers[section.id];
       }
     };
   });

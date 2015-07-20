@@ -8,36 +8,45 @@
       border-bottom: none;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       justify-content: space-around;
       margin: 0;
       list-style-type: none;
+      min-height: 40px;
     }
 
     li {
-      padding: 15px 0;
-      margin-right: 8px;
+      padding: 5px;
 
       a {
         color: white;
-        span {
-          font-weight: 800;
-          float: left;
-          min-width: 20px;
-          margin-right: 3px;
-          min-height: 20px;
-          text-align: center;
-          border-radius: 50%;
-          color: lighten($light-blue, 30%);
-          background-color: white;
+
+        &:focus, &:hover {
+          text-decoration: none;
+          span {
+            text-decoration: underline;
+          }
         }
 
         &.active {
-          text-decoration: underline;
-
           span {
-            background-color: $light-red;
-            color: white;
+            text-decoration: underline;
           }
+
+          &:before {
+            content: '\f138';
+
+            text-decoration: none;
+          }
+        }
+
+        &:before {
+          font-family: FontAwesome;
+          font-weight: normal;
+          font-style: normal;
+          display: inline-block;
+          text-decoration: inherit;
+          content: '\f111';
         }
       }
     }
@@ -58,7 +67,8 @@
     justify-content: space-between;
     color: white;
     align-items: center;
-    padding: 10px;
+    padding: 0 10px;
+    height: 42px;
 
     h2 {
       display: inline-block;
@@ -75,5 +85,45 @@
 
   .step-body-content {
     padding: 10px;
+    position: relative;
+  }
+
+  .section-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #eeeeee;
+    a {
+      color: lighten($light-blue, 30%);
+      padding: 20px;
+    }
+  }
+
+  .step-login {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.2);
+
+    .step-login-content {
+      margin: auto;
+    }
+
+    button {
+      padding: 15px 10px;
+      font-size: 1.7em;
+
+      small {
+        font-weight: 200;
+        font-size: 0.5em;
+      }
+    }
   }
 }

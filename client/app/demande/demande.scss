@@ -151,3 +151,8 @@
     border-bottom: 2px solid $primary;
   }
 }
+
+.error-box-message {
+  @extend .alert, .alert-danger;
+  margin-top: 10px;
+}

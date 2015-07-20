@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.obligatoires.vie_quotidienne.vos_besoins';
+    var index = 'departement.demande.obligatoire.vie_quotidienne.vos_besoins';
     $stateProvider.state(index, {
       url: '/vos_besoins',
       template: '<ui-view/>',

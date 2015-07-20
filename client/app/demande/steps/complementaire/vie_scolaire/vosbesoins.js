@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
 
-    var index = 'departement.demande.vie_scolaire';
+    var index = 'departement.demande.complementaire.vie_scolaire';
 
     $stateProvider.state(index + '.vos_besoins', {
       url: '/vos_besoins',

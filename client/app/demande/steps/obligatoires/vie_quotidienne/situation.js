@@ -2,12 +2,12 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.obligatoires.vie_quotidienne.situation';
+    var index = 'departement.demande.obligatoire.vie_quotidienne.situation';
     $stateProvider
       .state(index, {
         url: '/situation',
         template: '<ui-view/>',
-        redirectTo: index + '.vie_famille',
+        redirectTo: index + '.vie_famille'
       })
       .state(index + '.vie_famille', {
         url: '',

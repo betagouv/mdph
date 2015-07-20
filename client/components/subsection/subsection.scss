@@ -5,7 +5,6 @@
 }
 
 .nav-section {
-  margin-right: 7px;
   position: relative;
   display: inline-block;
   font-weight: 200;
@@ -13,6 +12,7 @@
   color: $light-blue;
 
   div {
+    margin-right: 7px;
     position: relative;
     display: block;
     vertical-align: middle;
@@ -32,6 +32,7 @@
     }
 
     &.last {
+      margin-right: 0;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }

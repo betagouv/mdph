@@ -37,8 +37,8 @@ angular.module('impactApp')
               }).$promise;
             }
           },
-          updateRequest: function($state, $window, $timeout, request) {
-            return function() {
+          mainUpdateRequest: function($state, $window, $timeout, request) {
+            return function(parent) {
               var onError = function(err) {
                 $window.alert(err.data.message);
               };
@@ -46,7 +46,7 @@ angular.module('impactApp')
               var onSuccess = function() {
                 $timeout(function() {
                   $window.alert('Votre progression à été sauvegardée');
-                  $state.go('departement.demande', {shortId: request.shortId});
+                  $state.go(parent, {shortId: request.shortId});
                 }, 100);
               };
 
@@ -54,11 +54,11 @@ angular.module('impactApp')
                 request.$update(onSuccess, onError);
               } else if (request._id) {
                 $window.alert('Vos modifications ne seront pas pris en compte car cette demande à déjà été transmise.');
-                $state.go('departement.demande');
-              }else {
-                $state.go('departement.demande');
+                $state.go(parent);
+              } else {
+                $state.go(parent);
               }
-            };
+            }
           }
         },
         views: {
@@ -71,7 +71,13 @@ angular.module('impactApp')
             controller: 'HeaderCtrl'
           },
           'steps@departement.demande': {
-            templateUrl: 'app/demande/steps/steps.html'
+            templateUrl: 'app/demande/steps/steps.html',
+            controller: function ($scope, allSteps) {
+              $scope.steps = allSteps;
+              $scope.isStepComplete = function(step) {
+
+              }
+            }
           },
           'body@departement.demande': {
             templateUrl: 'app/demande/body/body.html'

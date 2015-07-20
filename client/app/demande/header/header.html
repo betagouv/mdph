@@ -1,7 +1,9 @@
 <div class="demande-header">
   <div class="row">
     <div class="col-md-8">
-      <h1>Demande <strong>{{request.shortId || 'non enregistrée'}}</strong></h1>
+      <h1>
+        Demande <strong>{{request.shortId || 'non enregistrée'}}</strong>
+      </h1>
       <a ng-if="request.status === 'emise'" target="_blank" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
         Télécharger au format PDF <i class="fa fa-download"></i>
       </a>

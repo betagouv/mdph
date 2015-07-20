@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.obligatoires.identites';
+    var index = 'departement.demande.obligatoire.identites';
     $stateProvider
       .state(index, {
         url: '/identites',
@@ -25,7 +25,7 @@ angular.module('impactApp')
         template: '<identity-form id="currentId" type="type" submit="submit" section="section" identite="tempIdentite"/>',
         resolve: {
           submit: function($state, IdentiteService, sectionModel, tempIdentite, type, currentId) {
-            return function(form) {
+            return function(form, scope) {
               if (form.$invalid) {
                 form.showError = true;
               } else {

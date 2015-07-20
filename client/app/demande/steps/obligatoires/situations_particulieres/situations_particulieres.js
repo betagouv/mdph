@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.obligatoires.situations_particulieres';
+    var index = 'departement.demande.obligatoire.situations_particulieres';
     $stateProvider
       .state(index, {
         url: '/situations_particulieres',
@@ -13,8 +13,8 @@ angular.module('impactApp')
           section: function(sections) {
             return _.find(sections, {id: 'situations_particulieres'});
           },
-          sectionModel: function(request) {
-            return request.formAnswers.urgences;
+          sectionModel: function(SectionUtils, request, section) {
+            return SectionUtils.resolveSectionModel(request, section);
           },
           saveSection: function(SectionUtils, sectionModel, updateRequest) {
             return SectionUtils.resolveSaveSection(sectionModel, updateRequest);

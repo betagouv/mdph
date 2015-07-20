@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, $state, Upload, section, request, documentTypes, PreparationEvaluationService) {
-    $scope.section = section;
+  .controller('DocumentsCtrl', function($scope, $modal, $state, Upload, step, sections, request, documentTypes, PreparationEvaluationService) {
+    $scope.step = step;
+    $scope.section = _.find(sections, {id: 'documents'});
     $scope.request = request;
     $scope.docsList =  PreparationEvaluationService.getSuggestedDocsList($scope.request.formAnswers);
 
@@ -64,7 +65,7 @@ angular.module('impactApp')
 
     $scope.openBrochure = function() {
       var instance = $modal.open({
-        templateUrl: 'app/demande/section/documents/modal_brochure.html',
+        templateUrl: 'app/demande/section/steps/modal_brochure.html',
         controller: function($scope) {
           $scope.ok = function() {
             instance.close();
@@ -75,7 +76,7 @@ angular.module('impactApp')
 
     $scope.chooseType = function () {
       var modalInstance = $modal.open({
-        templateUrl: 'app/demande/section/documents/modal_type.html',
+        templateUrl: 'app/demande/steps/documents/modal_type.html',
         controller: 'ModalInstanceCtrl',
         resolve: {
           categories: function () {

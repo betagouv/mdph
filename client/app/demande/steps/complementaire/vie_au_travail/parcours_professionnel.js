@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.vie_au_travail';
+    var index = 'departement.demande.complementaire.vie_au_travail';
 
     $stateProvider.state(index + '.parcours_professionnel', {
       url: '/parcours_professionnel',

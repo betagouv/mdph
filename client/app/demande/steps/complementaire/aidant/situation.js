@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
 
-    var index = 'departement.demande.aidant.situation';
+    var index = 'departement.demande.complementaire.aidant.situation';
 
     $stateProvider.state(index, {
       url: '/situation',

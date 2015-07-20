@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function ($scope, $state, $window, $modal, documentTypes, sections, Auth, request, RequestService) {
+  .controller('DemandeCtrl', function ($scope, $state, $window, $modal, mdph, documentTypes, sections, Auth, request, RequestService) {
     $scope.request = request;
+    $scope.mdph = mdph;
     $scope.formAnswers = request.formAnswers;
     $scope.getCompletion = RequestService.getCompletion;
     $scope.estAdulte = function() {
@@ -16,9 +17,9 @@ angular.module('impactApp')
 
     var documentsObligatoires = _.filter(documentTypes, {type: 'obligatoire'});
 
-    function login(afterLogin) {
+    function login(afterLogin, returnToSref) {
       $modal.open({
-        templateUrl: 'components/modal/login.html',
+        templateUrl: 'components/login/login.html',
         backdrop: true,
         windowClass: 'right fade',
         controller: 'ModalLoginCtrl'
@@ -27,13 +28,13 @@ angular.module('impactApp')
         afterLogin(nextStep);
       }, function() {
         // Cancel
-        $state.go('departement.demande');
+        $state.go(returnToSref);
       });
     }
 
-    function alertAfterSave() {
+    function alertAfterSave(returnToSref) {
       $window.alert('Votre demande à été sauvegardée');
-      $state.go('departement.demande', {shortId: request.shortId});
+      $state.go(returnToSref, {shortId: request.shortId});
     }
 
     function onError(err) {
@@ -48,13 +49,17 @@ angular.module('impactApp')
       }
     }
 
-    $scope.sauvegarder = function() {
+    $scope.sauvegarder = function(returnToSref) {
       if (Auth.isLoggedIn()) {
-        saveRequestAndAlert(alertAfterSave);
+        saveRequestAndAlert(function () {
+          alertAfterSave(returnToSref)
+        });
       } else {
         login(function() {
-          saveRequestAndAlert(alertAfterSave);
-        });
+          saveRequestAndAlert(function () {
+            alertAfterSave(returnToSref)
+          });
+        }, returnToSref);
       }
     };
 

@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.vie_au_travail.situation_professionnelle.sans_emploi';
+    var index = 'departement.demande.complementaire.vie_au_travail.situation_professionnelle.sans_emploi';
     $stateProvider
       .state(index , {
         url: '/sans_emploi',
@@ -34,7 +34,7 @@ angular.module('impactApp')
           },
           nextStep: function($state, sectionModel) {
             return function() {
-              if (sectionModel.situationSansEmploi.stagiaire) {
+              if (sectionModel.situationSansEmploi && sectionModel.situationSansEmploi.stagiaire) {
                 $state.go('^.stage');
               } else {
                 $state.go('^.accompagnement');

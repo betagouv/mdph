@@ -2,35 +2,21 @@
 
 angular.module('impactApp')
   .config(function ($stateProvider) {
-    var index = 'departement.demande.vie_au_travail';
 
-    $stateProvider.state(index + '.projet_professionnel', {
-      url: '/projet_professionnel',
+    var index = 'departement.demande.complementaire.aidant.vos_attentes';
+
+    $stateProvider.state(index, {
+      url: '/vos_attentes',
       template: '<ui-view/>',
       abstract: true
     })
-    .state(index + '.projet_professionnel.description', {
-      url: '/description',
-      templateUrl: 'components/question/radio.html',
-      controller: 'QuestionCtrl',
-      resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'description', request.formAnswers);
-        },
-        nextStep: function($state) {
-          return function() {
-            $state.go('^.besoin_soutien');
-          };
-        }
-      }
-    })
-    .state(index + '.projet_professionnel.besoin_soutien', {
-      url: '/besoin_soutien',
+    .state(index + '.type_attente', {
+      url: '/type_attente',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'besoinSoutien', request.formAnswers);
+          return QuestionService.get(section, 'typeAttente', request.formAnswers);
         },
         nextStep: function($state) {
           return function() {
@@ -39,7 +25,7 @@ angular.module('impactApp')
         }
       }
     })
-    .state(index + '.projet_professionnel.structure', {
+    .state(index + '.structure', {
       url: '/structure',
       templateUrl: 'components/question/structure.html',
       controller: 'StructureQuestionCtrl',
@@ -49,12 +35,27 @@ angular.module('impactApp')
         },
         nextStep: function($state) {
           return function() {
+            $state.go('^.renseignements');
+          };
+        }
+      }
+    })
+    .state(index + '.renseignements', {
+      url: '/renseignements',
+      templateUrl: 'components/question/checkbox.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, request, section) {
+          return QuestionService.get(section, 'demandesAides', request.formAnswers);
+        },
+        nextStep: function($state) {
+          return function() {
             $state.go('^.autres_renseignements');
           };
         }
       }
     })
-    .state(index + '.projet_professionnel.autres_renseignements', {
+    .state(index + '.autres_renseignements', {
       url: '/autres_renseignements',
       templateUrl: 'components/question/autres_renseignements.html',
       controller: 'RenseignementsQuestionCtrl',

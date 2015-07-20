@@ -3,12 +3,12 @@
 angular.module('impactApp')
   .config(function ($stateProvider) {
 
-    var index = 'departement.demande.vie_scolaire';
+    var index = 'departement.demande.complementaire.vie_scolaire';
 
     $stateProvider.state(index + '.situation', {
       url: '/situation',
       template: '<ui-view/>',
-      abstract: true
+      redirectTo: index + '.situation.condition'
     })
     .state(index + '.situation.condition', {
       url: '',
