@@ -1,106 +1,98 @@
-<div class="container modal-container">
-  <div class="row">
-    <div class="col-sm-11">
-      <h1 ng-if="!signup">Connexion</h1>
-      <h1 ng-if="signup">Inscription</h1>
-    </div>
-    <div class="col-sm-1">
-      <i class="fa fa-times fa-2x close-modal" ng-click="cancel()"></i>
-    </div>
-    <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="login(form)" novalidate ng-if="!signup">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="email" class="form-control" ng-model="user.email" required>
-        </div>
+<div class="login-view">
+  <h1>Vous devez vous connecter pour enregistrer et finaliser votre demande</h1>
 
-        <div class="form-group">
-          <label>Mot de passe</label>
-          <input type="password" name="password" class="form-control" ng-model="user.password" required>
-        </div>
+  <div ng-if="!signin">
+    <form class="form" name="signinForm" ng-submit="register(signinForm)" novalidate>
+      <div class="form-group" ng-class="{ 'has-error': signinForm.name.$invalid && submitted }">
+        <label>Nom</label>
+        <input type="text" name="name" class="form-control" ng-model="user.name"
+               required/>
+        <p class="help-block" ng-show="signinForm.name.$error.required && submitted">
+          Veuillez entrer un nom.
+        </p>
+      </div>
 
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
-             Veuillez entrer votre email et mot de passe.
-          </p>
-          <p class="help-block" ng-show="form.email.$error.email && submitted">
-             L'adresse email n'est pas valide.
-          </p>
-          <p class="help-block">{{ errors.other }}</p>
-        </div>
+      <div class="form-group" ng-class="{ 'has-error': signinForm.email.$invalid && submitted }">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" ng-model="user.email"
+               ng-change="resetMongooseError(form, 'email')"
+               required
+               mongoose-error/>
+        <p class="help-block" ng-show="signinForm.email.$error.email && submitted">
+          Cet email n'est pas valide.
+        </p>
+        <p class="help-block" ng-show="signinForm.email.$error.required && submitted">
+          Quelle est votre adresse email?
+        </p>
+        <p class="help-block" ng-show="signinForm.email.$error.mongoose">
+          {{ errors.email }}
+        </p>
+      </div>
 
-        <div>
-          <button class="btn btn-primary btn-lg btn-login" type="submit">
-            Se connecter
-          </button>
-          <a class="btn btn-default btn-lg btn-register" ng-click="$parent.signup = true">
-            Inscription
-          </a>
-        </div>
-      </form>
+      <div class="form-group" ng-class="{ 'has-error': signinForm.password.$invalid && submitted }">
+        <label>Mot de passe</label>
 
-      <form class="form" name="form" ng-submit="register(form)" novalidate ng-if="signup">
-        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
-                                            'has-error': form.name.$invalid && submitted }">
-          <label>Nom</label>
-          <input type="text" name="name" class="form-control" ng-model="user.name"
-                 required/>
-          <p class="help-block" ng-show="form.name.$error.required && submitted">
-            Veuillez entrer un nom.
-          </p>
-        </div>
+        <input id="password" type="{{inputType}}" name="password"
+          class="form-control" ng-model="user.password" ng-minlength="8" required mongoose-error>
 
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
-                                            'has-error': form.email.$invalid && submitted }">
-          <label>Email</label>
-          <input type="email" name="email" class="form-control" ng-model="user.email"
-                 ng-change="resetMongooseError(form, 'email')"
-                 required
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.email.$error.email && submitted">
-            Cet email n'est pas valide.
-          </p>
-          <p class="help-block" ng-show="form.email.$error.required && submitted">
-            Quelle est votre adresse email?
-          </p>
-          <p class="help-block" ng-show="form.email.$error.mongoose">
-            {{ errors.email }}
-          </p>
-        </div>
+        <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
+        <label for="checkbox" class="control-label">Afficher le mot de passe</label>
 
-        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
-                                            'has-error': form.password.$invalid && submitted }">
-          <label>Mot de passe</label>
+        <p class="help-block"
+           ng-show="(signinForm.password.$error.minlength || signinForm.password.$error.required) && submitted">
+          Le mot de passe doit être au moins de 8 caractères.
+        </p>
 
-          <input id="password" type="{{inputType}}" name="password"
-            class="form-control" ng-model="user.password" ng-minlength="8" required mongoose-error>
+        <p class="help-block" ng-show="signinForm.password.$error.mongoose">
+          {{ errors.password }}
+        </p>
+      </div>
 
-          <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
-          <label for="checkbox" class="control-label">Afficher le mot de passe</label>
+      <div class="text-right">
+        <button class="btn btn-primary btn-lg btn-login" type="submit">
+          S'inscrire
+        </button>
+      </div>
+    </form>
 
-          <p class="help-block"
-             ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-            Le mot de passe doit être au moins de 8 caractères.
-          </p>
-
-          <p class="help-block" ng-show="form.password.$error.mongoose">
-            {{ errors.password }}
-          </p>
-        </div>
-
-        <div>
-          <button class="btn btn-primary btn-lg btn-login" type="submit">
-            S'inscrire
-          </button>
-          <a class="btn btn-default btn-lg btn-register" ng-click="$parent.signup = false">
-            Connexion
-          </a>
-        </div>
-      </form>
-
-      <p class="text-right">
-        Un problème ? <a href="mailto:impact@sgmap.fr" title="Envoyer un mail">Nous contacter</a>
-      </p>
-    </div>
+    <p class="signin-option">Vous avez déjà un compte ? <a href ng-click="toggleSignin(true)">Se connecter</a></p>
   </div>
+
+  <div ng-if="signin">
+    <form class="form" name="signupForm" ng-submit="login(signupForm)" novalidate>
+
+      <div class="form-group" ng-class="{'has-error': signupForm.email.$invalid && signupForm.$submitted}">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" ng-model="user.email" required>
+
+        <div ng-messages="signupForm.email.$error" ng-if="signupForm.$submitted">
+          <p class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='email'><i class="fa fa-warning"></i> L'adresse email saisie est incorrecte.</p>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': signupForm.password.$invalid && signupForm.$submitted}">
+        <label>Mot de passe</label>
+        <input type="password" name="password" class="form-control" ng-model="user.password" required>
+
+        <div ng-messages="signupForm.password.$error" ng-if="signupForm.$submitted">
+          <p class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</p>
+        </div>
+      </div>
+
+      <div ng-if="errors.other" class="alert alert-danger">
+        <i class="fa fa-warning"></i> {{ errors.other }}
+      </div>
+
+      <div class="text-right">
+        <button class="btn btn-primary btn-lg btn-login" type="submit">
+          Se connecter
+        </button>
+      </div>
+    </form>
+
+    <p class="signin-option">Vous n'avez pas encore de compte ? <a href ng-click="toggleSignin(false)">S'inscrire</a></p>
+  </div>
+
 </div>
+

@@ -113,12 +113,16 @@
     background-color: rgba(0,0,0,0.2);
 
     .step-login-content {
-      margin: auto;
+      margin: 50px auto;
     }
 
     button {
       padding: 15px 10px;
       font-size: 1.7em;
+
+      -webkit-box-shadow: 0px 10px 50px 18px rgba(0,0,0,0.5);
+      -moz-box-shadow: 0px 10px 50px 18px rgba(0,0,0,0.5);
+      box-shadow: 0px 10px 50px 18px rgba(0,0,0,0.5);
 
       small {
         font-weight: 200;

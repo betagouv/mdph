@@ -1,9 +1,26 @@
-.modal-container {
-  width: 100%;
-  padding-bottom: 15px;
-}
+.login-view {
+  h1 {
+    font-size: 1.5em;
+  }
 
-.close-modal {
-  margin-top: 10px;
-  cursor: pointer;
+  h2 {
+    text-align: center;
+    font-size: 1.3em;
+  }
+
+  max-width: 768px;
+  margin: 0 auto;
+
+  form {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #eeeeee;
+  }
+
+  p.signin-option {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #eeeeee;
+    text-align: right;
+  }
 }

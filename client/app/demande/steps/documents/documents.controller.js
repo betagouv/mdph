@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, $state, Upload, step, sections, request, documentTypes, PreparationEvaluationService) {
+  .controller('DocumentsCtrl', function($scope, $modal, $state, Upload, step, request, documentTypes) {
     $scope.step = step;
-    $scope.section = _.find(sections, {id: 'documents'});
     $scope.request = request;
-    $scope.docsList =  PreparationEvaluationService.getSuggestedDocsList($scope.request.formAnswers);
 
     $scope.saveSection = function() {
       $state.go('^');

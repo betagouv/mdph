@@ -14,7 +14,8 @@ angular.module('impactApp').constant('allSteps', [
       label: 'Renseignements complémentaires'
     },
     template: 'section-list.html',
-    controller: 'StepCtrl'
+    controller: 'StepCtrl',
+    isDefault: true
   },
   {
     id: 'complementaire',
@@ -30,8 +31,7 @@ angular.module('impactApp').constant('allSteps', [
       id: 'documents',
       label: 'Documents liés'
     },
-    template: 'section-list.html',
-    controller: 'StepCtrl'
+    isDefault: true
   },
   {
     id: 'documents',
@@ -46,17 +46,13 @@ angular.module('impactApp').constant('allSteps', [
     next: {
       id: 'envoi',
       label: 'Envoi'
-    },
-    template: 'section-document.html',
-    controller: 'DocumentsCtrl'
+    }
   },
   {
     id: 'envoi',
     mandatory: true,
     label: 'Envoi',
     desc: 'Transmission de votre demande à la MDPH',
-    previous: 'documents',
-    template: 'section-envoi.html',
-    controller: 'FinalStepCtrl'
+    previous: 'documents'
   }
 ]);

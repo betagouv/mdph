@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ModalLoginCtrl', function ($scope, $state, User, Auth, $modalInstance) {
+  .controller('LoginStepCtrl', function ($scope, User, Auth, afterLogin) {
     $scope.user = {};
     $scope.errors = {};
-    $scope.signup = true;
     $scope.inputType = 'password';
 
     $scope.toggleType = function() {
@@ -15,8 +14,8 @@ angular.module('impactApp')
       }
     }
 
-    $scope.resetMongooseError = function(form, field) {
-      form[field].$setValidity('mongoose', true);
+    $scope.toggleSignin = function(bool) {
+      $scope.signin = bool;
     };
 
     $scope.login = function(form) {
@@ -27,11 +26,11 @@ angular.module('impactApp')
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .then( function() {
-          $modalInstance.close();
-        })
         .catch( function(err) {
           $scope.errors.other = err.message;
+        })
+        .then(function () {
+          afterLogin();
         });
       }
     };
@@ -53,11 +52,11 @@ angular.module('impactApp')
             email: $scope.user.email,
             password: $scope.user.password
           })
-          .then( function() {
-            $modalInstance.close();
-          })
           .catch( function(err) {
             $scope.errors.other = err.message;
+          })
+          .then( function() {
+            afterLogin();
           });
         })
         .catch( function(err) {
@@ -73,7 +72,4 @@ angular.module('impactApp')
       }
     };
 
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
   });

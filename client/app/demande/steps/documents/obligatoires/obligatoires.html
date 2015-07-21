@@ -1,0 +1,49 @@
+<h2>Documents obligatoires</h2>
+
+<div class="row">
+  <div class="col-sm-4" ng-repeat="id in documentsObligatoires">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>{{documentTypesById[id].label}}</h3>
+      </div>
+      <div class="panel-body">
+        <p>{{documentTypesById[id].desc}}</p>
+        <div ng-if="id === 'certificatMedical'" class="well">
+          <p>Vous pouvez également demander à votre médecin de le télétransmettre directement.
+            Présentez vous à votre rendez-vous médical avec la brochure d'explication jointe et pensez à vous munir de la référence de votre demande: <strong>{{request.shortId}}</strong>
+          </p>
+          <a target="_blank" download href="/assets/documents/teleservice_medecin_{{ mdph.zipcode }}.pdf">
+            Télécharger la brochure
+          </a>
+        </div>
+        <p ng-if="documentTypesById[id].emptyDoc">
+          <a target="_blank" download ng-href="/assets/documents/{{documentTypesById[id].emptyDoc}}">
+            Télécharger un modèle de ce document
+          </a>
+        </p>
+        <ul ng-if="!filesVM[id]"><li>Pas de document</li></ul>
+        <ul ng-if="filesVM[id]" class="list-group">
+          <li ng-repeat="file in filesVM[id]" class="list-group-item">
+            <display-file ng-if="!file.progress" file="file" request="request"></display-file>
+            <div ng-if="file.progress">
+              {{file.name}} - en cours...
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
+                  {{file.progress}}%
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+      <div class="panel-footer" ng-if="!file.asked">
+        <div class="text-right">
+          <div ngf-select ngf-change="upload($files[0], id)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
+            <i class="fa fa-upload"></i> Attacher un fichier</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
