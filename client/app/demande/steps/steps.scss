@@ -35,7 +35,7 @@
 
           &:before {
             content: '\f138';
-            color: green;
+            color: $green;
             text-decoration: none;
           }
         }
@@ -87,6 +87,7 @@
   .step-body-content {
     padding: 10px;
     position: relative;
+    background-color: white;
   }
 
   .section-footer {
@@ -94,7 +95,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 10px;
-    background-color: white;
+    background-color: whitesmoke;
     border-top: 1px solid #eeeeee;
     a {
       color: lighten($light-blue, 30%);

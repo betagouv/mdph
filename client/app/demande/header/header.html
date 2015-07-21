@@ -12,6 +12,7 @@
       <div class="text-right">
         <p>Statut : {{request.status | requestStatus}}</p>
         <p>Dernière mise à jour {{request.updatedAt | momentFromNow}}</p>
+        <p><a ui-sref="departement.demande.settings"><i class="fa fa-cog"></i> Paramètres de la demande</a></p>
       </div>
     </div>
   </div>

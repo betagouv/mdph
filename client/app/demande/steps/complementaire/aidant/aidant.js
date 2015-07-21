@@ -13,8 +13,8 @@ angular.module('impactApp')
           section: function(sections) {
             return _.find(sections, {id: 'aidant'});
           },
-          sectionModel: function(request) {
-            return request.formAnswers.aidant;
+          sectionModel: function(SectionUtils, request, section) {
+            return SectionUtils.resolveSectionModel(request, section);
           },
           saveSection: function(SectionUtils, sectionModel, updateRequest) {
             return SectionUtils.resolveSaveSection(sectionModel, updateRequest);

@@ -1,0 +1,42 @@
+<h3>Transférer la demande</h3>
+<div>
+  <p>Vous avez remplis cette demande pour un tiers et souhaitez la transférer sur son compte. Merci de nous indiquer son email.</p>
+
+  <div ng-if="knownUsers">
+    <p>Adresses renseignées dans votre demande:</p>
+    <ul>
+      <li ng-if="knownUsers.beneficiaire">
+        Bénéficiaire: <a title="Sélectionner {{knownUsers.beneficiaire.nom}} {{knownUsers.beneficiaire.prenom}}" ng-click="select(knownUsers.beneficiaire.email)">{{knownUsers.beneficiaire.nom}} {{knownUsers.beneficiaire.prenom}} - {{knownUsers.beneficiaire.email}}</a>
+      </li>
+      <li ng-if="knownUsers.autorite.parent1">
+        Parent 1: <a title="Sélectionner {{knownUsers.autorite.parent1.nom}} {{knownUsers.autorite.parent1.prenom}}" ng-click="select(knownUsers.autorite.parent1.email)">{{knownUsers.autorite.parent1.nom}} {{knownUsers.autorite.parent1.prenom}} - {{knownUsers.autorite.parent1.email}}</a>
+      </li>
+      <li ng-if="knownUsers.autorite.parent2">
+        Parent 2: <a title="Sélectionner {{knownUsers.autorite.parent2.nom}} {{knownUsers.autorite.parent2.prenom}}" ng-click="select(knownUsers.autorite.parent2.email)">{{knownUsers.autorite.parent2.nom}} {{knownUsers.autorite.parent2.prenom}} - {{knownUsers.autorite.parent2.email}}</a>
+      </li>
+      <li ng-if="knownUsers.autorite.autre">
+        Autre ({{knownUsers.autorite.autre.type}}): <a title="Sélectionner {{knownUsers.autorite.autre.nom}} {{knownUsers.autorite.autre.prenom}}" ng-click="select(knownUsers.autorite.autre.email)">{{knownUsers.autorite.autre.nom}} {{knownUsers.autorite.autre.prenom}} - {{knownUsers.autorite.autre.email}}</a>
+      </li>
+      <li ng-if="knownUsers.aidantDemarche" ng-repeat="aidant in knownUsers.aidantDemarche">
+        Aidant ({{aidant.type}}): <a title="Sélectionner {{aidant.nom}} {{aidant.prenom}}" ng-click="select(aidant.email)">{{aidant.nom}} {{aidant.prenom}} - {{aidant.email}}</a>
+      </li>
+    </ul>
+  </div>
+  <form name="userForm" novalidate>
+    <label class="control-label" for="emailInput">Email</label>
+
+    <div class="form-group">
+      <input type="email" name="emailInput" id="emailInput" class="form-control" ng-model="email"
+        placeholder="Ex: vous@domaine.fr" required>
+
+      <div class="help-block" ng-if='userNotFound'><i class="fa fa-warning"></i> Impossible de trouver le compte {{userNotFound}}, cet utilisateur n'a pas encore de compte sur le site impact.sgmap.fr</div>
+      <div ng-messages="userForm.emailInput.$error" ng-if="userForm.$valid === false" role="alert">
+        <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+          <p class="help-block" ng-message='email'><i class="fa fa-warning"></i> L'adresse email saisie est incorrecte.</p>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="text-right">
+  <button class="btn btn-primary" ng-click="ok(userForm)">Transférer</button>
+</div>
