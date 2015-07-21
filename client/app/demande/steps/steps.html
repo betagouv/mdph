@@ -1,9 +1,7 @@
 <div class="steps">
   <ul>
     <li ng-repeat="step in steps">
-      <a ui-sref="departement.demande.{{step.id}}" ui-sref-active="active">
-        <span>{{step.label}}</span>
-      </a>
+      <a ui-sref="departement.demande.{{step.id}}" ui-sref-active="active">{{step.label}}</a>
     </li>
   </ul>
 </div>

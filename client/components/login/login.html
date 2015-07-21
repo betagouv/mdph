@@ -1,5 +1,5 @@
 <div class="login-view">
-  <h1>Vous devez vous connecter pour enregistrer et finaliser votre demande</h1>
+  <h1>Connectez-vous pour enregistrer et finaliser votre demande</h1>
 
   <div ng-if="!signin">
     <form class="form" name="signinForm" ng-submit="register(signinForm)" novalidate>
@@ -50,7 +50,7 @@
 
       <div class="text-right">
         <button class="btn btn-primary btn-lg btn-login" type="submit">
-          S'inscrire
+          <i class="fa fa-lock"></i> S'inscrire
         </button>
       </div>
     </form>
@@ -86,7 +86,7 @@
 
       <div class="text-right">
         <button class="btn btn-primary btn-lg btn-login" type="submit">
-          Se connecter
+          <i class="fa fa-lock"></i> Se connecter
         </button>
       </div>
     </form>

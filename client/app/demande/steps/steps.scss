@@ -1,7 +1,7 @@
 .questionnaire {
   .steps {
     ul {
-      padding: 0 5px;
+      padding: 0;
       background-color: lighten($light-blue, 30%);
       border: 1px solid lighten($light-blue, 25%);
       border-top: none;
@@ -16,31 +16,32 @@
     }
 
     li {
-      padding: 5px;
-
       a {
         color: white;
+        padding: 5px;
+        border-radius: 4px;
 
         &:focus, &:hover {
           text-decoration: none;
-          span {
-            text-decoration: underline;
+          background-color: lighten($light-blue, 25%);
+          &:before {
+            content: '\f138';
           }
         }
 
         &.active {
-          span {
-            text-decoration: underline;
-          }
+          background-color: whitesmoke;
+          color: $light-blue;
 
           &:before {
             content: '\f138';
-
+            color: green;
             text-decoration: none;
           }
         }
 
         &:before {
+          margin-right: 4px;
           font-family: FontAwesome;
           font-weight: normal;
           font-style: normal;

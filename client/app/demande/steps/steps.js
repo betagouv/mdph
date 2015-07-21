@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider, allSteps) {
+  .config(function ($stateProvider, allSteps, documentTypes) {
+
+    var documentTypesById = _.indexBy(documentTypes, 'id');
 
     var createDefaultStep = function(step) {
       $stateProvider.state('departement.demande.' + step.id, {
@@ -45,31 +47,31 @@ angular.module('impactApp')
             templateUrl: 'components/login/login.html',
             controller: 'LoginStepCtrl',
             resolve: {
-              afterLogin: function() {
+              afterLogin: function($state, request) {
                 return function() {
-                  console.log('success');
+                  request.$save(function() {
+                    $state.go('departement.demande.documents', {shortId: request.shortId})
+                  }, function(err) {
+                    $window.alert(err.data.message);
+                  });
                 };
               }
             }
           },
-          // 'suggestions@departement.demande.documents': {
-          //   templateUrl: 'app/demande/steps/steps.html',
-          //   controller: function ($scope, PreparationEvaluationService, request) {
-          //     $scope.docsList = PreparationEvaluationService.getSuggestedDocsList(request.formAnswers);
-          //   }
-          // },
-          // 'obligatoires@departement.demande.documents': {
-          //   templateUrl: 'app/demande/steps/steps.html',
-          //   controller: function ($scope, allSteps) {
-          //     $scope.steps = allSteps;
-          //     $scope.isStepComplete = function(step) {
-
-          //     }
-          //   }
-          // },
-          // 'complementaires@departement.demande.documents': {
-          //   templateUrl: 'app/demande/body/body.html'
-          // }
+          'suggestions@departement.demande.documents': {
+            templateUrl: 'app/demande/steps/documents/suggestions/suggestions.html',
+            controller: function ($scope, PreparationEvaluationService, request) {
+              $scope.docsList = PreparationEvaluationService.getSuggestedDocsList(request.formAnswers);
+            }
+          },
+          'obligatoires@departement.demande.documents': {
+            templateUrl: 'app/demande/steps/documents/obligatoires/obligatoires.html',
+            controller: 'DocumentsObligatoiresCtrl'
+          },
+          'complementaires@departement.demande.documents': {
+            templateUrl: 'app/demande/steps/documents/complementaires/complementaires.html',
+            controller: 'DocumentsComplementairesCtrl'
+          }
         }
       });
   });
