@@ -30,7 +30,6 @@ $disabled-blue: lighten($light-blue, 30%);
 /**
  * App-wide Styles
  */
-
 .browsehappy {
   position: absolute;
   top: 0;
@@ -68,13 +67,13 @@ $disabled-blue: lighten($light-blue, 30%);
 }
 
 .banner {
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    color: $light-white;
-    background: $light-blue;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  color: $light-white;
+  background: $light-blue;
 }
 
 .row.push-down {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .container-smoke {
@@ -85,7 +84,6 @@ $disabled-blue: lighten($light-blue, 30%);
 
 // Component styles are injected through grunt
 // injector
-@import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'apropos/apropos.scss';
 @import 'choix_mdph/choix_mdph.scss';

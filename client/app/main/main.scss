@@ -57,69 +57,69 @@
 }
 
 .features {
-    font-size: 16px;
-    line-height: 1.5;
-    text-align: center;
-    background-color: white;
-    padding-top: 50px;
-    padding-bottom: 70px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 70px;
 
 
-    .p {
-      color: #6b6b6b;
-    }
-    .fa {
-      color: #8b8b8b;
-    }
-    h2 {
-      font-weight: 700;
-    }
+  .p {
+    color: #6b6b6b;
+  }
+  .fa {
+    color: #8b8b8b;
+  }
+  h2 {
+    font-weight: 700;
+  }
 }
 
 .liste-prestations {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #fff;
-    border-top: 3px solid $dark-blue;
-    background-color: $lighter-blue;
-    text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fff;
+  border-top: 3px solid $dark-blue;
+  background-color: $lighter-blue;
+  text-align: center;
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 30px;
-      font-weight: 200;
+  h1 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 200;
+    color: #eee;
+  }
+
+
+  .row {
+    margin-bottom: 20px;
+  }
+
+
+  .panel-footer {
+    font-size: 6px;
+  }
+
+  i {
+    color: $lighter-blue;
+    margin-right: 3px;
+  }
+
+  .elem {
+    text-align: left;
+    padding: 5px 30px;
+    margin: 2px 0;
+
+    .elem-body {
+      padding: 10px;
+      background-color: $light-blue;
       color: #eee;
+
+      border-radius: 8px;
+      text-shadow: 0 1px 0 rgba(0,0,0,.1)
     }
-
-
-    .row {
-      margin-bottom: 20px;
-    }
-
-
-    .panel-footer {
-      font-size: 6px;
-    }
-
-    i {
-      color: $lighter-blue;
-      margin-right: 3px;
-    }
-
-    .elem {
-      text-align: left;
-      padding: 5px 30px;
-      margin: 2px 0;
-
-      .elem-body {
-        padding: 10px;
-        background-color: $light-blue;
-        color: #eee;
-
-        border-radius: 8px;
-        text-shadow: 0 1px 0 rgba(0,0,0,.1)
-      }
-    }
+  }
 }
 
 .btn-outline {
@@ -151,11 +151,11 @@
 }
 
 .footer {
-    text-align: center;
-    padding: 20px 0;
-    a {
-      color: #eee;
-    }
-    background-color: $light-blue;
+  text-align: center;
+  padding: 20px 0;
+  a {
+    color: #eee;
+  }
+  background-color: $light-blue;
 }
 
