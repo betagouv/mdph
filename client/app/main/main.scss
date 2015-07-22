@@ -39,7 +39,7 @@
 
 .action {
   h2 {
-    color: #777;
+    color: #555;
     margin: 8px 0;
     font-weight: 200;
   }
@@ -48,7 +48,32 @@
   padding: 40px 0;
   font-size: 16px;
   line-height: 1.5;
-  text-align: center;
+
+  .list-actions {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    padding: 5px 0 0 25px;
+    font-size: 1.3em;
+    color: $lighter-blue;
+
+    &:focus, &:hover {
+      text-decoration: none;
+
+      &:before {
+        color: $lighter-blue;
+      }
+    }
+
+    &:before {
+      color: lighten($lighter-blue, 25%);
+      font-family: 'FontAwesome';
+      content: '\f138';
+    }
+  }
 }
 
 .action-dark {
