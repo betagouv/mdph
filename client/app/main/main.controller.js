@@ -5,5 +5,5 @@ angular.module('impactApp')
     $scope.user = user;
     $scope.mdph = mdph;
 
-    $scope.sref = mdph ? '.demande({shortId: \'nouvelle_demande\'})' : 'choix_mdph';
+    $scope.sref = mdph ? '.demande.obligatoire({shortId: \'nouvelle_demande\'})' : 'choix_mdph';
   });

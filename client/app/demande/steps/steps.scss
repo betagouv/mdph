@@ -137,3 +137,17 @@
     }
   }
 }
+
+@media (max-width: 767px) {
+  .questionnaire {
+    .steps {
+      ul {
+        flex-direction: column;
+        align-items: flex-start;
+        li {
+          margin: 4px;
+        }
+      }
+    }
+  }
+}
