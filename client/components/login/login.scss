@@ -25,3 +25,14 @@
     text-align: right;
   }
 }
+
+.login-view-white {
+  @extend .login-view;
+
+  form {
+    background-color: white;
+  }
+  p.signin-option {
+    background-color: white;
+  }
+}
