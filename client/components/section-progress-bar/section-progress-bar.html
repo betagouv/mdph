@@ -1,12 +1,9 @@
-<span class="progress-desc" ng-if="completion === 0">Non renseigné</span>
-<span class="progress-desc" ng-if="completion === 50">En cours</span>
-<span class="progress-desc" ng-if="completion === 100">Complet</span>
-
-<div class="progress">
-  <div class="progress-bar"
-    role="progressbar"
-    ng-class="{'progress-bar-info': completion === 50, 'progress-bar-success': completion === 100}"
-    aria-valuenow="{{completion}}" aria-valuemin="0" aria-valuemax="100"
-    style="width: {{completion}}%">
-  </div>
+<div class="progress-desc" ng-if="completion === 0">
+  <i class="fa fa-circle-o"></i> Non renseigné
+</div>
+<div class="progress-desc" ng-if="completion === 50">
+  <i class="fa fa-circle"></i> En cours
+</div>
+<div class="progress-desc" ng-if="completion === 100">
+  <i class="fa fa-check-circle"></i> Complet
 </div>

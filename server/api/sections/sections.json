@@ -94,7 +94,7 @@
   {
     "id": "vie_quotidienne",
     "label": "Vie quotidienne",
-    "desc": "",
+    "desc": "Renseignements sur votre vie quotidienne",
     "group": "obligatoire",
     "trajectoire": true,
     "subSections": [
