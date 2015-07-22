@@ -53,7 +53,7 @@ angular.module('impactApp')
               if (request._id && request.status === 'en_cours') {
                 request.$update(onSuccess, onError);
               } else if (request._id) {
-                $window.alert('Vos modifications ne seront pas pris en compte car cette demande à déjà été transmise.');
+                $window.alert('Vos modifications ne seront pas prises en compte car cette demande à déjà été transmise.');
                 $state.go(parent);
               } else {
                 $state.go(parent);

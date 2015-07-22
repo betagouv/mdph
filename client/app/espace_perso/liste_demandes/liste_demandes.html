@@ -2,27 +2,19 @@
   <div class="container">
     <div class="list-group-demande">
       <a class="list-group-item list-group-item-info" ui-sref="choix_mdph">
-        <div class="row">
-          <div class="col-sm-1">
-            <i class="fa fa-plus-circle"></i>
-          </div>
-          <div class="col-sm-11">
-            <h2 class="list-group-item-heading">Nouvelle demande</h2>
-          </div>
-        </div>
+        <i class="fa fa-plus-circle fa-2x "></i>
+        <span class="list-group-item-content">
+          <h1 class="list-group-item-heading"> Nouvelle demande</h1>
+        </span>
       </a>
       <a class="list-group-item section" ng-repeat="request in requests"
         ui-sref="departement.demande.obligatoire({codeDepartement: request.mdph, shortId: request.shortId })">
-        <div class="row">
-          <div class="col-sm-1">
-            <i class="fa fa-chevron-circle-right"></i>
-          </div>
-          <div class="col-sm-11">
-            <h2 class="list-group-item-heading">Référence demande {{request.shortId}}</h2>
-            <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
-            Dernière modification {{updatedAt(request)}}</p>
-          </div>
-        </div>
+        <i class="fa fa-chevron-circle-right"></i>
+        <span class="list-group-item-content">
+          <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
+          <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
+          Dernière mise à jour {{updatedAt(request)}}</p>
+        </span>
       </a>
     </div>
   </div>
