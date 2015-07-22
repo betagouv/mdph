@@ -12,7 +12,7 @@ angular.module('impactApp')
 
     $scope.nbSections = 0;
     stepObligatoire.sections.forEach(function(section) {
-      if (request.formAnswers[section].__completion) {
+      if (request.formAnswers[section] && request.formAnswers[section].__completion) {
         $scope.nbSections += 1;
       }
     });

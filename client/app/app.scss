@@ -30,6 +30,10 @@ $disabled-blue: lighten($light-blue, 30%);
 /**
  * App-wide Styles
  */
+ body {
+  background-color: whitesmoke;
+ }
+
 .browsehappy {
   position: absolute;
   top: 0;

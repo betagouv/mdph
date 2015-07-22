@@ -2,7 +2,7 @@
   .steps {
     ul {
       padding: 0;
-      background-color: lighten($light-blue, 30%);
+      background-color: lighten($light-blue, 15%);
       border: 1px solid lighten($light-blue, 25%);
       border-top: none;
       border-bottom: none;
@@ -18,12 +18,13 @@
     li {
       a {
         color: white;
-        padding: 5px;
+        padding: 5px 10px;
         border-radius: 4px;
+        background-color: lighten($light-blue, 25%);
 
         &:focus, &:hover {
           text-decoration: none;
-          background-color: lighten($light-blue, 25%);
+          background-color: lighten($light-blue, 30%);
           &:before {
             content: '\f138';
           }
@@ -64,9 +65,8 @@
 
   .step-body-head {
     display: flex;
-    background-color: lighten($light-blue, 35%);
+    background-color: whitesmoke;
     justify-content: space-between;
-    color: white;
     align-items: center;
     padding: 0 10px;
     height: 42px;
