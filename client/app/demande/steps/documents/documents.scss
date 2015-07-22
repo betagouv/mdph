@@ -1,0 +1,18 @@
+.documents-sections {
+  .panel-default {
+    .panel-heading {
+      background-color: lighten($lighter-blue, 5%);
+      color: white;
+      border-bottom: none;
+
+      h3 {
+        color: white;
+        font-size: 1.4em;
+      }
+    }
+  }
+
+  .btn-lg {
+    padding: 20px;
+  }
+}
