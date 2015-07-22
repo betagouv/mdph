@@ -82,6 +82,10 @@ $disabled-blue: lighten($light-blue, 30%);
   min-height: 600px;
 }
 
+hr {
+  border-color: #F8F8F8;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';
