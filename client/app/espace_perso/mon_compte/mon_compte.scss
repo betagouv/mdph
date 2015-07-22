@@ -4,6 +4,18 @@
 }
 
 #mon-compte {
+  .panel-default {
+    .panel-heading {
+      background-color: lighten($lighter-blue, 5%);
+      color: white;
+      border-bottom: none;
+
+      h1 {
+        font-size: 1.4em;
+      }
+    }
+  }
+
   padding-top: 30px;
 
   .form-control-static {

@@ -1,30 +1,8 @@
 <div class="container" id="mon-compte">
 
   <div class="row">
-    <div class="col-md-4" ng-if="user.role === 'adminMdph'">
-      <div class="panel panel-default panel-info">
-        <div class="panel-heading">
-          <h1>Ma MDPH</h1>
-        </div>
-        <div class="panel-body">
-            <p>{{user.mdph.name}} - {{user.mdph.zipcode}}</p>
-            <p>
-              <a ui-sref="departement({codeDepartement: user.mdph.zipcode})" title="Page d'acceuil de votre MDPH">
-                Page d'acceuil de votre MDPH
-              </a>
-            </p>
-            <p>
-              <a ui-sref="dashboard.requests.user({userId: 'me'})" title="Tableau de bord agent">
-                Tableau de bord agent
-              </a>
-            </p>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="panel panel-default panel-info">
+    <div class="col-md-6">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <h1>Mes informations personnelles</h1>
         </div>
@@ -55,8 +33,8 @@
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div id="changePassword" class="panel panel-default panel-info">
+    <div class="col-md-6">
+      <div id="changePassword" class="panel panel-default">
         <div class="panel-heading">
           <h1>Changer mon mot de passe</h1>
         </div>
@@ -100,6 +78,29 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-6" ng-if="user.role === 'adminMdph'">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1>Ma MDPH</h1>
+        </div>
+        <div class="panel-body">
+            <p>{{user.mdph.name}} - {{user.mdph.zipcode}}</p>
+            <p>
+              <a ui-sref="departement({codeDepartement: user.mdph.zipcode})" title="Page d'acceuil de votre MDPH">
+                Page d'acceuil de votre MDPH
+              </a>
+            </p>
+            <p>
+              <a ui-sref="dashboard.requests.user({userId: 'me'})" title="Tableau de bord agent">
+                Tableau de bord agent
+              </a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div>
