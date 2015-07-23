@@ -28,13 +28,12 @@ angular.module('impactApp')
     $scope.$on('hideError', hideError);
 
     $scope.checkIdentities = function(){
-      var formIdentites = request.formAnswers.identites;
-      if (!formIdentites.beneficiaire || !formIdentites.beneficiaire.nom){
+      if (!sectionModel.beneficiaire || !sectionModel.beneficiaire.nom){
         showError('Veuillez renseigner un bénéficiaire.');
       }
       else {
-        if (estMineur(formIdentites.beneficiaire.dateNaissance)){
-          var autorite = formIdentites.autorite;
+        if (estMineur(sectionModel.beneficiaire.dateNaissance)){
+          var autorite = sectionModel.autorite;
           if (!autorite) {
             showError('Le bénéficiaire est mineur, veuillez renseigner au moins une autorité parentale ou une délégation d\'autorité parentale.');
           }

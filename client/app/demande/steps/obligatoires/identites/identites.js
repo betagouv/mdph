@@ -30,7 +30,7 @@ angular.module('impactApp')
                 form.showError = true;
               } else {
                 IdentiteService.mergeModifications(type, sectionModel, currentId, tempIdentite);
-                $state.go('^');
+                $state.go('^', {}, {reload: true});
               }
             };
           },
