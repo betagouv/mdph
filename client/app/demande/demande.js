@@ -37,24 +37,34 @@ angular.module('impactApp')
               }).$promise;
             }
           },
-          mainUpdateRequest: function($state, $window, $timeout, request) {
+          mainUpdateRequest: function($state, $window, $timeout, $rootScope, user, request) {
             return function(parent) {
+
               var onError = function(err) {
+                $rootScope.$broadcast('saving', 'error');
                 $window.alert(err.data.message);
               };
 
               var onSuccess = function() {
+                $rootScope.$broadcast('saving', 'success');
                 $timeout(function() {
-                  $window.alert('Votre progression à été sauvegardée');
                   $state.go(parent, {shortId: request.shortId});
                 }, 100);
               };
 
-              if (request._id && request.status === 'en_cours') {
-                request.$update(onSuccess, onError);
-              } else if (request._id) {
-                $window.alert('Vos modifications ne seront pas prises en compte car cette demande à déjà été transmise.');
-                $state.go(parent);
+              if (user) {
+                if (request._id) {
+                  if (request.status === 'en_cours') {
+                    $rootScope.$broadcast('saving', 'pending');
+                    request.$update(onSuccess, onError);
+                  } else {
+                    $window.alert('Vos modifications ne seront pas prises en compte car cette demande à déjà été transmise.');
+                    $state.go(parent);
+                  }
+                } else {
+                  $rootScope.$broadcast('saving', 'pending');
+                  request.$save(onSuccess, onError);
+                }
               } else {
                 $state.go(parent);
               }

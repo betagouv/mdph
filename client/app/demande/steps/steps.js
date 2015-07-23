@@ -49,11 +49,14 @@ angular.module('impactApp')
             templateUrl: 'components/login/login.html',
             controller: 'LoginStepCtrl',
             resolve: {
-              afterLogin: function($state, request) {
+              afterLogin: function($state, $rootScope, request) {
                 return function() {
+                  $rootScope.$broadcast('saving', 'pending');
                   request.$save(function() {
+                    $rootScope.$broadcast('saving', 'success');
                     $state.go('departement.demande.documents', {shortId: request.shortId})
                   }, function(err) {
+                    $rootScope.$broadcast('saving', 'error');
                     $window.alert(err.data.message);
                   });
                 };
@@ -92,11 +95,14 @@ angular.module('impactApp')
             templateUrl: 'components/login/login.html',
             controller: 'LoginStepCtrl',
             resolve: {
-              afterLogin: function($state, request) {
+              afterLogin: function($state, $rootScope, request) {
                 return function() {
+                  $rootScope.$broadcast('saving', 'pending');
                   request.$save(function() {
+                    $rootScope.$broadcast('saving', 'success');
                     $state.go('departement.demande.envoi', {shortId: request.shortId})
                   }, function(err) {
+                    $rootScope.$broadcast('saving', 'error');
                     $window.alert(err.data.message);
                   });
                 };
