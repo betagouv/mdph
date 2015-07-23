@@ -32,13 +32,18 @@
                 </button>
               </td>
             </tr>
+            <tr>
+              <td colspan="3" class="text-right">
+                <button class="btn btn-default" ng-click="removeStructure()" aria-label="Supprimer la dernière structure" ng-if="model.structures.length > 1">
+                  <i class="fa fa-minus"></i> Supprimer la dernière structure
+                </button>
+                <button class="btn btn-success" ng-click="addStructure()" aria-label="Ajouter une structure">
+                  <i class="fa fa-plus"></i> Ajouter une structure
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
-        <div class="row">
-          <div class="col-xs-offset-4 col-xs-4">
-            <button class="btn btn-default btn-block" ng-click="addStructure()">Ajouter une structure</button>
-          </div>
-        </div>
       </div>
       <li
         class="btn-answer" ng-class="{'active': model['valeur'] === false}"

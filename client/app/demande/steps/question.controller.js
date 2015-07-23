@@ -23,6 +23,10 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel[question.model];
 
+    $scope.removeStructure = function(){
+      var lastIndex = $scope.model.structures.length - 1;
+      $scope.model.structures.splice(lastIndex, 1);
+    };
     $scope.addStructure = function() {
       $scope.model.structures.push(
         {'name': '', 'contact': false}
