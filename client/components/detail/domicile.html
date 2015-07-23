@@ -2,7 +2,7 @@
   <legend ng-hide="hideTitle" class="control-label">Précisez le domicile</legend>
 
   <div>
-    <input type="radio" name="parents" id="domicile-parents"
+    <input type="radio" name="domicile" id="domicile-parents"
       ng-model="sectionModel[answer.detailModel]" value="'parents'"
       ng-required="!sectionModel[answer.detailModel]">
     <label for="domicile-parents" ng-if="estAdulte()">De vos parents (ou l'un d'entre eux)</label>
@@ -10,21 +10,21 @@
   </div>
 
   <div ng-if="estAdulte()">
-    <input type="radio" name="enfants" id="domicile-enfants"
+    <input type="radio" name="domicile" id="domicile-enfants"
       ng-model="sectionModel[answer.detailModel]" value="'enfants'"
       ng-required="!sectionModel[answer.detailModel]">
     <label for="domicile-enfants" >De vos enfants (ou l'un d'entre eux)</label>
   </div>
 
   <div>
-    <input type="radio" name="ami" id="domicile-ami"
+    <input type="radio" name="domicile" id="domicile-ami"
       ng-model="sectionModel[answer.detailModel]" value="'ami'"
       ng-required="!sectionModel[answer.detailModel]">
     <label for="domicile-ami">D'un(e) ami(e)</label>
   </div>
 
   <div>
-    <input type="radio" name="autreMembreFamille" id="domicile-autreMembreFamille"
+    <input type="radio" name="domicile" id="domicile-autreMembreFamille"
       ng-model="sectionModel[answer.detailModel]" value="'autreMembreFamille'"
       ng-required="!sectionModel[answer.detailModel]">
     <label for="domicile-autreMembreFamille" ng-if="estAdulte()">D'un autre membre de votre famille</label>
@@ -32,7 +32,7 @@
   </div>
 
   <div>
-    <input type="radio" name="familleAccueill" id="domicile-familleAccueill"
+    <input type="radio" name="domicile" id="domicile-familleAccueill"
       ng-model="sectionModel[answer.detailModel]" value="'familleAccueill'"
       ng-required="!sectionModel[answer.detailModel]">
     <label for="domicile-familleAccueill">D'une famille d'accueil</label>
