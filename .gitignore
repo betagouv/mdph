@@ -7,6 +7,7 @@ ecosystem.json
 client/bower_components
 dist
 server/config/local.env.js
+server/config/seed/*
 server/uploads/*
 !server/uploads/.gitkeep
 !server/uploads/temp
