@@ -4,13 +4,13 @@
   <div class="form-group required" ng-if="type==='autorite' && id === 'autre'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
     <fieldset>
       <legend class="control-label">Vous êtes</legend>
-      <input type="radio" name="type_autorite_tuteur" id="type_autorite_tuteur" ng-model="identite.type" ng-required="!identite.type" value="tuteur">
+      <input type="radio" name="type_autorite" id="type_autorite_tuteur" ng-model="identite.type" ng-required="!identite.type" value="tuteur">
       <label class="radio-inline" for="type_autorite_tuteur">Le tuteur</label>
-      <input type="radio" name="type_autorite_curateur" id="type_autorite_curateur" ng-model="identite.type" ng-required="!identite.type" value="curateur">
+      <input type="radio" name="type_autorite" id="type_autorite_curateur" ng-model="identite.type" ng-required="!identite.type" value="curateur">
       <label class="radio-inline" for="type_autorite_curateur">Le curateur</label>
-      <input type="radio" name="type_autorite_organisme" id="type_autorite_organisme" ng-model="identite.type" ng-required="!identite.type" value="organisme">
+      <input type="radio" name="type_autorite" id="type_autorite_organisme" ng-model="identite.type" ng-required="!identite.type" value="organisme">
       <label class="radio-inline" for="type_autorite_organisme">Un organisme</label>
-      <input type="radio" name="type_autorite_autre" id="type_autorite_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
+      <input type="radio" name="type_autorite" id="type_autorite_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
       <label class="radio-inline" for="type_autorite_autre">Autre</label>
     </fieldset>
     <div ng-if="!identite.type && infoForm.$submitted">
@@ -21,16 +21,16 @@
   <div class="form-group required" ng-if="type==='aidantDemarche'" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
     <fieldset>
       <legend class="control-label">Vous êtes</legend>
-      <input type="radio" name="type_aidant_proche" id="type_aidant_proche" ng-model="identite.type" ng-required="!identite.type" value="proche">
+      <input type="radio" name="type_aidant" id="type_aidant_proche" ng-model="identite.type" ng-required="!identite.type" value="proche">
       <label class="radio-inline" for="type_aidant_proche">Un proche</label>
 
-      <input type="radio" name="type_aidant_association" id="type_aidant_association" ng-model="identite.type" ng-required="!identite.type" value="association">
+      <input type="radio" name="type_aidant" id="type_aidant_association" ng-model="identite.type" ng-required="!identite.type" value="association">
       <label class="radio-inline" for="type_aidant_association">Une association</label>
 
-      <input type="radio" name="type_aidant_enseignant" id="type_aidant_enseignant" ng-model="identite.type" ng-required="!identite.type" value="enseignant">
+      <input type="radio" name="type_aidant" id="type_aidant_enseignant" ng-model="identite.type" ng-required="!identite.type" value="enseignant">
       <label class="radio-inline" for="type_aidant_enseignant">Un enseignant référent</label>
 
-      <input type="radio" name="type_aidant_autre" id="type_aidant_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
+      <input type="radio" name="type_aidant" id="type_aidant_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
       <label class="radio-inline" for="type_aidant_autre">Autre</label>
     </fieldset>
     <div ng-if="!identite.type && infoForm.$submitted">
@@ -80,11 +80,11 @@
       <div class="form-group required" ng-class="{'has-error': !identite.nationalite && infoForm.$submitted}">
         <fieldset>
           <legend class="control-label">Nationalité</legend>
-          <input type="radio" name="nationalite_francaise" id="nationalite_francaise" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="francaise">
+          <input type="radio" name="nationalite" id="nationalite_francaise" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="francaise">
           <label class="radio-inline" for="nationalite_francaise">Française</label>
-          <input type="radio" name="nationalite_union_europeene" id="nationalite_union_europeene" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="ue">
+          <input type="radio" name="nationalite" id="nationalite_union_europeene" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="ue">
           <label class="radio-inline" for="nationalite_union_europeene">Union Européenne</label>
-          <input type="radio" name="nationalite_autre" id="nationalite_autre" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="autre">
+          <input type="radio" name="nationalite" id="nationalite_autre" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="autre">
           <label class="radio-inline" for="nationalite_autre">Autre</label>
         </fieldset>
         <div ng-if="infoForm.$submitted && !identite.nationalite">
@@ -213,13 +213,13 @@
     <hr>
     <fieldset>
       <legend class="control-label">Si besoin, comment souhaitez-vous être contacté par la MDPH ?</legend>
-      <input type="radio" name="mode_contact_email" id="mode_contact_email" ng-model="identite.mode_contact" value="email">
+      <input type="radio" name="mode_contact" id="mode_contact_email" ng-model="identite.mode_contact" value="email">
       <label class="radio-inline" for="mode_contact_email">E-mail</label>
-      <input type="radio" name="mode_contact_telephone" id="mode_contact_telephone" ng-model="identite.mode_contact" value="telephone">
+      <input type="radio" name="mode_contact" id="mode_contact_telephone" ng-model="identite.mode_contact" value="telephone">
       <label class="radio-inline" for="mode_contact_telephone">Appel telephonique</label>
-      <input type="radio" name="mode_contact_sms" id="mode_contact_sms" ng-model="identite.mode_contact" value="sms">
+      <input type="radio" name="mode_contact" id="mode_contact_sms" ng-model="identite.mode_contact" value="sms">
       <label class="radio-inline" for="mode_contact_sms">SMS</label>
-      <input type="radio" name="mode_contact_courrier" id="mode_contact_courrier" ng-model="identite.mode_contact" value="courrier">
+      <input type="radio" name="mode_contact" id="mode_contact_courrier" ng-model="identite.mode_contact" value="courrier">
       <label class="radio-inline" for="mode_contact_courrier">Courrier</label>
     </fieldset>
   </div>
@@ -233,11 +233,11 @@
   <div class="form-group" ng-if="type === 'beneficiaire'">
     <fieldset>
       <legend class="control-label">Organisme payeur de prestations familiales</legend>
-      <input type="radio" name="prestations_familiales_caf" id="prestations_familiales_caf" ng-model="identite.prestations_familiales" value="caf">
+      <input type="radio" name="prestations_familiales" id="prestations_familiales_caf" ng-model="identite.prestations_familiales" value="caf">
       <label class="radio-inline" for="prestations_familiales_caf">CAF</label>
-      <input type="radio" name="prestations_familiales_msa" id="prestations_familiales_msa" ng-model="identite.prestations_familiales" value="msa">
+      <input type="radio" name="prestations_familiales" id="prestations_familiales_msa" ng-model="identite.prestations_familiales" value="msa">
       <label class="radio-inline" for="prestations_familiales_msa">MSA</label>
-      <input type="radio" name="prestations_familiales_autre" id="prestations_familiales_autre" ng-model="identite.prestations_familiales" value="autre">
+      <input type="radio" name="prestations_familiales" id="prestations_familiales_autre" ng-model="identite.prestations_familiales" value="autre">
       <label class="radio-inline" for="prestations_familiales_autre">Autre</label>
     </fieldset>
   </div>
@@ -251,13 +251,13 @@
   <div class="form-group" ng-if="type === 'beneficiaire'">
     <fieldset>
       <legend class="control-label">Organisme d'assurance maladie</legend>
-      <input type="radio" name="assurance_caf" id="assurance_caf" ng-model="identite.assurance" value="caf">
+      <input type="radio" name="assurance" id="assurance_caf" ng-model="identite.assurance" value="caf">
       <label class="radio-inline" for="assurance_caf">CPAM</label>
-      <input type="radio" name="assurance_msa" id="assurance_msa" ng-model="identite.assurance" value="msa">
+      <input type="radio" name="assurance" id="assurance_msa" ng-model="identite.assurance" value="msa">
       <label class="radio-inline" for="assurance_msa">MSA</label>
-      <input type="radio" name="assurance_rsi" id="assurance_rsi" ng-model="identite.assurance" value="rsi">
+      <input type="radio" name="assurance" id="assurance_rsi" ng-model="identite.assurance" value="rsi">
       <label class="radio-inline" for="assurance_rsi">RSI</label>
-      <input type="radio" name="assurance_autre" id="assurance_autre" ng-model="identite.assurance" value="autre">
+      <input type="radio" name="assurance" id="assurance_autre" ng-model="identite.assurance" value="autre">
       <label class="radio-inline" for="assurance_autre">Autre</label>
     </fieldset>
   </div>
