@@ -2,10 +2,16 @@
     <h1 class="modal-title">Choix du type de document</h1>
 </div>
 <div class="modal-body">
-  <div ng-repeat="category in categories">
+  <div class="input-group">
+    <input class="form-control" type="text" ng-model="query" placeholder="Recherche">
+    </input>
+    <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
+  </div>
+  <hr>
+  <div ng-repeat="category in filterCategories()">
     {{category | documentCategory}}
     <ul>
-        <li ng-repeat="document in category">
+        <li ng-repeat="document in category | filter:query">
             <a ng-click="select(document)">{{ document.label }}</a>
         </li>
     </ul>

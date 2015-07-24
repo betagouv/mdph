@@ -43,8 +43,23 @@ angular.module('impactApp')
       });
     };
   })
-  .controller('ChooseTypeModalInstanceCtrl', function ($scope, $modalInstance, categories) {
+  .controller('ChooseTypeModalInstanceCtrl', function ($scope, $modalInstance, $filter, categories) {
     $scope.categories = categories;
+
+    $scope.filterCategories = function() {
+      if (!$scope.query) {
+        return $scope.categories;
+      }
+
+      var filtered = {};
+      angular.forEach($scope.categories, function(documents, category) {
+        if ($filter('filter')(documents, $scope.query).length > 0) {
+          filtered[category] = documents;
+        }
+      });
+
+      return filtered;
+    };
 
     $scope.select = function(selected) {
       $modalInstance.close(selected);
