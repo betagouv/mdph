@@ -56,14 +56,19 @@ angular.module('impactApp', [
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
-      Auth.isLoggedInAsync(function(loggedIn) {
-        if (toState.authenticate && !loggedIn) {
-          $rootScope.returnToState = toState;
-          $rootScope.returnToStateParams = toStateParams;
+      if (toState.redirectTo) {
+        event.preventDefault();
+        $state.go(toState.redirectTo, toStateParams);
+      } else {
+        Auth.isLoggedInAsync(function(loggedIn) {
+          if (toState.authenticate && !loggedIn) {
+            $rootScope.returnToState = toState;
+            $rootScope.returnToStateParams = toStateParams;
 
-          event.preventDefault();
-          $state.go('login');
-        }
-      });
+            event.preventDefault();
+            $state.go('login');
+          }
+        });
+      }
     });
   });

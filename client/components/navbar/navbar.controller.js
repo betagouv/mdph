@@ -17,20 +17,19 @@ angular.module('impactApp')
     $scope.showNotifications = false;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
-    function queryNotifications(user) {
-      User.queryNotifications({id: user._id}, function(notifications) {
-         $scope.notifications = notifications;
-      });
-    }
-
-    var user = $scope.getCurrentUser();
-    if (user.$resolved === false) {
-      Auth.getCurrentUser().$promise.then(function(data) {
-        queryNotifications(data);
-      });
-    } else {
-      queryNotifications(user);
-    }
+    // function queryNotifications(user) {
+    //   User.queryNotifications({id: user._id}, function(notifications) {
+    //      $scope.notifications = notifications;
+    //   });
+    // }
+    // var user = $scope.getCurrentUser();
+    // if (user.$resolved === false) {
+    //   Auth.getCurrentUser().$promise.then(function(data) {
+    //     queryNotifications(data);
+    //   });
+    // } else {
+    //   queryNotifications(user);
+    // }
 
     angular.element(document).ready(function() {
       $timeout(function() {

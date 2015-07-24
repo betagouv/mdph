@@ -30,6 +30,9 @@ $disabled-blue: lighten($light-blue, 30%);
 /**
  * App-wide Styles
  */
+ body {
+  background-color: whitesmoke;
+ }
 
 .browsehappy {
   position: absolute;
@@ -68,13 +71,13 @@ $disabled-blue: lighten($light-blue, 30%);
 }
 
 .banner {
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    color: $light-white;
-    background: $light-blue;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  color: $light-white;
+  background: $light-blue;
 }
 
 .row.push-down {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .container-smoke {
@@ -83,9 +86,12 @@ $disabled-blue: lighten($light-blue, 30%);
   min-height: 600px;
 }
 
+hr {
+  border-color: #F8F8F8;
+}
+
 // Component styles are injected through grunt
 // injector
-@import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'apropos/apropos.scss';
 @import 'choix_mdph/choix_mdph.scss';
@@ -95,16 +101,21 @@ $disabled-blue: lighten($light-blue, 30%);
 @import 'dashboard/requests/detail/pre_evaluation/pre_evaluation.scss';
 @import 'dashboard/users/partenaires/edit.scss';
 @import 'demande/demande.scss';
-@import 'demande/section/identites/identites.scss';
+@import 'demande/header/header.scss';
+@import 'demande/steps/documents/documents.scss';
+@import 'demande/steps/envoi/envoi.scss';
+@import 'demande/steps/obligatoires/identites/identites.scss';
+@import 'demande/steps/steps.scss';
 @import 'espace_perso/liste_demandes/liste_demandes.scss';
 @import 'espace_perso/mon_compte/mon_compte.scss';
 @import 'main/main.scss';
+@import 'partenaire/partenaire.scss';
 @import 'partenaire/pj/pj.scss';
 @import 'stats/stats.scss';
 @import 'identity-card/identity-card.scss';
 @import 'identity-form/identity-form.scss';
 @import 'keyword-input/keyword-input.scss';
-@import 'modal/login.scss';
+@import 'login/login.scss';
 @import 'nav-section/nav-section.scss';
 @import 'nav-steps/nav-steps.scss';
 @import 'navbar/navbar.scss';

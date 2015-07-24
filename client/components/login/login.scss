@@ -1,0 +1,38 @@
+.login-view {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1.3em;
+  }
+
+  max-width: 768px;
+  margin: 0 auto;
+
+  form {
+    background-color: whitesmoke;
+    padding: 20px;
+    border: 1px solid #eeeeee;
+  }
+
+  p.signin-option {
+    margin-top: 14px;
+    background-color: whitesmoke;
+    padding: 20px;
+    border: 1px solid #eeeeee;
+    text-align: right;
+  }
+}
+
+.login-view-white {
+  @extend .login-view;
+
+  form {
+    background-color: white;
+  }
+  p.signin-option {
+    background-color: white;
+  }
+}

@@ -1,0 +1,28 @@
+<ui-view>
+  <div class="step-body-head">
+    <h2>{{step.desc}}</h2>
+  </div>
+  <div class="category">
+    <a class="section" ui-sref=".{{section.id}}" ng-repeat="section in stepSections">
+      <div class="section-body">
+        <div class="section-body-main">
+          <i class="fa fa-active fa-chevron-circle-right"></i>
+          <div class="section-body-content">
+            <h3>{{section.label}}</h3>
+            <p>{{section.desc}}</p>
+          </div>
+        </div>
+        <section-progress-bar completion="getCompletion(section.id, request)"></section-progress-bar>
+      </div>
+    </a>
+  </div>
+  <div class="section-footer">
+    <a ng-if="step.previous" ui-sref="^.{{step.previous.id}}">
+      <i class="fa fa-long-arrow-left"></i>  {{step.previous.label}}
+    </a>
+    <a ng-if="step.next" ui-sref="^.{{step.next.id}}">
+      {{step.next.label}} <i class="fa fa-long-arrow-right"></i>
+    </a>
+  </div>
+
+</ui-view>

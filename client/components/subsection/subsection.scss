@@ -1,17 +1,18 @@
 .sub-sections {
   margin: 0;
   padding: 0;
-  float: right;
+  height: 32px;
 }
 
 .nav-section {
-  margin-right: 7px;
   position: relative;
   display: inline-block;
   font-weight: 200;
   font-size: 12px;
+  color: $light-blue;
 
   div {
+    margin-right: 7px;
     position: relative;
     display: block;
     vertical-align: middle;
@@ -31,6 +32,7 @@
     }
 
     &.last {
+      margin-right: 0;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }
@@ -48,7 +50,7 @@
     }
 
     &.active.showBefore:before {
-      border-color: darken(white, 10%);
+      border-color: darken(whitesmoke, 10%);
       border-left:16px solid transparent;
     }
 
@@ -65,11 +67,11 @@
     }
 
     &.active:after {
-      border-left:16px solid darken(white, 10%);
+      border-left:16px solid darken(whitesmoke, 10%);
     }
 
     &.active {
-      background-color: darken(white, 10%);
+      background-color: darken(whitesmoke, 10%);
     }
   }
 }

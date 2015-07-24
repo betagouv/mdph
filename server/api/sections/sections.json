@@ -1,7 +1,6 @@
 [
   {
     "id": "identites",
-    "sref": ".identites",
     "label": "Identités",
     "desc": "Individus et organismes concernés par la demande",
     "group": "obligatoire",
@@ -9,15 +8,14 @@
   },
   {
     "id": "situations_particulieres",
-    "sref": ".situations_particulieres.detail",
     "label": "Situations particulières",
     "desc": "Si vous vous trouvez dans une situation nécessitant une attention particulière",
     "group": "obligatoire",
     "questions": {
       "urgences": {
         "model": "urgences",
-        "titleDefault": "Merci de cocher si vous êtes dans l'une des situations suivantes :",
-        "titleRep": "Merci de cocher si <%= name %> est dans l'une des situations suivantes :",
+        "titleDefault": "Êtes-vous dans l'une des situations suivantes ?",
+        "titleRep": "<%= name %> est-<%= pronoun %> dans l'une des situations suivantes :",
         "type": "checkbox",
         "answers": [
           {
@@ -95,22 +93,21 @@
   },
   {
     "id": "vie_quotidienne",
-    "sref": ".vie_quotidienne.situation.vie_famille",
     "label": "Vie quotidienne",
-    "desc": "",
+    "desc": "Renseignements sur votre vie quotidienne",
     "group": "obligatoire",
     "trajectoire": true,
     "subSections": [
       {
-        "include": "departement.demande.vie_quotidienne.situation.**",
+        "include": "**.situation.**",
         "label": "Situation"
       },
       {
-        "include": "departement.demande.vie_quotidienne.vos_besoins.**",
+        "include": "**.vos_besoins.**",
         "label": "Besoins"
       },
       {
-        "include": "departement.demande.vie_quotidienne.vos_attentes.**",
+        "include": "**.vos_attentes.**",
         "label": "Attentes"
       }
     ],
@@ -380,8 +377,8 @@
       },
       "retraite": {
         "model": "retraite",
-        "titleDefault": "Vous êtes à la retraite :",
-        "titleRep": "<%= pronoun %> est à la retraite :",
+        "titleDefault": "Êtes-vous à la retraite ?",
+        "titleRep": "Est-<%= pronoun %> à la retraite ?",
         "type": "radio",
         "answers": [
           {
@@ -655,29 +652,28 @@
       },
       "autresRenseignements": {
         "model": "autresRenseignements",
-        "titleDefault": "Vous avez d'autres renseignements importants (situation, attentes, projets) concernant votre vie quotidienne, indiquez-les ici:",
+        "titleDefault": "Avez-vous d'autres renseignements (situation, attentes, projets) concernant votre vie quotidienne ?",
         "type": "text"
       }
     }
   },
   {
     "id": "vie_scolaire",
-    "sref": ".vie_scolaire.situation.condition",
     "label": "Vie scolaire ou étudiante",
     "desc": "Si votre demande concerne votre scolarité ou vie étudiante",
     "group": "complementaire",
     "trajectoire": true,
     "subSections": [
       {
-        "include": "departement.demande.vie_scolaire.situation.**",
+        "include": "**.situation.**",
         "label": "Situation"
       },
       {
-        "include": "departement.demande.vie_scolaire.vos_besoins.**",
+        "include": "**.vos_besoins.**",
         "label": "Besoins"
       },
       {
-        "include": "departement.demande.vie_scolaire.vos_attentes.**",
+        "include": "**.vos_attentes.**",
         "label": "Attentes"
       }
     ],
@@ -1090,22 +1086,21 @@
   },
   {
     "id": "vie_au_travail",
-    "sref": ".vie_au_travail.situation_professionnelle.condition",
     "label": "Vie au travail",
     "desc": "Si votre demande concerne votre projet professionnel",
     "group": "complementaire",
     "trajectoire": true,
     "subSections": [
       {
-        "include": "departement.demande.vie_au_travail.situation_professionnelle.**",
+        "include": "**.situation_professionnelle.**",
         "label": "Situation professionnelle"
       },
       {
-        "include": "departement.demande.vie_au_travail.parcours_professionnel.**",
+        "include": "**.parcours_professionnel.**",
         "label": "Parcours professionnel"
       },
       {
-        "include": "departement.demande.vie_au_travail.projet_professionnel.**",
+        "include": "**.projet_professionnel.**",
         "label": "Projet professionnel"
       }
     ],
@@ -1599,53 +1594,18 @@
     }
   },
   {
-    "id": "renouvellement",
-    "sref": ".renouvellement.evolution",
-    "label": "Renouvellement",
-    "desc": "Vous avez déjà un dossier dans une autre MDPH et souhaitez nous indiquer de quels droits vous bénéficiez actuellement",
-    "group": "complements",
-    "hideForFirstRequest": true,
-    "questions": {
-      "evolution": {
-        "titleRep": "Comment la situation a-t-elle évolué depuis sa dernière demande ?",
-        "titleDefault": "Comment votre situation a-t-elle évolué depuis votre dernière demande ?",
-        "model": "evolution",
-        "type": "radio",
-        "answers": [
-          {
-            "labelRep": "Ma situation médicale, administrative, familiale ou mon projet a changé",
-            "label": "Sa situation médicale, administrative, familiale ou son projet a changé",
-            "model": "changement"
-          },
-          {
-            "labelRep": "Je demande le renouvellement de mes droits à l’identique, car j’estime que ma situation n’a pas changé",
-            "label": "Je demande le renouvellement de mes droits à l’identique, car j’estime que ma situation n’a pas changé",
-            "model": "stable"
-          }
-        ]
-      },
-      "finDroits": {
-        "model": "finDroits",
-        "titleDefault": "De quelles prestations bénéficiez-vous actuellement ?",
-        "titleRep": "De quelles prestations bénéficie-t-<%= pronoun %> actuellement ?",
-        "type": "checkbox"
-      }
-    }
-  },
-  {
     "id": "aidant",
-    "sref": ".aidant.situation.nom_aidant",
     "label": "Vie de votre aidant familial",
     "desc": "Si votre aidant familial (la personne qui s’occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins",
-    "group": "complements",
+    "group": "complementaire",
     "trajectoire": true,
     "subSections": [
       {
-        "include": "departement.demande.aidant.situation.**",
+        "include": "**.situation.**",
         "label": "Situation"
       },
       {
-        "include": "departement.demande.aidant.vos_attentes.**",
+        "include": "**.vos_attentes.**",
         "label": "Attentes"
       }
     ],
@@ -1968,7 +1928,6 @@
   },
   {
     "id": "documents",
-    "sref": ".documents",
     "label": "Documents liés à votre demande",
     "desc": "Pour nous transmettre les documents justificatifs obligatoires et complémentaires",
     "group": "documents",

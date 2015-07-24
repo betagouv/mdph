@@ -39,16 +39,21 @@
           </div>
         </td>
       </tr>
+      <tr ng-if="model.listeDiplomes.length === 0">
+        <td colspan=3><em>Pas de diplôme renseigné</em></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="text-right">
+          <button class="btn btn-default" ng-click="retirerDiplome()" aria-label="Retirer le dernier diplôme" ng-if="model.listeDiplomes.length > 0">
+            <i class="fa fa-minus"></i> Retirer le dernier diplôme
+          </button>
+          <button class="btn btn-success" ng-click="ajouterDiplome()" aria-label="Ajouter un diplôme">
+            <i class="fa fa-plus"></i> Ajouter un diplôme
+          </button>
+        </td>
     </tbody>
   </table>
-  <div class="row">
-    <div class="col-md-offset-2 col-md-4">
-      <button aria-label="Retirer le dernier diplôme" class="btn btn-default btn-block" ng-click="retirerDiplome()">-</button>
-    </div>
-    <div class="col-md-4">
-      <button aria-label="Ajouter un diplôme" class="btn btn-default btn-block" ng-click="ajouterDiplome()">+</button>
-    </div><br>
-  </div>
+
   <nav-steps ng-hide="hideSteps"></nav-steps>
 
 </form>

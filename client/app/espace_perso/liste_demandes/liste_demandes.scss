@@ -7,6 +7,22 @@
   }
 
   .fa {
-    font-size: 24px;
+    font-size: 2em;
+  }
+
+  .list-group-item {
+    display: flex;
+    align-items: center;
+
+    .fa {
+      color: lighten($lighter-blue, 35%);
+      margin-right: 20px;
+    }
+
+    &:hover {
+      .fa {
+        color: lighten($lighter-blue, 5%);
+      }
+    }
   }
 }

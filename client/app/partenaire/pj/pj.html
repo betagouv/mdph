@@ -1,53 +1,49 @@
-<div class="container">
+<div class="partenaire-view">
+  <h1>Demande {{request.shortId}}</h1>
+  <div class="alert alert-info">
+    <p>
+      <strong>Demandeur :</strong> {{request.user.name}} <br>
+      <strong>MDPH :</strong> {{mdph.name}}  <br>
+      <strong>Demande faite le :</strong> {{request.createdAt | date : format : timezone}}  <br>
+    </p>
+  </div>
+
+
   <form name="documentForm" id="form-document" ng-submit="envoiConfirmation(documentForm)" novalidate>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <h1>Demande {{request.shortId}}</h1>
-        </div>
-
-        <p>
-          <strong>Demandeur :</strong> {{request.user.name}} <br>
-          <strong>MDPH :</strong> {{mdph.name}}  <br>
-          <strong>Demande faite le :</strong> {{request.createdAt | date : format : timezone}}  <br>
-        </p>
-      </div>
-
-      <div class="panel-body">
-        <div class="form-group" ng-class="{'has-error': documentForm.$submitted && documentForm.selectType.$error.required}">
-          <label for="selectType">Type</label>
-          <select name="selectType" class="form-control" ng-options="documentType as documentType.label for documentType in documentTypes track by documentType.id" ng-model="selectedType" required></select>
-          <div ng-messages="documentForm.selectType.$error" ng-if="documentForm.$submitted">
-            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-          </div>
-        </div>
-
-        <div class="form-group required" ng-if="selectedType && selectedType.type === 'autre'" ng-class="{'has-error': documentForm.documentTitle.$invalid && documentForm.$submitted}">
-          <label for="documentTitle" class="control-label">Document ajouté</label>
-          <input id="documentTitle" type="text" name="documentTitle" class="form-control" ng-model="label" ng-minlength="1" required>
-          <div ng-messages="documentForm.documentTitle.$error" ng-if="documentForm.$submitted">
-            <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-            <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
-          </div>
-        </div>
-
-
-        <div class="form-group" ng-class="{'has-error': documentForm.$submitted && files.length !== 1}">
-          <label for="inputFile">Choisir le fichier</label>
-          <div class="clearfix"></div>
-          <span ngf-select ng-model="files" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
-            <i class="fa fa-upload"></i> Choisir un fichier</span>
-          </div>
-          <span ng-repeat="file in files">{{file.name}}</span>
-          <p class="help-block" ng-if="documentForm.$submitted && files.length !== 1">Veuillez sélectionner un fichier</p>
-        </div>
-      </div>
-
-      <div class="panel-footer">
-        <button type="submit" class="btn btn-primary pull-right">Ajouter ce fichier</button>
-        <div class="clearfix"></div>
+    <div class="form-group" ng-class="{'has-error': documentForm.$submitted && documentForm.selectType.$error.required}">
+      <label for="selectType">Type</label>
+      <select name="selectType" class="form-control" ng-options="documentType as documentType.label for documentType in documentTypes track by documentType.id" ng-model="selectedType" required></select>
+      <div ng-messages="documentForm.selectType.$error" ng-if="documentForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
       </div>
     </div>
+
+    <div class="form-group required" ng-if="selectedType && selectedType.type === 'autre'" ng-class="{'has-error': documentForm.documentTitle.$invalid && documentForm.$submitted}">
+      <label for="documentTitle" class="control-label">Document ajouté</label>
+      <input id="documentTitle" type="text" name="documentTitle" class="form-control" ng-model="label" ng-minlength="1" required>
+      <div ng-messages="documentForm.documentTitle.$error" ng-if="documentForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': documentForm.$submitted && files.length !== 1}">
+      <label for="inputFile">Choisir le fichier</label>
+      <div class="clearfix"></div>
+      <span ngf-select ng-model="files" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
+        <i class="fa fa-upload"></i> Choisir un fichier</span>
+    </div>
+
+    <div ng-repeat="file in files">{{file.name}}</div>
+    <div class="alert alert-danger" ng-if="documentForm.$submitted && files.length !== 1">
+      <p>Veuillez sélectionner un fichier</p>
+    </div>
+
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary btn-lg">Ajouter ce fichier</button>
+    </div>
+
   </form>
 
+  </div>
 </div>

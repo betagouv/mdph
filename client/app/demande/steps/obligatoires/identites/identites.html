@@ -1,0 +1,79 @@
+<div class="step-body-head">
+  <h2>{{section.label}}</h2>
+</div>
+
+<div class="step-body-content">
+  <ui-view>
+    <h2>Identité du bénéficiaire</h2>
+    <div class="row-type-identite">
+      <div class="col-sm-3">
+        <identity-card
+          title="'Bénéficiaire'"
+          type="'beneficiaire'"
+          section-model="sectionModel"></identity-card>
+      </div>
+    </div>
+
+    <h2>Autorité parentale ou délégation d'identité</h2>
+    <div class="row-type-identite">
+      <div class="col-sm-3">
+        <identity-card
+          title="'Parent 1'"
+          type="'autorite'"
+          current-id="'parent1'"
+          section-model="sectionModel"></identity-card>
+      </div>
+
+      <div class="col-sm-3">
+        <identity-card
+          title="'Parent 2'"
+          type="'autorite'"
+          current-id="'parent2'"
+          section-model="sectionModel"></identity-card>
+      </div>
+
+      <div class="col-sm-3">
+        <identity-card
+          title="'Autre (tuteur/curateur,...)'"
+          type="'autorite'"
+          current-id="'autre'"
+          section-model="sectionModel"></identity-card>
+      </div>
+    </div>
+    <p><em>En cas de séparation des parents, joindre une photocopie du jugement attestant des modalités d'exercice de l'autorité parentale.</em></p>
+
+    <h2>Personne vous aidant dans votre démarche de demande</h2>
+    <div class="row-type-identite">
+      <div class="col-sm-3" ng-repeat="(idx, aidant) in sectionModel.aidantDemarche">
+        <identity-card
+          title="aidant.type"
+          type="'aidantDemarche'"
+          current-id="idx"
+          section-model="sectionModel"></identity-card>
+      </div>
+
+      <div class="col-sm-3">
+        <identity-card
+          title="'Ajouter une personne'"
+          type="'aidantDemarche'"
+          current-id="sectionModel.aidantDemarche.length"
+          section-model="sectionModel"></identity-card>
+      </div>
+    </div>
+
+    <div class="row nav-steps">
+      <div class="col-sm-2 col-sm-offset-10">
+        <button class="btn btn-block btn-success" type="submit" ng-click="checkIdentities()">
+          Valider
+        </button>
+      </div>
+    </div>
+
+    <div ng-if="error.show" class="error-box-message">
+      <ul>
+        <li>{{error.message}}</li>
+      </ul>
+    </div>
+
+  </ui-view>
+</div>

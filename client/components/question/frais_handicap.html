@@ -1,6 +1,7 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <em>{{question.placeholder}}</em>
+
   <table aria-label="Liste des frais liés au handicap" class="table my-table-striped">
     <thead>
       <th id="frais">Frais engagés</th>
@@ -27,16 +28,23 @@
           <input type="text" class="form-control" ng-model="frais.detail" placeholder="Précisions" aria-labelledby="precisions">
         </td>
       </tr>
+      <tr>
+        <td colspan="5" class="text-right">
+          <button class="btn btn-default" ng-click="retirerFrais()" aria-label="Supprimer le dernier frais" ng-if="model.listeFrais.length > 1">
+            <i class="fa fa-minus"></i> Supprimer le dernier frais
+          </button>
+          <button class="btn btn-success" ng-click="ajouterFrais()" aria-label="Ajouter un frais">
+            <i class="fa fa-plus"></i> Ajouter un frais
+          </button>
+        </td>
+      </tr>
     </tbody>
   </table>
-  <div class="row">
-    <div class="col-md-offset-2 col-md-4">
-      <button class="btn btn-default btn-block" ng-click="retirerFrais()" aria-label="Supprimer le dernier frais">-</button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-default btn-block" ng-click="ajouterFrais()" aria-label="Ajouter un frais">+</button>
-    </div><br>
+
+  <div>
+
   </div>
+
   <nav-steps ng-hide="hideSteps"></nav-steps>
 
 </form>

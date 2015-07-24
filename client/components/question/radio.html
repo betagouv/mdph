@@ -21,8 +21,10 @@
     </ul>
   </fieldset>
 
-  <div role="alert" ng-if="questionForm.showError && questionForm.$invalid" class="text-danger text-right">
-    <i class="fa fa-warning"></i> Veuillez sélectionner une des options ou préciser votre réponse
+  <div role="alert" ng-if="questionForm.showError && questionForm.$invalid" class="alert alert-danger">
+    <ul>
+      <li>Veuillez sélectionner une des options ou préciser votre réponse</li>
+    </ul>
   </div>
 
   <nav-steps transclude ng-hide="hideSteps" hide-back="hideBack"></nav-steps>

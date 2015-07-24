@@ -1,7 +1,7 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <div class="row">
-    <div class="list-group col-sm-offset-1 col-sm-10 cv">
+    <div class="list-group col-sm-offset-1 col-sm-10 cv" ng-if="experiences.length > 0">
       <div ng-repeat="experience in experiences | orderBy:'-debut'" class="list-group-item row">
         <a ng-click="modifierExperience(experience)" class="col-md-11">
           <span class="list-group-item-heading col-md-6">
@@ -98,13 +98,13 @@
         <button class="btn btn-default btn-block" ng-click="annuler()">Annuler</button>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-default btn-block" ng-click="validerExperience(questionForm)">Valider l'expérience</button>
+        <button class="btn btn-success btn-block" ng-click="validerExperience(questionForm)">Valider l'expérience</button>
       </div>
     </div>
 
-    <div class="col-md-offset-4 col-md-4" ng-if="!ajoutEnCours">
+    <div class="text-center" ng-if="!ajoutEnCours">
 
-      <button class="btn btn-default btn-block" ng-click="ajouterExperience()">Ajouter une expérience</button>
+      <button class="btn btn-success btn-lg" ng-click="ajouterExperience()">Ajouter une expérience</button>
     </div>
   </div>
   <nav-steps ng-if="!ajoutEnCours" ng-hide="hideSteps"></nav-steps>

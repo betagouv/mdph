@@ -2,19 +2,21 @@
   <label class="col-md-8 control-label">{{answer.detailLabel || 'Précisez'}}</label>
   <div class="col-md-2">
     <button
-        class="btn btn-default btn-block"
-        ng-model="sectionModel[answer.detailModel]"
-        btn-radio="true"
-        ng-required="!sectionModel[answer.detailModel]">
+      type="button"
+      class="btn btn-default btn-block"
+      ng-model="sectionModel[answer.detailModel]"
+      btn-radio="true"
+      ng-required="!sectionModel[answer.detailModel]">
         Oui
     </button>
   </div>
   <div class="col-md-2">
     <button
-        class="btn btn-default btn-block"
-        ng-model="sectionModel[answer.detailModel]"
-        btn-radio="false"
-        ng-required="!sectionModel[answer.detailModel]">
+      type="button"
+      class="btn btn-default btn-block"
+      ng-model="sectionModel[answer.detailModel]"
+      btn-radio="false"
+      ng-required="!sectionModel[answer.detailModel]">
         Non
     </button>
   </div>

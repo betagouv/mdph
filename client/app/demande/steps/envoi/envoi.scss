@@ -1,0 +1,10 @@
+h3.statut-title {
+  font-size: 1.5em;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.error-envoi {
+  @extend .alert, .alert-danger;
+  margin-top: 15px;
+}
