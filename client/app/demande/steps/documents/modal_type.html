@@ -7,7 +7,7 @@
     </input>
     <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
   </div>
-  <hr>
+  <br>
   <div ng-repeat="category in filterCategories()">
     {{category | documentCategory}}
     <ul>
