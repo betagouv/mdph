@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 node_js:
   - '0.10'
@@ -10,4 +11,3 @@ services: mongodb
 before_install:
   - sudo chown -R $USER /usr/local
   - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
-sudo: required
