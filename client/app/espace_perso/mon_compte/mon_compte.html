@@ -1,6 +1,15 @@
 <div class="container" id="mon-compte">
 
   <div class="row">
+    <div class="col-md-6" ng-if="user.unconfirmed">
+      <div class="panel panel-danger">
+        <div class="panel-heading"><h1>En attente de validation</h1></div>
+        <div class="panel-body">
+          <p>Vous n'avez pas encore confirmé votre compte. Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail.</p>
+          <p>Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({userId: user._id})">cliquez ici pour le renvoyer</a>.</p>
+        </div>
+      </div>
+    </div>
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
