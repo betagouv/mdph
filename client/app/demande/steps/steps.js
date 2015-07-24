@@ -109,9 +109,12 @@ angular.module('impactApp')
               }
             }
           },
-          // 'status@departement.demande.documents': {
-          //   templateUrl: 'app/demande/steps/documents/envoi/status/status.html'
-          // }
+          'en_cours@departement.demande.envoi': {
+            templateUrl: 'app/demande/steps/envoi/en_cours/en_cours.html'
+          },
+          'emise@departement.demande.envoi': {
+            templateUrl: 'app/demande/steps/envoi/emise/emise.html'
+          }
         }
       }).state('departement.demande.settings', {
         url: '/parametres',

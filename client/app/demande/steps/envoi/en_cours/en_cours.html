@@ -1,0 +1,35 @@
+<h2>Statut des parties obligatoires de votre demande</h2>
+<h3 class="statut-title">
+  <a ui-sref="departement.demande.{{stepObligatoire.id}}"> {{stepObligatoire.label}}</a>
+  <span class="text-success" ng-if="statusSections"><i class="fa fa-check"></i></span>
+  <span class="text-danger" ng-if="!statusSections"><i class="fa fa-warning"></i></span>
+</h3>
+{{nbSections}} sections complétées / {{totalSections}} sections obligatoires
+
+<h3 class="statut-title">
+  <a ui-sref="departement.demande.{{stepDocuments.id}}">{{stepDocuments.label}}</a>
+  <span class="text-success" ng-if="statusDocuments"><i class="fa fa-check"></i></span>
+  <span class="text-danger" ng-if="!statusDocuments"><i class="fa fa-warning"></i></span>
+</h3>
+{{nbDocuments}} documents liés / {{totalDocuments}} documents obligatoires
+
+<div ng-if="user.unconfirmed">
+  <h3 class="statut-title">
+    <a ui-sref="espace_perso.mon_compte">Votre compte</a>
+    <span class="text-danger"><i class="fa fa-warning"></i></span>
+  </h3>
+  <div>
+    Vous n'avez pas encore confirmé votre compte. Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail à l'adresse <em>{{user.email}}</em> <br>
+    Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({userId: user._id})">cliquez ici pour le renvoyer</a>.
+  </div>
+</div>
+
+<div class="text-right">
+  <button class="btn btn-primary btn-lg" ng-click="envoyer()">
+    <i class="fa fa-envelope"></i> Envoyer ma demande
+  </button>
+</div>
+
+<div class="error-envoi" ng-if="showError">
+  <i class="fa fa-warning"></i> Vous ne pouvez pas envoyer votre demande dans cet état.
+</div>
