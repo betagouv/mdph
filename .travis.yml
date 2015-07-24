@@ -8,6 +8,12 @@ before_script:
   - gem install sass
   - bower install
 services: mongodb
-before_install:
-  - sudo chown -R $USER /usr/local
-  - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+addons:
+  apt:
+    install:
+      - libcairo2-dev
+      - libjpeg8-dev
+      - libpango1.0-dev
+      - libgif-dev
+      - build-essential
+      - g++
