@@ -2,23 +2,11 @@
 <div>
   <p>Vous avez remplis cette demande pour un tiers et souhaitez la transférer sur son compte. Merci de nous indiquer son email.</p>
 
-  <div ng-if="knownUsers">
+  <div ng-if="knownUsers.length > 0">
     <p>Adresses renseignées dans votre demande:</p>
     <ul>
-      <li ng-if="knownUsers.beneficiaire">
-        Bénéficiaire: <a title="Sélectionner {{knownUsers.beneficiaire.nom}} {{knownUsers.beneficiaire.prenom}}" ng-click="select(knownUsers.beneficiaire.email)">{{knownUsers.beneficiaire.nom}} {{knownUsers.beneficiaire.prenom}} - {{knownUsers.beneficiaire.email}}</a>
-      </li>
-      <li ng-if="knownUsers.autorite.parent1">
-        Parent 1: <a title="Sélectionner {{knownUsers.autorite.parent1.nom}} {{knownUsers.autorite.parent1.prenom}}" ng-click="select(knownUsers.autorite.parent1.email)">{{knownUsers.autorite.parent1.nom}} {{knownUsers.autorite.parent1.prenom}} - {{knownUsers.autorite.parent1.email}}</a>
-      </li>
-      <li ng-if="knownUsers.autorite.parent2">
-        Parent 2: <a title="Sélectionner {{knownUsers.autorite.parent2.nom}} {{knownUsers.autorite.parent2.prenom}}" ng-click="select(knownUsers.autorite.parent2.email)">{{knownUsers.autorite.parent2.nom}} {{knownUsers.autorite.parent2.prenom}} - {{knownUsers.autorite.parent2.email}}</a>
-      </li>
-      <li ng-if="knownUsers.autorite.autre">
-        Autre ({{knownUsers.autorite.autre.type}}): <a title="Sélectionner {{knownUsers.autorite.autre.nom}} {{knownUsers.autorite.autre.prenom}}" ng-click="select(knownUsers.autorite.autre.email)">{{knownUsers.autorite.autre.nom}} {{knownUsers.autorite.autre.prenom}} - {{knownUsers.autorite.autre.email}}</a>
-      </li>
-      <li ng-if="knownUsers.aidantDemarche" ng-repeat="aidant in knownUsers.aidantDemarche">
-        Aidant ({{aidant.type}}): <a title="Sélectionner {{aidant.nom}} {{aidant.prenom}}" ng-click="select(aidant.email)">{{aidant.nom}} {{aidant.prenom}} - {{aidant.email}}</a>
+      <li ng-repeat="user in knownUsers" ng-if="user.email">
+        <a title="Sélectionner {{user.nom}} {{user.prenom}}" ng-click="select(user.email)">{{user.nom}} {{user.prenom}} - {{user.email}}</a>
       </li>
     </ul>
   </div>

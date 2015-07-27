@@ -120,7 +120,7 @@ angular.module('impactApp')
         url: '/parametres',
         resolve: {
           knownUsers: function(request) {
-            return request.formAnswers.identites;
+            return _.values(request.formAnswers.identites);
           }
         },
         views: {
