@@ -71,6 +71,7 @@ angular.module('impactApp')
             }
           }
         },
+        redirectTo: 'departement.demande.obligatoire',
         views: {
           '@': {
             templateUrl: 'app/demande/demande.html',
