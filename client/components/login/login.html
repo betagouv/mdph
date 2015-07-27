@@ -4,8 +4,8 @@
   <div ng-if="!signin">
     <form class="form" name="signinForm" ng-submit="register(signinForm)" novalidate>
       <div class="form-group" ng-class="{ 'has-error': signinForm.name.$invalid && submitted }">
-        <label>Nom</label>
-        <input type="text" name="name" class="form-control" ng-model="user.name"
+        <label for="signup-name">Nom</label>
+        <input id="signup-name" type="text" name="name" class="form-control" ng-model="user.name"
                required/>
         <p class="help-block" ng-show="signinForm.name.$error.required && submitted">
           Veuillez entrer un nom.
@@ -13,8 +13,8 @@
       </div>
 
       <div class="form-group" ng-class="{ 'has-error': signinForm.email.$invalid && submitted }">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" ng-model="user.email"
+        <label for="signup-email">Email</label>
+        <input id="signup-email" type="email" name="email" class="form-control" ng-model="user.email"
                ng-change="resetMongooseError(form, 'email')"
                required
                mongoose-error/>
@@ -30,9 +30,9 @@
       </div>
 
       <div class="form-group" ng-class="{ 'has-error': signinForm.password.$invalid && submitted }">
-        <label>Mot de passe</label>
+        <label for="signup-password">Mot de passe</label>
 
-        <input id="password" type="{{inputType}}" name="password"
+        <input id="signup-password" type="{{inputType}}" name="password"
           class="form-control" ng-model="user.password" ng-minlength="8" required mongoose-error>
 
         <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
@@ -62,8 +62,8 @@
     <form class="form" name="signupForm" ng-submit="login(signupForm)" novalidate>
 
       <div class="form-group" ng-class="{'has-error': signupForm.email.$invalid && signupForm.$submitted}">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" ng-model="user.email" required>
+        <label for="login-email">Email</label>
+        <input id="login-email" type="email" name="email" class="form-control" ng-model="user.email" required>
 
         <div ng-messages="signupForm.email.$error" ng-if="signupForm.$submitted">
           <p class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</p>
@@ -72,8 +72,8 @@
       </div>
 
       <div class="form-group" ng-class="{'has-error': signupForm.password.$invalid && signupForm.$submitted}">
-        <label>Mot de passe</label>
-        <input type="password" name="password" class="form-control" ng-model="user.password" required>
+        <label for="login-password">Mot de passe</label>
+        <input id="login-password" type="password" name="password" class="form-control" ng-model="user.password" required>
 
         <div ng-messages="signupForm.password.$error" ng-if="signupForm.$submitted">
           <p class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</p>
