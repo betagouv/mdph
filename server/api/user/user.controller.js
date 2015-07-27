@@ -224,7 +224,7 @@ exports.confirmMail = function(req, res) {
     if (!user) return res.sendStatus(404);
     if (!req.params.secret) return res.sendStatus(400);
     if (req.params.secret !== user.newMailToken) return res.sendStatus(400);
-    if (user.unconfirmed = false) return res.sendStatus(304);
+    if (user.unconfirmed === false) return res.sendStatus(304);
 
     user.unconfirmed = false;
     user.save(function(err) {
