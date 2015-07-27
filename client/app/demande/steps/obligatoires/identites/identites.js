@@ -29,8 +29,9 @@ angular.module('impactApp')
               if (form.$invalid) {
                 form.showError = true;
               } else {
-                IdentiteService.mergeModifications(type, sectionModel, currentId, tempIdentite);
-                $state.go('^', {}, {reload: true});
+                IdentiteService.mergeModifications(type, sectionModel, currentId, tempIdentite, function() {
+                  $state.go('^');
+                });
               }
             };
           },

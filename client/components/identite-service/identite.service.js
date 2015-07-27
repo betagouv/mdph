@@ -50,7 +50,7 @@ angular.module('impactApp')
             return  sectionModel.aidantDemarche[currentId] || {};
         }
       },
-      mergeModifications: function(type, sectionModel, currentId, tempIdentite) {
+      mergeModifications: function(type, sectionModel, currentId, tempIdentite, done) {
         switch (type) {
           case 'beneficiaire':
             sectionModel.beneficiaire = tempIdentite;
@@ -66,6 +66,7 @@ angular.module('impactApp')
             }
             break;
         }
+        done();
       }
     };
   });
