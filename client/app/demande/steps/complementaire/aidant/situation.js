@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
 
     var index = 'departement.demande.complementaire.aidant.situation';
 
@@ -21,6 +21,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'nomAidant', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.date_naissance_aidant');
@@ -36,6 +37,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'dateNaissanceAidant', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.lien');
@@ -51,6 +53,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'lien', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.vie');
@@ -66,6 +69,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'vie', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.emploi');
@@ -81,6 +85,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'emploi', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.nature_aide');
@@ -96,6 +101,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'natureAide', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.dedommagement');
@@ -111,6 +117,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'dedommagement', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.accompagnement');
@@ -126,6 +133,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'accompagnementAidant', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.soutien');
@@ -141,6 +149,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'soutien', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.empechement');
@@ -156,6 +165,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'empechement', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.situation_future');
@@ -171,6 +181,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'situationFuture', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.^.vos_attentes.type_attente');

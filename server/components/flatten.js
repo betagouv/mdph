@@ -1,6 +1,6 @@
 'use strict';
 
- exports.flatten = function (table) {
+exports.flatten = function(table) {
   return reduce('', {}, table);
 };
 
@@ -11,11 +11,11 @@ function reduceArray(path, accumulator, table) {
     var index = 0;
 
     while (index < length) {
-      var property = path, item = table[index++];
+      var property = path;
+      var item = table[index++];
       if (Object(item) !== item) {
         accumulator[property] = item;
-      }
-      else {
+      } else {
         reduce(property, accumulator, item);
       }
     }
@@ -32,6 +32,7 @@ function reduceObject(path, accumulator, table) {
     if (path) {
       property = path + '.' + property;
     }
+
     empty = false;
     if (Object(item) !== item) accumulator[property] = item;
     else reduce(property, accumulator, item);
@@ -42,14 +43,10 @@ function reduceObject(path, accumulator, table) {
 
 function reduce(path, accumulator, table) {
   if (Array.isArray(table)) {
-    reduceArray(path, accumulator, table)
+    reduceArray(path, accumulator, table);
   } else {
-    reduceObject(path, accumulator, table)
+    reduceObject(path, accumulator, table);
   }
 
   return accumulator;
 }
-
-return function (table) {
-  return reduce('', {}, table);
-};

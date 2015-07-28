@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('choix_mdph', {
         url: '/choix_mdph',

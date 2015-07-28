@@ -16,11 +16,11 @@ fs.readdir('.', function(err, files) {
           loops: 7,
           min: 30,
           strip: true,
-          quality : 'low',
-          target : 0.7
+          quality: 'low',
+          target: 0.7
         }))
         .run();
     }
-  })
+  });
 
-})
+});

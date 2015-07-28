@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('main', {
         url: '/',
@@ -11,6 +11,7 @@ angular.module('impactApp')
           mdph: function() {
             return null;
           },
+
           user: function(Auth) {
             return Auth.getCurrentUser().$promise;
           }
@@ -24,6 +25,7 @@ angular.module('impactApp')
           mdph: function(Mdph, $stateParams) {
             return Mdph.get({zipcode: $stateParams.codeDepartement}).$promise;
           },
+
           user: function(Auth) {
             return Auth.getCurrentUser().$promise;
           }

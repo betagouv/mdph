@@ -1,16 +1,17 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
 
     var index = 'departement.demande.complementaire.vie_scolaire';
 
     $stateProvider.state(index + '.vos_besoins', {
       url: '/vos_besoins',
       template: '<ui-view/>',
-      controller: function ($scope) {
+      controller: function($scope) {
         $scope.helpTemplate = 'components/help/besoins.html';
       },
+
       abstract: true
 
     }).state(index + '.vos_besoins.scolarite', {
@@ -21,6 +22,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsScolarite', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.communication');
@@ -35,6 +37,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsCommunication', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.entretien');
@@ -49,6 +52,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsEntretien', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.deplacement');
@@ -63,6 +67,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsDeplacement', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.^.vos_attentes.scolarite');

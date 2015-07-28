@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('sectionProgressBar', function () {
+  .directive('sectionProgressBar', function() {
     return {
       scope: {
         completion: '='

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function ($scope, $window, $state, $cookieStore, user, requests, showArchiveAction) {
+  .controller('RequestListCtrl', function($scope, $window, $state, $cookieStore, user, requests, showArchiveAction) {
     $scope.requests = requests;
     $scope.user = user;
     $scope.showArchiveAction = showArchiveAction;
@@ -14,6 +14,7 @@ angular.module('impactApp')
       } else {
         action = true;
       }
+
       $scope.requests.forEach(function(request) {
         request.isSelected = action;
       });
@@ -26,6 +27,7 @@ angular.module('impactApp')
           test = false;
         }
       });
+
       return test;
     };
 

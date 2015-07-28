@@ -1,15 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ResendConfirmationCtrl', function ($timeout, $stateParams, $state, $scope, $http) {
+  .controller('ResendConfirmationCtrl', function($timeout, $stateParams, $state, $scope, $http) {
     $timeout(function() {
       $http.post('api/users/' + $stateParams.userId + '/resend_confirmation')
-      .then( function() {
+      .then(function() {
         $state.go('resend_confirmation_ok');
       })
-      .catch( function() {
+      .catch(function() {
         $state.go('resend_confirmation_error');
       });
     });
-
   });

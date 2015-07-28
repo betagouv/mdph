@@ -13,14 +13,14 @@ describe('Simulation prestations : AEEH ', function() {
   it('should return aeeh', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2002-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2002-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         attentesTypeAide: {
           financierMinimum: true,
-          "humain": true
+          humain: true
         },
         besoinsVie: {
           hygiene: true
@@ -36,14 +36,14 @@ describe('Simulation prestations : AEEH ', function() {
   it('should not return aeeh', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2002-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2002-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         attentesTypeAide: {
           financierMinimum: true,
-          "humain": false
+          humain: false
         },
         besoinsVie: {
           hygiene: true
@@ -55,19 +55,18 @@ describe('Simulation prestations : AEEH ', function() {
     quitus.should.not.containEql(aeeh);
     done();
   });
-
 
   it('should not return aeeh, too old', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         attentesTypeAide: {
           financierMinimum: true,
-          "humain": false
+          humain: false
         },
         besoinsVie: {
           hygiene: true
@@ -83,14 +82,14 @@ describe('Simulation prestations : AEEH ', function() {
   it('should return aeeh', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2002-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2002-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         attentesTypeAide: {
           financierMinimum: true,
-          "materiel": true,
+          materiel: true,
           humain: true
         },
         besoinsVie: {
@@ -107,14 +106,14 @@ describe('Simulation prestations : AEEH ', function() {
   it('should return aeeh', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2002-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2002-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         attentesTypeAide: {
           financierMinimum: true,
-          "amenagement": true,
+          amenagement: true,
           humain: true
         },
         besoinsVie: {
@@ -131,13 +130,13 @@ describe('Simulation prestations : AEEH ', function() {
   it('should return aeeh', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2002-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2002-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         attentesTypeAide: {
-          "amenagement": true,
+          amenagement: true,
           materiel: true
         },
         besoinsVie: {
@@ -156,5 +155,3 @@ describe('Simulation prestations : AEEH ', function() {
     done();
   });
 });
-
-

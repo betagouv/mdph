@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     var index = 'departement.demande.complementaire.vie_au_travail.situation_professionnelle.emploi';
 
     $stateProvider
@@ -18,6 +18,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'nomPoste', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.temps');
@@ -33,6 +34,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'temps', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.adapte');
@@ -48,6 +50,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'adapte', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.difficultes');
@@ -63,6 +66,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'difficultes', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.conservation');
@@ -78,6 +82,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'conservation', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.amenagement');
@@ -93,6 +98,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'amenagement', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.arret_de_travail');
@@ -108,6 +114,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'arretDeTravail', request.formAnswers);
           },
+
           nextStep: function($state, sectionModel, question) {
             return function() {
               if (sectionModel[question.model]) {
@@ -127,6 +134,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'arretDeTravailRaison', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.professionnel_social');
@@ -142,6 +150,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'profesionnelSocial', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.medecin_travail');
@@ -157,6 +166,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'medecinTravail', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.^.^.situation_professionnelle.prestations');

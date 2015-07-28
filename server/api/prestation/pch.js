@@ -29,25 +29,25 @@ exports.simulate = function(computed) {
             )
           ]),
           ou([
-            ou( getValueList(computed.besoinsVie, ['habits', 'repas']) ),
-            ou( getValueList(computed.besoinsSocial, ['securite', 'proches', 'communication']) ),
-            ou( getValueList(computed.besoinsDeplacement, ['intraDomicile', 'public', 'accesDomicile']) )
+            ou(getValueList(computed.besoinsVie, ['habits', 'repas'])),
+            ou(getValueList(computed.besoinsSocial, ['securite', 'proches', 'communication'])),
+            ou(getValueList(computed.besoinsDeplacement, ['intraDomicile', 'public', 'accesDomicile']))
           ]),
         ]),
         et([
           getValue(computed.attentesTypeAide, 'humain'),
           ou([
-            ou( getValueList(computed.besoinsVie, ['habits', 'repas']) ),
+            ou(getValueList(computed.besoinsVie, ['habits', 'repas'])),
             getValue(computed.besoinsDeplacement, 'intraDomicile')
           ]),
         ]),
         et([
-          et( getValueList(computed.besoinsVie, ['cuisine', 'budget', 'courses', 'menage', 'sante']) ),
-          et( getValueList(computed.besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) )
+          et(getValueList(computed.besoinsVie, ['cuisine', 'budget', 'courses', 'menage', 'sante'])),
+          et(getValueList(computed.besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']))
         ]),
         et([
-          et( getValueList(computed.besoinsVie, ['habits', 'repas', 'hygiene']) ),
-          getValue(computed.besoinsDeplacement, 'public' ),
+          et(getValueList(computed.besoinsVie, ['habits', 'repas', 'hygiene'])),
+          getValue(computed.besoinsDeplacement, 'public'),
           getValue(computed.attentesTypeAide, 'materiel')
         ])
       ])
@@ -64,9 +64,9 @@ exports.simulate = function(computed) {
         getValue(computed.pensionInvalidite, 'mtp'),
         getValue(computed.pensionInvalidite, 'pcrtp'),
         ou([
-          ou( getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas']) ),
-          ou( getValueList(computed.besoinsSocial, ['securite', 'proches', 'communication']) ),
-          ou( getValueList(computed.besoinsDeplacement, ['intraDomicile', 'public', 'accesDomicile']) )
+          ou(getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas'])),
+          ou(getValueList(computed.besoinsSocial, ['securite', 'proches', 'communication'])),
+          ou(getValueList(computed.besoinsDeplacement, ['intraDomicile', 'public', 'accesDomicile']))
         ]),
       ])
     ]);
@@ -76,5 +76,4 @@ exports.simulate = function(computed) {
       _.contains(computed.prestations, 'ac')
     ]);
   }
-}
-
+};

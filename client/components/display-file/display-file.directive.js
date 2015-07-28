@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('displayFile', function ($state) {
+  .directive('displayFile', function($state) {
     return {
       scope: {
         file: '=',

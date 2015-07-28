@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
 
     var index = 'departement.demande.complementaire.vie_scolaire';
 
@@ -18,6 +18,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'attentesVieScolaire', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.structure');
@@ -33,6 +34,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'structure', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.referent');
@@ -48,6 +50,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'referent', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.autres_renseignements');
@@ -66,6 +69,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'vieScolaireAutresRenseignements', request.formAnswers);
         },
+
         nextStep: function(saveSection) {
           return function() {
             saveSection();

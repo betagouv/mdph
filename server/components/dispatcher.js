@@ -16,17 +16,17 @@ exports.findSecteur = function(request, callback) {
   var type = estAdulte ? 'adulte' : 'enfant';
 
   async.waterfall([
-    function(cb){
+    function(cb) {
       MdphModel.findOne({zipcode: mdphZipcode}).exec(cb);
     },
 
-    function(mdph, cb){
+    function(mdph, cb) {
       DispatchRuleModel.findOne({'commune.codePostal': codePostal, mdph: mdph}).exec(function(err, dispatchRule) {
         cb(err, dispatchRule, mdph);
       });
     },
 
-    function(dispatchRule, mdph, cb){
+    function(dispatchRule, mdph, cb) {
       if (!dispatchRule) {
         SecteurModel.findOne({default: true, mdph: mdph}).populate('evaluators.' + type).exec(function(err, defaultSecteur) {
           if (err || !defaultSecteur) {
@@ -45,11 +45,12 @@ exports.findSecteur = function(request, callback) {
         });
       }
     }
-  ], function (err, secteur) {
+
+  ], function(err, secteur) {
     if (err) {
       return callback(null);
     } else {
       return callback(secteur);
     }
   });
-}
+};

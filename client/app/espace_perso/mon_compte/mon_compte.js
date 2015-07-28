@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('espace_perso.mon_compte', {
         url: '/',

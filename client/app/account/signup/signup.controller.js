@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SignupCtrl', function ($rootScope, $scope, $state, Auth, User) {
+  .controller('SignupCtrl', function($rootScope, $scope, $state, Auth, User) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -13,7 +13,7 @@ angular.module('impactApp')
       } else {
         $scope.inputType = 'password';
       }
-    }
+    };
 
     $scope.resetMongooseError = function(form, field) {
       form[field].$setValidity('mongoose', true);
@@ -22,20 +22,20 @@ angular.module('impactApp')
     $scope.register = function(form) {
       $scope.submitted = true;
 
-      if(form.$valid) {
+      if (form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .then( function() {
+        .then(function() {
           // Account created, redirect to home
           User.generateTokenForMail({email: $scope.user.email});
 
           // Logged in, redirect
           $state.go('espace_perso.liste_demandes');
         })
-        .catch( function(err) {
+        .catch(function(err) {
           err = err.data;
           $scope.errors = {};
 
@@ -47,5 +47,4 @@ angular.module('impactApp')
         });
       }
     };
-
   });

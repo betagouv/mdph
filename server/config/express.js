@@ -15,11 +15,10 @@ var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 var bunyan = require('bunyan');
-var multer  = require('multer')
+var multer  = require('multer');
 var Imagemin = require('imagemin');
 var fs = require('fs');
 var imageminJpegRecompress = require('imagemin-jpeg-recompress');
-
 
 var logger = bunyan.createLogger({
   name: 'impact-dev',
@@ -43,11 +42,12 @@ module.exports = function(app) {
   app.use(bodyParser.urlencoded({limit: '20mb', extended: true}));
   app.use(multer({
     dest: config.root + '/server/uploads/temp/',
-    onFileUploadStart: function (file) {
-      console.log(file.originalname + ' is starting ...')
+    onFileUploadStart: function(file) {
+      console.log(file.originalname + ' is starting ...');
     },
-    onFileUploadComplete: function (file) {
-      console.log(file.fieldname + ' uploaded to  ' + file.path)
+
+    onFileUploadComplete: function(file) {
+      console.log(file.fieldname + ' uploaded to  ' + file.path);
 
       if (file.mimetype === 'image/jpeg') {
         new Imagemin()
@@ -58,8 +58,8 @@ module.exports = function(app) {
             loops: 7,
             min: 30,
             strip: true,
-            quality : 'low',
-            target : 0.7
+            quality: 'low',
+            target: 0.7
           }))
           .run();
       } else {
@@ -68,16 +68,16 @@ module.exports = function(app) {
       }
 
     },
-    onFilesLimit: function () {
-      console.log('Crossed file limit!')
+
+    onFilesLimit: function() {
+      console.log('Crossed file limit!');
     }
   }));
 
-
-  var requestLogger = function (req, res, next) {
+  var requestLogger = function(req, res, next) {
     var start = new Date();
     var end = res.end;
-    res.end = function (chunk, encoding) {
+    res.end = function(chunk, encoding) {
       var responseTime = (new Date()).getTime() - start.getTime();
       end.call(res, chunk, encoding);
       var contentLength = parseInt(res.getHeader('Content-Length'), 10);
@@ -87,29 +87,30 @@ module.exports = function(app) {
         responseTime: responseTime,
         contentLength: isNaN(contentLength) ? 0 : contentLength
       };
-      if ('production' === env) {
+      if (env === 'production') {
         logger.info(data, '%s %s %d %dms - %d', data.req.method, data.req.originalUrl, data.res.statusCode, data.responseTime, data.contentLength);
       } else {
         logger.info('%s %s %d %dms - %d', data.req.method, data.req.originalUrl, data.res.statusCode, data.responseTime, data.contentLength);
       }
     };
+
     req.log = logger;
     next();
   };
 
-  var errorLogger = function (err, req, res, next) {
+  var errorLogger = function(err, req, res, next) {
     logger.error({ req: req, res: res, error: err }, err.stack);
     next(err);
   };
 
-  if ('production' === env) {
+  if (env === 'production') {
     app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'dist')));
     app.set('appPath', config.root + '/dist');
     app.use(requestLogger);
   }
 
-  if ('development' === env || 'test' === env) {
+  if (env === 'development' || env === 'test') {
     app.use(require('connect-livereload')());
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.join(config.root, 'client')));

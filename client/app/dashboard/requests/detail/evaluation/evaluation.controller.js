@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function ($scope, $modal, $cookieStore, sections, GevaService, prestations, request) {
+  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookieStore, sections, GevaService, prestations, request) {
     $scope.sections = sections;
     $scope.computeCompletion = GevaService.computeCompletion;
     $scope.request = request;
@@ -10,36 +10,37 @@ angular.module('impactApp')
       request.synthese = {
         geva: {}
       };
-    }
-    else if (!request.synthese.geva) {
+    } else if (!request.synthese.geva) {
       request.synthese.geva = {};
     }
 
-    $scope.autoriserTelechargement = function () {
-      return ! request.synthese.proposition ? true : false;
+    $scope.autoriserTelechargement = function() {
+      return !request.synthese.proposition ? true : false;
     };
 
-    $scope.afficherSynthese = function () {
+    $scope.afficherSynthese = function() {
       $modal.open({
         templateUrl: 'app/dashboard/requests/detail/evaluation/synthese.html',
         controller: 'ModalSyntheseCtrl',
         size: 'lg',
         resolve: {
-          prestations: function () {
+          prestations: function() {
             return prestations;
           },
-          request : function () {
+
+          request: function() {
             return request;
           }
         }
       });
     };
   })
-  .controller('ModalSyntheseCtrl', function ($scope, $modalInstance, prestations, request) {
+  .controller('ModalSyntheseCtrl', function($scope, $modalInstance, prestations, request) {
     $scope.prestations = prestations;
     if (!request.synthese.proposition) {
       request.synthese.proposition = {};
     }
+
     $scope.proposition = request.synthese.proposition;
     if (!$scope.proposition.prestaDemande) {
       $scope.proposition.prestaDemande = [
@@ -63,7 +64,7 @@ angular.module('impactApp')
       $scope.proposition.preconisations = '';
     }
 
-    $scope.ajouterPrestaDemande = function(){
+    $scope.ajouterPrestaDemande = function() {
       $scope.proposition.prestaDemande.push({
         label: '',
         eligibilite: '',
@@ -71,12 +72,12 @@ angular.module('impactApp')
       });
     };
 
-    $scope.retirerPresta = function(type){
+    $scope.retirerPresta = function(type) {
       var lastIndex = type.indexOf(_.last(type));
       type.splice(lastIndex, 1);
     };
 
-    $scope.ajouterPrestaAutre = function(){
+    $scope.ajouterPrestaAutre = function() {
       $scope.proposition.prestaAutre.push({
         label: '',
         motivation: ''

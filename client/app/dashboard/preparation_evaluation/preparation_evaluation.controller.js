@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PreparationEvalCtrl', function ($scope, evalQuestions, PreparationEvaluationService) {
+  .controller('PreparationEvalCtrl', function($scope, evalQuestions, PreparationEvaluationService) {
     $scope.evalQuestions = evalQuestions;
 
     $scope.answers = {};

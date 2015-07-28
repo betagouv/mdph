@@ -19,6 +19,7 @@ angular.module('impactApp')
         message: ''
       };
     }
+
     hideError();
 
     function exists(identite) {
@@ -27,20 +28,17 @@ angular.module('impactApp')
 
     $scope.$on('hideError', hideError);
 
-    $scope.checkIdentities = function(){
-      if (!sectionModel.beneficiaire || !sectionModel.beneficiaire.nom){
+    $scope.checkIdentities = function() {
+      if (!sectionModel.beneficiaire || !sectionModel.beneficiaire.nom) {
         showError('Veuillez renseigner un bénéficiaire.');
-      }
-      else {
-        if (estMineur(sectionModel.beneficiaire.dateNaissance)){
+      } else {
+        if (estMineur(sectionModel.beneficiaire.dateNaissance)) {
           var autorite = sectionModel.autorite;
           if (!autorite) {
             showError('Le bénéficiaire est mineur, veuillez renseigner au moins une autorité parentale ou une délégation d\'autorité parentale.');
-          }
-          else if (!(exists(autorite.parent1) || exists(autorite.parent2) || exists(autorite.autre))){
+          } else if (!(exists(autorite.parent1) || exists(autorite.parent2) || exists(autorite.autre))) {
             showError('Le bénéficiaire est mineur, veuillez renseigner au moins une autorité parentale ou une délégation d\'autorité parentale.');
-          }
-          else {
+          } else {
             hideError();
           }
         }

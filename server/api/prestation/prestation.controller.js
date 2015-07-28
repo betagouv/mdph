@@ -60,11 +60,11 @@ function computeAnswers(answers) {
   var estEnfant =       !estAdulte;
 
   var estNonActif = ou([
-    false === getValue(vieAuTravail, 'conditionTravail'),
+    getValue(vieAuTravail, 'conditionTravail') === false,
     et([
       getValue(vieAuTravail, 'conditionTravail'),
-      false === getValue(vieAuTravail, 'temps'),
-      false === getValue(vieAuTravail, 'adapte')
+      getValue(vieAuTravail, 'temps') === false,
+      getValue(vieAuTravail, 'adapte') === false
     ])
   ]);
 
@@ -117,36 +117,47 @@ function getCallbacks(answers) {
     aah: function() {
       return AAH.simulate(computed);
     },
+
     aeeh: function() {
       return AEEH.simulate(computed);
     },
+
     av: function() {
       return AV.simulate(computed);
     },
+
     carteInvalidite: function() {
       return CarteInvalidite.simulate(computed);
     },
+
     carteStationnement: function() {
       return CarteStationnement.simulate(computed);
     },
+
     ems: function() {
       return EMS.simulate(computed);
     },
+
     orp: function() {
       return ORP_RQTH.simulate(computed);
     },
+
     rqth: function() {
       return ORP_RQTH.simulate(computed);
     },
+
     pch: function() {
       return PCH.simulate(computed);
     },
+
     pps: function() {
       return PPS.simulate(computed);
     },
+
     sms: function() {
       return SMS.simulate(computed);
     },
+
     ac: function() {
       return _.contains(computed.prestations, 'ac');
     }

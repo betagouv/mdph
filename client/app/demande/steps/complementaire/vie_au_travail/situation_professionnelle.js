@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
 
     var index = 'departement.demande.complementaire.vie_au_travail';
 
@@ -21,6 +21,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'conditionTravail', request.formAnswers);
         },
+
         nextStep: function($state, sectionModel) {
           return function() {
             if (sectionModel.conditionTravail) {
@@ -40,6 +41,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'milieuTravail', request.formAnswers);
         },
+
         nextStep: function($state, sectionModel) {
           return function() {
             if (sectionModel.milieuTravail === 'etablissement') {
@@ -59,6 +61,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'typeTravail', request.formAnswers);
         },
+
         nextStep: function($state, sectionModel) {
           return function() {
             if (sectionModel.typeTravail === 'independant') {
@@ -86,10 +89,12 @@ angular.module('impactApp')
         $scope.nextStep = nextStep;
         $scope.model = $scope.sectionModel.employeur;
       },
+
       resolve: {
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'employeur', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.emploi.nom_poste');
@@ -105,6 +110,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'prestations', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.rqth');
@@ -120,6 +126,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'rqth', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.^.parcours_professionnel.cv');

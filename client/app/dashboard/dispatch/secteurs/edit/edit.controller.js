@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SecteurEditCtrl', function ($scope, $state, secteur, evaluators, currentMdph) {
+  .controller('SecteurEditCtrl', function($scope, $state, secteur, evaluators, currentMdph) {
     $scope.secteur = secteur;
     $scope.name = secteur.name;
     $scope.evaluators = evaluators;

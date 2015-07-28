@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .filter('role', function () {
-    return function (input) {
+  .filter('role', function() {
+    return function(input) {
       switch (input) {
         case 'admin':
           return 'Administrateur';

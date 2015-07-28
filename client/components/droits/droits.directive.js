@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('showPrestations', function () {
+  .directive('showPrestations', function() {
     return {
       scope: {
         formAnswers: '=',
@@ -13,7 +13,7 @@ angular.module('impactApp')
       },
       templateUrl: 'components/droits/droits.html',
       restrict: 'EA',
-      link: function ($scope) {
+      link: function($scope) {
         $scope.isSelected = function(prestation) {
           return $scope.formAnswers.prestations && angular.isDefined($scope.formAnswers.prestations[prestation.id]);
         };
@@ -27,7 +27,7 @@ angular.module('impactApp')
         };
 
         $scope.select = function(prestation) {
-          if($scope.endDate){
+          if ($scope.endDate) {
             $scope.formAnswers.prestations[prestation.id] = {};
           } else {
             $scope.formAnswers.prestations[prestation.id] = {status: 'demandé'};
@@ -44,6 +44,7 @@ angular.module('impactApp')
           angular.forEach($scope.prestations, function(prestation) {
             prestation.opened = false;
           });
+
           currentPrestation.opened = true;
         };
       }

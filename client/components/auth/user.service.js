@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('User', function ($resource) {
+  .factory('User', function($resource) {
     return $resource('/api/users/:id/:controller', {
       id: '@_id'
     },
@@ -54,5 +54,5 @@ angular.module('impactApp')
           id: 'generate_token_mail'
         }
       }
-	  });
+    });
   });

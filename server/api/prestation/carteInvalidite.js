@@ -18,10 +18,10 @@ exports.simulate = function(computed) {
   return ou([
     et([
       getValue(computed.attentesTypeAide, 'humain'),
-      ou( getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas']) ),
+      ou(getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas'])),
     ]),
     getValue(computed.besoinsDeplacement, 'intraDomicile'),
     getValue(computed.pensionInvalidite, 'mtp'),
     getValue(computed.pensionInvalidite, 'pcrtp')
   ]);
-}
+};

@@ -10,10 +10,11 @@ function loadConfig(path) {
     var taskName = file.replace(/\.js$/, '');
     config[taskName] = require(path + file);
   });
+
   return config;
 }
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   // Load grunt tasks automatically
   require('jit-grunt')(grunt, {
     express: 'grunt-express-server',
@@ -47,12 +48,12 @@ module.exports = function (grunt) {
   grunt.initConfig(config);
 
   // Used for delaying livereload until after server has restarted
-  grunt.registerTask('wait', function () {
+  grunt.registerTask('wait', function() {
     grunt.log.ok('Waiting for server reload...');
 
     var done = this.async();
 
-    setTimeout(function () {
+    setTimeout(function() {
       grunt.log.writeln('Done waiting!');
       done();
     }, 1500);
@@ -62,7 +63,7 @@ module.exports = function (grunt) {
     this.async();
   });
 
-  grunt.registerTask('bunyan', function () {
+  grunt.registerTask('bunyan', function() {
     var path = './node_modules/bunyan/bin/bunyan';
     if (!fs.existsSync(path)) {
       throw new Error('bundle binary not found');
@@ -72,17 +73,19 @@ module.exports = function (grunt) {
       stdio: ['pipe', process.stdout, process.stderr]
     });
 
-    process.stdout.write = function () {
+    process.stdout.write = function() {
       child.stdin.write.apply(child.stdin, arguments);
     };
   });
 
-  grunt.registerTask('serve', function (target) {
+  grunt.registerTask('serve', function(target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
     }
 
     grunt.task.run([
+      'jshint',
+      'jscs',
       'clean:server',
       'env:all',
       'injector:sass',
@@ -104,9 +107,7 @@ module.exports = function (grunt) {
         'env:test',
         'mochaTest'
       ]);
-    }
-
-    else if (target === 'client') {
+    } else if (target === 'client') {
       return grunt.task.run([
         'clean:server',
         'env:all',
@@ -116,9 +117,7 @@ module.exports = function (grunt) {
         'autoprefixer',
         'karma'
       ]);
-    }
-
-    else if (target === 'e2e') {
+    } else if (target === 'e2e') {
       return grunt.task.run([
         'clean:server',
         'env:all',
@@ -131,12 +130,10 @@ module.exports = function (grunt) {
         'express:dev',
         'protractor'
       ]);
-    }
-
-    else {
+    } else {
       grunt.task.run([
-      'test:server',
-      'test:client'
+        'test:server',
+        'test:client'
       ]);
     }
   });
@@ -161,6 +158,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
+    'jscs',
     'test',
     'build'
   ]);

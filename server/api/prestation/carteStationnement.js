@@ -26,4 +26,4 @@ exports.simulate = function(computed) {
       getValue(computed.attentesTypeAide, 'mobilite')
     ])
   ]);
-}
+};

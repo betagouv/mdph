@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     var index = 'departement.demande.complementaire.vie_au_travail';
 
     $stateProvider.state(index + '.parcours_professionnel', {
@@ -17,6 +17,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'cv', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.qualification');
@@ -32,6 +33,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'qualification', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.derniereClasse');
@@ -47,6 +49,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'derniereClasse', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.formations');
@@ -62,6 +65,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'formations', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.diplomes');
@@ -77,6 +81,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'diplomes', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.^.projet_professionnel.description');

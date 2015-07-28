@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LoginStepCtrl', function ($scope, User, Auth, afterLogin) {
+  .controller('LoginStepCtrl', function($scope, User, Auth, afterLogin) {
     $scope.user = {};
     $scope.errors = {};
     $scope.inputType = 'password';
@@ -12,7 +12,7 @@ angular.module('impactApp')
       } else {
         $scope.inputType = 'password';
       }
-    }
+    };
 
     $scope.toggleSignin = function(bool) {
       $scope.signin = bool;
@@ -21,15 +21,15 @@ angular.module('impactApp')
     $scope.login = function(form) {
       $scope.submitted = true;
 
-      if(form.$valid) {
+      if (form.$valid) {
         Auth.login({
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .catch( function(err) {
+        .catch(function(err) {
           $scope.errors.other = err.message;
         })
-        .then(function () {
+        .then(function() {
           afterLogin();
         });
       }
@@ -38,13 +38,13 @@ angular.module('impactApp')
     $scope.register = function(form) {
       $scope.submitted = true;
 
-      if(form.$valid) {
+      if (form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .then( function() {
+        .then(function() {
           // Account created, redirect to home
           User.generateTokenForMail({email: $scope.user.email});
 
@@ -52,14 +52,14 @@ angular.module('impactApp')
             email: $scope.user.email,
             password: $scope.user.password
           })
-          .catch( function(err) {
+          .catch(function(err) {
             $scope.errors.other = err.message;
           })
-          .then( function() {
+          .then(function() {
             afterLogin();
           });
         })
-        .catch( function(err) {
+        .catch(function(err) {
           err = err.data;
           $scope.errors = {};
 
@@ -71,5 +71,4 @@ angular.module('impactApp')
         });
       }
     };
-
   });

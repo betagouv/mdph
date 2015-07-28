@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('identityForm', function (IdentiteService) {
+  .directive('identityForm', function(IdentiteService) {
     return {
       scope: {
         type: '=',
@@ -19,6 +19,7 @@ angular.module('impactApp')
           $event.stopPropagation();
           scope.opened = true;
         };
+
         scope.disableAddress = function() {
           return (scope.identite.adresseInconnue ? true : false);
         };

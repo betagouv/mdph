@@ -13,12 +13,12 @@ describe('Simulation prestations : pch ', function() {
   it('should return pch - more than 76', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1912-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1912-05-06T22:00:00.000Z'
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": true
+      vie_au_travail: {
+        conditionTravail: true
       }
     };
 
@@ -30,12 +30,12 @@ describe('Simulation prestations : pch ', function() {
   it('should not return pch - more than 76', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1912-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1912-05-06T22:00:00.000Z'
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": false
+      vie_au_travail: {
+        conditionTravail: false
       }
     };
 
@@ -47,16 +47,16 @@ describe('Simulation prestations : pch ', function() {
   it('should return pch - more than 20 less than 76', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1987-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1987-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         aideTechnique: {
           aideTechnique_vehicule: true
         },
-        "pensionInvalidite": {
-          "pcrtp": true
+        pensionInvalidite: {
+          pcrtp: true
         }
       }
     };
@@ -69,17 +69,17 @@ describe('Simulation prestations : pch ', function() {
   it('should return pch - less than 20', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2009-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2009-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         },
         besoinsVie: {
           repas: true,
-          "hygiene": true
+          hygiene: true
         },
         aideTechnique: {
           aideTechnique_vehicule: true
@@ -95,16 +95,16 @@ describe('Simulation prestations : pch ', function() {
   it('should return pch - less than 20', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2009-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2009-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         },
         besoinsVie: {
-          "habits": true
+          habits: true
         }
       }
     };
@@ -117,14 +117,14 @@ describe('Simulation prestations : pch ', function() {
   it('should not return pch - less than 20', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2009-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2009-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
-          "habits": true,
-          "repas": true
+          habits: true,
+          repas: true
         },
         besoinsSocial: {
           securite: true,
@@ -147,17 +147,17 @@ describe('Simulation prestations : pch ', function() {
   it('should return pch - less than 20', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2009-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2009-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
-          "sante": true,
-          "courses": true,
-          "menage": true,
-          "cuisine": true,
-          "budget": true
+          sante: true,
+          courses: true,
+          menage: true,
+          cuisine: true,
+          budget: true
         },
         besoinsSocial: {
           securite: true,
@@ -179,15 +179,15 @@ describe('Simulation prestations : pch ', function() {
   it('should return pch - less than 20', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2009-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2009-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
-          "habits": true,
-          "repas": true,
-          "hygiene": true
+          habits: true,
+          repas: true,
+          hygiene: true
         },
         besoinsDeplacement: {
           public: true
@@ -203,4 +203,3 @@ describe('Simulation prestations : pch ', function() {
     done();
   });
 });
-

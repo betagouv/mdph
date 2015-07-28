@@ -21,7 +21,7 @@ exports.simulate = function(computed) {
       getValue(computed.attentesTypeAide, 'etablissement'),
       et([
         getValue(computed.urgences, 'domicile'),
-        et( getValueList(computed.besoinsSocial, ['securite', 'proches']) ),
+        et(getValueList(computed.besoinsSocial, ['securite', 'proches'])),
         ou([
           getValue(computed.besoinsSocial, 'loisirs'),
           et([
@@ -39,5 +39,4 @@ exports.simulate = function(computed) {
       ])
     ])
   ]);
-}
-
+};

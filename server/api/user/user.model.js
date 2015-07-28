@@ -8,7 +8,7 @@ var Request = require('../request/request.model');
 var UserSchema = new Schema({
   name: String,
   sexe: { type: String, enum: ['feminin', 'masculin'] },
-  nationalite : String,
+  nationalite: String,
   adresse: String,
   adresse_complement: String,
   code_postal: String,
@@ -46,11 +46,11 @@ UserSchema
   .virtual('profile')
   .get(function() {
     return {
-      '_id': this._id,
-      'name': this.name,
-      'role': this.role,
-      'email': this.email,
-      'mdph': this.mdph
+      _id: this._id,
+      name: this.name,
+      role: this.role,
+      email: this.email,
+      mdph: this.mdph
     };
   });
 
@@ -59,8 +59,8 @@ UserSchema
   .virtual('token')
   .get(function() {
     return {
-      '_id': this._id,
-      'role': this.role
+      _id: this._id,
+      role: this.role
     };
   });
 
@@ -86,16 +86,17 @@ UserSchema
 UserSchema
   .path('email')
   .validate(function(value, respond) {
-    var self = this;
+    var _this = this;
     this.constructor.findOne({email: value}, function(err, user) {
-      if(err) throw err;
-      if(user) {
-        if(self.id === user.id) return respond(true);
+      if (err) throw err;
+      if (user) {
+        if (_this.id === user.id) return respond(true);
         return respond(false);
       }
+
       respond(true);
     });
-}, 'Cette adresse est déjà utilisée.');
+  }, 'Cette adresse est déjà utilisée.');
 
 var validatePresenceOf = function(value) {
   return value && value.length;
@@ -113,7 +114,6 @@ UserSchema
     else
       next();
   });
-
 
 /**
  * Pre-delete hook

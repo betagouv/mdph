@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DispatchRuleEditCtrl', function ($scope, $state, dispatchRule, secteurs, zipcodes, currentMdph) {
+  .controller('DispatchRuleEditCtrl', function($scope, $state, dispatchRule, secteurs, zipcodes, currentMdph) {
     $scope.dispatchRule = dispatchRule;
     $scope.secteurs = secteurs;
 

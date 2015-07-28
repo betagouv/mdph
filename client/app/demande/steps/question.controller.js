@@ -7,7 +7,7 @@ angular.module('impactApp')
     $scope.hideBack = $state.current.data && $state.current.data.hideBack;
     $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
   })
-  .controller('StructureQuestionCtrl', function ($scope, $state, question, nextStep) {
+  .controller('StructureQuestionCtrl', function($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.hideBack = $state.current.data && $state.current.data.hideBack;
@@ -16,24 +16,25 @@ angular.module('impactApp')
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
         structures: [
-          {'name': '', 'contact': false}
+          {name: '', contact: false}
         ]
       };
     }
 
     $scope.model = $scope.sectionModel[question.model];
 
-    $scope.removeStructure = function(){
+    $scope.removeStructure = function() {
       var lastIndex = $scope.model.structures.length - 1;
       $scope.model.structures.splice(lastIndex, 1);
     };
+
     $scope.addStructure = function() {
       $scope.model.structures.push(
-        {'name': '', 'contact': false}
+        {name: '', contact: false}
       );
     };
   })
-  .controller('FraisQuestionCtrl', function ($scope, question, nextStep) {
+  .controller('FraisQuestionCtrl', function($scope, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
 
@@ -41,11 +42,11 @@ angular.module('impactApp')
       $scope.sectionModel[$scope.question.model] = {
         listeFrais: [
           {
-            'nom': '',
-            'frequence': '',
-            'total': '',
-            'rembourse': '',
-            'detail': ''
+            nom: '',
+            frequence: '',
+            total: '',
+            rembourse: '',
+            detail: ''
           }
         ]
       };
@@ -55,20 +56,21 @@ angular.module('impactApp')
     $scope.ajouterFrais = function() {
       $scope.model.listeFrais.push(
         {
-            'nom': '',
-            'frequence': '',
-            'total': '',
-            'rembourse': '',
-            'detail': ''
+            nom: '',
+            frequence: '',
+            total: '',
+            rembourse: '',
+            detail: ''
           }
       );
     };
-    $scope.retirerFrais = function(){
-      var lastIndex = $scope.model.listeFrais.length-1;
+
+    $scope.retirerFrais = function() {
+      var lastIndex = $scope.model.listeFrais.length - 1;
       $scope.model.listeFrais.splice(lastIndex, 1);
     };
   })
-  .controller('DiplomesQuestionCtrl', function ($scope, question, nextStep) {
+  .controller('DiplomesQuestionCtrl', function($scope, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.opened = [];
@@ -77,9 +79,9 @@ angular.module('impactApp')
       $scope.sectionModel[$scope.question.model] = {
         listeDiplomes: [
           {
-            'nom': '',
-            'annee': '',
-            'domaine': ''
+            nom: '',
+            annee: '',
+            domaine: ''
           }
         ]
       };
@@ -89,24 +91,25 @@ angular.module('impactApp')
     $scope.ajouterDiplome = function() {
       $scope.model.listeDiplomes.push(
         {
-          'nom': '',
-          'annee': '',
-          'domaine': ''
+          nom: '',
+          annee: '',
+          domaine: ''
         }
       );
     };
-    $scope.retirerDiplome = function(){
-      var lastIndex = $scope.model.length-1;
+
+    $scope.retirerDiplome = function() {
+      var lastIndex = $scope.model.length - 1;
       $scope.model.listeDiplomes.splice(lastIndex, 1);
     };
+
     $scope.open = function($event, idx) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.opened[idx] = true;
     };
-
   })
-  .controller('CvQuestionCtrl', function ($scope, question, nextStep) {
+  .controller('CvQuestionCtrl', function($scope, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.ajoutEnCours = false;
@@ -118,6 +121,7 @@ angular.module('impactApp')
         experiences: []
       };
     }
+
     $scope.experiences = $scope.sectionModel[$scope.question.model].experiences;
 
     $scope.ajouterExperience = function() {
@@ -139,12 +143,12 @@ angular.module('impactApp')
           $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
           modification = false;
         }
+
         var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
-        $scope.sectionModel[$scope.question.model].experiences[lastIndex+1] = $scope.tempExp;
+        $scope.sectionModel[$scope.question.model].experiences[lastIndex + 1] = $scope.tempExp;
         $scope.tempExp = {};
         $scope.ajoutEnCours = false;
-      }
-      else {
+      } else {
         form.showError = true;
       }
     };
@@ -161,7 +165,7 @@ angular.module('impactApp')
     $scope.open = function($event, number) {
       $event.preventDefault();
       $event.stopPropagation();
-      switch(number){
+      switch (number){
         case 1 :
           $scope.opened1 = true;
           break;
@@ -171,7 +175,7 @@ angular.module('impactApp')
       }
     };
   })
-  .controller('RenseignementsQuestionCtrl', function ($scope, $state, question, nextStep) {
+  .controller('RenseignementsQuestionCtrl', function($scope, $state, question, nextStep) {
     $scope.question = question;
     $scope.nextStep = nextStep;
     $scope.hideBack = $state.current.data && $state.current.data.hideBack;
@@ -221,7 +225,8 @@ angular.module('impactApp')
         }
       );
     };
-    $scope.retirerEtablissement = function(){
+
+    $scope.retirerEtablissement = function() {
       var lastIndex = $scope.model.etablissements.indexOf(_.last($scope.model.etablissements));
       $scope.model.etablissements.splice(lastIndex, 1);
     };
@@ -238,15 +243,16 @@ angular.module('impactApp')
       $scope.sectionModel[$scope.currentModel] = {
         jours: []
       };
-      _.forEach($scope.jours, function(jour){
+      _.forEach($scope.jours, function(jour) {
         $scope.sectionModel[$scope.currentModel].jours.push({
-          jour : jour,
+          jour: jour,
           matin: '',
           midi: '',
           aprem: ''
         });
       });
     }
+
     $scope.model = $scope.sectionModel[$scope.currentModel];
   })
   .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep) {

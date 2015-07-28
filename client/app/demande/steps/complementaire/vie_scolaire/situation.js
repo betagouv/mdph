@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
 
     var index = 'departement.demande.complementaire.vie_scolaire';
 
@@ -21,6 +21,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'condition', request.formAnswers);
         },
+
         nextStep: function($state, sectionModel) {
           return function() {
             if (sectionModel.condition) {
@@ -40,17 +41,16 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'vieScolaireType', request.formAnswers);
         },
+
         nextStep: function($state, sectionModel, question) {
           return function() {
             if (sectionModel[question.model] !== 'domicile') {
               if (sectionModel[question.model] === 'ordinaire') {
                 $state.go('^.internat');
-              }
-              else {
+              } else {
                 if (sectionModel[question.model] === 'superieur') {
                   $state.go('^.type_etudes');
-                }
-                else {
+                } else {
                   $state.go('^.etablissement');
                 }
               }
@@ -69,6 +69,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'etablissement', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.accompagnement');
@@ -84,6 +85,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'internat', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.etablissement');
@@ -99,6 +101,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'typeEtudes', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.diplomes_passes');
@@ -114,6 +117,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'diplomePasse', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.diplome_present');
@@ -129,6 +133,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'diplomePresent', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.diplome_etablissement');
@@ -144,6 +149,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'diplomeEtablissement', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.parcours');
@@ -159,6 +165,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'parcoursEtudes', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.accompagnement');
@@ -174,6 +181,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'accompagnement', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.adaptation');
@@ -189,6 +197,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'adaptation', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.emploi_du_temps');
@@ -204,6 +213,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'emploiDuTemps', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.^.vos_besoins.scolarite');
@@ -219,6 +229,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'raisonNonScolaire', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.^.vos_besoins.scolarite');

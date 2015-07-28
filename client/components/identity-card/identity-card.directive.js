@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('identityCard', function (IdentiteService) {
+  .directive('identityCard', function(IdentiteService) {
     return {
       scope: {
         type: '=',

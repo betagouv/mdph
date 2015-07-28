@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .filter('requestStatus', function () {
-    return function (input) {
+  .filter('requestStatus', function() {
+    return function(input) {
       if (!input) {
         return 'Nouvelle demande';
       }

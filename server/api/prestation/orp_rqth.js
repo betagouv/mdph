@@ -13,6 +13,7 @@ exports.simulate = function(computed) {
     if (_.contains(computed.prestations, 'orp')) {
       return true;
     }
+
     if (_.contains(computed.prestations, 'rqth')) {
       return true;
     }
@@ -42,17 +43,17 @@ exports.simulate = function(computed) {
         et([
           getValue(computed.attentesTypeAide, 'humain'),
           ou([
-            ou( getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas']) ),
+            ou(getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas'])),
             getValue(computed.besoinsDeplacement, 'intraDomicile')
           ]),
         ]),
         et([
-          et( getValueList(computed.besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante']) ),
-          et( getValueList(computed.besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
+          et(getValueList(computed.besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante'])),
+          et(getValueList(computed.besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen'])),
           computed.estNonActif
         ]),
         et([
-          et( getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas']) ),
+          et(getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas'])),
           getValue(computed.besoinsDeplacement, 'public'),
           getValue(computed.attentesTypeAide, 'materiel'),
           computed.estNonActif
@@ -60,5 +61,4 @@ exports.simulate = function(computed) {
       ])
     ])
   ]);
-}
-
+};

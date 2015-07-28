@@ -13,9 +13,11 @@ exports.simulate = function(computed) {
     if (_.contains(computed.prestations, 'aah')) {
       return true;
     }
+
     if (computed.estAdulte && getValue(computed.milieuTravail, 'etablissement')) {
       return true;
     }
+
     if (computed.estAdulte && getValue(computed.vieQuotidienne, 'logement') === 'etablissement') {
       return true;
     }
@@ -33,21 +35,21 @@ exports.simulate = function(computed) {
       et([
         getValue(computed.attentesTypeAide, 'humain'),
         ou([
-          ou( getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas']) ),
+          ou(getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas'])),
           getValue(computed.besoinsDeplacement, 'intraDomicile')
         ])
       ]),
       et([
-        et( getValueList(computed.besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante']) ),
-        et( getValueList(computed.besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen']) ),
+        et(getValueList(computed.besoinsVie, ['habits', 'cuisine', 'repas', 'budget', 'courses', 'menage', 'sante'])),
+        et(getValueList(computed.besoinsSocial, ['securite', 'proches', 'loisirs', 'citoyen'])),
         computed.estNonActif,
         computed.aMoinsDe62Ans
       ]),
       et([
-        et( getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas']) ),
+        et(getValueList(computed.besoinsVie, ['hygiene', 'habits', 'repas'])),
         getValue(computed.besoinsDeplacement, 'public'),
         getValue(computed.attentesTypeAide, 'materiel')
       ])
     ])
   ]);
-}
+};

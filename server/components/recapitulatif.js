@@ -5,7 +5,7 @@
 var _ = require('lodash');
 var os = require('os');
 var fs = require('fs');
-var path = require('path')
+var path = require('path');
 var async = require('async');
 var moment = require('moment');
 var mustache = require('mustache');
@@ -14,7 +14,7 @@ var sections = require('../api/sections/sections.json');
 var Prestation = require('../api/prestation/prestation.controller');
 
 function readFile(name, callback) {
-  fs.readFile(path.join(__dirname, 'templates', name), function (err, html) {
+  fs.readFile(path.join(__dirname, 'templates', name), function(err, html) {
     callback(err, String(html));
   });
 }
@@ -36,6 +36,7 @@ function rebuildAnswersFromModel(question, questionAnswers) {
       if (!constantAnswer) {
         return [];
       }
+
       return [{
         label: constantAnswer.label,
         detailModel: constantAnswer.detailModel,
@@ -52,6 +53,7 @@ function rebuildAnswersFromModel(question, questionAnswers) {
           });
         }
       });
+
       return answers;
     case 'frais':
       return [{label: 'Liste des frais', listeFrais: questionAnswers.listeFrais}];
@@ -68,6 +70,7 @@ function rebuildAnswersFromModel(question, questionAnswers) {
           structures: questionAnswers.structures
         }];
       }
+
       return [{label: 'Non'}];
     case 'emploiDuTemps':
       return [{
@@ -93,7 +96,7 @@ function computeAnswers(question, trajectoireAnswers) {
     return [];
   }
 
-  filteredAnswers.forEach(function(answer){
+  filteredAnswers.forEach(function(answer) {
     if (answer.detailModel) {
       var detailType = answer.detailType;
       var detail = trajectoireAnswers[answer.detailModel];
@@ -151,56 +154,68 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-
 exports.answersToHtml = function(request, path, output, next) {
   if (!request.formAnswers) {
     return next({request: request._id, action: 'recapitulatif', message: 'Pas de réponses fournies'});
   }
 
   async.series({
-    answersTemplate: function(callback){
+    answersTemplate: function(callback) {
       if (output === 'pdf') {
         readFile('pdfAnswers.html', callback);
       } else {
         readFile('inlineAnswers.html', callback);
       }
     },
-    section: function(callback){
+
+    section: function(callback) {
       readFile('section.html', callback);
     },
-    identites: function(callback){
+
+    identites: function(callback) {
       readFile('identites.html', callback);
     },
-    identite: function(callback){
+
+    identite: function(callback) {
       readFile('identite.html', callback);
     },
-    autorite: function(callback){
+
+    autorite: function(callback) {
       readFile('autorite.html', callback);
     },
-    question: function(callback){
+
+    question: function(callback) {
       readFile('question.html', callback);
     },
-    detailsFrais: function (callback) {
+
+    detailsFrais: function(callback) {
       readFile('detailsFrais.html', callback);
     },
-    detailsDiplomes: function (callback) {
+
+    detailsDiplomes: function(callback) {
       readFile('detailsDiplomes.html', callback);
     },
-    detailsStructures: function (callback) {
+
+    detailsStructures: function(callback) {
       readFile('detailsStructures.html', callback);
     },
-    detailsEtablissement: function (callback) {
+
+    detailsEtablissement: function(callback) {
       readFile('detailsEtablissement.html', callback);
     },
-    detailsEDT: function (callback) {
+
+    detailsEDT: function(callback) {
       readFile('detailsEDT.html', callback);
     },
-    detailsCV: function (callback) {
+
+    detailsCV: function(callback) {
       readFile('detailsCV.html', callback);
     },
-    aidantDemarche: function(callback){
+
+    aidantDemarche: function(callback) {
       readFile('aidantDemarche.html', callback);
     },
+
     requestIdentites: function(callback) {
       var identites = request.formAnswers.identites;
       if (!identites) {
@@ -211,40 +226,47 @@ exports.answersToHtml = function(request, path, output, next) {
         formatDateNaissance(identites.beneficiaire);
       }
 
-      if(identites.autorite){
+      if (identites.autorite) {
         formatDateNaissance(identites.autorite.parent1);
         formatDateNaissance(identites.autorite.parent2);
       }
 
       callback(null, identites);
     },
+
     submittedAt: function(callback) {
       console.log(request.submittedAt);
       callback(null, moment(request.submittedAt).format('DD/MM/YYYY à HH:mm'));
     },
+
     trajectoires: function(callback) {
       var trajectoires = computeTrajectoires(request);
       callback(null, trajectoires);
     },
-    mdph: function (callback) {
+
+    mdph: function(callback) {
       if (!request.mdph) {
         return callback(null, []);
       }
+
       callback(null, request.mdph);
     },
-    quitus: function (callback) {
+
+    quitus: function(callback) {
       if (request.mdph && request.mdph === '14') {
         callback(null, Prestation.simulate(request.formAnswers));
       } else {
         callback(null, null);
       }
     },
-    prestationsTemplate: function(callback){
+
+    prestationsTemplate: function(callback) {
       readFile('prestations.html', callback);
     }
   },
-  function(err, results){
+  function(err, results) {
     if (err) { next(err); }
+
     var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires', 'requestIdentites');
     var html = mustache.render(
       results.answersTemplate,

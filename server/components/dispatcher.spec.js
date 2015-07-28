@@ -70,33 +70,43 @@ describe('Dispatcher', function() {
       function(callback) {
         DispatchRule.remove().exec(callback);
       },
+
       function(callback) {
         Secteur.remove().exec(callback);
       },
+
       function(callback) {
         Mdph.remove().exec(callback);
       },
+
       function(callback) {
         caen.save(callback);
       },
+
       function(callback) {
         nord.save(callback);
       },
+
       function(callback) {
         secteurNord.save(callback);
       },
+
       function(callback) {
         secteurCaen.save(callback);
       },
+
       function(callback) {
         secteurHerouville.save(callback);
       },
+
       function(callback) {
         ruleHerouville.save(callback);
       },
+
       function(callback) {
         ruleCaen.save(callback);
       }
+
     ], function(err, results) {
       done();
     });
@@ -113,7 +123,7 @@ describe('Dispatcher', function() {
           }
         }
       }
-    }
+    };
 
     dispatcher.findSecteur(request, function(secteur) {
       should.exist(secteur);
@@ -133,7 +143,7 @@ describe('Dispatcher', function() {
           }
         }
       }
-    }
+    };
 
     dispatcher.findSecteur(request, function(secteur) {
       should.exist(secteur);
@@ -153,7 +163,7 @@ describe('Dispatcher', function() {
           }
         }
       }
-    }
+    };
 
     dispatcher.findSecteur(request, function(secteur) {
       should.not.exist(secteur);

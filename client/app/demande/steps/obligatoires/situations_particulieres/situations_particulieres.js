@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     var index = 'departement.demande.obligatoire.situations_particulieres';
     $stateProvider
       .state(index, {
@@ -13,9 +13,11 @@ angular.module('impactApp')
           section: function(sections) {
             return _.find(sections, {id: 'situations_particulieres'});
           },
+
           sectionModel: function(SectionUtils, request, section) {
             return SectionUtils.resolveSectionModel(request, section);
           },
+
           saveSection: function(SectionUtils, sectionModel, updateRequest) {
             return SectionUtils.resolveSaveSection(sectionModel, updateRequest);
           }
@@ -33,6 +35,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'urgences', request.formAnswers);
           },
+
           nextStep: function(saveSection) {
             return function() {
               saveSection();

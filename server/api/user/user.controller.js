@@ -20,8 +20,8 @@ var validationError = function(res, err) {
 exports.index = function(req, res) {
   User.find({
     mdph: req.user.mdph
-  }, '-salt -hashedPassword', function (err, users) {
-    if(err) return handleError(req, res, err);
+  }, '-salt -hashedPassword', function(err, users) {
+    if (err) return handleError(req, res, err);
     res.json(users);
   });
 };
@@ -29,13 +29,13 @@ exports.index = function(req, res) {
 /**
  * Creates a new user
  */
-exports.create = function (req, res, next) {
+exports.create = function(req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.unconfirmed = true;
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
+    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60 * 5 });
     res.json({ token: token });
   });
 };
@@ -43,10 +43,10 @@ exports.create = function (req, res, next) {
 /**
  * Get a single user
  */
-exports.show = function (req, res, next) {
+exports.show = function(req, res, next) {
   var userId = req.params.id;
 
-  User.findById(userId, function (err, user) {
+  User.findById(userId, function(err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
     res.json(user.profile);
@@ -59,10 +59,11 @@ exports.show = function (req, res, next) {
  */
 exports.destroy = function(req, res) {
   User.findById(req.params.id, function(err, user) {
-    if(err) return handleError(req, res, err);
+    if (err) return handleError(req, res, err);
     if (user) {
       user.remove();
     }
+
     return res.send(204);
   });
 };
@@ -75,8 +76,8 @@ exports.changePassword = function(req, res, next) {
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 
-  User.findById(userId, function (err, user) {
-    if(user.authenticate(oldPass)) {
+  User.findById(userId, function(err, user) {
+    if (user.authenticate(oldPass)) {
       user.password = newPass;
       user.save(function(err) {
         if (err) return validationError(res, err);
@@ -94,7 +95,7 @@ exports.changePassword = function(req, res, next) {
 exports.changeInfo = function(req, res, next) {
   var userId = req.user._id;
 
-  User.findById(userId, function (err, user) {
+  User.findById(userId, function(err, user) {
     var updated = _.merge(user, _.pick(req.body, 'name'));
     updated.save(function(err, result) {
       if (err) return validationError(res, err);
@@ -142,19 +143,19 @@ exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
 
-
 /**
  * Get notifications for user
  */
 exports.showNotifications = function(req, res, next) {
   Notification.find({
     user: req.params.id
-  }, function (err, notifications) {
-    if(err) return handleError(req, res, err);
-    if(!notifications) { return res.sendStatus(404); }
+  }, function(err, notifications) {
+    if (err) return handleError(req, res, err);
+    if (!notifications) { return res.sendStatus(404); }
+
     return res.json(notifications);
   });
-}
+};
 
 exports.generateTokenForMail = function(req, res, next) {
   var email = req.body.email;
@@ -214,8 +215,8 @@ exports.resetPassword = function(req, res) {
     user.save(function(err) {
       if (err) return validationError(res, err);
       return res.sendStatus(200);
-    })
-  })
+    });
+  });
 };
 
 exports.confirmMail = function(req, res) {
@@ -230,8 +231,8 @@ exports.confirmMail = function(req, res) {
     user.save(function(err) {
       if (err) return validationError(res, err);
       return res.sendStatus(200);
-    })
-  })
+    });
+  });
 };
 
 exports.resendConfirmation = function(req, res) {
@@ -246,7 +247,7 @@ exports.resendConfirmation = function(req, res) {
       'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
     );
     res.sendStatus(200);
-  })
+  });
 };
 
 function handleError(req, res, err) {

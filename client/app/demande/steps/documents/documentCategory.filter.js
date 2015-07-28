@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .filter('documentCategory', function () {
-    return function (category) {
+  .filter('documentCategory', function() {
+    return function(category) {
       if (!category) {
         return 'Autre';
       }
+
       var document = category[0];
       switch (document.category) {
         case 'certificat':

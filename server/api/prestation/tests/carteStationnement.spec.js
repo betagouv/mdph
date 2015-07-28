@@ -13,8 +13,8 @@ describe('Simulation prestations : carteStationnement ', function() {
   it('should return carteStationnement', function(done) {
     var answers = {
       vie_quotidienne: {
-        "besoinsDeplacement": {
-          "intraDomicile": true
+        besoinsDeplacement: {
+          intraDomicile: true
         }
       }
     };
@@ -27,11 +27,11 @@ describe('Simulation prestations : carteStationnement ', function() {
   it('should return carteStationnement', function(done) {
     var answers = {
       vie_quotidienne: {
-        "besoinsDeplacement": {
-          "public": true
+        besoinsDeplacement: {
+          public: true
         },
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         }
       }
     };
@@ -44,12 +44,12 @@ describe('Simulation prestations : carteStationnement ', function() {
   it('should return carteStationnement', function(done) {
     var answers = {
       vie_quotidienne: {
-        "besoinsDeplacement": {
-          "public": true
+        besoinsDeplacement: {
+          public: true
         },
-        "attentesTypeAide": {
-          "humain": true,
-          "mobilite": true
+        attentesTypeAide: {
+          humain: true,
+          mobilite: true
         }
       }
     };
@@ -62,8 +62,8 @@ describe('Simulation prestations : carteStationnement ', function() {
   it('should return carteStationnement', function(done) {
     var answers = {
       vie_quotidienne: {
-        "aideTechnique": {
-          "aideTechnique_technique": true
+        aideTechnique: {
+          aideTechnique_technique: true
         }
       }
     };
@@ -74,5 +74,3 @@ describe('Simulation prestations : carteStationnement ', function() {
   });
 
 });
-
-

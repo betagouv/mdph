@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function ($scope, $http, $modal, Upload, $state, Partenaire, documentTypes, request, mdph, type, partenaire) {
+  .controller('PieceJointeCtrl', function($scope, $http, $modal, Upload, $state, Partenaire, documentTypes, request, mdph, type, partenaire) {
     $scope.request = request;
     $scope.partenaire = partenaire;
 
@@ -13,6 +13,7 @@ angular.module('impactApp')
         return documentType.id !== 'certificatMedical';
       });
     }
+
     $scope.mdph = mdph;
 
     $scope.envoiConfirmation = function(form) {
@@ -35,6 +36,7 @@ angular.module('impactApp')
                 $state.go('main');
               };
             },
+
             resolve: {
               type: function() {
                 return $scope.selectedType.id;

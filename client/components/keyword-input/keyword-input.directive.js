@@ -34,9 +34,10 @@ angular.module('impactApp')
           newKeyword = $scope.currentKeyword;
         }
 
-        if ($scope.selectedKeywords.indexOf(newKeyword) < 0 ) {
+        if ($scope.selectedKeywords.indexOf(newKeyword) < 0) {
           $scope.selectedKeywords.push(newKeyword);
         }
+
         $scope.currentKeyword = '';
       };
 
@@ -57,9 +58,9 @@ angular.module('impactApp')
 
       $scope.isSelected = function(keyword) {
         if ($scope.isMongo) {
-          return false === _.where($scope.selectedKeywords, {'_id': keyword._id}).length > 0;
+          return _.where($scope.selectedKeywords, {_id: keyword._id}).length === 0;
         } else {
-          return false === $scope.selectedKeywords.indexOf(keyword) >= 0;
+          return $scope.selectedKeywords.indexOf(keyword) < 0;
         }
       };
     }
@@ -67,11 +68,11 @@ angular.module('impactApp')
 });
 
 angular.module('impactApp')
-  .directive('ngInputEnter', function () {
-  return function (scope, element, attrs) {
-    element.bind('keydown keypress', function (event) {
-      if(event.which === 13 || event.which === 9) {
-        scope.$apply(function (){
+  .directive('ngInputEnter', function() {
+  return function(scope, element, attrs) {
+    element.bind('keydown keypress', function(event) {
+      if (event.which === 13 || event.which === 9) {
+        scope.$apply(function() {
           scope.$eval(attrs.ngInputEnter);
         });
 

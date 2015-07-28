@@ -6,7 +6,7 @@ angular.module('impactApp')
     var estMasculin = function(formAnswers) {
       try {
         return formAnswers.identites.beneficiaire.sexe === 'masculin';
-      } catch(e) {
+      } catch (e) {
         return true;
       }
     };
@@ -14,7 +14,7 @@ angular.module('impactApp')
     var estRepresentant = function(formAnswers) {
       try {
         return estMineur(formAnswers.identites.beneficiaire.dateNaissance);
-      } catch(e) {
+      } catch (e) {
         return false;
       }
     };
@@ -23,7 +23,7 @@ angular.module('impactApp')
       function getName() {
         try {
           return formAnswers.identites.beneficiaire.prenom;
-        } catch(e) {
+        } catch (e) {
           return 'le bénéficiaire de la demande';
         }
       }
@@ -47,10 +47,10 @@ angular.module('impactApp')
       var fem = getFeminin(formAnswers);
 
       return compiled({
-        'name': name,
-        'pronoun': pronoun,
-        'pronounTonic': pronounTonic,
-        'fem': fem
+        name: name,
+        pronoun: pronoun,
+        pronounTonic: pronounTonic,
+        fem: fem
       });
     };
 
@@ -59,12 +59,14 @@ angular.module('impactApp')
         if (answer.labelRep) {
           return loadAshCompile(answer.labelRep, formAnswers);
         }
+
         if (estMasculin(formAnswers) && answer.labelRepMasc) {
           return loadAshCompile(answer.labelRepMasc, formAnswers);
-        } else if (answer.labelRepFem){
+        } else if (answer.labelRepFem) {
           return loadAshCompile(answer.labelRepFem, formAnswers);
         }
       }
+
       return answer.label;
     };
 
@@ -72,6 +74,7 @@ angular.module('impactApp')
       if (estRepresentant(formAnswers) && question.titleRep) {
         return loadAshCompile(question.titleRep, formAnswers);
       }
+
       return question.titleDefault;
     };
 
@@ -79,10 +82,11 @@ angular.module('impactApp')
       if (estRepresentant(formAnswers) && angular.isDefined(question.placeholder)) {
         return loadAshCompile(question.placeholder, formAnswers);
       }
+
       return question.placeholderDefault ? question.placeholderDefault : question.placeholder;
     };
 
-    var capitaliseFirstLetter = function (string) {
+    var capitaliseFirstLetter = function(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     };
 
@@ -100,7 +104,7 @@ angular.module('impactApp')
           var label = compileLabel(answer, formAnswers);
           answer.label = capitaliseFirstLetter(label);
 
-          if(answer.placeholder){
+          if (answer.placeholder) {
             var placeholder = compilePlaceholder(answer, formAnswers);
             answer.placeholder = capitaliseFirstLetter(placeholder);
           }

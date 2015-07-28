@@ -7,12 +7,12 @@ angular.module('impactApp')
 
     $scope.changePassword = function(form) {
       $scope.passwordSubmitted = true;
-      if(form.$valid) {
-        Auth.changePassword( $scope.user.oldPassword, $scope.user.newPassword )
-        .then( function() {
+      if (form.$valid) {
+        Auth.changePassword($scope.user.oldPassword, $scope.user.newPassword)
+        .then(function() {
           $scope.passwordMessage = 'Votre mot de passe a été modifié.';
         })
-        .catch( function() {
+        .catch(function() {
           form.password.$setValidity('mongoose', false);
           $scope.errors.password = 'Mot de passe incorrect';
           $scope.passwordMessage = '';
@@ -20,9 +20,9 @@ angular.module('impactApp')
       }
     };
 
-    $scope.changePersonalInfo = function(form){
-      if(form.$valid){
-        $scope.user.$changeInfo(function(){
+    $scope.changePersonalInfo = function(form) {
+      if (form.$valid) {
+        $scope.user.$changeInfo(function() {
           $scope.infoMessage = 'Vos informations ont bien été modifiées.';
         });
       } else {

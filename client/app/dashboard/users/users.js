@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('dashboard.users', {
         url: '/utilisateurs',
@@ -9,6 +9,7 @@ angular.module('impactApp')
         controller: function($scope, pending) {
           $scope.pending = pending;
         },
+
         resolve: {
           pending: function($http) {
             return $http({method: 'HEAD', url: '/api/partenaires', params: {status: 'en_attente'}}).then(function(result) {
@@ -25,6 +26,7 @@ angular.module('impactApp')
         controller: function($scope, users) {
           $scope.users = users;
         },
+
         resolve: {
           users: function(Auth) {
             return Auth.getAllUsers();
@@ -44,6 +46,7 @@ angular.module('impactApp')
               return new User();
             }
           },
+
           currentUser: function(Auth) {
             return Auth.getCurrentUser();
           }
@@ -57,10 +60,12 @@ angular.module('impactApp')
           $scope.partenaires = partenaires;
           $scope.title = title;
         },
+
         resolve: {
           partenaires: function($stateParams, Partenaire) {
             return Partenaire.query({status: $stateParams.status});
           },
+
           title: function($stateParams) {
             switch ($stateParams.status) {
               case 'certifie':

@@ -12,9 +12,9 @@ describe('Simulation prestations : pps ', function() {
 
   it('should return pps', function(done) {
     var answers = {
-      "situations_particulieres": {
-        "urgences": {
-          "ecole": true
+      situations_particulieres: {
+        urgences: {
+          ecole: true
         }
       }
     };
@@ -26,9 +26,9 @@ describe('Simulation prestations : pps ', function() {
 
   it('should return pps', function(done) {
     var answers = {
-      "situations_particulieres": {
-        "urgences": {
-          "etablissement": true
+      situations_particulieres: {
+        urgences: {
+          etablissement: true
         }
       }
     };
@@ -40,9 +40,9 @@ describe('Simulation prestations : pps ', function() {
 
   it('should return pps', function(done) {
     var answers = {
-      "vie_scolaire": {
-        "attentesVieScolaire": {
-          "orientation": true
+      vie_scolaire: {
+        attentesVieScolaire: {
+          orientation: true
         }
       }
     };
@@ -54,9 +54,9 @@ describe('Simulation prestations : pps ', function() {
 
   it('should not return pps', function(done) {
     var answers = {
-      "vie_scolaire": {
-        "attentesVieScolaire": {
-          "orientation": false
+      vie_scolaire: {
+        attentesVieScolaire: {
+          orientation: false
         }
       }
     };
@@ -67,5 +67,3 @@ describe('Simulation prestations : pps ', function() {
   });
 
 });
-
-

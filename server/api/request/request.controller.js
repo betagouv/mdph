@@ -31,6 +31,7 @@ function findRequest(req, callback) {
   if (req.request) {
     return callback(null, req.request);
   }
+
   return Request.findOne({shortId: req.params.shortId}).exec(callback);
 }
 
@@ -67,20 +68,21 @@ exports.index = function(req, res) {
       .populate('user', 'name')
       .sort('createdAt')
       .exec(function(err, requests) {
-        if(err) return handleError(req, res, err);
+        if (err) return handleError(req, res, err);
         return res.send(requests);
       });
   });
-}
+};
 
 // Get a single request
 exports.show = function(req, res, next) {
   findRequest(req, function(err, request) {
     if (err) return handleError(req, res, err);
-    if(!request) { return res.sendStatus(404); }
+    if (!request) { return res.sendStatus(404); }
+
     return res.json(request);
   });
-}
+};
 
 // Get a single request
 exports.showPartenaire = function(req, res, next) {
@@ -90,37 +92,39 @@ exports.showPartenaire = function(req, res, next) {
   .populate('user', 'name')
   .exec(function(err, request) {
     if (err) return handleError(req, res, err);
-    if(!request) { return res.sendStatus(404); }
+    if (!request) { return res.sendStatus(404); }
+
     return res.json(request);
   });
-}
+};
 
 // Deletes a request from the DB and FS
 exports.destroy = function(req, res) {
-  findRequest(req, function (err, request) {
-    if(err) return handleError(req, res, err);
-    if(!request) return res.sendStatus(404);
+  findRequest(req, function(err, request) {
+    if (err) return handleError(req, res, err);
+    if (!request) return res.sendStatus(404);
 
     if (request.documents && request.documents.length > 0) {
-      request.documents.forEach(function (requestDoc) {
+      request.documents.forEach(function(requestDoc) {
         var documentPath = config.root + '/server/uploads/' + requestDoc.name + '.pdf';
-        fs.unlink(documentPath, function (err) {
+        fs.unlink(documentPath, function(err) {
           if (err) req.log.error(err);
         });
 
         var documentPdfPath = config.root + '/server/uploads/' + requestDoc.name;
-        fs.unlink(documentPdfPath, function (err) {
+        fs.unlink(documentPdfPath, function(err) {
           if (err) req.log.error(err);
         });
       });
     }
 
     request.remove(function(err) {
-      if(err) { return handleError(req, res, err); }
+      if (err) { return handleError(req, res, err); }
+
       return res.sendStatus(204);
     });
   });
-}
+};
 
 /**
  * Get user requests
@@ -137,14 +141,14 @@ exports.showUserRequests = function(req, res, next) {
     if (!requests) return res.json(401);
     res.json(requests);
   });
-}
+};
 
 var generatePdf = function(request, user, host, done) {
   Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
     if (err) return done(err);
     return MakePdf.make(request, user, html, done);
   });
-}
+};
 
 function sendMailNotification(request, host, log, callback) {
   Dispatcher.findSecteur(request, function(secteur) {
@@ -170,12 +174,13 @@ function sendMailNotification(request, host, log, callback) {
                   }
                 ]
               );
-            })
+            });
           } else {
             Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
           }
         });
       }
+
       callback(secteur);
     } else {
       callback();
@@ -187,7 +192,7 @@ function sendMailNotification(request, host, log, callback) {
  * Transfer request
  */
 exports.transfer = function(req, res, next) {
-  findRequest(req, function(err, request){
+  findRequest(req, function(err, request) {
     if (!request) {
       return res.sendStatus(404);
     }
@@ -195,48 +200,53 @@ exports.transfer = function(req, res, next) {
     request
       .set('user', req.params.userId)
       .set('updatedAt', Date.now())
-      .save(function (err, request) {
+      .save(function(err, request) {
         if (err) return handleError(req, res, err);
         res.json(request);
       });
   });
-}
+};
 
 exports.updateStatus = function(req, res, next) {
   async.waterfall([
-    function(callback){
+    function(callback) {
       findRequest(req, callback);
     },
+
     // Check is request exists
-    function(request, callback){
+    function(request, callback) {
       if (!request) {
         return res.sendStatus(404);
       }
 
       request.set('status', req.body.status).save(callback);
     }
-  ], function (err, request) {
+
+  ], function(err, request) {
     if (err) return handleError(req, res, err);
     res.json(request);
   });
-}
+};
+
 /**
  * Update request
  */
 exports.update = function(req, res, next) {
 
   async.waterfall([
-    function(callback){
+    function(callback) {
       findRequest(req, callback);
     },
+
     // Check is request exists
-    function(request, callback){
+    function(request, callback) {
       if (!request) {
         return res.sendStatus(404);
       }
 
       callback(null, request);
     },
+
     // Find evaluator through dispatcher
     function(request, callback) {
 
@@ -245,14 +255,16 @@ exports.update = function(req, res, next) {
           if (secteur) {
             request.set('secteur', secteur);
           }
+
           callback(null, request);
         });
       } else {
         callback(null, request);
       }
     },
+
     // Set new request attributes
-    function(request, callback){
+    function(request, callback) {
 
       request
         .set(_.omit(req.body, 'html', 'user', 'documents'))
@@ -260,7 +272,8 @@ exports.update = function(req, res, next) {
         .set('submittedAt', Date.now())
         .save(callback);
     }
-  ], function (err, request) {
+
+  ], function(err, request) {
     if (err) return handleError(req, res, err);
 
     if (req.body.html) {
@@ -269,18 +282,18 @@ exports.update = function(req, res, next) {
 
     res.json(request);
   });
-}
+};
 
 /**
  * Resend mail notification
  */
 exports.resendMail = function(req, res, next) {
-  findRequest(req, function (err, request) {
+  findRequest(req, function(err, request) {
     sendMailNotification(request, req.headers.host, req.log, function() {
       res.sendStatus(200);
     });
   });
-}
+};
 
 /**
  * Save request
@@ -291,44 +304,44 @@ exports.save = function(req, res, next) {
   var newRequest = _.assign(
     _.omit(req.body, 'html'),
     {
-      'updatedAt': now
+      updatedAt: now
     },
     {
-      'createdAt': now
+      createdAt: now
     },
     {
-      'user': req.user._id
+      user: req.user._id
     }
   );
 
   Request.create(newRequest, function(err, request) {
-    if(err) return handleError(req, res, err);
+    if (err) return handleError(req, res, err);
     return res.status(201).send(request);
   });
-}
-
-
+};
 
 /**
  * File upload
  */
-exports.saveFile = function (req, res, next) {
+exports.saveFile = function(req, res, next) {
   if (!req.files || !req.files.file) {
     return res.sendStatus(304);
   }
 
-  findRequest(req, function (err, request) {
+  findRequest(req, function(err, request) {
     if (err) return handleError(req, res, err);
     if (!request) return res.sendStatus(404);
 
     var data = JSON.parse(req.body.data);
-    var document = _.extend(req.files.file, {'type': data.type, 'category': data.category});
+    var document = _.extend(req.files.file, {type: data.type, category: data.category});
 
     if (req.query.partenaire) {
       document.partenaire = data.partenaire;
+
       // Mail
       Partenaire.findById(document.partenaire, function(err, partenaire) {
         if (err) { return handleError(req, res, err); }
+
         if (!partenaire) { res.sendStatus(404); }
 
         partenaire.secret = shortid.generate();
@@ -348,10 +361,11 @@ exports.saveFile = function (req, res, next) {
 
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
+
       return res.json(request.documents[request.documents.length - 1]);
     });
- });
-}
+  });
+};
 
 exports.downloadFile = function(req, res) {
   var filePath = path.join(config.root + '/server/uploads/', req.params.fileName);
@@ -363,10 +377,10 @@ exports.downloadFile = function(req, res) {
 
   var readStream = fs.createReadStream(filePath);
   readStream.pipe(res);
-}
+};
 
 exports.deleteFile = function(req, res) {
-  findRequest(req, function (err, request) {
+  findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
 
     var file = request.documents.id(req.params.fileId);
@@ -376,7 +390,7 @@ exports.deleteFile = function(req, res) {
 
     var filePath = path.join(config.root + '/server/uploads/', file.name);
 
-    fs.unlink(filePath, function (err) {
+    fs.unlink(filePath, function(err) {
       if (err) {
         req.log.info(req.user + ', not deleted, not found: ' + filePath);
       } else {
@@ -387,6 +401,7 @@ exports.deleteFile = function(req, res) {
 
       request.save(function(err, saved) {
         if (err) { return handleError(req, res, err); }
+
         return res.send(file).status(200);
       });
     });
@@ -394,17 +409,18 @@ exports.deleteFile = function(req, res) {
 };
 
 exports.getRecapitulatif = function(req, res) {
-  findRequest(req, function (err, request) {
+  findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
     Recapitulatif.answersToHtml(request, req.headers.host, 'inline', function(err, html) {
       if (err) { return handleError(req, res, err); }
+
       res.send(html).status(200);
     });
   });
-}
+};
 
 exports.getCerfa = function(req, res) {
-  findRequest(req, function (err, request) {
+  findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
     var flattenedAnswers = Flattener.flatten(request.formAnswers);
     var url = 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
@@ -416,39 +432,40 @@ exports.getCerfa = function(req, res) {
         })
         .pipe(res);
   });
-}
-
+};
 
 var getPdf = function(req, res) {
-  findRequest(req, function (err, request) {
+  findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
 
     generatePdf(request, req.user, req.headers.host, function(err, pdfStream) {
       if (err) { return handleError(req, res, err); }
+
       pdfStream.pipe(res);
-    })
+    });
   });
-}
+};
 
 exports.getPdf = getPdf;
 
-exports.getSynthesePdf = function (req, res) {
-  findRequest(req, function (err, request) {
+exports.getSynthesePdf = function(req, res) {
+  findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
     Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
       if (err) { return handleError(req, res, err); }
+
       wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
     });
   });
-}
+};
 
-exports.simulate = function (req, res) {
-  findRequest(req, function (err, request) {
+exports.simulate = function(req, res) {
+  findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
     var prestations = Prestation.simulate(request.formAnswers);
     return res.json(prestations);
   });
-}
+};
 
 function handleError(req, res, err) {
   req.log.error(err);

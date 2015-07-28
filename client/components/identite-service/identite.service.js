@@ -18,17 +18,21 @@ angular.module('impactApp')
       getDesc: function(type) {
         return types[type].desc;
       },
+
       getSref: function(type, id) {
         var sref = '.modification_identite({type: "' + type + '"';
-        if(!id && type ==='aidantDemarche'){
+        if (!id && type === 'aidantDemarche') {
           sref += ', id: "0"';
         }
+
         if (id) {
           sref += ', id: "' + id + '"';
         }
+
         sref += '})';
         return sref;
       },
+
       getIdentite: function(type, sectionModel, currentId) {
         switch (type) {
           case 'beneficiaire':
@@ -38,7 +42,7 @@ angular.module('impactApp')
               sectionModel.autorite = {};
             }
 
-            if(!sectionModel.autorite[currentId]){
+            if (!sectionModel.autorite[currentId]) {
               sectionModel.autorite[currentId] = {};
             }
 
@@ -47,9 +51,11 @@ angular.module('impactApp')
             if (!sectionModel.aidantDemarche) {
               sectionModel.aidantDemarche = [];
             }
-            return  sectionModel.aidantDemarche[currentId] || {};
+
+            return sectionModel.aidantDemarche[currentId] || {};
         }
       },
+
       mergeModifications: function(type, sectionModel, currentId, tempIdentite, done) {
         switch (type) {
           case 'beneficiaire':
@@ -64,6 +70,7 @@ angular.module('impactApp')
             } else {
               sectionModel.aidantDemarche[currentId] = tempIdentite;
             }
+
             break;
         }
         done();

@@ -32,9 +32,10 @@ angular.module('impactApp')
 
     var getTooltipBySection = function(section) {
       var tooltip = '<ul>';
-      _.forEach(section.questions, function(question){
+      _.forEach(section.questions, function(question) {
         tooltip += '<li>' + question[0].Description + '</li>';
       });
+
       tooltip += '</ul>';
       return tooltip;
     };
@@ -49,35 +50,32 @@ angular.module('impactApp')
               scolaire: []
             };
             var general = [];
-            questions.forEach(function(question){
-              if(question.Trajectoire==='scolaire'){
+            questions.forEach(function(question) {
+              if (question.Trajectoire === 'scolaire') {
                 trajectoire.scolaire.push(question);
-              }
-              else {
-                if(question.Trajectoire==='travail'){
+              } else {
+                if (question.Trajectoire === 'travail') {
                   trajectoire.travail.push(question);
-                }
-                else {
+                } else {
                   general.push(question);
                 }
               }
             });
-            if(request.formAnswers.vie_scolaire){
-              if(request.formAnswers.vie_au_travail){
+
+            if (request.formAnswers.vie_scolaire) {
+              if (request.formAnswers.vie_au_travail) {
                 questions = trajectoire.scolaire.concat(trajectoire.travail, general);
-              }
-              else {
+              } else {
                 questions = trajectoire.scolaire.concat(general, trajectoire.travail);
               }
-            }
-            else {
-              if(request.formAnswers.vie_au_travail){
+            } else {
+              if (request.formAnswers.vie_au_travail) {
                 questions = trajectoire.travail.concat(trajectoire.scolaire, general);
-              }
-              else {
+              } else {
                 questions = general.concat(trajectoire.scolaire, trajectoire.travail);
               }
             }
+
             var questionsByDesc = _.groupBy(questions, 'Description');
             sectionsByLabel[section].questions = questionsByDesc;
             sectionsByLabel[section].tooltip = getTooltipBySection(sectionsByLabel[section]);
@@ -99,4 +97,4 @@ angular.module('impactApp')
         return completion;
       }
     };
-});
+  });

@@ -1,7 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-exports.setup = function (User, config) {
+exports.setup = function(User, config) {
   passport.use(new LocalStrategy({
       usernameField: 'email',
       passwordField: 'password' // this is the virtual field on the model
@@ -15,11 +15,14 @@ exports.setup = function (User, config) {
         if (!user) {
           return done(null, false, { message: 'Email ou mot de passe incorrect.' });
         }
+
         if (!user.authenticate(password)) {
           return done(null, false, { message: 'Email ou mot de passe incorrect.' });
         }
+
         return done(null, user);
       });
     }
+
   ));
 };

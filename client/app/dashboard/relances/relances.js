@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('dashboard.relances', {
         url: '/relances',

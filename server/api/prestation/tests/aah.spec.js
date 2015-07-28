@@ -33,8 +33,8 @@ describe('Simulation prestations : AAH ', function() {
         attentesTypeAide: {
           financierMinimum: true
         },
-        "pensionInvalidite": {
-          "mtp": true
+        pensionInvalidite: {
+          mtp: true
         }
       }
     };
@@ -50,8 +50,8 @@ describe('Simulation prestations : AAH ', function() {
         besoinsVie: {
           courant: true
         },
-        "pensionInvalidite": {
-          "pcrtp": true
+        pensionInvalidite: {
+          pcrtp: true
         }
       }
     };
@@ -66,10 +66,10 @@ describe('Simulation prestations : AAH ', function() {
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
-          "hygiene": true
+          hygiene: true
         },
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         }
       }
     };
@@ -84,10 +84,10 @@ describe('Simulation prestations : AAH ', function() {
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
-          "habits": true
+          habits: true
         },
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         }
       }
     };
@@ -103,11 +103,11 @@ describe('Simulation prestations : AAH ', function() {
         besoinsVie: {
           courant: true,
         },
-        "besoinsDeplacement": {
-          "intraDomicile": true
+        besoinsDeplacement: {
+          intraDomicile: true
         },
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         }
       }
     };
@@ -120,30 +120,30 @@ describe('Simulation prestations : AAH ', function() {
   it('should not return aah', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
-          "habits": true,
-          "cuisine": true,
-          "repas": true,
-          "budget": true,
-          "courses": true,
-          "menage": true,
-          "sante": true
+          habits: true,
+          cuisine: true,
+          repas: true,
+          budget: true,
+          courses: true,
+          menage: true,
+          sante: true
         },
-        "besoinsSocial": {
-          "securite": true,
-          "proches": true,
-          "loisirs": false,
-          "citoyen": true
+        besoinsSocial: {
+          securite: true,
+          proches: true,
+          loisirs: false,
+          citoyen: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": false
+      vie_au_travail: {
+        conditionTravail: false
       }
     };
 
@@ -155,30 +155,30 @@ describe('Simulation prestations : AAH ', function() {
   it('should return aah', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
-          "habits": true,
-          "cuisine": true,
-          "repas": true,
-          "budget": true,
-          "courses": true,
-          "menage": true,
-          "sante": true
+          habits: true,
+          cuisine: true,
+          repas: true,
+          budget: true,
+          courses: true,
+          menage: true,
+          sante: true
         },
-        "besoinsSocial": {
-          "securite": true,
-          "proches": true,
-          "loisirs": true,
-          "citoyen": true
+        besoinsSocial: {
+          securite: true,
+          proches: true,
+          loisirs: true,
+          citoyen: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": false
+      vie_au_travail: {
+        conditionTravail: false
       }
     };
 
@@ -190,30 +190,30 @@ describe('Simulation prestations : AAH ', function() {
   it('should not return aah - more than 62 yrs old', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1912-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1912-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
-          "habits": true,
-          "cuisine": true,
-          "repas": true,
-          "budget": true,
-          "courses": true,
-          "menage": true,
-          "sante": true
+          habits: true,
+          cuisine: true,
+          repas: true,
+          budget: true,
+          courses: true,
+          menage: true,
+          sante: true
         },
-        "besoinsSocial": {
-          "securite": true,
-          "proches": true,
-          "loisirs": true,
-          "citoyen": true
+        besoinsSocial: {
+          securite: true,
+          proches: true,
+          loisirs: true,
+          citoyen: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": false
+      vie_au_travail: {
+        conditionTravail: false
       }
     };
 
@@ -225,32 +225,32 @@ describe('Simulation prestations : AAH ', function() {
   it('should return aah', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
-          "habits": true,
-          "cuisine": true,
-          "repas": true,
-          "budget": true,
-          "courses": true,
-          "menage": true,
-          "sante": true
+          habits: true,
+          cuisine: true,
+          repas: true,
+          budget: true,
+          courses: true,
+          menage: true,
+          sante: true
         },
-        "besoinsSocial": {
-          "securite": true,
-          "proches": true,
-          "loisirs": true,
-          "citoyen": true
+        besoinsSocial: {
+          securite: true,
+          proches: true,
+          loisirs: true,
+          citoyen: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": true,
-        "temps": false,
-        "adapte": false
+      vie_au_travail: {
+        conditionTravail: true,
+        temps: false,
+        adapte: false
       }
     };
 
@@ -262,32 +262,32 @@ describe('Simulation prestations : AAH ', function() {
   it('should not return aah', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
-          "habits": true,
-          "cuisine": true,
-          "repas": true,
-          "budget": true,
-          "courses": true,
-          "menage": true,
-          "sante": true
+          habits: true,
+          cuisine: true,
+          repas: true,
+          budget: true,
+          courses: true,
+          menage: true,
+          sante: true
         },
-        "besoinsSocial": {
-          "securite": true,
-          "proches": true,
-          "loisirs": true,
-          "citoyen": true
+        besoinsSocial: {
+          securite: true,
+          proches: true,
+          loisirs: true,
+          citoyen: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": true,
-        "temps": true,
-        "adapte": false
+      vie_au_travail: {
+        conditionTravail: true,
+        temps: true,
+        adapte: false
       }
     };
 
@@ -299,29 +299,29 @@ describe('Simulation prestations : AAH ', function() {
   it('should return aah', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           hygiene: true,
           courant: true,
-          "habits": true,
-          "repas": true,
-          "sante": true
+          habits: true,
+          repas: true,
+          sante: true
         },
         attentesTypeAide: {
           materiel: true
         },
-        "besoinsDeplacement": {
-          "public": true
+        besoinsDeplacement: {
+          public: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": true,
-        "temps": false,
-        "adapte": false
+      vie_au_travail: {
+        conditionTravail: true,
+        temps: false,
+        adapte: false
       }
     };
 
@@ -333,9 +333,9 @@ describe('Simulation prestations : AAH ', function() {
   it('should return aah - renouvellement de droit', function(done) {
     var answers = {
       estRenouvellement: true,
-      "prestations": {
-        "aah": {
-          "date": "2015-05-11T22:00:00.000Z"
+      prestations: {
+        aah: {
+          date: '2015-05-11T22:00:00.000Z'
         }
       }
     };
@@ -348,8 +348,8 @@ describe('Simulation prestations : AAH ', function() {
   it('should return aah - milieu de travail protégé', function(done) {
     var answers = {
       estRenouvellement: true,
-      "beneficiaire": {
-        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      beneficiaire: {
+        dateNaissance: '1992-05-06T22:00:00.000Z'
       },
       vie_au_travail: {
         milieuTravail: {
@@ -366,11 +366,11 @@ describe('Simulation prestations : AAH ', function() {
   it('should not return aah - milieu de travail protégé', function(done) {
     var answers = {
       estRenouvellement: false,
-      "beneficiaire": {
-        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      beneficiaire: {
+        dateNaissance: '1992-05-06T22:00:00.000Z'
       },
       vie_au_travail: {
-        "milieuTravail": "etablissement"
+        milieuTravail: 'etablissement'
       }
     };
 
@@ -382,11 +382,11 @@ describe('Simulation prestations : AAH ', function() {
   it('should not return aah - milieu de travail protégé', function(done) {
     var answers = {
       estRenouvellement: true,
-      "beneficiaire": {
-        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      beneficiaire: {
+        dateNaissance: '1992-05-06T22:00:00.000Z'
       },
       vie_au_travail: {
-        "milieuTravail": "autre"
+        milieuTravail: 'autre'
       }
     };
 
@@ -398,11 +398,11 @@ describe('Simulation prestations : AAH ', function() {
   it('should return aah - etablissement medico social', function(done) {
     var answers = {
       estRenouvellement: true,
-      "beneficiaire": {
-        "dateNaissance": "1992-05-06T22:00:00.000Z"
+      beneficiaire: {
+        dateNaissance: '1992-05-06T22:00:00.000Z'
       },
       vie_quotidienne: {
-        "logement": "etablissement"
+        logement: 'etablissement'
       }
     };
 
@@ -411,5 +411,3 @@ describe('Simulation prestations : AAH ', function() {
     done();
   });
 });
-
-

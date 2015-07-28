@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $sessionStorage) {
     var currentUser = {};
-    if($cookieStore.get('token')) {
+    if ($cookieStore.get('token')) {
       currentUser = User.get();
     }
 
@@ -66,6 +66,7 @@ angular.module('impactApp')
             currentUser = User.get();
             return cb(user);
           },
+
           function(err) {
             this.logout();
             return cb(err);
@@ -88,7 +89,9 @@ angular.module('impactApp')
           newPassword: newPassword
         }, function(user) {
           return cb(user);
-        }, function(err) {
+        },
+
+        function(err) {
           return cb(err);
         }).$promise;
       },
@@ -109,7 +112,9 @@ angular.module('impactApp')
           newBirthDate: newBirthDate
         }, function(user) {
           return cb(user);
-        }, function(err) {
+        },
+
+        function(err) {
           return cb(err);
         }).$promise;
       },
@@ -136,13 +141,13 @@ angular.module('impactApp')
        * Waits for currentUser to resolve before checking if user is logged in
        */
       isLoggedInAsync: function(cb) {
-        if(currentUser.hasOwnProperty('$promise')) {
+        if (currentUser.hasOwnProperty('$promise')) {
           currentUser.$promise.then(function() {
             cb(true);
           }).catch(function() {
             cb(false);
           });
-        } else if(currentUser.hasOwnProperty('role')) {
+        } else if (currentUser.hasOwnProperty('role')) {
           cb(true);
         } else {
           cb(false);

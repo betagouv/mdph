@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('StatsCtrl', function ($scope, $http) {
+  .controller('StatsCtrl', function($scope, $http) {
     $scope.sumRequests = function(mdphs) {
       var count = 0;
       if (mdphs) {
@@ -9,6 +9,7 @@ angular.module('impactApp')
           count += mdph.requests.total;
         });
       }
+
       return count;
     };
 
@@ -20,8 +21,10 @@ angular.module('impactApp')
         mdphs.forEach(function(mdph) {
            data.push(mdph.requests[type]);
          });
+
         series.push(data);
       });
+
       return series;
     }
 
@@ -34,6 +37,7 @@ angular.module('impactApp')
         mdphs.forEach(function(mdph) {
            data.push(mdph.certificats[type]);
          });
+
         series.push(data);
       });
 

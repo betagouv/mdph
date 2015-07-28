@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function ($scope, $rootScope, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout, $state, User, Notification) {
+  .controller('NavbarCtrl', function($scope, $rootScope, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout, $state, User, Notification) {
     $scope.menu = [
     {
-      'title': 'Accueil',
-      'link': 'main'
+      title: 'Accueil',
+      link: 'main'
     }];
 
     $scope.isCollapsed = true;
@@ -16,20 +16,6 @@ angular.module('impactApp')
     $scope.notifications = [];
     $scope.showNotifications = false;
     $scope.getCurrentUser = Auth.getCurrentUser;
-
-    // function queryNotifications(user) {
-    //   User.queryNotifications({id: user._id}, function(notifications) {
-    //      $scope.notifications = notifications;
-    //   });
-    // }
-    // var user = $scope.getCurrentUser();
-    // if (user.$resolved === false) {
-    //   Auth.getCurrentUser().$promise.then(function(data) {
-    //     queryNotifications(data);
-    //   });
-    // } else {
-    //   queryNotifications(user);
-    // }
 
     angular.element(document).ready(function() {
       $timeout(function() {
@@ -74,18 +60,18 @@ angular.module('impactApp')
       }
     };
 
-    $scope.removeNotif = function (notification, index){
-      Notification.delete({id: notification._id}, function(){
+    $scope.removeNotif = function(notification, index) {
+      Notification.delete({id: notification._id}, function() {
         $scope.notifications.splice(index, 1);
-        if($scope.notifications.length === 0){
+        if ($scope.notifications.length === 0) {
           $scope.showNotifications = false;
         }
       });
     };
 
-    $scope.goState = function (notification, index){
+    $scope.goState = function(notification, index) {
       $state.go(notification.state, { shortId: notification.request });
-      Notification.delete({id: notification._id}, function(){
+      Notification.delete({id: notification._id}, function() {
         $scope.notifications.splice(index, 1);
         $scope.showNotifications = false;
       });

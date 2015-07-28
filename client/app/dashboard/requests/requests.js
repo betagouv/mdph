@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('dashboard.requests', {
         url: '/demandes',
@@ -11,12 +11,15 @@ angular.module('impactApp')
           users: function(Auth) {
             return Auth.getAllUsers();
           },
+
           secteurs: function(SecteurResource) {
             return SecteurResource.query().$promise;
           },
+
           currentUser: function(Auth) {
             return Auth.getCurrentUser();
           },
+
           incomplete: function(RequestResource) {
             return RequestResource.query().$promise;
           }
@@ -56,13 +59,16 @@ angular.module('impactApp')
             if (currentUser._id === user._id) {
               return RequestResource.query({evaluator: user._id, status: 'emise'}).$promise;
             }
+
             return RequestResource.query({evaluator: user._id}).$promise;
           },
+
           user: function($http, $stateParams) {
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
               return user.data;
             });
           },
+
           showArchiveAction: function() {
             return true;
           }
@@ -77,11 +83,13 @@ angular.module('impactApp')
           requests: function(RequestResource, user) {
             return RequestResource.query({evaluator: user._id, status: 'evaluation'}).$promise;
           },
+
           user: function($http, $stateParams) {
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
               return user.data;
             });
           },
+
           showArchiveAction: function() {
             return false;
           }
@@ -96,11 +104,13 @@ angular.module('impactApp')
           requests: function(RequestResource, user) {
             return RequestResource.query({evaluator: user._id, status: 'en_cours'}).$promise;
           },
+
           user: function($http, $stateParams) {
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
               return user.data;
             });
           },
+
           showArchiveAction: function() {
             return false;
           }
@@ -132,20 +142,24 @@ angular.module('impactApp')
             });
           };
         },
+
         resolve: {
           request: function($http, $stateParams, RequestResource) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
           },
+
           user: function($http, request) {
             return $http.get('api/users/' + request.user).then(function(result) {
               return result.data;
             });
           },
+
           prestations: function($http) {
             return $http.get('api/prestations').then(function(result) {
               return result.data;
             });
           },
+
           prestationsQuitus: function($http, $stateParams) {
             return $http.get('api/requests/' + $stateParams.shortId + '/simulation').then(function(result) {
               return result.data;

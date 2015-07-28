@@ -1,3 +1,5 @@
+/*jslint bitwise: true */
+
 'use strict';
 
 var fs = require('fs');
@@ -21,7 +23,7 @@ function printDebug(str, obj) {
   }
 }
 
-exports.make = function (request, user, recapitulatifHtml, done) {
+exports.make = function(request, user, recapitulatifHtml, done) {
   printDebug('makePdf: Transforming html to pdf');
   tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
     if (err) throw err;
@@ -31,14 +33,16 @@ exports.make = function (request, user, recapitulatifHtml, done) {
       wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath}, function() {
         printDebug('make: Transforming for GED_59');
         async.waterfall([
+
           // Transform everything to pdf stream
-          function(cb){
+          function(cb) {
             if (request.documents) {
               return transformDocumentListToPdf(request.documents, [], tempDirPath, cb);
             }
 
             cb(null, []);
           },
+
           // Group documents by section
           function(documentList, cb) {
             if (documentList.length > 0) {
@@ -47,8 +51,9 @@ exports.make = function (request, user, recapitulatifHtml, done) {
 
             cb(null, {});
           },
+
           // Join everything in one stream
-          function(groups, cb){
+          function(groups, cb) {
 
             var pdfStructure = [
               getSeparatorPath('sep_cerfa.pdf'),
@@ -71,16 +76,20 @@ exports.make = function (request, user, recapitulatifHtml, done) {
 
             return cb(null, pdfStructure);
           },
+
           // Load everything in scissors
-          function(structure, cb){
+          function(structure, cb) {
             var scissorsStructure = _.map(structure, function(document) {
               return scissors(document);
             });
 
             printDebug('make: finished building structure:', scissorsStructure);
             cb(null, scissorsStructure);
-          },
-        ], function (err, scissorsStructure) {
+          }
+
+        ],
+
+        function(err, scissorsStructure) {
           if (err) return done(err);
           printDebug('make: finished building pdf');
 
@@ -88,7 +97,7 @@ exports.make = function (request, user, recapitulatifHtml, done) {
             .join.apply(scissors, scissorsStructure)
             .pdfStream();
 
-          setTimeout(function () {
+          setTimeout(function() {
             cleanupCallback();
           }, 600000);
 
@@ -99,16 +108,18 @@ exports.make = function (request, user, recapitulatifHtml, done) {
       wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath}, function() {
         printDebug('make: Transforming for non-59');
         async.waterfall([
+
           // Transform everything to pdf stream
-          function(cb){
+          function(cb) {
             if (request.documents) {
               return transformDocumentListToPdf(request.documents, [], tempDirPath, cb);
             }
 
             cb(null, []);
           },
+
           // Join everything in one stream
-          function(documentList, cb){
+          function(documentList, cb) {
 
             var pdfStructure = [
               requestTempPdfPath
@@ -126,16 +137,20 @@ exports.make = function (request, user, recapitulatifHtml, done) {
 
             return cb(null, pdfStructure);
           },
+
           // Load everything in scissors
-          function(structure, cb){
+          function(structure, cb) {
             var scissorsStructure = _.map(structure, function(document) {
               return scissors(document);
             });
 
             printDebug('make: finished building structure:', scissorsStructure);
             cb(null, scissorsStructure);
-          },
-        ], function (err, scissorsStructure) {
+          }
+
+        ],
+
+        function(err, scissorsStructure) {
           if (err) return done(err);
           printDebug('make: finished building pdf');
 
@@ -143,7 +158,7 @@ exports.make = function (request, user, recapitulatifHtml, done) {
             .join.apply(scissors, scissorsStructure)
             .pdfStream();
 
-          setTimeout(function () {
+          setTimeout(function() {
             cleanupCallback();
           }, 600000);
 
@@ -152,37 +167,7 @@ exports.make = function (request, user, recapitulatifHtml, done) {
       });
     }
   });
-}
-
-// function compress(input, output, done) {
-//   printDebug('compress:', output);
-
-//   var gs = spawn('gs', [
-//     '-sDEVICE=pdfwrite',
-//     '-dCompatibilityLevel=1.5',
-//     '-dPDFSETTINGS=/screen',
-//     '-dNOPAUSE',
-//     '-dBATCH',
-//     '-dQUIET',
-//     '-sOutputFile=' + output,
-//     input
-//   ]);
-
-//   var stdout = '';
-
-//   gs.stdout.on('data', function(chunk) {
-//     stdout += chunk.toString();
-//   });
-
-//   gs.on('error', function(err) {
-//     done(err);
-//   });
-
-//   gs.on('close', function(code) {
-//     printDebug('compress: finished');
-//     done(null, output);
-//   });
-// }
+};
 
 function transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath, done) {
   printDebug('transformDocumentListToPdf: Transforming: ', documentList);
@@ -192,10 +177,11 @@ function transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath
       if (err) {
         return done(err);
       }
+
       document.tempPdfPath = tempPdfPath;
       document.actualPdfPath = actualPdfPath;
       documentListAsPdf.push(document);
-      return transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath, done)
+      return transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath, done);
     });
   } else {
     printDebug('transformDocumentListToPdf: Finished: ', documentListAsPdf);

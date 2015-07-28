@@ -12,8 +12,9 @@ exports.simulate = function(computed) {
       return true;
     }
   }
+
   return ou([
     ou(getValueList(computed.urgences, ['ecole', 'etablissement'])),
     ou(getValueList(computed.attentesVieScolaire, ['adaptation', 'orientation', 'readaptation', 'etablissementSansHebergement', 'etablissementAvecHebergement']))
   ]);
-}
+};

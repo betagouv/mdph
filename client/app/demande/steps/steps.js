@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider, allSteps, documentTypes) {
-
-    var documentTypesById = _.indexBy(documentTypes, 'id');
-
+  .config(function($stateProvider, allSteps) {
     var createDefaultStep = function(step) {
       $stateProvider.state('departement.demande.' + step.id, {
         url: '/' + step.id,
@@ -14,9 +11,11 @@ angular.module('impactApp')
           step: function() {
             return step;
           },
+
           stepSections: function(sections) {
             return _.filter(sections, {group: step.id});
           },
+
           updateRequest: function(mainUpdateRequest) {
             return function() {
               mainUpdateRequest('departement.demande.' + step.id);
@@ -24,10 +23,10 @@ angular.module('impactApp')
           }
         }
       });
-    }
+    };
 
     _.chain(allSteps)
-      .filter({'isDefault': true})
+      .filter({isDefault: true})
       .map(createDefaultStep)
       .value();
 
@@ -49,13 +48,15 @@ angular.module('impactApp')
             templateUrl: 'components/login/login.html',
             controller: 'LoginStepCtrl',
             resolve: {
-              afterLogin: function($state, $rootScope, request) {
+              afterLogin: function($state, $rootScope, $window, request) {
                 return function() {
                   $rootScope.$broadcast('saving', 'pending');
                   request.$save(function() {
                     $rootScope.$broadcast('saving', 'success');
-                    $state.go('departement.demande.documents', {shortId: request.shortId})
-                  }, function(err) {
+                    $state.go('departement.demande.documents', {shortId: request.shortId});
+                  },
+
+                  function(err) {
                     $rootScope.$broadcast('saving', 'error');
                     $window.alert(err.data.message);
                   });
@@ -65,7 +66,7 @@ angular.module('impactApp')
           },
           'suggestions@departement.demande.documents': {
             templateUrl: 'app/demande/steps/documents/suggestions/suggestions.html',
-            controller: function ($scope, PreparationEvaluationService, request) {
+            controller: function($scope, PreparationEvaluationService, request) {
               $scope.docsList = PreparationEvaluationService.getSuggestedDocsList(request.formAnswers);
             }
           },
@@ -95,13 +96,15 @@ angular.module('impactApp')
             templateUrl: 'components/login/login.html',
             controller: 'LoginStepCtrl',
             resolve: {
-              afterLogin: function($state, $rootScope, request) {
+              afterLogin: function($state, $rootScope, $window, request) {
                 return function() {
                   $rootScope.$broadcast('saving', 'pending');
                   request.$save(function() {
                     $rootScope.$broadcast('saving', 'success');
-                    $state.go('departement.demande.envoi', {shortId: request.shortId})
-                  }, function(err) {
+                    $state.go('departement.demande.envoi', {shortId: request.shortId});
+                  },
+
+                  function(err) {
                     $rootScope.$broadcast('saving', 'error');
                     $window.alert(err.data.message);
                   });
@@ -144,7 +147,9 @@ angular.module('impactApp')
                     request.$transfer({target: user._id}, function() {
                       $state.go('espace_perso.liste_demandes');
                     });
-                  }, function() {
+                  },
+
+                  function() {
                     $scope.userNotFound = $scope.email;
                   });
                 }

@@ -8,46 +8,53 @@ var Request = require('../request/request.model');
 var moment = require('moment');
 
 function countAgents(data, mdphs, done) {
-  async.eachSeries(mdphs, function (mdph, callback) {
+  async.eachSeries(mdphs, function(mdph, callback) {
     User.find({
       mdph: mdph._id
-    }, function (err, list) {
+    },
+    function(err, list) {
       data[mdph.zipcode].agents = err || !list ? 0 : list.length;
       callback();
     });
-  }, function (err) {
+  },
+
+  function(err) {
     if (err) { throw err; }
+
     return done();
   });
 }
 
 function countRequests(data, mdphs, done) {
-  async.eachSeries(mdphs, function (mdph, callback) {
+  async.eachSeries(mdphs, function(mdph, callback) {
     Request.find({
       mdph: mdph.zipcode
-    }, function (err, list) {
+    }, function(err, list) {
       data[mdph.zipcode].requests = {};
       data[mdph.zipcode].requests.total = err || !list ? 0 : list.length;
 
       var requestByStatus = _.groupBy(list, 'status');
       _.forEach(['en_cours', 'emise', 'evaluation'], function(status) {
-        var requestsForStatus = requestByStatus[status] ? requestByStatus[status].length : 0
+        var requestsForStatus = requestByStatus[status] ? requestByStatus[status].length : 0;
         data[mdph.zipcode].requests[status] = requestsForStatus;
-      })
+      });
 
       callback();
     });
-  }, function (err) {
+  },
+
+  function(err) {
     if (err) { throw err; }
+
     return done();
   });
 }
 
 function countCertificats(data, mdphs, done) {
-  async.eachSeries(mdphs, function (mdph, callback) {
+  async.eachSeries(mdphs, function(mdph, callback) {
     Request.find({
       mdph: mdph.zipcode
-    }, function (err, list) {
+    }, function(err, list) {
       data[mdph.zipcode].certificats = {partenaire: 0, direct: 0};
 
       list.forEach(function(request) {
@@ -66,18 +73,20 @@ function countCertificats(data, mdphs, done) {
 
       callback();
     });
-  }, function (err) {
+  },
+
+  function(err) {
     if (err) { throw err; }
+
     return done();
   });
-
 
   return data;
 }
 
 exports.mdph = function(req, res) {
   Mdph.find().sort('zipcode').exec(function(err, mdphs) {
-    if(err) { return handleError(req, res, err); }
+    if (err) { return handleError(req, res, err); }
 
     var data = [];
     mdphs.forEach(function(mdph) {
@@ -93,12 +102,15 @@ exports.mdph = function(req, res) {
       function(cb) {
         countAgents(dataByZipcode, mdphs, cb);
       },
+
       function(cb) {
         countRequests(dataByZipcode, mdphs, cb);
       },
+
       function(cb) {
         countCertificats(dataByZipcode, mdphs, cb);
       }
+
     ], function(err) {
       res.json(data);
     });
@@ -107,7 +119,7 @@ exports.mdph = function(req, res) {
 
 exports.site = function(req, res) {
   User.find().exec(function(err, users) {
-    if(err) { return handleError(req, res, err); }
+    if (err) { return handleError(req, res, err); }
 
     var data = {
       count: users.length
@@ -125,9 +137,10 @@ function getOneWeekAgo() {
 
 exports.history = function(req, res) {
   Request.find({
-    createdAt: {'$gte': getOneWeekAgo()}
+    createdAt: {$gte: getOneWeekAgo()}
   }).sort('createdAt').exec(function(err, requests) {
     if (err) { return handleError(req, res, err); }
+
     if (!requests) {
       return res.json({});
     }
@@ -142,8 +155,9 @@ exports.history = function(req, res) {
       data.push({
         date: date,
         count: requests.length
-      })
+      });
     });
+
     res.json(data);
   });
 };
@@ -151,9 +165,11 @@ exports.history = function(req, res) {
 exports.certificats = function(req, res) {
   Request.find().exec(function(err, requests) {
     if (err) { return handleError(req, res, err); }
+
     if (!requests) {
       return res.json({});
     }
+
     var data = 0;
     requests.forEach(function(request) {
       if (request.documents && request.documents.length > 0) {
@@ -164,10 +180,10 @@ exports.certificats = function(req, res) {
         });
       }
     });
+
     res.json(data);
   });
 };
-
 
 function handleError(req, res, err) {
   req.log.error(err);

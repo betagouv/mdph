@@ -12,9 +12,9 @@ describe('Simulation prestations : orp ', function() {
 
   it('should return orp', function(done) {
     var answers = {
-      "situations_particulieres": {
-        "urgences": {
-          "travail": true
+      situations_particulieres: {
+        urgences: {
+          travail: true
         }
       }
     };
@@ -26,9 +26,9 @@ describe('Simulation prestations : orp ', function() {
 
   it('should return orp', function(done) {
     var answers = {
-      "situations_particulieres": {
-          "urgences": {
-          "formation": true
+      situations_particulieres: {
+        urgences: {
+          formation: true
         }
       }
     };
@@ -41,13 +41,13 @@ describe('Simulation prestations : orp ', function() {
   it('should return orp', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
-      "situations_particulieres": {
-          "urgences": {
-          "formation": true
+      situations_particulieres: {
+        urgences: {
+          formation: true
         }
       }
     };
@@ -60,16 +60,16 @@ describe('Simulation prestations : orp ', function() {
   it('should return orp', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2000-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2000-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true
         },
-        "pensionInvalidite": {
-          "mtp": true
+        pensionInvalidite: {
+          mtp: true
         }
       }
     };
@@ -82,28 +82,28 @@ describe('Simulation prestations : orp ', function() {
   it('should return orp', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2000-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2000-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
           hygiene: true,
-          "habits": true,
-          "repas": true,
+          habits: true,
+          repas: true,
         },
         attentesTypeAide: {
           materiel: true
         },
-        "besoinsDeplacement": {
-          "public": true
+        besoinsDeplacement: {
+          public: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": true,
-        "temps": false,
-        "adapte": false
+      vie_au_travail: {
+        conditionTravail: true,
+        temps: false,
+        adapte: false
       }
     };
 
@@ -115,28 +115,28 @@ describe('Simulation prestations : orp ', function() {
   it('should not return orp', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2000-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2000-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
         besoinsVie: {
           courant: true,
           hygiene: true,
-          "habits": true,
-          "repas": true,
+          habits: true,
+          repas: true
         },
         attentesTypeAide: {
           materiel: true
         },
-        "besoinsDeplacement": {
-          "public": true
+        besoinsDeplacement: {
+          public: true
         }
       },
-      "vie_au_travail": {
-        "conditionTravail": true,
-        "temps": false,
-        "adapte": true
+      vie_au_travail: {
+        conditionTravail: true,
+        temps: false,
+        adapte: true
       }
     };
 
@@ -145,5 +145,3 @@ describe('Simulation prestations : orp ', function() {
     done();
   });
 });
-
-

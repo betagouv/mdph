@@ -1,7 +1,7 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var SecteurSchema = new Schema({
   mdph:           { type: Schema.Types.ObjectId, ref: 'Mdph', required: true },

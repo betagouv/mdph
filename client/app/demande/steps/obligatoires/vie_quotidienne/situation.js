@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     var index = 'departement.demande.obligatoire.vie_quotidienne.situation';
     $stateProvider
       .state(index, {
@@ -20,6 +20,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'famille', request.formAnswers);
           },
+
           nextStep: function($state, sectionModel, question) {
             return function() {
               if (sectionModel[question.model] === 'etablissement') {
@@ -39,6 +40,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'logement', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.aides');
@@ -54,6 +56,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aideActuelle', request.formAnswers);
           },
+
           nextStep: function($state, sectionModel, question) {
             return function() {
               var answer = sectionModel[question.model];
@@ -80,6 +83,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aideFinancierePresent', request.formAnswers);
           },
+
           nextStep: function(RequestService, request, $state, sectionModel) {
             return function() {
               if (RequestService.estAdulte(request)) {
@@ -106,6 +110,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aideFinancierePasse', request.formAnswers);
           },
+
           nextStep: function($state, sectionModel) {
             return function() {
               var answerAideActuelle = sectionModel.aideActuelle;
@@ -128,6 +133,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aideTechnique', request.formAnswers);
           },
+
           nextStep: function($state, sectionModel) {
             return function() {
               var answerAideActuelle = sectionModel.aideActuelle;
@@ -148,6 +154,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aidePersonne', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.pensionInvalidite');
@@ -163,6 +170,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'pensionInvalidite', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.ipp');
@@ -178,6 +186,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'ipp', request.formAnswers);
           },
+
           nextStep: function(RequestService, request, $state) {
             return function() {
               if (RequestService.estAdulte(request)) {
@@ -197,6 +206,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'retraite', request.formAnswers);
           },
+
           nextStep: function($state, sectionModel, question) {
             return function() {
               if (sectionModel[question.model]) {
@@ -216,6 +226,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'aidesRetraite', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.fraisHandicap');
@@ -231,6 +242,7 @@ angular.module('impactApp')
           question: function(QuestionService, request, section) {
             return QuestionService.get(section, 'fraisHandicap', request.formAnswers);
           },
+
           nextStep: function($state) {
             return function() {
               $state.go('^.^.vos_besoins.quotidien');

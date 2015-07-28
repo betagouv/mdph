@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('departement.demande', {
         url: '/:shortId',
@@ -11,6 +11,7 @@ angular.module('impactApp')
               return result.data;
             });
           },
+
           request: function($stateParams, $sessionStorage, RequestResource, mdph, sections) {
             if ($stateParams.shortId === 'nouvelle_demande') {
               var request = $sessionStorage.request;
@@ -37,6 +38,7 @@ angular.module('impactApp')
               }).$promise;
             }
           },
+
           mainUpdateRequest: function($state, $window, $timeout, $rootScope, user, request) {
             return function(parent) {
 
@@ -68,7 +70,7 @@ angular.module('impactApp')
               } else {
                 $state.go(parent);
               }
-            }
+            };
           }
         },
         redirectTo: 'departement.demande.obligatoire',
@@ -83,11 +85,8 @@ angular.module('impactApp')
           },
           'steps@departement.demande': {
             templateUrl: 'app/demande/steps/steps.html',
-            controller: function ($scope, allSteps) {
+            controller: function($scope, allSteps) {
               $scope.steps = allSteps;
-              $scope.isStepComplete = function(step) {
-
-              }
             }
           },
           'body@departement.demande': {

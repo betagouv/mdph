@@ -1,7 +1,7 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var shortId = require('shortid');
 
 var DocumentSchema = new Schema({
@@ -21,7 +21,7 @@ var DocumentSchema = new Schema({
 
 var RequestSchema = new Schema({
   shortId:        { type: String, unique: true, default: shortId.generate },
-  documents:      [ DocumentSchema ],
+  documents:      [DocumentSchema],
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
   mdph:           { type: String },
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },

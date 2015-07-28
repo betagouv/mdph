@@ -13,13 +13,13 @@ describe('Simulation prestations : ems ', function() {
   it('should return ems', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
-        "attentesTypeAide": {
-          "etablissement": true
+        attentesTypeAide: {
+          etablissement: true
         }
       }
     };
@@ -32,13 +32,13 @@ describe('Simulation prestations : ems ', function() {
   it('should not return ems', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "2002-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '2002-05-06T22:00:00.000Z'
         }
       },
       vie_quotidienne: {
-        "attentesTypeAide": {
-          "etablissement": true
+        attentesTypeAide: {
+          etablissement: true
         }
       }
     };
@@ -51,20 +51,20 @@ describe('Simulation prestations : ems ', function() {
   it('should return ems', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
-      "situations_particulieres": {
-        "urgences": {
-          "domicile": true
+      situations_particulieres: {
+        urgences: {
+          domicile: true
         }
       },
       vie_quotidienne: {
-        "besoinsSocial": {
-          "securite": true,
-          "proches": true,
-          "loisirs": true
+        besoinsSocial: {
+          securite: true,
+          proches: true,
+          loisirs: true
         }
       }
     };
@@ -77,24 +77,24 @@ describe('Simulation prestations : ems ', function() {
   it('should return ems', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       aidant: {
-        "natureAide": {
-          "surveillance": true,
-          "deplacementInterieur": true,
-          "deplacementExterieur": true,
-          "repasPrise": true,
-          "social": true,
-          "loisirs": true,
-          "hygiene": true
+        natureAide: {
+          surveillance: true,
+          deplacementInterieur: true,
+          deplacementExterieur: true,
+          repasPrise: true,
+          social: true,
+          loisirs: true,
+          hygiene: true
         },
-        "typeAttente": {
-          "professionnel": true,
-          "vacances": true,
-          "imprevu": true
+        typeAttente: {
+          professionnel: true,
+          vacances: true,
+          imprevu: true
         }
       }
     };
@@ -107,19 +107,19 @@ describe('Simulation prestations : ems ', function() {
   it('should not return ems', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       aidant: {
-        "natureAide": {
-          "surveillance": true,
-          "deplacementInterieur": true,
-          "deplacementExterieur": true,
-          "repasPrise": true,
-          "social": true,
-          "loisirs": true,
-          "hygiene": true
+        natureAide: {
+          surveillance: true,
+          deplacementInterieur: true,
+          deplacementExterieur: true,
+          repasPrise: true,
+          social: true,
+          loisirs: true,
+          hygiene: true
         }
       }
     };
@@ -132,15 +132,15 @@ describe('Simulation prestations : ems ', function() {
   it('should not return ems', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       aidant: {
-        "typeAttente": {
-          "professionnel": true,
-          "vacances": true,
-          "imprevu": true
+        typeAttente: {
+          professionnel: true,
+          vacances: true,
+          imprevu: true
         }
       }
     };
@@ -149,19 +149,20 @@ describe('Simulation prestations : ems ', function() {
     quitus.should.not.containEql(ems);
     done();
   });
+
   it('should return ems', function(done) {
     var answers = {
       identites: {
-        "beneficiaire": {
-          "dateNaissance": "1992-05-06T22:00:00.000Z"
+        beneficiaire: {
+          dateNaissance: '1992-05-06T22:00:00.000Z'
         }
       },
       aidant: {
-        "natureAide": {
-          "deplacementExterieur": true
+        natureAide: {
+          deplacementExterieur: true
         },
-        "typeAttente": {
-          "imprevu": true
+        typeAttente: {
+          imprevu: true
         }
       }
     };
@@ -171,5 +172,3 @@ describe('Simulation prestations : ems ', function() {
     done();
   });
 });
-
-

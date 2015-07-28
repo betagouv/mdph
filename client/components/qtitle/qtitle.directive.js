@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('qtitle', function ($modal) {
+  .directive('qtitle', function($modal) {
     return {
       templateUrl: 'components/qtitle/qtitle.html',
       restrict: 'EA',
@@ -11,8 +11,8 @@ angular.module('impactApp')
         $scope.showHelp = function() {
           $modal.open({
             templateUrl: $scope.helpTemplate,
-            controller: function ($scope, $modalInstance) {
-              $scope.ok = function () {
+            controller: function($scope, $modalInstance) {
+              $scope.ok = function() {
                 $modalInstance.close();
               };
             }

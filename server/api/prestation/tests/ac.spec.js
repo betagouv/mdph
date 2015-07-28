@@ -13,9 +13,9 @@ describe('Simulation prestations : AC ', function() {
   it('should return ac - renouvellement de droit', function(done) {
     var answers = {
       estRenouvellement: true,
-      "prestations": {
-        "ac": {
-          "date": "2015-05-11T22:00:00.000Z"
+      prestations: {
+        ac: {
+          date: '2015-05-11T22:00:00.000Z'
         }
       }
     };

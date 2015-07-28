@@ -25,13 +25,13 @@ exports.simulate = function(computed) {
           getValue(computed.attentesTypeAide, 'humain')
         ]),
         ou([
-          ou( getValueList(computed.besoinsVie, ['budget', 'sante']) ),
-          ou( getValueList(computed.besoinsSocial, ['proches', 'loisirs', 'citoyen']) ),
+          ou(getValueList(computed.besoinsVie, ['budget', 'sante'])),
+          ou(getValueList(computed.besoinsSocial, ['proches', 'loisirs', 'citoyen'])),
         ])
       ]),
       et([
-        ou( getValueList(computed.attentesAidant, ['repos', 'professionnel']) ),
-        et( getValueList(computed.natureAideAidant, [
+        ou(getValueList(computed.attentesAidant, ['repos', 'professionnel'])),
+        et(getValueList(computed.natureAideAidant, [
           'surveillance',
           'juridique',
           'deplacementExterieur',
@@ -41,9 +41,8 @@ exports.simulate = function(computed) {
           'social',
           'repasPreparation',
           'medical'
-        ]) )
+        ]))
       ])
     ])
   ]);
-}
-
+};

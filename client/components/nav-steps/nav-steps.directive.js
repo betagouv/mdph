@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('navSteps', function () {
+  .directive('navSteps', function() {
     return {
       transclude: true,
       templateUrl: 'components/nav-steps/nav-steps.html',
@@ -18,8 +18,6 @@ angular.module('impactApp')
         $scope.previousStep = function() {
           $window.history.back();
         };
-      },
-      link: function () {
       }
     };
   });

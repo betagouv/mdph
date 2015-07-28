@@ -1,19 +1,19 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LoginCtrl', function ($rootScope, $scope, Auth, $location, $state) {
+  .controller('LoginCtrl', function($rootScope, $scope, Auth, $location, $state) {
     $scope.user = {};
     $scope.errors = {};
 
     $scope.login = function(form) {
       $scope.submitted = true;
 
-      if(form.$valid) {
+      if (form.$valid) {
         Auth.login({
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .then( function(data) {
+        .then(function(data) {
           // Logged in, redirect
           if ($rootScope.returnToState) {
             $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
@@ -25,10 +25,9 @@ angular.module('impactApp')
             $state.go('espace_perso.liste_demandes');
           }
         })
-        .catch( function(err) {
+        .catch(function(err) {
           $scope.errors.other = err.message;
         });
       }
     };
-
   });

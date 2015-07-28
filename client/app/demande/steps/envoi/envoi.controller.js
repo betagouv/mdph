@@ -8,7 +8,7 @@ angular.module('impactApp')
     $scope.showError = false;
 
     var stepObligatoire = $scope.stepObligatoire = _.find(allSteps, {id: 'obligatoire'});
-    var stepDocuments = $scope.stepDocuments = _.find(allSteps, {id: 'documents'});
+    $scope.stepDocuments = _.find(allSteps, {id: 'documents'});
 
     $scope.nbSections = 0;
     stepObligatoire.sections.forEach(function(section) {
@@ -39,7 +39,6 @@ angular.module('impactApp')
     $scope.statusSections = $scope.nbSections === $scope.totalSections ? true : false;
     $scope.statusDocuments = $scope.nbDocuments === $scope.totalDocuments ? true : false;
 
-
     $scope.envoyer = function() {
       var isReadyToSend = $scope.statusSections && $scope.statusDocuments && !$scope.user.unconfirmed;
       if (!isReadyToSend) {
@@ -48,7 +47,7 @@ angular.module('impactApp')
         $scope.showError = false;
         request.status = 'emise';
         request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH ' + request.mdph;
-        request.$update({isSendingRequest: true}, function () {
+        request.$update({isSendingRequest: true}, function() {
           $modal.open({
             templateUrl: 'app/demande/steps/envoi/modal_envoi_ok.html',
             backdrop: true,
@@ -61,10 +60,10 @@ angular.module('impactApp')
           });
         });
       }
-    }
+    };
   })
-  .filter('stepStatus', function () {
-    return function (input) {
+  .filter('stepStatus', function() {
+    return function(input) {
       if (input) {
         return 'Section complète';
       } else {

@@ -21,4 +21,4 @@ exports.simulate = function(computed) {
       getValue(computed.aidant, 'vie')
     ])
   ]);
-}
+};

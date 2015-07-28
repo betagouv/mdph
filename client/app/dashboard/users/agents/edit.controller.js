@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AgentsEditCtrl', function ($scope, $state, user, currentUser) {
+  .controller('AgentsEditCtrl', function($scope, $state, user, currentUser) {
     $scope.user = user;
 
     $scope.update = function() {

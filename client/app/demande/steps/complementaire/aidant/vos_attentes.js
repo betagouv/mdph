@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
 
     var index = 'departement.demande.complementaire.aidant.vos_attentes';
 
@@ -18,6 +18,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'typeAttente', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.structure');
@@ -33,6 +34,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'structures', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.renseignements');
@@ -48,6 +50,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'demandesAides', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.autres_renseignements');
@@ -66,6 +69,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'autresRenseignements', request.formAnswers);
         },
+
         nextStep: function(saveSection) {
           return function() {
             saveSection();

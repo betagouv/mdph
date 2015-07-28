@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: partenaire', function () {
+describe('Controller: partenaire', function() {
 
   // load the service's module
   beforeEach(module('impactApp'));
 
-  it('should render initial data', function () {
+  it('should render initial data', function() {
     //given
     var scope = {};
 
     //when
-    inject(function($controller){
+    inject(function($controller) {
       $controller('PartenaireCtrl', {
         $scope: scope
       });

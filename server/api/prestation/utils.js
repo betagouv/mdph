@@ -6,12 +6,12 @@ exports.et = _.every;
 exports.getSection = function(answers, sectionModel) {
   var result = _.result(answers, sectionModel);
   return result ? result : {};
-}
+};
 
 exports.getValue = function(question, answerModel) {
   var answer = _.result(question, answerModel);
   return answer ? answer : false;
-}
+};
 
 exports.getValueList = function(question, answerModelList) {
   var resultList = [];
@@ -23,5 +23,6 @@ exports.getValueList = function(question, answerModelList) {
       resultList.push(false);
     }
   });
+
   return resultList;
-}
+};

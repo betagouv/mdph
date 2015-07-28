@@ -14,15 +14,15 @@ angular.module('impactApp')
         var length = type.length;
 
         Upload.upload({
-            url: 'api/requests/' + request.shortId + '/document',
-            method: 'POST',
-            file: file,
-            data: {
+          url: 'api/requests/' + request.shortId + '/document',
+          method: 'POST',
+          file: file,
+          data: {
               type: document,
               category: documentTypesById[document].category
             }
         })
-        .progress(function (evt) {
+        .progress(function(evt) {
           if (evt.config.file) {
             type[length] = {
               name: evt.config.file.name,
@@ -30,7 +30,7 @@ angular.module('impactApp')
             };
           }
         })
-        .success(function (data) {
+        .success(function(data) {
           request.documents.push(data);
           type[length] = data;
         });

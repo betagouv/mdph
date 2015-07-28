@@ -12,11 +12,11 @@ describe('Simulation prestations : AV ', function() {
 
   it('should return av', function(done) {
     var answers = {
-      "aidant": {
-        "vie": true,
-        "emploi": "reductionActivite",
-        "typeAttente": {
-          "vieillesse": true
+      aidant: {
+        vie: true,
+        emploi: 'reductionActivite',
+        typeAttente: {
+          vieillesse: true
         }
       }
     };
@@ -28,8 +28,8 @@ describe('Simulation prestations : AV ', function() {
 
   it('should not return av', function(done) {
     var answers = {
-      "aidant": {
-        "vie": true
+      aidant: {
+        vie: true
       }
     };
 
@@ -40,9 +40,9 @@ describe('Simulation prestations : AV ', function() {
 
   it('should return av', function(done) {
     var answers = {
-      "aidant": {
-        "vie": true,
-        "emploi": "reductionActivite"
+      aidant: {
+        vie: true,
+        emploi: 'reductionActivite'
       }
     };
 
@@ -53,9 +53,9 @@ describe('Simulation prestations : AV ', function() {
 
   it('should return av', function(done) {
     var answers = {
-      "aidant": {
-        "typeAttente": {
-          "vieillesse": true
+      aidant: {
+        typeAttente: {
+          vieillesse: true
         }
       }
     };
@@ -66,5 +66,3 @@ describe('Simulation prestations : AV ', function() {
   });
 
 });
-
-

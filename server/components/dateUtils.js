@@ -19,9 +19,10 @@ function isMoreThan(answers, age) {
     return moment().diff(dateNaissance, 'years') >= age;
   }
 }
+
 exports.isMoreThan = isMoreThan;
 
- exports.isLessThan = function (answers, age) {
+exports.isLessThan = function(answers, age) {
   var dateNaissance = getDateNaissance(answers);
 
   if (!dateNaissance) {
@@ -31,7 +32,6 @@ exports.isMoreThan = isMoreThan;
   }
 };
 
- exports.isAdult = function (answers) {
+exports.isAdult = function(answers) {
   return isMoreThan(answers, 20);
 };
-

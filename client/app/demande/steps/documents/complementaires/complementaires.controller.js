@@ -19,12 +19,12 @@ angular.module('impactApp')
       UploadService.upload(request, $scope.filesVM, file, documentFile);
     };
 
-    $scope.chooseType = function () {
+    $scope.chooseType = function() {
       var modalInstance = $modal.open({
         templateUrl: 'app/demande/steps/documents/modal_type.html',
         controller: 'ChooseTypeModalInstanceCtrl',
         resolve: {
-          categories: function () {
+          categories: function() {
             var filtered = _.chain(documentTypes)
               .reject({mandatory: true})
               .filter(function(type) {
@@ -38,12 +38,12 @@ angular.module('impactApp')
         }
       });
 
-      modalInstance.result.then(function (selected) {
+      modalInstance.result.then(function(selected) {
         $scope.documentsComplementaires.push(selected);
       });
     };
   })
-  .controller('ChooseTypeModalInstanceCtrl', function ($scope, $modalInstance, $filter, categories) {
+  .controller('ChooseTypeModalInstanceCtrl', function($scope, $modalInstance, $filter, categories) {
     $scope.categories = categories;
 
     $scope.filterCategories = function() {
@@ -65,8 +65,7 @@ angular.module('impactApp')
       $modalInstance.close(selected);
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
       $modalInstance.dismiss('cancel');
     };
-
   });

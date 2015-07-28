@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('dashboard.dispatch', {
         url: '/dispatch',
@@ -15,6 +15,7 @@ angular.module('impactApp')
         controller: function($scope, DispatchRuleResource) {
           $scope.dispatchRules = DispatchRuleResource.query();
         },
+
         authenticate: true
       })
       .state('dashboard.dispatch.regles.edit', {
@@ -29,9 +30,11 @@ angular.module('impactApp')
               return new DispatchRuleResource();
             }
           },
+
           secteurs: function(SecteurResource) {
             return SecteurResource.query().$promise;
           },
+
           zipcodes: function() {
             // TODO recuperer liste des codes postaux
             return ['14000', '14001', '14002', '14003', '14004', '14005', '14006', '14007'];
@@ -45,6 +48,7 @@ angular.module('impactApp')
         controller: function($scope, secteurs) {
           $scope.secteurs = secteurs;
         },
+
         resolve: {
           secteurs: function(SecteurResource) {
             return SecteurResource.query().$promise;
@@ -64,6 +68,7 @@ angular.module('impactApp')
               return new SecteurResource();
             }
           },
+
           evaluators: function(Auth) {
             return Auth.getAllUsers();
           }

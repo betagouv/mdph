@@ -2,16 +2,17 @@
 
 angular.module('impactApp')
   .filter('age', function() {
-     function calculAge(dateNaiss) {
-         var ageDiff = Date.now() - Date.parse(dateNaiss);
-         var ageDate = new Date(ageDiff);
-         return Math.abs(ageDate.getUTCFullYear() - 1970);
-     }
-     return function(dateNaiss) {
-           return calculAge(dateNaiss);
-     };
+    function calculAge(dateNaiss) {
+      var ageDiff = Date.now() - Date.parse(dateNaiss);
+      var ageDate = new Date(ageDiff);
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+
+    return function(dateNaiss) {
+      return calculAge(dateNaiss);
+    };
   })
-  .controller('RequestPreEvaluationCtrl', function ($scope, $http, $window, $cookieStore, $sce, currentMdph, request, recapitulatif, documentTypes, NotificationService, prestations, prestationsQuitus) {
+  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookieStore, $sce, currentMdph, request, recapitulatif, documentTypes, NotificationService, prestations, prestationsQuitus) {
     $scope.token = $cookieStore.get('token');
     $scope.recapitulatif = recapitulatif;
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
@@ -22,7 +23,7 @@ angular.module('impactApp')
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.filesVM = _.groupBy(request.documents, 'type');
 
-    if(request.renouvellement){
+    if (request.renouvellement) {
       $scope.renouvellement = 'Renouvellement';
     } else {
       $scope.renouvellement = 'Première demande';
@@ -34,8 +35,8 @@ angular.module('impactApp')
       });
     };
 
-     $scope.isSelected = function(prestation) {
-        return false === request.prestations.indexOf(prestation.label) >= 0;
+    $scope.isSelected = function(prestation) {
+      return request.prestations.indexOf(prestation.label) < 0;
     };
 
     $scope.removePrestation = function(index) {

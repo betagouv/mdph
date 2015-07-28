@@ -14,10 +14,10 @@ describe('Simulation prestations : carteInvalidite ', function() {
     var answers = {
       vie_quotidienne: {
         besoinsVie: {
-          "hygiene": true
+          hygiene: true
         },
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         }
       }
     };
@@ -31,10 +31,10 @@ describe('Simulation prestations : carteInvalidite ', function() {
     var answers = {
       vie_quotidienne: {
         besoinsVie: {
-          "habits": true
+          habits: true
         },
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         }
       }
     };
@@ -48,10 +48,10 @@ describe('Simulation prestations : carteInvalidite ', function() {
     var answers = {
       vie_quotidienne: {
         besoinsVie: {
-          "repas": true
+          repas: true
         },
-        "attentesTypeAide": {
-          "humain": true
+        attentesTypeAide: {
+          humain: true
         }
       }
     };
@@ -64,8 +64,8 @@ describe('Simulation prestations : carteInvalidite ', function() {
   it('should return carteInvalidite', function(done) {
     var answers = {
       vie_quotidienne: {
-        "besoinsDeplacement": {
-          "intraDomicile": true
+        besoinsDeplacement: {
+          intraDomicile: true
         }
       }
     };
@@ -78,8 +78,8 @@ describe('Simulation prestations : carteInvalidite ', function() {
   it('should return carteInvalidite', function(done) {
     var answers = {
       vie_quotidienne: {
-        "pensionInvalidite": {
-          "pcrtp": true
+        pensionInvalidite: {
+          pcrtp: true
         }
       }
     };
@@ -92,8 +92,8 @@ describe('Simulation prestations : carteInvalidite ', function() {
   it('should return carteInvalidite', function(done) {
     var answers = {
       vie_quotidienne: {
-        "pensionInvalidite": {
-          "mtp": true
+        pensionInvalidite: {
+          mtp: true
         }
       }
     };
@@ -104,5 +104,3 @@ describe('Simulation prestations : carteInvalidite ', function() {
   });
 
 });
-
-

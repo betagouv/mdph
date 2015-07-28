@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('impactApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     var index = 'departement.demande.obligatoire.vie_quotidienne.vos_besoins';
     $stateProvider.state(index, {
       url: '/vos_besoins',
       template: '<ui-view/>',
-      controller: function ($scope) {
+      controller: function($scope) {
         $scope.helpTemplate = 'components/help/besoins.html';
       },
+
       redirectTo: index + '.quotidien',
     }).state(index + '.quotidien', {
       url: '/quotidien',
@@ -18,6 +19,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsVie', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.deplacement');
@@ -32,6 +34,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsDeplacement', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.transport');
@@ -46,6 +49,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsTransports', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.social');
@@ -60,6 +64,7 @@ angular.module('impactApp')
         question: function(QuestionService, request, section) {
           return QuestionService.get(section, 'besoinsSocial', request.formAnswers);
         },
+
         nextStep: function($state) {
           return function() {
             $state.go('^.^.vos_attentes.type_aide');
