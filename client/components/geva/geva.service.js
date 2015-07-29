@@ -24,6 +24,23 @@ angular.module('impactApp')
 
       getModel: function() {
         return $http.get('/api/geva', {cache: true}).then(function(result) {
+          // Generation des ids
+          // _.forEach(result.data, function(section) {
+          //   section.Reponses.forEach(function(reponse) {
+          //     reponse.id = reponse.CodeValeur.replace(/[. ]/g, '_');
+          //     if (reponse.Details) {
+          //       reponse.Details.forEach(function(detail) {
+          //         detail.id = detail.CodeValeur.replace(/[. ]/g, '_');
+          //         if (detail.SousDetails) {
+          //           detail.SousDetails.forEach(function(sousDetail) {
+          //             sousDetail.id = sousDetail.CodeValeur.replace(/[. ]/g, '_');
+          //           });
+          //         }
+          //       });
+          //     }
+          //   });
+          // });
+
           var sections = _.groupBy(result.data, 'Section');
 
           var cleanModel = {};
@@ -32,7 +49,6 @@ angular.module('impactApp')
 
             var trajectoires = _.groupBy(toutesQuestions, 'Trajectoire');
             _.forEach(trajectoires, function(sectionQuestions, trajectoire) {
-              //var questionsByDesc = _.groupBy(sectionQuestions, 'Description');
               cleanModel[section][trajectoire] = sectionQuestions;
             });
           });

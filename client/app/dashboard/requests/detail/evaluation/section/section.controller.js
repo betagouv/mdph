@@ -12,14 +12,14 @@ angular.module('impactApp')
 
     $scope.isSelected = function(question, answer) {
       if (question.Type === 'CU') {
-        return currentModel[question.Question] === answer.CodeValeur;
+        return currentModel[question.Question] === answer.id;
       } else {
-        return currentModel[question.Question] && currentModel[question.Question][answer.CodeValeur];
+        return currentModel[question.Question] && currentModel[question.Question][answer.id];
       }
     };
 
     $scope.isDetailSelected = function(question, detail) {
-      return currentModel[question.Question] && currentModel[question.Question][detail.CodeValeur];
+      return currentModel[question.Question] && currentModel[question.Question][detail.id];
     };
 
     $scope.validate = function() {
