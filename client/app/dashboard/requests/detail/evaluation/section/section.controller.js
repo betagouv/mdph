@@ -1,65 +1,30 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, GevaService, request) {
-    $scope.currentSection = _.find($scope.sections, {id: $stateParams.sectionId});
+  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, GevaService, request) {
+    $scope.section = section;
+    if (!request.synthese.geva[section.id]) {
+      request.synthese.geva[section.id] = {};
+    }
 
-    request.synthese.geva[$stateParams.sectionId] = {};
+    var currentModel = request.synthese.geva[section.id];
+    $scope.currentModel = currentModel;
 
-    $scope.validate = function() {
-      _.forEach($scope.currentSection.questions, function(question) {
-        getSectionAnswers(question);
-      });
-
-      request.$update();
-      GevaService.validate($scope.currentSection);
-      $state.go('^');
+    $scope.isSelected = function(question, answer) {
+      if (question.Type === 'CU') {
+        return currentModel[question.Question] === answer.CodeValeur;
+      } else {
+        return currentModel[question.Question] && currentModel[question.Question][answer.CodeValeur];
+      }
     };
 
-    function getSectionAnswers(question) {
-      if (question.selected) {
-        getOneAnswer(question);
-      } else {
-        getMultipleAnswers(question);
-      }
-    }
+    $scope.isDetailSelected = function(question, detail) {
+      return currentModel[question.Question] && currentModel[question.Question][detail.CodeValeur];
+    };
 
-    function getOneAnswer(question) {
-      var answersByNumber = _.indexBy(question[0].Reponses, 'Tri');
-      if (!request.synthese.geva[$stateParams.sectionId][question[0].Description]) {
-        request.synthese.geva[$stateParams.sectionId][question[0].Description] = [];
-      }
-
-      request.synthese.geva[$stateParams.sectionId][question[0].Description].push(answersByNumber[question.selected].CodeValeur);
-    }
-
-    function getMultipleAnswers(question) {
-      _.forEach(question[0].Reponses, function(answer) {
-        if (answer.selected) {
-          if (!request.synthese.geva[$stateParams.sectionId][question[0].Description]) {
-            request.synthese.geva[$stateParams.sectionId][question[0].Description] = [];
-          }
-
-          request.synthese.geva[$stateParams.sectionId][question[0].Description].push(answer.CodeValeur);
-          if (answer.Details) {
-            _.forEach(answer.Details, function(detail) {
-              getDetailedAnswers(question, detail);
-            });
-          }
-        }
+    $scope.validate = function() {
+      request.$update(function() {
+        $state.go('^');
       });
-    }
-
-    function getDetailedAnswers(question, detail) {
-      if (detail.selected) {
-        request.synthese.geva[$stateParams.sectionId][question[0].Description].push(detail.CodeValeur);
-        if (detail.SousDetails) {
-          _.forEach(detail.SousDetails, function(sousDetail) {
-            if (sousDetail.selected) {
-              request.synthese.geva[$stateParams.sectionId][question[0].Description].push(sousDetail.CodeValeur);
-            }
-          });
-        }
-      }
-    }
+    };
   });

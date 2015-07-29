@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookieStore, sections, GevaService, prestations, request) {
+  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookieStore, sections, model, GevaService, prestations, request) {
+    $scope.model = model;
     $scope.sections = sections;
-    $scope.computeCompletion = GevaService.computeCompletion;
     $scope.request = request;
     $scope.token = $cookieStore.get('token');
+
     if (!request.synthese) {
       request.synthese = {
         geva: {}
@@ -13,10 +14,6 @@ angular.module('impactApp')
     } else if (!request.synthese.geva) {
       request.synthese.geva = {};
     }
-
-    $scope.autoriserTelechargement = function() {
-      return !request.synthese.proposition ? true : false;
-    };
 
     $scope.afficherSynthese = function() {
       $modal.open({

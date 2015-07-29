@@ -1,0 +1,44 @@
+.btn-geva {
+  width: 100%;
+  text-align: left;
+  margin-top: 5px;
+
+  &.active {
+    &:before {
+      color: $lighter-blue;
+    }
+  }
+
+  &:before {
+    color: lighten($lighter-blue, 25%);
+    font-family: 'FontAwesome';
+    margin-right: 5px;
+  }
+}
+
+.btn-checkbox {
+  &.active {
+    &:before {
+      content: '\f14a';
+    }
+  }
+  &:before {
+    content: '\f096';
+  }
+}
+
+.btn-radio {
+  &.active {
+    &:before {
+      content: '\f192';
+    }
+  }
+  &:before {
+    content: '\f10c';
+  }
+}
+
+.well-sousdetail {
+  @extend .well-detail;
+  background-color: white;
+}

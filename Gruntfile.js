@@ -84,8 +84,6 @@ module.exports = function(grunt) {
     }
 
     grunt.task.run([
-      'jshint',
-      'jscs',
       'clean:server',
       'env:all',
       'injector:sass',
@@ -139,6 +137,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', [
+    'jshint',
+    'jscs',
     'clean:dist',
     'injector:sass',
     'concurrent:dist',

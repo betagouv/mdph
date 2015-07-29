@@ -15,6 +15,9 @@
       <!-- <button class="btn btn-default" ng-click="resendMail()">
         <i class="fa fa-envelope"></i> Renvoyer le mail de notification
       </button> -->
+
+      <button class="btn btn-danger" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
+
       <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
         <i class="fa fa-download"></i> Télécharger
       </a>
@@ -34,6 +37,4 @@
   <div class="detail-tab">
     <ui-view/>
   </div>
-
-  <button class="btn btn-danger" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
 </div>

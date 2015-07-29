@@ -1,16 +1,28 @@
 <ui-view>
-  <div class="geva-pie" id="geva-pie">
-    <a
-      ng-repeat="(idx, section) in sections" tooltip-trigger tooltip-placement="{{section.placement}}" tooltip-html-unsafe="{{section.tooltip}}"
-      class="geva-section" id="geva-section-{{idx + 1}}"
-      ui-sref=".section({sectionId: section.id})">
-      <span class="geva-section-id">{{idx + 1}}</span>
-      <p class="text-center">{{section.label}}</p>
-    </a>
+  <div class="geva">
+    <div class="geva-section" ng-repeat="section in sections">
+      <div class="geva-section-content">
+        <div class="head">
+          <a ui-sref=".section({sectionId: section.id})">
+            <h1>{{section.label}}</h1>
+            <span>{{$index + 1}}</span>
+          </a>
+        </div>
+        <div class="body">
+          <div ng-repeat="(trajectoire, questions) in model[section.label]" ng-class="{optionnal: trajectoire !== 'Toutes'}">
+            <h2 ng-if="trajectoire !== 'Toutes'">{{trajectoire}}</h2>
+
+            <ul>
+              <li ng-repeat="question in questions">{{question.Description}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="pull-right">
-    <a target="_blank" ng-disabled="autoriserTelechargement()" class="btn btn-primary" href="api/requests/{{request.shortId}}/synthese.pdf?access_token={{token}}" download>
+    <a target="_blank" ng-disabled="!request.synthese.proposition" class="btn btn-primary" href="api/requests/{{request.shortId}}/synthese.pdf?access_token={{token}}" download>
       <i class="fa fa-download"></i>
       Télécharger la synthèse
     </a>

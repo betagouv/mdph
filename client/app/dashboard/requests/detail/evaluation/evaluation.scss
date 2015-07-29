@@ -1,69 +1,74 @@
-
-.geva-pie {
-  width: 60%;
-  margin: auto;
+.geva {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  align-items: stretch;
 }
 
-.geva-pie li {
-  text-align: left;
+.geva-section {
+  width: 50%;
+  padding: 10px;
+  display: flex;
 }
 
-.geva-pie a.geva-section {
-  width: 49%;
-  margin: 1px;
-  height: 10em;
-  display: inline-block;
-  border-radius: 5%;
-  padding-top: 4em;
-  position: relative;
-  text-align: center;
-  color: white;
-  font-size: 18px;
+.geva-section-content {
+  display: flex;
+  flex-grow: 1;
+  border: 1px solid lighten($lighter-blue, 25%);
+  border-radius: 4px;
 
-  &:hover {
-    text-decoration: none;
+  .head {
+    width: 30%;
+    background-color: lighten($lighter-blue, 15%);
+    padding: 20px 8px;
+    text-align: center;
+
+    span {
+      color: lighten($lighter-blue, 30%);
+      font-size: 45px;
+    }
+
+    h1 {
+      color: white;
+      font-size: 1.3em;
+      margin: 0;
+    }
+
+    a {
+      &:hover, &:focus {
+        text-decoration: none;
+        span {
+          color: white;
+        }
+      }
+    }
   }
-}
 
-#geva-section-1 {
-  border-top-left-radius: 50%;
-  background-color: #3C4963;
-  background-color: hsla(220, 25%, 31%, 1);
-  &:hover {
-    background-color: darken(#3C4963, 5%);
+  .body {
+    width: 70%;
+    padding: 20px;
+
+    ul {
+      margin: 0;
+    }
+
+    .optionnal {
+      margin-top: 15px;
+      ul {
+        background-color: whitesmoke;
+      }
+    }
+
+    li:first-letter {
+      text-transform: capitalize;
+    }
+
+    h2 {
+      padding-bottom: 5px;
+      text-align: right;
+      font-size: 1.2em;
+      margin: 0;
+      border-bottom: 1px solid lighten($lighter-blue, 25%);
+    }
   }
-}
-
-#geva-section-2 {
-  background-color: #4f6083;
-  background-color: hsla(220, 25%, 41%, 1);
-  &:hover {
-    background-color: darken(#4f6083, 5%);
-  }
-}
-
-#geva-section-3 {
-  background-color: #4f6083;
-  background-color: hsla(220, 25%, 41%, 1);
-  &:hover {
-    background-color: darken(#4f6083, 5%);
-  }
-}
-
-#geva-section-4 {
-  border-bottom-right-radius: 50%;
-  background-color: #3C4963;
-  background-color: hsla(220, 25%, 31%, 1);
-  &:hover {
-    background-color: darken(#3C4963, 5%);
-  }
-}
-
-.geva-section-id {
-  position: absolute;
-  right: 0;
-  top: -10%;
-  font-size: 10em;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
 }

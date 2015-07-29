@@ -2,7 +2,7 @@
     {
         "Section": "Environnement",
         "Description": "Composition du foyer",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Quelle est la situation familiale de la personne ?",
         "Type": "CM",
         "Reponses": [
@@ -46,7 +46,7 @@
     {
         "Section": "Environnement",
         "Description": "Type d'hébergement (TYPHEB)",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Où la personne est-elle hébergée? ",
         "Type": "CU",
         "Reponses": [
@@ -105,7 +105,7 @@
     {
         "Section": "Environnement",
         "Description": "caractéristiques du logement (TYPAEXT)",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Le logement est-il adapté?",
         "Type": "CU",
         "Reponses": [
@@ -124,7 +124,7 @@
     {
         "Section": "Vie scolaire ou professionnelle",
         "Description": "Situation par rapport à l'activité (SITACT) + situation scolaire actuelle (SITSCO) + type d'activité professionnelle (TYPACT) ",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Quelle est la situation de la personne par rapport à l'activité scolaire ou professionnelle?",
         "Type": "CM",
         "Reponses": [
@@ -224,7 +224,7 @@
     {
         "Section": "Environnement",
         "Description": "ressources propres de la personne (SITREC)",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Quelles sont les ressources dont elle dispose?",
         "Type": "CM",
         "Reponses": [
@@ -342,7 +342,7 @@
     {
         "Section": "Environnement",
         "Description": "Caractéristiques transport (CARTRANSP)",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Quels sont les moyens de transport utilisés par la personne?",
         "Type": "CM",
         "Reponses": [
@@ -2226,7 +2226,7 @@
     {
         "Section": "Vie personnelle",
         "Description": "Activités (CAPTYP)",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Pour quelles activités la personne rencontre-t-elle des difficultés?",
         "Type": "CM",
         "Reponses": [
@@ -4691,7 +4691,7 @@
     {
         "Section": "Evolution et besoins",
         "Description": "Evolution  envisagée pour la situation - ",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Quelle évolution de la situation est envisagée pour l'avenir?",
         "Type": "CM",
         "Reponses": [
@@ -4747,7 +4747,7 @@
     {
         "Section": "Evolution et besoins",
         "Description": "évolution depuis la précédente demande",
-        "Trajectoire": "toutes",
+        "Trajectoire": "Toutes",
         "Question": "Quelle évolution de la situation a pu être constatée depuis la précédente demande?",
         "Type": "CU",
         "Reponses": [
