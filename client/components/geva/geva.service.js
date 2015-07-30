@@ -59,14 +59,6 @@ angular.module('impactApp')
 
       validate: function(section) {
         section.validated = true;
-      },
-
-      computeCompletion: function() {
-        var completion = _.reduce(sections, function(result, section) {
-          return result + (section.validated ? 25 : 0);
-        }, 0);
-
-        return completion;
       }
     };
   });
