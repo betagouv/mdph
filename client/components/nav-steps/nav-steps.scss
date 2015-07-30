@@ -17,5 +17,7 @@
 }
 
 .btn-valid:before {
-  content: "✓"
+  font-family: 'FontAwesome';
+  content: '\f00c';
+  margin-right: 5px;
 }
