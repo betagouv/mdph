@@ -24,7 +24,7 @@ var formatDateNaissance = function(identite) {
   if (identite && identite.dateNaissance) {
     identite.dateNaissance = moment(identite.dateNaissance).format('DD/MM/YYYY');
   }
-}
+};
 
 function getSousDetailsFromAnswer(detailConstant, answers) {
   if (!detailConstant.SousDetails) {
