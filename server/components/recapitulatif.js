@@ -267,7 +267,7 @@ exports.answersToHtml = function(request, path, output, next) {
   function(err, results) {
     if (err) { next(err); }
 
-    var subTemplates = _.omit(results, 'answersTemplate', 'trajectoires', 'requestIdentites');
+    var subTemplates = _.omit(results, 'submittedAt', 'mdph', 'quitus', 'answersTemplate', 'trajectoires', 'requestIdentites');
     var html = mustache.render(
       results.answersTemplate,
       {
@@ -276,8 +276,7 @@ exports.answersToHtml = function(request, path, output, next) {
         sections: results.trajectoires,
         identites: results.requestIdentites,
         mdph: results.mdph,
-        quitus: results.quitus,
-        prestationsTemplate: results.prestationsTemplate,
+        quitus: results.quitus
       },
       subTemplates
     );

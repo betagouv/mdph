@@ -14,7 +14,7 @@ var spawn = require('child_process').spawn;
 
 var config = require('../config/environment');
 
-var debug = false;
+var debug = true;
 
 function printDebug(str, obj) {
   if (debug) {

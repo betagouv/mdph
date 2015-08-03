@@ -8,11 +8,7 @@ angular.module('impactApp')
     $scope.token = $cookieStore.get('token');
 
     if (!request.synthese) {
-      request.synthese = {
-        geva: {}
-      };
-    } else if (!request.synthese.geva) {
-      request.synthese.geva = {};
+      request.synthese = {};
     }
 
     $scope.afficherSynthese = function() {

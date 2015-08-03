@@ -9,18 +9,22 @@
         {{question.Question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
       </accordion-heading>
 
+      <div class="text-right">
+        <a ng-click="remove(question.Question)">Supprimer les réponses à cette question</a>
+      </div>
+
       <div ng-repeat="answer in question.Reponses">
         <button
           ng-if="question.Type === 'CM'"
           class="btn btn-default btn-geva btn-checkbox"
-          ng-model="currentModel[question.Question][answer.id]"
+          ng-model="geva[question.Question][answer.id]"
           btn-checkbox>
           {{answer.Reponse}}
         </button>
         <button
           ng-if="question.Type === 'CU'"
           class="btn btn-default btn-geva btn-radio"
-          ng-model="currentModel[question.Question]"
+          ng-model="geva[question.Question].reponse"
           btn-radio="answer.id">
           {{answer.Reponse}}
         </button>
@@ -30,7 +34,7 @@
           <div ng-repeat="detail in answer.Details">
             <button
               class="btn btn-default btn-geva btn-checkbox"
-              ng-model="currentModel[question.Question][detail.id]"
+              ng-model="geva[question.Question][detail.id]"
               btn-checkbox>
               {{detail.Detail}}
             </button>
@@ -40,7 +44,7 @@
                 <div ng-repeat="sousDetail in detail.SousDetails">
                   <button
                     class="btn btn-default btn-geva btn-checkbox"
-                    ng-model="currentModel[question.Question][sousDetail.id]"
+                    ng-model="geva[question.Question][sousDetail.id]"
                     btn-checkbox>
                     {{sousDetail.SousDetail}}
                   </button>

@@ -9,8 +9,10 @@ var async = require('async');
 var moment = require('moment');
 var mustache = require('mustache');
 
-var questionsByDescription = require('../api/geva/geva.controller').questionsByDescription;
-var getFlattenedAnswers = require('../api/geva/geva.controller').getFlattenedAnswers;
+var questions = require('../api/geva/questions.json');
+
+// Using the label as ID... TODO: Set id for each question
+var questionsByLabel = _.indexBy(questions, 'Question');
 
 var readFile = function(name, callback) {
   fs.readFile(path.join(__dirname, 'templates', name), function(err, html) {
@@ -22,27 +24,79 @@ var formatDateNaissance = function(identite) {
   if (identite && identite.dateNaissance) {
     identite.dateNaissance = moment(identite.dateNaissance).format('DD/MM/YYYY');
   }
-};
+}
 
-function getGevaAnswers(gevaSections) {
+function getSousDetailsFromAnswer(detailConstant, answers) {
+  if (!detailConstant.SousDetails) {
+    return null;
+  }
+
+  var sousDetails = [];
+  _.forEach(answers, function(isSelected, id) {
+    var sousDetailConstant = _.find(detailConstant.SousDetails, {id: id});
+    if (sousDetailConstant) {
+      var cleanSousDetail = _.pick(sousDetailConstant, 'CodeValeur', 'SousDetail');
+      sousDetails.push(cleanSousDetail);
+    }
+  });
+
+  return sousDetails;
+}
+
+function getDetailsFromAnswer(answerConstant, answers) {
+  if (!answerConstant.Details) {
+    return null;
+  }
+
+  var details = [];
+  _.forEach(answers, function(isSelected, id) {
+    var detailConstant = _.find(answerConstant.Details, {id: id});
+    if (detailConstant) {
+      var cleanDetail = _.pick(detailConstant, 'CodeValeur', 'Detail');
+      cleanDetail.sousDetails = getSousDetailsFromAnswer(detailConstant, answers);
+      details.push(cleanDetail);
+    }
+  });
+
+  return details;
+}
+
+function getCleanAnswer(answerConstant, answers) {
+  var cleanAnswer = _.pick(answerConstant, 'CodeValeur', 'Reponse');
+  cleanAnswer.details = getDetailsFromAnswer(answerConstant, answers);
+  return cleanAnswer;
+}
+
+function getGevaAnswers(questions) {
   var gevaAnswers = [];
-  _.forEach(gevaSections, function(section) {
-    _.forEach(section, function(n, key) {
-      var question = questionsByDescription(key);
-      var flattenedAnswers = getFlattenedAnswers(question.Reponses);
-      flattenedAnswers = _.indexBy(flattenedAnswers, 'CodeValeur');
-      if (n.length > 0) {
-        var questionAnswers = [];
-        n.forEach(function(codeValeur) {
-          questionAnswers.push(flattenedAnswers[codeValeur]);
-        });
 
-        gevaAnswers.push({
-          label: question.Question,
-          answers: questionAnswers
-        });
+  _.forEach(questions, function(answers, label) {
+    var questionConstant = questionsByLabel[label];
+    var gevaAnswer = {
+      label: questionConstant.Description,
+      answers: []
+    };
+
+    if (questionConstant.Type === 'CU') {
+      var answerConstant = _.find(questionConstant.Reponses, {id: answers.reponse});
+
+      if (answerConstant) {
+        var cleanAnswer = getCleanAnswer(answerConstant, answers);
+        gevaAnswer.answers.push(cleanAnswer);
       }
-    });
+    } else {
+      _.forEach(answers, function(isSelected, id) {
+        if (isSelected) {
+          var answerConstant = _.find(questionConstant.Reponses, {id: id});
+          if (answerConstant) {
+            var cleanAnswer = getCleanAnswer(answerConstant, answers);
+            gevaAnswer.answers.push(cleanAnswer);
+          }
+        }
+      });
+    }
+
+    gevaAnswers.push(gevaAnswer);
   });
 
   return gevaAnswers;
@@ -103,7 +157,8 @@ exports.answersToHtml = function(request, path, output, next) {
     },
 
     proposition: function(callback) {
-      if (!request.synthese || request.synthese.proposition) {
+
+      if (!request.synthese || !request.synthese.proposition) {
         return callback(null, []);
       }
 
@@ -137,10 +192,10 @@ exports.answersToHtml = function(request, path, output, next) {
   function(err, results) {
     if (err) { next(err); }
 
-    var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites');
+    var subTemplates = _.omit(results, 'syntheseTemplate', 'requestIdentites', 'syntheseGeva', 'proposition', 'mdph');
     var html = mustache.render(
       results.syntheseTemplate,
-      {path: path, identites: results.requestIdentites, syntheseGeva: results.syntheseGeva, propositions: results.proposition, mdph: results.mdph},
+      {path: path, identites: results.requestIdentites, syntheseGeva: results.syntheseGeva, proposition: results.proposition, mdph: results.mdph},
       subTemplates
     );
     next(null, html);

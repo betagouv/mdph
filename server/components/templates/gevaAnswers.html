@@ -2,7 +2,22 @@
 <div class="question">
   <ul>
   {{#answers}}
-    <li>{{CodeValeur}} - {{Reponse}}</li>
+    <li>{{CodeValeur}} - {{Reponse}}
+      <ul>
+      {{#details}}
+        <li>
+          {{CodeValeur}} - {{Detail}}
+          <ul>
+          {{#sousDetails}}
+            <li>
+              {{CodeValeur}} - {{SousDetail}}
+            </li>
+          {{/sousDetails}}
+          </ul>
+        </li>
+      {{/details}}
+      </ul>
+    </li>
   {{/answers}}
   </ul>
 </div>

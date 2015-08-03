@@ -3,23 +3,27 @@
 angular.module('impactApp')
   .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, GevaService, request) {
     $scope.section = section;
-    if (!request.synthese.geva[section.id]) {
-      request.synthese.geva[section.id] = {};
+
+    if (!request.synthese.geva) {
+      request.synthese.geva = {};
     }
 
-    var currentModel = request.synthese.geva[section.id];
-    $scope.currentModel = currentModel;
+    $scope.geva = request.synthese.geva;
 
     $scope.isSelected = function(question, answer) {
       if (question.Type === 'CU') {
-        return currentModel[question.Question] === answer.id;
+        return $scope.geva[question.Question] && $scope.geva[question.Question].reponse === answer.id;
       } else {
-        return currentModel[question.Question] && currentModel[question.Question][answer.id];
+        return $scope.geva[question.Question] && $scope.geva[question.Question][answer.id];
       }
     };
 
     $scope.isDetailSelected = function(question, detail) {
-      return currentModel[question.Question] && currentModel[question.Question][detail.id];
+      return $scope.geva[question.Question] && $scope.geva[question.Question][detail.id];
+    };
+
+    $scope.remove = function(question) {
+      delete $scope.geva[question];
     };
 
     $scope.validate = function() {
