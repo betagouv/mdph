@@ -63,6 +63,7 @@
     "grunt-open": "~0.2.3",
     "grunt-protractor-runner": "^2.0.0",
     "grunt-rev": "~0.1.0",
+    "grunt-sass": "^1.0.0",
     "grunt-usemin": "3.0.0",
     "grunt-wiredep": "2.0.0",
     "jit-grunt": "^0.9.1",
