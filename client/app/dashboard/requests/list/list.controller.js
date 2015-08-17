@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function($scope, $window, $state, $cookieStore, user, requests, showArchiveAction) {
+  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, user, requests, showArchiveAction) {
     $scope.requests = requests;
     $scope.user = user;
     $scope.showArchiveAction = showArchiveAction;
-    var token = $cookieStore.get('token');
+    var token = $cookies.get('token');
 
     $scope.selectAll = function() {
       var action;

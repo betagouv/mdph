@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $sessionStorage) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookies, $q, $sessionStorage) {
     var currentUser = {};
-    if ($cookieStore.get('token')) {
+    if ($cookies.get('token')) {
       currentUser = User.get();
     }
 
@@ -25,7 +25,7 @@ angular.module('impactApp')
           password: user.password
         }).
         success(function(data) {
-          $cookieStore.put('token', data.token);
+          $cookies.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);
           return cb({}, data);
@@ -45,7 +45,7 @@ angular.module('impactApp')
        * @param  {Function}
        */
       logout: function() {
-        $cookieStore.remove('token');
+        $cookies.remove('token');
         $sessionStorage.$reset();
         currentUser = {};
       },
@@ -62,7 +62,7 @@ angular.module('impactApp')
 
         return User.save(user,
           function(data) {
-            $cookieStore.put('token', data.token);
+            $cookies.put('token', data.token);
             currentUser = User.get();
             return cb(user);
           },
@@ -176,7 +176,7 @@ angular.module('impactApp')
        * Get auth token
        */
       getToken: function() {
-        return $cookieStore.get('token');
+        return $cookies.get('token');
       },
 
       getAllUsers: function() {

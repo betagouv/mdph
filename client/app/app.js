@@ -21,13 +21,13 @@ angular.module('impactApp', [
     $modalProvider.options.animation = false;
   })
 
-  .factory('authInterceptor', function($rootScope, $q, $cookieStore) {
+  .factory('authInterceptor', function($rootScope, $q, $cookies) {
     return {
       // Add authorization token to headers
       request: function(config) {
         config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
-          config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+        if ($cookies.get('token')) {
+          config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
 
         return config;
@@ -37,7 +37,7 @@ angular.module('impactApp', [
       responseError: function(response) {
         if (response.status === 401) {
           // remove any stale tokens
-          $cookieStore.remove('token');
+          $cookies.remove('token');
           return $q.reject(response);
         } else {
           return $q.reject(response);

@@ -12,8 +12,8 @@ angular.module('impactApp')
       return calculAge(dateNaiss);
     };
   })
-  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookieStore, $sce, currentMdph, request, recapitulatif, documentTypes, NotificationService, prestations, prestationsQuitus) {
-    $scope.token = $cookieStore.get('token');
+  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, $sce, currentMdph, request, recapitulatif, documentTypes, NotificationService, prestations, prestationsQuitus) {
+    $scope.token = $cookies.get('token');
     $scope.recapitulatif = recapitulatif;
     $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
     $scope.toutesPrestations = prestations;

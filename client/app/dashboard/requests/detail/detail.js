@@ -6,10 +6,10 @@ angular.module('impactApp')
       .state('dashboard.requests.detail', {
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
-        controller: function($scope, $state, $cookieStore, $window, request, user) {
+        controller: function($scope, $state, $cookies, $window, request, user) {
           $scope.request = request;
           $scope.user = user;
-          $scope.token = $cookieStore.get('token');
+          $scope.token = $cookies.get('token');
 
           $scope.back = function() {
             $window.history.back();

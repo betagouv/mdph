@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookieStore, sections, model, GevaService, prestations, request) {
+  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookies, sections, model, GevaService, prestations, request) {
     $scope.model = model;
     $scope.sections = sections;
     $scope.request = request;
-    $scope.token = $cookieStore.get('token');
+    $scope.token = $cookies.get('token');
 
     if (!request.synthese) {
       request.synthese = {};
