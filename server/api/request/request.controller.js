@@ -425,13 +425,11 @@ exports.deleteFile = function(req, res) {
       return res.sendStatus(304);
     }
 
-    var filePath = path.join(file.path, file.filename);
-
-    fs.unlink(filePath, function(err) {
+    fs.unlink(file.path, function(err) {
       if (err) {
-        req.log.info(req.user + ', not deleted, not found: ' + filePath);
+        req.log.info(req.user + ', not deleted, not found: ' + file.path);
       } else {
-        req.log.info(req.user + ', successfully deleted: ' + filePath);
+        req.log.info(req.user + ', successfully deleted: ' + file.path);
       }
 
       file.remove();
