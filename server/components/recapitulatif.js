@@ -156,7 +156,7 @@ function computeTrajectoires(request) {
 
 exports.answersToHtml = function(request, path, output, next) {
   if (!request.formAnswers) {
-    return next({request: request._id, action: 'recapitulatif', message: 'Pas de réponses fournies'});
+    return next(null, '<p>Pas de réponses fournies.</p>');
   }
 
   async.series({

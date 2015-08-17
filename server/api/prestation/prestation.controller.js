@@ -69,8 +69,6 @@ function computeAnswers(answers) {
   ]);
 
   var computed = {
-    estRenouvellement: answers.estRenouvellement,
-
     estAdulte: estAdulte,
     estEnfant: estEnfant,
     aMoinsDe62Ans: aMoinsDe62Ans,
@@ -101,10 +99,6 @@ function computeAnswers(answers) {
     conservationTravail: conservationTravail,
     milieuTravail: milieuTravail
   };
-
-  if (answers.estRenouvellement) {
-    computed.prestations = _.keys(answers.prestations);
-  }
 
   return computed;
 }

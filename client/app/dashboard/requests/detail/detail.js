@@ -18,13 +18,13 @@ angular.module('impactApp')
           $scope.archive = function(request) {
             request.status = 'evaluation';
             request.$save(function() {
-              $state.go('dashboard.requests', {}, {reload: true});
+              $state.go('dashboard.requests.user', {userId: 'me'}, {reload: true});
             });
           };
 
           $scope.supprimer = function(request) {
             request.$delete(function() {
-              $state.go('dashboard.requests', {}, {reload: true});
+              $state.go('dashboard.requests.user', {userId: 'me'}, {reload: true});
             });
           };
         },

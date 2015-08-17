@@ -12,7 +12,7 @@ angular.module('impactApp')
             });
           },
 
-          request: function($stateParams, $sessionStorage, RequestResource, mdph, sections) {
+          request: function($stateParams, $sessionStorage, $timeout, $state, user, RequestResource, mdph, sections) {
             if ($stateParams.shortId === 'nouvelle_demande') {
               var request = $sessionStorage.request;
               if (typeof request === 'undefined') {

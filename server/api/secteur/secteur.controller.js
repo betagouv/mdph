@@ -84,16 +84,16 @@ exports.listRequests = function(req, res) {
     if (!mdph) return res.sendStatus(404);
 
     var secteurId = req.params.id === 'null' ? null : req.params.id;
-    var status = req.query && req.query.status ? 'en_cours' : 'emise';
+    var status = req.query && req.query.status ? req.query.status : 'emise';
 
     Request
       .find({secteur: secteurId, evaluator: null, status: status, mdph: mdph.zipcode})
       .populate('user')
       .exec(function(err, requests) {
-      if (err) return handleError(req, res, err);
+        if (err) return handleError(req, res, err);
 
-      res.set('count', requests.length);
-      return res.send(requests);
-    });
+        res.set('count', requests.length);
+        return res.send(requests);
+      });
   });
 };

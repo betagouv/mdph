@@ -1,8 +1,9 @@
 <div class="list-header">
   <a ng-click="back()"><i class="fa fa-chevron-circle-left"></i> Retour</a>
   <div class="well dashboard-demande-header">
-    <h2>Demande de {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+    <h2 ng-if="request.formAnswers.identites">Demande de {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
     </h2>
+    <h2 ng-if="!request.formAnswers.identites"><em>Demande incomplète - Identité non remplies</em></h2>
     <p>Demande effectuée par : <strong>{{user.name}}</strong> - {{user.email}}</p>
     <p>Référence de la demande: <strong>{{request.shortId}}</strong></p>
     <p ng-if="request.submittedAt">Envoyée le: <strong>{{request.submittedAt | date: format: timezone}}</strong></p>

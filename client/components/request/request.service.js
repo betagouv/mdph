@@ -82,6 +82,10 @@ angular.module('impactApp')
       },
 
       getCompletion: function(section, request) {
+        if (!request.formAnswers) {
+          return 0;
+        }
+
         if (typeof request.formAnswers[section] === 'undefined' || _.keys(request.formAnswers[section]).length === 0) {
           return 0;
         } else if (request.formAnswers[section].__completion === true) {

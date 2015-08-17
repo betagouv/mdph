@@ -108,13 +108,7 @@ exports.destroy = function(req, res) {
 
     if (request.documents && request.documents.length > 0) {
       request.documents.forEach(function(requestDoc) {
-        var documentPath = config.root + '/server/uploads/' + requestDoc.name + '.pdf';
-        fs.unlink(documentPath, function(err) {
-          if (err) req.log.error(err);
-        });
-
-        var documentPdfPath = config.root + '/server/uploads/' + requestDoc.name;
-        fs.unlink(documentPdfPath, function(err) {
+        fs.unlink(requestDoc.path, function(err) {
           if (err) req.log.error(err);
         });
       });
@@ -153,6 +147,7 @@ var generatePdf = function(request, user, host, done) {
 };
 
 function sendMailNotification(request, host, log, callback) {
+  console.log('WHAT THE ACTUAL FUCK')
   Dispatcher.findSecteur(request, function(secteur) {
     if (secteur) {
 
