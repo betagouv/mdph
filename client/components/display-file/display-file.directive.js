@@ -8,8 +8,8 @@ angular.module('impactApp')
         request: '='
       },
       templateUrl: 'components/display-file/display-file.html',
-      controller: function($scope, $http, $cookieStore) {
-        $scope.token = $cookieStore.get('token');
+      controller: function($scope, $http, $cookies) {
+        $scope.token = $cookies.get('token');
 
         if ($scope.file.partenaire) {
           $http.get('/api/partenaires/' + $scope.file.partenaire).then(function(result) {

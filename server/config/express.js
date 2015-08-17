@@ -15,10 +15,6 @@ var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 var bunyan = require('bunyan');
-var multer  = require('multer');
-var Imagemin = require('imagemin');
-var fs = require('fs');
-var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 var logger = bunyan.createLogger({
   name: 'impact-dev',
@@ -40,39 +36,6 @@ module.exports = function(app) {
   app.use(passport.initialize());
   app.use(bodyParser.json({limit: '20mb'}));
   app.use(bodyParser.urlencoded({limit: '20mb', extended: true}));
-  app.use(multer({
-    dest: config.root + '/server/uploads/temp/',
-    onFileUploadStart: function(file) {
-      console.log(file.originalname + ' is starting ...');
-    },
-
-    onFileUploadComplete: function(file) {
-      console.log(file.fieldname + ' uploaded to  ' + file.path);
-
-      if (file.mimetype === 'image/jpeg') {
-        new Imagemin()
-          .src(file.path)
-          .dest(config.root + '/server/uploads/')
-          .use(imageminJpegRecompress({
-            progressive: true,
-            loops: 7,
-            min: 30,
-            strip: true,
-            quality: 'low',
-            target: 0.7
-          }))
-          .run();
-      } else {
-        // Can't compress, just move the file
-        fs.rename(file.path, config.root + '/server/uploads/' + file.name);
-      }
-
-    },
-
-    onFilesLimit: function() {
-      console.log('Crossed file limit!');
-    }
-  }));
 
   var requestLogger = function(req, res, next) {
     var start = new Date();

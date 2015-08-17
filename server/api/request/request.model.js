@@ -11,7 +11,7 @@ var DocumentSchema = new Schema({
   category:       { type: String },
 
   originalname:   { type: String },
-  name:           { type: String },
+  filename:       { type: String },
   encoding:       { type: String },
   mimetype:       { type: String },
   path:           { type: String },

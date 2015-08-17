@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var shortid = require('shortid');
 var async = require('async');
+var Imagemin = require('imagemin');
+var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
@@ -320,51 +322,86 @@ exports.save = function(req, res, next) {
   });
 };
 
+function resizeAndMove(file, next) {
+  if (file.mimetype === 'image/jpeg') {
+    new Imagemin()
+      .src(file.path)
+      .dest(file.path)
+      .use(imageminJpegRecompress({
+        progressive: true,
+        loops: 7,
+        min: 30,
+        strip: true,
+        quality: 'low',
+        target: 0.7
+      }))
+      .run(next);
+  } else {
+    // Can't compress, nothing to do
+    next();
+  }
+}
+
 /**
  * File upload
  */
 exports.saveFile = function(req, res, next) {
-  if (!req.files || !req.files.file) {
+  if (typeof req.file === 'undefined') {
     return res.sendStatus(304);
   }
 
-  findRequest(req, function(err, request) {
-    if (err) return handleError(req, res, err);
-    if (!request) return res.sendStatus(404);
+  var currentFile = req.file;
 
-    var data = JSON.parse(req.body.data);
-    var document = _.extend(req.files.file, {type: data.type, category: data.category});
+  async.waterfall([
+    function(callback) {
+      resizeAndMove(currentFile, callback);
+    },
 
-    if (req.query.partenaire) {
-      document.partenaire = data.partenaire;
+    function(callback) {
+      findRequest(req, function(err, request) {
+        if (err) return handleError(req, res, err);
+        if (!request) return res.sendStatus(404);
 
-      // Mail
-      Partenaire.findById(document.partenaire, function(err, partenaire) {
-        if (err) { return handleError(req, res, err); }
+        callback(null, request);
+      });
+    },
 
-        if (!partenaire) { res.sendStatus(404); }
+    function(request) {
+      var data = JSON.parse(req.body.data);
+      var document = _.extend(currentFile, {type: data.type, category: data.category});
 
-        partenaire.secret = shortid.generate();
-        partenaire.save(function(err) {
+      if (req.query.partenaire) {
+        document.partenaire = data.partenaire;
+
+        // Mail
+        Partenaire.findById(document.partenaire, function(err, partenaire) {
           if (err) { return handleError(req, res, err); }
 
-          var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
-          Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
-            '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
+          if (!partenaire) { res.sendStatus(404); }
+
+          partenaire.secret = shortid.generate();
+          partenaire.save(function(err) {
+            if (err) { return handleError(req, res, err); }
+
+            var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
+            Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
+              '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
+          });
         });
+      }
+
+      if (document !== null) {
+        request.documents.push(document);
+      }
+
+      request.save(function(err, saved) {
+        if (err) { return handleError(req, res, err); }
+
+        return res.json(request.documents[request.documents.length - 1]);
       });
     }
 
-    if (document !== null) {
-      request.documents.push(document);
-    }
-
-    request.save(function(err, saved) {
-      if (err) { return handleError(req, res, err); }
-
-      return res.json(request.documents[request.documents.length - 1]);
-    });
-  });
+  ]);
 };
 
 exports.downloadFile = function(req, res) {
@@ -388,7 +425,7 @@ exports.deleteFile = function(req, res) {
       return res.sendStatus(304);
     }
 
-    var filePath = path.join(config.root + '/server/uploads/', file.name);
+    var filePath = path.join(file.path, file.filename);
 
     fs.unlink(filePath, function(err) {
       if (err) {

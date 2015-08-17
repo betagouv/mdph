@@ -31,7 +31,7 @@ function isAuthenticated() {
     .use(function(req, res, next) {
       User.findById(req.user._id, function(err, user) {
         if (err) return next(err);
-        if (!user) return res.send(401);
+        if (!user) return res.sendStatus(401);
 
         req.user = user;
         next();
@@ -60,7 +60,7 @@ function isAuthorized() {
     .use(function(req, res, next) {
       User.findById(req.user._id, function(err, user) {
         if (err) return next(err);
-        if (!user) return res.send(401);
+        if (!user) return res.sendStatus(401);
         if (user.role === 'adminMdph') {
           req.user = user;
           next();
@@ -70,9 +70,9 @@ function isAuthorized() {
           }).exec(function(err, request) {
             if (err) { return next(err); }
 
-            if (!request) { return res.send(404); }
+            if (!request) { return res.sendStatus(404); }
 
-            if (String(user._id) !== String(request.user)) { return res.send(401); }
+            if (String(user._id) !== String(request.user)) { return res.sendStatus(401); }
 
             req.user = user;
             req.request = request;
@@ -95,7 +95,7 @@ function hasRole(roleRequired) {
       if (config.userRoles.indexOf(req.user.role) >= config.userRoles.indexOf(roleRequired)) {
         next();
       } else {
-        res.send(403);
+        res.sendStatus(403);
       }
     });
 }

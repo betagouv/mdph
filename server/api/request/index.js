@@ -3,6 +3,9 @@
 var express = require('express');
 var controller = require('./request.controller');
 var auth = require('../../auth/auth.service');
+var config = require('../../config/environment');
+var multer  = require('multer');
+var upload = multer({ dest: config.root + '/server/uploads/' });
 
 var router = express.Router();
 
@@ -24,7 +27,7 @@ router.get('/:shortId/questionnaire.pdf', auth.isAuthorized(), controller.getPdf
 router.get('/:shortId/recapitulatif', auth.isAuthorized(), controller.getRecapitulatif);
 router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthesePdf);
 
-router.post('/:shortId/document', controller.saveFile);
+router.post('/:shortId/document', upload.single('file'), controller.saveFile);
 router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downloadFile);
 router.delete('/:shortId/document/:fileId', auth.isAuthorized(), controller.deleteFile);
 

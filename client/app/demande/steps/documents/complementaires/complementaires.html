@@ -21,7 +21,7 @@
         </div>
         <div class="panel-footer" ng-if="!file.asked">
           <div class="text-right">
-            <div ngf-select ngf-change="upload($files[0], documentType.id)" accept=".jpg,.png,.pdf" data-multiple="false" class="btn btn-default">
+            <div ngf-select ngf-change="upload($file, documentType.id)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
               <i class="fa fa-upload"></i> Attacher un fichier</span>
             </div>
           </div>
