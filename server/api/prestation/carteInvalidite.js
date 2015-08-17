@@ -9,12 +9,6 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
-  if (computed.estRenouvellement) {
-    if (_.contains(computed.prestations, 'carteInvalidite')) {
-      return true;
-    }
-  }
-
   return ou([
     et([
       getValue(computed.attentesTypeAide, 'humain'),
@@ -22,6 +16,7 @@ exports.simulate = function(computed) {
     ]),
     getValue(computed.besoinsDeplacement, 'intraDomicile'),
     getValue(computed.pensionInvalidite, 'mtp'),
-    getValue(computed.pensionInvalidite, 'pcrtp')
+    getValue(computed.pensionInvalidite, 'pcrtp'),
+    getValue(computed.attentesTypeAide, 'invalidite')
   ]);
 };

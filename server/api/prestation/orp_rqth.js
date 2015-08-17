@@ -9,14 +9,8 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
-  if (computed.estRenouvellement) {
-    if (_.contains(computed.prestations, 'orp')) {
-      return true;
-    }
-
-    if (_.contains(computed.prestations, 'rqth')) {
-      return true;
-    }
+  if (getValue(computed.vieAuTravail, 'rqth')) {
+    return true;
   }
 
   return ou([

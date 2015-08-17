@@ -114,6 +114,25 @@ describe('Simulation prestations : pch ', function() {
     done();
   });
 
+  it('should return pch - less than 20 and already have one', function(done) {
+    var answers = {
+      identites: {
+        beneficiaire: {
+          dateNaissance: '2009-05-06T22:00:00.000Z'
+        }
+      },
+      vie_quotidienne: {
+        aideFinancierePresent: {
+          pch_enfant: true
+        }
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(pch);
+    done();
+  });
+
   it('should not return pch - less than 20', function(done) {
     var answers = {
       identites: {

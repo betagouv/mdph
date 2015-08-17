@@ -9,12 +9,6 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
-  if (computed.estRenouvellement) {
-    if (_.contains(computed.prestations, 'sms')) {
-      return true;
-    }
-  }
-
   return et([
     computed.estAdulte,
     ou([

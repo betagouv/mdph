@@ -9,18 +9,16 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
-  if (computed.estRenouvellement) {
-    if (_.contains(computed.prestations, 'aah')) {
-      return true;
-    }
+  if (getValue(computed.aideFinancierePresent, 'aah')) {
+    return true;
+  }
 
-    if (computed.estAdulte && getValue(computed.milieuTravail, 'etablissement')) {
-      return true;
-    }
+  if (computed.estAdulte && getValue(computed.milieuTravail, 'etablissement')) {
+    return true;
+  }
 
-    if (computed.estAdulte && getValue(computed.vieQuotidienne, 'logement') === 'etablissement') {
-      return true;
-    }
+  if (computed.estAdulte && getValue(computed.vieQuotidienne, 'logement') === 'etablissement') {
+    return true;
   }
 
   return et([

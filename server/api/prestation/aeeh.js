@@ -9,14 +9,12 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
-  if (computed.estRenouvellement) {
-    if (_.contains(computed.prestations, 'aeeh')) {
-      return true;
-    }
+  if (getValue(computed.aideFinancierePresent, 'aeeh')) {
+    return true;
+  }
 
-    if (computed.estAdulte && getValue(computed.logement, 'etablissement')) {
-      return true;
-    }
+  if (!computed.estAdulte && getValue(computed.logement, 'etablissement')) {
+    return true;
   }
 
   return et([

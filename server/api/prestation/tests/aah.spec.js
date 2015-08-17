@@ -332,10 +332,9 @@ describe('Simulation prestations : AAH ', function() {
 
   it('should return aah - renouvellement de droit', function(done) {
     var answers = {
-      estRenouvellement: true,
-      prestations: {
-        aah: {
-          date: '2015-05-11T22:00:00.000Z'
+      vie_quotidienne: {
+        aideFinancierePresent: {
+          aah: true
         }
       }
     };
@@ -347,7 +346,6 @@ describe('Simulation prestations : AAH ', function() {
 
   it('should return aah - milieu de travail protégé', function(done) {
     var answers = {
-      estRenouvellement: true,
       beneficiaire: {
         dateNaissance: '1992-05-06T22:00:00.000Z'
       },

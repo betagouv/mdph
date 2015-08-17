@@ -144,4 +144,21 @@ describe('Simulation prestations : orp ', function() {
     quitus.should.not.containEql(orp);
     done();
   });
+
+  it('should return orp', function(done) {
+    var answers = {
+      identites: {
+        beneficiaire: {
+          dateNaissance: '2000-05-06T22:00:00.000Z'
+        }
+      },
+      vie_au_travail: {
+        rqth: true
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(orp);
+    done();
+  });
 });

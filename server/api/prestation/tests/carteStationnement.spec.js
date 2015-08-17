@@ -44,6 +44,20 @@ describe('Simulation prestations : carteStationnement ', function() {
   it('should return carteStationnement', function(done) {
     var answers = {
       vie_quotidienne: {
+        attentesTypeAide: {
+          stationnement: true
+        }
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(carteStationnement);
+    done();
+  });
+
+  it('should return carteStationnement', function(done) {
+    var answers = {
+      vie_quotidienne: {
         besoinsDeplacement: {
           public: true
         },

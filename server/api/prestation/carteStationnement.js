@@ -8,13 +8,8 @@ var et = Utils.et;
 var getValue = Utils.getValue;
 
 exports.simulate = function(computed) {
-  if (computed.estRenouvellement) {
-    if (_.contains(computed.prestations, 'carteStationnement')) {
-      return true;
-    }
-  }
-
   return ou([
+    getValue(computed.attentesTypeAide, 'stationnement'),
     getValue(computed.aideTechnique, 'aideTechnique_technique'),
     getValue(computed.besoinsDeplacement, 'intraDomicile'),
     et([

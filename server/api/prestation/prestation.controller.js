@@ -41,6 +41,7 @@ function computeAnswers(answers) {
   var besoinsVie =                getValue(vieQuotidienne, 'besoinsVie');
   var besoinsSocial =             getValue(vieQuotidienne, 'besoinsSocial');
   var attentesTypeAide =          getValue(vieQuotidienne, 'attentesTypeAide');
+  var aideFinancierePresent =     getValue(vieQuotidienne, 'aideFinancierePresent');
   var pensionInvalidite =         getValue(vieQuotidienne, 'pensionInvalidite');
   var aideTechnique =             getValue(vieQuotidienne, 'aideTechnique');
   var aidePersonne =              getValue(vieQuotidienne, 'aidePersonne');
@@ -97,7 +98,8 @@ function computeAnswers(answers) {
     urgences: urgences,
     besoinSoutienAuTravail: besoinSoutienAuTravail,
     conservationTravail: conservationTravail,
-    milieuTravail: milieuTravail
+    milieuTravail: milieuTravail,
+    aideFinancierePresent: aideFinancierePresent
   };
 
   return computed;
@@ -150,10 +152,6 @@ function getCallbacks(answers) {
 
     sms: function() {
       return SMS.simulate(computed);
-    },
-
-    ac: function() {
-      return _.contains(computed.prestations, 'ac');
     }
   };
 }

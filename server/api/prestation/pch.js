@@ -9,10 +9,8 @@ var getValue = Utils.getValue;
 var getValueList = Utils.getValueList;
 
 exports.simulate = function(computed) {
-  if (computed.estRenouvellement) {
-    if (_.contains(computed.prestations, 'pch')) {
-      return true;
-    }
+  if (computed.estEnfant && getValue(computed.aideFinancierePresent, 'pch_enfant')) {
+    return true;
   }
 
   if (computed.estEnfant) {

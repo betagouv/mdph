@@ -30,6 +30,20 @@ describe('Simulation prestations : carteInvalidite ', function() {
   it('should return carteInvalidite', function(done) {
     var answers = {
       vie_quotidienne: {
+        attentesTypeAide: {
+          invalidite: true
+        }
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(carteInvalidite);
+    done();
+  });
+
+  it('should return carteInvalidite', function(done) {
+    var answers = {
+      vie_quotidienne: {
         besoinsVie: {
           habits: true
         },

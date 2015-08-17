@@ -33,6 +33,20 @@ describe('Simulation prestations : AEEH ', function() {
     done();
   });
 
+  it('should return aeeh, renouvellement', function(done) {
+    var answers = {
+      vie_quotidienne: {
+        aideFinancierePresent: {
+          aeeh: true
+        }
+      }
+    };
+
+    var quitus = controller.simulate(answers);
+    quitus.should.containEql(aeeh);
+    done();
+  });
+
   it('should not return aeeh', function(done) {
     var answers = {
       identites: {
