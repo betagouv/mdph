@@ -147,7 +147,6 @@ var generatePdf = function(request, user, host, done) {
 };
 
 function sendMailNotification(request, host, log, callback) {
-  console.log('WHAT THE ACTUAL FUCK')
   Dispatcher.findSecteur(request, function(secteur) {
     if (secteur) {
 
