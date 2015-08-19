@@ -46,7 +46,6 @@ angular.module('impactApp')
       } else {
         $scope.showError = false;
         request.status = 'emise';
-        request.html = 'Merci d\'avoir passé votre demande sur le service en ligne de la MDPH ' + request.mdph;
         request.$update({isSendingRequest: true}, function() {
           $modal.open({
             templateUrl: 'app/demande/steps/envoi/modal_envoi_ok.html',

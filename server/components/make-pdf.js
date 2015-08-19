@@ -14,7 +14,7 @@ var spawn = require('child_process').spawn;
 
 var config = require('../config/environment');
 
-var debug = true;
+var debug = config.env === 'development';
 
 function printDebug(str, obj) {
   if (debug) {
@@ -191,10 +191,9 @@ function transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath
 
 function transformDocumentToPdf(document, tempDirPath, done) {
   printDebug('transformDocumentToPdf: transforming: ', document);
-  var documentPath = path.join(config.root + '/server/uploads/', document.name);
 
   if (document.mimetype !== 'application/pdf') {
-    fs.readFile(documentPath, function(err, documentStream) {
+    fs.readFile(document.path, function(err, documentStream) {
       if (err) {
         return done(err);
       }
@@ -217,7 +216,7 @@ function transformDocumentToPdf(document, tempDirPath, done) {
       });
     });
   } else {
-    return done(null, null, documentPath);
+    return done(null, null, document.path);
   }
 }
 

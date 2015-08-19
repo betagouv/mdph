@@ -32,7 +32,6 @@
     "scissors": "^0.1.0",
     "serve-favicon": "^2.2.1",
     "shortid": "^2.2.2",
-    "superagent": "^1.2.0",
     "tmp": "0.0.26",
     "wkhtmltopdf": "^0.1.5"
   },

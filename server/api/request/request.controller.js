@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var path = require('path');
-var superagent = require('superagent');
 var wkhtmltopdf = require('wkhtmltopdf');
 var mongoose = require('mongoose');
 var fs = require('fs');
@@ -147,41 +146,42 @@ var generatePdf = function(request, user, host, done) {
 };
 
 function sendMailNotification(request, host, log, callback) {
-  Dispatcher.findSecteur(request, function(secteur) {
-    if (secteur) {
+  // Dispatcher.findSecteur(request, function(secteur) {
+  //   if (secteur) {
 
-      var estAdulte = DateUtils.isAdult(request.formAnswers);
-      var type = estAdulte ? 'adulte' : 'enfant';
+  //     var estAdulte = DateUtils.isAdult(request.formAnswers);
+  //     var type = estAdulte ? 'adulte' : 'enfant';
 
-      if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-        var evaluators = secteur.evaluators[type];
-        evaluators.forEach(function(evaluator) {
-          if (request.mdph === '59') {
-            generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfStream) {
-              if (err) { log.error(err); }
+  //     if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
+  //       var evaluators = secteur.evaluators[type];
+  //       evaluators.forEach(function(evaluator) {
+  //         if (request.mdph === '59') {
+  //           generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfStream) {
+  //             if (err) { log.error(err); }
 
-              Mailer.sendMail(
-                evaluator.email,
-                'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
-                [
-                  {
-                    filename: request.shortId + '.pdf',
-                    content: pdfStream
-                  }
-                ]
-              );
-            });
-          } else {
-            Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-          }
-        });
-      }
+  //             Mailer.sendMail(
+  //               evaluator.email,
+  //               'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
+  //               [
+  //                 {
+  //                   filename: request.shortId + '.pdf',
+  //                   content: pdfStream
+  //                 }
+  //               ]
+  //             );
+  //           });
+  //         } else {
+  //           Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
+  //         }
+  //       });
+  //     }
 
-      callback(secteur);
-    } else {
-      callback();
-    }
-  });
+  //     callback(secteur);
+  //   } else {
+  //     callback();
+  //   }
+  // });
+  callback();
 }
 
 /**
@@ -263,7 +263,7 @@ exports.update = function(req, res, next) {
     function(request, callback) {
 
       request
-        .set(_.omit(req.body, 'html', 'user', 'documents'))
+        .set(_.omit(req.body, 'user', 'documents'))
         .set('updatedAt', Date.now())
         .set('submittedAt', Date.now())
         .save(callback);
@@ -272,8 +272,21 @@ exports.update = function(req, res, next) {
   ], function(err, request) {
     if (err) return handleError(req, res, err);
 
-    if (req.body.html) {
-      Mailer.sendMail(req.user.email, 'Accusé de réception du téléservice', req.body.html);
+    if (req.query.isSendingRequest) {
+      generatePdf(request, req.user, req.headers.host, function(err, pdfStream) {
+        if (err) { req.log.error(err); }
+
+        Mailer.sendMail(req.user.email,
+          'Accusé de réception du téléservice',
+          'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
+          [
+            {
+              filename: request.shortId + '.pdf',
+              content: pdfStream
+            }
+          ]
+        );
+      });
     }
 
     res.json(request);
@@ -445,21 +458,6 @@ exports.getRecapitulatif = function(req, res) {
 
       res.send(html).status(200);
     });
-  });
-};
-
-exports.getCerfa = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
-    var flattenedAnswers = Flattener.flatten(request.formAnswers);
-    var url = 'https://sgmap-dds-cerfa-form-filler.herokuapp.com';
-    superagent
-        .post(url + '/impact')
-        .send(flattenedAnswers)
-        .on('error', function(err) {
-          res.status(500).send(err);
-        })
-        .pipe(res);
   });
 };
 
