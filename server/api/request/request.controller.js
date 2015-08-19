@@ -146,42 +146,41 @@ var generatePdf = function(request, user, host, done) {
 };
 
 function sendMailNotification(request, host, log, callback) {
-  // Dispatcher.findSecteur(request, function(secteur) {
-  //   if (secteur) {
+  Dispatcher.findSecteur(request, function(secteur) {
+    if (secteur) {
 
-  //     var estAdulte = DateUtils.isAdult(request.formAnswers);
-  //     var type = estAdulte ? 'adulte' : 'enfant';
+      var estAdulte = DateUtils.isAdult(request.formAnswers);
+      var type = estAdulte ? 'adulte' : 'enfant';
 
-  //     if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-  //       var evaluators = secteur.evaluators[type];
-  //       evaluators.forEach(function(evaluator) {
-  //         if (request.mdph === '59') {
-  //           generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfStream) {
-  //             if (err) { log.error(err); }
+      if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
+        var evaluators = secteur.evaluators[type];
+        evaluators.forEach(function(evaluator) {
+          if (request.mdph === '59') {
+            generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfStream) {
+              if (err) { log.error(err); }
 
-  //             Mailer.sendMail(
-  //               evaluator.email,
-  //               'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
-  //               [
-  //                 {
-  //                   filename: request.shortId + '.pdf',
-  //                   content: pdfStream
-  //                 }
-  //               ]
-  //             );
-  //           });
-  //         } else {
-  //           Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-  //         }
-  //       });
-  //     }
+              Mailer.sendMail(
+                evaluator.email,
+                'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
+                [
+                  {
+                    filename: request.shortId + '.pdf',
+                    content: pdfStream
+                  }
+                ]
+              );
+            });
+          } else {
+            Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
+          }
+        });
+      }
 
-  //     callback(secteur);
-  //   } else {
-  //     callback();
-  //   }
-  // });
-  callback();
+      callback(secteur);
+    } else {
+      callback();
+    }
+  });
 }
 
 /**
