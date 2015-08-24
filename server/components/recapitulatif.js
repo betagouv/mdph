@@ -235,7 +235,6 @@ exports.answersToHtml = function(request, path, output, next) {
     },
 
     submittedAt: function(callback) {
-      console.log(request.submittedAt);
       callback(null, moment(request.submittedAt).format('DD/MM/YYYY à HH:mm'));
     },
 
