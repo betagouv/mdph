@@ -36,59 +36,16 @@
   }
 }
 
-.action {
-  h2 {
-    color: #555;
-    margin: 8px 0;
-    font-weight: 200;
-  }
-
-  background-color: #fff;
-  padding: 40px 0;
-  font-size: 16px;
-  line-height: 1.5;
-
-  .list-actions {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-  }
-
-  a {
-    padding: 5px 0 0 25px;
-    font-size: 1.3em;
-    color: $lighter-blue;
-
-    &:focus, &:hover {
-      text-decoration: none;
-
-      &:before {
-        color: $lighter-blue;
-      }
-    }
-
-    &:before {
-      color: lighten($lighter-blue, 25%);
-      font-family: 'FontAwesome';
-      content: '\f138';
-      margin-right: 5px;
-    }
-  }
-}
-
-.action-dark {
-  @extend .action;
-  background-color: lighten($light-blue, 70%);
-}
-
 .features {
   font-size: 16px;
   line-height: 1.5;
   text-align: center;
-  background-color: white;
   padding-top: 50px;
   padding-bottom: 70px;
 
+  color: #fff;
+  border-top: 3px solid $dark-blue;
+  background-color: $lighter-blue;
 
   .p {
     color: #6b6b6b;
@@ -104,9 +61,7 @@
 .liste-prestations {
   font-size: 14px;
   line-height: 1.5;
-  color: #fff;
-  border-top: 3px solid $dark-blue;
-  background-color: $lighter-blue;
+  background-color: white;
   text-align: center;
 
   h1 {
@@ -138,8 +93,7 @@
 
     .elem-body {
       padding: 10px;
-      background-color: $light-blue;
-      color: #eee;
+      background-color: rgba(126, 142, 175, 0.09);
 
       border-radius: 8px;
       text-shadow: 0 1px 0 rgba(0,0,0,.1)
@@ -184,3 +138,34 @@
   background-color: $light-blue;
 }
 
+.card {
+  background-color: white;
+  border: 1px solid #E8E8E8;
+  margin: 20px;
+  padding: 30px;
+
+  .list-actions {
+    text-align: right;
+    padding: 25px 0 0 0;
+  }
+
+  a {
+    font-size: 1.3em;
+    color: $lighter-blue;
+
+    &:focus, &:hover {
+      text-decoration: none;
+
+      &:before {
+        color: $lighter-blue;
+      }
+    }
+
+    &:before {
+      color: lighten($lighter-blue, 25%);
+      font-family: 'FontAwesome';
+      content: '\f138';
+      margin-right: 5px;
+    }
+  }
+}

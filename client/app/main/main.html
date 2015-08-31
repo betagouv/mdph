@@ -10,59 +10,75 @@
 
   <header ng-if="!mdph" class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
     <div class="container">
-      <h1>Service de demande en ligne</h1>
+      <h1>Votre MDPH en ligne</h1>
     </div>
   </header>
   <header ng-if="mdph" class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
     <div class="container">
-      <h1>Votre demande à la MDPH {{mdph.name}}</h1>
+      <h1>Votre MDPH {{mdph.name}}</h1>
     </div>
   </header>
 
-  <div class="action-dark" ng-if="user">
-    <div class ="container">
-      <h2><i class="fa fa-user"></i> Bonjour, {{user.name }}</h2>
-
-      <div class="list-actions">
-        <a ng-if="user.role === 'adminMdph'" ng-if="user.role === 'adminMdph'" ui-sref="dashboard.requests.user({userId: user._id})">
-          Accéder à mon tableau de bord
-        </a>
-        <a ui-sref="espace_perso.liste_demandes">
-          Voir mes demandes
-        </a>
-        <a ui-sref="{{sref}}">
-          Faire une nouvelle demande
-        </a>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div ng-if="user">
+            <h2><i class="fa fa-user"></i> Bonjour, {{user.name }}</h2>
+            <hr>
+            <p>Ce service vous permet de saisir votre demande et de la suivre auprès de votre MDPH.</p>
+            <div class="list-actions">
+              <a ng-if="user.role === 'adminMdph'" ng-if="user.role === 'adminMdph'" ui-sref="dashboard.requests.user({userId: user._id})">
+                Accéder à mon tableau de bord
+              </a>
+              <br>
+              <a ui-sref="espace_perso.liste_demandes">
+                Voir vos demandes
+              </a>
+              <br>
+              <a ui-sref="{{sref}}">
+                Faire une nouvelle demande
+              </a>
+            </div>
+          </div>
+          <div ng-if="!user">
+            <h2><i class="fa fa-user"></i> Vous êtes un usager</h2>
+            <hr>
+            <p>Ce service vous permet de saisir votre demande et de la suivre auprès de votre MDPH.</p>
+            <div class="text-right">
+              <div class="list-actions">
+                <a ui-sref="{{sref}}">
+                  Faire une nouvelle demande
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="action-dark" ng-if="!user">
-    <div class ="container">
-      <h2><i class="fa fa-user"></i> Vous êtes un usager ?</h2>
-      <div class="list-actions">
-        <a ui-sref="{{sref}}">
-          Faire une nouvelle demande
-        </a>
+      <div class="col-sm-4">
+        <div class="card">
+          <h2><i class="fa fa-user-md"></i> Vous êtes un médecin</h2>
+          <hr>
+          <p>Facilitez la vie des demandeurs en attachant simplement un certificat médical.</p>
+          <div class="list-actions">
+            <a ui-sref="medecin">
+              Ajouter un certificat
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="action">
-    <div class ="container">
-      <h2><i class="fa fa-user-md"></i> Vous êtes un médecin ?</h2>
-      <a ui-sref="medecin">
-        Ajouter un certificat médical à une demande
-      </a>
-    </div>
-  </div>
-
-  <div class="action-dark">
-    <div class="container">
-      <h2><i class="fa fa-group"></i> Vous êtes un partenaire ?</h2>
-      <a ui-sref="partenaire">
-        Fournir des pièces complémentaires pour compléter une demande
-      </a>
+      <div class="col-sm-4">
+        <div class="card">
+          <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
+          <hr>
+          <p>N'envoyez plus vos pièces justificatives par courrier, déposez-les simplement dans le dossier de l'usager.</p>
+          <div class="list-actions">
+            <a ui-sref="partenaire">
+              Fournir des pièces complémentaires
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -70,14 +86,14 @@
     <div class ="container">
       <h2>Un suivi en ligne de votre dossier</h2>
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-4">
           <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
             Elle peut répondre aux besoins liés à votre handicap.</p>
         </div>
-        <div class="col-lg-4">
+        <div class="col-md-4">
           <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise votre dossier.</p>
         </div>
-        <div class="col-lg-4">
+        <div class="col-md-4">
           <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
         </div>
       </div>
