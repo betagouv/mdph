@@ -89,6 +89,7 @@ exports.listRequests = function(req, res) {
     Request
       .find({secteur: secteurId, evaluator: null, status: status, mdph: mdph.zipcode})
       .populate('user')
+      .sort('-submittedAt')
       .exec(function(err, requests) {
         if (err) return handleError(req, res, err);
 

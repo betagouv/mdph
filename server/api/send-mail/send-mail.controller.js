@@ -11,10 +11,14 @@ var secretKey = process.env.SECRET_KEY || config.SECRET_KEY;
 var mailjet = new Mailjet(apiKey, secretKey);
 
 exports.sendMail = function(mail, title, body, attachements) {
-  return mailjet.sendContent(
-    mail,
-    'Impact - ' + title,
-    body,
-    attachements
-  );
+  if (config.env === 'development') {
+    console.log('Not sending mail');
+  } else {
+    return mailjet.sendContent(
+      mail,
+      'Impact - ' + title,
+      body,
+      attachements
+    );
+  }
 };

@@ -67,7 +67,7 @@ exports.index = function(req, res) {
 
     Request.find(search)
       .populate('user', 'name')
-      .sort('createdAt')
+      .sort('-submittedAt')
       .exec(function(err, requests) {
         if (err) return handleError(req, res, err);
         return res.send(requests);
@@ -194,7 +194,7 @@ exports.transfer = function(req, res, next) {
 
     request
       .set('user', req.params.userId)
-      .set('updatedAt', Date.now())
+      .set('-updatedAt', Date.now())
       .save(function(err, request) {
         if (err) return handleError(req, res, err);
         res.json(request);
