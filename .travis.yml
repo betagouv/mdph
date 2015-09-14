@@ -1,11 +1,11 @@
 sudo: required
 language: node_js
 node_js:
-  - '0.10'
   - '0.12'
 before_script:
   - npm install -g bower grunt-cli
   - bower install
+  - gem install sass
 services: mongodb
 before_install:
   - sudo chown -R $USER /usr/local
