@@ -6,7 +6,8 @@ function getDateNaissance(answers) {
   if (!answers || !answers.identites || !answers.identites.beneficiaire ||  !answers.identites.beneficiaire.dateNaissance) {
     return null;
   } else {
-    return answers.identites.beneficiaire.dateNaissance;
+    var date = answers.identites.beneficiaire.dateNaissance;
+    return moment(date, moment.ISO_8601);
   }
 }
 
