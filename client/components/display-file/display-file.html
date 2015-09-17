@@ -10,7 +10,7 @@
   target="_self"
   ng-if="!file.sending"
   download="{{file.originalname}}"
-  href="api/requests/{{request.shortId}}/document/{{file.name}}?access_token={{token}}">
+  href="api/requests/{{request.shortId}}/document/{{file.filename}}?access_token={{token}}">
   {{file.originalname}}
 </a>
 

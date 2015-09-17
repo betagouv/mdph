@@ -332,7 +332,7 @@ function resizeAndMove(file, next) {
   if (file.mimetype === 'image/jpeg') {
     new Imagemin()
       .src(file.path)
-      .dest(file.path)
+      .dest(file.destination)
       .use(imageminJpegRecompress({
         progressive: true,
         loops: 7,
@@ -341,11 +341,10 @@ function resizeAndMove(file, next) {
         quality: 'low',
         target: 0.7
       }))
-      .run(next);
-  } else {
-    // Can't compress, nothing to do
-    next();
+      .run();
   }
+
+  next();
 }
 
 /**
