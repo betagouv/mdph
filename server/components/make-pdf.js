@@ -127,6 +127,7 @@ exports.make = function(request, user, recapitulatifHtml, done) {
 
             if (documentList.length > 0) {
               documentList.forEach(function(document) {
+                printDebug('make: pushing ', document);
                 if (document.tempPdfPath) {
                   pdfStructure.push(document.tempPdfPath);
                 } else {
@@ -180,6 +181,7 @@ function transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath
 
       document.tempPdfPath = tempPdfPath;
       document.actualPdfPath = actualPdfPath;
+
       documentListAsPdf.push(document);
       return transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath, done);
     });
@@ -192,8 +194,9 @@ function transformDocumentListToPdf(documentList, documentListAsPdf, tempDirPath
 function transformDocumentToPdf(document, tempDirPath, done) {
   printDebug('transformDocumentToPdf: transforming: ', document);
 
+  var localPath = config.root + '/server/uploads/' + path.basename(document.path);
   if (document.mimetype !== 'application/pdf') {
-    fs.readFile(document.path, function(err, documentStream) {
+    fs.readFile(localPath, function(err, documentStream) {
       if (err) {
         return done(err);
       }
@@ -209,14 +212,14 @@ function transformDocumentToPdf(document, tempDirPath, done) {
       ctx.imageSmoothingEnabled = true;
       ctx.drawImage(img, 0, 0, width, height);
 
-      var tempPdfPath = computeTempPdfPath(document.name, tempDirPath);
+      var tempPdfPath = computeTempPdfPath(document.filename, tempDirPath);
 
       return fs.writeFile(tempPdfPath, canvas.toBuffer('image/jpeg'), function(err) {
         done(err, tempPdfPath, null);
       });
     });
   } else {
-    return done(null, null, document.path);
+    return done(null, null, localPath);
   }
 }
 
