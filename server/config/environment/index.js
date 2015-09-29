@@ -19,6 +19,9 @@ var all = {
   // Root path of server
   root: path.normalize(__dirname + '/../../..'),
 
+  // Upload directory
+  uploadDir: path.normalize(__dirname + '/../../uploads/'),
+
   // Server port
   port: process.env.PORT || 9000,
 
