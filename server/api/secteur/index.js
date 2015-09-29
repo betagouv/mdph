@@ -14,5 +14,6 @@ router.patch('/:id', auth.isAuthenticated(), controller.update);
 router.delete('/:id', auth.isAuthenticated(), controller.destroy);
 
 router.get('/:id/requests', auth.isAuthenticated(), controller.listRequests);
+router.get('/:id/countRequests', auth.isAuthenticated(), controller.countRequests);
 
 module.exports = router;

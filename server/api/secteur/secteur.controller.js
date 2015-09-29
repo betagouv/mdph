@@ -78,23 +78,51 @@ function handleError(req, res, err) {
   return res.status(500).send(err);
 }
 
+function buildQuery(params, query, mdph) {
+
+  var secteurId = params.id === 'null' ? null : params.id;
+  var status = query && query.status ? query.status : 'emise';
+
+  return {
+    secteur: secteurId,
+    evaluator: null,
+    status: status,
+    mdph: mdph.zipcode
+  };
+}
+
 exports.listRequests = function(req, res) {
   Mdph.findById(req.user.mdph, function(err, mdph) {
     if (err) return handleError(req, res, err);
     if (!mdph) return res.sendStatus(404);
 
-    var secteurId = req.params.id === 'null' ? null : req.params.id;
-    var status = req.query && req.query.status ? req.query.status : 'emise';
+    var query = buildQuery(req.params, req.query, mdph);
 
     Request
-      .find({secteur: secteurId, evaluator: null, status: status, mdph: mdph.zipcode})
+      .find(query)
+      .select('user shortId formAnswers.identites status submittedAt')
       .populate('user')
       .sort('-submittedAt')
       .exec(function(err, requests) {
         if (err) return handleError(req, res, err);
 
-        res.set('count', requests.length);
         return res.send(requests);
+      });
+  });
+};
+
+exports.countRequests = function(req, res) {
+  Mdph.findById(req.user.mdph, function(err, mdph) {
+    if (err) return handleError(req, res, err);
+    if (!mdph) return res.sendStatus(404);
+
+    var query = buildQuery(req.params, req.query, mdph);
+    Request
+      .count(query)
+      .exec(function(err, result) {
+        if (err) return handleError(req, res, err);
+
+        return res.json(result);
       });
   });
 };

@@ -14,8 +14,8 @@ angular.module('impactApp')
     $scope.incomplete = incomplete;
 
     secteurs.forEach(function(secteur) {
-      $http({method: 'HEAD', url: '/api/secteurs/' + secteur._id + '/requests'}).then(function(result) {
-        secteur.pendingRequests = result.headers('count');
+      $http({method: 'GET', url: '/api/secteurs/' + secteur._id + '/countRequests'}).then(function(result) {
+        secteur.pendingRequests = result.data;
       });
     });
 
