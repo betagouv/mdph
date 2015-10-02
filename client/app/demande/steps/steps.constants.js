@@ -50,7 +50,6 @@ angular.module('impactApp').constant('allSteps', [
   },
   {
     id: 'envoi',
-    mandatory: true,
     label: 'Envoi',
     desc: 'Envoi de votre demande à la MDPH',
     previous: {

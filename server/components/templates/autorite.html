@@ -1,18 +1,15 @@
-<h4>Parent 1</h4>
 {{#parent1}}
+  <h4>Parent 1</h4>
   {{>identite}}
 {{/parent1}}
-{{^parent1}}Pas de parent 1{{/parent1}}
 
-<h4>Parent 2</h4>
 {{#parent2}}
+  <h4>Parent 2</h4>
   {{>identite}}
 {{/parent2}}
-{{^parent2}}Pas de parent 2{{/parent2}}
 
-<h4>Délégation d'autorité</h4>
 {{#autre}}
+  <h4>Délégation d'autorité</h4>
   {{>identite}}
   <div>Type: {{type}}</div>
 {{/autre}}
-{{^autre}}Pas de délégation d'autorité{{/autre}}

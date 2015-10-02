@@ -1,3 +1,12 @@
-<h2 class="demande-emise-title"><i class="fa fa-envelope"></i> Demande émise</h2>
+<h2 class="demande-emise-title">Demande émise</h2>
 
 <p>Votre demande à été transférée à la MDPH {{mdph.name}}<span ng-if="request.submittedAt"> le {{request.submittedAt | moment}}</span>.</p>
+
+<accordion>
+  <accordion-group is-open="recapitulatifIsOpen">
+    <accordion-heading>
+      Afficher le récapitulatif <i class="pull-right fa" ng-class="{'fa-chevron-down': recapitulatifIsOpen, 'fa-chevron-right': !recapitulatifIsOpen}"></i>
+    </accordion-heading>
+    <div ng-bind-html="recapitulatifHtml"></div>
+  </accordion-group>
+</accordion>

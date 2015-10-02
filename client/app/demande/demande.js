@@ -85,8 +85,9 @@ angular.module('impactApp')
           },
           'steps@departement.demande': {
             templateUrl: 'app/demande/steps/steps.html',
-            controller: function($scope, allSteps) {
+            controller: function($scope, RequestService, allSteps) {
               $scope.steps = allSteps;
+              $scope.getStepCompletion = RequestService.getStepCompletion;
             }
           },
           'body@departement.demande': {

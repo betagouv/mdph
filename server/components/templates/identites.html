@@ -7,20 +7,18 @@
     {{/beneficiaire}}
   </div>
 
-  <h3>Autorité parentale</h3>
-  <div class="question">
-    {{#autorite}}
+  {{#autorite}}
+    <h3>Autorité parentale</h3>
+    <div class="question">
       {{>autorite}}
-    {{/autorite}}
-    {{^autorite}}Non renseigné{{/autorite}}
-  </div>
+    </div>
+  {{/autorite}}
 
-  <h3>Personne accompagnant la demande</h3>
-  <div class="question">
-    {{#aidantDemarche}}
+  {{#aidantDemarche}}
+    <h3>Personne accompagnant la demande</h3>
+    <div class="question">
       {{>aidantDemarche}}
       <div>Type: {{type}}</div>
-    {{/aidantDemarche}}
-    {{^aidantDemarche}}Non renseigné{{/aidantDemarche}}
-  </div>
+    </div>
+  {{/aidantDemarche}}
 </div>

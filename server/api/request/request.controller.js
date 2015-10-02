@@ -233,7 +233,7 @@ exports.update = function(req, res, next) {
       findRequest(req, callback);
     },
 
-    // Check is request exists
+    // Check if request exists
     function(request, callback) {
       if (!request) {
         return res.sendStatus(404);
