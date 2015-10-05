@@ -15,7 +15,15 @@
           <ul ng-if="!filesVM[documentType.id]"><li>Pas de document</li></ul>
           <ul ng-if="filesVM[documentType.id]" class="list-group">
             <li ng-repeat="file in filesVM[documentType.id]" class="list-group-item">
-              <display-file file="file" request="request"></display-file>
+              <display-file ng-if="!file.progress" file="file" request="request"></display-file>
+              <div ng-if="file.progress">
+                {{file.name}} - en cours...
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
+                    {{file.progress}}%
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
