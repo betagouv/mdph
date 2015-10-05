@@ -45,9 +45,6 @@ angular.module('impactApp')
           password: $scope.user.password
         })
         .then(function() {
-          // Account created, redirect to home
-          User.generateTokenForMail({email: $scope.user.email});
-
           Auth.login({
             email: $scope.user.email,
             password: $scope.user.password
