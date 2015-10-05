@@ -17,6 +17,13 @@
     }
   }
 
+  .ready {
+    @extend .alert, .alert-info;
+    h2 {
+      margin: 0;
+    }
+  }
+
   .table-wrapper {
     margin: 20px 60px;
     h3 {
