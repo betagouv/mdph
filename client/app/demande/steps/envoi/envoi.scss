@@ -1,16 +1,53 @@
-h3.statut-title {
-  font-size: 1.5em;
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
+#step-envoi {
+  .error-envoi {
+    @extend .alert, .alert-danger;
+    margin-top: 15px;
+  }
 
-.error-envoi {
-  @extend .alert, .alert-danger;
-  margin-top: 15px;
-}
+  .demande-emise-title {
+    .fa-envelope {
+      color: lighten($lighter-blue, 25%);
+    }
+  }
 
-.demande-emise-title {
-  .fa-envelope {
-    color: lighten($lighter-blue, 25%);
+  .not-ready {
+    @extend .alert, .alert-warning;
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .ready {
+    @extend .alert, .alert-info;
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .table-wrapper {
+    margin: 20px 60px;
+    h3 {
+      font-weight: 200;
+    }
+
+    table {
+      margin-bottom: 20px;
+
+      tr.envoi-success>td:before {
+        content: '\f05d';
+        font-family: 'FontAwesome';
+        color: $green;
+        font-size: 1.2em;
+        margin-right: 5px;
+      }
+
+      tr.envoi-warning>td:before {
+        content: '\f071';
+        font-family: 'FontAwesome';
+        color: $orange;
+        font-size: 1.2em;
+        margin-right: 5px;
+      }
+    }
   }
 }

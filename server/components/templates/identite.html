@@ -1,7 +1,11 @@
-<div>Sexe: {{sexe}}</div>
 <div>Nom: {{nom}}</div>
-<div>Nom d'usage: {{nom_usage}}</div>
+
+{{#nom_usage}}
+  <div>Nom d'usage: {{nom_usage}}</div>
+{{/nom_usage}}
+
 <div>Prénom: {{prenom}}</div>
+<div>Sexe: {{sexe}}</div>
 <div>Nationalité: {{nationalite}}</div>
 <div>Date de naissance: {{dateNaissance}}</div>
 <div>Lieu de naissance: {{lieu_naissance}}</div>
@@ -11,11 +15,35 @@
 <div>Commune: {{commune}}</div>
 <div>Pays: {{pays}}</div>
 <div>Email: {{email}}</div>
+
+{{#tel_1}}
 <div>Telephone 1: {{tel_1}}</div>
+{{/tel_1}}
+
+{{#tel_2}}
 <div>Telephone 2: {{tel_2}}</div>
+{{/tel_2}}
+
+{{#mode_contact}}
 <div>Mode de contact: {{mode_contact}}</div>
+{{/mode_contact}}
+
+{{#domicile_organisme}}
 <div>Organisme de domicile: {{domicile_organisme}}</div>
+{{/domicile_organisme}}
+
+{{#prestations_familiales}}
 <div>Organisme payeur de prestations familiales: {{prestations_familiales}}</div>
+{{/prestations_familiales}}
+
+{{#numero_allocataire}}
 <div>N° Allocataire: {{numero_allocataire}}</div>
+{{/numero_allocataire}}
+
+{{#prestations_familiales_precisez}}
 <div>Organisme d'assurance maladie: {{assurance}}, {{prestations_familiales_precisez}}</div>
+{{/prestations_familiales_precisez}}
+
+{{#numero_secu}}
 <div>Numéro de Sécurité Sociale: {{numero_secu}}</div>
+{{/numero_secu}}

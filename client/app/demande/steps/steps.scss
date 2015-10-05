@@ -30,13 +30,33 @@
           }
         }
 
+        &.complete {
+          background-color: lighten($light-blue, 25%);
+          color: white;
+
+          &:before {
+            content: '\f058';
+            text-decoration: none;
+          }
+        }
+
+        &.incomplete {
+          background-color: lighten($light-blue, 25%);
+          color: white;
+
+          &:before {
+            content: '\f06a';
+            text-decoration: none;
+          }
+        }
+
         &.active {
           background-color: whitesmoke;
           color: $light-blue;
 
           &:before {
             content: '\f138';
-            color: $green;
+            color: $light-blue;
             text-decoration: none;
           }
         }

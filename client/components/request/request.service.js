@@ -1,98 +1,95 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RequestService', function RequestService(estAdulte) {
-    function checkSections(request, sectionsObligatoires, cb) {
-      var incompleteSections = [];
-      sectionsObligatoires.forEach(function(section) {
-        if (!request.formAnswers[section.id] || !request.formAnswers[section.id].__completion) {
-          incompleteSections.push(section);
+  .factory('RequestService', function RequestService(estAdulte, documentTypes, allSteps) {
+    var documentsObligatoires = _.chain(documentTypes)
+      .filter({mandatory: true})
+      .pluck('id')
+      .value();
+
+    var stepObligatoire = _.find(allSteps, {id: 'obligatoire'});
+
+    function checkStepObligatoireCompletion(request) {
+      var nbSections = 0;
+      stepObligatoire.sections.forEach(function(section) {
+        if (request.formAnswers[section] && request.formAnswers[section].__completion) {
+          nbSections += 1;
         }
       });
 
-      if (incompleteSections.length > 0) {
-        var errorStr = 'Veuillez renseigner les sections:\n';
-        incompleteSections.forEach(function(section) {
-          errorStr += '\t -' + section.label + '\n';
-        });
-
-        return cb(errorStr);
-      }
-
-      return cb();
+      return nbSections === stepObligatoire.sections.length;
     }
 
-    function checkDocuments(request, documentsObligatoires, cb) {
-      var incompleteDocuments = [];
-
-      if (!request.documents || request.documents.length === 0) {
-        incompleteDocuments = documentsObligatoires;
-      } else {
-        documentsObligatoires.forEach(function(documentObligatoire) {
-          if (!_.find(request.documents, {type: documentObligatoire.id})) {
-            incompleteDocuments.push(documentObligatoire);
+    function checkStepDocumentsCompletion(request) {
+      var nbDocuments = 0;
+      if (request.documents) {
+        documentsObligatoires.forEach(function(document) {
+          var documentsOfType = _.find(request.documents, {type: document});
+          if (typeof documentsOfType !== 'undefined') {
+            nbDocuments += 1;
           }
         });
       }
 
-      if (incompleteDocuments.length > 0) {
-        var errorStr = 'Vous devez fournir les documents obligatoires suivants:\n';
-        incompleteDocuments.forEach(function(document) {
-          errorStr += '\t -' + document.label + '\n';
-        });
+      return nbDocuments === documentsObligatoires.length;
+    }
 
-        return cb(errorStr);
+    var isAdult = function(request) {
+      if (request.formAnswers.identites && request.formAnswers.identites.beneficiaire) {
+        return estAdulte(request.formAnswers.identites.beneficiaire.dateNaissance);
+      } else {
+        return true;
+      }
+    };
+
+    var updatedAt = function(request) {
+      return moment(request.updatedAt).fromNow();
+    };
+
+    var getCompletion = function(section, request) {
+      if (!request.formAnswers) {
+        return 0;
       }
 
-      return cb();
-    }
+      if (typeof request.formAnswers[section] === 'undefined' || _.keys(request.formAnswers[section]).length === 0) {
+        return 0;
+      } else if (request.formAnswers[section].__completion === true) {
+        return 100;
+      } else {
+        return 50;
+      }
+    };
+
+    var getStepCompletion = function(step, request) {
+      switch (step.id) {
+        case 'obligatoire':
+          return checkStepObligatoireCompletion(request);
+        case 'documents':
+          return checkStepDocumentsCompletion(request);
+        default:
+          return undefined;
+      }
+    };
+
+    var getRequestCompletion = function(request) {
+      return _.reduce(allSteps, function(value, currentStep) {
+        var completion;
+
+        if (currentStep.mandatory) {
+          completion = getStepCompletion(currentStep, request) === true;
+        } else {
+          completion = true;
+        }
+
+        return value && completion;
+      });
+    };
 
     return {
-      estAdulte: function(request) {
-        if (request.formAnswers.identites && request.formAnswers.identites.beneficiaire) {
-          return estAdulte(request.formAnswers.identites.beneficiaire.dateNaissance);
-        } else {
-          return true;
-        }
-      },
-
-      updatedAt: function(request) {
-        return moment(request.updatedAt).fromNow();
-      },
-
-      isReadyToSend: function(request, sectionsObligatoires, documentsObligatoires, cb) {
-        var errorStr = 'Votre demande ne peut être envoyée car elle n\'est pas complète.\n';
-        var isValid = true;
-
-        function check(err) {
-          if (err) {
-            errorStr += err;
-            isValid = false;
-          }
-        }
-
-        checkSections(request, sectionsObligatoires, check);
-        checkDocuments(request, documentsObligatoires, check);
-
-        if (isValid) {
-          return cb();
-        } else {
-          return cb(errorStr);
-        }
-      },
-
-      getCompletion: function(section, request) {
-        if (!request.formAnswers) {
-          return 0;
-        }
-
-        if (typeof request.formAnswers[section] === 'undefined' || _.keys(request.formAnswers[section]).length === 0) {
-          return 0;
-        } else if (request.formAnswers[section].__completion === true) {
-          return 100;
-        } else {
-          return 50;
-        }
-      }
+      estAdulte: isAdult,
+      updatedAt: updatedAt,
+      getCompletion: getCompletion,
+      getStepCompletion: getStepCompletion,
+      getRequestCompletion: getRequestCompletion
     };
   });

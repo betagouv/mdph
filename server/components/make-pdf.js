@@ -59,6 +59,7 @@ exports.make = function(request, user, recapitulatifHtml, done) {
 
       function(err, stream) {
         if (err) return done(err);
+
         printDebug('make: finished building pdf');
 
         setTimeout(function() {

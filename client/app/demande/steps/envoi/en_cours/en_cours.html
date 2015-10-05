@@ -1,35 +1,75 @@
-<h2>Statut des parties obligatoires de votre demande</h2>
-<h3 class="statut-title">
-  <a ui-sref="departement.demande.{{stepObligatoire.id}}"> {{stepObligatoire.label}}</a>
-  <span class="text-success" ng-if="statusSections"><i class="fa fa-check"></i></span>
-  <span class="text-danger" ng-if="!statusSections"><i class="fa fa-warning"></i></span>
-</h3>
-{{nbSections}} sections complétées / {{totalSections}} sections obligatoires
+<div id="step-envoi">
+  <div ng-if="!mdph.impact">
+    <h2>Vos demande(s) auprès de la MDPH</h2>
 
-<h3 class="statut-title">
-  <a ui-sref="departement.demande.{{stepDocuments.id}}">{{stepDocuments.label}}</a>
-  <span class="text-success" ng-if="statusDocuments"><i class="fa fa-check"></i></span>
-  <span class="text-danger" ng-if="!statusDocuments"><i class="fa fa-warning"></i></span>
-</h3>
-{{nbDocuments}} documents liés / {{totalDocuments}} documents obligatoires
-
-<div ng-if="user.unconfirmed">
-  <h3 class="statut-title">
-    <a ui-sref="espace_perso.mon_compte">Votre compte</a>
-    <span class="text-danger"><i class="fa fa-warning"></i></span>
-  </h3>
-  <div>
-    Vous n'avez pas encore confirmé votre compte. Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail à l'adresse <em>{{user.email}}</em> <br>
-    Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({userId: user._id})">cliquez ici pour le renvoyer</a>.
+    <div class="table-wrapper">
+      <div ng-repeat="(key, type) in types">
+        <h3>{{key | prestationType}}</h3>
+        <table class="table">
+          <tr ng-repeat="prestation in type">
+            <td class="selection">
+              <input type="checkbox" ng-model="selected[prestation.id]" ng-change="sync()">
+            </td>
+            <td class="description" ng-click="select(prestation)">
+              <strong>{{prestation.title}}</strong>
+              <p>{{prestation.description}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="text-right">
-  <button class="btn btn-primary btn-lg" ng-click="envoyer()">
-    <i class="fa fa-envelope"></i> Envoyer ma demande
-  </button>
-</div>
+  <div ng-class="{'not-ready': !isReadyToSend(), 'ready': isReadyToSend()}">
+    <h2 ng-if="!isReadyToSend()">Votre demande n'est pas encore prête à être transmise à la MDPH {{mdph.name}}</h2>
+    <h2 ng-if="isReadyToSend()">Votre demande est prête à être transmise à la MDPH {{mdph.name}}</h2>
 
-<div class="error-envoi" ng-if="showError">
-  <i class="fa fa-warning"></i> Vous ne pouvez pas envoyer votre demande dans cet état.
+    <div class="table-wrapper">
+      <h3><a ui-sref="espace_perso.mon_compte">Votre compte</a></h3>
+      <table class="table">
+        <tr ng-if="user.unconfirmed" class="envoi-warning">
+          <td>Vous n'avez pas encore confirmé votre compte.  <br>
+          Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail à votre adresse <em>{{user.email}}</em> <br>
+          Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({userId: user._id})">cliquez ici pour le renvoyer</a>.</td>
+        </tr>
+        <tr ng-if="!user.unconfirmed" class="envoi-success">
+          <td>Vous avez bien confirmé votre compte grâce à votre adresse {{user.email}}.</td>
+        </tr>
+      </table>
+
+      <h3><a ui-sref="departement.demande.obligatoire">Vos renseignements</a></h3>
+      <table class="table">
+        <tr ng-if="!getObligatoiresCompletion()" class="envoi-warning">
+          <td>Vous n'avez pas fini de remplir l'étape de renseignements obligatoires.  <br>
+          Sans cette étape, nous ne pouvons pas envoyer votre demande, <a ui-sref="departement.demande.obligatoire">cliquez ici pour la compléter</a>.</td>
+        </tr>
+        <tr ng-if="getObligatoiresCompletion()" class="envoi-success">
+          <td>Vous avez entièrement rempli l'étape de renseignements obligatoires.</td>
+        </tr>
+      </table>
+
+      <h3><a ui-sref="departement.demande.documents">Vos documents</a></h3>
+      <table class="table">
+        <tr ng-if="!getDocumentsCompletion()" class="envoi-warning">
+          <td>Vous n'avez pas fourni l'ensemble des documents obligatoires pour la complétude de votre demande.  <br>
+          Sans cette étape, nous ne pouvons pas envoyer votre demande, <a ui-sref="departement.demande.documents">cliquez ici accéder à la section des documents liés</a>.</td>
+        </tr>
+        <tr ng-if="getDocumentsCompletion()" class="envoi-success">
+          <td>Vous avez fourni l'ensemble des documents obligatoires pour la complétude de votre demande.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-right">
+    <button class="btn btn-primary btn-lg" ng-click="envoyer()">
+      <i class="fa fa-envelope"></i> Envoyer ma demande
+    </button>
+  </div>
+
+  <div class="error-envoi" ng-if="showError">
+    <i class="fa fa-warning"></i> Pour pouvoir envoyer votre demande, il faut que vous ayez remplis toutes les sections des "Renseignements obligatoires" ainsi que les trois documents obligatoires (certificat médical, carte d'identité/passeport, justificatif de domicile).
+    <br><br>
+    Vous ne pouvez pas envoyer votre demande dans cet état.
+  </div>
 </div>

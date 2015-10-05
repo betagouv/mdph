@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/' + step.id,
         templateUrl: 'app/demande/steps/section-list.html',
         controller: 'StepCtrl',
+        authenticate: true,
         resolve: {
           step: function() {
             return step;
@@ -32,6 +33,7 @@ angular.module('impactApp')
 
     $stateProvider.state('departement.demande.documents', {
         url: '/documents',
+        authenticate: true,
         resolve: {
           step: function() {
             return _.find(allSteps, {id: 'documents'});
@@ -80,47 +82,9 @@ angular.module('impactApp')
           }
         }
       })
-      .state('departement.demande.envoi', {
-        url: '/envoi',
-        resolve: {
-          step: function() {
-            return _.find(allSteps, {id: 'envoi'});
-          }
-        },
-        views: {
-          '': {
-            templateUrl: 'app/demande/steps/envoi/envoi.html',
-            controller: 'EnvoiCtrl'
-          },
-          'login@departement.demande.envoi': {
-            templateUrl: 'components/login/login.html',
-            controller: 'LoginStepCtrl',
-            resolve: {
-              afterLogin: function($state, $rootScope, $window, request) {
-                return function() {
-                  $rootScope.$broadcast('saving', 'pending');
-                  request.$save(function() {
-                    $rootScope.$broadcast('saving', 'success');
-                    $state.go('departement.demande.envoi', {shortId: request.shortId});
-                  },
-
-                  function(err) {
-                    $rootScope.$broadcast('saving', 'error');
-                    $window.alert(err.data.message);
-                  });
-                };
-              }
-            }
-          },
-          'en_cours@departement.demande.envoi': {
-            templateUrl: 'app/demande/steps/envoi/en_cours/en_cours.html'
-          },
-          'emise@departement.demande.envoi': {
-            templateUrl: 'app/demande/steps/envoi/emise/emise.html'
-          }
-        }
-      }).state('departement.demande.settings', {
+      .state('departement.demande.settings', {
         url: '/parametres',
+        authenticate: true,
         resolve: {
           knownUsers: function(request) {
             return _.values(request.formAnswers.identites);

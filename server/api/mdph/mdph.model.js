@@ -6,7 +6,8 @@ var Schema = mongoose.Schema;
 var MdphSchema = new Schema({
   zipcode:  { type: String, unique: true },
   name:     { type: String },
-  logo:     { type: String }
+  logo:     { type: String },
+  impact:   { type: Boolean }
 });
 
 module.exports = mongoose.model('Mdph', MdphSchema);
