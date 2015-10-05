@@ -227,68 +227,47 @@ exports.updateStatus = function(req, res, next) {
  * Update request
  */
 exports.update = function(req, res, next) {
+  findRequest(req, function(err, request) {
+    if (err) { return handleError(req, res, err); }
 
-  async.waterfall([
-    function(callback) {
-      findRequest(req, callback);
-    },
-
-    // Check if request exists
-    function(request, callback) {
-      if (!request) {
-        return res.sendStatus(404);
-      }
-
-      callback(null, request);
-    },
-
-    // Find evaluator through dispatcher
-    function(request, callback) {
-
-      if (req.query.isSendingRequest) {
-        sendMailNotification(request, req.headers.host, req.log, function(secteur) {
-          if (secteur) {
-            request.set('secteur', secteur);
-          }
-
-          callback(null, request);
-        });
-      } else {
-        callback(null, request);
-      }
-    },
-
-    // Set new request attributes
-    function(request, callback) {
-
-      request
-        .set(_.omit(req.body, 'user', 'documents'))
-        .set('updatedAt', Date.now())
-        .set('submittedAt', Date.now())
-        .save(callback);
-    }
-
-  ], function(err, request) {
-    if (err) return handleError(req, res, err);
+    if (!request) { return res.sendStatus(404); }
 
     if (req.query.isSendingRequest) {
-      generatePdf(request, req.user, req.headers.host, function(err, pdfStream) {
-        if (err) { req.log.error(err); }
-
-        Mailer.sendMail(req.user.email,
-          'Accusé de réception du téléservice',
-          'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
-          [
-            {
-              filename: request.shortId + '.pdf',
-              content: pdfStream
-            }
-          ]
-        );
+      // Find and notify evaluator through dispatcher
+      sendMailNotification(request, req.headers.host, req.log, function(secteur) {
+        if (secteur) {
+          request.set('secteur', secteur).save();
+        }
       });
     }
 
-    res.json(request);
+    request
+      .set(_.omit(req.body, 'user', 'documents'))
+      .set('updatedAt', Date.now())
+      .set('submittedAt', Date.now())
+      .save(function(err, updated) {
+        if (err) return handleError(req, res, err);
+
+        if (req.query.isSendingRequest) {
+          // Notify user
+          generatePdf(request, req.user, req.headers.host, function(err, pdfStream) {
+            if (err) { req.log.error(err); }
+
+            Mailer.sendMail(req.user.email,
+              'Accusé de réception du téléservice',
+              'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
+              [
+                {
+                  filename: request.shortId + '.pdf',
+                  content: pdfStream
+                }
+              ]
+            );
+          });
+        }
+
+        res.json(request);
+      });
   });
 };
 
@@ -459,7 +438,7 @@ exports.getRecapitulatif = function(req, res) {
   });
 };
 
-var getPdf = function(req, res) {
+exports.getPdf = function(req, res) {
   findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
 
@@ -470,8 +449,6 @@ var getPdf = function(req, res) {
     });
   });
 };
-
-exports.getPdf = getPdf;
 
 exports.getSynthesePdf = function(req, res) {
   findRequest(req, function(err, request) {

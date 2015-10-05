@@ -20,6 +20,7 @@ angular.module('impactApp')
     $scope.prestationsQuitus = prestationsQuitus;
     $scope.currentMdph = currentMdph;
 
+    var prestationsById = _.indexBy(prestations, 'id');
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.filesVM = _.groupBy(request.documents, 'type');
 
@@ -33,6 +34,10 @@ angular.module('impactApp')
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {
         $window.alert('Mail renvoyé avec succès');
       });
+    };
+
+    $scope.getTitle = function(prestationId) {
+      return prestationsById[prestationId].title;
     };
 
     $scope.isSelected = function(prestation) {

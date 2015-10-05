@@ -1,6 +1,6 @@
 <div class="panel panel-default panel-smoke">
   <div class="panel-heading">
-    Récapitulatif demande
+    Récapitulatif
   </div>
 
   <div class="panel-body">
@@ -28,22 +28,6 @@
   </div>
 </div>
 
-<div class="panel panel-default" ng-if="currentMdph.zipcode === '14'">
-  <div class="panel-heading">
-    Quitus
-  </div>
-  <div class="panel-body">
-    <ul>
-      <li ng-if="prestationsQuitus.length === 0">
-        Aucune prestation
-      </li>
-      <li ng-repeat="prestation in prestationsQuitus">
-        {{prestation.label}}
-      </li>
-    </ul>
-  </div>
-</div>
-
 <div class="panel panel-default" ng-hide="true">
   <div class="panel-heading">
     Points saillants
@@ -60,26 +44,34 @@
   </div>
 </div>
 
-<!-- TODO: desactive pour le moment, a brancher au quitus -->
-<div class="panel panel-default" ng-if="false || currentMdph.zipcode === '14'">
+<div class="panel panel-default" ng-if="request.prestations">
   <div class="panel-heading">
-    Aides actuelles
+    Prestations
   </div>
   <div class="panel-body">
-    <ul class="presta-list" ng-if="request.prestations.length > 0">
-      <li class="presta-choice" ng-repeat="(idx, prestation) in request.prestations" ng-click="removePrestation(idx)">
-        {{prestation}} <i class="fa fa-close"></i>
-      </li>
-    </ul>
-    <p ng-if="!request.prestations || request.prestations.length === 0">
-      Aucune prestation
-    </p>
-  </div>
-  <div class="panel-footer">
-    <ul class="presta-show-list">
-      <li class="presta-choice-select" ng-repeat="prestation in toutesPrestations | filter:isSelected" ng-click="addPrestation(prestation)">
-        {{prestation.label}} <i class="fa fa-plus"></i>
-      </li>
-    </ul>
+    <div class="user">
+      <h3>Prestations demandées par l'utilisateur</h3>
+      <ul ng-if="request.prestations.length > 0">
+        <li ng-repeat="prestation in request.prestations">
+          {{getTitle(prestation)}}
+        </li>
+      </ul>
+      <p ng-if="request.prestations.length === 0">
+        Aucune prestation
+      </p>
+    </div>
+
+    <div class="quitus" ng-if="currentMdph.zipcode === '14'">
+      <h3>Prestations simulées</h3>
+      <ul>
+        <li ng-if="prestationsQuitus.length === 0">
+          Aucune prestation
+        </li>
+        <li ng-repeat="prestation in prestationsQuitus">
+          {{prestation.title}}
+        </li>
+      </ul>
+    </div>
+
   </div>
 </div>
