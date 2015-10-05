@@ -459,7 +459,7 @@ exports.getRecapitulatif = function(req, res) {
   });
 };
 
-var getPdf = function(req, res) {
+exports.getPdf = function(req, res) {
   findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
 
@@ -470,8 +470,6 @@ var getPdf = function(req, res) {
     });
   });
 };
-
-exports.getPdf = getPdf;
 
 exports.getSynthesePdf = function(req, res) {
   findRequest(req, function(err, request) {

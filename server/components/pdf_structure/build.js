@@ -48,4 +48,6 @@ function buildFlatStructure(requestTempPdfPath, documentList) {
       pdfStructure.push(document.path);
     });
   }
+
+  return pdfStructure;
 }
