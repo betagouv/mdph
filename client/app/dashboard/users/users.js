@@ -11,8 +11,8 @@ angular.module('impactApp')
         },
 
         resolve: {
-          pending: function($http) {
-            return $http({method: 'HEAD', url: '/api/partenaires', params: {status: 'en_attente'}}).then(function(result) {
+          pending: function($http, currentMdph) {
+            return $http({method: 'HEAD', url: '/api/partenaires', params: {status: 'en_attente', mdph: currentMdph._id}}).then(function(result) {
               return result.headers('count');
             });
           }
@@ -62,8 +62,8 @@ angular.module('impactApp')
         },
 
         resolve: {
-          partenaires: function($stateParams, Partenaire) {
-            return Partenaire.query({status: $stateParams.status});
+          partenaires: function($stateParams, Partenaire, currentMdph) {
+            return Partenaire.query({status: $stateParams.status, mdph: currentMdph._id});
           },
 
           title: function($stateParams) {

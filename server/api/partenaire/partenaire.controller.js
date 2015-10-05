@@ -2,12 +2,16 @@
 
 var _ = require('lodash');
 var Partenaire = require('./partenaire.model');
+var Request = require('../request/request.model');
+var Mdph = require('../mdph/mdph.model');
 var path = require('path');
+var shortid = require('shortid');
+var Mailer = require('../send-mail/send-mail.controller');
 
 // Get list of partenaires
 exports.index = function(req, res) {
   Partenaire
-    .find({certified: req.query.status})
+    .find({certified: req.query.status, mdph: req.query.mdph})
     .sort('email')
     .exec(function(err, partenaires) {
       if (err) { return handleError(req, res, err); }
@@ -40,10 +44,31 @@ exports.save = function(req, res) {
         return res.status(200).json(partenaire);
       });
     } else {
-      Partenaire.create(req.body, function(err, partenaire) {
+      Request.findOne({shortId: req.query.shortId}, function(err, request) {
         if (err) { return handleError(req, res, err); }
 
-        return res.status(201).json(partenaire);
+        Mdph.findOne({zipcode: request.mdph}, function(err, mdph) {
+          if (err) { return handleError(req, res, err); }
+
+          req.body.mdph = mdph;
+
+          Partenaire.create(req.body, function(err, partenaire) {
+            if (err) { return handleError(req, res, err); }
+
+            partenaire.secret = shortid.generate();
+            partenaire.save(function(err) {
+              if (err) { return handleError(req, res, err); }
+
+              var confirmationUrl = 'http://' + req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
+              Mailer.sendMail(
+                partenaire.email,
+                'Validez votre adresse',
+                'Vous avez demandé à ajouter une pièce dans un dossier usager sur notre service. Veuillez cliquer ici pour valider votre adresse :<br>' + confirmationUrl
+              );
+              return res.status(201).json(partenaire);
+            });
+          });
+        });
       });
     }
   });
