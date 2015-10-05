@@ -35,6 +35,19 @@ exports.create = function(req, res, next) {
   newUser.unconfirmed = true;
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
+
+    var newMailToken = shortid.generate();
+    user.newMailToken = newMailToken;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+      Mailer.sendMail(
+        user.email,
+        'Validation de votre adresse',
+        'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
+      );
+    });
+
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60 * 5 });
     res.json({ token: token });
   });
@@ -154,28 +167,6 @@ exports.showNotifications = function(req, res, next) {
     if (!notifications) { return res.sendStatus(404); }
 
     return res.json(notifications);
-  });
-};
-
-exports.generateTokenForMail = function(req, res, next) {
-  var email = req.body.email;
-  User.findOne({
-    email: email
-  }, function(err, user) {
-    if (err) return next(err);
-    if (!user) return res.sendStatus(200);
-    var newMailToken = shortid.generate();
-    user.newMailToken = newMailToken;
-    user.save(function(err) {
-      if (err) return validationError(res, err);
-      var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-      Mailer.sendMail(
-        user.email,
-        'Validation de votre adresse',
-        'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
-      );
-      res.sendStatus(200);
-    });
   });
 };
 

@@ -3,23 +3,26 @@
     <h2 ng-if="!user._id">Création d'un agent</h2>
     <h2 ng-if="user._id">Edition d'un agent</h2>
   </div>
-  <form class="form-horizontal">
+  <form class="form-horizontal" name="userForm" ng-submit="update(userForm)" >
     <div class="form-group">
       <label for="inputName" class="col-sm-2 control-label">Nom</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputName" placeholder="Nom" ng-model="user.name" required>
+        <input type="text" class="form-control" id="inputName" name="nom" placeholder="Nom" ng-model="user.name" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputEmail" class="col-sm-2 control-label">Email</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="user.email" required>
+        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" ng-model="user.email" required>
+        <p class="help-block" ng-show="userForm.email.$error.mongoose">
+          {{ errors.email }}
+        </p>
       </div>
     </div>
     <div class="form-group" ng-if="!user._id">
       <label for="inputEmail" class="col-sm-2 control-label">Mot de passe</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" ng-model="user.password" required>
+        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Mot de passe" ng-model="user.password" required>
       </div>
     </div>
     <div class="form-group">
@@ -30,7 +33,7 @@
         <button class="btn btn-danger" ng-if="user._id" type="button" ng-click="delete()">
           <i class="fa fa-trash"></i> Supprimer
         </button>
-        <button class="btn btn-primary" type="submit" ng-click="update()">
+        <button class="btn btn-primary" type="submit">
           <i class="fa fa-save"></i> Sauver
         </button>
       </div>

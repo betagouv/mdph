@@ -4,7 +4,7 @@ angular.module('impactApp')
   .controller('AgentsEditCtrl', function($scope, $state, user, currentUser) {
     $scope.user = user;
 
-    $scope.update = function() {
+    $scope.update = function(form) {
       if ($scope.user._id) {
         $scope.user.$changeInfo(function() {
           $state.go('^', {}, {reload: true});
@@ -12,9 +12,21 @@ angular.module('impactApp')
       } else {
         $scope.user.role = 'adminMdph';
         $scope.user.mdph = currentUser.mdph._id;
-        $scope.user.$save(function() {
-          $state.go('^', {}, {reload: true});
-        });
+        $scope.user.$save(
+          function() {
+            $state.go('^', {}, {reload: true});
+          },
+
+          function(err) {
+            err = err.data;
+            $scope.errors = {};
+
+            // Update validity of form fields that match the mongoose errors
+            angular.forEach(err.errors, function(error, field) {
+              form[field].$setValidity('mongoose', false);
+              $scope.errors[field] = error.message;
+            });
+          });
       }
     };
 

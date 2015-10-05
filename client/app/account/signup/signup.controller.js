@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SignupCtrl', function($rootScope, $scope, $state, Auth, User) {
+  .controller('SignupCtrl', function($rootScope, $scope, $state, Auth) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -29,9 +29,6 @@ angular.module('impactApp')
           password: $scope.user.password
         })
         .then(function() {
-          // Account created, redirect to home
-          User.generateTokenForMail({email: $scope.user.email});
-
           // Logged in, redirect
           $state.go('espace_perso.liste_demandes');
         })

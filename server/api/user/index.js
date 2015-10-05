@@ -15,7 +15,6 @@ router.put('/:id', auth.isAuthenticated(), controller.changeInfo);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.get('/search', auth.isAuthenticated(), controller.search);
 router.post('/generate_token', controller.generateTokenForPassword);
-router.post('/generate_token_mail', controller.generateTokenForMail);
 
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 
