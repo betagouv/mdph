@@ -8,6 +8,14 @@ var path = require('path');
 var async = require('async');
 var Canvas = require('canvas');
 
+var endsWith = function(str, suffix) {
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
+};
+
+var isPdf = function(file) {
+  return endsWith(file.mimetype, 'pdf') || endsWith(file.originalname, 'pdf');
+};
+
 var PdfConvert = function(rootPath) {
 
   if (!(this instanceof PdfConvert)) {
@@ -52,7 +60,7 @@ var PdfConvert = function(rootPath) {
 
     var localPath = path.join(_this.rootPath, path.basename(file.path));
 
-    if (file.mimetype === 'application/pdf') {
+    if (isPdf(file)) {
       file.path = localPath;
       return callback(null, file);
     }
