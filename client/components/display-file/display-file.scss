@@ -1,0 +1,15 @@
+.display-file {
+  display: flex;
+  align-items: space-between;
+
+  .logo {
+    font-size: 20px;
+    color: #BFBFBF;
+    margin-right: 10px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+}

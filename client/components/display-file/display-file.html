@@ -1,29 +1,37 @@
-<i class="fa" ng-class="{
-  'fa-file-pdf-o': file.mimetype === 'application/pdf',
-  'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
-  'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'
-}"></i>
-<div ng-if="file.sending">
-  <i class="fa fa-spin fa-circle-o-notch"></i> Envoi en cours...
-</div>
-<a
-  target="_self"
-  ng-if="!file.sending"
-  download="{{file.originalname}}"
-  href="api/requests/{{request.shortId}}/document/{{file.filename}}?access_token={{token}}">
-  {{file.originalname}}
-</a>
+<div class="display-file">
+  <div class="logo">
+    <i class="fa" ng-class="{
+    'fa-file-pdf-o': file.mimetype === 'application/pdf',
+    'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
+    'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'
+  }"></i>
+  </div>
+  <div class="content">
+    <div class="file-description">
+      <div ng-if="file.sending">
+        <i class="fa fa-spin fa-circle-o-notch"></i> Envoi en cours...
+      </div>
+      <a
+        target="_self"
+        ng-if="!file.sending"
+        download="{{file.originalname}}"
+        href="api/requests/{{request.shortId}}/document/{{file.filename}}?access_token={{token}}">
+        {{file.originalname}}
+      </a>
+    </div>
 
-<div class="pull-right">
-  <a class="trash" ng-click="delete()">
-    <span class="glyphicon glyphicon-trash"></span>
-  </a>
-</div>
+    <div class="partenaire-description" ng-if="file.partenaire">
+      <div ng-if="!partenaireObj">
+        <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
+      </div>
+      <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
+    </div>
 
-<span ng-if="file.partenaire">
-  <br>
-  <span ng-if="!partenaireObj">
-    <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
-  </span>
-  <span ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</span>
-</span>
+    <div class="file-actions">
+      <a class="trash" ng-click="delete()">
+        Supprimer
+      </a>
+    </div>
+  </div>
+
+</div>
