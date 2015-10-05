@@ -36,8 +36,7 @@ exports.create = function(req, res, next) {
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
 
-    var newMailToken = shortid.generate();
-    user.newMailToken = newMailToken;
+    user.newMailToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);
       var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
@@ -230,6 +229,15 @@ exports.resendConfirmation = function(req, res) {
   User.findById(req.params.id, '+newMailToken', function(err, user) {
     if (err) return handleError(req, res, err);
     if (!user) return res.sendStatus(404);
+
+    var token;
+    if (!user.newMailToken) {
+      token = shortid.generate();
+      user.newMailToken = token;
+      user.save();
+    } else {
+      token = user.newMailToken;
+    }
 
     var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
     Mailer.sendMail(
