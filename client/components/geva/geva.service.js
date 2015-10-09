@@ -5,42 +5,29 @@ angular.module('impactApp')
     return {
       getSections: function() {
         return [{
-          id: 'situation',
-          label: 'Vie personnelle'
-        },
-        {
           id: 'environnement',
-          label: 'Environnement'
+          label: 'Éléments environnementaux',
+          libelle: 'éléments environnementaux'
         },
         {
-          id: 'aides',
-          label: 'Vie scolaire ou professionnelle'
+          id: 'personnel',
+          label: 'Éléments personnels',
+          libelle: 'éléments personnels'
         },
         {
-          id: 'besoins',
-          label: 'Evolution et besoins'
+          id: 'scolaire_professionnel',
+          label: 'Éléments scolaires ou professionnels',
+          libelle: 'éléments scolaires ou professionnels'
+        },
+        {
+          id: 'evolution_besoins',
+          label: 'Évolution et besoins',
+          libelle: 'évolution et besoins'
         }];
       },
 
       getModel: function() {
         return $http.get('/api/geva', {cache: true}).then(function(result) {
-          // Generation des ids
-          // _.forEach(result.data, function(section) {
-          //   section.Reponses.forEach(function(reponse) {
-          //     reponse.id = reponse.CodeValeur.replace(/[. ]/g, '_');
-          //     if (reponse.Details) {
-          //       reponse.Details.forEach(function(detail) {
-          //         detail.id = detail.CodeValeur.replace(/[. ]/g, '_');
-          //         if (detail.SousDetails) {
-          //           detail.SousDetails.forEach(function(sousDetail) {
-          //             sousDetail.id = sousDetail.CodeValeur.replace(/[. ]/g, '_');
-          //           });
-          //         }
-          //       });
-          //     }
-          //   });
-          // });
-
           var sections = _.groupBy(result.data, 'Section');
 
           var cleanModel = {};

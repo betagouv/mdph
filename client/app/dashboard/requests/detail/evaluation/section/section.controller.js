@@ -4,6 +4,10 @@ angular.module('impactApp')
   .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, GevaService, request) {
     $scope.section = section;
 
+    if (!request.synthese) {
+      request.synthese = {};
+    }
+
     if (!request.synthese.geva) {
       request.synthese.geva = {};
     }
