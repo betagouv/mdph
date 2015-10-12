@@ -7,7 +7,6 @@ angular.module('impactApp')
         url: '/' + step.id,
         templateUrl: 'app/demande/steps/section-list.html',
         controller: 'StepCtrl',
-        authenticate: true,
         resolve: {
           step: function() {
             return step;
@@ -33,7 +32,6 @@ angular.module('impactApp')
 
     $stateProvider.state('departement.demande.documents', {
         url: '/documents',
-        authenticate: true,
         resolve: {
           step: function() {
             return _.find(allSteps, {id: 'documents'});
@@ -84,7 +82,6 @@ angular.module('impactApp')
       })
       .state('departement.demande.settings', {
         url: '/parametres',
-        authenticate: true,
         resolve: {
           knownUsers: function(request) {
             return _.values(request.formAnswers.identites);
