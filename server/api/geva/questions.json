@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "Section": "éléments environnementaux",
     "Libelle": "Composition du foyer",
     "Trajectoire": "Toutes",
@@ -33,6 +34,7 @@
     ]
   },
   {
+    "id": 1,
     "Section": "éléments environnementaux",
     "Libelle": "Type d'hébergement (TYPHEB)",
     "Trajectoire": "Toutes",
@@ -102,6 +104,7 @@
     ]
   },
   {
+    "id": 2,
     "Section": "éléments environnementaux",
     "Libelle": "caractéristiques du logement (TYPAEXT)",
     "Trajectoire": "Toutes",
@@ -123,6 +126,7 @@
     ]
   },
   {
+    "id": 3,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "Situation par rapport à l'activité (SITACT) + situation scolaire actuelle (SITSCO) + type d'activité professionnelle (TYPACT) ",
     "Trajectoire": "Toutes",
@@ -240,6 +244,7 @@
     ]
   },
   {
+    "id": 4,
     "Section": "éléments environnementaux",
     "Libelle": "ressources propres de la personne (SITREC)",
     "Trajectoire": "Toutes",
@@ -379,6 +384,7 @@
     ]
   },
   {
+    "id": 5,
     "Section": "éléments environnementaux",
     "Libelle": "Caractéristiques transport (CARTRANSP)",
     "Trajectoire": "Toutes",
@@ -536,6 +542,7 @@
     ]
   },
   {
+    "id": 6,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "établissement fréquenté (TYPSCO)",
     "Trajectoire": "Vie scolaire uniquement",
@@ -707,6 +714,7 @@
     ]
   },
   {
+    "id": 7,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "temps de scolarisation",
     "Trajectoire": "Vie scolaire uniquement",
@@ -782,6 +790,7 @@
     ]
   },
   {
+    "id": 8,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "Evaluation scolarité (EVASCO)",
     "Trajectoire": "Vie scolaire uniquement",
@@ -815,6 +824,7 @@
     ]
   },
   {
+    "id": 9,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "Niveau de formation professionnelle (NIVFORPRO)",
     "Trajectoire": "Vie professionnelle uniquement",
@@ -866,6 +876,7 @@
     ]
   },
   {
+    "id": 10,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "situation par rapport au travail (SITEMP) + interruption d'activité",
     "Trajectoire": "Vie professionnelle uniquement",
@@ -953,6 +964,7 @@
     ]
   },
   {
+    "id": 11,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "aménagement du poste de travail + aptitude au poste",
     "Trajectoire": "Vie professionnelle uniquement",
@@ -998,6 +1010,7 @@
     ]
   },
   {
+    "id": 12,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "Type de contrat (TYPCONT)",
     "Trajectoire": "Vie professionnelle uniquement",
@@ -1049,6 +1062,7 @@
     ]
   },
   {
+    "id": 13,
     "Section": "éléments scolaires ou professionnels",
     "Libelle": "perspectives professionnelles",
     "Trajectoire": "Vie professionnelle uniquement",
@@ -1120,6 +1134,7 @@
     ]
   },
   {
+    "id": 14,
     "Section": "éléments personnels",
     "Libelle": "Pathologie (CIM)",
     "Trajectoire": "Toutes",
@@ -1381,6 +1396,7 @@
     ]
   },
   {
+    "id": 15,
     "Section": "éléments personnels",
     "Libelle": "maladies rares",
     "Trajectoire": "Toutes",
@@ -1402,6 +1418,7 @@
     ]
   },
   {
+    "id": 16,
     "Section": "éléments personnels",
     "Libelle": "Déficiences (NATDEF) ",
     "Trajectoire": "Toutes",
@@ -2119,6 +2136,7 @@
     ]
   },
   {
+    "id": 17,
     "Section": "éléments personnels",
     "Libelle": "handicap rare",
     "Trajectoire": "Toutes",
@@ -2140,6 +2158,7 @@
     ]
   },
   {
+    "id": 18,
     "Section": "éléments personnels",
     "Libelle": "type de charge (TYPCHARG) + types de contraintes médicales (CONDESC)",
     "Trajectoire": "Toutes",
@@ -2753,6 +2772,7 @@
     ]
   },
   {
+    "id": 19,
     "Section": "éléments personnels",
     "Libelle": "Activités (CAPTYP)",
     "Trajectoire": "Toutes",
@@ -5648,6 +5668,7 @@
     ]
   },
   {
+    "id": 20,
     "Section": "évolution et besoins",
     "Libelle": "Besoins de compensation identifiés (PPCCATBES)",
     "Trajectoire": "Toutes",
@@ -7925,6 +7946,7 @@
     ]
   },
   {
+    "id": 21,
     "Section": "évolution et besoins",
     "Libelle": "Evolution  envisagée pour la situation - \"tendance évolutive\"",
     "Trajectoire": "Toutes",
@@ -7991,6 +8013,7 @@
     ]
   },
   {
+    "id": 22,
     "Section": "évolution et besoins",
     "Libelle": "évolution depuis la précédente demande",
     "Trajectoire": "Toutes",

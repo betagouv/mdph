@@ -2,8 +2,6 @@
 
 angular.module('impactApp')
   .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, GevaService, request) {
-    $scope.section = section;
-
     if (!request.synthese) {
       request.synthese = {};
     }
@@ -12,25 +10,66 @@ angular.module('impactApp')
       request.synthese.geva = {};
     }
 
-    $scope.geva = request.synthese.geva;
+    if (!request.synthese.geva[section.id]) {
+      request.synthese.geva[section.id] = {};
+    }
 
-    $scope.isSelected = function(question, answer) {
-      if (question.Type === 'CU') {
-        return $scope.geva[question.Question] && $scope.geva[question.Question].reponse === answer.id;
+    $scope.section = section;
+
+    function findDeep(array, id) {
+      var question = _.find(array, {id: id});
+      if (question) {
+        return question;
       } else {
-        return $scope.geva[question.Question] && $scope.geva[question.Question][answer.id];
+        var found = null;
+        array.forEach(function(question) {
+          if (question.Reponses && !found) {
+            found = findDeep(question.Reponses, id);
+          }
+        });
+
+        return found;
       }
-    };
+    }
 
-    $scope.isDetailSelected = function(question, detail) {
-      return $scope.geva[question.Question] && $scope.geva[question.Question][detail.id];
-    };
+    (function appyModelToSection(request, section) {
+      var model = request.synthese.geva[section.id];
 
-    $scope.remove = function(question) {
-      delete $scope.geva[question];
-    };
+      _.forEach(section.trajectoires, function(trajectoire) {
+        _.forEach(model, function(id) {
+          var question = findDeep(trajectoire, id);
+          if (question) {
+            question.isSelected = true;
+          }
+        });
+      });
+
+    })(request, section);
+
+    function trajectoiresToIdArray(trajectoires) {
+      return _.reduce(trajectoires, function(result, trajectoire) {
+        return result.concat(answersToIdArray(trajectoire));
+      }, []);
+    }
+
+    function answersToIdArray(root) {
+      return _.reduce(root, function(result, question) {
+        if (question.Reponses) {
+          var reponses = answersToIdArray(question.Reponses);
+          result = result.concat(reponses);
+        }
+
+        if (question.isSelected) {
+          result.push(question.id);
+        }
+
+        return result;
+      }, []);
+    }
 
     $scope.validate = function() {
+      request.synthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+
       request.$update(function() {
         $state.go('^');
       });
