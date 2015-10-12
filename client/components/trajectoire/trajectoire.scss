@@ -1,0 +1,42 @@
+.trajectoire-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(93, 93, 93, 0.21);
+
+  &.main-level {
+    width: 100%;
+    float: right;
+
+    > div {
+      border: 1px solid #ddd;
+    }
+
+    > div:not(:last-child) {
+      border-bottom: 5px solid white;
+    }
+  }
+
+  &.sub-level {
+    width: 95%;
+    float: right;
+    margin-bottom: 5px;
+  }
+
+  .question {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .question-active {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #456179;
+  }
+}

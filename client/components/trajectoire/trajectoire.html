@@ -1,0 +1,9 @@
+<div class="trajectoire-wrapper" ng-class="{'sub-level': sublevel, 'main-level': !sublevel}">
+  <div ng-repeat="question in questions">
+    <button type="button" ng-click="question.isSelected = !question.isSelected" class="question" ng-class="{'question-active': question.isSelected}">
+      {{question.Libelle | capitalize}} <i ng-if="question.Reponses" class="fa fa-plus pull-right"></i>
+    </button>
+
+    <sublevel question="question"></sublevel>
+  </div>
+</div>

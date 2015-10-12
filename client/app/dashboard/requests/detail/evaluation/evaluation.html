@@ -4,16 +4,16 @@
       <div class="geva-section-content">
         <div class="head">
           <a ui-sref=".section({sectionId: section.id})">
-            <h1>{{section.label}}</h1>
             <span>{{$index + 1}}</span>
+            <h1>{{section.label}}</h1>
           </a>
         </div>
         <div class="body">
-          <div ng-repeat="(trajectoire, questions) in model[section.label]" ng-class="{optionnal: trajectoire !== 'Toutes'}">
+          <div ng-repeat="(trajectoire, questions) in model[section.libelle]" ng-class="{optionnal: trajectoire !== 'Toutes'}">
             <h2 ng-if="trajectoire !== 'Toutes'">{{trajectoire}}</h2>
 
             <ul>
-              <li ng-repeat="question in questions">{{question.Description}}</li>
+              <li ng-repeat="question in questions">{{question.Libelle | capitalize}}</li>
             </ul>
           </div>
         </div>

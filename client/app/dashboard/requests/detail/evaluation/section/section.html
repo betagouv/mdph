@@ -1,60 +1,9 @@
 <h2>{{section.label}}</h2>
 
-<div ng-repeat="(trajectoire, questions) in section.trajectoires">
+<div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
   <h3 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h3>
 
-  <accordion ng-repeat="question in questions" class="section-quitus">
-    <accordion-group is-open="status.open">
-      <accordion-heading>
-        {{question.Question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-      </accordion-heading>
-
-      <div class="text-right">
-        <a ng-click="remove(question.Question)">Supprimer les réponses à cette question</a>
-      </div>
-
-      <div ng-repeat="answer in question.Reponses">
-        <button
-          ng-if="question.Type === 'CM'"
-          class="btn btn-default btn-geva btn-checkbox"
-          ng-model="geva[question.Question][answer.id]"
-          btn-checkbox>
-          {{answer.Reponse}}
-        </button>
-        <button
-          ng-if="question.Type === 'CU'"
-          class="btn btn-default btn-geva btn-radio"
-          ng-model="geva[question.Question].reponse"
-          btn-radio="answer.id">
-          {{answer.Reponse}}
-        </button>
-        <div
-          class="well well-detail slide"
-          ng-if="answer.Details && isSelected(question, answer)">
-          <div ng-repeat="detail in answer.Details">
-            <button
-              class="btn btn-default btn-geva btn-checkbox"
-              ng-model="geva[question.Question][detail.id]"
-              btn-checkbox>
-              {{detail.Detail}}
-            </button>
-            <div
-              class="well well-sousdetail slide"
-              ng-if="detail.SousDetails && isDetailSelected(question, detail)">
-                <div ng-repeat="sousDetail in detail.SousDetails">
-                  <button
-                    class="btn btn-default btn-geva btn-checkbox"
-                    ng-model="geva[question.Question][sousDetail.id]"
-                    btn-checkbox>
-                    {{sousDetail.SousDetail}}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </accordion-group>
-  </accordion>
+  <trajectoire questions="questions" level="0"></trajectoire>
 </div>
 
 <div class="text-right">
