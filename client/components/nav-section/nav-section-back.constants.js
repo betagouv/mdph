@@ -21,12 +21,14 @@ angular.module('impactApp').constant('SectionBackConstants', [
     fa: 'fa-code-fork',
     label: 'Dispatch des demandes'
   },
-  {
-    sref: 'dashboard.preparation_evaluation',
-    include: 'dashboard.preparation_evaluation.**',
-    fa: 'fa-crosshairs',
-    label: 'Préparation à l\'évaluation'
-  },
+
+  // {
+  //   sref: 'dashboard.preparation_evaluation',
+  //   include: 'dashboard.preparation_evaluation.**',
+  //   fa: 'fa-crosshairs',
+  //   label: 'Préparation à l\'évaluation'
+  // },
+
   {
     sref: 'dashboard.espace_perso.mon_compte',
     include: 'dashboard.espace_perso.mon_compte.**',
