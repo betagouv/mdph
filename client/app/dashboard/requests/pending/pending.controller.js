@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PendingRequestsCtrl', function($scope, $http, requests, currentUser, NotificationService, $state) {
+  .controller('PendingRequestsCtrl', function($scope, $http, requests, currentUser, currentSecteur, NotificationService, $state) {
     $scope.requests = requests;
     $scope.onlyUrgences = false;
+    $scope.currentSecteur = currentSecteur;
 
     $scope.selectAll = function() {
       var action;

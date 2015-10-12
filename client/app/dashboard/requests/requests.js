@@ -31,6 +31,12 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/requests/pending/pending.html',
         controller: 'PendingRequestsCtrl',
         resolve: {
+          currentSecteur: function($http, $stateParams) {
+            return $http.get('/api/secteurs/' + $stateParams.secteurId).then(function(result) {
+              return result.data;
+            });
+          },
+
           requests: function($http, $stateParams) {
             var secteurId = $stateParams.secteurId;
             if (secteurId === 'en_cours') {
