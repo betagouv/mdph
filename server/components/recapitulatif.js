@@ -36,8 +36,18 @@ Handlebars.registerPartial({
   prestations: readTemplateSync('prestations.html')
 });
 
-Handlebars.registerHelper('capitalize', function(str) {
-  return str && (str.charAt(0).toUpperCase() + str.slice(1).toLowerCase());
+Handlebars.registerHelper('capitalize', function(str, force) {
+  if (force === 'upper') {
+    return str.toUpperCase();
+  }
+
+  return str && str.toLowerCase().replace(/\b\w/g, function(m) {
+    return m.toUpperCase();
+  });
+});
+
+Handlebars.registerHelper('conjugaison', function(sexe) {
+  return sexe === 'masculin' ? '' : 'e';
 });
 
 Handlebars.registerHelper('pronoun', function(sexe, capitalize) {

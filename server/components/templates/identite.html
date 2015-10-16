@@ -1,60 +1,58 @@
 <p>
-  <strong>{{prenom}} {{nom}} {{#if nom_usage}}Nom d'usage: {{nom_usage}}{{/if}}</strong><small>(de sexe {{sexe}})</small> né(e) le <strong>{{dateNaissance}}</strong> à {{lieu_naissance}} <small>({{lieu_naissance_cp}})</small>.
+  <strong>{{capitalize prenom}} {{capitalize nom 'upper'}} {{#if nom_usage}}Nom d'usage: {{nom_usage}}{{/if}}</strong>
+
+  {{#if dateNaissance}}
+    est né{{conjugaison sexe}} le <strong>{{dateNaissance}}</strong> à {{lieu_naissance}} <small>({{lieu_naissance_cp}})</small>
+  {{/if}}
+
+  {{#if adresse}}
+    , réside actuellement au <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+  {{/if}}
+  </p>
+
+<p>
+  {{#if mode_contact}}
+    {{pronoun sexe true}} préfère être contacté{{conjugaison sexe}} par <strong>{{mode_contact}}</strong>, son adresse email est <strong>{{email}}</strong>
+  {{else}}
+    Son adresse email est <strong>{{email}}</strong>
+  {{/if}}
+
+  {{#if tel_1}}
+    {{#if tel_2}}
+      , ses numéros de téléphone sont
+    {{else}}
+      , son numéro de téléphone est
+    {{/if}}
+    le <strong>{{tel_1}}</strong>{{#tel_2}} et <strong>{{tel_2}}{{/tel_2}}</strong>
+  {{/if}}
+  .
 </p>
 
-<p>{{pronoun sexe true}} réside actuellement au <strong>{{adresse}}, {{code_postal}} {{commune}}, {{pays}}</strong>.</p>
+<p>
+  {{#if domicile_organisme}}
+    Son organisme de domicile est: {{domicile_organisme}}.
+  {{/if}}
 
-<p>{{prenom}} préfère être contacté(e) par <strong>{{mode_contact}}</strong></p>
-<p>Son adresse email est <strong>{{email}}</strong></p>
+  {{#if prestations_familiales}}
+    Son organisme payeur de prestations familiales est la <strong>{{capitalize prestations_familiales 'upper'}}</strong>.
+  {{/if}}
 
-{{#tel_1}}
-<p>Ses numéros de téléphone sont: <strong>{{tel_1}}</strong>{{#tel_2}} et <strong>{{tel_2}}{{/tel_2}}</strong></p>
-{{/tel_1}}
+  {{#if numero_allocataire}}
+    Son numéro d'allocataire est <strong>{{numero_allocataire}}</strong>.
+  {{/if}}
 
-{{#nom_usage}}
-  <div>Nom d'usage: {{nom_usage}}</div>
-{{/nom_usage}}
+  {{#if assurance}}
+    Son organisme d'assurance maladie est <strong>
+    {{#if prestations_familiales_precisez}}
+      {{prestations_familiales_precisez}}
+    {{else}}
+       la {{assurance}}
+    {{/if}}
+    </strong>
+    .
+  {{/if}}
 
-<div>Prénom: {{prenom}}</div>
-<div>Sexe: {{sexe}}</div>
-<div>Nationalité: {{nationalite}}</div>
-<div>Date de naissance: {{dateNaissance}}</div>
-<div>Lieu de naissance: {{lieu_naissance}}</div>
-<div>Code postal du lieu de naissance: {{lieu_naissance_cp}}</div>
-<div>Adresse: {{adresse}}</div>
-<div>Code postal: {{code_postal}}</div>
-<div>Commune: {{commune}}</div>
-<div>Pays: {{pays}}</div>
-<div>Email: {{email}}</div>
-
-{{#tel_1}}
-<div>Telephone 1: {{tel_1}}</div>
-{{/tel_1}}
-
-{{#tel_2}}
-<div>Telephone 2: {{tel_2}}</div>
-{{/tel_2}}
-
-{{#mode_contact}}
-<div>Mode de contact: {{mode_contact}}</div>
-{{/mode_contact}}
-
-{{#domicile_organisme}}
-<div>Organisme de domicile: {{domicile_organisme}}</div>
-{{/domicile_organisme}}
-
-{{#prestations_familiales}}
-<div>Organisme payeur de prestations familiales: {{prestations_familiales}}</div>
-{{/prestations_familiales}}
-
-{{#numero_allocataire}}
-<div>N° Allocataire: {{numero_allocataire}}</div>
-{{/numero_allocataire}}
-
-{{#prestations_familiales_precisez}}
-<div>Organisme d'assurance maladie: {{assurance}}, {{prestations_familiales_precisez}}</div>
-{{/prestations_familiales_precisez}}
-
-{{#numero_secu}}
-<div>Numéro de Sécurité Sociale: {{numero_secu}}</div>
-{{/numero_secu}}
+  {{#if numero_secu}}
+    Son numéro de sécurité sociale est <strong>{{numero_secu}}</strong>.
+  {{/if}}
+</p>

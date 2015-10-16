@@ -1,25 +1,26 @@
 <html>
   {{> head}}
   <body>
-    <img src="http://{{path}}/assets/images/cerfa.png" width="91,4" height="48,9"></img>
-    <img src="http://{{path}}/assets/images/logo{{mdph}}.jpg" width="88,9" height="48,9"></img>
+    <div class="pull-left">
+      <img src="http://{{path}}/assets/images/cerfa.png" width="91,4" height="48,9"></img>
+      <img src="http://{{path}}/assets/images/logo{{mdph}}.jpg" width="88,9" height="48,9"></img>
+    </div>
+    <div class="pull-right">
+      {{#if submittedAt}}
+        <div>Demande passée le {{submittedAt}}</div>
+      {{/if}}
+    </div>
+
+    <div class="clearfix"></div>
+
     <h1>Mes réponses au questionaire MDPH</h1>
+
     <p>
-      <strong>Les informations que je donne sont confidentielles.
-      <br>Je peux demander à rencontrer la CDAPH.</strong>
-      La CDAPH, c’est la Commission des Droits et de l’Autonomie des Personnes Handicapées. Créée par la loi 2005-102 du 11 février
-      2005, elle prend les décisions d’attribution des droits aux personnes avec un handicap sur la base de l’évaluation et des propositions
-      de la MDPH.
-      <br><strong>Une évaluation approfondie va être réalisée par l’équipe de la MDPH, qui vous recontactera si nécessaire.
-      Nous vous conseillons de conserver une copie de vos réponses.</strong>
+      Je peux demander à rencontrer la CDAPH. La CDAPH, c’est la Commission des Droits et de l’Autonomie des Personnes Handicapées. Créée par la loi 2005-102 du 11 février 2005, elle prend les décisions d’attribution des droits aux personnes avec un handicap sur la base de l’évaluation et des propositions de la MDPH.
     </p>
-
-
-    {{#if submittedAt}}
-      <p>
-        Demande passée le {{submittedAt}}
-      </p>
-    {{/if}}
+    <p>
+      Une évaluation approfondie va être réalisée par l’équipe de la MDPH, qui vous recontactera si nécessaire.
+    </p>
 
     {{#identites}}
       {{> identites}}
