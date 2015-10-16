@@ -22,12 +22,6 @@ angular.module('impactApp')
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.filesVM = _.groupBy(request.documents, 'type');
 
-    if (request.renouvellement) {
-      $scope.renouvellement = 'Renouvellement';
-    } else {
-      $scope.renouvellement = 'Première demande';
-    }
-
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {
         $window.alert('Mail renvoyé avec succès');

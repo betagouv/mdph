@@ -1,52 +1,52 @@
-<h2>Récapitulatif</h2>
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
-</div>
+<div id="pre-evaluation">
+  <section>
+    <h2>Récapitulatif</h2>
+    <div class="content">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
+      </div>
+    </div>
+  </section>
 
-<h2>Pièces jointes</h2>
-<div ng-if="request.documents.length === 0">
-  Aucune pièce jointe
-</div>
-<div ng-repeat="(type, files) in filesVM">
-  {{documentTypesById[type].label}}
-  <ul class="list-group">
-    <li ng-repeat="document in files" class="list-group-item">
-      <display-file file="document" request="request"></display-file>
-    </li>
-  </ul>
-</div>
+  <section>
+    <h2>Pièces jointes</h2>
+    <div class="content">
+      <div ng-if="request.documents.length === 0">
+        Aucune pièce jointe
+      </div>
+      <div ng-repeat="(type, files) in filesVM">
+        {{documentTypesById[type].label}}
+        <ul class="list-group">
+          <li ng-repeat="document in files" class="list-group-item">
+            <display-file file="document" request="request"></display-file>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-<h2>Points saillants</h2>
-<ul>
-  <li>
-    Situation d'urgence
-  </li>
-  <li>
-    {{renouvellement}}
-  </li>
-</ul>
+  <section>
+    <h2>Prestations</h2>
+    <div class="content">
+      <div class="user">
+        <h3>Prestations demandées par l'utilisateur</h3>
+        <ul>
+          <li ng-if="request.prestations.length === 0">Aucune prestation</li>
+          <li ng-repeat="prestation in request.prestations">
+            {{getTitle(prestation)}}
+          </li>
+        </ul>
+      </div>
 
-<h2>Prestations</h2>
-<div class="user">
-  <h3>Prestations demandées par l'utilisateur</h3>
-  <ul ng-if="request.prestations.length > 0">
-    <li ng-repeat="prestation in request.prestations">
-      {{getTitle(prestation)}}
-    </li>
-  </ul>
-  <p ng-if="request.prestations.length === 0">
-    Aucune prestation
-  </p>
-</div>
-
-<div class="quitus" ng-if="currentMdph.zipcode === '14'">
-  <h3>Prestations simulées</h3>
-  <ul>
-    <li ng-if="prestationsQuitus.length === 0">
-      Aucune prestation
-    </li>
-    <li ng-repeat="prestation in prestationsQuitus">
-      {{prestation.title}}
-    </li>
-  </ul>
+      <div class="quitus" ng-if="currentMdph.zipcode === '14'">
+        <h3>Prestations simulées</h3>
+        <ul>
+          <li ng-if="prestationsQuitus.length === 0">Aucune prestation</li>
+          <li ng-repeat="prestation in prestationsQuitus">
+            {{prestation.title}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </div>
