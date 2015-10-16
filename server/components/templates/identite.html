@@ -1,4 +1,15 @@
-<div>Nom: {{nom}}</div>
+<p>
+  <strong>{{prenom}} {{nom}} {{#if nom_usage}}Nom d'usage: {{nom_usage}}{{/if}}</strong><small>(de sexe {{sexe}})</small> né(e) le <strong>{{dateNaissance}}</strong> à {{lieu_naissance}} <small>({{lieu_naissance_cp}})</small>.
+</p>
+
+<p>{{pronoun sexe true}} réside actuellement au <strong>{{adresse}}, {{code_postal}} {{commune}}, {{pays}}</strong>.</p>
+
+<p>{{prenom}} préfère être contacté(e) par <strong>{{mode_contact}}</strong></p>
+<p>Son adresse email est <strong>{{email}}</strong></p>
+
+{{#tel_1}}
+<p>Ses numéros de téléphone sont: <strong>{{tel_1}}</strong>{{#tel_2}} et <strong>{{tel_2}}{{/tel_2}}</strong></p>
+{{/tel_1}}
 
 {{#nom_usage}}
   <div>Nom d'usage: {{nom_usage}}</div>
