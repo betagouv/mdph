@@ -32,6 +32,10 @@ angular.module('impactApp')
         controller: 'PendingRequestsCtrl',
         resolve: {
           currentSecteur: function($http, $stateParams) {
+            if ($stateParams.secteurId === 'autres') {
+              return {_id: 'autres', name: 'Sans secteur'};
+            }
+
             return $http.get('/api/secteurs/' + $stateParams.secteurId).then(function(result) {
               return result.data;
             });
@@ -40,14 +44,10 @@ angular.module('impactApp')
           requests: function($http, $stateParams) {
             var secteurId = $stateParams.secteurId;
             if (secteurId === 'en_cours') {
-              return $http.get('/api/secteurs/null/requests?status=en_cours').then(function(result) {
+              return $http.get('/api/secteurs/autres/requests?status=en_cours').then(function(result) {
                 return result.data;
               });
             } else {
-              if (secteurId === 'autres') {
-                secteurId = 'null';
-              }
-
               return $http.get('/api/secteurs/' + secteurId + '/requests').then(function(result) {
                 return result.data;
               });

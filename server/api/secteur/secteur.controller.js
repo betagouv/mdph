@@ -80,15 +80,18 @@ function handleError(req, res, err) {
 
 function buildQuery(params, query, mdph) {
 
-  var secteurId = params.id === 'null' ? null : params.id;
-  var status = query && query.status ? query.status : 'emise';
-
-  return {
-    secteur: secteurId,
-    evaluator: null,
-    status: status,
+  var result = {
+    status: query && query.status ? query.status : 'emise',
     mdph: mdph.zipcode
   };
+
+  if (params.id !== 'autres') {
+    result.secteur = params.id;
+  } else {
+    result.secteur = {$eq: null};
+  }
+
+  return result;
 }
 
 exports.listRequests = function(req, res) {

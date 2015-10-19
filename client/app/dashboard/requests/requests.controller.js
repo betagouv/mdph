@@ -7,7 +7,7 @@ angular.module('impactApp')
     };
   })
   .controller('RequestsCtrl', function($scope, $http, users, secteurs, currentUser, incomplete) {
-    secteurs.push({_id: null, name: 'Sans secteur'});
+    secteurs.push({_id: 'autres', name: 'Sans secteur'});
     $scope.users = users;
     $scope.secteurs = secteurs;
     $scope.currentUser = currentUser;
