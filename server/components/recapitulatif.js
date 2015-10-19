@@ -1,62 +1,12 @@
 'use strict';
 
-/* jshint multistr: true */
-
 var _ = require('lodash');
-var os = require('os');
-var fs = require('fs');
-var path = require('path');
 var async = require('async');
 var moment = require('moment');
-var Handlebars = require('handlebars');
 
 var sections = require('../api/sections/sections.json');
 var Prestation = require('../api/prestation/prestation.controller');
-
-function readTemplateSync(template) {
-  return String(fs.readFileSync(path.join(__dirname, 'templates', template)));
-}
-
-var answersTemplate = Handlebars.compile(readTemplateSync('pdfAnswers.html'));
-
-Handlebars.registerPartial({
-  head: readTemplateSync('head.html'),
-  section: readTemplateSync('section.html'),
-  identites: readTemplateSync('identites.html'),
-  identite: readTemplateSync('identite.html'),
-  autorite: readTemplateSync('autorite.html'),
-  question: readTemplateSync('question.html'),
-  detailsFrais: readTemplateSync('detailsFrais.html'),
-  detailsStructures: readTemplateSync('detailsStructures.html'),
-  detailsDiplomes: readTemplateSync('detailsDiplomes.html'),
-  detailsEtablissement: readTemplateSync('detailsEtablissement.html'),
-  detailsEDT: readTemplateSync('detailsEDT.html'),
-  detailsCV: readTemplateSync('detailsCV.html'),
-  aidantDemarche: readTemplateSync('aidantDemarche.html'),
-  prestations: readTemplateSync('prestations.html')
-});
-
-Handlebars.registerHelper('capitalize', function(str, force) {
-  if (force === 'upper') {
-    return str.toUpperCase();
-  }
-
-  return str && str.toLowerCase().replace(/\b\w/g, function(m) {
-    return m.toUpperCase();
-  });
-});
-
-Handlebars.registerHelper('conjugaison', function(sexe) {
-  return sexe === 'masculin' ? '' : 'e';
-});
-
-Handlebars.registerHelper('pronoun', function(sexe, capitalize) {
-  if (capitalize) {
-    return sexe === 'masculin' ? 'Il' : 'Elle';
-  }
-
-  return sexe === 'masculin' ? 'il' : 'elle';
-});
+var answersTemplate = require('./register_handlebars');
 
 function formatDateNaissance(identite) {
   if (identite && identite.dateNaissance) {
@@ -69,7 +19,14 @@ function rebuildAnswersFromModel(question, questionAnswers) {
     case 'date':
       return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
     case 'text':
-      return [{label: questionAnswers}];
+      var label;
+      if (!questionAnswers) {
+        label = 'Pas de réponses';
+      } else {
+        label = questionAnswers;
+      }
+
+      return [{label: label}];
     case 'radio':
       var constantAnswer = _.find(question.answers, {model: questionAnswers});
       if (!constantAnswer) {
@@ -95,7 +52,11 @@ function rebuildAnswersFromModel(question, questionAnswers) {
 
       return answers;
     case 'frais':
-      return [{label: 'Liste des frais', listeFrais: questionAnswers.listeFrais}];
+      if (questionAnswers.listeFrais && questionAnswers.listeFrais.length > 0 && questionAnswers.listeFrais[0].nom !== '') {
+        return [{label: 'Liste des frais', listeFrais: questionAnswers.listeFrais}];
+      }
+
+      return [{label: 'Pas de frais'}];
     case 'cv':
       return [{label: 'Curriculum vitae', listeCv: questionAnswers.experiences}];
     case 'diplomes':

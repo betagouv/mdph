@@ -1,19 +1,22 @@
 <div class="section">
   <h2>Pour votre information</h2>
 
-  <p>
-    Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront étudiés par l’équipe d’évaluation de la MDPH.
-    <br>
-    Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
-    <br>
-    N’hésitez pas à contacter votre MDPH pour tout complément d’information sur votre situation ou sur vos attentes que vous souhaiteriez apporter à votre dossier.
-  </p>
+  <div class="subsection">
 
-  <div class="question">
-    <ul>
-      {{#quitus}}
-        <li>{{ title }}</li>
-      {{/quitus}}
-    </ul>
+    <p>
+      Compte-tenu des attentes et des besoins que vous avez exprimés, les droits et prestations suivants seront étudiés par l’équipe d’évaluation de la MDPH.
+      <br>
+      Cette liste est informative, lors de l’étude de votre demande, l’équipe d’évaluation de la MDPH pourra étudier d’autres droits ou prestations répondant à vos besoins.
+      <br>
+      N’hésitez pas à contacter votre MDPH pour tout complément d’information sur votre situation ou sur vos attentes que vous souhaiteriez apporter à votre dossier.
+    </p>
+
+    <div class="question">
+      <ul>
+        {{#quitus}}
+          <li>{{ title }}</li>
+        {{/quitus}}
+      </ul>
+    </div>
   </div>
 </div>

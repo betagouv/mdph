@@ -1,8 +1,30 @@
-<li>Nom: {{nom}}
-  <ul>
-    <li>Fréquence: {{frequence}}</li>
-    <li>Total: {{total}}</li>
-    <li>Remboursé: {{rembourse}}</li>
-    <li>Précisions: {{detail}}</li>
-  </ul>
-</li>
+<table aria-label="Frais">
+  <thead>
+    <th>Nom</th>
+    <th>Fréquence (/mois)</th>
+    <th>Total</th>
+    <th>Remboursé</th>
+    <th>Précisions</th>
+  </thead>
+  <tbody>
+    {{#listeFrais}}
+    <tr>
+      <td>
+        {{nom}}
+      </td>
+      <td>
+        {{frequence}}
+      </td>
+      <td>
+        {{total}}
+      </td>
+      <td>
+        {{rembourse}}
+      </td>
+      <td>
+        {{detail}}
+      </td>
+    </tr>
+    {{/listeFrais}}
+  </tbody>
+</table>

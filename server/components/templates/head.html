@@ -16,7 +16,7 @@
     }
 
     ul {
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .pull-right {
@@ -48,9 +48,24 @@
 
     .section .subsection h3 {
       font-size: 14px;
-      padding: 10px;
       margin-bottom: 0;
       color: #323d53;
+      padding: 0;
+      margin: 0 0 8px 0;
+    }
+
+    .section .subsection h4 {
+      font-size: 15px;
+      padding: 0;
+      margin: 0;
+      margin-top: 18px;
+      color: black;
+    }
+
+    .section .subsection h4::after {
+      border-bottom: 1px solid #4F6083;
+      content: ' ';
+      display: block;
     }
 
     .section .subsection {
@@ -58,13 +73,34 @@
       color: black;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
     }
 
     .question {
       background-color: white;
       padding: 2px 16px;
       border-radius: 6px;
+      margin-bottom: 5px;
     }
+
+    table {
+      width: 100%;
+    }
+
+    table>thead>tr>th {
+      border-top: 0;
+      vertical-align: bottom;
+    }
+
+    table>tbody>tr>td {
+      padding: 8px;
+      line-height: 1.42857143;
+      text-align: center;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+    }
+
 
     img {
       margin-right: 10px;

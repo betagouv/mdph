@@ -1,12 +1,18 @@
 <p>
   <strong>{{capitalize prenom}} {{capitalize nom 'upper'}} {{#if nom_usage}}Nom d'usage: {{nom_usage}}{{/if}}</strong>
 
+  {{#if type}}
+    à aidé à la réalisation de cette démarche en tant que <strong>{{type}}</strong>
+  {{/if}}
+
   {{#if dateNaissance}}
-    est né{{conjugaison sexe}} le <strong>{{dateNaissance}}</strong> à {{lieu_naissance}} <small>({{lieu_naissance_cp}})</small>
+    est né{{conjugaison sexe}} le <strong>{{dateNaissance}}</strong> {{#if lieu_naissance}}à {{lieu_naissance}}{{/if}} {{#if lieu_naissance_cp}}<small>({{lieu_naissance_cp}})</small>{{/if}}
   {{/if}}
 
   {{#if adresse}}
-    , réside actuellement au <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+    , {{pronoun sexe false}} réside actuellement au <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+  {{else}}
+    , pas d'adresse renseignée.
   {{/if}}
   </p>
 
@@ -18,12 +24,10 @@
   {{/if}}
 
   {{#if tel_1}}
-    {{#if tel_2}}
-      , ses numéros de téléphone sont
-    {{else}}
-      , son numéro de téléphone est
+    {{#if tel_2}}, ses numéros de téléphone sont
+    {{else}}, son numéro de téléphone est
     {{/if}}
-    le <strong>{{tel_1}}</strong>{{#tel_2}} et <strong>{{tel_2}}{{/tel_2}}</strong>
+    le <strong>{{tel_1}}</strong>{{#if tel_2}} et <strong>{{tel_2}}</strong>{{/if}}
   {{/if}}
   .
 </p>

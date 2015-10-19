@@ -30,6 +30,8 @@
       {{> section}}
     {{/sections}}
 
-    {{> prestations}}
+    {{#if quitus}}
+      {{> prestations}}
+    {{/if}}
   </body>
 </html>

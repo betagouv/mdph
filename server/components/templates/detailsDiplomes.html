@@ -1,7 +1,22 @@
-<li> Diplôme :
-  <ul>
-    <li>Intitulé : {{nom}}</li>
-    <li>Année d'obtention : {{annee}}</li>
-    <li>Domaine : {{domaine}}</li>
-  </ul>
-</li>
+<table aria-label="Diplomes">
+  <thead>
+    <th>Intitulé</th>
+    <th>Obtention</th>
+    <th>Domaine</th>
+  </thead>
+  <tbody>
+    {{#listeDiplomes}}
+    <tr>
+      <td>
+        {{nom}}
+      </td>
+      <td>
+        {{moment annee}}
+      </td>
+      <td>
+        {{domaine}}
+      </td>
+    </tr>
+    {{/listeDiplomes}}
+  </tbody>
+</table>

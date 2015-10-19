@@ -11,6 +11,7 @@
     </div>
   </div>
 
+  {{#if autorite}}
   <div class="subsection">
     {{#autorite}}
       <h3>Autorité parentale</h3>
@@ -19,14 +20,16 @@
       </div>
     {{/autorite}}
   </div>
+  {{/if}}
 
+  {{#if aidantDemarche}}
   <div class="subsection">
+    <h3>Personnes accompagnant la demande</h3>
     {{#aidantDemarche}}
-      <h3>Personne accompagnant la demande</h3>
       <div class="question">
-        {{>aidantDemarche}}
-        <div>Type: {{type}}</div>
+        {{>identite}}
       </div>
     {{/aidantDemarche}}
   </div>
+  {{/if}}
 </div>

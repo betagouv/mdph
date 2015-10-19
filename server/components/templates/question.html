@@ -1,37 +1,37 @@
+<h3>{{title}}</h3>
 <div class="question">
-  <h3>{{title}}</h3>
   <ul>
     {{#answers}}
-      <li>{{label}}</li>
+      <li>{{{ntobr label}}}</li>
       <ul>
-        {{#detail}}
+        {{#if detail}}
           <li>{{detail}}</li>
-        {{/detail}}
+        {{/if}}
       </ul>
       <ul>
-        {{#details}}
-          <li>{{.}}</li>
-        {{/details}}
+        {{#if details}}
+          <li>{{details}}</li>
+        {{/if}}
 
         {{#detailsObject}}
           <li>{{label}} : {{detail}}</li>
         {{/detailsObject}}
 
-        {{#listeFrais}}
+        {{#if listeFrais}}
           {{>detailsFrais}}
-        {{/listeFrais}}
+        {{/if}}
 
-        {{#listeDiplomes}}
+        {{#if listeDiplomes}}
           {{>detailsDiplomes}}
-        {{/listeDiplomes}}
+        {{/if}}
 
-        {{#listeCv}}
+        {{#if listeCv}}
           {{>detailsCV}}
-        {{/listeCv}}
+        {{/if}}
 
-        {{#jours}}
+        {{#if jours}}
           {{>detailsEDT}}
-        {{/jours}}
+        {{/if}}
 
         {{#etablissements}}
           {{>detailsEtablissement}}
