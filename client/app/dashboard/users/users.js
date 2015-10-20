@@ -72,6 +72,8 @@ angular.module('impactApp')
                 return 'Certifiés';
               case 'refuse':
                 return 'Refusés';
+              case 'mail_non_valide':
+                return 'Mail envoyé, en attente de validation';
               default:
                 return 'En attente';
             }

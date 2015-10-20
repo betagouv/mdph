@@ -12,6 +12,11 @@
       <h2>Partenaires</h2>
       <ul>
         <li>
+          <a ui-sref-active="active" ui-sref="dashboard.users.partenaires({status: 'mail_non_valide'})">
+            Mail envoyé
+          </a>
+        </li>
+        <li>
           <a ui-sref-active="active" ui-sref="dashboard.users.partenaires({status: 'en_attente'})">
             En attente <span class="label label-danger pull-right">{{pending}}</span>
           </a>
