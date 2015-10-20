@@ -16,7 +16,13 @@
         </li>
       </ul>
 
-      <h2>Demandes non attribuées</h2>
+      <h2>Collaborateurs</h2>
+      <ul>
+        <li ng-repeat="user in users" ng-if="user._id !== currentUser._id"><a ui-sref-active="active"
+          ui-sref="dashboard.requests.user({userId: user._id})">{{user.name}}</a></li>
+      </ul>
+
+      <h2>Demandes par secteurs</h2>
       <ul>
         <li ng-repeat="secteur in secteurs">
           <a
@@ -40,12 +46,6 @@
             Demandes incomplètes
           </a>
         </li>
-      </ul>
-
-      <h2>Collaborateurs</h2>
-      <ul>
-        <li ng-repeat="user in users" ng-if="user._id !== currentUser._id"><a ui-sref-active="active"
-          ui-sref="dashboard.requests.user({userId: user._id})">{{user.name}}</a></li>
       </ul>
     </div>
     <div class="col-sm-10">
