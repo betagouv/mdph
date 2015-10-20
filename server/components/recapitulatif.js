@@ -154,13 +154,13 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-exports.answersToHtml = function(request, currentPath, output, next) {
+exports.answersToHtml = function(request, path, output, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
 
   async.series({
-    requestIdentites: function(callback) {
+    identites: function(callback) {
       var identites = request.formAnswers.identites;
       if (!identites) {
         return callback(null, {});
@@ -182,7 +182,7 @@ exports.answersToHtml = function(request, currentPath, output, next) {
       callback(null, moment(request.submittedAt).format('DD/MM/YYYY à HH:mm'));
     },
 
-    trajectoires: function(callback) {
+    sections: function(callback) {
       var trajectoires = computeTrajectoires(request);
       callback(null, trajectoires);
     },
@@ -201,23 +201,29 @@ exports.answersToHtml = function(request, currentPath, output, next) {
       } else {
         callback(null, null);
       }
+    },
+
+    colors: function(callback) {
+      callback(null, [
+        { class: '.section-identite', color: 'rgb(73, 82, 130)' },
+        { class: '.section-vie_quotidienne', color: 'rgb(90, 136, 175)' },
+        { class: '.section-prestations', color: 'rgb(255, 143, 27)' },
+        { class: '.section-vie_au_travail', color: '#815EA5' },
+        { class: '.section-aidant', color: '#815EA5' },
+        { class: '.section-vie_scolaire', color: '#58A0E6' },
+        { class: '.situations_particulieres', color: 'rgb(255, 143, 27)' }
+      ]);
+    },
+
+    path: function(callback) {
+      callback(null, path);
     }
+
   },
   function(err, results) {
     if (err) { next(err); }
 
-    var subTemplates = _.omit(results, 'submittedAt', 'mdph', 'quitus', 'answersTemplate', 'trajectoires', 'requestIdentites');
-
-    var config = {
-      path: currentPath,
-      submittedAt: results.submittedAt,
-      sections: results.trajectoires,
-      identites: results.requestIdentites,
-      mdph: results.mdph,
-      quitus: results.quitus
-    };
-
-    var html = answersTemplate(config);
+    var html = answersTemplate(results);
 
     next(null, html);
   });

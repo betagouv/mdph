@@ -33,9 +33,14 @@
       clear: both;
     }
 
+    {{#colors}}
+      {{class}} {
+        background-color: {{color}};
+      }
+    {{/colors}}
+
     .section {
       color: #333;
-      background-color: rgb(73, 82, 130);
       padding: 2px 10px;
       border-radius: 5px;
       margin: 5px 0px;
