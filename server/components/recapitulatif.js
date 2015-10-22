@@ -6,13 +6,7 @@ var moment = require('moment');
 
 var sections = require('../api/sections/sections.json');
 var Prestation = require('../api/prestation/prestation.controller');
-var answersTemplate = require('./register_handlebars');
-
-function formatDateNaissance(identite) {
-  if (identite && identite.dateNaissance) {
-    identite.dateNaissance = moment(identite.dateNaissance, moment.ISO_8601).format('DD/MM/YYYY');
-  }
-}
+var recapitulatif = require('./register_handlebars').recapitulatif;
 
 function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){
@@ -161,21 +155,7 @@ exports.answersToHtml = function(request, path, output, next) {
 
   async.series({
     identites: function(callback) {
-      var identites = request.formAnswers.identites;
-      if (!identites) {
-        return callback(null, {});
-      }
-
-      if (identites.beneficiaire) {
-        formatDateNaissance(identites.beneficiaire);
-      }
-
-      if (identites.autorite) {
-        formatDateNaissance(identites.autorite.parent1);
-        formatDateNaissance(identites.autorite.parent2);
-      }
-
-      callback(null, identites);
+      callback(null, request.formAnswers.identites);
     },
 
     submittedAt: function(callback) {
@@ -223,7 +203,7 @@ exports.answersToHtml = function(request, path, output, next) {
   function(err, results) {
     if (err) { next(err); }
 
-    var html = answersTemplate(results);
+    var html = recapitulatif(results);
 
     next(null, html);
   });

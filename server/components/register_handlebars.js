@@ -26,7 +26,14 @@ Handlebars.registerPartial({
   detailsEtablissement: readTemplateSync('detailsEtablissement.html'),
   detailsEDT: readTemplateSync('detailsEDT.html'),
   detailsCV: readTemplateSync('detailsCV.html'),
-  prestations: readTemplateSync('prestations.html')
+  prestations: readTemplateSync('prestations.html'),
+
+  // Synthese
+  geva: readTemplateSync('geva.html'),
+  propositions: readTemplateSync('propositions.html'),
+  prestaDemande: readTemplateSync('prestaDemande.html'),
+  prestaAutre: readTemplateSync('prestaAutre.html'),
+  gevaAnswers: readTemplateSync('gevaAnswers.html')
 });
 
 Handlebars.registerHelper('moment', function(str) {
@@ -76,5 +83,11 @@ Handlebars.registerHelper('pronoun', function(sexe, capitalize) {
   return isMale(sexe) ? 'il' : 'elle';
 });
 
-var answersTemplate = Handlebars.compile(readTemplateSync('pdfAnswers.html'));
-module.exports = answersTemplate;
+var recapitulatif = Handlebars.compile(readTemplateSync('pdfAnswers.html'));
+var synthese = Handlebars.compile(readTemplateSync('pdfSynthese.html'));
+
+module.exports = {
+  recapitulatif: recapitulatif,
+  synthese: synthese
+};
+
