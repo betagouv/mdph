@@ -17,6 +17,15 @@ angular.module('impactApp')
           });
         }
 
+        // Retro-compat
+        $scope.getFilename = function(file) {
+          if (file.filename) {
+            return file.filename;
+          } else {
+            return file.name;
+          }
+        };
+
         $scope.delete = function() {
           $http.delete('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id).success(function() {
             $state.go($state.current, {}, {reload: true});
