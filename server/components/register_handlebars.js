@@ -31,7 +31,12 @@ Handlebars.registerPartial({
 
 Handlebars.registerHelper('moment', function(str) {
   if (str) {
-    return moment(str, moment.ISO_8601).format('DD/MM/YYYY');
+    var date = moment(str, moment.ISO_8601);
+    if (date.isValid()) {
+      return date.format('DD/MM/YYYY');
+    } else {
+      return str;
+    }
   }
 
   return str;
