@@ -28,6 +28,7 @@ exports.make = function(request, user, recapitulatifHtml, done) {
     if (err) throw err;
 
     var requestTempPdfPath = tempDirPath + '/' + request.shortId + '.pdf';
+    printDebug('make: Creating ', requestTempPdfPath);
 
     wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath}, function() {
       printDebug('make: Transforming for GED_59');
