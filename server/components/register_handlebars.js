@@ -62,8 +62,8 @@ Handlebars.registerHelper('capitalize', function(str, force) {
     return str.toUpperCase();
   }
 
-  return str && str.toLowerCase().replace(/\b\w/g, function(m) {
-    return m.toUpperCase();
+  return str && str.toLowerCase().replace(/\w\S*/g, function(txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
 });
 

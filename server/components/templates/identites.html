@@ -14,11 +14,18 @@
   {{#if autorite}}
   <div class="subsection">
     {{#autorite}}
-      <h3>Autorité parentale</h3>
+      <h3>Autorité parentale / Délégation d'autorité (tutelle, curatelle, organisme, autre...)</h3>
       <div class="question">
         {{>autorite}}
       </div>
     {{/autorite}}
+  </div>
+  {{else}}
+  <div class="subsection">
+    <h3>Autorité parentale</h3>
+    <div class="question">
+      <p>Aucune autorité déclarée</p>
+    </div>
   </div>
   {{/if}}
 
