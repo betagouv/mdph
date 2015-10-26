@@ -1,49 +1,62 @@
-<div>Nom: {{nom}}</div>
+<p>
+  <strong>{{capitalize prenom}} {{capitalize nom 'upper'}} {{#if nom_usage}}Nom d'usage: {{nom_usage}}{{/if}}</strong>
 
-{{#nom_usage}}
-  <div>Nom d'usage: {{nom_usage}}</div>
-{{/nom_usage}}
+  {{#if type}}
+    à aidé à la réalisation de cette démarche en tant que <strong>{{type}}</strong>
+  {{/if}}
 
-<div>Prénom: {{prenom}}</div>
-<div>Sexe: {{sexe}}</div>
-<div>Nationalité: {{nationalite}}</div>
-<div>Date de naissance: {{dateNaissance}}</div>
-<div>Lieu de naissance: {{lieu_naissance}}</div>
-<div>Code postal du lieu de naissance: {{lieu_naissance_cp}}</div>
-<div>Adresse: {{adresse}}</div>
-<div>Code postal: {{code_postal}}</div>
-<div>Commune: {{commune}}</div>
-<div>Pays: {{pays}}</div>
-<div>Email: {{email}}</div>
+  {{#if dateNaissance}}
+    est né{{conjugaison sexe}} le <strong>{{moment dateNaissance}}</strong> {{#if lieu_naissance}}à {{lieu_naissance}}{{/if}} {{#if lieu_naissance_cp}}<small>({{lieu_naissance_cp}})</small>{{/if}}
+  {{/if}}
 
-{{#tel_1}}
-<div>Telephone 1: {{tel_1}}</div>
-{{/tel_1}}
+  {{#if adresse}}
+    , {{pronoun sexe false}} réside actuellement au <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+  {{else}}
+    , pas d'adresse renseignée.
+  {{/if}}
+  </p>
 
-{{#tel_2}}
-<div>Telephone 2: {{tel_2}}</div>
-{{/tel_2}}
+<p>
+  {{#if mode_contact}}
+    {{pronoun sexe true}} préfère être contacté{{conjugaison sexe}} par <strong>{{mode_contact}}</strong>, son adresse email est <strong>{{email}}</strong>
+  {{else}}
+    Son adresse email est <strong>{{email}}</strong>
+  {{/if}}
 
-{{#mode_contact}}
-<div>Mode de contact: {{mode_contact}}</div>
-{{/mode_contact}}
+  {{#if tel_1}}
+    {{#if tel_2}}, ses numéros de téléphone sont
+    {{else}}, son numéro de téléphone est
+    {{/if}}
+    le <strong>{{tel_1}}</strong>{{#if tel_2}} et <strong>{{tel_2}}</strong>{{/if}}
+  {{/if}}
+  .
+</p>
 
-{{#domicile_organisme}}
-<div>Organisme de domicile: {{domicile_organisme}}</div>
-{{/domicile_organisme}}
+<p>
+  {{#if domicile_organisme}}
+    {{capitalize prenom}} à choisi d'élire domicile auprès de l'organisme <strong>{{domicile_organisme}}</strong>.
+  {{/if}}
 
-{{#prestations_familiales}}
-<div>Organisme payeur de prestations familiales: {{prestations_familiales}}</div>
-{{/prestations_familiales}}
+  {{#if prestations_familiales}}
+    Son organisme payeur de prestations familiales est la <strong>{{capitalize prestations_familiales 'upper'}}</strong>.
+  {{/if}}
 
-{{#numero_allocataire}}
-<div>N° Allocataire: {{numero_allocataire}}</div>
-{{/numero_allocataire}}
+  {{#if numero_allocataire}}
+    Son numéro d'allocataire est <strong>{{numero_allocataire}}</strong>.
+  {{/if}}
 
-{{#prestations_familiales_precisez}}
-<div>Organisme d'assurance maladie: {{assurance}}, {{prestations_familiales_precisez}}</div>
-{{/prestations_familiales_precisez}}
+  {{#if assurance}}
+    Son organisme d'assurance maladie est <strong>
+    {{#if prestations_familiales_precisez}}
+      {{prestations_familiales_precisez}}
+    {{else}}
+       la {{assurance}}
+    {{/if}}
+    </strong>
+    .
+  {{/if}}
 
-{{#numero_secu}}
-<div>Numéro de Sécurité Sociale: {{numero_secu}}</div>
-{{/numero_secu}}
+  {{#if numero_secu}}
+    Son numéro de sécurité sociale est <strong>{{numero_secu}}</strong>.
+  {{/if}}
+</p>

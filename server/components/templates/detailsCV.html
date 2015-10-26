@@ -1,8 +1,30 @@
-<li> Intitulé : {{intitule}}
-  <ul>
-    <li>Employeur : {{employeur}}</li>
-    <li>Date de début : {{debut}}</li>
-    <li>Date de fin : {{fin}}</li>
-    <li>Motif de fin d'activité : {{motif}}</li>
-  </ul>
-</li>
+<table aria-label="CV">
+  <thead>
+    <th>Intitulé</th>
+    <th>Employeur</th>
+    <th>Date de début</th>
+    <th>Date de fin</th>
+    <th>Motif de fin d'activité</th>
+  </thead>
+  <tbody>
+    {{#listeCv}}
+    <tr>
+      <td>
+        {{intitule}}
+      </td>
+      <td>
+        {{employeur}}
+      </td>
+      <td>
+        {{moment debut}}
+      </td>
+      <td>
+        {{moment fin}}
+      </td>
+      <td>
+        {{motif}}
+      </td>
+    </tr>
+    {{/listeCv}}
+  </tbody>
+</table>

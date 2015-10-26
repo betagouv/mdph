@@ -3,7 +3,9 @@
 'use strict';
 
 var async = require('async');
-var scissors = require('scissors');
+var tmp = require('tmp');
+var spawn = require('child_process').spawn;
+var fs = require('fs');
 
 var PdfJoin = function() {
 
@@ -11,26 +13,28 @@ var PdfJoin = function() {
     return new PdfJoin();
   }
 
-  var asStream = function(fileList, callback) {
+  var join = function(fileList, callback) {
     callback = callback || function() { };
 
-    async.map(fileList, function(file, mapCallback) {
-      mapCallback(null, scissors(file));
-    },
+    tmp.file({keep: true}, function _tempFileCreated(err, pdfPath, fd, cleanupCallback) {
+      if (err) callback(err);
 
-    function(err, scissorsStructure) {
-      var stream = scissors
-        .join.apply(scissors, scissorsStructure)
-        .pdfStream();
+      var args = fileList.concat(['cat', 'output', pdfPath]);
+      var pdftk = spawn('pdftk', args);
 
-      callback(null, stream);
+      // pdftk.stderr.pipe(process.stderr);
+      // pdftk.stdout.pipe(process.stdout);
+
+      pdftk.on('exit', function(code) {
+        callback(null, pdfPath, cleanupCallback);
+      });
     });
   };
 
   /*
    * Expose public API calls
    */
-  this.asStream = asStream;
+  this.join = join;
   return this;
 };
 

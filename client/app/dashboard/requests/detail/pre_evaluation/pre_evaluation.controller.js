@@ -12,10 +12,8 @@ angular.module('impactApp')
       return calculAge(dateNaiss);
     };
   })
-  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, $sce, currentMdph, request, recapitulatif, documentTypes, NotificationService, prestations, prestationsQuitus) {
+  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentMdph, request, documentTypes, NotificationService, prestations, prestationsQuitus) {
     $scope.token = $cookies.get('token');
-    $scope.recapitulatif = recapitulatif;
-    $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
     $scope.toutesPrestations = prestations;
     $scope.prestationsQuitus = prestationsQuitus;
     $scope.currentMdph = currentMdph;
@@ -23,12 +21,6 @@ angular.module('impactApp')
     var prestationsById = _.indexBy(prestations, 'id');
     $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.filesVM = _.groupBy(request.documents, 'type');
-
-    if (request.renouvellement) {
-      $scope.renouvellement = 'Renouvellement';
-    } else {
-      $scope.renouvellement = 'Première demande';
-    }
 
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {

@@ -52,7 +52,7 @@ module.exports = {
   },
   express: {
     files: [
-      'server/**/*.{js,json}'
+      'server/**/*.{js,json,html}'
     ],
     tasks: ['express:dev', 'wait'],
     options: {

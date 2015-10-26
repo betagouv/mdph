@@ -1,7 +1,11 @@
-<div class="section">
-  <h2>{{label}}</h2>
+<div class="section section-{{id}}">
+  <div class="heading">
+    <h2>{{label}}</h2>
+  </div>
 
   {{#questions}}
-    {{>question}}
+    <div class="subsection">
+      {{>question}}
+    </div>
   {{/questions}}
 </div>

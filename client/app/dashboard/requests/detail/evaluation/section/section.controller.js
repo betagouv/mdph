@@ -32,7 +32,7 @@ angular.module('impactApp')
       }
     }
 
-    (function appyModelToSection(request, section) {
+    (function applyModelToSection(request, section) {
       var model = request.synthese.geva[section.id];
 
       _.forEach(section.trajectoires, function(trajectoire) {

@@ -141,6 +141,7 @@ exports.showUserRequests = function(req, res, next) {
 var generatePdf = function(request, user, host, done) {
   Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
     if (err) return done(err);
+
     return MakePdf.make(request, user, html, done);
   });
 };
@@ -442,10 +443,10 @@ exports.getPdf = function(req, res) {
   findRequest(req, function(err, request) {
     if (!request) return res.sendStatus(404);
 
-    generatePdf(request, req.user, req.headers.host, function(err, pdfStream) {
+    generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
       if (err) { return handleError(req, res, err); }
 
-      pdfStream.pipe(res);
+      res.sendFile(pdfPath);
     });
   });
 };

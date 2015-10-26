@@ -1,36 +1,26 @@
 'use strict';
 
-/* jshint multistr: true */
-
 var _ = require('lodash');
-var os = require('os');
-var fs = require('fs');
-var path = require('path');
 var async = require('async');
 var moment = require('moment');
-var mustache = require('mustache');
 
 var sections = require('../api/sections/sections.json');
 var Prestation = require('../api/prestation/prestation.controller');
-
-function readFile(name, callback) {
-  fs.readFile(path.join(__dirname, 'templates', name), function(err, html) {
-    callback(err, String(html));
-  });
-}
-
-function formatDateNaissance(identite) {
-  if (identite && identite.dateNaissance) {
-    identite.dateNaissance = moment(identite.dateNaissance, moment.ISO_8601).format('DD/MM/YYYY');
-  }
-}
+var recapitulatif = require('./register_handlebars').recapitulatif;
 
 function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){
     case 'date':
       return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
     case 'text':
-      return [{label: questionAnswers}];
+      var label;
+      if (!questionAnswers) {
+        label = 'Pas de réponses';
+      } else {
+        label = questionAnswers;
+      }
+
+      return [{label: label}];
     case 'radio':
       var constantAnswer = _.find(question.answers, {model: questionAnswers});
       if (!constantAnswer) {
@@ -56,7 +46,11 @@ function rebuildAnswersFromModel(question, questionAnswers) {
 
       return answers;
     case 'frais':
-      return [{label: 'Liste des frais', listeFrais: questionAnswers.listeFrais}];
+      if (questionAnswers.listeFrais && questionAnswers.listeFrais.length > 0 && questionAnswers.listeFrais[0].nom !== '') {
+        return [{label: 'Liste des frais', listeFrais: questionAnswers.listeFrais}];
+      }
+
+      return [{label: 'Pas de frais'}];
     case 'cv':
       return [{label: 'Curriculum vitae', listeCv: questionAnswers.experiences}];
     case 'diplomes':
@@ -160,85 +154,15 @@ exports.answersToHtml = function(request, path, output, next) {
   }
 
   async.series({
-    answersTemplate: function(callback) {
-      if (output === 'pdf') {
-        readFile('pdfAnswers.html', callback);
-      } else {
-        readFile('inlineAnswers.html', callback);
-      }
-    },
-
-    section: function(callback) {
-      readFile('section.html', callback);
-    },
-
     identites: function(callback) {
-      readFile('identites.html', callback);
-    },
-
-    identite: function(callback) {
-      readFile('identite.html', callback);
-    },
-
-    autorite: function(callback) {
-      readFile('autorite.html', callback);
-    },
-
-    question: function(callback) {
-      readFile('question.html', callback);
-    },
-
-    detailsFrais: function(callback) {
-      readFile('detailsFrais.html', callback);
-    },
-
-    detailsDiplomes: function(callback) {
-      readFile('detailsDiplomes.html', callback);
-    },
-
-    detailsStructures: function(callback) {
-      readFile('detailsStructures.html', callback);
-    },
-
-    detailsEtablissement: function(callback) {
-      readFile('detailsEtablissement.html', callback);
-    },
-
-    detailsEDT: function(callback) {
-      readFile('detailsEDT.html', callback);
-    },
-
-    detailsCV: function(callback) {
-      readFile('detailsCV.html', callback);
-    },
-
-    aidantDemarche: function(callback) {
-      readFile('aidantDemarche.html', callback);
-    },
-
-    requestIdentites: function(callback) {
-      var identites = request.formAnswers.identites;
-      if (!identites) {
-        return callback(null, {});
-      }
-
-      if (identites.beneficiaire) {
-        formatDateNaissance(identites.beneficiaire);
-      }
-
-      if (identites.autorite) {
-        formatDateNaissance(identites.autorite.parent1);
-        formatDateNaissance(identites.autorite.parent2);
-      }
-
-      callback(null, identites);
+      callback(null, request.formAnswers.identites);
     },
 
     submittedAt: function(callback) {
       callback(null, moment(request.submittedAt).format('DD/MM/YYYY à HH:mm'));
     },
 
-    trajectoires: function(callback) {
+    sections: function(callback) {
       var trajectoires = computeTrajectoires(request);
       callback(null, trajectoires);
     },
@@ -259,26 +183,28 @@ exports.answersToHtml = function(request, path, output, next) {
       }
     },
 
-    prestationsTemplate: function(callback) {
-      readFile('prestations.html', callback);
+    colors: function(callback) {
+      callback(null, [
+        { class: '.section-identite', color: 'rgb(73, 82, 130)' },
+        { class: '.section-vie_quotidienne', color: 'rgb(90, 136, 175)' },
+        { class: '.section-prestations', color: 'rgb(255, 143, 27)' },
+        { class: '.section-vie_au_travail', color: '#815EA5' },
+        { class: '.section-aidant', color: '#815EA5' },
+        { class: '.section-vie_scolaire', color: '#58A0E6' },
+        { class: '.situations_particulieres', color: 'rgb(255, 143, 27)' }
+      ]);
+    },
+
+    path: function(callback) {
+      callback(null, path);
     }
+
   },
   function(err, results) {
     if (err) { next(err); }
 
-    var subTemplates = _.omit(results, 'submittedAt', 'mdph', 'quitus', 'answersTemplate', 'trajectoires', 'requestIdentites');
-    var html = mustache.render(
-      results.answersTemplate,
-      {
-        path: path,
-        submittedAt: results.submittedAt,
-        sections: results.trajectoires,
-        identites: results.requestIdentites,
-        mdph: results.mdph,
-        quitus: results.quitus
-      },
-      subTemplates
-    );
+    var html = recapitulatif(results);
+
     next(null, html);
   });
 };

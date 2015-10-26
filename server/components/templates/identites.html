@@ -1,24 +1,42 @@
-<div class="section">
-  <h2>Identité</h2>
-  <h3>Bénéficiaire</h3>
-  <div class="question">
-    {{#beneficiaire}}
-      {{>identite}}
-    {{/beneficiaire}}
+<div class="section section-identite">
+  <div class="heading">
+    <h2>Identité</h2>
+  </div>
+  <div class="subsection">
+    <h3>Bénéficiaire</h3>
+    <div class="question">
+      {{#beneficiaire}}
+        {{>identite}}
+      {{/beneficiaire}}
+    </div>
   </div>
 
-  {{#autorite}}
+  {{#if autorite}}
+  <div class="subsection">
+    {{#autorite}}
+      <h3>Autorité parentale / Délégation d'autorité (tutelle, curatelle, organisme, autre...)</h3>
+      <div class="question">
+        {{>autorite}}
+      </div>
+    {{/autorite}}
+  </div>
+  {{else}}
+  <div class="subsection">
     <h3>Autorité parentale</h3>
     <div class="question">
-      {{>autorite}}
+      <p>Aucune autorité déclarée</p>
     </div>
-  {{/autorite}}
+  </div>
+  {{/if}}
 
-  {{#aidantDemarche}}
-    <h3>Personne accompagnant la demande</h3>
-    <div class="question">
-      {{>aidantDemarche}}
-      <div>Type: {{type}}</div>
-    </div>
-  {{/aidantDemarche}}
+  {{#if aidantDemarche}}
+  <div class="subsection">
+    <h3>Personnes accompagnant la demande</h3>
+    {{#aidantDemarche}}
+      <div class="question">
+        {{>identite}}
+      </div>
+    {{/aidantDemarche}}
+  </div>
+  {{/if}}
 </div>

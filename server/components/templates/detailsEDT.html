@@ -1,7 +1,24 @@
-<li> {{jour}}
-  <ul>
-    <li>Matin : {{matin}}</li>
-    <li>Midi : {{midi}}</li>
-    <li>Après-midi : {{aprem}}</li>
-  </ul>
-</li>
+<table aria-label="Emploi du temps">
+  <thead>
+    <th></th>
+    <th>Matin</th>
+    <th>Midi</th>
+    <th>Après-midi</th>
+  </thead>
+  <tbody>
+    {{#jours}}
+    <tr>
+      <td>{{jour}}</td>
+      <td>
+        {{matin}}
+      </td>
+      <td>
+        {{midi}}
+      </td>
+      <td>
+        {{aprem}}
+      </td>
+    </tr>
+    {{/jours}}
+  </tbody>
+</table>
