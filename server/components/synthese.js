@@ -7,6 +7,9 @@ var questions = require('../api/geva/questions.json');
 var synthese = require('./register_handlebars').synthese;
 
 var sections = _.groupBy(questions, 'Section');
+
+// TODO: Refactor
+/*
 var cleanModel = {};
 _.forEach(sections, function(toutesQuestions, section) {
   cleanModel[section] = {};
@@ -88,13 +91,15 @@ function applyModelToSection(request, section) {
     });
   });
 }
+*/
 
 exports.answersToHtml = function(request, path, output, next) {
   async.series({
-    syntheseGeva: function(callback) {
-      var synthese = applyModelToSection(request, questions);
-      callback(null, synthese);
-    },
+    // TODO: Refactor
+    // syntheseGeva: function(callback) {
+    //   var synthese = applyModelToSection(request, questions);
+    //   callback(null, synthese);
+    // },
 
     proposition: function(callback) {
       callback(null, request.synthese.proposition);
