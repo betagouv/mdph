@@ -203,8 +203,11 @@ exports.answersToHtml = function(request, path, output, next) {
   function(err, results) {
     if (err) { next(err); }
 
-    var html = recapitulatif(results);
-
-    next(null, html);
+    try {
+      var html = recapitulatif(results);
+      next(null, html);
+    } catch (e) {
+      next(null, '<html><body><p>Erreur lors de la génération du récapitulatif.</p><p>Détail de l\'erreur: ' + e + '</p></body></html>');
+    }
   });
 };

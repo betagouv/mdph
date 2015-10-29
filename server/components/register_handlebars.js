@@ -58,11 +58,15 @@ Handlebars.registerHelper('ntobr', function(str) {
 });
 
 Handlebars.registerHelper('capitalize', function(str, force) {
+  if (!str || typeof str !== 'string') {
+    return str;
+  }
+
   if (force === 'upper') {
     return str.toUpperCase();
   }
 
-  return str && str.toLowerCase().replace(/\w\S*/g, function(txt) {
+  return str.toLowerCase().replace(/\w\S*/g, function(txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
 });
