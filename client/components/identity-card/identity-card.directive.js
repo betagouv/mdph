@@ -7,13 +7,14 @@ angular.module('impactApp')
         type: '=',
         sectionModel: '=',
         currentId: '=',
+        mdph: '=',
         title: '='
       },
       templateUrl: 'components/identity-card/identity-card.html',
       restrict: 'EA',
       link: function(scope) {
         scope.identite = IdentiteService.getIdentite(scope.type, scope.sectionModel, scope.currentId);
-        scope.sref = IdentiteService.getSref(scope.type, scope.currentId);
+        scope.sref = IdentiteService.getSref(scope.type, scope.currentId, scope.mdph);
       }
     };
   });

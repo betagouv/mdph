@@ -8,6 +8,7 @@ angular.module('impactApp')
         section: '=',
         identite: '=',
         submit: '=',
+        mdph: '=',
         id: '='
       },
       templateUrl: 'components/identity-form/identity-form.html',

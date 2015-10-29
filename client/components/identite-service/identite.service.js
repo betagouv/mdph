@@ -19,10 +19,14 @@ angular.module('impactApp')
         return types[type].desc;
       },
 
-      getSref: function(type, id) {
+      getSref: function(type, id, mdph) {
         var sref = '.modification_identite({type: "' + type + '"';
         if (!id && type === 'aidantDemarche') {
           sref += ', id: "0"';
+        }
+
+        if (mdph) {
+          sref += ', mdph: "' + id + '"';
         }
 
         if (id) {

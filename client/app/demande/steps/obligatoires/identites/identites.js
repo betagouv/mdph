@@ -24,7 +24,7 @@ angular.module('impactApp')
       })
       .state(index + '.modification_identite', {
         url: '/:type?id',
-        template: '<identity-form id="currentId" type="type" submit="submit" section="section" identite="tempIdentite"/>',
+        template: '<identity-form id="currentId" type="type" submit="submit" mdph="mdph" section="section" identite="tempIdentite"/>',
         resolve: {
           submit: function($state, IdentiteService, sectionModel, tempIdentite, type, currentId) {
             return function(form) {

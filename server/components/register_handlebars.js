@@ -57,6 +57,41 @@ Handlebars.registerHelper('ntobr', function(str) {
   return str && str.replace(/\n/g, '<br>');
 });
 
+Handlebars.registerHelper('showRenouvellement', function() {
+  // Si date de naissance alors identite = beneficiaire - A modifier
+  if (!this.dateNaissance) {
+    return '';
+  }
+
+  var pronoun;
+  var si;
+  var qu;
+  if (isMale(this.sexe)) {
+    pronoun = 'Il';
+    si = 's\'il';
+    qu = 'qu\'il';
+  } else {
+    pronoun = 'Elle';
+    si = 'si elle';
+    qu = 'qu\'ellle';
+  }
+
+  var str;
+
+  if (typeof this.estRenouvellement === 'undefined') {
+    str = pronoun + ' n\'a pas précisé ' + si + ' possède déjà un dossier dans votre MDPH';
+  } else if (this.estRenouvellement) {
+    str = pronoun + ' a précisé ' + qu + ' possède déjà un dossier dans votre MDPH.';
+    if (this.numeroDossier) {
+      str += ' Son numéro de dossier est le ' + this.numeroDossier;
+    }
+  } else {
+    str =  pronoun + ' a indiqué qu\'il s\'agit de son premier dossier dans votre MDPH.';
+  }
+
+  return str;
+});
+
 Handlebars.registerHelper('capitalize', function(str, force) {
   if (!str || typeof str !== 'string') {
     return str;
