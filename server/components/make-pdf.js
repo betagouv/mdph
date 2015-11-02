@@ -5,13 +5,15 @@ var _ = require('lodash');
 var path = require('path');
 var tmp = require('tmp');
 var async = require('async');
-var wkhtmltopdf = require('wkhtmltopdf');
+var pdf = require('html-pdf');
 
 var config = require('../config/environment');
 var PdfConvert = require('./pdf_utils/convert')(config.uploadDir);
 var PdfJoin = require('./pdf_utils/join')();
 
 var buildStructure = require('./pdf_structure/build');
+
+var pdfOptions = { format: 'A4', border: '10px' };
 
 var debug = false;
 
@@ -30,7 +32,9 @@ exports.make = function(request, user, recapitulatifHtml, done) {
     var requestTempPdfPath = tempDirPath + '/' + request.shortId + '.pdf';
     printDebug('make: Creating ', requestTempPdfPath);
 
-    wkhtmltopdf(recapitulatifHtml, {encoding: 'UTF-8', output: requestTempPdfPath}, function() {
+    pdf.create(recapitulatifHtml, pdfOptions).toFile(requestTempPdfPath, function(err, res) {
+      if (err) return done(err);
+
       printDebug('make: Transforming for GED_59');
       async.waterfall([
 
@@ -45,7 +49,7 @@ exports.make = function(request, user, recapitulatifHtml, done) {
 
         // Join everything in one stream
         function(documentList, cb) {
-          var pdfStructure = buildStructure(request, user, requestTempPdfPath, documentList);
+          var pdfStructure = buildStructure(request, user, res.filename, documentList);
 
           printDebug('make: finished building structure');
           cb(null, pdfStructure);

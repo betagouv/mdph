@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var path = require('path');
-var wkhtmltopdf = require('wkhtmltopdf');
+var pdf = require('html-pdf');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var shortid = require('shortid');
@@ -157,7 +157,7 @@ function sendMailNotification(request, host, log, callback) {
         var evaluators = secteur.evaluators[type];
         evaluators.forEach(function(evaluator) {
           if (request.mdph === '59') {
-            generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfStream) {
+            generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfPath) {
               if (err) { log.error(err); }
 
               Mailer.sendMail(
@@ -166,7 +166,7 @@ function sendMailNotification(request, host, log, callback) {
                 [
                   {
                     filename: request.shortId + '.pdf',
-                    content: pdfStream
+                    path: pdfPath
                   }
                 ]
               );
@@ -251,7 +251,7 @@ exports.update = function(req, res, next) {
 
         if (req.query.isSendingRequest) {
           // Notify user
-          generatePdf(request, req.user, req.headers.host, function(err, pdfStream) {
+          generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
             if (err) { req.log.error(err); }
 
             Mailer.sendMail(req.user.email,
@@ -260,7 +260,7 @@ exports.update = function(req, res, next) {
               [
                 {
                   filename: request.shortId + '.pdf',
-                  content: pdfStream
+                  path: pdfPath
                 }
               ]
             );
@@ -457,7 +457,9 @@ exports.getSynthesePdf = function(req, res) {
     Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
       if (err) { return handleError(req, res, err); }
 
-      wkhtmltopdf(html, {encoding: 'UTF-8'}).pipe(res);
+      pdf.create(html).toStream(function(err, stream) {
+        stream.pipe(res);
+      });
     });
   });
 };

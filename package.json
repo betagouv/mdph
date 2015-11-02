@@ -16,6 +16,7 @@
     "express-jwt": "^3.0.1",
     "express-session": "^1.11.2",
     "handlebars": "^4.0.3",
+    "html-pdf": "^1.4.0",
     "imagemin": "^3.2.0",
     "imagemin-jpeg-recompress": "^4.2.1",
     "jsonwebtoken": "^5.0.1",
@@ -31,8 +32,7 @@
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.2.1",
     "shortid": "^2.2.2",
-    "tmp": "^0.0.28",
-    "wkhtmltopdf": "^0.1.5"
+    "tmp": "^0.0.28"
   },
   "devDependencies": {
     "connect-livereload": "0.5.3",
