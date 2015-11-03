@@ -1,36 +1,51 @@
 <div class="display-file">
-  <div class="logo">
-    <i class="fa" ng-class="{
-    'fa-file-pdf-o': file.mimetype === 'application/pdf',
-    'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
-    'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'
-  }"></i>
-  </div>
-  <div class="content">
-    <div class="file-description">
-      <div ng-if="file.sending">
-        <i class="fa fa-spin fa-circle-o-notch"></i> Envoi en cours...
-      </div>
-      <a
-        target="_self"
-        ng-if="!file.sending"
-        download="{{file.originalname}}"
-        href="api/requests/{{request.shortId}}/document/{{getFilename(file)}}?access_token={{token}}">
-        {{file.originalname}}
-      </a>
+  <div class="description">
+    <div class="logo">
+      <i class="fa" ng-class="{
+      'fa-file-pdf-o': file.mimetype === 'application/pdf',
+      'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
+      'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'
+    }"></i>
     </div>
-
-    <div class="partenaire-description" ng-if="file.partenaire">
-      <div ng-if="!partenaireObj">
-        <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
+    <div class="text">
+      <div class="name">
+        <div ng-if="file.sending">
+          <i class="fa fa-spin fa-circle-o-notch"></i> Envoi en cours...
+        </div>
+        <a
+          target="_self"
+          ng-if="!file.sending"
+          download="{{file.originalname}}"
+          href="api/requests/{{request.shortId}}/document/{{getFilename(file)}}?access_token={{token}}">
+          {{file.originalname}}
+        </a>
       </div>
-      <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
-    </div>
 
-    <div class="file-actions">
+      <div class="partenaire" ng-if="file.partenaire">
+        <div ng-if="!partenaireObj">
+          <i class="fa fa-spin fa-circle-o-notch"></i> Chargement...
+        </div>
+        <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
+      </div>
+
       <a class="trash" ng-click="delete()">
         Supprimer
       </a>
+    </div>
+  </div>
+
+  <div class="file-actions">
+    <div class="validation-actions" ng-if="showValidationActions">
+      <button class="fab refuse" ng-click="setValid(false)" title="Refuser"><i class="fa fa-thumbs-down"></i></button>
+      <button class="fab valid" ng-click="setValid(true)" title="Valider"><i class="fa fa-thumbs-up"></i></button>
+    </div>
+    <div class="validation-actions" ng-if="showValidationActionsNotSaved">
+      <button class="fab invert-refuse" ng-click="setValid(false)" ng-class="{muted: file.validationTemp}"><i class="fa fa-thumbs-down"></i></button>
+      <button class="fab invert-valid" ng-click="setValid(true)" ng-class="{muted: !file.validationTemp}"><i class="fa fa-thumbs-up"></i></button>
+    </div>
+    <div class="validation-actions" ng-if="showValidationStatus">
+      <div class="fab invert-refuse" ng-class="{muted: file.validation}"><i class="fa fa-thumbs-down"></i></div>
+      <div class="fab invert-valid" ng-class="{muted: !file.validation}"><i class="fa fa-thumbs-up"></i></div>
     </div>
   </div>
 

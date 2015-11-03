@@ -5,7 +5,8 @@ angular.module('impactApp')
     return {
       scope: {
         file: '=',
-        request: '='
+        request: '=',
+        showValidationActions: '='
       },
       templateUrl: 'components/display-file/display-file.html',
       controller: function($scope, $http, $cookies) {
@@ -16,6 +17,16 @@ angular.module('impactApp')
             $scope.partenaireObj = result.data;
           });
         }
+
+        if (typeof $scope.file.validation !== 'undefined') {
+          $scope.showValidationStatus = true;
+        }
+
+        $scope.setValid = function(status) {
+          $scope.file.validationTemp = status;
+          $scope.showValidationActions = false;
+          $scope.showValidationActionsNotSaved = true;
+        };
 
         // Retro-compat
         $scope.getFilename = function(file) {

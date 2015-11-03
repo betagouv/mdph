@@ -12,15 +12,35 @@ angular.module('impactApp')
       return calculAge(dateNaiss);
     };
   })
-  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentMdph, request, documentTypes, NotificationService, prestations, prestationsQuitus) {
+  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentMdph, request, DocumentsService, NotificationService, prestations, prestationsQuitus) {
     $scope.token = $cookies.get('token');
     $scope.toutesPrestations = prestations;
     $scope.prestationsQuitus = prestationsQuitus;
     $scope.currentMdph = currentMdph;
 
     var prestationsById = _.indexBy(prestations, 'id');
-    $scope.documentTypesById = _.indexBy(documentTypes, 'id');
-    $scope.filesVM = _.groupBy(request.documents, 'type');
+
+    $scope.documentTypesById = DocumentsService.documentTypesById;
+
+    $scope.documentsObligatoires = DocumentsService.filterMandatory(request.documents);
+    $scope.documentsObligatoiresVM = DocumentsService.groupByType($scope.documentsObligatoires);
+
+    $scope.documentsComplementaires = DocumentsService.filterNonMandatory(request.documents);
+    $scope.documentsComplementairesVM = DocumentsService.groupByType($scope.documentsComplementaires);
+
+    $scope.showSaveValidation = function() {
+      return request.status === 'emise';
+    };
+
+    $scope.isSaveValidationDisabled = function() {
+      return $scope.documentsObligatoires.some(function(current) {
+        return _.isUndefined(current.validationTemp);
+      });
+    };
+
+    $scope.canSave = function() {
+      return _.every($scope.documentsObligatoires, {validationTemp: true});
+    };
 
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {

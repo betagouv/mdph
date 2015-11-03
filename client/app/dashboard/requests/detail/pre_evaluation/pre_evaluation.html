@@ -1,26 +1,49 @@
 <div id="pre-evaluation">
   <section>
-    <h2>Récapitulatif</h2>
+    <h2>Pièces jointes</h2>
     <div class="content">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
+      <h3>Obligatoires</h3>
+      <div ng-if="documentsObligatoires.length === 0">
+        <ul class="list-group">
+          <li class="list-group-item">Aucune pièce obligatoire</li>
+        </ul>
+      </div>
+      <div ng-repeat="(type, files) in documentsObligatoiresVM">
+        {{documentTypesById[type].label}}
+        <ul class="list-group">
+          <li ng-repeat="document in files" class="list-group-item">
+            <display-file file="document" show-validation-actions="true" request="request"></display-file>
+          </li>
+        </ul>
+      </div>
+
+      <div ng-if="showSaveValidation" class="text-right">
+        <button class="btn btn-success" ng-disabled="isSaveValidationDisabled()" ng-if="canSave()"><i class="fa fa-thumbs-up"></i>Valider la complétude du dossier</button>
+        <button class="btn btn-danger" ng-disabled="isSaveValidationDisabled()" ng-if="!canSave()"><i class="fa fa-thumbs-down"></i>Envoyer une demande de complétude des pièces en erreur</button>
+      </div>
+
+      <h3>Complémentaires</h3>
+      <div ng-if="documentsComplementaires.length === 0">
+        <ul class="list-group">
+          <li class="list-group-item">Aucune pièce complémentaire</li>
+        </ul>
+      </div>
+      <div ng-repeat="(type, files) in documentsComplementairesVM">
+        {{documentTypesById[type].label}}
+        <ul class="list-group">
+          <li ng-repeat="document in files" class="list-group-item">
+            <display-file file="document" user="currentUser" request="request"></display-file>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>Pièces jointes</h2>
+    <h2>Récapitulatif</h2>
     <div class="content">
-      <div ng-if="request.documents.length === 0">
-        Aucune pièce jointe
-      </div>
-      <div ng-repeat="(type, files) in filesVM">
-        {{documentTypesById[type].label}}
-        <ul class="list-group">
-          <li ng-repeat="document in files" class="list-group-item">
-            <display-file file="document" request="request"></display-file>
-          </li>
-        </ul>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
       </div>
     </div>
   </section>

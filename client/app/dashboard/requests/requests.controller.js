@@ -6,7 +6,10 @@ angular.module('impactApp')
       return input.substring(0, 1).toUpperCase() + input.substring(1);
     };
   })
-  .controller('RequestsCtrl', function($scope, $http, users, secteurs, currentUser, incomplete) {
+  .controller('RequestsCtrl', function($scope, $http, users, secteurs, currentUser, incomplete, banettes) {
+
+    $scope.banettes = banettes;
+
     secteurs.push({_id: 'autres', name: 'Sans secteur'});
     $scope.users = users;
     $scope.secteurs = secteurs;

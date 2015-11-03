@@ -57,68 +57,30 @@ angular.module('impactApp')
         authenticate: true
       })
       .state('dashboard.requests.user', {
-        url: '/utilisateur/:userId',
+        url: '/utilisateur/:userId/:banette',
         templateUrl: 'app/dashboard/requests/list/list.html',
         controller: 'RequestListCtrl',
         resolve: {
-          requests: function(RequestResource, currentUser, user) {
-            if (currentUser._id === user._id) {
-              return RequestResource.query({evaluator: user._id, status: 'emise'}).$promise;
+          requests: function(RequestResource, currentUser, user, banette) {
+            if (banette !== 'toutes') {
+              return RequestResource.query({evaluator: user._id, status: banette}).$promise;
+            } else {
+              return RequestResource.query({evaluator: user._id}).$promise;
             }
-
-            return RequestResource.query({evaluator: user._id}).$promise;
           },
 
           user: function($http, $stateParams) {
             return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
               return user.data;
             });
+          },
+
+          banette: function($stateParams) {
+            return $stateParams.banette;
           },
 
           showArchiveAction: function() {
             return true;
-          }
-        },
-        authenticate: true
-      })
-      .state('dashboard.requests.userArchive', {
-        url: '/utilisateur/:userId/archive',
-        templateUrl: 'app/dashboard/requests/list/list.html',
-        controller: 'RequestListCtrl',
-        resolve: {
-          requests: function(RequestResource, user) {
-            return RequestResource.query({evaluator: user._id, status: 'evaluation'}).$promise;
-          },
-
-          user: function($http, $stateParams) {
-            return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
-              return user.data;
-            });
-          },
-
-          showArchiveAction: function() {
-            return false;
-          }
-        },
-        authenticate: true
-      })
-      .state('dashboard.requests.userIncomplete', {
-        url: '/utilisateur/:userId/incomplete',
-        templateUrl: 'app/dashboard/requests/list/list.html',
-        controller: 'RequestListCtrl',
-        resolve: {
-          requests: function(RequestResource, user) {
-            return RequestResource.query({evaluator: user._id, status: 'en_cours'}).$promise;
-          },
-
-          user: function($http, $stateParams) {
-            return $http.get('/api/users/' + $stateParams.userId).then(function(user) {
-              return user.data;
-            });
-          },
-
-          showArchiveAction: function() {
-            return false;
           }
         },
         authenticate: true
