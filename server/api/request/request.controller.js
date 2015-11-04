@@ -18,15 +18,31 @@ var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
 var DateUtils = require('../../components/dateUtils');
 var MakePdf = require('../../components/make-pdf');
+var Actions = require('../../components/actions');
 
 var Prestation = require('../prestation/prestation.controller');
 var Request = require('./request.model');
+var ActionModel = require('./action.model');
 var User = require('../user/user.model');
 var Partenaire = require('../partenaire/partenaire.model');
 var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
 
 var domain = process.env.DOMAIN || config.DOMAIN;
+
+function saveActionLog(action, request, user, log, params) {
+  ActionModel.create({
+    action: action.id,
+    request: request._id,
+    user: user._id,
+    date: Date.now(),
+    params: params
+  }, function(err, action) {
+    if (err) log.error(err);
+
+    log.info(action._doc);
+  });
+}
 
 function resizeAndMove(file, next) {
   if (file.mimetype === 'image/jpeg') {
@@ -89,6 +105,20 @@ function sendMailNotification(request, host, log, callback) {
 
     callback(secteur);
   });
+}
+
+function sendMailCompletude(request, evaluator) {
+  Mailer.sendMail(request.user.email,
+    'Accusé de complétude de votre dossier',
+    'Les documents obligatoires que vous nous avez transmis ont tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '. Votre dosser est désormais considéré comme complet.'
+  );
+}
+
+function sendMailDemandeDocuments(request, evaluator) {
+  Mailer.sendMail(request.user.email,
+    'Demande de complétude de votre dossier',
+    'Les documents obligatoires que vous nous avez transmis n\'ont pas tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '. Vous devez vous reconnecter pour renvoyer les pièces en erreur suivantes: ##TODO pièces en erreur##'
+  );
 }
 
 /**
@@ -196,27 +226,31 @@ exports.transfer = function(req, res, next) {
     });
 };
 
-
 /**
  * Update request / agent side
  */
 exports.updateFromAgent = function(req, res, next) {
-  var newStatus = req.body.status;
   var request = req.request;
+
+  var newStatus = req.body.status;
+  var oldStatus = request.status;
+
   switch (newStatus) {
     case 'complet':
-
+      sendMailCompletude(request, req.user);
       break;
     case 'incomplet':
+      sendMailDemandeDocuments(request, req.user);
       break;
-    default:
-      request
-        .set('status', req.body.status)
-        .save(function(err, request) {
-          if (err) return handleError(req, res, err);
-          res.json(request);
-        });
   }
+
+  request
+    .set('status', req.body.status)
+    .save(function(err, request) {
+      if (err) return handleError(req, res, err);
+      saveActionLog(Actions.CHANGE_STATUS, request, req.user, req.log, {old: oldStatus, new: newStatus});
+      res.json(request);
+    });
 };
 
 /**

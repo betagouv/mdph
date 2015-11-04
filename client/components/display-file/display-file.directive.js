@@ -24,9 +24,9 @@ angular.module('impactApp')
         }
 
         $scope.setValid = function(status) {
-          $scope.file.validationTemp = status;
+          $scope.file.validation = status;
           $scope.showValidationActions = false;
-          $scope.showValidationActionsNotSaved = true;
+          $scope.showValidationStatus = true;
           $scope.onChange();
         };
 

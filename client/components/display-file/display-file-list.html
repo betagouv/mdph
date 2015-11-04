@@ -20,7 +20,7 @@
   </div>
 
   <div ng-if="showValidationActions" class="text-right">
-    <button class="btn btn-success" ng-disabled="isSaveValidationDisabled" ng-if="canSave"><i class="fa fa-thumbs-up"></i>Valider la complétude du dossier</button>
-    <button class="btn btn-danger" ng-disabled="isSaveValidationDisabled" ng-if="!canSave"><i class="fa fa-thumbs-down"></i>Envoyer une demande de complétude des pièces en erreur</button>
+    <button class="btn btn-success" ng-click="save()" ng-disabled="isSaveValidationDisabled" ng-if="isValid"><i class="fa fa-thumbs-up"></i>Valider la complétude du dossier</button>
+    <button class="btn btn-danger" ng-click="save()" ng-disabled="isSaveValidationDisabled" ng-if="!isValid"><i class="fa fa-thumbs-down"></i>Envoyer une demande de complétude des pièces en erreur</button>
   </div>
 </div>

@@ -29,7 +29,7 @@ var RequestSchema = new Schema({
   createdAt:      { type: Date },
   submittedAt:    { type: Date },
   updatedAt:      { type: Date },
-  status:         { type: String, enum: ['en_cours', 'emise', 'incomplet', 'archive'], default: 'en_cours' },
+  status:         { type: String, enum: ['en_cours', 'emise', 'complet', 'incomplet', 'archive'], default: 'en_cours' },
   formAnswers:    Schema.Types.Mixed,
   prestations:    [{ type: String }],
   certificat:     Schema.Types.Mixed,

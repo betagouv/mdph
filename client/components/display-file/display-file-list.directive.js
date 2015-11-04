@@ -9,7 +9,7 @@ angular.module('impactApp')
         showValidationActions: '='
       },
       templateUrl: 'components/display-file/display-file-list.html',
-      controller: function($scope, DocumentsService) {
+      controller: function($scope, $http, DocumentsService) {
         $scope.filesVM = DocumentsService.groupByType($scope.files);
         $scope.documentTypesById = DocumentsService.documentTypesById;
 
@@ -17,12 +17,24 @@ angular.module('impactApp')
           return $scope.request.status === 'emise';
         };
 
+        $scope.save = function(isValid) {
+          if (isValid) {
+            $http.post('/api/requests/' + $scope.request.shortId, {status: 'complet'}).then(function(data) {
+              debugger;
+            });
+          } else {
+            $http.post('/api/requests/' + $scope.request.shortId, {status: 'incomplet'}).then(function(data) {
+              debugger;
+            });
+          }
+        };
+
         $scope.computeStatus = function() {
           $scope.isSaveValidationDisabled = $scope.files.some(function(current) {
-            return _.isUndefined(current.validationTemp);
+            return _.isUndefined(current.validation);
           });
 
-          $scope.canSave = _.every($scope.files, {validationTemp: true});
+          $scope.isValid = _.every($scope.files, {validation: true});
         };
 
         $scope.computeStatus();

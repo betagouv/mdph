@@ -74,12 +74,12 @@
     }
 
     .fab.refuse {
-      background-color: rgb(255,82,82);
+      background-color: lighten(rgb(255,82,82), 5%);
       color: rgb(255,255,255);
     }
 
     .fab.refuse:hover {
-      background-color: lighten(rgb(255,82,82), 10%);
+      background-color: rgb(255,82,82);
     }
 
     .fab.valid:hover {

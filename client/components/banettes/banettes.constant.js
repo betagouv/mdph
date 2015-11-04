@@ -10,6 +10,10 @@ angular.module('impactApp').constant('banettes', [
     label: 'Émises'
   },
   {
+    id: 'complet',
+    label: 'Complètes'
+  },
+  {
     id: 'incomplet',
     label: 'Incomplètes'
   },

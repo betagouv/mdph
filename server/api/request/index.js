@@ -39,13 +39,14 @@ router.post('/:shortId/transfer/:userId', auth.isAuthorized(), controller.transf
 router.get('/:shortId', auth.isAuthorized(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 
-router.post('/:shortId', auth.isAuthorized(), controller.updateStatus);
-router.put('/:shortId', auth.isAuthorized(), controller.update);
+router.post('/:shortId', auth.isAuthorized(), controller.updateFromAgent);
+router.put('/:shortId', auth.isAuthorized(), controller.updateFromUser);
 
 router.delete('/:shortId', auth.isAuthorized(), controller.destroy);
 
-router.get('/:shortId/questionnaire.pdf', auth.isAuthorized(), controller.getPdf);
 router.get('/:shortId/recapitulatif', auth.isAuthorized(), controller.getRecapitulatif);
+
+router.get('/:shortId/questionnaire.pdf', auth.isAuthorized(), controller.getPdf);
 router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthesePdf);
 
 router.post('/:shortId/document', upload.single('file'), controller.saveFile);
