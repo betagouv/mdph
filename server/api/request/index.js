@@ -21,8 +21,13 @@ router.param('shortId', function(req, res, next, shortId) {
         return res.sendStatus(404);
       }
 
+      if (err) {
+        req.log.error(err);
+        return res.status(500).send(err);
+      }
+
       req.request = request;
-      next(err);
+      next();
     });
 });
 
