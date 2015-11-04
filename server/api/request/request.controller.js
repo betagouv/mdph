@@ -28,14 +28,6 @@ var Mailer = require('../send-mail/send-mail.controller');
 
 var domain = process.env.DOMAIN || config.DOMAIN;
 
-function findRequest(req, callback) {
-  if (req.request) {
-    return callback(null, req.request);
-  }
-
-  return Request.findOne({shortId: req.params.shortId}).exec(callback);
-}
-
 /**
  * Get list of requests
  */
@@ -77,12 +69,7 @@ exports.index = function(req, res) {
 
 // Get a single request
 exports.show = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    if (err) return handleError(req, res, err);
-    if (!request) { return res.sendStatus(404); }
-
-    return res.json(request);
-  });
+  return res.json(req.request);
 };
 
 // Get a single request
@@ -101,23 +88,18 @@ exports.showPartenaire = function(req, res, next) {
 
 // Deletes a request from the DB and FS
 exports.destroy = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (err) return handleError(req, res, err);
-    if (!request) return res.sendStatus(404);
-
-    if (request.documents && request.documents.length > 0) {
-      request.documents.forEach(function(requestDoc) {
-        fs.unlink(requestDoc.path, function(err) {
-          if (err) req.log.error(err);
-        });
+  if (req.request.documents && req.request.documents.length > 0) {
+    req.request.documents.forEach(function(requestDoc) {
+      fs.unlink(requestDoc.path, function(err) {
+        if (err) req.log.error(err);
       });
-    }
-
-    request.remove(function(err) {
-      if (err) { return handleError(req, res, err); }
-
-      return res.sendStatus(204);
     });
+  }
+
+  req.request.remove(function(err) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.sendStatus(204);
   });
 };
 
@@ -188,98 +170,78 @@ function sendMailNotification(request, host, log, callback) {
  * Transfer request
  */
 exports.transfer = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    if (!request) {
-      return res.sendStatus(404);
-    }
-
-    request
-      .set('user', req.params.userId)
-      .set('-updatedAt', Date.now())
-      .save(function(err, request) {
-        if (err) return handleError(req, res, err);
-        res.json(request);
-      });
-  });
+  req.request
+    .set('user', req.params.userId)
+    .set('-updatedAt', Date.now())
+    .save(function(err, request) {
+      if (err) return handleError(req, res, err);
+      res.json(request);
+    });
 };
 
+
+/**
+ * Update request / agent side
+ */
 exports.updateStatus = function(req, res, next) {
-  async.waterfall([
-    function(callback) {
-      findRequest(req, callback);
-    },
-
-    // Check is request exists
-    function(request, callback) {
-      if (!request) {
-        return res.sendStatus(404);
-      }
-
-      request.set('status', req.body.status).save(callback);
-    }
-
-  ], function(err, request) {
-    if (err) return handleError(req, res, err);
-    res.json(request);
-  });
+  req.request
+    .set('status', req.body.status)
+    .save(function(err, request) {
+      if (err) return handleError(req, res, err);
+      res.json(request);
+    });
 };
 
 /**
- * Update request
+ * Update request / user side
  */
 exports.update = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    if (err) { return handleError(req, res, err); }
+  var request = req.request;
 
-    if (!request) { return res.sendStatus(404); }
+  if (req.query.isSendingRequest) {
+    // Find and notify evaluator through dispatcher
+    sendMailNotification(request, req.headers.host, req.log, function(secteur) {
+      if (secteur) {
+        request.set('secteur', secteur).save();
+      }
+    });
+  }
 
-    if (req.query.isSendingRequest) {
-      // Find and notify evaluator through dispatcher
-      sendMailNotification(request, req.headers.host, req.log, function(secteur) {
-        if (secteur) {
-          request.set('secteur', secteur).save();
-        }
-      });
-    }
+  request
+    .set(_.omit(req.body, 'user', 'documents'))
+    .set('updatedAt', Date.now())
+    .set('submittedAt', Date.now())
+    .save(function(err, updated) {
+      if (err) return handleError(req, res, err);
 
-    request
-      .set(_.omit(req.body, 'user', 'documents'))
-      .set('updatedAt', Date.now())
-      .set('submittedAt', Date.now())
-      .save(function(err, updated) {
-        if (err) return handleError(req, res, err);
+      if (req.query.isSendingRequest) {
+        // Notify user
+        generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
+          if (err) { req.log.error(err); }
 
-        if (req.query.isSendingRequest) {
-          // Notify user
-          generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
-            if (err) { req.log.error(err); }
+          Mailer.sendMail(req.user.email,
+            'Accusé de réception du téléservice',
+            'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
+            [
+              {
+                filename: request.shortId + '.pdf',
+                path: pdfPath
+              }
+            ]
+          );
+        });
+      }
 
-            Mailer.sendMail(req.user.email,
-              'Accusé de réception du téléservice',
-              'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
-              [
-                {
-                  filename: request.shortId + '.pdf',
-                  path: pdfPath
-                }
-              ]
-            );
-          });
-        }
-
-        res.json(request);
-      });
-  });
+      res.json(request);
+    });
 };
 
 /**
  * Resend mail notification
  */
 exports.resendMail = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    sendMailNotification(request, req.headers.host, req.log, function() {
-      res.sendStatus(200);
-    });
+  sendMailNotification(req.request, req.headers.host, req.log, function() {
+    res.sendStatus(200);
   });
 };
 
@@ -336,57 +298,42 @@ exports.saveFile = function(req, res, next) {
   }
 
   var currentFile = req.file;
+  var request = req.request;
 
-  async.waterfall([
-    function(callback) {
-      resizeAndMove(currentFile, callback);
-    },
+  resizeAndMove(currentFile, function() {
+    var data = JSON.parse(req.body.data);
+    var document = _.extend(currentFile, {type: data.type, category: data.category});
 
-    function(callback) {
-      findRequest(req, function(err, request) {
-        if (err) return handleError(req, res, err);
-        if (!request) return res.sendStatus(404);
+    if (req.query.partenaire) {
+      document.partenaire = data.partenaire;
 
-        callback(null, request);
-      });
-    },
-
-    function(request) {
-      var data = JSON.parse(req.body.data);
-      var document = _.extend(currentFile, {type: data.type, category: data.category});
-
-      if (req.query.partenaire) {
-        document.partenaire = data.partenaire;
-
-        // Mail
-        Partenaire.findById(document.partenaire, function(err, partenaire) {
-          if (err) { return handleError(req, res, err); }
-
-          if (!partenaire) { res.sendStatus(404); }
-
-          partenaire.secret = shortid.generate();
-          partenaire.save(function(err) {
-            if (err) { return handleError(req, res, err); }
-
-            var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
-            Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
-              '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
-          });
-        });
-      }
-
-      if (document !== null) {
-        request.documents.push(document);
-      }
-
-      request.save(function(err, saved) {
+      // Mail
+      Partenaire.findById(document.partenaire, function(err, partenaire) {
         if (err) { return handleError(req, res, err); }
 
-        return res.json(request.documents[request.documents.length - 1]);
+        if (!partenaire) { res.sendStatus(404); }
+
+        partenaire.secret = shortid.generate();
+        partenaire.save(function(err) {
+          if (err) { return handleError(req, res, err); }
+
+          var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
+          Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
+            '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
+        });
       });
     }
 
-  ]);
+    if (document !== null) {
+      request.documents.push(document);
+    }
+
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
+
+      return res.json(request.documents[request.documents.length - 1]);
+    });
+  });
 };
 
 exports.downloadFile = function(req, res) {
@@ -402,74 +349,58 @@ exports.downloadFile = function(req, res) {
 };
 
 exports.deleteFile = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
+  var request = req.request;
+  var file = request.documents.id(req.params.fileId);
+  if (!file) {
+    return res.sendStatus(304);
+  }
 
-    var file = request.documents.id(req.params.fileId);
-    if (!file) {
-      return res.sendStatus(304);
+  fs.unlink(file.path, function(err) {
+    if (err) {
+      req.log.info(req.user + ', not deleted, not found: ' + file.path);
+    } else {
+      req.log.info(req.user + ', successfully deleted: ' + file.path);
     }
 
-    fs.unlink(file.path, function(err) {
-      if (err) {
-        req.log.info(req.user + ', not deleted, not found: ' + file.path);
-      } else {
-        req.log.info(req.user + ', successfully deleted: ' + file.path);
-      }
+    file.remove();
 
-      file.remove();
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
 
-      request.save(function(err, saved) {
-        if (err) { return handleError(req, res, err); }
-
-        return res.send(file).status(200);
-      });
+      return res.send(file).status(200);
     });
   });
 };
 
 exports.getRecapitulatif = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
-    Recapitulatif.answersToHtml(request, req.headers.host, 'inline', function(err, html) {
-      if (err) { return handleError(req, res, err); }
+  Recapitulatif.answersToHtml(req.request, req.headers.host, 'inline', function(err, html) {
+    if (err) { return handleError(req, res, err); }
 
-      res.send(html).status(200);
-    });
+    res.send(html).status(200);
   });
 };
 
 exports.getPdf = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
+  generatePdf(req.request, req.user, req.headers.host, function(err, pdfPath) {
+    if (err) { return handleError(req, res, err); }
 
-    generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
-      if (err) { return handleError(req, res, err); }
-
-      res.sendFile(pdfPath);
-    });
+    res.sendFile(pdfPath);
   });
 };
 
 exports.getSynthesePdf = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
-    Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
-      if (err) { return handleError(req, res, err); }
+  Synthese.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
+    if (err) { return handleError(req, res, err); }
 
-      pdf.create(html).toStream(function(err, stream) {
-        stream.pipe(res);
-      });
+    pdf.create(html).toStream(function(err, stream) {
+      stream.pipe(res);
     });
   });
 };
 
 exports.simulate = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
-    var prestations = Prestation.simulate(request.formAnswers);
-    return res.json(prestations);
-  });
+  var prestations = Prestation.simulate(req.request.formAnswers);
+  return res.json(prestations);
 };
 
 function handleError(req, res, err) {

@@ -5,9 +5,26 @@ var controller = require('./request.controller');
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var multer  = require('multer');
+
+var Request = require('./request.model');
 var upload = multer({ dest: config.uploadDir });
 
 var router = express.Router();
+
+router.param('shortId', function(req, res, next, shortId) {
+  Request
+    .findOne({
+      shortId: req.params.shortId
+    })
+    .exec(function(err, request) {
+      if (!request) {
+        return res.sendStatus(404);
+      }
+
+      req.request = request;
+      next(err);
+    });
+});
 
 router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.post('/', auth.isAuthenticated(), controller.save);
