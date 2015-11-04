@@ -6,7 +6,8 @@ angular.module('impactApp')
       scope: {
         file: '=',
         request: '=',
-        showValidationActions: '='
+        showValidationActions: '=',
+        onChange: '='
       },
       templateUrl: 'components/display-file/display-file.html',
       controller: function($scope, $http, $cookies) {
@@ -26,6 +27,7 @@ angular.module('impactApp')
           $scope.file.validationTemp = status;
           $scope.showValidationActions = false;
           $scope.showValidationActionsNotSaved = true;
+          $scope.onChange();
         };
 
         // Retro-compat

@@ -20,27 +20,8 @@ angular.module('impactApp')
 
     var prestationsById = _.indexBy(prestations, 'id');
 
-    $scope.documentTypesById = DocumentsService.documentTypesById;
-
     $scope.documentsObligatoires = DocumentsService.filterMandatory(request.documents);
-    $scope.documentsObligatoiresVM = DocumentsService.groupByType($scope.documentsObligatoires);
-
     $scope.documentsComplementaires = DocumentsService.filterNonMandatory(request.documents);
-    $scope.documentsComplementairesVM = DocumentsService.groupByType($scope.documentsComplementaires);
-
-    $scope.showSaveValidation = function() {
-      return request.status === 'emise';
-    };
-
-    $scope.isSaveValidationDisabled = function() {
-      return $scope.documentsObligatoires.some(function(current) {
-        return _.isUndefined(current.validationTemp);
-      });
-    };
-
-    $scope.canSave = function() {
-      return _.every($scope.documentsObligatoires, {validationTemp: true});
-    };
 
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {

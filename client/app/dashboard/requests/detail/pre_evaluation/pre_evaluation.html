@@ -3,39 +3,10 @@
     <h2>Pièces jointes</h2>
     <div class="content">
       <h3>Obligatoires</h3>
-      <div ng-if="documentsObligatoires.length === 0">
-        <ul class="list-group">
-          <li class="list-group-item">Aucune pièce obligatoire</li>
-        </ul>
-      </div>
-      <div ng-repeat="(type, files) in documentsObligatoiresVM">
-        <h4>{{documentTypesById[type].label}}</h4>
-        <ul class="list-group">
-          <li ng-repeat="document in files" class="list-group-item">
-            <display-file file="document" show-validation-actions="true" request="request"></display-file>
-          </li>
-        </ul>
-      </div>
-
-      <div ng-if="showSaveValidation" class="text-right">
-        <button class="btn btn-success" ng-disabled="isSaveValidationDisabled()" ng-if="canSave()"><i class="fa fa-thumbs-up"></i>Valider la complétude du dossier</button>
-        <button class="btn btn-danger" ng-disabled="isSaveValidationDisabled()" ng-if="!canSave()"><i class="fa fa-thumbs-down"></i>Envoyer une demande de complétude des pièces en erreur</button>
-      </div>
+      <display-file-list files="documentsObligatoires" request="request" show-validation-actions="true"></display-file-list>
 
       <h3>Complémentaires</h3>
-      <div ng-if="documentsComplementaires.length === 0">
-        <ul class="list-group">
-          <li class="list-group-item">Aucune pièce complémentaire</li>
-        </ul>
-      </div>
-      <div ng-repeat="(type, files) in documentsComplementairesVM">
-        <h4>{{documentTypesById[type].label}}</h4>
-        <ul class="list-group">
-          <li ng-repeat="document in files" class="list-group-item">
-            <display-file file="document" user="currentUser" request="request"></display-file>
-          </li>
-        </ul>
-      </div>
+      <display-file-list files="documentsComplementaires" request="request"></display-file-list>
     </div>
   </section>
 
