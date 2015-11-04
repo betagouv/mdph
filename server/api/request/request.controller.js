@@ -28,6 +28,69 @@ var Mailer = require('../send-mail/send-mail.controller');
 
 var domain = process.env.DOMAIN || config.DOMAIN;
 
+function resizeAndMove(file, next) {
+  if (file.mimetype === 'image/jpeg') {
+    new Imagemin()
+      .src(file.path)
+      .dest(file.destination)
+      .use(imageminJpegRecompress({
+        progressive: true,
+        loops: 7,
+        min: 30,
+        strip: true,
+        quality: 'low',
+        target: 0.7
+      }))
+      .run();
+  }
+
+  next();
+}
+
+function generatePdf(request, user, host, done) {
+  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
+    if (err) return done(err);
+
+    return MakePdf.make(request, user, html, done);
+  });
+}
+
+function sendMailNotification(request, host, log, callback) {
+  Dispatcher.findSecteur(request, function(secteur) {
+    if (!secteur) {
+      callback();
+    }
+
+    var type = DateUtils.getType(request.formAnswers);
+
+    if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
+      var evaluators = secteur.evaluators[type];
+      evaluators.forEach(function(evaluator) {
+        if (request.mdph === '59') {
+          generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfPath) {
+            if (err) { log.error(err); }
+
+            Mailer.sendMail(
+              evaluator.email,
+              'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
+              [
+                {
+                  filename: request.shortId + '.pdf',
+                  path: pdfPath
+                }
+              ]
+            );
+          });
+        } else {
+          Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
+        }
+      });
+    }
+
+    callback(secteur);
+  });
+}
+
 /**
  * Get list of requests
  */
@@ -120,52 +183,6 @@ exports.showUserRequests = function(req, res, next) {
   });
 };
 
-var generatePdf = function(request, user, host, done) {
-  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
-    if (err) return done(err);
-
-    return MakePdf.make(request, user, html, done);
-  });
-};
-
-function sendMailNotification(request, host, log, callback) {
-  Dispatcher.findSecteur(request, function(secteur) {
-    if (secteur) {
-
-      var estAdulte = DateUtils.isAdult(request.formAnswers);
-      var type = estAdulte ? 'adulte' : 'enfant';
-
-      if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-        var evaluators = secteur.evaluators[type];
-        evaluators.forEach(function(evaluator) {
-          if (request.mdph === '59') {
-            generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfPath) {
-              if (err) { log.error(err); }
-
-              Mailer.sendMail(
-                evaluator.email,
-                'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
-                [
-                  {
-                    filename: request.shortId + '.pdf',
-                    path: pdfPath
-                  }
-                ]
-              );
-            });
-          } else {
-            Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-          }
-        });
-      }
-
-      callback(secteur);
-    } else {
-      callback();
-    }
-  });
-}
-
 /**
  * Transfer request
  */
@@ -183,19 +200,29 @@ exports.transfer = function(req, res, next) {
 /**
  * Update request / agent side
  */
-exports.updateStatus = function(req, res, next) {
-  req.request
-    .set('status', req.body.status)
-    .save(function(err, request) {
-      if (err) return handleError(req, res, err);
-      res.json(request);
-    });
+exports.updateFromAgent = function(req, res, next) {
+  var newStatus = req.body.status;
+  var request = req.request;
+  switch (newStatus) {
+    case 'complet':
+
+      break;
+    case 'incomplet':
+      break;
+    default:
+      request
+        .set('status', req.body.status)
+        .save(function(err, request) {
+          if (err) return handleError(req, res, err);
+          res.json(request);
+        });
+  }
 };
 
 /**
  * Update request / user side
  */
-exports.update = function(req, res, next) {
+exports.updateFromUser = function(req, res, next) {
   var request = req.request;
 
   if (req.query.isSendingRequest) {
@@ -269,25 +296,6 @@ exports.save = function(req, res, next) {
     return res.status(201).send(request);
   });
 };
-
-function resizeAndMove(file, next) {
-  if (file.mimetype === 'image/jpeg') {
-    new Imagemin()
-      .src(file.path)
-      .dest(file.destination)
-      .use(imageminJpegRecompress({
-        progressive: true,
-        loops: 7,
-        min: 30,
-        strip: true,
-        quality: 'low',
-        target: 0.7
-      }))
-      .run();
-  }
-
-  next();
-}
 
 /**
  * File upload

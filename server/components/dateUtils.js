@@ -21,9 +21,11 @@ function isMoreThan(answers, age) {
   }
 }
 
-exports.isMoreThan = isMoreThan;
+function isAdult(answers) {
+  return isMoreThan(answers, 20);
+}
 
-exports.isLessThan = function(answers, age) {
+function isLessThan(answers, age) {
   var dateNaissance = getDateNaissance(answers);
 
   if (!dateNaissance) {
@@ -31,8 +33,13 @@ exports.isLessThan = function(answers, age) {
   } else {
     return moment().diff(dateNaissance, 'years') < age;
   }
-};
+}
 
-exports.isAdult = function(answers) {
-  return isMoreThan(answers, 20);
-};
+function getType(answers) {
+  return isAdult(answers) ? 'adulte' : 'enfant';
+}
+
+exports.isMoreThan = isMoreThan;
+exports.isLessThan = isLessThan;
+exports.isAdult = isAdult;
+exports.getType = getType;
