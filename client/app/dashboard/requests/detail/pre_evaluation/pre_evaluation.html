@@ -9,7 +9,7 @@
         </ul>
       </div>
       <div ng-repeat="(type, files) in documentsObligatoiresVM">
-        {{documentTypesById[type].label}}
+        <h4>{{documentTypesById[type].label}}</h4>
         <ul class="list-group">
           <li ng-repeat="document in files" class="list-group-item">
             <display-file file="document" show-validation-actions="true" request="request"></display-file>
@@ -29,7 +29,7 @@
         </ul>
       </div>
       <div ng-repeat="(type, files) in documentsComplementairesVM">
-        {{documentTypesById[type].label}}
+        <h4>{{documentTypesById[type].label}}</h4>
         <ul class="list-group">
           <li ng-repeat="document in files" class="list-group-item">
             <display-file file="document" user="currentUser" request="request"></display-file>

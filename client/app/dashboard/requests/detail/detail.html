@@ -9,23 +9,6 @@
     <p ng-if="request.submittedAt">Envoyée le: <strong>{{request.submittedAt | date: format: timezone}}</strong></p>
     <p>Dernière mise à jour: <strong>{{request.updatedAt | date: format: timezone}}</strong></p>
 
-    <div class="actions">
-      <button class="btn btn-default" ng-if="request.evaluator !== currentUser._id" ng-click="assigner()">
-        <i class="fa fa-download"></i> S'assigner cette demande
-      </button>
-      <!-- <button class="btn btn-default" ng-click="resendMail()">
-        <i class="fa fa-envelope"></i> Renvoyer le mail de notification
-      </button> -->
-
-      <button class="btn btn-danger" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
-
-      <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
-        <i class="fa fa-download"></i> Télécharger
-      </a>
-      <button class="btn btn-default" ng-if="request.status === 'emise'" ng-click="archive(request)"><i class="fa fa-archive"></i> Archiver</button>
-    </div>
-    <div class="clearfix"></div>
-
   </div>
 </div>
 
@@ -37,5 +20,21 @@
 
   <div class="detail-tab">
     <ui-view/>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-default" ng-if="request.evaluator !== currentUser._id" ng-click="assigner()">
+      <i class="fa fa-download"></i> S'assigner cette demande
+    </button>
+    <!-- <button class="btn btn-default" ng-click="resendMail()">
+      <i class="fa fa-envelope"></i> Renvoyer le mail de notification
+    </button> -->
+
+    <button class="btn btn-danger" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
+
+    <a target="_blank" class="btn btn-primary" href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}" download>
+      <i class="fa fa-download"></i> Télécharger
+    </a>
+    <button class="btn btn-default" ng-if="request.status === 'emise'" ng-click="archive(request)"><i class="fa fa-archive"></i> Archiver</button>
   </div>
 </div>
