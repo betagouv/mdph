@@ -1,0 +1,16 @@
+<div class="timeline">
+  <div ng-repeat="action in history" class="timeline-block">
+<!--     <div class="timeline-img {{action | actionTypeIconFilter}}">
+      <i class="fa fa-{{action | actionTypeIconFilter}}"></i>
+    </div> -->
+
+    <div class="timeline-content">
+      <h1>{{action.label}}</h1>
+      <h2>{{action.date | moment}} <span ng-if="action.user">par {{action.user.name}}</span></h2>
+
+      <!-- <div ng-if="action.type === 'results_update'">
+        Nouveau statut : <span ng-bind-html="action.content.status | actionStatus"></span>
+      </div> -->
+    </div>
+  </div>
+</div>

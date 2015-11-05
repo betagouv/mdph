@@ -103,8 +103,8 @@ exports.listRequests = function(req, res) {
 
     Request
       .find(query)
-      .select('user shortId formAnswers.identites status submittedAt')
-      .populate('user')
+      .select('user shortId formAnswers.identites status submittedAt evaluator')
+      .populate('user evaluator', 'name')
       .sort('-submittedAt')
       .exec(function(err, requests) {
         if (err) return handleError(req, res, err);

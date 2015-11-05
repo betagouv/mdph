@@ -3,7 +3,7 @@
     <h2>Pièces jointes</h2>
     <div class="content">
       <h3>Obligatoires</h3>
-      <display-file-list files="documentsObligatoires" request="request" show-validation-actions="true"></display-file-list>
+      <display-file-list files="documentsObligatoires" request="request" show-validation-actions="request.status === 'emise'"></display-file-list>
 
       <h3>Complémentaires</h3>
       <display-file-list files="documentsComplementaires" request="request"></display-file-list>

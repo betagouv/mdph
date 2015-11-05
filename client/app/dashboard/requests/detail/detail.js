@@ -22,6 +22,11 @@ angular.module('impactApp')
             });
           };
 
+          $scope.assigner = function() {
+            request.evaluator = $scope.currentUser._id;
+            request.$update();
+          };
+
           $scope.supprimer = function(request) {
             request.$delete(function() {
               $state.go('dashboard.requests.user', {userId: 'me'}, {reload: true});

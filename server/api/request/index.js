@@ -44,12 +44,15 @@ router.put('/:shortId', auth.isAuthorized(), controller.updateFromUser);
 
 router.delete('/:shortId', auth.isAuthorized(), controller.destroy);
 
+router.get('/:shortId/history', auth.isAuthorized(), controller.getHistory);
 router.get('/:shortId/recapitulatif', auth.isAuthorized(), controller.getRecapitulatif);
 
 router.get('/:shortId/questionnaire.pdf', auth.isAuthorized(), controller.getPdf);
 router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthesePdf);
 
-router.post('/:shortId/document', upload.single('file'), controller.saveFile);
+router.post('/:shortId/document', auth.isAuthorized(), upload.single('file'), controller.saveFile);
+router.post('/:shortId/document-partenaire', upload.single('file'), controller.saveFilePartenaire);
+
 router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downloadFile);
 router.delete('/:shortId/document/:fileId', auth.isAuthorized(), controller.deleteFile);
 

@@ -28,8 +28,8 @@ angular.module('impactApp')
       })
       .state('dashboard.requests.pending', {
         url: '/en_attente/:secteurId',
-        templateUrl: 'app/dashboard/requests/pending/pending.html',
-        controller: 'PendingRequestsCtrl',
+        templateUrl: 'app/dashboard/requests/list/list.html',
+        controller: 'RequestListCtrl',
         resolve: {
           currentSecteur: function($http, $stateParams) {
             if ($stateParams.secteurId === 'autres') {
@@ -52,6 +52,10 @@ angular.module('impactApp')
                 return result.data;
               });
             }
+          },
+
+          user: function() {
+            return null;
           }
         },
         authenticate: true
@@ -61,6 +65,10 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/requests/list/list.html',
         controller: 'RequestListCtrl',
         resolve: {
+          currentSecteur: function() {
+            return null;
+          },
+
           requests: function(RequestResource, currentUser, user, banette) {
             if (banette !== 'toutes') {
               return RequestResource.query({evaluator: user._id, status: banette}).$promise;
@@ -77,10 +85,6 @@ angular.module('impactApp')
 
           banette: function($stateParams) {
             return $stateParams.banette;
-          },
-
-          showArchiveAction: function() {
-            return true;
           }
         },
         authenticate: true

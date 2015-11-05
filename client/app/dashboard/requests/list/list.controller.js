@@ -1,11 +1,17 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, user, requests, showArchiveAction) {
+  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, currentUser, currentSecteur, requests, NotificationService) {
     $scope.requests = requests;
+
     $scope.user = user;
-    $scope.showArchiveAction = showArchiveAction;
+    $scope.currentSecteur = currentSecteur;
+
     var token = $cookies.get('token');
+
+    $scope.title = user ?
+      'Demandes assignées à ' + user.name :
+      'Demandes concernant le secteur ' + currentSecteur.name;
 
     $scope.selectAll = function() {
       var action;
@@ -29,6 +35,20 @@ angular.module('impactApp')
       });
 
       return test;
+    };
+
+    $scope.assigner = function(requests) {
+      requests.forEach(function(request) {
+        if (request.isSelected) {
+          request.evaluator = currentUser._id;
+          return $http.put('/api/requests/' + request.shortId, request).then(function() {
+            NotificationService.createNotification(request, 'espace_perso.liste_demandes.demande.questionnaire', 'Votre demande est en cours d\'instruction.');
+            $scope.$emit('assign-request');
+          });
+        }
+      });
+
+      $state.go('dashboard.requests.user', {userId: $scope.currentUser._id});
     };
 
     $scope.archive = function(requests) {

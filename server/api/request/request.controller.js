@@ -19,27 +19,13 @@ var Actions = require('../../components/actions');
 
 var Prestation = require('../prestation/prestation.controller');
 var Request = require('./request.model');
-var ActionModel = require('./action.model');
 var User = require('../user/user.model');
 var Partenaire = require('../partenaire/partenaire.model');
 var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
+var ActionModel = require('./action.model');
 
 var domain = process.env.DOMAIN || config.DOMAIN;
-
-function saveActionLog(action, request, user, log, params) {
-  ActionModel.create({
-    action: action.id,
-    request: request._id,
-    user: user._id,
-    date: Date.now(),
-    params: params
-  }, function(err, action) {
-    if (err) log.error(err);
-
-    log.info(action._doc);
-  });
-}
 
 function resizeAndMove(file, next) {
   if (file.mimetype === 'image/jpeg') {
@@ -149,6 +135,7 @@ exports.index = function(req, res) {
 
     Request.find(search)
       .populate('user', 'name')
+      .populate('evaluator', 'name')
       .sort('-submittedAt')
       .exec(function(err, requests) {
         if (err) return handleError(req, res, err);
@@ -205,7 +192,7 @@ exports.showUserRequests = function(req, res, next) {
   .sort('-updatedAt')
   .exec(function(err, requests) {
     if (err) return handleError(req, res, err);
-    if (!requests) return res.json(401);
+    if (!requests) return res.status(401);
     res.json(requests);
   });
 };
@@ -245,7 +232,8 @@ exports.updateFromAgent = function(req, res, next) {
     .set('status', req.body.status)
     .save(function(err, request) {
       if (err) return handleError(req, res, err);
-      saveActionLog(Actions.CHANGE_STATUS, request, req.user, req.log, {old: oldStatus, new: newStatus});
+
+      request.saveActionLog(Actions.CHANGE_STATUS, req.user, req.log, {old: oldStatus, new: newStatus});
       res.json(request);
     });
 };
@@ -260,6 +248,8 @@ exports.updateFromUser = function(req, res, next) {
     // Find and notify evaluator through dispatcher
     sendMailNotification(request, req.headers.host, req.log, function(secteur) {
       if (secteur) {
+
+        request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur});
         request.set('secteur', secteur).save();
       }
     });
@@ -273,6 +263,8 @@ exports.updateFromUser = function(req, res, next) {
       if (err) return handleError(req, res, err);
 
       if (req.query.isSendingRequest) {
+        request.saveActionLog(Actions.SUBMIT, req.user, req.log);
+
         // Notify user
         generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
           if (err) { req.log.error(err); }
@@ -288,6 +280,9 @@ exports.updateFromUser = function(req, res, next) {
             ]
           );
         });
+      } else {
+        // TODO: Not precise enough, is also used when request is assigned to an agent (pre_evalaution.controller.js)
+        request.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
       }
 
       res.json(request);
@@ -324,6 +319,8 @@ exports.save = function(req, res, next) {
 
   Request.create(newRequest, function(err, request) {
     if (err) return handleError(req, res, err);
+
+    request.saveActionLog(Actions.CREATION, req.user, req.log);
     return res.status(201).send(request);
   });
 };
@@ -331,20 +328,51 @@ exports.save = function(req, res, next) {
 /**
  * File upload
  */
-exports.saveFile = function(req, res, next) {
-  if (typeof req.file === 'undefined') {
-    return res.sendStatus(304);
+function processDocument(file, fileData, done) {
+  if (typeof file === 'undefined') {
+    return done({status: 304});
   }
 
-  var currentFile = req.file;
-  var request = req.request;
+  resizeAndMove(file, function() {
+    var document = _.extend(file, {
+      type: fileData.type,
+      category: fileData.category,
+      partenaire: fileData.partenaire
+    });
 
-  resizeAndMove(currentFile, function() {
-    var data = JSON.parse(req.body.data);
-    var document = _.extend(currentFile, {type: data.type, category: data.category});
+    return done(null, document);
+  });
+}
 
-    if (req.query.partenaire) {
-      document.partenaire = data.partenaire;
+exports.saveFile = function(req, res, next) {
+  processDocument(req.file, JSON.parse(req.body.data), function(err, document) {
+    if (err) {
+      return res.sendStatus(err.status);
+    }
+
+    var request = req.request;
+    request.documents.push(document);
+
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
+
+      request.saveActionLog(Actions.DOCUMENT_ADDED, req.user, req.log, {document: document});
+      return res.json(document);
+    });
+  });
+};
+
+exports.saveFilePartenaire = function(req, res) {
+  processDocument(req.file, JSON.parse(req.body.data), function(err, document) {
+    if (err) {
+      return res.sendStatus(err.status);
+    }
+
+    var request = req.request;
+    request.documents.push(document);
+
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
 
       // Mail
       Partenaire.findById(document.partenaire, function(err, partenaire) {
@@ -361,16 +389,9 @@ exports.saveFile = function(req, res, next) {
             '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
         });
       });
-    }
 
-    if (document !== null) {
-      request.documents.push(document);
-    }
-
-    request.save(function(err, saved) {
-      if (err) { return handleError(req, res, err); }
-
-      return res.json(request.documents[request.documents.length - 1]);
+      request.saveActionLog(Actions.DOCUMENT_ADDED, request.user, req.log, {document: document, partenaire: saved.partenaire});
+      return res.json(document);
     });
   });
 };
@@ -409,6 +430,24 @@ exports.deleteFile = function(req, res) {
       return res.send(file).status(200);
     });
   });
+};
+
+exports.getHistory = function(req, res) {
+  ActionModel
+    .find({
+      request: req.request._id
+    })
+    .populate('user')
+    .lean()
+    .exec(function(err, actions) {
+      if (err) return handleError(err);
+
+      actions.forEach(function(action) {
+        action.label = Actions.actionsById[action.action].label;
+      });
+
+      return res.json(actions);
+    });
 };
 
 exports.getRecapitulatif = function(req, res) {

@@ -46,11 +46,4 @@ angular.module('impactApp')
       request.prestations.push(prestation.label);
       request.$update();
     };
-
-    $scope.assigner = function() {
-      request.evaluator = $scope.currentUser._id;
-      request.$update(function() {
-        NotificationService.createNotification(request, 'espace_perso.liste_demandes.demande.questionnaire', 'Votre demande est en cours d\'instruction.');
-      });
-    };
   });
