@@ -3,16 +3,13 @@
 var _ = require('lodash');
 var path = require('path');
 var pdf = require('html-pdf');
-var mongoose = require('mongoose');
 var fs = require('fs');
 var shortid = require('shortid');
-var async = require('async');
 var Imagemin = require('imagemin');
 var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
-var Flattener = require('../../components/flatten');
 var Recapitulatif = require('../../components/recapitulatif');
 var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
