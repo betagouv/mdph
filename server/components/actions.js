@@ -10,7 +10,7 @@ var actions = {
   },
   SUBMIT: {
     id: 'submit',
-    label: 'Transmission du dossier',
+    label: 'Transmission de la demande',
     fa: 'send'
   },
   DOCUMENT_ADDED: {
