@@ -5,27 +5,33 @@ var _ = require('lodash');
 var actions = {
   CREATION: {
     id: 'creation',
-    label: 'Création'
+    label: 'Création',
+    fa: 'plus'
   },
   SUBMIT: {
     id: 'submit',
-    label: 'Transmission du dossier'
+    label: 'Transmission du dossier',
+    fa: 'send'
   },
   DOCUMENT_ADDED: {
     id: 'document_added',
-    label: 'Ajout de document'
+    label: 'Ajout de document',
+    fa: 'file'
   },
   UPDATE_ANSWERS: {
     id: 'update_answers',
-    label: 'Mise à jour des réponses'
+    label: 'Mise à jour des réponses',
+    fa: 'update'
   },
   ASSIGN_SECTOR: {
     id: 'assign_sector',
-    label: 'Assignation à un secteur'
+    label: 'Assignation à un secteur',
+    fa: 'assign'
   },
   CHANGE_STATUS: {
     id: 'change_status',
-    label: 'Changement de banette'
+    label: 'Changement de banette',
+    fa: 'folder'
   }
 };
 

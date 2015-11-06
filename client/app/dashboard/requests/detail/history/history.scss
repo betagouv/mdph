@@ -2,24 +2,33 @@
   background-color: #e9f0f5;
   position: relative;
   color: #7f8c97;
-  padding: 1px;
-  padding-right: 10px;
+  padding: 18px;
 }
 
 .timeline:before {
   position: absolute;
-  margin-left: 17px;
   content: '';
   top: 0;
+  left: 50%;
   height: 100%;
   width: 4px;
   background: #d7e4ed;
 }
 
 .timeline-block {
-  margin-left: 35px;
+  position: relative;
+  width: 50%;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+
+.timeline-block.user {
+  margin-left: 5px;
+  left: 50%;
+}
+
+.timeline-block.agent {
+  margin-right: 5px;
 }
 
 .timeline-block:before {
@@ -28,12 +37,21 @@
   clear: both;
 }
 
+.user > .timeline-img {
+  left: -12px;
+}
+
+.agent > .timeline-img {
+  right: -12px;
+}
+
 .timeline-img {
   position: absolute;
+  text-align: center;
   width: 20px;
   height: 20px;
-  left: 10px;
   margin-top: 10px;
+  padding-top: 3px;
   border-radius: 50%;
   box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 
@@ -41,15 +59,6 @@
     display: block;
     color: white;
     font-size: 15px;
-    position: relative;
-    left: 52%;
-    top: 43%;
-    margin-left: -6px;
-    margin-top: -6px;
-  }
-
-  &.plus {
-    background: $brand-info;
   }
 
   &.plus {
@@ -60,33 +69,20 @@
     background: $brand-warning;
   }
 
-  &.thumbs-up {
+  &.upload {
     background: $brand-success;
   }
 
-  &.check {
-    background: $brand-success;
+  &.send {
+    background: $brand-info;
   }
 
-  &.clock-o {
+  &.bullseye {
     background: $brand-warning;
-  }
-
-  &.question {
-    background: $brand-warning;
-  }
-
-  &.thumbs-down {
-    background: $brand-danger;
-  }
-
-  &.remove {
-    background: $brand-danger;
   }
 }
 
 .timeline-content {
-  margin-left: 12px;
   padding: 5px;
   padding-left: 10px;
   position: relative;
@@ -118,17 +114,34 @@
   }
 }
 
+.user > .timeline-content {
+  margin-left: 20px;
+}
+
+.agent > .timeline-content {
+  margin-right: 20px;
+}
+
 .timeline-content:before {
   position: absolute;
   top: 16px;
-  right: 100%;
   border-color: transparent;
-  border-right-color: white;
   content: '';
   height: 0;
   width: 0;
   border: 7px solid transparent;
+}
+
+.user > .timeline-content:before {
+  right: 100%;
+  border-right-color: white;
   border-right: 7px solid white;
+}
+
+.agent > .timeline-content:before {
+  left: 100%;
+  border-left-color: white;
+  border-left: 7px solid white;
 }
 
 .timeline-content:after {
