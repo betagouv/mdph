@@ -35,7 +35,7 @@
   </div>
 
   <div class="file-actions">
-    <div class="validation-actions" ng-if="showValidationActions">
+    <div class="validation-actions" ng-if="showValidationActions && !showValidationStatus">
       <button class="fab refuse" ng-click="setValid(false)" title="Refuser"><i class="fa fa-thumbs-down"></i></button>
       <button class="fab valid" ng-click="setValid(true)" title="Valider"><i class="fa fa-thumbs-up"></i></button>
     </div>
