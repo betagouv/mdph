@@ -15,7 +15,6 @@ var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
 var DateUtils = require('../../components/dateUtils');
 var MakePdf = require('../../components/make-pdf');
-var Actions = require('../../components/actions');
 
 var Prestation = require('../prestation/prestation.controller');
 var Request = require('./request.model');
@@ -23,7 +22,10 @@ var User = require('../user/user.model');
 var Partenaire = require('../partenaire/partenaire.model');
 var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
+
 var ActionModel = require('./action.model');
+var Actions = require('../../components/actions').actions;
+var ActionsById = require('../../components/actions').actionsById;
 
 var domain = process.env.DOMAIN || config.DOMAIN;
 
@@ -443,7 +445,7 @@ exports.getHistory = function(req, res) {
       if (err) return handleError(err);
 
       actions.forEach(function(action) {
-        action.label = Actions.actionsById[action.action].label;
+        action.label = ActionsById[action.action].label;
       });
 
       return res.json(actions);
