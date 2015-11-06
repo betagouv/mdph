@@ -6,10 +6,11 @@ angular.module('impactApp')
       scope: {
         files: '=',
         request: '=',
-        showValidationActions: '='
+        showValidationActions: '=',
+        user: '='
       },
       templateUrl: 'components/display-file/display-file-list.html',
-      controller: function($scope, $http, DocumentsService) {
+      controller: function($scope, $http, $state, DocumentsService) {
         $scope.filesVM = DocumentsService.groupByType($scope.files);
         $scope.documentTypesById = DocumentsService.documentTypesById;
 
@@ -17,16 +18,12 @@ angular.module('impactApp')
           return $scope.request.status === 'emise';
         };
 
-        $scope.save = function(isValid) {
-          if (isValid) {
-            $http.post('/api/requests/' + $scope.request.shortId, {status: 'complet'}).then(function(data) {
-              debugger;
-            });
-          } else {
-            $http.post('/api/requests/' + $scope.request.shortId, {status: 'incomplet'}).then(function(data) {
-              debugger;
-            });
-          }
+        $scope.save = function() {
+          var newStatus = $scope.isValid ? 'complet' : 'incomplet';
+
+          $http.post('/api/requests/' + $scope.request.shortId, {status: newStatus}).then(function() {
+            $state.go('dashboard.requests.user', {userId: $scope.user._id, banette: newStatus});
+          });
         };
 
         $scope.computeStatus = function() {
