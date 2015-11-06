@@ -11,16 +11,7 @@
         <span ng-if="!action.user">par {{action.params.partenaire.email}}</span>
       </h2>
 
-      <div class="text-right">
-        <button class="btn btn-link" ng-click="action.showDetail = true" ng-if="!action.showDetail && action.params">
-          + Plus
-        </button>
-        <button class="btn btn-link" ng-click="action.showDetail = false" ng-if="action.showDetail">
-          - Moins
-        </button>
-      </div>
-
-      <div ng-if="action.showDetail" class="detail">
+      <div ng-if="action.params" class="detail">
         <div ng-if="action.action === 'document_added'">
           {{action.params.document.originalname}} - {{action.params.document.type | documentFilter}}
         </div>
