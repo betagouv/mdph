@@ -8,7 +8,7 @@ var ActionSchema = new Schema({
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
   action:         { type: String },
   request:        { type: Schema.Types.ObjectId, ref: 'Request' },
-  createdAt:      { type: Date },
+  date:           { type: Date },
   params:         Schema.Types.Mixed
 });
 

@@ -442,6 +442,7 @@ exports.getHistory = function(req, res) {
       request: req.request._id
     })
     .populate('user')
+    .sort('-date')
     .lean()
     .exec(function(err, actions) {
       if (err) return handleError(err);

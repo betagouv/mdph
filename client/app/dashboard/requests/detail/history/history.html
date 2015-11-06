@@ -6,10 +6,10 @@
 
     <div class="timeline-content">
       <h1>{{action.label}}</h1>
-      <h2>{{action.date | moment}}
-        <span ng-if="action.user">par {{action.user.name}}</span>
+      <p>{{action.date | date:'medium'}}
+        <span ng-if="action.user">par {{action.user.name}} - {{action.user.email}}</span>
         <span ng-if="!action.user">par {{action.params.partenaire.email}}</span>
-      </h2>
+      </p>
 
       <div ng-if="action.params" class="detail">
         <div ng-if="action.action === 'document_added'">
