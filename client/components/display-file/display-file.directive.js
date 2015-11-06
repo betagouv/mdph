@@ -7,7 +7,8 @@ angular.module('impactApp')
         file: '=',
         request: '=',
         showValidationActions: '=',
-        onChange: '='
+        onChange: '=',
+        hideTrash: '='
       },
       templateUrl: 'components/display-file/display-file.html',
       controller: function($scope, $http, $cookies) {

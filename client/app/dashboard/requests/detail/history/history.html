@@ -6,9 +6,29 @@
 
     <div class="timeline-content">
       <h1>{{action.label}}</h1>
-      <h2>{{action.date | moment}} <span ng-if="action.user">par {{action.user.name}}</span></h2>
+      <h2>{{action.date | moment}}
+        <span ng-if="action.user">par {{action.user.name}}</span>
+        <span ng-if="!action.user">par {{action.params.partenaire.email}}</span>
+      </h2>
 
-      <!-- TODO: Print details here -->
+      <div class="text-right">
+        <button class="btn btn-link" ng-click="action.showDetail = true" ng-if="!action.showDetail && action.params">
+          + Plus
+        </button>
+        <button class="btn btn-link" ng-click="action.showDetail = false" ng-if="action.showDetail">
+          - Moins
+        </button>
+      </div>
+
+      <div ng-if="action.showDetail" class="detail">
+        <div ng-if="action.action === 'document_added'">
+          {{action.params.document.originalname}} - {{action.params.document.type | documentFilter}}
+        </div>
+        <div ng-if="action.action === 'change_status'">
+          {{action.params.old | requestStatus}} <i class="fa fa-arrow-right"></i> {{action.params.new | requestStatus}}
+        </div>
+        <div ng-if="action.action === 'assign_sector'">Nouveau secteur: {{action.params.secteur}}</div>
+      </div>
     </div>
   </div>
 </div>

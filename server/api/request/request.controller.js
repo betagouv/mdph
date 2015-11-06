@@ -6,6 +6,7 @@ var pdf = require('html-pdf');
 var fs = require('fs');
 var shortid = require('shortid');
 var Imagemin = require('imagemin');
+var async = require('async');
 var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 var auth = require('../../auth/auth.service');
@@ -251,7 +252,7 @@ exports.updateFromUser = function(req, res, next) {
     sendMailNotification(request, req.headers.host, req.log, function(secteur) {
       if (secteur) {
 
-        request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur});
+        request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
         request.set('secteur', secteur).save();
       }
     });
@@ -390,9 +391,10 @@ exports.saveFilePartenaire = function(req, res) {
           Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
             '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
         });
+
+        request.saveActionLog(Actions.DOCUMENT_ADDED, partenaire, req.log, {document: document, partenaire: partenaire});
       });
 
-      request.saveActionLog(Actions.DOCUMENT_ADDED, request.user, req.log, {document: document, partenaire: saved.partenaire});
       return res.json(document);
     });
   });
