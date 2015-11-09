@@ -47,18 +47,20 @@
 
 .timeline-img {
   position: absolute;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 20px;
   height: 20px;
   margin-top: 10px;
-  padding-top: 3px;
   border-radius: 50%;
   box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 
   i {
     display: block;
     color: white;
-    font-size: 15px;
+    font-size: 12px;
   }
 
   &.plus {
@@ -116,7 +118,7 @@
 
 .timeline-content:before {
   position: absolute;
-  top: 16px;
+  top: 14px;
   border-color: transparent;
   content: '';
   height: 0;
