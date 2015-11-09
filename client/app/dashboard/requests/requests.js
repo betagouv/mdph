@@ -56,6 +56,10 @@ angular.module('impactApp')
 
           user: function() {
             return null;
+          },
+
+          banette: function() {
+            return null;
           }
         },
         authenticate: true

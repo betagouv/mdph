@@ -6,7 +6,7 @@ angular.module('impactApp')
 
     return function(input) {
       if (!input) {
-        return 'Nouvelle demande';
+        return 'Nouvelles';
       }
 
       var banette = bannetteById[input];

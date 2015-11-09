@@ -19,10 +19,10 @@ angular.module('impactApp')
         };
 
         $scope.save = function() {
-          var newStatus = $scope.isValid ? 'complet' : 'incomplet';
+          $scope.request.status = $scope.isValid ? 'complet' : 'incomplet';
 
-          $http.post('/api/requests/' + $scope.request.shortId, {status: newStatus}).then(function() {
-            $state.go('dashboard.requests.user', {userId: $scope.user._id, banette: newStatus});
+          $http.post('/api/requests/' + $scope.request.shortId, $scope.request).then(function(result) {
+            $scope.request = result.data;
           });
         };
 

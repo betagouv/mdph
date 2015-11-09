@@ -6,16 +6,11 @@ angular.module('impactApp')
       .state('dashboard.requests.detail', {
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
-        controller: function($scope, $state, $cookies, $window, request) {
+        controller: function($scope, $state, request) {
           $scope.request = request;
-          $scope.token = $cookies.get('token');
-
-          $scope.back = function() {
-            $window.history.back();
-          };
 
           $scope.archive = function(request) {
-            request.status = 'evaluation';
+            request.status = 'archive';
             request.$save(function() {
               $state.go('dashboard.requests.user', {userId: 'me'}, {reload: true});
             });

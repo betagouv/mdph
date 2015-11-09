@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, currentUser, currentSecteur, requests, NotificationService) {
+  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, banette, currentUser, currentSecteur, requests, NotificationService) {
     $scope.requests = requests;
 
     $scope.user = user;
+    $scope.banette = banette;
     $scope.currentSecteur = currentSecteur;
 
     var token = $cookies.get('token');
