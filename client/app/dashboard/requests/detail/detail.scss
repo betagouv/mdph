@@ -7,6 +7,9 @@
 }
 
 .dashboard-demande-header {
+  display: flex;
+  justify-content: space-between;
+
   p {
     margin: 0;
     strong {

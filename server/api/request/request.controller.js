@@ -247,25 +247,24 @@ exports.updateFromAgent = function(req, res, next) {
 exports.updateFromUser = function(req, res, next) {
   var request = req.request;
 
+  request.set(_.omit(req.body, 'user', 'documents'));
+
   if (req.query.isSendingRequest) {
     // Find and notify evaluator through dispatcher
     sendMailNotification(request, req.headers.host, req.log, function(secteur) {
       if (secteur) {
-
         request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-        request.set('secteur', secteur).save();
+        request
+          .set('secteur', secteur)
+          .save();
       }
     });
-  }
 
-  request
-    .set(_.omit(req.body, 'user', 'documents'))
-    .set('updatedAt', Date.now())
-    .set('submittedAt', Date.now())
-    .save(function(err, updated) {
-      if (err) return handleError(req, res, err);
+    request
+      .set('submittedAt', Date.now())
+      .save(function(err, updated) {
+        if (err) return handleError(req, res, err);
 
-      if (req.query.isSendingRequest) {
         request.saveActionLog(Actions.SUBMIT, req.user, req.log);
 
         // Notify user
@@ -283,13 +282,20 @@ exports.updateFromUser = function(req, res, next) {
             ]
           );
         });
-      } else {
+
+        return res.json(updated);
+      });
+  } else {
+    request
+      .save(function(err, updated) {
+        if (err) return handleError(req, res, err);
+
         // TODO: Not precise enough, is also used when request is assigned to an agent (pre_evalaution.controller.js)
         request.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
-      }
 
-      res.json(request);
-    });
+        return res.json(updated);
+      });
+  }
 };
 
 /**
@@ -308,16 +314,7 @@ exports.save = function(req, res, next) {
   var now = Date.now();
 
   var newRequest = _.assign(
-    _.omit(req.body, 'html'),
-    {
-      updatedAt: now
-    },
-    {
-      createdAt: now
-    },
-    {
-      user: req.user._id
-    }
+    _.omit(req.body, 'html'), { user: req.user._id }
   );
 
   Request.create(newRequest, function(err, request) {

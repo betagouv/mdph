@@ -6,9 +6,8 @@ angular.module('impactApp')
       .state('dashboard.requests.detail', {
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
-        controller: function($scope, $state, $cookies, $window, request, user) {
+        controller: function($scope, $state, $cookies, $window, request) {
           $scope.request = request;
-          $scope.user = user;
           $scope.token = $cookies.get('token');
 
           $scope.back = function() {
@@ -37,12 +36,6 @@ angular.module('impactApp')
         resolve: {
           request: function($http, $stateParams, RequestResource) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
-          },
-
-          user: function($http, request) {
-            return $http.get('api/users/' + request.user).then(function(result) {
-              return result.data;
-            });
           },
 
           prestations: function($http) {

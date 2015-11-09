@@ -16,6 +16,7 @@ router.param('shortId', function(req, res, next, shortId) {
     .findOne({
       shortId: req.params.shortId
     })
+    .populate('user')
     .exec(function(err, request) {
       if (!request) {
         return res.sendStatus(404);

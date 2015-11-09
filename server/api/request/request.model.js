@@ -37,6 +37,18 @@ var RequestSchema = new Schema({
   synthese:       Schema.Types.Mixed
 });
 
+RequestSchema.pre('save', function(next) {
+  var now = Date.now();
+
+  if (this.isNew) {
+    this.updatedAt = now;
+  }
+
+  this.updatedAt = now;
+
+  next();
+});
+
 RequestSchema.methods = {
   saveActionLog: function(action, user, log, params, done) {
     ActionModel.create({
