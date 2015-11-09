@@ -2,7 +2,7 @@
   margin-bottom: 10px;
 
   section {
-    background-color: $light-blue;
+    background-color: #4A4C56;
     color: white;
     padding: 4px;
     border-radius: 5px;
@@ -17,6 +17,10 @@
       color: black;
       padding: 15px;
       border-radius: 5px;
+
+      h3 {
+        margin-top: 0;
+      }
 
       .btn > i{
         margin-right: 10px;

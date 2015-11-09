@@ -24,13 +24,16 @@
         </a>
       </div>
 
-      <div class="btn-group-vertical" role="group">
+      <div class="buttons" role="group">
         <button class="btn btn-success" ng-if="request.evaluator._id !== currentUser._id" ng-click="assigner()">
           <i class="fa fa-download"></i> Assigner
         </button>
-
-        <button class="btn btn-sm btn-danger" ng-click="supprimer(request)"><i class="fa fa-trash"></i> Supprimer</button>
-        <button class="btn btn-sm btn-default" ng-click="archive(request)"><i class="fa fa-archive"></i> Archiver</button>
+        <button class="btn btn-danger" ng-click="supprimer(request)">
+          <i class="fa fa-trash"></i> Supprimer
+        </button>
+        <!-- <button class="btn btn-default" ng-click="archive(request)">
+          <i class="fa fa-archive"></i> Archiver
+        </button> -->
       </div>
     </div>
   </div>

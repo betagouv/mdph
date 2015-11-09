@@ -34,9 +34,14 @@
     border-right: 1px solid #D6D6D6;
   }
 
-  .btn-group-vertical {
+  .buttons {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    > button {
+      margin: 5px;
+    }
   }
 }
