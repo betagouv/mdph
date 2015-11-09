@@ -8,7 +8,7 @@
       <h1>{{action.label}}</h1>
       <p>{{action.date | date:'medium'}}
         <span ng-if="action.user">par {{action.user.name}} - {{action.user.email}}</span>
-        <span ng-if="!action.user">par {{action.params.partenaire.email}}</span>
+        <span ng-if="!action.user">par un partenaire: {{action.params.partenaire.email}}</span>
       </p>
 
       <div ng-if="action.params" class="detail">
