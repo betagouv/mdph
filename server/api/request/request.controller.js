@@ -5,9 +5,7 @@ var path = require('path');
 var pdf = require('html-pdf');
 var fs = require('fs');
 var shortid = require('shortid');
-var Imagemin = require('imagemin');
 var async = require('async');
-var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
@@ -27,27 +25,9 @@ var Mailer = require('../send-mail/send-mail.controller');
 var ActionModel = require('./action.model');
 var Actions = require('../../components/actions').actions;
 var ActionsById = require('../../components/actions').actionsById;
+var ResizeAndMove = require('../../components/resize-image');
 
 var domain = process.env.DOMAIN || config.DOMAIN;
-
-function resizeAndMove(file, next) {
-  if (file.mimetype === 'image/jpeg') {
-    new Imagemin()
-      .src(file.path)
-      .dest(file.destination)
-      .use(imageminJpegRecompress({
-        progressive: true,
-        loops: 7,
-        min: 30,
-        strip: true,
-        quality: 'low',
-        target: 0.7
-      }))
-      .run();
-  }
-
-  next();
-}
 
 function generatePdf(request, user, host, done) {
   Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
@@ -340,7 +320,7 @@ function processDocument(file, fileData, done) {
     return done({status: 304});
   }
 
-  resizeAndMove(file, function() {
+  ResizeAndMove(file, function() {
     var document = _.extend(file, {
       type: fileData.type,
       category: fileData.category,

@@ -6,7 +6,7 @@ var moment = require('moment');
 
 var sections = require('../api/sections/sections.json');
 var Prestation = require('../api/prestation/prestation.controller');
-var recapitulatif = require('./register_handlebars').recapitulatif;
+var recapitulatif = require('./register-handlebars').recapitulatif;
 
 function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){

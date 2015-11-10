@@ -10,7 +10,6 @@ var secretKey = process.env.SECRET_KEY;
 var mailjet = new Mailjet(apiKey, secretKey);
 
 exports.sendMail = function(mail, title, body, attachements) {
-  console.log(process.env);
   if (process.env.NODE_ENV === 'development') {
     console.log('Mail:\t' + mail);
     console.log('Title:\t' + 'Impact - ' + title);
