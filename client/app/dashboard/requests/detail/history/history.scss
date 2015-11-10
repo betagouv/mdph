@@ -83,9 +83,13 @@
     background: $brand-warning;
   }
 
-  &.folder {
-    background: $brand-warning;
-  }
+    &.folder {
+      background: $brand-warning;
+    }
+
+    &.trash {
+      background: $brand-danger;
+    }
 }
 
 .timeline-content {

@@ -11,6 +11,9 @@ angular.module('impactApp')
     document_added: {
       fa: 'upload'
     },
+    document_removed: {
+      fa: 'trash'
+    },
     update_answers: {
       fa: 'edit'
     },

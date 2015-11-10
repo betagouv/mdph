@@ -25,7 +25,7 @@ var Mailer = require('../send-mail/send-mail.controller');
 var ActionModel = require('./action.model');
 var Actions = require('../../components/actions').actions;
 var ActionsById = require('../../components/actions').actionsById;
-var ResizeAndMove = require('../../components/resize-image');
+var resizeAndMove = require('../../components/resize-image');
 
 var domain = process.env.DOMAIN || config.DOMAIN;
 
@@ -320,7 +320,7 @@ function processDocument(file, fileData, done) {
     return done({status: 304});
   }
 
-  ResizeAndMove(file, function() {
+  resizeAndMove(file, function() {
     var document = _.extend(file, {
       type: fileData.type,
       category: fileData.category,
@@ -415,6 +415,7 @@ exports.deleteFile = function(req, res) {
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
 
+      request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
       return res.send(file).status(200);
     });
   });

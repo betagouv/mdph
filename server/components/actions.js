@@ -18,6 +18,11 @@ var actions = {
     label: 'Ajout de document',
     fa: 'file'
   },
+  DOCUMENT_REMOVED: {
+    id: 'document_removed',
+    label: 'Supression de document',
+    fa: 'file'
+  },
   UPDATE_ANSWERS: {
     id: 'update_answers',
     label: 'Mise à jour des réponses',
