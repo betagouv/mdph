@@ -66,8 +66,6 @@ var PdfConvert = function(rootPath) {
     }
 
     var outputPath = path.join(outputDir, path.basename(file.path)) + '.pdf';
-    console.log(outputPath);
-
     var args = [localPath, '-compress', 'jpeg', '-gravity', 'center', '-resize', '1140x1653', '-extent', '1240x1753',
       '-units', 'PixelsPerInch', '-density', '150x150', outputPath];
     var convert = spawn('convert', args);
