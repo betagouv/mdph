@@ -27,9 +27,15 @@ angular.module('impactApp')
         $scope.setValid = function(status) {
           $scope.file.validation = status;
           $scope.showValidationActions = false;
-          $scope.showValidationStatus = true;
+          $scope.showValidationTempStatus = true;
           $scope.onChange();
         };
+
+        $scope.$on('documentValidationSaved', function() {
+          $scope.showValidationActions = false;
+          $scope.showValidationTempStatus = false;
+          $scope.showValidationStatus = true;
+        });
 
         // Retro-compat
         $scope.getFilename = function(file) {

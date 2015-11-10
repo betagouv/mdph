@@ -210,6 +210,7 @@ exports.updateFromAgent = function(req, res, next) {
   switch (updated.status) {
     case 'complet':
       sendMailCompletude(request, req.user);
+      request.set('documents', updated.documents);
       break;
     case 'incomplet':
       var files = _.filter(updated.documents, 'validation', false);

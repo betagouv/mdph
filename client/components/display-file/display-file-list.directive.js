@@ -22,6 +22,7 @@ angular.module('impactApp')
           $scope.request.status = $scope.isValid ? 'complet' : 'incomplet';
 
           $http.post('/api/requests/' + $scope.request.shortId, $scope.request).then(function(result) {
+            $scope.$broadcast('documentValidationSaved');
             $scope.request = result.data;
           });
         };

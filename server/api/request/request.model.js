@@ -7,10 +7,9 @@ var ActionModel = require('./action.model');
 
 var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
-  status:         { type: String, enum: ['validé', 'rejet', 'a_traiter'] },
   type:           { type: String },
   category:       { type: String },
-
+  validation:     { type: Boolean },
   originalname:   { type: String },
   filename:       { type: String },
   encoding:       { type: String },
