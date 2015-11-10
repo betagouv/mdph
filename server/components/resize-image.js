@@ -1,5 +1,5 @@
-var Imagemin = require('imagemin');
-var imageminJpegRecompress = require('imagemin-jpeg-recompress');
+const Imagemin = require('imagemin');
+const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 module.exports = function(file, done) {
   if (file.mimetype === 'image/jpeg') {
