@@ -9,7 +9,7 @@
 
   <div ng-if="request._id">
     <div ui-view="en_cours" ng-if="request.status === 'en_cours'"></div>
-    <div ui-view="emise" ng-if="request.status === 'emise'"></div>
+    <div ui-view="emise" ng-if="request.status !== 'en_cours'"></div>
   </div>
 </div>
 
