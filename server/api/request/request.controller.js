@@ -100,10 +100,16 @@ function sendMailCompletude(request, evaluator) {
   );
 }
 
-function sendMailDemandeDocuments(request, evaluator) {
+function sendMailDemandeDocuments(request, files, evaluator) {
+  var body = 'Les documents obligatoires que vous nous avez transmis n\'ont pas tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '.\nVous devez vous reconnecter pour renvoyer les pièces en erreur suivantes:\n';
+
+  files.forEach(function(file) {
+    body += '- ' + file.originalname + '\n';
+  });
+
   Mailer.sendMail(request.user.email,
     'Demande de complétude de votre dossier',
-    'Les documents obligatoires que vous nous avez transmis n\'ont pas tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '. Vous devez vous reconnecter pour renvoyer les pièces en erreur suivantes: ##TODO pièces en erreur##'
+    body
   );
 }
 
@@ -218,16 +224,17 @@ exports.transfer = function(req, res, next) {
  */
 exports.updateFromAgent = function(req, res, next) {
   var request = req.request;
+  var updated = req.body;
+  var actionDetail = {old: request.status, new: updated.status};
 
-  var newStatus = req.body.status;
-  var oldStatus = request.status;
-
-  switch (newStatus) {
+  switch (updated.status) {
     case 'complet':
       sendMailCompletude(request, req.user);
       break;
     case 'incomplet':
-      sendMailDemandeDocuments(request, req.user);
+      var files = _.filter(updated.documents, 'validation', false);
+      request.set('documents', updated.documents);
+      sendMailDemandeDocuments(request, files, req.user);
       break;
   }
 
@@ -236,7 +243,7 @@ exports.updateFromAgent = function(req, res, next) {
     .save(function(err, request) {
       if (err) return handleError(req, res, err);
 
-      request.saveActionLog(Actions.CHANGE_STATUS, req.user, req.log, {old: oldStatus, new: newStatus});
+      request.saveActionLog(Actions.CHANGE_STATUS, req.user, req.log, actionDetail);
       res.json(request);
     });
 };
