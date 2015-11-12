@@ -31,7 +31,11 @@ angular.module('impactApp')
     };
 
     $scope.getTitle = function(prestationId) {
-      return prestationsById[prestationId].title;
+      if (!prestationId) {
+        return prestationId;
+      }
+
+      return prestationsById[prestationId.toLowerCase()].title;
     };
 
     $scope.isSelected = function(prestation) {
