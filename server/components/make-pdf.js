@@ -60,13 +60,13 @@ exports.make = function(request, user, recapitulatifHtml, done) {
 
       ],
 
-      function(err, pdfPath) {
+      function(err, pdfPath, joinCleanupCallback) {
         if (err) return done(err);
-
         printDebug('make: finished building pdf');
 
         setTimeout(function() {
           cleanupCallback();
+          joinCleanupCallback();
         }, 600000);
 
         return done(null, pdfPath);
