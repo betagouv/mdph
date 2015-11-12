@@ -2,8 +2,6 @@ test:
   pre:
     - npm install -g bower
     - bower install
-    - sudo chown -R $USER /usr/local
-    # - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
 machine:
   node:
-    version: 2.3.3
+    version: 4.2.1
