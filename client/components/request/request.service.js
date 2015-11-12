@@ -48,7 +48,7 @@ angular.module('impactApp')
         return false;
       }
 
-      return allMandatoryFilesPresent(request) && noInvalidatedFiles(request);
+      return allMandatoryFilesPresent(request) && !noInvalidatedFiles(request);
     }
 
     var isAdult = function(request) {

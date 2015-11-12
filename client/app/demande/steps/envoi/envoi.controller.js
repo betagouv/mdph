@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('EnvoiCtrl', function($scope, step, request, $sce, recapitulatif) {
+  .controller('EnvoiCtrl', function($scope, step, request, $cookies) {
     $scope.request = request;
     $scope.step = step;
-
-    $scope.recapitulatifHtml = $sce.trustAsHtml(recapitulatif);
+    $scope.token = $cookies.get('token');
   });
