@@ -32,7 +32,6 @@
 
         &.complete {
           background-color: lighten($light-blue, 25%);
-          color: white;
 
           &:before {
             content: '\f058';
@@ -41,7 +40,7 @@
         }
 
         &.incomplete {
-          background-color: lighten($light-blue, 25%);
+          background-color: $light-red;
           color: white;
 
           &:before {
