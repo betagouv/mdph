@@ -12,15 +12,17 @@ angular.module('impactApp')
       return calculAge(dateNaiss);
     };
   })
-  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentMdph, request, documentTypes, NotificationService, prestations, prestationsQuitus) {
+  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentUser, currentMdph, request, DocumentsService, NotificationService, prestations, prestationsQuitus) {
     $scope.token = $cookies.get('token');
     $scope.toutesPrestations = prestations;
     $scope.prestationsQuitus = prestationsQuitus;
     $scope.currentMdph = currentMdph;
+    $scope.currentUser = currentUser;
 
     var prestationsById = _.indexBy(prestations, 'id');
-    $scope.documentTypesById = _.indexBy(documentTypes, 'id');
-    $scope.filesVM = _.groupBy(request.documents, 'type');
+
+    $scope.documentsObligatoires = DocumentsService.filterMandatory(request.documents);
+    $scope.documentsComplementaires = DocumentsService.filterNonMandatory(request.documents);
 
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {
@@ -44,12 +46,5 @@ angular.module('impactApp')
     $scope.addPrestation = function(prestation) {
       request.prestations.push(prestation.label);
       request.$update();
-    };
-
-    $scope.assigner = function() {
-      request.evaluator = $scope.currentUser._id;
-      request.$update(function() {
-        NotificationService.createNotification(request, 'espace_perso.liste_demandes.demande.questionnaire', 'Votre demande est en cours d\'instruction.');
-      });
     };
   });

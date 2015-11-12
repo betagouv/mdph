@@ -6,7 +6,7 @@ var fs = require('fs');
 var _ = require('lodash');
 var path = require('path');
 var async = require('async');
-var Canvas = require('canvas');
+var spawn = require('child_process').spawn;
 
 var endsWith = function(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;
@@ -39,8 +39,8 @@ var PdfConvert = function(rootPath) {
     async.map(fileList, _convertSingle.bind(null, outputDir), callback);
   };
 
-  var _convertSingle = function(outputDir, file, callback) {
-    callback = callback || function() { };
+  var _convertSingle = function(outputDir, file, done) {
+    done = done || _.noop;
 
     if (!file) {
       throw new Error('File not found.');
@@ -62,36 +62,18 @@ var PdfConvert = function(rootPath) {
 
     if (isPdf(file)) {
       file.path = localPath;
-      return callback(null, file);
+      return done(null, file);
     }
 
-    fs.readFile(localPath, function(err, data) {
-      if (err) {
-        return callback(err);
-      }
+    var outputPath = path.join(outputDir, path.basename(file.path)) + '.pdf';
+    var args = [localPath, '-compress', 'jpeg', '-gravity', 'center', '-resize', '1140x1653', '-extent', '1240x1753',
+      '-units', 'PixelsPerInch', '-density', '150x150', outputPath];
+    var convert = spawn('convert', args);
 
-      data = convertDataToPDF(data);
-      file.path = path.join(outputDir, path.basename(file.path));
-
-      fs.writeFile(file.path, data, function(err) {
-        return callback(err, file);
-      });
+    convert.on('exit', function(code) {
+      file.path = outputPath;
+      done(null, file);
     });
-  };
-
-  var convertDataToPDF = function(data) {
-    var img = new Canvas.Image();
-    img.dataMode = Canvas.Image.MODE_MIME | Canvas.Image.MODE_IMAGE;
-    img.src = data;
-
-    var width = img.width / 2;
-    var height = img.height / 2;
-    var canvas = new Canvas(width, height, 'pdf');
-    var ctx = canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = true;
-    ctx.drawImage(img, 0, 0, width, height);
-
-    return canvas.toBuffer('image/jpeg');
   };
 
   /*

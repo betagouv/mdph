@@ -1,25 +1,15 @@
 'use strict';
 
 angular.module('impactApp')
-  .filter('requestStatus', function() {
+  .filter('requestStatus', function(banettes) {
+    var bannetteById = _.indexBy(banettes, 'id');
+
     return function(input) {
       if (!input) {
-        return 'Nouvelle demande';
+        return 'Nouvelles';
       }
 
-      switch (input) {
-        case 'en_cours':
-          return 'En cours';
-        case 'emise':
-          return 'Émise';
-        case 'a_completer':
-          return 'À compléter';
-        case 'evaluation':
-          return 'En cours d\'évaluation';
-        case 'reponse':
-          return 'Réponse obtenue';
-        default:
-          return 'TODO';
-      }
+      var banette = bannetteById[input];
+      return banette ? banette.label : 'Label not found';
     };
   });

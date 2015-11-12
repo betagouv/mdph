@@ -1,6 +1,14 @@
 <div id="pre-evaluation">
   <section>
-    <h2>Récapitulatif</h2>
+    <h2>
+      Récapitulatif
+      <a
+        target="_blank"
+        href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}"
+        download>
+          <i class="fa fa-download"></i>
+      </a>
+    </h2>
     <div class="content">
       <div class="embed-responsive embed-responsive-16by9">
         <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
@@ -8,45 +16,48 @@
     </div>
   </section>
 
-  <section>
-    <h2>Pièces jointes</h2>
-    <div class="content">
-      <div ng-if="request.documents.length === 0">
-        Aucune pièce jointe
-      </div>
-      <div ng-repeat="(type, files) in filesVM">
-        {{documentTypesById[type].label}}
-        <ul class="list-group">
-          <li ng-repeat="document in files" class="list-group-item">
-            <display-file file="document" request="request"></display-file>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <div class="row">
+    <div class="col-md-6">
+      <section>
+        <h2>Pièces jointes</h2>
+        <div class="content">
+          <h3>Obligatoires</h3>
+          <display-file-list files="documentsObligatoires" request="request" user="currentUser" show-validation-actions="request.status === 'emise'"></display-file-list>
 
-  <section>
-    <h2>Prestations</h2>
-    <div class="content">
-      <div class="user">
-        <h3>Prestations demandées par l'utilisateur</h3>
-        <ul>
-          <li ng-if="request.prestations.length === 0">Aucune prestation</li>
-          <li ng-repeat="prestation in request.prestations">
-            {{getTitle(prestation)}}
-          </li>
-        </ul>
-      </div>
-
-      <div class="quitus" ng-if="currentMdph.zipcode === '14'">
-        <h3>Prestations simulées</h3>
-        <ul>
-          <li ng-if="prestationsQuitus.length === 0">Aucune prestation</li>
-          <li ng-repeat="prestation in prestationsQuitus">
-            {{prestation.title}}
-          </li>
-        </ul>
-      </div>
+          <div ng-if="documentsComplementaires.length > 0">
+            <hr>
+            <h3>Complémentaires</h3>
+            <display-file-list files="documentsComplementaires" request="request"></display-file-list>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+    <div class="col-md-6">
+      <section>
+        <h2>Prestations</h2>
+        <div class="content">
+          <div class="user">
+            <h3 ng-if="currentMdph.zipcode === '14'">Prestations demandées par l'utilisateur</h3>
+            <ul class="list-group">
+              <li class="list-group-item" ng-if="request.prestations.length === 0">Aucune prestation demandée</li>
+              <li class="list-group-item" ng-repeat="prestation in request.prestations">
+                {{getTitle(prestation)}}
+              </li>
+            </ul>
+          </div>
+
+          <div class="quitus" ng-if="currentMdph.zipcode === '14'">
+            <h3>Prestations recommandées</h3>
+            <ul class="list-group">
+              <li class="list-group-item" ng-if="prestationsQuitus.length === 0">Aucune prestation recommandée</li>
+              <li class="list-group-item" ng-repeat="prestation in prestationsQuitus">
+                {{prestation.title}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
 </div>

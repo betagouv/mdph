@@ -3,15 +3,9 @@
     <div class="col-sm-2 menu-dashboard">
       <h2>Vos demandes</h2>
       <ul>
-        <li>
-          <a ui-sref-active="active" ui-sref="dashboard.requests.userIncomplete({userId: currentUser._id})">
-            Demandes incomplètes
-          </a>
-          <a ui-sref-active="active" ui-sref="dashboard.requests.user({userId: currentUser._id})">
-            En cours
-          </a>
-          <a ui-sref-active="active" ui-sref="dashboard.requests.userArchive({userId: currentUser._id})">
-            Archivées
+        <li ng-repeat="banette in banettes">
+          <a ui-sref-active="active" ui-sref="dashboard.requests.user({userId: currentUser._id, banette: banette.id})">
+            {{banette.label}}
           </a>
         </li>
       </ul>

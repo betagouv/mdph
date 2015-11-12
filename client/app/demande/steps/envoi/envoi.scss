@@ -4,12 +4,6 @@
     margin-top: 15px;
   }
 
-  .demande-emise-title {
-    .fa-envelope {
-      color: lighten($lighter-blue, 25%);
-    }
-  }
-
   .not-ready {
     @extend .alert, .alert-warning;
     h2 {

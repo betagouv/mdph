@@ -100,11 +100,13 @@ hr {
 @import 'dashboard/requests/detail/detail.scss';
 @import 'dashboard/requests/detail/evaluation/evaluation.scss';
 @import 'dashboard/requests/detail/evaluation/section/section.scss';
+@import 'dashboard/requests/detail/history/history.scss';
 @import 'dashboard/requests/detail/pre_evaluation/pre_evaluation.scss';
 @import 'dashboard/users/partenaires/edit.scss';
 @import 'demande/demande.scss';
 @import 'demande/header/header.scss';
 @import 'demande/steps/documents/documents.scss';
+@import 'demande/steps/envoi/emise/emise.scss';
 @import 'demande/steps/envoi/envoi.scss';
 @import 'demande/steps/obligatoires/identites/identites.scss';
 @import 'demande/steps/steps.scss';

@@ -10,14 +10,22 @@
         </div>
       </div>
     </form>
-    <h2>Demandes assignées à {{user.name}}</h2>
+    <i class="fa fa-folder-open"></i> <span>{{banette | requestStatus}}</span>
+
+    <h2>{{title}}</h2>
+
     <div class="tools">
-      <button class="btn btn-sm btn-primary" ng-click="download(requests)">
-        <i class="fa fa-download"></i> Télécharger les demandes
-      </button>
-      <button class="btn btn-sm btn-default" ng-if="showArchiveAction" ng-click="archive(requests)">
-        <i class="fa fa-archive"></i> Archiver les demandes
-      </button>
+      <div ng-if="user">
+        <button class="btn btn-sm btn-primary" ng-click="download(requests)">
+          <i class="fa fa-download"></i> Télécharger les demandes
+        </button>
+      </div>
+
+      <div ng-if="!user">
+        <button class="btn btn-sm btn-primary" ng-click="assigner(requests)">
+          <i class="fa fa-download"></i> Assigner
+        </button>
+      </div>
     </div>
   </div>
 
@@ -32,6 +40,7 @@
         <th>Bénéficiaire</th>
         <th>Statut</th>
         <th>Émise le</th>
+        <th>Assignée à</th>
       </thead>
       <tbody>
         <tr
@@ -57,7 +66,7 @@
             <span class="user">
               <a ui-sref="dashboard.requests.detail.pre_evaluation({shortId: request.shortId})">
                 <span ng-if="request.formAnswers.identites.beneficiaire">
-                  {{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                  {{request.formAnswers.identites.beneficiaire.nom | capitalize}}, {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}
                 </span>
                 <span ng-if="!request.formAnswers.identites.beneficiaire">
                   Demande incomplète, bénéficiaire non remplis
@@ -69,6 +78,7 @@
             {{request.status | requestStatus}}
           </td>
           <td>{{request.submittedAt | date}}</td>
+          <td>{{request.evaluator ? request.evaluator.name : 'Non assignée'}}</td>
         </tr>
       </tbody>
     </table>

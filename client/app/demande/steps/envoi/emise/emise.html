@@ -1,12 +1,17 @@
-<h2 class="demande-emise-title">Demande émise</h2>
+<div id="demande-emise">
+  <section>
+    <h2>
+      Récapitulatif
+      <a
+        target="_blank"
+        href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}"
+        download>
+          <i class="fa fa-download"></i>
+      </a>
+    </h2>
 
-<p>Votre demande à été transférée à la MDPH {{mdph.name}}<span ng-if="request.submittedAt"> le {{request.submittedAt | moment}}</span>.</p>
-
-<accordion>
-  <accordion-group is-open="recapitulatifIsOpen">
-    <accordion-heading>
-      Afficher le récapitulatif <i class="pull-right fa" ng-class="{'fa-chevron-down': recapitulatifIsOpen, 'fa-chevron-right': !recapitulatifIsOpen}"></i>
-    </accordion-heading>
-    <div ng-bind-html="recapitulatifHtml"></div>
-  </accordion-group>
-</accordion>
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
+    </div>
+  </section>
+</div>

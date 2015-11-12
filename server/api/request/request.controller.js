@@ -3,16 +3,12 @@
 var _ = require('lodash');
 var path = require('path');
 var pdf = require('html-pdf');
-var mongoose = require('mongoose');
 var fs = require('fs');
 var shortid = require('shortid');
 var async = require('async');
-var Imagemin = require('imagemin');
-var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
-var Flattener = require('../../components/flatten');
 var Recapitulatif = require('../../components/recapitulatif');
 var Dispatcher = require('../../components/dispatcher');
 var Synthese = require('../../components/synthese');
@@ -26,14 +22,75 @@ var Partenaire = require('../partenaire/partenaire.model');
 var Mdph = require('../mdph/mdph.model');
 var Mailer = require('../send-mail/send-mail.controller');
 
+var ActionModel = require('./action.model');
+var Actions = require('../../components/actions').actions;
+var ActionsById = require('../../components/actions').actionsById;
+var resizeAndMove = require('../../components/resize-image');
+
 var domain = process.env.DOMAIN || config.DOMAIN;
 
-function findRequest(req, callback) {
-  if (req.request) {
-    return callback(null, req.request);
-  }
+function generatePdf(request, user, host, done) {
+  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
+    if (err) return done(err);
 
-  return Request.findOne({shortId: req.params.shortId}).exec(callback);
+    return MakePdf.make(request, user, html, done);
+  });
+}
+
+function sendMailNotification(request, host, log, callback) {
+  Dispatcher.findSecteur(request, function(secteur) {
+    if (!secteur) {
+      callback();
+    }
+
+    var type = DateUtils.getType(request.formAnswers);
+
+    if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
+      var evaluators = secteur.evaluators[type];
+      evaluators.forEach(function(evaluator) {
+        if (request.mdph === '59') {
+          generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfPath) {
+            if (err) { log.error(err); }
+
+            Mailer.sendMail(
+              evaluator.email,
+              'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
+              [
+                {
+                  filename: request.shortId + '.pdf',
+                  path: pdfPath
+                }
+              ]
+            );
+          });
+        } else {
+          Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
+        }
+      });
+    }
+
+    callback(secteur);
+  });
+}
+
+function sendMailCompletude(request, evaluator) {
+  Mailer.sendMail(request.user.email,
+    'Accusé de complétude de votre dossier',
+    'Les documents obligatoires que vous nous avez transmis ont tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '. Votre dosser est désormais considéré comme complet.'
+  );
+}
+
+function sendMailDemandeDocuments(request, files, evaluator) {
+  var body = 'Les documents obligatoires que vous nous avez transmis n\'ont pas tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '.\nVous devez vous reconnecter pour renvoyer les pièces en erreur suivantes:\n';
+
+  files.forEach(function(file) {
+    body += '- ' + file.originalname + '\n';
+  });
+
+  Mailer.sendMail(request.user.email,
+    'Demande de complétude de votre dossier',
+    body
+  );
 }
 
 /**
@@ -67,6 +124,7 @@ exports.index = function(req, res) {
 
     Request.find(search)
       .populate('user', 'name')
+      .populate('evaluator', 'name')
       .sort('-submittedAt')
       .exec(function(err, requests) {
         if (err) return handleError(req, res, err);
@@ -77,12 +135,7 @@ exports.index = function(req, res) {
 
 // Get a single request
 exports.show = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    if (err) return handleError(req, res, err);
-    if (!request) { return res.sendStatus(404); }
-
-    return res.json(request);
-  });
+  return res.json(req.request);
 };
 
 // Get a single request
@@ -101,23 +154,18 @@ exports.showPartenaire = function(req, res, next) {
 
 // Deletes a request from the DB and FS
 exports.destroy = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (err) return handleError(req, res, err);
-    if (!request) return res.sendStatus(404);
-
-    if (request.documents && request.documents.length > 0) {
-      request.documents.forEach(function(requestDoc) {
-        fs.unlink(requestDoc.path, function(err) {
-          if (err) req.log.error(err);
-        });
+  if (req.request.documents && req.request.documents.length > 0) {
+    req.request.documents.forEach(function(requestDoc) {
+      fs.unlink(requestDoc.path, function(err) {
+        if (err) req.log.error(err);
       });
-    }
-
-    request.remove(function(err) {
-      if (err) { return handleError(req, res, err); }
-
-      return res.sendStatus(204);
     });
+  }
+
+  req.request.remove(function(err) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.sendStatus(204);
   });
 };
 
@@ -133,153 +181,117 @@ exports.showUserRequests = function(req, res, next) {
   .sort('-updatedAt')
   .exec(function(err, requests) {
     if (err) return handleError(req, res, err);
-    if (!requests) return res.json(401);
+    if (!requests) return res.status(401);
     res.json(requests);
   });
 };
-
-var generatePdf = function(request, user, host, done) {
-  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
-    if (err) return done(err);
-
-    return MakePdf.make(request, user, html, done);
-  });
-};
-
-function sendMailNotification(request, host, log, callback) {
-  Dispatcher.findSecteur(request, function(secteur) {
-    if (secteur) {
-
-      var estAdulte = DateUtils.isAdult(request.formAnswers);
-      var type = estAdulte ? 'adulte' : 'enfant';
-
-      if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-        var evaluators = secteur.evaluators[type];
-        evaluators.forEach(function(evaluator) {
-          if (request.mdph === '59') {
-            generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfPath) {
-              if (err) { log.error(err); }
-
-              Mailer.sendMail(
-                evaluator.email,
-                'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
-                [
-                  {
-                    filename: request.shortId + '.pdf',
-                    path: pdfPath
-                  }
-                ]
-              );
-            });
-          } else {
-            Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-          }
-        });
-      }
-
-      callback(secteur);
-    } else {
-      callback();
-    }
-  });
-}
 
 /**
  * Transfer request
  */
 exports.transfer = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    if (!request) {
-      return res.sendStatus(404);
-    }
-
-    request
-      .set('user', req.params.userId)
-      .set('-updatedAt', Date.now())
-      .save(function(err, request) {
-        if (err) return handleError(req, res, err);
-        res.json(request);
-      });
-  });
-};
-
-exports.updateStatus = function(req, res, next) {
-  async.waterfall([
-    function(callback) {
-      findRequest(req, callback);
-    },
-
-    // Check is request exists
-    function(request, callback) {
-      if (!request) {
-        return res.sendStatus(404);
-      }
-
-      request.set('status', req.body.status).save(callback);
-    }
-
-  ], function(err, request) {
-    if (err) return handleError(req, res, err);
-    res.json(request);
-  });
+  req.request
+    .set('user', req.params.userId)
+    .set('-updatedAt', Date.now())
+    .save(function(err, request) {
+      if (err) return handleError(req, res, err);
+      res.json(request);
+    });
 };
 
 /**
- * Update request
+ * Update request / agent side
  */
-exports.update = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    if (err) { return handleError(req, res, err); }
+exports.updateFromAgent = function(req, res, next) {
+  var request = req.request;
+  var updated = req.body;
+  var actionDetail = {old: request.status, new: updated.status};
 
-    if (!request) { return res.sendStatus(404); }
+  switch (updated.status) {
+    case 'complet':
+      sendMailCompletude(request, req.user);
+      request.set('documents', updated.documents);
+      break;
+    case 'incomplet':
+      var files = _.filter(updated.documents, 'validation', false);
+      request.set('documents', updated.documents);
+      sendMailDemandeDocuments(request, files, req.user);
+      break;
+  }
 
-    if (req.query.isSendingRequest) {
-      // Find and notify evaluator through dispatcher
-      sendMailNotification(request, req.headers.host, req.log, function(secteur) {
-        if (secteur) {
-          request.set('secteur', secteur).save();
-        }
-      });
-    }
+  request
+    .set('status', req.body.status)
+    .save(function(err, request) {
+      if (err) return handleError(req, res, err);
+
+      request.saveActionLog(Actions.CHANGE_STATUS, req.user, req.log, actionDetail);
+      res.json(request);
+    });
+};
+
+/**
+ * Update request / user side
+ */
+exports.updateFromUser = function(req, res, next) {
+  var request = req.request;
+
+  request.set(_.omit(req.body, 'user', 'documents'));
+
+  if (req.query.isSendingRequest) {
+    // Find and notify evaluator through dispatcher
+    sendMailNotification(request, req.headers.host, req.log, function(secteur) {
+      if (secteur) {
+        request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
+        request
+          .set('secteur', secteur)
+          .save();
+      }
+    });
 
     request
-      .set(_.omit(req.body, 'user', 'documents'))
-      .set('updatedAt', Date.now())
       .set('submittedAt', Date.now())
       .save(function(err, updated) {
         if (err) return handleError(req, res, err);
 
-        if (req.query.isSendingRequest) {
-          // Notify user
-          generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
-            if (err) { req.log.error(err); }
+        request.saveActionLog(Actions.SUBMIT, req.user, req.log);
 
-            Mailer.sendMail(req.user.email,
-              'Accusé de réception du téléservice',
-              'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
-              [
-                {
-                  filename: request.shortId + '.pdf',
-                  path: pdfPath
-                }
-              ]
-            );
-          });
-        }
+        // Notify user
+        generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
+          if (err) { req.log.error(err); }
 
-        res.json(request);
+          Mailer.sendMail(req.user.email,
+            'Accusé de réception du téléservice',
+            'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
+            [
+              {
+                filename: request.shortId + '.pdf',
+                path: pdfPath
+              }
+            ]
+          );
+        });
+
+        return res.json(updated);
       });
-  });
+  } else {
+    request
+      .save(function(err, updated) {
+        if (err) return handleError(req, res, err);
+
+        // TODO: Not precise enough, is also used when request is assigned to an agent (pre_evalaution.controller.js)
+        request.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
+
+        return res.json(updated);
+      });
+  }
 };
 
 /**
  * Resend mail notification
  */
 exports.resendMail = function(req, res, next) {
-  findRequest(req, function(err, request) {
-    sendMailNotification(request, req.headers.host, req.log, function() {
-      res.sendStatus(200);
-    });
+  sendMailNotification(req.request, req.headers.host, req.log, function() {
+    res.sendStatus(200);
   });
 };
 
@@ -290,103 +302,87 @@ exports.save = function(req, res, next) {
   var now = Date.now();
 
   var newRequest = _.assign(
-    _.omit(req.body, 'html'),
-    {
-      updatedAt: now
-    },
-    {
-      createdAt: now
-    },
-    {
-      user: req.user._id
-    }
+    _.omit(req.body, 'html'), { user: req.user._id }
   );
 
   Request.create(newRequest, function(err, request) {
     if (err) return handleError(req, res, err);
+
+    request.saveActionLog(Actions.CREATION, req.user, req.log);
     return res.status(201).send(request);
   });
 };
 
-function resizeAndMove(file, next) {
-  if (file.mimetype === 'image/jpeg') {
-    new Imagemin()
-      .src(file.path)
-      .dest(file.destination)
-      .use(imageminJpegRecompress({
-        progressive: true,
-        loops: 7,
-        min: 30,
-        strip: true,
-        quality: 'low',
-        target: 0.7
-      }))
-      .run();
-  }
-
-  next();
-}
-
 /**
  * File upload
  */
-exports.saveFile = function(req, res, next) {
-  if (typeof req.file === 'undefined') {
-    return res.sendStatus(304);
+function processDocument(file, fileData, done) {
+  if (typeof file === 'undefined') {
+    return done({status: 304});
   }
 
-  var currentFile = req.file;
+  resizeAndMove(file, function() {
+    var document = _.extend(file, {
+      type: fileData.type,
+      category: fileData.category,
+      partenaire: fileData.partenaire
+    });
 
-  async.waterfall([
-    function(callback) {
-      resizeAndMove(currentFile, callback);
-    },
+    return done(null, document);
+  });
+}
 
-    function(callback) {
-      findRequest(req, function(err, request) {
-        if (err) return handleError(req, res, err);
-        if (!request) return res.sendStatus(404);
-
-        callback(null, request);
-      });
-    },
-
-    function(request) {
-      var data = JSON.parse(req.body.data);
-      var document = _.extend(currentFile, {type: data.type, category: data.category});
-
-      if (req.query.partenaire) {
-        document.partenaire = data.partenaire;
-
-        // Mail
-        Partenaire.findById(document.partenaire, function(err, partenaire) {
-          if (err) { return handleError(req, res, err); }
-
-          if (!partenaire) { res.sendStatus(404); }
-
-          partenaire.secret = shortid.generate();
-          partenaire.save(function(err) {
-            if (err) { return handleError(req, res, err); }
-
-            var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
-            Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
-              '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
-          });
-        });
-      }
-
-      if (document !== null) {
-        request.documents.push(document);
-      }
-
-      request.save(function(err, saved) {
-        if (err) { return handleError(req, res, err); }
-
-        return res.json(request.documents[request.documents.length - 1]);
-      });
+exports.saveFile = function(req, res, next) {
+  processDocument(req.file, JSON.parse(req.body.data), function(err, document) {
+    if (err) {
+      return res.sendStatus(err.status);
     }
 
-  ]);
+    var request = req.request;
+    request.documents.push(document);
+
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
+
+      request.saveActionLog(Actions.DOCUMENT_ADDED, req.user, req.log, {document: document});
+      return res.json(document);
+    });
+  });
+};
+
+exports.saveFilePartenaire = function(req, res) {
+  processDocument(req.file, JSON.parse(req.body.data), function(err, document) {
+    if (err) {
+      return res.sendStatus(err.status);
+    }
+
+    var request = req.request;
+    request.documents.push(document);
+
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
+
+      // Mail
+      Partenaire.findById(document.partenaire, function(err, partenaire) {
+        if (err) { return handleError(req, res, err); }
+
+        if (!partenaire) { res.sendStatus(404); }
+
+        partenaire.secret = shortid.generate();
+        partenaire.save(function(err) {
+          if (err) { return handleError(req, res, err); }
+
+          var confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
+          Mailer.sendMail(partenaire.email, 'Veuillez confirmer votre adresse email',
+            '<a href="http://' + confirmationUrl + '" target="_blank">Confirmez votre adresse email</a>');
+        });
+
+        request.saveActionLog(Actions.DOCUMENT_ADDED, partenaire, req.log, {document: document, partenaire: partenaire});
+      });
+
+      return res.json(document);
+    });
+  });
 };
 
 exports.downloadFile = function(req, res) {
@@ -402,74 +398,78 @@ exports.downloadFile = function(req, res) {
 };
 
 exports.deleteFile = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
+  var request = req.request;
+  var file = request.documents.id(req.params.fileId);
+  if (!file) {
+    return res.sendStatus(304);
+  }
 
-    var file = request.documents.id(req.params.fileId);
-    if (!file) {
-      return res.sendStatus(304);
+  fs.unlink(file.path, function(err) {
+    if (err) {
+      req.log.info(req.user + ', not deleted, not found: ' + file.path);
+    } else {
+      req.log.info(req.user + ', successfully deleted: ' + file.path);
     }
 
-    fs.unlink(file.path, function(err) {
-      if (err) {
-        req.log.info(req.user + ', not deleted, not found: ' + file.path);
-      } else {
-        req.log.info(req.user + ', successfully deleted: ' + file.path);
-      }
+    file.remove();
 
-      file.remove();
+    request.save(function(err, saved) {
+      if (err) { return handleError(req, res, err); }
 
-      request.save(function(err, saved) {
-        if (err) { return handleError(req, res, err); }
-
-        return res.send(file).status(200);
-      });
+      request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
+      return res.send(file).status(200);
     });
   });
 };
 
-exports.getRecapitulatif = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
-    Recapitulatif.answersToHtml(request, req.headers.host, 'inline', function(err, html) {
-      if (err) { return handleError(req, res, err); }
+exports.getHistory = function(req, res) {
+  ActionModel
+    .find({
+      request: req.request._id
+    })
+    .populate('user')
+    .sort('-date')
+    .lean()
+    .exec(function(err, actions) {
+      if (err) return handleError(err);
 
-      res.send(html).status(200);
+      actions.forEach(function(action) {
+        action.label = ActionsById[action.action].label;
+      });
+
+      return res.json(actions);
     });
+};
+
+exports.getRecapitulatif = function(req, res) {
+  Recapitulatif.answersToHtml(req.request, req.headers.host, 'inline', function(err, html) {
+    if (err) { return handleError(req, res, err); }
+
+    res.send(html).status(200);
   });
 };
 
 exports.getPdf = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
+  generatePdf(req.request, req.user, req.headers.host, function(err, pdfPath) {
+    if (err) { return handleError(req, res, err); }
 
-    generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
-      if (err) { return handleError(req, res, err); }
-
-      res.sendFile(pdfPath);
-    });
+    res.sendFile(pdfPath);
   });
 };
 
 exports.getSynthesePdf = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
-    Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
-      if (err) { return handleError(req, res, err); }
+  Synthese.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
+    if (err) { return handleError(req, res, err); }
 
-      pdf.create(html).toStream(function(err, stream) {
-        stream.pipe(res);
-      });
+    pdf.create(html).toStream(function(err, stream) {
+      stream.pipe(res);
     });
   });
 };
 
 exports.simulate = function(req, res) {
-  findRequest(req, function(err, request) {
-    if (!request) return res.sendStatus(404);
-    var prestations = Prestation.simulate(request.formAnswers);
-    return res.json(prestations);
-  });
+  var prestations = Prestation.simulate(req.request.formAnswers);
+  return res.json(prestations);
 };
 
 function handleError(req, res, err) {

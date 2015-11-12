@@ -20,18 +20,35 @@ angular.module('impactApp')
       return nbSections === stepObligatoire.sections.length;
     }
 
-    function checkStepDocumentsCompletion(request) {
-      var nbDocuments = 0;
-      if (request.documents) {
-        documentsObligatoires.forEach(function(document) {
-          var documentsOfType = _.find(request.documents, {type: document});
-          if (typeof documentsOfType !== 'undefined') {
-            nbDocuments += 1;
-          }
-        });
-      }
+    function allMandatoryFilesPresent(request) {
+      let nbDocuments = 0;
+      documentsObligatoires.forEach(function(document) {
+        const documentsOfType = _.find(request.documents, {type: document});
+        if (typeof documentsOfType !== 'undefined') {
+          nbDocuments += 1;
+        }
+      });
 
       return nbDocuments === documentsObligatoires.length;
+    }
+
+    function noInvalidatedFiles(request) {
+      let found = false;
+      request.documents.forEach(function(document) {
+        if (document.validation === 'false') {
+          found = true;
+        }
+      });
+
+      return found;
+    }
+
+    function checkStepDocumentsCompletion(request) {
+      if (!request.documents) {
+        return false;
+      }
+
+      return allMandatoryFilesPresent(request) && !noInvalidatedFiles(request);
     }
 
     var isAdult = function(request) {

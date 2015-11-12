@@ -1,6 +1,7 @@
 .display-file {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   .logo {
     font-size: 20px;
@@ -8,8 +9,81 @@
     margin-right: 10px;
   }
 
-  .content {
+  .description {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .file-actions {
     display: flex;
     flex-direction: column;
+  }
+
+  .validation-actions {
+    display: flex;
+    justify-content: space-around;
+
+    .fab {
+      padding: 0 6px 0 6px;
+      margin: 6px 8px 6px 8px;
+      font-size: 19px;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration:none;
+      border: none;
+      outline: none;
+      min-width: 0;
+      border-radius: 50%;
+      line-height: 4rem;
+      width: 4rem;
+      height: 4rem;
+      background-color: #D8D8D8;
+      color: white;
+    }
+
+    .fab.invert-valid {
+      border: 1px solid #0f9d58;
+      background-color: white;
+      color: #0f9d58;
+    }
+
+    .fab.invert-refuse {
+      border: 1px solid rgb(255,82,82);
+      background-color: white;
+      color: rgb(255,82,82);
+    }
+
+    .fab.invert-valid.muted {
+      border: 1px solid #D8D8D8;
+      background-color: white;
+      color: #D8D8D8;
+    }
+
+    .fab.invert-refuse.muted {
+      border: 1px solid #D8D8D8;
+      background-color: white;
+      color: #D8D8D8;
+    }
+  }
+
+  .validation-actions:hover {
+    .fab.valid {
+      color: white;
+      background-color: #0f9d58;
+    }
+
+    .fab.refuse {
+      background-color: lighten(rgb(255,82,82), 5%);
+      color: rgb(255,255,255);
+    }
+
+    .fab.refuse:hover {
+      background-color: rgb(255,82,82);
+    }
+
+    .fab.valid:hover {
+      background-color: lighten(#0f9d58, 10%);
+    }
   }
 }

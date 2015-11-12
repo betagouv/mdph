@@ -6,20 +6,19 @@ angular.module('impactApp')
       .state('dashboard.requests.detail', {
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/requests/detail/detail.html',
-        controller: function($scope, $state, $cookies, $window, request, user) {
+        controller: function($scope, $state, request) {
           $scope.request = request;
-          $scope.user = user;
-          $scope.token = $cookies.get('token');
-
-          $scope.back = function() {
-            $window.history.back();
-          };
 
           $scope.archive = function(request) {
-            request.status = 'evaluation';
+            request.status = 'archive';
             request.$save(function() {
               $state.go('dashboard.requests.user', {userId: 'me'}, {reload: true});
             });
+          };
+
+          $scope.assigner = function() {
+            request.evaluator = $scope.currentUser._id;
+            request.$update();
           };
 
           $scope.supprimer = function(request) {
@@ -32,12 +31,6 @@ angular.module('impactApp')
         resolve: {
           request: function($http, $stateParams, RequestResource) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
-          },
-
-          user: function($http, request) {
-            return $http.get('api/users/' + request.user).then(function(result) {
-              return result.data;
-            });
           },
 
           prestations: function($http) {

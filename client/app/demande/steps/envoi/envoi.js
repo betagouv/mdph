@@ -9,12 +9,6 @@ angular.module('impactApp')
         resolve: {
           step: function() {
             return _.find(allSteps, {id: 'envoi'});
-          },
-
-          recapitulatif: function($http, $stateParams) {
-            return $http.get('/api/requests/' + $stateParams.shortId + '/recapitulatif').then(function(request) {
-              return request.data;
-            });
           }
         },
         views: {

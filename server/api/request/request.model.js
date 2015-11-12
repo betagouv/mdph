@@ -3,13 +3,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var shortId = require('shortid');
+var ActionModel = require('./action.model');
 
 var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
-  status:         { type: String, enum: ['validé', 'rejet', 'a_traiter'] },
   type:           { type: String },
   category:       { type: String },
-
+  validation:     { type: Boolean },
   originalname:   { type: String },
   filename:       { type: String },
   encoding:       { type: String },
@@ -29,11 +29,39 @@ var RequestSchema = new Schema({
   createdAt:      { type: Date },
   submittedAt:    { type: Date },
   updatedAt:      { type: Date },
-  status:         { type: String, enum: ['en_cours', 'emise', 'a_completer', 'evaluation', 'reponse'], default: 'en_cours' },
+  status:         { type: String, enum: ['en_cours', 'emise', 'complet', 'incomplet', 'archive'], default: 'en_cours' },
   formAnswers:    Schema.Types.Mixed,
   prestations:    [{ type: String }],
   certificat:     Schema.Types.Mixed,
   synthese:       Schema.Types.Mixed
 });
+
+RequestSchema.pre('save', function(next) {
+  var now = Date.now();
+
+  if (this.isNew) {
+    this.updatedAt = now;
+  }
+
+  this.updatedAt = now;
+
+  next();
+});
+
+RequestSchema.methods = {
+  saveActionLog: function(action, user, log, params, done) {
+    ActionModel.create({
+      action: action.id,
+      request: this._id,
+      user: user._id,
+      date: Date.now(),
+      params: params
+    }, function(err, action) {
+      if (err) log.error(err);
+
+      log.info(action._doc);
+    });
+  }
+};
 
 module.exports = mongoose.model('Request', RequestSchema);

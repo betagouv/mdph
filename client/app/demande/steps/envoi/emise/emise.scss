@@ -1,5 +1,9 @@
-#pre-evaluation {
-  margin-bottom: 10px;
+#demande-emise {
+  .demande-emise-title {
+    .fa-envelope {
+      color: lighten($lighter-blue, 25%);
+    }
+  }
 
   section {
     background-color: #4A4C56;

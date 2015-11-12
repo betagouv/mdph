@@ -1,0 +1,25 @@
+<div class="timeline">
+  <div ng-repeat="action in history" class="timeline-block" ng-class="{user: action.user.role !== 'adminMdph', agent: action.user.role === 'adminMdph'}">
+    <div class="timeline-img {{action | actionTypeIconFilter}}">
+      <i class="fa fa-{{action | actionTypeIconFilter}}"></i>
+    </div>
+
+    <div class="timeline-content">
+      <h1>{{action.label}}</h1>
+      <p>{{action.date | date:'medium'}}
+        <span ng-if="action.user">par {{action.user.name}} - {{action.user.email}}</span>
+        <span ng-if="!action.user">par un partenaire: {{action.params.partenaire.email}}</span>
+      </p>
+
+      <div ng-if="action.params" class="detail">
+        <div ng-if="action.action === 'document_added' || action.action === 'document_removed'">
+          {{action.params.document.originalname}} - {{action.params.document.type | documentFilter}}
+        </div>
+        <div ng-if="action.action === 'change_status'">
+          {{action.params.old | requestStatus}} <i class="fa fa-arrow-right"></i> {{action.params.new | requestStatus}}
+        </div>
+        <div ng-if="action.action === 'assign_sector'">Nouveau secteur: {{action.params.secteur}}</div>
+      </div>
+    </div>
+  </div>
+</div>

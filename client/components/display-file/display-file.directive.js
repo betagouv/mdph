@@ -5,7 +5,10 @@ angular.module('impactApp')
     return {
       scope: {
         file: '=',
-        request: '='
+        request: '=',
+        showValidationActions: '=',
+        onChange: '=',
+        hideTrash: '='
       },
       templateUrl: 'components/display-file/display-file.html',
       controller: function($scope, $http, $cookies) {
@@ -16,6 +19,23 @@ angular.module('impactApp')
             $scope.partenaireObj = result.data;
           });
         }
+
+        if (typeof $scope.file.validation !== 'undefined') {
+          $scope.showValidationStatus = true;
+        }
+
+        $scope.setValid = function(status) {
+          $scope.file.validation = status;
+          $scope.showValidationActions = false;
+          $scope.showValidationTempStatus = true;
+          $scope.onChange();
+        };
+
+        $scope.$on('documentValidationSaved', function() {
+          $scope.showValidationActions = false;
+          $scope.showValidationTempStatus = false;
+          $scope.showValidationStatus = true;
+        });
 
         // Retro-compat
         $scope.getFilename = function(file) {

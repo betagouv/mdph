@@ -7,13 +7,41 @@
 }
 
 .dashboard-demande-header {
-  p {
-    margin: 0;
-    strong {
-      font-wight: 500;
+  display: flex;
+  justify-content: space-between;
+
+  .header {
+    p {
+      margin: 0;
+      strong {
+        font-wight: 500;
+      }
     }
   }
+
   .actions {
-    margin-top: 15px;
+    @extend .well;
+    display: flex;
+    padding: 5px 10px;
+  }
+
+  .banette {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    padding-right: 10px;
+    justify-content: center;
+    border-right: 1px solid #D6D6D6;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    > button {
+      margin: 5px;
+    }
   }
 }
