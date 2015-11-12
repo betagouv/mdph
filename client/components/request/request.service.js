@@ -21,9 +21,9 @@ angular.module('impactApp')
     }
 
     function allMandatoryFilesPresent(request) {
-      let nbDocuments = 0;
+      var nbDocuments = 0;
       documentsObligatoires.forEach(function(document) {
-        const documentsOfType = _.find(request.documents, {type: document});
+        var documentsOfType = _.find(request.documents, {type: document});
         if (typeof documentsOfType !== 'undefined') {
           nbDocuments += 1;
         }
@@ -33,7 +33,7 @@ angular.module('impactApp')
     }
 
     function noInvalidatedFiles(request) {
-      let found = false;
+      var found = false;
       request.documents.forEach(function(document) {
         if (document.validation === 'false') {
           found = true;
