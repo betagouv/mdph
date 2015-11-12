@@ -7,18 +7,18 @@ angular.module('impactApp').constant('banettes', [
   },
   {
     id: 'emise',
-    label: 'Émises'
+    label: 'Émise'
   },
   {
     id: 'complet',
-    label: 'Complètes'
+    label: 'Complète'
   },
   {
     id: 'incomplet',
-    label: 'Incomplètes'
+    label: 'Incomplète'
   },
   {
     id: 'archive',
-    label: 'Archivées'
+    label: 'Archivée'
   }
 ]);
