@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var User = require('./user.model');
-var Notification = require('../notification/notification.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -153,20 +152,6 @@ exports.search = function(req, res, next) {
  */
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
-};
-
-/**
- * Get notifications for user
- */
-exports.showNotifications = function(req, res, next) {
-  Notification.find({
-    user: req.params.id
-  }, function(err, notifications) {
-    if (err) return handleError(req, res, err);
-    if (!notifications) { return res.sendStatus(404); }
-
-    return res.json(notifications);
-  });
 };
 
 /**

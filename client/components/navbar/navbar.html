@@ -37,34 +37,7 @@
               Bonjour, {{ getCurrentUser().name }}
             </a>
           </li>
-          <li role="menuitem" ng-if="isLoggedIn() && notifications.length > 0" aria-label="notifications" aria-haspopup="true">
-            <a href="" ng-click="toggleNotifications()" title="{{notifications.length}} notification(s) non lue(s)">
-              <span class="sr-only">Mes notifications</span>
-              <span class="badge notif-badge">{{notifications.length}}</span>
-            </a>
-            <div class="arrow" ng-if="showNotifications"></div>
-          </li>
           <li role="menuitem" ng-if="isLoggedIn()"><a href="" ng-click="logout()" title="Se déconnecter">Déconnexion</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="container notifications" ng-if="showNotifications">
-    <div class="row">
-      <div class="col-md-5 col-md-offset-7">
-        <ul role="menu">
-          <li role = "menuitem" ng-repeat="(idx, notification) in notifications">
-            <a href class="pull-left" title="Consulter la notification" ng-click="goState(notification, idx)">
-              {{notification.message}}
-              <br><small class="text-muted">{{momentFromNow(notification.createdAt)}}</small>
-            </a>
-            <a href class="pull-right" title="Supprimer" ng-click="removeNotif(notification, idx)">
-              <span class="sr-only">Supprimer la notification</span>
-              <i class="fa fa-times-circle fa-lg text-muted" alt="Icône suppression"></i>
-            </a>
-            <div class="clearfix"></div>
-          </li>
         </ul>
       </div>
     </div>

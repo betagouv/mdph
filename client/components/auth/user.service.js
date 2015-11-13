@@ -35,13 +35,6 @@ angular.module('impactApp')
         },
         isArray: true
       },
-      queryNotifications: {
-        method: 'GET',
-        params: {
-          controller: 'notifications'
-        },
-        isArray: true
-      },
       generateToken: {
         method: 'POST',
         params: {

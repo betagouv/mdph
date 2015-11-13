@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function($scope, $rootScope, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout, $state, User, Notification) {
+  .controller('NavbarCtrl', function($scope, $rootScope, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout, $state) {
     $scope.menu = [
     {
       title: 'Accueil',
@@ -13,8 +13,7 @@ angular.module('impactApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.isAdminMdph = Auth.isAdminMdph;
     $scope.$storage = $localStorage;
-    $scope.notifications = [];
-    $scope.showNotifications = false;
+
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     angular.element(document).ready(function() {
@@ -22,10 +21,6 @@ angular.module('impactApp')
         $scope.showIntro = !$scope.$storage.hideIntro;
       }, 500);
     });
-
-    $scope.toggleNotifications = function() {
-      $scope.showNotifications = !$scope.showNotifications;
-    };
 
     $scope.momentFromNow = function(date) {
       return moment(date).fromNow();
@@ -58,22 +53,5 @@ angular.module('impactApp')
       } else {
         return 'main';
       }
-    };
-
-    $scope.removeNotif = function(notification, index) {
-      Notification.delete({id: notification._id}, function() {
-        $scope.notifications.splice(index, 1);
-        if ($scope.notifications.length === 0) {
-          $scope.showNotifications = false;
-        }
-      });
-    };
-
-    $scope.goState = function(notification, index) {
-      $state.go(notification.state, { shortId: notification.request });
-      Notification.delete({id: notification._id}, function() {
-        $scope.notifications.splice(index, 1);
-        $scope.showNotifications = false;
-      });
     };
   });

@@ -20,8 +20,6 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 
 router.get('/me/requests', auth.isAuthenticated(), requestController.showUserRequests);
 
-router.get('/:id/notifications', auth.isAuthenticated(), controller.showNotifications);
-
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 router.post('/:id/reset_password/:secret', controller.resetPassword);

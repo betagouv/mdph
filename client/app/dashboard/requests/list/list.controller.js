@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, banette, currentUser, currentSecteur, requests, NotificationService) {
+  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, banette, currentUser, currentSecteur, requests) {
     $scope.requests = requests;
 
     $scope.user = user;
@@ -43,7 +43,6 @@ angular.module('impactApp')
         if (request.isSelected) {
           request.evaluator = currentUser._id;
           return $http.put('/api/requests/' + request.shortId, request).then(function() {
-            NotificationService.createNotification(request, 'espace_perso.liste_demandes.demande.questionnaire', 'Votre demande est en cours d\'instruction.');
             $scope.$emit('assign-request');
           });
         }

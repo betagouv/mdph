@@ -91,6 +91,10 @@ hr {
   border-color: #F8F8F8;
 }
 
+[ng-click] {
+  cursor: pointer;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';
