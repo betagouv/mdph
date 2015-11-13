@@ -17,7 +17,6 @@ module.exports = function(app) {
   app.use('/api/partenaires', require('./api/partenaire'));
   app.use('/api/geva', require('./api/geva'));
   app.use('/api/notification', require('./api/notification'));
-  app.use('/api/questions-preparation-evaluation', require('./api/questions_preparation_evaluation'));
   app.use('/api/dispatch-rules', require('./api/dispatch-rule'));
   app.use('/api/sections', require('./api/sections'));
   app.use('/api/secteurs', require('./api/secteur'));
