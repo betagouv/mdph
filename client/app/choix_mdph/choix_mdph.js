@@ -7,6 +7,9 @@ angular.module('impactApp')
         url: '/choix_mdph',
         templateUrl: 'app/choix_mdph/choix_mdph.html',
         controller: 'ChoixMdphCtrl',
+        data: {
+          title: 'Choix de votre MDPH'
+        },
         resolve: {
           mdphs: function($http) {
             return $http.get('/api/mdphs/list').then(function(result) {

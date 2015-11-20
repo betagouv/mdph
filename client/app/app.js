@@ -54,13 +54,18 @@ angular.module('impactApp', [
       }
     });
 
-    // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       if (toState.redirectTo) {
         event.preventDefault();
         $state.go(toState.redirectTo, toStateParams);
       } else {
         Auth.isLoggedInAsync(function(loggedIn) {
+          if (toState.data && toState.data.title) {
+            $rootScope.title = toState.data.title + ' - Votre MDPH en ligne';
+          } else {
+            $rootScope.title = 'Votre MDPH en ligne';
+          }
+
           if (toState.authenticate && !loggedIn) {
             $rootScope.returnToState = toState;
             $rootScope.returnToStateParams = toStateParams;

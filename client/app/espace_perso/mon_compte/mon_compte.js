@@ -8,6 +8,9 @@ angular.module('impactApp')
         templateUrl: 'app/espace_perso/mon_compte/mon_compte.html',
         controller: 'MonCompteCtrl',
         authenticate: true,
+        data: {
+          title: 'Votre compte'
+        },
         resolve: {
           currentUser: function(Auth) {
             return Auth.getCurrentUser().$promise;

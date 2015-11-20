@@ -5,6 +5,9 @@ angular.module('impactApp')
     $stateProvider
       .state('departement.demande', {
         url: '/:shortId',
+        data: {
+          title: 'Détail de votre demande'
+        },
         resolve: {
           sections: function($http) {
             return $http.get('/api/sections').then(function(result) {

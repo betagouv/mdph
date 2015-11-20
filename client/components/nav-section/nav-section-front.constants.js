@@ -7,12 +7,12 @@ angular.module('impactApp').constant('SectionFrontConstants', [
     sref: 'espace_perso.liste_demandes',
     include: 'espace_perso.liste_demandes.**',
     fa: 'fa-folder',
-    label: 'Mes demandes'
+    label: 'Vos demandes'
   },
   {
     sref: 'espace_perso.mon_compte',
     include: 'espace_perso.mon_compte.**',
     fa: 'fa-cogs',
-    label: 'Mon compte',
+    label: 'Votre compte',
   }
 ]);

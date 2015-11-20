@@ -8,6 +8,9 @@ angular.module('impactApp')
         templateUrl: 'app/espace_perso/liste_demandes/liste_demandes.html',
         controller: 'ListeDemandesCtrl',
         authenticate: true,
+        data: {
+          title: 'Vos demandes'
+        },
         resolve: {
           requests: function(User) {
             return User.queryRequests().$promise;
