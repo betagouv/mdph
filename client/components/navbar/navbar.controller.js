@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function($scope, $rootScope, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout, $state) {
+  .controller('NavbarCtrl', function($scope, $rootScope, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout) {
     $scope.menu = [
     {
       title: 'Accueil',
