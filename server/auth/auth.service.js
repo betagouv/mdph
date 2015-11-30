@@ -45,42 +45,44 @@ function isAuthenticated() {
  */
 function isAuthorized() {
   return compose()
-
-    // Validate jwt
+    .use(isAuthenticated())
+    .use(attachRequest)
     .use(function(req, res, next) {
-      // allow access_token to be passed through query parameter as well
-      if (req.query && req.query.hasOwnProperty('access_token')) {
-        req.headers.authorization = 'Bearer ' + req.query.access_token;
+      if (meetsRequirements(req.user.role, 'adminMdph')) {
+        next();
+      } else if (isRequestOwner(req.user, req.request)) {
+        next();
+      } else {
+        res.sendStatus(403);
       }
-
-      validateJwt(req, res, next);
-    })
-
-    // Attach user to request
-    .use(function(req, res, next) {
-      User.findById(req.user._id, function(err, user) {
-        if (err) return next(err);
-        if (!user) return res.sendStatus(401);
-        if (user.role === 'adminMdph') {
-          req.user = user;
-          next();
-        } else {
-          Request.findOne({
-            shortId: req.params.shortId
-          }).exec(function(err, request) {
-            if (err) { return next(err); }
-
-            if (!request) { return res.sendStatus(404); }
-
-            if (String(user._id) !== String(request.user)) { return res.sendStatus(401); }
-
-            req.user = user;
-            req.request = request;
-            next();
-          });
-        }
-      });
     });
+}
+
+function attachRequest(req, res, next) {
+  if (req.params.shortId) {
+    Request.findOne({
+      shortId: req.params.shortId
+    }).exec(function(err, request) {
+      if (err || !request) { return res.sendStatus(404); }
+
+      req.request = request;
+      next();
+    });
+  } else {
+    next();
+  }
+}
+
+function isRequestOwner(user, request) {
+  if (!request || !user) {
+    return false;
+  }
+
+  return String(user._id) !== String(request.user);
+}
+
+function meetsRequirements(role, roleRequired) {
+  return config.userRoles.indexOf(role) >= config.userRoles.indexOf(roleRequired);
 }
 
 /**
@@ -89,15 +91,13 @@ function isAuthorized() {
 function hasRole(roleRequired) {
   if (!roleRequired) throw new Error('Le role est obligatoire.');
 
-  return compose()
-    .use(isAuthenticated())
-    .use(function meetsRequirements(req, res, next) {
-      if (config.userRoles.indexOf(req.user.role) >= config.userRoles.indexOf(roleRequired)) {
-        next();
-      } else {
-        res.sendStatus(403);
-      }
-    });
+  return function(req, res, next) {
+    if (meetsRequirements(req.user.role, roleRequired)) {
+      next();
+    } else {
+      res.sendStatus(403);
+    }
+  };
 }
 
 /**
