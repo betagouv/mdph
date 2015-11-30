@@ -1,7 +1,0 @@
-test:
-  pre:
-    - npm install -g bower grunt
-    - bower install
-machine:
-  node:
-    version: 4.2.1
