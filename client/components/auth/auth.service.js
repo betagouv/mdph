@@ -129,6 +129,19 @@ angular.module('impactApp')
       },
 
       /**
+       * Waits for currentUser to resolve before getting all available info on authenticated user
+       */
+      getCurrentUserAsync: function(cb) {
+        if (currentUser.hasOwnProperty('$promise')) {
+          currentUser.$promise.then(function(user) {
+            cb(user);
+          });
+        } else {
+          return currentUser;
+        }
+      },
+
+      /**
        * Check if a user is logged in
        *
        * @return {Boolean}
@@ -177,12 +190,6 @@ angular.module('impactApp')
        */
       getToken: function() {
         return $cookies.get('token');
-      },
-
-      getAllUsers: function() {
-        return $http.get('/api/users').then(function(users) {
-          return users.data;
-        });
       }
     };
   });

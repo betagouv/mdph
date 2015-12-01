@@ -6,15 +6,18 @@ angular.module('impactApp')
       .state('dashboard.users', {
         url: '/utilisateurs',
         templateUrl: 'app/dashboard/users/users.html',
-        controller: function($scope, pending) {
+        controller: function($scope, pending, nonValid) {
           $scope.pending = pending;
+          $scope.nonValid = nonValid;
         },
 
         resolve: {
-          pending: function($http, currentMdph) {
-            return $http({method: 'HEAD', url: '/api/partenaires', params: {status: 'en_attente', mdph: currentMdph._id}}).then(function(result) {
-              return result.headers('count');
-            });
+          nonValid: function(MdphResource, currentMdph) {
+            return MdphResource.queryPartenaires({zipcode: currentMdph.zipcode, status: 'mail_non_valide'}).$promise;
+          },
+
+          pending: function(MdphResource, currentMdph) {
+            return MdphResource.queryPartenaires({zipcode: currentMdph.zipcode, status: 'en_attente'}).$promise;
           }
         },
         authenticate: true,
@@ -28,8 +31,8 @@ angular.module('impactApp')
         },
 
         resolve: {
-          users: function(Auth) {
-            return Auth.getAllUsers();
+          users: function(MdphResource, currentMdph) {
+            return MdphResource.queryUsers({zipcode: currentMdph.zipcode}).$promise;
           }
         },
         authenticate: true
@@ -62,8 +65,8 @@ angular.module('impactApp')
         },
 
         resolve: {
-          partenaires: function($stateParams, Partenaire, currentMdph) {
-            return Partenaire.query({status: $stateParams.status, mdph: currentMdph._id});
+          partenaires: function($stateParams, MdphResource, currentMdph) {
+            return MdphResource.queryPartenaires({zipcode: currentMdph.zipcode, status: $stateParams.status}).$promise;
           },
 
           title: function($stateParams) {

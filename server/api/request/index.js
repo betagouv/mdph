@@ -5,7 +5,9 @@ var controller = require('./request.controller');
 var auth = require('../../auth/auth.service');
 var config = require('../../config/environment');
 var multer  = require('multer');
+var compose = require('composable-middleware');
 
+var Mdph = require('../mdph/mdph.model');
 var Request = require('./request.model');
 var upload = multer({ dest: config.uploadDir });
 
@@ -32,7 +34,6 @@ router.param('shortId', function(req, res, next, shortId) {
     });
 });
 
-router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.post('/', auth.isAuthenticated(), controller.save);
 
 router.post('/:shortId/transfer/:userId', auth.isAuthorized(), controller.transfer);

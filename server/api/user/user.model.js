@@ -45,12 +45,21 @@ UserSchema
 UserSchema
   .virtual('profile')
   .get(function() {
+    if (this.role === 'adminMdph') {
+      return {
+        _id: this._id,
+        name: this.name,
+        role: this.role,
+        email: this.email,
+        mdph: this.mdph
+      };
+    }
+
     return {
       _id: this._id,
       name: this.name,
       role: this.role,
-      email: this.email,
-      mdph: this.mdph
+      email: this.email
     };
   });
 

@@ -2,15 +2,15 @@
 
 var express = require('express');
 var controller = require('./partenaire.controller');
+var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
-router.get('/', controller.index);
 router.post('/', controller.save);
-router.get('/:id', controller.show);
-router.post('/:id', controller.save);
-router.patch('/:id', controller.save);
-router.delete('/:id', controller.destroy);
+router.get('/:id', auth.hasRole('adminMdph'), controller.show);
+router.post('/:id', auth.hasRole('adminMdph'), controller.save);
+router.patch('/:id', auth.hasRole('adminMdph'), controller.save);
+router.delete('/:id', auth.hasRole('adminMdph'), controller.destroy);
 
 router.get('/:id/:secret', controller.confirm);
 

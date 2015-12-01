@@ -8,19 +8,6 @@ var path = require('path');
 var shortid = require('shortid');
 var Mailer = require('../send-mail/send-mail.controller');
 
-// Get list of partenaires
-exports.index = function(req, res) {
-  Partenaire
-    .find({certified: req.query.status, mdph: req.query.mdph})
-    .sort('email')
-    .exec(function(err, partenaires) {
-      if (err) { return handleError(req, res, err); }
-
-      res.set('count', partenaires.length);
-      return res.json(partenaires);
-    });
-};
-
 exports.show = function(req, res) {
   Partenaire.findById(req.params.id, function(err, partenaire) {
     if (err) { return handleError(req, res, err); }

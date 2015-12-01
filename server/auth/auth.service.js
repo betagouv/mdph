@@ -78,7 +78,7 @@ function isRequestOwner(user, request) {
     return false;
   }
 
-  return String(user._id) !== String(request.user);
+  return String(user._id) === String(request.user);
 }
 
 function meetsRequirements(role, roleRequired) {
@@ -91,13 +91,15 @@ function meetsRequirements(role, roleRequired) {
 function hasRole(roleRequired) {
   if (!roleRequired) throw new Error('Le role est obligatoire.');
 
-  return function(req, res, next) {
-    if (meetsRequirements(req.user.role, roleRequired)) {
-      next();
-    } else {
-      res.sendStatus(403);
-    }
-  };
+  return compose()
+    .use(isAuthenticated())
+    .use(function(req, res, next) {
+      if (meetsRequirements(req.user.role, roleRequired)) {
+        next();
+      } else {
+        res.sendStatus(403);
+      }
+    });
 }
 
 /**

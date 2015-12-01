@@ -21,23 +21,16 @@
         <li ng-repeat="secteur in secteurs">
           <a
             ui-sref-active="active"
-            ui-sref="dashboard.requests.pending({secteurId: secteur._id || 'autres'})">
+            ui-sref="dashboard.requests.bySecteur({secteurId: secteur._id || 'autres'})">
             {{secteur.name}}
             <span
               ng-class="{
-                'label-danger': secteur.pendingRequests >= 10,
-                'label-success': secteur.pendingRequests == 0,
-                'label-warning': secteur.pendingRequests > 0 && secteur.pendingRequests < 10}"
+                'label-danger': secteur.count >= 30,
+                'label-warning': secteur.count >= 10 && secteur.count < 30,
+                'label-success': secteur.count > 0 && secteur.count < 10}"
               class="label pull-right">
-              {{secteur.pendingRequests}}
+              {{secteur.count}}
             </span>
-          </a>
-        </li>
-        <li>
-          <a
-            ui-sref-active="active"
-            ui-sref="dashboard.requests.pending({secteurId: 'en_cours'})">
-            Demandes incomplètes
           </a>
         </li>
       </ul>

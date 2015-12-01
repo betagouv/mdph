@@ -22,8 +22,8 @@ angular.module('impactApp')
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
         resolve: {
-          mdph: function(Mdph, $stateParams) {
-            return Mdph.get({zipcode: $stateParams.codeDepartement}).$promise;
+          mdph: function(MdphResource, $stateParams) {
+            return MdphResource.get({zipcode: $stateParams.codeDepartement}).$promise;
           },
 
           user: function(Auth) {

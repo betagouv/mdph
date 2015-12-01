@@ -28,7 +28,7 @@
             <hr>
             <p>Ce service vous permet de saisir votre demande et de la suivre auprès de votre MDPH.</p>
             <div class="list-actions">
-              <a ng-if="user.role === 'adminMdph'" ng-if="user.role === 'adminMdph'" ui-sref="dashboard.requests.user({userId: user._id})">
+              <a ng-if="user.role === 'adminMdph'" ng-if="user.role === 'adminMdph'" ui-sref="dashboard.requests.user({zipcode: user.mdph.zipcode, userId: user._id})">
                 Accéder à mon tableau de bord
               </a>
               <br>

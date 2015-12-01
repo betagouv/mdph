@@ -12,8 +12,8 @@ angular.module('impactApp')
             return RequestResource.getPartenaire({shortId: $stateParams.shortId}).$promise;
           },
 
-          mdph: function(request, Mdph) {
-            return Mdph.get({zipcode: request.mdph});
+          mdph: function(request, MdphResource) {
+            return MdphResource.get({zipcode: request.mdph});
           },
 
           type: function($stateParams) {

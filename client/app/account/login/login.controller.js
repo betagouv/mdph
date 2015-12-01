@@ -15,15 +15,17 @@ angular.module('impactApp')
         })
         .then(function(data) {
           // Logged in, redirect
-          if ($rootScope.returnToState) {
-            $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
-          } else if (data.role === 'adminMdph') {
-            $state.go('dashboard.requests.user', {userId: data.id});
-          } else if (data.role === 'admin') {
-            $state.go('admin');
-          } else {
-            $state.go('espace_perso.liste_demandes');
-          }
+          Auth.getCurrentUserAsync(function(user) {
+            if ($rootScope.returnToState) {
+              $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
+            } else if (data.role === 'adminMdph') {
+              $state.go('dashboard.requests.user', {zipcode: user.mdph.zipcode, userId: user._id});
+            } else if (data.role === 'admin') {
+              $state.go('admin');
+            } else {
+              $state.go('espace_perso.liste_demandes');
+            }
+          });
         })
         .catch(function(err) {
           $scope.errors.other = err.message;

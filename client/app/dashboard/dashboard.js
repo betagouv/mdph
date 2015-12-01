@@ -5,7 +5,7 @@ angular.module('impactApp')
     $urlRouterProvider.when('/dashboard', '/dashboard/demandes');
     $stateProvider
       .state('dashboard', {
-        url: '/dashboard',
+        url: '/dashboard/:zipcode',
         templateUrl: 'app/dashboard/dashboard.html',
         authenticate: true,
         controller: function($scope, SectionBackConstants) {
@@ -17,8 +17,8 @@ angular.module('impactApp')
             return Auth.getCurrentUser().$promise;
           },
 
-          currentMdph: function(currentUser) {
-            return currentUser.mdph;
+          currentMdph: function($stateParams, $state, MdphResource) {
+            return MdphResource.get({zipcode: $stateParams.zipcode}).$promise;
           }
         }
       });

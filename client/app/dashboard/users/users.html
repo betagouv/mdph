@@ -13,12 +13,12 @@
       <ul>
         <li>
           <a ui-sref-active="active" ui-sref="dashboard.users.partenaires({status: 'mail_non_valide'})">
-            Mail envoyé
+            Mail envoyé <span class="label label-danger pull-right">{{nonValid.length}}</span>
           </a>
         </li>
         <li>
           <a ui-sref-active="active" ui-sref="dashboard.users.partenaires({status: 'en_attente'})">
-            En attente <span class="label label-danger pull-right">{{pending}}</span>
+            En attente <span class="label label-danger pull-right">{{pending.length}}</span>
           </a>
         </li>
         <li>

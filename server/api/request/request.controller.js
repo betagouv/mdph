@@ -93,46 +93,6 @@ function sendMailDemandeDocuments(request, files, evaluator) {
   );
 }
 
-/**
- * Get list of requests
- */
-exports.index = function(req, res) {
-
-  Mdph.findById(req.user.mdph, function(err, mdph) {
-    if (err) return handleError(req, res, err);
-    if (!mdph) return res.sendStatus(404);
-
-    var search = {
-      mdph: mdph.zipcode
-    };
-
-    var query = req.query;
-
-    if (query) {
-      if (query.status) {
-        search.status = query.status;
-      }
-
-      if (query.evaluator) {
-        if (query.evaluator === 'null') {
-          search.evaluator = undefined;
-        } else {
-          search.evaluator = query.evaluator;
-        }
-      }
-    }
-
-    Request.find(search)
-      .populate('user', 'name')
-      .populate('evaluator', 'name')
-      .sort('-submittedAt')
-      .exec(function(err, requests) {
-        if (err) return handleError(req, res, err);
-        return res.send(requests);
-      });
-  });
-};
-
 // Get a single request
 exports.show = function(req, res, next) {
   return res.json(req.request);

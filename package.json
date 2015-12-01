@@ -86,7 +86,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install && grunt build",
     "start": "node server/app.js",
+
+    "pretest": "npm install",
     "test": "grunt test",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },

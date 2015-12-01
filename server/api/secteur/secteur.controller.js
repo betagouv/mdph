@@ -6,8 +6,16 @@ var Request = require('../request/request.model');
 var Mdph = require('../mdph/mdph.model');
 
 exports.index = function(req, res) {
+  let mdph;
+
+  if (req.query.mdph) {
+    mdph = req.query.mdph;
+  } else {
+    mdph = req.user.mdph;
+  }
+
   Secteur
-    .find({mdph: req.user.mdph})
+    .find({mdph: mdph})
     .sort('name')
     .populate('evaluators.enfant evaluators.adulte')
     .exec(function(err, secteurs) {
@@ -77,55 +85,3 @@ function handleError(req, res, err) {
   req.log.error(err);
   return res.status(500).send(err);
 }
-
-function buildQuery(params, query, mdph) {
-
-  var result = {
-    status: query && query.status ? query.status : 'emise',
-    mdph: mdph.zipcode
-  };
-
-  if (params.id !== 'autres') {
-    result.secteur = params.id;
-  } else {
-    result.secteur = {$eq: null};
-  }
-
-  return result;
-}
-
-exports.listRequests = function(req, res) {
-  Mdph.findById(req.user.mdph, function(err, mdph) {
-    if (err) return handleError(req, res, err);
-    if (!mdph) return res.sendStatus(404);
-
-    var query = buildQuery(req.params, req.query, mdph);
-
-    Request
-      .find(query)
-      .select('user shortId formAnswers.identites status submittedAt evaluator')
-      .populate('user evaluator', 'name')
-      .sort('-submittedAt')
-      .exec(function(err, requests) {
-        if (err) return handleError(req, res, err);
-
-        return res.send(requests);
-      });
-  });
-};
-
-exports.countRequests = function(req, res) {
-  Mdph.findById(req.user.mdph, function(err, mdph) {
-    if (err) return handleError(req, res, err);
-    if (!mdph) return res.sendStatus(404);
-
-    var query = buildQuery(req.params, req.query, mdph);
-    Request
-      .count(query)
-      .exec(function(err, result) {
-        if (err) return handleError(req, res, err);
-
-        return res.json(result);
-      });
-  });
-};
