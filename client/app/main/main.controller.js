@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MainCtrl', function($scope, $state, mdph, user) {
+  .controller('MainCtrl', function($scope, $rootScope, $state, mdph, user) {
     $scope.user = user;
     $scope.mdph = mdph;
 

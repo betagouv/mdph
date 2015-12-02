@@ -146,7 +146,11 @@ exports.index = function(req, res) {
 
 // Get a single mdph by zipcode
 exports.show = function(req, res) {
-  return res.json(req.mdph);
+  Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(mdph);
+  });
 };
 
 // Creates a new mdph in the DB.

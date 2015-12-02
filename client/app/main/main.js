@@ -8,7 +8,8 @@ angular.module('impactApp')
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
         resolve: {
-          mdph: function() {
+          mdph: function($rootScope) {
+            $rootScope.mdph = null;
             return null;
           },
 
@@ -22,8 +23,11 @@ angular.module('impactApp')
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
         resolve: {
-          mdph: function(MdphResource, $stateParams) {
-            return MdphResource.get({zipcode: $stateParams.codeDepartement}).$promise;
+          mdph: function(MdphResource, $stateParams, $rootScope) {
+            return MdphResource.get({zipcode: $stateParams.codeDepartement}).$promise.then(function(mdph) {
+              $rootScope.mdph = mdph;
+              return mdph;
+            });
           },
 
           user: function(Auth) {

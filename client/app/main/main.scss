@@ -8,10 +8,10 @@
   position: relative;
   padding: 30px 15px;
   text-align: center;
-  background-attachment: fixed;
+
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: contain;
+  background-size: cover;
   position: relative;
   min-height: 250px;
 
@@ -37,6 +37,10 @@
 
   &.bg06 {
     background-image: url('../assets/images/bg06.jpg');
+  }
+
+  &.bg54 {
+    background-image: url('../assets/images/54_place_stanislav.jpg');
   }
 }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function($scope, $rootScope, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout) {
+  .controller('NavbarCtrl', function($scope, $rootScope, $state, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout) {
     $scope.menu = [
     {
       title: 'Accueil',
@@ -37,21 +37,12 @@ angular.module('impactApp')
       $location.path('/login');
     };
 
-    $scope.getLogoSrc = function() {
-      var assetDir = 'assets/images/';
-      var defaultLogo = 'logo_marianne.png';
-      if ($scope.mdph && $scope.mdph.$resolved === true) {
-        return assetDir + $scope.mdph.logo;
-      } else {
-        return assetDir + defaultLogo;
-      }
-    };
+    var assetDir = 'assets/images/';
+    $scope.logo = assetDir + 'logo_marianne.png';
 
-    $scope.getIndexSref = function() {
-      if ($scope.mdph && $scope.mdph.$resolved === true) {
-        return 'departement({codeDepartement: ' + $scope.mdph.zipcode + '})';
-      } else {
-        return 'main';
+    $timeout(function() {
+      if ($rootScope.mdph) {
+        $scope.logo = assetDir + $rootScope.mdph.logo;
       }
-    };
+    });
   });
