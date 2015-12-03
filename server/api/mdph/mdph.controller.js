@@ -26,6 +26,7 @@ exports.showSecteurs = function(req, res) {
   Secteur
     .find({mdph: req.mdph._id})
     .sort('name')
+    .lean()
     .populate('evaluators.enfant evaluators.adulte')
     .exec(function(err, secteurs) {
       if (err) { return handleError(req, res, err); }

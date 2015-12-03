@@ -32,11 +32,11 @@ angular.module('impactApp')
 
       getSecteur: {
         method: 'GET',
-        isArray: true,
         params: {
           controller:'secteurs'
         }
       },
+
       queryRequestsForSecteur: {
         method: 'GET',
         isArray: true,

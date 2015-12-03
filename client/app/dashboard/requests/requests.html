@@ -27,7 +27,7 @@
               ng-class="{
                 'label-danger': secteur.count >= 30,
                 'label-warning': secteur.count >= 10 && secteur.count < 30,
-                'label-success': secteur.count > 0 && secteur.count < 10}"
+                'label-success': secteur.count < 10}"
               class="label pull-right">
               {{secteur.count}}
             </span>
