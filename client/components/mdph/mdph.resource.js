@@ -45,11 +45,30 @@ angular.module('impactApp')
           subcontroller:'requests'
         }
       },
+
       queryRequests: {
         method: 'GET',
         isArray: true,
         params: {
           controller:'requests'
+        }
+      },
+
+      queryTotalRequestsCount: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller:'requests',
+          controllerid: 'byStatus'
+        }
+      },
+
+      queryUserRequestsCount: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller:'requests',
+          subcontroller: 'byStatus'
         }
       }
     });

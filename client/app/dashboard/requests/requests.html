@@ -6,6 +6,14 @@
         <li ng-repeat="banette in banettes">
           <a ui-sref-active="active" ui-sref="dashboard.requests.user({userId: currentUser._id, banette: banette.id})">
             {{banette.label}}
+            <span
+              ng-class="{
+                'label-danger': banette.count >= 30,
+                'label-warning': banette.count >= 10 && banette.count < 30,
+                'label-success': banette.count < 10}"
+              class="label pull-right">
+              {{banette.count}}
+            </span>
           </a>
         </li>
       </ul>

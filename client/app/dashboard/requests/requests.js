@@ -10,6 +10,10 @@ angular.module('impactApp')
         resolve: {
           secteurs: function(MdphResource, currentMdph) {
             return MdphResource.querySecteurs({zipcode: currentMdph.zipcode}).$promise;
+          },
+
+          requestCountByStatus: function(MdphResource, currentMdph, currentUser) {
+            return MdphResource.queryUserRequestsCount({zipcode: currentMdph.zipcode, controllerid: currentUser._id}).$promise;
           }
         },
         authenticate: true

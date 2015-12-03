@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var mongoose = require('mongoose');
 var async = require('async');
 var Mdph = require('./mdph.model');
 var User = require('../user/user.model');
@@ -97,7 +98,48 @@ exports.showRequests = function(req, res) {
     .sort('-submittedAt')
     .exec(function(err, requests) {
       if (err) return handleError(req, res, err);
+
+      res.set('count', requests.length);
       return res.send(requests);
+    });
+};
+
+exports.showRequestsByStatus = function(req, res) {
+  Request
+    .aggregate([
+      {$match: {mdph: req.mdph.zipcode}},
+      {$group: {
+        _id: '$status',
+        count: {$sum: 1}
+      }}
+    ])
+    .exec(function(err, requestsGroups) {
+      if (err) return handleError(req, res, err);
+
+      return res.send(requestsGroups);
+    });
+};
+
+exports.showRequestsByStatusForUser = function(req, res) {
+  Request
+    .aggregate([
+      {$match: { mdph: req.mdph.zipcode, evaluator: mongoose.Types.ObjectId(req.params.userId) }},
+      {$group: {
+        _id: '$status',
+        count: {$sum: 1}
+      }}
+    ])
+    .exec(function(err, requestsGroups) {
+      if (err) return handleError(req, res, err);
+
+      var total = 0;
+      requestsGroups.forEach(function(group) {
+        total += group.count;
+      });
+
+      requestsGroups.push({_id: 'toutes', count: total});
+
+      return res.send(requestsGroups);
     });
 };
 
