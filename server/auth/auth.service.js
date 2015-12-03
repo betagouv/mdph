@@ -60,14 +60,24 @@ function isAuthorized() {
 
 function attachRequest(req, res, next) {
   if (req.params.shortId) {
-    Request.findOne({
-      shortId: req.params.shortId
-    }).exec(function(err, request) {
-      if (err || !request) { return res.sendStatus(404); }
+    Request
+      .findOne({
+        shortId: req.params.shortId
+      })
+      .populate('user evaluator')
+      .exec(function(err, request) {
+        if (!request) {
+          return res.sendStatus(404);
+        }
 
-      req.request = request;
-      next();
-    });
+        if (err) {
+          req.log.error(err);
+          return res.status(500).send(err);
+        }
+
+        req.request = request;
+        next();
+      });
   } else {
     next();
   }

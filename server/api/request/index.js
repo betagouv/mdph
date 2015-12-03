@@ -13,27 +13,6 @@ var upload = multer({ dest: config.uploadDir });
 
 var router = express.Router();
 
-router.param('shortId', function(req, res, next, shortId) {
-  Request
-    .findOne({
-      shortId: req.params.shortId
-    })
-    .populate('user evaluator')
-    .exec(function(err, request) {
-      if (!request) {
-        return res.sendStatus(404);
-      }
-
-      if (err) {
-        req.log.error(err);
-        return res.status(500).send(err);
-      }
-
-      req.request = request;
-      next();
-    });
-});
-
 router.post('/', auth.isAuthenticated(), controller.save);
 
 router.post('/:shortId/transfer/:userId', auth.isAuthorized(), controller.transfer);
