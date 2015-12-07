@@ -88,7 +88,11 @@ function isRequestOwner(user, request) {
     return false;
   }
 
-  return String(user._id) === String(request.user);
+  if (!request.user._id) {
+    return String(user._id) === String(request.user);
+  } else {
+    return user._id.equals(request.user._id);
+  }
 }
 
 function meetsRequirements(role, roleRequired) {
