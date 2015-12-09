@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('identityForm', function(IdentiteService) {
+  .directive('identityForm', function(IdentiteService, typesVoies) {
     return {
       scope: {
         type: '=',
@@ -14,6 +14,7 @@ angular.module('impactApp')
       templateUrl: 'components/identity-form/identity-form.html',
       restrict: 'EA',
       link: function(scope) {
+        scope.typesVoies = typesVoies;
         scope.desc = IdentiteService.getDesc(scope.type);
         scope.open = function($event) {
           $event.preventDefault();

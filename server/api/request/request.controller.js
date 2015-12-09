@@ -39,13 +39,9 @@ function generatePdf(request, user, host, done) {
 
 function sendMailNotification(request, host, log, callback) {
   Dispatcher.findSecteur(request, function(secteur) {
-    if (!secteur) {
-      callback();
-    }
-
     var type = DateUtils.getType(request.formAnswers);
 
-    if (secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
+    if (secteur && secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
       var evaluators = secteur.evaluators[type];
       evaluators.forEach(function(evaluator) {
         if (request.mdph === '59') {
@@ -67,9 +63,11 @@ function sendMailNotification(request, host, log, callback) {
           Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
         }
       });
-    }
 
-    callback(secteur);
+      callback(secteur);
+    } else {
+      callback();
+    }
   });
 }
 

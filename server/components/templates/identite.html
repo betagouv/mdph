@@ -9,12 +9,31 @@
     est né{{conjugaison sexe}} le <strong>{{moment dateNaissance}}</strong> {{#if lieu_naissance}}à {{lieu_naissance}}{{/if}} {{#if lieu_naissance_cp}}<small>({{lieu_naissance_cp}})</small>{{/if}}
   {{/if}}
 
-  {{#if adresse}}
-    , {{pronoun sexe false}} réside actuellement au <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
-  {{else}}
-    , pas d'adresse renseignée.
+</p>
+
+<p>
+  {{#if nomVoie}}
+    Son adresse actuelle est:
+    <address>
+      {{numero_voie}} {{extension}} {{typeVoie.label}} {{nomVoie}} <br>
+      {{#if etageEscalierAppartement}}
+        {{etageEscalierAppartement}}
+      {{/if}}
+      {{#if immeubleBatimentResidence}}
+        {{immeubleBatimentResidence}}
+      {{/if}}
+      {{#if lieuDit}}
+        {{lieuDit}}
+      {{/if}}
+       <br>
+      {{code_postal}} {{capitalize localite}}
+    </address>
   {{/if}}
-  </p>
+
+  {{#if adresse}}
+    {{pronoun sexe}} réside actuellement au <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+  {{/if}}
+</p>
 
 <p>
   {{#if mode_contact}}
@@ -29,7 +48,6 @@
     {{/if}}
     le <strong>{{tel_1}}</strong>{{#if tel_2}} et <strong>{{tel_2}}</strong>{{/if}}
   {{/if}}
-  .
 </p>
 
 <p>{{showRenouvellement}}</p>

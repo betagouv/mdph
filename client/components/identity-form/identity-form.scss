@@ -1,6 +1,6 @@
 .form-group.required .control-label:after {
-   content:" *";
-   color:red;
+   content: " *";
+   color: red;
 }
 
 fieldset {
@@ -16,5 +16,29 @@ fieldset {
   .radio-inline {
     padding-left: 0;
     padding-right: 10px;
+  }
+}
+
+.identity-form {
+  #address-input {
+    .street {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0 -10px;
+
+      .field {
+        margin: 0 10px;
+      }
+
+      .field.required .control-label:after {
+         content: " *";
+         color: red;
+      }
+
+      .field.large {
+        flex-grow: 1;
+      }
+    }
   }
 }
