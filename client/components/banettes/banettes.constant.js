@@ -18,6 +18,10 @@ angular.module('impactApp').constant('banettes', [
     label: 'Incomplète'
   },
   {
+    id: 'en_cours',
+    label: 'En cours de saisie'
+  },
+  {
     id: 'archive',
     label: 'Archivée'
   }
