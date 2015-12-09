@@ -43,7 +43,8 @@ angular.module('impactApp')
         controller: 'AgentsEditCtrl',
         resolve: {
           user: function(User, $stateParams) {
-            if ($stateParams.id) {
+            var id = $stateParams.id;
+            if (id && id !== 'nouvel_agent') {
               return User.get({id: $stateParams.id}).$promise;
             } else {
               return new User();
