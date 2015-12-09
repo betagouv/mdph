@@ -52,18 +52,22 @@ angular.module('impactApp')
       } else {
         $scope.showError = false;
         request.status = 'emise';
-        request.$update({isSendingRequest: true}, function() {
-          $modal.open({
-            templateUrl: 'app/demande/steps/envoi/modal_envoi_ok.html',
-            backdrop: true,
-            windowClass: 'right fade',
-            controller: function($modalInstance, $scope) {
-              $scope.ok = function() {
-                $modalInstance.close();
-              };
-            }
-          });
-        });
+
+        request.$update({isSendingRequest: true});
+
+        // TODO: Ecrire un nouveau questionnaire de satisfaction
+        // request.$update({isSendingRequest: true}, function() {
+        //   $modal.open({
+        //     templateUrl: 'app/demande/steps/envoi/modal_envoi_ok.html',
+        //     backdrop: true,
+        //     windowClass: 'right fade',
+        //     controller: function($modalInstance, $scope) {
+        //       $scope.ok = function() {
+        //         $modalInstance.close();
+        //       };
+        //     }
+        //   });
+        // });
       }
     };
   });
