@@ -81,11 +81,6 @@
             "detailModel": "finDroitDetail",
             "detailUrl": "components/detail/precisez.html",
             "placeholder": "Indiquez le(s) droit(s) concerné(s) et la ou les date(s) d'échéance"
-          },
-          {
-            "label": "Aucune des situations ne me correspond",
-            "labelRep": "Aucune des situations ne lui correspond",
-            "model": "aucun"
           }
         ]
       }
