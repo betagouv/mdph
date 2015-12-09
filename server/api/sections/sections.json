@@ -11,6 +11,7 @@
     "label": "Situations particulières",
     "desc": "Si vous vous trouvez dans une situation nécessitant une attention particulière",
     "group": "obligatoire",
+    "trajectoire": true,
     "questions": {
       "urgences": {
         "model": "urgences",

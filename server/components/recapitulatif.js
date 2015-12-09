@@ -191,7 +191,7 @@ exports.answersToHtml = function(request, path, output, next) {
         { class: '.section-vie_au_travail', color: '#815EA5' },
         { class: '.section-aidant', color: '#815EA5' },
         { class: '.section-vie_scolaire', color: '#58A0E6' },
-        { class: '.situations_particulieres', color: 'rgb(255, 143, 27)' }
+        { class: '.section-situations_particulieres', color: '#EA2E49' }
       ]);
     },
 
