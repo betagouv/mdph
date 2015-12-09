@@ -365,10 +365,11 @@
       },
       "ipp": {
         "model": "ipp",
-        "titleDefault": "Quel est votre taux d'IPP (Incapacité Permanente Partielle) ?",
-        "titleRep": "Quel est son taux d'IPP (Incapacité Permanente Partielle) ?",
+        "titleDefault": "Connaissez-vous votre taux d'IPP (Incapacité Permanente Partielle) ?",
+        "titleRep": "Connaissez-vous son taux d'IPP (Incapacité Permanente Partielle) ?",
         "type": "text",
-        "placeholder": "En %"
+        "placeholder": "Taux d'IPP, en %",
+        "isOptionnal": true
       },
       "retraite": {
         "model": "retraite",
