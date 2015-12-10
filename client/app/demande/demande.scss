@@ -112,6 +112,16 @@
       border-bottom: 2px solid $primary;
       background-color: white;
     }
+
+    input[type=radio] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    input[type=checkbox] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
   }
 
   .answer {
@@ -124,16 +134,6 @@
     li {
       list-style: none;
     }
-  }
-
-  input[type=radio] {
-    margin-right: 10px;
-    cursor: pointer;
-  }
-
-  input[type=checkbox] {
-    margin-right: 10px;
-    cursor: pointer;
   }
 
   label {
