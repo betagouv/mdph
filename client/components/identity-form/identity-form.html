@@ -94,7 +94,6 @@
     </div>
   </div>
 
-
   <div class="form-group required" ng-if="type === 'beneficiaire'"
     ng-class="{
       'has-error': infoForm.dateDeNaissance.$invalid && infoForm.$submitted
@@ -165,7 +164,7 @@
 
         <div class="field" ng-class="{'required': !disableAddress(),'has-error': infoForm.typeVoie.$invalid && infoForm.$submitted}">
           <label for="typeVoie" class="control-label">Type de voie</label>
-          <select class="form-control" name="typeVoie" ng-model="identite.typeVoie" ng-disabled="disableAddress()" ng-required="!disableAddress()" ng-options="typeVoie as typeVoie.label for typeVoie in typesVoies"></select>
+          <select class="form-control" name="typeVoie" ng-model="identite.typeVoie" ng-disabled="disableAddress()" ng-required="!disableAddress()" ng-options="type as type.label for type in typesVoies track by type.label"></select>
           <div ng-messages="infoForm.typeVoie.$error" ng-if="infoForm.$submitted">
             <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           </div>
