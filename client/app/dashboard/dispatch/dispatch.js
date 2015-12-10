@@ -31,8 +31,8 @@ angular.module('impactApp')
             }
           },
 
-          secteurs: function(SecteurResource) {
-            return SecteurResource.query().$promise;
+          secteurs: function(SecteurResource, currentMdph) {
+            return SecteurResource.query({mdph: currentMdph._id}).$promise;
           },
 
           zipcodes: function() {
@@ -69,8 +69,8 @@ angular.module('impactApp')
             }
           },
 
-          evaluators: function(Auth) {
-            return Auth.getAllUsers();
+          evaluators: function(MdphResource, currentMdph) {
+            return MdphResource.queryUsers({zipcode: currentMdph.zipcode}).$promise;
           }
         },
         authenticate: true

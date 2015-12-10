@@ -22,14 +22,13 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   Secteur
     .findById(req.params.id)
-    .populate('evaluators.enfant evaluators.adulte')
     .exec(function(err, secteur) {
-    if (err) { return handleError(req, res, err); }
+      if (err) { return handleError(req, res, err); }
 
-    if (!secteur) { return res.sendStatus(404); }
+      if (!secteur) { return res.sendStatus(404); }
 
-    return res.json(secteur);
-  });
+      return res.json(secteur);
+    });
 };
 
 var update = function(req, res) {

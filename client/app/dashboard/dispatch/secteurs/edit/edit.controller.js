@@ -10,10 +10,20 @@ angular.module('impactApp')
     $scope.selectedEvaluatorsAdultes = secteur.evaluators && secteur.evaluators.adulte ? secteur.evaluators.adulte : [];
     $scope.selectedEvaluatorsEnfants = secteur.evaluators && secteur.evaluators.enfant ? secteur.evaluators.enfant : [];
 
+    $scope.toggleSelection = function(selection, evaluatorId) {
+      var idx = selection.indexOf(evaluatorId);
+
+      if (idx > -1) {
+        selection.splice(idx, 1);
+      } else {
+        selection.push(evaluatorId);
+      }
+    };
+
     $scope.save = function() {
       secteur.evaluators = {
-        adulte: _.pluck($scope.selectedEvaluatorsAdultes, '_id'),
-        enfant: _.pluck($scope.selectedEvaluatorsEnfants, '_id'),
+        adulte: $scope.selectedEvaluatorsAdultes,
+        enfant: $scope.selectedEvaluatorsEnfants
       };
 
       secteur.name = $scope.name;
@@ -26,11 +36,5 @@ angular.module('impactApp')
 
     $scope.cancel = function() {
       $state.go('^', {}, {reload: true});
-    };
-
-    $scope.delete = function() {
-      secteur.$delete(function() {
-        $state.go('^', {}, {reload: true});
-      });
     };
   });

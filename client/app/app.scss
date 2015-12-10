@@ -95,6 +95,21 @@ hr {
   cursor: pointer;
 }
 
+fieldset.light {
+  legend {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+
+  ul {
+    margin-left: 15px;
+  }
+
+  span {
+    font-weight: normal;
+  }
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';

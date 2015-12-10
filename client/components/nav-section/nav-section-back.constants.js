@@ -16,7 +16,7 @@ angular.module('impactApp').constant('SectionBackConstants', [
     label: 'Gestion des utilisateurs'
   },
   {
-    sref: 'dashboard.dispatch.regles',
+    sref: 'dashboard.dispatch.secteurs',
     include: 'dashboard.dispatch.**',
     fa: 'fa-code-fork',
     label: 'Dispatch des demandes'
