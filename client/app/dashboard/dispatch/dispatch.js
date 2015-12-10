@@ -47,6 +47,12 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/dispatch/secteurs/secteurs.html',
         controller: function($scope, secteurs) {
           $scope.secteurs = secteurs;
+
+          $scope.delete = function(secteur, idx) {
+            secteur.$delete(function() {
+              $scope.secteurs.splice(idx, 1);
+            });
+          };
         },
 
         resolve: {
