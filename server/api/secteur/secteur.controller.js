@@ -6,13 +6,7 @@ var Request = require('../request/request.model');
 var Mdph = require('../mdph/mdph.model');
 
 exports.index = function(req, res) {
-  let mdph;
-
-  if (req.query.mdph) {
-    mdph = req.query.mdph;
-  } else {
-    mdph = req.user.mdph;
-  }
+  const mdph = req.query.mdph ? req.query.mdph : req.user.mdph;
 
   Secteur
     .find({mdph: mdph})

@@ -50,8 +50,8 @@ angular.module('impactApp')
         },
 
         resolve: {
-          secteurs: function(SecteurResource) {
-            return SecteurResource.query().$promise;
+          secteurs: function(SecteurResource, currentMdph) {
+            return SecteurResource.query({mdph: currentMdph._id}).$promise;
           }
         },
         authenticate: true

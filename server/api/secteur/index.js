@@ -6,6 +6,7 @@ var controller = require('./secteur.controller');
 
 var router = express.Router();
 
+router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.post('/', auth.hasRole('adminMdph'), controller.create);
 router.get('/:id', auth.hasRole('adminMdph'), controller.show);
 router.post('/:id', auth.hasRole('adminMdph'), controller.update);
