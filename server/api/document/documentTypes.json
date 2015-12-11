@@ -1,0 +1,193 @@
+{
+  "obligatoires": [
+    {
+      "id": "certificatMedical",
+      "label": "Certificat médical",
+      "canDelegate": true,
+      "mandatory": true,
+      "desc": "Un certificat médical de moins de 3 mois"
+    },
+    {
+      "id": "justificatifDomicile",
+      "label": "Justificatif de domicile",
+      "mandatory": true
+    },
+    {
+      "id": "carteIdentite",
+      "label": "Carte d'identité, passeport",
+      "mandatory": true
+    }
+  ],
+
+  "complementaires": [
+    {
+      "id": "acte_deces_mariage",
+      "label": "Acte de décès / acte de mariage"
+    },
+    {
+      "id": "carte_grise",
+      "label": "Carte grise véhicule, permis de conduire"
+    },
+    {
+      "id": "carte_sejour",
+      "label": "Carte de séjour"
+    },
+    {
+      "id": "avis_impot",
+      "label": "Avis d'impôt sur le revenu"
+    },
+    {
+      "id": "rib_iban",
+      "label": "Relevé d'identité bancaire (RIB/IBAN)"
+    },
+    {
+      "id": "attestation_paiement_indemnites_journ",
+      "label": "Attestation de paiement des indemnités journ. (CAF, MSA, SS, Pôle Emploi....)"
+    },
+    {
+      "id": "bulletin_salaire",
+      "label": "Bulletin de salaire"
+    },
+    {
+      "id": "devis_aide_technique",
+      "label": "Devis / facture aide technique"
+    },
+    {
+      "id": "facture_cantine",
+      "label": "Facture cantine (restaurant scolaire)"
+    },
+    {
+      "id": "frais_obseques",
+      "label": "Facture frais d'obsèques"
+    },
+    {
+      "id": "reduction_temps_travail",
+      "label": "Justificatif réduction du temps de travail"
+    },
+    {
+      "id": "train_taxi",
+      "label": "Billets de train / fiche taxi (frais de transport suite à placement)"
+    },
+    {
+      "id": "tutelle",
+      "label": "Jugement de tutelle, jugement rectificatif, curatelle"
+    },
+    {
+      "id": "emancipation",
+      "label": "Justificatif d'émancipation"
+    },
+    {
+      "id": "delegation_autorite",
+      "label": "Jugement de délégation d'autorité parentale"
+    },
+    {
+      "id": "divorce",
+      "label": "Jugement de divorce"
+    },
+    {
+      "id": "ophtalmologique",
+      "label": "Bilan ophtalmologique (MDPH)"
+    },
+    {
+      "id": "evaluation_psychiatrique",
+      "label": "Complément médical d'aide à l'évaluation psychiatrique"
+    },
+    {
+      "id": "psychologique",
+      "label": "Bilan psychologique, etc."
+    },
+    {
+      "id": "examen_psychiatrique",
+      "label": "Compte rendu d'examen psychiatrique, questionnaire psychiatrique,etc."
+    },
+    {
+      "id": "orthophonique",
+      "label": "Bilan orthophonique, psychomoteur, kinésithérapeute, ostéopathe,etc."
+    },
+    {
+      "id": "camsp",
+      "label": "Bilan CAMSP, CMP, CMPP"
+    },
+    {
+      "id": "compte_rendu_evaluation_medicale",
+      "label": "Compte rendu d'évaluation médicale"
+    },
+    {
+      "id": "attestation_medicale",
+      "label": "Attestation médicale"
+    },
+    {
+      "id": "fiche_liaison_medecine_travail",
+      "label": "Fiche de liaison Médecine du travail"
+    },
+    {
+      "id": "prescription_medicale",
+      "label": "Prescription médicale pour aménagement d'examens"
+    },
+    {
+      "id": "bulletin_hospitalisation",
+      "label": "Bulletin d'hospitalisation"
+    },
+    {
+      "id": "fiche_prescription_hors_medicamenteuse",
+      "label": "Fiche de prescription hors médicamenteuse"
+    },
+    {
+      "id": "gevasco",
+      "label": "GEVASCO",
+      "desc": "Documents à remplir avec l'enseignant référent et l'équipe de suivi de la scolarisation de votre enfant. Vous pouvez demander au directeur de l'école le contact de votre enseignant référent."
+    },
+    {
+      "id": "bilan_ess",
+      "label": "Bilan de l'Equipe de Suivi de Scolarisation (ESS)"
+    },
+    {
+      "id": "fiche_liaison_financement_materiel",
+      "label": "Fiche de liaison Financement du matériel pédagogique adapté"
+    },
+    {
+      "id": "fiche_eval_autonomie",
+      "label": "Fiche d'évaluation de l'autonomie de l'élève (de l'inspection académique)"
+    },
+    {
+      "id": "protocoles_accompagnement_eleve_avsi",
+      "label": "Protocoles d'accompagnement d'un élève handicapé par une AVSI"
+    },
+    {
+      "id": "plan_individualise_accompagnement",
+      "label": "Plan individualisé d'accompagnement (PIA)"
+    },
+    {
+      "id": "devoirs_particuliers",
+      "label": "Devoirs particuliers (dyslexie, orthophonie, etc.)"
+    },
+    {
+      "id": "certificat_de_scolarite",
+      "label": "Certificat de scolarité, relevé de notes, etc."
+    },
+    {
+      "id": "cv",
+      "label": "Curriculum Vitae (CV)"
+    },
+    {
+      "id": "orientation_professionnel",
+      "label": "Courriers Orientation Professionnel (UEROS, POPS, CAP EMPLOI...)"
+    },
+    {
+      "id": "bilans_vie_pro",
+      "label": "Bilans (AFPA, ESAT, Etc.), bilans Appui Projet, POPS, Préo, UEROS Etc."
+    },
+    {
+      "id": "rapport_de_stage",
+      "label": "Rapport de stage"
+    },
+    {
+      "id": "bilan_ems_sms",
+      "label": "Synthèses Etablissements et services (EMS, SMS, SAVS, SAMSAH, etc.)"
+    },
+    {
+      "id": "autre",
+      "label": "Autre document"
+    }
+  ]
+}

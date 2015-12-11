@@ -72,11 +72,21 @@ angular.module('impactApp')
           },
           'obligatoires@departement.demande.documents': {
             templateUrl: 'app/demande/steps/documents/obligatoires/obligatoires.html',
-            controller: 'DocumentsObligatoiresCtrl'
+            controller: 'DocumentsObligatoiresCtrl',
+            resolve: {
+              documentTypes: function(DocumentResource) {
+                return DocumentResource.query({type: 'obligatoires'}).$promise;
+              }
+            }
           },
           'complementaires@departement.demande.documents': {
             templateUrl: 'app/demande/steps/documents/complementaires/complementaires.html',
-            controller: 'DocumentsComplementairesCtrl'
+            controller: 'DocumentsComplementairesCtrl',
+            resolve: {
+              documentTypes: function(DocumentResource) {
+                return DocumentResource.query({type: 'complementaires'}).$promise;
+              }
+            }
           }
         }
       })

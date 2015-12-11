@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function($scope, $window, $state, $modal, mdph, user, documentTypes, sections, Auth, request, RequestService) {
+  .controller('DemandeCtrl', function($scope, $state, mdph, user, request, RequestService) {
     $scope.request = request;
     $scope.mdph = mdph;
     $scope.formAnswers = request.formAnswers;

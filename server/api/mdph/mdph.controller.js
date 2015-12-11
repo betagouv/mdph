@@ -8,11 +8,24 @@ var User = require('../user/user.model');
 var Secteur = require('../secteur/secteur.model');
 var Request = require('../request/request.model');
 var Partenaire = require('../partenaire/partenaire.model');
+var DocumentCategory = require('../document/document-category.model');
 var path = require('path');
 
 // Get all users linked to a single mdph
 exports.showUsers = function(req, res) {
   User.find({
+    mdph: req.mdph._id
+  }, function(err, list) {
+    if (err) { return handleError(req, res, err); }
+
+    if (!list) { return res.sendStatus(404); }
+
+    return res.json(list);
+  });
+};
+
+exports.showDocumentCategories = function(req, res) {
+  DocumentCategory.find({
     mdph: req.mdph._id
   }, function(err, list) {
     if (err) { return handleError(req, res, err); }

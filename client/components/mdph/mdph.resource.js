@@ -70,6 +70,14 @@ angular.module('impactApp')
           controller:'requests',
           subcontroller: 'byStatus'
         }
+      },
+
+      queryDocumentCategories: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller:'document-categories'
+        }
       }
     });
   });

@@ -28,6 +28,8 @@ router.get('/:id/secteurs', isAuthorizedMdph(), controller.showSecteurs);
 router.get('/:id/secteurs/:secteurId', isAuthorizedMdph(), controller.getSecteur);
 router.get('/:id/secteurs/:secteurId/requests', isAuthorizedMdph(), controller.showRequestsForSecteur);
 
+router.get('/:id/document-categories', isAuthorizedMdph(), controller.showDocumentCategories);
+
 function isAuthorizedMdph() {
   return compose()
     .use(auth.hasRole('adminMdph'))

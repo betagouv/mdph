@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsObligatoiresCtrl', function($scope, $modal, $state, UploadService, request, DocumentsService) {
+  .controller('DocumentsObligatoiresCtrl', function($scope, $modal, $state, UploadService, request, DocumentsService, documentTypes) {
     $scope.request = request;
+    $scope.documentTypes = documentTypes;
 
-    $scope.documentTypesById = DocumentsService.documentTypesById;
-    $scope.documentsObligatoires = DocumentsService.typesObligatoires;
     $scope.filesVM = DocumentsService.groupByType(request.documents);
 
     $scope.upload = function(file, documentFile) {

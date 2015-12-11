@@ -12,7 +12,6 @@ angular.module('impactApp')
       templateUrl: 'components/display-file/display-file-list.html',
       controller: function($scope, $http, $state, DocumentsService) {
         $scope.filesVM = DocumentsService.groupByType($scope.files);
-        $scope.documentTypesById = DocumentsService.documentTypesById;
 
         $scope.showSaveValidation = function() {
           return $scope.request.status === 'emise';

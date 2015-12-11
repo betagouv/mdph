@@ -12,12 +12,20 @@ angular.module('impactApp')
             return RequestResource.getPartenaire({shortId: $stateParams.shortId}).$promise;
           },
 
-          mdph: function(request, MdphResource) {
-            return MdphResource.get({zipcode: request.mdph});
+          documentTypes: function(DocumentResource, $stateParams) {
+            var type = $stateParams.type;
+
+            if (type === 'complementaires') {
+              return DocumentResource.query({type: type}).$promise;
+            } else {
+              return DocumentResource.get({id: type}).$promise.then(function(result) {
+                return [result];
+              });
+            }
           },
 
-          type: function($stateParams) {
-            return $stateParams.type;
+          mdph: function(request, MdphResource) {
+            return MdphResource.get({zipcode: request.mdph});
           },
 
           partenaire: function($stateParams, Partenaire) {

@@ -5,10 +5,10 @@
 </div>
 
 <div ng-if="files.length !== 0">
-  <div ng-repeat="(type, documents) in filesVM">
-    <h4>{{documentTypesById[type].label}}</h4>
+  <div ng-repeat="category in filesVM">
+    <h4>{{category.documentType.label}}</h4>
     <ul class="list-group">
-      <li ng-repeat="document in documents" class="list-group-item">
+      <li ng-repeat="document in category.files" class="list-group-item">
         <display-file
           file="document"
           show-validation-actions="showValidationActions"

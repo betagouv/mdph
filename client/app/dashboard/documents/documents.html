@@ -1,0 +1,24 @@
+<div class="container-dashboard">
+  <div class="row">
+    <div class="col-sm-2 menu-dashboard">
+      <h2>Documents</h2>
+      <ul>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.documents.list({type: 'obligatoires'})">Obligatoires</a>
+        </li>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.documents.list({type: 'complementaires'})">Complémentaires</a>
+        </li>
+      </ul>
+      <h2>Catégories</h2>
+      <ul>
+        <li>
+          <a ui-sref-active="active" ui-sref="dashboard.documents.categories">Catégories</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-10">
+      <div ui-view class="main-dashboard"></div>
+    </div>
+  </div>
+</div>

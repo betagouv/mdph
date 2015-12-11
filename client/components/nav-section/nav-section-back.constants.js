@@ -30,6 +30,13 @@ angular.module('impactApp').constant('SectionBackConstants', [
   // },
 
   {
+    sref: 'dashboard.documents.list({type: \'obligatoires\'})',
+    include: 'dashboard.documents.**',
+    fa: 'fa-book',
+    label: 'Personnalisation des documents'
+  },
+
+  {
     sref: 'dashboard.espace_perso.mon_compte',
     include: 'dashboard.espace_perso.mon_compte.**',
     fa: 'fa-cogs',

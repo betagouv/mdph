@@ -12,7 +12,7 @@ angular.module('impactApp')
       return calculAge(dateNaiss);
     };
   })
-  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentUser, currentMdph, request, DocumentsService, prestations, prestationsQuitus) {
+  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentUser, currentMdph, request, DocumentsService, mandatoryDocumentTypes, prestations, prestationsQuitus) {
     $scope.token = $cookies.get('token');
     $scope.toutesPrestations = prestations;
     $scope.prestationsQuitus = prestationsQuitus;
@@ -21,8 +21,8 @@ angular.module('impactApp')
 
     var prestationsById = _.indexBy(prestations, 'id');
 
-    $scope.documentsObligatoires = DocumentsService.filterMandatory(request.documents);
-    $scope.documentsComplementaires = DocumentsService.filterNonMandatory(request.documents);
+    $scope.documentsObligatoires = DocumentsService.filterMandatory(request.documents, mandatoryDocumentTypes);
+    $scope.documentsComplementaires = DocumentsService.filterNonMandatory(request.documents, mandatoryDocumentTypes);
 
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {

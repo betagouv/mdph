@@ -1,39 +1,39 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('DocumentsService', function DocumentsService(documentTypes) {
-    var typesObligatoires = _.chain(documentTypes)
-      .filter({mandatory: true})
-      .pluck('id')
-      .value();
-
-    var documentTypesById = _.indexBy(documentTypes, 'id');
-
+  .factory('DocumentsService', function DocumentsService(DocumentResource) {
     return {
-      typesObligatoires: typesObligatoires,
-      documentTypesById: documentTypesById,
-
       groupByType: function(documents) {
-        return _.groupBy(documents, 'type');
+        var groups = _.groupBy(documents, 'type');
+        var detailedGroups = [];
+
+        _.forEach(groups, function(files, group) {
+          detailedGroups.push({
+            documentType: DocumentResource.get({id: group}),
+            files: files
+          });
+        });
+
+        return detailedGroups;
       },
 
-      filterMandatory: function(documents) {
+      filterMandatory: function(documents, mandatoryTypes) {
         if (!documents && documents.length === 0) {
           return documents;
         }
 
         return _.filter(documents, function(current) {
-          return _.contains(typesObligatoires, current.type);
+          return _.contains(mandatoryTypes, current.type);
         });
       },
 
-      filterNonMandatory: function(documents) {
+      filterNonMandatory: function(documents, mandatoryTypes) {
         if (!documents && documents.length === 0) {
           return documents;
         }
 
         return _.filter(documents, function(current) {
-          return !_.contains(typesObligatoires, current.type);
+          return !_.contains(mandatoryTypes, current.type);
         });
       }
     };

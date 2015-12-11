@@ -7,8 +7,10 @@ angular.module('impactApp')
         url: '/medecin',
         templateUrl: 'app/medecin/medecin.html',
         controller: 'PartenaireCtrl',
-        data: {
-          type: 'certificatMedical'
+        resolve: {
+          type: function() {
+            return 'certificatMedical';
+          }
         }
       });
   });

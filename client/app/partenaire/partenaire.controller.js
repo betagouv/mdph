@@ -1,12 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PartenaireCtrl', function($scope, $location, Partenaire, RequestResource, $state) {
-    $scope.shortId = '';
-    $scope.errorMsg = '';
+  .controller('PartenaireCtrl', function($scope, $location, Partenaire, RequestResource, $state, type) {
     $scope.partenaire = new Partenaire();
-
-    var type = $state.current.data ? $state.current.data.type : null;
 
     $scope.enterShortId = function(form) {
       if (form.$valid) {

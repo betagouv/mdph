@@ -1,0 +1,24 @@
+<ui-view>
+  <div class="list-header">
+    <h2>{{title}}</h2>
+  </div>
+
+  <div class="list-main">
+    <table>
+      <thead>
+        <th>Type de document</th>
+        <th>Catégorie associée</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="document in documentTypess">
+          <td>
+            <a ui-sref="dashboard.documents.edit({id: document._id})">{{document.label}}</a>
+          </td>
+          <td>
+            {{document.category.label}} <a><i class="fa fa-external-link-square"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ui-view>

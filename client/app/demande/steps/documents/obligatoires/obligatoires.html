@@ -1,26 +1,19 @@
 <h2>Documents obligatoires</h2>
 
 <div class="row">
-  <div class="col-sm-4" ng-repeat="id in documentsObligatoires">
+  <div class="col-sm-4" ng-repeat="documentType in documentTypes">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>{{documentTypesById[id].label}}</h3>
+        <h3>{{documentType.label}}</h3>
       </div>
       <div class="panel-body">
-        <p>{{documentTypesById[id].desc}}</p>
-        <div ng-if="id === 'certificatMedical'" class="well">
-          <p>Vous pouvez également demander à votre médecin de le télétransmettre directement.
-            Présentez vous à votre rendez-vous médical avec la brochure d'explication jointe et pensez à vous munir de la référence de votre demande: <strong>{{request.shortId}}</strong>
-          </p>
-          <a target="_blank" download href="/assets/documents/teleservice_medecin_{{ mdph.zipcode }}.pdf">
-            Télécharger la brochure
-          </a>
-        </div>
-        <p ng-if="documentTypesById[id].emptyDoc">
-          <a target="_blank" download ng-href="/assets/documents/{{documentTypesById[id].emptyDoc}}">
+        <p>{{documentType.desc}}</p>
+        <p ng-if="documentType.emptyDoc">
+          <a target="_blank" download ng-href="/assets/documents/{{documentType.emptyDoc}}">
             Télécharger un modèle de ce document
           </a>
         </p>
+
         <ul ng-if="!filesVM[id]"><li>Pas de document</li></ul>
         <ul ng-if="filesVM[id]" class="list-group">
           <li ng-repeat="file in filesVM[id]" class="list-group-item">

@@ -3,17 +3,9 @@
 angular.module('impactApp')
   .controller('DocumentsComplementairesCtrl', function($scope, $modal, $state, UploadService, request, documentTypes) {
     $scope.request = request;
+    $scope.documentTypes = documentTypes;
 
-    $scope.documentTypesById = _.indexBy(documentTypes, 'id');
     $scope.filesVM = _.groupBy(request.documents, 'type');
-
-    // Initialisation documents complementaires
-    $scope.documentsComplementaires = _.chain(documentTypes)
-      .reject({mandatory: true})
-      .filter(function(type) {
-        return typeof $scope.filesVM[type.id] !== 'undefined';
-      })
-      .value();
 
     $scope.upload = function(file, documentFile) {
       UploadService.upload(request, $scope.filesVM, file, documentFile);
@@ -25,13 +17,11 @@ angular.module('impactApp')
         controller: 'ChooseTypeModalInstanceCtrl',
         resolve: {
           categories: function() {
-            var filtered = _.chain(documentTypes)
-              .reject({mandatory: true})
-              .filter(function(type) {
-                return typeof _.find($scope.documentsComplementaires, {id: type.id}) === 'undefined';
-              })
-              .value();
+            var filtered = _.filter(documentTypes, function(type) {
+              return typeof _.find($scope.documentTypes, {id: type.id}) === 'undefined';
+            });
 
+            // TODO: filter by categories
             var categories = _.groupBy(filtered, 'category');
             return categories;
           }
@@ -39,7 +29,7 @@ angular.module('impactApp')
       });
 
       modalInstance.result.then(function(selected) {
-        $scope.documentsComplementaires.push(selected);
+        $scope.documentTypes.push(selected);
       });
     };
   })

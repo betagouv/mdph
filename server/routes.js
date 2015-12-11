@@ -20,6 +20,7 @@ module.exports = function(app) {
   app.use('/api/sections', require('./api/sections'));
   app.use('/api/secteurs', require('./api/secteur'));
   app.use('/api/stats', require('./api/stats'));
+  app.use('/api/documents', require('./api/document'));
 
   app.use('/auth', require('./auth'));
 

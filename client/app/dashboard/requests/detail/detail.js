@@ -52,6 +52,13 @@ angular.module('impactApp')
         url: '/pre_evaluation',
         templateUrl: 'app/dashboard/requests/detail/pre_evaluation/pre_evaluation.html',
         controller: 'RequestPreEvaluationCtrl',
+        resolve: {
+          mandatoryDocumentTypes: function(DocumentResource) {
+            return DocumentResource.query({type: 'obligatoires'}).$promise.then(function(result) {
+              return _.pluck(result, 'id');
+            });
+          }
+        },
         authenticate: true
       });
   });
