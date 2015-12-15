@@ -5,17 +5,11 @@ var Schema = mongoose.Schema;
 
 var DocumentCategorySchema = new Schema({
   mdph:             { type: Schema.Types.ObjectId, ref: 'Mdph' },
-  label:            { type: String },
+  label:            { type: String, required: true, default: 'Nouvelle catégorie' },
+  parent:           { type: Schema.Types.ObjectId, ref: 'DocumentCategory' },
   documentTypes:    [{type: String}],
-  barcode: {
-    originalname:   { type: String },
-    filename:       { type: String },
-    encoding:       { type: String },
-    mimetype:       { type: String },
-    path:           { type: String },
-    extension:      { type: String },
-    size:           { type: Number }
-  }
+  barcode:          { type: Schema.Types.ObjectId },
+  position:         { type: Number }
 });
 
 module.exports = mongoose.model('DocumentCategory', DocumentCategorySchema);

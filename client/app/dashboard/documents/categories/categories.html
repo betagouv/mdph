@@ -1,0 +1,110 @@
+<div class="plan-classement">
+  <div class="wrapper">
+    <div class="plan-classement-title">
+      <h2>
+        Plan de classement
+        <a class="pull-right btn btn-success" data-nodrag ng-click="newCategory(this)" style="margin-right: 8px;">
+          <i class="fa fa-plus"></i>
+        </a>
+      </h2>
+
+      <div ng-switch="saving">
+        <p ng-switch-when="pending"><i class="fa fa-spin fa-cog"></i> Sauvegarde en cours</p>
+        <p ng-switch-when="error" class="text-danger"><i class="fa fa-remove"></i> Erreur de sauvegarde</p>
+        <p ng-switch-when="success" class="text-success"><i class="fa fa-check"></i> Sauvegarde effectuée</p>
+        <p ng-switch-default class="text-muted">Aucune modification effectuée</p>
+      </div>
+    </div>
+
+    <div ui-tree="treeOptions">
+      <ol ui-tree-nodes="" ng-model="categories">
+        <li ng-repeat="category in categories" ui-tree-node>
+          <div ui-tree-handle>
+            <div class="ui-tree-category-content">
+              <div class="detail" data-nodrag>
+                <input class="input-category-label" data-nodrag type="text"
+                  ng-change="save(category)"
+                  ng-keydown="saving = 'waiting'"
+                  ng-model-options="{ debounce: 1000 }"
+                  ng-model="category.label">
+
+                <div class="files">
+                  <a
+                    ng-if="category.barcode"
+                    style="margin-right: 16px;"
+                    target="_self"
+                    download="{{category.barcode.filename}}"
+                    href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
+                    {{category.barcode.filename}}
+                  </a>
+                  <em
+                    class="text-muted"
+                    ng-if="!category.barcode"
+                    style="margin-right: 16px;">
+                    Aucun fichier associé
+                  </em>
+
+                  <button ngf-select ngf-change="upload($file, category)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
+                    <i class="fa fa-upload"></i> Attacher un fichier</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="actions" data-nodrag>
+                <a class="btn btn-primary" data-nodrag ng-click="newSubCategory(this)" style="margin-right: 8px;">
+                  <i class="fa fa-plus"></i>
+                </a>
+                <a class="btn btn-danger" data-nodrag ng-click="removeCategory(this)">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <ol ui-tree-nodes="" ng-model="category.children">
+            <li ng-repeat="child in category.children" ui-tree-node>
+              <div ui-tree-handle>
+                <div class="ui-tree-category-content">
+                  <div class="detail" data-nodrag>
+                    <input class="input-category-label" data-nodrag type="text"
+                      ng-change="save(child)"
+                      ng-keydown="saving = 'waiting'"
+                      ng-model-options="{ debounce: 1000 }"
+                      ng-model="child.label">
+
+                    <div class="files">
+                      <a
+                        ng-if="child.barcode"
+                        style="margin-right: 16px;"
+                        target="_self"
+                        download="{{child.barcode.filename}}"
+                        href="api/mdphs/{{currentMdph.zipcode}}/categories/{{child._id}}/file?access_token={{token}}">
+                        {{child.barcode.filename}}
+                      </a>
+                      <em
+                        class="text-muted"
+                        ng-if="!child.barcode"
+                        style="margin-right: 16px;">
+                        Aucun fichier associé
+                      </em>
+
+                      <button ngf-select ngf-change="upload($file, child)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
+                        <i class="fa fa-upload"></i> Attacher un fichier</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="actions" data-nodrag>
+                    <a class="btn btn-danger" data-nodrag ng-click="removeCategory(this)">
+                      <i class="fa fa-remove"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

@@ -76,7 +76,7 @@ angular.module('impactApp')
         method: 'GET',
         isArray: true,
         params: {
-          controller:'document-categories'
+          controller:'categories'
         }
       }
     });

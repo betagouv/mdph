@@ -21,7 +21,8 @@
     "lodash": "3.9.3",
     "moment": "2.10.3",
     "ng-file-upload": "6.2.1",
-    "ngstorage": "0.3.7"
+    "ngstorage": "0.3.7",
+    "angular-ui-tree": "~2.11.0"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

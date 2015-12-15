@@ -8,7 +8,7 @@ var User = require('../user/user.model');
 var Secteur = require('../secteur/secteur.model');
 var Request = require('../request/request.model');
 var Partenaire = require('../partenaire/partenaire.model');
-var DocumentCategory = require('../document/document-category.model');
+var DocumentCategoryCtrl = require('../document/document-category.controller');
 var path = require('path');
 
 // Get all users linked to a single mdph
@@ -25,14 +25,70 @@ exports.showUsers = function(req, res) {
 };
 
 exports.showDocumentCategories = function(req, res) {
-  DocumentCategory.find({
-    mdph: req.mdph._id
-  }, function(err, list) {
+  DocumentCategoryCtrl.findAndSortCategoriesForMdph(req.mdph, function(err, tree) {
     if (err) { return handleError(req, res, err); }
 
-    if (!list) { return res.sendStatus(404); }
+    return res.json(tree);
+  });
+};
 
-    return res.json(list);
+exports.saveDocumentCategoryFile = function(req, res) {
+  DocumentCategoryCtrl.saveDocumentCategoryFile(req.file, req.params.categoryId, req.log, function(err, file) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(file);
+  });
+};
+
+exports.getDocumentCategoryFile = function(req, res) {
+  DocumentCategoryCtrl.getDocumentCategoryFile(req.params.categoryId, function(err, fileStream) {
+    if (err) { return handleError(req, res, err); }
+
+    if (fileStream) {
+      fileStream.pipe(res);
+    } else {
+      res.sendStatus(404);
+    }
+  });
+};
+
+exports.createDocumentCategory = function(req, res) {
+  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, null, function(err, obj) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(obj);
+  });
+};
+
+exports.createSubDocumentCategory = function(req, res) {
+  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, req.params.categoryId, function(err, obj) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(obj);
+  });
+};
+
+exports.updateDocumentCategory = function(req, res) {
+  DocumentCategoryCtrl.updateDocumentCategory(req.params.categoryId, req.body.label, function(err, obj) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(obj);
+  });
+};
+
+exports.updateDocumentCategories = function(req, res) {
+  DocumentCategoryCtrl.updateDocumentCategories(req.body, function(err) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.sendStatus(200);
+  });
+};
+
+exports.removeDocumentCategory = function(req, res) {
+  DocumentCategoryCtrl.removeDocumentCategory(req.params.categoryId, function(err, obj) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.sendStatus(200);
   });
 };
 

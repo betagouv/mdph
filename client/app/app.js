@@ -10,7 +10,8 @@ angular.module('impactApp', [
   'ngAnimate',
   'ngFileUpload',
   'ngMessages',
-  'chart.js'
+  'chart.js',
+  'ui.tree'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider) {
     moment.locale('fr');
@@ -57,7 +58,12 @@ angular.module('impactApp', [
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       if (toState.redirectTo) {
         event.preventDefault();
-        $state.go(toState.redirectTo, toStateParams);
+        if (typeof toState.redirectTo === 'string') {
+          $state.go(toState.redirectTo, toStateParams);
+        } else {
+          var params = _.assign(toStateParams, toState.redirectTo.params);
+          $state.go(toState.redirectTo.url, params);
+        }
       } else {
         Auth.isLoggedInAsync(function(loggedIn) {
           if (toState.data && toState.data.title) {

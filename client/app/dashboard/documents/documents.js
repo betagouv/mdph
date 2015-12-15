@@ -5,10 +5,25 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.documents', {
         url: '/documents',
-        redirectTo: 'dashboard.documents.list({type: \'obligatoires\'})',
+        redirectTo: {
+          url: 'dashboard.documents.list',
+          params: {
+            type: 'obligatoires'
+          }
+        },
         templateUrl: 'app/dashboard/documents/documents.html',
+        authenticate: true
+      })
+      .state('dashboard.documents.categories', {
+        url: '/categories',
+        templateUrl: 'app/dashboard/documents/categories/categories.html',
         authenticate: true,
-        abstract: true
+        resolve: {
+          categories: function(MdphResource, currentMdph) {
+            return MdphResource.queryDocumentCategories({zipcode: currentMdph.zipcode}).$promise;
+          }
+        },
+        controller: 'CategoriesCtrl'
       })
       .state('dashboard.documents.list', {
         url: '/:type',
@@ -23,13 +38,13 @@ angular.module('impactApp')
             return type === 'obligatoires' ? 'Documents obligatoires' : 'Documents complémentaires';
           },
 
-          documentTypess: function(DocumentResource, type) {
+          documentTypes: function(DocumentResource, type) {
             return DocumentResource.query({type: type}).$promise;
           }
         },
-        controller: function($scope, type, documentTypess, title) {
+        controller: function($scope, type, documentTypes, title) {
           $scope.title = title;
-          $scope.documentTypess = documentTypess;
+          $scope.documentTypes = documentTypes;
         }
       });
   });
