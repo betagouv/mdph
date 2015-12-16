@@ -30,10 +30,10 @@ angular.module('impactApp').constant('SectionBackConstants', [
   // },
 
   {
-    sref: 'dashboard.documents.list({type: \'obligatoires\'})',
+    sref: 'dashboard.documents.categories',
     include: 'dashboard.documents.**',
     fa: 'fa-book',
-    label: 'Personnalisation des documents'
+    label: 'Classement des documents'
   },
 
   {

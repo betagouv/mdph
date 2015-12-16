@@ -32,6 +32,14 @@ exports.showDocumentCategories = function(req, res) {
   });
 };
 
+exports.showUncategorizedDocumentTypes = function(req, res) {
+  DocumentCategoryCtrl.showUncategorizedDocumentTypes(req.mdph, function(err, list) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(list);
+  });
+};
+
 exports.saveDocumentCategoryFile = function(req, res) {
   DocumentCategoryCtrl.saveDocumentCategoryFile(req.file, req.params.categoryId, req.log, function(err, file) {
     if (err) { return handleError(req, res, err); }
@@ -53,15 +61,7 @@ exports.getDocumentCategoryFile = function(req, res) {
 };
 
 exports.createDocumentCategory = function(req, res) {
-  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, null, function(err, obj) {
-    if (err) { return handleError(req, res, err); }
-
-    return res.json(obj);
-  });
-};
-
-exports.createSubDocumentCategory = function(req, res) {
-  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, req.params.categoryId, function(err, obj) {
+  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, function(err, obj) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(obj);
@@ -85,7 +85,15 @@ exports.updateDocumentCategories = function(req, res) {
 };
 
 exports.removeDocumentCategory = function(req, res) {
-  DocumentCategoryCtrl.removeDocumentCategory(req.params.categoryId, function(err, obj) {
+  DocumentCategoryCtrl.removeDocumentCategory(req.params.categoryId, function(err) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.sendStatus(200);
+  });
+};
+
+exports.updateDocumentType = function(req, res) {
+  DocumentCategoryCtrl.updateDocumentType(req.body.documentType, req.body.oldCategoryId, req.body.newCategoryId, function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(200);

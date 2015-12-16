@@ -1,20 +1,36 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CategoriesCtrl', function($scope, $timeout, $http, $cookies, MdphResource, currentMdph, categories, Upload) {
+  .controller('CategoriesCtrl', function($scope, $timeout, $http, $cookies, MdphResource, currentMdph, categories, documentTypes, allDocumentTypes, Upload) {
     $scope.categories = categories;
     $scope.currentMdph = currentMdph;
+    $scope.documentTypes = documentTypes;
+    $scope.allDocumentTypes = allDocumentTypes;
     $scope.token = $cookies.get('token');
 
-    function getUpdatedCategories(categories, targetCategory, targetCategoryParent) {
+    function getUpdatedCategories(categories) {
       return _.map(categories, function(current, key) {
-        var toUpdate =  {_id: current._id, position: key};
+        return {_id: current._id, position: key};
+      });
+    }
 
-        if (current === targetCategory) {
-          toUpdate.parent = targetCategoryParent._id;
+    function updateDocumentType(documentType, oldCategoryId, newCategoryId, callback) {
+      $http.post('api/mdphs/' + currentMdph.zipcode + '/document-types', {
+        documentType: documentType.id,
+        oldCategoryId: oldCategoryId,
+        newCategoryId: newCategoryId
+      }).then(function() {
+        $scope.saving = 'success';
+        if (callback) {
+          callback();
         }
 
-        return toUpdate;
+        return true;
+      },
+
+      function() {
+        $scope.saving = 'error';
+        return false;
       });
     }
 
@@ -30,14 +46,18 @@ angular.module('impactApp')
       });
     }
 
-    function compareDepth(catA, catB) {
-      // If both have parents, both parents are of type string, else both undefined
-      return typeof catA.parent === typeof catB.parent;
+    function isDocumentType(node) {
+      // TODO: remove stupid hack to check if catA is a DocumentType (no _id)
+      return typeof node._id === 'undefined';
     }
 
     $scope.treeOptions = {
       accept: function(sourceNodeScope, destNodesScope) {
-        return compareDepth(sourceNodeScope.$modelValue, destNodesScope.$modelValue[0]);
+        if (isDocumentType(sourceNodeScope.$modelValue)) {
+          return destNodesScope.depth() !== 0;
+        } else {
+          return destNodesScope.depth() === 0;
+        }
       },
 
       dropped: function(event) {
@@ -45,21 +65,18 @@ angular.module('impactApp')
         var sourceParent = event.source.nodeScope.$parentNodeScope ? event.source.nodeScope.$parentNodeScope.$modelValue : null;
         var destParent = event.dest.nodesScope.$parent.$modelValue;
 
-        var updatedCategories;
-        if (!sourceParent) {
-          // Element is top-level
-          updatedCategories = getUpdatedCategories($scope.categories);
-        } else {
-          if (destParent !== sourceParent) {
-            // Category parent changed
-            updatedCategories = getUpdatedCategories(destParent.children, targetCategory, destParent);
-          } else {
-            // Same parent, only adjust positions
-            updatedCategories = getUpdatedCategories(destParent.children);
-          }
-        }
+        if (isDocumentType(targetCategory)) {
+          var documentType = targetCategory;
+          var oldCategoryId = sourceParent ? sourceParent._id : null;
+          var newCategoryId = destParent ? destParent._id : null;
 
-        saveUpdatedCategories(updatedCategories);
+          if (oldCategoryId !== newCategoryId) {
+            return updateDocumentType(documentType, oldCategoryId, newCategoryId);
+          }
+        } else {
+          var updatedCategories = getUpdatedCategories($scope.categories);
+          return saveUpdatedCategories(updatedCategories);
+        }
       }
     };
 
@@ -89,6 +106,17 @@ angular.module('impactApp')
 
       function() {
         $scope.saving = 'error';
+      });
+    };
+
+    $scope.removeDocumentType = function(scope, category) {
+      var documentType = scope.$nodeScope.$modelValue;
+
+      updateDocumentType(documentType, category._id, null, function() {
+        var index = category.documentTypes.indexOf(documentType);
+        if (index >= 0) {
+          category.documentTypes.splice(index, 1);
+        }
       });
     };
 

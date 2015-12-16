@@ -4,23 +4,40 @@
     background-color: white;
     padding: 2rem;
   }
+
+  .trees {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    > div {
+      width: 50%;
+    }
+  }
+
+  .tree-wrapper {
+    padding: 10px;
+  }
 }
 
 .angular-ui-tree {
+  background-color: lighten($lighter-blue, 45%);
+  border-radius: 5px;
+  padding: 10px;
+
   .angular-ui-tree-handle {
-    line-height: 45px;
     font-size: 14px;
     padding: 10px;
   }
 
   .angular-ui-tree-nodes {
-    background-color: $lighter-blue;
-    color: white;
+    background-color: lighten($lighter-blue, 45%);
+    border-bottom: 3px solid lighten($lighter-blue, 45%);
   }
 
   .angular-ui-tree-node {
-    background-color: $light-blue;
-    color: white;
+    background-color: white;
+    border-top: 1px solid lighten($lighter-blue, 45%);
   }
 
   .input-category-label {
@@ -50,8 +67,18 @@
   flex-direction: row;
   justify-content: space-between;
 
+  h3.category-type {
+    margin: 0;
+    color: grey;
+    font-size: 1rem;
+  }
+
   .detail {
     display: flex;
     flex-direction: column;
+
+    .files {
+      margin-top: 5px;
+    }
   }
 }

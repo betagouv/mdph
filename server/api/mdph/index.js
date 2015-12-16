@@ -32,10 +32,12 @@ router.get('/:id/secteurs', isAuthorizedMdph(), controller.showSecteurs);
 router.get('/:id/secteurs/:secteurId', isAuthorizedMdph(), controller.getSecteur);
 router.get('/:id/secteurs/:secteurId/requests', isAuthorizedMdph(), controller.showRequestsForSecteur);
 
+router.post('/:id/document-types', isAuthorizedMdph(), controller.updateDocumentType);
+router.get('/:id/document-types', isAuthorizedMdph(), controller.showUncategorizedDocumentTypes);
+
 router.get('/:id/categories', isAuthorizedMdph(), controller.showDocumentCategories);
 router.post('/:id/categories', isAuthorizedMdph(), controller.createDocumentCategory);
 router.put('/:id/categories', isAuthorizedMdph(), controller.updateDocumentCategories);
-router.post('/:id/categories/:categoryId', isAuthorizedMdph(), controller.createSubDocumentCategory);
 router.put('/:id/categories/:categoryId', isAuthorizedMdph(), controller.updateDocumentCategory);
 router.delete('/:id/categories/:categoryId', isAuthorizedMdph(), controller.removeDocumentCategory);
 router.post('/:id/categories/:categoryId/file', isAuthorizedMdph(), upload.single('file'), controller.saveDocumentCategoryFile);

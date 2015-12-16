@@ -110,6 +110,13 @@ fieldset.light {
   }
 }
 
+.btn-danger-inverse {
+  @extend .btn-danger;
+  color: #D9534F;
+  background-color: #FFFFFF;
+  border-color: #d43f3a;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';

@@ -3,9 +3,6 @@
     <div class="plan-classement-title">
       <h2>
         Plan de classement
-        <a class="pull-right btn btn-success" data-nodrag ng-click="newCategory(this)" style="margin-right: 8px;">
-          <i class="fa fa-plus"></i>
-        </a>
       </h2>
 
       <div ng-switch="saving">
@@ -16,95 +13,95 @@
       </div>
     </div>
 
-    <div ui-tree="treeOptions">
-      <ol ui-tree-nodes="" ng-model="categories">
-        <li ng-repeat="category in categories" ui-tree-node>
-          <div ui-tree-handle>
-            <div class="ui-tree-category-content">
-              <div class="detail" data-nodrag>
-                <input class="input-category-label" data-nodrag type="text"
-                  ng-change="save(category)"
-                  ng-keydown="saving = 'waiting'"
-                  ng-model-options="{ debounce: 1000 }"
-                  ng-model="category.label">
-
-                <div class="files">
-                  <a
-                    ng-if="category.barcode"
-                    style="margin-right: 16px;"
-                    target="_self"
-                    download="{{category.barcode.filename}}"
-                    href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
-                    {{category.barcode.filename}}
-                  </a>
-                  <em
-                    class="text-muted"
-                    ng-if="!category.barcode"
-                    style="margin-right: 16px;">
-                    Aucun fichier associé
-                  </em>
-
-                  <button ngf-select ngf-change="upload($file, category)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
-                    <i class="fa fa-upload"></i> Attacher un fichier</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="actions" data-nodrag>
-                <a class="btn btn-primary" data-nodrag ng-click="newSubCategory(this)" style="margin-right: 8px;">
-                  <i class="fa fa-plus"></i>
-                </a>
-                <a class="btn btn-danger" data-nodrag ng-click="removeCategory(this)">
-                  <i class="fa fa-remove"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <ol ui-tree-nodes="" ng-model="category.children">
-            <li ng-repeat="child in category.children" ui-tree-node>
+    <div class="trees">
+      <div class="tree-wrapper">
+        <div ui-tree="treeOptions" id="tree-categories">
+          <ol ui-tree-nodes="" ng-model="categories">
+            <li ng-repeat="category in categories" ui-tree-node>
               <div ui-tree-handle>
                 <div class="ui-tree-category-content">
                   <div class="detail" data-nodrag>
+                    <h3 class="category-type">Catégorie</h3>
                     <input class="input-category-label" data-nodrag type="text"
-                      ng-change="save(child)"
+                      ng-change="save(category)"
                       ng-keydown="saving = 'waiting'"
                       ng-model-options="{ debounce: 1000 }"
-                      ng-model="child.label">
+                      ng-model="category.label">
 
                     <div class="files">
                       <a
-                        ng-if="child.barcode"
+                        ng-if="category.barcode"
                         style="margin-right: 16px;"
                         target="_self"
-                        download="{{child.barcode.filename}}"
-                        href="api/mdphs/{{currentMdph.zipcode}}/categories/{{child._id}}/file?access_token={{token}}">
-                        {{child.barcode.filename}}
+                        download="{{category.barcode.filename}}"
+                        href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
+                        {{category.barcode.filename}}
                       </a>
                       <em
                         class="text-muted"
-                        ng-if="!child.barcode"
+                        ng-if="!category.barcode"
                         style="margin-right: 16px;">
                         Aucun fichier associé
                       </em>
 
-                      <button ngf-select ngf-change="upload($file, child)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
+                      <button ngf-select ngf-change="upload($file, category)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
                         <i class="fa fa-upload"></i> Attacher un fichier</span>
                       </button>
                     </div>
                   </div>
 
                   <div class="actions" data-nodrag>
-                    <a class="btn btn-danger" data-nodrag ng-click="removeCategory(this)">
+                    <a class="btn btn-danger-inverse" data-nodrag ng-click="removeCategory(this)">
                       <i class="fa fa-remove"></i>
                     </a>
                   </div>
                 </div>
               </div>
+
+              <ol ui-tree-nodes="" ng-model="category.documentTypes">
+                <li ng-repeat="documentType in category.documentTypes" ui-tree-node>
+                  <div ui-tree-handle>
+                    <div class="ui-tree-category-content">
+                      <div class="detail" data-nodrag>
+                        <h3 class="category-type">Document {{documentType.mandatory ? 'obligatoire' : 'complémentaire'}}</h3>
+                        {{documentType.label}}
+                      </div>
+                      <div class="actions" data-nodrag>
+                        <a class="btn btn-danger-inverse" data-nodrag ng-click="removeDocumentType(this, category)">
+                          <i class="fa fa-remove"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ol>
             </li>
-          </ol>
-        </li>
-      </ol>
+          </div>
+
+          <h3>
+            <a class="btn btn-success" data-nodrag ng-click="newCategory(this)" style="margin-right: 8px;">
+              Nouvelle catégorie <i class="fa fa-plus"></i>
+            </a>
+          </h3>
+        </div>
+
+        <div class="tree-wrapper">
+          <div ui-tree="treeOptions" data-nodrop-enabled="true">
+            <ol ui-tree-nodes="" ng-model="documentTypes">
+              <li ng-repeat="document in documentTypes" ui-tree-node>
+                <div ui-tree-handle class="tree-node tree-node-content">
+                  <div class="ui-tree-category-content">
+                    <div class="detail">
+                      <h3 class="category-type">Document {{document.mandatory ? 'obligatoire' : 'complémentaire'}}</h3>
+                      {{document.label}}
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

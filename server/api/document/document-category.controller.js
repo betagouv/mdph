@@ -6,7 +6,9 @@ var mongoose = require('mongoose');
 var grid = require('gridfs-stream');
 var stream = require('stream');
 var DocumentCategory = require('./document-category.model');
+var DocumentTypes = require('./documentTypes');
 
+var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.complementaires);
 grid.mongo = mongoose.mongo;
 
 function comparePosition(catA, catB) {
@@ -26,6 +28,16 @@ exports.findAndSortCategoriesForMdph = function(mdph, callback) {
       var gfs = grid(mongoose.connection.db);
 
       async.map(list, function(category, mapCallback) {
+        if (category.documentTypes && category.documentTypes.length > 0) {
+          // Poor man's population
+          let fullTypes = [];
+          category.documentTypes.forEach(function(documentType) {
+            fullTypes.push(_.find(allDocumentTypes, {id: documentType}));
+          });
+
+          category.documentTypes = fullTypes;
+        }
+
         if (category.barcode) {
           gfs.findOne({_id: category.barcode}, function(err, file) {
             category.barcode = file;
@@ -38,32 +50,38 @@ exports.findAndSortCategoriesForMdph = function(mdph, callback) {
 
       function() {
         // Sort by position in the tree
-        var categoriesById = _.indexBy(list, '_id');
-        var categoriesTree = [];
+        list.sort(comparePosition);
 
-        _.forEach(list, function(current) {
-          if (current.parent) {
-            if (categoriesById[current.parent].children) {
-              categoriesById[current.parent].children.push(current);
-            } else {
-              categoriesById[current.parent].children = [current];
-            }
-          } else {
-            categoriesTree.push(current);
-          }
-        });
-
-        // Sort to display by categories
-        categoriesTree.sort(comparePosition);
-
-        _.forEach(categoriesTree, function(current) {
-          if (current.children) {
-            current.children.sort(comparePosition);
-          }
-        });
-
-        return callback(null, categoriesTree);
+        return callback(null, list);
       });
+    });
+};
+
+exports.showUncategorizedDocumentTypes = function(mdph, callback) {
+  DocumentCategory
+    .find({mdph: mdph._id})
+    .lean()
+    .exec(function(err, list) {
+      if (err) { callback(err); }
+
+      if (!list) { callback({status: 404}); }
+
+      var filteredList = [];
+      let found;
+      _.forEach(allDocumentTypes, function(documentType) {
+        found = false;
+        _.forEach(list, function(category) {
+          if (category.documentTypes && category.documentTypes.indexOf(documentType.id) >= 0) {
+            found = true;
+          }
+        });
+
+        if (!found) {
+          filteredList.push(documentType);
+        }
+      });
+
+      callback(null, filteredList);
     });
 };
 
@@ -117,11 +135,10 @@ exports.getDocumentCategoryFile = function(categoryId, callback) {
   });
 };
 
-exports.createDocumentCategory = function(mdph, position, parent, callback) {
+exports.createDocumentCategory = function(mdph, position, callback) {
   var newCategory = new DocumentCategory({
     mdph: mdph._id,
-    position: position,
-    parent: parent
+    position: position
   });
 
   newCategory.save(callback);
@@ -145,14 +162,7 @@ exports.removeDocumentCategory = function(categoryId, callback) {
   DocumentCategory
     .findById(categoryId)
     .remove()
-    .exec(function(err) {
-      if (err) callback(err);
-
-      DocumentCategory
-        .find({parent: categoryId})
-        .remove()
-        .exec(callback);
-    });
+    .exec(callback);
 };
 
 exports.updateDocumentCategories = function(updatedCategories, callback) {
@@ -164,10 +174,6 @@ exports.updateDocumentCategories = function(updatedCategories, callback) {
           mapCallback(err);
         }
 
-        if (positionObj.parent) {
-          category.set('parent', positionObj.parent);
-        }
-
         category
           .set('position', positionObj.position)
           .save(mapCallback);
@@ -176,5 +182,44 @@ exports.updateDocumentCategories = function(updatedCategories, callback) {
 
   function(err) {
     callback(err);
+  });
+};
+
+exports.updateDocumentType = function(documentType, oldCategoryId, newCategoryId, callback) {
+  async.parallel({
+    old: function(cb) {
+      if (!oldCategoryId) {
+        cb();
+      } else {
+        DocumentCategory.findById(oldCategoryId).exec(cb);
+      }
+    },
+
+    new: function(cb) {
+      if (!newCategoryId) {
+        cb();
+      } else {
+        DocumentCategory.findById(newCategoryId).exec(cb);
+      }
+    }
+  },
+  function(err, results) {
+    if (err) {
+      callback(err);
+    }
+
+    if (results.old) {
+      results.old.update(
+        { $pull: { documentTypes: documentType } }
+      ).exec();
+    }
+
+    if (results.new) {
+      results.new.update(
+        { $push: { documentTypes: documentType } }
+      ).exec();
+    }
+
+    callback();
   });
 };
