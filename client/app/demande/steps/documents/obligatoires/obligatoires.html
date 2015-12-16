@@ -14,9 +14,9 @@
           </a>
         </p>
 
-        <ul ng-if="!filesVM[id]"><li>Pas de document</li></ul>
-        <ul ng-if="filesVM[id]" class="list-group">
-          <li ng-repeat="file in filesVM[id]" class="list-group-item">
+        <ul ng-if="!filesVM[documentType.id]"><li>Pas de document</li></ul>
+        <ul ng-if="filesVM[documentType.id]" class="list-group">
+          <li ng-repeat="file in filesVM[documentType.id]" class="list-group-item">
             <display-file ng-if="!file.progress" file="file" request="request"></display-file>
             <div ng-if="file.progress">
               {{file.name}} - en cours...
@@ -32,7 +32,7 @@
       </div>
       <div class="panel-footer" ng-if="!file.asked">
         <div class="text-right">
-          <button ngf-select ngf-change="upload($file, id)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
+          <button ngf-select ngf-change="upload($file, documentType.id)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
             <i class="fa fa-upload"></i> Attacher un fichier</span>
           </button>
         </div>
