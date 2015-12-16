@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RequestService', function RequestService(estAdulte, documentTypes, allSteps) {
-    var documentsObligatoires = _.chain(documentTypes)
-      .filter({mandatory: true})
-      .pluck('id')
-      .value();
+  .factory('RequestService', function RequestService(estAdulte, DocumentResource, allSteps) {
+    var documentsObligatoires = DocumentResource.query({type: 'obligatoire'});
 
     var stepObligatoire = _.find(allSteps, {id: 'obligatoire'});
 
