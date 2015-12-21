@@ -1,26 +1,16 @@
-<div ng-if="files.length === 0">
+<div ng-if="empty()">
   <ul class="list-group">
     <li class="list-group-item">Aucune pièces</li>
   </ul>
 </div>
 
-<div ng-if="files.length !== 0">
-  <div ng-repeat="category in filesVM">
+<div ng-if="!empty()">
+  <div ng-repeat="category in categories">
     <h4>{{category.documentType.label}}</h4>
     <ul class="list-group">
-      <li ng-repeat="document in category.files" class="list-group-item">
-        <display-file
-          file="document"
-          show-validation-actions="showValidationActions"
-          request="request"
-          on-change="computeStatus">
-        </display-file>
+      <li ng-repeat="document in category.documentList" class="list-group-item">
+        <display-file file="document" request="request"></display-file>
       </li>
     </ul>
-  </div>
-
-  <div ng-if="showValidationActions" class="text-right">
-    <button class="btn btn-success" ng-click="save()" ng-disabled="isSaveValidationDisabled" ng-if="isValid"><i class="fa fa-thumbs-up"></i>Valider la complétude du dossier</button>
-    <button class="btn btn-danger" ng-click="save()" ng-disabled="isSaveValidationDisabled" ng-if="!isValid"><i class="fa fa-thumbs-down"></i>Envoyer une demande de complétude des pièces en erreur</button>
   </div>
 </div>

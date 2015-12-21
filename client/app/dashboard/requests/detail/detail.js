@@ -31,19 +31,13 @@ angular.module('impactApp')
         resolve: {
           request: function($http, $stateParams, RequestResource) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
-          },
-
-          prestations: function($http) {
-            return $http.get('api/prestations').then(function(result) {
-              return result.data;
-            });
-          },
-
-          prestationsQuitus: function($http, $stateParams) {
-            return $http.get('api/requests/' + $stateParams.shortId + '/simulation').then(function(result) {
-              return result.data;
-            });
           }
+
+          // prestationsQuitus: function($http, $stateParams) {
+          //   return $http.get('api/requests/' + $stateParams.shortId + '/simulation').then(function(result) {
+          //     return result.data;
+          //   });
+          // }
         },
         abstract: true,
         authenticate: true
@@ -52,13 +46,11 @@ angular.module('impactApp')
         url: '/pre_evaluation',
         templateUrl: 'app/dashboard/requests/detail/pre_evaluation/pre_evaluation.html',
         controller: 'RequestPreEvaluationCtrl',
-        resolve: {
-          mandatoryDocumentTypes: function(DocumentResource) {
-            return DocumentResource.query({type: 'obligatoires'}).$promise.then(function(result) {
-              return _.pluck(result, 'id');
-            });
-          }
-        },
+        authenticate: true
+      })
+      .state('dashboard.requests.detail.documents', {
+        url: '/documents',
+        templateUrl: 'app/dashboard/requests/detail/documents/documents.html',
         authenticate: true
       });
   });

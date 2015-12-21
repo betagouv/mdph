@@ -16,48 +16,28 @@
     </div>
   </section>
 
-  <div class="row">
-    <div class="col-md-6">
-      <section>
-        <h2>Pièces jointes</h2>
-        <div class="content">
-          <h3>Obligatoires</h3>
-          <display-file-list files="documentsObligatoires" request="request" user="currentUser" show-validation-actions="request.status === 'emise'"></display-file-list>
+  <section>
+    <h2>Prestations demandées</h2>
+    <div class="content">
+      <div class="user">
+        <h3 ng-if="currentMdph.zipcode === '14'">Prestations demandées par l'utilisateur</h3>
+        <p ng-if="request.prestations.length === 0">Aucune prestation demandée</p>
+        <dl ng-repeat="prestation in request.prestations">
+          <dt>{{prestation.title}}</dt>
+          <dd>{{prestation.description}}</dd>
+        </dl>
+      </div>
 
-          <div ng-if="documentsComplementaires.length > 0">
-            <hr>
-            <h3>Complémentaires</h3>
-            <display-file-list files="documentsComplementaires" request="request"></display-file-list>
-          </div>
-        </div>
-      </section>
+      <!-- <div class="quitus">
+        <h3>Prestations recommandées (expérimental)</h3>
+        <ul class="list-group">
+          <li class="list-group-item" ng-if="prestationsQuitus.length === 0">Aucune prestation recommandée</li>
+          <li class="list-group-item" ng-repeat="prestation in prestationsQuitus">
+            {{prestation.title}}
+          </li>
+        </ul>
+      </div> -->
     </div>
-    <div class="col-md-6">
-      <section>
-        <h2>Prestations</h2>
-        <div class="content">
-          <div class="user">
-            <h3 ng-if="currentMdph.zipcode === '14'">Prestations demandées par l'utilisateur</h3>
-            <ul class="list-group">
-              <li class="list-group-item" ng-if="request.prestations.length === 0">Aucune prestation demandée</li>
-              <li class="list-group-item" ng-repeat="prestation in request.prestations">
-                {{getTitle(prestation)}}
-              </li>
-            </ul>
-          </div>
-
-          <div class="quitus" ng-if="currentMdph.zipcode === '14'">
-            <h3>Prestations recommandées</h3>
-            <ul class="list-group">
-              <li class="list-group-item" ng-if="prestationsQuitus.length === 0">Aucune prestation recommandée</li>
-              <li class="list-group-item" ng-repeat="prestation in prestationsQuitus">
-                {{prestation.title}}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
+  </section>
 
 </div>

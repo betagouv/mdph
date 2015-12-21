@@ -23,6 +23,16 @@ var actions = {
     label: 'Supression de document',
     fa: 'file'
   },
+  DOCUMENT_VALIDATED: {
+    id: 'document_validated',
+    label: 'Validation de document',
+    fa: 'thumbs-up'
+  },
+  DOCUMENT_REFUSED: {
+    id: 'document_refused',
+    label: 'Refus de document',
+    fa: 'thumb-down'
+  },
   UPDATE_ANSWERS: {
     id: 'update_answers',
     label: 'Mise à jour des réponses',

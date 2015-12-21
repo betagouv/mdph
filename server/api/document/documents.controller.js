@@ -5,24 +5,60 @@ var path = require('path');
 var DocumentTypes = require('./documentTypes');
 
 var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.complementaires);
+var allDocumentTypesById = _.indexBy(allDocumentTypes, 'id');
 
-// Get list of DocumentTypes
-exports.index = function(req, res) {
-  const type = req.query.type;
-
-  if (type) {
-    return res.json(DocumentTypes[type]);
+function addToDocumentGroups(documentGroups, document, documentType) {
+  if (documentGroups[document.type]) {
+    documentGroups[document.type].documentList.push(document);
   } else {
-    return res.json(allDocumentTypes);
+    documentGroups[document.type] = {
+      documentType: documentType,
+      documentList: [document]
+    };
   }
-};
+}
 
-exports.show = function(req, res) {
-  const documentType = _.find(allDocumentTypes, {id: req.params.id});
+module.exports = {
+  allDocumentTypes: allDocumentTypes,
+  allDocumentTypesById: allDocumentTypesById,
 
-  if (!documentType) {
-    return res.sendStatus(404);
-  } else {
-    return res.json(documentType);
+  populateAndSortDocumentTypes: function(request, callback) {
+    if (!request.documents || request.documents.length <= 0) {
+      return callback(null, request);
+    }
+
+    var groupedDocuments = _.reduce(request.documents, function(result, currentDocument) {
+      var documentType = allDocumentTypesById[currentDocument.type];
+      if (documentType.mandatory) {
+        addToDocumentGroups(result.obligatoires, currentDocument, documentType);
+      } else {
+        addToDocumentGroups(result.complementaires, currentDocument, documentType);
+      }
+
+      return result;
+    }, {obligatoires: {}, complementaires: {}});
+
+    request.documents = groupedDocuments;
+    return callback(null, request);
+  },
+
+  show: function(req, res) {
+    const documentType = _.find(allDocumentTypes, {id: req.params.id});
+
+    if (!documentType) {
+      return res.sendStatus(404);
+    } else {
+      return res.json(documentType);
+    }
+  },
+
+  index: function(req, res) {
+    const type = req.query.type;
+
+    if (type) {
+      return res.json(DocumentTypes[type]);
+    } else {
+      return res.json(allDocumentTypes);
+    }
   }
 };

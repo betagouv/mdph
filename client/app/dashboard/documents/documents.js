@@ -22,10 +22,6 @@ angular.module('impactApp')
             return $http.get('api/mdphs/' + currentMdph.zipcode + '/document-types').then(function(result) {
               return result.data;
             });
-          },
-
-          allDocumentTypes: function(DocumentResource) {
-            return DocumentResource.query().$promise;
           }
         },
         controller: 'CategoriesCtrl'

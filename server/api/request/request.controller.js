@@ -15,6 +15,8 @@ var Synthese = require('../../components/synthese');
 var DateUtils = require('../../components/dateUtils');
 var MakePdf = require('../../components/make-pdf');
 
+var PrestationsController = require('../prestation/prestation.controller');
+var DocumentsController = require('../document/documents.controller');
 var Prestation = require('../prestation/prestation.controller');
 var Request = require('./request.model');
 var User = require('../user/user.model');
@@ -93,7 +95,40 @@ function sendMailDemandeDocuments(request, files, evaluator) {
 
 // Get a single request
 exports.show = function(req, res, next) {
-  return res.json(req.request);
+  Request
+    .findOne({
+      shortId: req.params.shortId
+    })
+    .lean()
+    .populate('user evaluator')
+    .exec(function(err, request) {
+      if (!request) {
+        return res.sendStatus(404);
+      }
+
+      if (err) {
+        req.log.error(err);
+        return res.status(500).send(err);
+      }
+
+      if (!auth.canAccessRequest(req.user, request)) {
+        return res.status(403);
+      }
+
+      async.waterfall([
+        function(callback) {
+          DocumentsController.populateAndSortDocumentTypes(request, callback);
+        },
+
+        function(request, callback) {
+          PrestationsController.populateAndSortPrestations(request, callback);
+        }
+      ], function(err, request) {
+        if (err) return handleError(req, res, err);
+
+        return res.json(request);
+      });
+    });
 };
 
 // Get a single request
@@ -165,17 +200,18 @@ exports.updateFromAgent = function(req, res, next) {
   var updated = req.body;
   var actionDetail = {old: request.status, new: updated.status};
 
-  switch (updated.status) {
-    case 'complet':
-      sendMailCompletude(request, req.user);
-      request.set('documents', updated.documents);
-      break;
-    case 'incomplet':
-      var files = _.filter(updated.documents, 'validation', false);
-      request.set('documents', updated.documents);
-      sendMailDemandeDocuments(request, files, req.user);
-      break;
-  }
+  // TODO: Rethink this completely
+  // switch (updated.status) {
+  //   case 'complet':
+  //     sendMailCompletude(request, req.user);
+  //     request.set('documents', updated.documents);
+  //     break;
+  //   case 'incomplet':
+  //     var files = _.filter(updated.documents, 'validation', false);
+  //     request.set('documents', updated.documents);
+  //     sendMailDemandeDocuments(request, files, req.user);
+  //     break;
+  // }
 
   request
     .set('status', req.body.status)
@@ -282,7 +318,6 @@ function processDocument(file, fileData, done) {
   resizeAndMove(file, function() {
     var document = _.extend(file, {
       type: fileData.type,
-      category: fileData.category,
       partenaire: fileData.partenaire
     });
 
@@ -297,6 +332,7 @@ exports.saveFile = function(req, res, next) {
     }
 
     var request = req.request;
+    console.log(document);
     request.documents.push(document);
 
     request.save(function(err, saved) {
@@ -377,6 +413,31 @@ exports.deleteFile = function(req, res) {
       request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
       return res.send(file).status(200);
     });
+  });
+};
+
+exports.updateFile = function(req, res) {
+  var request = req.request;
+  var file = request.documents.id(req.params.fileId);
+  var validation = req.body.validation;
+
+  if (!file) {
+    return res.sendStatus(404);
+  }
+
+  if (typeof validation === 'undefined') {
+    return res.sendStatus(400);
+  }
+
+  file.set('validation', validation);
+
+  request.save(function(err) {
+    if (err) return handleError(err);
+
+    var action = validation ? Actions.DOCUMENT_VALIDATED : Actions.DOCUMENT_REFUSED;
+
+    request.saveActionLog(action, req.user, req.log, {document: file});
+    return res.json(file);
   });
 };
 

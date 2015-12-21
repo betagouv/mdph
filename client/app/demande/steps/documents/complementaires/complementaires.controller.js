@@ -4,11 +4,12 @@ angular.module('impactApp')
   .controller('DocumentsComplementairesCtrl', function($scope, $modal, $state, UploadService, request, documentTypes) {
     $scope.request = request;
     $scope.documentTypes = documentTypes;
+    $scope.selectedTypes = _.map(request.documents.complementaires, function(category) {
+      return category.documentType;
+    });
 
-    $scope.filesVM = _.groupBy(request.documents, 'type');
-
-    $scope.upload = function(file, documentFile) {
-      UploadService.upload(request, $scope.filesVM, file, documentFile);
+    $scope.upload = function(file, documentType) {
+      UploadService.upload(request, file, documentType);
     };
 
     $scope.chooseType = function() {
@@ -16,40 +17,23 @@ angular.module('impactApp')
         templateUrl: 'app/demande/steps/documents/modal_type.html',
         controller: 'ChooseTypeModalInstanceCtrl',
         resolve: {
-          categories: function() {
+          documentTypes: function() {
             var filtered = _.filter(documentTypes, function(type) {
-              return typeof _.find($scope.documentTypes, {id: type.id}) === 'undefined';
+              return typeof _.find($scope.request.complementaires, {id: type.id}) === 'undefined';
             });
 
-            // TODO: filter by categories
-            var categories = _.groupBy(filtered, 'category');
-            return categories;
+            return filtered;
           }
         }
       });
 
       modalInstance.result.then(function(selected) {
-        $scope.documentTypes.push(selected);
+        $scope.selectedTypes.push(selected);
       });
     };
   })
-  .controller('ChooseTypeModalInstanceCtrl', function($scope, $modalInstance, $filter, categories) {
-    $scope.categories = categories;
-
-    $scope.filterCategories = function() {
-      if (!$scope.query) {
-        return $scope.categories;
-      }
-
-      var filtered = {};
-      angular.forEach($scope.categories, function(documents, category) {
-        if ($filter('filter')(documents, $scope.query).length > 0) {
-          filtered[category] = documents;
-        }
-      });
-
-      return filtered;
-    };
+  .controller('ChooseTypeModalInstanceCtrl', function($scope, $modalInstance, $filter, documentTypes) {
+    $scope.documentTypes = documentTypes;
 
     $scope.select = function(selected) {
       $modalInstance.close(selected);

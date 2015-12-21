@@ -22,5 +22,11 @@ angular.module('impactApp')
     },
     change_status: {
       fa: 'folder'
+    },
+    document_validated: {
+      fa: 'thumbs-up'
+    },
+    document_refused: {
+      fa: 'thumbs-down'
     }
   });

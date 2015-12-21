@@ -17,7 +17,7 @@ router.post('/', auth.isAuthenticated(), controller.save);
 
 router.post('/:shortId/transfer/:userId', auth.isAuthorized(), controller.transfer);
 
-router.get('/:shortId', auth.isAuthorized(), controller.show);
+router.get('/:shortId', auth.isAuthenticated(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 
 router.post('/:shortId', auth.isAuthorized(), controller.updateFromAgent);
@@ -34,6 +34,7 @@ router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthese
 router.post('/:shortId/document', auth.isAuthorized(), upload.single('file'), controller.saveFile);
 router.post('/:shortId/document-partenaire', upload.single('file'), controller.saveFilePartenaire);
 
+router.post('/:shortId/document/:fileId', auth.isAuthorized(), controller.updateFile);
 router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downloadFile);
 router.delete('/:shortId/document/:fileId', auth.isAuthorized(), controller.deleteFile);
 

@@ -63,33 +63,27 @@
     font-size: 12px;
   }
 
-  &.plus {
-    background: $brand-info;
-  }
 
-  &.edit {
-    background: $brand-warning;
-  }
-
-  &.upload {
+  &.upload,
+  &.thumbs-up {
     background: $brand-success;
   }
 
+  &.plus,
   &.send {
     background: $brand-info;
   }
 
-  &.bullseye {
+  &.edit,
+  &.bullseye,
+  &.folder {
     background: $brand-warning;
   }
 
-    &.folder {
-      background: $brand-warning;
-    }
-
-    &.trash {
-      background: $brand-danger;
-    }
+  &.trash,
+  &.thumbs-down {
+    background: $brand-danger;
+  }
 }
 
 .timeline-content {

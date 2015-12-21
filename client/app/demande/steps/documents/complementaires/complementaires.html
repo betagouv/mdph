@@ -1,6 +1,6 @@
 <h2>Documents complémentaires</h2>
 <div class="row">
-  <div ng-repeat="documentType in documentType">
+  <div ng-repeat="documentType in selectedTypes">
     <div class="col-sm-4">
       <div class="panel panel-default">
         <div class="panel-heading"><h3>{{documentType.label || 'Autre'}}</h3></div>
@@ -12,10 +12,10 @@
             </a>
           </p>
 
-          <ul ng-if="!filesVM[documentType.id]"><li>Pas de document</li></ul>
-          <ul ng-if="filesVM[documentType.id]" class="list-group">
-            <li ng-repeat="file in filesVM[documentType.id]" class="list-group-item">
-              <display-file ng-if="!file.progress" file="file" request="request"></display-file>
+          <ul ng-if="!request.documents.complementaires[documentType.id]"><li>Pas de document</li></ul>
+          <ul ng-if="request.documents.complementaires[documentType.id]" class="list-group">
+            <li ng-repeat="file in request.documents.complementaires[documentType.id].documentList" class="list-group-item">
+              <display-file ng-if="!file.progress" file="file" hide-actions="true" request="request"></display-file>
               <div ng-if="file.progress">
                 {{file.name}} - en cours...
                 <div class="progress">
@@ -29,19 +29,16 @@
         </div>
         <div class="panel-footer" ng-if="!file.asked">
           <div class="text-right">
-            <div ngf-select ngf-change="upload($file, documentType.id)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
+            <div ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
               <i class="fa fa-upload"></i> Attacher un fichier</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="clearfix" ng-if="$index % 3 === 2"></div>
-  </div>
-  <div class="col-sm-4">
-    <button class="btn btn-primary btn-block btn-lg" ng-click="chooseType()">
-      <i class="fa fa-plus-circle"></i> Ajouter un document
-    </button>
   </div>
 </div>
+
+<button class="btn btn-primary btn-lg" ng-click="chooseType()">
+  <i class="fa fa-plus-circle"></i> Ajouter un type de document
+</button>

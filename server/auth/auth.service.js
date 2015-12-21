@@ -48,14 +48,22 @@ function isAuthorized() {
     .use(isAuthenticated())
     .use(attachRequest)
     .use(function(req, res, next) {
-      if (meetsRequirements(req.user.role, 'adminMdph')) {
-        next();
-      } else if (isRequestOwner(req.user, req.request)) {
+      if (canAccessRequest(req.user, req.request)) {
         next();
       } else {
         res.sendStatus(403);
       }
     });
+}
+
+function canAccessRequest(user, request) {
+  if (meetsRequirements(user.role, 'adminMdph')) {
+    return true;
+  } else if (isRequestOwner(user, request)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function attachRequest(req, res, next) {
@@ -133,6 +141,7 @@ function setTokenCookie(req, res) {
   res.redirect('/');
 }
 
+exports.canAccessRequest = canAccessRequest;
 exports.isAuthenticated = isAuthenticated;
 exports.isAuthorized = isAuthorized;
 exports.hasRole = hasRole;

@@ -6,15 +6,14 @@ angular.module('impactApp')
       scope: {
         file: '=',
         request: '=',
-        showValidationActions: '=',
-        onChange: '=',
-        hideTrash: '='
+        hideActions: '='
       },
       templateUrl: 'components/display-file/display-file.html',
       controller: function($scope, $http, $cookies) {
         $scope.token = $cookies.get('token');
 
         if ($scope.file.partenaire) {
+          // TODO do this server-side
           $http.get('/api/partenaires/' + $scope.file.partenaire).then(function(result) {
             $scope.partenaireObj = result.data;
           });
@@ -24,18 +23,16 @@ angular.module('impactApp')
           $scope.showValidationStatus = true;
         }
 
-        $scope.setValid = function(status) {
-          $scope.file.validation = status;
-          $scope.showValidationActions = false;
-          $scope.showValidationTempStatus = true;
-          $scope.onChange();
-        };
+        $scope.setValid = function(isValid) {
+          if ($scope.file.validation === isValid) {
+            return;
+          }
 
-        $scope.$on('documentValidationSaved', function() {
-          $scope.showValidationActions = false;
-          $scope.showValidationTempStatus = false;
-          $scope.showValidationStatus = true;
-        });
+          $http.post('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {validation: isValid}).then(function(result) {
+            $scope.showValidationStatus = true;
+            $scope.file = result.data;
+          });
+        };
 
         // Retro-compat
         $scope.getFilename = function(file) {

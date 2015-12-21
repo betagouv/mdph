@@ -1,41 +1,53 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('UploadService', function UploadService(Upload, DocumentResource) {
+  .factory('UploadService', function UploadService(Upload) {
     return {
-      upload: function(request, filesVM, file, document) {
-        DocumentResource.query().$promise.then(function(result) {
-          var documentTypesById =  _.indexBy(result, 'id');
-          if (!filesVM[document]) {
-            filesVM[document] = [];
+      upload: function(request, file, documentType) {
+        var model;
+
+        if (documentType.mandatory) {
+          if (!request.documents.obligatoires) {
+            request.documents.obligatoires = {};
           }
 
-          var type = filesVM[document];
-          var length = type.length;
+          model = request.documents.obligatoires;
+        } else {
+          if (!request.documents.complementaires) {
+            request.documents.complementaires = {};
+          }
 
-          Upload.upload({
-            url: 'api/requests/' + request.shortId + '/document',
-            method: 'POST',
-            file: file,
-            data: {
-                type: document,
-                category: documentTypesById[document].category
-              }
-          })
-          .progress(function(evt) {
-            if (evt.config.file) {
-              type[length] = {
-                name: evt.config.file.name,
-                progress: parseInt(100.0 * evt.loaded / evt.total)
-              };
-            }
-          })
-          .success(function(data) {
-            request.documents.push(data);
-            type[length] = data;
-          });
+          model = request.documents.complementaires;
+        }
+
+        if (!model[documentType.id]) {
+          model[documentType.id] = {
+            documentType: documentType,
+            documentList: []
+          };
+        }
+
+        var uploadedFile = {
+          name: file.name,
+          progress: 0
+        };
+        model[documentType.id].documentList.push(uploadedFile);
+
+        Upload.upload({
+          url: 'api/requests/' + request.shortId + '/document',
+          method: 'POST',
+          file: file,
+          data: {
+            type: documentType.id
+          }
+        })
+        .progress(function(evt) {
+          uploadedFile.progress = parseInt(100.0 * evt.loaded / evt.total);
+        })
+        .success(function(data) {
+          model[documentType.id].documentList.pop();
+          model[documentType.id].documentList.push(data);
         });
       }
     };
-
   });

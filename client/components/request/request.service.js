@@ -31,10 +31,13 @@ angular.module('impactApp')
 
     function noInvalidatedFiles(request) {
       var found = false;
-      request.documents.forEach(function(document) {
-        if (document.validation === 'false') {
-          found = true;
-        }
+
+      _.forEach(request.documents.obligatoires, function(category) {
+        category.documentList.forEach(function(document) {
+          if (document.validation === 'false') {
+            found = true;
+          }
+        });
       });
 
       return found;

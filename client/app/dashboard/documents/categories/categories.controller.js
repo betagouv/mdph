@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CategoriesCtrl', function($scope, $timeout, $http, $cookies, MdphResource, currentMdph, categories, documentTypes, allDocumentTypes, Upload) {
+  .controller('CategoriesCtrl', function($scope, $timeout, $http, $cookies, MdphResource, currentMdph, categories, documentTypes, Upload) {
     $scope.categories = categories;
     $scope.currentMdph = currentMdph;
     $scope.documentTypes = documentTypes;
-    $scope.allDocumentTypes = allDocumentTypes;
     $scope.token = $cookies.get('token');
 
     function getUpdatedCategories(categories) {

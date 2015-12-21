@@ -5,6 +5,7 @@ var _ = require('lodash');
 var DateUtils = require('../../components/dateUtils');
 var Utils = require('./utils');
 var prestations = require('./prestations.json');
+var prestationsById = _.indexBy(prestations, 'id');
 
 var AAH = require('./aah');
 var AEEH = require('./aeeh');
@@ -156,7 +157,7 @@ function getCallbacks(answers) {
   };
 }
 
-exports.simulate = function(answers) {
+var simulate = function(answers) {
   var callbacks = getCallbacks(answers);
 
   var result = _.filter(prestations, function(prestation) {
@@ -167,6 +168,21 @@ exports.simulate = function(answers) {
   return result;
 };
 
-exports.index = function(req, res) {
-  return res.json(prestations);
+module.exports = {
+  simulate: simulate,
+
+  index: function(req, res) {
+    return res.json(prestations);
+  },
+
+  populateAndSortPrestations: function(request, callback) {
+    if (request.prestations && request.prestations.length > 0) {
+      request.prestations = _.reduce(request.prestations, function(result, current) {
+        result[current] = prestationsById[current.toLowerCase()];
+        return result;
+      }, {});
+    }
+
+    return callback(null, request);
+  }
 };

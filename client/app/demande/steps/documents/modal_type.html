@@ -7,15 +7,12 @@
     </input>
     <span class="input-group-addon" ng-class="{'btn': query}" ng-click="query = ''"><i class="fa fa-times" ng-class="{'text-muted': !query}"></i></span>
   </div>
-  <br>
-  <div ng-repeat="category in filterCategories()">
-    {{category | documentCategory}}
-    <ul>
-        <li ng-repeat="document in category | filter:query">
-            <a ng-click="select(document)">{{ document.label }}</a>
-        </li>
-    </ul>
-  </div>
+  <hr>
+  <ul>
+    <li ng-repeat="documentType in documentTypes | filter : query">
+      <a ng-click="select(documentType)">{{ documentType.label }}</a>
+    </li>
+  </ul>
 </div>
 <div class="modal-footer">
     <button class="btn btn-warning" ng-click="cancel()">Annuler</button>

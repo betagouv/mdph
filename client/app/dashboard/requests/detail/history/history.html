@@ -1,5 +1,5 @@
 <div class="timeline">
-  <div ng-repeat="action in history" class="timeline-block" ng-class="{user: action.user.role !== 'adminMdph', agent: action.user.role === 'adminMdph'}">
+  <div ng-repeat="action in history" class="timeline-block" ng-class="{user: action.user.role === 'user', agent: action.user.role !== 'user'}">
     <div class="timeline-img {{action | actionTypeIconFilter}}">
       <i class="fa fa-{{action | actionTypeIconFilter}}"></i>
     </div>
@@ -12,7 +12,7 @@
       </p>
 
       <div ng-if="action.params" class="detail">
-        <div ng-if="action.action === 'document_added' || action.action === 'document_removed'">
+        <div ng-if="action.action.indexOf('document_') === 0">
           {{action.params.document.originalname}} - {{action.params.document.type}}
         </div>
         <div ng-if="action.action === 'change_status'">
