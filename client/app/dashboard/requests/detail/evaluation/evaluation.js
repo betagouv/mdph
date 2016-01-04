@@ -14,6 +14,12 @@ angular.module('impactApp')
 
           model: function(GevaService) {
             return GevaService.getModel();
+          },
+
+          prestations: function($http) {
+            return $http.get('api/prestations').then(function(result) {
+              return result.data;
+            });
           }
         },
         authenticate: true
