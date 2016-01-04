@@ -332,7 +332,6 @@ exports.saveFile = function(req, res, next) {
     }
 
     var request = req.request;
-    console.log(document);
     request.documents.push(document);
 
     request.save(function(err, saved) {

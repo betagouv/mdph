@@ -12,14 +12,15 @@ var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.complemen
 grid.mongo = mongoose.mongo;
 
 const pdfCategoryLabel = 'Document de la demande';
+const unclassifiedCategoryLabel = 'Documents non catégorisés';
 
 function comparePosition(catA, catB) {
   return catA.position - catB.position;
 }
 
-exports.getPdfCategory = function(mdph, callback) {
+function getOrCreateCategory(mdph, label, callback) {
   DocumentCategory
-    .findOne({mdph: mdph._id, label: pdfCategoryLabel})
+    .findOne({mdph: mdph._id, label: label})
     .lean()
     .exec(function(err, pdfCategory) {
       if (err) {
@@ -29,7 +30,8 @@ exports.getPdfCategory = function(mdph, callback) {
       if (!pdfCategory) {
         var newPdfCategory = new DocumentCategory({
           mdph: mdph._id,
-          label: pdfCategoryLabel,
+          label: label,
+          required: true,
           position: -1
         });
 
@@ -42,19 +44,29 @@ exports.getPdfCategory = function(mdph, callback) {
             pdfCategory.barcode = file;
             callback(null, pdfCategory);
           });
+        } else {
+          callback(null, pdfCategory);
         }
       }
     });
+}
+
+exports.getUnclassifiedCategory = function(mdph, callback) {
+  return getOrCreateCategory(mdph, unclassifiedCategoryLabel, callback);
+};
+
+exports.getPdfCategory = function(mdph, callback) {
+  return getOrCreateCategory(mdph, pdfCategoryLabel, callback);
 };
 
 exports.findAndSortCategoriesForMdph = function(mdph, callback) {
   DocumentCategory
-    .find({mdph: mdph._id, label: {$ne: pdfCategoryLabel}})
+    .find({mdph: mdph._id, required: {$ne: true}})
     .lean()
     .exec(function(err, list) {
       if (err) { callback(err); }
 
-      if (!list) { callback({status: 404}); }
+      if (!list) { callback(null, []); }
 
       // "Populate" documents
       var gfs = grid(mongoose.connection.db);

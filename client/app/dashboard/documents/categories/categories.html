@@ -106,6 +106,35 @@
                 </li>
               </ol>
             </li>
+
+            <li class="angular-ui-tree-node angular-ui-tree-handle angular-ui-tree-node-no-drag">
+              <div class="ui-tree-category-content">
+                <div class="detail" data-nodrag>
+                  <h3 class="category-type">Catégorie obligatoire</h3>
+                  <p>{{unclassifiedCategory.label}}</p>
+                  <div class="files">
+                    <a
+                      ng-if="unclassifiedCategory.barcode"
+                      style="margin-right: 16px;"
+                      target="_self"
+                      download="{{unclassifiedCategory.barcode.filename}}"
+                      href="api/mdphs/{{currentMdph.zipcode}}/categories/{{unclassifiedCategory._id}}/file?access_token={{token}}">
+                      {{unclassifiedCategory.barcode.filename}}
+                    </a>
+                    <em
+                      class="text-muted"
+                      ng-if="!unclassifiedCategory.barcode"
+                      style="margin-right: 16px;">
+                      Aucun séparateur associé
+                    </em>
+
+                    <button ngf-select ngf-change="upload($file, unclassifiedCategory)" accept=".pdf" ngf-multiple="false" class="btn btn-default">
+                      <i class="fa fa-upload"></i> Modifier le séparateur</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
           </div>
 
           <h3>

@@ -12,6 +12,7 @@ var PdfConvert = require('./pdf_utils/convert')(config.uploadDir);
 var PdfJoin = require('./pdf_utils/join')();
 
 var buildStructure = require('./pdf_structure/build');
+var convertFromGridFS = require('./pdf_structure/convert');
 
 var pdfOptions = { format: 'A4', border: '10px' };
 
@@ -35,7 +36,7 @@ exports.make = function(request, user, recapitulatifHtml, done) {
     pdf.create(recapitulatifHtml, pdfOptions).toFile(requestTempPdfPath, function(err, res) {
       if (err) return done(err);
 
-      printDebug('make: Transforming for GED_59');
+      printDebug('make: Transforming');
       async.waterfall([
 
         // Transform everything to pdf stream
@@ -44,15 +45,17 @@ exports.make = function(request, user, recapitulatifHtml, done) {
             return PdfConvert.convertList(tempDirPath, request.documents, cb);
           }
 
-          cb(null, []);
+          return cb(null, []);
         },
 
         // Join everything in one stream
         function(documentList, cb) {
-          var pdfStructure = buildStructure(request, user, res.filename, documentList);
+          return buildStructure(request, user, res.filename, documentList, cb);
+        },
 
-          printDebug('make: finished building structure');
-          cb(null, pdfStructure);
+        // Transform all GridFS files to temporary directory
+        function(pdfStructure, cb) {
+          return convertFromGridFS(pdfStructure, tempDirPath, cb);
         },
 
         // Load everything in scissors

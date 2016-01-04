@@ -3,13 +3,13 @@
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var async = require('async');
+var path = require('path');
 var Mdph = require('./mdph.model');
 var User = require('../user/user.model');
 var Secteur = require('../secteur/secteur.model');
 var Request = require('../request/request.model');
 var Partenaire = require('../partenaire/partenaire.model');
 var DocumentCategoryCtrl = require('../document/document-category.controller');
-var path = require('path');
 
 // Get all users linked to a single mdph
 exports.showUsers = function(req, res) {
@@ -37,6 +37,14 @@ exports.getPdfCategory = function(req, res) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(pdfCategory);
+  });
+};
+
+exports.getUnclassifiedCategory = function(req, res) {
+  DocumentCategoryCtrl.getUnclassifiedCategory(req.mdph, function(err, unclassifiedCategory) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(unclassifiedCategory);
   });
 };
 

@@ -2,52 +2,105 @@
 
 var _ = require('lodash');
 var path = require('path');
+var async = require('async');
+var fs = require('fs');
+var mongoose = require('mongoose');
+var grid = require('gridfs-stream');
 var config = require('../../config/environment');
-var groupDocumentList = require('./groupDocumentList');
 
-module.exports = function(request, user, requestTempPdfPath, documentList) {
-  if (request.mdph === '59' && user.role === 'adminMdph') {
-    return buildGroupStructure(requestTempPdfPath, documentList);
+var auth = require('../../auth/auth.service');
+var Mdph = require('../../api/mdph/mdph.model');
+var DocumentCategoryCtrl = require('../../api/document/document-category.controller');
+
+module.exports = function(request, user, requestTempPdfPath, documentList, callback) {
+  if (auth.hasRole(user, 'adminMdph')) {
+    buildGroupStructure(request, requestTempPdfPath, documentList, callback);
   } else {
-    return buildFlatStructure(requestTempPdfPath, documentList);
+    buildFlatStructure(requestTempPdfPath, documentList, callback);
   }
 };
 
-function getSeparatorPath(separator) {
-  return path.join(config.root, '/server/components/pdf_templates/', separator);
-}
+function buildGroupStructure(request, requestTempPdfPath, documentList, callback) {
+  Mdph
+    .findOne({zipcode: request.mdph})
+    .exec(function(err, mdph) {
+      if (err) {
+        return callback(err);
+      }
 
-function buildGroupStructure(requestTempPdfPath, documentList) {
-  var pdfStructure = [
-    getSeparatorPath('sep_cerfa.pdf'),
-    requestTempPdfPath
-  ];
+      async.parallel([
+        function(callback) {
+          DocumentCategoryCtrl.getPdfCategory(mdph, callback);
+        },
 
-  var groups = groupDocumentList(documentList);
+        function(callback) {
+          DocumentCategoryCtrl.getUnclassifiedCategory(mdph, callback);
+        },
 
-  groups.forEach(function(group) {
-    if (group.documentList.length > 0) {
-      var separator = getSeparatorPath(group.separator);
-      pdfStructure.push(separator);
-      group.documentList.forEach(function(document) {
-        pdfStructure.push(document.path);
+        function(callback) {
+          DocumentCategoryCtrl.findAndSortCategoriesForMdph(mdph, callback);
+        }
+      ], function(err, results) {
+        if (err) {
+          return callback(err);
+        }
+
+        // console.log(results);
+        const pdfCategory = results[0];
+        const unclassifiedCategory = results[1];
+        const documentCategories = results[2];
+        const pdfStructure = [];
+        const gfs = grid(mongoose.connection.db);
+
+        // Main request document
+        if (pdfCategory.barcode) {
+          pdfStructure.push(gfs.createReadStream({_id: pdfCategory.barcode._id}));
+        }
+
+        pdfStructure.push(requestTempPdfPath);
+
+        // Documents sorted by categories
+        _.forEach(documentCategories, function(category) {
+          pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
+
+          _.forEach(category.documentTypes, function(documentType) {
+            _.forEach(documentList, function(currentDocument) {
+              if (currentDocument.type === documentType.id) {
+                pdfStructure.push(currentDocument.path);
+                currentDocument.___classified = true;
+              }
+            });
+          });
+        });
+
+        // Other documents
+        var unclassifiedDocuments = _.filter(documentList, function(document) {
+          return !document.___classified;
+        });
+
+        if (unclassifiedCategory.barcode) {
+          pdfStructure.push(gfs.createReadStream({_id: unclassifiedCategory.barcode._id}));
+        }
+
+        _.forEach(unclassifiedDocuments, function(currentDocument) {
+          pdfStructure.push(currentDocument.path);
+        });
+
+        callback(null, pdfStructure);
       });
-    }
-  });
-
-  return pdfStructure;
+    });
 }
 
-function buildFlatStructure(requestTempPdfPath, documentList) {
+function buildFlatStructure(requestTempPdfPath, documentList, callback) {
   var pdfStructure = [
     requestTempPdfPath
   ];
 
   if (documentList.length > 0) {
-    documentList.forEach(function(document) {
-      pdfStructure.push(document.path);
+    documentList.forEach(function(currentDocument) {
+      pdfStructure.push(currentDocument.path);
     });
   }
 
-  return pdfStructure;
+  callback(null, pdfStructure);
 }

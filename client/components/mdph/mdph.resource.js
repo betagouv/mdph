@@ -86,6 +86,14 @@ angular.module('impactApp')
           controller:'categories',
           controllerid: 'pdfCategory'
         }
+      },
+
+      getUnclassifiedDocumentCategory: {
+        method: 'GET',
+        params: {
+          controller:'categories',
+          controllerid: 'unclassifiedCategory'
+        }
       }
     });
   });

@@ -18,6 +18,10 @@ angular.module('impactApp')
             return MdphResource.getPdfDocumentCategory({zipcode: currentMdph.zipcode}).$promise;
           },
 
+          unclassifiedCategory: function(MdphResource, currentMdph) {
+            return MdphResource.getUnclassifiedDocumentCategory({zipcode: currentMdph.zipcode}).$promise;
+          },
+
           categories: function(MdphResource, currentMdph) {
             return MdphResource.queryDocumentCategories({zipcode: currentMdph.zipcode}).$promise;
           },
