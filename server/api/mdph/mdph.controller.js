@@ -32,6 +32,14 @@ exports.showDocumentCategories = function(req, res) {
   });
 };
 
+exports.getPdfCategory = function(req, res) {
+  DocumentCategoryCtrl.getPdfCategory(req.mdph, function(err, pdfCategory) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.json(pdfCategory);
+  });
+};
+
 exports.showUncategorizedDocumentTypes = function(req, res) {
   DocumentCategoryCtrl.showUncategorizedDocumentTypes(req.mdph, function(err, list) {
     if (err) { return handleError(req, res, err); }

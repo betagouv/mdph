@@ -41,6 +41,8 @@ router.put('/:id/categories', isAuthorizedMdph(), controller.updateDocumentCateg
 router.put('/:id/categories/:categoryId', isAuthorizedMdph(), controller.updateDocumentCategory);
 router.delete('/:id/categories/:categoryId', isAuthorizedMdph(), controller.removeDocumentCategory);
 router.post('/:id/categories/:categoryId/file', isAuthorizedMdph(), upload.single('file'), controller.saveDocumentCategoryFile);
+
+router.get('/:id/categories/pdfCategory', isAuthorizedMdph(), controller.getPdfCategory);
 router.get('/:id/categories/:categoryId/file', isAuthorizedMdph(), controller.getDocumentCategoryFile);
 
 function isAuthorizedMdph() {

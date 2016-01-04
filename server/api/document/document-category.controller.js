@@ -11,13 +11,45 @@ var DocumentTypes = require('./documentTypes');
 var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.complementaires);
 grid.mongo = mongoose.mongo;
 
+const pdfCategoryLabel = 'Document de la demande';
+
 function comparePosition(catA, catB) {
   return catA.position - catB.position;
 }
 
+exports.getPdfCategory = function(mdph, callback) {
+  DocumentCategory
+    .findOne({mdph: mdph._id, label: pdfCategoryLabel})
+    .lean()
+    .exec(function(err, pdfCategory) {
+      if (err) {
+        callback(err);
+      }
+
+      if (!pdfCategory) {
+        var newPdfCategory = new DocumentCategory({
+          mdph: mdph._id,
+          label: pdfCategoryLabel,
+          position: -1
+        });
+
+        newPdfCategory.save(callback);
+      } else {
+        if (pdfCategory.barcode) {
+          // "Populate" documents
+          var gfs = grid(mongoose.connection.db);
+          gfs.findOne({_id: pdfCategory.barcode}, function(err, file) {
+            pdfCategory.barcode = file;
+            callback(null, pdfCategory);
+          });
+        }
+      }
+    });
+};
+
 exports.findAndSortCategoriesForMdph = function(mdph, callback) {
   DocumentCategory
-    .find({mdph: mdph._id})
+    .find({mdph: mdph._id, label: {$ne: pdfCategoryLabel}})
     .lean()
     .exec(function(err, list) {
       if (err) { callback(err); }
@@ -128,7 +160,7 @@ exports.getDocumentCategoryFile = function(categoryId, callback) {
     if (category.barcode) {
       var gfs = grid(mongoose.connection.db);
       var readstream = gfs.createReadStream({_id: category.barcode});
-      callback(readstream);
+      callback(null, readstream);
     } else {
       callback();
     }

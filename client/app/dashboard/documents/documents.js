@@ -14,6 +14,10 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/documents/categories/categories.html',
         authenticate: true,
         resolve: {
+          pdfCategory: function(MdphResource, currentMdph) {
+            return MdphResource.getPdfDocumentCategory({zipcode: currentMdph.zipcode}).$promise;
+          },
+
           categories: function(MdphResource, currentMdph) {
             return MdphResource.queryDocumentCategories({zipcode: currentMdph.zipcode}).$promise;
           },

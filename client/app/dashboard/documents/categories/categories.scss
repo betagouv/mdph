@@ -30,6 +30,10 @@
     padding: 10px;
   }
 
+  .angular-ui-tree-node-no-drag {
+    cursor: default;
+  }
+
   .angular-ui-tree-nodes {
     background-color: lighten($lighter-blue, 45%);
     border-bottom: 3px solid lighten($lighter-blue, 45%);
