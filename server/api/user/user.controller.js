@@ -38,15 +38,11 @@ exports.create = function(req, res, next) {
     user.newMailToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);
-      var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-      Mailer.sendMail(
-        user.email,
-        'Validation de votre adresse',
-        'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
-      );
+      const confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+      Mailer.sendConfirmationMail(user.email, confirmationUrl);
     });
 
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
     res.json({ token: token });
   });
 };
