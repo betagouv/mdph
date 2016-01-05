@@ -29,6 +29,10 @@ module.exports = {
 
     var groupedDocuments = _.reduce(request.documents, function(result, currentDocument) {
       var documentType = allDocumentTypesById[currentDocument.type];
+      if (!documentType) {
+        documentType = allDocumentTypesById.autre;
+      }
+
       if (documentType.mandatory) {
         addToDocumentGroups(result.obligatoires, currentDocument, documentType);
       } else {
