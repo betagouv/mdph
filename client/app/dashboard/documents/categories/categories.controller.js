@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CategoriesCtrl', function($scope, $timeout, $http, $cookies, MdphResource, currentMdph, categories, pdfCategory, unclassifiedCategory, documentTypes, Upload) {
+  .controller('CategoriesCtrl', function($scope, $timeout, $http, $cookies, toastr, MdphResource, currentMdph, categories, pdfCategory, unclassifiedCategory, documentTypes, Upload) {
     $scope.categories = categories;
     $scope.currentMdph = currentMdph;
     $scope.documentTypes = documentTypes;
@@ -21,28 +21,28 @@ angular.module('impactApp')
         oldCategoryId: oldCategoryId,
         newCategoryId: newCategoryId
       }).then(function() {
-        $scope.saving = 'success';
         if (callback) {
           callback();
         }
 
+        showAlert();
         return true;
       },
 
       function() {
-        $scope.saving = 'error';
+        showAlert(true);
         return false;
       });
     }
 
     function saveUpdatedCategories(updatedCategories) {
       $http.put('api/mdphs/' + currentMdph.zipcode + '/categories', updatedCategories).then(function() {
-        $scope.saving = 'success';
+        showAlert();
         return true;
       },
 
       function() {
-        $scope.saving = 'error';
+        showAlert(true);
         return false;
       });
     }
@@ -50,6 +50,14 @@ angular.module('impactApp')
     function isDocumentType(node) {
       // TODO: remove stupid hack to check if catA is a DocumentType (no _id)
       return typeof node._id === 'undefined';
+    }
+
+    function showAlert(err) {
+      if (err) {
+        toastr.error('Erreur lors de la sauvegarde', 'Plan de classement');
+      } else {
+        toastr.success('Sauvegarde effectuée', 'Plan de classement');
+      }
     }
 
     $scope.treeOptions = {
@@ -84,29 +92,11 @@ angular.module('impactApp')
     $scope.newCategory = function() {
       $http.post('api/mdphs/' + currentMdph.zipcode + '/categories', {position: $scope.categories.length}).then(function(result) {
         $scope.categories.push(result.data);
-        $scope.saving = 'success';
+        showAlert();
       },
 
       function() {
-        $scope.saving = 'error';
-      });
-    };
-
-    $scope.newSubCategory = function(scope) {
-      var parent = scope.$nodeScope.$modelValue;
-      var position  = parent.children ? parent.children.length : 0;
-
-      $http.post('api/mdphs/' + currentMdph.zipcode + '/categories/' + parent._id, {position: position}).then(function(result) {
-        if (!parent.children) {
-          parent.children = [];
-        }
-
-        parent.children.push(result.data);
-        $scope.saving = 'success';
-      },
-
-      function() {
-        $scope.saving = 'error';
+        showAlert(true);
       });
     };
 
@@ -118,6 +108,8 @@ angular.module('impactApp')
         if (index >= 0) {
           category.documentTypes.splice(index, 1);
         }
+
+        $scope.documentTypes.push(documentType);
       });
     };
 
@@ -125,24 +117,22 @@ angular.module('impactApp')
       var category = scope.$nodeScope.$modelValue;
 
       $http.delete('api/mdphs/' + currentMdph.zipcode + '/categories/' + category._id).then(function() {
-        $scope.saving = 'success';
+        showAlert();
         scope.remove();
       },
 
       function() {
-        $scope.saving = 'error';
+        showAlert(true);
       });
     };
 
     $scope.save = function(current) {
-      $scope.saving = 'pending';
-
       $http.put('api/mdphs/' + currentMdph.zipcode + '/categories/' + current._id, current).then(function() {
-        $scope.saving = 'success';
+        showAlert();
       },
 
       function() {
-        $scope.saving = 'error';
+        showAlert(true);
       });
     };
 
@@ -165,6 +155,14 @@ angular.module('impactApp')
       })
       .success(function(data) {
         current.barcode = data;
+        showAlert();
+      })
+      .error(function() {
+        showAlert(true);
       });
+    };
+
+    $scope.toggle = function(scope) {
+      scope.toggle();
     };
   });

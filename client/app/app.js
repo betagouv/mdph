@@ -1,27 +1,31 @@
 'use strict';
 
 angular.module('impactApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ui.router',
-  'ui.bootstrap',
-  'ngStorage',
-  'ngAnimate',
-  'ngFileUpload',
-  'ngMessages',
-  'chart.js',
-  'ui.tree'
-])
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider) {
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ui.router',
+    'ui.bootstrap',
+    'ngStorage',
+    'ngAnimate',
+    'ngFileUpload',
+    'ngMessages',
+    'chart.js',
+    'ui.tree',
+    'toastr'
+  ])
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig) {
     moment.locale('fr');
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
     $urlMatcherFactoryProvider.strictMode(false);
     $modalProvider.options.animation = false;
+    angular.extend(toastrConfig, {
+      progressBar: true,
+      positionClass: 'toast-top-right'
+    });
   })
-
   .factory('authInterceptor', function($rootScope, $q, $cookies) {
     return {
       // Add authorization token to headers
@@ -46,7 +50,6 @@ angular.module('impactApp', [
       }
     };
   })
-
   .run(function($rootScope, $state, $window, $location, Auth) {
     $rootScope.$on('$stateChangeSuccess', function() {
       if ($window._paq) {
