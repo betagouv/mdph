@@ -117,6 +117,15 @@ fieldset.light {
   border-color: #d43f3a;
 }
 
+.text-danger-lite {
+  color: #FB8A86;
+
+  &:focus, &:hover {
+    color: #d43f3a;
+    text-decoration: none;
+  }
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';
