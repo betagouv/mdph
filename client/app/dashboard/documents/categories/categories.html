@@ -50,32 +50,31 @@
                       ng-keydown="saving = 'waiting'"
                       ng-model-options="{ debounce: 1000 }"
                       ng-model="category.label">
-
-                    <div class="actions" data-nodrag>
-                      <a class="text-danger-lite" data-nodrag ng-click="removeCategory(this)">
-                        <i class="fa fa-times"></i> Supprimer
-                      </a>
-                    </div>
                   </div>
-                  <div class="files">
-                    <a
-                      ng-if="category.barcode"
-                      style="margin-right: 16px;"
-                      target="_self"
-                      download="{{category.barcode.filename}}"
-                      href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
-                      {{category.barcode.filename}}
+                  <div class="actions">
+                    <a class="text-danger-lite" data-nodrag ng-click="removeCategory(this)">
+                      <span>Supprimer</span><i class="fa fa-times"></i>
                     </a>
-                    <em
-                      class="text-muted"
-                      ng-if="!category.barcode"
-                      style="margin-right: 16px;">
-                      Aucun séparateur associé
-                    </em>
+                    <div class="files">
+                      <a
+                        ng-if="category.barcode"
+                        style="margin-right: 16px;"
+                        target="_self"
+                        download="{{category.barcode.filename}}"
+                        href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
+                        {{category.barcode.filename}}
+                      </a>
+                      <em
+                        class="text-muted"
+                        ng-if="!category.barcode"
+                        style="margin-right: 16px;">
+                        Aucun séparateur associé
+                      </em>
 
-                    <button ngf-select ngf-change="upload($file, category)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default btn-sm">
-                      <i class="fa fa-upload"></i> Modifier</span>
-                    </button>
+                      <button ngf-select ngf-change="upload($file, category)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default btn-sm">
+                        <i class="fa fa-upload"></i> Modifier</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -87,10 +86,10 @@
                       <div class="detail" data-nodrag>
                         <h3 class="category-type">Document {{documentType.mandatory ? 'obligatoire' : 'complémentaire'}}</h3>
                         {{documentType.label}}
-                        <a class="text-danger-lite" data-nodrag ng-click="removeDocumentType(this, category)">
-                            <i class="fa fa-times"></i> Supprimer
-                        </a>
                       </div>
+                      <a class="text-danger-lite" data-nodrag ng-click="removeDocumentType(this, category)">
+                        <span>Supprimer</span><i class="fa fa-times"></i>
+                      </a>
                     </div>
                   </div>
                 </li>
