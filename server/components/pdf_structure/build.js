@@ -61,10 +61,15 @@ function buildGroupStructure(request, requestTempPdfPath, documentList, callback
 
         // Documents sorted by categories
         _.forEach(documentCategories, function(category) {
-          pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
+          let documentFoundForThisCategory = false;
 
           _.forEach(category.documentTypes, function(documentType) {
             _.forEach(documentList, function(currentDocument) {
+              if (!documentFoundForThisCategory) {
+                pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
+                documentFoundForThisCategory = true;
+              }
+
               if (currentDocument.type === documentType.id) {
                 pdfStructure.push(currentDocument.path);
                 currentDocument.___classified = true;
@@ -78,7 +83,7 @@ function buildGroupStructure(request, requestTempPdfPath, documentList, callback
           return !document.___classified;
         });
 
-        if (unclassifiedCategory.barcode) {
+        if (unclassifiedCategory.barcode && unclassifiedDocuments.length > 0) {
           pdfStructure.push(gfs.createReadStream({_id: unclassifiedCategory.barcode._id}));
         }
 
