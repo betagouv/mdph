@@ -17,7 +17,7 @@
                   <h3 class="category-type">Catégorie obligatoire</h3>
                   <p>{{pdfCategory.label}}</p>
                 </div>
-                <div class="files" ng-if="!collapsed">
+                <div class="files" ng-if="!collapsed" data-nodrag>
                   <a
                     ng-if="pdfCategory.barcode"
                     style="margin-right: 16px;"
@@ -55,7 +55,7 @@
                     <a class="text-danger-lite" data-nodrag ng-click="removeCategory(this)">
                       <span>Supprimer</span><i class="fa fa-times"></i>
                     </a>
-                    <div class="files">
+                    <div class="files" data-nodrag>
                       <a
                         ng-if="category.barcode"
                         style="margin-right: 16px;"
@@ -109,7 +109,7 @@
                   <h3 class="category-type">Catégorie obligatoire</h3>
                   <p>{{unclassifiedCategory.label}}</p>
                 </div>
-                <div class="files">
+                <div class="files" data-nodrag>
                   <a
                     ng-if="unclassifiedCategory.barcode"
                     style="margin-right: 16px;"
