@@ -2,9 +2,12 @@
 
 angular.module('impactApp')
   .factory('RequestService', function RequestService(estAdulte, DocumentResource, allSteps) {
-    var documentsObligatoires = DocumentResource.query({type: 'obligatoire'});
-
     var stepObligatoire = _.find(allSteps, {id: 'obligatoire'});
+    var typesObligatoires = null;
+
+    DocumentResource.query({type: 'obligatoire'}).$promise.then(function(result) {
+      typesObligatoires = result;
+    });
 
     function checkStepObligatoireCompletion(request) {
       var nbSections = 0;
@@ -18,15 +21,7 @@ angular.module('impactApp')
     }
 
     function allMandatoryFilesPresent(request) {
-      var nbDocuments = 0;
-      documentsObligatoires.forEach(function(document) {
-        var documentsOfType = _.find(request.documents, {type: document});
-        if (typeof documentsOfType !== 'undefined') {
-          nbDocuments += 1;
-        }
-      });
-
-      return nbDocuments === documentsObligatoires.length;
+      return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
     }
 
     function noInvalidatedFiles(request) {
