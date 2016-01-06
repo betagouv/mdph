@@ -65,12 +65,12 @@ function buildGroupStructure(request, requestTempPdfPath, documentList, callback
 
           _.forEach(category.documentTypes, function(documentType) {
             _.forEach(documentList, function(currentDocument) {
-              if (!documentFoundForThisCategory) {
-                pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
-                documentFoundForThisCategory = true;
-              }
-
               if (currentDocument.type === documentType.id) {
+                if (!documentFoundForThisCategory) {
+                  pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
+                  documentFoundForThisCategory = true;
+                }
+
                 pdfStructure.push(currentDocument.path);
                 currentDocument.___classified = true;
               }
