@@ -1,14 +1,11 @@
 .nav-steps {
   margin-top: 44px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn-invalid {
   color: white;
-}
-
-.btn-valid-primary {
-  @extend .btn-valid;
-  @extend .btn-primary;
 }
 
 .btn-valid-success {
@@ -19,5 +16,11 @@
 .btn-valid:before {
   font-family: 'FontAwesome';
   content: '\f00c';
+  margin-right: 5px;
+}
+
+.btn-invalid:before {
+  font-family: 'FontAwesome';
+  content: '\f00d';
   margin-right: 5px;
 }

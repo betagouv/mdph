@@ -50,7 +50,7 @@
     }
 
     &.active.showBefore:before {
-      border-color: darken(whitesmoke, 10%);
+      border-color: $lighter-red;
       border-left:16px solid transparent;
     }
 
@@ -67,11 +67,12 @@
     }
 
     &.active:after {
-      border-left:16px solid darken(whitesmoke, 10%);
+      border-left:16px solid $lighter-red;
     }
 
     &.active {
-      background-color: darken(whitesmoke, 10%);
+      background-color: $lighter-red;
+      color: white;
     }
   }
 }

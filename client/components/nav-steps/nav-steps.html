@@ -1,20 +1,12 @@
 <div class="nav-steps">
-  <hr>
-  <div class="row">
-    <div class="col-xs-2" ng-if="!hideBack">
-      <button class="btn btn-default btn-block" ng-click="previousStep()">
-        Précédent
-      </button>
-    </div>
-    <div class="col-xs-2" ng-class="{'col-xs-offset-10': hideBack, 'col-xs-offset-8': !hideBack}">
-      <button class="btn btn-block" type="submit" ng-click="check(questionForm)"
-        ng-class="{
-          'btn-valid-primary': questionForm.$valid && !isLastQuestion,
-          'btn-valid-success': questionForm.$valid && isLastQuestion,
-          'btn-invalid': !questionForm.$valid
-        }">
-        {{isLastQuestion ? 'Valider' : 'Suivant'}}
-      </button>
-    </div>
-  </div>
+  <button class="btn btn-default" ng-disabled="hideBack" ng-click="previousStep()">
+    Précédent
+  </button>
+  <button class="btn" type="submit" ng-click="check(questionForm)"
+    ng-class="{
+      'btn-valid-success': questionForm.$valid,
+      'btn-invalid': !questionForm.$valid
+    }">
+    {{isLastQuestion ? 'Valider' : 'Suivant'}}
+  </button>
 </div>
