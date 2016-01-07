@@ -22,8 +22,9 @@ var PdfJoin = function() {
       var args = fileList.concat(['cat', 'output', pdfPath]);
       var pdftk = spawn('pdftk', args);
 
-      // pdftk.stderr.pipe(process.stderr);
-      // pdftk.stdout.pipe(process.stdout);
+      // pdftk.stderr.on('data', function(data) {
+      //   console.log('pdftk encountered an error:\n', String(data));
+      // });
 
       pdftk.on('exit', function(code) {
         callback(null, pdfPath, cleanupCallback);
