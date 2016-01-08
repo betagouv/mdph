@@ -5,8 +5,11 @@ var controller = require('./user.controller');
 var config = require('../../config/environment');
 var auth = require('../../auth/auth.service');
 var requestController = require('../request/request.controller');
+var profilesRouter = require('../profile');
 
 var router = express.Router();
+
+router.use('/:userId/profiles', profilesRouter);
 
 router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.delete('/:id', auth.hasRole('adminMdph'), controller.destroy);

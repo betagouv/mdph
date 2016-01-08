@@ -39,7 +39,7 @@ RequestSchema.pre('save', function(next) {
   var now = Date.now();
 
   if (this.isNew) {
-    this.updatedAt = now;
+    this.createdAt = now;
   }
 
   this.updatedAt = now;
