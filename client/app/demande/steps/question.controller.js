@@ -1,17 +1,19 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('QuestionCtrl', function($scope, $state, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
+  .factory('initQuestionScope', function() {
+    return function(scope, question, nextStep, data) {
+      scope.question = question;
+      scope.nextStep = nextStep;
+      scope.hideBack = data && data.hideBack;
+      scope.isLastQuestion = data && data.isLastQuestion;
+    };
   })
-  .controller('StructureQuestionCtrl', function($scope, $state, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
+  .controller('QuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep, $state.current.data);
+  })
+  .controller('StructureQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep, $state.current.data);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
@@ -34,9 +36,8 @@ angular.module('impactApp')
       );
     };
   })
-  .controller('FraisQuestionCtrl', function($scope, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
+  .controller('FraisQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
@@ -70,9 +71,8 @@ angular.module('impactApp')
       $scope.model.listeFrais.splice(lastIndex, 1);
     };
   })
-  .controller('DiplomesQuestionCtrl', function($scope, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
+  .controller('DiplomesQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep);
     $scope.opened = [];
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
@@ -109,9 +109,8 @@ angular.module('impactApp')
       $scope.opened[idx] = true;
     };
   })
-  .controller('CvQuestionCtrl', function($scope, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
+  .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep);
     $scope.ajoutEnCours = false;
     var modification = false;
     var index = -1;
@@ -175,11 +174,8 @@ angular.module('impactApp')
       }
     };
   })
-  .controller('RenseignementsQuestionCtrl', function($scope, $state, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
+  .controller('RenseignementsQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep, $state.current.data);
 
     $scope.placeholder = 'Autres renseignements';
 
@@ -187,11 +183,8 @@ angular.module('impactApp')
       $scope.sectionModel.autresRenseignements = '';
     }
   })
-  .controller('EtablissementScolaireCtrl', function($scope, $state, question, nextStep) {
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
+  .controller('EtablissementScolaireCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep, $state.current.data);
     var currentModel = question.model;
 
     $scope.open = function($event) {
@@ -231,12 +224,10 @@ angular.module('impactApp')
       $scope.model.etablissements.splice(lastIndex, 1);
     };
   })
-  .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep) {
+  .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep, $state.current.data);
+
     $scope.jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
     $scope.currentModel = question.model;
 
     if (angular.isUndefined($scope.sectionModel[$scope.currentModel])) {
@@ -255,10 +246,7 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel[$scope.currentModel];
   })
-  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep) {
+  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep, $state.current.data);
     $scope.sectionModel = sectionModel;
-    $scope.question = question;
-    $scope.nextStep = nextStep;
-    $scope.hideBack = $state.current.data && $state.current.data.hideBack;
-    $scope.isLastQuestion = $state.current.data && $state.current.data.isLastQuestion;
   });
