@@ -8,6 +8,7 @@ var ProfileSchema = new Schema({
   createdAt:      { type: Date },
   updatedAt:      { type: Date },
 
+  name:           { type: String },
   answers:        Schema.Types.Mixed
 });
 
