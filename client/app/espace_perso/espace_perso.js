@@ -11,6 +11,10 @@ angular.module('impactApp')
         resolve: {
           sections: function(SectionFrontConstants) {
             return SectionFrontConstants;
+          },
+
+          currentUser: function(Auth) {
+            return Auth.getCurrentUser().$promise;
           }
         },
         abstract: true
@@ -23,6 +27,10 @@ angular.module('impactApp')
         resolve: {
           sections: function(SectionBackConstants) {
             return SectionBackConstants;
+          },
+
+          currentUser: function(Auth) {
+            return Auth.getCurrentUser().$promise;
           }
         },
         abstract: true
