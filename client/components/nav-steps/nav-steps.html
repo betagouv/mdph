@@ -1,12 +1,12 @@
 <div class="nav-steps">
   <button class="btn btn-default" ng-disabled="hideBack" ng-click="previousStep()">
-    Précédent
+    Question précédente
   </button>
   <button class="btn" type="submit" ng-click="check(questionForm)"
     ng-class="{
       'btn-valid-success': questionForm.$valid,
       'btn-invalid': !questionForm.$valid
     }">
-    {{isLastQuestion ? 'Valider' : 'Suivant'}}
+    {{isLastQuestion ? 'Valider cette section' : 'Question suivante'}}
   </button>
 </div>
