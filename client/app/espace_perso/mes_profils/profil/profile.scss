@@ -1,0 +1,30 @@
+#profile.container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 0;
+  border-radius: 4px;
+  margin-bottom: 60px;
+
+  section {
+    margin: 0;
+    padding: 20px 15px;
+
+    h1, h2, h3 {
+      margin: 0;
+    }
+
+    .section-subhead {
+      opacity: 0.6;
+    }
+  }
+}
+
+.profile-card-row {
+  display: flex;
+  flex-direction: row;
+  margin: 0 -15px 15px -15px;
+
+  .profile-card-row-item {
+    width: (100% / 3);
+  }
+}

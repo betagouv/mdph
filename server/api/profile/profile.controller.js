@@ -5,7 +5,6 @@ var Profile = require('./profile.model');
 var User = require('../user/user.model');
 
 exports.index = function(req, res) {
-  console.log("IN PROFILE");
   Profile
     .find({user: req.params.userId})
     .sort('createdAt')
