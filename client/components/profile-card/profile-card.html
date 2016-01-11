@@ -1,0 +1,18 @@
+<div class="profile-card">
+  <div class="profile-card-header">
+    <span class="profile-card-avatar">
+      <span class="profile-card-icon"><i class="fa" ng-class="icon"></i></span>
+    </span>
+    <span class="profile-card-header-text">
+      <span class="profile-card-header-text-title">{{ title }}</span>
+      <span class="profile-card-header-text-subhead">{{ subhead }}</span>
+    </span>
+  </div>
+  <div class="profile-card-content" ng-if="content && open">
+    {{ content }}
+  </div>
+  <div class="profile-card-actions">
+    <button ng-if="content" ng-click="toggle()" class="btn btn-link">{{open ? 'Masquer' : 'Afficher'}} détails</button>
+    <a ui-sref="." class="btn btn-default">Modifier</a>
+  </div>
+</div>
