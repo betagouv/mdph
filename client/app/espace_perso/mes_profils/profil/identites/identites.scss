@@ -1,0 +1,62 @@
+#profile-identites {
+  padding: 0 20px;
+
+  fieldset > input {
+    margin-left: 15px;
+  }
+
+  .identity-form-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    * {
+      margin: 15px 10px;
+    }
+  }
+
+  section.identite-section {
+    margin-bottom: 30px;
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    border: 1px solid rgba(34,36,38,.15);
+    padding: 25px 30px;
+
+    .section-row {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      margin: 0 -15px 15px -15px;
+
+      .form-group {
+        flex-grow: 1;
+        margin: 0 15px;
+      }
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  #address-input {
+    .street {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0 -10px;
+
+      .field {
+        margin: 0 10px;
+      }
+
+      .field.required .control-label:after {
+         content: " *";
+         color: red;
+      }
+
+      .field.large {
+        flex-grow: 1;
+      }
+    }
+  }
+}

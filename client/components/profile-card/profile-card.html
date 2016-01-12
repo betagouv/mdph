@@ -4,15 +4,15 @@
       <span class="profile-card-icon"><i class="fa" ng-class="icon"></i></span>
     </span>
     <span class="profile-card-header-text">
-      <h2 class="profile-card-header-text-title">{{ title }}</h2>
-      <span class="profile-card-header-text-subhead">{{ subhead }}</span>
+      <h2 class="profile-card-header-text-title">{{ ::title }}</h2>
+      <span class="profile-card-header-text-subhead">{{ ::subhead }}</span>
     </span>
   </div>
   <div class="profile-card-content" ng-if="content && open">
-    {{ content }}
+    {{ ::content }}
   </div>
   <div class="profile-card-actions">
     <button ng-if="content" ng-click="toggle()" class="btn btn-link">{{open ? 'Masquer' : 'Afficher'}} détails</button>
-    <a ng-href="{{ $state.href(action.sref) }}" class="btn btn-default">{{ action.label }}</a>
+    <button ng-click="go()" class="btn btn-default">{{ ::action.label }}</button>
   </div>
 </div>

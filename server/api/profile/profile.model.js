@@ -9,7 +9,7 @@ var ProfileSchema = new Schema({
   updatedAt:      { type: Date },
 
   name:           { type: String },
-  answers:        Schema.Types.Mixed
+  identites:      Schema.Types.Mixed
 });
 
 ProfileSchema.pre('save', function(next) {

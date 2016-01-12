@@ -12,6 +12,10 @@ angular.module('impactApp').config(function($stateProvider) {
     resolve: {
       profileId: function($stateParams) {
         return $stateParams.profileId;
+      },
+
+      profile: function(ProfileResource, currentUser, profileId) {
+        return ProfileResource.get({userId: currentUser._id, id: profileId}).$promise;
       }
     }
   });

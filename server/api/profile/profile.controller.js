@@ -34,13 +34,13 @@ exports.update = function(req, res) {
 
     if (!profile) { return res.sendStatus(404); }
 
-    profile
-      .set('answers', req.body)
-      .save(function(err) {
-        if (err) { return handleError(req, res, err); }
+    var updated = _.merge(profile, req.body);
 
-        return res.status(200).json(profile);
-      });
+    updated.save(function(err) {
+      if (err) { return handleError(res, err); }
+
+      return res.json(profile);
+    });
   });
 };
 
