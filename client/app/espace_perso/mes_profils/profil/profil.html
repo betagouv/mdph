@@ -1,7 +1,7 @@
 <div id="profile" class="container">
   <ui-view>
     <section class="profile-section">
-      <h1>{{profile.name || 'Nouveau profil'}}</h1>
+      <h1>{{ ::profile.getTitle() }}</h1>
       <a ui-sref="^">Retour à la liste des profils</a>
     </section>
 
