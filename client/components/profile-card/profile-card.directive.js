@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('profileCard', function() {
+  .directive('profileCard', function($state) {
     return {
       scope: {
         options: '='
@@ -19,6 +19,10 @@ angular.module('impactApp')
 
         scope.toggle = function() {
           scope.open = !scope.open;
+        };
+
+        scope.go = function() {
+          $state.go(scope.action.sref);
         };
       }
     };

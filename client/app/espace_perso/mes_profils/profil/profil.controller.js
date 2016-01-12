@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, ProfileResource, currentUser, profileId) {
-  $scope.profile = ProfileResource.get({userId: currentUser._id, id: profileId});
+angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
+  $scope.profile = profile;
 
   $scope.options = {
     identites: {
@@ -11,7 +11,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, ProfileRes
         icon: 'fa-user',
         action: {
           label: 'Modifier',
-          sref: '.' // TODO
+          sref: 'espace_perso.mes_profils.profil.beneficiaire'
         }
       },
 
