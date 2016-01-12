@@ -1,10 +1,10 @@
-<div class="profile-card">
+<div class="profile-card" ng-class="profileClass">
   <div class="profile-card-header">
     <span class="profile-card-avatar">
       <span class="profile-card-icon"><i class="fa" ng-class="icon"></i></span>
     </span>
     <span class="profile-card-header-text">
-      <span class="profile-card-header-text-title">{{ title }}</span>
+      <h2 class="profile-card-header-text-title">{{ title }}</h2>
       <span class="profile-card-header-text-subhead">{{ subhead }}</span>
     </span>
   </div>
@@ -13,6 +13,6 @@
   </div>
   <div class="profile-card-actions">
     <button ng-if="content" ng-click="toggle()" class="btn btn-link">{{open ? 'Masquer' : 'Afficher'}} détails</button>
-    <a ui-sref="." class="btn btn-default">Modifier</a>
+    <a ng-href="{{ $state.href(action.sref) }}" class="btn btn-default">{{ action.label }}</a>
   </div>
 </div>

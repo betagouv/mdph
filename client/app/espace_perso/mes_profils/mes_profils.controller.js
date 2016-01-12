@@ -6,7 +6,7 @@ angular.module('impactApp').controller('MesProfilsCtrl', function($scope, $state
   $scope.addProfile = function() {
     var newProfile = new ProfileResource();
     newProfile.$save({userId: currentUser._id}, function(result) {
-      $state.go('.profile', {profileId: result._id});
+      $state.go('.profil', {profileId: result._id});
       $scope.profiles.push(result);
     });
   };

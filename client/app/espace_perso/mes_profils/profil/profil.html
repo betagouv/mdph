@@ -7,42 +7,37 @@
   <section>
     <h2>Identités</h2>
     <p class="section-subhead">Décrivez les personnes de votre foyer.</p>
-    <div class="profile-card-row">
-      <div class="profile-card-row-item" profile-card options="options.identites.beneficiaire"></div>
-      <div class="profile-card-row-item" profile-card options="options.identites.autorite"></div>
-    </div>
+    <ul class="profile-card-row">
+      <li class="profile-card-row-item" profile-card options="options.identites.beneficiaire"></li>
+      <li class="profile-card-row-item" profile-card options="options.identites.autorite"></li>
+    </ul>
   </section>
 
   <section>
     <h2>Projet de vie</h2>
     <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
-    <div class="profile-card-row">
-      <div class="profile-card-row-item" profile-card options="options.projet.vieQuotidienne"></div>
-      <div class="profile-card-row-item" profile-card options="options.projet.vieScolaire"></div>
-      <div class="profile-card-row-item" profile-card options="options.projet.vieTravail"></div>
-    </div>
+    <ul class="profile-card-row">
+      <li class="profile-card-row-item" profile-card options="options.projet.vieQuotidienne"></li>
+      <li class="profile-card-row-item" profile-card options="options.projet.vieScolaire"></li>
+      <li class="profile-card-row-item" profile-card options="options.projet.vieTravail"></li>
+    </ul>
   </section>
 
   <section>
     <h2>Autres informations</h2>
-    <p class="section-subhead">Renseignements facultatifs autour de votre demande.</p>
-    <div class="profile-card-row">
-      <div class="profile-card-row-item" profile-card options="options.autre.particulieres"></div>
-      <div class="profile-card-row-item" profile-card options="options.autre.aidant"></div>
-    </div>
+    <p class="section-subhead">Autres renseignements facultatifs.</p>
+    <ul class="profile-card-row">
+      <li class="profile-card-row-item" profile-card options="options.autre.particulieres"></li>
+      <li class="profile-card-row-item" profile-card options="options.autre.aidant"></li>
+    </ul>
   </section>
 
-  <!-- <section class="autorite">
-    <h2>Autorité parentale ou délégation d'identité</h2>
-    <p class="section-subhead">Obligatoire si le bénéficiaire est mineur</p>
-
-    <div class="profile-card-row">
-      <div class="profile-card-row-item" profile-card options="options.identites.parent1"></div>
-      <div class="profile-card-row-item" profile-card options="options.identites.parent2"></div>
-      <div class="profile-card-row-item" profile-card options="options.identites.autre"></div>
-    </div>
-  </section> -->
-
-  <!-- <div ui-view="steps" ng-hide="hideSteps"></div>
-  <div ui-view="body"></div> -->
+  <section>
+    <h2>Demandes</h2>
+    <p class="section-subhead">Historique de vos demandes passées.</p>
+    <ul class="profile-card-row">
+      <!-- <li class="profile-card-row-item" profile-card options="request" ng-repeat="request in requests"></li> -->
+      <li class="profile-card-row-item" profile-card options="options.nouvelleDemande"></li>
+    </ul>
+  </section>
 </div>
