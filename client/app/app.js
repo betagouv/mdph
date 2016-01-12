@@ -39,8 +39,10 @@ angular.module('impactApp', [
       },
 
       // Intercept 401s
-      responseError: function(response) {
+      responseError: function($location, response) {
         if (response.status === 401) {
+          $location.path('/login');
+
           // remove any stale tokens
           $cookies.remove('token');
           return $q.reject(response);
