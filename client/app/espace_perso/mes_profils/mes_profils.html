@@ -1,7 +1,5 @@
 <ui-view>
-  <div class="container">
-    <h1>Vos profils de bénéficiaires</h1>
-
+  <div class="profile-container">
     <ul class="profile-card-row">
       <li class="profile-card-row-item" ng-repeat="profile in profiles">
         <div class="profile-card profile-card-vertical">
@@ -10,8 +8,8 @@
               <a class="profile-card-icon" title="Accéder au profil"><i class="fa fa-user"></i></a>
             </div>
             <div class="profile-card-header-text">
-              <h2 class="profile-card-header-text-title">{{profile.name || 'Nouveau profil'}}</h2>
-              <p class="profile-card-header-text-subhead">Dernière modification le {{profile.updatedAt | date:'short'}}</p>
+              <h2 class="profile-card-header-text-title">{{ ::profile.getTitle() }}</h2>
+              <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
             </div>
           </div>
           <div class="profile-card-actions">
@@ -21,10 +19,8 @@
       </li>
     </ul>
 
-    <div class="text-center">
-      <button class="btn btn-lg btn-success" ng-click="addProfile()">
-        <i class="fa fa-plus-circle"></i>&nbsp;Ajouter un profil
-      </button>
-    </div>
+    <button class="btn btn-lg btn-success" ng-click="addProfile()">
+      <i class="fa fa-plus-circle"></i>&nbsp;Ajouter un profil
+    </button>
   </div>
 </ui-view>

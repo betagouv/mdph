@@ -7,7 +7,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
     identites: {
       beneficiaire: {
         title: 'Bénéficiaire',
-        subhead: 'Section incomplète',
+        subhead: profile.identites.beneficiaire ? 'Section complète' : 'Section incomplète',
         icon: 'fa-user',
         action: {
           label: 'Modifier',
@@ -88,11 +88,10 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
     nouvelleDemande: {
       title: 'Nouvelle demande',
       subhead: 'Envoyez une nouvelle demande à votre MDPH',
-      action: 'Commencer',
       icon: 'fa-envelope',
       class: 'nouvelle-demande',
       action: {
-        label: 'Modifier',
+        label: 'Commencer',
         sref: '.' // TODO
       }
     }

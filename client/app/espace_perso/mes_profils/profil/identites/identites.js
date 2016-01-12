@@ -5,7 +5,9 @@ angular.module('impactApp')
     $stateProvider
       .state('espace_perso.mes_profils.profil.beneficiaire', {
         url: '/identite-beneficiaire',
-        title: 'Identité du bénéficiaire',
+        data: {
+          title: 'Identité du bénéficiaire'
+        },
         templateUrl: 'app/espace_perso/mes_profils/profil/identites/beneficiaire.html',
         resolve: {
           identite: function(profile) {
