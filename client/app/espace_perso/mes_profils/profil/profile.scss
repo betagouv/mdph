@@ -18,13 +18,3 @@
     }
   }
 }
-
-.profile-card-row {
-  display: flex;
-  flex-direction: row;
-  margin: 0 -15px 15px -15px;
-
-  .profile-card-row-item {
-    width: (100% / 3);
-  }
-}

@@ -14,6 +14,8 @@ angular.module('impactApp')
         scope.content = scope.options.content;
         scope.icon = scope.options.icon;
         scope.open = false;
+        scope.action = scope.options.action;
+        scope.profileClass = scope.options.class;
 
         scope.toggle = function() {
           scope.open = !scope.open;

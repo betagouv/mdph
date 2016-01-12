@@ -1,17 +1,30 @@
 <ui-view>
   <div class="container">
-    <div class="list-group-demande">
-      <a class="list-group-item section" ng-repeat="profile in profiles" ui-sref=".profil({profileId: profile._id})">
-        <i class="fa fa-chevron-circle-right"></i>
-        <span class="list-group-item-content">
-          <h2 class="list-group-item-heading">{{profile.name || 'Nouveau profil'}}</h2>
-          <p class="list-group-item-text">Dernière mise à jour le {{profile.updatedAt | moment}}</p>
-        </span>
-      </a>
-    </div>
+    <h1>Vos profils de bénéficiaires</h1>
 
-    <button class="btn btn-primary" ng-click="addProfile()">
-      <i class="fa fa-plus-circle"></i>&nbsp;Ajouter un profil
-    </button>
+    <ul class="profile-card-row">
+      <li class="profile-card-row-item" ng-repeat="profile in profiles">
+        <div class="profile-card profile-card-vertical">
+          <div class="profile-card-header">
+            <div class="profile-card-avatar">
+              <a class="profile-card-icon" title="Accéder au profil"><i class="fa fa-user"></i></a>
+            </div>
+            <div class="profile-card-header-text">
+              <h2 class="profile-card-header-text-title">{{profile.name || 'Nouveau profil'}}</h2>
+              <p class="profile-card-header-text-subhead">Dernière modification le {{profile.updatedAt | date:'short'}}</p>
+            </div>
+          </div>
+          <div class="profile-card-actions">
+            <a ui-sref=".profil({profileId: profile._id})" class="btn btn-primary">Accéder au profil</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="text-center">
+      <button class="btn btn-lg btn-success" ng-click="addProfile()">
+        <i class="fa fa-plus-circle"></i>&nbsp;Ajouter un profil
+      </button>
+    </div>
   </div>
 </ui-view>
