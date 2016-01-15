@@ -6,7 +6,7 @@ angular.module('impactApp')
     $stateProvider
       .state(index, {
         url: '/vie_quotidienne',
-        templateUrl: 'app/demande/steps/section.html',
+        templateUrl: 'app/espace_perso/mes_profils/profil/section.html',
         controller: 'SectionCtrl',
         redirectTo: index + '.situation',
         resolve: {

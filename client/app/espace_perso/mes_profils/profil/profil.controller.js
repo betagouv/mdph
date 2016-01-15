@@ -7,7 +7,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
     identites: {
       beneficiaire: {
         title: 'Bénéficiaire',
-        subhead: profile.identites.beneficiaire ? 'Section complète' : 'Section incomplète',
+        content: 'Identité de la personne concernée par la demande.',
         icon: 'fa-user',
         action: {
           label: 'Modifier',
@@ -17,8 +17,17 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
 
       autorite: {
         title: 'Autorité parentale',
-        content: 'Autorité parentale ou délégation d\'autorité, obligatoire si le bénéficiaire est mineur.',
-        subhead: 'Section incomplète',
+        content: 'Autorité parentale ou délégation d\'autorité.',
+        icon: 'fa-users',
+        action: {
+          label: 'Modifier',
+          sref: 'espace_perso.mes_profils.profil.autorite'
+        }
+      },
+
+      autre: {
+        title: 'Personne vous aidant dans cette démarche',
+        content: 'Si vous êtes accompagnés dans votre démarche auprès de votre MDPH par un proche, une association, un enseignant référent ou autre.',
         icon: 'fa-users',
         action: {
           label: 'Modifier',
@@ -31,7 +40,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
       vieQuotidienne: {
         title: 'Vie quotidienne',
         content: '',
-        subhead: 'Section incomplète',
         icon: 'fa-home',
         action: {
           label: 'Modifier',
@@ -42,7 +50,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
       vieScolaire: {
         title: 'Vie scolaire',
         content: '',
-        subhead: 'Section incomplète',
         icon: 'fa-university',
         action: {
           label: 'Modifier',
@@ -53,7 +60,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
       vieTravail: {
         title: 'Vie au travail',
         content: '',
-        subhead: 'Section incomplète',
         icon: 'fa-industry',
         action: {
           label: 'Modifier',
@@ -65,7 +71,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
     autre: {
       aidant: {
         title: 'Vie de votre aidant familial',
-        subhead: 'Section incomplète',
         content: 'Si votre aidant familial (la personne qui s\'occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins.',
         icon: 'fa-male',
         action: {
@@ -75,7 +80,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
       },
       particulieres: {
         title: 'Situations particulières',
-        subhead: 'Section incomplète',
         content: 'Si vous vous trouvez dans une situation nécessitant une attention particulière.',
         icon: 'fa-warning',
         action: {

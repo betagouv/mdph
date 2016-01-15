@@ -1,0 +1,41 @@
+.btn-answer {
+  @extend .btn;
+  @extend .btn-default;
+  @extend .btn-block;
+
+  padding-left: 15px;
+  border-bottom: 2px solid $light-grey;
+  text-align: left;
+
+  &.active {
+    border-bottom: 2px solid $primary;
+    background-color: white;
+  }
+
+  input[type=radio] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  input[type=checkbox] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  label {
+    font-weight: 400;
+    cursor: pointer;
+  }
+}
+
+ul.answers {
+  padding-left: 0;
+
+  li {
+    list-style: none;
+  }
+
+  .answer {
+    margin-bottom: 8px;
+  }
+}
