@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .directive('profileCard', function($state) {
+  .directive('profileCategory', function($state) {
     return {
       scope: {
         options: '='
       },
-      templateUrl: 'components/profile-card/profile-card.html',
+      templateUrl: 'components/profile-category/profile-category.html',
       restrict: 'EA',
       link: function(scope) {
         scope.title = scope.options.title;

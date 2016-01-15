@@ -1,45 +1,69 @@
-<div id="profile" class="container">
-  <ui-view>
-    <section class="profile-section">
-      <h1>{{ ::profile.getTitle() }}</h1>
-      <a ui-sref="^">Retour à la liste des profils</a>
-    </section>
+<div id="profile" class="profile-container">
+  <div class="profile-card profile-card-vertical">
+    <div class="profile-card-header">
+      <span class="profile-card-avatar">
+        <span class="profile-card-icon"><i class="fa fa-user"></i></span>
+      </span>
+      <div class="profile-card-header-text">
+        <h1 class="profile-card-header-text-title">{{ ::profile.getTitle() }}</h1>
+        <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
+      </div>
+    </div>
 
-    <section class="profile-section">
-      <h2>Identités</h2>
-      <p class="section-subhead">Décrivez les personnes de votre foyer.</p>
-      <ul class="profile-card-row">
-        <li class="profile-card-row-item" profile-card options="options.identites.beneficiaire"></li>
-        <li class="profile-card-row-item" profile-card options="options.identites.autorite"></li>
-      </ul>
-    </section>
+    <div class="profile-card-content">
+      <ui-view>
+        <section class="profile-section">
+          <h2>Identités</h2>
+          <p class="section-subhead">Décrivez les personnes de votre foyer.</p>
+          <ul class="profile-card-row">
+            <li class="profile-card-row-item" profile-category options="options.identites.beneficiaire"></li>
+            <li class="profile-card-row-item" profile-category options="options.identites.autorite"></li>
+          </ul>
+        </section>
 
-    <section class="profile-section">
-      <h2>Projet de vie</h2>
-      <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
-      <ul class="profile-card-row">
-        <li class="profile-card-row-item" profile-card options="options.projet.vieQuotidienne"></li>
-        <li class="profile-card-row-item" profile-card options="options.projet.vieScolaire"></li>
-        <li class="profile-card-row-item" profile-card options="options.projet.vieTravail"></li>
-      </ul>
-    </section>
+        <section class="profile-section">
+          <h2>Projet de vie</h2>
+          <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
+          <ul class="profile-card-row">
+            <li class="profile-card-row-item" profile-category options="options.projet.vieQuotidienne"></li>
+            <li class="profile-card-row-item" profile-category options="options.projet.vieScolaire"></li>
+            <li class="profile-card-row-item" profile-category options="options.projet.vieTravail"></li>
+          </ul>
+        </section>
 
-    <section class="profile-section">
-      <h2>Autres informations</h2>
-      <p class="section-subhead">Autres renseignements facultatifs.</p>
-      <ul class="profile-card-row">
-        <li class="profile-card-row-item" profile-card options="options.autre.particulieres"></li>
-        <li class="profile-card-row-item" profile-card options="options.autre.aidant"></li>
-      </ul>
-    </section>
+        <section class="profile-section">
+          <h2>Autres informations</h2>
+          <p class="section-subhead">Autres renseignements facultatifs.</p>
+          <ul class="profile-card-row">
+            <li class="profile-card-row-item" profile-category options="options.autre.particulieres"></li>
+            <li class="profile-card-row-item" profile-category options="options.autre.aidant"></li>
+          </ul>
+        </section>
 
-    <section class="profile-section">
-      <h2>Demandes</h2>
-      <p class="section-subhead">Historique de vos demandes passées.</p>
-      <ul class="profile-card-row">
-        <!-- <li class="profile-card-row-item" profile-card options="request" ng-repeat="request in requests"></li> -->
-        <li class="profile-card-row-item" profile-card options="options.nouvelleDemande"></li>
-      </ul>
-    </section>
-  </ui-view>
+        <section class="profile-section">
+          <h2>Demandes</h2>
+          <p class="section-subhead">Historique de vos demandes passées.</p>
+          <ul class="profile-card-row">
+            <!-- <li class="profile-card-row-item" profile-category options="request" ng-repeat="request in requests"></li> -->
+            <li class="profile-card-row-item">
+              <div class="profile-card nouvelle-demande">
+                <div class="profile-card-header">
+                  <div class="profile-card-avatar">
+                    <span class="profile-card-icon"><i class="fa fa-envelope"></i></span>
+                  </div>
+                  <div class="profile-card-header-text">
+                    <h2 class="profile-card-header-text-title">Nouvelle demande</h2>
+                    <p class="profile-card-header-text-subhead">Envoyez une nouvelle demande à votre MDPH</p>
+                  </div>
+                </div>
+                <div class="profile-card-actions">
+                  <a ui-sref=".profil({profileId: profile._id})" class="btn btn-default">Commencer</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </ui-view>
+    </div>
+  </div>
 </div>
