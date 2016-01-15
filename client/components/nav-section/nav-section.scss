@@ -32,8 +32,8 @@
 
     &.selected {
       z-index: 2;
-      border-bottom-color: whitesmoke;
-      background-color: whitesmoke;
+      border-bottom-color: white;
+      background-color: white;
       a {
         color: black;
       }
@@ -68,8 +68,8 @@
 
       &.selected {
         z-index: 2;
-        border-bottom-color: whitesmoke;
-        background-color: whitesmoke;
+        border-bottom-color: white;
+        background-color: white;
         a {
           color: black;
         }
@@ -120,14 +120,14 @@
 }
 
 .tabrow li.selected:before {
-  box-shadow: 2px 2px 0 whitesmoke;
+  box-shadow: 2px 2px 0 white;
 }
 
 .tabrow li.selected:after {
-  box-shadow: -2px 2px 0 whitesmoke;
+  box-shadow: -2px 2px 0 white;
 }
 
 #push-down {
   height: 5px;
-  background-color: whitesmoke;
+  background-color: white;
 }

@@ -35,7 +35,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
         icon: 'fa-home',
         action: {
           label: 'Modifier',
-          sref: '.' // TODO
+          sref: 'espace_perso.mes_profils.profil.vie_quotidienne'
         }
       },
 
@@ -82,17 +82,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
           label: 'Modifier',
           sref: '.' // TODO
         }
-      }
-    },
-
-    nouvelleDemande: {
-      title: 'Nouvelle demande',
-      subhead: 'Envoyez une nouvelle demande à votre MDPH',
-      icon: 'fa-envelope',
-      class: 'nouvelle-demande',
-      action: {
-        label: 'Commencer',
-        sref: '.' // TODO
       }
     }
   };

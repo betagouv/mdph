@@ -1,0 +1,17 @@
+<div class="profile-category" ng-class="profileClass">
+  <div class="profile-category-icon"><i class="fa" ng-class="icon"></i></div>
+
+  <div class="profile-category-content">
+    <div class="profile-category-header">
+      <span class="profile-category-header-text">
+        <h2 class="profile-category-header-text-title">{{ ::title }}</h2>
+      </span>
+    </div>
+    <div class="profile-category-content-text">
+      {{ ::content }}
+    </div>
+    <div class="profile-category-actions">
+      <button ng-click="go()" class="btn btn-primary">{{ ::action.label }}</button>
+    </div>
+  </div>
+</div>
