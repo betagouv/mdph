@@ -2,16 +2,22 @@
 
 angular.module('impactApp')
   .config(function($stateProvider) {
-    var index = 'espace_perso.mes_profils.profil.vie_quotidienne';
+    var index = 'espace_perso.mes_profils.profil.vie_scolaire';
     $stateProvider
       .state(index, {
-        url: '/vie_quotidienne',
+        url: '/vie_scolaire',
         templateUrl: 'app/espace_perso/mes_profils/profil/section.html',
         controller: 'SectionCtrl',
         redirectTo: index + '.situation',
         resolve: {
+          sections: function($http) {
+            return $http.get('/api/sections').then(function(result) {
+              return result.data;
+            });
+          },
+
           sectionId: function() {
-            return 'vie_quotidienne';
+            return 'vie_scolaire';
           },
 
           section: function(sections, sectionId) {

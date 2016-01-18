@@ -10,7 +10,8 @@ var ProfileSchema = new Schema({
 
   name:             { type: String },
   identites:        { type: Schema.Types.Mixed },
-  vie_quotidienne:  { type: Schema.Types.Mixed }
+  vie_quotidienne:  { type: Schema.Types.Mixed },
+  vie_scolaire:     { type: Schema.Types.Mixed }
 });
 
 ProfileSchema.pre('save', function(next) {
