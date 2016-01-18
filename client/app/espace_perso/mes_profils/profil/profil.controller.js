@@ -31,7 +31,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
         icon: 'fa-users',
         action: {
           label: 'Modifier',
-          sref: '.' // TODO
+          sref: 'espace_perso.mes_profils.profil.autre'
         }
       }
     },

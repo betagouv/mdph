@@ -7,25 +7,6 @@
   </div>
 
   <section class="identite-section">
-    <div class="form-group required" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
-      <fieldset>
-        <legend class="control-label">Votre type d'identité</legend>
-        <input type="radio" name="type_autorite" id="type_autorite_parent" ng-model="identite.type" ng-required="!identite.type" value="parent">
-        <label class="radio-inline" for="type_autorite_parent">Le parent</label>
-        <input type="radio" name="type_autorite" id="type_autorite_tuteur" ng-model="identite.type" ng-required="!identite.type" value="tuteur">
-        <label class="radio-inline" for="type_autorite_tuteur">Le tuteur</label>
-        <input type="radio" name="type_autorite" id="type_autorite_curateur" ng-model="identite.type" ng-required="!identite.type" value="curateur">
-        <label class="radio-inline" for="type_autorite_curateur">Le curateur</label>
-        <input type="radio" name="type_autorite" id="type_autorite_organisme" ng-model="identite.type" ng-required="!identite.type" value="organisme">
-        <label class="radio-inline" for="type_autorite_organisme">Un organisme</label>
-        <input type="radio" name="type_autorite" id="type_autorite_autre" ng-model="identite.type" ng-required="!identite.type" value="autre">
-        <label class="radio-inline" for="type_autorite_autre">Autre</label>
-      </fieldset>
-      <div ng-if="!identite.type && infoForm.$submitted">
-        <p class="help-block">Ce champ est obligatoire.</p>
-      </div>
-    </div>
-
     <div class="section-row">
       <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
         <label for="nom" class="control-label">Nom</label>
