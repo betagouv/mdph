@@ -8,7 +8,7 @@ angular.module('impactApp')
 
     Profile.prototype.getTitle = function() {
       if (this.identites && this.identites.beneficiaire) {
-        return 'Profil de ' + this.identites.beneficiaire.prenom + ' ' + this.identites.beneficiaire.nom;
+        return this.identites.beneficiaire.prenom + ' ' + this.identites.beneficiaire.nom;
       } else {
         return 'Nouveau profil';
       }
