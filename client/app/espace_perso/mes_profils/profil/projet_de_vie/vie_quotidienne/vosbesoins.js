@@ -16,8 +16,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'besoinsVie', request.formAnswers);
+        question: function(QuestionService, section, sectionModel) {
+          return QuestionService.get(section, 'besoinsVie', sectionModel);
         },
 
         nextStep: function($state) {
@@ -31,8 +31,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'besoinsDeplacement', request.formAnswers);
+        question: function(QuestionService, section, sectionModel) {
+          return QuestionService.get(section, 'besoinsDeplacement', sectionModel);
         },
 
         nextStep: function($state) {
@@ -46,8 +46,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'besoinsTransports', request.formAnswers);
+        question: function(QuestionService, section, sectionModel) {
+          return QuestionService.get(section, 'besoinsTransports', sectionModel);
         },
 
         nextStep: function($state) {
@@ -61,8 +61,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, request, section) {
-          return QuestionService.get(section, 'besoinsSocial', request.formAnswers);
+        question: function(QuestionService, section, sectionModel) {
+          return QuestionService.get(section, 'besoinsSocial', sectionModel);
         },
 
         nextStep: function($state) {
