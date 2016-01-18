@@ -35,11 +35,11 @@ exports.update = function(req, res) {
     if (!profile) { return res.sendStatus(404); }
 
     var updated = _.merge(profile, req.body);
-
-    updated.save(function(err) {
+    updated.markModified('identites');
+    updated.save(function(err, saved) {
       if (err) { return handleError(res, err); }
 
-      return res.json(profile);
+      return res.json(saved);
     });
   });
 };

@@ -17,8 +17,8 @@ angular.module('impactApp')
           hideBack: true
         },
         resolve: {
-          question: function(QuestionService, section) {
-            return QuestionService.get(section, 'famille', {});
+          question: function(QuestionService, section, sectionModel) {
+            return QuestionService.get(section, 'famille', sectionModel);
           },
 
           nextStep: function($state, sectionModel, question) {

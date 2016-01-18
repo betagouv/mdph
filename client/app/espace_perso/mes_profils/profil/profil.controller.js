@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, profile) {
+angular.module('impactApp').controller('ProfilCtrl', function($scope, profile, estAdulte) {
   $scope.profile = profile;
+  $scope.estAdulte = estAdulte;
 
   $scope.options = {
     identites: {

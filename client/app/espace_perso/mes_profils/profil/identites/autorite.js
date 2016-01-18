@@ -36,7 +36,7 @@ angular.module('impactApp')
             } else {
               profile.identites.autorite = identite;
               profile.$save({userId: currentUser._id}, function() {
-                $state.go('^');
+                $state.go('^', {}, {reload: true});
               });
             }
           };
