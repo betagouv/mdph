@@ -10,6 +10,12 @@ angular.module('impactApp').config(function($stateProvider) {
       title: 'Détail du profil'
     },
     resolve: {
+      sections: function($http) {
+        return $http.get('/api/sections').then(function(result) {
+          return result.data;
+        });
+      },
+
       profileId: function($stateParams) {
         return $stateParams.profileId;
       },
