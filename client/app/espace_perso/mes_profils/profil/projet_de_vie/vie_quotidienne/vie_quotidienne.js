@@ -32,9 +32,12 @@ angular.module('impactApp')
             return profile[sectionId];
           },
 
-          saveSection: function($window) {
+          saveSection: function($state, currentUser, profile, sectionId, sectionModel) {
             return function() {
-              $window.alert('TODO');
+              profile[sectionId] = sectionModel;
+              profile.$save({userId: currentUser._id}, function() {
+                $state.go('espace_perso.mes_profils.profil', {}, {reload: true});
+              });
             };
           }
         }
