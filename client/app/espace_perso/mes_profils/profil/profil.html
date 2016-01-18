@@ -5,7 +5,7 @@
         <span class="profile-card-icon"><i class="fa fa-user"></i></span>
       </span>
       <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title">{{ ::profile.getTitle() }}</h1>
+        <h1 class="profile-card-header-text-title"><a ui-sref=".">{{ ::profile.getTitle() }}</a></h1>
         <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
       </div>
     </div>
