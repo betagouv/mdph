@@ -64,7 +64,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile, e
         icon: 'fa-industry',
         action: {
           label: 'Modifier',
-          sref: '.' // TODO
+          sref: 'espace_perso.mes_profils.profil.vie_au_travail'
         }
       }
     },
