@@ -9,12 +9,5 @@
 }
 
 .btn-valid-success {
-  @extend .btn-valid;
   @extend .btn-success;
-}
-
-.btn-valid:before {
-  font-family: 'FontAwesome';
-  content: '\f00c';
-  margin-right: 5px;
 }

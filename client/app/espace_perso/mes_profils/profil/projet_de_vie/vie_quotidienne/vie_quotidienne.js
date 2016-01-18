@@ -16,16 +16,26 @@ angular.module('impactApp')
             });
           },
 
-          section: function(sections) {
-            return _.find(sections, {id: 'vie_quotidienne'});
+          sectionId: function() {
+            return 'vie_quotidienne';
           },
 
-          sectionModel: function() {
-            return {};
+          section: function(sections, sectionId) {
+            return _.find(sections, {id: sectionId});
           },
 
-          saveSection: function() {
-            return function() {};
+          sectionModel: function(profile, sectionId) {
+            if (!profile[sectionId]) {
+              profile[sectionId] = {};
+            }
+
+            return profile[sectionId];
+          },
+
+          saveSection: function($window) {
+            return function() {
+              $window.alert('TODO');
+            };
           }
         }
       });

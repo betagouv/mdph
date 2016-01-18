@@ -16,6 +16,15 @@ angular.module('impactApp').config(function($stateProvider) {
 
       profile: function(ProfileResource, currentUser, profileId) {
         return ProfileResource.get({userId: currentUser._id, id: profileId}).$promise;
+      },
+
+      estAdulte: function(profile) {
+        if (profile.identites && profile.identites.beneficiaire) {
+          var dateNaissance = profile.identites.beneficiaire.dateNaissance;
+          return moment().diff(dateNaissance, 'years') >= 20;
+        } else {
+          return true;
+        }
       }
     }
   });
