@@ -1,5 +1,9 @@
 <form name="questionForm" novalidate>
-  <div class="question-legend" for="inputid">{{question.title}}</div>
+  <legend class="question-legend" for="inputid">
+    {{question.title}}
+  </legend>
+
+  <p class="question-help" ng-show="question.help">{{question.help}}</p>
 
   <div class="form-group">
     <input type="text" name="inputname" id="inputid" class="form-control" ng-model="sectionModel[question.model]"

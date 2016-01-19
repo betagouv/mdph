@@ -368,6 +368,7 @@
         "model": "ipp",
         "titleDefault": "Connaissez-vous votre taux d'IPP (Incapacité Permanente Partielle) ?",
         "titleRep": "Connaissez-vous son taux d'IPP (Incapacité Permanente Partielle) ?",
+        "help": "Renseignez ici le taux qui vous a été attribué par l'assurance maladie (CPAM)",
         "type": "text",
         "placeholder": "Taux d'IPP, en %",
         "isOptionnal": true
