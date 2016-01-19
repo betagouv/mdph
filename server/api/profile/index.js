@@ -12,4 +12,6 @@ router.get('/:id', auth.isAuthorized(), controller.show);
 router.post('/:id', auth.isAuthorized(), controller.update);
 router.delete('/:id', auth.isAuthorized(), controller.destroy);
 
+router.get('/:id/requests', auth.isAuthorized(), controller.indexRequests);
+
 module.exports = router;

@@ -22,6 +22,7 @@ var RequestSchema = new Schema({
   shortId:        { type: String, unique: true, default: shortId.generate },
   documents:      [DocumentSchema],
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
+  profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
   mdph:           { type: String },
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
   secteur:        { type: Schema.Types.ObjectId, ref: 'Secteur' },

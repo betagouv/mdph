@@ -31,6 +31,12 @@ angular.module('impactApp').config(function($stateProvider) {
         } else {
           return true;
         }
+      },
+
+      requests: function($http, currentUser, profile) {
+        return $http.get('/api/users/' + currentUser._id + '/profiles/' + profile._id + '/requests').then(function(result) {
+          return result.data;
+        });
       }
     }
   });
