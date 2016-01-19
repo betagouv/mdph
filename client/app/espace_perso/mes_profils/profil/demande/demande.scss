@@ -1,0 +1,32 @@
+#profil-demande {
+  .demande-section {
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    border: 1px solid rgba(34,36,38,.15);
+    padding: 15px 20px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  .btn-primary {
+    margin: 10px 0;
+  }
+
+  .document-wrapper {
+    @extend .col-sm-4;
+    padding: 15px;
+  }
+
+  .document-box {
+    background-color: whitesmoke;
+    border: 1px solid #eee;
+    padding: 5px;
+
+    h4, p {
+      text-align: center;
+    }
+  }
+}

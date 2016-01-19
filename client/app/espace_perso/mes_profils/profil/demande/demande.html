@@ -1,9 +1,11 @@
-<form id="profile-identites" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+<form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+
   <h2>Détails de votre demande</h2>
 
   <p>Identitfiant de la demande: <strong>{{request.shortId}}</strong></p>
 
-  <section class="identite-section">
+  <section class="demande-section">
+    <h3>MDPH destinataire</h3>
     <div class="form-group required" ng-class="{'has-error': !request.mdph && infoForm.$submitted}">
       <fieldset>
         <legend class="control-label" id="request-mdph">Sélectionnez la MDPH destinaire de votre demande</legend>
@@ -15,17 +17,16 @@
     </div>
   </section>
 
-  <section class="identite-section">
-
-    <div class="documents-sections">
-      <div ui-view="obligatoires"></div>
-      <!-- <div ui-view="complementaires"></div>
-      <div ui-view="suggestions"></div> -->
-    </div>
-
+  <section class="demande-section">
+    <div ui-view="obligatoires"></div>
   </section>
 
-  <div class="identity-form-actions">
+  <section class="demande-section">
+    <div ui-view="complementaires"></div>
+    <div ui-view="suggestions"></div>
+  </section>
+
+  <div class="text-right">
     <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
     <button type="submit" name="submit" alt="Valider" class="btn btn-success">Envoyer</button>
   </div>
