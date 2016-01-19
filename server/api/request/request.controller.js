@@ -338,7 +338,9 @@ exports.saveFile = function(req, res, next) {
       if (err) { return handleError(req, res, err); }
 
       request.saveActionLog(Actions.DOCUMENT_ADDED, req.user, req.log, {document: document});
-      return res.json(document);
+
+      var savedDocument = _.find(saved.documents, {filename: document.filename});
+      return res.json(savedDocument);
     });
   });
 };

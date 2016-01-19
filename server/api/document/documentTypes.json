@@ -10,12 +10,14 @@
     {
       "id": "justificatifDomicile",
       "label": "Justificatif de domicile",
-      "mandatory": true
+      "mandatory": true,
+      "desc": "Un justificatif de domicile de moins de 3 mois"
     },
     {
       "id": "carteIdentite",
-      "label": "Carte d'identité, passeport",
-      "mandatory": true
+      "label": "Pièce d'identité",
+      "mandatory": true,
+      "desc": "Une photocopie recto/verso"
     }
   ],
 
