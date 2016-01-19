@@ -54,6 +54,20 @@ angular.module('impactApp').config(function($stateProvider) {
         controller: function($scope, PreparationEvaluationService, request) {
           $scope.docsList = PreparationEvaluationService.getSuggestedDocsList(request.formAnswers);
         }
+      },
+      'prestations@espace_perso.mes_profils.profil.demande': {
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/prestations/prestations.html',
+        controller: function($scope, prestations) {
+          $scope.prestations = prestations;
+        },
+
+        resolve: {
+          prestations: function($http) {
+            return $http.get('api/prestations').then(function(result) {
+              return result.data;
+            });
+          }
+        }
       }
     }
   });

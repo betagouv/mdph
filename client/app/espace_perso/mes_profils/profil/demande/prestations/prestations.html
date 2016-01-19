@@ -1,0 +1,13 @@
+<h3>Vos prestations</h3>
+<ul class="demande-prestations">
+  <li ng-repeat="prestation in prestations">
+    <label>
+      <input type="checkbox" id="prestation.id" value="prestation.id">
+      <div>
+        <strong>{{prestation.title}}</strong>
+        <div class="text-muted">{{prestation.description}}</div>
+        <a href="{{prestation.link}}">{{prestation.link}}</a>
+      </div>
+    </label>
+  </li>
+</ul>

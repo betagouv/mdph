@@ -15,6 +15,21 @@
     margin: 10px 0;
   }
 
+  ul.demande-prestations {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+
+    input {
+      margin: 5px 10px;
+    }
+
+    label {
+      display: flex;
+      font-weight: 200;
+    }
+  }
+
   .document-wrapper {
     @extend .col-sm-4;
     padding: 15px;
