@@ -72,11 +72,11 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile, e
     autre: {
       aidant: {
         title: 'Vie de votre aidant familial',
-        content: 'Si votre aidant familial (la personne qui s\'occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins.',
+        content: 'Si vous souhaitez exprimer des besoins en tant qu’aidant familial.',
         icon: 'fa-male',
         action: {
           label: 'Modifier',
-          sref: '.' // TODO
+          sref: 'espace_perso.mes_profils.profil.aidant.situation.nom_aidant'
         }
       },
       particulieres: {
