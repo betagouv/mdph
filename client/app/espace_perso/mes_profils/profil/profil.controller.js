@@ -85,7 +85,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile, e
         icon: 'fa-warning',
         action: {
           label: 'Modifier',
-          sref: '.' // TODO
+          sref: 'espace_perso.mes_profils.profil.situations_particulieres'
         }
       }
     }
