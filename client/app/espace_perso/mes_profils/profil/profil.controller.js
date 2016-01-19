@@ -1,8 +1,17 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, profile, estAdulte) {
+angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, User, RequestResource, currentUser, profile, requests, estAdulte) {
   $scope.profile = profile;
   $scope.estAdulte = estAdulte;
+  $scope.requests = requests;
+
+  $scope.nouvelleDemande = function() {
+    var formAnswers = _.pick(profile, 'identites', 'vie_quotidienne', 'vie_scolaire', 'vie_au_travail', 'aidant', 'situations_particulieres');
+    new RequestResource({profile: profile._id, user: currentUser._id, formAnswers: formAnswers}).$save(function(saved) {
+      $scope.requests.push(saved);
+      $state.go('.demande', {shortId: saved.shortId});
+    });
+  };
 
   $scope.options = {
     identites: {
@@ -28,7 +37,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, profile, e
 
       autre: {
         title: 'Personne vous aidant dans cette démarche',
-        content: 'Si vous êtes accompagnés dans votre démarche auprès de votre MDPH par un proche, une association, un enseignant référent ou autre.',
+        content: 'Si vous êtes accompagnés dans votre démarche auprès de votre MDPH.',
         icon: 'fa-users',
         action: {
           label: 'Modifier',

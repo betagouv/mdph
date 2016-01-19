@@ -149,11 +149,10 @@ fieldset.light {
 @import 'demande/steps/envoi/envoi.scss';
 @import 'demande/steps/obligatoires/identites/identites.scss';
 @import 'demande/steps/steps.scss';
-@import 'espace_perso/liste_demandes/liste_demandes.scss';
 @import 'espace_perso/mes_profils/mes_profils.scss';
 @import 'espace_perso/mes_profils/profil/identites/identites.scss';
+@import 'espace_perso/mes_profils/profil/liste_demandes.scss';
 @import 'espace_perso/mes_profils/profil/profile.scss';
-@import 'espace_perso/mes_profils/profil/questions.scss';
 @import 'espace_perso/mon_compte/mon_compte.scss';
 @import 'main/main.scss';
 @import 'partenaire/partenaire.scss';
@@ -170,6 +169,7 @@ fieldset.light {
 @import 'qtitle/qtitle.scss';
 @import 'question/cv.scss';
 @import 'question/droits.scss';
+@import 'question/questions.scss';
 @import 'question/structure.scss';
 @import 'section-progress-bar/section-progress-bar.scss';
 @import 'subsection/subsection.scss';

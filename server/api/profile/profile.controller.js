@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Profile = require('./profile.model');
 var User = require('../user/user.model');
+var Request = require('../request/request.model');
 
 exports.index = function(req, res) {
   Profile
@@ -64,6 +65,24 @@ exports.destroy = function(req, res) {
 
     return res.sendStatus(204);
   });
+};
+
+exports.indexRequests = function(req, res) {
+  Profile
+    .findById(req.params.id)
+    .exec(function(err, profile) {
+      if (err) { return handleError(req, res, err); }
+
+      if (!profile) { return res.sendStatus(404); }
+
+      Request.find({profile: profile._id})
+        .sort('-submittedAt')
+        .exec(function(err, requests) {
+          if (err) return handleError(req, res, err);
+
+          return res.json(requests);
+        });
+    });
 };
 
 function handleError(req, res, err) {

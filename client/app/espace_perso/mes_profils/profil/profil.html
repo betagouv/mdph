@@ -42,27 +42,25 @@
         </section>
 
         <section class="profile-section">
-          <h2>Demandes</h2>
-          <p class="section-subhead">Historique de vos demandes passées.</p>
-          <ul class="profile-card-row">
-            <!-- <li class="profile-card-row-item" profile-category options="request" ng-repeat="request in requests"></li> -->
-            <li class="profile-card-row-item">
-              <div class="profile-card nouvelle-demande">
-                <div class="profile-card-header">
-                  <div class="profile-card-avatar">
-                    <span class="profile-card-icon"><i class="fa fa-envelope"></i></span>
-                  </div>
-                  <div class="profile-card-header-text">
-                    <h2 class="profile-card-header-text-title">Nouvelle demande</h2>
-                    <p class="profile-card-header-text-subhead">Envoyez une nouvelle demande à votre MDPH</p>
-                  </div>
-                </div>
-                <div class="profile-card-actions">
-                  <a ui-sref=".profil({profileId: profile._id})" class="btn btn-default">Commencer</a>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <h2>Vos demandes</h2>
+          <p class="section-subhead">Historique de vos demandes.</p>
+          <div class="list-group-demande">
+            <a class="list-group-item section" ng-repeat="request in requests"
+              ui-sref=".demande({ shortId: request.shortId })">
+              <i class="fa fa-chevron-circle-right"></i>
+              <span class="list-group-item-content">
+                <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
+                <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
+                Dernière mise à jour {{updatedAt(request)}}</p>
+              </span>
+            </a>
+            <button ng-click="nouvelleDemande()" class="list-group-item list-group-item-nouvelle-demande" >
+              <i class="fa fa-plus-circle fa-2x "></i>
+              <span class="list-group-item-content">
+                <h3 class="list-group-item-heading"> Faire une nouvelle demande</h3>
+              </span>
+            </button>
+          </div>
         </section>
       </ui-view>
     </div>
