@@ -48,7 +48,6 @@ angular.module('impactApp').config(function($stateProvider) {
               return;
             } else {
               $scope.request.prestations = getSelectedPrestationIdList();
-              console.log($scope.request);
             }
           };
         },
