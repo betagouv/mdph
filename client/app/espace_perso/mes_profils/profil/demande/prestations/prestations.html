@@ -1,13 +1,38 @@
 <h3>Vos prestations</h3>
-<ul class="demande-prestations">
-  <li ng-repeat="prestation in prestations">
-    <label>
-      <input type="checkbox" id="prestation.id" value="prestation.id">
-      <div>
-        <strong>{{prestation.title}}</strong>
-        <div class="text-muted">{{prestation.description}}</div>
+
+<div ng-repeat="(key, type) in types">
+  <h4>{{key | prestationType}}</h4>
+  <ul class="demande-prestations">
+    <li ng-repeat="prestation in type">
+      <div class="prestation-select">
+        <label for="{{prestation.id}}">
+          <input type="checkbox" id="{{prestation.id}}" ng-model="prestation.isSelected">&nbsp;{{prestation.title}}
+        </label>
+        <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
+      </div>
+
+      <div class="well" ng-if="prestation.showDetail">
+        {{prestation.description}}
         <a href="{{prestation.link}}">{{prestation.link}}</a>
       </div>
-    </label>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
+
+<!--
+<div class="table-wrapper">
+  <div ng-repeat="(key, type) in types">
+    <h3>{{key | prestationType}}</h3>
+    <table class="table">
+      <tr ng-repeat="prestation in type">
+        <td class="selection">
+          <input type="checkbox" ng-model="selected[prestation.id]" ng-change="sync()">
+        </td>
+        <td class="description" ng-click="select(prestation)">
+          <strong>{{prestation.title}}</strong>
+          <p>{{prestation.description}}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div> -->
