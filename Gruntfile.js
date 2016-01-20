@@ -158,6 +158,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
+    'bunyan',
     'serve'
   ]);
 };
