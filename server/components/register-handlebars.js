@@ -63,30 +63,19 @@ Handlebars.registerHelper('showRenouvellement', function() {
     return '';
   }
 
-  var pronoun;
-  var si;
-  var qu;
-  if (isMale(this.sexe)) {
-    pronoun = 'Il';
-    si = 's\'il';
-    qu = 'qu\'il';
-  } else {
-    pronoun = 'Elle';
-    si = 'si elle';
-    qu = 'qu\'ellle';
-  }
-
   var str;
 
   if (typeof this.estRenouvellement === 'undefined') {
-    str = pronoun + ' n\'a pas précisé ' + si + ' possède déjà un dossier dans votre MDPH';
-  } else if (this.estRenouvellement) {
-    str = pronoun + ' a précisé ' + qu + ' possède déjà un dossier dans votre MDPH.';
-    if (this.numeroDossier) {
-      str += ' Son numéro de dossier est le ' + this.numeroDossier;
+    var si;
+    if (isMale(this.sexe)) {
+      si = 's\'il';
+    } else {
+      si = 'si elle';
     }
-  } else {
-    str =  pronoun + ' a indiqué qu\'il s\'agit de son premier dossier dans votre MDPH.';
+
+    str = 'N\'a pas précisé ' + si + ' possède déjà un dossier dans votre MDPH';
+  } else if (!this.estRenouvellement) {
+    str =  'Premier dossier dans votre MDPH.';
   }
 
   return str;
@@ -129,4 +118,3 @@ module.exports = {
   recapitulatif: recapitulatif,
   synthese: synthese
 };
-
