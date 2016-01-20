@@ -885,8 +885,8 @@
       },
       "emploiDuTemps": {
         "model": "emploiDuTemps",
-        "titleDefault": "Décrivez votre emploi du temps (accompagnement et soins, lieux...)",
-        "titleRep": "Décrivez son emploi du temps (accompagnement et soins, lieux...)",
+        "titleDefault": "Décrivez votre emploi du temps (école, cantine, soins...)",
+        "titleRep": "Décrivez son emploi du temps (école, cantine, soins...)",
         "type": "emploiDuTemps"
       },
       "besoinsScolarite": {
