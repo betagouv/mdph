@@ -20,13 +20,15 @@
     padding-left: 0;
     margin-top: 15px;
 
-    input {
-      margin: 5px 10px;
+    label {
+      font-weight: 200;
     }
 
-    label {
-      display: flex;
-      font-weight: 200;
+    .btn-link {
+      padding: 0;
+      margin: 0;
+      padding-bottom: 2px;
+      margin-left: 10px;
     }
   }
 

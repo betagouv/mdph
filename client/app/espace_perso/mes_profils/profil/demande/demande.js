@@ -21,14 +21,36 @@ angular.module('impactApp').config(function($stateProvider) {
 
       request: function(RequestResource, shortId) {
         return RequestResource.get({shortId: shortId}).$promise;
+      },
+
+      prestations: function($http) {
+        return $http.get('api/prestations').then(function(result) {
+          return result.data;
+        });
       }
     },
     views: {
       '': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/demande.html',
-        controller: function($scope, $filter, RequestResource, mdphs, shortId, request) {
+        controller: function($scope, $filter, RequestResource, mdphs, shortId, request, prestations) {
           $scope.mdphs = mdphs;
           $scope.request = request;
+
+          function getSelectedPrestationIdList() {
+            return _.chain(prestations)
+             .filter({isSelected: true})
+             .pluck('id')
+             .value();
+          }
+
+          $scope.submit = function(form) {
+            if (!form.$valid) {
+              return;
+            } else {
+              $scope.request.prestations = getSelectedPrestationIdList();
+              console.log($scope.request);
+            }
+          };
         },
       },
       'obligatoires@espace_perso.mes_profils.profil.demande': {
@@ -58,15 +80,7 @@ angular.module('impactApp').config(function($stateProvider) {
       'prestations@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/prestations/prestations.html',
         controller: function($scope, prestations) {
-          $scope.prestations = prestations;
-        },
-
-        resolve: {
-          prestations: function($http) {
-            return $http.get('api/prestations').then(function(result) {
-              return result.data;
-            });
-          }
+          $scope.types = _.groupBy(prestations, 'type');
         }
       }
     }
