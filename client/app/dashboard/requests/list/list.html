@@ -77,7 +77,7 @@
           <td class="status">
             {{request.status | requestStatus}}
           </td>
-          <td>{{request.submittedAt | date}}</td>
+          <td ng-class="classByRequestAge(request.submittedAt)">{{request.submittedAt | date}}</td>
           <td>{{request.evaluator ? request.evaluator.name : 'Non assignée'}}</td>
         </tr>
       </tbody>
