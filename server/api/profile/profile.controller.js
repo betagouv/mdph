@@ -42,6 +42,8 @@ exports.update = function(req, res) {
     updated.markModified('vie_quotidienne');
     updated.markModified('vie_scolaire');
     updated.markModified('vie_au_travail');
+    updated.markModified('aidant');
+    updated.markModified('situations_particulieres');
 
     updated.save(function(err, saved) {
       if (err) { return handleError(res, err); }

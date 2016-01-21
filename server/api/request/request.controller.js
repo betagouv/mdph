@@ -228,7 +228,6 @@ exports.updateFromAgent = function(req, res, next) {
  */
 exports.updateFromUser = function(req, res, next) {
   var request = req.request;
-
   request.set(_.omit(req.body, 'user', 'documents'));
 
   if (req.query.isSendingRequest) {
@@ -236,37 +235,35 @@ exports.updateFromUser = function(req, res, next) {
     sendMailNotification(request, req.headers.host, req.log, function(secteur) {
       if (secteur) {
         request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-        request
-          .set('secteur', secteur)
-          .save();
+        request.set('secteur', secteur);
       }
-    });
 
-    request
-      .set('submittedAt', Date.now())
-      .save(function(err, updated) {
-        if (err) return handleError(req, res, err);
+      request
+        .set('submittedAt', Date.now())
+        .save(function(err, updated) {
+          if (err) return handleError(req, res, err);
 
-        request.saveActionLog(Actions.SUBMIT, req.user, req.log);
+          request.saveActionLog(Actions.SUBMIT, req.user, req.log);
 
-        // Notify user
-        generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
-          if (err) { req.log.error(err); }
+          // Notify user
+          generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
+            if (err) { req.log.error(err); }
 
-          Mailer.sendMail(req.user.email,
-            'Accusé de réception du téléservice',
-            'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
-            [
-              {
-                filename: request.shortId + '.pdf',
-                path: pdfPath
-              }
-            ]
-          );
+            Mailer.sendMail(req.user.email,
+              'Accusé de réception du téléservice',
+              'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
+              [
+                {
+                  filename: request.shortId + '.pdf',
+                  path: pdfPath
+                }
+              ]
+            );
+          });
+
+          return res.json(updated);
         });
-
-        return res.json(updated);
-      });
+    });
   } else {
     request
       .save(function(err, updated) {

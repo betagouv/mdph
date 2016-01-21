@@ -34,6 +34,7 @@ angular.module('impactApp')
 
           saveSection: function($state, currentUser, profile, sectionId, sectionModel) {
             return function() {
+              sectionModel.__completion = true;
               profile[sectionId] = sectionModel;
               profile.$save({userId: currentUser._id}, function() {
                 $state.go('espace_perso.mes_profils.profil', {}, {reload: true});

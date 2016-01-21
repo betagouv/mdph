@@ -46,4 +46,28 @@
       text-align: center;
     }
   }
+
+  .table-wrapper {
+    padding: 15px;
+    tr.envoi-success>td:before {
+      content: '\f05d';
+      font-family: 'FontAwesome';
+      color: $green;
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+
+    tr.envoi-warning>td:before {
+      content: '\f071';
+      font-family: 'FontAwesome';
+      color: $orange;
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+  }
+
+  .submit-error {
+    @extend .alert, .alert-danger;
+    margin-top: 15px;
+  }
 }
