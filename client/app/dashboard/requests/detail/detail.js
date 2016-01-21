@@ -52,5 +52,11 @@ angular.module('impactApp')
         url: '/documents',
         templateUrl: 'app/dashboard/requests/detail/documents/documents.html',
         authenticate: true
+      })
+      .state('dashboard.requests.detail.comments', {
+        url: '/comments',
+        templateUrl: 'app/dashboard/requests/detail/comments/comments.html',
+        controller: 'RequestCommentsCtrl',
+        authenticate: true
       });
   });

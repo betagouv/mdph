@@ -32,7 +32,8 @@ var RequestSchema = new Schema({
   formAnswers:    Schema.Types.Mixed,
   prestations:    [{ type: String }],
   certificat:     Schema.Types.Mixed,
-  synthese:       Schema.Types.Mixed
+  synthese:       Schema.Types.Mixed,
+  comments:       { type: String }
 });
 
 RequestSchema.pre('save', function(next) {
