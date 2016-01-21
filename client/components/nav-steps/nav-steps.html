@@ -4,7 +4,7 @@
   </button>
   <button class="btn" type="submit" ng-click="check(questionForm)"
     ng-class="{
-      'btn-valid-success': questionForm.$valid,
+      'btn-success': questionForm.$valid,
       'btn-invalid': !questionForm.$valid
     }">
     {{isLastQuestion ? 'Valider cette section' : 'Question suivante'}}
