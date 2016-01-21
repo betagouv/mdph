@@ -26,6 +26,17 @@
           <i class="fa fa-download"></i> Assigner
         </button>
       </div>
+
+      <br>
+      
+      <div>
+        <button class="btn btn-sm btn-primary" ng-click="transfer(requests, transferSecteur)">
+          <i class="fa fa-share"></i> Transférer vers un autre secteur
+        </button>
+        <select ng-options="secteur._id as secteur.name for secteur in secteurs" ng-model="transferSecteur">
+        <select/>
+        <div ng-bind="transferSecteur"></div>
+      </div>
     </div>
   </div>
 

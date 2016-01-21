@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, banette, currentUser, currentSecteur, requests) {
+  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, banette, currentUser, currentSecteur, requests, secteurs) {
     $scope.requests = requests;
+    $scope.secteurs = secteurs;
 
     $scope.user = user;
     $scope.banette = banette;
@@ -62,6 +63,17 @@ angular.module('impactApp')
           }
         });
       }
+    };
+
+    $scope.transfer = function(requests, transferSecteur) {
+      requests.forEach(function(request) {
+        if (request.isSelected) {
+          request.secteur = transferSecteur;
+          return $http.put('/api/requests/' + request.shortId, request).then(function() {
+            $state.go('.', {}, {reload: true});
+          });
+        }
+      });
     };
 
     $scope.download = function(requests) {
