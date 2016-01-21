@@ -11,6 +11,9 @@
   <header ng-if="!mdph" class="hero-unit banner bg">
     <div class="container">
       <h1>Votre MDPH en ligne</h1>
+      <a class="hero-button" ui-sref="espace_perso.mes_profils">
+        Voir vos profils
+      </a>
     </div>
   </header>
   <header ng-if="mdph" class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
@@ -21,41 +24,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-4">
-        <div class="card">
-          <div ng-if="user">
-            <h2><i class="fa fa-user"></i> Bonjour, {{user.name }}</h2>
-            <hr>
-            <p>Ce service vous permet de saisir votre demande et de la suivre auprès de votre MDPH.</p>
-            <div class="list-actions">
-              <a ng-if="user.role === 'adminMdph'" ng-if="user.role === 'adminMdph'" ui-sref="dashboard.requests.user({zipcode: user.mdph.zipcode, userId: user._id})">
-                Accéder à mon tableau de bord
-              </a>
-              <br>
-              <a ui-sref="espace_perso.liste_demandes">
-                Voir vos demandes
-              </a>
-              <br>
-              <a ui-sref="{{sref}}">
-                Faire une nouvelle demande
-              </a>
-            </div>
-          </div>
-          <div ng-if="!user">
-            <h2><i class="fa fa-user"></i> Vous êtes un usager</h2>
-            <hr>
-            <p>Ce service vous permet de saisir votre demande et de la suivre auprès de votre MDPH.</p>
-            <div class="text-right">
-              <div class="list-actions">
-                <a ui-sref="{{sref}}">
-                  Faire une nouvelle demande
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <div class="card">
           <h2><i class="fa fa-user-md"></i> Vous êtes un médecin</h2>
           <hr>
@@ -67,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <div class="card">
           <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
           <hr>
