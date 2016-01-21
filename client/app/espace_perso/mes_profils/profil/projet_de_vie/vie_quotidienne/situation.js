@@ -84,9 +84,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aideFinancierePresent', sectionModel);
           },
 
-          nextStep: function(RequestService, request, $state, sectionModel) {
+          nextStep: function(ProfileService, profile, $state, sectionModel) {
             return function() {
-              if (RequestService.estAdulte(request)) {
+              if (ProfileService.estAdulte(profile)) {
                 $state.go('^.aideFinancierePasse');
               } else {
                 var answerAideActuelle = sectionModel.aideActuelle;
@@ -187,9 +187,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'ipp', sectionModel);
           },
 
-          nextStep: function(RequestService, request, $state) {
+          nextStep: function(ProfileService, profile, $state) {
             return function() {
-              if (RequestService.estAdulte(request)) {
+              if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
               } else {
                 $state.go('^.fraisHandicap');

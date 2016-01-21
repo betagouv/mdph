@@ -32,9 +32,16 @@ angular.module('impactApp').config(function($stateProvider) {
     views: {
       '': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/demande.html',
-        controller: function($scope, $filter, RequestResource, mdphs, shortId, request, prestations) {
+        controller: function($scope, $state, $filter, toastr, RequestResource, ProfileService, RequestService, currentUser, mdphs, shortId, request, profile, prestations) {
           $scope.mdphs = mdphs;
           $scope.request = request;
+          $scope.currentUser = currentUser;
+
+          if (request.prestations && request.prestations.length > 0) {
+            _.map(request.prestations, function(prestation) {
+              _.find(prestations, {id: prestation}).isSelected = true;
+            });
+          }
 
           function getSelectedPrestationIdList() {
             return _.chain(prestations)
@@ -43,11 +50,33 @@ angular.module('impactApp').config(function($stateProvider) {
              .value();
           }
 
+          $scope.isReadyToSend = function() {
+            return ProfileService.getCompletion(profile) && RequestService.getCompletion(request) && !currentUser.unconfirmed;
+          };
+
+          $scope.getProfileCompletion = function() {
+            return ProfileService.getCompletion(profile);
+          };
+
+          $scope.getDocumentsCompletion = function() {
+            return RequestService.getCompletion(request);
+          };
+
           $scope.submit = function(form) {
             if (!form.$valid) {
-              return;
+              toastr.error('Vous n\'avez pas spécifié de MDPH destinataire de votre demande.', 'Erreur lors de la tentative d\'envoi');
             } else {
-              $scope.request.prestations = getSelectedPrestationIdList();
+              request.prestations = getSelectedPrestationIdList();
+              if (!ProfileService.getCompletion(profile)) {
+                toastr.error('Vous n\'avez pas fini de remplir les parties obligatoires de ce profil.', 'Erreur lors de la tentative d\'envoi');
+              } else if (!RequestService.getCompletion(request)) {
+                toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
+              } else {
+                request.status = 'emise';
+                request.$update({isSendingRequest: true}, function() {
+                  $state.go('^', {}, {reload: true});
+                });
+              }
             }
           };
         },

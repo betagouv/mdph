@@ -22,7 +22,7 @@
       <div class="user">
         <h3 ng-if="currentMdph.zipcode === '14'">Prestations demandées par l'utilisateur</h3>
         <p ng-if="request.prestations.length === 0">Aucune prestation demandée</p>
-        <dl ng-repeat="prestation in request.prestations">
+        <dl ng-repeat="prestation in request.detailPrestations">
           <dt>{{prestation.title}}</dt>
           <dd>{{prestation.description}}</dd>
         </dl>

@@ -6,9 +6,10 @@ angular.module('impactApp')
       scope: {
         options: '='
       },
-      templateUrl: 'components/profile-category/profile-category.html',
+      templateUrl: 'components/profile/profile-category.html',
       restrict: 'EA',
       link: function(scope) {
+        scope.completion = scope.options.completion;
         scope.title = scope.options.title;
         scope.subhead = scope.options.subhead;
         scope.content = scope.options.content;

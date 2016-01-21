@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, User, RequestResource, currentUser, profile, requests, estAdulte) {
+angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, User, ProfileService, RequestResource, currentUser, profile, requests, estAdulte) {
   $scope.profile = profile;
-  $scope.estAdulte = estAdulte;
+  $scope.estAdulte = ProfileService.estAdulte(profile);
   $scope.requests = requests;
 
   $scope.nouvelleDemande = function() {
@@ -13,12 +13,23 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
     });
   };
 
+  function computeCompletion(section) {
+    if (!section) {
+      return 0;
+    } else if (section.__completion) {
+      return 100;
+    } else {
+      return 50;
+    }
+  }
+
   $scope.options = {
     identites: {
       beneficiaire: {
         title: 'Bénéficiaire',
         content: 'Identité de la personne concernée par la demande.',
         icon: 'fa-user',
+        completion: computeCompletion(profile.identites && profile.identites.beneficiaire),
         action: {
           label: 'Modifier',
           sref: 'espace_perso.mes_profils.profil.beneficiaire'
@@ -29,6 +40,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
         title: 'Autorité parentale',
         content: 'Autorité parentale ou délégation d\'autorité.',
         icon: 'fa-users',
+        completion: computeCompletion(profile.identites && profile.identites.autorite),
         action: {
           label: 'Modifier',
           sref: 'espace_perso.mes_profils.profil.autorite'
@@ -38,6 +50,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
       autre: {
         title: 'Personne vous aidant dans cette démarche',
         content: 'Si vous êtes accompagnés dans votre démarche auprès de votre MDPH.',
+        completion: computeCompletion(profile.identites && profile.identites.autre),
         icon: 'fa-users',
         action: {
           label: 'Modifier',
@@ -50,6 +63,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
       vieQuotidienne: {
         title: 'Vie quotidienne',
         content: '',
+        completion: computeCompletion(profile.vie_quotidienne),
         icon: 'fa-home',
         action: {
           label: 'Modifier',
@@ -60,6 +74,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
       vieScolaire: {
         title: 'Vie scolaire',
         content: '',
+        completion: computeCompletion(profile.vie_scolaire),
         icon: 'fa-university',
         action: {
           label: 'Modifier',
@@ -70,6 +85,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
       vieTravail: {
         title: 'Vie au travail',
         content: '',
+        completion: computeCompletion(profile.vie_au_travail),
         icon: 'fa-industry',
         action: {
           label: 'Modifier',
@@ -83,6 +99,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
         title: 'Vie de votre aidant familial',
         content: 'Si vous souhaitez exprimer des besoins en tant qu’aidant familial.',
         icon: 'fa-male',
+        completion: computeCompletion(profile.aidant),
         action: {
           label: 'Modifier',
           sref: 'espace_perso.mes_profils.profil.aidant.situation.nom_aidant'
@@ -91,6 +108,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
       particulieres: {
         title: 'Situations particulières',
         content: 'Si vous vous trouvez dans une situation nécessitant une attention particulière.',
+        completion: computeCompletion(profile.situations_particulieres),
         icon: 'fa-warning',
         action: {
           label: 'Modifier',

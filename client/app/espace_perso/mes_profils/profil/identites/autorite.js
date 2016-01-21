@@ -34,6 +34,7 @@ angular.module('impactApp')
             if (form.$invalid) {
               form.showError = true;
             } else {
+              identite.__completion = true;
               profile.identites.autorite = identite;
               profile.$save({userId: currentUser._id}, function() {
                 $state.go('^', {}, {reload: true});
