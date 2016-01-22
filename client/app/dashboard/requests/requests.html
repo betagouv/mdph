@@ -29,6 +29,7 @@
         <li ng-repeat="secteur in secteurs">
           <a
             ui-sref-active="active"
+            title="{{secteur.name}}"
             ui-sref="dashboard.requests.bySecteur({secteurId: secteur._id || 'autres'})">
             {{secteur.name}}
             <span
