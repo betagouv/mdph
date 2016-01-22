@@ -1,7 +1,18 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, banette, currentUser, currentSecteur, requests, secteurs) {
+  .controller('RequestListCtrl', function($scope,
+                                          $window,
+                                          $state,
+                                          $cookies,
+                                          $http,
+                                          user,
+                                          banette,
+                                          currentUser,
+                                          currentSecteur,
+                                          requests,
+                                          secteurs,
+                                          $modal) {
     $scope.requests = requests;
     $scope.secteurs = secteurs;
 
@@ -84,5 +95,38 @@ angular.module('impactApp')
           }
         });
       }
+    };
+
+    $scope.open = function() {
+      var modalInstance = $modal.open({
+        animation: false,
+        templateUrl: 'app/dashboard/requests/list/modalSecteurs.html',
+        controller: 'ModalSecteursCtrl',
+        resolve: {
+          secteurs: function() {
+            return $scope.secteurs;
+          }
+        }
+      });
+
+      modalInstance.result.then(
+        function(selectedItem) {
+          $scope.transfer($scope.requests, selectedItem);
+        }
+      );
+
+    };
+
+  })
+  .controller('ModalSecteursCtrl', function($scope, $modalInstance, secteurs) {
+    $scope.secteurs = secteurs;
+    $scope.secteurId = '';
+
+    $scope.transfer = function() {
+      $modalInstance.close($scope.secteurId);
+    };
+
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
     };
   });
