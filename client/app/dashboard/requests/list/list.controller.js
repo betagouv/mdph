@@ -73,4 +73,18 @@ angular.module('impactApp')
         });
       }
     };
+
+    $scope.classByRequestAge = function(submissionDate) {
+      var currentMoment = moment();
+      var submissionMoment = moment(submissionDate);
+      var deltaMonths = currentMoment.diff(submissionMoment, 'months');
+      if (deltaMonths < 1) {
+        return 'new-request';
+      } else if (deltaMonths < 3) {
+        return 'standard-request';
+      } else {
+        return 'old-request';
+      }
+    };
+
   });
