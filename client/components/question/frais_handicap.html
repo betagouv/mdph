@@ -20,11 +20,11 @@
         <td>
           <div class="flex-group">
             <input type="text" class="form-control flex-group-left" ng-model="frais.total" placeholder="Montant" aria-labelledby="montant1">
-            <select class="form-control flex-group-right" ng-model="frais.frequence" aria-labelledby="frequence">
-              <option value="Par jour"><a href="#">Par jour</a></option>
-              <option value="Par semaine"><a href="#">Par semaine</a></option>
-              <option value="Par mois"><a href="#">Par mois</a></option>
-              <option value="Par an"><a href="#">Par an</a></option>
+            <select ng-init="frais.frequence = 'Par mois'" class="form-control flex-group-right" ng-model="frais.frequence" aria-labelledby="frequence">
+              <option value="Par jour">Par jour</option>
+              <option value="Par semaine">Par semaine</option>
+              <option value="Par mois">Par mois</option>
+              <option value="Par an">Par an</option>
             </select>
           </div>
         </td>
