@@ -5,7 +5,7 @@ angular.module('impactApp').config(function($stateProvider) {
     url: '/demande/:shortId',
     authenticate: true,
     data: {
-      title: 'Nouvelle demande'
+      title: 'Détail de la demande'
     },
 
     resolve: {
