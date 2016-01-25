@@ -15,32 +15,34 @@
     <h2>{{title}}</h2>
 
     <div class="tools">
-      <div ng-if="user">
-        <button class="btn btn-sm btn-primary" ng-click="download(requests)">
-          <i class="fa fa-download"></i> Télécharger les demandes
+      <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-primary" class="check-request" ng-click="selectAll()">
+          <i class="fa" ng-class="{'fa-square': !allSelected(), 'fa-check-square': allSelected()}"></i>
         </button>
-      </div>
 
-      <div ng-if="!user">
-        <button class="btn btn-sm btn-primary" ng-click="assigner(requests)">
-          <i class="fa fa-download"></i> Assigner
+        <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle>
+          Action <span class="caret"></span>
         </button>
-      </div>
-
-      <div>
-        <button class="btn btn-sm btn-primary" ng-click="open()">
-          <i class="fa fa-share"></i> Transférer vers un autre secteur
-        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+          <li role="menuitem" ng-if="user">
+            <a href="#" ng-click="download(requests)"><i class="fa fa-download"></i> Télécharger les demandes</a>
+          </li>
+          <li role="menuitem" ng-if="!user">
+            <a href="#" ng-click="assigner(requests)"><i class="fa fa-download"></i> Assigner</a>
+          </li>
+          <li role="menuitem">
+            <a href="#" ng-click="open()"><i class="fa fa-share"></i> Transférer vers un autre secteur</a>
+          </li>
+        </ul>
       </div>
     </div>
+
   </div>
 
   <div class="list-main">
     <table>
       <thead>
-        <th class="check-request" ng-click="selectAll()">
-          <i class="fa" ng-class="{'fa-square': !allSelected(), 'fa-check-square': allSelected()}"></i>
-        </th>
+        <th></th>
         <th>Référence</th>
         <th>Initiateur</th>
         <th>Bénéficiaire</th>
