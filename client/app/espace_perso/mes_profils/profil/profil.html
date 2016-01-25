@@ -51,7 +51,7 @@
               <span class="list-group-item-content">
                 <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
                 <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
-                Dernière mise à jour {{updatedAt(request)}}</p>
+                Dernière mise à jour le {{ request.updatedAt | moment }}</p>
               </span>
             </a>
             <button ng-click="nouvelleDemande()" class="list-group-item list-group-item-nouvelle-demande" >
