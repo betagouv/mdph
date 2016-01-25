@@ -3,8 +3,7 @@
      "code_region":"31",
      "nom_de_la_region":"Nord-Pas-de-Calais",
      "nom_du_departement":"Nord",
-     "code_departement":"59",
-     "enabled": true
+     "code_departement":"59"
   },
   {
      "code_region":"25",
@@ -35,7 +34,8 @@
      "code_region":"54",
      "nom_de_la_region":"Poitou-Charentes",
      "nom_du_departement":"Charente-Maritime",
-     "code_departement":"17"
+     "code_departement":"17",
+     "enabled": true
   },
   {
      "code_region":"26",
@@ -563,7 +563,8 @@
      "code_region":"41",
      "nom_de_la_region":"Lorraine",
      "nom_du_departement":"Meurthe-et-Moselle",
-     "code_departement":"54"
+     "code_departement":"54",
+     "enabled": true
   },
   {
      "code_region":"41",
