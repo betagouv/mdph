@@ -32,8 +32,7 @@ angular.module('impactApp').config(function($stateProvider) {
     views: {
       '': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/demande.html',
-        controller: function($scope, $state, $filter, toastr, RequestResource, ProfileService, RequestService, currentUser, mdphs, shortId, request, profile, prestations) {
-          $scope.mdphs = mdphs;
+        controller: function($scope, $state, $filter, toastr, RequestResource, ProfileService, RequestService, currentUser, request, profile, prestations) {
           $scope.request = request;
           $scope.currentUser = currentUser;
 
@@ -49,18 +48,6 @@ angular.module('impactApp').config(function($stateProvider) {
              .pluck('id')
              .value();
           }
-
-          $scope.isReadyToSend = function() {
-            return ProfileService.getCompletion(profile) && RequestService.getCompletion(request) && !currentUser.unconfirmed;
-          };
-
-          $scope.getProfileCompletion = function() {
-            return ProfileService.getCompletion(profile);
-          };
-
-          $scope.getDocumentsCompletion = function() {
-            return RequestService.getCompletion(request);
-          };
 
           $scope.submit = function(form) {
             if (!form.$valid) {
@@ -80,6 +67,14 @@ angular.module('impactApp').config(function($stateProvider) {
             }
           };
         },
+      },
+      'choix_mdph@espace_perso.mes_profils.profil.demande': {
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/choix_mdph/choix_mdph.html',
+        controller: function($scope, mdphs, request) {
+          $scope.mdphs = mdphs;
+          $scope.request = request;
+          $scope.selectedMdph = _.find(mdphs, {code_departement: request.mdph});
+        }
       },
       'obligatoires@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/obligatoires.html',
@@ -109,6 +104,22 @@ angular.module('impactApp').config(function($stateProvider) {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/prestations/prestations.html',
         controller: function($scope, prestations) {
           $scope.types = _.groupBy(prestations, 'type');
+        }
+      },
+      'validation@espace_perso.mes_profils.profil.demande': {
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/validation/validation.html',
+        controller: function($scope, RequestService, ProfileService, request, profile, currentUser) {
+          $scope.isReadyToSend = function() {
+            return ProfileService.getCompletion(profile) && RequestService.getCompletion(request) && !currentUser.unconfirmed;
+          };
+
+          $scope.getProfileCompletion = function() {
+            return ProfileService.getCompletion(profile);
+          };
+
+          $scope.getDocumentsCompletion = function() {
+            return RequestService.getCompletion(request);
+          };
         }
       }
     }
