@@ -9,14 +9,11 @@
 
   h3 {
     margin: 0;
+    margin-bottom: 15px;
   }
 
   .btn-primary {
     margin: 10px 0;
-  }
-
-  dl.demande-prestations {
-    margin-top: 15px;
   }
 
   ul.demande-prestations {
@@ -37,7 +34,6 @@
 
   .document-wrapper {
     @extend .col-sm-4;
-    padding: 15px;
   }
 
   .document-box {
