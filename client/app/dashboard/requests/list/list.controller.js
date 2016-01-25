@@ -11,8 +11,10 @@ angular.module('impactApp')
                                           currentUser,
                                           currentSecteur,
                                           requests,
+                                          RequestResource,
                                           secteurs,
-                                          $modal) {
+                                          $modal,
+                                          $q) {
     $scope.requests = requests;
     $scope.secteurs = secteurs;
 
@@ -77,14 +79,16 @@ angular.module('impactApp')
     };
 
     $scope.transfer = function(requests, transferSecteur) {
-      requests.forEach(function(request) {
-        if (request.isSelected) {
-          request.secteur = transferSecteur;
-          return $http.put('/api/requests/' + request.shortId, request).then(function() {
-            $state.go('.', {}, {reload: true});
-          });
-        }
+      var selectedRequests = _.filter(requests, 'isSelected');
+      var transferPromises = _.map(selectedRequests, function(request) {
+        request.secteur = transferSecteur;
+        return RequestResource.update(request);
       });
+
+      $q.all(transferPromises).then(function() {
+        $state.go('.', {}, {reload: true});
+      });
+
     };
 
     $scope.download = function(requests) {
@@ -98,22 +102,29 @@ angular.module('impactApp')
     };
 
     $scope.open = function() {
-      var modalInstance = $modal.open({
-        animation: false,
-        templateUrl: 'app/dashboard/requests/list/modalSecteurs.html',
-        controller: 'ModalSecteursCtrl',
-        resolve: {
-          secteurs: function() {
-            return $scope.secteurs;
-          }
-        }
-      });
+      if (_.find($scope.requests, 'isSelected')) {
+        var modalInstance = $modal.open({
+          animation: false,
+          templateUrl: 'app/dashboard/requests/list/modalSecteurs.html',
+          controller: 'ModalSecteursCtrl',
+          resolve: {
+            secteurs: function() {
+              //on retire 'sans secteur' et le secteur courant
+              var tmp = _.filter($scope.secteurs, function(secteur) {
+                return (secteur.mdph) && (secteur._id !== $scope.currentSecteur._id);
+              });
 
-      modalInstance.result.then(
-        function(selectedItem) {
-          $scope.transfer($scope.requests, selectedItem);
-        }
-      );
+              return tmp;
+            }
+          }
+        });
+
+        modalInstance.result.then(
+          function(selectedItem) {
+            $scope.transfer($scope.requests, selectedItem);
+          }
+        );
+      }
 
     };
 
