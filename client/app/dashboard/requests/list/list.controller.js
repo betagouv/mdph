@@ -37,13 +37,7 @@ angular.module('impactApp')
     };
 
     $scope.allSelected = function() {
-      if ($scope.requests.length === 0) {
-        return false;
-      }
-
-      return (_.findIndex($scope.requests, function(request) {
-        return !request.isSelected;
-      }) < 0);
+      return _.every(requests, 'isSelected');
     };
 
     function actionOnSelectedRequests(requests, action, success) {
