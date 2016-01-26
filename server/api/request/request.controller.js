@@ -228,7 +228,8 @@ exports.updateFromAgent = function(req, res, next) {
  */
 exports.updateFromUser = function(req, res, next) {
   var request = req.request;
-  request.set(_.omit(req.body, 'user', 'documents', 'detailPrestations'));
+
+  request.set(_.omit(req.body, 'user', '__v', 'documents', 'detailPrestations'));
 
   if (req.query.isSendingRequest) {
     // Find and notify evaluator through dispatcher

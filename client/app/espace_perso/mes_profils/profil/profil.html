@@ -45,8 +45,9 @@
           <h2>Vos demandes</h2>
           <p class="section-subhead">Historique de vos demandes.</p>
           <div class="list-group-demande">
-            <a class="list-group-item section" ng-repeat="request in requests"
-              ui-sref=".demande({ shortId: request.shortId })">
+
+            <a class="list-group-item section" ng-repeat="request in requests" title="Accéder à la demande {{request.shortId}}"
+              ui-sref="{{request.status === 'en_cours' ? '.demande.parametres({ shortId: request.shortId })' : '.demande({ shortId: request.shortId })'}}">
               <i class="fa fa-chevron-circle-right"></i>
               <span class="list-group-item-content">
                 <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
@@ -54,6 +55,7 @@
                 Dernière mise à jour le {{ request.updatedAt | moment }}</p>
               </span>
             </a>
+
             <button ng-click="nouvelleDemande()" class="list-group-item list-group-item-nouvelle-demande" >
               <i class="fa fa-plus-circle fa-2x "></i>
               <span class="list-group-item-content">
