@@ -82,7 +82,7 @@ angular.module('impactApp')
       var selectedRequests = _.filter(requests, 'isSelected');
       var transferPromises = _.map(selectedRequests, function(request) {
         request.secteur = transferSecteur;
-        return RequestResource.update(request);
+        return RequestResource.update(request).$promise;
       });
 
       $q.all(transferPromises).then(function() {
