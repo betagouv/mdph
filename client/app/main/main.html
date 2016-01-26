@@ -8,15 +8,14 @@
     </div>
   </div>
 
-  <header ng-if="!mdph" class="hero-unit banner bg">
-    <h1>Votre MDPH en ligne</h1>
-    <a class="hero-button" ui-sref="espace_perso.mes_profils">
+  <header class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
+    <h1 ng-if="!mdph">Votre MDPH en ligne</h1>
+    <h1 ng-if="mdph">MDPH {{mdph.name}}</h1>
+
+    <a class="hero-button" ng-if="!user" ui-sref="espace_perso.mes_profils">
       Connexion
     </a>
-  </header>
-  <header ng-if="mdph" class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
-    <h1>MDPH {{mdph.name}}</h1>
-    <a class="hero-button" ui-sref="espace_perso.mes_profils">
+    <a class="hero-button" ng-if="user" ui-sref="espace_perso.mes_profils">
       Voir vos profils
     </a>
   </header>
