@@ -24,11 +24,11 @@
           Action <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-          <li role="menuitem" ng-if="user">
+          <li role="menuitem">
             <a href="#" ng-click="download(requests)"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
-          <li role="menuitem" ng-if="!user">
-            <a href="#" ng-click="assigner(requests)"><i class="fa fa-download"></i> Assigner</a>
+          <li role="menuitem">
+            <a href="#" ng-click="assigner(requests)"><i class="fa fa-user"></i> Assigner</a>
           </li>
           <li role="menuitem">
             <a href="#" ng-click="open()"><i class="fa fa-share"></i> Transférer vers un autre secteur</a>

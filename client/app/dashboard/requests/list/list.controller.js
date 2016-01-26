@@ -29,12 +29,7 @@ angular.module('impactApp')
       'Demandes concernant le secteur ' + currentSecteur.name;
 
     $scope.selectAll = function() {
-      var action;
-      if ($scope.allSelected()) {
-        action = false;
-      } else {
-        action = true;
-      }
+      var action = !$scope.allSelected();
 
       $scope.requests.forEach(function(request) {
         request.isSelected = action;
@@ -42,63 +37,53 @@ angular.module('impactApp')
     };
 
     $scope.allSelected = function() {
-      var test = $scope.requests.length > 0;
-      $scope.requests.forEach(function(request) {
-        if (!request.isSelected) {
-          test = false;
-        }
-      });
+      if ($scope.requests.length === 0) {
+        return false;
+      }
 
-      return test;
+      return (_.findIndex($scope.requests, function(request) {
+        return !request.isSelected;
+      }) < 0);
     };
+
+    function actionOnSelectedRequests(requests, action, success) {
+      var selectedRequests = _.filter(requests, 'isSelected');
+      var transferPromises = _.map(selectedRequests, action);
+      $q.all(transferPromises).then(success);
+    }
 
     $scope.assigner = function(requests) {
-      requests.forEach(function(request) {
-        if (request.isSelected) {
-          request.evaluator = currentUser._id;
-          return $http.put('/api/requests/' + request.shortId, request).then(function() {
-            $scope.$emit('assign-request');
-          });
-        }
-      });
+      var assign = function(request) {
+        request.evaluator = currentUser._id;
+        return request.$update().$promise;
+      };
 
-      $state.go('dashboard.requests.user', {userId: $scope.currentUser._id});
-    };
+      var goDashboard = function() {
+        $state.go('dashboard.requests.user', {userId: $scope.currentUser._id});
+      };
 
-    $scope.archive = function(requests) {
-      if (requests) {
-        requests.forEach(function(request) {
-          if (request.isSelected) {
-            request.status = 'evaluation';
-            request.$save(function() {
-              $state.go('.', {}, {reload: true});
-            });
-          }
-        });
-      }
+      actionOnSelectedRequests(requests, assign, goDashboard);
     };
 
     $scope.transfer = function(requests, transferSecteur) {
-      var selectedRequests = _.filter(requests, 'isSelected');
-      var transferPromises = _.map(selectedRequests, function(request) {
+      var transfer = function(request) {
         request.secteur = transferSecteur;
-        return RequestResource.update(request).$promise;
-      });
+        return request.$update().$promise;
+      };
 
-      $q.all(transferPromises).then(function() {
+      var refresh = function() {
         $state.go('.', {}, {reload: true});
-      });
+      };
 
+      actionOnSelectedRequests(requests, transfer, refresh);
     };
 
     $scope.download = function(requests) {
-      if (requests) {
-        requests.forEach(function(request) {
-          if (request.isSelected) {
-            $window.open('api/requests/' + request.shortId + '/questionnaire.pdf?access_token=' + token);
-          }
-        });
-      }
+      var download = function(request) {
+        $window.open('api/requests/' + request.shortId + '/questionnaire.pdf?access_token=' + token);
+      };
+
+      actionOnSelectedRequests(requests, download);
     };
 
     $scope.open = function() {
@@ -110,11 +95,9 @@ angular.module('impactApp')
           resolve: {
             secteurs: function() {
               //on retire 'sans secteur' et le secteur courant
-              var tmp = _.filter($scope.secteurs, function(secteur) {
+              return _.filter($scope.secteurs, function(secteur) {
                 return (secteur.mdph) && (secteur._id !== $scope.currentSecteur._id);
               });
-
-              return tmp;
             }
           }
         });
@@ -125,7 +108,6 @@ angular.module('impactApp')
           }
         );
       }
-
     };
 
   })
