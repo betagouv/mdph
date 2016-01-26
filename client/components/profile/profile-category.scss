@@ -30,6 +30,12 @@
   width: 70%;
 }
 
+.last-updated {
+  @extend .text-muted;
+  font-style: italic;
+  font-size: 0.8em;
+}
+
 .profile-category-content-text {
   margin: 10px 0;
 }
