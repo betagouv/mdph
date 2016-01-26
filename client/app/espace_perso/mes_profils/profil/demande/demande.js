@@ -9,12 +9,6 @@ angular.module('impactApp').config(function($stateProvider) {
     },
 
     resolve: {
-      mdphs: function($http) {
-        return $http.get('/api/mdphs/list').then(function(result) {
-          return _.filter(result.data, {enabled: true});
-        });
-      },
-
       shortId: function($stateParams) {
         return $stateParams.shortId;
       },
@@ -70,10 +64,22 @@ angular.module('impactApp').config(function($stateProvider) {
       },
       'choix_mdph@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/choix_mdph/choix_mdph.html',
-        controller: function($scope, mdphs, request) {
-          $scope.mdphs = mdphs;
+        controller: function($scope, enabledMdphs, mdphs, request) {
+          $scope.enabledMdphs = enabledMdphs;
           $scope.request = request;
           $scope.selectedMdph = _.find(mdphs, {code_departement: request.mdph});
+        },
+
+        resolve: {
+          mdphs: function($http) {
+            return $http.get('/api/mdphs/list').then(function(result) {
+              return result.data;
+            });
+          },
+
+          enabledMdphs: function(mdphs) {
+            return _.filter(mdphs, {enabled: true});
+          }
         }
       },
       'obligatoires@espace_perso.mes_profils.profil.demande': {
