@@ -12,7 +12,8 @@ describe('Controller: partenaire', function() {
     //when
     inject(function($controller) {
       $controller('PartenaireCtrl', {
-        $scope: scope
+        $scope: scope,
+        type: 'complementaires'
       });
     });
 
