@@ -31,6 +31,7 @@ angular.module('impactApp')
               form.showError = true;
             } else {
               identite.__completion = true;
+              identite.updatedAt = Date.now();
               profile.identites.autre = identite;
               profile.$save({userId: currentUser._id}, function() {
                 $state.go('^', {}, {reload: true});

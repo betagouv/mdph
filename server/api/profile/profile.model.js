@@ -8,7 +8,6 @@ var ProfileSchema = new Schema({
   createdAt:                { type: Date },
   updatedAt:                { type: Date },
 
-  name:                     { type: String },
   identites:                { type: Schema.Types.Mixed },
   vie_quotidienne:          { type: Schema.Types.Mixed },
   vie_scolaire:             { type: Schema.Types.Mixed },

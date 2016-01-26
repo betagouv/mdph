@@ -10,6 +10,8 @@
     <div class="profile-category-content-text">
       {{ ::content }}
 
+      <div class="last-updated" ng-if="updatedAt">Dernière mise à jour {{updatedAt | momentFromNow}}</div>
+
       <div class="progress-desc" ng-switch="completion">
         <span ng-switch-when="0"><i class="fa fa-circle-o"></i>&nbsp;Non renseigné</span>
         <span ng-switch-when="50"><i class="fa fa-circle"></i>&nbsp;En cours</span>
