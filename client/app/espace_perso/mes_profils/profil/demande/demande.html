@@ -1,0 +1,78 @@
+<div id="demande" class="demande-wrapper">
+  <div class="list-group-demande no-margin">
+  <a class="list-group-item section" ui-sref="espace_perso.mes_profils.profil.demande({ shortId: request.shortId })">
+      <i class="fa fa-chevron-circle-right"></i>
+      <span class="list-group-item-content">
+        <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
+        <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
+        Dernière mise à jour le {{ request.updatedAt | moment }}</p>
+      </span>
+    </a>
+  </div>
+
+  <div id="demande" class="demande-container">
+    <ui-view>
+      <ul class="profile-card-row">
+        <li class="profile-card-row-item">
+          <div class="profile-category">
+            <div class="profile-category-icon profile-category-icon-blue"><i class="fa fa-cogs"></i></div>
+
+            <div class="profile-category-content">
+              <div class="profile-category-header">
+                <span class="profile-category-header-text">
+                  <h2 class="profile-category-header-text-title">Paramètres</h2>
+                </span>
+              </div>
+              <div class="profile-category-content-text">
+                Pour configurer la Mdph destinataire, associer des documents et sélectionner vos prestation.
+              </div>
+              <div class="profile-category-actions">
+                <a ui-sref=".parametres" class="btn btn-primary">Accéder</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="profile-card-row-item">
+          <div class="profile-category">
+            <div class="profile-category-icon"><i class="fa fa-file-pdf-o"></i></div>
+
+            <div class="profile-category-content">
+              <div class="profile-category-header">
+                <span class="profile-category-header-text">
+                  <h2 class="profile-category-header-text-title">Récapitulatif</h2>
+                </span>
+              </div>
+              <div class="profile-category-content-text">
+                Un document téléchargable au format PDF récapitulant l'ensemble de cette demande.
+              </div>
+              <div class="profile-category-actions">
+                <a ui-sref=".recapitulatif" class="btn btn-primary">Accéder</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="profile-card-row-item">
+          <div class="profile-category">
+            <div class="profile-category-icon"><i class="fa fa-calendar"></i></div>
+
+            <div class="profile-category-content">
+              <div class="profile-category-header">
+                <span class="profile-category-header-text">
+                  <h2 class="profile-category-header-text-title">Historique</h2>
+                </span>
+              </div>
+              <div class="profile-category-content-text">
+                Pour suivre l'évolution de votre demande au cours de son traitement.
+              </div>
+              <div class="profile-category-actions">
+                <a ui-sref=".vie_de_la_demande" class="btn btn-primary">Accéder</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </ui-view>
+  </div>
+</div>

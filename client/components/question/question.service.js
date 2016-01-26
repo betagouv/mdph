@@ -4,19 +4,19 @@ angular.module('impactApp')
   .factory('QuestionService', function QuestionService(estMineur) {
 
     var estMasculin = function(formAnswers) {
-      try {
-        return formAnswers.identites.beneficiaire.sexe === 'masculin';
-      } catch (e) {
+      if (!formAnswers || !formAnswers.identites || !formAnswers.identites.beneficiaire) {
         return true;
       }
+
+      return formAnswers.identites.beneficiaire.sexe === 'masculin';
     };
 
     var estRepresentant = function(formAnswers) {
-      try {
-        return estMineur(formAnswers.identites.beneficiaire.dateNaissance);
-      } catch (e) {
+      if (!formAnswers || !formAnswers.identites || !formAnswers.identites.beneficiaire) {
         return false;
       }
+
+      return estMineur(formAnswers.identites.beneficiaire.dateNaissance);
     };
 
     var loadAshCompile = function(str, formAnswers) {

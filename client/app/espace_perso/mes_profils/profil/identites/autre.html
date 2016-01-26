@@ -1,0 +1,129 @@
+<form id="profile-identites" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+  <h2>Identité de la personne</h2>
+
+  <div class="identity-form-actions">
+    <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
+    <button type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
+  </div>
+
+  <section class="identite-section">
+    <div class="form-group required" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
+      <fieldset>
+        <legend class="control-label" id="identite-type">Vous êtes</legend>
+        <select name="identite-type" class="form-control" id="identite-type" ng-model="identite.type" ng-required="!identite.type">
+          <option value="proche">Un proche</option>
+          <option value="association">Une association</option>
+          <option value="enseignant">Un enseignant référent</option>
+          <option value="tuteur">Le tuteur</option>
+          <option value="curateur">Le curateur</option>
+          <option value="organisme">Un organisme</option>
+          <option value="autre">Autre</option>
+        </select>
+      </fieldset>
+      <div ng-if="!identite.type && infoForm.$submitted">
+        <p class="help-block">Ce champ est obligatoire.</p>
+      </div>
+    </div>
+
+    <div class="section-row">
+      <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
+        <label for="nom" class="control-label">Nom</label>
+        <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
+        <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+        </div>
+      </div>
+
+      <div class="form-group required" ng-class="{'has-error': infoForm.prenom.$invalid && infoForm.$submitted}">
+        <label for="prenom" class="control-label">Prénom</label>
+        <input id="prenom" type="text" name="prenom" class="form-control" ng-model="identite.prenom" ng-minlength="1" required>
+        <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="identite-section">
+    <div class="form-group">
+      <div id="address-input">
+        <div class="street">
+          <div class="field">
+            <label for="numero_voie" class="control-label" title="Le numéro de la voie comprend de 1 à 4 chiffres">Numéro de voie</label>
+            <input id="numero_voie" title="Le numéro de la voie comprend de 1 à 4 chiffres" type="text" name="numero_voie" maxlength="5" class="form-control"
+             placeholder="1 à 4 chiffres" ng-model="identite.numero_voie">
+          </div>
+
+          <div class="field">
+            <label for="extension" class="control-label" title="Extension du numéro de voirie. Exemples : bis, ter, quater,.. ou une lettre A, B, C, D,...">Extension</label>
+            <input id="extension" title="Extension du numéro de voirie. Exemples : bis, ter, quater... ou une lettre A, B, C, D,..."  placeholder="Bis, ter..."
+             type="text" name="extension" maxlength="9" class="form-control" ng-model="identite.extension">
+          </div>
+
+          <div class="field">
+            <label for="typeVoie" class="control-label">Type de voie</label>
+            <select class="form-control" name="typeVoie" ng-model="identite.typeVoie" ng-options="type as type.label for type in typesVoies track by type.label"></select>
+          </div>
+
+          <div class="field large">
+            <label for="nomVoie" class="control-label">Nom de la voie</label>
+            <input id="nomVoie" type="text" name="nomVoie" class="form-control" ng-model="identite.nomVoie" placeholder="Nom de la voie">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group text-muted">
+      <label for="etageEscalierAppartement" class="control-label">Étage, Escalier, Appartement</label>
+      <input id="etageEscalierAppartement" type="text" name="etageEscalierAppartement" class="form-control" ng-model="identite.etageEscalierAppartement">
+    </div>
+
+    <div class="form-group text-muted">
+      <label for="immeubleBatimentResidence" class="control-label">Immeuble, Bâtiment, Résidence</label>
+      <input id="immeubleBatimentResidence" type="text" name="immeubleBatimentResidence" class="form-control" ng-model="identite.immeubleBatimentResidence">
+    </div>
+
+    <div class="form-group text-muted">
+      <label for="lieuDit" class="control-label">Lieu-dit</label>
+      <input id="lieuDit" type="text" name="lieuDit" class="form-control" ng-model="identite.lieuDit">
+    </div>
+
+    <div class="form-group">
+      <label for="code_postal" class="control-label">Code postal</label>
+      <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal">
+    </div>
+
+    <div class="form-group">
+      <label for="localite" class="control-label">Localité</label>
+      <input id="localite" type="text" name="localite" class="form-control" ng-model="identite.localite">
+    </div>
+  </section>
+
+  <section class="identite-section">
+    <div class="form-group">
+      <label for="email" class="control-label">Email</label>
+      <div class="input-group margin-bottom-sm">
+        <input id="email" type="email" name="email" class="form-control" ng-model="identite.email">
+        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tel_1" class="control-label">Téléphone 1</label>
+      <input id="tel_1" type="text" name="tel_1" class="form-control" ng-model="identite.tel_1">
+    </div>
+
+    <div class="form-group">
+      <label for="tel_2" class="control-label">Téléphone 2</label>
+      <input id="tel_2" type="text" name="tel_2" class="form-control" ng-model="identite.tel_2">
+    </div>
+  </section>
+
+  <div class="identity-form-actions">
+    <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
+    <button type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
+  </div>
+</form>

@@ -177,7 +177,7 @@ module.exports = {
 
   populateAndSortPrestations: function(request, callback) {
     if (request.prestations && request.prestations.length > 0) {
-      request.prestations = _.reduce(request.prestations, function(result, current) {
+      request.detailPrestations = _.reduce(request.prestations, function(result, current) {
         result[current] = prestationsById[current.toLowerCase()];
         return result;
       }, {});

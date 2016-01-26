@@ -26,7 +26,7 @@ angular.module('impactApp', [
       positionClass: 'toast-top-right'
     });
   })
-  .factory('authInterceptor', function($rootScope, $q, $cookies) {
+  .factory('authInterceptor', function($rootScope, $q, $cookies, $location) {
     return {
       // Add authorization token to headers
       request: function(config) {
@@ -41,6 +41,8 @@ angular.module('impactApp', [
       // Intercept 401s
       responseError: function(response) {
         if (response.status === 401) {
+          $location.path('/login');
+
           // remove any stale tokens
           $cookies.remove('token');
           return $q.reject(response);
@@ -59,30 +61,30 @@ angular.module('impactApp', [
     });
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
-      if (toState.redirectTo) {
-        event.preventDefault();
-        if (typeof toState.redirectTo === 'string') {
-          $state.go(toState.redirectTo, toStateParams);
-        } else {
-          var params = _.assign(toStateParams, toState.redirectTo.params);
-          $state.go(toState.redirectTo.url, params);
-        }
+      if (toState.data && toState.data.title) {
+        $rootScope.title = toState.data.title + ' - Votre MDPH en ligne';
       } else {
-        Auth.isLoggedInAsync(function(loggedIn) {
-          if (toState.data && toState.data.title) {
-            $rootScope.title = toState.data.title + ' - Votre MDPH en ligne';
-          } else {
-            $rootScope.title = 'Votre MDPH en ligne';
-          }
-
-          if (toState.authenticate && !loggedIn) {
-            $rootScope.returnToState = toState;
-            $rootScope.returnToStateParams = toStateParams;
-
-            event.preventDefault();
-            $state.go('login');
-          }
-        });
+        $rootScope.title = 'Votre MDPH en ligne';
       }
+
+      Auth.isLoggedInAsync(function(loggedIn) {
+        if (toState.authenticate && !loggedIn) {
+          $rootScope.returnToState = toState;
+          $rootScope.returnToStateParams = toStateParams;
+
+          event.preventDefault();
+          $state.go('login');
+        } else {
+          if (toState.redirectTo) {
+            event.preventDefault();
+            if (typeof toState.redirectTo === 'string') {
+              $state.go(toState.redirectTo, toStateParams);
+            } else {
+              var params = _.assign(toStateParams, toState.redirectTo.params);
+              $state.go(toState.redirectTo.url, params);
+            }
+          }
+        }
+      });
     });
   });

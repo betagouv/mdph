@@ -1,0 +1,17 @@
+<h3>MDPH destinataire</h3>
+
+<div ng-if="request.status === 'en_cours'">
+  <div class="form-group required" ng-class="{'has-error': !request.mdph && infoForm.$submitted}">
+    <fieldset>
+      <legend class="control-label" id="request-mdph">Sélectionnez la MDPH destinaire de votre demande</legend>
+      <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in enabledMdphs" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.mdph" required></select>
+    </fieldset>
+    <div ng-if="!request.mdph && infoForm.$submitted">
+      <p class="help-block">Ce champ est obligatoire.</p>
+    </div>
+  </div>
+</div>
+
+<div ng-if="request.status !== 'en_cours'">
+  <p>Vous avez transmis cette demande le <strong>{{request.submittedAt | moment}}</strong>, à la <strong>MDPH {{selectedMdph.nom_du_departement}}, {{selectedMdph.code_departement}}</strong>.</p>
+</div>

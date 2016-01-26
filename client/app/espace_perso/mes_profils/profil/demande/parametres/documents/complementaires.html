@@ -1,0 +1,45 @@
+<h3>Documents complémentaires</h3>
+<div class="row">
+  <div ng-repeat="documentType in selectedTypes">
+    <div class="document-wrapper">
+      <div class="document-box">
+        <h4>{{documentType.label || 'Autre'}}</h4>
+        <p>{{documentType.desc}}</p>
+        <p ng-if="documentType.emptyDoc">
+          <a target="_blank" download ng-href="/assets/documents/{{documentType.emptyDoc}}">
+            Télécharger un modèle de ce document
+          </a>
+        </p>
+
+        <ul ng-if="!request.documents.complementaires[documentType.id]" class="list-group">
+          <li class="list-group-item">
+            Pas de document
+          </li>
+        </ul>
+        <ul ng-if="request.documents.complementaires[documentType.id]" class="list-group">
+          <li ng-repeat="file in request.documents.complementaires[documentType.id].documentList" class="list-group-item">
+            <display-file ng-if="!file.progress" file="file" hide-actions="true" request="request"></display-file>
+            <div ng-if="file.progress">
+              {{file.name}} - en cours...
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
+                  {{file.progress}}%
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="text-right">
+          <div ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
+            <i class="fa fa-upload"></i> Attacher un fichier</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-primary" ng-click="chooseType()">
+  <i class="fa fa-plus-circle"></i> Ajouter un type de document
+</button>
