@@ -1,0 +1,27 @@
+<form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+  <section class="demande-section">
+    <div ui-view="choix_mdph"></div>
+  </section>
+
+  <section class="demande-section">
+    <div ui-view="obligatoires"></div>
+  </section>
+
+  <section class="demande-section">
+    <div ui-view="complementaires"></div>
+    <div ui-view="suggestions"></div>
+  </section>
+
+  <section class="demande-section">
+    <div ui-view="prestations"></div>
+  </section>
+
+  <section class="demande-section" ng-if="request.status === 'en_cours'">
+    <div ui-view="validation"></div>
+  </section>
+
+  <div class="text-right" ng-if="request.status === 'en_cours'">
+    <a ui-sref="^" class="btn btn-lg btn-link" role="button">Annuler</a>
+    <button type="submit" name="submit" alt="Valider" class="btn btn-lg btn-success">Envoyer</button>
+  </div>
+</form>

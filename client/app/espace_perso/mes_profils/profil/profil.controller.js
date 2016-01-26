@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, User, ProfileService, RequestResource, currentUser, profile, requests, estAdulte) {
+angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, User, ProfileService, RequestResource, currentUser, profile, requests) {
   $scope.profile = profile;
   $scope.estAdulte = ProfileService.estAdulte(profile);
   $scope.requests = requests;
@@ -9,7 +9,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
     var formAnswers = _.pick(profile, 'identites', 'vie_quotidienne', 'vie_scolaire', 'vie_au_travail', 'aidant', 'situations_particulieres');
     new RequestResource({profile: profile._id, user: currentUser._id, formAnswers: formAnswers}).$save(function(saved) {
       $scope.requests.push(saved);
-      $state.go('.demande', {shortId: saved.shortId});
+      $state.go('.demande.parametres', {shortId: saved.shortId});
     });
   };
 
