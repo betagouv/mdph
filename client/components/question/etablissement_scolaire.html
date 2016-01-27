@@ -16,7 +16,7 @@
           </div>
         </td>
         <td class="col-md-3">
-          <input aria-labelledby="rue" name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue" required>
+          <input aria-labelledby="rue" name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue">
           <div ng-messages="questionForm['rue' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
