@@ -68,7 +68,7 @@ angular.module('impactApp')
       if (requests) {
         requests.forEach(function(request) {
           if (request.isSelected) {
-            $window.open('api/requests/' + request.shortId + '/questionnaire.pdf?access_token=' + token);
+            $window.open('api/requests/' + request.shortId + '/' + (request.user.name).toLowerCase() + '.' + request.shortId + '.pdf?access_token=' + token);
           }
         });
       }
