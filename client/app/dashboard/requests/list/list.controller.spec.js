@@ -82,7 +82,7 @@ describe('Controller: list.controller', function() {
 
   });
 
-  it('should assign the selected requests to the currentUser', function() {
+  it('should assign the selected requests to the specified user', function() {
     //given
     var scope = {};
 
@@ -95,11 +95,11 @@ describe('Controller: list.controller', function() {
         secteurs: {},
         user: {},
         currentSecteur: {},
-        currentUser: {_id: '1234'},
+        currentUser: {},
       });
     });
 
-    scope.assigner(scope.requests);
+    scope.assign(scope.requests, '1234');
 
     //then
     expect(scope.requests[0].evaluator).toEqual('1234');

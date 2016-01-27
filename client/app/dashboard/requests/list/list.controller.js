@@ -46,23 +46,23 @@ angular.module('impactApp')
       $q.all(transferPromises).then(success);
     }
 
-    $scope.assigner = function(requests) {
+    $scope.assign = function(requests, assignUserId) {
       var assign = function(request) {
-        request.evaluator = currentUser._id;
-        return request.$update().$promise;
+        request.evaluator = assignUserId;
+        return RequestResource.update(request).$promise;
       };
 
       var goDashboard = function() {
-        $state.go('dashboard.requests.user', {userId: $scope.currentUser._id});
+        $state.go('dashboard.requests.user', {userId: assignUserId});
       };
 
       actionOnSelectedRequests(requests, assign, goDashboard);
     };
 
-    $scope.transfer = function(requests, transferSecteur) {
+    $scope.transfer = function(requests, transferSecteurId) {
       var transfer = function(request) {
-        request.secteur = transferSecteur;
-        return request.$update().$promise;
+        request.secteur = transferSecteurId;
+        return RequestResource.update(request).$promise;
       };
 
       var refresh = function() {
@@ -80,7 +80,7 @@ angular.module('impactApp')
       actionOnSelectedRequests(requests, download);
     };
 
-    $scope.open = function() {
+    $scope.openTransferModal = function() {
       if (_.find($scope.requests, 'isSelected')) {
         var modalInstance = $modal.open({
           animation: false,
@@ -104,6 +104,27 @@ angular.module('impactApp')
       }
     };
 
+    $scope.openAssignModal = function() {
+      if (_.find($scope.requests, 'isSelected')) {
+        var modalInstance = $modal.open({
+          animation: false,
+          templateUrl: 'app/dashboard/requests/list/modalUsers.html',
+          controller: 'ModalUsersCtrl',
+          resolve: {
+            users: function() {
+              return $scope.users;
+            }
+          }
+        });
+
+        modalInstance.result.then(
+          function(selectedItem) {
+            $scope.assign($scope.requests, selectedItem);
+          }
+        );
+      }
+    };
+
   })
   .controller('ModalSecteursCtrl', function($scope, $modalInstance, secteurs) {
     $scope.secteurs = secteurs;
@@ -111,6 +132,18 @@ angular.module('impactApp')
 
     $scope.transfer = function() {
       $modalInstance.close($scope.secteurId);
+    };
+
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
+  })
+  .controller('ModalUsersCtrl', function($scope, $modalInstance, users) {
+    $scope.users = users;
+    $scope.selectedUser = '';
+
+    $scope.assign = function() {
+      $modalInstance.close($scope.selectedUser);
     };
 
     $scope.cancel = function() {
