@@ -17,6 +17,10 @@ angular.module('impactApp')
     $scope.currentMdph = currentMdph;
     $scope.currentUser = currentUser;
 
+    $scope.pdfName = (request.user.formAnswers.identites.beneficiaire.nom).toLowerCase() +
+                     '_' + (request.user.formAnswers.identites.beneficiaire.prenom).toLowerCase() +
+                     '_' + request.shortId + '.pdf';
+
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {
         $window.alert('Mail renvoyé avec succès');
