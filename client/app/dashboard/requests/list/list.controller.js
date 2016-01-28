@@ -1,8 +1,22 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestListCtrl', function($scope, $window, $state, $cookies, $http, user, banette, currentUser, currentSecteur, requests) {
+  .controller('RequestListCtrl', function($scope,
+                                          $window,
+                                          $state,
+                                          $cookies,
+                                          $http,
+                                          user,
+                                          banette,
+                                          currentUser,
+                                          currentSecteur,
+                                          requests,
+                                          RequestResource,
+                                          secteurs,
+                                          $modal,
+                                          $q) {
     $scope.requests = requests;
+    $scope.secteurs = secteurs;
 
     $scope.user = user;
     $scope.banette = banette;
@@ -15,12 +29,7 @@ angular.module('impactApp')
       'Demandes concernant le secteur ' + currentSecteur.name;
 
     $scope.selectAll = function() {
-      var action;
-      if ($scope.allSelected()) {
-        action = false;
-      } else {
-        action = true;
-      }
+      var action = !$scope.allSelected();
 
       $scope.requests.forEach(function(request) {
         request.isSelected = action;
@@ -28,52 +37,94 @@ angular.module('impactApp')
     };
 
     $scope.allSelected = function() {
-      var test = $scope.requests.length > 0;
-      $scope.requests.forEach(function(request) {
-        if (!request.isSelected) {
-          test = false;
-        }
-      });
-
-      return test;
+      return _.every(requests, 'isSelected');
     };
 
-    $scope.assigner = function(requests) {
-      requests.forEach(function(request) {
-        if (request.isSelected) {
-          request.evaluator = currentUser._id;
-          return $http.put('/api/requests/' + request.shortId, request).then(function() {
-            $scope.$emit('assign-request');
-          });
-        }
-      });
+    function actionOnSelectedRequests(requests, action, success) {
+      var selectedRequests = _.filter(requests, 'isSelected');
+      var transferPromises = _.map(selectedRequests, action);
+      $q.all(transferPromises).then(success);
+    }
 
-      $state.go('dashboard.requests.user', {userId: $scope.currentUser._id});
+    $scope.assign = function(requests, assignUserId) {
+      var assign = function(request) {
+        request.evaluator = assignUserId;
+        return RequestResource.update(request).$promise;
+      };
+
+      var goDashboard = function() {
+        $state.go('dashboard.requests.user', {userId: assignUserId});
+      };
+
+      actionOnSelectedRequests(requests, assign, goDashboard);
     };
 
-    $scope.archive = function(requests) {
-      if (requests) {
-        requests.forEach(function(request) {
-          if (request.isSelected) {
-            request.status = 'evaluation';
-            request.$save(function() {
-              $state.go('.', {}, {reload: true});
-            });
+    $scope.transfer = function(requests, transferSecteurId) {
+      var transfer = function(request) {
+        request.secteur = transferSecteurId;
+        return RequestResource.update(request).$promise;
+      };
+
+      var refresh = function() {
+        $state.go('.', {}, {reload: true});
+      };
+
+      actionOnSelectedRequests(requests, transfer, refresh);
+    };
+
+    $scope.download = function() {
+      var download = function(request) {
+        var pdfName = (request.formAnswers.identites.beneficiaire.nom).toLowerCase() +
+                        '_' + (request.formAnswers.identites.beneficiaire.prenom).toLowerCase() +
+                        '_' + request.shortId + '.pdf';
+        $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + token);
+      };
+
+      actionOnSelectedRequests(requests, download);
+    };
+
+    $scope.openTransferModal = function() {
+      if (_.find($scope.requests, 'isSelected')) {
+        var modalInstance = $modal.open({
+          animation: false,
+          templateUrl: 'app/dashboard/requests/list/modalSecteurs.html',
+          controller: 'ModalSecteursCtrl',
+          resolve: {
+            secteurs: function() {
+              //on retire 'sans secteur' et le secteur courant
+              return _.filter($scope.secteurs, function(secteur) {
+                return (secteur.mdph) && (secteur._id !== $scope.currentSecteur._id);
+              });
+            }
           }
         });
+
+        modalInstance.result.then(
+          function(selectedItem) {
+            $scope.transfer($scope.requests, selectedItem);
+          }
+        );
       }
     };
 
-    $scope.download = function(requests) {
-      if (requests) {
-        requests.forEach(function(request) {
-          if (request.isSelected) {
-            var pdfName = (request.formAnswers.identites.beneficiaire.nom).toLowerCase() +
-                            '_' + (request.formAnswers.identites.beneficiaire.prenom).toLowerCase() +
-                            '_' + request.shortId + '.pdf';
-            $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + token);
+    $scope.openAssignModal = function() {
+      if (_.find($scope.requests, 'isSelected')) {
+        var modalInstance = $modal.open({
+          animation: false,
+          templateUrl: 'app/dashboard/requests/list/modalUsers.html',
+          controller: 'ModalUsersCtrl',
+          resolve: {
+            users: function() {
+              return $scope.users;
+            }
           }
         });
+
+        modalInstance.result.then(
+          function(selectedItem) {
+            $scope.assign($scope.requests, selectedItem);
+          }
+        );
       }
     };
 
@@ -89,5 +140,28 @@ angular.module('impactApp')
         return 'old-request';
       }
     };
+  })
+  .controller('ModalSecteursCtrl', function($scope, $modalInstance, secteurs) {
+    $scope.secteurs = secteurs;
+    $scope.secteurId = '';
 
+    $scope.transfer = function() {
+      $modalInstance.close($scope.secteurId);
+    };
+
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
+  })
+  .controller('ModalUsersCtrl', function($scope, $modalInstance, users) {
+    $scope.users = users;
+    $scope.selectedUser = '';
+
+    $scope.assign = function() {
+      $modalInstance.close($scope.selectedUser);
+    };
+
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
   });

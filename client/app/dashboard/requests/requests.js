@@ -35,6 +35,10 @@ angular.module('impactApp')
             return MdphResource.getSecteur({zipcode: currentMdph.zipcode, controllerid: secteurId}).$promise;
           },
 
+          secteurs: function(MdphResource, currentMdph) {
+            return MdphResource.querySecteurs({zipcode: currentMdph.zipcode}).$promise;
+          },
+
           requests: function($stateParams, MdphResource, currentMdph, secteurId) {
             return MdphResource.queryRequestsForSecteur({zipcode: currentMdph.zipcode, controllerid: secteurId}).$promise;
           },
