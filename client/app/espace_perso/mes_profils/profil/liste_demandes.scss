@@ -1,0 +1,54 @@
+.list-group-demande {
+  @extend .list-group;
+  border-radius: 0;
+
+  .list-group-item {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    border-radius: 0;
+    padding: 0;
+
+    span {
+      padding: 10px 15px;
+    }
+
+    i.fa {
+      padding: 10px 15px;
+      color: $light-red;
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover {
+      .fa {
+        color: darken($lighter-red, 5%);
+      }
+    }
+  }
+
+  .list-group-item-nouvelle-demande {
+    background-color: $flat-ui-blue;
+
+    h3 {
+      color: white;
+    }
+
+    i.fa {
+      color: white;
+    }
+
+    &:hover, &:focus {
+      background-color: darken($flat-ui-blue, 10%);
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .fa {
+    font-size: 2em;
+  }
+}

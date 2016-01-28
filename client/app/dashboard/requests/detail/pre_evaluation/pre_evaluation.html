@@ -4,9 +4,12 @@
       Récapitulatif
       <a
         target="_blank"
-        href="api/requests/{{request.shortId}}/questionnaire.pdf?access_token={{token}}"
+        href="api/requests/{{request.shortId}}/pdf/{{pdfName}}?access_token={{token}}"
         download>
-          <i class="fa fa-download"></i>
+          <span class="fa-stack fa">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+          </span>
       </a>
     </h2>
     <div class="content">
@@ -22,7 +25,7 @@
       <div class="user">
         <h3 ng-if="currentMdph.zipcode === '14'">Prestations demandées par l'utilisateur</h3>
         <p ng-if="request.prestations.length === 0">Aucune prestation demandée</p>
-        <dl ng-repeat="prestation in request.prestations">
+        <dl ng-repeat="prestation in request.detailPrestations">
           <dt>{{prestation.title}}</dt>
           <dd>{{prestation.description}}</dd>
         </dl>

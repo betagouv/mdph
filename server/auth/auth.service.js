@@ -8,6 +8,7 @@ var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
 var User = require('../api/user/user.model');
 var Request = require('../api/request/request.model');
+var Profile = require('../api/profile/profile.model');
 var validateJwt = expressJwt({ secret: config.secrets.session });
 
 /**
@@ -46,9 +47,10 @@ function isAuthenticated() {
 function isAuthorized() {
   return compose()
     .use(isAuthenticated())
+    .use(attachProfile)
     .use(attachRequest)
     .use(function(req, res, next) {
-      if (canAccessRequest(req.user, req.request)) {
+      if (canAccessResource(req.user, req.profile) || canAccessResource(req.user, req.request)) {
         next();
       } else {
         res.sendStatus(403);
@@ -56,13 +58,59 @@ function isAuthorized() {
     });
 }
 
-function canAccessRequest(user, request) {
+/**
+ * Verifies that the user is trying to create/list profiles for himself,
+ * Attaches the user object to the request if authenticated
+ * Otherwise returns 401
+ */
+function canAccessProfile() {
+  return compose()
+    .use(isAuthenticated())
+    .use(function(req, res, next) {
+      if (meetsRequirements(req.user.role, 'adminMdph') || req.user._id.equals(req.params.userId)) {
+        next();
+      } else {
+        res.sendStatus(403);
+      }
+    });
+}
+
+function canAccessResource(user, resource) {
+  if (!resource || !user) {
+    return false;
+  }
+
   if (meetsRequirements(user.role, 'adminMdph')) {
     return true;
-  } else if (isRequestOwner(user, request)) {
-    return true;
+  }
+
+  if (!resource.user._id) {
+    return String(user._id) === String(resource.user);
   } else {
-    return false;
+    return user._id.equals(resource.user._id);
+  }
+}
+
+function attachProfile(req, res, next) {
+  if (req.params.profileId) {
+    Profile
+      .findById(req.params.profileId)
+      .populate('user')
+      .exec(function(err, profile) {
+        if (!profile) {
+          return res.sendStatus(404);
+        }
+
+        if (err) {
+          req.log.error(err);
+          return res.status(500).send(err);
+        }
+
+        req.profile = profile;
+        next();
+      });
+  } else {
+    next();
   }
 }
 
@@ -88,18 +136,6 @@ function attachRequest(req, res, next) {
       });
   } else {
     next();
-  }
-}
-
-function isRequestOwner(user, request) {
-  if (!request || !user) {
-    return false;
-  }
-
-  if (!request.user._id) {
-    return String(user._id) === String(request.user);
-  } else {
-    return user._id.equals(request.user._id);
   }
 }
 
@@ -141,7 +177,8 @@ function setTokenCookie(req, res) {
   res.redirect('/');
 }
 
-exports.canAccessRequest = canAccessRequest;
+exports.canAccessProfile = canAccessProfile;
+exports.canAccessResource = canAccessResource;
 exports.isAuthenticated = isAuthenticated;
 exports.isAuthorized = isAuthorized;
 exports.hasRole = hasRole;

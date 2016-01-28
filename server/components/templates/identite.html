@@ -1,21 +1,31 @@
 <p>
-  <strong>{{capitalize prenom}} {{capitalize nom 'upper'}} {{#if nom_usage}}Nom d'usage: {{nom_usage}}{{/if}}</strong>
-
-  {{#if type}}
-    à aidé à la réalisation de cette démarche en tant que <strong>{{type}}</strong>
-  {{/if}}
-
-  {{#if dateNaissance}}
-    est né{{conjugaison sexe}} le <strong>{{moment dateNaissance}}</strong> {{#if lieu_naissance}}à {{lieu_naissance}}{{/if}} {{#if lieu_naissance_cp}}<small>({{lieu_naissance_cp}})</small>{{/if}}
-  {{/if}}
-
+  Nom complet : <strong>{{capitalize prenom}} {{capitalize nom 'upper'}}</strong>
 </p>
+
+{{#if nom_usage}}
+<p>
+    Nom d'usage: <strong>{{nom_usage}}</strong>
+</p>
+{{/if}}
+
+{{#if type}}
+<p>
+  Type: <strong>{{type}}</strong>
+</p>
+{{/if}}
+
+{{#if dateNaissance}}
+<p>
+  Date de naissance : <strong>{{moment dateNaissance}}</strong> {{#if lieu_naissance}}à {{lieu_naissance}}{{/if}} {{#if lieu_naissance_cp}}<small>({{lieu_naissance_cp}})</small>{{/if}}
+</p>
+{{/if}}
 
 <p>
   {{#if nomVoie}}
-    Son adresse actuelle est:
+    Adresse actuelle :
     <address>
-      {{numero_voie}} {{extension}} {{typeVoie.label}} {{nomVoie}} <br>
+      {{numero_voie}} {{extension}} {{typeVoie.label}} {{nomVoie}}
+      <br>
       {{#if etageEscalierAppartement}}
         {{etageEscalierAppartement}}
       {{/if}}
@@ -31,52 +41,75 @@
   {{/if}}
 
   {{#if adresse}}
-    {{pronoun sexe}} réside actuellement au <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+    Adresse actuelle : <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
   {{/if}}
 </p>
 
+
+{{#if mode_contact}}
 <p>
-  {{#if mode_contact}}
-    {{pronoun sexe true}} préfère être contacté{{conjugaison sexe}} par <strong>{{mode_contact}}</strong>, son adresse email est <strong>{{email}}</strong>
-  {{else}}
-    Son adresse email est <strong>{{email}}</strong>
-  {{/if}}
-
-  {{#if tel_1}}
-    {{#if tel_2}}, ses numéros de téléphone sont
-    {{else}}, son numéro de téléphone est
-    {{/if}}
-    le <strong>{{tel_1}}</strong>{{#if tel_2}} et <strong>{{tel_2}}</strong>{{/if}}
-  {{/if}}
+  Mode de contact préféré : <strong>{{mode_contact}}</strong>
 </p>
+{{/if}}
+
+{{#if email}}
+<p>
+  Email : <strong>{{email}}</strong>
+</p>
+{{/if}}
+
+{{#if tel_1}}
+<p>
+  Téléphone principal : <strong>{{tel_1}}</strong>
+</p>
+{{/if}}
+
+{{#if tel_2}}
+<p>
+  Téléphone secondaire : <strong>{{tel_2}}</strong>
+</p>
+{{/if}}
 
 <p>{{showRenouvellement}}</p>
-
+{{#if numeroDossier}}
 <p>
-  {{#if domicile_organisme}}
-    {{capitalize prenom}} à choisi d'élire domicile auprès de l'organisme <strong>{{domicile_organisme}}</strong>.
-  {{/if}}
+  Numéro de dossier dans votre MDPH : <strong>{{numeroDossier}}</strong>
+</p>
+{{/if}}
 
-  {{#if prestations_familiales}}
-    Son organisme payeur de prestations familiales est la <strong>{{capitalize prestations_familiales 'upper'}}</strong>.
-  {{/if}}
+{{#if domicile_organisme}}
+<p>
+  Domicile auprès de l'organisme : <strong>{{domicile_organisme}}</strong>
+</p>
+{{/if}}
 
-  {{#if numero_allocataire}}
-    Son numéro d'allocataire est <strong>{{numero_allocataire}}</strong>.
-  {{/if}}
+{{#if prestations_familiales}}
+<p>
+  Organisme payeur de prestations familiales : <strong>{{capitalize prestations_familiales 'upper'}}</strong>
+</p>
+{{/if}}
 
-  {{#if assurance}}
-    Son organisme d'assurance maladie est <strong>
+{{#if numero_allocataire}}
+<p>
+  Numéro d'allocataire : <strong>{{numero_allocataire}}</strong>
+</p>
+{{/if}}
+
+{{#if assurance}}
+<p>
+  Organisme d'assurance maladie :
+  <strong>
     {{#if assurance_precisez}}
       {{assurance_precisez}}
     {{else}}
-       la {{assurance}}
+      {{assurance}}
     {{/if}}
-    </strong>
-    .
-  {{/if}}
-
-  {{#if numero_secu}}
-    Son numéro de sécurité sociale est <strong>{{numero_secu}}</strong>.
-  {{/if}}
+  </strong>
 </p>
+{{/if}}
+
+{{#if numero_secu}}
+<p>
+  Numéro de sécurité sociale : <strong>{{numero_secu}}</strong>
+</p>
+{{/if}}

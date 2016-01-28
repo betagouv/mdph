@@ -13,10 +13,13 @@ describe('Filter: role', function() {
   });
 
   it('should return the prettystr version of the adminMdph role', function() {
+    //given
     var text = 'adminMdph';
 
+    //when
     var result = $filter('role')(text);
 
+    //then
     expect(result).toBe('Gestionnaire MDPH');
   });
 

@@ -1,0 +1,100 @@
+#profil-demande {
+  .demande-section {
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    border: 1px solid rgba(34,36,38,.15);
+    padding: 15px 20px;
+  }
+
+  h3 {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    margin: 10px 0;
+  }
+
+  ul.demande-prestations {
+    list-style: none;
+    padding-left: 0;
+
+    label {
+      font-weight: 200;
+    }
+
+    .btn-link {
+      padding: 0;
+      margin: 0;
+      padding-bottom: 2px;
+      margin-left: 10px;
+    }
+  }
+
+  .document-wrapper {
+    @extend .col-sm-4;
+  }
+
+  .document-box {
+    background-color: whitesmoke;
+    border: 1px solid #eee;
+    padding: 5px;
+
+    h4, p {
+      text-align: center;
+    }
+  }
+
+  .table-wrapper {
+    padding: 15px;
+    tr.envoi-success>td:before {
+      content: '\f05d';
+      font-family: 'FontAwesome';
+      color: $green;
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+
+    tr.envoi-warning>td:before {
+      content: '\f071';
+      font-family: 'FontAwesome';
+      color: $orange;
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+  }
+
+  .submit-error {
+    @extend .alert, .alert-danger;
+    margin-top: 15px;
+  }
+}
+
+.list-group-demande.no-margin {
+  margin-bottom: 0;
+}
+
+.demande-container {
+  background-color: #e9f0f5;
+  border: 1px solid rgba(34,36,38,.15);
+  border-top: 0;
+  padding: 30px;
+}
+
+.demande-wrapper {
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+
+  .profile-card-row {
+    margin-bottom: 0;
+  }
+
+  .profile-category {
+    margin-bottom: 0;
+  }
+
+  .profile-category-icon {
+    background: $brand-info;
+    color: white;
+  }
+}

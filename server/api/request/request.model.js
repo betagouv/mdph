@@ -7,39 +7,41 @@ var ActionModel = require('./action.model');
 
 var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
-  type:           { type: String },
-  validation:     { type: Boolean },
-  originalname:   { type: String },
-  filename:       { type: String },
-  encoding:       { type: String },
-  mimetype:       { type: String },
-  path:           { type: String },
-  extension:      { type: String },
-  size:           { type: Number }
+  type:           String,
+  validation:     Boolean,
+  originalname:   String,
+  filename:       String,
+  encoding:       String,
+  mimetype:       String,
+  path:           String,
+  extension:      String,
+  size:           Number
 });
 
 var RequestSchema = new Schema({
   shortId:        { type: String, unique: true, default: shortId.generate },
   documents:      [DocumentSchema],
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
-  mdph:           { type: String },
+  profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
+  mdph:           String,
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
   secteur:        { type: Schema.Types.ObjectId, ref: 'Secteur' },
-  createdAt:      { type: Date },
-  submittedAt:    { type: Date },
-  updatedAt:      { type: Date },
+  createdAt:      Date,
+  submittedAt:    Date,
+  updatedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'complet', 'incomplet', 'archive'], default: 'en_cours' },
   formAnswers:    Schema.Types.Mixed,
-  prestations:    [{ type: String }],
+  prestations:    [String],
   certificat:     Schema.Types.Mixed,
-  synthese:       Schema.Types.Mixed
+  synthese:       Schema.Types.Mixed,
+  comments:       { type: String }
 });
 
 RequestSchema.pre('save', function(next) {
   var now = Date.now();
 
   if (this.isNew) {
-    this.updatedAt = now;
+    this.createdAt = now;
   }
 
   this.updatedAt = now;

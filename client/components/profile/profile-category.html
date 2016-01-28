@@ -1,0 +1,25 @@
+<div class="profile-category" ng-class="profileClass">
+  <div class="profile-category-icon"><i class="fa" ng-class="icon"></i></div>
+
+  <div class="profile-category-content">
+    <div class="profile-category-header">
+      <span class="profile-category-header-text">
+        <h2 class="profile-category-header-text-title">{{ ::title }}</h2>
+      </span>
+    </div>
+    <div class="profile-category-content-text">
+      {{ ::content }}
+
+      <div class="last-updated" ng-if="updatedAt">Dernière mise à jour {{updatedAt | momentFromNow}}</div>
+
+      <div class="progress-desc" ng-switch="completion">
+        <span ng-switch-when="0"><i class="fa fa-circle-o"></i>&nbsp;Non renseigné</span>
+        <span ng-switch-when="50"><i class="fa fa-circle"></i>&nbsp;En cours</span>
+        <span ng-switch-when="100"><i class="fa fa-check-circle"></i>&nbsp;Complet</span>
+      </div>
+    </div>
+    <div class="profile-category-actions">
+      <button ng-click="go()" class="btn btn-primary">{{ ::action.label }}</button>
+    </div>
+  </div>
+</div>

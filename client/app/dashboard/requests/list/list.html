@@ -25,7 +25,7 @@
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
           <li role="menuitem">
-            <a href="#" ng-click="download(requests)"><i class="fa fa-download"></i> Télécharger les demandes</a>
+            <a href="#" ng-click="download()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
           <li role="menuitem">
             <a href="#" ng-click="openAssignModal()"><i class="fa fa-user"></i> Assigner</a>
@@ -85,7 +85,7 @@
           <td class="status">
             {{request.status | requestStatus}}
           </td>
-          <td>{{request.submittedAt | date}}</td>
+          <td ng-class="classByRequestAge(request.submittedAt)">{{request.submittedAt | date}}</td>
           <td>{{request.evaluator ? request.evaluator.name : 'Non assignée'}}</td>
         </tr>
       </tbody>

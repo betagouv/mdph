@@ -4,15 +4,15 @@
 
 angular.module('impactApp').constant('SectionFrontConstants', [
   {
-    sref: 'espace_perso.liste_demandes',
-    include: 'espace_perso.liste_demandes.**',
-    fa: 'fa-folder',
-    label: 'Vos demandes'
+    sref: 'espace_perso.mes_profils',
+    include: 'espace_perso.mes_profils.**',
+    fa: 'fa-users',
+    label: 'Mes profils',
   },
   {
     sref: 'espace_perso.mon_compte',
     include: 'espace_perso.mon_compte.**',
     fa: 'fa-cogs',
-    label: 'Votre compte',
+    label: 'Mon compte',
   }
 ]);

@@ -1,12 +1,14 @@
-<form name="questionForm" novalidate>
+<form id="frais-handicap" name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <em>{{question.placeholder}}</em>
 
   <table aria-label="Liste des frais liés au handicap" class="table my-table-striped">
     <thead>
       <th id="frais">Frais engagés</th>
-      <th id="frequence">Fréquence</th>
-      <th id="montant1">Montant total</th>
+      <th>
+        <span id="montant1">Montant total</span>/
+        <span id="frequence">Fréquence</span>
+      </th>
       <th id="montant2">Montant remboursé</th>
       <th id="precisions">Précisions</th>
     </thead>
@@ -16,10 +18,15 @@
           <input type="text" class="form-control" ng-model="frais.nom" placeholder="Libellé des frais" aria-labelledby="frais">
         </td>
         <td>
-          <input type="text" class="form-control" ng-model="frais.frequence" placeholder="Fréquence des frais" aria-labelledby="frequence">
-        </td>
-        <td>
-          <input type="text" class="form-control" ng-model="frais.total" placeholder="Montant" aria-labelledby="montant1">
+          <div class="flex-group">
+            <input type="text" class="form-control flex-group-left" ng-model="frais.total" placeholder="Montant" aria-labelledby="montant1">
+            <select ng-init="frais.frequence = 'Par mois'" class="form-control flex-group-right" ng-model="frais.frequence" aria-labelledby="frequence">
+              <option value="Par jour">Par jour</option>
+              <option value="Par semaine">Par semaine</option>
+              <option value="Par mois">Par mois</option>
+              <option value="Par an">Par an</option>
+            </select>
+          </div>
         </td>
         <td>
           <input type="text" class="form-control" ng-model="frais.rembourse" placeholder="Montant remboursé" aria-labelledby="montant2">

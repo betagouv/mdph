@@ -9,7 +9,6 @@
   {
     "id": "situations_particulieres",
     "label": "Situations particulières",
-    "desc": "Si vous vous trouvez dans une situation nécessitant une attention particulière",
     "group": "obligatoire",
     "trajectoire": true,
     "questions": {
@@ -90,7 +89,6 @@
   {
     "id": "vie_quotidienne",
     "label": "Vie quotidienne",
-    "desc": "Renseignements sur votre vie quotidienne",
     "group": "obligatoire",
     "trajectoire": true,
     "subSections": [
@@ -368,6 +366,7 @@
         "model": "ipp",
         "titleDefault": "Connaissez-vous votre taux d'IPP (Incapacité Permanente Partielle) ?",
         "titleRep": "Connaissez-vous son taux d'IPP (Incapacité Permanente Partielle) ?",
+        "help": "Renseignez ici le taux qui vous a été attribué par l'assurance maladie (CPAM)",
         "type": "text",
         "placeholder": "Taux d'IPP, en %",
         "isOptionnal": true
@@ -657,7 +656,6 @@
   {
     "id": "vie_scolaire",
     "label": "Vie scolaire ou étudiante",
-    "desc": "Si votre demande concerne votre scolarité ou vie étudiante",
     "group": "complementaire",
     "trajectoire": true,
     "subSections": [
@@ -884,8 +882,8 @@
       },
       "emploiDuTemps": {
         "model": "emploiDuTemps",
-        "titleDefault": "Décrivez votre emploi du temps (accompagnement et soins, lieux...)",
-        "titleRep": "Décrivez son emploi du temps (accompagnement et soins, lieux...)",
+        "titleDefault": "Décrivez votre emploi du temps (école, cantine, soins...)",
+        "titleRep": "Décrivez son emploi du temps (école, cantine, soins...)",
         "type": "emploiDuTemps"
       },
       "besoinsScolarite": {
@@ -1084,7 +1082,6 @@
   {
     "id": "vie_au_travail",
     "label": "Vie au travail",
-    "desc": "Si votre demande concerne votre projet professionnel",
     "group": "complementaire",
     "trajectoire": true,
     "subSections": [
@@ -1593,7 +1590,7 @@
   {
     "id": "aidant",
     "label": "Vie de votre aidant familial",
-    "desc": "Si votre aidant familial (la personne qui s’occupe de vous au quotidien) souhaite exprimer sa situation et ses besoins",
+    "desc": "Vous pouvez expliquer à la MDPH l'aide que vous apportez actuellement à la personne en situation de handicap et vous pouvez exprimer vos attentes et vos besoins.",
     "group": "complementaire",
     "trajectoire": true,
     "subSections": [

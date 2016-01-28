@@ -10,6 +10,7 @@ $primary-hover: #333E54;
 $dark-blue: #222939;
 $light-blue: #333E54;
 $lighter-blue: #3C4963;
+$flat-ui-blue:  #3498DB;
 
 $orange: #FF8100;
 $lighter-red: #FF636C;
@@ -32,9 +33,9 @@ $disabled-blue: lighten($light-blue, 30%);
 /**
  * App-wide Styles
  */
- body {
-  background-color: whitesmoke;
- }
+.btn {
+  border-radius: 0px;
+}
 
 .browsehappy {
   position: absolute;
@@ -141,14 +142,11 @@ fieldset.light {
 @import 'dashboard/requests/detail/history/history.scss';
 @import 'dashboard/requests/detail/pre_evaluation/pre_evaluation.scss';
 @import 'dashboard/users/partenaires/edit.scss';
-@import 'demande/demande.scss';
-@import 'demande/header/header.scss';
-@import 'demande/steps/documents/documents.scss';
-@import 'demande/steps/envoi/emise/emise.scss';
-@import 'demande/steps/envoi/envoi.scss';
-@import 'demande/steps/obligatoires/identites/identites.scss';
-@import 'demande/steps/steps.scss';
-@import 'espace_perso/liste_demandes/liste_demandes.scss';
+@import 'espace_perso/mes_profils/mes_profils.scss';
+@import 'espace_perso/mes_profils/profil/demande/demande.scss';
+@import 'espace_perso/mes_profils/profil/identites/identites.scss';
+@import 'espace_perso/mes_profils/profil/liste_demandes.scss';
+@import 'espace_perso/mes_profils/profil/profile.scss';
 @import 'espace_perso/mon_compte/mon_compte.scss';
 @import 'main/main.scss';
 @import 'partenaire/partenaire.scss';
@@ -161,9 +159,12 @@ fieldset.light {
 @import 'nav-section/nav-section.scss';
 @import 'nav-steps/nav-steps.scss';
 @import 'navbar/navbar.scss';
+@import 'profile/profile-category.scss';
 @import 'qtitle/qtitle.scss';
 @import 'question/cv.scss';
 @import 'question/droits.scss';
+@import 'question/frais_handicap.scss';
+@import 'question/questions.scss';
 @import 'question/structure.scss';
 @import 'section-progress-bar/section-progress-bar.scss';
 @import 'subsection/subsection.scss';

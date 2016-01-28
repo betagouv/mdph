@@ -1,0 +1,73 @@
+<div id="profile" class="profile-container">
+  <div class="profile-card profile-card-vertical">
+    <div class="profile-card-header">
+      <span class="profile-card-avatar">
+        <span class="profile-card-icon"><i class="fa fa-user"></i></span>
+      </span>
+      <div class="profile-card-header-text">
+        <h1 class="profile-card-header-text-title"><a ui-sref=".">{{ ::profile.getTitle() }}</a></h1>
+        <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
+      </div>
+      <div class="profile-card-actions">
+        <a ui-sref="." class="btn btn-primary">Accéder au profil</a>
+      </div>
+    </div>
+
+    <div class="profile-card-content">
+      <ui-view>
+        <section class="profile-section">
+          <h2>Identité</h2>
+          <p class="section-subhead">&nbsp;</p>
+          <ul class="profile-card-row">
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.identites.beneficiaire"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.identites.autorite"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.identites.autre"></li>
+          </ul>
+        </section>
+
+        <section class="profile-section">
+          <h2>Projet de vie</h2>
+          <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
+          <ul class="profile-card-row">
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.projet.vieQuotidienne"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.projet.vieScolaire"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.projet.vieTravail"></li>
+          </ul>
+        </section>
+
+        <section class="profile-section">
+          <h2>Autres informations</h2>
+          <p class="section-subhead">&nbsp;</p>
+          <ul class="profile-card-row">
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.autre.particulieres"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.autre.aidant"></li>
+          </ul>
+        </section>
+
+        <section class="profile-section">
+          <h2>Vos demandes</h2>
+          <p class="section-subhead">Historique de vos demandes.</p>
+          <div class="list-group-demande">
+
+            <a class="list-group-item section" ng-repeat="request in requests" title="Accéder à la demande {{request.shortId}}"
+              ui-sref="{{request.status === 'en_cours' ? '.demande.parametres({ shortId: request.shortId })' : '.demande({ shortId: request.shortId })'}}">
+              <i class="fa fa-chevron-circle-right"></i>
+              <span class="list-group-item-content">
+                <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
+                <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
+                Dernière mise à jour le {{ request.updatedAt | moment }}</p>
+              </span>
+            </a>
+
+            <button ng-click="nouvelleDemande()" class="list-group-item list-group-item-nouvelle-demande" >
+              <i class="fa fa-plus-circle fa-2x "></i>
+              <span class="list-group-item-content">
+                <h3 class="list-group-item-heading"> Faire une nouvelle demande</h3>
+              </span>
+            </button>
+          </div>
+        </section>
+      </ui-view>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+#frais-handicap{
+  .flex-group{
+    display: flex;
+    position: relative;
+
+    .flex-group-left{
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .flex-group-right{
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: .5em;
+      padding-right: 1.5em;
+
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      margin-left: -1px;
+    }
+  }
+
+  .flex-group::after {
+    content:"\f078";
+    font-family: "FontAwesome";
+    font-size: 11px;
+    color:#999;
+    right:8px; top:8px;
+    padding:0 0 2px;
+    position:absolute;
+    pointer-events:none;
+  }
+}

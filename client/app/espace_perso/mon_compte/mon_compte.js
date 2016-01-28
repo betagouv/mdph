@@ -10,11 +10,6 @@ angular.module('impactApp')
         authenticate: true,
         data: {
           title: 'Votre compte'
-        },
-        resolve: {
-          currentUser: function(Auth) {
-            return Auth.getCurrentUser().$promise;
-          }
         }
       })
       .state('dashboard.espace_perso.mon_compte', {
@@ -22,10 +17,8 @@ angular.module('impactApp')
         templateUrl: 'app/espace_perso/mon_compte/mon_compte.html',
         controller: 'MonCompteCtrl',
         authenticate: true,
-        resolve: {
-          currentUser: function(Auth) {
-            return Auth.getCurrentUser().$promise;
-          }
+        data: {
+          title: 'Votre compte'
         }
       });
   });

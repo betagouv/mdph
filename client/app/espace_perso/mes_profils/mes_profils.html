@@ -1,0 +1,26 @@
+<ui-view>
+  <div class="profile-container">
+    <ul class="profile-card-row">
+      <li class="profile-card-row-item" ng-repeat="profile in profiles">
+        <div class="profile-card">
+          <div class="profile-card-header">
+            <div class="profile-card-avatar">
+              <a class="profile-card-icon" title="Accéder au profil"><i class="fa fa-user"></i></a>
+            </div>
+            <div class="profile-card-header-text">
+              <h2 class="profile-card-header-text-title">{{ ::profile.getTitle() }}</h2>
+              <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
+            </div>
+          </div>
+          <div class="profile-card-actions">
+            <a ui-sref=".profil({profileId: profile._id})" class="btn btn-primary">Accéder au profil</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <button class="btn btn-lg btn-success" ng-click="addProfile()">
+      <i class="fa fa-plus-circle"></i>&nbsp;Nouveau profil
+    </button>
+  </div>
+</ui-view>

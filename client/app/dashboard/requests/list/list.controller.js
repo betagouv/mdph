@@ -72,9 +72,12 @@ angular.module('impactApp')
       actionOnSelectedRequests(requests, transfer, refresh);
     };
 
-    $scope.download = function(requests) {
+    $scope.download = function() {
       var download = function(request) {
-        $window.open('api/requests/' + request.shortId + '/questionnaire.pdf?access_token=' + token);
+        var pdfName = (request.formAnswers.identites.beneficiaire.nom).toLowerCase() +
+                        '_' + (request.formAnswers.identites.beneficiaire.prenom).toLowerCase() +
+                        '_' + request.shortId + '.pdf';
+        $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + token);
       };
 
       actionOnSelectedRequests(requests, download);
@@ -125,6 +128,18 @@ angular.module('impactApp')
       }
     };
 
+    $scope.classByRequestAge = function(submissionDate) {
+      var currentMoment = moment();
+      var submissionMoment = moment(submissionDate);
+      var deltaMonths = currentMoment.diff(submissionMoment, 'months');
+      if (deltaMonths < 1) {
+        return 'new-request';
+      } else if (deltaMonths < 3) {
+        return 'standard-request';
+      } else {
+        return 'old-request';
+      }
+    };
   })
   .controller('ModalSecteursCtrl', function($scope, $modalInstance, secteurs) {
     $scope.secteurs = secteurs;
