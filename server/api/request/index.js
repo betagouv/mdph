@@ -15,8 +15,6 @@ var router = express.Router();
 
 router.post('/', auth.isAuthenticated(), controller.save);
 
-router.post('/:shortId/transfer/:userId', auth.isAuthorized(), controller.transfer);
-
 router.get('/:shortId', auth.isAuthenticated(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 

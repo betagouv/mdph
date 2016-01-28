@@ -180,19 +180,6 @@ exports.showUserRequests = function(req, res, next) {
 };
 
 /**
- * Transfer request
- */
-exports.transfer = function(req, res, next) {
-  req.request
-    .set('user', req.params.userId)
-    .set('-updatedAt', Date.now())
-    .save(function(err, request) {
-      if (err) return handleError(req, res, err);
-      res.json(request);
-    });
-};
-
-/**
  * Update request / agent side
  */
 exports.updateFromAgent = function(req, res, next) {
