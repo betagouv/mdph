@@ -16,6 +16,9 @@ angular.module('impactApp')
     $scope.token = $cookies.get('token');
     $scope.currentMdph = currentMdph;
     $scope.currentUser = currentUser;
+    $scope.pdfName = (request.formAnswers.identites.beneficiaire.nom).toLowerCase() +
+                    '_' + (request.formAnswers.identites.beneficiaire.prenom).toLowerCase() +
+                    '_' + request.shortId + '.pdf';
 
     $scope.resendMail = function() {
       $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {

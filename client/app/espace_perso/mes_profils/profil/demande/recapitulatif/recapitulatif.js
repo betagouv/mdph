@@ -10,8 +10,11 @@ angular.module('impactApp').config(function($stateProvider) {
 
     templateUrl: 'app/espace_perso/mes_profils/profil/demande/recapitulatif/recapitulatif.html',
 
-    controller: function($scope, $cookies) {
+    controller: function($scope, $cookies, request) {
       $scope.token = $cookies.get('token');
+      $scope.pdfName = (request.formAnswers.identites.beneficiaire.nom).toLowerCase() +
+                      '_' + (request.formAnswers.identites.beneficiaire.prenom).toLowerCase() +
+                      '_' + request.shortId + '.pdf';
     }
   });
 });
