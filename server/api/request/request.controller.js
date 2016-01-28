@@ -112,7 +112,8 @@ exports.show = function(req, res, next) {
       }
 
       if (!auth.canAccessResource(req.user, request)) {
-        return res.status(403);
+        console.log('ERROR');
+        return res.sendStatus(403);
       }
 
       async.waterfall([

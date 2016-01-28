@@ -50,7 +50,7 @@ function isAuthorized() {
     .use(attachProfile)
     .use(attachRequest)
     .use(function(req, res, next) {
-      if (meetsRequirements(req.user.role, 'adminMdph') || canAccessResource(req.user, req.profile) || canAccessResource(req.user, req.request)) {
+      if (canAccessResource(req.user, req.profile) || canAccessResource(req.user, req.request)) {
         next();
       } else {
         res.sendStatus(403);
@@ -78,6 +78,10 @@ function canAccessProfile() {
 function canAccessResource(user, resource) {
   if (!resource || !user) {
     return false;
+  }
+
+  if (meetsRequirements(user.role, 'adminMdph')) {
+    return true;
   }
 
   if (!resource.user._id) {
