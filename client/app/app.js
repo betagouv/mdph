@@ -14,7 +14,7 @@ angular.module('impactApp', [
     'ui.tree',
     'toastr'
   ])
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig) {
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig, treeConfig) {
     moment.locale('fr');
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
@@ -25,6 +25,7 @@ angular.module('impactApp', [
       progressBar: true,
       positionClass: 'toast-top-right'
     });
+    treeConfig.dragClass = 'angular-ui-tree-drag';
   })
   .factory('authInterceptor', function($rootScope, $q, $cookies, $location) {
     return {
