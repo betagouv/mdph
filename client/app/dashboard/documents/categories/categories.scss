@@ -83,6 +83,20 @@
   }
 }
 
+.angular-ui-tree-drag {
+  background-color: white;
+  opacity: 1;
+  box-shadow: 0 6px 7px -4px rgba(0,0,0,.2),0 11px 15px 1px rgba(0,0,0,.14),0 4px 20px 3px rgba(0,0,0,.12);
+
+  h3 {
+    font-size: 10px;
+  }
+
+  .detail {
+    font-size: 14px;
+  }
+}
+
 .ui-tree-category-content {
   display: flex;
   flex-direction: row;
