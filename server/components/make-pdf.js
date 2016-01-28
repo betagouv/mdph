@@ -14,7 +14,14 @@ var PdfJoin = require('./pdf_utils/join')();
 var buildStructure = require('./pdf_structure/build');
 var convertFromGridFS = require('./pdf_structure/convert');
 
-var pdfOptions = { format: 'A4', border: '10px' };
+var pdfOptions = {
+  format: 'A4',
+  border: '100px',
+  footer: {
+    height: '40px',
+    contents: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>'
+  }
+};
 
 var debug = false;
 
