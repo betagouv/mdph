@@ -19,7 +19,7 @@ exports.index = function(req, res) {
 
 exports.show = function(req, res) {
   Profile
-    .findById(req.params.id)
+    .findById(req.params.profileId)
     .exec(function(err, profile) {
       if (err) { return handleError(req, res, err); }
 
@@ -30,7 +30,7 @@ exports.show = function(req, res) {
 };
 
 exports.update = function(req, res) {
-  Profile.findById(req.params.id, function(err, profile) {
+  Profile.findById(req.params.profileId, function(err, profile) {
     if (err) { return handleError(req, res, err); }
 
     if (!profile) { return res.sendStatus(404); }
@@ -62,7 +62,7 @@ exports.create = function(req, res) {
 };
 
 exports.destroy = function(req, res) {
-  Profile.findById(req.params.id).remove().exec(function(err) {
+  Profile.findById(req.params.profileId).remove().exec(function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(204);
@@ -71,7 +71,7 @@ exports.destroy = function(req, res) {
 
 exports.indexRequests = function(req, res) {
   Profile
-    .findById(req.params.id)
+    .findById(req.params.profileId)
     .exec(function(err, profile) {
       if (err) { return handleError(req, res, err); }
 

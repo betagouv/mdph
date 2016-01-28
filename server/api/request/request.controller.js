@@ -111,7 +111,7 @@ exports.show = function(req, res, next) {
         return res.status(500).send(err);
       }
 
-      if (!auth.canAccessRequest(req.user, request)) {
+      if (!auth.canAccessResource(req.user, request)) {
         return res.status(403);
       }
 
