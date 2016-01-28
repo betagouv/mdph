@@ -8,6 +8,9 @@
         <h1 class="profile-card-header-text-title"><a ui-sref=".">{{ ::profile.getTitle() }}</a></h1>
         <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
       </div>
+      <div class="profile-card-actions">
+        <a ui-sref="." class="btn btn-primary">Accéder au profil</a>
+      </div>
     </div>
 
     <div class="profile-card-content">

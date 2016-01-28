@@ -10,31 +10,6 @@ section.profile-section {
   }
 }
 
-.step-body-head {
-  display: flex;
-  background-color: whitesmoke;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  height: 42px;
-
-  h2 {
-    display: inline-block;
-    width: auto;
-    font-weight: 400;
-    margin: 0;
-    font-size: 1em;
-  }
-
-  .fa {
-    color: lighten($light-blue, 15%);
-  }
-}
-
-.section-body {
-
-}
-
 .section-desc {
   color: $light-blue;
 }
