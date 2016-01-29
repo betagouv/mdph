@@ -175,13 +175,13 @@ exports.answersToHtml = function(request, path, output, next) {
       callback(null, request.mdph);
     },
 
-    quitus: function(callback) {
-      if (request.mdph && request.mdph === '14') {
-        callback(null, Prestation.simulate(request.formAnswers));
-      } else {
-        callback(null, null);
-      }
-    },
+    // quitus: function(callback) {
+    //   if (request.mdph && request.mdph === '14') {
+    //     callback(null, Prestation.simulate(request.formAnswers));
+    //   } else {
+    //     callback(null, null);
+    //   }
+    // },
 
     colors: function(callback) {
       callback(null, [
