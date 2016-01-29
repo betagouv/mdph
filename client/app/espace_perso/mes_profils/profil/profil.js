@@ -2,7 +2,7 @@
 
 angular.module('impactApp').config(function($stateProvider) {
   $stateProvider.state('espace_perso.mes_profils.profil', {
-    url: '/profil/:profileId',
+    url: '/:profileId',
     templateUrl: 'app/espace_perso/mes_profils/profil/profil.html',
     controller: 'ProfilCtrl',
     authenticate: true,
