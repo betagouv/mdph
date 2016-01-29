@@ -23,7 +23,7 @@ angular.module('impactApp')
             } else if (data.role === 'admin') {
               $state.go('admin');
             } else {
-              $state.go('espace_perso.liste_demandes');
+              $state.go('espace_perso.mes_profils');
             }
           });
         })
