@@ -729,7 +729,7 @@
         "model": "vieScolaireType",
         "titleDefault": "Vous êtes actuellement scolarisé",
         "titleRep": "<%= name %> est actuellement scolarisé<%= fem %>",
-        "type": "checkbox",
+        "type": "radio",
         "answers": [
           {
             "label": "En milieu ordinaire",

@@ -35,7 +35,7 @@ angular.module('impactApp')
     })
     .state(index + '.situation.type_scolaire', {
       url: '/type_scolaire',
-      templateUrl: 'components/question/checkbox.html',
+      templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, section, sectionModel) {
@@ -44,18 +44,15 @@ angular.module('impactApp')
 
         nextStep: function($state, sectionModel, question) {
           return function() {
-            if (sectionModel[question.model] !== 'domicile') {
-              if (sectionModel[question.model] === 'ordinaire') {
-                $state.go('^.internat');
-              } else {
-                if (sectionModel[question.model] === 'superieur') {
-                  $state.go('^.type_etudes');
-                } else {
-                  $state.go('^.etablissement');
-                }
-              }
-            } else {
-              $state.go('^.^.vos_besoins.scolarite');
+            var model = sectionModel[question.model];
+
+            switch (model) {
+              case 'domicile':
+                return $state.go('^.accompagnement');
+              case 'superieur':
+                return $state.go('^.type_etudes');
+              default:
+                return $state.go('^.internat');
             }
           };
         }
