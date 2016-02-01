@@ -27,13 +27,13 @@ angular.module('impactApp', [
     });
     treeConfig.dragClass = 'angular-ui-tree-drag';
   })
-  .factory('authInterceptor', function($rootScope, $q, $cookies, $location) {
+  .factory('authInterceptor', function($rootScope, $q, $cookies) {
     return {
       // Add authorization token to headers
       request: function(config) {
         config.headers = config.headers || {};
         if ($cookies.get('token')) {
-          config.headers.Authorization = 'Bearer ' + $cookies.get('token') + 'lolroorkrolo';
+          config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
 
         return config;
@@ -41,25 +41,35 @@ angular.module('impactApp', [
 
       // Intercept 401s
       responseError: function(response) {
-        debugger;
-        if (response.status === 401) {
-          $location.path('/login');
-
-          // remove any stale tokens
-          //$cookies.remove('token');
-          return $q.reject(response);
-        } else {
-          return $q.reject(response);
+        switch (response.status) {
+          case 401:
+            $rootScope.$broadcast('event:auth-loginRequired', response);
+            break;
+          case 403:
+            $rootScope.$broadcast('event:auth-forbidden', response);
+            break;
         }
+
+        return $q.reject(response);
       }
     };
   })
-  .run(function($rootScope, $state, $window, $location, Auth) {
+  .run(function($rootScope, $state, $window, $location, Auth, $cookies) {
     $rootScope.$on('$stateChangeSuccess', function() {
       if ($window._paq) {
         $window._paq.push(['setCustomUrl', $location.path()]);
         $window._paq.push(['trackPageView']);
       }
+    });
+
+    $rootScope.$on('event:auth-loginRequired', function() {
+      $cookies.remove('token');
+      $state.go('login');
+    });
+
+    $rootScope.$on('event:auth-forbidden', function() {
+      // TODO: specific state for auth-forbidden
+      $state.go('login');
     });
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
