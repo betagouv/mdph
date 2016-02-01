@@ -1,19 +1,17 @@
 <ui-view>
   <div class="profile-container">
     <ul class="profile-card-row">
-      <li class="profile-card-row-item" ng-repeat="profile in profiles">
+      <li class="profile-card-row-item" ng-repeat="(idx, profile) in profiles">
         <div class="profile-card">
           <div class="profile-card-header">
+            <button ng-click="delete(profile, idx)" class="trash btn btn-link" title="Supprimer ce profil"><i class="fa fa-times"></i></button>
             <div class="profile-card-avatar">
-              <a class="profile-card-icon" title="Accéder au profil"><i class="fa fa-user"></i></a>
+              <a class="profile-card-icon" ui-sref=".profil({profileId: profile._id})" title='Accéder au profil "{{ ::profile.getTitle() }}"'><i class="fa fa-user"></i></a>
             </div>
             <div class="profile-card-header-text">
-              <h2 class="profile-card-header-text-title">{{ ::profile.getTitle() }}</h2>
+              <h2 class="profile-card-header-text-title"><a ui-sref=".profil({profileId: profile._id})">{{ ::profile.getTitle() }}</a></h2>
               <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
             </div>
-          </div>
-          <div class="profile-card-actions">
-            <a ui-sref=".profil({profileId: profile._id})" class="btn btn-primary">Accéder au profil</a>
           </div>
         </div>
       </li>

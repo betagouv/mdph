@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3 class="modal-title">Suppression d'un profil</h3>
+</div>
+
+<div class="modal-body">
+  <p>Voulez-vous vraiment supprimer le profil de <strong>{{profile.getTitle()}}</strong> ? Cette suppression est définitive.</p>
+  <div ng-if="requests.length" class="alert alert-warning">
+    <p ng-if="requests.length === 1">
+      Vous avez 1 demande associée à ce profil déjà transmise à une MDPH. <br>
+      Cette demande ne sera pas supprimée et vous pourrez toujours être contacté par votre MDPH.
+    </p>
+    <p ng-if="requests.length > 1">
+      Vous avez {{ requests.length }} demandes associées à ce profil déjà transmises à une MDPH. <br>
+      Ces demandes ne serons pas supprimées et vous pourrez toujours être contacté par votre MDPH.
+    </p>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="cancel()">Annuler</button>
+  <button class="btn btn-primary" ng-click="ok()">Confirmer</button>
+</div>
