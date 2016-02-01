@@ -21,13 +21,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'famille', sectionModel);
           },
 
-          nextStep: function($state, sectionModel, question) {
+          nextStep: function($state) {
             return function() {
-              if (sectionModel[question.model] === 'etablissement') {
-                $state.go('^.aides');
-              } else {
-                $state.go('^.logement');
-              }
+              $state.go('^.logement');
             };
           }
         }
