@@ -33,7 +33,7 @@ angular.module('impactApp', [
       request: function(config) {
         config.headers = config.headers || {};
         if ($cookies.get('token')) {
-          config.headers.Authorization = 'Bearer ' + $cookies.get('token') + 'lolroorkrolo';
+          config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
 
         return config;
@@ -41,12 +41,11 @@ angular.module('impactApp', [
 
       // Intercept 401s
       responseError: function(response) {
-        debugger;
         if (response.status === 401) {
           $location.path('/login');
 
           // remove any stale tokens
-          //$cookies.remove('token');
+          $cookies.remove('token');
           return $q.reject(response);
         } else {
           return $q.reject(response);
