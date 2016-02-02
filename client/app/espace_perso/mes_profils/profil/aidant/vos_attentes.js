@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function($stateProvider) {
 
-    var index = 'espace_perso.mes_profils.profil.vos_attentes';
+    var index = 'espace_perso.mes_profils.profil.aidant.vos_attentes';
 
     $stateProvider.state(index, {
       url: '/vos_attentes',
