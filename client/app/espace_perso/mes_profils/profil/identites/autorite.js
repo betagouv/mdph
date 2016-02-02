@@ -53,35 +53,29 @@ angular.module('impactApp')
           },
           'parent1@espace_perso.mes_profils.profil.autorite': {
             templateUrl: 'app/espace_perso/mes_profils/profil/identites/autorite.html',
-            controller: function($scope, identite) {
-              $scope.identite = identite;
-              $scope.label = 'Parent 1';
-
-              $scope.disableAddress = function() {
-                return ($scope.identite && $scope.identite.adresseInconnue ? true : false);
-              };
-            },
+            controller: 'AutoriteCtrl',
 
             resolve: {
               identite: function(profile) {
                 return profile.identites.autorite.parent1;
+              },
+
+              label: function() {
+                return 'Parent 1';
               }
             }
           },
           'parent2@espace_perso.mes_profils.profil.autorite': {
             templateUrl: 'app/espace_perso/mes_profils/profil/identites/autorite.html',
-            controller: function($scope, identite) {
-              $scope.identite = identite;
-              $scope.label = 'Parent 2';
-
-              $scope.disableAddress = function() {
-                return ($scope.identite && $scope.identite.adresseInconnue ? true : false);
-              };
-            },
+            controller: 'AutoriteCtrl',
 
             resolve: {
               identite: function(profile) {
                 return profile.identites.autorite.parent2;
+              },
+
+              label: function() {
+                return 'Parent 2';
               }
             }
           }

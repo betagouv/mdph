@@ -22,36 +22,16 @@ angular.module('impactApp')
             return profile.identites.beneficiaire;
           }
         },
-        controller: function($scope, $state, profile, currentUser, identite, typesVoies, $http, $window) {
+        controller: function($scope, $state, profile, currentUser, identite, typesVoies, $window, AdressService) {
           $scope.identite = identite;
           $scope.typesVoies = typesVoies;
 
-          var lat;
-          var long;
-
           $window.navigator.geolocation.getCurrentPosition(function(position) {
-            lat = position.coords.latitude;
-            long = position.coords.longitude;
+            $scope.lat = position.coords.latitude;
+            $scope.long = position.coords.longitude;
           });
 
-          $scope.getLocation = function(val) {
-            return $http({
-              method: 'GET',
-              url: 'http://api-adresse.data.gouv.fr/search/',
-              params: {
-                q: val,
-                lat: lat,
-                lon: long,
-                limit: 8,
-                type: 'housenumber',
-              },
-              ignoreInterceptor: true
-            })
-            .then(function(response) {
-              return response.data.features;
-            });
-
-          };
+          $scope.getAdress = AdressService.getAdress;
 
           $scope.fillAdressOnSelect = function(result) {
             $scope.identite.nomVoie = result.properties.name;

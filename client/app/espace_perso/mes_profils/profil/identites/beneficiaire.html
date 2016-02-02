@@ -104,7 +104,7 @@
   <section class="identite-section">
     <div id="adress-search" class="form-group">
       <div class="input-group">
-        <input typeahead="result as result.properties.label for result in getLocation($viewValue)"
+        <input typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
         typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100"
         type="text" ng-model="searchAdress" class="form-control" ng-disabled="disableAddress()" placeholder="Recherche adresse">
         <span class="input-group-addon" id="basic-addon"><i class="fa fa-search"></i></span>

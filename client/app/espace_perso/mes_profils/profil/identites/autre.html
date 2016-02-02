@@ -48,57 +48,36 @@
 
 
   <section class="identite-section">
-    <div class="form-group">
-      <div id="address-input">
-        <div class="street">
-          <div class="field">
-            <label for="numero_voie" class="control-label" title="Le numéro de la voie comprend de 1 à 4 chiffres">Numéro de voie</label>
-            <input id="numero_voie" title="Le numéro de la voie comprend de 1 à 4 chiffres" type="text" name="numero_voie" maxlength="5" class="form-control"
-             placeholder="1 à 4 chiffres" ng-model="identite.numero_voie">
-          </div>
-
-          <div class="field">
-            <label for="extension" class="control-label" title="Extension du numéro de voirie. Exemples : bis, ter, quater,.. ou une lettre A, B, C, D,...">Extension</label>
-            <input id="extension" title="Extension du numéro de voirie. Exemples : bis, ter, quater... ou une lettre A, B, C, D,..."  placeholder="Bis, ter..."
-             type="text" name="extension" maxlength="9" class="form-control" ng-model="identite.extension">
-          </div>
-
-          <div class="field">
-            <label for="typeVoie" class="control-label">Type de voie</label>
-            <select class="form-control" name="typeVoie" ng-model="identite.typeVoie" ng-options="type as type.label for type in typesVoies track by type.label"></select>
-          </div>
-
-          <div class="field large">
-            <label for="nomVoie" class="control-label">Nom de la voie</label>
-            <input id="nomVoie" type="text" name="nomVoie" class="form-control" ng-model="identite.nomVoie" placeholder="Nom de la voie">
-          </div>
-        </div>
+    <div id="adress-search" class="form-group">
+      <div class="input-group">
+        <input typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
+        typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100"
+        type="text" ng-model="searchAdress" class="form-control" ng-disabled="disableAddress()" placeholder="Recherche adresse">
+        <span class="input-group-addon" id="basic-addon"><i class="fa fa-search"></i></span>
       </div>
     </div>
 
-    <div class="form-group text-muted">
-      <label for="etageEscalierAppartement" class="control-label">Étage, Escalier, Appartement</label>
-      <input id="etageEscalierAppartement" type="text" name="etageEscalierAppartement" class="form-control" ng-model="identite.etageEscalierAppartement">
-    </div>
+    <div class="well">
+      <div class="form-group">
+        <div id="address-input">
+          <div class="street">
+            <div class="field large">
+              <label for="nomVoie" class="control-label">Nom de la voie</label>
+              <input id="nomVoie" type="text" name="nomVoie" class="form-control" ng-model="identite.nomVoie" placeholder="Nom de la voie">
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="form-group text-muted">
-      <label for="immeubleBatimentResidence" class="control-label">Immeuble, Bâtiment, Résidence</label>
-      <input id="immeubleBatimentResidence" type="text" name="immeubleBatimentResidence" class="form-control" ng-model="identite.immeubleBatimentResidence">
-    </div>
+      <div class="form-group">
+        <label for="code_postal" class="control-label">Code postal</label>
+        <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal">
+      </div>
 
-    <div class="form-group text-muted">
-      <label for="lieuDit" class="control-label">Lieu-dit</label>
-      <input id="lieuDit" type="text" name="lieuDit" class="form-control" ng-model="identite.lieuDit">
-    </div>
-
-    <div class="form-group">
-      <label for="code_postal" class="control-label">Code postal</label>
-      <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal">
-    </div>
-
-    <div class="form-group">
-      <label for="localite" class="control-label">Localité</label>
-      <input id="localite" type="text" name="localite" class="form-control" ng-model="identite.localite">
+      <div class="form-group">
+        <label for="localite" class="control-label">Localité</label>
+        <input id="localite" type="text" name="localite" class="form-control" ng-model="identite.localite">
+      </div>
     </div>
   </section>
 
