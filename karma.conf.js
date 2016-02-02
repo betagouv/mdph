@@ -30,6 +30,7 @@ module.exports = function(config) {
       'client/bower_components/moment/locale/fr.js',
       'client/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'client/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
+      'client/bower_components/angular-ui-mask/dist/mask.js',
       'client/app/app.js',
       'client/app/**/*.js',
       'client/components/**/*.js',

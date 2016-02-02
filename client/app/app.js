@@ -12,7 +12,8 @@ angular.module('impactApp', [
     'ngMessages',
     'chart.js',
     'ui.tree',
-    'toastr'
+    'toastr',
+    'ui.mask'
   ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig, treeConfig) {
     moment.locale('fr');

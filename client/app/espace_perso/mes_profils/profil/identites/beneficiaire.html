@@ -110,69 +110,41 @@
         <span class="input-group-addon" id="basic-addon"><i class="fa fa-search"></i></span>
       </div>
     </div>
-
-    <div class="form-group">
-      <div id="address-input">
-        <div class="street">
-          <div class="field">
-            <label for="numero_voie" class="control-label" title="Le numéro de la voie comprend de 1 à 4 chiffres">Numéro de voie</label>
-            <input id="numero_voie" title="Le numéro de la voie comprend de 1 à 4 chiffres" type="text" name="numero_voie" maxlength="5" class="form-control"
-             placeholder="1 à 4 chiffres" ng-model="identite.numero_voie" ng-disabled="disableAddress()">
-          </div>
-
-          <div class="field">
-            <label for="extension" class="control-label" title="Extension du numéro de voirie. Exemples : bis, ter, quater,.. ou une lettre A, B, C, D,...">Extension</label>
-            <input id="extension" title="Extension du numéro de voirie. Exemples : bis, ter, quater... ou une lettre A, B, C, D,..."  placeholder="Bis, ter..."
-             type="text" name="extension" maxlength="9" class="form-control" ng-model="identite.extension" ng-disabled="disableAddress()">
-          </div>
-
-          <div class="field" ng-class="{'required': !disableAddress(),'has-error': infoForm.typeVoie.$invalid && infoForm.$submitted}">
-            <label for="typeVoie" class="control-label">Type de voie</label>
-            <select class="form-control" name="typeVoie" ng-model="identite.typeVoie" ng-disabled="disableAddress()" ng-required="!disableAddress()" ng-options="type as type.label for type in typesVoies track by type.label"></select>
-            <div ng-messages="infoForm.typeVoie.$error" ng-if="infoForm.$submitted">
-              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-            </div>
-          </div>
-
-          <div class="field large" ng-class="{'required': !disableAddress(),'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
-            <label for="nomVoie" class="control-label">Nom de la voie</label>
-            <input id="nomVoie" type="text" name="nomVoie" class="form-control" ng-model="identite.nomVoie" placeholder="Nom de la voie" ng-disabled="disableAddress()" ng-required="!disableAddress()">
-            <div ng-messages="infoForm.nomVoie.$error" ng-if="infoForm.$submitted">
-              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+    <div class="well">
+      <div class="form-group">
+        <div id="address-input">
+          <div class="street">
+            <div class="field large" ng-class="{'required': !disableAddress(),'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
+              <label for="nomVoie" class="control-label">Adresse</label>
+              <input id="nomVoie" type="text" name="nomVoie" class="form-control" ng-model="identite.nomVoie" ng-disabled="disableAddress()" ng-required="!disableAddress()">
+              <div ng-messages="infoForm.nomVoie.$error" ng-if="infoForm.$submitted">
+                <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group text-muted">
-      <label for="etageEscalierAppartement" class="control-label">Étage, Escalier, Appartement</label>
-      <input id="etageEscalierAppartement" type="text" name="etageEscalierAppartement" class="form-control" ng-model="identite.etageEscalierAppartement" ng-disabled="disableAddress()">
-    </div>
-
-    <div class="form-group text-muted">
-      <label for="immeubleBatimentResidence" class="control-label">Immeuble, Bâtiment, Résidence</label>
-      <input id="immeubleBatimentResidence" type="text" name="immeubleBatimentResidence" class="form-control" ng-model="identite.immeubleBatimentResidence" ng-disabled="disableAddress()">
-    </div>
-
-    <div class="form-group text-muted">
-      <label for="lieuDit" class="control-label">Lieu-dit</label>
-      <input id="lieuDit" type="text" name="lieuDit" class="form-control" ng-model="identite.lieuDit" ng-disabled="disableAddress()">
-    </div>
-
-    <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
-      <label for="code_postal" class="control-label">Code postal</label>
-      <input id="code_postal" type="text" name="code_postal" class="form-control" ng-model="identite.code_postal" ng-disabled="disableAddress()" ng-required="!disableAddress()">
-      <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
-        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.localite.$invalid && infoForm.$submitted}">
-      <label for="localite" class="control-label">Localité</label>
-      <input id="localite" type="text" name="localite" class="form-control" ng-model="identite.localite" ng-disabled="disableAddress()" ng-required="!disableAddress()">
-      <div ng-messages="infoForm.localite.$error" ng-if="infoForm.$submitted">
-        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      <div class="row">
+        <div class="col-xs-3">
+          <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
+            <label for="code_postal" class="control-label">Code postal</label>
+            <input id="code_postal" type="text" name="code_postal" class="form-control" ui-mask="99999"
+            ng-model="identite.code_postal" ng-disabled="disableAddress()" ng-required="!disableAddress()">
+            <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
+              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-9">
+          <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.localite.$invalid && infoForm.$submitted}">
+            <label for="localite" class="control-label">Localité</label>
+            <input id="localite" type="text" name="localite" class="form-control" ng-model="identite.localite" ng-disabled="disableAddress()" ng-required="!disableAddress()">
+            <div ng-messages="infoForm.localite.$error" ng-if="infoForm.$submitted">
+              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

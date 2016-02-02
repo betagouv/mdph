@@ -23,7 +23,8 @@
     "ng-file-upload": "6.2.1",
     "ngstorage": "0.3.7",
     "angular-ui-tree": "~2.11.0",
-    "angular-toastr": "~1.6.0"
+    "angular-toastr": "~1.6.0",
+    "angular-ui-mask": "~1.7.2"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

@@ -41,8 +41,9 @@ angular.module('impactApp')
               params: {
                 q: val,
                 lat: lat,
-                long: long,
-                limit: 8
+                lon: long,
+                limit: 8,
+                type: 'housenumber',
               },
               ignoreInterceptor: true
             })
@@ -53,8 +54,7 @@ angular.module('impactApp')
           };
 
           $scope.fillAdressOnSelect = function(result) {
-            $scope.identite.numero_voie = result.properties.housenumber;
-            $scope.identite.nomVoie = result.properties.street;
+            $scope.identite.nomVoie = result.properties.name;
             $scope.identite.code_postal = result.properties.postcode;
             $scope.identite.localite = result.properties.city;
           };
