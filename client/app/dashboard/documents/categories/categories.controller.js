@@ -9,6 +9,14 @@ angular.module('impactApp')
     $scope.unclassifiedCategory = unclassifiedCategory;
     $scope.token = $cookies.get('token');
 
+    function showAlert(err) {
+      if (err) {
+        toastr.error('Erreur lors de la sauvegarde', 'Plan de classement');
+      } else {
+        toastr.success('Sauvegarde effectuée', 'Plan de classement');
+      }
+    }
+
     function getUpdatedCategories(categories) {
       return _.map(categories, function(current, key) {
         return {_id: current._id, position: key};
@@ -50,14 +58,6 @@ angular.module('impactApp')
     function isDocumentType(node) {
       // TODO: remove stupid hack to check if catA is a DocumentType (no _id)
       return typeof node._id === 'undefined';
-    }
-
-    function showAlert(err) {
-      if (err) {
-        toastr.error('Erreur lors de la sauvegarde', 'Plan de classement');
-      } else {
-        toastr.success('Sauvegarde effectuée', 'Plan de classement');
-      }
     }
 
     $scope.treeOptions = {

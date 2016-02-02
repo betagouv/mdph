@@ -46,12 +46,6 @@ angular.module('impactApp')
 
     })(request, section);
 
-    function trajectoiresToIdArray(trajectoires) {
-      return _.reduce(trajectoires, function(result, trajectoire) {
-        return result.concat(answersToIdArray(trajectoire));
-      }, []);
-    }
-
     function answersToIdArray(root) {
       return _.reduce(root, function(result, question) {
         if (question.Reponses) {
@@ -64,6 +58,12 @@ angular.module('impactApp')
         }
 
         return result;
+      }, []);
+    }
+
+    function trajectoiresToIdArray(trajectoires) {
+      return _.reduce(trajectoires, function(result, trajectoire) {
+        return result.concat(answersToIdArray(trajectoire));
       }, []);
     }
 
