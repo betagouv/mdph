@@ -113,7 +113,7 @@
         "type": "radio",
         "answers": [
           {
-            "label": "Seul(e)",
+            "label": "Seul·e",
             "labelRepMasc": "Seul",
             "labelRepFem": "Seule",
             "model": "seul",
@@ -166,7 +166,7 @@
             "detailLabel": "Précisez le nom, le type et le lieu"
           },
           {
-            "label": "Vous êtes hébergé(e) au domicile",
+            "label": "Vous êtes hébergé·e au domicile",
             "labelRep": "<%= pronoun %> est hébergé<%= fem %> au domicile",
             "model": "domicile",
             "detailUrl": "components/detail/domicile.html",
@@ -675,7 +675,7 @@
     "questions": {
       "condition": {
         "model": "condition",
-        "titleDefault": "Etes-vous actuellement scolarisé ?",
+        "titleDefault": "Êtes-vous actuellement scolarisé ?",
         "titleRep": "<%= name %> est-<%= pronoun %> actuellement scolarisé<%= fem %> ?",
         "type": "radio",
         "answers": [
@@ -700,7 +700,7 @@
             "labelRep": "<%= pronoun %> est trop jeune",
             "model": "tropJeune",
             "detailModel": "raisonNonScolaireTropJeune",
-            "placeholderDefault": "A partir de quand serez-vous scolarisé(e) ?",
+            "placeholderDefault": "A partir de quand serez-vous scolarisé·e ?",
             "placeholder": "A partir de quand sera-t-<%= pronoun %> scolarisé<%= fem %> ?",
             "detailUrl": "components/detail/precisez.html"
           },
@@ -736,7 +736,7 @@
             "model": "ordinaire"
           },
           {
-            "label": "A domicile",
+            "label": "À domicile",
             "model": "domicile"
           },
           {
@@ -1590,7 +1590,7 @@
   {
     "id": "aidant",
     "label": "Vie de votre aidant familial",
-    "desc": "Vous pouvez expliquer à la MDPH l'aide que vous apportez actuellement à la personne en situation de handicap et vous pouvez exprimer vos attentes et vos besoins.",
+    "desc": "Vous pouvez expliquer l'aide que votre aidant apporte actuellement à la personne en situation de handicap et vous pouvez exprimer ses attentes et ses besoins.",
     "group": "complementaire",
     "trajectoire": true,
     "subSections": [
@@ -1606,7 +1606,7 @@
     "questions": {
       "nomAidant": {
         "model": "nomAidant",
-        "titleDefault": "Comment vous appelez-vous ?",
+        "titleDefault": "Comment s'appelle votre aidant ?",
         "placeholder": "Nom et Prénom",
         "type": "text"
       },
@@ -1617,14 +1617,13 @@
       },
       "lien": {
         "model": "lien",
-        "titleDefault": "Quel est votre lien avec la personne en situation de handicap ?",
-        "titleRep": "Quel est votre lien avec <%= name %> ?",
-        "placeholder": "Je suis...",
+        "titleDefault": "Quel est son lien avec la personne en situation de handicap ?",
+        "titleRep": "Quel est son lien avec <%= name %> ?",
         "type": "text"
       },
       "vie": {
-        "titleDefault": "Vivez-vous avec la personne en situation de handicap ?",
-        "titleRep": "Vivez-vous avec <%= name %> ?",
+        "titleDefault": "Vit-il/elle avec la personne en situation de handicap ?",
+        "titleRep": "Vit-il/elle avec <%= name %> ?",
         "model": "vie",
         "type": "radio",
         "answers": [
@@ -1643,7 +1642,7 @@
         ]
       },
       "emploi": {
-        "titleDefault": "Êtes-vous actuellement en emploi ?",
+        "titleDefault": "Est-il/elle actuellement en emploi ?",
         "model": "emploi",
         "type": "radio",
         "answers": [
@@ -1652,12 +1651,12 @@
             "model": "oui"
           },
           {
-            "label": "Non",
-            "model": "non"
+            "label": "Oui, avec une réduction d’activité liée à la prise en charge de la personne aidée",
+            "model": "reductionActivite"
           },
           {
-            "label": "Réduction d’activité liée à la prise en charge de la personne aidée",
-            "model": "reductionActivite"
+            "label": "Non",
+            "model": "non"
           }
         ]
       },
@@ -1727,7 +1726,7 @@
         ]
       },
       "dedommagement": {
-        "titleDefault": "Etes vous dédommagé(e) pour l’aide apportée à votre proche ?",
+        "titleDefault": "Est-il/elle dédommagé·e pour l’aide apportée ?",
         "model": "dedommagement",
         "type": "radio",
         "answers": [
@@ -1745,8 +1744,8 @@
         ]
       },
       "accompagnementAidant": {
-        "titleDefault": "Qui participe avec vous à l'accompagnement de la personne aidée ?",
-        "titleRep": "Qui participe avec vous à l'accompagnement de <%= name %> ?",
+        "titleDefault": "Qui participe avec lui/elle à l'accompagnement de la personne aidée ?",
+        "titleRep": "Qui participe avec lui/elle à l'accompagnement de <%= name %> ?",
         "model": "accompagnementAidant",
         "type": "checkbox",
         "answers": [
@@ -1759,13 +1758,13 @@
             "model": "proches"
           },
           {
-            "label": "Je suis le seul aidant du demandeur",
+            "label": "Il/elle est l'unique aidant·e du demandeur",
             "model": "seul"
           }
         ]
       },
       "soutien": {
-        "titleDefault": "Etes-vous soutenu dans votre fonction d’aidant ?",
+        "titleDefault": "Est-il/elle soutenu·e dans son fonction d’aidant ?",
         "model": "soutien",
         "type": "radio",
         "answers": [
@@ -1782,7 +1781,7 @@
         ]
       },
       "empechement": {
-        "titleDefault": "En cas d'empêchement, avez-vous une solution pour vous remplacer ?",
+        "titleDefault": "En cas d'empêchement, a-t-il/elle une solution pour le/la remplacer ?",
         "model": "empechement",
         "type": "radio",
         "answers": [
@@ -1791,7 +1790,7 @@
             "model": true,
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "empechementDetail",
-            "placeholder": "Laquelle"
+            "placeholder": "Laquelle ?"
           },
           {
             "label": "Non",
@@ -1800,7 +1799,7 @@
         ]
       },
       "situationFuture": {
-        "titleDefault": "Vous êtes ou serez prochainement dans l'une des situations suivantes :",
+        "titleDefault": "Il/elle est ou sera prochainement dans l'une des situations suivantes :",
         "model": "situationFuture",
         "type": "checkbox",
         "answers": [
@@ -1839,7 +1838,7 @@
       "structures": {
         "model": "structures",
         "type": "structure",
-        "titleDefault": "Avez-vous déjà identifié une ou plusieurs structures qui pourraient répondre à vos attentes ?"
+        "titleDefault": "As-t-il/elle déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
       },
       "demandesAides": {
         "titleDefault": "Vous souhaitez mieux connaitre les dispositifs et aides existants :",
@@ -1847,7 +1846,7 @@
         "type": "checkbox",
         "answers": [
           {
-            "label": "Pour vous",
+            "label": "Pour l'aidant",
             "model": "pour_vous"
           },
           {
@@ -1857,28 +1856,28 @@
         ]
       },
       "typeAttente": {
-        "titleDefault": "Vos attentes en tant qu'aidant familial :",
+        "titleDefault": "Ses attentes en tant qu'aidant familial :",
         "model": "typeAttente",
         "type": "checkbox",
         "answers": [
           {
-            "label": "Pouvoir vous reposer au quotidien",
+            "label": "Pouvoir se reposer au quotidien",
             "model": "repos"
           },
           {
-            "label": "Pouvoir vous faire remplacer en cas d’imprévu",
+            "label": "Pouvoir se faire remplacer en cas d’imprévu",
             "model": "imprevu"
           },
           {
-            "label": "Vous faire remplacer pour partir en week-end/vacances",
+            "label": "Se faire remplacer pour partir en week-end/vacances",
             "model": "vacances"
           },
           {
-            "label": "Reprendre/renforcer/maintenir votre activité professionnelle",
+            "label": "Reprendre/renforcer/maintenir son activité professionnelle",
             "model": "professionnel"
           },
           {
-            "label": "Reprendre/renforcer/maintenir vos liens sociaux",
+            "label": "Reprendre/renforcer/maintenir ses liens sociaux",
             "model": "social"
           },
           {
@@ -1886,11 +1885,11 @@
             "model": "finance"
           },
           {
-            "label": "Echanger avec d’autres aidants",
+            "label": "Échanger avec d’autres aidants",
             "model": "echanges"
           },
           {
-            "label": "Echanger avec les professionnels qui suivent mon proche",
+            "label": "Échanger avec les professionnels qui suivent le proche aidé",
             "model": "echanges_professionnel"
           },
           {
@@ -1898,7 +1897,7 @@
             "model": "psychologique"
           },
           {
-            "label": "Être conseillé pour mieux faire face au handicap de votre proche",
+            "label": "Être conseillé pour mieux faire face au handicap de son proche",
             "model": "conseil"
           },
           {
@@ -1916,7 +1915,7 @@
       "autresRenseignements": {
         "model": "autresRenseignements",
         "type": "text",
-        "titleDefault": "Autres renseignements que vous souhaiteriez nous communiquer concernant votre vie d'aidant"
+        "titleDefault": "Autres renseignements que vous souhaiteriez nous communiquer concernant la vie de votre aidant"
       }
     }
   },

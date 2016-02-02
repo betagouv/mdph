@@ -184,7 +184,7 @@ angular.module('impactApp')
 
         nextStep: function($state) {
           return function() {
-            $state.go('^.^.vos_attentes.type_attente');
+            $state.go('espace_perso.mes_profils.profil.aidant.vos_attentes.type_attente');
           };
         }
       }
