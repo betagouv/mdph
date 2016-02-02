@@ -52,7 +52,7 @@ angular.module('impactApp')
 
           };
 
-          $scope.searchAdressOnSelect = function(result) {
+          $scope.fillAdressOnSelect = function(result) {
             $scope.identite.numero_voie = result.properties.housenumber;
             $scope.identite.nomVoie = result.properties.street;
             $scope.identite.code_postal = result.properties.postcode;
