@@ -37,7 +37,30 @@
     }
   }
 
+  #adress-search {
+    #basic-addon {
+      background-color: $light-red;
+      color: white;
+      border: none;
+    }
+
+    .dropdown-menu {
+      padding: 0px 0;
+      margin: -1px 0 0;
+      border-radius: 0px;
+    }
+
+    .dropdown-menu > li > a {
+      padding-left: 12px;
+    }
+
+    .dropdown-menu > .active > a {
+      background-color: $lighter-blue;
+    }
+  }
+
   #address-input {
+
     .street {
       display: flex;
       flex-direction: row;

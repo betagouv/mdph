@@ -12,7 +12,8 @@ angular.module('impactApp', [
     'ngMessages',
     'chart.js',
     'ui.tree',
-    'toastr'
+    'toastr',
+    'ui.mask'
   ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig, treeConfig) {
     moment.locale('fr');
@@ -32,7 +33,7 @@ angular.module('impactApp', [
       // Add authorization token to headers
       request: function(config) {
         config.headers = config.headers || {};
-        if ($cookies.get('token')) {
+        if ($cookies.get('token') && !config.ignoreInterceptor) {
           config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
 
