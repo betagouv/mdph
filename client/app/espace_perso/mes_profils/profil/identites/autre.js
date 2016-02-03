@@ -22,9 +22,8 @@ angular.module('impactApp')
             return profile.identites.autre;
           }
         },
-        controller: function($scope, $state, profile, currentUser, identite, typesVoies, $window, AdressService) {
+        controller: function($scope, $state, profile, currentUser, identite, $window, AdressService) {
           $scope.identite = identite;
-          $scope.typesVoies = typesVoies;
 
           $window.navigator.geolocation.getCurrentPosition(function(position) {
             $scope.lat = position.coords.latitude;

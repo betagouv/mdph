@@ -128,6 +128,27 @@ fieldset.light {
   }
 }
 
+fieldset {
+  legend.control-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    border-bottom:none;
+  }
+
+  .radio-inline {
+    padding-left: 0;
+    padding-right: 10px;
+  }
+}
+
+.form-group.required .control-label:after {
+   content: " *";
+   color: red;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'apropos/apropos.scss';
@@ -153,7 +174,6 @@ fieldset.light {
 @import 'stats/stats.scss';
 @import 'display-file/display-file.scss';
 @import 'identity-card/identity-card.scss';
-@import 'identity-form/identity-form.scss';
 @import 'login/login.scss';
 @import 'nav-section/nav-section.scss';
 @import 'nav-steps/nav-steps.scss';

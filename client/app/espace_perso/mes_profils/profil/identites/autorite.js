@@ -11,9 +11,8 @@ angular.module('impactApp')
         views: {
           '': {
             templateUrl: 'app/espace_perso/mes_profils/profil/identites/autorites.html',
-            controller: function($scope, $state, profile, currentUser, identite, typesVoies) {
+            controller: function($scope, $state, profile, currentUser, identite) {
               $scope.identite = identite;
-              $scope.typesVoies = typesVoies;
 
               $scope.submit = function(form) {
                 if (form.$invalid) {
