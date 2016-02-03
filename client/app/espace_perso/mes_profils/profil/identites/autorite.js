@@ -61,6 +61,10 @@ angular.module('impactApp')
 
               label: function() {
                 return 'Parent 1';
+              },
+
+              id: function() {
+                return '1';
               }
             }
           },
@@ -75,6 +79,10 @@ angular.module('impactApp')
 
               label: function() {
                 return 'Parent 2';
+              },
+
+              id: function() {
+                return '2';
               }
             }
           }
