@@ -151,6 +151,7 @@ fieldset {
 
 // Component styles are injected through grunt
 // injector
+@import 'account/account.scss';
 @import 'apropos/apropos.scss';
 @import 'choix_mdph/choix_mdph.scss';
 @import 'dashboard/dashboard.scss';
@@ -174,7 +175,6 @@ fieldset {
 @import 'stats/stats.scss';
 @import 'display-file/display-file.scss';
 @import 'identity-card/identity-card.scss';
-@import 'login/login.scss';
 @import 'nav-section/nav-section.scss';
 @import 'nav-steps/nav-steps.scss';
 @import 'navbar/navbar.scss';
