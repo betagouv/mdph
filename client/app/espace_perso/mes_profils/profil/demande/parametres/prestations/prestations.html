@@ -8,7 +8,7 @@
         <label for="{{prestation.id}}">
           <input type="checkbox" id="{{prestation.id}}" ng-model="prestation.isSelected">&nbsp;{{prestation.title}}
         </label>
-        <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
+        <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail" type="button">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
       </div>
 
       <div class="well" ng-if="prestation.showDetail">
