@@ -28,7 +28,7 @@ angular.module('impactApp')
             case 'complete':
               return 'Modifier';
             case 'half':
-              return 'reprendre';
+              return 'Reprendre';
           }
         }
 
