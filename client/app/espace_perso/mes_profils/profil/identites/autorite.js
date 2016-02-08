@@ -6,7 +6,8 @@ angular.module('impactApp')
       .state('espace_perso.mes_profils.profil.autorite', {
         url: '/identite-autorite',
         data: {
-          title: 'Identité de l\'autorité parentale'
+          title: 'Identité de l\'autorité parentale',
+          forms: {}
         },
         views: {
           '': {
@@ -14,7 +15,7 @@ angular.module('impactApp')
             controller: function($scope, $state, profile, currentUser, identite) {
               $scope.identite = identite;
 
-              $scope.forms = {};
+              $scope.forms = $state.current.data.forms;
 
               $scope.submit = function(form) {
                 if (!form.$invalid) {

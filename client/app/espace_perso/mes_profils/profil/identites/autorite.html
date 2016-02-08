@@ -1,7 +1,7 @@
 <h3>Parent {{id}}</h3>
 <section class="identite-section">
   <div class="section-row">
-    <div class="form-group required" ng-class="{'has-error': hasError('nom')  && form.infoForm.$submitted}">
+    <div class="form-group required" ng-class="{'has-error': hasError('nom') && forms.infoForm.$submitted}">
       <label for="nom{{id}}" class="control-label">Nom</label>
       <input id="nom{{id}}" type="text" name="nom{{id}}" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
       <div ng-messages="getError('nom')" ng-if="forms.infoForm.$submitted">

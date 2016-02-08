@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AutoriteCtrl', function($scope, identite, AdressService, $window, id) {
+  .controller('AutoriteCtrl', function($state, $scope, identite, AdressService, $window, id) {
       $scope.identite = identite;
       $scope.id = id;
 
-      $scope.forms = $scope.$parent.forms;
+      $scope.forms = $state.current.data.forms;
 
       $window.navigator.geolocation.getCurrentPosition(function(position) {
         $scope.lat = position.coords.latitude;
