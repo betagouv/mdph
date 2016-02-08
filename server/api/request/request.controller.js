@@ -138,6 +138,7 @@ exports.showPartenaire = function(req, res, next) {
     shortId: req.params.shortId
   })
   .populate('user', 'name')
+  .select('shortId user name mdph createdAt')
   .exec(function(err, request) {
     if (err) return handleError(req, res, err);
     if (!request) { return res.sendStatus(404); }
@@ -332,36 +333,53 @@ exports.saveFile = function(req, res, next) {
 };
 
 exports.saveFilePartenaire = function(req, res) {
-  processDocument(req.file, req.body, function(err, document) {
+  var _document = null;
+  var _request = null;
+  var _partenaire = null;
+
+  async.waterfall([
+    function(callback) {
+      processDocument(req.file, req.body, callback);
+    },
+
+    function(document, callback) {
+      _document = document;
+      Request.findOne({shortId: req.params.shortId}, callback);
+    },
+
+    function(request, callback) {
+      _request = request;
+      request.documents.push(_document);
+      request.save();
+      callback();
+    },
+
+    function(callback) {
+      Partenaire.findById(_document.partenaire, callback);
+    },
+
+    function(partenaire, callback) {
+      if (!partenaire) { res.sendStatus(404); }
+
+      _partenaire = partenaire;
+      partenaire.secret = shortid.generate();
+      partenaire.save();
+      callback();
+    },
+
+    function(callback) {
+      const confirmationUrl = req.headers.host + '/api/partenaires/' + _partenaire._id + '/' + _partenaire.secret;
+      Mailer.sendConfirmationMail(_partenaire.email, confirmationUrl);
+
+      _request.saveActionLog(Actions.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
+      callback();
+    }
+  ], function(err, result) {
     if (err) {
-      return res.sendStatus(err.status);
+      return handleError(req, res, err);
     }
 
-    var request = req.request;
-    request.documents.push(document);
-
-    request.save(function(err, saved) {
-      if (err) { return handleError(req, res, err); }
-
-      // Mail
-      Partenaire.findById(document.partenaire, function(err, partenaire) {
-        if (err) { return handleError(req, res, err); }
-
-        if (!partenaire) { res.sendStatus(404); }
-
-        partenaire.secret = shortid.generate();
-        partenaire.save(function(err) {
-          if (err) { return handleError(req, res, err); }
-
-          const confirmationUrl = req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
-          Mailer.sendConfirmationMail(partenaire.email, confirmationUrl);
-        });
-
-        request.saveActionLog(Actions.DOCUMENT_ADDED, partenaire, req.log, {document: document, partenaire: partenaire});
-      });
-
-      return res.json(document);
-    });
+    return res.json(_document);
   });
 };
 

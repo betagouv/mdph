@@ -38,26 +38,20 @@ exports.save = function(req, res) {
           return res.sendStatus(404);
         }
 
-        Mdph.findOne({zipcode: request.mdph}, function(err, mdph) {
+        // Mdph.findOne({zipcode: request.mdph}, function(err, mdph) {
+        //   if (err) { return handleError(req, res, err); }
+        //
+        //   req.body.mdph = mdph;
+        // });
+
+        Partenaire.create(req.body, function(err, partenaire) {
           if (err) { return handleError(req, res, err); }
 
-          req.body.mdph = mdph;
-
-          Partenaire.create(req.body, function(err, partenaire) {
+          partenaire.secret = shortid.generate();
+          partenaire.save(function(err) {
             if (err) { return handleError(req, res, err); }
 
-            partenaire.secret = shortid.generate();
-            partenaire.save(function(err) {
-              if (err) { return handleError(req, res, err); }
-
-              var confirmationUrl = 'http://' + req.headers.host + '/api/partenaires/' + partenaire._id + '/' + partenaire.secret;
-              Mailer.sendMail(
-                partenaire.email,
-                'Validez votre adresse',
-                'Vous avez demandé à ajouter une pièce dans un dossier usager sur notre service. Veuillez cliquer ici pour valider votre adresse :<br>' + confirmationUrl
-              );
-              return res.status(201).json(partenaire);
-            });
+            return res.status(201).json(partenaire);
           });
         });
       });

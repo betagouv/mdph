@@ -12,9 +12,8 @@ angular.module('impactApp')
             return RequestResource.getPartenaire({shortId: $stateParams.shortId}).$promise;
           },
 
-          documentTypes: function(DocumentResource, $stateParams) {
+          documentTypes: function($stateParams, DocumentResource) {
             var type = $stateParams.type;
-
             if (type === 'complementaires') {
               return DocumentResource.query({type: type}).$promise;
             } else {
@@ -22,10 +21,6 @@ angular.module('impactApp')
                 return [result];
               });
             }
-          },
-
-          mdph: function(request, MdphResource) {
-            return MdphResource.get({zipcode: request.mdph});
           },
 
           partenaire: function($stateParams, Partenaire) {
