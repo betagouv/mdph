@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AutoriteCtrl', function($scope, identite, AdressService, $window, label) {
+  .controller('AutoriteCtrl', function($state, $scope, identite, AdressService, $window, id) {
       $scope.identite = identite;
-      $scope.label = label;
+      $scope.id = id;
+
+      $scope.forms = $state.current.data.forms;
 
       $window.navigator.geolocation.getCurrentPosition(function(position) {
         $scope.lat = position.coords.latitude;
@@ -11,6 +13,14 @@ angular.module('impactApp')
       });
 
       $scope.getAdress = AdressService.getAdress;
+
+      $scope.hasError = function(name) {
+        return $scope.forms.infoForm['' + name + id].$invalid;
+      };
+
+      $scope.getError = function(name) {
+        return $scope.forms.infoForm['' + name + id].$error;
+      };
 
       $scope.fillAdressOnSelect = function(result) {
         $scope.identite.nomVoie = result.properties.name;

@@ -6,7 +6,8 @@ angular.module('impactApp')
       .state('espace_perso.mes_profils.profil.autorite', {
         url: '/identite-autorite',
         data: {
-          title: 'Identité de l\'autorité parentale'
+          title: 'Identité de l\'autorité parentale',
+          forms: {}
         },
         views: {
           '': {
@@ -14,10 +15,10 @@ angular.module('impactApp')
             controller: function($scope, $state, profile, currentUser, identite) {
               $scope.identite = identite;
 
+              $scope.forms = $state.current.data.forms;
+
               $scope.submit = function(form) {
-                if (form.$invalid) {
-                  form.showError = true;
-                } else {
+                if (!form.$invalid) {
                   identite.__completion = true;
                   identite.updatedAt = Date.now();
                   profile.identites.autorite = identite;
@@ -59,8 +60,8 @@ angular.module('impactApp')
                 return profile.identites.autorite.parent1;
               },
 
-              label: function() {
-                return 'Parent 1';
+              id: function() {
+                return '1';
               }
             }
           },
@@ -73,8 +74,8 @@ angular.module('impactApp')
                 return profile.identites.autorite.parent2;
               },
 
-              label: function() {
-                return 'Parent 2';
+              id: function() {
+                return '2';
               }
             }
           }
