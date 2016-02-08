@@ -1,0 +1,4 @@
+.embed-recapitulatif {
+  @extend .embed-responsive, .embed-responsive-16by9;
+  box-shadow: 0 2px 3px 1px rgba(34, 36, 38, 0.35);
+}

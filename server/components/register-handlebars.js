@@ -57,30 +57,6 @@ Handlebars.registerHelper('ntobr', function(str) {
   return str && str.replace(/\n/g, '<br>');
 });
 
-Handlebars.registerHelper('showRenouvellement', function() {
-  // Si date de naissance alors identite = beneficiaire - A modifier
-  if (!this.dateNaissance) {
-    return '';
-  }
-
-  var str;
-
-  if (typeof this.estRenouvellement === 'undefined') {
-    var si;
-    if (isMale(this.sexe)) {
-      si = 's\'il';
-    } else {
-      si = 'si elle';
-    }
-
-    str = 'N\'a pas précisé ' + si + ' possède déjà un dossier dans votre MDPH';
-  } else if (!this.estRenouvellement) {
-    str =  'Premier dossier dans votre MDPH.';
-  }
-
-  return str;
-});
-
 Handlebars.registerHelper('capitalize', function(str, force) {
   if (!str || typeof str !== 'string') {
     return str;
