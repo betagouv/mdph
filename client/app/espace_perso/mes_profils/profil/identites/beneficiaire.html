@@ -175,22 +175,6 @@
 
   <section class="identite-section">
     <div class="form-group">
-      <fieldset>
-        <legend class="control-label">Si besoin, comment souhaitez-vous être contacté par votre MDPH ?</legend>
-        <input type="radio" name="mode_contact" id="mode_contact_email" ng-model="identite.mode_contact" value="email">
-        <label class="radio-inline" for="mode_contact_email">E-mail</label>
-        <input type="radio" name="mode_contact" id="mode_contact_telephone" ng-model="identite.mode_contact" value="telephone">
-        <label class="radio-inline" for="mode_contact_telephone">Appel téléphonique</label>
-        <input type="radio" name="mode_contact" id="mode_contact_sms" ng-model="identite.mode_contact" value="sms">
-        <label class="radio-inline" for="mode_contact_sms">SMS</label>
-        <input type="radio" name="mode_contact" id="mode_contact_courrier" ng-model="identite.mode_contact" value="courrier">
-        <label class="radio-inline" for="mode_contact_courrier">Courrier</label>
-      </fieldset>
-    </div>
-  </section>
-
-  <section class="identite-section">
-    <div class="form-group">
       <label for="domicile_organisme" class="control-label">Si vous avez élu domicile auprès d'un organisme, précisez lequel</label>
       <input id="domicile_organisme" type="text" name="domicile_organisme" class="form-control" ng-model="identite.domicile_organisme" placeholder="Association, centre d’hébergement ou d’action sociale">
       <hr>
