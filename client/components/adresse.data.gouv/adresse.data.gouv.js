@@ -6,7 +6,7 @@ angular.module('impactApp')
       getAdress: function(val, lat, long) {
         return $http({
           method: 'GET',
-          url: 'http://api-adresse.data.gouv.fr/search/',
+          url: 'https://api-adresse.data.gouv.fr/search/',
           params: {
             q: val,
             lat: lat,
