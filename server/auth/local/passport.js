@@ -13,7 +13,6 @@ exports.setup = function(User, config) {
         })
         .populate('mdph zipcode')
         .exec(function(err, user) {
-          console.log(user.mdph);
           if (err) return done(err);
 
           if (!user) {

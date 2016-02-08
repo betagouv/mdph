@@ -26,7 +26,6 @@ angular.module('impactApp')
         })
         .then(function(data) {
           // Logged in, redirect
-          debugger;
           var newProfile = new ProfileResource();
           newProfile.$save({userId: data.id}, function(result) {
             $state.go('espace_perso.mes_profils.profil', {profileId: result._id});
