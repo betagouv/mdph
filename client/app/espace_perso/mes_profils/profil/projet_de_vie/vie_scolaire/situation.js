@@ -18,8 +18,8 @@ angular.module('impactApp')
         hideBack: true
       },
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'condition', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'condition', profile);
         },
 
         nextStep: function($state, sectionModel) {
@@ -38,8 +38,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'vieScolaireType', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'vieScolaireType', profile);
         },
 
         nextStep: function($state, sectionModel, question) {
@@ -63,8 +63,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/etablissement_scolaire.html',
       controller: 'EtablissementScolaireCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'etablissement', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'etablissement', profile);
         },
 
         nextStep: function($state) {
@@ -79,8 +79,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'internat', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'internat', profile);
         },
 
         nextStep: function($state) {
@@ -95,8 +95,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'typeEtudes', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'typeEtudes', profile);
         },
 
         nextStep: function($state) {
@@ -111,8 +111,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'diplomePasse', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'diplomePasse', profile);
         },
 
         nextStep: function($state) {
@@ -127,8 +127,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'diplomePresent', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'diplomePresent', profile);
         },
 
         nextStep: function($state) {
@@ -143,8 +143,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/etablissement_scolaire.html',
       controller: 'EtablissementScolaireCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'diplomeEtablissement', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'diplomeEtablissement', profile);
         },
 
         nextStep: function($state) {
@@ -159,8 +159,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'parcoursEtudes', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'parcoursEtudes', profile);
         },
 
         nextStep: function($state) {
@@ -175,8 +175,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'accompagnement', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'accompagnement', profile);
         },
 
         nextStep: function($state) {
@@ -191,8 +191,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'adaptation', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'adaptation', profile);
         },
 
         nextStep: function($state) {
@@ -207,8 +207,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/emploi_du_temps.html',
       controller: 'EmploiDuTempsCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'emploiDuTemps', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'emploiDuTemps', profile);
         },
 
         nextStep: function($state) {
@@ -223,8 +223,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'raisonNonScolaire', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'raisonNonScolaire', profile);
         },
 
         nextStep: function($state) {

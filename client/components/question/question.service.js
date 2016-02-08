@@ -1,51 +1,17 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('QuestionService', function QuestionService(estMineur) {
+  .factory('QuestionService', function QuestionService(ProfileService) {
 
-    var estMasculin = function(formAnswers) {
-      if (!formAnswers || !formAnswers.identites || !formAnswers.identites.beneficiaire) {
-        return true;
-      }
+    var loadAshCompile = function(str, profile) {
 
-      return formAnswers.identites.beneficiaire.sexe === 'masculin';
-    };
-
-    var estRepresentant = function(formAnswers) {
-      if (!formAnswers || !formAnswers.identites || !formAnswers.identites.beneficiaire) {
-        return false;
-      }
-
-      return estMineur(formAnswers.identites.beneficiaire.dateNaissance);
-    };
-
-    var loadAshCompile = function(str, formAnswers) {
-      function getName() {
-        try {
-          return formAnswers.identites.beneficiaire.prenom;
-        } catch (e) {
-          return 'le bénéficiaire de la demande';
-        }
-      }
-
-      function getPronounTonic(formAnswers) {
-        return estMasculin(formAnswers) ? 'lui' : 'elle';
-      }
-
-      function getPronoun() {
-        return estMasculin(formAnswers) ? 'il' : 'elle';
-      }
-
-      function getFeminin() {
-        return estMasculin(formAnswers) ? '' : 'e';
-      }
+      var estMasculin = ProfileService.estMasculin(profile);
+      var pronoun = estMasculin ? 'il' : 'elle';
+      var pronounTonic = estMasculin ? 'lui' : 'elle';
+      var fem = estMasculin ? '' : 'e';
+      var name = ProfileService.getPrenom(profile);
 
       var compiled = _.template(str);
-      var name = getName(formAnswers);
-      var pronoun = getPronoun(formAnswers);
-      var pronounTonic = getPronounTonic(formAnswers);
-      var fem = getFeminin(formAnswers);
-
       return compiled({
         name: name,
         pronoun: pronoun,
@@ -54,33 +20,33 @@ angular.module('impactApp')
       });
     };
 
-    var compileLabel = function(answer, formAnswers) {
-      if (estRepresentant(formAnswers)) {
+    var compileLabel = function(answer, profile) {
+      if (ProfileService.estMineur(profile)) {
         if (answer.labelRep) {
-          return loadAshCompile(answer.labelRep, formAnswers);
+          return loadAshCompile(answer.labelRep, profile);
         }
 
-        if (estMasculin(formAnswers) && answer.labelRepMasc) {
-          return loadAshCompile(answer.labelRepMasc, formAnswers);
+        if (ProfileService.estMasculin(profile) && answer.labelRepMasc) {
+          return loadAshCompile(answer.labelRepMasc, profile);
         } else if (answer.labelRepFem) {
-          return loadAshCompile(answer.labelRepFem, formAnswers);
+          return loadAshCompile(answer.labelRepFem, profile);
         }
       }
 
       return answer.label;
     };
 
-    var compileTitle = function(question, formAnswers) {
-      if (estRepresentant(formAnswers) && question.titleRep) {
-        return loadAshCompile(question.titleRep, formAnswers);
+    var compileTitle = function(question, profile) {
+      if (ProfileService.estMineur(profile) && question.titleRep) {
+        return loadAshCompile(question.titleRep, profile);
       }
 
       return question.titleDefault;
     };
 
-    var compilePlaceholder = function(question, formAnswers) {
-      if (estRepresentant(formAnswers) && angular.isDefined(question.placeholder)) {
-        return loadAshCompile(question.placeholder, formAnswers);
+    var compilePlaceholder = function(question, profile) {
+      if (ProfileService.estMineur(profile) && angular.isDefined(question.placeholder)) {
+        return loadAshCompile(question.placeholder, profile);
       }
 
       return question.placeholderDefault ? question.placeholderDefault : question.placeholder;
@@ -91,21 +57,21 @@ angular.module('impactApp')
     };
 
     return {
-      get: function(section, model, formAnswers) {
+      get: function(section, model, profile) {
         var question = section.questions[model];
         if (typeof question === 'undefined') {
           console.error('Question "' + model + '" not found in section "' + section.id + '"');
         }
 
-        var title = compileTitle(question, formAnswers);
+        var title = compileTitle(question, profile);
         question.title = capitaliseFirstLetter(title);
 
         angular.forEach(question.answers, function(answer) {
-          var label = compileLabel(answer, formAnswers);
+          var label = compileLabel(answer, profile);
           answer.label = capitaliseFirstLetter(label);
 
           if (answer.placeholder) {
-            var placeholder = compilePlaceholder(answer, formAnswers);
+            var placeholder = compilePlaceholder(answer, profile);
             answer.placeholder = capitaliseFirstLetter(placeholder);
           }
         });

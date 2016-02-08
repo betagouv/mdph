@@ -14,8 +14,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/cv.html',
       controller: 'CvQuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'cv', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'cv', profile);
         },
 
         nextStep: function($state) {
@@ -30,8 +30,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'qualification', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'qualification', profile);
         },
 
         nextStep: function($state) {
@@ -46,8 +46,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'derniereClasse', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'derniereClasse', profile);
         },
 
         nextStep: function($state) {
@@ -62,8 +62,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'formations', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'formations', profile);
         },
 
         nextStep: function($state) {
@@ -78,8 +78,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/diplomes.html',
       controller: 'DiplomesQuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'diplomes', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'diplomes', profile);
         },
 
         nextStep: function($state) {

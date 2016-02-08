@@ -15,8 +15,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'nomPoste', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'nomPoste', profile);
           },
 
           nextStep: function($state) {
@@ -31,8 +31,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'temps', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'temps', profile);
           },
 
           nextStep: function($state) {
@@ -47,8 +47,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'adapte', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'adapte', profile);
           },
 
           nextStep: function($state) {
@@ -63,8 +63,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'difficultes', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'difficultes', profile);
           },
 
           nextStep: function($state) {
@@ -79,8 +79,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'conservation', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'conservation', profile);
           },
 
           nextStep: function($state) {
@@ -95,8 +95,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'amenagement', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'amenagement', profile);
           },
 
           nextStep: function($state) {
@@ -111,8 +111,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'arretDeTravail', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'arretDeTravail', profile);
           },
 
           nextStep: function($state, sectionModel, question) {
@@ -131,8 +131,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'arretDeTravailRaison', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'arretDeTravailRaison', profile);
           },
 
           nextStep: function($state) {
@@ -147,8 +147,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'profesionnelSocial', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'profesionnelSocial', profile);
           },
 
           nextStep: function($state) {
@@ -163,8 +163,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'medecinTravail', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'medecinTravail', profile);
           },
 
           nextStep: function($state) {

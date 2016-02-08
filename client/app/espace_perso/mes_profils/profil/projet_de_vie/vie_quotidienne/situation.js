@@ -17,8 +17,8 @@ angular.module('impactApp')
           hideBack: true
         },
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'famille', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'famille', profile);
           },
 
           nextStep: function($state) {
@@ -33,8 +33,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'logement', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'logement', profile);
           },
 
           nextStep: function($state) {
@@ -49,8 +49,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'aideActuelle', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aideActuelle', profile);
           },
 
           nextStep: function($state, sectionModel, question) {
@@ -76,8 +76,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'aideFinancierePresent', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aideFinancierePresent', profile);
           },
 
           nextStep: function(ProfileService, profile, $state, sectionModel) {
@@ -103,8 +103,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'aideFinancierePasse', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aideFinancierePasse', profile);
           },
 
           nextStep: function($state, sectionModel) {
@@ -126,8 +126,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'aideTechnique', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aideTechnique', profile);
           },
 
           nextStep: function($state, sectionModel) {
@@ -147,8 +147,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'aidePersonne', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aidePersonne', profile);
           },
 
           nextStep: function($state) {
@@ -163,8 +163,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'pensionInvalidite', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'pensionInvalidite', profile);
           },
 
           nextStep: function($state) {
@@ -179,8 +179,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textinput.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'ipp', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'ipp', profile);
           },
 
           nextStep: function(ProfileService, profile, $state) {
@@ -199,8 +199,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'retraite', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'retraite', profile);
           },
 
           nextStep: function($state, sectionModel, question) {
@@ -219,8 +219,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'aidesRetraite', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aidesRetraite', profile);
           },
 
           nextStep: function($state) {
@@ -235,8 +235,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/frais_handicap.html',
         controller: 'FraisQuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'fraisHandicap', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'fraisHandicap', profile);
           },
 
           nextStep: function($state) {
