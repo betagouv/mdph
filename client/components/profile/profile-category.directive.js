@@ -13,11 +13,22 @@ angular.module('impactApp')
 
         function computeCompletion(section) {
           if (!section) {
-            return 0;
+            return 'empty';
           } else if (section.__completion) {
-            return 100;
+            return 'complete';
           } else {
-            return 50;
+            return 'half';
+          }
+        }
+
+        function getActionLabel(completion) {
+          switch (completion) {
+            case 'empty':
+              return 'Commencer';
+            case 'complete':
+              return 'Modifier';
+            case 'half':
+              return 'reprendre';
           }
         }
 
@@ -26,16 +37,21 @@ angular.module('impactApp')
         scope.content = scope.options.content;
         scope.icon = scope.options.icon;
         scope.open = false;
-        scope.action = scope.options.action;
+
         scope.updatedAt = scope.options.updatedAt;
-        scope.profileClass = scope.options.class;
+        scope.mandatory = scope.options.mandatory;
 
         var model = scope.options.model;
         var getModelProperty = _.property(model);
         var sectionModel = getModelProperty(scope.profile);
 
-        scope.completion = sectionModel && computeCompletion(sectionModel);
+        scope.completion = computeCompletion(sectionModel);
         scope.updatedAt = sectionModel && sectionModel.updatedAt;
+
+        scope.action = scope.options.action;
+        scope.action.label = getActionLabel(scope.completion);
+
+        scope.profileClass = (scope.options.mandatory && 'mandatory') + ' ' + scope.completion;
 
         scope.toggle = function() {
           scope.open = !scope.open;

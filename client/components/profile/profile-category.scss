@@ -5,17 +5,54 @@
   background-color: $lighter-grey;
   color: black;
   border: 1px solid $light-grey;
+
+  &:hover {
+    .profile-category-icon {
+      color: #666666;
+    }
+  }
+
+  &:hover.mandatory {
+    .profile-category-icon {
+      color: white;
+    }
+  }
+
+  &.mandatory {
+    .profile-category-icon {
+      background-color: lighten($bg-blue, 15%);
+      color: $bg-blue;
+    }
+  }
+
+  &.complete > .profile-category-icon {
+    background-color: darkcyan;
+    color: darken(darkcyan, 10%);
+  }
 }
 
 .profile-category-icon {
   padding: 10px;
-  background-color: lighten($bg-blue, 15%);
-  color: $bg-blue;
+  background-color: darken(whitesmoke, 5%);
+  color: darken(whitesmoke, 15%);
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 7rem;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: column;
   width: 30%;
+
+  .icon {
+    font-size: 7rem;
+  }
+
+  .progress-desc {
+    text-align: center;
+
+    i.fa {
+      margin-right: 0;
+    }
+  }
 }
 
 .profile-category-content {
