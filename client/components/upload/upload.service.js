@@ -4,6 +4,10 @@ angular.module('impactApp')
   .factory('UploadService', function UploadService(Upload) {
     return {
       upload: function(request, file, documentType) {
+        if (!file) {
+          return;
+        }
+
         var model;
 
         if (documentType.mandatory) {
@@ -36,17 +40,21 @@ angular.module('impactApp')
         Upload.upload({
           url: 'api/requests/' + request.shortId + '/document',
           method: 'POST',
-          file: file,
           data: {
+            file: file,
             type: documentType.id
           }
-        })
-        .progress(function(evt) {
-          uploadedFile.progress = parseInt(100.0 * evt.loaded / evt.total);
-        })
-        .success(function(data) {
+        }).then(function(resp) {
           model[documentType.id].documentList.pop();
-          model[documentType.id].documentList.push(data);
+          model[documentType.id].documentList.push(resp.data);
+        },
+
+        function(resp) {
+          console.log('Error status: ' + resp.status);
+        },
+
+        function(evt) {
+          uploadedFile.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
       }
     };

@@ -312,7 +312,7 @@ function processDocument(file, fileData, done) {
 }
 
 exports.saveFile = function(req, res, next) {
-  processDocument(req.file, JSON.parse(req.body.data), function(err, document) {
+  processDocument(req.file, req.body, function(err, document) {
     if (err) {
       return res.sendStatus(err.status);
     }
@@ -332,7 +332,7 @@ exports.saveFile = function(req, res, next) {
 };
 
 exports.saveFilePartenaire = function(req, res) {
-  processDocument(req.file, JSON.parse(req.body.data), function(err, document) {
+  processDocument(req.file, req.body, function(err, document) {
     if (err) {
       return res.sendStatus(err.status);
     }
