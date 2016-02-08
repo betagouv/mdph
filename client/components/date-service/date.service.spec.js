@@ -12,25 +12,25 @@ describe('Service: estAdulte', function() {
   }));
 
   it('should return true because the date is more than 20 years ago', function() {
-    var dateNaissance = new Date(1983, 11, 7);
+    var dateNaissance = new Date(1973, 11, 7);
     expect(estAdulte(dateNaissance)).toBe(true);
   });
 
-  it('should return true because the date is more than 20 years ago', function() {
+  it('should return true because the date is more than 18 years ago', function() {
     var date = new Date();
-    date.setFullYear(date.getFullYear() - 20);
+    date.setFullYear(date.getFullYear() - 18);
     var dateNaissance = date;
     expect(estAdulte(dateNaissance)).toBe(true);
   });
 
-  it('should return false because the date is less than 20 years ago', function() {
+  it('should return false because the date is less than 18 years ago', function() {
     var date = new Date();
-    date.setFullYear(date.getFullYear() - 19);
+    date.setFullYear(date.getFullYear() - 17);
     var dateNaissance = date;
     expect(estAdulte(dateNaissance)).toBe(false);
   });
 
-  it('should return false because the date is less than 20 years ago', function() {
+  it('should return false because the date is less than 18 years ago', function() {
     var dateNaissance = new Date(2014, 1, 1);
     expect(estAdulte(dateNaissance)).toBe(false);
   });
