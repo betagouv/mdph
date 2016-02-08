@@ -25,6 +25,16 @@
     padding: 10px 20px;
     font-size: 2em;
     font-weight: 500;
+
+    &.inverted {
+      color: $primary;
+      background-color: white;
+
+      &:focus, &:hover {
+        background: whitesmoke;
+        color: $lighter-blue;
+      }
+    }
   }
 
   h1 {
