@@ -30,12 +30,18 @@
 
   .list-group-item-nouvelle-demande {
     background-color: $flat-ui-blue;
+    display: table;
 
     h3 {
       color: white;
     }
 
+    span {
+      display: table-cell;
+    }
+
     i.fa {
+      display: table-cell;
       color: white;
     }
 
