@@ -18,8 +18,8 @@ angular.module('impactApp')
         hideBack: true
       },
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'conditionTravail', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'conditionTravail', profile);
         },
 
         nextStep: function($state, sectionModel) {
@@ -38,8 +38,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'milieuTravail', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'milieuTravail', profile);
         },
 
         nextStep: function($state, sectionModel) {
@@ -58,8 +58,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'typeTravail', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'typeTravail', profile);
         },
 
         nextStep: function($state, sectionModel) {
@@ -91,8 +91,8 @@ angular.module('impactApp')
       },
 
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'employeur', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'employeur', profile);
         },
 
         nextStep: function($state) {
@@ -107,8 +107,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'prestations', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'prestations', profile);
         },
 
         nextStep: function($state) {
@@ -123,8 +123,8 @@ angular.module('impactApp')
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, sectionModel) {
-          return QuestionService.get(section, 'rqth', sectionModel);
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'rqth', profile);
         },
 
         nextStep: function($state) {

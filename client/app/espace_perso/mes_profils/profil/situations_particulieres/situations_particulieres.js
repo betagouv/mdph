@@ -50,8 +50,8 @@ angular.module('impactApp')
           isLastQuestion: true
         },
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'urgences', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'urgences', profile);
           },
 
           nextStep: function(saveSection) {

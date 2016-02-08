@@ -14,8 +14,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'passe', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'passe', profile);
           },
 
           nextStep: function($state) {
@@ -30,8 +30,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'situationSansEmploi', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'situationSansEmploi', profile);
           },
 
           nextStep: function($state, sectionModel) {
@@ -50,8 +50,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'situationStage', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'situationStage', profile);
           },
 
           nextStep: function($state) {
@@ -66,8 +66,8 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel) {
-            return QuestionService.get(section, 'situationAccompagnement', sectionModel);
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'situationAccompagnement', profile);
           },
 
           nextStep: function($state) {
