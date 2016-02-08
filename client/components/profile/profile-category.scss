@@ -12,7 +12,7 @@
     }
   }
 
-  &:hover.mandatory {
+  &:hover.mandatory, &:hover.complete {
     .profile-category-icon {
       color: white;
     }
