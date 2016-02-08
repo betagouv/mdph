@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function($scope, $http, $modal, Upload, $state, Partenaire, documentTypes, request, mdph, partenaire) {
+  .controller('PieceJointeCtrl', function($scope, $modal, Upload, $state, documentTypes, request, partenaire) {
     $scope.request = request;
     $scope.partenaire = partenaire;
-    $scope.mdph = mdph;
     $scope.documentTypes = documentTypes;
     $scope.selectedType = documentTypes[0];
 
@@ -13,12 +12,12 @@ angular.module('impactApp')
         Upload.upload({
           url: 'api/requests/' + $scope.request.shortId + '/document-partenaire',
           method: 'POST',
-          file: $scope.files[0],
           data: {
+            file: $scope.files[0],
             partenaire: partenaire._id,
             type: $scope.selectedType.id
           }
-        }).success(function() {
+        }).then(function() {
           $modal.open({
             templateUrl: 'app/partenaire/pj/confirmationModal.html',
             controller: function($scope, $modalInstance, type) {
