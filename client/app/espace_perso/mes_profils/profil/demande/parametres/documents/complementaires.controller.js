@@ -14,7 +14,7 @@ angular.module('impactApp')
 
     $scope.chooseType = function() {
       var modalInstance = $modal.open({
-        templateUrl: 'app/demande/steps/documents/modal_type.html',
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/parametres/documents/modal_type.html',
         controller: 'ChooseTypeModalInstanceCtrl',
         resolve: {
           documentTypes: function() {
