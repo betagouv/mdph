@@ -175,6 +175,10 @@ exports.answersToHtml = function(request, path, output, next) {
       callback(null, request.mdph);
     },
 
+    request: function(callback) {
+      callback(null, request);
+    },
+
     // quitus: function(callback) {
     //   if (request.mdph && request.mdph === '14') {
     //     callback(null, Prestation.simulate(request.formAnswers));
@@ -201,7 +205,7 @@ exports.answersToHtml = function(request, path, output, next) {
 
   },
   function(err, results) {
-    if (err) { next(err); }
+    if (err) { return next(err); }
 
     try {
       var html = recapitulatif(results);
