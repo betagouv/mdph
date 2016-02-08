@@ -7,21 +7,24 @@ exports.setup = function(User, config) {
       passwordField: 'password' // this is the virtual field on the model
     },
     function(email, password, done) {
-      User.findOne({
-        email: email.toLowerCase()
-      }, function(err, user) {
-        if (err) return done(err);
+      User
+        .findOne({
+          email: email.toLowerCase()
+        })
+        .populate('mdph zipcode')
+        .exec(function(err, user) {
+          if (err) return done(err);
 
-        if (!user) {
-          return done(null, false, { message: 'Email ou mot de passe incorrect.' });
-        }
+          if (!user) {
+            return done(null, false, { message: 'Email ou mot de passe incorrect.' });
+          }
 
-        if (!user.authenticate(password)) {
-          return done(null, false, { message: 'Email ou mot de passe incorrect.' });
-        }
+          if (!user.authenticate(password)) {
+            return done(null, false, { message: 'Email ou mot de passe incorrect.' });
+          }
 
-        return done(null, user);
-      });
+          return done(null, user);
+        });
     }
 
   ));
