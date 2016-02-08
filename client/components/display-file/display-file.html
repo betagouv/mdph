@@ -36,12 +36,12 @@
 
   <div class="file-actions" ng-if="!hideActions">
     <div class="validation-actions" ng-if="!showValidationStatus">
-      <button class="fab refuse" ng-click="setValid(false)" title="Refuser"><i class="fa fa-thumbs-down"></i></button>
-      <button class="fab valid" ng-click="setValid(true)" title="Valider"><i class="fa fa-thumbs-up"></i></button>
+      <button type="button" class="fab refuse" ng-click="setValid(false)" title="Refuser"><i class="fa fa-thumbs-down"></i></button>
+      <button type="button" class="fab valid" ng-click="setValid(true)" title="Valider"><i class="fa fa-thumbs-up"></i></button>
     </div>
     <div class="validation-actions" ng-if="showValidationStatus">
-      <button class="fab invert-refuse" ng-click="setValid(false)" ng-class="{muted: file.validation}"><i class="fa fa-thumbs-down"></i></button>
-      <button class="fab invert-valid" ng-click="setValid(true)" ng-class="{muted: !file.validation}"><i class="fa fa-thumbs-up"></i></button>
+      <button type="button" class="fab invert-refuse" ng-click="setValid(false)" ng-class="{muted: file.validation}"><i class="fa fa-thumbs-down"></i></button>
+      <button type="button" class="fab invert-valid" ng-click="setValid(true)" ng-class="{muted: !file.validation}"><i class="fa fa-thumbs-up"></i></button>
     </div>
   </div>
 
