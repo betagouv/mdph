@@ -14,13 +14,13 @@
   <div class="form-group" ng-if="request.mdph">
     <fieldset>
       <legend class="control-label">Avez-vous déjà un dossier dans une MDPH ?</legend>
-      <input type="radio" name="typeDossier" id="renouvellement" ng-model="request.estRenouvellement" value="true">
+      <input type="radio" name="typeDossier" id="renouvellement" ng-model="request.estRenouvellement" ng-value="true">
       <label class="radio-inline" for="renouvellement">Oui</label>
-      <input type="radio" name="typeDossier" id="nouvelle_demande" ng-model="request.estRenouvellement" value="false" ng-click="request.old_mdph = ''">
+      <input type="radio" name="typeDossier" id="nouvelle_demande" ng-model="request.estRenouvellement" ng-value="false" ng-click="request.old_mdph = ''">
       <label class="radio-inline" for="nouvelle_demande">Non</label>
     </fieldset>
   </div>
-  <div class="form-group" ng-if="request.estRenouvellement === 'true'">
+  <div class="form-group" ng-if="request.estRenouvellement === true">
     <fieldset>
       <legend class="control-label" id="request-mdph">Dans quelle MDPH se trouve ce dossier ?</legend>
       <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in enabledMdphs"
