@@ -61,6 +61,11 @@ angular.module('impactApp').config(function($stateProvider) {
           $scope.enabledMdphs = enabledMdphs;
           $scope.request = request;
           $scope.selectedMdph = _.find(mdphs, {code_departement: request.mdph});
+
+          $scope.resetOldMdph = function() {
+            request.old_mdph = null;
+            request.numeroDossier = null;
+          };
         },
 
         resolve: {

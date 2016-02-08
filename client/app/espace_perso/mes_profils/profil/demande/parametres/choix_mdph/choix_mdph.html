@@ -4,7 +4,7 @@
   <div class="form-group required" ng-class="{'has-error': !request.mdph && infoForm.$submitted}">
     <fieldset>
       <legend class="control-label" id="request-mdph">Sélectionnez la MDPH destinaire de votre demande</legend>
-      <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in enabledMdphs" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.mdph" required></select>
+      <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in enabledMdphs" ng-change="resetOldMdph()" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.mdph" required></select>
     </fieldset>
     <div ng-if="!request.mdph && infoForm.$submitted">
       <p class="help-block">Ce champ est obligatoire.</p>
@@ -16,7 +16,7 @@
       <legend class="control-label">Avez-vous déjà un dossier dans une MDPH ?</legend>
       <input type="radio" name="typeDossier" id="renouvellement" ng-model="request.estRenouvellement" ng-value="true">
       <label class="radio-inline" for="renouvellement">Oui</label>
-      <input type="radio" name="typeDossier" id="nouvelle_demande" ng-model="request.estRenouvellement" ng-value="false" ng-click="request.old_mdph = ''">
+      <input type="radio" name="typeDossier" id="nouvelle_demande" ng-model="request.estRenouvellement" ng-value="false" ng-change="resetOldMdph()">
       <label class="radio-inline" for="nouvelle_demande">Non</label>
     </fieldset>
   </div>
@@ -24,7 +24,7 @@
     <fieldset>
       <legend class="control-label" id="request-mdph">Dans quelle MDPH se trouve ce dossier ?</legend>
       <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in enabledMdphs"
-              ng-init="request.old_mdph = request.mdph" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.old_mdph" required></select>
+              ng-init="request.old_mdph = request.mdph" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.old_mdph" ng-change="request.numeroDossier = null" required></select>
     </fieldset>
   </div>
   <div class="form-group" ng-if="request.old_mdph && request.mdph === request.old_mdph">
