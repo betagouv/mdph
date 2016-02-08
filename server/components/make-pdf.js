@@ -43,6 +43,10 @@ exports.make = function(request, user, recapitulatifHtml, done) {
     pdf.create(recapitulatifHtml, pdfOptions).toFile(requestTempPdfPath, function(err, res) {
       if (err) return done(err);
 
+      if (user.role === 'user') {
+        return done(null, requestTempPdfPath);
+      }
+
       printDebug('make: Transforming');
       async.waterfall([
 
