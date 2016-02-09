@@ -1,16 +1,11 @@
 $icon-font-path: "/bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $fa-font-path: "/bower_components/font-awesome/fonts";
 
-@import 'bootstrap-sass/assets/stylesheets/bootstrap';
-@import 'font-awesome/scss/font-awesome';
-
-$primary: #3071a9;
-$primary-hover: #333E54;
-
 $dark-blue: #222939;
 $light-blue: #333E54;
 $lighter-blue: #3C4963;
 $flat-ui-blue:  #3498DB;
+
 
 $orange: #FF8100;
 $lighter-red: #FF636C;
@@ -29,6 +24,13 @@ $green: #009513;
 $bg-blue: lighten($lighter-blue, 10%);
 $border-blue: darken($lighter-blue, 5%);
 $disabled-blue: lighten($light-blue, 30%);
+
+$primary: $lighter-blue;
+$primary-hover: $light-blue;
+$brand-primary: $bg-blue;
+
+@import 'bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'font-awesome/scss/font-awesome';
 
 /**
  * App-wide Styles

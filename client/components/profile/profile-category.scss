@@ -6,39 +6,24 @@
   color: black;
   border: 1px solid $light-grey;
 
-  &:hover {
-    .profile-category-icon {
-      color: #666666;
-    }
-  }
-
-  &:hover.mandatory, &:hover.complete {
-    .profile-category-icon {
-      color: white;
-    }
-  }
-
-  &.mandatory {
-    .profile-category-icon {
-      background-color: lighten($bg-blue, 15%);
-      color: $bg-blue;
-    }
-  }
-
   &.complete > .profile-category-icon {
     background-color: darkcyan;
-    color: darken(darkcyan, 10%);
+    color: white;
+
+    .progress-desc {
+      border-bottom: 1px solid darken(darkcyan, 3%);
+    }
   }
 }
 
 .profile-category-icon {
   padding: 10px;
   background-color: darken(whitesmoke, 5%);
-  color: darken(whitesmoke, 15%);
+  color: #666666;;
   display: flex;
   align-items: center;
   align-content: space-around;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: column;
   width: 30%;
   overflow: hidden;
@@ -49,6 +34,8 @@
 
   .progress-desc {
     text-align: center;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #CACACA;
 
     i.fa {
       margin-right: 0;

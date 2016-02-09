@@ -2,9 +2,8 @@
   <div class="profile-category-icon">
     <i class="icon fa" ng-class="icon"></i>
 
-    <div class="progress-desc" ng-switch="completion">
-      <span ng-switch-when="empty"><i class="fa fa-circle-o"></i>&nbsp;Non renseigné</span>
-      <span ng-switch-when="half"><i class="fa fa-circle"></i>&nbsp;En cours</span>
+    <div class="progress-desc" ng-if="mandatory || completion === 'complete'" ng-switch="completion">
+      <span ng-switch-when="empty">À renseigner</span>
       <span ng-switch-when="complete"><i class="fa fa-check-circle"></i>&nbsp;Complet</span>
     </div>
   </div>
@@ -12,7 +11,7 @@
   <div class="profile-category-content">
     <div class="profile-category-header">
       <span class="profile-category-header-text">
-        <h2 class="profile-category-header-text-title">{{ ::title }} <span ng-if="mandatory">*</span></h2>
+        <h2 class="profile-category-header-text-title">{{ ::title }}</h2>
       </span>
     </div>
     <div class="profile-category-content-text">
