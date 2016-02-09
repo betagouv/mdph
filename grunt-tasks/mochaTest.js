@@ -1,6 +1,7 @@
 module.exports = {
   options: {
-    reporter: 'spec'
+    reporter: 'spec',
+    clearRequireCache: true
   },
   src: ['server/**/*.spec.js']
 };

@@ -268,6 +268,13 @@ exports.updateFromUser = function(req, res, next) {
 };
 
 /**
+ * Update request
+ */
+exports.updateRequest = function(req, res, next) {
+
+};
+
+/**
  * Resend mail notification
  */
 exports.resendMail = function(req, res, next) {
