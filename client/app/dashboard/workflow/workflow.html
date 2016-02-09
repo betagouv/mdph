@@ -1,0 +1,26 @@
+<div class="container-dashboard">
+  <div class="row">
+    <div class="col-sm-2 menu-dashboard">
+      <h2>Banettes</h2>
+      <ul>
+        <li ng-repeat="status in requestCountByStatus">
+          <a ui-sref-active="active" ui-sref="banette.sref">
+            {{status.label}}
+            <span
+              ng-class="{
+                'label-danger': status.count >= 30,
+                'label-warning': status.count >= 10 && status.count < 30,
+                'label-success': status.count < 10}"
+              class="label pull-right">
+              {{status.count}}
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-10">
+      <div ui-view class="main-dashboard"></div>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,7 @@ angular.module('impactApp')
           },
 
           requestCountByStatus: function(MdphResource, currentMdph, currentUser) {
-            return MdphResource.queryUserRequestsCount({zipcode: currentMdph.zipcode, controllerid: currentUser._id}).$promise;
+            return MdphResource.queryTotalRequestsCount({zipcode: currentMdph.zipcode, controllerid: currentUser._id}).$promise;
           }
         },
         authenticate: true

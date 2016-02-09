@@ -63,15 +63,6 @@ angular.module('impactApp')
         }
       },
 
-      queryUserRequestsCount: {
-        method: 'GET',
-        isArray: true,
-        params: {
-          controller:'requests',
-          subcontroller: 'byStatus'
-        }
-      },
-
       queryDocumentCategories: {
         method: 'GET',
         isArray: true,
