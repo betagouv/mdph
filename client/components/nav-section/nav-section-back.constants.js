@@ -4,12 +4,6 @@
 
 angular.module('impactApp').constant('SectionBackConstants', [
   {
-    sref: 'dashboard.requests.user({userId: \'me\'})',
-    include: 'dashboard.requests.**',
-    fa: 'fa-folder',
-    label: 'Demandes en cours'
-  },
-  {
     sref: 'dashboard.workflow',
     include: 'dashboard.workflow.**',
     fa: 'fa-inbox',

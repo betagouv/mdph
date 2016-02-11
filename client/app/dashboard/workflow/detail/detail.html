@@ -16,27 +16,18 @@
 
     <div class="actions">
       <div class="banette">
-        <a ng-if="request.evaluator && request.evaluator.name" ui-sref="dashboard.requests.user({userId: currentUser._id, banette: request.status})">
-          <i class="fa fa-user"></i> <span>{{request.evaluator.name}}</span>
-        </a>
-        <div class="text-muted" ng-if="!request.evaluator || !request.evaluator.name">
-          <i class="fa fa-user"></i> <span>Non assignée</span>
-        </div>
-        <a ui-sref="dashboard.requests.user({userId: currentUser._id, banette: request.status})">
+        <a ui-sref="dashboard.workflow.list({status: request.status})">
           <i class="fa fa-folder-open"></i> <span>{{request.status | requestStatus}}</span>
         </a>
       </div>
 
       <div class="buttons" role="group">
-        <button class="btn btn-success" ng-if="request.evaluator._id !== currentUser._id" ng-click="assigner()">
-          <i class="fa fa-download"></i> Assigner
+        <button class="btn btn-default" ng-click="archive(request)">
+          <i class="fa fa-archive"></i> Archiver
         </button>
         <button class="btn btn-danger" ng-click="supprimer(request)">
           <i class="fa fa-remove"></i> Supprimer
         </button>
-        <!-- <button class="btn btn-default" ng-click="archive(request)">
-          <i class="fa fa-archive"></i> Archiver
-        </button> -->
       </div>
     </div>
   </div>

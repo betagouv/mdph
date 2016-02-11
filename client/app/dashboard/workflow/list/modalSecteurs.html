@@ -4,7 +4,7 @@
 <div class="modal-body">
   <div class="radio" ng-repeat="secteur in secteurs">
     <label>
-      <input type="radio" name="secteur" value="{{secteur._id}}" ng-model="$parent.secteurId">
+      <input type="radio" name="secteur" ng-value="secteur" ng-model="$parent.secteurId">
       {{secteur.name}}
     </label>
   </div>

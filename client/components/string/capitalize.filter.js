@@ -3,6 +3,8 @@
 angular.module('impactApp')
   .filter('capitalize', function() {
     return function(input) {
-      return input.substring(0, 1).toUpperCase() + input.substring(1);
+      return input.toLowerCase().replace(/\b\w/g, function(word) {
+        return word.toUpperCase();
+      });
     };
   });

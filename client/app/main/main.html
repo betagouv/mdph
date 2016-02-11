@@ -19,7 +19,7 @@
       <a class="hero-button" ng-if="user" ui-sref="espace_perso.mes_profils">
         Voir vos profils
       </a>
-      <a class="hero-button inverted" ng-if="user && user.mdph" ui-sref="dashboard.requests.user({zipcode: user.mdph.zipcode, userId: 'me'})" title="Tableau de bord agent">
+      <a class="hero-button inverted" ng-if="user && user.mdph" ui-sref="dashboard.workflow({zipcode: user.mdph.zipcode})" title="Tableau de bord agent">
         Tableau de bord
       </a>
     </div>

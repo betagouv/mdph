@@ -29,6 +29,35 @@ angular.module('impactApp')
     };
 
     return {
-      getCompletion: getCompletion
+      getCompletion: getCompletion,
+      groupByAge: function(requests) {
+        if (typeof requests === 'undefined' || requests.length === 0) {
+          return null;
+        }
+
+        var currentMoment = moment();
+        var groupedByAge = {
+          new: [],
+          standard: [],
+          old: []
+        };
+
+        _.reduce(requests, function(result, request) {
+          var submissionMoment = moment(request.submittedAt);
+          var deltaMonths = currentMoment.diff(submissionMoment, 'months');
+
+          if (deltaMonths === 1) {
+            result.new.push(request);
+          } else if (deltaMonths > 1 && deltaMonths < 3) {
+            result.standard.push(request);
+          } else {
+            result.old.push(request);
+          }
+
+          return result;
+        }, groupedByAge);
+
+        return groupedByAge;
+      }
     };
   });

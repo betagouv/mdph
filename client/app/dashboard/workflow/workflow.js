@@ -7,38 +7,23 @@ angular.module('impactApp')
         url: '/workflow',
         templateUrl: 'app/dashboard/workflow/workflow.html',
         controller: 'WorkflowCtrl',
+        redirectTo: {
+          url: 'dashboard.workflow.list',
+          params: {
+            status: 'emise'
+          }
+        },
         resolve: {
-          requestCountByStatus: function(MdphResource, currentMdph, allStatus) {
+          requestCountByStatus: function(MdphResource, currentMdph) {
             return MdphResource.queryTotalRequestsCount({zipcode: currentMdph.zipcode}).$promise.then(function(result) {
-              if (result) {
-                var resultByStatusId = _.indexBy(result, '_id');
-                allStatus.forEach(function(status) {
-                  status.count = resultByStatusId[status.id] && resultByStatusId[status.id].count;
-                });
-              }
-
-              return allStatus;
+              return _.indexBy(result, '_id');
             });
           },
 
-          allStatus: function() {
-            // TODO: extract as a constant ?
-            return [{
-              id: 'emise',
-              label: 'Émise'
-            },
-            {
-              id: 'enregistree',
-              label: 'Enregistrée'
-            },
-            {
-              id: 'en_attente_usager',
-              label: 'En attente'
-            },
-            {
-              id: 'archive',
-              label: 'Archives'
-            }];
+          visibleBanettes: function(banettes) {
+            return _.filter(banettes, function(banette) {
+              return banette.id !== 'hidden';
+            });
           }
         },
         authenticate: true

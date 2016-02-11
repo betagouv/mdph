@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
-      .state('dashboard.requests.detail.evaluation', {
+      .state('dashboard.workflow.list.detail.evaluation', {
         url: '/evaluation',
         templateUrl: 'app/dashboard/requests/detail/evaluation/evaluation.html',
         controller: 'RequestEvaluationCtrl',
@@ -24,7 +24,7 @@ angular.module('impactApp')
         },
         authenticate: true
       })
-      .state('dashboard.requests.detail.evaluation.section', {
+      .state('dashboard.workflow.list.detail.evaluation.section', {
         url: '/:sectionId',
         templateUrl: 'app/dashboard/requests/detail/evaluation/section/section.html',
         controller: 'RequestSectionCtrl',

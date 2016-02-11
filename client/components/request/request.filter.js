@@ -2,14 +2,13 @@
 
 angular.module('impactApp')
   .filter('requestStatus', function(banettes) {
-    var bannetteById = _.indexBy(banettes, 'id');
-
+    var flatBannettes = _(banettes).pluck('statuses').flatten().indexBy('id').value();
     return function(input) {
       if (!input) {
         return 'Nouvelles';
       }
 
-      var banette = bannetteById[input];
+      var banette = flatBannettes[input];
       return banette ? banette.label : 'Label not found';
     };
   });
