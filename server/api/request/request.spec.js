@@ -40,6 +40,16 @@ describe('Request Model', function() {
     });
   });
 
+  describe('When the user is authenticated', function() {
+
+    it('should return 200', function(done) {
+      api()
+        .put('/api/requests/1234')
+        .expect(200, done);
+    });
+
+  });
+
   describe('When the user is not authenticated', function() {
 
     it('should return 401', function(done) {
