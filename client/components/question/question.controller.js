@@ -16,59 +16,34 @@ angular.module('impactApp')
     initQuestionScope($scope, question, nextStep, $state.current.data);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[$scope.question.model] = {
-        structures: [
-          {name: '', contact: false}
-        ]
-      };
+      $scope.sectionModel[question.model] = {structures: [{}]};
     }
 
     $scope.model = $scope.sectionModel[question.model];
 
-    $scope.removeStructure = function() {
-      var lastIndex = $scope.model.structures.length - 1;
-      $scope.model.structures.splice(lastIndex, 1);
+    $scope.addStructure = function() {
+      $scope.model.structures.push({});
     };
 
-    $scope.addStructure = function() {
-      $scope.model.structures.push(
-        {name: '', contact: false}
-      );
+    $scope.removeStructure = function() {
+      $scope.model.structures.pop();
     };
   })
   .controller('FraisQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[$scope.question.model] = {
-        listeFrais: [
-          {
-            nom: '',
-            frequence: '',
-            total: '',
-            rembourse: '',
-            detail: ''
-          }
-        ]
-      };
+      $scope.sectionModel[question.model] = {listeFrais: [{}]};
     }
 
     $scope.model = $scope.sectionModel[question.model];
+
     $scope.ajouterFrais = function() {
-      $scope.model.listeFrais.push(
-        {
-            nom: '',
-            frequence: '',
-            total: '',
-            rembourse: '',
-            detail: ''
-          }
-      );
+      $scope.model.listeFrais.push({});
     };
 
     $scope.retirerFrais = function() {
-      var lastIndex = $scope.model.listeFrais.length - 1;
-      $scope.model.listeFrais.splice(lastIndex, 1);
+      $scope.model.listeFrais.pop();
     };
   })
   .controller('DiplomesQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
@@ -76,31 +51,17 @@ angular.module('impactApp')
     $scope.opened = [];
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[$scope.question.model] = {
-        listeDiplomes: [
-          {
-            nom: '',
-            annee: '',
-            domaine: ''
-          }
-        ]
-      };
+      $scope.sectionModel[question.model] = {listeDiplomes: [{}]};
     }
 
     $scope.model = $scope.sectionModel[question.model];
+
     $scope.ajouterDiplome = function() {
-      $scope.model.listeDiplomes.push(
-        {
-          nom: '',
-          annee: '',
-          domaine: ''
-        }
-      );
+      $scope.model.listeDiplomes.push({});
     };
 
     $scope.retirerDiplome = function() {
-      var lastIndex = $scope.model.length - 1;
-      $scope.model.listeDiplomes.splice(lastIndex, 1);
+      $scope.model.listeDiplomes.pop();
     };
 
     $scope.open = function($event, idx) {
@@ -132,19 +93,19 @@ angular.module('impactApp')
       $scope.tempExp = experience;
       modification = true;
       $scope.ajoutEnCours = true;
-      index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
+      index = $scope.experiences.indexOf(experience);
 
     };
 
     $scope.validerExperience = function(form) {
       if (form.$valid) {
         if (modification) {
-          $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+          $scope.experiences.splice(index, 1);
           modification = false;
         }
 
-        var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
-        $scope.sectionModel[$scope.question.model].experiences[lastIndex + 1] = $scope.tempExp;
+        var lastIndex = _.findLastIndex($scope.experiences);
+        $scope.experiences[lastIndex + 1] = $scope.tempExp;
         $scope.tempExp = {};
         $scope.ajoutEnCours = false;
       } else {
@@ -153,8 +114,8 @@ angular.module('impactApp')
     };
 
     $scope.supprimerExperience = function(experience) {
-      index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
-      $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+      index = $scope.experiences.indexOf(experience);
+      $scope.experiences.splice(index, 1);
     };
 
     $scope.annuler = function() {
@@ -185,15 +146,12 @@ angular.module('impactApp')
   })
   .controller('EtablissementScolaireCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep, $state.current.data);
-    var currentModel = question.model;
-    if (angular.isUndefined($scope.sectionModel[currentModel])) {
-      $scope.sectionModel[currentModel] = {
-        valeur: false,
-        etablissements: []
-      };
+
+    if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[question.model] = {etablissements: [{}]};
     }
 
-    $scope.model = $scope.sectionModel[currentModel];
+    $scope.model = $scope.sectionModel[question.model];
 
     $scope.open = function($event) {
       $event.preventDefault();
@@ -202,14 +160,7 @@ angular.module('impactApp')
     };
 
     $scope.ajouterEtablissement = function() {
-      $scope.model.etablissements.push(
-        {
-          nom: '',
-          rue: '',
-          ville: '',
-          date: ''
-        }
-      );
+      $scope.model.etablissements.push({});
     };
 
     $scope.retirerEtablissement = function() {
