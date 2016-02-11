@@ -10,8 +10,8 @@
   {
     "id": "carteInvalidite",
     "type": "carte",
-    "label": "Carte d'invalidité",
-    "title": "Carte d'invalidité",
+    "label": "Carte d'invalidité ou de priorité",
+    "title": "Carte d'invalidité ou de priorité",
     "description": "La carte d'invalidité civile a pour but d'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports.",
     "link": "http://vosdroits.service-public.fr/particuliers/F2446.xhtml"
   },
