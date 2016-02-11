@@ -20,30 +20,28 @@
 </p>
 {{/if}}
 
+{{#if isSameAdress}}
 <p>
-  {{#if nomVoie}}
-    Adresse actuelle :
-    <address>
-      {{numero_voie}} {{extension}} {{typeVoie.label}} {{nomVoie}}
-      <br>
-      {{#if etageEscalierAppartement}}
-        {{etageEscalierAppartement}}
-      {{/if}}
-      {{#if immeubleBatimentResidence}}
-        {{immeubleBatimentResidence}}
-      {{/if}}
-      {{#if lieuDit}}
-        {{lieuDit}}
-      {{/if}}
-       <br>
-      {{code_postal}} {{capitalize localite}}
-    </address>
-  {{/if}}
-
-  {{#if adresse}}
-    Adresse actuelle : <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
-  {{/if}}
+  Même adresse que le bénéficiaire
 </p>
+{{/if}}
+
+{{#if nomVoie}}
+  <p>
+    Adresse actuelle :
+  </p>
+  <address>
+    {{nomVoie}}
+     <br>
+    {{code_postal}} {{capitalize localite}}
+  </address>
+{{/if}}
+
+{{#if adresse}}
+<p>
+  Adresse actuelle : <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+</p>
+{{/if}}
 
 {{#if email}}
 <p>
