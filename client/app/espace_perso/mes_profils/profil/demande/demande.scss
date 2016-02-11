@@ -12,6 +12,11 @@
     margin-bottom: 15px;
   }
 
+  h3.required:after {
+     content: " *";
+     color: red;
+  }
+
   .btn-primary {
     margin: 10px 0;
   }
