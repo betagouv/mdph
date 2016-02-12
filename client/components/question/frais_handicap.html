@@ -37,10 +37,10 @@
       </tr>
       <tr>
         <td colspan="5" class="text-right">
-          <button class="btn btn-default" ng-click="retirerFrais()" aria-label="Supprimer le dernier frais" ng-if="model.listeFrais.length > 1">
+          <button class="btn btn-default" ng-click="removeLine()" aria-label="Supprimer le dernier frais" ng-if="model.listeFrais.length > 1">
             <i class="fa fa-minus"></i> Supprimer le dernier frais
           </button>
-          <button class="btn btn-success" ng-click="ajouterFrais()" aria-label="Ajouter un frais">
+          <button class="btn btn-success" ng-click="addLine()" aria-label="Ajouter un frais">
             <i class="fa fa-plus"></i> Ajouter un frais
           </button>
         </td>

@@ -12,40 +12,6 @@ angular.module('impactApp')
   .controller('QuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep, $state.current.data);
   })
-  .controller('StructureQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep, $state.current.data);
-
-    if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[question.model] = {structures: [{}]};
-    }
-
-    $scope.model = $scope.sectionModel[question.model];
-
-    $scope.addStructure = function() {
-      $scope.model.structures.push({});
-    };
-
-    $scope.removeStructure = function() {
-      $scope.model.structures.pop();
-    };
-  })
-  .controller('FraisQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep);
-
-    if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[question.model] = {listeFrais: [{}]};
-    }
-
-    $scope.model = $scope.sectionModel[question.model];
-
-    $scope.ajouterFrais = function() {
-      $scope.model.listeFrais.push({});
-    };
-
-    $scope.retirerFrais = function() {
-      $scope.model.listeFrais.pop();
-    };
-  })
   .controller('DiplomesQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep);
     $scope.opened = [];
