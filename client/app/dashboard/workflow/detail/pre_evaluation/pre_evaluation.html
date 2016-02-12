@@ -1,17 +1,5 @@
 <div id="pre-evaluation">
   <section>
-    <h2>
-      Récapitulatif
-      <a
-        target="_blank"
-        href="api/requests/{{request.shortId}}/pdf/{{pdfName}}?access_token={{token}}"
-        download>
-          <span class="fa-stack fa">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-download fa-stack-1x fa-inverse"></i>
-          </span>
-      </a>
-    </h2>
     <div class="content">
       <div class="embed-responsive embed-responsive-16by9">
         <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>

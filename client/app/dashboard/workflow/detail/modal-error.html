@@ -1,0 +1,29 @@
+<div class="modal-header modal-header-danger">
+  <h1 class="modal-title">Envoyer un accusé de demande incomplète</h1>
+</div>
+<div class="modal-body">
+  <form action="">
+    <fieldset>
+      <legend ng-hide="hideTitle" class="control-label">Documents non valides</legend>
+      <ul class="answers">
+        <div class="answer" ng-repeat="category in request.documents.obligatoires">
+          <li ng-repeat="document in category.documentList">
+            <label for="{{document._id}}" class="btn-answer">
+              <input type="checkbox" id="{{document._id}}" ng-model="document.isInvalid" />
+              <span>{{document.originalname}}</span>
+              <span class="extra">{{category.documentType.label}}</span>
+            </label>
+          </li>
+        </div>
+      </ul>
+    </fieldset>
+    <div class="form-group">
+      <label class="control-label" for="request-comments">Ajouter un commentaire</label>
+      <textarea id="request-comments" ng-model="request.comments" class="form-control"></textarea>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="cancel()">Annuler</button>
+  <button class="btn btn-success" ng-click="save()">Envoyer l'accusé de réception</button>
+</div>

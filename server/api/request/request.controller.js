@@ -423,22 +423,22 @@ exports.deleteFile = function(req, res) {
 exports.updateFile = function(req, res) {
   var request = req.request;
   var file = request.documents.id(req.params.fileId);
-  var validation = req.body.validation;
+  var isInvalid = req.body.isInvalid;
 
   if (!file) {
     return res.sendStatus(404);
   }
 
-  if (typeof validation === 'undefined') {
+  if (typeof isInvalid === 'undefined') {
     return res.sendStatus(400);
   }
 
-  file.set('validation', validation);
+  file.set('isInvalid', isInvalid);
 
   request.save(function(err) {
     if (err) return handleError(err);
 
-    var action = validation ? Actions.DOCUMENT_VALIDATED : Actions.DOCUMENT_REFUSED;
+    var action = isInvalid ? Actions.DOCUMENT_REFUSED : Actions.DOCUMENT_VALIDATED;
 
     request.saveActionLog(action, req.user, req.log, {document: file});
     return res.json(file);
