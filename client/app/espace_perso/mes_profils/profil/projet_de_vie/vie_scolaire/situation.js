@@ -61,8 +61,12 @@ angular.module('impactApp')
     .state(index + '.situation.etablissement', {
       url: '/etablissement',
       templateUrl: 'components/question/etablissement_scolaire.html',
-      controller: 'EtablissementScolaireCtrl',
+      controller: 'ListQuestionCtrl',
       resolve: {
+        listName: function() {
+          return 'etablissements';
+        },
+
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'etablissement', profile);
         },
@@ -141,8 +145,12 @@ angular.module('impactApp')
     .state(index + '.situation.diplome_etablissement', {
       url: '/diplome_etablissement',
       templateUrl: 'components/question/etablissement_scolaire.html',
-      controller: 'EtablissementScolaireCtrl',
+      controller: 'ListQuestionCtrl',
       resolve: {
+        listName: function() {
+          return 'etablissements';
+        },
+
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'diplomeEtablissement', profile);
         },

@@ -144,11 +144,11 @@ angular.module('impactApp')
       $scope.sectionModel.autresRenseignements = '';
     }
   })
-  .controller('EtablissementScolaireCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
+  .controller('ListQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName) {
     initQuestionScope($scope, question, nextStep, $state.current.data);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[question.model] = {etablissements: [{}]};
+      $scope.sectionModel[question.model][listName] = [{}];
     }
 
     $scope.model = $scope.sectionModel[question.model];
@@ -159,12 +159,12 @@ angular.module('impactApp')
       $scope.opened = true;
     };
 
-    $scope.ajouterEtablissement = function() {
-      $scope.model.etablissements.push({});
+    $scope.addLine = function() {
+      $scope.model[listName].push({});
     };
 
-    $scope.retirerEtablissement = function() {
-      $scope.model.etablissements.pop();
+    $scope.removeLine = function() {
+      $scope.model[listName].pop();
     };
   })
   .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
