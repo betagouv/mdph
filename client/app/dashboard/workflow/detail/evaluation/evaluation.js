@@ -26,7 +26,7 @@ angular.module('impactApp')
       })
       .state('dashboard.workflow.detail.evaluation.section', {
         url: '/:sectionId',
-        templateUrl: 'app/dashboard/requests/detail/evaluation/section/section.html',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/section/section.html',
         controller: 'RequestSectionCtrl',
         resolve: {
           section: function($stateParams, sections, model) {

@@ -13,7 +13,7 @@ angular.module('impactApp')
 
     $scope.afficherSynthese = function() {
       $modal.open({
-        templateUrl: 'app/dashboard/requests/detail/evaluation/synthese.html',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/synthese.html',
         controller: 'ModalSyntheseCtrl',
         size: 'lg',
         resolve: {
