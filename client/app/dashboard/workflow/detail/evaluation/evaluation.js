@@ -3,9 +3,9 @@
 angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
-      .state('dashboard.workflow.list.detail.evaluation', {
+      .state('dashboard.workflow.detail.evaluation', {
         url: '/evaluation',
-        templateUrl: 'app/dashboard/requests/detail/evaluation/evaluation.html',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/evaluation.html',
         controller: 'RequestEvaluationCtrl',
         resolve: {
           sections: function(GevaService) {
@@ -24,7 +24,7 @@ angular.module('impactApp')
         },
         authenticate: true
       })
-      .state('dashboard.workflow.list.detail.evaluation.section', {
+      .state('dashboard.workflow.detail.evaluation.section', {
         url: '/:sectionId',
         templateUrl: 'app/dashboard/requests/detail/evaluation/section/section.html',
         controller: 'RequestSectionCtrl',
