@@ -24,6 +24,16 @@ angular.module('impactApp')
             return _.filter(banettes, function(banette) {
               return banette.id !== 'hidden';
             });
+          },
+
+          visibleBanettesWithCount: function(visibleBanettes, requestCountByStatus) {
+            visibleBanettes.forEach(function(banette) {
+              banette.statuses.forEach(function(status) {
+                status.count = requestCountByStatus[status.id] && requestCountByStatus[status.id].count;
+              });
+            });
+
+            return visibleBanettes;
           }
         },
         authenticate: true

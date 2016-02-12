@@ -22,7 +22,6 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 
 router.get('/:id/requests', isAuthorizedMdph(), controller.showRequests);
 router.get('/:id/requests/byStatus', isAuthorizedMdph(), controller.showRequestsByStatus);
-router.get('/:id/requests/:userId/byStatus', isAuthorizedMdph(), controller.showRequestsByStatusForUser);
 
 router.get('/:id/users', isAuthorizedMdph(), controller.showUsers);
 

@@ -157,24 +157,12 @@ exports.getSecteur = function(req, res) {
 };
 
 exports.showRequests = function(req, res) {
-  var search = {
+  const search = {
     mdph: req.mdph.zipcode
   };
 
-  var query = req.query;
-
-  if (query) {
-    if (query.status) {
-      search.status = query.status;
-    }
-
-    if (query.evaluator) {
-      if (query.evaluator === 'null') {
-        search.evaluator = undefined;
-      } else {
-        search.evaluator = query.evaluator;
-      }
-    }
+  if (req.query) {
+    search.status = req.query.status;
   }
 
   Request.find(search)
@@ -185,7 +173,6 @@ exports.showRequests = function(req, res) {
     .exec(function(err, requests) {
       if (err) return handleError(req, res, err);
 
-      res.set('count', requests.length);
       return res.send(requests);
     });
 };
@@ -194,36 +181,10 @@ exports.showRequestsByStatus = function(req, res) {
   Request
     .aggregate([
       {$match: {mdph: req.mdph.zipcode}},
-      {$group: {
-        _id: '$status',
-        count: {$sum: 1}
-      }}
+      {$group: {_id: '$status', count: {$sum: 1} }}
     ])
     .exec(function(err, requestsGroups) {
       if (err) return handleError(req, res, err);
-
-      return res.send(requestsGroups);
-    });
-};
-
-exports.showRequestsByStatusForUser = function(req, res) {
-  Request
-    .aggregate([
-      {$match: { mdph: req.mdph.zipcode, evaluator: mongoose.Types.ObjectId(req.params.userId) }},
-      {$group: {
-        _id: '$status',
-        count: {$sum: 1}
-      }}
-    ])
-    .exec(function(err, requestsGroups) {
-      if (err) return handleError(req, res, err);
-
-      var total = 0;
-      requestsGroups.forEach(function(group) {
-        total += group.count;
-      });
-
-      requestsGroups.push({_id: 'toutes', count: total});
 
       return res.send(requestsGroups);
     });
