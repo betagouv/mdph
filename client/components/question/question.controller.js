@@ -12,30 +12,6 @@ angular.module('impactApp')
   .controller('QuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep, $state.current.data);
   })
-  .controller('DiplomesQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep);
-    $scope.opened = [];
-
-    if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[question.model] = {listeDiplomes: [{}]};
-    }
-
-    $scope.model = $scope.sectionModel[question.model];
-
-    $scope.ajouterDiplome = function() {
-      $scope.model.listeDiplomes.push({});
-    };
-
-    $scope.retirerDiplome = function() {
-      $scope.model.listeDiplomes.pop();
-    };
-
-    $scope.open = function($event, idx) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened[idx] = true;
-    };
-  })
   .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep);
     $scope.ajoutEnCours = false;
