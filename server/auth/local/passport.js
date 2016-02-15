@@ -12,6 +12,7 @@ exports.setup = function(User, config) {
           email: email.toLowerCase()
         })
         .populate('mdph zipcode')
+        .select('hashedPassword salt')
         .exec(function(err, user) {
           if (err) return done(err);
 
