@@ -19,8 +19,17 @@ angular.module('impactApp')
         resolve: {
           request: function() {
             return request;
+          },
+
+          documentTypes: function($http) {
+            return $http.get('api/documents').then(function(result) {
+              return _.filter(result.data, function(documentType) {
+                return !documentType.mandatory;
+              });
+            });
           }
-        }
+        },
+        size: 'lg'
       });
     }
 
