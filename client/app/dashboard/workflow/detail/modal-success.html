@@ -2,14 +2,14 @@
   <h1 class="modal-title">Envoyer un accusé de demande complète</h1>
 </div>
 <div class="modal-body">
-  <form action="">
+  <form name="form">
     <div class="form-group">
-      <label class="control-label" for="">Numéro de dossier interne (GINETH, IODAS, etc)</label>
-      <input type="text" class="form-control">
+      <label class="control-label" for="internalNumber">Numéro de dossier interne (GINETH, IODAS, etc)</label>
+      <input type="text" id="internalNumber" class="form-control">
     </div>
   </form>
 </div>
 <div class="modal-footer">
   <button class="btn btn-default" ng-click="cancel()">Annuler</button>
-  <button class="btn btn-success" ng-click="save()">Envoyer l'accusé de réception</button>
+  <button class="btn btn-success" ng-click="save(form)">Envoyer l'accusé de réception</button>
 </div>

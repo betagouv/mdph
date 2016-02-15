@@ -37,9 +37,7 @@
 
   <div class="list-main">
     <table>
-      <tbody request-table-body query="query" title="'Nouvelles demandes'" request-group="groupedByAge['new']"></tbody>
-      <tbody request-table-body query="query" title="'Envoyées il y a plus d\'un mois'" request-group="groupedByAge['standard']"></tbody>
-      <tbody request-table-body query="query" title="'Envoyées il y a plus de trois mois'" request-group="groupedByAge['old']"></tbody>
+      <tbody ng-repeat="group in groups" request-table-body query="query" title="group.title" request-group="groupedByAge[group.id]"></tbody>
     </table>
   </div>
 </ui-view>

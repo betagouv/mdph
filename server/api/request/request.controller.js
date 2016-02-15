@@ -100,7 +100,8 @@ exports.show = function(req, res, next) {
       shortId: req.params.shortId
     })
     .lean()
-    .populate('user evaluator')
+    .populate('user', '_id name role email mdph')
+    .populate('evaluator')
     .exec(function(err, request) {
       if (!request) {
         return res.sendStatus(404);
@@ -187,9 +188,10 @@ exports.showUserRequests = function(req, res, next) {
 exports.updateFromAgent = function(req, res, next) {
   var request = req.request;
   var updated = req.body;
-  var actionDetail = {old: request.status, new: updated.status};
 
   // TODO: Rethink this completely
+  var actionDetail = {old: request.status, new: updated.status};
+
   // switch (updated.status) {
   //   case 'complet':
   //     sendMailCompletude(request, req.user);

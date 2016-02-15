@@ -9,6 +9,7 @@ var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
   type:           String,
   isInvalid:      Boolean,
+  isAsked:        Boolean,
   originalname:   String,
   filename:       String,
   encoding:       String,

@@ -9,7 +9,7 @@ exports.index = function(req, res) {
   Profile
     .find({user: req.params.userId})
     .sort('createdAt')
-    .populate('user')
+    .populate('user', 'profile')
     .exec(function(err, profiles) {
       if (err) { return handleError(req, res, err); }
 

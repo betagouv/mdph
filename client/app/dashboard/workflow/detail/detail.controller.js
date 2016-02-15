@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowDetailCtrl', function($scope, $state, $cookies, $modal, request) {
+  .controller('WorkflowDetailCtrl', function($scope, $state, $cookies, $modal, request, currentUser) {
     $scope.request = request;
     $scope.token = $cookies.get('token');
     $scope.pdfName = (request.formAnswers.identites.beneficiaire.nom).toLowerCase() +
@@ -12,10 +12,10 @@ angular.module('impactApp')
       $scope.showDetail = !$scope.showDetail;
     };
 
-    function openModal(templateUrl, controllerId) {
+    function openModal(isSuccess) {
       $modal.open({
-        templateUrl: templateUrl,
-        controller: controllerId,
+        templateUrl: isSuccess ? 'app/dashboard/workflow/detail/modal-success.html' : 'app/dashboard/workflow/detail/modal-error.html',
+        controller: 'ModalSuccessCtrl',
         resolve: {
           request: function() {
             return request;
@@ -27,6 +27,14 @@ angular.module('impactApp')
                 return !documentType.mandatory;
               });
             });
+          },
+
+          isSuccess: function() {
+            return isSuccess;
+          },
+
+          currentUser: function() {
+            return currentUser;
           }
         },
         size: 'lg'
@@ -34,10 +42,10 @@ angular.module('impactApp')
     }
 
     $scope.openSuccessModal = function() {
-      return openModal('app/dashboard/workflow/detail/modal-success.html', 'ModalSuccessCtrl');
+      return openModal(true);
     };
 
     $scope.openDangerModal = function() {
-      return openModal('app/dashboard/workflow/detail/modal-error.html', 'ModalSuccessCtrl');
+      return openModal(false);
     };
   });

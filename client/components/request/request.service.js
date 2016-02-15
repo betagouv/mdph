@@ -20,15 +20,64 @@ angular.module('impactApp')
       return found;
     }
 
-    var getCompletion = function(request) {
+    function getCompletion(request) {
       if (!request.documents) {
         return false;
       }
 
       return allMandatoryFilesPresent(request) && !noInvalidatedFiles(request);
-    };
+    }
+
+    function findInvalid(categories) {
+      var invalidDocuments = [];
+
+      _.forEach(categories, function(category) {
+        _.forEach(category.documentList, function(document) {
+          if (document.isInvalid) {
+            invalidDocuments.push(document);
+          }
+        });
+      });
+
+      return invalidDocuments;
+    }
+
+    function findRefusedDocuments(request) {
+      if (!request.documents) {
+        return {
+          obligatoires: [],
+          complementaires: []
+        };
+      }
+
+      var obligatoires = findInvalid(request.documents.obligatoires);
+      var complementaires = findInvalid(request.documents.complementaires);
+
+      return {
+        obligatoires: obligatoires,
+        complementaires: complementaires
+      };
+    }
+
+    function findAskedDocumentTypes(request) {
+      if (!request.documents) {
+        return [];
+      }
+
+      var askedDocumentTypes = [];
+
+      _.forEach(request.documents.complementaires, function(category) {
+        if (category.documentType.isAsked) {
+          askedDocumentTypes.push(category.documentType);
+        }
+      });
+
+      return askedDocumentTypes;
+    }
 
     return {
+      findRefusedDocuments: findRefusedDocuments,
+      findAskedDocumentTypes: findAskedDocumentTypes,
       getCompletion: getCompletion,
       groupByAge: function(requests) {
         if (typeof requests === 'undefined' || requests.length === 0) {

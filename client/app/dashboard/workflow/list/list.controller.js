@@ -5,6 +5,20 @@ angular.module('impactApp')
     $scope.status = status;
     $scope.requests = requests;
     $scope.groupedByAge = groupedByAge;
+    $scope.groups = [
+      {
+        id: 'new',
+        title: 'Nouvelles demandes'
+      },
+      {
+        id: 'standard',
+        title: 'Envoyées il y a plus d\'un mois'
+      },
+      {
+        id: 'old',
+        title: 'Envoyées il y a plus de trois mois'
+      }
+    ];
 
     var token = $cookies.get('token');
 
