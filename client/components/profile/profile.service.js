@@ -2,9 +2,30 @@
 
 angular.module('impactApp')
   .factory('ProfileService', function ProfileService(estAdulte, estMineur) {
+    var getMissingSection = function(profile) {
+      var missingSections = [];
+
+      if (!profile.identites || !profile.identites.beneficiaire) {
+        missingSections.push('beneficiaire');
+      }
+
+      if (estMineur() && (!profile.identites || !profile.identites.autorite)) {
+        missingSections.push('autorite');
+      }
+
+      if (!profile.vie_quotidienne || !profile.vie_quotidienne.__completion) {
+        missingSections.push('vieQuotidienne');
+      }
+
+      return missingSections;
+    };
+
     var getCompletion = function(profile) {
       if (!profile.identites || !profile.identites.beneficiaire) {
-        // TODO verifier que s'il est enfant il a bien remplis une autorite parentale
+        return false;
+      }
+
+      if (estMineur() && !profile.identites.autorite) {
         return false;
       }
 
@@ -48,6 +69,7 @@ angular.module('impactApp')
         }
       },
 
-      getCompletion: getCompletion
+      getCompletion: getCompletion,
+      getMissingSection: getMissingSection
     };
   });

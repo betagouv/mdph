@@ -6,12 +6,31 @@
   color: black;
   border: 1px solid $light-grey;
 
+  + div {
+    color: #a94442;
+    font-size: 12px;
+    text-align: center;
+  }
+
   &.complete > .profile-category-icon {
     background-color: darkcyan;
     color: white;
 
     .progress-desc {
       border-bottom: 1px solid darken(darkcyan, 3%);
+    }
+  }
+
+  &.error {
+    border-color: #a94442;
+
+    .profile-category-icon {
+      color: #a94442;
+      background-color: #f2dede;
+    }
+
+    .profile-category-content {
+      color: #a94442;
     }
   }
 }

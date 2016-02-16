@@ -41,9 +41,7 @@ angular.module('impactApp').config(function($stateProvider) {
               toastr.error('Vous n\'avez pas spécifié de MDPH destinataire de votre demande.', 'Erreur lors de la tentative d\'envoi');
             } else {
               request.prestations = getSelectedPrestationIdList();
-              if (!ProfileService.getCompletion(profile)) {
-                toastr.error('Vous n\'avez pas fini de remplir les parties obligatoires de ce profil.', 'Erreur lors de la tentative d\'envoi');
-              } else if (!RequestService.getCompletion(request)) {
+              if (!RequestService.getCompletion(request)) {
                 toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
               } else {
                 request.status = 'emise';
