@@ -24,6 +24,7 @@
     "console": true,
     "$": true,
     "_": true,
+    "L": true,
     "moment": true,
     "describe": true,
     "beforeEach": true,

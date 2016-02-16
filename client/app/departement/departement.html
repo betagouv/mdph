@@ -1,3 +1,6 @@
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.1/mapbox-gl.css' rel='stylesheet' />
+
 <ui-view>
   <header class="hero-unit banner" ng-class="'bg' + currentMdph.zipcode">
     <h1 ng-if="currentMdph">MDPH {{currentMdph.name}}</h1>
@@ -28,6 +31,32 @@
       <div class="col-md-4">
         <p class="lead">Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="map-container">
+    <div id="map"></div>
+    <div class="card-contact">
+      <table>
+        <tbody>
+          <tr>
+            <td class="cell-icon"><i class="fa fa-home"></i></td>
+            <td><span ng-bind="currentMdph.address"></span></td>
+          </tr>
+          <tr>
+            <td class="cell-icon"><i class="fa fa-phone"></i></td>
+            <td><span ng-bind="currentMdph.phone"></span></td>
+          </tr>
+          <tr>
+            <td class="cell-icon"><i class="fa fa-envelope"></i></td>
+            <td><a href="mailto:{{currentMdph.email}}" title="Envoyer un mail de contact">{{currentMdph.email}}</a></td>
+          </tr>
+          <tr>
+            <td class="cell-icon"><i class="fa fa-clock-o"></i></td>
+            <td><span ng-bind="currentMdph.schedule"></span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 

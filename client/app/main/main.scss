@@ -99,7 +99,6 @@
   padding-bottom: 70px;
 
   color: #444;
-  border-top: 3px solid $dark-blue;
   background-color: $lighter-blue;
 
   .p {
@@ -235,4 +234,50 @@
       margin-right: 5px;
     }
   }
+}
+
+.map-container {
+  position: relative;
+
+  #map {
+    height: 40rem;
+    width:100%;
+  }
+
+  .card-contact {
+    background-color: white;
+    border: 1px solid #E8E8E8;
+    padding: 20px;
+
+    td.cell-icon {
+      text-align: center;
+    }
+
+    td {
+      padding: 5px;
+
+      i {
+        color: $light-blue;
+      }
+
+      span {
+        white-space: pre-wrap;
+      }
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+    .card-contact {
+      position: absolute;
+      top: 8rem;
+      right: 20px;
+      width: 300px;
+    }
+  }
+  @media (min-width: $screen-lg-min) {
+    .card-contact {
+      width: 400px !important;
+    }
+  }
+
 }
