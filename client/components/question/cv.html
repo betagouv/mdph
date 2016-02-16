@@ -25,8 +25,8 @@
     </div>
     <div ng-if="ajoutEnCours">
       <div class="form-group form-group col-md-offset-1 col-md-10">
-        <label class="control-label" for="intitule">Intitulé</label>
-        <input name="intitule" type="text" class="form-control" ng-model="tempExp.intitule" placeholder="Intitulé" required>
+        <label class="control-label" for="intitule">Intitulé du poste</label>
+        <input name="intitule" type="text" class="form-control" ng-model="tempExp.intitule" placeholder="Intitulé du poste" required>
         <div ng-messages="questionForm.intitule.$error" ng-if="questionForm.showError">
           <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
         </div>
