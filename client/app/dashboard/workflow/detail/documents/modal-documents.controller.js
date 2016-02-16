@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ModalSuccessCtrl', function($scope, $modalInstance, RequestService, documentTypes, request, currentUser, isSuccess) {
+  .controller('ModalDocumentsCtrl', function($scope, $modalInstance, RequestService, documentTypes, request, currentUser, isSuccess) {
     $scope.request = request;
     $scope.demandeTypesComplementaires = [];
     $scope.documentTypes = documentTypes;
