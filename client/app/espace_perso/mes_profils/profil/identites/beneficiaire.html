@@ -9,7 +9,7 @@
   <section class="identite-section">
     <div class="section-row">
       <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
-        <label for="nom" class="control-label">Nom</label>
+        <label for="nom" class="control-label">Nom de naissance</label>
         <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
         <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form-group">
-      <label for="nom_usage" class="control-label">Nom d'usage</label>
+      <label for="nom_usage" class="control-label">Nom d'épouse ou nom d'usage</label>
       <input id="nom_usage" type="text" name="nom_usage" class="form-control" ng-model="identite.nom_usage">
     </div>
 
