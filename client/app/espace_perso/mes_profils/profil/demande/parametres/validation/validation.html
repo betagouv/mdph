@@ -15,16 +15,6 @@
       </tr>
     </table>
 
-    <h4>Vos renseignements</h4>
-    <table class="table">
-      <tr ng-if="!getProfileCompletion()" class="envoi-warning">
-        <td>Vous n'avez pas fini de remplir les parties obligatoires de ce profil. Sans cela, nous ne pouvons pas transmettre votre demande.</td>
-      </tr>
-      <tr ng-if="getProfileCompletion()" class="envoi-success">
-        <td>Vous avez entièrement rempli les parties obligatoires de ce profil.</td>
-      </tr>
-    </table>
-
     <h4>Vos documents</h4>
     <table class="table">
       <tr ng-if="!getDocumentsCompletion()" class="envoi-warning">
