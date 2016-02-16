@@ -43,6 +43,8 @@ angular.module('impactApp').config(function($stateProvider) {
               request.prestations = getSelectedPrestationIdList();
               if (!RequestService.getCompletion(request)) {
                 toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
+              } else if (request.prestations.length < 1) {
+                toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
               } else {
                 request.status = 'emise';
                 request.$update({isSendingRequest: true}, function() {
