@@ -22,7 +22,7 @@
     "jsonwebtoken": "^5.0.1",
     "lodash": "^3.9.3",
     "method-override": "^2.3.3",
-    "moment": "^2.10.3",
+    "moment": "^2.11.2",
     "mongoose": "^4.0.4",
     "morgan": "^1.5.3",
     "multer": "^1.1.0",
