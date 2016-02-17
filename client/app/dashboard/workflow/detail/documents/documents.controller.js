@@ -3,43 +3,47 @@
 angular.module('impactApp')
   .controller('RequestDocumentsCtrl', function($scope, RequestService, request, documentTypes, currentUser) {
     $scope.documentTypes = documentTypes;
-    $scope.demandeTypesComplementaires = [];
+    $scope.selected = null;
 
-    function alreadySelected(type) {
-      return _.find($scope.demandeTypesComplementaires, function(current) {
-        return current.id === type.id;
+    if (!request.askedDocumentTypes) {
+      request.askedDocumentTypes = [];
+    }
+
+    function alreadySelected(typeId) {
+      return _.find(request.askedDocumentTypes, function(current) {
+        return current === typeId;
       });
     }
 
+    $scope.showLabel = function(type) {
+      return _.find(documentTypes, {id: type}).label;
+    };
+
     $scope.addSelectedType = function(type) {
-      if (!alreadySelected(type)) {
-        $scope.demandeTypesComplementaires.push(type);
+      if (!alreadySelected(type.id)) {
+        request.askedDocumentTypes.push(type.id);
       }
 
+      type = null;
       $scope.selected = null;
     };
 
     $scope.removeSelectedType = function(idx) {
-      $scope.demandeTypesComplementaires.splice(idx, 1);
+      request.askedDocumentTypes.splice(idx, 1);
     };
 
-    $scope.save = function(form, isSuccess) {
+    $scope.save = function(isSuccess) {
       var newStatus = isSuccess ? 'enregistree' : 'en_attente_usager';
 
       var action = {
-        new: newStatus,
         user: currentUser._id,
-        old: request.status
+        new: newStatus,
+        old: request.status,
+        comments: request.comments,
+        internalNumber: request.internalNumber,
+        refusedDocuments: RequestService.findRefusedDocuments(request),
+        askedDocumentTypes: RequestService.getAskedDocumentTypes(request)
       };
-
-      if (isSuccess) {
-        request.internalNumber = action.internalNumber = form.internalNumber.$modelValue;
-      } else {
-        var refusedDocuments = RequestService.findRefusedDocuments(request);
-        var askedDocumentTypes = RequestService.getAskedDocumentTypes(request);
-
-        action.comments = request.comments;
-      }
 
       request.status = newStatus;
       request.$update(action);

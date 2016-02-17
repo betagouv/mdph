@@ -19,7 +19,7 @@
       <form action="">
         <div class="form-group">
           <label class="control-label" for="internalNumber">Numéro de dossier interne (GINETH, IODAS, etc)</label>
-          <input type="text" id="internalNumber" class="form-control">
+          <input type="text" id="internalNumber" ng-model="request.internalNumber" class="form-control">
         </div>
 
         <div class="form-group">
@@ -35,10 +35,10 @@
           type="text" ng-model="selected" class="form-control" placeholder="Ajouter un type complémentaire">
 
           <div class="selected-types">
-            <em ng-hide="demandeTypesComplementaires.length">Pas de demande complémentaire</em>
+            <em ng-hide="request.askedDocumentTypes.length">Pas de demande complémentaire</em>
             <ul class="list-group">
-              <li class="list-group-item" ng-click="removeSelectedType(idx)" ng-repeat="(idx, type) in demandeTypesComplementaires">
-                {{type.label}}
+              <li class="list-group-item" ng-click="removeSelectedType(idx)" ng-repeat="(idx, type) in request.askedDocumentTypes">
+                {{ showLabel(type) }}
                 <a href="#" class="pull-right">
                   Supprimer
                 </a>
@@ -48,10 +48,10 @@
         </div>
 
         <div class="text-right">
-          <button class="btn btn-danger" ng-click="openDangerModal()">
+          <button class="btn btn-danger" ng-click="save(false)">
             <i class="fa fa-times"></i>&nbsp;Demande incomplète
           </button>
-          <button class="btn btn-success" ng-click="openSuccessModal()">
+          <button class="btn btn-success" ng-click="save(true)">
             <i class="fa fa-check"></i>&nbsp;Demande complète
           </button>
         </div>
