@@ -5,7 +5,7 @@
   <div class="profile-category-icon">
     <i class="icon fa" ng-class="icon"></i>
 
-    <div class="progress-desc" ng-if="mandatory || completion === 'complete'" ng-switch="completion">
+    <div class="progress-desc" ng-if="options.mandatory || completion === 'complete'" ng-switch="completion">
       <span ng-switch-default>À renseigner</span>
       <span ng-switch-when="complete"><i class="fa fa-check-circle"></i>&nbsp;Complet</span>
     </div>
