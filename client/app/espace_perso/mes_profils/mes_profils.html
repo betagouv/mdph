@@ -4,7 +4,7 @@
       <li class="profile-card-row-item" ng-repeat="(idx, profile) in profiles">
         <div class="profile-card">
           <div class="profile-card-header">
-            <button ng-click="delete(profile, idx)" class="trash btn btn-link" title="Supprimer ce profil"><i class="fa fa-times"></i></button>
+            <button ng-click="delete(profile, idx)" class="trash btn btn-link" title="Supprimer ce profil"><i class="fa fa-fw fa-times"></i></button>
             <div class="profile-card-avatar">
               <a class="profile-card-icon" ui-sref=".profil({profileId: profile._id})" title='Accéder au profil "{{ ::profile.getTitle() }}"'><i class="fa fa-user"></i></a>
             </div>
