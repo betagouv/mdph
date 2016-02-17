@@ -235,6 +235,10 @@ angular.module('impactApp')
         templateUrl: 'components/question/frais_handicap.html',
         controller: 'FraisQuestionCtrl',
         resolve: {
+          listName: function() {
+            return 'listeFrais';
+          },
+
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'fraisHandicap', profile);
           },

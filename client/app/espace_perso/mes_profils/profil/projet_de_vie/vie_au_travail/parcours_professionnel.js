@@ -76,8 +76,12 @@ angular.module('impactApp')
     .state(index + '.parcours_professionnel.diplomes', {
       url: '/diplomes',
       templateUrl: 'components/question/diplomes.html',
-      controller: 'DiplomesQuestionCtrl',
+      controller: 'ListQuestionCtrl',
       resolve: {
+        listName: function() {
+          return 'listeDiplomes';
+        },
+
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'diplomes', profile);
         },

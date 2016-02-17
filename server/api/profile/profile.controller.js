@@ -35,17 +35,11 @@ exports.update = function(req, res) {
 
     if (!profile) { return res.sendStatus(404); }
 
-    var updated = _.merge(profile, req.body);
+    for (let property in req.body) {
+      profile.set(property, req.body[property]);
+    }
 
-    // To force mongoose to update Schema_type_mixed fields, we need to mark them as modified
-    updated.markModified('identites');
-    updated.markModified('vie_quotidienne');
-    updated.markModified('vie_scolaire');
-    updated.markModified('vie_au_travail');
-    updated.markModified('aidant');
-    updated.markModified('situations_particulieres');
-
-    updated.save(function(err, saved) {
+    profile.save(function(err, saved) {
       if (err) { return handleError(res, err); }
 
       return res.json(saved);

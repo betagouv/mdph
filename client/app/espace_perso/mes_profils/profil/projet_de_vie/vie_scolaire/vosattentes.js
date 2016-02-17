@@ -29,8 +29,12 @@ angular.module('impactApp')
     .state(index + '.vos_attentes.structure', {
       url: '',
       templateUrl: 'components/question/structure.html',
-      controller: 'StructureQuestionCtrl',
+      controller: 'ListQuestionCtrl',
       resolve: {
+        listName: function() {
+          return 'structures';
+        },
+
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'structure', profile);
         },
