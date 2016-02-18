@@ -23,9 +23,6 @@ angular.module('impactApp')
       if (!alreadySelected(type.id)) {
         request.askedDocumentTypes.push(type.id);
       }
-
-      type = null;
-      $scope.selected = null;
     };
 
     $scope.removeSelectedType = function(idx) {
@@ -36,16 +33,17 @@ angular.module('impactApp')
       var newStatus = isSuccess ? 'enregistree' : 'en_attente_usager';
 
       var action = {
+        id: isSuccess ? 'succes_enregistrement' : 'erreur_enregistrement',
         user: currentUser._id,
-        new: newStatus,
-        old: request.status,
+        newStatus: newStatus,
+        oldStatus: request.status,
         comments: request.comments,
-        internalNumber: request.internalNumber,
+        numeroDossier: request.numeroDossier,
         refusedDocuments: RequestService.findRefusedDocuments(request),
         askedDocumentTypes: RequestService.getAskedDocumentTypes(request)
       };
 
       request.status = newStatus;
-      request.$update(action);
+      request.$save(action);
     };
   });

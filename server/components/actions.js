@@ -47,6 +47,16 @@ var actions = {
     id: 'change_status',
     label: 'Changement de banette',
     fa: 'folder'
+  },
+  SUCCES_ENREGISTREMENT: {
+    id: 'succes_enregistrement',
+    label: 'Succès de l\'enregistrement',
+    fa: 'save'
+  },
+  ERREUR_ENREGISTREMENT: {
+    id: 'erreur_enregistrement',
+    label: 'Erreur lors de l\'enregistrement',
+    fa: 'refresh'
   }
 };
 

@@ -28,5 +28,11 @@ angular.module('impactApp')
     },
     document_refused: {
       fa: 'thumbs-down'
+    },
+    succes_enregistrement: {
+      fa: 'save'
+    },
+    erreur_enregistrement: {
+      fa: 'refresh'
     }
   });
