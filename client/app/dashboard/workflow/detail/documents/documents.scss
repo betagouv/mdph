@@ -15,3 +15,23 @@
     }
   }
 }
+
+.panel-flat-default {
+  @extend .box-shadow-z1;
+  @extend .panel-default;
+
+  .panel-heading {
+    background-color: $bg-blue;
+    color: white;
+  }
+
+  border-radius: 0;
+}
+
+.panel-flat-warning {
+  @extend .panel-flat-default;
+
+  .panel-heading {
+    background-color: $orange;
+  }
+}

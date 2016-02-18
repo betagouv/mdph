@@ -1,18 +1,19 @@
 <div id="request-detail-documents">
-  <section>
-    <h2>Pièces obligatoires</h2>
-    <div class="content">
+  <div class="panel panel-flat-default">
+    <div class="panel-heading">Pièces obligatoires</div>
+    <div class="panel-body">
       <display-file-list categories="request.documents.obligatoires" request="request" user="currentUser"></display-file-list>
     </div>
-  </section>
-  <section>
-    <h2>Pièces complémentaires</h2>
-    <div>
+  </div>
+
+  <div class="panel panel-flat-default">
+    <div class="panel-heading">Pièces complémentaires</div>
+    <div class="panel-body">
       <display-file-list categories="request.documents.complementaires" request="request"></display-file-list>
     </div>
-  </section>
+  </div>
 
-  <div ng-if="request.status === 'emise'" class="panel panel-default">
+  <div ng-if="request.status === 'emise'" class="panel panel-flat-warning">
     <div class="panel-heading">Accusé de réception</div>
 
     <div class="panel-body">
