@@ -26,7 +26,16 @@ angular.module('impactApp')
         url: '/documents',
         controller: 'RequestDocumentsCtrl',
         templateUrl: 'app/dashboard/workflow/detail/documents/documents.html',
-        authenticate: true
+        authenticate: true,
+        resolve: {
+          documentTypes: function($http) {
+            return $http.get('api/documents').then(function(result) {
+              return _.filter(result.data, function(documentType) {
+                return !documentType.mandatory;
+              });
+            });
+          }
+        }
       })
       .state('dashboard.workflow.detail.comments', {
         url: '/comments',

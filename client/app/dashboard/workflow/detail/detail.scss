@@ -7,8 +7,8 @@
 }
 
 .dashboard-demande-header {
-  .header-details {
-    @extend .well;
+  .alert.alert-info {
+    border-radius: 0;
     margin-bottom: 10px;
 
     p {
@@ -24,46 +24,20 @@
   }
 
   .status-actions-container {
-    background-color: $bg-blue;
+    background-color: whitesmoke;
     padding: 10px;
-    color: white;
+    color: $light-blue;
   }
 
   .status-actions {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    flex-direction: column;
 
-    .status-action {
-      @extend .box-shadow-z1;
-
-      a {
-        display: flex;
-
-        div {
-          padding: 8px 12px;
-          background-color: white;
-
-          &.action-icon {
-            color: white;
-
-            &.action-icon-success {
-              background-color: $green;
-            }
-
-            &.action-icon-danger {
-              background-color: $lighter-red;
-            }
-          }
-        }
-      }
+    h3 {
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 17px;
     }
-  }
-
-}
-
-#request-error-modal {
-  .selected-types {
-    margin: 20px 0;
   }
 }

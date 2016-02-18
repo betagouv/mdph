@@ -22,6 +22,7 @@ var DocumentSchema = new Schema({
 var RequestSchema = new Schema({
   shortId:        { type: String, unique: true, default: shortId.generate },
   documents:      [DocumentSchema],
+  askedDocumentTypes: [String],
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
   profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
   mdph:           String,

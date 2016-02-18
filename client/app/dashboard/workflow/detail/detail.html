@@ -11,7 +11,7 @@
         </a>
         <button class="btn btn-link" ng-click="toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
       </div>
-      <div class="header-details" ng-show="showDetail">
+      <div class="alert alert-info" ng-show="showDetail">
         <p>Identitfiant <strong>{{request.shortId}}</strong></p>
         <p ng-if="request.formAnswers.identites">Bénéficiaire <strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></p>
         <p ng-if="!request.formAnswers.identites"><em>Demande incomplète - Identité non remplies</em></p>
@@ -27,12 +27,10 @@
     <div ng-switch="request.status" class="status-actions-container">
       <div ng-switch-when="emise">
         <div class="status-actions">
-          <button class="btn btn-success" ng-click="openSuccessModal()">
-            <i class="fa fa-check-circle"></i>&nbsp;Demande complète
-          </button>
-          <button class="btn btn-danger" ng-click="openDangerModal()">
-            <i class="fa fa-times-circle"></i>&nbsp;Demande incomplète
-          </button>
+          <h3>Demande émise</h3>
+          <a class="btn btn-primary" ui-sref=".documents">
+            <i class="fa fa-envelope"></i>&nbsp;Préparer l'accusé de réception
+          </a>
         </div>
       </div>
     </div>

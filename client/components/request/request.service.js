@@ -59,25 +59,17 @@ angular.module('impactApp')
       };
     }
 
-    function findAskedDocumentTypes(request) {
-      if (!request.documents) {
+    function getAskedDocumentTypes(request) {
+      if (!request.askedDocumentTypes) {
         return [];
       }
 
-      var askedDocumentTypes = [];
-
-      _.forEach(request.documents.complementaires, function(category) {
-        if (category.documentType.isAsked) {
-          askedDocumentTypes.push(category.documentType);
-        }
-      });
-
-      return askedDocumentTypes;
+      return request.askedDocumentTypes;
     }
 
     return {
       findRefusedDocuments: findRefusedDocuments,
-      findAskedDocumentTypes: findAskedDocumentTypes,
+      getAskedDocumentTypes: getAskedDocumentTypes,
       getCompletion: getCompletion,
       groupByAge: function(requests) {
         if (typeof requests === 'undefined' || requests.length === 0) {

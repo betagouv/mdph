@@ -1,0 +1,17 @@
+#request-detail-documents {
+  .status-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .selected-types {
+    margin: 20px 0;
+  }
+
+  .panel-body {
+    .btn:first-child {
+      margin-right: 15px;
+    }
+  }
+}

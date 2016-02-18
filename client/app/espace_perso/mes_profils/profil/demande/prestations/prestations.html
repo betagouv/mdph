@@ -1,0 +1,27 @@
+<h3>Prestations demandées</h3>
+
+<div ng-repeat="(key, type) in types" ng-if="request.status === 'en_cours'">
+  <h4>{{key | prestationType}}</h4>
+  <ul class="demande-prestations">
+    <li ng-repeat="prestation in type">
+      <div class="prestation-select">
+        <label for="{{prestation.id}}">
+          <input type="checkbox" id="{{prestation.id}}" ng-model="prestation.isSelected">&nbsp;{{prestation.title}}
+        </label>
+        <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail" type="button">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
+      </div>
+
+      <div class="well" ng-if="prestation.showDetail">
+        {{prestation.description}}
+        <a href="{{prestation.link}}">{{prestation.link}}</a>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div ng-repeat="prestation in request.detailPrestations" ng-if="request.status !== 'en_cours'">
+  <dl class="demande-prestations">
+    <dt>{{prestation.title}}</dt>
+    <dd>{{prestation.description}}</dd>
+  </dl>
+</div>

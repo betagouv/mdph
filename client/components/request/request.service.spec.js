@@ -12,6 +12,14 @@ describe('Service: request', function() {
       role: 'user'
     },
     status: 'emise',
+
+    askedDocumentTypes: [
+      {
+        id: 'rib_iban',
+        label: 'Relevé d\'identité bancaire (RIB/IBAN)'
+      }
+    ],
+
     documents: {
       obligatoires: {
         certificatMedical: {
@@ -95,14 +103,6 @@ describe('Service: request', function() {
               _id: '56c1a60cdade25a6f6066df1'
             }
           ]
-        },
-        rib_iban: {
-          documentType: {
-            id: 'rib_iban',
-            label: 'Relevé d\'identité bancaire (RIB/IBAN)',
-            isAsked: true
-          },
-          documentList: []
         }
       }
     }
@@ -131,7 +131,7 @@ describe('Service: request', function() {
     //sampleRequest
 
     //when
-    var askedDocumentTypes = RequestService.findAskedDocumentTypes(sampleRequest);
+    var askedDocumentTypes = RequestService.getAskedDocumentTypes(sampleRequest);
 
     //then
     expect(askedDocumentTypes[0].id).toEqual('rib_iban');
