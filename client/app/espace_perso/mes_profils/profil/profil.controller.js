@@ -24,7 +24,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
       var formAnswers = _.pick(profile, 'identites', 'vie_quotidienne', 'vie_scolaire', 'vie_au_travail', 'aidant', 'situations_particulieres');
       new RequestResource({profile: profile._id, user: currentUser._id, formAnswers: formAnswers}).$save(function(saved) {
         $scope.requests.push(saved);
-        $state.go('.demande.parametres', {shortId: saved.shortId});
+        $state.go('.demande', {shortId: saved.shortId});
       });
     }
   };
