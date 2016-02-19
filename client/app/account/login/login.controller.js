@@ -14,14 +14,18 @@ angular.module('impactApp')
         .then(function(data) {
           // Logged in, redirect
           if ($rootScope.returnToState) {
-            $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
-          } else if (data.role === 'adminMdph') {
-            $state.go('dashboard.workflow', {zipcode: data.mdph  && data.mdph.zipcode});
-          } else if (data.role === 'admin') {
-            $state.go('admin');
-          } else {
-            $state.go('espace_perso.mes_profils');
+            return $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
           }
+
+          if (data.role === 'adminMdph') {
+            return $state.go('dashboard.workflow', {zipcode: data.mdph  && data.mdph.zipcode});
+          }
+
+          if (data.role === 'admin') {
+            return $state.go('admin');
+          }
+
+          return $state.go('espace_perso.mes_profils');
         })
         .catch(function(err) {
           $scope.error = err.message;
