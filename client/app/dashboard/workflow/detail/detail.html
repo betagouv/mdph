@@ -33,6 +33,16 @@
           </a>
         </div>
       </div>
+      <div ng-switch-when="enregistree">
+        <div class="status-actions">
+          <h3>Demande enregistrée</h3>
+        </div>
+      </div>
+      <div ng-switch-when="en_attente_usager">
+        <div class="status-actions">
+          <h3>Demande en attente</h3>
+        </div>
+      </div>
     </div>
       <!-- <div class="banette">
         <a ui-sref="dashboard.workflow.list({status: request.status})">
