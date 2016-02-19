@@ -61,7 +61,7 @@ function getPopulatedRequest(user, shortId, done) {
       ], function(err, request) {
         if (err) return done(err);
 
-        return done(request);
+        return done(null, request);
       });
     });
 }
