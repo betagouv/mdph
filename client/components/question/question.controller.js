@@ -90,6 +90,7 @@ angular.module('impactApp')
     initQuestionScope($scope, question, nextStep, $state.current.data);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[question.model] = {};
       $scope.sectionModel[question.model][listName] = [{}];
     }
 
