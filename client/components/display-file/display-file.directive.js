@@ -19,7 +19,7 @@ angular.module('impactApp')
           });
         }
 
-        if (typeof $scope.file.isInvalid !== 'undefined') {
+        if ($scope.request.status !== 'en_cours') {
           $scope.showValidationStatus = true;
         }
 

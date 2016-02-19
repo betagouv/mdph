@@ -5,7 +5,7 @@
 
   .logo {
     font-size: 20px;
-    color: #BFBFBF;
+    color: $bg-grey;
     margin-right: 10px;
   }
 
@@ -38,52 +38,52 @@
       line-height: 4rem;
       width: 4rem;
       height: 4rem;
-      background-color: #D8D8D8;
+      background-color: $bg-grey;
       color: white;
     }
 
     .fab.invert-valid {
-      border: 1px solid #0f9d58;
+      border: 1px solid $green;
       background-color: white;
-      color: #0f9d58;
+      color: $green;
     }
 
     .fab.invert-refuse {
-      border: 1px solid rgb(255,82,82);
+      border: 1px solid $light-red;
       background-color: white;
-      color: rgb(255,82,82);
+      color: $light-red;
     }
 
     .fab.invert-valid.muted {
-      border: 1px solid #D8D8D8;
+      border: 1px solid $bg-grey;
       background-color: white;
-      color: #D8D8D8;
+      color: $bg-grey;
     }
 
     .fab.invert-refuse.muted {
-      border: 1px solid #D8D8D8;
+      border: 1px solid $bg-grey;
       background-color: white;
-      color: #D8D8D8;
+      color: $bg-grey;
     }
   }
 
   .validation-actions:hover {
     .fab.valid {
       color: white;
-      background-color: #0f9d58;
+      background-color: $green;
     }
 
     .fab.refuse {
-      background-color: lighten(rgb(255,82,82), 5%);
-      color: rgb(255,255,255);
+      background-color: $lighter-red;
+      color: white;
     }
 
     .fab.refuse:hover {
-      background-color: rgb(255,82,82);
+      background-color: $light-red;
     }
 
     .fab.valid:hover {
-      background-color: lighten(#0f9d58, 10%);
+      background-color: lighten($green, 10%);
     }
   }
 }
