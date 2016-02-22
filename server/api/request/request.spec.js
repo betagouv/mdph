@@ -62,6 +62,25 @@ describe('Request Model', function() {
 
   });
 
+  describe('When the request does not exist', function() {
+
+    it('should return 404', function(done) {
+      //given
+      var newRequest = new Request({shortId: 'this_is_not_a_shortid'});
+
+      //when
+      newRequest.save(function() {
+        var token = getToken();
+
+        //then
+        api()
+          .put('/api/requests/1234?access_token=' + token)
+          .expect(404, done);
+      });
+    });
+
+  });
+
   describe('When the user is not authenticated', function() {
     var newRequest = new Request({shortId: '1234'});
 
