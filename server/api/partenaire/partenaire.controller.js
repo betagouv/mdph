@@ -6,7 +6,6 @@ var Request = require('../request/request.model');
 var Mdph = require('../mdph/mdph.model');
 var path = require('path');
 var shortid = require('shortid');
-var Mailer = require('../send-mail/send-mail.controller');
 
 exports.show = function(req, res) {
   Partenaire.findById(req.params.id, function(err, partenaire) {

@@ -7,6 +7,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var shortid = require('shortid');
 var Mailer = require('../send-mail/send-mail.controller');
+var MailActions = require('../send-mail/send-mail-actions');
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -39,7 +40,7 @@ exports.create = function(req, res, next) {
     user.save(function(err) {
       if (err) return validationError(res, err);
       const confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-      Mailer.sendConfirmationMail(user.email, confirmationUrl);
+      MailActions.sendConfirmationMail(user.email, confirmationUrl);
     });
 
     const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
