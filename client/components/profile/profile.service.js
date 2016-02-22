@@ -2,6 +2,22 @@
 
 angular.module('impactApp')
   .factory('ProfileService', function ProfileService(estAdulte, estMineur) {
+    var estMineurProfile = function(profile) {
+      if (profile.identites && profile.identites.beneficiaire) {
+        return estMineur(profile.identites.beneficiaire.dateNaissance);
+      } else {
+        return false;
+      }
+    };
+
+    var estAdulteProfile = function(profile) {
+      if (profile.identites && profile.identites.beneficiaire) {
+        return estAdulte(profile.identites.beneficiaire.dateNaissance);
+      } else {
+        return true;
+      }
+    };
+
     var getMissingSection = function(profile) {
       var missingSections = [];
 
@@ -9,7 +25,7 @@ angular.module('impactApp')
         missingSections.push('beneficiaire');
       }
 
-      if (estMineur() && (!profile.identites || !profile.identites.autorite)) {
+      if (estMineurProfile(profile) && (!profile.identites || !profile.identites.autorite)) {
         missingSections.push('autorite');
       }
 
@@ -37,22 +53,6 @@ angular.module('impactApp')
     };
 
     return {
-      estAdulte: function(profile) {
-        if (profile.identites && profile.identites.beneficiaire) {
-          return estAdulte(profile.identites.beneficiaire.dateNaissance);
-        } else {
-          return true;
-        }
-      },
-
-      estMineur: function(profile) {
-        if (profile.identites && profile.identites.beneficiaire) {
-          return estMineur(profile.identites.beneficiaire.dateNaissance);
-        } else {
-          return false;
-        }
-      },
-
       estMasculin: function(profile) {
         if (profile.identites && profile.identites.beneficiaire) {
           return profile.identites.beneficiaire.sexe === 'masculin';
@@ -69,6 +69,8 @@ angular.module('impactApp')
         }
       },
 
+      estAdulte: estAdulteProfile,
+      estMineur: estMineurProfile,
       getCompletion: getCompletion,
       getMissingSection: getMissingSection
     };
