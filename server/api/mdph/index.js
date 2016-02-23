@@ -36,7 +36,7 @@ router.post('/:id/document-types', isAuthorizedMdph(), controller.updateDocument
 router.get('/:id/document-types', isAuthorizedMdph(), controller.showUncategorizedDocumentTypes);
 
 router.get('/:id/categories', isAuthorizedMdph(), controller.showDocumentCategories);
-router.post('/:id/categories', isAuthorizedMdph(), controller.createDocumentCategory);
+router.post('/:id/categories', isAuthorizedMdph(), controller.createNewDocumentCategory);
 router.put('/:id/categories', isAuthorizedMdph(), controller.updateDocumentCategories);
 router.put('/:id/categories/:categoryId', isAuthorizedMdph(), controller.updateDocumentCategory);
 router.delete('/:id/categories/:categoryId', isAuthorizedMdph(), controller.removeDocumentCategory);

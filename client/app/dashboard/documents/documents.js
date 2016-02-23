@@ -14,10 +14,6 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/documents/categories/categories.html',
         authenticate: true,
         resolve: {
-          pdfCategory: function(MdphResource, currentMdph) {
-            return MdphResource.getPdfDocumentCategory({zipcode: currentMdph.zipcode}).$promise;
-          },
-
           unclassifiedCategory: function(MdphResource, currentMdph) {
             return MdphResource.getUnclassifiedDocumentCategory({zipcode: currentMdph.zipcode}).$promise;
           },

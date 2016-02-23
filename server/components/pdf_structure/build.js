@@ -30,15 +30,11 @@ function buildGroupStructure(request, requestTempPdfPath, documentList, callback
 
       async.parallel([
         function(callback) {
-          DocumentCategoryCtrl.getPdfCategory(mdph, callback);
+          DocumentCategoryCtrl.findAndSortCategoriesForMdph(mdph, callback);
         },
 
         function(callback) {
           DocumentCategoryCtrl.getUnclassifiedCategory(mdph, callback);
-        },
-
-        function(callback) {
-          DocumentCategoryCtrl.findAndSortCategoriesForMdph(mdph, callback);
         }
       ], function(err, results) {
         if (err) {
@@ -46,22 +42,24 @@ function buildGroupStructure(request, requestTempPdfPath, documentList, callback
         }
 
         // console.log(results);
-        const pdfCategory = results[0];
+        const documentCategories = results[0];
         const unclassifiedCategory = results[1];
-        const documentCategories = results[2];
         const pdfStructure = [];
         const gfs = grid(mongoose.connection.db);
-
-        // Main request document
-        if (pdfCategory.barcode) {
-          pdfStructure.push(gfs.createReadStream({_id: pdfCategory.barcode._id}));
-        }
-
-        pdfStructure.push(requestTempPdfPath);
 
         // Documents sorted by categories
         _.forEach(documentCategories, function(category) {
           let documentFoundForThisCategory = false;
+
+          // Main request document
+          if (category.required) {
+            if (category.barcode) {
+              pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
+            }
+
+            pdfStructure.push(requestTempPdfPath);
+            documentFoundForThisCategory = true;
+          }
 
           _.forEach(category.documentTypes, function(documentType) {
             _.forEach(documentList, function(currentDocument) {

@@ -76,8 +76,8 @@ exports.getDocumentCategoryFile = function(req, res) {
   });
 };
 
-exports.createDocumentCategory = function(req, res) {
-  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, function(err, obj) {
+exports.createNewDocumentCategory = function(req, res) {
+  DocumentCategoryCtrl.createNewDocumentCategory(req.mdph, req.body.position, function(err, obj) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(obj);
