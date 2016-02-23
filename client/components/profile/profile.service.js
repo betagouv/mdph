@@ -41,7 +41,7 @@ angular.module('impactApp')
         return false;
       }
 
-      if (estMineurProfile() && !profile.identites.autorite) {
+      if (estMineurProfile(profile) && !profile.identites.autorite) {
         return false;
       }
 
