@@ -80,14 +80,6 @@ angular.module('impactApp')
         }
       },
 
-      getPdfDocumentCategory: {
-        method: 'GET',
-        params: {
-          controller:'categories',
-          controllerid: 'pdfCategory'
-        }
-      },
-
       getUnclassifiedDocumentCategory: {
         method: 'GET',
         params: {

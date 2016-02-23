@@ -62,38 +62,44 @@ exports.getPdfCategory = function(mdph, callback) {
 };
 
 exports.findAndSortCategoriesForMdph = function(mdph, callback) {
-  DocumentCategory
-    .find({mdph: mdph._id, unclassified: {$ne: true}})
-    .lean()
-    .exec(function(err, list) {
-      if (err) { callback(err); }
+  async.waterfall([
+    function(waterfallCallback) {
+      getOrCreateSpecialCategory({mdph: mdph._id, required: true}, waterfallCallback);
+    },
 
-      if (!list) { callback(null, []); }
+    function(requiredCategory, waterfallCallback) {
+      DocumentCategory
+        .find({mdph: mdph._id, unclassified: {$ne: true}})
+        .lean()
+        .exec(waterfallCallback);
+    }
+  ], function(err, list) {
+    if (err) { callback(err); }
 
-      // "Populate" documents
-      var gfs = grid(mongoose.connection.db);
+    // "Populate" documents
+    var gfs = grid(mongoose.connection.db);
 
-      async.map(list, function(category, mapCallback) {
-        if (category.documentTypes && category.documentTypes.length > 0) {
-          // Poor man's population
-          let fullTypes = [];
-          category.documentTypes.forEach(function(documentType) {
-            fullTypes.push(_.find(allDocumentTypes, {id: documentType}));
-          });
+    async.map(list, function(category, mapCallback) {
+      if (category.documentTypes && category.documentTypes.length > 0) {
+        // Poor man's population
+        let fullTypes = [];
+        category.documentTypes.forEach(function(documentType) {
+          fullTypes.push(_.find(allDocumentTypes, {id: documentType}));
+        });
 
-          category.documentTypes = fullTypes;
-        }
+        category.documentTypes = fullTypes;
+      }
 
-        populateCategoryBarcode(category, mapCallback);
-      },
+      populateCategoryBarcode(category, mapCallback);
+    },
 
-      function() {
-        // Sort by position in the tree
-        list.sort(comparePosition);
+    function() {
+      // Sort by position in the tree
+      list.sort(comparePosition);
 
-        return callback(null, list);
-      });
+      return callback(null, list);
     });
+  });
 };
 
 exports.showUncategorizedDocumentTypes = function(mdph, callback) {
