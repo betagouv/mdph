@@ -15,16 +15,12 @@ module.exports = function() {
     return supertest.agent('http://localhost:' + port);
   };
 
-  var apiSuperTestAuth = function() {
-    return apiSuperTest().set('authorization', 'Bearer ' + token);
-  };
-
   beforeEach(function(done) {
     var user = new User({
       provider: 'local',
       name: 'Fake User',
       email: 'test@test.com',
-      password: 'password',
+      password: 'hashedPassword',
       role: 'adminMdph'
     });
 
@@ -51,7 +47,6 @@ module.exports = function() {
 
   return {
     api: apiSuperTest,
-    auth: apiSuperTestAuth,
     token: function() {
       return token;
     }

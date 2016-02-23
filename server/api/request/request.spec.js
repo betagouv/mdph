@@ -3,16 +3,12 @@
 var should = require('should');
 var Request = require('./request.model');
 var controller = require('./request.controller');
-
-var Actions = require('../../components/actions').actions;
 var serverTest = require('../../test/utils/server');
-
 var User = require('../user/user.model');
 
 describe('Request Model', function() {
   var server = serverTest();
   var api = server.api;
-  var auth = server.auth;
   var getToken = server.token;
 
   before(function(done) {
@@ -47,7 +43,7 @@ describe('Request Model', function() {
 
     it('should return 200', function(done) {
       //given
-      var newRequest = new Request({shortId: '1234'});
+      var newRequest = new Request({ shortId: '1234' });
 
       //when
       newRequest.save(function() {
@@ -66,7 +62,7 @@ describe('Request Model', function() {
 
     it('should return 404', function(done) {
       //given
-      var newRequest = new Request({shortId: 'this_is_not_a_shortid'});
+      var newRequest = new Request({ shortId: 'this_is_not_a_shortid' });
 
       //when
       newRequest.save(function() {
@@ -82,7 +78,7 @@ describe('Request Model', function() {
   });
 
   describe('When the user is not authenticated', function() {
-    var newRequest = new Request({shortId: '1234'});
+    var newRequest = new Request({ shortId: '1234' });
 
     //when
     newRequest.save(function() {
