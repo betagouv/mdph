@@ -32,14 +32,6 @@ exports.showDocumentCategories = function(req, res) {
   });
 };
 
-exports.getPdfCategory = function(req, res) {
-  DocumentCategoryCtrl.getPdfCategory(req.mdph, function(err, pdfCategory) {
-    if (err) { return handleError(req, res, err); }
-
-    return res.json(pdfCategory);
-  });
-};
-
 exports.getUnclassifiedCategory = function(req, res) {
   DocumentCategoryCtrl.getUnclassifiedCategory(req.mdph, function(err, unclassifiedCategory) {
     if (err) { return handleError(req, res, err); }
@@ -76,8 +68,8 @@ exports.getDocumentCategoryFile = function(req, res) {
   });
 };
 
-exports.createDocumentCategory = function(req, res) {
-  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, function(err, obj) {
+exports.createNewDocumentCategory = function(req, res) {
+  DocumentCategoryCtrl.createNewDocumentCategory(req.mdph, req.body.position, function(err, obj) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(obj);

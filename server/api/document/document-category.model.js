@@ -8,8 +8,9 @@ var DocumentCategorySchema = new Schema({
   label:            { type: String, required: true, default: 'Nouvelle catégorie' },
   documentTypes:    [{type: String}],
   barcode:          { type: Schema.Types.ObjectId },
-  position:         { type: Number },
-  required:         { type: Boolean, default: false}
+  position:         { type: Number, default: -1 },
+  required:         { type: Boolean, default: false },
+  unclassified:     { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('DocumentCategory', DocumentCategorySchema);

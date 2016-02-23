@@ -36,13 +36,12 @@ router.post('/:id/document-types', isAuthorizedMdph(), controller.updateDocument
 router.get('/:id/document-types', isAuthorizedMdph(), controller.showUncategorizedDocumentTypes);
 
 router.get('/:id/categories', isAuthorizedMdph(), controller.showDocumentCategories);
-router.post('/:id/categories', isAuthorizedMdph(), controller.createDocumentCategory);
+router.post('/:id/categories', isAuthorizedMdph(), controller.createNewDocumentCategory);
 router.put('/:id/categories', isAuthorizedMdph(), controller.updateDocumentCategories);
 router.put('/:id/categories/:categoryId', isAuthorizedMdph(), controller.updateDocumentCategory);
 router.delete('/:id/categories/:categoryId', isAuthorizedMdph(), controller.removeDocumentCategory);
 router.post('/:id/categories/:categoryId/file', isAuthorizedMdph(), upload.single('file'), controller.saveDocumentCategoryFile);
 
-router.get('/:id/categories/pdfCategory', isAuthorizedMdph(), controller.getPdfCategory);
 router.get('/:id/categories/unclassifiedCategory', isAuthorizedMdph(), controller.getUnclassifiedCategory);
 router.get('/:id/categories/:categoryId/file', isAuthorizedMdph(), controller.getDocumentCategoryFile);
 
