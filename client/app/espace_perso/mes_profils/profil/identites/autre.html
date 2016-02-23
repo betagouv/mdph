@@ -40,10 +40,15 @@
   <section class="identite-section adress-section">
     <div class="adress-search form-group">
       <div class="input-group">
-        <input typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
-        typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100"
-        type="text" ng-model="searchAdress" class="form-control" ng-disabled="disableAddress()" placeholder="Recherche adresse">
-        <span class="input-group-addon basic-addon"><i class="fa fa-search"></i></span>
+        <input type="search" typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
+        typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100" typeahead-loading="loadingLocations" typeahead-no-results="noResults"
+        ng-model="searchAdress" class="form-control" ng-disabled="identite.isSameAddress" placeholder="Recherche adresse">
+        <span class="input-group-addon basic-addon">
+          <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
+        </span>
+      </div>
+      <div ng-show="noResults">
+        <i class="fa fa-times"></i> Pas de résultats
       </div>
     </div>
   </section>
