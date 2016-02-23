@@ -149,7 +149,8 @@ exports.search = function(req, res, next) {
   .exec(function(err, user) {
     if (err) return next(err);
     if (!user) return res.sendStatus(404);
-    res.json(user);
+
+    res.json(user.profile);
   });
 };
 
