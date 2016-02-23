@@ -51,6 +51,8 @@ angular.module('impactApp').config(function($stateProvider) {
               request.prestations = getSelectedPrestationIdList();
               if (!RequestService.getCompletion(request)) {
                 toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
+              } else if (currentUser.unconfirmed) {
+                toastr.error('Vous n\'avez pas confirmé votre compte ' + currentUser.email, 'Erreur lors de la tentative d\'envoi');
               } else if (request.prestations.length < 1) {
                 toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
               } else {
@@ -121,6 +123,8 @@ angular.module('impactApp').config(function($stateProvider) {
       'validation@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/validation/validation.html',
         controller: function($scope, RequestService, ProfileService, request, profile, currentUser) {
+          $scope.currentUser = currentUser;
+
           $scope.isReadyToSend = function() {
             return ProfileService.getCompletion(profile) && RequestService.getCompletion(request) && !currentUser.unconfirmed;
           };

@@ -8,7 +8,7 @@
       <tr ng-if="currentUser.unconfirmed" class="envoi-warning">
         <td>Vous n'avez pas encore confirmé votre compte.  <br>
         Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail à votre adresse <em>{{currentUser.email}}</em> <br>
-        Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({currentUserId: currentUser._id})">cliquez ici pour le renvoyer</a>.</td>
+        Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({userId: currentUser._id})">cliquez ici pour le renvoyer</a>.</td>
       </tr>
       <tr ng-if="!currentUser.unconfirmed" class="envoi-success">
         <td>Vous avez bien confirmé votre compte grâce à votre adresse {{currentUser.email}}.</td>
