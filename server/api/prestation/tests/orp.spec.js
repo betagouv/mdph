@@ -6,7 +6,7 @@ var _ = require('lodash');
 var controller = require('../prestation.controller');
 var prestations = require('../prestations.json');
 
-var orp = prestations[9];
+var orp = _.indexBy(prestations, 'id').orp;
 
 describe('Simulation prestations : orp ', function() {
 

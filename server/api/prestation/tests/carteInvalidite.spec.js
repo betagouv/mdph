@@ -6,7 +6,7 @@ var _ = require('lodash');
 var controller = require('../prestation.controller');
 var prestations = require('../prestations.json');
 
-var carteInvalidite = prestations[1];
+var carteInvalidite = _.indexBy(prestations, 'id').carteInvalidite;
 
 describe('Simulation prestations : carteInvalidite ', function() {
 
