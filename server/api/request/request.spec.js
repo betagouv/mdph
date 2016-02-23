@@ -3,16 +3,12 @@
 var should = require('should');
 var Request = require('./request.model');
 var controller = require('./request.controller');
-
-var Actions = require('../../components/actions').actions;
 var serverTest = require('../../test/utils/server');
-
 var User = require('../user/user.model');
 
 describe('Request Model', function() {
   var server = serverTest();
   var api = server.api;
-  var auth = server.auth;
   var getToken = server.token;
 
   before(function(done) {
