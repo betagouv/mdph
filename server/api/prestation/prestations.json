@@ -32,6 +32,14 @@
     "link": "http://vosdroits.service-public.fr/particuliers/N12230.xhtml"
   },
   {
+    "id": "complement",
+    "type": "allocation",
+    "label": "complement ressources",
+    "title": "Complément de ressources",
+    "description": "Le complément de ressources est une allocation qui s'ajoute à l'allocation aux adultes handicapés (AAH). Il a pour objectif de compenser l'absence durable de revenus d'activité si vous êtes dans l'incapacité de travailler.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F12911"
+  },
+  {
     "id": "pch",
     "type": "compensation",
     "label": "PCH",
@@ -77,10 +85,20 @@
     "description": "La demande d'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation."
   },
   {
+    "id": "formation",
+    "type": "travail",
+    "label": "formation",
+    "title": "Formation professionnelle",
+    "description": "En plus des dispositifs généraux de formation, une personne handicapée peut entrer en apprentissage pour obtenir une qualification et bénéficier d'aménagements particuliers. Elle peut aussi bénéficier d'une formation dans un centre de pré-orientation si elle rencontre des difficultés d'orientation. Enfin, elle peut bénéficier d'un contrat de rééducation ou suivre un stage pour se réaccoutumer à son ancien emploi si elle est devenue inapte à exercer sa profession, ou apprendre un nouveau métier.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/N198"
+  },
+  {
     "id": "sms",
     "type": "accompagnement",
     "label": "SMS",
-    "title": "Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs"
+    "title": "Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs",
+    "description": "Au cours de son parcours de formation, l'élève handicapé peut être amené à séjourner, à temps plein ou à temps partiel, dans un établissement médico-social. Ces établissements médico-sociaux, publics ou privés, se caractérisent par des spécificités qui permettent de répondre aux besoins des enfants et adolescents handicapés.",
+    "link": "http://eduscol.education.fr/cid53162/les-etablissements-medico-sociaux.html"
   },
   {
     "id": "ac",
