@@ -87,7 +87,7 @@ angular.module('impactApp')
           var submissionMoment = moment(request.submittedAt);
           var deltaMonths = currentMoment.diff(submissionMoment, 'months');
 
-          if (deltaMonths === 1) {
+          if (deltaMonths <= 1) {
             result.new.push(request);
           } else if (deltaMonths > 1 && deltaMonths < 3) {
             result.standard.push(request);
