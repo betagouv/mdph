@@ -40,8 +40,6 @@ function createSpecialCategory(options, callback) {
 }
 
 function getOrCreateSpecialCategory(options, callback) {
-  var search = options;
-
   DocumentCategory
     .findOne(options)
     .lean()
