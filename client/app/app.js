@@ -73,14 +73,11 @@ angular.module('impactApp', [
       $state.go('login');
     });
 
-    $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
       if (toState.data && toState.data.title) {
         $rootScope.title = toState.data.title + ' - Votre MDPH en ligne';
       } else {
         $rootScope.title = 'Votre MDPH en ligne';
       }
-
-      $rootScope.returnToState = toState;
-      $rootScope.returnToStateParams = toStateParams;
     });
   });
