@@ -80,24 +80,7 @@ angular.module('impactApp', [
         $rootScope.title = 'Votre MDPH en ligne';
       }
 
-      Auth.isLoggedInAsync(function(loggedIn) {
-        if (toState.authenticate && !loggedIn) {
-          $rootScope.returnToState = toState;
-          $rootScope.returnToStateParams = toStateParams;
-
-          event.preventDefault();
-          $state.go('login');
-        } else {
-          if (toState.redirectTo) {
-            event.preventDefault();
-            if (typeof toState.redirectTo === 'string') {
-              $state.go(toState.redirectTo, toStateParams);
-            } else {
-              var params = _.assign(toStateParams, toState.redirectTo.params);
-              $state.go(toState.redirectTo.url, params);
-            }
-          }
-        }
-      });
+      $rootScope.returnToState = toState;
+      $rootScope.returnToStateParams = toStateParams;
     });
   });
