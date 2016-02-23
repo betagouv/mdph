@@ -15,7 +15,7 @@
         <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="partenaire.email" required>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-if="partenaire.certified === 'en_attente'">
       <div class="col-sm-offset-2 col-sm-10">
         <div class="btn-group">
           <label class="btn btn-default" ng-model="partenaire.certified" btn-radio="'en_attente'">En attente</label>
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <div class="col-sm-1">
-        <a class="btn btn-default" ui-sref="^">Annuler</a>
+        <a class="btn btn-default" ui-sref="^">Retour</a>
       </div>
       <div class="col-sm-11 text-right">
         <button class="btn btn-danger" type="button" ng-click="delete()">
