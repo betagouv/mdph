@@ -47,8 +47,9 @@
 
   <div ng-if="hideActions">
     <div class="validation-actions" ng-if="showValidationStatus">
-      <div class="fab invert-refuse" ng-if="file.isInvalid" tooltip="Ce document à été refusé"><i class="fa fa-thumbs-down"></i></div>
-      <div class="fab invert-valid" ng-if="!file.isInvalid" tooltip="Ce document à été validé"><i class="fa fa-thumbs-up"></i></div>
+      <div class="fab invert-refuse" ng-if="file.isInvalid === true" tooltip="Ce document à été refusé"><i class="fa fa-thumbs-down"></i></div>
+      <div class="fab invert-valid" ng-if="file.isInvalid === false" tooltip="Ce document à été validé"><i class="fa fa-thumbs-up"></i></div>
+    </div>
   </div>
 
 </div>
