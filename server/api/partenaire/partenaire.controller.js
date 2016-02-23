@@ -37,22 +37,23 @@ exports.save = function(req, res) {
           return res.sendStatus(404);
         }
 
-        // Mdph.findOne({zipcode: request.mdph}, function(err, mdph) {
-        //   if (err) { return handleError(req, res, err); }
-        //
-        //   req.body.mdph = mdph;
-        // });
-
-        Partenaire.create(req.body, function(err, partenaire) {
+        Mdph.findOne({zipcode: request.mdph}, function(err, mdph) {
           if (err) { return handleError(req, res, err); }
 
-          partenaire.secret = shortid.generate();
-          partenaire.save(function(err) {
+          req.body.mdph = mdph._id;
+
+          Partenaire.create(req.body, function(err, partenaire) {
             if (err) { return handleError(req, res, err); }
 
-            return res.status(201).json(partenaire);
+            partenaire.secret = shortid.generate();
+            partenaire.save(function(err) {
+              if (err) { return handleError(req, res, err); }
+
+              return res.status(201).json(partenaire);
+            });
           });
         });
+
       });
     }
   });
