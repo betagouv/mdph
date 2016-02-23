@@ -73,11 +73,21 @@ angular.module('impactApp', [
       $state.go('login');
     });
 
-    $rootScope.$on('$stateChangeStart', function(event, toState) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       if (toState.data && toState.data.title) {
         $rootScope.title = toState.data.title + ' - Votre MDPH en ligne';
       } else {
         $rootScope.title = 'Votre MDPH en ligne';
+      }
+
+      if (toState.redirectTo) {
+        event.preventDefault();
+        if (typeof toState.redirectTo === 'string') {
+          $state.go(toState.redirectTo, toStateParams);
+        } else {
+          var params = _.assign(toStateParams, toState.redirectTo.params);
+          $state.go(toState.redirectTo.url, params);
+        }
       }
     });
   });
