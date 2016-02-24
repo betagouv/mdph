@@ -27,7 +27,7 @@ angular.module('impactApp')
         success(function(data) {
           $cookies.put('token', data.token);
           currentUser = User.get();
-          deferred.resolve(data);
+          deferred.resolve(data.user);
           return cb({}, data);
         }).
         error(function(err) {
