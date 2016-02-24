@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
     if (!user) return res.status(404).json({message: 'Une erreur est survenue, veuillez réessayer.'});
 
     var token = auth.signToken(user._id, user.role);
-    res.json({token: token, user: user.profile})
+    res.json({token: token, user: user.profile});
   })(req, res, next);
 });
 
