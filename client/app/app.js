@@ -89,5 +89,16 @@ angular.module('impactApp', [
           $state.go(toState.redirectTo.url, params);
         }
       }
+
+      if (toState.authenticate) {
+        event.preventDefault();
+        Auth.isLoggedInAsync(function(loggedIn) {
+          if (!loggedIn) {
+            $state.go('login');
+          } else {
+            $state.go(toState, toStateParams);
+          }
+        });
+      }
     });
   });
