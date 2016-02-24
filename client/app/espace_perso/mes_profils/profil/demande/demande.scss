@@ -25,6 +25,10 @@
     list-style: none;
     padding-left: 0;
 
+    .inline {
+      display: inline-block;
+    }
+
     label {
       font-weight: 200;
     }
@@ -34,6 +38,17 @@
       margin: 0;
       padding-bottom: 2px;
       margin-left: 10px;
+    }
+
+    .well-renew {
+      padding: 4px;
+      margin-bottom: 0px;
+      background-color: transparentize($flat-ui-blue, 0.3);
+      color: $light-white;
+
+      span {
+        margin-right: 10px;
+      }
     }
   }
 
