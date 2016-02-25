@@ -1,40 +1,31 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('NavbarCtrl', function($scope, $rootScope, $state, $stateParams, $location, Auth, $sessionStorage, $localStorage, $timeout) {
-    $scope.menu = [
-    {
-      title: 'Accueil',
-      link: 'main'
-    }];
-
+  .controller('NavbarCtrl', function($scope, $rootScope, Auth, $localStorage, $timeout, MdphResource) {
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.logout = Auth.logout;
     $scope.isAdmin = Auth.isAdmin;
     $scope.isAdminMdph = Auth.isAdminMdph;
-    $scope.$storage = $localStorage;
+    $scope.showChoice = true;
+    $scope.mdphs = MdphResource.query({enabled: true});
 
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     angular.element(document).ready(function() {
       $timeout(function() {
-        $scope.showIntro = !$scope.$storage.hideIntro;
+        $scope.showIntro = !$localStorage.hideIntro;
       }, 500);
     });
 
-    $scope.momentFromNow = function(date) {
-      return moment(date).fromNow();
-    };
-
     $scope.hideIntro = function() {
       $scope.showIntro = false;
-      $scope.$storage.hideIntro = true;
+      $localStorage.hideIntro = true;
     };
 
-    $scope.logout = function() {
-      Auth.logout();
-      $sessionStorage.$reset();
-      $location.path('/login');
+    //TODO: Select mdph
+    $scope.toggleChoice = function() {
+      $scope.showChoice = !$scope.showChoice;
     };
 
     var assetDir = 'assets/images/';

@@ -5,20 +5,24 @@ angular.module('impactApp')
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
         resolve: {
-          mdph: function($rootScope) {
-            $rootScope.mdph = null;
-            return null;
-          },
-
           user: function(Auth) {
             return Auth.getCurrentUser().$promise;
+          }
+        },
+        views: {
+          '': {
+            templateUrl: 'app/main/main.html',
+            controller: 'MainCtrl'
+          },
+          'navbar@main': {
+            templateUrl: 'app/navbar/navbar.html',
+            controller: 'NavbarCtrl'
           }
         }
       })
       .state('departement', {
+        parent: 'main',
         url: '/mdph/:codeDepartement',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
@@ -28,10 +32,6 @@ angular.module('impactApp')
               $rootScope.mdph = mdph;
               return mdph;
             });
-          },
-
-          user: function(Auth) {
-            return Auth.getCurrentUser().$promise;
           }
         }
       });

@@ -34,8 +34,6 @@
     </div>
     <![endif]-->
 
-    <div ng-include="'components/navbar/navbar.html'"></div>
-
     <div ui-view=""></div>
 
     <script type="text/javascript">
@@ -43,11 +41,17 @@
         var _paq = _paq || [];
         _paq.push(['enableLinkTracking']);
         (function() {
-          var u="//stats.data.gouv.fr/";
-          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          var u = '//stats.data.gouv.fr/';
+          _paq.push(['setTrackerUrl', u + 'piwik.php']);
           _paq.push(['setSiteId', 14]);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          var d = document;
+          var g = d.createElement('script');
+          var s = d.getElementsByTagName('script')[0];
+          g.type = 'text/javascript';
+          g.async = true;
+          g.defer = true;
+          g.src = u + 'piwik.js';
+          s.parentNode.insertBefore(g, s);
         })();
       }
     </script>
@@ -164,6 +168,7 @@
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/medecin/medecin.js"></script>
+          <script src="app/navbar/navbar.controller.js"></script>
           <script src="app/partenaire/partenaire.controller.js"></script>
           <script src="app/partenaire/partenaire.js"></script>
           <script src="app/partenaire/pj/pj.controller.js"></script>
@@ -186,7 +191,6 @@
           <script src="components/nav-section/nav-section-front.constants.js"></script>
           <script src="components/nav-section/nav-section.directive.js"></script>
           <script src="components/nav-steps/nav-steps.directive.js"></script>
-          <script src="components/navbar/navbar.controller.js"></script>
           <script src="components/preparation_evaluation/documents_preparation_eval.constant.js"></script>
           <script src="components/preparation_evaluation/preparation_evaluation.service.js"></script>
           <script src="components/prestations/prestations.filter.js"></script>
