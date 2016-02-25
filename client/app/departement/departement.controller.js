@@ -2,5 +2,5 @@
 
 angular.module('impactApp')
   .controller('DepartementCtrl', function($scope, mdph) {
-    $scope.mdph = mdph;
+    $scope.$emit('event:mdph-changed', mdph);
   });

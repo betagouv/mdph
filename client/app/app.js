@@ -63,8 +63,9 @@ angular.module('impactApp', [
       }
     });
 
-    $rootScope.$on('event:auth-loginRequired', function() {
+    $rootScope.$on('event:auth-loginRequired', function(event, codeDepartement) {
       $cookies.remove('token');
+      console.log(codeDepartement);
       $state.go('login');
     });
 
@@ -86,7 +87,7 @@ angular.module('impactApp', [
           $rootScope.returnToStateParams = toStateParams;
 
           event.preventDefault();
-          $state.go('login');
+          $rootScope.$broadcast('event:auth-loginRequired', {mdph: toStateParams});
         } else {
           if (toState.redirectTo) {
             event.preventDefault();

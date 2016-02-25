@@ -1,16 +1,14 @@
-<div ui-view="navbar"></div>
-
 <ui-view>
   <div class="nav-questionnaire">
     <div class="container">
       <ol class="breadcrumb">
-        <li class="active">Accueil {{mdph.name}}</li>
+        <li class="active">Accueil {{currentMdph.name}}</li>
       </ol>
     </div>
   </div>
 
-  <header class="hero-unit banner" ng-class="'bg' + mdph.zipcode">
-    <h1 ng-if="mdph">MDPH {{mdph.name}}</h1>
+  <header class="hero-unit banner" ng-class="'bg' + currentMdph.zipcode">
+    <h1 ng-if="currentMdph">MDPH {{currentMdph.name}}</h1>
 
     <div>
       <a class="hero-button" ng-if="!user" ui-sref="espace_perso.mes_profils">

@@ -1,6 +1,4 @@
 <ui-view>
-  <div ui-view="navbar"></div>
-  
   <div class="nav-questionnaire">
     <div class="container">
       <ol class="breadcrumb">
@@ -12,17 +10,9 @@
   <header class="hero-unit banner bg">
     <h1>Votre MDPH en ligne</h1>
 
-    <div>
-      <a class="hero-button" ng-if="!user" ui-sref="espace_perso.mes_profils">
-        Commencer
-      </a>
-      <a class="hero-button" ng-if="user" ui-sref="espace_perso.mes_profils">
-        Voir vos profils
-      </a>
-      <a class="hero-button inverted" ng-if="user && user.mdph" ui-sref="dashboard.workflow({zipcode: user.mdph.zipcode})" title="Tableau de bord agent">
-        Tableau de bord
-      </a>
-    </div>
+    <a class="hero-button" ng-if="!user" href="#choix_mdph">
+      Choix de votre département
+    </a>
   </header>
 
   <div class="section-main">
@@ -41,35 +31,10 @@
     </div>
   </div>
 
-  <div class="features">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <h2><i class="fa fa-user-md"></i> Vous êtes un médecin</h2>
-            <hr>
-            <p>Facilitez la vie des demandeurs en attachant simplement un certificat médical.</p>
-            <div class="list-actions">
-              <a ui-sref="medecin">
-                Ajouter un certificat
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
-            <hr>
-            <p>N'envoyez plus vos pièces justificatives par courrier, déposez-les simplement dans le dossier de l'usager.</p>
-            <div class="list-actions">
-              <a ui-sref="partenaire">
-                Fournir des pièces complémentaires
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="features" id="choix_mdph">
+    <span ng-repeat="mdph in mdphs" class="card">
+      <a ui-sref="departement({codeDepartement: mdph.zipcode})">{{mdph.zipcode}} - {{mdph.name}}</a>
+    </span>
   </div>
 
   <div class="section-main">
