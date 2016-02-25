@@ -2,21 +2,16 @@
 
 angular.module('impactApp')
   .config(function($stateProvider) {
-    function registerAccountState(stateName, state) {
-      $stateProvider
-        .state(stateName, state)
-        .state('departement.' + stateName, state);
-    }
-
-    registerAccountState('login', {
+    $stateProvider
+      .state('login', {
+        parent: 'departement',
         url: '/login',
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginCtrl',
         data: {
           title: 'Connexion'
         }
-      });
-    $stateProvider
+      })
       .state('signup', {
         parent: 'departement',
         url: '/signup',

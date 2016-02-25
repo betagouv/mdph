@@ -60,26 +60,6 @@ $brand-primary: $bg-blue;
   white-space: normal;
 }
 
-.nav-questionnaire {
-  background-color: rgb(231, 231, 231);
-
-  ol {
-    margin: 0;
-  }
-
-  .breadcrumb {
-    background-color: rgb(231, 231, 231);
-    margin: 3px 0;
-    float: left;
-    font-size: 1.1em;
-
-    li.active {
-      color: #333;
-      font-weight: 500;
-    }
-  }
-}
-
 .banner {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   color: $light-white;
