@@ -7,10 +7,12 @@ angular.module('impactApp')
     $scope.logout = Auth.logout;
     $scope.isAdmin = Auth.isAdmin;
     $scope.isAdminMdph = Auth.isAdminMdph;
-    $scope.showChoice = true;
     $scope.mdphs = MdphResource.query({enabled: true});
 
     $scope.getCurrentUser = Auth.getCurrentUser;
+
+    $scope.mdphName = $scope.mdph ? $scope.mdph.name : 'Choix de votre département';
+    $scope.logo = $scope.mdph ? 'assets/images/' + $scope.mdph.logo : 'assets/images/logo_marianne.png';
 
     angular.element(document).ready(function() {
       $timeout(function() {
@@ -28,12 +30,4 @@ angular.module('impactApp')
       $scope.showChoice = !$scope.showChoice;
     };
 
-    var assetDir = 'assets/images/';
-    $scope.logo = assetDir + 'logo_marianne.png';
-
-    $timeout(function() {
-      if ($rootScope.mdph) {
-        $scope.logo = assetDir + $rootScope.mdph.logo;
-      }
-    });
   });
