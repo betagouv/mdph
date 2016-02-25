@@ -15,6 +15,7 @@ angular.module('impactApp')
       $scope.mdphName = 'Choix de votre département';
       $scope.logo = 'assets/images/logo_marianne.png';
       $scope.currentMdph = null;
+      $scope.showChoice = false;
     }
 
     angular.element(document).ready(function() {
@@ -37,6 +38,7 @@ angular.module('impactApp')
       $scope.currentMdph = currentMdph;
       $scope.mdphName = 'Mdph ' + currentMdph.name;
       $scope.logo = 'assets/images/' + currentMdph.logo;
+      $scope.showChoice = false;
     });
 
     $scope.$on('event:mdph-none', function() {
