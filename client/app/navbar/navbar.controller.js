@@ -11,7 +11,7 @@ angular.module('impactApp')
 
     $scope.getCurrentUser = Auth.getCurrentUser;
 
-    $scope.mdphName = $scope.mdph ? $scope.mdph.name : 'Choix de votre département';
+    $scope.mdphName = $scope.mdph ? 'Mdph ' + $scope.mdph.name : 'Choix de votre département';
     $scope.logo = $scope.mdph ? 'assets/images/' + $scope.mdph.logo : 'assets/images/logo_marianne.png';
 
     angular.element(document).ready(function() {
