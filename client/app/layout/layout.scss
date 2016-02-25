@@ -5,6 +5,10 @@
 }
 
 .navbar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+
   .nav-title {
     padding: 10px 0;
   }
@@ -71,4 +75,18 @@
 .intro {
   -webkit-transition:all linear 0.6s;
   transition:all linear 0.6s;
+}
+
+.navbar-mdph-choice {
+  -webkit-transition:all ease-out 0.4s;
+  transition:all ease-out 0.4s;
+  min-height: 50px;
+
+  &.navbar-mdph-choice-visible {
+    margin-top: 50px;
+  }
+
+  &.navbar-mdph-choice-hidden {
+    margin-top: 0px;
+  }
 }

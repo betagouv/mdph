@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav">
         <li role="menuitem" ng-if="isCollapsed">
           <button class="nav-title btn btn-link" title="Accueil" ng-click="toggleChoice()">
-            {{mdphName}}&nbsp;<i class="fa" ng-class="{ 'fa-caret-down': !showChoice, 'fa-caret-up': showChoice }"></i>
+            {{ mdphName }}&nbsp;<i class="fa" ng-class="{ 'fa-caret-down': !showChoice, 'fa-caret-up': showChoice }"></i>
           </button>
         </li>
         <li role="menuitem" ng-if="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
@@ -47,12 +47,14 @@
   </div>
 </div>
 
-<div ng-show="showChoice">
+<div ng-class="{'navbar-mdph-choice-hidden': !showChoice, 'navbar-mdph-choice-visible': showChoice}" class="navbar-mdph-choice">
   <div class="container">
     <span ng-repeat="mdph in mdphs track by mdph._id">
-      <a ui-sref="departement({codeDepartement: mdph.zipcode})">{{mdph.zipcode}} - {{mdph.name}}</a>
+      <a ui-sref="departement({codeDepartement: mdph.zipcode})">{{ mdph.zipcode }} - {{ mdph.name }}</a>
     </span>
   </div>
 </div>
 
-<div ui-view></div>
+<div class="layout-wrapper">
+  <div ui-view></div>
+</div>
