@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AgentsEditCtrl', function($scope, $state, user, currentUser) {
+  .controller('AgentsEditCtrl', function($scope, $state, user, currentMdph) {
     $scope.user = user;
 
     $scope.update = function(form) {
@@ -11,7 +11,7 @@ angular.module('impactApp')
         });
       } else {
         $scope.user.role = 'adminMdph';
-        $scope.user.mdph = currentUser.mdph._id;
+        $scope.user.mdph = currentMdph._id;
         $scope.user.$save(
           function() {
             $state.go('^', {}, {reload: true});
