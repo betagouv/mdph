@@ -71,5 +71,7 @@
     "validateIndentation": 2,
     "requireSpacesInsideObjectBrackets": false,
     "requireSpacesInAnonymousFunctionExpression": false,
-    "maximumLineLength": false
+    "maximumLineLength": false,
+    "requireCamelCaseOrUpperCaseIdentifiers": false,
+    "requireTrailingComma": false
 }
