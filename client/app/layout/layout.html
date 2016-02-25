@@ -47,11 +47,13 @@
   </div>
 </div>
 
-<div ng-class="{'navbar-mdph-choice-hidden': !showChoice, 'navbar-mdph-choice-visible': showChoice}" class="navbar-mdph-choice">
+<div ng-class="{'navbar-mdph-choice-wrapper-hidden': !showChoice, 'navbar-mdph-choice-wrapper-visible': showChoice}" class="navbar-mdph-choice-wrapper">
   <div class="container">
-    <span ng-repeat="mdph in mdphs track by mdph._id">
-      <a ui-sref="departement({codeDepartement: mdph.zipcode})">{{ mdph.zipcode }} - {{ mdph.name }}</a>
-    </span>
+    <ul>
+      <li class="navbar-mdph-choice" ng-repeat="mdph in mdphs track by mdph._id">
+        <a ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{ mdph.zipcode }}</strong> - {{ mdph.name }}</a>
+      </li>
+    </ul>
   </div>
 </div>
 
