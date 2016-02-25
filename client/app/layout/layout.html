@@ -38,7 +38,7 @@
         <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="login({codeDepartement: currentMdph.zipcode})" title="Se connecter">Connexion</a></li>
         <li role="menuitem" ng-if="isLoggedIn()">
           <a ui-sref="espace_perso.mon_compte" title="Gérer votre compte">
-            {{ user.email }}
+            {{ currentUser.email }}
           </a>
         </li>
         <li role="menuitem" ng-if="isLoggedIn()"></li>

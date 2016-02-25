@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MainCtrl', function($scope, user) {
-    $scope.user = user;
+  .controller('MainCtrl', function($scope) {
     $scope.$emit('event:mdph-none');
   });

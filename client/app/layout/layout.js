@@ -6,7 +6,7 @@ angular.module('impactApp')
       .state('layout', {
         url: '',
         resolve: {
-          user: function(Auth) {
+          currentUser: function(Auth) {
             return Auth.getCurrentUser().$promise;
           },
 
