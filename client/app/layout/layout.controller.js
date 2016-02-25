@@ -29,7 +29,6 @@ angular.module('impactApp')
       $localStorage.hideIntro = true;
     };
 
-    //TODO: Select mdph
     $scope.toggleChoice = function() {
       $scope.showChoice = !$scope.showChoice;
     };
