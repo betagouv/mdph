@@ -19,7 +19,7 @@ angular.module('impactApp')
       .state('dashboard.workflow.detail.pre_evaluation', {
         url: '/pre_evaluation',
         templateUrl: 'app/dashboard/workflow/detail/pre_evaluation/pre_evaluation.html',
-        controller: 'RequestPreEvaluationCtrl',
+        controller: 'PreEvaluationCtrl',
         authenticate: true
       })
       .state('dashboard.workflow.detail.documents', {

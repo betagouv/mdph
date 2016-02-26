@@ -1,6 +1,6 @@
 [
   {
-    "id": "carteStationnement",
+    "id": "cartestationnement",
     "type": "carte",
     "label": "Carte stationnement",
     "title": "Carte de stationnement",
@@ -8,7 +8,7 @@
     "link": "http://vosdroits.service-public.fr/particuliers/F2891.xhtml"
   },
   {
-    "id": "carteInvalidite",
+    "id": "carteinvalidite",
     "type": "carte",
     "label": "Carte d'invalidité ou de priorité",
     "title": "Carte d'invalidité ou de priorité",
