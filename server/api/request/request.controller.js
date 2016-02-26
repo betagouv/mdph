@@ -1,33 +1,34 @@
 'use strict';
 
-var _ = require('lodash');
-var path = require('path');
-var pdf = require('html-pdf');
-var fs = require('fs');
-var shortid = require('shortid');
-var async = require('async');
+const _ = require('lodash');
+const path = require('path');
+const pdf = require('html-pdf');
+const fs = require('fs');
+const shortid = require('shortid');
+const async = require('async');
 
-var auth = require('../../auth/auth.service');
-var config = require('../../config/environment');
-var Recapitulatif = require('../../components/recapitulatif');
-var Synthese = require('../../components/synthese');
-var MakePdf = require('../../components/make-pdf');
+const auth = require('../../auth/auth.service');
+const config = require('../../config/environment');
+const Recapitulatif = require('../../components/recapitulatif');
+const Synthese = require('../../components/synthese');
+const MakePdf = require('../../components/make-pdf');
 
-var PrestationsController = require('../prestation/prestation.controller');
-var DocumentsController = require('../document/documents.controller');
-var Prestation = require('../prestation/prestation.controller');
-var Request = require('./request.model');
-var User = require('../user/user.model');
-var Partenaire = require('../partenaire/partenaire.model');
-var Mdph = require('../mdph/mdph.model');
-var MailActions = require('../send-mail/send-mail-actions');
+const PrestationsController = require('../prestation/prestation.controller');
+const DocumentsController = require('../document/documents.controller');
+const Prestation = require('../prestation/prestation.controller');
+const Request = require('./request.model');
+const User = require('../user/user.model');
+const Partenaire = require('../partenaire/partenaire.model');
+const Mdph = require('../mdph/mdph.model');
+const MailActions = require('../send-mail/send-mail-actions');
 
-var ActionModel = require('./action.model');
-var Actions = require('../../components/actions').actions;
-var ActionsById = require('../../components/actions').actionsById;
-var resizeAndMove = require('../../components/resize-image');
+const Dispatcher = require('../../components/dispatcher');
+const ActionModel = require('./action.model');
+const Actions = require('../../components/actions').actions;
+const ActionsById = require('../../components/actions').actionsById;
+const resizeAndMove = require('../../components/resize-image');
 
-var domain = process.env.DOMAIN || config.DOMAIN;
+const domain = process.env.DOMAIN || config.DOMAIN;
 
 function getPopulatedRequest(user, shortId, done) {
   Request
@@ -181,8 +182,14 @@ exports.updateFromUser = function(req, res, next) {
 
   if (req.query.isSendingRequest) {
     // Find and notify evaluator through dispatcher
-    MailActions.sendMailNotification(request, req.headers.host, req.log, function(secteur) {
+    Dispatcher.findSecteur(request, function(err, secteur) {
       if (secteur) {
+        var type = request.getType();
+        var evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
+        evaluators.forEach(function(evaluator) {
+          MailActions.sendMailNotificationAgent(request, evaluator.email);
+        });
+
         request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
         request.set('secteur', secteur);
       }
