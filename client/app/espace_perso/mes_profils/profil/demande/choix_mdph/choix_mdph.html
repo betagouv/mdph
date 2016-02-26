@@ -23,7 +23,7 @@
   <div class="form-group" ng-if="request.estRenouvellement === true">
     <fieldset>
       <legend class="control-label" id="request-mdph">Dans quelle MDPH se trouve ce dossier ?</legend>
-      <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in enabledMdphs"
+      <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in mdphs"
               ng-init="request.old_mdph = request.mdph" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.old_mdph" ng-change="request.numeroDossier = null" required></select>
     </fieldset>
   </div>
