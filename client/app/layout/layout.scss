@@ -11,12 +11,12 @@
   .nav-title {
     padding: 10px 0;
 
-    > .fa-caret-up {
+    > .fa-caret-down {
       transition: all linear 0.19s;
     }
 
-    > .fa-caret-up.get-down {
-      transform: rotate(180deg);
+    > .fa-caret-down.get-down {
+      transform: rotate(-180deg);
     }
   }
 
