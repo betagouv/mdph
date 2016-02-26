@@ -17,7 +17,7 @@ angular.module('impactApp')
           }
 
           if (user.role === 'adminMdph') {
-            return $state.go('dashboard.workflow', {zipcode: user.mdph  && user.mdph.zipcode}, {reload: true});
+            return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 
           if (user.role === 'admin') {

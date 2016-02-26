@@ -6,6 +6,13 @@ angular.module('impactApp')
     $scope.currentUser = currentUser;
 
     $scope.isAdmin = function() {
-      return currentUser && currentUser.role.indexOf('admin') >= 0;
+      switch (currentUser.role) {
+        case 'admin':
+          return true;
+        case 'adminMdph':
+          return currentUser.mdph.zipcode === currentMdph.zipcode;
+        default:
+          return false;
+      }
     };
   });
