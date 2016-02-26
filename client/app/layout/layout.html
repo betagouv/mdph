@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav">
         <li role="menuitem" ng-if="isCollapsed">
           <button class="nav-title btn btn-link" title="Accueil" ng-click="toggleChoice()">
-            {{ mdphName }}&nbsp;<i class="fa" ng-class="{ 'fa-caret-down': !showChoice, 'fa-caret-up': showChoice }"></i>
+            {{ mdphName }}&nbsp;<i class="fa fa-caret-up" ng-class="{ 'get-down': showChoice }"></i>
           </button>
         </li>
         <li role="menuitem" ng-if="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>

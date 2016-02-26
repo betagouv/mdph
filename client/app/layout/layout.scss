@@ -10,6 +10,14 @@
 
   .nav-title {
     padding: 10px 0;
+
+    > .fa-caret-up {
+      transition: all linear 0.19s;
+    }
+
+    > .fa-caret-up.get-down {
+      transform: rotate(180deg);
+    }
   }
 
   img {
