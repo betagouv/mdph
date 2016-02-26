@@ -1,13 +1,12 @@
-.navbar-header {
-  .logo {
-    padding: 2px;
-  }
-}
-
 .navbar {
-  position: absolute;
-  width: 100%;
-  top: 0;
+  @extend .box-shadow-z4;
+  margin-bottom: 0px;
+
+  .navbar-header {
+    .logo {
+      padding: 2px;
+    }
+  }
 
   .nav-title {
     padding: 10px 0;
@@ -20,13 +19,6 @@
     mix-blend-mode: multiply;
   }
 
-  .title {
-    margin-left: 30px;
-    color: rgb(85,85,85);
-    text-decoration: none;
-  }
-
-  margin-bottom: 0px;
 }
 
 .navbar.has-intro {
@@ -78,19 +70,22 @@
 }
 
 .navbar-mdph-choice-wrapper {
-  -webkit-transition:all ease-out 0.4s;
-  transition:all ease-out 0.4s;
+  -webkit-transition: top ease-out 0.4s;
+  transition: top ease-out 0.4s;
   min-height: 50px;
   display: flex;
   align-items: center;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
   background-color: $lighter-grey;
 
   &.navbar-mdph-choice-wrapper-visible {
-    margin-top: 50px;
+    top: 50px;
   }
 
   &.navbar-mdph-choice-wrapper-hidden {
-    margin-top: 0px;
+    top: 0px;
   }
 
   ul {
