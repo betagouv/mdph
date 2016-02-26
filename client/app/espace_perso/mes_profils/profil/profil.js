@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp').config(function($stateProvider) {
-  $stateProvider.state('espace_perso.mes_profils.profil', {
+  $stateProvider.state('profil', {
     url: '/:profileId',
+    parent: 'mes_profils',
     templateUrl: 'app/espace_perso/mes_profils/profil/profil.html',
     controller: 'ProfilCtrl',
     authenticate: true,
