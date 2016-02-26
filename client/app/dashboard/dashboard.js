@@ -5,7 +5,7 @@ angular.module('impactApp')
     $urlRouterProvider.when('/dashboard', '/dashboard/demandes');
     $stateProvider
       .state('dashboard', {
-        url: '/dashboard/:zipcode',
+        url: '/dashboard',
         parent: 'departement',
         templateUrl: 'app/dashboard/dashboard.html',
         authenticate: true,

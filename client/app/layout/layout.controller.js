@@ -8,8 +8,6 @@ angular.module('impactApp')
 
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.logout = Auth.logout;
-    $scope.isAdmin = Auth.isAdmin;
-    $scope.isAdminMdph = Auth.isAdminMdph;
 
     function setInitial() {
       $scope.mdphName = 'Choix de votre département';
