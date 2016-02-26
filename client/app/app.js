@@ -57,6 +57,8 @@ angular.module('impactApp', [
   })
   .run(function($rootScope, $state, $window, $location, Auth, $cookies) {
     $rootScope.$on('$stateChangeSuccess', function() {
+      window.scrollTo(0, 0);
+
       if ($window._paq) {
         $window._paq.push(['setCustomUrl', $location.path()]);
         $window._paq.push(['trackPageView']);
