@@ -2,9 +2,13 @@
   <header class="hero-unit banner bg">
     <h1>Votre MDPH en ligne</h1>
 
-    <a class="hero-button" href="#choix_mdph">
-      Choix de votre département
-    </a>
+    <div class="mdph-choices-wrapper">
+      <ul class="mdph-choices">
+        <li ng-repeat="mdph in mdphs" class="mdph-choice">
+          <a class="btn btn-default" ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{mdph.zipcode}}</strong> - {{mdph.name}}</a>
+        </li>
+      </ul>
+    </div>
   </header>
 
   <div class="section-main">
@@ -21,12 +25,6 @@
         <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
       </div>
     </div>
-  </div>
-
-  <div class="features" id="choix_mdph">
-    <span ng-repeat="mdph in mdphs" class="card">
-      <a ui-sref="departement({codeDepartement: mdph.zipcode})">{{mdph.zipcode}} - {{mdph.name}}</a>
-    </span>
   </div>
 
   <div class="section-main">
