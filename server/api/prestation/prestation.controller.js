@@ -11,9 +11,11 @@ module.exports = {
 
   populateAndSortPrestations: function(request, callback) {
     if (request.prestations && request.prestations.length > 0) {
+      request.prestations = _.map(request.prestations, str => str.toLowerCase());
       request.detailPrestations = {};
-      _.reduce(request.prestations, function(result, current) {
-        result[current] = prestationsById[current.toLowerCase()];
+
+      _(request.prestations).reduce((result, current) => {
+        result[current] = prestationsById[current];
         return result;
       }, request.detailPrestations);
     }

@@ -67,7 +67,7 @@ angular.module('impactApp').config(function($stateProvider) {
       },
       'choix_mdph@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/choix_mdph/choix_mdph.html',
-        controller: function($scope, enabledMdphs, mdphJSON, request, $stateParams, mdphParams) {
+        controller: function($scope, enabledMdphs, mdphJSON, request, mdphParams) {
           $scope.enabledMdphs = enabledMdphs;
           $scope.selectedMdph = _.find(mdphJSON, {code_departement: request.mdph});
           $scope.request.mdph = mdphParams;
