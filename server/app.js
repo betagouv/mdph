@@ -30,7 +30,6 @@ server.listen(config.port, config.ip, function() {
 
 app.use(function(err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
-    console.log(err);
     res.status(401).send('invalid token...');
   }
 });
