@@ -1,38 +1,37 @@
 <h3 class="required">Prestations demandées</h3>
 
-<div ng-repeat="(key, type) in types" ng-if="request.status === 'en_cours'">
-  <h4>{{key | prestationType}}</h4>
-  <ul class="demande-prestations">
-    <li ng-repeat="prestation in type">
-      <div>
-        <div class="inline">
-          <label for="{{prestation.id}}">
-            <input type="checkbox" id="{{prestation.id}}" ng-model="prestation.isSelected">&nbsp;{{prestation.title}}
-          </label>
-        </div>
-
-        <div class="inline well well-renew" ng-if="prestation.isSelected">
-          <fieldset>
-            <span class="control-label"> S'agit-il d'un renouvellement ?</span>
-            <input type="radio" name="renouvPrest{{prestation.id}}" id="renouvYes{{prestation.id}}" ng-model="prestation.estRenouvellement" ng-value="true">
-            <label class="radio-inline" for="renouvYes{{prestation.id}}">Oui</label>
-            <input type="radio" name="renouvPrest{{prestation.id}}" id="renouvNo{{prestation.id}}" ng-model="prestation.estRenouvellement" ng-value="false">
-            <label class="radio-inline" for="renouvNo{{prestation.id}}">Non</label>
-          </fieldset>
-        </div>
-
-        <div ng-class="{'inline' : !prestation.isSelected}">
+<table class="table">
+  <tbody ng-repeat="(key, type) in types" ng-if="request.status === 'en_cours'">
+    <tr class="table-header">
+      <th>{{key | prestationType}}</th>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Renouvellement</td>
+    </tr>
+    <tr ng-repeat="prestation in type">
+      <td>
+        {{prestation.title}}
+        <div>
           <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail" type="button">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
         </div>
-      </div>
+        <div class="text-justify" ng-if="prestation.showDetail">
+          {{prestation.description}}
+          <a href="{{prestation.link}}">{{prestation.link}}</a>
+        </div>
+      </td>
 
-      <div class="well" ng-if="prestation.showDetail">
-        {{prestation.description}}
-        <a href="{{prestation.link}}">{{prestation.link}}</a>
-      </div>
-    </li>
-  </ul>
-</div>
+      <td class="center-text">
+        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="true">
+      </td>
+      <td class="center-text">
+        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="false">
+      </td>
+      <td class="center-text">
+        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="renouvellement">
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <div ng-repeat="prestation in request.detailPrestations" ng-if="request.status !== 'en_cours'">
   <dl class="demande-prestations">

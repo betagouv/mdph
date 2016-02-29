@@ -5,6 +5,28 @@
     box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
     border: 1px solid rgba(34,36,38,.15);
     padding: 15px 20px;
+
+    .table > tbody + tbody {
+      border-top: none;
+      padding-top: 5px;
+    }
+
+    tr.table-header {
+      background-color: white;
+
+      th, td {
+        border-top: none;
+        vertical-align: middle;
+      }
+    }
+
+    td.center-text {
+      text-align: center;
+    }
+
+    .justify-text {
+      text-align: justify;
+    }
   }
 
   h3 {
@@ -25,10 +47,6 @@
     list-style: none;
     padding-left: 0;
 
-    .inline {
-      display: inline-block;
-    }
-
     label {
       font-weight: 200;
     }
@@ -38,17 +56,6 @@
       margin: 0;
       padding-bottom: 2px;
       margin-left: 10px;
-    }
-
-    .well-renew {
-      padding: 4px;
-      margin-bottom: 0px;
-      background-color: transparentize($flat-ui-blue, 0.3);
-      color: $light-white;
-
-      span {
-        margin-right: 10px;
-      }
     }
   }
 
