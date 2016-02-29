@@ -8,6 +8,7 @@ var dispatcher = require('./dispatcher');
 var DispatchRule = require('../api/dispatch-rule/dispatch-rule.model');
 var Secteur = require('../api/secteur/secteur.model');
 var Mdph = require('../api/mdph/mdph.model');
+var Request = require('../api/request/request.model');
 
 var caen = new Mdph({
   name: 'Caen',
@@ -113,7 +114,7 @@ describe('Dispatcher', function() {
   });
 
   it('should find the correct secteur', function(done) {
-    var request = {
+    var request = new Request({
       mdph: '14',
       formAnswers: {
         identites: {
@@ -123,9 +124,9 @@ describe('Dispatcher', function() {
           }
         }
       }
-    };
+    });
 
-    dispatcher.findSecteur(request, function(secteur) {
+    dispatcher.findSecteur(request, function(err, secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurCaen.id);
       done();
@@ -133,7 +134,7 @@ describe('Dispatcher', function() {
   });
 
   it('should find the correct default secteur even without rules', function(done) {
-    var request = {
+    var request = new Request({
       mdph: '59',
       formAnswers: {
         identites: {
@@ -143,9 +144,9 @@ describe('Dispatcher', function() {
           }
         }
       }
-    };
+    });
 
-    dispatcher.findSecteur(request, function(secteur) {
+    dispatcher.findSecteur(request, function(err, secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurNord.id);
       done();
@@ -153,7 +154,7 @@ describe('Dispatcher', function() {
   });
 
   it('should not find the default secteur if it is described in another mdph', function(done) {
-    var request = {
+    var request = new Request({
       mdph: '14',
       formAnswers: {
         identites: {
@@ -163,9 +164,10 @@ describe('Dispatcher', function() {
           }
         }
       }
-    };
+    });
 
-    dispatcher.findSecteur(request, function(secteur) {
+    dispatcher.findSecteur(request, function(err, secteur) {
+      should.exist(err);
       should.not.exist(secteur);
       done();
     });
