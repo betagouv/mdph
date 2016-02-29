@@ -102,6 +102,9 @@ module.exports = function(app) {
     next(err);
   };
 
+
+  app.use(requestLogger);
+
   if (env === 'production') {
     app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'dist')));
@@ -117,9 +120,5 @@ module.exports = function(app) {
     app.use(express.static(path.join(config.root, 'client')));
     app.set('appPath', config.root + '/client');
     app.use(errorHandler()); // Error handler - has to be last
-  }
-
-  if (env === 'development' || env === 'production') {
-    app.use(requestLogger);
   }
 };
