@@ -20,6 +20,16 @@ module.exports = {
       }, request.detailPrestations);
     }
 
+    if (request.renouvellements && request.renouvellements.length > 0) {
+      request.renouvellements = _.map(request.renouvellements, str => str.toLowerCase());
+      request.detailRenouvellements = {};
+
+      _(request.renouvellements).reduce((result, current) => {
+        result[current] = prestationsById[current];
+        return result;
+      }, request.detailRenouvellements);
+    }
+
     return callback(null, request);
   }
 };

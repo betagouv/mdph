@@ -14,7 +14,8 @@ angular.module('impactApp').config(function($stateProvider) {
       },
 
       request: function(RequestResource, shortId) {
-        return RequestResource.get({shortId: shortId}).$promise;
+        var requests = RequestResource.get({shortId: shortId}).$promise;
+        return requests;
       },
 
       prestations: function($http) {
@@ -40,15 +41,13 @@ angular.module('impactApp').config(function($stateProvider) {
           }
 
           function getSelectedPrestationIdList() {
-            debugger;
             return _.chain(prestations)
-             .filter({ choice: true })
+             .filter({ choice: "true" })
              .pluck('id')
              .value();
           }
 
           function getRenewalPrestationIdList() {
-            debugger;
             return _.chain(prestations)
              .filter({ choice: 'renouvellement' })
              .pluck('id')

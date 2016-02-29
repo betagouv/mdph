@@ -1,7 +1,7 @@
 <h3 class="required">Prestations demandées</h3>
 
-<table class="table">
-  <tbody ng-repeat="(key, type) in types" ng-if="request.status === 'en_cours'">
+<table class="table" ng-if="request.status === 'en_cours'">
+  <tbody ng-repeat="(key, type) in types">
     <tr class="table-header">
       <th>{{key | prestationType}}</th>
       <td>Oui</td>
@@ -33,9 +33,20 @@
   </tbody>
 </table>
 
-<div ng-repeat="prestation in request.detailPrestations" ng-if="request.status !== 'en_cours'">
-  <dl class="demande-prestations">
-    <dt>{{prestation.title}}</dt>
-    <dd>{{prestation.description}}</dd>
-  </dl>
+<div ng-if="request.status !== 'en_cours'">
+  <h4 ng-show="request.detailPrestations">Nouvelles prestations</h4>
+  <div ng-repeat="prestation in request.detailPrestations">
+    <dl class="demande-prestations">
+      <dt>{{prestation.title}}</dt>
+      <dd>{{prestation.description}}</dd>
+    </dl>
+  </div>
+
+  <h4 ng-show="request.detailRenouvellements">Renouvellements de prestations</h4>
+  <div ng-repeat="prestation in request.detailRenouvellements">
+    <dl class="demande-prestations">
+      <dt>{{prestation.title}}</dt>
+      <dd>{{prestation.description}}</dd>
+    </dl>
+  </div>
 </div>
