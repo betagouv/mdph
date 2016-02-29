@@ -48,7 +48,7 @@ angular.module('impactApp')
         $cookies.remove('token');
         $sessionStorage.$reset();
         currentUser = {};
-        $state.go('departement');
+        $state.go('departement', {}, {reload: true});
       },
 
       /**

@@ -3,10 +3,10 @@
     <h1 ng-if="currentMdph">MDPH {{currentMdph.name}}</h1>
 
     <div>
-      <a class="hero-button" ng-if="!currentUser" ui-sref="espace_perso.mes_profils">
+      <a class="hero-button" ng-if="!currentUser.role" ui-sref="espace_perso.mes_profils">
         Commencer
       </a>
-      <a class="hero-button" ng-if="currentUser" ui-sref="espace_perso.mes_profils">
+      <a class="hero-button" ng-if="currentUser.role" ui-sref="espace_perso.mes_profils">
         Voir vos profils
       </a>
       <a class="hero-button inverted" ng-if="isAdmin()" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
