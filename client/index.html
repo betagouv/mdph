@@ -34,8 +34,6 @@
     </div>
     <![endif]-->
 
-    <div ng-include="'components/navbar/navbar.html'"></div>
-
     <div ui-view=""></div>
 
     <script type="text/javascript">
@@ -43,11 +41,17 @@
         var _paq = _paq || [];
         _paq.push(['enableLinkTracking']);
         (function() {
-          var u="//stats.data.gouv.fr/";
-          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          var u = '//stats.data.gouv.fr/';
+          _paq.push(['setTrackerUrl', u + 'piwik.php']);
           _paq.push(['setSiteId', 14]);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          var d = document;
+          var g = d.createElement('script');
+          var s = d.getElementsByTagName('script')[0];
+          g.type = 'text/javascript';
+          g.async = true;
+          g.defer = true;
+          g.src = u + 'piwik.js';
+          s.parentNode.insertBefore(g, s);
         })();
       }
     </script>
@@ -96,10 +100,6 @@
           <script src="app/account/resend_confirmation/resend_confirmation.controller.js"></script>
           <script src="app/account/reset_password/resest_password.controller.js"></script>
           <script src="app/account/signup/signup.controller.js"></script>
-          <script src="app/admin/admin.controller.js"></script>
-          <script src="app/admin/admin.js"></script>
-          <script src="app/admin/mdph/mdph.controller.js"></script>
-          <script src="app/admin/mdph/mdph.js"></script>
           <script src="app/apropos/apropos.js"></script>
           <script src="app/dashboard/dashboard.js"></script>
           <script src="app/dashboard/dispatch/dispatch.js"></script>
@@ -125,6 +125,8 @@
           <script src="app/dashboard/workflow/list/request-table-body.directive.js"></script>
           <script src="app/dashboard/workflow/workflow.controller.js"></script>
           <script src="app/dashboard/workflow/workflow.js"></script>
+          <script src="app/departement/departement.controller.js"></script>
+          <script src="app/departement/departement.js"></script>
           <script src="app/espace_perso/espace_perso.controller.js"></script>
           <script src="app/espace_perso/espace_perso.js"></script>
           <script src="app/espace_perso/mes_profils/mes_profils.controller.js"></script>
@@ -161,6 +163,8 @@
           <script src="app/espace_perso/mes_profils/profil/situations_particulieres/situations_particulieres.js"></script>
           <script src="app/espace_perso/mon_compte/mon_compte.controller.js"></script>
           <script src="app/espace_perso/mon_compte/mon_compte.js"></script>
+          <script src="app/layout/layout.controller.js"></script>
+          <script src="app/layout/layout.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/medecin/medecin.js"></script>
@@ -186,7 +190,6 @@
           <script src="components/nav-section/nav-section-front.constants.js"></script>
           <script src="components/nav-section/nav-section.directive.js"></script>
           <script src="components/nav-steps/nav-steps.directive.js"></script>
-          <script src="components/navbar/navbar.controller.js"></script>
           <script src="components/preparation_evaluation/documents_preparation_eval.constant.js"></script>
           <script src="components/preparation_evaluation/preparation_evaluation.service.js"></script>
           <script src="components/prestations/prestations.filter.js"></script>

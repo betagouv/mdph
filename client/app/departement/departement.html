@@ -1,13 +1,17 @@
 <ui-view>
-  <header class="hero-unit banner bg">
-    <h1>Votre MDPH en ligne</h1>
+  <header class="hero-unit banner" ng-class="'bg' + currentMdph.zipcode">
+    <h1 ng-if="currentMdph">MDPH {{currentMdph.name}}</h1>
 
-    <div class="mdph-choices-wrapper">
-      <ul class="mdph-choices">
-        <li ng-repeat="mdph in mdphs" class="mdph-choice">
-          <a class="btn btn-default" ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{mdph.zipcode}}</strong> - {{mdph.name}}</a>
-        </li>
-      </ul>
+    <div>
+      <a class="hero-button" ng-if="!currentUser" ui-sref="espace_perso.mes_profils">
+        Commencer
+      </a>
+      <a class="hero-button" ng-if="currentUser" ui-sref="espace_perso.mes_profils">
+        Voir vos profils
+      </a>
+      <a class="hero-button inverted" ng-if="isAdmin()" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
+        Tableau de bord
+      </a>
     </div>
   </header>
 
@@ -23,6 +27,37 @@
       </div>
       <div class="col-md-4">
         <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <h2><i class="fa fa-user-md"></i> Vous êtes un médecin</h2>
+            <hr>
+            <p>Facilitez la vie des demandeurs en attachant simplement un certificat médical.</p>
+            <div class="list-actions">
+              <a ui-sref="medecin">
+                Ajouter un certificat
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
+            <hr>
+            <p>N'envoyez plus vos pièces justificatives par courrier, déposez-les simplement dans le dossier de l'usager.</p>
+            <div class="list-actions">
+              <a ui-sref="partenaire">
+                Fournir des pièces complémentaires
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

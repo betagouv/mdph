@@ -227,7 +227,7 @@ exports.showPartenaires = function(req, res) {
 
 // Get list of mdphs
 exports.index = function(req, res) {
-  Mdph.find().sort('zipcode').exec(function(err, mdphs) {
+  Mdph.find(req.query).sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(mdphs);

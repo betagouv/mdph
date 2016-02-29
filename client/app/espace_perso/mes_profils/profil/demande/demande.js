@@ -67,11 +67,11 @@ angular.module('impactApp').config(function($stateProvider) {
       },
       'choix_mdph@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/choix_mdph/choix_mdph.html',
-        controller: function($scope, mdphs, request, enabledMdphs) {
-          $scope.request = request;
-          $scope.selectedMdph = _.find(mdphs, {code_departement: request.mdph});
-          $scope.mdphs = mdphs;
+        controller: function($scope, enabledMdphs, mdphJSON, request, $stateParams, mdphParams) {
           $scope.enabledMdphs = enabledMdphs;
+          $scope.selectedMdph = _.find(mdphJSON, {code_departement: request.mdph});
+          $scope.request.mdph = mdphParams;
+          $scope.request = request;
 
           $scope.resetOldMdph = function() {
             request.old_mdph = null;
@@ -80,14 +80,18 @@ angular.module('impactApp').config(function($stateProvider) {
         },
 
         resolve: {
-          mdphs: function($http) {
+          mdphJSON: function($http) {
             return $http.get('/api/mdphs/list').then(function(result) {
               return result.data;
             });
           },
 
-          enabledMdphs: function(mdphs) {
-            return _.filter(mdphs, {enabled: true});
+          enabledMdphs: function(mdphJSON) {
+            return _.filter(mdphJSON, {enabled: true});
+          },
+
+          mdphParams: function($stateParams) {
+            return $stateParams.codeDepartement;
           }
         }
       },

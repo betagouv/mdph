@@ -40,6 +40,10 @@ $brand-primary: $bg-blue;
   border-radius: 0px;
 }
 
+.box-shadow-z4 {
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.08),0 1px 1px 0 rgba(0,0,0,.06),0 2px 1px -1px rgba(0,0,0,.05);
+}
+
 .box-shadow-z1 {
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
@@ -58,26 +62,6 @@ $brand-primary: $bg-blue;
 
 .btn {
   white-space: normal;
-}
-
-.nav-questionnaire {
-  background-color: rgb(231, 231, 231);
-
-  ol {
-    margin: 0;
-  }
-
-  .breadcrumb {
-    background-color: rgb(231, 231, 231);
-    margin: 3px 0;
-    float: left;
-    font-size: 1.1em;
-
-    li.active {
-      color: #333;
-      font-weight: 500;
-    }
-  }
 }
 
 .banner {
@@ -195,6 +179,7 @@ fieldset {
 @import 'espace_perso/mes_profils/profil/liste_demandes.scss';
 @import 'espace_perso/mes_profils/profil/profile.scss';
 @import 'espace_perso/mon_compte/mon_compte.scss';
+@import 'layout/layout.scss';
 @import 'main/main.scss';
 @import 'partenaire/partenaire.scss';
 @import 'partenaire/pj/pj.scss';
@@ -202,7 +187,6 @@ fieldset {
 @import 'display-file/display-file.scss';
 @import 'nav-section/nav-section.scss';
 @import 'nav-steps/nav-steps.scss';
-@import 'navbar/navbar.scss';
 @import 'profile/profile-category.scss';
 @import 'qtitle/qtitle.scss';
 @import 'question/cv.scss';

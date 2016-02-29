@@ -5,16 +5,13 @@ angular.module('impactApp')
     $stateProvider
       .state('espace_perso', {
         url: '/espace_perso',
+        parent: 'departement',
         templateUrl: 'app/espace_perso/espace_perso.html',
         controller: 'EspacePersoCtrl',
         authenticate: true,
         resolve: {
           sections: function(SectionFrontConstants) {
             return SectionFrontConstants;
-          },
-
-          currentUser: function(Auth) {
-            return Auth.getCurrentUser().$promise;
           }
         },
         abstract: true
@@ -27,10 +24,6 @@ angular.module('impactApp')
         resolve: {
           sections: function(SectionBackConstants) {
             return SectionBackConstants;
-          },
-
-          currentUser: function(Auth) {
-            return Auth.getCurrentUser().$promise;
           }
         },
         abstract: true

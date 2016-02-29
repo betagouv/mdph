@@ -6,8 +6,6 @@
 
 .hero-unit {
   position: relative;
-  padding: 30px 15px;
-
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
@@ -69,6 +67,28 @@
   &.bg17 {
     background-image: url('../assets/images/17_vieux_port.jpg');
   }
+
+  .mdph-choices-wrapper {
+    width: 60%;
+    text-align: center;
+
+    ul.mdph-choices {
+      @extend .row;
+      padding: 0;
+    }
+
+    li.mdph-choice {
+      @extend .col-sm-4;
+    }
+
+    li.mdph-choice > a.btn {
+      width: 100%;
+      font-size: 1.2em;
+      padding: 15px;
+      color: $lighter-blue;
+      flex-grow: 1;
+    }
+  }
 }
 
 .features {
@@ -85,9 +105,11 @@
   .p {
     color: #6b6b6b;
   }
+
   .fa {
     color: #8b8b8b;
   }
+
   h2 {
     font-weight: 700;
   }

@@ -38,20 +38,6 @@ angular.module('impactApp', [
           config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
         return config;
-      },
-
-      // Intercept 401s
-      responseError: function(response) {
-        switch (response.status) {
-          case 401:
-            $rootScope.$broadcast('event:auth-loginRequired', response);
-            break;
-          case 403:
-            $rootScope.$broadcast('event:auth-forbidden', response);
-            break;
-        }
-
-        return $q.reject(response);
       }
     };
   })
@@ -65,14 +51,14 @@ angular.module('impactApp', [
       }
     });
 
-    $rootScope.$on('event:auth-loginRequired', function() {
+    $rootScope.$on('event:auth-loginRequired', function(event, toStateParams) {
       $cookies.remove('token');
-      $state.go('login');
+      $state.go('login', toStateParams);
     });
 
-    $rootScope.$on('event:auth-forbidden', function() {
+    $rootScope.$on('event:auth-forbidden', function(event, toStateParams) {
       // TODO: specific state for auth-forbidden
-      $state.go('login');
+      $state.go('login', toStateParams);
     });
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
@@ -88,7 +74,7 @@ angular.module('impactApp', [
           $rootScope.returnToStateParams = toStateParams;
 
           event.preventDefault();
-          $state.go('login');
+          $rootScope.$broadcast('event:auth-loginRequired', toStateParams);
         } else {
           if (toState.redirectTo) {
             event.preventDefault();
