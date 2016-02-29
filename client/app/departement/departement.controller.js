@@ -6,6 +6,10 @@ angular.module('impactApp')
     $scope.currentUser = currentUser;
 
     $scope.isAdmin = function() {
+      if (!currentUser) {
+        return false;
+      }
+
       switch (currentUser.role) {
         case 'admin':
           return true;

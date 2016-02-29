@@ -20,10 +20,6 @@ angular.module('impactApp')
             return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 
-          if (user.role === 'admin') {
-            return $state.go('admin', {}, {reload: true});
-          }
-
           return $state.go('espace_perso.mes_profils', {}, {reload: true});
         })
         .catch(function(err) {
