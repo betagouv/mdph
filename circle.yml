@@ -1,3 +1,6 @@
+machine:
+  node:
+    version: 4.3.1
 test:
   pre:
     - npm install -g bower grunt-cli
