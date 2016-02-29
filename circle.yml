@@ -4,4 +4,4 @@ machine:
 dependencies:
   pre:
     - npm install -g bower grunt-cli
-    - sudo apt-get update; sudo apt-get install ruby-sass
+    - gem install sass
