@@ -102,7 +102,6 @@ module.exports = function(app) {
     next(err);
   };
 
-
   app.use(requestLogger);
 
   if (env === 'production') {

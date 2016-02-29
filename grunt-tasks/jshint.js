@@ -8,14 +8,15 @@ module.exports = {
     },
     src: [
       'server/**/*.js',
-      '!server/**/*.spec.js'
+      '!server/**/*.spec.js',
+      '!server/test/**/*.js'
     ]
   },
   serverTest: {
     options: {
       jshintrc: 'server/.jshintrc-spec'
     },
-    src: ['server/**/*.spec.js']
+    src: ['server/**/*.{spec,integration}.js', 'server/test/**/*.js']
   },
   all: [
     '<%= app.dirs.client %>/{app,components}/**/*.js',
