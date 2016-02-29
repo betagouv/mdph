@@ -11,7 +11,7 @@ angular.module('impactApp')
         case 'enfant':
           return 'Demandes concernant votre enfant';
         case 'allocation':
-          return 'Demande d\'Allocation aux Adultes Handicapés et de complément de ressources';
+          return 'Demande d\'AAH et de complément de ressources';
         case 'travail':
           return 'Demande relative au travail, à l\'emploi et à l\'orientation professionnelle';
         case 'accompagnement':
