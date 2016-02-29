@@ -1,7 +1,7 @@
 machine:
   node:
     version: 4.3.1
-test:
+dependencies:
   pre:
     - npm install -g bower grunt-cli
-    - gem install sass
+    - sudo apt-get update; sudo apt-get install ruby-sass
