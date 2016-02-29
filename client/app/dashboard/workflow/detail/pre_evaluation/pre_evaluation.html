@@ -11,11 +11,19 @@
     <h2>Prestations demandées</h2>
     <div class="content">
       <div class="user">
-        <p ng-if="request.prestations.length === 0">Aucune prestation demandée</p>
-        <dl ng-repeat="prestation in request.detailPrestations">
-          <dt>{{prestation.title}}</dt>
-          <dd>{{prestation.description}}</dd>
-        </dl>
+        <h3 ng-if="request.detailPrestations">Nouvelles prestations</h3>
+        <ul>
+          <li ng-repeat="prestation in request.detailPrestations">
+            {{prestation.title}}
+          </li>
+        </ul>
+
+        <h3 ng-if="request.detailRenouvellements">Renouvellements de prestations</h3>
+        <ul>
+          <li ng-repeat="prestation in request.detailRenouvellements">
+            {{prestation.title}}
+          </li>
+        </ul>
       </div>
     </div>
   </section>
