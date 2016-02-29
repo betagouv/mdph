@@ -1,0 +1,4 @@
+test:
+  pre:
+    - npm install -g bower grunt-cli
+    - gem install sass
