@@ -13,7 +13,7 @@ function UtilService($window) {
      * @param  {String} url - the url to parse
      * @return {Object}     - the parsed url, anchor element
      */
-    urlParse(url) {
+    urlParse: function(url) {
       var a = document.createElement('a');
       a.href = url;
 
@@ -32,7 +32,7 @@ function UtilService($window) {
      * @param  {String|String[]}  [origins] - additional origins to test against
      * @return {Boolean}                    - true if url is same origin
      */
-    isSameOrigin(url, origins) {
+    isSameOrigin: function(url, origins) {
       url = Util.urlParse(url);
       origins = (origins && [].concat(origins)) || [];
       origins = origins.map(Util.urlParse);
