@@ -15,6 +15,12 @@ var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 var bunyan = require('bunyan');
+var lusca = require('lusca');
+var session = require('express-session');
+var connectMongo = require('connect-mongo');
+var mongoose = require('mongoose');
+
+var MongoStore = connectMongo(session);
 
 var logger = bunyan.createLogger({
   name: 'impact-dev',
@@ -61,6 +67,36 @@ module.exports = function(app) {
     next();
   };
 
+  // Lusca depends on sessions
+  app.use(session({
+    secret: config.secrets.session,
+    saveUninitialized: true,
+    resave: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      db: 'impact-session'
+    })
+  }));
+
+  /**
+   * Lusca - express server security
+   * https://github.com/krakenjs/lusca
+   */
+  if ('test' !== env) {
+    app.use(lusca({
+      csrf: {
+        angular: true
+      },
+      xframe: 'SAMEORIGIN',
+      hsts: {
+        maxAge: 31536000, //1 year, in seconds
+        includeSubDomains: true,
+        preload: true
+      },
+      xssProtection: true
+    }));
+  }
+
   var errorLogger = function(err, req, res, next) {
     logger.error({ req: req, res: res, error: err }, err.stack);
     next(err);
@@ -73,13 +109,15 @@ module.exports = function(app) {
     app.use(requestLogger);
   }
 
-  if (env === 'development' || env === 'test') {
+  if ('development' === env) {
     app.use(require('connect-livereload')());
+  }
+
+  if ('development' === env || 'test' === env) {
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.join(config.root, 'client')));
     app.set('appPath', config.root + '/client');
     app.use(requestLogger);
     app.use(errorHandler()); // Error handler - has to be last
   }
-
 };
