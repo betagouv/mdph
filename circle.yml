@@ -1,0 +1,7 @@
+machine:
+  node:
+    version: 4.3.1
+dependencies:
+  pre:
+    - npm install -g bower grunt-cli
+    - gem install sass
