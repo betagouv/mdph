@@ -82,7 +82,7 @@ module.exports = function(app) {
    * Lusca - express server security
    * https://github.com/krakenjs/lusca
    */
-  if ('test' !== env) {
+  if (env !== 'test') {
     app.use(lusca({
       csrf: {
         angular: true
@@ -106,18 +106,20 @@ module.exports = function(app) {
     app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'dist')));
     app.set('appPath', config.root + '/dist');
-    app.use(requestLogger);
   }
 
-  if ('development' === env) {
+  if (env === 'development') {
     app.use(require('connect-livereload')());
   }
 
-  if ('development' === env || 'test' === env) {
+  if (env === 'development' || env === 'test') {
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.join(config.root, 'client')));
     app.set('appPath', config.root + '/client');
-    app.use(requestLogger);
     app.use(errorHandler()); // Error handler - has to be last
+  }
+
+  if (env === 'development' || env === 'production') {
+    app.use(requestLogger);
   }
 };

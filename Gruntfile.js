@@ -129,6 +129,11 @@ module.exports = function(grunt) {
         'express:dev',
         'protractor'
       ]);
+    } else if (target === 'watch') {
+      return grunt.task.run([
+        'test:server',
+        'watch:mochaTest'
+      ]);
     } else {
       grunt.task.run([
         'test:server',

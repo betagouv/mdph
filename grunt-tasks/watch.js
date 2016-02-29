@@ -15,6 +15,9 @@ module.exports = {
   },
   mochaTest: {
     files: ['server/**/*.spec.js'],
+    options: {
+      spawn: false
+    },
     tasks: ['env:test', 'mochaTest']
   },
   jsTest: {
