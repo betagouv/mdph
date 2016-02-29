@@ -1,8 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const Dispatcher = require('../../components/dispatcher');
-const DateUtils = require('../../components/dateUtils');
 const Mailer = require('../send-mail/send-mail.controller');
 const Handlebars = require('handlebars');
 const fs = require('fs');
@@ -11,21 +9,8 @@ const path = require('path');
 const confirmationMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'confirm-email-premailer.html')));
 const confirmationMailCompiled = Handlebars.compile(confirmationMailTemplate);
 
-exports.sendMailNotification = function(request, host, log, callback) {
-  Dispatcher.findSecteur(request, function(secteur) {
-    var type = DateUtils.getType(request.formAnswers);
-
-    if (secteur && secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-      var evaluators = secteur.evaluators[type];
-      evaluators.forEach(function(evaluator) {
-        Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-      });
-
-      callback(secteur);
-    } else {
-      callback();
-    }
-  });
+exports.sendMailNotificationAgent = function(request, email, callback) {
+  Mailer.sendMail(email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
 };
 
 exports.sendMailCompletude = function(request, evaluator) {

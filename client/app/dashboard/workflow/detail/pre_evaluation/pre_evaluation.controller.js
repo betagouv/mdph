@@ -12,7 +12,7 @@ angular.module('impactApp')
       return calculAge(dateNaiss);
     };
   })
-  .controller('RequestPreEvaluationCtrl', function($scope, $http, $window, $cookies, currentUser, currentMdph, request) {
+  .controller('PreEvaluationCtrl', function($scope, $http, $window, $cookies, currentUser, currentMdph, request) {
     $scope.token = $cookies.get('token');
     $scope.currentMdph = currentMdph;
     $scope.currentUser = currentUser;

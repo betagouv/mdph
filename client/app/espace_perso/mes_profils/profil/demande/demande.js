@@ -70,8 +70,6 @@ angular.module('impactApp').config(function($stateProvider) {
         controller: function($scope, enabledMdphs, mdphJSON, request, $stateParams, mdphParams) {
           $scope.enabledMdphs = enabledMdphs;
           $scope.selectedMdph = _.find(mdphJSON, {code_departement: request.mdph});
-          $scope.mdph_url = $stateParams.codeDepartement;
-
           $scope.request.mdph = mdphParams;
           $scope.request = request;
 
