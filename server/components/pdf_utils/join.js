@@ -6,6 +6,7 @@ var async = require('async');
 var tmp = require('tmp');
 var spawn = require('child_process').spawn;
 var fs = require('fs');
+var path = require('path');
 
 var PdfJoin = function() {
 
@@ -22,9 +23,11 @@ var PdfJoin = function() {
       var args = fileList.concat(['cat', 'output', pdfPath]);
       var pdftk = spawn('pdftk', args);
 
-      // pdftk.stderr.on('data', function(data) {
-      //   console.log('pdftk encountered an error:\n', String(data));
-      // });
+      pdftk.stderr.on('data', function(data) {
+        // TODO log and return error in pdf
+        console.log('pdftk encountered an error:\n', String(data));
+        callback(null, path.join(__dirname, 'pdf-sample.pdf'), cleanupCallback);
+      });
 
       pdftk.on('exit', function(code) {
         callback(null, pdfPath, cleanupCallback);

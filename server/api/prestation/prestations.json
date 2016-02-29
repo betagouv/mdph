@@ -1,6 +1,6 @@
 [
   {
-    "id": "carteStationnement",
+    "id": "cartestationnement",
     "type": "carte",
     "label": "Carte stationnement",
     "title": "Carte de stationnement",
@@ -8,11 +8,11 @@
     "link": "http://vosdroits.service-public.fr/particuliers/F2891.xhtml"
   },
   {
-    "id": "carteInvalidite",
+    "id": "carteinvalidite",
     "type": "carte",
-    "label": "Carte d'invalidité",
-    "title": "Carte d'invalidité",
-    "description": "La carte d'invalidité civile a pour but d'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports.",
+    "label": "Carte d'invalidité ou de priorité",
+    "title": "Carte d'invalidité ou de priorité",
+    "description": "La carte d'invalidité civile a pour but d'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports. La carte de priorité permet d'obtenir un droit de priorité pour l'accès aux bureaux et guichets des administrations et services publics et aux transports publics.",
     "link": "http://vosdroits.service-public.fr/particuliers/F2446.xhtml"
   },
   {
@@ -30,6 +30,14 @@
     "title": "Allocation aux adultes handicapés",
     "description": "L'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.",
     "link": "http://vosdroits.service-public.fr/particuliers/N12230.xhtml"
+  },
+  {
+    "id": "complement",
+    "type": "allocation",
+    "label": "complement ressources",
+    "title": "Complément de ressources",
+    "description": "Le complément de ressources est une allocation qui s'ajoute à l'allocation aux adultes handicapés (AAH). Il a pour objectif de compenser l'absence durable de revenus d'activité si vous êtes dans l'incapacité de travailler.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F12911"
   },
   {
     "id": "pch",
@@ -77,10 +85,20 @@
     "description": "La demande d'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation."
   },
   {
+    "id": "formation",
+    "type": "travail",
+    "label": "formation",
+    "title": "Formation professionnelle",
+    "description": "En plus des dispositifs généraux de formation, une personne handicapée peut entrer en apprentissage pour obtenir une qualification et bénéficier d'aménagements particuliers. Elle peut aussi bénéficier d'une formation dans un centre de pré-orientation si elle rencontre des difficultés d'orientation. Enfin, elle peut bénéficier d'un contrat de rééducation ou suivre un stage pour se réaccoutumer à son ancien emploi si elle est devenue inapte à exercer sa profession, ou apprendre un nouveau métier.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/N198"
+  },
+  {
     "id": "sms",
     "type": "accompagnement",
     "label": "SMS",
-    "title": "Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs"
+    "title": "Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs",
+    "description": "Au cours de son parcours de formation, l'élève handicapé peut être amené à séjourner, à temps plein ou à temps partiel, dans un établissement médico-social. Ces établissements médico-sociaux, publics ou privés, se caractérisent par des spécificités qui permettent de répondre aux besoins des enfants et adolescents handicapés.",
+    "link": "http://eduscol.education.fr/cid53162/les-etablissements-medico-sociaux.html"
   },
   {
     "id": "ac",

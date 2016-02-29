@@ -2,9 +2,46 @@
 
 angular.module('impactApp')
   .factory('ProfileService', function ProfileService(estAdulte, estMineur) {
+    var estMineurProfile = function(profile) {
+      if (profile.identites && profile.identites.beneficiaire) {
+        return estMineur(profile.identites.beneficiaire.dateNaissance);
+      } else {
+        return false;
+      }
+    };
+
+    var estAdulteProfile = function(profile) {
+      if (profile.identites && profile.identites.beneficiaire) {
+        return estAdulte(profile.identites.beneficiaire.dateNaissance);
+      } else {
+        return true;
+      }
+    };
+
+    var getMissingSection = function(profile) {
+      var missingSections = [];
+
+      if (!profile.identites || !profile.identites.beneficiaire) {
+        missingSections.push('beneficiaire');
+      }
+
+      if (estMineurProfile(profile) && (!profile.identites || !profile.identites.autorite)) {
+        missingSections.push('autorite');
+      }
+
+      if (!profile.vie_quotidienne || !profile.vie_quotidienne.__completion) {
+        missingSections.push('vieQuotidienne');
+      }
+
+      return missingSections;
+    };
+
     var getCompletion = function(profile) {
       if (!profile.identites || !profile.identites.beneficiaire) {
-        // TODO verifier que s'il est enfant il a bien remplis une autorite parentale
+        return false;
+      }
+
+      if (estMineurProfile(profile) && !profile.identites.autorite) {
         return false;
       }
 
@@ -16,22 +53,6 @@ angular.module('impactApp')
     };
 
     return {
-      estAdulte: function(profile) {
-        if (profile.identites && profile.identites.beneficiaire) {
-          return estAdulte(profile.identites.beneficiaire.dateNaissance);
-        } else {
-          return true;
-        }
-      },
-
-      estMineur: function(profile) {
-        if (profile.identites && profile.identites.beneficiaire) {
-          return estMineur(profile.identites.beneficiaire.dateNaissance);
-        } else {
-          return false;
-        }
-      },
-
       estMasculin: function(profile) {
         if (profile.identites && profile.identites.beneficiaire) {
           return profile.identites.beneficiaire.sexe === 'masculin';
@@ -48,6 +69,9 @@ angular.module('impactApp')
         }
       },
 
-      getCompletion: getCompletion
+      estAdulte: estAdulteProfile,
+      estMineur: estMineurProfile,
+      getCompletion: getCompletion,
+      getMissingSection: getMissingSection
     };
   });

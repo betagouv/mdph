@@ -68,5 +68,10 @@
     "safeContextKeyword": "_this",
     "validateLineBreaks": "LF",
     "validateQuoteMarks": "'",
-    "validateIndentation": 2
+    "validateIndentation": 2,
+    "requireSpacesInsideObjectBrackets": false,
+    "requireSpacesInAnonymousFunctionExpression": false,
+    "maximumLineLength": false,
+    "requireCamelCaseOrUpperCaseIdentifiers": false,
+    "requireTrailingComma": false
 }

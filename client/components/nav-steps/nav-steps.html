@@ -1,7 +1,12 @@
 <div class="nav-steps">
-  <button class="btn btn-default" ng-disabled="hideBack" ng-click="previousStep()">
+  <button type="button" class="btn btn-default" ng-if="!hideBack" ng-click="previousStep()">
     Question précédente
   </button>
+
+  <button type="button" class="btn btn-default" ng-if="hideBack" ui-sref="espace_perso.mes_profils.profil({profileId: profile._id})">
+    Retour au profil
+  </button>
+
   <button class="btn" type="submit" ng-click="check(questionForm)"
     ng-class="{
       'btn-success': questionForm.$valid,

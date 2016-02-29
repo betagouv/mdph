@@ -34,6 +34,14 @@
     .form-group:last-child {
       margin-bottom: 0;
     }
+
+    #numero_secu:invalid {
+      border-color: $light-red;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
   }
 
   section.identite-section.adress-section {

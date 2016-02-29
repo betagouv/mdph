@@ -233,8 +233,12 @@ angular.module('impactApp')
       .state(index + '.fraisHandicap', {
         url: '/frais_handicap',
         templateUrl: 'components/question/frais_handicap.html',
-        controller: 'FraisQuestionCtrl',
+        controller: 'ListQuestionCtrl',
         resolve: {
+          listName: function() {
+            return 'listeFrais';
+          },
+
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'fraisHandicap', profile);
           },

@@ -11,40 +11,12 @@
 
         <div ui-tree="treeOptions" id="tree-categories">
           <ol ui-tree-nodes="" ng-model="categories">
-            <li class="ui-tree-document-category angular-ui-tree-handle angular-ui-tree-node-no-drag">
-              <div class="ui-tree-category-content">
-                <div class="detail" data-nodrag>
-                  <h3 class="category-type">Catégorie obligatoire</h3>
-                  <p>{{pdfCategory.label}}</p>
-                </div>
-                <div class="files" ng-if="!collapsed" data-nodrag>
-                  <a
-                    ng-if="pdfCategory.barcode"
-                    style="margin-right: 16px;"
-                    target="_self"
-                    download="{{pdfCategory.barcode.filename}}"
-                    href="api/mdphs/{{currentMdph.zipcode}}/categories/{{pdfCategory._id}}/file?access_token={{token}}">
-                    {{pdfCategory.barcode.filename}}
-                  </a>
-                  <em
-                    class="text-muted"
-                    ng-if="!pdfCategory.barcode"
-                    style="margin-right: 16px;">
-                    Aucun séparateur associé
-                  </em>
-
-                  <button ngf-select ngf-change="upload($file, pdfCategory)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
-                    <i class="fa fa-upload"></i> Modifier</span>
-                  </button>
-                </div>
-              </div>
-            </li>
-
             <li ng-repeat="category in categories" ui-tree-node>
               <div ui-tree-handle>
                 <div class="ui-tree-document-category ui-tree-category-content">
                   <div class="detail" data-nodrag>
-                    <h3 class="category-type">Catégorie personnalisée</h3>
+                    <h3 ng-if="!category.required" class="category-type">Catégorie personnalisée</h3>
+                    <h3 ng-if="category.required" class="category-type">Catégorie obligatoire</h3>
                     <input class="input-category-label" data-nodrag type="text"
                       ng-change="save(category)"
                       ng-keydown="saving = 'waiting'"
@@ -52,7 +24,7 @@
                       ng-model="category.label">
                   </div>
                   <div class="actions">
-                    <a class="text-danger-lite" data-nodrag ng-click="removeCategory(this)">
+                    <a class="text-danger-lite" ng-if="!category.required" data-nodrag ng-click="removeCategory(this)">
                       <span>Supprimer</span><i class="fa fa-times"></i>
                     </a>
                     <div class="files" data-nodrag>

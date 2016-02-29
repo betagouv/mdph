@@ -26,6 +26,11 @@
     font-weight: 400;
     cursor: pointer;
   }
+
+  span.extra {
+    @extend .text-muted;
+    float: right;
+  }
 }
 
 ul.answers {

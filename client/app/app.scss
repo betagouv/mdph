@@ -13,13 +13,14 @@ $light-red: #D05158;
 $medium-red: #BA484F;
 $dark-red: #8e353c;
 
+$bg-grey: #D8D8D8;
 $light-grey: #d0d0d0;
 $lighter-grey: #EAEAEA;
 $medium-heavy-grey: #999999;
 $light-white: #F5F5F5;
 
 $active-text: $light-white;
-$green: #009513;
+$green: #0f9d58;
 
 $bg-blue: lighten($lighter-blue, 10%);
 $border-blue: darken($lighter-blue, 5%);
@@ -39,6 +40,14 @@ $brand-primary: $bg-blue;
   border-radius: 0px;
 }
 
+.box-shadow-z4 {
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.08),0 1px 1px 0 rgba(0,0,0,.06),0 2px 1px -1px rgba(0,0,0,.05);
+}
+
+.box-shadow-z1 {
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+}
+
 .browsehappy {
   position: absolute;
   top: 0;
@@ -53,26 +62,6 @@ $brand-primary: $bg-blue;
 
 .btn {
   white-space: normal;
-}
-
-.nav-questionnaire {
-  background-color: rgb(231, 231, 231);
-
-  ol {
-    margin: 0;
-  }
-
-  .breadcrumb {
-    background-color: rgb(231, 231, 231);
-    margin: 3px 0;
-    float: left;
-    font-size: 1.1em;
-
-    li.active {
-      color: #333;
-      font-weight: 500;
-    }
-  }
 }
 
 .banner {
@@ -151,20 +140,38 @@ fieldset {
    color: red;
 }
 
+.modal-header {
+  background-color: $light-blue;
+  color: white;
+
+  &.modal-header-danger {
+    background-color: $light-red;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+}
+
+.modal-footer {
+  background-color: whitesmoke;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/account.scss';
 @import 'apropos/apropos.scss';
-@import 'choix_mdph/choix_mdph.scss';
 @import 'dashboard/dashboard.scss';
 @import 'dashboard/documents/categories/categories.scss';
 @import 'dashboard/list.scss';
-@import 'dashboard/requests/detail/detail.scss';
-@import 'dashboard/requests/detail/evaluation/evaluation.scss';
-@import 'dashboard/requests/detail/evaluation/section/section.scss';
-@import 'dashboard/requests/detail/history/history.scss';
-@import 'dashboard/requests/detail/pre_evaluation/pre_evaluation.scss';
 @import 'dashboard/users/partenaires/edit.scss';
+@import 'dashboard/workflow/detail/detail.scss';
+@import 'dashboard/workflow/detail/documents/documents.scss';
+@import 'dashboard/workflow/detail/evaluation/evaluation.scss';
+@import 'dashboard/workflow/detail/evaluation/section/section.scss';
+@import 'dashboard/workflow/detail/history/history.scss';
+@import 'dashboard/workflow/detail/pre_evaluation/pre_evaluation.scss';
 @import 'espace_perso/mes_profils/mes_profils.scss';
 @import 'espace_perso/mes_profils/profil/demande/demande.scss';
 @import 'espace_perso/mes_profils/profil/demande/recapitulatif/recapitulatif.scss';
@@ -172,15 +179,14 @@ fieldset {
 @import 'espace_perso/mes_profils/profil/liste_demandes.scss';
 @import 'espace_perso/mes_profils/profil/profile.scss';
 @import 'espace_perso/mon_compte/mon_compte.scss';
+@import 'layout/layout.scss';
 @import 'main/main.scss';
 @import 'partenaire/partenaire.scss';
 @import 'partenaire/pj/pj.scss';
 @import 'stats/stats.scss';
 @import 'display-file/display-file.scss';
-@import 'identity-card/identity-card.scss';
 @import 'nav-section/nav-section.scss';
 @import 'nav-steps/nav-steps.scss';
-@import 'navbar/navbar.scss';
 @import 'profile/profile-category.scss';
 @import 'qtitle/qtitle.scss';
 @import 'question/cv.scss';

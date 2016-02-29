@@ -12,8 +12,7 @@ angular.module('impactApp')
             lat: lat,
             lon: long,
             limit: 8
-          },
-          ignoreInterceptor: true
+          }
         })
         .then(function(response) {
           return response.data.features;

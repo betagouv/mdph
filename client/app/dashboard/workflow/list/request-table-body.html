@@ -1,0 +1,44 @@
+<tr>
+  <td class="lead" colspan="6">
+    {{::title}}
+  </td>
+</tr>
+<tr ng-hide="filteredRequests.length">
+  <td colspan="6">
+    Pas de demandes
+  </td>
+</tr>
+<tr
+  ng-repeat="request in filteredRequests = (requestGroup | filter:query)">
+  <td class="check-request" ng-click="request.isSelected = !request.isSelected">
+    <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
+  </td>
+  <td>
+    <span class="user">
+      <a ui-sref="dashboard.workflow.detail.pre_evaluation({shortId: request.shortId})">
+        {{::request.shortId}}
+      </a>
+    </span>
+  </td>
+  <td>
+    <span class="user">
+      <a ui-sref="dashboard.workflow.detail.pre_evaluation({shortId: request.shortId})">
+        {{::request.user.email}}
+      </a>
+    </span>
+  </td>
+  <td>
+    <span class="user">
+      <a ui-sref="dashboard.workflow.detail.pre_evaluation({shortId: request.shortId})">
+        <span ng-if="request.formAnswers.identites.beneficiaire">
+          {{::request.formAnswers.identites.beneficiaire.nom | capitalize}}, {{::request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+        </span>
+        <span ng-if="!request.formAnswers.identites.beneficiaire">
+          Demande incomplète, bénéficiaire non remplis
+        </span>
+      </a>
+    </span>
+  </td>
+  <td>{{::request.secteur.name || 'Aucun secteur'}}</td>
+  <td>{{::request.submittedAt | date}}</td>
+</tr>

@@ -2,22 +2,17 @@
 
 var async = require('async');
 
-var DateUtils = require('./dateUtils');
-
 var DispatchRuleModel = require('../api/dispatch-rule/dispatch-rule.model');
 var SecteurModel = require('../api/secteur/secteur.model');
 var MdphModel = require('../api/mdph/mdph.model');
 
 exports.findSecteur = function(request, callback) {
-  var identites = request.formAnswers.identites;
-  var codePostal = identites.beneficiaire.code_postal;
-  var mdphZipcode = request.mdph;
-  var estAdulte = DateUtils.isAdult(request.formAnswers);
-  var type = estAdulte ? 'adulte' : 'enfant';
+  var codePostal = request.getCodePostal();
+  var type = request.getType();
 
   async.waterfall([
     function(cb) {
-      MdphModel.findOne({zipcode: mdphZipcode}).exec(cb);
+      MdphModel.findOne({zipcode: request.mdph}).exec(cb);
     },
 
     function(mdph, cb) {
@@ -48,9 +43,9 @@ exports.findSecteur = function(request, callback) {
 
   ], function(err, secteur) {
     if (err) {
-      return callback(null);
+      return callback(404);
     } else {
-      return callback(secteur);
+      return callback(null, secteur);
     }
   });
 };

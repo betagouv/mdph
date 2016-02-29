@@ -12,27 +12,35 @@
 
   <div id="demande" class="demande-container">
     <ui-view>
-      <ul class="profile-card-row">
-        <li class="profile-card-row-item">
-          <div class="profile-category">
-            <div class="profile-category-icon profile-category-icon-blue"><i class="fa fa-cogs icon"></i></div>
+      <form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+        <section class="demande-section">
+          <div ui-view="choix_mdph"></div>
+        </section>
 
-            <div class="profile-category-content">
-              <div class="profile-category-header">
-                <span class="profile-category-header-text">
-                  <h2 class="profile-category-header-text-title">Paramètres</h2>
-                </span>
-              </div>
-              <div class="profile-category-content-text">
-                Pour configurer la Mdph destinataire, associer des documents et sélectionner vos prestation.
-              </div>
-              <div class="profile-category-actions">
-                <a ui-sref=".parametres" class="btn btn-primary">Accéder</a>
-              </div>
-            </div>
-          </div>
-        </li>
+        <section class="demande-section">
+          <div ui-view="obligatoires"></div>
+        </section>
 
+        <section class="demande-section">
+          <div ui-view="complementaires"></div>
+          <div ui-view="suggestions"></div>
+        </section>
+
+        <section class="demande-section">
+          <div ui-view="prestations"></div>
+        </section>
+
+        <section class="demande-section" ng-if="request.status === 'en_cours'">
+          <div ui-view="validation"></div>
+        </section>
+
+        <div class="text-right" ng-if="request.status === 'en_cours'">
+          <a ui-sref="^" class="btn btn-lg btn-link" role="button">Annuler</a>
+          <button type="submit" name="submit" alt="Valider" class="btn btn-lg btn-success">Envoyer</button>
+        </div>
+      </form>
+
+      <ul class="profile-card-row" ng-if="request.status !== 'en_cours'">
         <li class="profile-card-row-item">
           <div class="profile-category">
             <div class="profile-category-icon"><i class="fa fa-file-pdf-o icon"></i></div>

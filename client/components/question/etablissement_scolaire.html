@@ -16,7 +16,7 @@
           </div>
         </td>
         <td class="col-md-3">
-          <input aria-labelledby="rue" name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue" required>
+          <input aria-labelledby="rue" name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue">
           <div ng-messages="questionForm['rue' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
@@ -33,7 +33,6 @@
             class="form-control"
             name="date{{idx}}"
             id="annee"
-            required
             ng-model="etablissement.date"
             input-date
             date-autocomplete
@@ -48,10 +47,10 @@
       </tr>
       <tr>
         <td colspan="4" class="text-center">
-          <button class="btn btn-default" ng-click="retirerEtablissement()" aria-label="Supprimer le dernier établissement" ng-if="model.etablissements.length > 0">
+          <button class="btn btn-default" ng-click="removeLine()" aria-label="Supprimer le dernier établissement" ng-if="model.etablissements.length > 0">
             <i class="fa fa-minus"></i> Supprimer le dernier établissement
           </button>
-          <button class="btn btn-success" ng-click="ajouterEtablissement()" aria-label="Ajouter un établissement">
+          <button class="btn btn-success" ng-click="addLine()" aria-label="Ajouter un établissement">
             <i class="fa fa-plus"></i> Ajouter un établissement
           </button>
         </td>

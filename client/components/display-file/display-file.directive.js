@@ -19,16 +19,16 @@ angular.module('impactApp')
           });
         }
 
-        if (typeof $scope.file.validation !== 'undefined') {
+        if ($scope.request.status !== 'en_cours') {
           $scope.showValidationStatus = true;
         }
 
-        $scope.setValid = function(isValid) {
-          if ($scope.file.validation === isValid) {
+        $scope.setInvalid = function(isInvalid) {
+          if ($scope.file.isInvalid === isInvalid) {
             return;
           }
 
-          $http.post('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {validation: isValid}).then(function(result) {
+          $http.post('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {isInvalid: isInvalid}).then(function(result) {
             $scope.showValidationStatus = true;
             $scope.file = result.data;
           });

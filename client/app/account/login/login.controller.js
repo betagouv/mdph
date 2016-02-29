@@ -11,17 +11,20 @@ angular.module('impactApp')
           email: form.email.$modelValue,
           password: form.password.$modelValue
         })
-        .then(function(data) {
-          // Logged in, redirect
+        .then(function(user) {
           if ($rootScope.returnToState) {
-            $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
-          } else if (data.role === 'adminMdph') {
-            $state.go('dashboard.requests.user', {zipcode: data.mdph  && data.mdph.zipcode, userId: data.id});
-          } else if (data.role === 'admin') {
-            $state.go('admin');
-          } else {
-            $state.go('espace_perso.mes_profils');
+            return $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams, {reload: true});
           }
+
+          if (user.role === 'adminMdph') {
+            return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
+          }
+
+          if (user.role === 'admin') {
+            return $state.go('admin', {}, {reload: true});
+          }
+
+          return $state.go('espace_perso.mes_profils', {}, {reload: true});
         })
         .catch(function(err) {
           $scope.error = err.message;

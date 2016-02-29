@@ -39,7 +39,6 @@ angular.module('impactApp')
         scope.open = false;
 
         scope.updatedAt = scope.options.updatedAt;
-        scope.mandatory = scope.options.mandatory;
 
         var model = scope.options.model;
         var getModelProperty = _.property(model);
@@ -50,8 +49,6 @@ angular.module('impactApp')
 
         scope.action = scope.options.action;
         scope.action.label = getActionLabel(scope.completion);
-
-        scope.profileClass = (scope.options.mandatory && 'mandatory') + ' ' + scope.completion;
 
         scope.toggle = function() {
           scope.open = !scope.open;

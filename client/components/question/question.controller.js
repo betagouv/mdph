@@ -12,103 +12,6 @@ angular.module('impactApp')
   .controller('QuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep, $state.current.data);
   })
-  .controller('StructureQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep, $state.current.data);
-
-    if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[$scope.question.model] = {
-        structures: [
-          {name: '', contact: false}
-        ]
-      };
-    }
-
-    $scope.model = $scope.sectionModel[question.model];
-
-    $scope.removeStructure = function() {
-      var lastIndex = $scope.model.structures.length - 1;
-      $scope.model.structures.splice(lastIndex, 1);
-    };
-
-    $scope.addStructure = function() {
-      $scope.model.structures.push(
-        {name: '', contact: false}
-      );
-    };
-  })
-  .controller('FraisQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep);
-
-    if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[$scope.question.model] = {
-        listeFrais: [
-          {
-            nom: '',
-            frequence: '',
-            total: '',
-            rembourse: '',
-            detail: ''
-          }
-        ]
-      };
-    }
-
-    $scope.model = $scope.sectionModel[question.model];
-    $scope.ajouterFrais = function() {
-      $scope.model.listeFrais.push(
-        {
-            nom: '',
-            frequence: '',
-            total: '',
-            rembourse: '',
-            detail: ''
-          }
-      );
-    };
-
-    $scope.retirerFrais = function() {
-      var lastIndex = $scope.model.listeFrais.length - 1;
-      $scope.model.listeFrais.splice(lastIndex, 1);
-    };
-  })
-  .controller('DiplomesQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep);
-    $scope.opened = [];
-
-    if (angular.isUndefined($scope.sectionModel[question.model])) {
-      $scope.sectionModel[$scope.question.model] = {
-        listeDiplomes: [
-          {
-            nom: '',
-            annee: '',
-            domaine: ''
-          }
-        ]
-      };
-    }
-
-    $scope.model = $scope.sectionModel[question.model];
-    $scope.ajouterDiplome = function() {
-      $scope.model.listeDiplomes.push(
-        {
-          nom: '',
-          annee: '',
-          domaine: ''
-        }
-      );
-    };
-
-    $scope.retirerDiplome = function() {
-      var lastIndex = $scope.model.length - 1;
-      $scope.model.listeDiplomes.splice(lastIndex, 1);
-    };
-
-    $scope.open = function($event, idx) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.opened[idx] = true;
-    };
-  })
   .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
     initQuestionScope($scope, question, nextStep);
     $scope.ajoutEnCours = false;
@@ -132,19 +35,19 @@ angular.module('impactApp')
       $scope.tempExp = experience;
       modification = true;
       $scope.ajoutEnCours = true;
-      index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
+      index = $scope.experiences.indexOf(experience);
 
     };
 
     $scope.validerExperience = function(form) {
       if (form.$valid) {
         if (modification) {
-          $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+          $scope.experiences.splice(index, 1);
           modification = false;
         }
 
-        var lastIndex = _.findLastIndex($scope.sectionModel[$scope.question.model].experiences);
-        $scope.sectionModel[$scope.question.model].experiences[lastIndex + 1] = $scope.tempExp;
+        var lastIndex = _.findLastIndex($scope.experiences);
+        $scope.experiences[lastIndex + 1] = $scope.tempExp;
         $scope.tempExp = {};
         $scope.ajoutEnCours = false;
       } else {
@@ -153,8 +56,8 @@ angular.module('impactApp')
     };
 
     $scope.supprimerExperience = function(experience) {
-      index = $scope.sectionModel[$scope.question.model].experiences.indexOf(experience);
-      $scope.sectionModel[$scope.question.model].experiences.splice(index, 1);
+      index = $scope.experiences.indexOf(experience);
+      $scope.experiences.splice(index, 1);
     };
 
     $scope.annuler = function() {
@@ -183,17 +86,15 @@ angular.module('impactApp')
       $scope.sectionModel.autresRenseignements = '';
     }
   })
-  .controller('EtablissementScolaireCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
+  .controller('ListQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName) {
     initQuestionScope($scope, question, nextStep, $state.current.data);
-    var currentModel = question.model;
-    if (angular.isUndefined($scope.sectionModel[currentModel])) {
-      $scope.sectionModel[currentModel] = {
-        valeur: false,
-        etablissements: []
-      };
+
+    if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[question.model] = {};
+      $scope.sectionModel[question.model][listName] = [{}];
     }
 
-    $scope.model = $scope.sectionModel[currentModel];
+    $scope.model = $scope.sectionModel[question.model];
 
     $scope.open = function($event) {
       $event.preventDefault();
@@ -201,19 +102,12 @@ angular.module('impactApp')
       $scope.opened = true;
     };
 
-    $scope.ajouterEtablissement = function() {
-      $scope.model.etablissements.push(
-        {
-          nom: '',
-          rue: '',
-          ville: '',
-          date: ''
-        }
-      );
+    $scope.addLine = function() {
+      $scope.model[listName].push({});
     };
 
-    $scope.retirerEtablissement = function() {
-      $scope.model.etablissements.pop();
+    $scope.removeLine = function() {
+      $scope.model[listName].pop();
     };
   })
   .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope) {

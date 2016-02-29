@@ -1,0 +1,22 @@
+<div id="pre-evaluation">
+  <section>
+    <div class="content">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Prestations demandées</h2>
+    <div class="content">
+      <div class="user">
+        <p ng-if="request.prestations.length === 0">Aucune prestation demandée</p>
+        <dl ng-repeat="prestation in request.detailPrestations">
+          <dt>{{prestation.title}}</dt>
+          <dd>{{prestation.description}}</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</div>

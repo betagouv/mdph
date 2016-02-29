@@ -1,0 +1,61 @@
+<div class="navbar navbar-default navbar-static-top" ng-class="{'has-intro': showIntro}">
+  <div class="intro" ng-cloak ng-show="showIntro">
+    <div class="content" ng-click="hideIntro()">
+      <span>
+        <strong>Service expérimental</strong>, ici l'Etat innove avec la société civile pour offrir aux usagers le service public de demain. <i class="fa fa-close"></i>
+      </span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="navbar-header">
+      <a ng-hide="currentMdph" ui-sref="main" class="logo" title="Accueil"><img ng-src="{{logo}}" alt="Accueil"></a>
+      <a ng-show="currentMdph" ui-sref="departement({codeDepartement: currentMdph.zipcode})" class="logo" title="Accueil"><img ng-src="{{logo}}" alt="Accueil"></a>
+
+      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main" role="menubar">
+      <ul class="nav navbar-nav">
+        <li role="menuitem" ng-if="isCollapsed">
+          <button class="nav-title btn btn-link" title="Changer de MDPH" ng-click="toggleChoice()">
+            {{ mdphName }}&nbsp;<i class="fa fa-caret-down" ng-class="{ 'get-down': showChoice }"></i>
+          </button>
+        </li>
+      </ul>
+
+      <form class="navbar-form navbar-right" ng-if="isLoggedIn()" ng-submit="logout()">
+        <input id="logout" class="btn btn-link" type="submit" value="Se déconnecter">
+      </form>
+
+      <ul class="nav navbar-nav navbar-right" ng-show="currentMdph">
+        <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="signup({codeDepartement: currentMdph.zipcode})" title="S'inscrire">Inscription</a></li>
+        <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="login({codeDepartement: currentMdph.zipcode})" title="Se connecter">Connexion</a></li>
+        <li role="menuitem" ng-if="isLoggedIn()">
+          <a ui-sref="espace_perso.mon_compte" title="Gérer votre compte">
+            {{ currentUser.email }}
+          </a>
+        </li>
+        <li role="menuitem" ng-if="isLoggedIn()"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div ng-class="{'navbar-mdph-choice-wrapper-hidden': !showChoice, 'navbar-mdph-choice-wrapper-visible': showChoice}" class="navbar-mdph-choice-wrapper">
+  <div class="container">
+    <ul>
+      <li class="navbar-mdph-choice" ng-repeat="mdph in mdphs track by mdph._id">
+        <a ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{ mdph.zipcode }}</strong> - {{ mdph.name }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="layout-wrapper">
+  <div ui-view></div>
+</div>

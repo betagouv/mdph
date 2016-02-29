@@ -1,0 +1,143 @@
+<ui-view>
+  <header class="hero-unit banner" ng-class="'bg' + currentMdph.zipcode">
+    <h1 ng-if="currentMdph">MDPH {{currentMdph.name}}</h1>
+
+    <div>
+      <a class="hero-button" ng-if="!currentUser.role" ui-sref="espace_perso.mes_profils">
+        Commencer
+      </a>
+      <a class="hero-button" ng-if="currentUser.role" ui-sref="espace_perso.mes_profils">
+        Voir vos profils
+      </a>
+      <a class="hero-button inverted" ng-if="isAdmin()" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
+        Tableau de bord
+      </a>
+    </div>
+  </header>
+
+  <div class="section-main">
+    <h2>Un suivi en ligne de votre dossier</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
+          Elle peut répondre aux besoins liés à votre handicap.</p>
+      </div>
+      <div class="col-md-4">
+        <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise votre dossier.</p>
+      </div>
+      <div class="col-md-4">
+        <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <h2><i class="fa fa-user-md"></i> Vous êtes un médecin</h2>
+            <hr>
+            <p>Facilitez la vie des demandeurs en attachant simplement un certificat médical.</p>
+            <div class="list-actions">
+              <a ui-sref="medecin">
+                Ajouter un certificat
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
+            <hr>
+            <p>N'envoyez plus vos pièces justificatives par courrier, déposez-les simplement dans le dossier de l'usager.</p>
+            <div class="list-actions">
+              <a ui-sref="partenaire">
+                Fournir des pièces complémentaires
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-main">
+    <div class="liste-prestations">
+      <h2>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h2>
+      <div class="row">
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Allocation d'éducation de l'enfant handicapé (<abbr title="Allocation d'éducation de l'enfant handicapé">AEEH</abbr>)
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Allocation aux adultes handicapés (<abbr title="Allocation aux adultes handicapés">AAH</abbr>) et son complément
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+          <i class="fa fa-circle"></i>
+           Carte d'invalidité/ de priorité/ de stationnement
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Orientation vers un établissement ou service médico-social (<abbr title="Etablissement ou service médico-social">ESMS</abbr>)
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Prestation de compensation du handicap (<abbr title="Prestation de compensation du handicap">PCH</abbr>)
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Renouvellement d'allocation compensatrice (<abbr title="Allocation compensatrice pour tierce personne">ACTP</abbr> ou <abbr title="Allocation compensatrice pour frais professionnels">ACFP</abbr>)</div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Projet personnalisé de scolarisation – parcours et aides à la scolarisation
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Orientation professionnelle et/ou formation professionnelle
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Reconnaissance de la qualité de travailleur handicapé (<abbr title="Reconnaissance de la qualité de travailleur handicapé">RQTH</abbr>)
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 elem">
+          <div class="elem-body">
+            <i class="fa fa-circle"></i>
+             Affiliation gratuite à l'assurance vieillesse des parents au foyer (<abbr title="Affiliation gratuite à l'assurance vieillesse des parents au foyer">AVPF</abbr>)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>
+        <a ui-sref="stats" title="Statistiques">Statistiques</a>
+         |
+        <a ui-sref="a_propos" title="A propos">À propos</a>
+         |
+        <a href="mailto:impact@sgmap.fr" title="Envoyer un mail de contact">Nous contacter</a>
+      </p>
+    </div>
+  </footer>
+</ui-view>

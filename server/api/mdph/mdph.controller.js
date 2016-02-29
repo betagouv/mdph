@@ -32,14 +32,6 @@ exports.showDocumentCategories = function(req, res) {
   });
 };
 
-exports.getPdfCategory = function(req, res) {
-  DocumentCategoryCtrl.getPdfCategory(req.mdph, function(err, pdfCategory) {
-    if (err) { return handleError(req, res, err); }
-
-    return res.json(pdfCategory);
-  });
-};
-
 exports.getUnclassifiedCategory = function(req, res) {
   DocumentCategoryCtrl.getUnclassifiedCategory(req.mdph, function(err, unclassifiedCategory) {
     if (err) { return handleError(req, res, err); }
@@ -76,8 +68,8 @@ exports.getDocumentCategoryFile = function(req, res) {
   });
 };
 
-exports.createDocumentCategory = function(req, res) {
-  DocumentCategoryCtrl.createDocumentCategory(req.mdph, req.body.position, function(err, obj) {
+exports.createNewDocumentCategory = function(req, res) {
+  DocumentCategoryCtrl.createNewDocumentCategory(req.mdph, req.body.position, function(err, obj) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(obj);
@@ -165,34 +157,22 @@ exports.getSecteur = function(req, res) {
 };
 
 exports.showRequests = function(req, res) {
-  var search = {
+  const search = {
     mdph: req.mdph.zipcode
   };
 
-  var query = req.query;
-
-  if (query) {
-    if (query.status) {
-      search.status = query.status;
-    }
-
-    if (query.evaluator) {
-      if (query.evaluator === 'null') {
-        search.evaluator = undefined;
-      } else {
-        search.evaluator = query.evaluator;
-      }
-    }
+  if (req.query) {
+    search.status = req.query.status;
   }
 
   Request.find(search)
-    .populate('user', 'name')
+    .populate('user', 'name email')
     .populate('evaluator', 'name')
+    .populate('secteur', 'name')
     .sort('-submittedAt')
     .exec(function(err, requests) {
       if (err) return handleError(req, res, err);
 
-      res.set('count', requests.length);
       return res.send(requests);
     });
 };
@@ -201,36 +181,10 @@ exports.showRequestsByStatus = function(req, res) {
   Request
     .aggregate([
       {$match: {mdph: req.mdph.zipcode}},
-      {$group: {
-        _id: '$status',
-        count: {$sum: 1}
-      }}
+      {$group: {_id: '$status', count: {$sum: 1} }}
     ])
     .exec(function(err, requestsGroups) {
       if (err) return handleError(req, res, err);
-
-      return res.send(requestsGroups);
-    });
-};
-
-exports.showRequestsByStatusForUser = function(req, res) {
-  Request
-    .aggregate([
-      {$match: { mdph: req.mdph.zipcode, evaluator: mongoose.Types.ObjectId(req.params.userId) }},
-      {$group: {
-        _id: '$status',
-        count: {$sum: 1}
-      }}
-    ])
-    .exec(function(err, requestsGroups) {
-      if (err) return handleError(req, res, err);
-
-      var total = 0;
-      requestsGroups.forEach(function(group) {
-        total += group.count;
-      });
-
-      requestsGroups.push({_id: 'toutes', count: total});
 
       return res.send(requestsGroups);
     });
@@ -273,7 +227,7 @@ exports.showPartenaires = function(req, res) {
 
 // Get list of mdphs
 exports.index = function(req, res) {
-  Mdph.find().sort('zipcode').exec(function(err, mdphs) {
+  Mdph.find(req.query).sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(mdphs);

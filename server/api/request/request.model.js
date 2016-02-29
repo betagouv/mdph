@@ -1,14 +1,17 @@
 'use strict';
 
+var moment = require('moment');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var shortId = require('shortid');
 var ActionModel = require('./action.model');
+var DateUtils = require('../../components/dateUtils');
 
 var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
   type:           String,
-  validation:     Boolean,
+  isInvalid:      Boolean,
+  isAsked:        Boolean,
   originalname:   String,
   filename:       String,
   encoding:       String,
@@ -21,6 +24,7 @@ var DocumentSchema = new Schema({
 var RequestSchema = new Schema({
   shortId:        { type: String, unique: true, default: shortId.generate },
   documents:      [DocumentSchema],
+  askedDocumentTypes: [String],
   user:           { type: Schema.Types.ObjectId, ref: 'User' },
   profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
   mdph:           String,
@@ -65,6 +69,31 @@ RequestSchema.methods = {
 
       log.info(action._doc);
     });
+  },
+
+  getDateNaissance: function() {
+    if (this.formAnswers && this.formAnswers.identites && this.formAnswers.identites.beneficiaire && this.formAnswers.identites.beneficiaire.dateNaissance) {
+      var date = this.formAnswers.identites.beneficiaire.dateNaissance;
+      return moment(date, moment.ISO_8601);
+    }
+
+    return null;
+  },
+
+  isAdult: function() {
+    return DateUtils.isAdult(this.getDateNaissance());
+  },
+
+  getType: function() {
+    return DateUtils.getType(this.getDateNaissance());
+  },
+
+  getCodePostal: function() {
+    if (this.formAnswers && this.formAnswers.identites && this.formAnswers.identites.beneficiaire) {
+      return this.formAnswers.identites.beneficiaire.code_postal;
+    }
+
+    return null;
   }
 };
 

@@ -16,9 +16,9 @@
           <h2>Identité</h2>
           <p class="section-subhead">&nbsp;</p>
           <ul class="profile-card-row">
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.identites.beneficiaire"></li>
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.identites.autorite"></li>
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.identites.autre"></li>
+            <li id="beneficiaire" class="profile-card-row-item" profile-category profile="profile" options="options.beneficiaire"></li>
+            <li id="autorite" class="profile-card-row-item" profile-category profile="profile" options="options.autorite"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.autre"></li>
           </ul>
         </section>
 
@@ -26,9 +26,9 @@
           <h2>Besoins et attentes</h2>
           <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
           <ul class="profile-card-row">
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.projet.vieQuotidienne"></li>
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.projet.vieScolaire"></li>
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.projet.vieTravail"></li>
+            <li id="vieQuotidienne" class="profile-card-row-item" profile-category profile="profile" options="options.vieQuotidienne"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.vieScolaire"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.vieTravail"></li>
           </ul>
         </section>
 
@@ -36,18 +36,18 @@
           <h2>Autres informations</h2>
           <p class="section-subhead">&nbsp;</p>
           <ul class="profile-card-row">
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.autre.particulieres"></li>
-            <li class="profile-card-row-item" profile-category profile="profile" options="options.autre.aidant"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.particulieres"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.aidant"></li>
           </ul>
         </section>
 
         <section class="profile-section">
           <h2>Vos demandes</h2>
-          <p class="section-subhead">Historique de vos demandes.</p>
+          <p class="section-subhead">&nbsp;</p>
           <div class="list-group-demande">
 
             <a class="list-group-item section" ng-repeat="request in requests" title="Accéder à la demande {{request.shortId}}"
-              ui-sref="{{request.status === 'en_cours' ? '.demande.parametres({ shortId: request.shortId })' : '.demande({ shortId: request.shortId })'}}">
+              ui-sref="{{request.status === 'en_cours' ? '.demande({ shortId: request.shortId })' : '.demande({ shortId: request.shortId })'}}">
               <i class="fa fa-chevron-circle-right"></i>
               <span class="list-group-item-content">
                 <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
@@ -59,7 +59,7 @@
             <button type="button" ng-click="nouvelleDemande()" class="list-group-item list-group-item-nouvelle-demande" >
               <i class="fa fa-plus-circle fa-2x "></i>
               <span class="list-group-item-content">
-                <h3 class="list-group-item-heading"> Faire une nouvelle demande</h3>
+                <h3 class="list-group-item-heading"> Transmettre une nouvelle demande</h3>
               </span>
             </button>
           </div>

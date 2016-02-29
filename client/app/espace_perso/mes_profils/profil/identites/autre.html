@@ -27,18 +27,9 @@
 
     <div class="section-row">
       <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
-        <label for="nom" class="control-label">Nom</label>
+        <label for="nom" class="control-label">Nom ou intitulé</label>
         <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
         <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
-        </div>
-      </div>
-
-      <div class="form-group required" ng-class="{'has-error': infoForm.prenom.$invalid && infoForm.$submitted}">
-        <label for="prenom" class="control-label">Prénom</label>
-        <input id="prenom" type="text" name="prenom" class="form-control" ng-model="identite.prenom" ng-minlength="1" required>
-        <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
           <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
         </div>
@@ -49,10 +40,15 @@
   <section class="identite-section adress-section">
     <div class="adress-search form-group">
       <div class="input-group">
-        <input typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
-        typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100"
-        type="text" ng-model="searchAdress" class="form-control" ng-disabled="disableAddress()" placeholder="Recherche adresse">
-        <span class="input-group-addon basic-addon"><i class="fa fa-search"></i></span>
+        <input type="search" typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
+        typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100" typeahead-loading="loadingLocations" typeahead-no-results="noResults"
+        ng-model="searchAdress" class="form-control" ng-disabled="identite.isSameAddress" placeholder="Recherche adresse">
+        <span class="input-group-addon basic-addon">
+          <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
+        </span>
+      </div>
+      <div ng-show="noResults">
+        <i class="fa fa-times"></i> Pas de résultats
       </div>
     </div>
   </section>

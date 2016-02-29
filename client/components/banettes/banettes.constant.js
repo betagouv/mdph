@@ -2,27 +2,45 @@
 
 angular.module('impactApp').constant('banettes', [
   {
-    id: 'toutes',
-    label: 'Toutes'
+    id: 'workflow',
+    label: 'Bannettes',
+    statuses: [
+      {
+        id: 'emise',
+        label: 'Émise'
+      },
+      {
+        id: 'enregistree',
+        label: 'Enregistrée'
+      },
+      {
+        id: 'en_attente_usager',
+        label: 'En attente'
+      }
+    ]
   },
   {
-    id: 'emise',
-    label: 'Émise'
+    id: 'special',
+    label: 'Autres',
+    statuses: [
+      {
+        id: 'toutes',
+        label: 'Toutes'
+      },
+      {
+        id: 'archive',
+        label: 'Archivée'
+      }
+    ]
   },
   {
-    id: 'complet',
-    label: 'Complète'
-  },
-  {
-    id: 'incomplet',
-    label: 'Incomplète'
-  },
-  {
-    id: 'en_cours',
-    label: 'En cours de saisie'
-  },
-  {
-    id: 'archive',
-    label: 'Archivée'
+    id: 'hidden',
+    label: 'Cachées',
+    statuses: [
+      {
+        id: 'en_cours',
+        label: 'En cours'
+      }
+    ]
   }
 ]);

@@ -20,15 +20,85 @@ angular.module('impactApp')
       return found;
     }
 
-    var getCompletion = function(request) {
+    function getCompletion(request) {
       if (!request.documents) {
         return false;
       }
 
       return allMandatoryFilesPresent(request) && !noInvalidatedFiles(request);
-    };
+    }
+
+    function findInvalid(categories) {
+      var invalidDocuments = [];
+
+      _.forEach(categories, function(category) {
+        _.forEach(category.documentList, function(document) {
+          if (document.isInvalid) {
+            invalidDocuments.push(document);
+          }
+        });
+      });
+
+      return invalidDocuments;
+    }
+
+    function findRefusedDocuments(request) {
+      if (!request.documents) {
+        return {
+          obligatoires: [],
+          complementaires: []
+        };
+      }
+
+      var obligatoires = findInvalid(request.documents.obligatoires);
+      var complementaires = findInvalid(request.documents.complementaires);
+
+      return {
+        obligatoires: obligatoires,
+        complementaires: complementaires
+      };
+    }
+
+    function getAskedDocumentTypes(request) {
+      if (!request.askedDocumentTypes) {
+        return [];
+      }
+
+      return request.askedDocumentTypes;
+    }
 
     return {
-      getCompletion: getCompletion
+      findRefusedDocuments: findRefusedDocuments,
+      getAskedDocumentTypes: getAskedDocumentTypes,
+      getCompletion: getCompletion,
+      groupByAge: function(requests) {
+        if (typeof requests === 'undefined' || requests.length === 0) {
+          return null;
+        }
+
+        var currentMoment = moment();
+        var groupedByAge = {
+          new: [],
+          standard: [],
+          old: []
+        };
+
+        _.reduce(requests, function(result, request) {
+          var submissionMoment = moment(request.submittedAt);
+          var deltaMonths = currentMoment.diff(submissionMoment, 'months');
+
+          if (deltaMonths <= 1) {
+            result.new.push(request);
+          } else if (deltaMonths > 1 && deltaMonths < 3) {
+            result.standard.push(request);
+          } else {
+            result.old.push(request);
+          }
+
+          return result;
+        }, groupedByAge);
+
+        return groupedByAge;
+      }
     };
   });

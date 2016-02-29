@@ -28,7 +28,12 @@ angular.module('impactApp')
         $scope.identite.localite = result.properties.city;
       };
 
-      $scope.disableAddress = function() {
-        return ($scope.identite && $scope.identite.adresseInconnue ? true : false);
+      $scope.changeIsSameAddress = function() {
+        if ($scope.identite.isSameAddress) {
+          $scope.searchAdress = '';
+          $scope.identite.nomVoie = '';
+          $scope.identite.code_postal = '';
+          $scope.identite.localite = '';
+        }
       };
     });

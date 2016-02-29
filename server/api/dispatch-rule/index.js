@@ -6,11 +6,11 @@ var controller = require('./dispatch-rule.controller');
 
 var router = express.Router();
 
-router.get('/', auth.isAuthorized(), controller.index);
-router.post('/', auth.isAuthorized(), controller.create);
-router.get('/:id', auth.isAuthorized(), controller.show);
-router.post('/:id', auth.isAuthorized(), controller.update);
-router.patch('/:id', auth.isAuthorized(), controller.update);
-router.delete('/:id', auth.isAuthorized(), controller.destroy);
+router.get('/', auth.hasRole('adminMdph'), controller.index);
+router.post('/', auth.hasRole('adminMdph'), controller.create);
+router.get('/:id', auth.hasRole('adminMdph'), controller.show);
+router.post('/:id', auth.hasRole('adminMdph'), controller.update);
+router.patch('/:id', auth.hasRole('adminMdph'), controller.update);
+router.delete('/:id', auth.hasRole('adminMdph'), controller.destroy);
 
 module.exports = router;

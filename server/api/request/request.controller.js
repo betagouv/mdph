@@ -1,119 +1,54 @@
 'use strict';
 
-var _ = require('lodash');
-var path = require('path');
-var pdf = require('html-pdf');
-var fs = require('fs');
-var shortid = require('shortid');
-var async = require('async');
+const _ = require('lodash');
+const path = require('path');
+const pdf = require('html-pdf');
+const fs = require('fs');
+const shortid = require('shortid');
+const async = require('async');
 
-var auth = require('../../auth/auth.service');
-var config = require('../../config/environment');
-var Recapitulatif = require('../../components/recapitulatif');
-var Dispatcher = require('../../components/dispatcher');
-var Synthese = require('../../components/synthese');
-var DateUtils = require('../../components/dateUtils');
-var MakePdf = require('../../components/make-pdf');
+const auth = require('../../auth/auth.service');
+const config = require('../../config/environment');
+const Recapitulatif = require('../../components/recapitulatif');
+const Synthese = require('../../components/synthese');
+const MakePdf = require('../../components/make-pdf');
 
-var PrestationsController = require('../prestation/prestation.controller');
-var DocumentsController = require('../document/documents.controller');
-var Prestation = require('../prestation/prestation.controller');
-var Request = require('./request.model');
-var User = require('../user/user.model');
-var Partenaire = require('../partenaire/partenaire.model');
-var Mdph = require('../mdph/mdph.model');
-var Mailer = require('../send-mail/send-mail.controller');
+const PrestationsController = require('../prestation/prestation.controller');
+const DocumentsController = require('../document/documents.controller');
+const Prestation = require('../prestation/prestation.controller');
+const Request = require('./request.model');
+const User = require('../user/user.model');
+const Partenaire = require('../partenaire/partenaire.model');
+const Mdph = require('../mdph/mdph.model');
+const MailActions = require('../send-mail/send-mail-actions');
 
-var ActionModel = require('./action.model');
-var Actions = require('../../components/actions').actions;
-var ActionsById = require('../../components/actions').actionsById;
-var resizeAndMove = require('../../components/resize-image');
+const Dispatcher = require('../../components/dispatcher');
+const ActionModel = require('./action.model');
+const Actions = require('../../components/actions').actions;
+const ActionsById = require('../../components/actions').actionsById;
+const resizeAndMove = require('../../components/resize-image');
 
-var domain = process.env.DOMAIN || config.DOMAIN;
+const domain = process.env.DOMAIN || config.DOMAIN;
 
-function generatePdf(request, user, host, done) {
-  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
-    if (err) return done(err);
-
-    return MakePdf.make(request, user, html, done);
-  });
-}
-
-function sendMailNotification(request, host, log, callback) {
-  Dispatcher.findSecteur(request, function(secteur) {
-    var type = DateUtils.getType(request.formAnswers);
-
-    if (secteur && secteur.evaluators && secteur.evaluators[type] && secteur.evaluators[type].length > 0) {
-      var evaluators = secteur.evaluators[type];
-      evaluators.forEach(function(evaluator) {
-        if (request.mdph === '59') {
-          generatePdf(request, {role: 'adminMdph'}, host, function(err, pdfPath) {
-            if (err) { log.error(err); }
-
-            Mailer.sendMail(
-              evaluator.email,
-              'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId,
-              [
-                {
-                  filename: request.shortId + '.pdf',
-                  path: pdfPath
-                }
-              ]
-            );
-          });
-        } else {
-          Mailer.sendMail(evaluator.email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-        }
-      });
-
-      callback(secteur);
-    } else {
-      callback();
-    }
-  });
-}
-
-function sendMailCompletude(request, evaluator) {
-  Mailer.sendMail(request.user.email,
-    'Accusé de complétude de votre dossier',
-    'Les documents obligatoires que vous nous avez transmis ont tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '. Votre dosser est désormais considéré comme complet.'
-  );
-}
-
-function sendMailDemandeDocuments(request, files, evaluator) {
-  var body = 'Les documents obligatoires que vous nous avez transmis n\'ont pas tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '.\nVous devez vous reconnecter pour renvoyer les pièces en erreur suivantes:\n';
-
-  files.forEach(function(file) {
-    body += '- ' + file.originalname + '\n';
-  });
-
-  Mailer.sendMail(request.user.email,
-    'Demande de complétude de votre dossier',
-    body
-  );
-}
-
-// Get a single request
-exports.show = function(req, res, next) {
+function getPopulatedRequest(user, shortId, done) {
   Request
     .findOne({
-      shortId: req.params.shortId
+      shortId: shortId
     })
     .lean()
-    .populate('user evaluator')
+    .populate('user', '_id name role email mdph')
+    .populate('evaluator')
     .exec(function(err, request) {
       if (!request) {
-        return res.sendStatus(404);
+        done({status: 404});
       }
 
       if (err) {
-        req.log.error(err);
-        return res.status(500).send(err);
+        done(err);
       }
 
-      if (!auth.canAccessResource(req.user, request)) {
-        console.log('ERROR');
-        return res.sendStatus(403);
+      if (!auth.canAccessResource(user, request)) {
+        return done({status: 403});
       }
 
       async.waterfall([
@@ -125,11 +60,31 @@ exports.show = function(req, res, next) {
           PrestationsController.populateAndSortPrestations(request, callback);
         }
       ], function(err, request) {
-        if (err) return handleError(req, res, err);
+        if (err) return done(err);
 
-        return res.json(request);
+        return done(null, request);
       });
     });
+}
+
+function generatePdf(request, user, host, done) {
+  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
+    if (err) return done(err);
+
+    return MakePdf.make(request, user, html, done);
+  });
+}
+
+// Get a single request
+exports.show = function(req, res, next) {
+  getPopulatedRequest(req.user, req.params.shortId, function(err, request) {
+    if (err) {
+      req.log.error(err);
+      return res.status(err.status || 500).send(err);
+    }
+
+    return res.json(request);
+  });
 };
 
 // Get a single request
@@ -185,30 +140,35 @@ exports.showUserRequests = function(req, res, next) {
  * Update request / agent side
  */
 exports.updateFromAgent = function(req, res, next) {
-  var request = req.request;
-  var updated = req.body;
-  var actionDetail = {old: request.status, new: updated.status};
-
-  // TODO: Rethink this completely
-  // switch (updated.status) {
-  //   case 'complet':
-  //     sendMailCompletude(request, req.user);
-  //     request.set('documents', updated.documents);
-  //     break;
-  //   case 'incomplet':
-  //     var files = _.filter(updated.documents, 'validation', false);
-  //     request.set('documents', updated.documents);
-  //     sendMailDemandeDocuments(request, files, req.user);
-  //     break;
-  // }
-
-  request
-    .set('status', req.body.status)
+  req.request
+    .set(_.omit(req.body, 'user', '__v', 'documents', 'detailPrestations'))
     .save(function(err, request) {
       if (err) return handleError(req, res, err);
 
-      request.saveActionLog(Actions.CHANGE_STATUS, req.user, req.log, actionDetail);
-      res.json(request);
+      var actionDetail = req.query;
+      var action = ActionsById[actionDetail.id];
+
+      switch (action) {
+        case Actions.SUCCES_ENREGISTREMENT:
+          MailActions.sendMailCompletude(request, req.user);
+          break;
+        case Actions.ERREUR_ENREGISTREMENT:
+          MailActions.sendMailDemandeDocuments(request, req.user);
+          break;
+        default:
+          console.err('Action process not found');
+      }
+
+      request.saveActionLog(action, req.user, req.log, actionDetail);
+
+      getPopulatedRequest(req.user, request.shortId, function(err, populated) {
+        if (err) {
+          req.log.error(err);
+          return res.status(err.status || 500).send(err);
+        }
+
+        return res.json(populated);
+      });
     });
 };
 
@@ -222,8 +182,14 @@ exports.updateFromUser = function(req, res, next) {
 
   if (req.query.isSendingRequest) {
     // Find and notify evaluator through dispatcher
-    sendMailNotification(request, req.headers.host, req.log, function(secteur) {
+    Dispatcher.findSecteur(request, function(err, secteur) {
       if (secteur) {
+        var type = request.getType();
+        var evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
+        evaluators.forEach(function(evaluator) {
+          MailActions.sendMailNotificationAgent(request, evaluator.email);
+        });
+
         request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
         request.set('secteur', secteur);
       }
@@ -239,16 +205,7 @@ exports.updateFromUser = function(req, res, next) {
           generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
             if (err) { req.log.error(err); }
 
-            Mailer.sendMail(req.user.email,
-              'Accusé de réception du téléservice',
-              'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transférée à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
-              [
-                {
-                  filename: request.shortId + '.pdf',
-                  path: pdfPath
-                }
-              ]
-            );
+            MailActions.sendMailReceivedTransmission(request, req.user.email, pdfPath);
           });
 
           return res.json(updated);
@@ -278,7 +235,7 @@ exports.updateRequest = function(req, res, next) {
  * Resend mail notification
  */
 exports.resendMail = function(req, res, next) {
-  sendMailNotification(req.request, req.headers.host, req.log, function() {
+  MailActions.sendMailNotification(req.request, req.headers.host, req.log, function() {
     res.sendStatus(200);
   });
 };
@@ -376,7 +333,7 @@ exports.saveFilePartenaire = function(req, res) {
 
     function(callback) {
       const confirmationUrl = req.headers.host + '/api/partenaires/' + _partenaire._id + '/' + _partenaire.secret;
-      Mailer.sendConfirmationMail(_partenaire.email, confirmationUrl);
+      MailActions.sendConfirmationMail(_partenaire.email, confirmationUrl);
 
       _request.saveActionLog(Actions.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
       callback();
@@ -430,22 +387,22 @@ exports.deleteFile = function(req, res) {
 exports.updateFile = function(req, res) {
   var request = req.request;
   var file = request.documents.id(req.params.fileId);
-  var validation = req.body.validation;
+  var isInvalid = req.body.isInvalid;
 
   if (!file) {
     return res.sendStatus(404);
   }
 
-  if (typeof validation === 'undefined') {
+  if (typeof isInvalid === 'undefined') {
     return res.sendStatus(400);
   }
 
-  file.set('validation', validation);
+  file.set('isInvalid', isInvalid);
 
   request.save(function(err) {
     if (err) return handleError(err);
 
-    var action = validation ? Actions.DOCUMENT_VALIDATED : Actions.DOCUMENT_REFUSED;
+    var action = isInvalid ? Actions.DOCUMENT_REFUSED : Actions.DOCUMENT_VALIDATED;
 
     request.saveActionLog(action, req.user, req.log, {document: file});
     return res.json(file);

@@ -5,6 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('medecin', {
         url: '/medecin',
+        parent: 'departement',
         templateUrl: 'app/medecin/medecin.html',
         controller: 'PartenaireCtrl',
         resolve: {

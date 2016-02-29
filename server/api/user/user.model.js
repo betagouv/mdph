@@ -7,17 +7,10 @@ var Request = require('../request/request.model');
 
 var UserSchema = new Schema({
   name: String,
-  sexe: { type: String, enum: ['feminin', 'masculin'] },
-  nationalite: String,
-  adresse: String,
-  adresse_complement: String,
-  code_postal: String,
-  commune: String,
-  pays: String,
-  hashedPassword: String,
+  hashedPassword: { type: String, select: false },
   unconfirmed: { type: Boolean },
   provider: String,
-  salt:  String,
+  salt:  { type: String, select: false },
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
   mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
@@ -51,7 +44,8 @@ UserSchema
         name: this.name,
         role: this.role,
         email: this.email,
-        mdph: this.mdph
+        mdph: this.mdph,
+        unconfirmed: this.unconfirmed
       };
     }
 
@@ -59,7 +53,8 @@ UserSchema
       _id: this._id,
       name: this.name,
       role: this.role,
-      email: this.email
+      email: this.email,
+      unconfirmed: this.unconfirmed
     };
   });
 
