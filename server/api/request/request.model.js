@@ -38,7 +38,7 @@ var RequestSchema = new Schema({
   updatedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
   formAnswers:    Schema.Types.Mixed,
-  prestations:    [String],
+  prestations:    [{ type: String, lowercase: true }],
   certificat:     Schema.Types.Mixed,
   synthese:       Schema.Types.Mixed,
   comments:       { type: String }
