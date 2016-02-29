@@ -37,6 +37,7 @@ angular.module('impactApp', [
         if ($cookies.get('token') && Util.isSameOrigin(config.url)) {
           config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
+
         return config;
       }
     };
