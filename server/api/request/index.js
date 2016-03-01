@@ -32,7 +32,7 @@ router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthese
 router.post('/:shortId/document', auth.isAuthorized(), upload.single('file'), controller.saveFile);
 router.post('/:shortId/document-partenaire', upload.single('file'), controller.saveFilePartenaire);
 
-router.post('/:shortId/document/:fileId', auth.isAuthorized(), controller.updateFile);
+router.put('/:shortId/document/:fileId', auth.isAuthorized(), controller.updateFile);
 router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downloadFile);
 router.delete('/:shortId/document/:fileId', auth.isAuthorized(), controller.deleteFile);
 

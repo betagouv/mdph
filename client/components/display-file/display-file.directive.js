@@ -28,7 +28,7 @@ angular.module('impactApp')
             return;
           }
 
-          $http.post('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {isInvalid: isInvalid}).then(function(result) {
+          $http.put('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {isInvalid: isInvalid}).then(function(result) {
             $scope.showValidationStatus = true;
             $scope.file = result.data;
           });
