@@ -18,7 +18,8 @@ describe('Request Integration', function() {
     });
   });
 
-  afterEach(function(done) {
+  after(function(done) {
+    //clear mdphs after testing
     Request.remove().exec().then(function() {
       done();
     });
@@ -26,13 +27,26 @@ describe('Request Integration', function() {
 
   describe('Update Request', function() {
 
+    //initialize a request
+    before(function(done) {
+      var newRequest = new Request({ shortId: '1234' });
+      newRequest.save(function() {
+        done();
+      });
+    });
+
+    after(function(done) {
+      //clear mdphs after testing
+      Request.remove().exec().then(function() {
+        done();
+      });
+    });
+
     describe('When the user is authenticated', function() {
-      var updatedRequest;
+      describe('When the request exist', function() {
 
-      beforeEach(function(done) {
-        var newRequest = new Request({ shortId: '1234' });
-
-        newRequest.save(function() {
+        it('should respond with the updated thing', function(done) {
+          var updatedRequest;
           var token = getToken();
 
           api()
@@ -46,31 +60,24 @@ describe('Request Integration', function() {
               if (err) {
                 return done(err);
               }
+
               updatedRequest = res.body;
+              updatedRequest.mdph.should.equal('updatedMDPH');
               done();
             });
         });
+
       });
 
-      it('should respond with the updated thing', function() {
-        updatedRequest.mdph.should.equal('updatedMDPH');
-      });
-
-    });
-
-    describe('When the request does not exist', function() {
-
-      it('should return 404', function(done) {
-        //given
-        var newRequest = new Request({ shortId: 'this_is_not_a_shortid' });
-
-        //when
-        newRequest.save(function() {
+      describe('When the request does not exist', function() {
+        it('should return 404', function(done) {
           var token = getToken();
 
-          //then
           api()
-            .put('/api/requests/1234?access_token=' + token)
+            .put('/api/requests/9876?access_token=' + token)
+            .send({
+              mdph: 'updatedMDPH'
+            })
             .expect(404, done);
         });
       });
@@ -92,26 +99,51 @@ describe('Request Integration', function() {
       });
     });
 
-    // describe('Update Documents', function() {
-    //   describe('When the document exists', function() {
-    //
-    //     it('should return 200', function(done) {
-    //       //given
-    //       var newRequest = new Request({ shortId: '1234' });
-    //
-    //       //when
-    //       newRequest.save(function() {
-    //         var token = getToken();
-    //
-    //         //then
-    //         api()
-    //           .put('/api/requests/1234?access_token=' + token)
-    //           .expect(200, done);
-    //       });
-    //     });
-    //
-    //   });
-    // });
+  });
+
+  describe('Delete Documents', function() {
+    describe('When the request is en cours', function() {
+      var idDoc;
+
+      //initialize a request
+      before(function(done) {
+        var newDocument = {
+          type: 'carteIdentite',
+          path: 'toto'
+        };
+
+        var newRequest = new Request({
+          shortId: '1234',
+          status: 'en_cours',
+          documents: [newDocument]
+        });
+
+        newRequest.save(function(err, request) {
+          if (err) {
+            return done(err);
+          }
+
+          idDoc = request.documents[0]._id;
+          done();
+        });
+      });
+
+      after(function(done) {
+        //clear mdphs after testing
+        Request.remove().exec().then(function() {
+          done();
+        });
+      });
+
+      it('should return 200', function(done) {
+        var token = getToken();
+
+        api()
+          .delete('/api/requests/1234/document/' + idDoc + '?access_token=' + token)
+          .expect(200, done);
+      });
+
+    });
   });
 
 });
