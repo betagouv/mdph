@@ -3,7 +3,7 @@
 var should = require('should');
 var async = require('async');
 
-var dispatcher = require('./dispatcher');
+var Dispatcher = require('./dispatcher');
 
 var DispatchRule = require('../api/dispatch-rule/dispatch-rule.model');
 var Secteur = require('../api/secteur/secteur.model');
@@ -126,7 +126,7 @@ describe('Dispatcher', function() {
       }
     });
 
-    dispatcher.findSecteur(request, function(err, secteur) {
+    Dispatcher.dispatch(request, function(err, secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurCaen.id);
       done();
@@ -146,7 +146,7 @@ describe('Dispatcher', function() {
       }
     });
 
-    dispatcher.findSecteur(request, function(err, secteur) {
+    Dispatcher.dispatch(request, function(err, secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurNord.id);
       done();
@@ -166,7 +166,7 @@ describe('Dispatcher', function() {
       }
     });
 
-    dispatcher.findSecteur(request, function(err, secteur) {
+    Dispatcher.dispatch(request, function(err, secteur) {
       should.exist(err);
       should.not.exist(secteur);
       done();

@@ -136,30 +136,38 @@ exports.showUserRequests = function(req, res, next) {
   });
 };
 
-/**
- * Update request / agent side
- */
-exports.updateFromAgent = function(req, res, next) {
+exports.update = function(req, res, next) {
   req.request
-    .set(_.omit(req.body, 'user', '__v', 'documents', 'detailPrestations'))
-    .save(function(err, request) {
-      if (err) return handleError(req, res, err);
-
+    .set(_.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations'))
+    .save()
+    .then(request => {
       var actionDetail = req.query;
       var action = ActionsById[actionDetail.id];
 
-      switch (action) {
-        case Actions.SUCCES_ENREGISTREMENT:
-          MailActions.sendMailCompletude(request, req.user);
-          break;
-        case Actions.ERREUR_ENREGISTREMENT:
-          MailActions.sendMailDemandeDocuments(request, req.user);
-          break;
-        default:
-          console.err('Action process not found');
-      }
+      if (action) {
+        switch (action) {
+          case Actions.SUCCES_ENREGISTREMENT:
+            MailActions.sendMailCompletude(request, req.user);
+            break;
+          case Actions.ERREUR_ENREGISTREMENT:
+            MailActions.sendMailDemandeDocuments(request, req.user);
+            break;
+          case Actions.SUBMIT:
+            Dispatcher.dispatch(request, req.user);
+            request.set('submittedAt', Date.now()).save();
+            generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
+              if (err) { req.log.error(err); }
 
-      request.saveActionLog(action, req.user, req.log, actionDetail);
+              MailActions.sendMailReceivedTransmission(request, req.user.email, pdfPath);
+            });
+
+            break;
+          default:
+            console.log('Action not found');
+        }
+
+        request.saveActionLog(action, req.user, req.log, actionDetail);
+      }
 
       getPopulatedRequest(req.user, request.shortId, function(err, populated) {
         if (err) {
@@ -169,68 +177,67 @@ exports.updateFromAgent = function(req, res, next) {
 
         return res.json(populated);
       });
-    });
+    })
+    .catch(err => handleError(req, res, err));
 };
+
+// /**
+//  * Update request / user side
+//  */
+// exports.update = function(req, res, next) {
+//   req.request
+//     .set(_.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations'))
+//     .save(function(err, request) {
+//       if (err) return handleError(req, res, err);
+//
+//       switch (action) {
+//         default:
+//           console.err('Action process not found');
+//       }
+//
+//       request.saveActionLog(action, req.user, req.log, actionDetail);
+//     });
+//
+//   if (req.query.isSendingRequest) {
+//     // Find and notify evaluator through dispatcher
+//     Dispatcher.findSecteur(request, function(err, secteur) {
+//       if (secteur) {
+//         var type = request.getType();
+//         var evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
+//         evaluators.forEach(function(evaluator) {
+//           MailActions.sendMailNotificationAgent(request, evaluator.email);
+//         });
+//
+//         request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
+//         request.set('secteur', secteur);
+//       }
+//
+//       request
+//         .set('submittedAt', Date.now())
+//         .save(function(err, updated) {
+//           if (err) return handleError(req, res, err);
+//
+//           request.saveActionLog(Actions.SUBMIT, req.user, req.log);
+//
+//
+//
+//           return res.json(updated);
+//         });
+//     });
+//   } else {
+//     request
+//       .save(function(err, updated) {
+//         if (err) return handleError(req, res, err);
+//
+//         // TODO: Not precise enough, is also used when request is assigned to an agent (pre_evalaution.controller.js)
+//         request.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
+//
+//         return res.json(updated);
+//       });
+//   }
+// };
 
 /**
- * Update request / user side
- */
-exports.updateFromUser = function(req, res, next) {
-  var request = req.request;
-
-  request.set(_.omit(req.body, 'user', '__v', 'documents', 'detailPrestations'));
-
-  if (req.query.isSendingRequest) {
-    // Find and notify evaluator through dispatcher
-    Dispatcher.findSecteur(request, function(err, secteur) {
-      if (secteur) {
-        var type = request.getType();
-        var evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
-        evaluators.forEach(function(evaluator) {
-          MailActions.sendMailNotificationAgent(request, evaluator.email);
-        });
-
-        request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-        request.set('secteur', secteur);
-      }
-
-      request
-        .set('submittedAt', Date.now())
-        .save(function(err, updated) {
-          if (err) return handleError(req, res, err);
-
-          request.saveActionLog(Actions.SUBMIT, req.user, req.log);
-
-          // Notify user
-          generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
-            if (err) { req.log.error(err); }
-
-            MailActions.sendMailReceivedTransmission(request, req.user.email, pdfPath);
-          });
-
-          return res.json(updated);
-        });
-    });
-  } else {
-    request
-      .save(function(err, updated) {
-        if (err) return handleError(req, res, err);
-
-        // TODO: Not precise enough, is also used when request is assigned to an agent (pre_evalaution.controller.js)
-        request.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
-
-        return res.json(updated);
-      });
-  }
-};
-
-/**
- * Update request
- */
-exports.updateRequest = function(req, res, next) {
-
-};
-
 /**
  * Resend mail notification
  */

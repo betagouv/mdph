@@ -18,8 +18,8 @@ router.post('/', auth.isAuthenticated(), controller.save);
 router.get('/:shortId', auth.isAuthenticated(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 
-router.post('/:shortId', auth.isAuthorized(), controller.updateFromAgent);
-router.put('/:shortId', auth.isAuthorized(), controller.updateFromUser);
+router.post('/:shortId', auth.isAuthorized(), controller.update);
+router.put('/:shortId', auth.isAuthorized(), controller.update);
 
 router.delete('/:shortId', auth.isAuthorized(), controller.destroy);
 
