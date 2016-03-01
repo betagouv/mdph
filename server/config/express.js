@@ -63,7 +63,9 @@ module.exports = function(app) {
       }
     };
 
-    req.log = logger;
+    req.log = function() {};
+
+    // req.log = logger;
     next();
   };
 

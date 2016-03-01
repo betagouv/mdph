@@ -30,6 +30,33 @@ const resizeAndMove = require('../../components/resize-image');
 
 const domain = process.env.DOMAIN || config.DOMAIN;
 
+function handleEntityNotFound(res) {
+  return function(entity) {
+    if (!entity) {
+      res.status(404).end();
+      return null;
+    }
+
+    return entity;
+  };
+}
+
+function saveUpdates(updates) {
+  return function(entity) {
+    let filteredUpdates = _.omit(updates, '_id', 'user', '__v', 'documents', 'detailPrestations');
+    return entity.set(filteredUpdates).save();
+  };
+}
+
+function respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function(entity) {
+    if (entity) {
+      res.status(statusCode).json(entity);
+    }
+  };
+}
+
 function getPopulatedRequest(user, shortId, done) {
   Request
     .findOne({
@@ -137,6 +164,12 @@ exports.showUserRequests = function(req, res, next) {
 };
 
 exports.update = function(req, res, next) {
+  Request.findById(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(saveUpdates(req.body))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+
   req.request
     .set(_.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations'))
     .save()
