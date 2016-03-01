@@ -47,10 +47,8 @@ function findSecteur(request) {
 }
 
 function dispatch(request, done) {
-  findSecteur(request)
-    .then(secteur => sendMailToSecteur(request, secteur))
-    .then(secteur => done(null, secteur))
-    .catch(err => done(err));
+  return findSecteur(request)
+    .then(secteur => sendMailToSecteur(request, secteur));
 }
 
 module.exports = {

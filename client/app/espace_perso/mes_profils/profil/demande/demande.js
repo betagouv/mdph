@@ -57,6 +57,7 @@ angular.module('impactApp').config(function($stateProvider) {
                 toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
               } else {
                 request.status = 'emise';
+                request.submittedAt = Date.now();
                 request.$update({isSendingRequest: true}, function() {
                   $state.go('^', {}, {reload: true});
                 });

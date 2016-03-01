@@ -14,6 +14,8 @@ var PdfJoin = require('./pdf_utils/join')();
 var buildStructure = require('./pdf_structure/build');
 var convertFromGridFS = require('./pdf_structure/convert');
 
+var Recapitulatif = require('./recapitulatif');
+
 var pdfOptions = {
   format: 'A4',
   border: '100px',
@@ -32,58 +34,66 @@ function printDebug(str, obj) {
   }
 }
 
-exports.make = function(request, user, recapitulatifHtml, done) {
+exports.make = function(options, done) {
   printDebug('makePdf: Transforming html to pdf');
-  tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
-    if (err) throw err;
 
-    var requestTempPdfPath = tempDirPath + '/' + request.shortId + '.pdf';
-    printDebug('make: Creating ', requestTempPdfPath);
+  // TODO: after babel, use destructuring
+  let request = options.request;
+  let host = options.host;
+  let role = options.role;
 
-    pdf.create(recapitulatifHtml, pdfOptions).toFile(requestTempPdfPath, function(err, res) {
-      if (err) return done(err);
+  Recapitulatif.answersToHtml(options, function(err, recapitulatifHtml) {
+    tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
+      if (err) throw err;
 
-      if (user.role === 'user') {
-        return done(null, requestTempPdfPath);
-      }
+      var requestTempPdfPath = tempDirPath + '/' + request.shortId + '.pdf';
+      printDebug('make: Creating ', requestTempPdfPath);
 
-      printDebug('make: Transforming');
-      async.waterfall([
-
-        // Transform everything to pdf stream
-        function(cb) {
-          if (request.documents) {
-            return PdfConvert.convertList(tempDirPath, request.documents, cb);
-          }
-
-          return cb(null, []);
-        },
-
-        // Join everything in one stream
-        function(documentList, cb) {
-          return buildStructure(request, user, res.filename, documentList, cb);
-        },
-
-        // Transform all GridFS files to temporary directory
-        function(pdfStructure, cb) {
-          return convertFromGridFS(pdfStructure, tempDirPath, cb);
-        },
-
-        // Load everything in scissors
-        PdfJoin.join
-
-      ],
-
-      function(err, pdfPath, joinCleanupCallback) {
+      pdf.create(recapitulatifHtml, pdfOptions).toFile(requestTempPdfPath, function(err, res) {
         if (err) return done(err);
-        printDebug('make: finished building pdf');
 
-        setTimeout(function() {
-          cleanupCallback();
-          joinCleanupCallback();
-        }, 600000);
+        if (role === 'user') {
+          return done(null, requestTempPdfPath);
+        }
 
-        return done(null, pdfPath);
+        printDebug('make: Transforming');
+        async.waterfall([
+
+          // Transform everything to pdf stream
+          function(cb) {
+            if (request.documents) {
+              return PdfConvert.convertList(tempDirPath, request.documents, cb);
+            }
+
+            return cb(null, []);
+          },
+
+          // Join everything in one stream
+          function(documentList, cb) {
+            return buildStructure(request, res.filename, documentList, cb);
+          },
+
+          // Transform all GridFS files to temporary directory
+          function(pdfStructure, cb) {
+            return convertFromGridFS(pdfStructure, tempDirPath, cb);
+          },
+
+          // Load everything in scissors
+          PdfJoin.join
+
+        ],
+
+        function(err, pdfPath, joinCleanupCallback) {
+          if (err) return done(err);
+          printDebug('make: finished building pdf');
+
+          setTimeout(function() {
+            cleanupCallback();
+            joinCleanupCallback();
+          }, 600000);
+
+          return done(null, pdfPath);
+        });
       });
     });
   });

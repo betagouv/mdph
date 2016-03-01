@@ -189,3 +189,4 @@ exports.isAuthorized = isAuthorized;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
+exports.meetsRequirements = meetsRequirements;

@@ -7,7 +7,7 @@ const fs = require('fs');
 const shortid = require('shortid');
 const async = require('async');
 
-const auth = require('../../auth/auth.service');
+const Auth = require('../../auth/auth.service');
 const config = require('../../config/environment');
 const Recapitulatif = require('../../components/recapitulatif');
 const Synthese = require('../../components/synthese');
@@ -41,10 +41,29 @@ function handleEntityNotFound(res) {
   };
 }
 
-function saveUpdates(updates) {
+function handleUserNotAuthorized(user, res) {
   return function(entity) {
-    let filteredUpdates = _.omit(updates, '_id', 'user', '__v', 'documents', 'detailPrestations');
-    return entity.set(filteredUpdates).save();
+    if (Auth.meetsRequirements(user.role, 'adminMdph')) {
+      return entity;
+    }
+
+    if (user._id.equals(entity.user._id)) {
+      return entity;
+    }
+
+    res.status(403).end();
+    return null;
+  };
+}
+
+function saveUpdates(req) {
+  return function(entity) {
+    let filteredUpdates = _.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations');
+    return entity.set(filteredUpdates).save().then(updated => {
+      updated.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
+
+      return updated;
+    });
   };
 }
 
@@ -57,61 +76,114 @@ function respondWithResult(res, statusCode) {
   };
 }
 
-function getPopulatedRequest(user, shortId, done) {
-  Request
-    .findOne({
-      shortId: shortId
-    })
-    .lean()
-    .populate('user', '_id name role email mdph')
-    .populate('evaluator')
-    .exec(function(err, request) {
-      if (!request) {
-        done({status: 404});
-      }
-
-      if (err) {
-        done(err);
-      }
-
-      if (!auth.canAccessResource(user, request)) {
-        return done({status: 403});
-      }
-
-      async.waterfall([
-        function(callback) {
-          DocumentsController.populateAndSortDocumentTypes(request, callback);
-        },
-
-        function(request, callback) {
-          PrestationsController.populateAndSortPrestations(request, callback);
-        }
-      ], function(err, request) {
-        if (err) return done(err);
-
-        return done(null, request);
+function saveUserAction(req) {
+  return function(entity) {
+    if (entity && req.action) {
+      ActionModel.create({
+        action: req.action.id,
+        request: entity._id,
+        user: req.user._id,
+        date: Date.now(),
+        params: req.action
       });
-    });
+    }
+
+    return entity;
+  };
 }
 
-function generatePdf(request, user, host, done) {
-  Recapitulatif.answersToHtml(request, host, 'pdf', function(err, html) {
-    if (err) return done(err);
+function processUserAction(req) {
+  return function(entity) {
+    if (entity && req.action) {
+      switch (req.action.id) {
+        case Actions.SUCCES_ENREGISTREMENT.id:
+          MailActions.sendMailCompletude(entity, req.user); // Agent sends KO to user
+          break;
+        case Actions.ERREUR_ENREGISTREMENT.id:
+          MailActions.sendMailDemandeDocuments(entity, req.user); // Agent sends OK to user
+          break;
+        case Actions.SUBMIT.id:
+          let options = {
+            request: entity,
+            host: req.headers.host,
+            user: req.user,
+            email: req.user.email
+          };
 
-    return MakePdf.make(request, user, html, done);
-  });
+          MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
+
+          Dispatcher.dispatch(entity)
+            .then(secteur => { // Service disatches to agents
+              entity.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
+              entity.set('secteur', secteur).save();
+            })
+            .catch(err => {
+              req.log.err(err);
+            });
+
+          break;
+        default:
+          console.log('Action not found');
+      }
+    }
+
+    return entity;
+  };
+}
+
+function findAndPopulate(shortId) {
+  return Request
+          .findOne({shortId: shortId})
+          .populate('user')
+          .populate('evaluator');
+}
+
+function getPopulatedRequest(resolve, reject) {
+  return function(user, shortId, done) {
+    Request
+      .findOne({
+        shortId: shortId
+      })
+      .lean()
+      .populate('user', '_id name role email mdph')
+      .populate('evaluator')
+      .exec(function(err, request) {
+        if (!request) {
+          done({status: 404});
+        }
+
+        if (err) {
+          done(err);
+        }
+
+        if (!Auth.canAccessResource(user, request)) {
+          return done({status: 403});
+        }
+
+        async.waterfall([
+          function(callback) {
+            DocumentsController.populateAndSortDocumentTypes(request, callback);
+          },
+
+          function(request, callback) {
+            PrestationsController.populateAndSortPrestations(request, callback);
+          }
+        ], function(err, request) {
+          if (err) return done(err);
+
+          return done(null, request);
+        });
+      });
+  };
 }
 
 // Get a single request
 exports.show = function(req, res, next) {
-  getPopulatedRequest(req.user, req.params.shortId, function(err, request) {
-    if (err) {
-      req.log.error(err);
-      return res.status(err.status || 500).send(err);
-    }
-
-    return res.json(request);
-  });
+  findAndPopulate(req.params.shortId)
+    .then(handleEntityNotFound(res))
+    .then(handleUserNotAuthorized(req.user, res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 };
 
 // Get a single request
@@ -164,113 +236,16 @@ exports.showUserRequests = function(req, res, next) {
 };
 
 exports.update = function(req, res, next) {
-  Request.findById(req.params.id)
+  findAndPopulate(req.params.shortId)
     .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
+    .then(handleUserNotAuthorized(req.user, res))
+    .then(saveUpdates(req))
+    .then(processUserAction(req))
+    .then(saveUserAction(req))
     .then(respondWithResult(res))
     .catch(handleError(res));
-
-  req.request
-    .set(_.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations'))
-    .save()
-    .then(request => {
-      var actionDetail = req.query;
-      var action = ActionsById[actionDetail.id];
-
-      if (action) {
-        switch (action) {
-          case Actions.SUCCES_ENREGISTREMENT:
-            MailActions.sendMailCompletude(request, req.user);
-            break;
-          case Actions.ERREUR_ENREGISTREMENT:
-            MailActions.sendMailDemandeDocuments(request, req.user);
-            break;
-          case Actions.SUBMIT:
-            Dispatcher.dispatch(request, req.user);
-            request.set('submittedAt', Date.now()).save();
-            generatePdf(request, req.user, req.headers.host, function(err, pdfPath) {
-              if (err) { req.log.error(err); }
-
-              MailActions.sendMailReceivedTransmission(request, req.user.email, pdfPath);
-            });
-
-            break;
-          default:
-            console.log('Action not found');
-        }
-
-        request.saveActionLog(action, req.user, req.log, actionDetail);
-      }
-
-      getPopulatedRequest(req.user, request.shortId, function(err, populated) {
-        if (err) {
-          req.log.error(err);
-          return res.status(err.status || 500).send(err);
-        }
-
-        return res.json(populated);
-      });
-    })
-    .catch(err => handleError(req, res, err));
 };
 
-// /**
-//  * Update request / user side
-//  */
-// exports.update = function(req, res, next) {
-//   req.request
-//     .set(_.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations'))
-//     .save(function(err, request) {
-//       if (err) return handleError(req, res, err);
-//
-//       switch (action) {
-//         default:
-//           console.err('Action process not found');
-//       }
-//
-//       request.saveActionLog(action, req.user, req.log, actionDetail);
-//     });
-//
-//   if (req.query.isSendingRequest) {
-//     // Find and notify evaluator through dispatcher
-//     Dispatcher.findSecteur(request, function(err, secteur) {
-//       if (secteur) {
-//         var type = request.getType();
-//         var evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
-//         evaluators.forEach(function(evaluator) {
-//           MailActions.sendMailNotificationAgent(request, evaluator.email);
-//         });
-//
-//         request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-//         request.set('secteur', secteur);
-//       }
-//
-//       request
-//         .set('submittedAt', Date.now())
-//         .save(function(err, updated) {
-//           if (err) return handleError(req, res, err);
-//
-//           request.saveActionLog(Actions.SUBMIT, req.user, req.log);
-//
-//
-//
-//           return res.json(updated);
-//         });
-//     });
-//   } else {
-//     request
-//       .save(function(err, updated) {
-//         if (err) return handleError(req, res, err);
-//
-//         // TODO: Not precise enough, is also used when request is assigned to an agent (pre_evalaution.controller.js)
-//         request.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
-//
-//         return res.json(updated);
-//       });
-//   }
-// };
-
-/**
 /**
  * Resend mail notification
  */
@@ -469,7 +444,12 @@ exports.getHistory = function(req, res) {
 };
 
 exports.getRecapitulatif = function(req, res) {
-  Recapitulatif.answersToHtml(req.request, req.headers.host, 'inline', function(err, html) {
+  let options = {
+    request: req.request,
+    host: req.headers.host
+  };
+
+  Recapitulatif.answersToHtml(options, function(err, html) {
     if (err) { return handleError(req, res, err); }
 
     res.send(html).status(200);
@@ -477,7 +457,13 @@ exports.getRecapitulatif = function(req, res) {
 };
 
 exports.getPdf = function(req, res) {
-  generatePdf(req.request, req.user, req.headers.host, function(err, pdfPath) {
+  let options = {
+    request: req.request,
+    host: req.headers.host,
+    user: req.user
+  };
+
+  MakePdf.make(options, function(err, pdfPath) {
     if (err) { return handleError(req, res, err); }
 
     res.sendFile(pdfPath);

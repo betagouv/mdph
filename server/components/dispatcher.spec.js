@@ -126,7 +126,7 @@ describe('Dispatcher', function() {
       }
     });
 
-    Dispatcher.dispatch(request, function(err, secteur) {
+    Dispatcher.dispatch(request).then(function(secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurCaen.id);
       done();
@@ -146,7 +146,7 @@ describe('Dispatcher', function() {
       }
     });
 
-    Dispatcher.dispatch(request, function(err, secteur) {
+    Dispatcher.dispatch(request).then(function(secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurNord.id);
       done();
@@ -166,9 +166,8 @@ describe('Dispatcher', function() {
       }
     });
 
-    Dispatcher.dispatch(request, function(err, secteur) {
+    Dispatcher.dispatch(request).catch(function(err) {
       should.exist(err);
-      should.not.exist(secteur);
       done();
     });
   });
