@@ -9,12 +9,14 @@ const MailActions = require('../api/send-mail/send-mail-actions');
 const Bluebird = require('bluebird');
 
 function sendMailToSecteur(request, secteur) {
-  let type = request.getType();
-  let evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
+  if (secteur) {
+    let type = request.getType();
+    let evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
 
-  evaluators.forEach(function(evaluator) {
-    MailActions.sendMailNotificationAgent(request, evaluator.email);
-  });
+    evaluators.forEach(function(evaluator) {
+      MailActions.sendMailNotificationAgent(request, evaluator.email);
+    });
+  }
 
   return secteur;
 }
@@ -46,8 +48,17 @@ function findSecteur(request) {
   });
 }
 
-function dispatch(request, done) {
+function handleSecteurNotFound(secteur) {
+  if (!secteur) {
+    throw(404);
+  }
+
+  return secteur;
+}
+
+function dispatch(request) {
   return findSecteur(request)
+    .then(handleSecteurNotFound)
     .then(secteur => sendMailToSecteur(request, secteur));
 }
 

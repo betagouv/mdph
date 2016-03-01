@@ -133,9 +133,9 @@ function processUserAction(req) {
 
 function findAndPopulate(shortId) {
   return Request
-          .findOne({shortId: shortId})
-          .populate('user')
-          .populate('evaluator');
+    .findOne({shortId: shortId})
+    .populate('user')
+    .populate('evaluator');
 }
 
 function getPopulatedRequest(resolve, reject) {

@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const Mailer = require('../send-mail/send-mail.controller');
+const Mailer = require('./send-mail.controller');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');

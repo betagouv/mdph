@@ -7,7 +7,7 @@ const secretKey = process.env.SECRET_KEY;
 const mailjet = new Mailjet(apiKey, secretKey);
 
 function sendMail(mail, title, body, attachements) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     console.log('Mail:\t' + mail);
     console.log('Title:\t' + 'Votre Mdph en ligne - ' + title);
     console.log('Body:\t' + body);
