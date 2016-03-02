@@ -41,14 +41,14 @@ angular.module('impactApp').config(function($stateProvider) {
 
           function getSelectedPrestationIdList() {
             return _.chain(prestations)
-             .filter({ choice: 'true' })
+             .filter({choice: 'true'})
              .pluck('id')
              .value();
           }
 
           function getRenewalPrestationIdList() {
             return _.chain(prestations)
-             .filter({ choice: 'renouvellement' })
+             .filter({choice: 'renouvellement'})
              .pluck('id')
              .value();
           }

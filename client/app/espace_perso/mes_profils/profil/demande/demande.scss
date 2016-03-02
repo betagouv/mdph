@@ -12,16 +12,23 @@
     }
 
     tr.table-header {
-      background-color: white;
+      background-color: $light-white;
 
       th, td {
         border-top: none;
-        vertical-align: middle;
       }
     }
 
-    td.center-text {
-      text-align: center;
+    td {
+      button {
+        padding: 0px;
+        font-size: 13px;
+      }
+
+      &.center-text {
+        text-align: center;
+        vertical-align: middle;
+      }
     }
 
     .justify-text {

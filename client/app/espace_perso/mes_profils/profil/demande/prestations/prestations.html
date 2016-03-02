@@ -4,13 +4,15 @@
   <tbody ng-repeat="(key, type) in types">
     <tr class="table-header">
       <th>{{key | prestationType}}</th>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Renouvellement</td>
+      <td id="yes-{{key}}" class="center-text">Oui</td>
+      <td id="no-{{key}}" class="center-text">Non</td>
+      <td id="renew-{{key}}" class="center-text">Renouvellement</td>
     </tr>
     <tr ng-repeat="prestation in type">
       <td>
-        {{prestation.title}}
+        <div id="{{prestation.id}}">
+          {{prestation.title}}
+        </div>
         <div>
           <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail" type="button">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
         </div>
@@ -20,14 +22,14 @@
         </div>
       </td>
 
-      <td class="center-text">
-        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="true">
+      <td class="center-text" ng-click="prestation.choice = 'true'">
+        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="true" aria-labelledby="{{prestation.id}} yes-{{key}}">
       </td>
-      <td class="center-text">
-        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="false">
+      <td class="center-text" ng-click="prestation.choice = 'false'">
+        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="false" aria-labelledby="{{prestation.id}} no-{{key}}">
       </td>
-      <td class="center-text">
-        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="renouvellement">
+      <td class="center-text" ng-click="prestation.choice = 'renouvellement'">
+        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="renouvellement" aria-labelledby="{{prestation.id}} renew-{{key}}">
       </td>
     </tr>
   </tbody>
