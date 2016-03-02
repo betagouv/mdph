@@ -20,7 +20,7 @@ angular.module('impactApp').config(function($stateProvider) {
       prestations: function($http) {
         return $http.get('api/prestations').then(function(result) {
           return _.map(result.data, function(element) {
-            return _.extend({}, element, {choice: "false"});
+            return _.extend({}, element, {choice: 'false'});
           });
         });
       },
@@ -41,7 +41,7 @@ angular.module('impactApp').config(function($stateProvider) {
 
           function getSelectedPrestationIdList() {
             return _.chain(prestations)
-             .filter({ choice: "true" })
+             .filter({ choice: 'true' })
              .pluck('id')
              .value();
           }
