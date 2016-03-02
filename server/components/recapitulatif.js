@@ -148,11 +148,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-exports.answersToHtml = function(options, next) {
-  // TODO: after babel, use destructuring
-  let request = options.request;
-  let host = options.host;
-
+exports.answersToHtml = function({request, host}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }

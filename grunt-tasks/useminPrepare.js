@@ -1,6 +1,6 @@
 module.exports = {
-  html: ['<%= app.dirs.client %>/index.html'],
+  html: ['client/index.html'],
   options: {
-    dest: '<%= app.dirs.dist %>'
+    dest: 'dist/client'
   }
 };

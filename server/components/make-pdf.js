@@ -34,15 +34,10 @@ function printDebug(str, obj) {
   }
 }
 
-exports.make = function(options, done) {
+exports.make = function({request, host, role}, done) {
   printDebug('makePdf: Transforming html to pdf');
 
-  // TODO: after babel, use destructuring
-  let request = options.request;
-  let host = options.host;
-  let role = options.role;
-
-  Recapitulatif.answersToHtml(options, function(err, recapitulatifHtml) {
+  Recapitulatif.answersToHtml({request, host}, function(err, recapitulatifHtml) {
     tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
       if (err) throw err;
 

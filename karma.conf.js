@@ -11,9 +11,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // bower:js
       'client/bower_components/jquery/dist/jquery.js',
       'client/bower_components/angular/angular.js',
       'client/bower_components/angular-animate/angular-animate.js',
+      'client/bower_components/angular-aria/angular-aria.js',
       'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'client/bower_components/Chart.js/Chart.js',
       'client/bower_components/angular-chart.js/dist/angular-chart.js',
@@ -26,20 +28,35 @@ module.exports = function(config) {
       'client/bower_components/moment/moment.js',
       'client/bower_components/ng-file-upload/ng-file-upload.js',
       'client/bower_components/ngstorage/ngStorage.js',
-      'client/bower_components/angular-mocks/angular-mocks.js',
-      'client/bower_components/moment/locale/fr.js',
       'client/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'client/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
       'client/bower_components/angular-ui-mask/dist/mask.js',
+      'client/bower_components/angular-mocks/angular-mocks.js',
+      'client/bower_components/angular-scenario/angular-scenario.js',
+      // endbower
       'client/app/app.js',
-      'client/app/**/*.js',
-      'client/components/**/*.js',
-      'client/app/**/*.html',
-      'client/components/**/*.html'
+      'client/{app,components}/**/*.js',
+      'client/{app,components}/**/*.html'
     ],
 
     preprocessors: {
       '**/*.html': 'html2js'
+    },
+
+    babelPreprocessor: {
+      options: {
+        sourceMap: 'inline',
+        optional: [
+          'es7.classProperties'
+        ]
+      },
+      filename: function(file) {
+        return file.originalPath.replace(/\.js$/, '.es5.js');
+      },
+
+      sourceFileName: function(file) {
+        return file.originalPath;
+      }
     },
 
     ngHtml2JsPreprocessor: {

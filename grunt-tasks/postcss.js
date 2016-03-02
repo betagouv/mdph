@@ -1,6 +1,9 @@
 module.exports = {
   options: {
-    browsers: ['last 1 version']
+    map: true,
+    processors: [
+      require('autoprefixer')({browsers: ['last 2 version']})
+    ]
   },
   dist: {
     files: [{

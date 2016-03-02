@@ -30,11 +30,18 @@ const resizeAndMove = require('../../components/resize-image');
 
 const domain = process.env.DOMAIN || config.DOMAIN;
 
+function handleError(req, res, statusCode) {
+  statusCode = statusCode || 500;
+  return function(err) {
+    req.log.error(err);
+    res.status(statusCode).send(err);
+  };
+}
+
 function handleEntityNotFound(res) {
   return function(entity) {
     if (!entity) {
-      res.status(404).end();
-      return null;
+      throw(404);
     }
 
     return entity;
@@ -51,8 +58,7 @@ function handleUserNotAuthorized(user, res) {
       return entity;
     }
 
-    res.status(403).end();
-    return null;
+    throw(403);
   };
 }
 
@@ -70,15 +76,13 @@ function saveUpdates(req) {
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
-    if (entity) {
-      res.status(statusCode).json(entity);
-    }
+    res.status(statusCode).json(entity);
   };
 }
 
 function saveUserAction(req) {
   return function(entity) {
-    if (entity && req.action) {
+    if (req.action) {
       ActionModel.create({
         action: req.action.id,
         request: entity._id,
@@ -94,7 +98,7 @@ function saveUserAction(req) {
 
 function processUserAction(req) {
   return function(entity) {
-    if (entity && req.action) {
+    if (req.action) {
       switch (req.action.id) {
         case Actions.SUCCES_ENREGISTREMENT.id:
           MailActions.sendMailCompletude(entity, req.user); // Agent sends KO to user
@@ -138,44 +142,10 @@ function findAndPopulate(shortId) {
     .populate('evaluator');
 }
 
-function getPopulatedRequest(resolve, reject) {
-  return function(user, shortId, done) {
-    Request
-      .findOne({
-        shortId: shortId
-      })
-      .lean()
-      .populate('user', '_id name role email mdph')
-      .populate('evaluator')
-      .exec(function(err, request) {
-        if (!request) {
-          done({status: 404});
-        }
-
-        if (err) {
-          done(err);
-        }
-
-        if (!Auth.canAccessResource(user, request)) {
-          return done({status: 403});
-        }
-
-        async.waterfall([
-          function(callback) {
-            DocumentsController.populateAndSortDocumentTypes(request, callback);
-          },
-
-          function(request, callback) {
-            PrestationsController.populateAndSortPrestations(request, callback);
-          }
-        ], function(err, request) {
-          if (err) return done(err);
-
-          return done(null, request);
-        });
-      });
-  };
-}
+// function getPopulatedRequest(resolve, reject) {
+//   DocumentsController.populateAndSortDocumentTypes(request, callback);
+//   PrestationsController.populateAndSortPrestations(request, callback);
+// }
 
 // Get a single request
 exports.show = function(req, res, next) {
@@ -183,7 +153,7 @@ exports.show = function(req, res, next) {
     .then(handleEntityNotFound(res))
     .then(handleUserNotAuthorized(req.user, res))
     .then(respondWithResult(res))
-    .catch(handleError(res));
+    .catch(handleError(req, res));
 };
 
 // Get a single request
@@ -243,7 +213,7 @@ exports.update = function(req, res, next) {
     .then(processUserAction(req))
     .then(saveUserAction(req))
     .then(respondWithResult(res))
-    .catch(handleError(res));
+    .catch(handleError(req, res));
 };
 
 /**
@@ -484,8 +454,3 @@ exports.simulate = function(req, res) {
   var prestations = Prestation.simulate(req.request.formAnswers);
   return res.json(prestations);
 };
-
-function handleError(req, res, err) {
-  req.log.error(err);
-  return res.status(500).send(err);
-}

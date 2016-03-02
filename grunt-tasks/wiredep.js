@@ -1,7 +1,20 @@
 module.exports = {
-  target: {
+  options: {
+    exclude: [
+      /bootstrap.js/,
+      '/json3/',
+      '/es5-shim/',
+      /font-awesome\.css/,
+      /bootstrap\.css/,
+      /bootstrap-sass-official/
+    ]
+  },
+  client: {
     src: '<%= app.dirs.client %>/index.html',
     ignorePath: '<%= app.dirs.client %>/',
-    exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
+  },
+  test: {
+    src: './karma.conf.js',
+    devDependencies: true
   }
 };

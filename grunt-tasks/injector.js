@@ -1,9 +1,8 @@
 'use strict';
 
 module.exports = {
-  options: {
+  options: {},
 
-  },
   // Inject application script files into index.html (doesn't include bower)
   scripts: {
     options: {
@@ -12,15 +11,25 @@ module.exports = {
         filePath = filePath.replace('/.tmp/', '');
         return '<script src="' + filePath + '"></script>';
       },
+
+      sort: function(a, b) {
+        var module = /\.module\.js$/;
+        var aMod = module.test(a);
+        var bMod = module.test(b);
+
+        // inject *.module.js first
+        return (aMod === bMod) ? 0 : (aMod ? -1 : 1);
+      },
+
       starttag: '<!-- injector:js -->',
       endtag: '<!-- endinjector -->'
     },
     files: {
-      '<%= app.dirs.client %>/index.html': [
-          ['{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.js',
-           '!{.tmp,<%= app.dirs.client %>}/app/app.js',
-           '!{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.spec.js',
-           '!{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.mock.js']
+      'client/index.html': [
+           [
+             'client/{app,components}/**/!(*.spec|*.mock).js',
+             '!{.tmp,client}/app/app.{js,ts}'
+           ]
         ]
     }
   },
@@ -30,16 +39,17 @@ module.exports = {
     options: {
       transform: function(filePath) {
         filePath = filePath.replace('/client/app/', '');
-        filePath = filePath.replace('/client/components/', '');
+        filePath = filePath.replace('/client/components/', '../components/');
         return '@import \'' + filePath + '\';';
       },
+
       starttag: '// injector',
       endtag: '// endinjector'
     },
     files: {
-      '<%= app.dirs.client %>/app/app.scss': [
-        '<%= app.dirs.client %>/{app,components}/**/*.{scss,sass}',
-        '!<%= app.dirs.client %>/app/app.{scss,sass}'
+      'client/app/app.scss': [
+        'client/{app,components}/**/*.{scss,sass}',
+        '!client/app/app.{scss,sass}'
       ]
     }
   },
@@ -52,12 +62,13 @@ module.exports = {
         filePath = filePath.replace('/.tmp/', '');
         return '<link rel="stylesheet" href="' + filePath + '">';
       },
+
       starttag: '<!-- injector:css -->',
       endtag: '<!-- endinjector -->'
     },
     files: {
-      '<%= app.dirs.client %>/index.html': [
-        '<%= app.dirs.client %>/{app,components}/**/*.css'
+      'client/index.html': [
+        'client/{app,components}/**/*.css'
       ]
     }
   }
