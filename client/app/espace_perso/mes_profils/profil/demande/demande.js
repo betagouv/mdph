@@ -14,8 +14,7 @@ angular.module('impactApp').config(function($stateProvider) {
       },
 
       request: function(RequestResource, shortId) {
-        var requests = RequestResource.get({shortId: shortId}).$promise;
-        return requests;
+        return RequestResource.get({shortId: shortId}).$promise;
       },
 
       prestations: function($http) {
