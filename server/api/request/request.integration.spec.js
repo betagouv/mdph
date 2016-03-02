@@ -13,33 +13,26 @@ describe('Request Integration', function() {
 
   before(function(done) {
     // Clear mdphs before testing
-    Request.remove().exec().then(function() {
-      done();
-    });
+    Request.remove().exec(done);
   });
 
-  after(function(done) {
-    //clear mdphs after testing
-    Request.remove().exec().then(function() {
-      done();
+  describe('Get single Request', function() {
+    before(function(done) {
+      var newRequest = new Request({ shortId: '1234' });
+      newRequest.save(done);
     });
   });
 
   describe('Update Request', function() {
 
-    //initialize a request
     before(function(done) {
       var newRequest = new Request({ shortId: '1234' });
-      newRequest.save(function() {
-        done();
-      });
+      newRequest.save(done);
     });
 
     after(function(done) {
       //clear mdphs after testing
-      Request.remove().exec().then(function() {
-        done();
-      });
+      Request.remove().exec(done);
     });
 
     describe('When the user is authenticated', function() {
@@ -130,9 +123,7 @@ describe('Request Integration', function() {
 
       after(function(done) {
         //clear mdphs after testing
-        Request.remove().exec().then(function() {
-          done();
-        });
+        Request.remove().exec(done);
       });
 
       it('should return 200', function(done) {
