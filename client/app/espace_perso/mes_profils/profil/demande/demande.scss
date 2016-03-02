@@ -5,6 +5,35 @@
     box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
     border: 1px solid rgba(34,36,38,.15);
     padding: 15px 20px;
+
+    .table > tbody + tbody {
+      border-top: none;
+      padding-top: 5px;
+    }
+
+    tr.table-header {
+      background-color: $light-white;
+
+      th, td {
+        border-top: none;
+      }
+    }
+
+    td {
+      button {
+        padding: 0px;
+        font-size: 13px;
+      }
+
+      &.center-text {
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+
+    .justify-text {
+      text-align: justify;
+    }
   }
 
   h3 {

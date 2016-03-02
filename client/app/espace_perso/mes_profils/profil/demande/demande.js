@@ -19,9 +19,11 @@ angular.module('impactApp').config(function($stateProvider) {
 
       prestations: function($http) {
         return $http.get('api/prestations').then(function(result) {
-          return result.data;
+          return _.map(result.data, function(element) {
+            return _.extend({}, element, {choice: 'false'});
+          });
         });
-      }
+      },
     },
 
     views: {
@@ -33,13 +35,20 @@ angular.module('impactApp').config(function($stateProvider) {
 
           if (request.prestations && request.prestations.length > 0) {
             _.map(request.prestations, function(prestation) {
-              _.find(prestations, {id: prestation}).isSelected = true;
+              _.find(prestations, { id: prestation }).isSelected = true;
             });
           }
 
           function getSelectedPrestationIdList() {
             return _.chain(prestations)
-             .filter({isSelected: true})
+             .filter({choice: 'true'})
+             .pluck('id')
+             .value();
+          }
+
+          function getRenewalPrestationIdList() {
+            return _.chain(prestations)
+             .filter({choice: 'renouvellement'})
              .pluck('id')
              .value();
           }
@@ -49,11 +58,12 @@ angular.module('impactApp').config(function($stateProvider) {
               toastr.error('Vous n\'avez pas spécifié de MDPH destinataire de votre demande.', 'Erreur lors de la tentative d\'envoi');
             } else {
               request.prestations = getSelectedPrestationIdList();
+              request.renouvellements = getRenewalPrestationIdList();
               if (!RequestService.getCompletion(request)) {
                 toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
               } else if (currentUser.unconfirmed) {
                 toastr.error('Vous n\'avez pas confirmé votre compte ' + currentUser.email, 'Erreur lors de la tentative d\'envoi');
-              } else if (request.prestations.length < 1) {
+              } else if (request.prestations.length < 1 && request.renouvellements.length < 1 ) {
                 toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
               } else {
                 request.status = 'emise';
