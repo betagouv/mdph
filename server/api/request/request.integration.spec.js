@@ -12,14 +12,39 @@ describe('Request Integration', function() {
   var getToken = server.token;
 
   before(function(done) {
-    // Clear mdphs before testing
     Request.remove().exec(done);
   });
 
   describe('Get single Request', function() {
     before(function(done) {
-      var newRequest = new Request({ shortId: '1234' });
+      var newRequest = new Request({
+        shortId: '1234',
+        prestations: ['AAH']
+      });
       newRequest.save(done);
+    });
+
+    after(function(done) {
+      Request.remove().exec(done);
+    });
+
+    it('should get the specified request', function(done) {
+      var gettedRequest;
+      var token = getToken();
+
+      api()
+        .get('/api/requests/1234?access_token=' + token)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
+
+          gettedRequest = res.body;
+          gettedRequest.should.have.property('detailPrestations');
+          done();
+        });
     });
   });
 
@@ -31,7 +56,6 @@ describe('Request Integration', function() {
     });
 
     after(function(done) {
-      //clear mdphs after testing
       Request.remove().exec(done);
     });
 

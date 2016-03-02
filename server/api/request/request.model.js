@@ -45,6 +45,8 @@ var RequestSchema = new Schema({
   comments:       { type: String }
 });
 
+// RequestSchema.set('toObject', { virtuals: false });
+
 RequestSchema.pre('save', function(next) {
   var now = Date.now();
 
