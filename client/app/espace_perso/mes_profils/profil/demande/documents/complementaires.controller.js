@@ -19,7 +19,7 @@ angular.module('impactApp')
         resolve: {
           filteredDocumentTypes: function() {
             var filtered = _.filter(documentTypes, function(type) {
-              return typeof _.find($scope.request.complementaires, {id: type.id}) === 'undefined';
+              return typeof _.find($scope.request.documents.complementaires, {documentType: {id: type.id}}) === 'undefined';
             });
 
             return filtered;
