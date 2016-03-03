@@ -63,7 +63,7 @@ angular.module('impactApp').config(function($stateProvider) {
                 toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
               } else if (currentUser.unconfirmed) {
                 toastr.error('Vous n\'avez pas confirmé votre compte ' + currentUser.email, 'Erreur lors de la tentative d\'envoi');
-              } else if (request.prestations.length < 1 && request.renouvellements.length < 1 ) {
+              } else if (request.prestations.length < 1 && request.renouvellements.length < 1) {
                 toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
               } else {
                 request.status = 'emise';

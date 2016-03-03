@@ -19,7 +19,14 @@ describe('Request Integration', function() {
     before(function(done) {
       var newRequest = new Request({
         shortId: '1234',
-        prestations: ['AAH']
+        prestations: ['AAH'],
+        renouvellements: ['PCH'],
+        documents: [{
+          type: 'carteIdentite',
+          originalname: 'carte-identite.jpg',
+          filename: 'hashed-carte-identite',
+          mimetype: 'image/jpeg'
+        }]
       });
       newRequest.save(done);
     });
@@ -28,7 +35,7 @@ describe('Request Integration', function() {
       Request.remove().exec(done);
     });
 
-    it('should get the specified request', function(done) {
+    it('should get the specified populated request', function(done) {
       var gettedRequest;
       var token = getToken();
 
@@ -43,6 +50,9 @@ describe('Request Integration', function() {
 
           gettedRequest = res.body;
           gettedRequest.should.have.property('detailPrestations');
+          gettedRequest.should.have.property('detailRenouvellements');
+          gettedRequest.should.have.property('documents');
+          gettedRequest.documents.should.have.property('obligatoires');
           done();
         });
     });

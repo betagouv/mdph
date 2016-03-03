@@ -1,6 +1,7 @@
 'use strict';
 
 import { populateAndSortPrestations } from '../prestation/prestation.controller';
+import { populateAndSortDocumentTypes } from '../document/documents.controller';
 
 const _ = require('lodash');
 const path = require('path');
@@ -15,7 +16,6 @@ const Recapitulatif = require('../../components/recapitulatif');
 const Synthese = require('../../components/synthese');
 const MakePdf = require('../../components/make-pdf');
 
-const DocumentsController = require('../document/documents.controller');
 const Prestation = require('../prestation/prestation.controller');
 const Request = require('./request.model');
 const User = require('../user/user.model');
@@ -149,10 +149,6 @@ function findAndPopulate(shortId) {
     .exec();
 }
 
-// function getPopulatedRequest(resolve, reject) {
-//   DocumentsController.populateAndSortDocumentTypes(request, callback);
-// }
-
 function handleDeleteFile(req) {
   return function(entity) {
     const file = entity.documents.id(req.params.fileId);
@@ -177,6 +173,7 @@ exports.show = function(req, res, next) {
     .then(handleEntityNotFound(res))
     .then(handleUserNotAuthorized(req.user, res))
     .then(populateAndSortPrestations)
+    .then(populateAndSortDocumentTypes)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
 };
@@ -238,6 +235,7 @@ exports.update = function(req, res, next) {
     .then(processUserAction(req))
     .then(saveUserAction(req))
     .then(populateAndSortPrestations)
+    .then(populateAndSortDocumentTypes)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
 };

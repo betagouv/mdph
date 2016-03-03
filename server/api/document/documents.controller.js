@@ -22,28 +22,27 @@ module.exports = {
   allDocumentTypes: allDocumentTypes,
   allDocumentTypesById: allDocumentTypesById,
 
-  populateAndSortDocumentTypes: function(request, callback) {
-    if (!request.documents || request.documents.length <= 0) {
-      return callback(null, request);
+  populateAndSortDocumentTypes: function(request) {
+    if (request.documents && request.documents.length >= 0) {
+      var groupedDocuments = _.reduce(request.documents, function(result, currentDocument) {
+        var documentType = allDocumentTypesById[currentDocument.type];
+        if (!documentType) {
+          documentType = allDocumentTypesById.autre;
+        }
+
+        if (documentType.mandatory) {
+          addToDocumentGroups(result.obligatoires, currentDocument, documentType);
+        } else {
+          addToDocumentGroups(result.complementaires, currentDocument, documentType);
+        }
+
+        return result;
+      }, {obligatoires: {}, complementaires: {}});
+
+      request.documents = groupedDocuments;
     }
 
-    var groupedDocuments = _.reduce(request.documents, function(result, currentDocument) {
-      var documentType = allDocumentTypesById[currentDocument.type];
-      if (!documentType) {
-        documentType = allDocumentTypesById.autre;
-      }
-
-      if (documentType.mandatory) {
-        addToDocumentGroups(result.obligatoires, currentDocument, documentType);
-      } else {
-        addToDocumentGroups(result.complementaires, currentDocument, documentType);
-      }
-
-      return result;
-    }, {obligatoires: {}, complementaires: {}});
-
-    request.documents = groupedDocuments;
-    return callback(null, request);
+    return request;
   },
 
   show: function(req, res) {
