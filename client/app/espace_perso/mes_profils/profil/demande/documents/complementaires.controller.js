@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsComplementairesCtrl', function($scope, $modal, $state, UploadService, request, documentTypes) {
+  .controller('DocumentsComplementairesCtrl', function($scope, $modal, UploadService, request, documentTypes) {
     $scope.request = request;
     $scope.documentTypes = documentTypes;
     $scope.selectedTypes = _.map(request.documents.complementaires, function(category) {
@@ -14,10 +14,10 @@ angular.module('impactApp')
 
     $scope.chooseType = function() {
       var modalInstance = $modal.open({
-        templateUrl: 'app/espace_perso/mes_profils/profil/demande/parametres/documents/modal_type.html',
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/modal_type.html',
         controller: 'ChooseTypeModalInstanceCtrl',
         resolve: {
-          documentTypes: function() {
+          filteredDocumentTypes: function() {
             var filtered = _.filter(documentTypes, function(type) {
               return typeof _.find($scope.request.complementaires, {id: type.id}) === 'undefined';
             });
@@ -32,8 +32,8 @@ angular.module('impactApp')
       });
     };
   })
-  .controller('ChooseTypeModalInstanceCtrl', function($scope, $modalInstance, $filter, documentTypes) {
-    $scope.documentTypes = documentTypes;
+  .controller('ChooseTypeModalInstanceCtrl', function($scope, $modalInstance, filteredDocumentTypes) {
+    $scope.filteredDocumentTypes = filteredDocumentTypes;
 
     $scope.select = function(selected) {
       $modalInstance.close(selected);

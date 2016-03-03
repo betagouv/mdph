@@ -9,7 +9,7 @@
   </div>
   <br>
   <ul>
-    <li ng-repeat="document in documentTypes | filter:query">
+    <li ng-repeat="document in filteredDocumentTypes | filter:query">
         <a ng-click="select(document)">{{ document.label }}</a>
     </li>
   </ul>
