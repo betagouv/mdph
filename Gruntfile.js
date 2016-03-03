@@ -95,6 +95,8 @@ module.exports = function(grunt) {
       ]);
     } else {
       grunt.task.run([
+        'jshint',
+        'jscs',
         'test:server',
         'test:client'
       ]);
@@ -124,7 +126,6 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'bunyan',
     'serve'
   ]);
 };

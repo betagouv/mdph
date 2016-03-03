@@ -11,5 +11,17 @@
   "undef": true,
   "smarttabs": true,
   "asi": true,
-  "debug": true
+  "debug": true,
+  "globals": {
+    "jasmine": true,
+    "describe": true,
+    "it": true,
+    "before": true,
+    "beforeEach": true,
+    "after": true,
+    "afterEach": true,
+    "expect": true,
+    "assert": true,
+    "sinon": true
+  }
 }

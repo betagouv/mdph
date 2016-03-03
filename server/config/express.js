@@ -18,12 +18,9 @@ import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import bunyan from 'bunyan';
+import morgan from 'morgan';
 
 var MongoStore = connectMongo(session);
-
-var requestLogger = require('bunyan-request')({
-  logger: bunyan.createLogger({name: 'impact'}),
-});
 
 var fakeLogger = function(req, res, next) {
   req.log = {
@@ -87,15 +84,12 @@ export default function(app) {
   }
 
   if (env === 'development') {
-    app.use(requestLogger);
     app.use(require('connect-livereload')());
   }
 
-  if (env === 'test') {
-    app.use(fakeLogger);
-  }
-
   if (env === 'development' || env === 'test') {
+    app.use(morgan('dev'));
+    app.use(fakeLogger);
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(app.get('appPath')));
     app.use(errorHandler()); // Error handler - has to be last
