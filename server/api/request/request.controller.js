@@ -31,11 +31,16 @@ const resizeAndMove = require('../../components/resize-image');
 
 const domain = process.env.DOMAIN || config.DOMAIN;
 
-function handleError(req, res, statusCode) {
-  statusCode = statusCode || 500;
-  return function(err) {
-    req.log.error(err);
-    res.status(statusCode).send(err);
+function handleError(req, res) {
+  return function(statusCode, err) {
+    statusCode = statusCode || 500;
+
+    if (err) {
+      req.log.error(err);
+      res.status(statusCode).send(err);
+    } else {
+      res.sendStatus(statusCode);
+    }
   };
 }
 
@@ -147,6 +152,24 @@ function findAndPopulate(shortId) {
 // function getPopulatedRequest(resolve, reject) {
 //   DocumentsController.populateAndSortDocumentTypes(request, callback);
 // }
+
+function handleDeleteFile(req) {
+  return function(entity) {
+    const file = entity.documents.id(req.params.fileId);
+
+    if (!file) {
+      throw(304);
+    }
+
+    fs.unlink(file.path, function() {
+      // ignore errors
+      file.remove();
+    });
+
+    entity.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
+    return entity.save();
+  };
+}
 
 // Get a single request
 exports.show = function(req, res, next) {
@@ -348,28 +371,12 @@ exports.downloadFile = function(req, res) {
 };
 
 exports.deleteFile = function(req, res) {
-  var request = req.request;
-  var file = request.documents.id(req.params.fileId);
-  if (!file) {
-    return res.sendStatus(304);
-  }
-
-  fs.unlink(file.path, function(err) {
-    if (err) {
-      req.log.info(req.user + ', not deleted, not found: ' + file.path);
-    } else {
-      req.log.info(req.user + ', successfully deleted: ' + file.path);
-    }
-
-    file.remove();
-
-    request.save(function(err, saved) {
-      if (err) { return handleError(req, res, err); }
-
-      request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
-      return res.send(file).status(200);
-    });
-  });
+  findAndPopulate(req.params.shortId)
+    .then(handleEntityNotFound(res))
+    .then(handleUserNotAuthorized(req.user, res))
+    .then(handleDeleteFile(req))
+    .then(respondWithResult(res))
+    .catch(handleError(req, res));
 };
 
 exports.updateFile = function(req, res) {

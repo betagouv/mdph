@@ -34,7 +34,7 @@ router.post('/:shortId/document-partenaire', upload.single('file'), controller.s
 
 router.put('/:shortId/document/:fileId', auth.isAuthorized(), controller.updateFile);
 router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downloadFile);
-router.delete('/:shortId/document/:fileId', auth.isAuthorized(), controller.deleteFile);
+router.delete('/:shortId/document/:fileId', auth.isAuthenticated(), controller.deleteFile);
 
 router.get('/:shortId/simulation', auth.isAuthorized(), controller.simulate);
 router.get('/:shortId/resend-mail', auth.isAuthorized(), controller.resendMail);
