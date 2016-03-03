@@ -140,7 +140,8 @@ function findAndPopulate(shortId) {
   return Request
     .findOne({shortId: shortId})
     .populate('user')
-    .populate('evaluator');
+    .populate('evaluator')
+    .exec();
 }
 
 // function getPopulatedRequest(resolve, reject) {
