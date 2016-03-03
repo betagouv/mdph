@@ -1,8 +1,6 @@
 'use strict';
 
-var fs = require('fs');
 var path = require('path');
-var spawn = require('child_process').spawn;
 
 module.exports = function(grunt) {
   // Load grunt tasks automatically
@@ -51,27 +49,13 @@ module.exports = function(grunt) {
     this.async();
   });
 
-  grunt.registerTask('bunyan', function() {
-    var path = './node_modules/bunyan/bin/bunyan';
-    if (!fs.existsSync(path)) {
-      throw new Error('bundle binary not found');
-    }
-
-    var child = spawn(path, ['-oshort'], {
-      stdio: ['pipe', process.stdout, process.stderr]
-    });
-
-    process.stdout.write = function() {
-      child.stdin.write.apply(child.stdin, arguments);
-    };
-  });
-
   grunt.registerTask('serve', function(target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
     }
 
     grunt.task.run([
+      'bunyan',
       'clean:server',
       'env:all',
       'injector:sass',
