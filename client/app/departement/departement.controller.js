@@ -5,7 +5,7 @@ angular.module('impactApp')
     $scope.$emit('event:mdph-changed', currentMdph);
     $scope.currentUser = currentUser;
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoicnF1ZWxlbiIsImEiOiJjaWtwaG15YjYwMGJ1dzVtNnE3dTZxc3VsIn0.QnrYAVJmcu9JS523vwLR6A';
+    L.mapbox.accessToken = 'pk.eyJ1IjoiaW1wYWN0LW1hcGJveCIsImEiOiJjaWt6bmpqYTUwMDcwd29tNDRpczM2N2pwIn0.Qh9eYg3TMD00z22WzmDXyQ';
 
     $scope.isAdmin = function() {
       if (!currentUser) {

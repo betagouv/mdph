@@ -37,6 +37,9 @@
   <div class="map-container">
     <div id="map"></div>
     <div class="card-contact">
+      <div class="card-img">
+        <img src="assets/images/{{currentMdph.photo}}">
+      </div>
       <table>
         <tbody>
           <tr>
@@ -47,7 +50,7 @@
             <td class="cell-icon"><i class="fa fa-phone"></i></td>
             <td><span ng-bind="currentMdph.phone"></span></td>
           </tr>
-          <tr>
+          <tr ng-if="currentMdph.email">
             <td class="cell-icon"><i class="fa fa-envelope"></i></td>
             <td><a href="mailto:{{currentMdph.email}}" title="Envoyer un mail de contact">{{currentMdph.email}}</a></td>
           </tr>
