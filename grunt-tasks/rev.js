@@ -8,7 +8,8 @@ module.exports = {
         '!<%= app.dirs.dist %>/server/*',
         '!<%= app.dirs.dist %>/bower_components/Chart.js',
         '!<%= app.dirs.dist %>/bower_components/angular-chart.js',
-        '!<%= app.dirs.dist %>/bower_components/Chart.StackedBar.js'
+        '!<%= app.dirs.dist %>/bower_components/Chart.StackedBar.js',
+        '!<%= app.dirs.dist %>/bower_components/mapbox.js'
       ]
     }
   }
