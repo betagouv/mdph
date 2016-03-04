@@ -23,7 +23,6 @@ angular.module('impactApp')
     };
 
     $timeout(function() {
-      var mapBoxOptions = {paddingTopLeft: [200, 0]};
       var map = L.mapbox.map('map', 'mapbox.streets').setView([currentMdph.coordinates.coordy, currentMdph.coordinates.coordx], 14);
 
       // Disable drag and zoom handlers.
