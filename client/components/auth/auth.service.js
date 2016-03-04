@@ -98,29 +98,6 @@ angular.module('impactApp')
       },
 
       /**
-       * Change email
-       *
-       * @param  {String}   newEmail
-       * @param  {Function} callback    - optional
-       * @return {Promise}
-       */
-      changeInfo: function(newName, newEmail, newBirthDate, callback) {
-        var cb = callback || angular.noop;
-
-        return User.changeInfo({ id: currentUser._id }, {
-          newName: newName,
-          newEmail: newEmail,
-          newBirthDate: newBirthDate
-        }, function(user) {
-          return cb(user);
-        },
-
-        function(err) {
-          return cb(err);
-        }).$promise;
-      },
-
-      /**
        * Gets all available info on authenticated user
        *
        * @return {Object} user

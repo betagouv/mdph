@@ -41,7 +41,12 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      '**/*.html': 'html2js'
+      '**/*.html': 'ng-html2js',
+      'client/{app,components}/**/*.js': 'babel'
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'client/'
     },
 
     babelPreprocessor: {
@@ -58,14 +63,6 @@ module.exports = function(config) {
       sourceFileName: function(file) {
         return file.originalPath;
       }
-    },
-
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'client/'
-    },
-
-    ngJade2JsPreprocessor: {
-      stripPrefix: 'client/'
     },
 
     // list of files / patterns to exclude

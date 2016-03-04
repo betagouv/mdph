@@ -12,14 +12,8 @@ angular.module('impactApp')
       return calculAge(dateNaiss);
     };
   })
-  .controller('PreEvaluationCtrl', function($scope, $http, $window, $cookies, currentUser, currentMdph, request) {
+  .controller('PreEvaluationCtrl', function($scope, $http, $window, $cookies, currentUser, currentMdph) {
     $scope.token = $cookies.get('token');
     $scope.currentMdph = currentMdph;
     $scope.currentUser = currentUser;
-
-    $scope.resendMail = function() {
-      $http.get('api/requests/' + request.shortId + '/resend-mail').then(function() {
-        $window.alert('Mail renvoyé avec succès');
-      });
-    };
   });

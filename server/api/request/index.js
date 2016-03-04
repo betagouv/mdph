@@ -1,19 +1,14 @@
 'use strict';
 
+import documentsRouter from './document';
+
 var express = require('express');
 var controller = require('./request.controller');
 var auth = require('../../auth/auth.service');
-var config = require('../../config/environment');
-var multer  = require('multer');
-var compose = require('composable-middleware');
-
-var Mdph = require('../mdph/mdph.model');
-var Request = require('./request.model');
-var upload = multer({ dest: config.uploadDir });
 
 var router = express.Router();
 
-router.post('/', auth.isAuthenticated(), controller.save);
+router.post('/', auth.isAuthenticated(), controller.create);
 
 router.get('/:shortId', auth.isAuthenticated(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
@@ -29,14 +24,6 @@ router.get('/:shortId/recapitulatif', auth.isAuthorized(), controller.getRecapit
 router.get('/:shortId/pdf/:fileName', auth.isAuthorized(), controller.getPdf);
 router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthesePdf);
 
-router.post('/:shortId/document', auth.isAuthorized(), upload.single('file'), controller.saveFile);
-router.post('/:shortId/document-partenaire', upload.single('file'), controller.saveFilePartenaire);
-
-router.put('/:shortId/document/:fileId', auth.isAuthorized(), controller.updateFile);
-router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downloadFile);
-router.delete('/:shortId/document/:fileId', auth.isAuthenticated(), controller.deleteFile);
-
-router.get('/:shortId/simulation', auth.isAuthorized(), controller.simulate);
-router.get('/:shortId/resend-mail', auth.isAuthorized(), controller.resendMail);
+router.use('/:shortId/document', documentsRouter);
 
 module.exports = router;
