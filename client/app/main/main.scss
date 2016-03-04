@@ -99,7 +99,6 @@
   padding-bottom: 70px;
 
   color: #444;
-  border-top: 3px solid $dark-blue;
   background-color: $lighter-blue;
 
   .p {
@@ -235,4 +234,71 @@
       margin-right: 5px;
     }
   }
+}
+
+.map-container {
+  position: relative;
+
+  #map {
+    height: 45rem;
+    width:100%;
+  }
+
+  .card-contact {
+    background-color: white;
+
+    .card-img {
+      height: 200px;
+      overflow: hidden;
+      display: none;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    table {
+      margin: 10px;
+    }
+
+    td.cell-icon {
+      text-align: center;
+    }
+
+    td {
+      padding: 5px;
+
+      i {
+        color: $light-blue;
+      }
+
+      span {
+        white-space: pre-wrap;
+      }
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .card-contact {
+      position: absolute;
+      top: 1rem;
+      right: 20px;
+      width: 300px;
+
+      .card-img {
+        display: block;
+      }
+
+      table {
+        height: 180px;
+      }
+    }
+  }
+  @media (min-width: $screen-lg-min) {
+    .card-contact {
+      left: 50%;
+      transform: translate(80px,0);
+    }
+  }
+
 }
