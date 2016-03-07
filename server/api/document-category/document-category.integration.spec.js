@@ -25,20 +25,20 @@ describe('Document Category Integration', function() {
     });
   });
 
+  before(done => {
+    DocumentCategory.remove().exec(done);
+  });
+
   after(done => {
     server.close();
     done();
   });
 
-  beforeEach(done => {
+  after(done => {
     DocumentCategory.remove().exec(done);
   });
 
-  afterEach(done => {
-    DocumentCategory.remove().exec(done);
-  });
-
-  describe('When asking unclassfied MDPH', function() {
+  describe('When asking unclassfied documents', function() {
     it('should return a list', done => {
       api
         .get(`/api/mdphs/${testMdph._id}/categories/document-types?access_token=${tokenAdmin}`)
@@ -62,4 +62,45 @@ describe('Document Category Integration', function() {
     });
   });
 
+  describe('When saving a new document category', function() {
+    it('should return the default new category', done => {
+      api
+        .post(`/api/mdphs/${testMdph._id}/categories?access_token=${tokenAdmin}`)
+        .send({
+          position: 0
+        })
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
+
+          res.body.should.have.property('label');
+          res.body.label.should.be.eql('Nouvelle catégorie');
+          /*jshint -W030 */
+          res.body.unclassified.should.be.false;
+          res.body.required.should.be.false;
+          res.body.position.should.be.a.Number;
+          res.body.position.should.eql(0);
+          done();
+        });
+    });
+
+    it('should return saved category', done => {
+      api
+        .get(`/api/mdphs/${testMdph._id}/categories?access_token=${tokenAdmin}`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
+
+          /*jshint -W030 */
+          res.body.should.be.an.Array;
+          return done();
+        });
+    });
+  });
 });

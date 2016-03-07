@@ -7,8 +7,9 @@ var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 var router = new Router();
 
-// router.get('/', isAuthenticated(), controller.showDocumentCategories);
-// router.post('/', isAuthenticated(), controller.createNewDocumentCategory);
+router.post('/', isAuthenticated(), controller.createNewDocumentCategory);
+router.get('/', isAuthenticated(), controller.showDocumentCategories);
+
 // router.put('/', isAuthenticated(), controller.updateDocumentCategories);
 // router.put('/:categoryId', isAuthenticated(), controller.updateDocumentCategory);
 // router.delete('/:categoryId', isAuthenticated(), controller.removeDocumentCategory);
