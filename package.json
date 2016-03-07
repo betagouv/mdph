@@ -20,6 +20,7 @@
     "express-jwt": "^3.0.1",
     "express-session": "^1.11.2",
     "gridfs-stream": "^1.1.1",
+    "growl": "1.9.2",
     "handlebars": "^4.0.3",
     "html-pdf": "^2.0.1",
     "imagemin": "^4.0.0",
@@ -109,7 +110,7 @@
     "start": "node server/app.js",
     "test": "npm run test-server",
     "test-server": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js",
-    "test-watch": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js -w",
+    "test-watch": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js -w --reporter nyan --growl",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true

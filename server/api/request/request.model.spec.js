@@ -28,7 +28,7 @@ describe('Request Model', function() {
 
       //then
       Request.find({}, function(err, requests) {
-        requests.should.have.length(1);
+        requests.should.have.length(0);
         done();
       });
     });

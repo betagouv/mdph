@@ -34,4 +34,9 @@ Run `grunt build` for building and `grunt serve` for preview.
 
 ## Testing
 
-Running `npm test` will run the unit tests with karma.
+- Running `npm test` will run the tests with karma and mocha.
+- Run `npm run test-watch` to enable watcher.
+- To enable test notifications, you need a notifier:
+  - Mac OS X: 'sudo gem install terminal-notifier'
+  - Ubuntu: 'sudo apt-get install libnotify-bin'
+  - Windows: install growlnotify
