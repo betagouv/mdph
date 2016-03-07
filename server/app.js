@@ -36,7 +36,12 @@ function startServer() {
   });
 }
 
-setImmediate(startServer);
+if (!module.parent) {
+  setImmediate(startServer);
+}
 
 // Expose app
-exports = module.exports = app;
+exports = module.exports = {
+  app,
+  server
+};

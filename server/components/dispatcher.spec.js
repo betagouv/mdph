@@ -140,8 +140,6 @@ describe('Dispatcher', function() {
       }
 
     ], function(err, results) {
-      // console.log(err);
-      // console.log(results);
       done(err);
     });
   });

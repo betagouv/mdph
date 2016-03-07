@@ -3,17 +3,20 @@
 var should = require('should');
 var Request = require('./request.model');
 var controller = require('./request.controller');
-var startServer = require('../../test/utils/server');
 var User = require('../user/user.model');
+
+import startServer from '../../test/utils/server';
 
 describe('Request Integration', function() {
 
   var api;
   var token;
   var testUser;
+  var server;
 
-  before(function(done) {
+  before(done => {
     startServer((result) => {
+      server = result.server;
       api = result.api;
       token = result.token;
       testUser = result.fakeUser;
@@ -21,8 +24,13 @@ describe('Request Integration', function() {
     });
   });
 
+  after(done => {
+    server.close();
+    done();
+  });
+
   describe('Get single Request', function() {
-    beforeEach(function(done) {
+    beforeEach(done => {
       var newRequest = new Request({
         shortId: '1234',
         prestations: ['AAH'],
@@ -39,11 +47,11 @@ describe('Request Integration', function() {
       newRequest.save(done);
     });
 
-    afterEach(function(done) {
+    afterEach(done => {
       Request.remove().exec(done);
     });
 
-    it('should get the specified populated request', function(done) {
+    it('should get the specified populated request', done => {
       var gettedRequest;
 
       api
@@ -67,19 +75,19 @@ describe('Request Integration', function() {
 
   describe('Update Request', function() {
 
-    beforeEach(function(done) {
+    beforeEach(done => {
       var newRequest = new Request({ shortId: '1234', user: testUser._id });
       newRequest.save(done);
     });
 
-    afterEach(function(done) {
+    afterEach(done => {
       Request.remove().exec(done);
     });
 
     describe('When the user is authenticated', function() {
       describe('When the request exist', function() {
 
-        it('should respond with the updated thing', function(done) {
+        it('should respond with the updated thing', done => {
           var updatedRequest;
 
           api
@@ -103,7 +111,7 @@ describe('Request Integration', function() {
       });
 
       describe('When the request does not exist', function() {
-        it('should return 404', function(done) {
+        it('should return 404', done => {
           api
             .put(`/api/requests/9876?access_token=${token}`)
             .send({
@@ -116,7 +124,7 @@ describe('Request Integration', function() {
     });
 
     describe('When the user is not authenticated', function() {
-      it('should return 401', function(done) {
+      it('should return 401', done => {
         //given
         var newRequest = new Request({ shortId: '1234', user: testUser._id });
 
@@ -137,7 +145,7 @@ describe('Request Integration', function() {
       var idDoc;
 
       //initialize a request
-      beforeEach(function(done) {
+      beforeEach(done => {
         var newDocument = {
           type: 'carteIdentite',
           path: 'toto'
@@ -160,12 +168,12 @@ describe('Request Integration', function() {
         });
       });
 
-      afterEach(function(done) {
+      afterEach(done => {
         //clear mdphs after testing
         Request.remove().exec(done);
       });
 
-      it('should return 200', function(done) {
+      it('should return 200', done => {
         api
           .delete('/api/requests/1234/document/' + idDoc + '?access_token=' + token)
           .expect(200, done);

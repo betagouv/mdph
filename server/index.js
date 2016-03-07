@@ -9,4 +9,4 @@ if (env === 'development' || env === 'test') {
 }
 
 // Export the application
-exports = module.exports = require('./app');
+exports = module.exports = require('./app').app;

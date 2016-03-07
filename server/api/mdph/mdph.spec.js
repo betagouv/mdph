@@ -12,12 +12,19 @@ var mdph = new Mdph({
 
 describe('Mdph Model', function() {
   var api;
+  var server;
 
   before(done => {
     startServer(result => {
       api = result.api;
+      server = result.server;
       done();
     });
+  });
+
+  after(done => {
+    server.close();
+    done();
   });
 
   it('should respond with JSON array', function(done) {

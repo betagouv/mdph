@@ -1,12 +1,13 @@
 var supertest = require('supertest');
 var jwt = require('jsonwebtoken');
 
-var app = require('../../app');
 var User = require('../../api/user/user.model');
 var Mdph = require('../../api/mdph/mdph.model');
 
 var signToken = require('../../auth/auth.service').signToken;
 var config = require('../../config/environment');
+
+import {app, server} from '../../app';
 
 function saveMdph(mdph) {
   return function() {
@@ -54,7 +55,7 @@ function removeUsers() {
   };
 }
 
-var startServer = function(done) {
+function startServer(done) {
 
   var testMdph;
   var fakeUser;
@@ -62,7 +63,11 @@ var startServer = function(done) {
   var token;
   var tokenAdmin;
 
-  var server = app.listen();
+  var {app, server} = require('../../app');
+
+  server.listen(config.port, config.ip, function() {
+    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+  });
 
   Mdph
     .remove().exec()
@@ -85,6 +90,7 @@ var startServer = function(done) {
     .then(() => {
       return done({
         api: supertest.agent(`http://localhost:${config.port}`),
+        server,
         testMdph,
         fakeUser,
         token,
@@ -92,6 +98,6 @@ var startServer = function(done) {
         tokenAdmin
       });
     });
-};
+}
 
 export default startServer;
