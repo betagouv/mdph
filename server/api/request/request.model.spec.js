@@ -6,16 +6,11 @@ var User = require('../user/user.model');
 
 describe('Request Model', function() {
   before(function(done) {
-    // Clear mdphs before testing
-    Request.remove().exec().then(function() {
-      done();
-    });
+    Request.remove().exec(done);
   });
 
   afterEach(function(done) {
-    Request.remove().exec().then(function() {
-      done();
-    });
+    Request.remove().exec(done);
   });
 
   it('should render the right number of requests', function(done) {
@@ -28,10 +23,9 @@ describe('Request Model', function() {
 
       //then
       Request.find({}, function(err, requests) {
-        requests.should.have.length(0);
+        requests.should.have.length(1);
         done();
       });
     });
   });
-
 });
