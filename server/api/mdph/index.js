@@ -1,13 +1,13 @@
 'use strict';
 
-import express from 'express';
+import {Router} from 'express';
 import controller from './mdph.controller';
 import {hasRole} from '../../auth/auth.service';
 import categoriesRouter from '../document-category';
 
 var Mdph = require('./mdph.model');
 var compose = require('composable-middleware');
-var router = express.Router();
+var router = new Router();
 
 router.get('/', controller.index);
 router.get('/list', controller.list);
@@ -29,6 +29,16 @@ router.get('/:id/secteurs/:secteurId', isAuthorizedMdph(), controller.getSecteur
 router.get('/:id/secteurs/:secteurId/requests', isAuthorizedMdph(), controller.showRequestsForSecteur);
 
 router.use('/:id/categories', categoriesRouter);
+
+router.param('id', function(req, res, next, id) {
+  Mdph.findById(id, function(err, mdph) {
+    if (err) return next(err);
+    if (!mdph) return res.sendStatus(404);
+
+    req.mdph = mdph;
+    next();
+  });
+});
 
 function isAuthorizedMdph() {
   return compose()

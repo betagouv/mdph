@@ -12,6 +12,73 @@ import * as Auth from '../../auth/auth.service';
 
 grid.mongo = mongoose.mongo;
 
+function handleError(req, res) {
+  return function(statusCode, err) {
+    statusCode = statusCode || 500;
+
+    if (err) {
+      req.log.error(err);
+      res.status(statusCode).send(err);
+    } else {
+      res.sendStatus(statusCode);
+    }
+  };
+}
+
+function handleEntityNotFound(res) {
+  return function(request) {
+    if (!request) {
+      throw(404);
+    }
+
+    return request;
+  };
+}
+
+function handleUserNotAuthorized(req, res) {
+  return function(entity) {
+    if (Auth.meetsRequirements(req.user.role, 'admin')) {
+      return entity;
+    }
+
+    if (Auth.meetsRequirements(req.user.role, 'adminMdph') && req.mdph._id.equals(req.user.mdph)) {
+      return entity;
+    }
+
+    throw(403);
+  };
+}
+
+function filterList() {
+  return function(list) {
+    let filteredList = [];
+    let found;
+
+    _.forEach(allDocumentTypes, function(documentType) {
+      found = false;
+      _.forEach(list, function(category) {
+        if (category.documentTypes && category.documentTypes.indexOf(documentType.id) >= 0) {
+          found = true;
+        }
+      });
+
+      if (!found) {
+        filteredList.push(documentType);
+      }
+    });
+
+    return filteredList;
+  };
+}
+
+function respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function(entity) {
+    res.status(statusCode).json(entity);
+    return null;
+  };
+}
+
 function comparePosition(catA, catB) {
   return catA.position - catB.position;
 }
@@ -238,71 +305,11 @@ exports.updateDocumentType = function(req, res) {
   });
 };
 
-function handleError(req, res) {
-  return function(statusCode, err) {
-    statusCode = statusCode || 500;
-
-    if (err) {
-      req.log.error(err);
-      res.status(statusCode).send(err);
-    } else {
-      res.sendStatus(statusCode);
-    }
-  };
-}
-
-function handleEntityNotFound(res) {
-  return function(request) {
-    if (!request) {
-      throw(404);
-    }
-
-    return request;
-  };
-}
-
-function handleUserNotAuthorized(req, res) {
-  return function(mdph) {
-    if (Auth.meetsRequirements(req.user.role, 'admin')) {
-      return mdph;
-    }
-
-    if (Auth.meetsRequirements(req.user.role, 'adminMdph') && mdph._id.equals(req.user.mdph)) {
-      return mdph;
-    }
-
-    throw(403);
-  };
-}
-
 exports.showUncategorizedDocumentTypes = function(req, res) {
   DocumentCategory
-    .find({mdph: req.params.id})
-    .lean()
-    .exec()
-    .then(handleEntityNotFound(res))
+    .find({mdph: req.mdph._id}).lean().exec()
     .then(handleUserNotAuthorized(req, res))
+    .then(filterList())
+    .then(respondWithResult(res))
     .catch(handleError(req, res));
 };
-
-// if (err) { callback(err); }
-//
-// if (!list) { callback({status: 404}); }
-//
-// var filteredList = [];
-// let found;
-// _.forEach(allDocumentTypes, function(documentType) {
-//   found = false;
-//   _.forEach(list, function(category) {
-//     if (category.documentTypes && category.documentTypes.indexOf(documentType.id) >= 0) {
-//       found = true;
-//     }
-//   });
-//
-//   if (!found) {
-//     filteredList.push(documentType);
-//   }
-// });
-//
-// callback(null, filteredList);
-// });
