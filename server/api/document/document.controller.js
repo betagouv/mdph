@@ -6,15 +6,15 @@ import shortid from 'shortid';
 import path from 'path';
 import fs from 'fs';
 
-import config from '../../../config/environment';
+import config from '../../config/environment';
 
-const Request = require('../request.model');
-const User = require('../../user/user.model');
-const Partenaire = require('../../partenaire/partenaire.model');
-const Auth = require('../../../auth/auth.service');
-const resizeAndMove = require('../../../components/resize-image');
-const Actions = require('../../../components/actions').actions;
-const MailActions = require('../../send-mail/send-mail-actions');
+const Request = require('../request/request.model');
+const User = require('../user/user.model');
+const Partenaire = require('../partenaire/partenaire.model');
+const Auth = require('../../auth/auth.service');
+const resizeAndMove = require('../../components/resize-image');
+const Actions = require('../../components/actions').actions;
+const MailActions = require('../send-mail/send-mail-actions');
 
 function handleError(req, res) {
   return function(statusCode, err) {

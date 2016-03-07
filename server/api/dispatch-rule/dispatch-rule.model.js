@@ -17,4 +17,10 @@ var DispatchRuleSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('DispatchRule', DispatchRuleSchema);
+try {
+  mongoose.model('DispatchRule', DispatchRuleSchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('DispatchRule');

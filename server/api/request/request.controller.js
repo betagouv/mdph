@@ -1,7 +1,7 @@
 'use strict';
 
 import { populateAndSortPrestations } from '../prestation/prestation.controller';
-import { populateAndSortDocumentTypes } from '../document/documents.controller';
+import { populateAndSortDocumentTypes } from '../document-type/document-type.controller';
 
 import _ from 'lodash';
 import path from 'path';
@@ -9,25 +9,23 @@ import pdf from 'html-pdf';
 import fs from 'fs';
 import shortid from 'shortid';
 import async from 'async';
+import * as Auth from '../../auth/auth.service';
+import config from '../../config/environment';
+import Recapitulatif from '../../components/recapitulatif';
+import Synthese from '../../components/synthese';
+import MakePdf from '../../components/make-pdf';
 
-const Auth = require('../../auth/auth.service');
-const config = require('../../config/environment');
-const Recapitulatif = require('../../components/recapitulatif');
-const Synthese = require('../../components/synthese');
-const MakePdf = require('../../components/make-pdf');
+import Prestation from '../prestation/prestation.controller';
+import Request from './request.model';
+import User from '../user/user.model';
+import Partenaire from '../partenaire/partenaire.model';
+import Mdph from '../mdph/mdph.model';
+import MailActions from '../send-mail/send-mail-actions';
 
-const Prestation = require('../prestation/prestation.controller');
-const Request = require('./request.model');
-const User = require('../user/user.model');
-const Partenaire = require('../partenaire/partenaire.model');
-const Mdph = require('../mdph/mdph.model');
-const MailActions = require('../send-mail/send-mail-actions');
-
-const Dispatcher = require('../../components/dispatcher');
-const ActionModel = require('./action.model');
-const Actions = require('../../components/actions').actions;
-const ActionsById = require('../../components/actions').actionsById;
-const resizeAndMove = require('../../components/resize-image');
+import Dispatcher from '../../components/dispatcher';
+import ActionModel from './action.model';
+import {actions, actionsById} from '../../components/actions';
+import resizeAndMove from '../../components/resize-image';
 
 const domain = process.env.DOMAIN || config.DOMAIN;
 
@@ -39,7 +37,7 @@ function handleError(req, res) {
       req.log.error(err);
       res.status(statusCode).send(err);
     } else {
-      res.sendStatus(statusCode);
+      res.status(statusCode).send('Server error');
     }
   };
 }
@@ -54,13 +52,14 @@ function handleEntityNotFound(res) {
   };
 }
 
-function handleUserNotAuthorized(user, res) {
+function handleUserNotAuthorized(req, res) {
   return function(request) {
-    if (Auth.meetsRequirements(user.role, 'adminMdph')) {
+
+    if (Auth.meetsRequirements(req.user.role, 'adminMdph')) {
       return request;
     }
 
-    if (user._id.equals(request.user._id)) {
+    if (req.user._id.equals(request.user._id)) {
       return request;
     }
 
@@ -88,7 +87,7 @@ function saveUpdates(req) {
   return function(request) {
     let filteredUpdates = _.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations');
     return request.set(filteredUpdates).save().then(updated => {
-      updated.saveActionLog(Actions.UPDATE_ANSWERS, req.user, req.log);
+      updated.saveActionLog(actions.UPDATE_ANSWERS, req.user, req.log);
 
       return updated;
     });
@@ -123,13 +122,13 @@ function processUserAction(req) {
   return function(request) {
     if (req.action) {
       switch (req.action.id) {
-        case Actions.SUCCES_ENREGISTREMENT.id:
+        case actions.SUCCES_ENREGISTREMENT.id:
           MailActions.sendMailCompletude(request, req.user); // Agent sends KO to user
           break;
-        case Actions.ERREUR_ENREGISTREMENT.id:
+        case actions.ERREUR_ENREGISTREMENT.id:
           MailActions.sendMailDemandeDocuments(request, req.user); // Agent sends OK to user
           break;
-        case Actions.SUBMIT.id:
+        case actions.SUBMIT.id:
           let options = {
             request: request,
             host: req.headers.host,
@@ -141,7 +140,7 @@ function processUserAction(req) {
 
           Dispatcher.dispatch(request)
             .then(secteur => { // Service disatches to agents
-              request.saveActionLog(Actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
+              request.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
               request.set('secteur', secteur).save();
             })
             .catch(err => {
@@ -173,18 +172,18 @@ function findAndPopulate(shortId) {
 }
 
 // Get a single request
-exports.show = function(req, res, next) {
+export function show(req, res, next) {
   findAndPopulate(req.params.shortId)
     .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req.user, res))
+    .then(handleUserNotAuthorized(req, res))
     .then(populateAndSortPrestations)
     .then(populateAndSortDocumentTypes)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-};
+}
 
 // Get a single request
-exports.showPartenaire = function(req, res, next) {
+export function showPartenaire(req, res, next) {
   Request
     .findOne({
       shortId: req.params.shortId
@@ -195,26 +194,26 @@ exports.showPartenaire = function(req, res, next) {
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-};
+}
 
 // Deletes a request from the DB and FS
-exports.destroy = function(req, res) {
+export function destroy(req, res) {
   Request
     .findOne({
       shortId: req.params.shortId
     })
     .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req.user, res))
+    .then(handleUserNotAuthorized(req, res))
     .then(unlinkRequestDocuments)
     .then(removeRequest)
     .then(respondWithResult(res, 204))
     .catch(handleError(req, res));
-};
+}
 
 /**
  * Get user requests
  */
-exports.showUserRequests = function(req, res, next) {
+export function showUserRequests(req, res, next) {
   Request.find({
     user: req.user._id
   })
@@ -223,12 +222,12 @@ exports.showUserRequests = function(req, res, next) {
   .sort('-updatedAt')
   .then(respondWithResult(res))
   .catch(handleError(req, res));
-};
+}
 
-exports.update = function(req, res, next) {
+export function update(req, res, next) {
   findAndPopulate(req.params.shortId)
     .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req.user, res))
+    .then(handleUserNotAuthorized(req, res))
     .then(saveUpdates(req))
     .then(processUserAction(req))
     .then(saveUserAction(req))
@@ -236,70 +235,126 @@ exports.update = function(req, res, next) {
     .then(populateAndSortDocumentTypes)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-};
+}
 
 /**
  * Create request
  */
-exports.create = function(req, res, next) {
+export function create(req, res, next) {
   Request.create(req.body)
     .then(respondWithResult(res, 201))
-    .then(saveActionLog(Actions.CREATION, req))
+    .then(saveActionLog(actions.CREATION, req))
     .catch(handleError(res));
-};
+}
 
-exports.getHistory = function(req, res) {
-  ActionModel
-    .find({
-      request: req.request._id
+function findActionHistory() {
+  return function(request) {
+    return ActionModel
+      .find({
+        request: request._id
+      })
+      .populate('user')
+      .sort('-date')
+      .lean()
+      .exec()
+      .then(populateActionLabels());
+  };
+}
+
+function populateActionLabels() {
+  return function(actionHistory) {
+    actions.forEach(function(action) {
+      action.label = actionsById[action.action].label;
+    });
+
+    return actions;
+  };
+}
+
+export function getHistory(req, res) {
+  Request
+    .findOne({
+      shortId: req.params.shortId
     })
-    .populate('user')
-    .sort('-date')
-    .lean()
-    .exec(function(err, actions) {
-      if (err) return handleError(err);
+    .then(handleEntityNotFound(res))
+    .then(handleUserNotAuthorized(req, res))
+    .then(findActionHistory())
+    .then(respondWithResult(res))
+    .catch(handleError(req, res));
+}
 
-      actions.forEach(function(action) {
-        action.label = ActionsById[action.action].label;
-      });
-
-      return res.json(actions);
+function generateRecapitulatifHtml(req) {
+  return function(request) {
+    Recapitulatif.answersToHtml({
+      request: req.request,
+      host: req.headers.host
     });
-};
-
-exports.getRecapitulatif = function(req, res) {
-  let options = {
-    request: req.request,
-    host: req.headers.host
   };
+}
 
-  Recapitulatif.answersToHtml(options, function(err, html) {
-    if (err) { return handleError(req, res, err); }
-
-    res.send(html).status(200);
-  });
-};
-
-exports.getPdf = function(req, res) {
-  let options = {
-    request: req.request,
-    host: req.headers.host,
-    user: req.user
-  };
-
-  MakePdf.make(options, function(err, pdfPath) {
-    if (err) { return handleError(req, res, err); }
-
+function respondWithFile(res) {
+  return function(pdfPath) {
     res.sendFile(pdfPath);
-  });
-};
+  };
+}
 
-exports.getSynthesePdf = function(req, res) {
-  Synthese.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
-    if (err) { return handleError(req, res, err); }
+function generateRecapitulatifPdf(req) {
+  return function(request) {
+    MakePdf.make({
+      request: req.request,
+      host: req.headers.host,
+      user: req.user
+    }, function(err, html) {
+      if (err) { throw(500, err); }
 
-    pdf.create(html).toStream(function(err, stream) {
-      stream.pipe(res);
+      return html;
     });
-  });
-};
+  };
+}
+
+export function getRecapitulatif(req, res) {
+  Request
+    .findOne({
+      shortId: req.params.shortId
+    })
+    .then(handleEntityNotFound(res))
+    .then(handleUserNotAuthorized(req, res))
+    .then(generateRecapitulatifHtml(req))
+    .then(respondWithResult(res))
+    .catch(handleError(req, res));
+}
+
+export function getPdf(req, res) {
+  Request
+    .findOne({
+      shortId: req.params.shortId
+    })
+    .then(handleEntityNotFound(res))
+    .then(handleUserNotAuthorized(req, res))
+    .then(generateRecapitulatifPdf(req))
+    .then(respondWithFile(res))
+    .catch(handleError(req, res));
+}
+
+function generateSynthesePdf(req, res) {
+  return function(request) {
+    Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
+        if (err) { throw(500, err); }
+
+        pdf.create(html).toStream(function(err, stream) {
+          stream.pipe(res);
+        });
+      });
+  };
+}
+
+export function getSynthesePdf(req, res) {
+  Request
+    .findOne({
+      shortId: req.params.shortId
+    })
+    .then(handleEntityNotFound(res))
+    .then(handleUserNotAuthorized(req, res))
+    .then(generateSynthesePdf(req, res))
+    .catch(handleError(req, res));
+}

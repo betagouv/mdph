@@ -1,14 +1,15 @@
 'use strict';
 
-var _ = require('lodash');
-var async = require('async');
-var mongoose = require('mongoose');
-var grid = require('gridfs-stream');
-var stream = require('stream');
-var DocumentCategory = require('./document-category.model');
-var DocumentTypes = require('./documentTypes');
+import _ from 'lodash';
+import path from 'path';
+import stream from 'stream';
+import grid from 'gridfs-stream';
+import mongoose from 'mongoose';
+import async from 'async';
+import DocumentCategory from './document-category.model';
+import {allDocumentTypes} from '../document-type/document-type.controller';
+import * as Auth from '../../auth/auth.service';
 
-var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.complementaires);
 grid.mongo = mongoose.mongo;
 
 function comparePosition(catA, catB) {
@@ -100,34 +101,6 @@ exports.findAndSortCategoriesForMdph = function(mdph, callback) {
       return callback(null, list);
     });
   });
-};
-
-exports.showUncategorizedDocumentTypes = function(mdph, callback) {
-  DocumentCategory
-    .find({mdph: mdph._id})
-    .lean()
-    .exec(function(err, list) {
-      if (err) { callback(err); }
-
-      if (!list) { callback({status: 404}); }
-
-      var filteredList = [];
-      let found;
-      _.forEach(allDocumentTypes, function(documentType) {
-        found = false;
-        _.forEach(list, function(category) {
-          if (category.documentTypes && category.documentTypes.indexOf(documentType.id) >= 0) {
-            found = true;
-          }
-        });
-
-        if (!found) {
-          filteredList.push(documentType);
-        }
-      });
-
-      callback(null, filteredList);
-    });
 };
 
 exports.saveDocumentCategoryFile = function(file, categoryId, logger, callback) {
@@ -230,41 +203,106 @@ exports.updateDocumentCategories = function(updatedCategories, callback) {
   });
 };
 
-exports.updateDocumentType = function(documentType, oldCategoryId, newCategoryId, callback) {
+exports.updateDocumentType = function(req, res) {
+  if (!req.params.categoryId || !req.body.documentType) {
+    return res.status(500).send(); // TODO: status malformed request
+  }
+
   async.parallel({
     old: function(cb) {
-      if (!oldCategoryId) {
-        cb();
-      } else {
-        DocumentCategory.findById(oldCategoryId).exec(cb);
-      }
+      DocumentCategory.findById(req.params.categoryId).exec(cb);
     },
 
     new: function(cb) {
-      if (!newCategoryId) {
-        cb();
-      } else {
-        DocumentCategory.findById(newCategoryId).exec(cb);
-      }
+      DocumentCategory.findById(req.params.newCategoryId).exec(cb);
     }
   },
   function(err, results) {
     if (err) {
-      callback(err);
+      return res.status(500).send(err);
     }
 
     if (results.old) {
       results.old.update(
-        { $pull: { documentTypes: documentType } }
+        { $pull: { documentTypes: req.body.documentType } }
       ).exec();
     }
 
     if (results.new) {
       results.new.update(
-        { $push: { documentTypes: documentType } }
+        { $push: { documentTypes: req.body.documentType } }
       ).exec();
     }
 
-    callback();
+    res.status(200).send(results.new);
   });
 };
+
+function handleError(req, res) {
+  return function(statusCode, err) {
+    statusCode = statusCode || 500;
+
+    if (err) {
+      req.log.error(err);
+      res.status(statusCode).send(err);
+    } else {
+      res.sendStatus(statusCode);
+    }
+  };
+}
+
+function handleEntityNotFound(res) {
+  return function(request) {
+    if (!request) {
+      throw(404);
+    }
+
+    return request;
+  };
+}
+
+function handleUserNotAuthorized(req, res) {
+  return function(mdph) {
+    if (Auth.meetsRequirements(req.user.role, 'admin')) {
+      return mdph;
+    }
+
+    if (Auth.meetsRequirements(req.user.role, 'adminMdph') && mdph._id.equals(req.user.mdph)) {
+      return mdph;
+    }
+
+    throw(403);
+  };
+}
+
+exports.showUncategorizedDocumentTypes = function(req, res) {
+  DocumentCategory
+    .find({mdph: req.params.id})
+    .lean()
+    .exec()
+    .then(handleEntityNotFound(res))
+    .then(handleUserNotAuthorized(req, res))
+    .catch(handleError(req, res));
+};
+
+// if (err) { callback(err); }
+//
+// if (!list) { callback({status: 404}); }
+//
+// var filteredList = [];
+// let found;
+// _.forEach(allDocumentTypes, function(documentType) {
+//   found = false;
+//   _.forEach(list, function(category) {
+//     if (category.documentTypes && category.documentTypes.indexOf(documentType.id) >= 0) {
+//       found = true;
+//     }
+//   });
+//
+//   if (!found) {
+//     filteredList.push(documentType);
+//   }
+// });
+//
+// callback(null, filteredList);
+// });

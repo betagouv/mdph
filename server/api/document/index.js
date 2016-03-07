@@ -1,11 +1,18 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./documents.controller');
+import {Router} from 'express';
+import multer from 'multer';
+import controller from './document.controller';
+import auth from '../../auth/auth.service';
+import config from '../../config/environment';
 
-var router = express.Router();
+const upload = multer({ dest: config.uploadDir });
+const router = new Router({mergeParams: true});
 
-router.get('/', controller.index);
-router.get('/:id', controller.show);
+router.post('/', auth.isAuthorized(), upload.single('file'), controller.saveFile);
+router.post('/partenaire', upload.single('file'), controller.saveFilePartenaire);
+router.put('/:fileId', auth.isAuthorized(), controller.updateFile);
+router.get('/:fileName', auth.isAuthorized(), controller.downloadFile);
+router.delete('/:fileId', auth.isAuthenticated(), controller.deleteFile);
 
-module.exports = router;
+export default router;

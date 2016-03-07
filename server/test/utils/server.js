@@ -1,55 +1,97 @@
-var app = require('../../app');
 var supertest = require('supertest');
+var jwt = require('jsonwebtoken');
+
+var app = require('../../app');
 var User = require('../../api/user/user.model');
+var Mdph = require('../../api/mdph/mdph.model');
 
 var signToken = require('../../auth/auth.service').signToken;
-var jwt = require('jsonwebtoken');
 var config = require('../../config/environment');
 
-module.exports = function() {
-  var port = 3001;
-  var server;
-  var token;
+function saveMdph(mdph) {
+  return function() {
+    var test = new Mdph({zipcode: 'test'});
+    test.save((err, savedMdph) => {
+      mdph = savedMdph;
+    });
 
-  var apiSuperTest = function() {
-    return supertest.agent('http://localhost:' + port);
+    return test;
   };
+}
 
-  beforeEach(function(done) {
-    var user = new User({
+function saveUser() {
+  return function() {
+    var fakeUser = new User({
       provider: 'local',
       name: 'Fake User',
-      email: 'test@test.com',
+      email: 'user@test.com',
       password: 'hashedPassword',
-      role: 'adminMdph'
+      role: 'user'
     });
 
-    server = app.listen(port);
-    user.save(function(err) {
-      if (err) {
-        return done(err);
-      }
-
-      token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-      done();
-    });
-  });
-
-  afterEach(function(done) {
-    User.remove(function() {
-      done();
-    });
-  });
-
-  afterEach(function(done) {
-    server.close(done);
-  });
-
-  return {
-    api: apiSuperTest,
-    token: function() {
-      return token;
-    }
+    return fakeUser.save();
   };
+}
 
+function saveUserAdmin() {
+  return function(testMdph) {
+    var fakeUserAdmin = new User({
+      provider: 'local',
+      name: 'Fake User Admin',
+      email: 'admin@test.com',
+      password: 'hashedPassword',
+      role: 'adminMdph',
+      mdph: testMdph._id
+    });
+
+    return fakeUserAdmin.save();
+  };
+}
+
+function removeUsers() {
+  return function() {
+    User.remove().exec();
+  };
+}
+
+var startServer = function(done) {
+
+  var testMdph;
+  var fakeUser;
+  var fakeUserAdmin;
+  var token;
+  var tokenAdmin;
+
+  var server = app.listen();
+
+  Mdph
+    .remove().exec()
+    .then(removeUsers())
+    .then(saveMdph(testMdph))
+    .then(mdph => {
+      testMdph = mdph;
+      return mdph;
+    })
+    .then(saveUserAdmin())
+    .then(user => {
+      fakeUserAdmin = user;
+      tokenAdmin = jwt.sign({_id: user._id, role: user.role }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    })
+    .then(saveUser())
+    .then(user => {
+      fakeUser = user;
+      token = jwt.sign({_id: user._id, role: user.role }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    })
+    .then(() => {
+      return done({
+        api: supertest.agent(`http://localhost:${config.port}`),
+        testMdph,
+        fakeUser,
+        token,
+        fakeUserAdmin,
+        tokenAdmin
+      });
+    });
 };
+
+export default startServer;

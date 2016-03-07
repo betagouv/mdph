@@ -1,24 +1,21 @@
 'use strict';
 
-var auth = require('../../auth/auth.service');
-var config = require('../../config/environment');
-var express = require('express');
-var controller = require('./mdph.controller');
+import express from 'express';
+import controller from './mdph.controller';
+import {hasRole} from '../../auth/auth.service';
+import categoriesRouter from '../document-category';
+
 var Mdph = require('./mdph.model');
 var compose = require('composable-middleware');
-var multer  = require('multer');
-
-var storage = multer.memoryStorage();
-var upload = multer({ storage: storage });
 var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/list', controller.list);
 router.get('/:id', controller.show);
-router.post('/', auth.hasRole('admin'), controller.create);
+router.post('/', hasRole('admin'), controller.create);
 router.put('/:id', isAuthorizedMdph(), controller.update);
 router.patch('/:id', isAuthorizedMdph(), controller.update);
-router.delete('/:id', auth.hasRole('admin'), controller.destroy);
+router.delete('/:id', hasRole('admin'), controller.destroy);
 
 router.get('/:id/requests', isAuthorizedMdph(), controller.showRequests);
 router.get('/:id/requests/byStatus', isAuthorizedMdph(), controller.showRequestsByStatus);
@@ -31,22 +28,11 @@ router.get('/:id/secteurs', isAuthorizedMdph(), controller.showSecteurs);
 router.get('/:id/secteurs/:secteurId', isAuthorizedMdph(), controller.getSecteur);
 router.get('/:id/secteurs/:secteurId/requests', isAuthorizedMdph(), controller.showRequestsForSecteur);
 
-router.post('/:id/document-types', isAuthorizedMdph(), controller.updateDocumentType);
-router.get('/:id/document-types', isAuthorizedMdph(), controller.showUncategorizedDocumentTypes);
-
-router.get('/:id/categories', isAuthorizedMdph(), controller.showDocumentCategories);
-router.post('/:id/categories', isAuthorizedMdph(), controller.createNewDocumentCategory);
-router.put('/:id/categories', isAuthorizedMdph(), controller.updateDocumentCategories);
-router.put('/:id/categories/:categoryId', isAuthorizedMdph(), controller.updateDocumentCategory);
-router.delete('/:id/categories/:categoryId', isAuthorizedMdph(), controller.removeDocumentCategory);
-router.post('/:id/categories/:categoryId/file', isAuthorizedMdph(), upload.single('file'), controller.saveDocumentCategoryFile);
-
-router.get('/:id/categories/unclassifiedCategory', isAuthorizedMdph(), controller.getUnclassifiedCategory);
-router.get('/:id/categories/:categoryId/file', isAuthorizedMdph(), controller.getDocumentCategoryFile);
+router.use('/:id/categories', categoriesRouter);
 
 function isAuthorizedMdph() {
   return compose()
-    .use(auth.hasRole('adminMdph'))
+    .use(hasRole('adminMdph'))
 
     // Attach mdph to request
     .use(function(req, res, next) {

@@ -29,7 +29,7 @@ angular.module('impactApp')
         authenticate: true,
         resolve: {
           documentTypes: function($http) {
-            return $http.get('api/documents').then(function(result) {
+            return $http.get('api/document-types').then(function(result) {
               return _.filter(result.data, function(documentType) {
                 return !documentType.mandatory;
               });

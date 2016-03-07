@@ -13,8 +13,11 @@ import http from 'http';
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {
-  console.error('MongoDB connection error: ' + err);
-  process.exit(-1);
+  if (config.env !== 'test') {
+    // Ignore 'connection is already open' for test
+    console.error('MongoDB connection error: ' + err);
+    process.exit(-1);
+  }
 });
 
 // Populate databases with sample data

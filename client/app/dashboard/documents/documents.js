@@ -5,21 +5,15 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.documents', {
         url: '/documents',
-        redirectTo: 'dashboard.documents.categories',
         templateUrl: 'app/dashboard/documents/documents.html',
-        authenticate: true
-      })
-      .state('dashboard.documents.categories', {
-        url: '/categories',
-        templateUrl: 'app/dashboard/documents/categories/categories.html',
         authenticate: true,
         resolve: {
-          unclassifiedCategory: function(MdphResource, currentMdph) {
-            return MdphResource.getUnclassifiedDocumentCategory({zipcode: currentMdph.zipcode}).$promise;
+          unclassifiedCategory: function(DocumentCategoryResource, currentMdph) {
+            return DocumentCategoryResource.getUnclassifiedDocumentCategory({mdphId: currentMdph._id}).$promise;
           },
 
-          categories: function(MdphResource, currentMdph) {
-            return MdphResource.queryDocumentCategories({zipcode: currentMdph.zipcode}).$promise;
+          categories: function(DocumentCategoryResource, currentMdph) {
+            return DocumentCategoryResource.queryDocumentCategories({mdphId: currentMdph._id}).$promise;
           },
 
           documentTypes: function($http, currentMdph) {
@@ -28,6 +22,6 @@ angular.module('impactApp')
             });
           }
         },
-        controller: 'CategoriesCtrl'
+        controller: 'DocumentCategoriesCtrl'
       });
   });

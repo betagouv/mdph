@@ -12,12 +12,12 @@ angular.module('impactApp')
             return RequestResource.getPartenaire({shortId: $stateParams.shortId}).$promise;
           },
 
-          documentTypes: function($stateParams, DocumentResource) {
+          documentTypes: function($stateParams, DocumentTypeResource) {
             var type = $stateParams.type;
             if (type === 'complementaires') {
-              return DocumentResource.query({type: type}).$promise;
+              return DocumentTypeResource.query({type: type}).$promise;
             } else {
-              return DocumentResource.get({id: type}).$promise.then(function(result) {
+              return DocumentTypeResource.get({id: type}).$promise.then(function(result) {
                 return [result];
               });
             }

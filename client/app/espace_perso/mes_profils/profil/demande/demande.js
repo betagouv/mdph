@@ -110,8 +110,8 @@ angular.module('impactApp').config(function($stateProvider) {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/obligatoires.html',
         controller: 'DocumentsObligatoiresCtrl',
         resolve: {
-          documentTypes: function(DocumentResource) {
-            return DocumentResource.query({type: 'obligatoires'}).$promise;
+          documentTypes: function(DocumentTypeResource) {
+            return DocumentTypeResource.query({type: 'obligatoires'}).$promise;
           }
         }
       },
@@ -119,8 +119,8 @@ angular.module('impactApp').config(function($stateProvider) {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/complementaires.html',
         controller: 'DocumentsComplementairesCtrl',
         resolve: {
-          documentTypes: function(DocumentResource) {
-            return DocumentResource.query({type: 'complementaires'}).$promise;
+          documentTypes: function(DocumentTypeResource) {
+            return DocumentTypeResource.query({type: 'complementaires'}).$promise;
           }
         }
       },

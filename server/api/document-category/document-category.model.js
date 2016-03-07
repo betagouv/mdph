@@ -13,4 +13,10 @@ var DocumentCategorySchema = new Schema({
   unclassified:     { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('DocumentCategory', DocumentCategorySchema);
+try {
+  mongoose.model('DocumentCategory', DocumentCategorySchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('DocumentCategory');

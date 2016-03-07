@@ -2,6 +2,7 @@
 
 var should = require('should');
 var Request = require('./request.model');
+var User = require('../user/user.model');
 
 describe('Request Model', function() {
   before(function(done) {
@@ -19,7 +20,8 @@ describe('Request Model', function() {
 
   it('should render the right number of requests', function(done) {
     //given
-    var newRequest = new Request({});
+    var newUser = new User();
+    var newRequest = new Request({ user: newUser._id });
 
     //when
     newRequest.save(function() {

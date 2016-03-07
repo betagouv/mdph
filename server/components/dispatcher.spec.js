@@ -140,13 +140,17 @@ describe('Dispatcher', function() {
       }
 
     ], function(err, results) {
+      // console.log(err);
+      // console.log(results);
       done(err);
     });
   });
 
   it('should find the correct secteur', function(done) {
+    var user = new User();
     var request = new Request({
       mdph: '14',
+      user: user._id,
       formAnswers: {
         identites: {
           beneficiaire: {
@@ -165,8 +169,10 @@ describe('Dispatcher', function() {
   });
 
   it('should find the correct default secteur even without rules', function(done) {
+    var user = new User();
     var request = new Request({
       mdph: '59',
+      user: user._id,
       formAnswers: {
         identites: {
           beneficiaire: {
@@ -185,8 +191,10 @@ describe('Dispatcher', function() {
   });
 
   it('should not find the default secteur if it is described in another mdph', function(done) {
+    var user = new User();
     var request = new Request({
       mdph: '14',
+      user: user._id,
       formAnswers: {
         identites: {
           beneficiaire: {
@@ -204,8 +212,10 @@ describe('Dispatcher', function() {
   });
 
   it('should find the default secteur and notify evaluator', function(done) {
+    var user = new User();
     var request = new Request({
       mdph: '59',
+      user: user._id,
       formAnswers: {
         identites: {
           beneficiaire: {

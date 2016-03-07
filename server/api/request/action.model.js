@@ -12,4 +12,10 @@ var ActionSchema = new Schema({
   params:         Schema.Types.Mixed
 });
 
-module.exports = mongoose.model('Action', ActionSchema);
+try {
+  mongoose.model('Action', ActionSchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('Action');

@@ -10,7 +10,7 @@ var config = require('../../config/environment');
 
 var auth = require('../../auth/auth.service');
 var Mdph = require('../../api/mdph/mdph.model');
-var DocumentCategoryCtrl = require('../../api/document/document-category.controller');
+var DocumentCategoryCtrl = require('../../api/document-category/document-category.controller');
 
 module.exports = function(request, requestTempPdfPath, documentList, callback) {
   Mdph

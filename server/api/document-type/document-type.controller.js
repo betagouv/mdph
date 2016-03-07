@@ -18,7 +18,7 @@ function addToDocumentGroups(documentGroups, document, documentType) {
   }
 }
 
-module.exports = {
+export default {
   allDocumentTypes: allDocumentTypes,
   allDocumentTypesById: allDocumentTypesById,
 
@@ -47,6 +47,7 @@ module.exports = {
 
   show: function(req, res) {
     const documentType = _.find(allDocumentTypes, {id: req.params.id});
+    console.log(req.query.type);
 
     if (!documentType) {
       return res.sendStatus(404);
@@ -56,6 +57,7 @@ module.exports = {
   },
 
   index: function(req, res) {
+    console.log(req.query.type);
     const type = req.query.type;
 
     if (type) {

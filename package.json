@@ -107,8 +107,9 @@
     "postinstall": "bower install",
     "prestart": "npm install && grunt build",
     "start": "node server/app.js",
-    "pretest": "npm install",
-    "test": "grunt test",
+    "test": "npm run test-server",
+    "test-server": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js",
+    "test-watch": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js -w",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true

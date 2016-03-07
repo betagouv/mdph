@@ -3,20 +3,26 @@
 var should = require('should');
 var Request = require('./request.model');
 var controller = require('./request.controller');
-var serverTest = require('../../test/utils/server');
+var startServer = require('../../test/utils/server');
 var User = require('../user/user.model');
 
 describe('Request Integration', function() {
-  var server = serverTest();
-  var api = server.api;
-  var getToken = server.token;
+
+  var api;
+  var token;
+  var testUser;
 
   before(function(done) {
-    Request.remove().exec(done);
+    startServer((result) => {
+      api = result.api;
+      token = result.token;
+      testUser = result.fakeUser;
+      done();
+    });
   });
 
   describe('Get single Request', function() {
-    before(function(done) {
+    beforeEach(function(done) {
       var newRequest = new Request({
         shortId: '1234',
         prestations: ['AAH'],
@@ -26,21 +32,22 @@ describe('Request Integration', function() {
           originalname: 'carte-identite.jpg',
           filename: 'hashed-carte-identite',
           mimetype: 'image/jpeg'
-        }]
+        }],
+        user: testUser._id
       });
+
       newRequest.save(done);
     });
 
-    after(function(done) {
+    afterEach(function(done) {
       Request.remove().exec(done);
     });
 
     it('should get the specified populated request', function(done) {
       var gettedRequest;
-      var token = getToken();
 
-      api()
-        .get('/api/requests/1234?access_token=' + token)
+      api
+        .get(`/api/requests/1234?access_token=${token}`)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
@@ -60,12 +67,12 @@ describe('Request Integration', function() {
 
   describe('Update Request', function() {
 
-    before(function(done) {
-      var newRequest = new Request({ shortId: '1234' });
+    beforeEach(function(done) {
+      var newRequest = new Request({ shortId: '1234', user: testUser._id });
       newRequest.save(done);
     });
 
-    after(function(done) {
+    afterEach(function(done) {
       Request.remove().exec(done);
     });
 
@@ -74,9 +81,8 @@ describe('Request Integration', function() {
 
         it('should respond with the updated thing', function(done) {
           var updatedRequest;
-          var token = getToken();
 
-          api()
+          api
             .put('/api/requests/1234?access_token=' + token)
             .send({
               mdph: 'updatedMDPH'
@@ -98,10 +104,8 @@ describe('Request Integration', function() {
 
       describe('When the request does not exist', function() {
         it('should return 404', function(done) {
-          var token = getToken();
-
-          api()
-            .put('/api/requests/9876?access_token=' + token)
+          api
+            .put(`/api/requests/9876?access_token=${token}`)
             .send({
               mdph: 'updatedMDPH'
             })
@@ -112,14 +116,14 @@ describe('Request Integration', function() {
     });
 
     describe('When the user is not authenticated', function() {
-      var newRequest = new Request({ shortId: '1234' });
+      it('should return 401', function(done) {
+        //given
+        var newRequest = new Request({ shortId: '1234', user: testUser._id });
 
-      //when
-      newRequest.save(function() {
-
-        //then
-        it('should return 401', function(done) {
-          api()
+        //when
+        newRequest.save(function() {
+          //then
+          api
             .put('/api/requests/1234')
             .expect(401, done);
         });
@@ -133,7 +137,7 @@ describe('Request Integration', function() {
       var idDoc;
 
       //initialize a request
-      before(function(done) {
+      beforeEach(function(done) {
         var newDocument = {
           type: 'carteIdentite',
           path: 'toto'
@@ -142,7 +146,8 @@ describe('Request Integration', function() {
         var newRequest = new Request({
           shortId: '1234',
           status: 'en_cours',
-          documents: [newDocument]
+          documents: [newDocument],
+          user: testUser._id
         });
 
         newRequest.save(function(err, request) {
@@ -155,20 +160,16 @@ describe('Request Integration', function() {
         });
       });
 
-      after(function(done) {
+      afterEach(function(done) {
         //clear mdphs after testing
         Request.remove().exec(done);
       });
 
       it('should return 200', function(done) {
-        var token = getToken();
-
-        api()
+        api
           .delete('/api/requests/1234/document/' + idDoc + '?access_token=' + token)
           .expect(200, done);
       });
-
     });
   });
-
 });

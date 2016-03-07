@@ -10,4 +10,10 @@ var MdphSchema = new Schema({
   enabled:  { type: Boolean }
 });
 
-module.exports = mongoose.model('Mdph', MdphSchema);
+try {
+  mongoose.model('Mdph', MdphSchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('Mdph');
