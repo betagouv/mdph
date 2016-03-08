@@ -9,17 +9,15 @@ angular.module('impactApp')
         authenticate: true,
         resolve: {
           unclassifiedCategory: function(DocumentCategoryResource, currentMdph) {
-            return DocumentCategoryResource.getUnclassifiedDocumentCategory({mdphId: currentMdph._id}).$promise;
+            return DocumentCategoryResource.getUnclassifiedDocumentCategory({zipcode: currentMdph.zipcode}).$promise;
           },
 
           categories: function(DocumentCategoryResource, currentMdph) {
-            return DocumentCategoryResource.queryDocumentCategories({mdphId: currentMdph._id}).$promise;
+            return DocumentCategoryResource.query({zipcode: currentMdph.zipcode}).$promise;
           },
 
-          documentTypes: function($http, currentMdph) {
-            return $http.get('api/mdphs/' + currentMdph.zipcode + '/document-types').then(function(result) {
-              return result.data;
-            });
+          documentTypes: function(MdphDocumentTypeResource, currentMdph) {
+            return MdphDocumentTypeResource.query({zipcode: currentMdph.zipcode}).$promise;
           }
         },
         controller: 'DocumentCategoriesCtrl'
