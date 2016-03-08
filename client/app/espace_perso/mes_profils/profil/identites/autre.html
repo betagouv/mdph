@@ -37,31 +37,27 @@
     </div>
   </section>
 
-  <section class="identite-section adress-section">
-    <div class="adress-search form-group">
+  <section class="identite-section">
+    <div class="form-group">
+      <label for="nomVoie" class="control-label">Adresse</label>
       <div class="input-group">
-        <input type="search" typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
-        typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100" typeahead-loading="loadingLocations" typeahead-no-results="noResults"
-        ng-model="searchAdress" class="form-control" ng-disabled="identite.isSameAddress" placeholder="Recherche adresse">
+        <input type="search"
+          typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
+          typeahead-min-length='3'
+          typeahead-on-select='fillAdressOnSelect($item)'
+          typeahead-wait-ms="100"
+          typeahead-loading="loadingLocations"
+          typeahead-no-results="noResults"
+          ng-model="identite.nomVoie" class="form-control"
+          name="nomVoie"
+          id="nomVoie"
+          placeholder="Recherche adresse">
         <span class="input-group-addon basic-addon">
           <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
         </span>
       </div>
       <div ng-show="noResults">
         <i class="fa fa-times"></i> Pas de résultats
-      </div>
-    </div>
-  </section>
-
-  <section class="identite-section">
-    <div class="form-group">
-      <div class="address-input">
-        <div class="street">
-          <div class="field large">
-            <label for="nomVoie" class="control-label">Nom de la voie</label>
-            <input id="nomVoie" type="text" name="nomVoie" class="form-control" ng-model="identite.nomVoie" placeholder="Nom de la voie">
-          </div>
-        </div>
       </div>
     </div>
 

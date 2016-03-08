@@ -101,12 +101,21 @@
     </div>
   </section>
 
-  <section class="identite-section adress-section">
-    <div class="adress-search form-group">
+  <section class="identite-section">
+    <div class="form-group required" ng-class="{'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
+      <label for="nomVoie" class="control-label">Adresse</label>
       <div class="input-group">
-        <input type="search" typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
-        typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100" typeahead-loading="loadingLocations" typeahead-no-results="noResults"
-        ng-model="searchAdress" class="form-control" placeholder="Recherche adresse">
+        <input type="search"
+          typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
+          typeahead-min-length='3'
+          typeahead-on-select='fillAdressOnSelect($item)'
+          typeahead-wait-ms="100"
+          typeahead-loading="loadingLocations"
+          typeahead-no-results="noResults"
+          ng-model="identite.nomVoie" class="form-control"
+          name="nomVoie"
+          required
+          placeholder="Recherche adresse">
         <span class="input-group-addon basic-addon">
           <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
         </span>
@@ -114,21 +123,8 @@
       <div ng-show="noResults">
         <i class="fa fa-times"></i> Pas de résultats
       </div>
-    </div>
-  </section>
-
-  <section class="identite-section">
-    <div class="form-group">
-      <div class="address-input">
-        <div class="street">
-          <div class="field large" ng-class="{'required': !disableAddress(),'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
-            <label for="nomVoie" class="control-label">Adresse</label>
-            <input id="nomVoie" type="text" name="nomVoie" class="form-control" ng-model="identite.nomVoie" ng-disabled="disableAddress()" ng-required="!disableAddress()">
-            <div ng-messages="infoForm.nomVoie.$error" ng-if="infoForm.$submitted">
-              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-            </div>
-          </div>
-        </div>
+      <div ng-messages="infoForm.nomVoie.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
       </div>
     </div>
 
@@ -158,25 +154,28 @@
   <section class="identite-section">
     <div class="form-group required" ng-class="{'has-error': infoForm.email.$invalid && infoForm.$submitted}">
       <label for="email" class="control-label">Email</label>
-      <div class="input-group margin-bottom-sm">
-        <input id="email" type="email" name="email" class="form-control" ng-model="identite.email" required>
-        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-      </div>
+      <input id="email" type="email" name="email" class="form-control" ng-model="identite.email" required>
       <div ng-messages="infoForm.email.$error" ng-if="infoForm.$submitted">
         <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="tel_1" class="control-label">Téléphone 1</label>
-      <input id="tel_1" type="text" name="tel_1" class="form-control" ng-model="identite.tel_1">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="tel_1" class="control-label">Téléphone 1</label>
+          <input id="tel_1" type="text" name="tel_1" class="form-control" ng-model="identite.tel_1">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="tel_2" class="control-label">Téléphone 2</label>
+          <input id="tel_2" type="text" name="tel_2" class="form-control" ng-model="identite.tel_2">
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="tel_2" class="control-label">Téléphone 2</label>
-      <input id="tel_2" type="text" name="tel_2" class="form-control" ng-model="identite.tel_2">
-    </div>
   </section>
 
   <section class="identite-section">

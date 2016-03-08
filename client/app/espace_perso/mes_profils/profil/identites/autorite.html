@@ -28,22 +28,6 @@
     </div>
 </section>
 
-<section class="identite-section adress-section">
-  <div class="adress-search form-group">
-    <div class="input-group">
-      <input type="search" typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
-      typeahead-min-length='3' typeahead-on-select='fillAdressOnSelect($item)' typeahead-wait-ms="100" typeahead-loading="loadingLocations" typeahead-no-results="noResults"
-      ng-model="searchAdress" class="form-control" ng-disabled="identite.isSameAddress" placeholder="Recherche adresse">
-      <span class="input-group-addon basic-addon">
-        <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
-      </span>
-    </div>
-    <div ng-show="noResults">
-      <i class="fa fa-times"></i> Pas de résultats
-    </div>
-  </div>
-</section>
-
 <section class="identite-section">
   <div class="form-group">
     <div class="checkbox">
@@ -55,10 +39,26 @@
 
   <div class="form-group" ng-show="!identite.isSameAddress">
     <div class="address-input">
-      <div class="street">
-        <div class="field large">
-          <label for="nomVoie{{id}}" class="control-label">Adresse</label>
-          <input id="nomVoie{{id}}" type="text" name="nomVoie{{id}}" class="form-control" ng-model="identite.nomVoie" placeholder="Nom de la voie">
+      <div class="form-group">
+        <label for="nomVoie{{id}}" class="control-label">Adresse</label>
+        <div class="input-group">
+          <input type="search"
+            typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
+            typeahead-min-length='3'
+            typeahead-on-select='fillAdressOnSelect($item)'
+            typeahead-wait-ms="100"
+            typeahead-loading="loadingLocations"
+            typeahead-no-results="noResults"
+            ng-model="identite.nomVoie" class="form-control"
+            name="nomVoie{{id}}"
+            id="nomVoie{{id}}"
+            placeholder="Recherche adresse">
+          <span class="input-group-addon basic-addon">
+            <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
+          </span>
+        </div>
+        <div ng-show="noResults">
+          <i class="fa fa-times"></i> Pas de résultats
         </div>
       </div>
     </div>
@@ -68,13 +68,13 @@
         <div class="form-group">
           <label for="code_postal{{id}}" class="control-label">Code postal</label>
           <input id="code_postal{{id}}" type="text" name="code_postal{{id}}" class="form-control" ui-mask="99999"
-          ng-model="identite.code_postal" ng-disabled="disableAddress()">
+          ng-model="identite.code_postal">
         </div>
       </div>
       <div class="col-md-8">
         <div class="form-group">
           <label for="localite{{id}}" class="control-label">Localité</label>
-          <input id="localite{{id}}" type="text" name="localite{{id}}" class="form-control" ng-model="identite.localite" ng-disabled="disableAddress()">
+          <input id="localite{{id}}" type="text" name="localite{{id}}" class="form-control" ng-model="identite.localite">
         </div>
       </div>
     </div>
