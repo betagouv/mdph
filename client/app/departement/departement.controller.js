@@ -22,7 +22,7 @@ angular.module('impactApp')
       }
     };
 
-    $timeout(function() {
+    $scope.generateMap = function() {
       var map = L.mapbox.map('map', 'mapbox.streets').setView([currentMdph.coordinates.coordy, currentMdph.coordinates.coordx], 14);
 
       // Disable drag and zoom handlers.
@@ -59,7 +59,5 @@ angular.module('impactApp')
           'marker-symbol': 'building'
         }
       }).addTo(map);
-
-    });
-
+    };
   });
