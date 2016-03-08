@@ -28,7 +28,7 @@ angular.module('impactApp')
           // Logged in, redirect
           var newProfile = new ProfileResource();
           newProfile.$save({userId: data.id}, function(result) {
-            return $state.go('profil', {profileId: result._id}, {reload: true});
+            return $state.go('espace_perso.mes_profils.profil.beneficiaire', {profileId: result._id}, {reload: true});
           });
         })
         .catch(function(err) {
