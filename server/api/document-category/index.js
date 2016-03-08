@@ -22,8 +22,7 @@ router.get('/document-types', controller.showUncategorizedDocumentTypes);
 //
 // router.post('/:categoryId/file', isAuthenticated(), upload.single('file'), controller.saveDocumentCategoryFile);
 // router.get('/:categoryId/file', isAuthenticated(), controller.getDocumentCategoryFile);
-//
-// router.post('/:categoryId/moveDocument/:newCategoryId', isAuthenticated(), controller.updateDocument);
 
+// router.post('/:categoryId/moveDocument/:newCategoryId', isAuthenticated(), controller.updateDocument);
 
 export default router;
