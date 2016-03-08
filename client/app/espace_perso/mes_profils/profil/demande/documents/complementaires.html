@@ -18,7 +18,7 @@
         </ul>
         <ul ng-if="request.documents.complementaires[documentType.id]" class="list-group">
           <li ng-repeat="file in request.documents.complementaires[documentType.id].documentList" class="list-group-item">
-            <display-file ng-if="!file.progress" file="file" hide-actions="true" request="request"></display-file>
+            <display-file ng-if="!file.progress" file="file" hide-actions="true" request="request" user="user"></display-file>
             <div ng-if="file.progress">
               {{file.name}} - en cours...
               <div class="progress">

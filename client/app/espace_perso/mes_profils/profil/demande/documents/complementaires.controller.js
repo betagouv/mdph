@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsComplementairesCtrl', function($scope, $modal, UploadService, request, documentTypes) {
+  .controller('DocumentsComplementairesCtrl', function($scope, $modal, UploadService, request, documentTypes, currentUser) {
     $scope.request = request;
     $scope.documentTypes = documentTypes;
     $scope.selectedTypes = _.map(request.documents.complementaires, function(category) {
       return category.documentType;
     });
+
+    $scope.user = currentUser;
 
     $scope.upload = function(file, documentType) {
       UploadService.upload(request, file, documentType);

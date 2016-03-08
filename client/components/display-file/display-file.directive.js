@@ -6,7 +6,8 @@ angular.module('impactApp')
       scope: {
         file: '=',
         request: '=',
-        hideActions: '='
+        hideActions: '=',
+        user: '='
       },
       templateUrl: 'components/display-file/display-file.html',
       controller: function($scope, $http, $cookies) {
