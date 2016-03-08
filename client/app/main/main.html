@@ -1,11 +1,12 @@
 <ui-view>
-  <header class="hero-unit banner bg">
-    <h1>Votre MDPH en ligne</h1>
+  <header class="banner banner-blue">
+    <div class="hero-unit">
+      <h1>Trouvez le service en ligne de votre MDPH</h1>
 
-    <div class="mdph-choices-wrapper">
       <ul class="mdph-choices">
+        <li class="col-sm-3"></li>
         <li ng-repeat="mdph in mdphs" class="mdph-choice">
-          <a class="btn btn-default" ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{mdph.zipcode}}</strong> - {{mdph.name}}</a>
+          <a class="btn btn-default" ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{mdph.zipcode}}</strong> <br> {{mdph.name}}</a>
         </li>
       </ul>
     </div>
@@ -18,6 +19,23 @@
         Elle peut répondre aux besoins liés à votre handicap.</p>
       <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise votre dossier.</p>
       <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
+    </div>
+  </div>
+
+  <div class="section-main section-flow">
+    <div class="flow">
+      <div>
+        <img src="/assets/images/MDPH_Step1.png" alt="Saisie en ligne">
+        <p><span>1</span>&nbsp;Je complète mon profil</p>
+      </div>
+      <div>
+        <img src="/assets/images/MDPH_Step2.png" alt="Saisie en ligne">
+        <p><span>2</span>&nbsp;Je transmets ma demande</p>
+      </div>
+      <div>
+        <img src="/assets/images/MDPH_Step3.png" alt="Saisie en ligne">
+        <p><span>3</span>&nbsp;Je consulte le suivi de mon dossier</p>
+      </div>
     </div>
   </div>
 

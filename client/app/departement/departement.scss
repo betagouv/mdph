@@ -21,3 +21,39 @@
     font-weight: 700;
   }
 }
+
+.bg {
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  width: 100%;
+
+
+  .hero-unit > h1, p {
+    text-shadow: 2px 2px 0px #595959;
+  }
+
+  &.bg-59 {
+    background-image: url('../assets/images/saint_amand.jpg');
+  }
+
+  &.bg-14 {
+    background-image: url('../assets/images/arromanches.jpg');
+  }
+
+  &.bg-93 {
+    background-image: url('../assets/images/93_bisbis.jpg');
+  }
+
+  &.bg-06 {
+    background-image: url('../assets/images/bg06.jpg');
+  }
+
+  &.bg-54 {
+    background-image: url('../assets/images/54_place_stanislav.jpg');
+  }
+
+  &.bg-17 {
+    background-image: url('../assets/images/17_vieux_port.jpg');
+  }
+}
