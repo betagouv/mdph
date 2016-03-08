@@ -10,16 +10,14 @@ var DocumentCategory = require('./document-category.model');
 describe('Document Category Integration', function() {
   var api;
   var server;
-  var tokenAdmin;
-  var testUser;
+  var tokenAdminMdph;
   var testMdph;
 
   before(function(done) {
     startServer((result) => {
       server = result.server;
       api = result.api;
-      tokenAdmin = result.tokenAdmin;
-      testUser = result.fakeUser;
+      tokenAdminMdph = result.tokenAdminMdph;
       testMdph = result.testMdph;
       done();
     });
@@ -41,7 +39,7 @@ describe('Document Category Integration', function() {
   describe('When asking unclassfied documents', function() {
     it('should return a list', done => {
       api
-        .get(`/api/mdphs/${testMdph._id}/categories/document-types?access_token=${tokenAdmin}`)
+        .get(`/api/mdphs/${testMdph.zipcode}/categories/document-types?access_token=${tokenAdminMdph}`)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
@@ -56,7 +54,7 @@ describe('Document Category Integration', function() {
 
     it('should fail when the mdph does not exist', done => {
       api
-        .get(`/api/mdphs/random_id_does_not_exist/categories/document-types?access_token=${tokenAdmin}`)
+        .get(`/api/mdphs/random_id_does_not_exist/categories/document-types?access_token=${tokenAdminMdph}`)
         .expect(404)
         .end(done);
     });
@@ -65,7 +63,7 @@ describe('Document Category Integration', function() {
   describe('When saving a new document category', function() {
     it('should return the default new category', done => {
       api
-        .post(`/api/mdphs/${testMdph._id}/categories?access_token=${tokenAdmin}`)
+        .post(`/api/mdphs/${testMdph.zipcode}/categories?access_token=${tokenAdminMdph}`)
         .send({
           position: 0
         })
@@ -89,7 +87,7 @@ describe('Document Category Integration', function() {
 
     it('should return saved category', done => {
       api
-        .get(`/api/mdphs/${testMdph._id}/categories?access_token=${tokenAdmin}`)
+        .get(`/api/mdphs/${testMdph.zipcode}/categories?access_token=${tokenAdminMdph}`)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {

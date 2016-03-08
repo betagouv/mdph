@@ -34,15 +34,29 @@ function saveUser() {
   };
 }
 
-function saveUserAdmin() {
+function saveUserAdminMdph() {
   return function(testMdph) {
+    var fakeUserAdminMdph = new User({
+      provider: 'local',
+      name: 'Fake User Admin Mdph',
+      email: 'admin-mdph@test.com',
+      password: 'hashedPassword',
+      role: 'adminMdph',
+      mdph: testMdph._id
+    });
+
+    return fakeUserAdminMdph.save();
+  };
+}
+
+function saveUserAdmin() {
+  return function() {
     var fakeUserAdmin = new User({
       provider: 'local',
       name: 'Fake User Admin',
       email: 'admin@test.com',
       password: 'hashedPassword',
-      role: 'adminMdph',
-      mdph: testMdph._id
+      role: 'admin'
     });
 
     return fakeUserAdmin.save();
@@ -60,8 +74,10 @@ function startServer(done) {
   var testMdph;
   var fakeUser;
   var fakeUserAdmin;
+  var fakeUserAdminMdph;
   var token;
   var tokenAdmin;
+  var tokenAdminMdph;
 
   var {app, server} = require('../../app');
 
@@ -76,6 +92,11 @@ function startServer(done) {
     .then(mdph => {
       testMdph = mdph;
       return mdph;
+    })
+    .then(saveUserAdminMdph())
+    .then(user => {
+      fakeUserAdminMdph = user;
+      tokenAdminMdph = jwt.sign({_id: user._id, role: user.role }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
     })
     .then(saveUserAdmin())
     .then(user => {
@@ -94,6 +115,8 @@ function startServer(done) {
         testMdph,
         fakeUser,
         token,
+        fakeUserAdminMdph,
+        tokenAdminMdph,
         fakeUserAdmin,
         tokenAdmin
       });

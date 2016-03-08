@@ -258,7 +258,6 @@ exports.updateDocumentType = function(req, res) {
 exports.showUncategorizedDocumentTypes = function(req, res) {
   DocumentCategory
     .find({mdph: req.mdph._id}).lean().exec()
-    .then(handleUserNotAuthorized(req, res))
     .then(filterList())
     .then(respondWithResult(res))
     .catch(handleError(req, res));

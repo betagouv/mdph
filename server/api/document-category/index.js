@@ -7,10 +7,11 @@ var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 var router = new Router();
 
-router.post('/', isAuthenticated(), controller.createNewDocumentCategory);
-router.get('/', isAuthenticated(), controller.showDocumentCategories);
+router.post('/', controller.createNewDocumentCategory);
+router.get('/', controller.showDocumentCategories);
 
-// router.put('/', isAuthenticated(), controller.updateDocumentCategories);
+//router.put('/', isAuthenticated(), controller.updateDocumentCategories);
+
 // router.put('/:categoryId', isAuthenticated(), controller.updateDocumentCategory);
 // router.delete('/:categoryId', isAuthenticated(), controller.removeDocumentCategory);
 //
@@ -22,7 +23,7 @@ router.get('/', isAuthenticated(), controller.showDocumentCategories);
 // router.get('/unclassifiedCategory', isAuthenticated(), controller.getUnclassifiedCategory);
 // router.get('/unclassifiedDocuments', isAuthenticated(), controller.getUnclassifiedDocuments);
 
-router.post('/document-types', isAuthenticated(), controller.updateDocumentType);
-router.get('/document-types', isAuthenticated(), controller.showUncategorizedDocumentTypes);
+router.post('/document-types', controller.updateDocumentType);
+router.get('/document-types', controller.showUncategorizedDocumentTypes);
 
 export default router;
