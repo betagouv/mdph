@@ -53,6 +53,20 @@ function handleUserNotAuthorized(user, res) {
   };
 }
 
+function handleStatusError(user, res) {
+  return function(request) {
+    if (Auth.meetsRequirements(user.role, 'adminMdph')) {
+      return request;
+    }
+
+    if (request.status === 'en_cours') {
+      return request;
+    }
+
+    throw(403);
+  };
+}
+
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(request) {
@@ -69,10 +83,12 @@ function handleDeleteFile(req) {
       throw(304);
     }
 
-    fs.unlink(file.path, function() {
-      // ignore errors
-      file.remove();
-    });
+    if (file.path) {
+      fs.unlink(file.path, function() {
+        // ignore errors
+        file.remove();
+      });
+    }
 
     request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
     return request.save();
@@ -189,6 +205,7 @@ exports.deleteFile = function(req, res) {
   findAndPopulate(req.params.shortId)
     .then(handleEntityNotFound(res))
     .then(handleUserNotAuthorized(req.user, res))
+    .then(handleStatusError(req.user, res))
     .then(handleDeleteFile(req))
     .then(respondWithResult(res))
     .catch(handleError(req, res));
