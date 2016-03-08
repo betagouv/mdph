@@ -25,7 +25,7 @@ var RequestSchema = new Schema({
   shortId:        { type: String, unique: true, default: shortId.generate },
   documents:      [DocumentSchema],
   askedDocumentTypes: [String],
-  user:           { type: Schema.Types.ObjectId, ref: 'User' },
+  user:           { type: Schema.Types.ObjectId, ref: 'User', required: true },
   profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
   mdph:           String,
   estRenouvellement: Boolean,
@@ -44,6 +44,8 @@ var RequestSchema = new Schema({
   synthese:       Schema.Types.Mixed,
   comments:       { type: String }
 });
+
+// RequestSchema.set('toObject', { virtuals: false });
 
 RequestSchema.pre('save', function(next) {
   var now = Date.now();
@@ -98,4 +100,10 @@ RequestSchema.methods = {
   }
 };
 
-module.exports = mongoose.model('Request', RequestSchema);
+try {
+  mongoose.model('Request', RequestSchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('Request');

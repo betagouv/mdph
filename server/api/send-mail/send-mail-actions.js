@@ -1,10 +1,11 @@
 'use strict';
 
 const _ = require('lodash');
-const Mailer = require('../send-mail/send-mail.controller');
+const Mailer = require('./send-mail.controller');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
+const MakePdf = require('../../components/make-pdf');
 
 const confirmationMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'confirm-email-premailer.html')));
 const confirmationMailCompiled = Handlebars.compile(confirmationMailTemplate);
@@ -27,17 +28,21 @@ exports.sendMailDemandeDocuments = function(request, evaluator) {
   );
 };
 
-exports.sendMailReceivedTransmission = function(request, email, pdfPath) {
-  Mailer.sendMail(email,
-    'Votre demande à bien été transmise',
-    'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
-    [
-      {
-        filename: request.shortId + '.pdf',
-        path: pdfPath
-      }
-    ]
-  );
+exports.sendMailReceivedTransmission = function(options) { //request, email, pdfPath) {
+  MakePdf.make(options, function(err, pdfPath) {
+    if (pdfPath) {
+      Mailer.sendMail(options.email,
+        'Votre demande à bien été transmise',
+        'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
+        [
+          {
+            filename: options.request.shortId + '.pdf',
+            path: pdfPath
+          }
+        ]
+      );
+    }
+  });
 };
 
 exports.sendConfirmationMail = function(to, confirmationUrl) {

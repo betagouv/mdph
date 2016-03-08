@@ -1,42 +1,28 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./request.controller');
-var auth = require('../../auth/auth.service');
-var config = require('../../config/environment');
-var multer  = require('multer');
-var compose = require('composable-middleware');
+import {Router} from 'express';
+import documentsRouter from '../document';
+import * as controller from './request.controller';
+import {isAuthenticated, isAuthorized} from '../../auth/auth.service';
 
-var Mdph = require('../mdph/mdph.model');
-var Request = require('./request.model');
-var upload = multer({ dest: config.uploadDir });
+var router = new Router();
 
-var router = express.Router();
+router.post('/', isAuthenticated(), controller.create);
 
-router.post('/', auth.isAuthenticated(), controller.save);
-
-router.get('/:shortId', auth.isAuthenticated(), controller.show);
+router.get('/:shortId', isAuthenticated(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 
-router.post('/:shortId', auth.isAuthorized(), controller.updateFromAgent);
-router.put('/:shortId', auth.isAuthorized(), controller.updateFromUser);
+router.post('/:shortId', isAuthenticated(), controller.update);
+router.put('/:shortId', isAuthenticated(), controller.update);
 
-router.delete('/:shortId', auth.isAuthorized(), controller.destroy);
+router.delete('/:shortId', isAuthenticated(), controller.destroy);
 
-router.get('/:shortId/history', auth.isAuthorized(), controller.getHistory);
-router.get('/:shortId/recapitulatif', auth.isAuthorized(), controller.getRecapitulatif);
+router.get('/:shortId/history', isAuthenticated(), controller.getHistory);
+router.get('/:shortId/recapitulatif', isAuthenticated(), controller.getRecapitulatif);
 
-router.get('/:shortId/pdf/:fileName', auth.isAuthorized(), controller.getPdf);
-router.get('/:shortId/synthese.pdf', auth.isAuthorized(), controller.getSynthesePdf);
+router.get('/:shortId/pdf/:fileName', isAuthenticated(), controller.getPdf);
+router.get('/:shortId/synthese.pdf', isAuthenticated(), controller.getSynthesePdf);
 
-router.post('/:shortId/document', auth.isAuthorized(), upload.single('file'), controller.saveFile);
-router.post('/:shortId/document-partenaire', upload.single('file'), controller.saveFilePartenaire);
-
-router.put('/:shortId/document/:fileId', auth.isAuthorized(), controller.updateFile);
-router.get('/:shortId/document/:fileName', auth.isAuthorized(), controller.downloadFile);
-router.delete('/:shortId/document/:fileId', auth.isAuthorized(), controller.deleteFile);
-
-router.get('/:shortId/simulation', auth.isAuthorized(), controller.simulate);
-router.get('/:shortId/resend-mail', auth.isAuthorized(), controller.resendMail);
+router.use('/:shortId/document', documentsRouter);
 
 module.exports = router;

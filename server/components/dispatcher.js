@@ -1,51 +1,67 @@
 'use strict';
 
-var async = require('async');
+const async = require('async');
 
-var DispatchRuleModel = require('../api/dispatch-rule/dispatch-rule.model');
-var SecteurModel = require('../api/secteur/secteur.model');
-var MdphModel = require('../api/mdph/mdph.model');
+const DispatchRuleModel = require('../api/dispatch-rule/dispatch-rule.model');
+const SecteurModel = require('../api/secteur/secteur.model');
+const MdphModel = require('../api/mdph/mdph.model');
+const MailActions = require('../api/send-mail/send-mail-actions');
+const Bluebird = require('bluebird');
 
-exports.findSecteur = function(request, callback) {
-  var codePostal = request.getCodePostal();
-  var type = request.getType();
+function sendMailToSecteur(request, secteur) {
+  if (secteur) {
+    let type = request.getType();
+    let evaluators = (secteur.evaluators && secteur.evaluators[type]) || [];
 
-  async.waterfall([
-    function(cb) {
-      MdphModel.findOne({zipcode: request.mdph}).exec(cb);
-    },
+    evaluators.forEach(function(evaluator) {
+      MailActions.sendMailNotificationAgent(request, evaluator.email);
+    });
+  }
 
-    function(mdph, cb) {
-      DispatchRuleModel.findOne({'commune.codePostal': codePostal, mdph: mdph}).exec(function(err, dispatchRule) {
-        cb(err, dispatchRule, mdph);
-      });
-    },
+  return secteur;
+}
 
-    function(dispatchRule, mdph, cb) {
-      if (!dispatchRule) {
-        SecteurModel.findOne({default: true, mdph: mdph}).populate('evaluators.' + type).exec(function(err, defaultSecteur) {
-          if (err || !defaultSecteur) {
-            cb(true);
-          } else {
-            cb(null, defaultSecteur);
-          }
-        });
-      } else {
-        SecteurModel.findById(dispatchRule.secteur[type]).populate('evaluators.' + type).exec(function(err, secteur) {
-          if (err || !secteur) {
-            cb(true);
-          } else {
-            cb(null, secteur);
-          }
-        });
-      }
-    }
+function findRequestMdph(request) {
+  return MdphModel.findOne({zipcode: request.mdph});
+}
 
-  ], function(err, secteur) {
-    if (err) {
-      return callback(404);
-    } else {
-      return callback(null, secteur);
-    }
+function findDispatchRule(mdph, request) {
+  let codePostal = request.getCodePostal();
+  return DispatchRuleModel.findOne({'commune.codePostal': codePostal, mdph: mdph});
+}
+
+function findSecteurOrDefault(request, dispatchRule, mdph) {
+  let type = request.getType();
+
+  if (!dispatchRule) {
+    // Get default sector
+    return SecteurModel.findOne({default: true, mdph: mdph}).populate('evaluators.' + type);
+  } else {
+    return SecteurModel.findById(dispatchRule.secteur[type]).populate('evaluators.' + type);
+  }
+}
+
+function findSecteur(request) {
+  return Bluebird.using(findRequestMdph(request), mdph => {
+    return findDispatchRule(mdph, request)
+      .then(dispatchRule => findSecteurOrDefault(request, dispatchRule, mdph));
   });
+}
+
+function handleSecteurNotFound(secteur) {
+  if (!secteur) {
+    throw(404);
+  }
+
+  return secteur;
+}
+
+function dispatch(request) {
+  return findSecteur(request)
+    .then(handleSecteurNotFound)
+    .then(secteur => sendMailToSecteur(request, secteur));
+}
+
+module.exports = {
+  dispatch: dispatch
 };

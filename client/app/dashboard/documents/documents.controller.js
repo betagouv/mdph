@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('CategoriesCtrl', function($scope, $timeout, $http, $cookies, toastr, MdphResource, currentMdph, categories, unclassifiedCategory, documentTypes, Upload) {
+  .controller('DocumentCategoriesCtrl', function($scope, $timeout, $http, $cookies, toastr, DocumentCategoryResource, MdphResource, currentMdph, categories, unclassifiedCategory, documentTypes, Upload) {
     $scope.categories = categories;
     $scope.currentMdph = currentMdph;
     $scope.documentTypes = documentTypes;
@@ -55,7 +55,7 @@ angular.module('impactApp')
     }
 
     function isDocumentType(node) {
-      // TODO: remove stupid hack to check if catA is a DocumentType (no _id)
+      // TODO: remove stupid hack to check if node is a DocumentType (no _id)
       return typeof node._id === 'undefined';
     }
 
@@ -102,7 +102,7 @@ angular.module('impactApp')
     $scope.removeDocumentType = function(scope, category) {
       var documentType = scope.$nodeScope.$modelValue;
 
-      updateDocumentType(documentType, category._id, null, function() {
+      category.removeDocumentType(documentType).then(function() {
         var index = category.documentTypes.indexOf(documentType);
         if (index >= 0) {
           category.documentTypes.splice(index, 1);
@@ -115,7 +115,7 @@ angular.module('impactApp')
     $scope.removeCategory = function(scope) {
       var category = scope.$nodeScope.$modelValue;
 
-      $http.delete('api/mdphs/' + currentMdph.zipcode + '/categories/' + category._id).then(function() {
+      category.delete().then(function() {
         showAlert();
         scope.remove();
       },
@@ -125,8 +125,8 @@ angular.module('impactApp')
       });
     };
 
-    $scope.save = function(current) {
-      $http.put('api/mdphs/' + currentMdph.zipcode + '/categories/' + current._id, current).then(function() {
+    $scope.save = function(category) {
+      category.save().then(function() {
         showAlert();
       },
 

@@ -10,17 +10,9 @@ var config = require('../../config/environment');
 
 var auth = require('../../auth/auth.service');
 var Mdph = require('../../api/mdph/mdph.model');
-var DocumentCategoryCtrl = require('../../api/document/document-category.controller');
+var DocumentCategoryCtrl = require('../../api/document-category/document-category.controller');
 
-module.exports = function(request, user, requestTempPdfPath, documentList, callback) {
-  if (auth.hasRole(user, 'adminMdph')) {
-    buildGroupStructure(request, requestTempPdfPath, documentList, callback);
-  } else {
-    buildFlatStructure(requestTempPdfPath, documentList, callback);
-  }
-};
-
-function buildGroupStructure(request, requestTempPdfPath, documentList, callback) {
+module.exports = function(request, requestTempPdfPath, documentList, callback) {
   Mdph
     .findOne({zipcode: request.mdph})
     .exec(function(err, mdph) {
@@ -92,18 +84,4 @@ function buildGroupStructure(request, requestTempPdfPath, documentList, callback
         callback(null, pdfStructure);
       });
     });
-}
-
-function buildFlatStructure(requestTempPdfPath, documentList, callback) {
-  var pdfStructure = [
-    requestTempPdfPath
-  ];
-
-  if (documentList.length > 0) {
-    documentList.forEach(function(currentDocument) {
-      pdfStructure.push(currentDocument.path);
-    });
-  }
-
-  callback(null, pdfStructure);
-}
+};

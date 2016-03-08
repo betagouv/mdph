@@ -1,12 +1,13 @@
 module.exports = {
-  html: ['<%= app.dirs.dist %>/{,*/}*.html'],
-  css: ['<%= app.dirs.dist %>/{,*/}*.css'],
-  js: ['<%= app.dirs.dist %>/{,*/}*.js'],
+  html: ['<%= app.dirs.dist %>/<%= app.dirs.client %>/{,!(bower_components)/**/}*.html'],
+  css: ['<%= app.dirs.dist %>/<%= app.dirs.client %>/!(bower_components){,*/}*.css'],
+  js: ['<%= app.dirs.dist %>/<%= app.dirs.client %>/!(bower_components){,*/}*.js'],
   options: {
     assetsDirs: [
-      '<%= app.dirs.dist %>',
-      '<%= app.dirs.dist %>/assets/images'
+      '<%= app.dirs.dist %>/<%= app.dirs.client %>',
+      '<%= app.dirs.dist %>/<%= app.dirs.client %>/assets/images'
     ],
+
     // This is so we update image references in our ng-templates
     patterns: {
       js: [

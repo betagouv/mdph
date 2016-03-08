@@ -4,11 +4,10 @@
 
 'use strict';
 
-var errors = require('./components/errors');
-var path = require('path');
+import errors from './components/errors';
+import path from 'path';
 
-module.exports = function(app) {
-
+export default function(app) {
   // Insert routes below
   app.use('/api/mdphs', require('./api/mdph'));
   app.use('/api/requests', require('./api/request'));
@@ -20,7 +19,7 @@ module.exports = function(app) {
   app.use('/api/sections', require('./api/sections'));
   app.use('/api/secteurs', require('./api/secteur'));
   app.use('/api/stats', require('./api/stats'));
-  app.use('/api/documents', require('./api/document'));
+  app.use('/api/document-types', require('./api/document-type'));
 
   app.use('/auth', require('./auth'));
 
@@ -30,8 +29,7 @@ module.exports = function(app) {
 
   // All other routes should redirect to the index.html
   app.route('/*')
-    .get(function(req, res) {
-      var indexPath = path.join(app.get('appPath'), 'index.html');
-      res.sendFile(indexPath);
+    .get((req, res) => {
+      res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
     });
-};
+}

@@ -9,7 +9,7 @@ var User = require('../user/user.model');
 var Secteur = require('../secteur/secteur.model');
 var Request = require('../request/request.model');
 var Partenaire = require('../partenaire/partenaire.model');
-var DocumentCategoryCtrl = require('../document/document-category.controller');
+var DocumentCategoryCtrl = require('../document-category/document-category.controller');
 
 // Get all users linked to a single mdph
 exports.showUsers = function(req, res) {
@@ -94,14 +94,6 @@ exports.updateDocumentCategories = function(req, res) {
 
 exports.removeDocumentCategory = function(req, res) {
   DocumentCategoryCtrl.removeDocumentCategory(req.params.categoryId, function(err) {
-    if (err) { return handleError(req, res, err); }
-
-    return res.sendStatus(200);
-  });
-};
-
-exports.updateDocumentType = function(req, res) {
-  DocumentCategoryCtrl.updateDocumentType(req.body.documentType, req.body.oldCategoryId, req.body.newCategoryId, function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(200);

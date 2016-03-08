@@ -14,7 +14,7 @@ module.exports = {
   },
   serverTest: {
     options: {
-      jshintrc: 'server/.jshintrc-spec'
+      jshintrc: 'server/.jshintrc'
     },
     src: ['server/**/*.{spec,integration}.js', 'server/test/**/*.js']
   },

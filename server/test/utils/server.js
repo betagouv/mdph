@@ -1,55 +1,126 @@
-var app = require('../../app');
 var supertest = require('supertest');
+var jwt = require('jsonwebtoken');
+
 var User = require('../../api/user/user.model');
+var Mdph = require('../../api/mdph/mdph.model');
 
 var signToken = require('../../auth/auth.service').signToken;
-var jwt = require('jsonwebtoken');
 var config = require('../../config/environment');
 
-module.exports = function() {
-  var port = 3001;
-  var server;
-  var token;
+import {app, server} from '../../app';
 
-  var apiSuperTest = function() {
-    return supertest.agent('http://localhost:' + port);
+function saveMdph(mdph) {
+  return function() {
+    var test = new Mdph({zipcode: 'test'});
+    test.save((err, savedMdph) => {
+      mdph = savedMdph;
+    });
+
+    return test;
   };
+}
 
-  beforeEach(function(done) {
-    var user = new User({
+function saveUser() {
+  return function() {
+    var fakeUser = new User({
       provider: 'local',
       name: 'Fake User',
-      email: 'test@test.com',
+      email: 'user@test.com',
       password: 'hashedPassword',
-      role: 'adminMdph'
+      role: 'user'
     });
 
-    server = app.listen(port);
-    user.save(function(err) {
-      if (err) {
-        return done(err);
-      }
-
-      token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-      done();
-    });
-  });
-
-  afterEach(function(done) {
-    User.remove(function() {
-      done();
-    });
-  });
-
-  afterEach(function(done) {
-    server.close(done);
-  });
-
-  return {
-    api: apiSuperTest,
-    token: function() {
-      return token;
-    }
+    return fakeUser.save();
   };
+}
 
-};
+function saveUserAdminMdph() {
+  return function(testMdph) {
+    var fakeUserAdminMdph = new User({
+      provider: 'local',
+      name: 'Fake User Admin Mdph',
+      email: 'admin-mdph@test.com',
+      password: 'hashedPassword',
+      role: 'adminMdph',
+      mdph: testMdph._id
+    });
+
+    return fakeUserAdminMdph.save();
+  };
+}
+
+function saveUserAdmin() {
+  return function() {
+    var fakeUserAdmin = new User({
+      provider: 'local',
+      name: 'Fake User Admin',
+      email: 'admin@test.com',
+      password: 'hashedPassword',
+      role: 'admin'
+    });
+
+    return fakeUserAdmin.save();
+  };
+}
+
+function removeUsers() {
+  return function() {
+    User.remove().exec();
+  };
+}
+
+function startServer(done) {
+
+  var testMdph;
+  var fakeUser;
+  var fakeUserAdmin;
+  var fakeUserAdminMdph;
+  var token;
+  var tokenAdmin;
+  var tokenAdminMdph;
+
+  var {app, server} = require('../../app');
+
+  server.listen(config.port, config.ip, function() {
+    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+  });
+
+  Mdph
+    .remove().exec()
+    .then(removeUsers())
+    .then(saveMdph(testMdph))
+    .then(mdph => {
+      testMdph = mdph;
+      return mdph;
+    })
+    .then(saveUserAdminMdph())
+    .then(user => {
+      fakeUserAdminMdph = user;
+      tokenAdminMdph = jwt.sign({_id: user._id, role: user.role }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    })
+    .then(saveUserAdmin())
+    .then(user => {
+      fakeUserAdmin = user;
+      tokenAdmin = jwt.sign({_id: user._id, role: user.role }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    })
+    .then(saveUser())
+    .then(user => {
+      fakeUser = user;
+      token = jwt.sign({_id: user._id, role: user.role }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    })
+    .then(() => {
+      return done({
+        api: supertest.agent(`http://localhost:${config.port}`),
+        server,
+        testMdph,
+        fakeUser,
+        token,
+        fakeUserAdminMdph,
+        tokenAdminMdph,
+        fakeUserAdmin,
+        tokenAdmin
+      });
+    });
+}
+
+export default startServer;

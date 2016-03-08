@@ -1,18 +1,6 @@
 'use strict';
 
-var fs = require('fs');
-var _ = require('lodash');
-var spawn = require('child_process').spawn;
-
-function loadConfig(path) {
-  var config = {};
-  fs.readdirSync(path).forEach(function(file) {
-    var taskName = file.replace(/\.js$/, '');
-    config[taskName] = require(path + file);
-  });
-
-  return config;
-}
+var path = require('path');
 
 module.exports = function(grunt) {
   // Load grunt tasks automatically
@@ -28,25 +16,22 @@ module.exports = function(grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  var config = {
-    // Common settings
-    pkg: grunt.file.readJSON('package.json'),
-    app: {
-      dirs: {
-        client: 'client',
-        dist: 'dist'
-      },
-      port: process.env.PORT || 9000
-    }
-  };
-
   // Load grunt-tasks
-  _.extend(
-    config,
-    loadConfig(__dirname + '/grunt-tasks/')
-  );
-
-  grunt.initConfig(config);
+  require('load-grunt-config')(grunt, {
+    // path to task.js files, defaults to grunt dir
+    configPath: path.join(process.cwd(), 'grunt-tasks'),
+    data: {
+      pkg: grunt.file.readJSON('package.json'),
+      app: {
+        dirs: {
+          client: 'client',
+          dist: 'dist',
+          server: 'server'
+        },
+        port: process.env.PORT || 9000
+      }
+    },
+  });
 
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function() {
@@ -64,34 +49,20 @@ module.exports = function(grunt) {
     this.async();
   });
 
-  grunt.registerTask('bunyan', function() {
-    var path = './node_modules/bunyan/bin/bunyan';
-    if (!fs.existsSync(path)) {
-      throw new Error('bundle binary not found');
-    }
-
-    var child = spawn(path, ['-oshort'], {
-      stdio: ['pipe', process.stdout, process.stderr]
-    });
-
-    process.stdout.write = function() {
-      child.stdin.write.apply(child.stdin, arguments);
-    };
-  });
-
   grunt.registerTask('serve', function(target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
     }
 
     grunt.task.run([
+      'bunyan',
       'clean:server',
       'env:all',
       'injector:sass',
       'concurrent:server',
       'injector',
-      'wiredep',
-      'autoprefixer',
+      'wiredep:client',
+      'postcss',
       'express:dev',
       'wait',
       'open',
@@ -113,21 +84,9 @@ module.exports = function(grunt) {
         'injector:sass',
         'concurrent:test',
         'injector',
-        'autoprefixer',
+        'postcss',
+        'wiredep:test',
         'karma'
-      ]);
-    } else if (target === 'e2e') {
-      return grunt.task.run([
-        'clean:server',
-        'env:all',
-        'env:test',
-        'injector:sass',
-        'concurrent:test',
-        'injector',
-        'wiredep',
-        'autoprefixer',
-        'express:dev',
-        'protractor'
       ]);
     } else if (target === 'watch') {
       return grunt.task.run([
@@ -136,6 +95,8 @@ module.exports = function(grunt) {
       ]);
     } else {
       grunt.task.run([
+        'jshint',
+        'jscs',
         'test:server',
         'test:client'
       ]);
@@ -150,13 +111,14 @@ module.exports = function(grunt) {
     'injector:sass',
     'concurrent:dist',
     'injector',
-    'wiredep',
+    'wiredep:client',
     'useminPrepare',
-    'autoprefixer',
+    'postcss',
     'ngtemplates',
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'babel:server',
     'cssmin',
     'uglify',
     'rev',
@@ -164,7 +126,6 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'bunyan',
     'serve'
   ]);
 };

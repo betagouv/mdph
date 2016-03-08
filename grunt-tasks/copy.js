@@ -4,20 +4,28 @@ module.exports = {
       expand: true,
       dot: true,
       cwd: '<%= app.dirs.client %>',
-      dest: '<%= app.dirs.dist %>',
+      dest: '<%= app.dirs.dist %>/<%= app.dirs.client %>',
       src: [
-        '*.{ico,png,txt,pdf}',
+        '*.{ico,png,txt}',
         '.htaccess',
         'bower_components/**/*',
         'assets/images/{,*/}*.{webp}',
-        'assets/documents/**/*',
+        'assets/fonts/**/*',
         'index.html'
       ]
     }, {
       expand: true,
       cwd: '.tmp/images',
-      dest: '<%= app.dirs.dist %>/assets/images',
+      dest: '<%= app.dirs.dist %>/<%= app.dirs.client %>/assets/images',
       src: ['generated/*']
+    }, {
+      expand: true,
+      dest: '<%= app.dirs.dist %>',
+      src: [
+        'package.json',
+        '<%= app.dirs.server %>/**/*',
+        '!<%= app.dirs.server %>/config/local.env.sample.js'
+      ]
     }]
   },
   styles: {

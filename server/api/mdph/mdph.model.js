@@ -17,4 +17,10 @@ var MdphSchema = new Schema({
   email:    { type: String }
 });
 
-module.exports = mongoose.model('Mdph', MdphSchema);
+try {
+  mongoose.model('Mdph', MdphSchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('Mdph');

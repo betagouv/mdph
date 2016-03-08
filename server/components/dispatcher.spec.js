@@ -3,18 +3,13 @@
 var should = require('should');
 var async = require('async');
 
-var dispatcher = require('./dispatcher');
+var Dispatcher = require('./dispatcher');
 
 var DispatchRule = require('../api/dispatch-rule/dispatch-rule.model');
 var Secteur = require('../api/secteur/secteur.model');
 var Mdph = require('../api/mdph/mdph.model');
 var Request = require('../api/request/request.model');
-
-var caen = new Mdph({
-  name: 'Caen',
-  zipcode: '14',
-  email: 'caen@caen.com'
-});
+var User = require('../api/user/user.model');
 
 var nord = new Mdph({
   name: 'Nord',
@@ -22,10 +17,34 @@ var nord = new Mdph({
   email: 'nord@nord.com'
 });
 
+var caen = new Mdph({
+  name: 'Caen',
+  zipcode: '14',
+  email: 'caen@caen.com'
+});
+
+var agentAdulte = new User({
+  name: 'Agent adulte',
+  mdph: nord._id,
+  email: 'test@toto.com',
+  password: 'password'
+});
+
+var agentEnfant = new User({
+  name: 'Agent enfant',
+  mdph: nord._id,
+  email: 'test@tata.com',
+  password: 'password'
+});
+
 var secteurNord = new Secteur({
   mdph: nord,
   name: 'Secteur Nord A',
-  default: true
+  default: true,
+  evaluators: {
+    adulte: agentAdulte._id,
+    enfant: agentEnfant._id
+  }
 });
 
 var secteurCaen = new Secteur({
@@ -77,6 +96,10 @@ describe('Dispatcher', function() {
       },
 
       function(callback) {
+        User.remove().exec(callback);
+      },
+
+      function(callback) {
         Mdph.remove().exec(callback);
       },
 
@@ -86,6 +109,14 @@ describe('Dispatcher', function() {
 
       function(callback) {
         nord.save(callback);
+      },
+
+      function(callback) {
+        agentAdulte.save(callback);
+      },
+
+      function(callback) {
+        agentEnfant.save(callback);
       },
 
       function(callback) {
@@ -109,13 +140,15 @@ describe('Dispatcher', function() {
       }
 
     ], function(err, results) {
-      done();
+      done(err);
     });
   });
 
   it('should find the correct secteur', function(done) {
+    var user = new User();
     var request = new Request({
       mdph: '14',
+      user: user._id,
       formAnswers: {
         identites: {
           beneficiaire: {
@@ -126,7 +159,7 @@ describe('Dispatcher', function() {
       }
     });
 
-    dispatcher.findSecteur(request, function(err, secteur) {
+    Dispatcher.dispatch(request).then(function(secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurCaen.id);
       done();
@@ -134,8 +167,10 @@ describe('Dispatcher', function() {
   });
 
   it('should find the correct default secteur even without rules', function(done) {
+    var user = new User();
     var request = new Request({
       mdph: '59',
+      user: user._id,
       formAnswers: {
         identites: {
           beneficiaire: {
@@ -146,7 +181,7 @@ describe('Dispatcher', function() {
       }
     });
 
-    dispatcher.findSecteur(request, function(err, secteur) {
+    Dispatcher.dispatch(request).then(function(secteur) {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurNord.id);
       done();
@@ -154,8 +189,10 @@ describe('Dispatcher', function() {
   });
 
   it('should not find the default secteur if it is described in another mdph', function(done) {
+    var user = new User();
     var request = new Request({
       mdph: '14',
+      user: user._id,
       formAnswers: {
         identites: {
           beneficiaire: {
@@ -166,9 +203,29 @@ describe('Dispatcher', function() {
       }
     });
 
-    dispatcher.findSecteur(request, function(err, secteur) {
+    Dispatcher.dispatch(request).catch(function(err) {
       should.exist(err);
-      should.not.exist(secteur);
+      done();
+    });
+  });
+
+  it('should find the default secteur and notify evaluator', function(done) {
+    var user = new User();
+    var request = new Request({
+      mdph: '59',
+      user: user._id,
+      formAnswers: {
+        identites: {
+          beneficiaire: {
+            code_postal: '59000',
+            dateNaissance: Date.now() + ''
+          }
+        }
+      }
+    });
+
+    Dispatcher.dispatch(request).then(function(secteur) {
+      should.exist(secteur);
       done();
     });
   });

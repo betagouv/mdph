@@ -15,4 +15,10 @@ var SecteurSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Secteur', SecteurSchema);
+try {
+  mongoose.model('Secteur', SecteurSchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('Secteur');

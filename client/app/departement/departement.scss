@@ -1,0 +1,23 @@
+.features {
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 70px;
+
+  color: #444;
+  border-top: 3px solid $dark-blue;
+  background-color: $lighter-blue;
+
+  .p {
+    color: #6b6b6b;
+  }
+
+  .fa {
+    color: #8b8b8b;
+  }
+
+  h2 {
+    font-weight: 700;
+  }
+}

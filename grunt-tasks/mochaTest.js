@@ -1,7 +1,8 @@
 module.exports = {
   options: {
     reporter: 'spec',
-    clearRequireCache: true
+    require: 'mocha.conf.js',
+    timeout: 5000 // set default mocha spec timeout
   },
   src: ['server/**/*.spec.js']
 };

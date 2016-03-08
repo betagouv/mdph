@@ -14,7 +14,6 @@ var UserSchema = new Schema({
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
   mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
-  birthDate: { type: Date, default: Date.now },
   newPasswordToken: { type: String, select: false },
   newMailToken: { type: String, select: false },
   secteurs: [{ type: Schema.Types.ObjectId, ref: 'Secteur' }]
@@ -167,4 +166,10 @@ UserSchema.methods = {
   }
 };
 
-module.exports = mongoose.model('User', UserSchema);
+try {
+  mongoose.model('User', UserSchema);
+} catch (_) {
+  // Used only for mocha in watch mode
+}
+
+export default mongoose.model('User');

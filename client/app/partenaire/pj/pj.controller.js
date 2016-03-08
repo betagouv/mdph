@@ -10,7 +10,7 @@ angular.module('impactApp')
     $scope.envoiConfirmation = function(form) {
       if (form.$valid) {
         Upload.upload({
-          url: 'api/requests/' + $scope.request.shortId + '/document-partenaire',
+          url: 'api/requests/' + $scope.request.shortId + '/document/partenaire',
           method: 'POST',
           data: {
             file: $scope.files[0],

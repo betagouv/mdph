@@ -148,7 +148,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-exports.answersToHtml = function(request, path, output, next) {
+exports.answersToHtml = function({request, host}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
@@ -179,14 +179,6 @@ exports.answersToHtml = function(request, path, output, next) {
       callback(null, request);
     },
 
-    // quitus: function(callback) {
-    //   if (request.mdph && request.mdph === '14') {
-    //     callback(null, Prestation.simulate(request.formAnswers));
-    //   } else {
-    //     callback(null, null);
-    //   }
-    // },
-
     colors: function(callback) {
       callback(null, [
         { class: '.section-identite', color: 'rgb(73, 82, 130)' },
@@ -200,7 +192,7 @@ exports.answersToHtml = function(request, path, output, next) {
     },
 
     path: function(callback) {
-      callback(null, path);
+      callback(null, host);
     }
 
   },

@@ -1,16 +1,17 @@
 module.exports = {
+  babel: {
+    files: ['<%= app.dirs.client %>/{app,components}/**/!(*.spec|*.mock).js'],
+    tasks: ['newer:babel:client']
+  },
   injectJS: {
     files: [
-      '<%= app.dirs.client %>/{app,components}/**/*.js',
-      '!<%= app.dirs.client %>/{app,components}/**/*.spec.js',
-      '!<%= app.dirs.client %>/{app,components}/**/*.mock.js',
-      '!<%= app.dirs.client %>/app/app.js'],
+      '<%= app.dirs.client %>/{app,components}/**/!(*.spec|*.mock).js',
+      '!<%= app.dirs.client %>/app/app.js'
+    ],
     tasks: ['injector:scripts']
   },
   injectCss: {
-    files: [
-      '<%= app.dirs.client %>/{app,components}/**/*.css'
-    ],
+    files: ['<%= app.dirs.client %>/{app,components}/**/*.css'],
     tasks: ['injector:css']
   },
   mochaTest: {
@@ -21,11 +22,8 @@ module.exports = {
     tasks: ['env:test', 'mochaTest']
   },
   jsTest: {
-    files: [
-      '<%= app.dirs.client %>/{app,components}/**/*.spec.js',
-      '<%= app.dirs.client %>/{app,components}/**/*.mock.js'
-    ],
-    tasks: ['newer:jshint:all', 'karma']
+    files: ['<%= app.dirs.client %>/{app,components}/**/*.{spec,mock}.js'],
+    tasks: ['newer:jshint:all', 'wiredep:test', 'karma']
   },
   injectSass: {
     files: [
@@ -35,18 +33,15 @@ module.exports = {
   sass: {
     files: [
       '<%= app.dirs.client %>/{app,components}/**/*.{scss,sass}'],
-    tasks: ['sass', 'autoprefixer']
+    tasks: ['sass', 'postcss']
   },
   gruntfile: {
     files: ['Gruntfile.js']
   },
   livereload: {
     files: [
-      '{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.css',
-      '{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.html',
-      '{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.js',
-      '!{.tmp,<%= app.dirs.client %>}{app,components}/**/*.spec.js',
-      '!{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.mock.js',
+      '{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.{css,html}',
+      '{.tmp,<%= app.dirs.client %>}/{app,components}/**/!(*.spec|*.mock).js',
       '<%= app.dirs.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
     ],
     options: {
@@ -54,13 +49,15 @@ module.exports = {
     }
   },
   express: {
-    files: [
-      'server/**/*.{js,json,html}'
-    ],
+    files: ['server/**/*.{js,json}'],
     tasks: ['express:dev', 'wait'],
     options: {
       livereload: true,
-      nospawn: true //Without this option specified express won't be reloaded
+      spawn: false //Without this option specified express won't be reloaded
     }
+  },
+  bower: {
+    files: ['bower.json'],
+    tasks: ['wiredep']
   }
 };

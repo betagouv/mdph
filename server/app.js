@@ -4,35 +4,44 @@
 
 'use strict';
 
-// Set default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+import express from 'express';
+import mongoose from 'mongoose';
+mongoose.Promise = require('bluebird');
+import config from './config/environment';
+import http from 'http';
 
-var express = require('express');
-var mongoose = require('mongoose');
-var config = require('./config/environment');
-
-// Connect to database
+// Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connection.on('error', function(err) {
+  if (config.env !== 'test') {
+    // Ignore 'connection is already open' for test
+    console.error('MongoDB connection error: ' + err);
+    process.exit(-1);
+  }
+});
 
-// Populate DB with sample data
+// Populate databases with sample data
 if (config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
-var server = require('http').createServer(app);
+var server = http.createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
 
 // Start server
-server.listen(config.port, config.ip, function() {
-  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-});
+function startServer() {
+  server.listen(config.port, config.ip, function() {
+    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+  });
+}
 
-app.use(function(err, req, res, next) {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401).send('invalid token...');
-  }
-});
+if (!module.parent) {
+  setImmediate(startServer);
+}
 
 // Expose app
-exports = module.exports = app;
+exports = module.exports = {
+  app,
+  server
+};

@@ -1,16 +1,18 @@
 'use strict';
 
-var _ = require('lodash');
+import Promise from 'bluebird';
+import {indexBy, reduce} from 'lodash';
+
 var prestations = require('./prestations.json');
-var prestationsById = _.indexBy(prestations, 'id');
+var prestationsById = indexBy(prestations, 'id');
 
 let reducer = function(array) {
   var reducedArray = {};
 
   if (array && array.length > 0) {
-    array = _.map(array, str => str.toLowerCase());
+    array = array.map(str => str.toLowerCase());
 
-    _(array).reduce((result, current) => {
+    reduce(array, (result, current) => {
       result[current] = prestationsById[current];
       return result;
     }, reducedArray);
@@ -19,15 +21,23 @@ let reducer = function(array) {
   return reducedArray;
 };
 
-module.exports = {
+export default {
   index: function(req, res) {
     return res.json(prestations);
   },
 
-  populateAndSortPrestations: function(request, callback) {
-    request.detailPrestations = reducer(request.prestations);
-    request.detailRenouvellements = reducer(request.renouvellements);
+  populateAndSortPrestations: function(request) {
+    return new Promise(resolve => {
+      if (!request) {
+        return resolve(null);
+      }
 
-    return callback(null, request);
+      let requestObj = request.toObject();
+
+      requestObj.detailPrestations = reducer(request.prestations);
+      requestObj.detailRenouvellements = reducer(request.renouvellements);
+
+      resolve(requestObj);
+    });
   }
 };

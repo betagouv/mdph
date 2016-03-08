@@ -67,6 +67,7 @@ angular.module('impactApp').config(function($stateProvider) {
                 toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
               } else {
                 request.status = 'emise';
+                request.submittedAt = Date.now();
                 request.$update({isSendingRequest: true}, function() {
                   $state.go('^', {}, {reload: true});
                 });
@@ -109,8 +110,8 @@ angular.module('impactApp').config(function($stateProvider) {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/obligatoires.html',
         controller: 'DocumentsObligatoiresCtrl',
         resolve: {
-          documentTypes: function(DocumentResource) {
-            return DocumentResource.query({type: 'obligatoires'}).$promise;
+          documentTypes: function(DocumentTypeResource) {
+            return DocumentTypeResource.query({type: 'obligatoires'}).$promise;
           }
         }
       },
@@ -118,8 +119,8 @@ angular.module('impactApp').config(function($stateProvider) {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/complementaires.html',
         controller: 'DocumentsComplementairesCtrl',
         resolve: {
-          documentTypes: function(DocumentResource) {
-            return DocumentResource.query({type: 'complementaires'}).$promise;
+          documentTypes: function(DocumentTypeResource) {
+            return DocumentTypeResource.query({type: 'complementaires'}).$promise;
           }
         }
       },

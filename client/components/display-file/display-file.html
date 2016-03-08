@@ -28,7 +28,7 @@
         <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
       </div>
 
-      <a class="trash" ng-click="delete()">
+      <a class="trash" ng-click="delete()" ng-if="request.status === 'en_cours'">
         Supprimer
       </a>
     </div>

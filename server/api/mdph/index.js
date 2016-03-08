@@ -1,69 +1,54 @@
 'use strict';
 
-var auth = require('../../auth/auth.service');
-var config = require('../../config/environment');
-var express = require('express');
-var controller = require('./mdph.controller');
+import {Router} from 'express';
+import controller from './mdph.controller';
+import * as Auth from '../../auth/auth.service';
+import categoriesRouter from '../document-category';
+
 var Mdph = require('./mdph.model');
 var compose = require('composable-middleware');
-var multer  = require('multer');
-
-var storage = multer.memoryStorage();
-var upload = multer({ storage: storage });
-var router = express.Router();
+var router = new Router();
 
 router.get('/', controller.index);
 router.get('/list', controller.list);
 router.get('/:id', controller.show);
-router.post('/', auth.hasRole('admin'), controller.create);
-router.put('/:id', isAuthorizedMdph(), controller.update);
-router.patch('/:id', isAuthorizedMdph(), controller.update);
-router.delete('/:id', auth.hasRole('admin'), controller.destroy);
+router.post('/', Auth.hasRole('admin'), controller.create);
+router.put('/:id', isAuthorized(), controller.update);
+router.patch('/:id', isAuthorized(), controller.update);
+router.delete('/:id', Auth.hasRole('admin'), controller.destroy);
 
-router.get('/:id/requests', isAuthorizedMdph(), controller.showRequests);
-router.get('/:id/requests/byStatus', isAuthorizedMdph(), controller.showRequestsByStatus);
+router.get('/:id/requests', isAuthorized(), controller.showRequests);
+router.get('/:id/requests/byStatus', isAuthorized(), controller.showRequestsByStatus);
 
-router.get('/:id/users', isAuthorizedMdph(), controller.showUsers);
+router.get('/:id/users', isAuthorized(), controller.showUsers);
 
-router.get('/:id/partenaires', isAuthorizedMdph(), controller.showPartenaires);
+router.get('/:id/partenaires', isAuthorized(), controller.showPartenaires);
 
-router.get('/:id/secteurs', isAuthorizedMdph(), controller.showSecteurs);
-router.get('/:id/secteurs/:secteurId', isAuthorizedMdph(), controller.getSecteur);
-router.get('/:id/secteurs/:secteurId/requests', isAuthorizedMdph(), controller.showRequestsForSecteur);
+router.get('/:id/secteurs', isAuthorized(), controller.showSecteurs);
+router.get('/:id/secteurs/:secteurId', isAuthorized(), controller.getSecteur);
+router.get('/:id/secteurs/:secteurId/requests', isAuthorized(), controller.showRequestsForSecteur);
 
-router.post('/:id/document-types', isAuthorizedMdph(), controller.updateDocumentType);
-router.get('/:id/document-types', isAuthorizedMdph(), controller.showUncategorizedDocumentTypes);
+router.use('/:id/categories', isAuthorized(), categoriesRouter);
 
-router.get('/:id/categories', isAuthorizedMdph(), controller.showDocumentCategories);
-router.post('/:id/categories', isAuthorizedMdph(), controller.createNewDocumentCategory);
-router.put('/:id/categories', isAuthorizedMdph(), controller.updateDocumentCategories);
-router.put('/:id/categories/:categoryId', isAuthorizedMdph(), controller.updateDocumentCategory);
-router.delete('/:id/categories/:categoryId', isAuthorizedMdph(), controller.removeDocumentCategory);
-router.post('/:id/categories/:categoryId/file', isAuthorizedMdph(), upload.single('file'), controller.saveDocumentCategoryFile);
+router.param('id', function(req, res, next, id) {
+  Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+    if (err) return next(err);
+    if (!mdph) return res.sendStatus(404);
 
-router.get('/:id/categories/unclassifiedCategory', isAuthorizedMdph(), controller.getUnclassifiedCategory);
-router.get('/:id/categories/:categoryId/file', isAuthorizedMdph(), controller.getDocumentCategoryFile);
+    req.mdph = mdph;
+    next();
+  });
+});
 
-function isAuthorizedMdph() {
+function isAuthorized() {
   return compose()
-    .use(auth.hasRole('adminMdph'))
-
-    // Attach mdph to request
+    .use(Auth.isAuthenticated())
     .use(function(req, res, next) {
-      Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
-        if (err) return next(err);
+      if (Auth.meetsRequirements(req.user.role, 'admin')) {
+        return next();
+      }
 
-        if (mdph) {
-          req.mdph = mdph;
-        }
-
-        next();
-      });
-    })
-
-    // check if user can access current mdph
-    .use(function(req, res, next) {
-      if (req.user.role === 'admin' || String(req.user.mdph) === String(req.mdph._id)) {
+      if (Auth.meetsRequirements(req.user.role, 'adminMdph') || String(req.user.mdph) === String(req.mdph._id)) {
         return next();
       }
 
