@@ -101,4 +101,30 @@ describe('Document Category Integration', function() {
         });
     });
   });
+
+  describe.only('When getting default document categories', function() {
+    before(done => {
+      DocumentCategory.remove().exec(done);
+    });
+
+    it('should return the unclassified category even if it does not exist beforehand', done => {
+      api
+        .get(`/api/mdphs/${testMdph.zipcode}/categories/unclassifiedCategory?access_token=${tokenAdminMdph}`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          //{mdph: req.mdph._id, unclassified: true, label: 'Documents non catégorisés'}
+          /*jshint -W030 */
+          res.body.should.have.property('unclassified');
+          res.body.should.have.property('label');
+          res.body.should.have.property('mdph');
+
+          res.body.unclassified.should.be.true;
+          res.body.label.should.be.eql('Documents non catégorisés');
+          res.body.mdph.should.be.eql(testMdph._id.toString());
+          return done(err);
+        });
+    });
+
+  });
 });

@@ -83,19 +83,21 @@ function comparePosition(catA, catB) {
   return catA.position - catB.position;
 }
 
-function populateCategoryBarcode(category, callback) {
-  if (!category.barcode) {
-    return callback(null, category);
-  }
+function populateCategoryBarcode(category) {
+  return new Promise((resolve, reject) => {
+    if (!category.barcode) {
+      return resolve();
+    }
 
-  var gfs = grid(mongoose.connection.db);
-  gfs.findOne({_id: category.barcode}, function(err, file) {
-    category.barcode = file;
-    callback(null, category);
+    var gfs = grid(mongoose.connection.db);
+    gfs.findOne({_id: category.barcode}, function(err, file) {
+      category.barcode = file;
+      return resolve(category);
+    });
   });
 }
 
-function createSpecialCategory(options, callback) {
+function createSpecialCategory(options) {
   var newCategory = new DocumentCategory(options);
 
   if (newCategory.unclassified) {
@@ -104,25 +106,23 @@ function createSpecialCategory(options, callback) {
     newCategory.label = 'Document de la demande';
   }
 
-  newCategory.save(callback);
+  return newCategory.save();
 }
 
 function getOrCreateSpecialCategory(options, callback) {
-  DocumentCategory
+  return DocumentCategory
     .findOne(options)
     .lean()
-    .exec(function(err, category) {
-      if (err) callback(err);
-      if (!category) {
-        createSpecialCategory(options, callback);
-      } else {
-        populateCategoryBarcode(category, callback);
-      }
+    .exec()
+    .then(category => {
+      return category ? populateCategoryBarcode(category, callback) : createSpecialCategory(options, callback);
     });
 }
 
-exports.getUnclassifiedCategory = function(mdph, callback) {
-  return getOrCreateSpecialCategory({mdph: mdph._id, unclassified: true}, callback);
+exports.getUnclassifiedCategory = function(req, res) {
+  getOrCreateSpecialCategory({mdph: req.mdph._id, unclassified: true})
+    .then(respondWithResult(res))
+    .catch(handleError(req, res));
 };
 
 exports.getPdfCategory = function(mdph, callback) {
@@ -304,9 +304,7 @@ function populateList(res) {
 
 exports.showDocumentCategories = function(req, res) {
   DocumentCategory
-    .find({mdph: req.mdph._id, unclassified: {$ne: true}})
-    .lean()
-    .exec()
+    .find({mdph: req.mdph._id, unclassified: {$ne: true}}).lean().exec()
     .then(populateList(res))
     .then(respondWithResult(res))
     .catch(handleError(req, res));
