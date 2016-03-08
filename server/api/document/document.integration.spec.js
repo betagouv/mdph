@@ -78,11 +78,7 @@ describe('Document Integration', function() {
           .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
           .expect(200)
           .end(function(err, res) {
-            if (err) {
-              return done(err);
-            }
-
-            done();
+            return done(err);
           });
       });
     });
@@ -116,11 +112,7 @@ describe('Document Integration', function() {
           .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
           .expect(403)
           .end(function(err, res) {
-            if (err) {
-              return done(err);
-            }
-
-            done();
+            done(err);
           });
       });
     });
