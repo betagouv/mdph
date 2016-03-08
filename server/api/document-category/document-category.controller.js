@@ -86,7 +86,7 @@ function comparePosition(catA, catB) {
 function populateCategoryBarcode(category) {
   return new Promise((resolve, reject) => {
     if (!category.barcode) {
-      return resolve();
+      return resolve(category);
     }
 
     var gfs = grid(mongoose.connection.db);
@@ -109,27 +109,31 @@ function createSpecialCategory(options) {
   return newCategory.save();
 }
 
-function getOrCreateSpecialCategory(options, callback) {
+function getOrCreateSpecialCategory(options) {
   return DocumentCategory
     .findOne(options)
     .lean()
     .exec()
     .then(category => {
-      return category ? populateCategoryBarcode(category, callback) : createSpecialCategory(options, callback);
+      return category ? populateCategoryBarcode(category) : createSpecialCategory(options);
     });
 }
 
-exports.getUnclassifiedCategory = function(req, res) {
-  getOrCreateSpecialCategory({mdph: req.mdph._id, unclassified: true})
+export function getUnclassifiedCategoryLocal(mdph) {
+  return getOrCreateSpecialCategory({mdph: mdph._id, unclassified: true});
+}
+
+export function getUnclassifiedCategory(req, res) {
+  getUnclassifiedCategoryLocal(req.mdph)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-};
+}
 
-exports.getPdfCategory = function(mdph, callback) {
+export function getPdfCategory(mdph, callback) {
   return getOrCreateSpecialCategory({mdph: mdph._id, required: true}, callback);
-};
+}
 
-exports.saveDocumentCategoryFile = function(file, categoryId, logger, callback) {
+export function saveDocumentCategoryFile(file, categoryId, logger, callback) {
   var gfs = grid(mongoose.connection.db);
 
   var writeStream = gfs.createWriteStream({
@@ -163,9 +167,9 @@ exports.saveDocumentCategoryFile = function(file, categoryId, logger, callback) 
         });
     });
   });
-};
+}
 
-exports.getDocumentCategoryFile = function(categoryId, callback) {
+export function getDocumentCategoryFile(categoryId, callback) {
   DocumentCategory.findById(categoryId, function(err, category) {
     if (err) { return callback(err); }
 
@@ -177,9 +181,9 @@ exports.getDocumentCategoryFile = function(categoryId, callback) {
       callback();
     }
   });
-};
+}
 
-exports.updateDocumentCategory = function(categoryId, label, callback) {
+export function updateDocumentCategory(categoryId, label, callback) {
   DocumentCategory.findById(categoryId, function(err, category) {
     if (err) { return callback(err); }
 
@@ -191,16 +195,16 @@ exports.updateDocumentCategory = function(categoryId, label, callback) {
         return callback(null, updated);
       });
   });
-};
+}
 
-exports.removeDocumentCategory = function(categoryId, callback) {
+export function removeDocumentCategory(categoryId, callback) {
   DocumentCategory
     .findById(categoryId)
     .remove()
     .exec(callback);
-};
+}
 
-exports.updateDocumentCategories = function(updatedCategories, callback) {
+export function updateDocumentCategories(updatedCategories, callback) {
   async.map(updatedCategories, function(positionObj, mapCallback) {
     DocumentCategory
       .findById(positionObj._id)
@@ -218,9 +222,9 @@ exports.updateDocumentCategories = function(updatedCategories, callback) {
   function(err) {
     callback(err);
   });
-};
+}
 
-exports.updateDocumentType = function(req, res) {
+export function updateDocumentType(req, res) {
   if (!req.params.categoryId || !req.body.documentType) {
     return res.status(500).send(); // TODO: status malformed request
   }
@@ -253,17 +257,17 @@ exports.updateDocumentType = function(req, res) {
 
     res.status(200).send(results.new);
   });
-};
+}
 
-exports.showUncategorizedDocumentTypes = function(req, res) {
+export function showUncategorizedDocumentTypes(req, res) {
   DocumentCategory
     .find({mdph: req.mdph._id}).lean().exec()
     .then(filterList())
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-};
+}
 
-exports.createNewDocumentCategory = function(req, res) {
+export function createNewDocumentCategory(req, res) {
   var newCategory = new DocumentCategory({
     mdph: req.mdph._id,
     position: req.body.position
@@ -272,10 +276,10 @@ exports.createNewDocumentCategory = function(req, res) {
   newCategory.save()
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-};
+}
 
-function populateList(res) {
-  return function(list) {
+function populateList(list) {
+  new Promise(function(resolve, reject) {
     // "Populate" documents
     var gfs = grid(mongoose.connection.db);
 
@@ -297,15 +301,19 @@ function populateList(res) {
       // Sort by position in the tree
       list.sort(comparePosition);
 
-      return res.json(list);
+      return resolve(list);
     });
-  };
+  });
 }
 
-exports.showDocumentCategories = function(req, res) {
-  DocumentCategory
-    .find({mdph: req.mdph._id, unclassified: {$ne: true}}).lean().exec()
-    .then(populateList(res))
+export function showDocumentCategoriesLocal(mdph) {
+  return DocumentCategory
+    .find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec()
+    .then(populateList);
+}
+
+export function showDocumentCategories(req, res) {
+  showDocumentCategoriesLocal(req.mdph)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-};
+}

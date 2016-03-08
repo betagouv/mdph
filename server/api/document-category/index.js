@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import controller from './document-category.controller';
+import * as controller from './document-category.controller';
 import {isAuthenticated} from '../../auth/auth.service';
 import multer from 'multer';
 

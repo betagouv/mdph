@@ -4,9 +4,9 @@ import {Router} from 'express';
 import controller from './mdph.controller';
 import * as Auth from '../../auth/auth.service';
 import categoriesRouter from '../document-category';
+import compose from 'composable-middleware';
 
 var Mdph = require('./mdph.model');
-var compose = require('composable-middleware');
 var router = new Router();
 
 router.get('/', controller.index);
@@ -31,7 +31,7 @@ router.get('/:id/secteurs/:secteurId/requests', isAuthorized(), controller.showR
 router.use('/:id/categories', isAuthorized(), categoriesRouter);
 
 router.param('id', function(req, res, next, id) {
-  Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+  Mdph.findOne({zipcode: id}, function(err, mdph) {
     if (err) return next(err);
     if (!mdph) return res.sendStatus(404);
 

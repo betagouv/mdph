@@ -42,39 +42,18 @@ function handleError(req, res) {
   };
 }
 
-function handleEntityNotFound(res) {
-  return function(request) {
-    if (!request) {
-      throw(404);
-    }
-
-    return request;
-  };
-}
-
-function handleUserNotAuthorized(req, res) {
-  return function(request) {
-
-    if (Auth.meetsRequirements(req.user.role, 'adminMdph')) {
-      return request;
-    }
-
-    if (req.user._id.equals(request.user._id)) {
-      return request;
-    }
-
-    throw(403);
-  };
-}
-
-function unlinkRequestDocuments() {
-  return function(request) {
-    if (request.documents && Array.isArray(request.documents)) {
-      request.documents.forEach(function(requestDoc) {
-        fs.unlink(requestDoc.path);
+function unlinkRequestDocuments(req) {
+  return new Promise(function(resolve, reject) {
+    if (req.request.documents && Array.isArray(req.request.documents)) {
+      req.request.documents.forEach(function(requestDoc) {
+        if (requestDoc.path) {
+          fs.unlink(requestDoc.path);
+        }
       });
     }
-  };
+
+    return resolve();
+  });
 }
 
 function removeRequest() {
@@ -84,14 +63,18 @@ function removeRequest() {
 }
 
 function saveUpdates(req) {
-  return function(request) {
+  return new Promise(function(resolve, reject) {
     let filteredUpdates = _.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations');
-    return request.set(filteredUpdates).save().then(updated => {
-      updated.saveActionLog(actions.UPDATE_ANSWERS, req.user, req.log);
 
-      return updated;
+    req.request.set(filteredUpdates).save(function(err, updated) {
+      if (err) {
+        return reject(err);
+      }
+
+      updated.saveActionLog(actions.UPDATE_ANSWERS, req.user, req.log);
+      return resolve(updated);
     });
-  };
+  });
 }
 
 function respondWithResult(res, statusCode) {
@@ -163,20 +146,9 @@ function saveActionLog(action, req) {
   };
 }
 
-function findAndPopulate(shortId) {
-  return Request
-    .findOne({shortId: shortId})
-    .populate('user')
-    .populate('evaluator')
-    .exec();
-}
-
 // Get a single request
 export function show(req, res, next) {
-  findAndPopulate(req.params.shortId)
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req, res))
-    .then(populateAndSortPrestations)
+  populateAndSortPrestations(req.request)
     .then(populateAndSortDocumentTypes)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
@@ -191,21 +163,14 @@ export function showPartenaire(req, res, next) {
     .populate('user', 'name')
     .select('shortId user name mdph createdAt')
     .exec()
-    .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(req, res));
 }
 
 // Deletes a request from the DB and FS
 export function destroy(req, res) {
-  Request
-    .findOne({
-      shortId: req.params.shortId
-    })
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req, res))
-    .then(unlinkRequestDocuments)
-    .then(removeRequest)
+  unlinkRequestDocuments()
+    .then(removeRequest())
     .then(respondWithResult(res, 204))
     .catch(handleError(req, res));
 }
@@ -225,10 +190,7 @@ export function showUserRequests(req, res, next) {
 }
 
 export function update(req, res, next) {
-  findAndPopulate(req.params.shortId)
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req, res))
-    .then(saveUpdates(req))
+  saveUpdates(req)
     .then(processUserAction(req))
     .then(saveUserAction(req))
     .then(populateAndSortPrestations)
@@ -247,18 +209,16 @@ export function create(req, res, next) {
     .catch(handleError(res));
 }
 
-function findActionHistory() {
-  return function(request) {
-    return ActionModel
-      .find({
-        request: request._id
-      })
-      .populate('user')
-      .sort('-date')
-      .lean()
-      .exec()
-      .then(populateActionLabels());
-  };
+function findActionHistory(req) {
+  return ActionModel
+    .find({
+      request: req.request._id
+    })
+    .populate('user')
+    .sort('-date')
+    .lean()
+    .exec()
+    .then(populateActionLabels());
 }
 
 function populateActionLabels() {
@@ -272,89 +232,59 @@ function populateActionLabels() {
 }
 
 export function getHistory(req, res) {
-  Request
-    .findOne({
-      shortId: req.params.shortId
-    })
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req, res))
-    .then(findActionHistory())
+  findActionHistory(req)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
 }
 
-function generateRecapitulatifHtml(req) {
-  return function(request) {
-    Recapitulatif.answersToHtml({
-      request: req.request,
-      host: req.headers.host
-    });
-  };
-}
-
 function respondWithFile(res) {
   return function(pdfPath) {
+    console.log(pdfPath);
     res.sendFile(pdfPath);
   };
 }
 
 function generateRecapitulatifPdf(req) {
-  return function(request) {
+  return new Promise(function(resolve, reject) {
     MakePdf.make({
       request: req.request,
       host: req.headers.host,
       user: req.user
-    }, function(err, html) {
-      if (err) { throw(500, err); }
+    }, function(err, pdfPath) {
+      if (err) {
+        return reject(err);
+      }
 
-      return html;
+      return resolve(pdfPath);
     });
-  };
+  });
 }
 
 export function getRecapitulatif(req, res) {
-  Request
-    .findOne({
-      shortId: req.params.shortId
-    })
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req, res))
-    .then(generateRecapitulatifHtml(req))
-    .then(respondWithResult(res))
-    .catch(handleError(req, res));
+  Recapitulatif.answersToHtml({
+    request: req.request,
+    host: req.headers.host
+  }, function(err, html) {
+    if (err) {
+      return handleError(req, res)(500, err);
+    }
+
+    return res.status(200).send(html);
+  });
 }
 
 export function getPdf(req, res) {
-  Request
-    .findOne({
-      shortId: req.params.shortId
-    })
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req, res))
-    .then(generateRecapitulatifPdf(req))
+  generateRecapitulatifPdf(req)
     .then(respondWithFile(res))
     .catch(handleError(req, res));
 }
 
-function generateSynthesePdf(req, res) {
-  return function(request) {
-    Synthese.answersToHtml(request, req.headers.host, 'pdf', function(err, html) {
-        if (err) { throw(500, err); }
-
-        pdf.create(html).toStream(function(err, stream) {
-          stream.pipe(res);
-        });
-      });
-  };
-}
-
 export function getSynthesePdf(req, res) {
-  Request
-    .findOne({
-      shortId: req.params.shortId
-    })
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req, res))
-    .then(generateSynthesePdf(req, res))
-    .catch(handleError(req, res));
+  Synthese.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
+    if (err) { throw(500, err); }
+
+    pdf.create(html).toStream(function(err, stream) {
+      stream.pipe(res);
+    });
+  });
 }
