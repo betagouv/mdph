@@ -4,19 +4,19 @@ angular.module('impactApp', [
     'impactApp.auth',
     'impactApp.constants',
     'impactApp.util',
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
     'ui.router',
     'ui.bootstrap',
+    'ui.tree',
+    'ui.mask',
     'ngStorage',
     'ngAnimate',
     'ngFileUpload',
     'ngMessages',
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
     'chart.js',
-    'ui.tree',
-    'toastr',
-    'ui.mask'
+    'toastr'
   ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig, treeConfig) {
     moment.locale('fr');
