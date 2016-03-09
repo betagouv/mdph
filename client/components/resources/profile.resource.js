@@ -7,7 +7,7 @@ angular.module('impactApp')
     });
 
     Profile.prototype.getTitle = function() {
-      if (this._id) {
+      if (this._id && this.identites && this.identites.beneficiaire) {
         return this.identites.beneficiaire.prenom + ' ' + this.identites.beneficiaire.nom;
       } else {
         return 'Nouveau profil';
