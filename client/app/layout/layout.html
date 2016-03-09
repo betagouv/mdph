@@ -28,10 +28,6 @@
         </li>
       </ul>
 
-      <form class="navbar-form navbar-right" ng-if="isLoggedIn()" ng-submit="logout()">
-        <input id="logout" class="btn btn-link" type="submit" value="Se déconnecter">
-      </form>
-
       <ul class="nav navbar-nav navbar-right" ng-show="currentMdph">
         <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="signup({codeDepartement: currentMdph.zipcode})" title="S'inscrire">Inscription</a></li>
         <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="login({codeDepartement: currentMdph.zipcode})" title="Se connecter">Connexion</a></li>
@@ -40,7 +36,7 @@
             {{ currentUser.email }}
           </a>
         </li>
-        <li role="menuitem" ng-if="isLoggedIn()"></li>
+        <li ng-show="isLoggedIn()"><a ui-sref="logout">Se déconnecter</a></li>
       </ul>
     </div>
   </div>

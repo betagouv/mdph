@@ -12,6 +12,19 @@ angular.module('impactApp')
           title: 'Connexion'
         }
       })
+      .state('logout', {
+        parent: 'departement',
+        url: '/logout?referrer',
+        referrer: '^',
+        template: '',
+        controller: function($state, Auth) {
+          var referrer = $state.params.referrer ||
+                          $state.current.referrer ||
+                          'main';
+          Auth.logout();
+          $state.go(referrer);
+        }
+      })
       .state('signup', {
         parent: 'departement',
         url: '/signup',

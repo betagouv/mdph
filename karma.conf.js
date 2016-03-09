@@ -32,6 +32,7 @@ module.exports = function(config) {
       'client/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'client/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
       'client/bower_components/angular-ui-mask/dist/mask.js',
+      'client/bower_components/mapbox.js/mapbox.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       'client/bower_components/angular-scenario/angular-scenario.js',
       // endbower

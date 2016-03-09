@@ -5,12 +5,22 @@
   function UtilService($window) {
     var Util = {
       /**
+       * Return a callback or noop function
+       *
+       * @param  {Function|*} cb - a 'potential' function
+       * @return {Function}
+       */
+      safeCb(cb) {
+        return (angular.isFunction(cb)) ? cb : angular.noop;
+      },
+
+      /**
        * Parse a given url with the use of an anchor element
        *
        * @param  {String} url - the url to parse
        * @return {Object}     - the parsed url, anchor element
        */
-      urlParse: function(url) {
+      urlParse(url) {
         var a = document.createElement('a');
         a.href = url;
 
@@ -29,7 +39,7 @@
        * @param  {String|String[]}  [origins] - additional origins to test against
        * @return {Boolean}                    - true if url is same origin
        */
-      isSameOrigin: function(url, origins) {
+      isSameOrigin(url, origins) {
         url = Util.urlParse(url);
         origins = (origins && [].concat(origins)) || [];
         origins = origins.map(Util.urlParse);

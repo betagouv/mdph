@@ -61,5 +61,4 @@ function isAuthorized() {
     });
 }
 
-
 module.exports = router;
