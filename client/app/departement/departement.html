@@ -4,8 +4,11 @@
       <h1 ng-if="currentMdph">MDPH - {{currentMdph.name}}</h1>
       <p>Gérez vos demandes en ligne</p>
 
-      <a class="hero-button" ui-sref="signup">
+      <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">
         S'inscrire
+      </a>
+      <a class="hero-button" ui-sref="signup" ng-if="isLoggedIn()">
+        Voir mes profils
       </a>
       <a class="hero-button inverted" ng-if="isAdmin()" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
         Tableau de bord
@@ -34,8 +37,8 @@
     </div>
   </div>
 
-  <div class="map-container" ng-init="generateMap()">
-    <div id="map"></div>
+  <div class="map-container">
+    <div id="map" ng-init="generateMap()"></div>
     <div class="card-contact">
       <div class="card-img">
         <img ng-src="assets/images/{{currentMdph.photo}}">

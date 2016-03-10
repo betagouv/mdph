@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, currentUser, currentMdph) {
+  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, Auth, currentUser, currentMdph) {
     $scope.$emit('event:mdph-changed', currentMdph);
     $scope.currentUser = currentUser;
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiaW1wYWN0LW1hcGJveCIsImEiOiJjaWt6bmpqYTUwMDcwd29tNDRpczM2N2pwIn0.Qh9eYg3TMD00z22WzmDXyQ';
 
