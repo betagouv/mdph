@@ -30,17 +30,17 @@
           <div ui-view="prestations"></div>
         </section>
 
-        <section class="demande-section" ng-if="request.status === 'en_cours'">
+        <section class="demande-section" ng-if="isEditable()">
           <div ui-view="validation"></div>
         </section>
 
-        <div class="text-right" ng-if="request.status === 'en_cours'">
+        <div class="text-right" ng-if="isEditable()">
           <a ui-sref="^" class="btn btn-lg btn-link" role="button">Annuler</a>
           <button type="submit" name="submit" alt="Valider" class="btn btn-lg btn-success">Envoyer</button>
         </div>
       </form>
 
-      <ul class="profile-card-row" ng-if="request.status !== 'en_cours'">
+      <ul class="profile-card-row" ng-if="!isEditable()">
         <li class="profile-card-row-item">
           <div class="profile-category">
             <div class="profile-category-icon"><i class="fa fa-file-pdf-o icon"></i></div>
