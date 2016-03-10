@@ -59,7 +59,7 @@ function handleStatusError(user, res) {
       return request;
     }
 
-    if (request.status === 'en_cours') {
+    if (request.status === 'en_cours' || request.status === 'en_attente_usager') {
       return request;
     }
 

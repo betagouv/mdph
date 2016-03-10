@@ -66,24 +66,4 @@
       color: $bg-grey;
     }
   }
-
-  .validation-actions:hover {
-    .fab.valid {
-      color: white;
-      background-color: $green;
-    }
-
-    .fab.refuse {
-      background-color: $lighter-red;
-      color: white;
-    }
-
-    .fab.refuse:hover {
-      background-color: $light-red;
-    }
-
-    .fab.valid:hover {
-      background-color: lighten($green, 10%);
-    }
-  }
 }

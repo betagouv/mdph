@@ -83,6 +83,40 @@ describe('Document Integration', function() {
       });
     });
 
+    describe(`When the request is 'en_attente_usager'`, function() {
+      var savedDocument;
+
+      beforeEach(function(done) {
+        var newRequest = new Request({
+          shortId: '1234',
+          prestations: ['AAH'],
+          renouvellements: ['PCH'],
+          documents: [{
+            type: 'carteIdentite',
+            originalname: 'carte-identite.jpg',
+            filename: 'hashed-carte-identite',
+            mimetype: 'image/jpeg'
+          }],
+          user: testUser._id,
+          status: 'en_attente_usager'
+        });
+
+        newRequest.save((err, res) => {
+          savedDocument = res.documents[0];
+          done();
+        });
+      });
+
+      it('should respond 200', function(done) {
+        api
+          .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
+          .expect(200)
+          .end(function(err, res) {
+            return done(err);
+          });
+      });
+    });
+
     describe(`When the request is 'emise'`, function() {
       var savedDocument;
 

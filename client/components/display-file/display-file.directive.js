@@ -20,17 +20,12 @@ angular.module('impactApp')
           });
         }
 
-        if ($scope.request.status !== 'en_cours') {
-          $scope.showValidationStatus = true;
-        }
-
         $scope.setInvalid = function(isInvalid) {
           if ($scope.file.isInvalid === isInvalid) {
             return;
           }
 
           $http.put('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {isInvalid: isInvalid}).then(function(result) {
-            $scope.showValidationStatus = true;
             $scope.file = result.data;
           });
         };
