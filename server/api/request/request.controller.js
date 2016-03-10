@@ -105,8 +105,8 @@ function saveUserAction(req) {
 
 function processUserAction(req) {
   return function(request) {
-    if (req.action) {
-      switch (req.action.id) {
+    if (req.query) {
+      switch (req.query.id) {
         case actions.SUCCES_ENREGISTREMENT.id:
           MailActions.sendMailCompletude(request, req.user); // Agent sends KO to user
           break;
