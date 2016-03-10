@@ -13,7 +13,7 @@
 
       <ul ng-if="request.documents.obligatoires[documentType.id]" class="list-unstyled background-white">
         <li ng-repeat="file in request.documents.obligatoires[documentType.id].documentList">
-          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request"></display-file>
+          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
           <div ng-if="file.progress">
             {{file.name}} - en cours...
             <div class="progress">

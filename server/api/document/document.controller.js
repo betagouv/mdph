@@ -59,7 +59,7 @@ function handleStatusError(req, res) {
       return resolve();
     }
 
-    if (req.request.status === 'en_cours') {
+    if (req.request.status === 'en_cours' || req.request.status === 'en_attente_usager') {
       return resolve();
     }
 
