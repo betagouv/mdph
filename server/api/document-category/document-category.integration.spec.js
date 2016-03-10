@@ -126,5 +126,27 @@ describe('Document Category Integration', function() {
         });
     });
 
+    it('should return the required category even if it does not exist beforehand', done => {
+      api
+        .get(`/api/mdphs/${testMdph.zipcode}/categories?access_token=${tokenAdminMdph}`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          //{mdph: req.mdph._id, unclassified: true, label: 'Documents non catégorisés'}
+          /*jshint -W030 */
+          res.body.should.be.an.Array;
+
+          var requiredCategory = res.body[0];
+
+          requiredCategory.should.have.property('required');
+          requiredCategory.should.have.property('label');
+          requiredCategory.should.have.property('mdph');
+
+          requiredCategory.required.should.be.true;
+          requiredCategory.label.should.be.eql('Document de la demande');
+          requiredCategory.mdph.should.be.eql(testMdph._id.toString());
+          return done(err);
+        });
+    });
   });
 });

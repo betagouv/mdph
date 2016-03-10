@@ -18,7 +18,7 @@ var Recapitulatif = require('./recapitulatif');
 
 var pdfOptions = {
   format: 'A4',
-  border: '100px',
+  border: '.25"',
   footer: {
     height: '40px',
     contents: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>'

@@ -5,6 +5,7 @@ import path from 'path';
 import stream from 'stream';
 import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
+import Promise from 'bluebird';
 import async from 'async';
 import DocumentCategory from './document-category.model';
 import {allDocumentTypes} from '../document-type/document-type.controller';
@@ -84,7 +85,7 @@ function comparePosition(catA, catB) {
 }
 
 function populateCategoryBarcode(category) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     if (!category.barcode) {
       return resolve(category);
     }
@@ -97,16 +98,20 @@ function populateCategoryBarcode(category) {
   });
 }
 
-function createSpecialCategory(options) {
-  var newCategory = new DocumentCategory(options);
+function createSpecialCategoryIfNecessary(options) {
+  return function(category) {
+    if (category) {
+      return category;
+    }
 
-  if (newCategory.unclassified) {
-    newCategory.label = 'Documents non catégorisés';
-  } else {
-    newCategory.label = 'Document de la demande';
-  }
+    if (options.unclassified) {
+      options.label = 'Documents non catégorisés';
+    } else {
+      options.label = 'Document de la demande';
+    }
 
-  return newCategory.save();
+    return DocumentCategory.create(options);
+  };
 }
 
 function getOrCreateSpecialCategory(options) {
@@ -114,9 +119,8 @@ function getOrCreateSpecialCategory(options) {
     .findOne(options)
     .lean()
     .exec()
-    .then(category => {
-      return category ? populateCategoryBarcode(category) : createSpecialCategory(options);
-    });
+    .then(createSpecialCategoryIfNecessary(options))
+    .then(populateCategoryBarcode);
 }
 
 export function getUnclassifiedCategoryLocal(mdph) {
@@ -127,10 +131,6 @@ export function getUnclassifiedCategory(req, res) {
   getUnclassifiedCategoryLocal(req.mdph)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-}
-
-export function getPdfCategory(mdph, callback) {
-  return getOrCreateSpecialCategory({mdph: mdph._id, required: true}, callback);
 }
 
 export function saveDocumentCategoryFile(file, categoryId, logger, callback) {
@@ -279,7 +279,7 @@ export function createNewDocumentCategory(req, res) {
 }
 
 function populateList(list) {
-  new Promise(function(resolve, reject) {
+  return new Promise(function(resolve, reject) {
     // "Populate" documents
     var gfs = grid(mongoose.connection.db);
 
@@ -294,13 +294,12 @@ function populateList(list) {
         category.documentTypes = fullTypes;
       }
 
-      populateCategoryBarcode(category, mapCallback);
+      populateCategoryBarcode(category).then(mapCallback);
     },
 
     function() {
       // Sort by position in the tree
       list.sort(comparePosition);
-
       return resolve(list);
     });
   });
@@ -312,8 +311,31 @@ export function showDocumentCategoriesLocal(mdph) {
     .then(populateList);
 }
 
+function createPdfCategoryIfNecessary(req) {
+  return new Promise(function(resolve, reject) {
+    DocumentCategory
+      .findOne({mdph: req.mdph._id, required: true})
+      .exec((err, result) => {
+        if (err) return reject(err);
+        if (result) return resolve(result);
+
+        var requiredCategory = new DocumentCategory({mdph: req.mdph._id, required: true, label: 'Document de la demande'});
+
+        requiredCategory.save((err, saved) => {
+          if (err) return reject(err);
+
+          DocumentCategory
+            .find({mdph: req.mdph._id, unclassified: {$ne: true}}).lean().exec(function(err, list) {
+              resolve(list);
+            });
+        });
+      });
+  });
+}
+
 export function showDocumentCategories(req, res) {
-  showDocumentCategoriesLocal(req.mdph)
+  createPdfCategoryIfNecessary(req)
+    .then(showDocumentCategoriesLocal(req.mdph))
     .then(respondWithResult(res))
     .catch(handleError(req, res));
 }
