@@ -39,6 +39,8 @@ function handleError(req, res) {
     } else {
       res.status(statusCode).send('Server error');
     }
+
+    return null;
   };
 }
 
@@ -218,17 +220,17 @@ function findActionHistory(req) {
     .sort('-date')
     .lean()
     .exec()
-    .then(populateActionLabels());
+    .then(populateActionLabels);
 }
 
-function populateActionLabels() {
-  return function(actionHistory) {
+function populateActionLabels(actions) {
+  return new Promise(function(resolve) {
     actions.forEach(function(action) {
       action.label = actionsById[action.action].label;
     });
 
-    return actions;
-  };
+    return resolve(actions);
+  });
 }
 
 export function getHistory(req, res) {

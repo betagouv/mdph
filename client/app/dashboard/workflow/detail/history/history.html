@@ -1,5 +1,5 @@
 <div class="timeline">
-  <div ng-repeat="action in history" class="timeline-block" ng-class="{user: action.user.role === 'user', agent: action.user.role !== 'user'}">
+  <div ng-repeat="action in history track by action._id" class="timeline-block" ng-class="{user: action.user.role === 'user', agent: action.user.role !== 'user'}">
     <div class="timeline-img {{action | actionTypeIconFilter}}">
       <i class="fa fa-{{action | actionTypeIconFilter}}"></i>
     </div>
