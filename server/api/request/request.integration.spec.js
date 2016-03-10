@@ -136,47 +136,5 @@ describe('Request Integration', function() {
         });
       });
     });
-
-  });
-
-  describe('Delete Documents', function() {
-    describe('When the request is en cours', function() {
-      var idDoc;
-
-      //initialize a request
-      beforeEach(done => {
-        var newDocument = {
-          type: 'carteIdentite',
-          path: 'toto'
-        };
-
-        var newRequest = new Request({
-          shortId: '1234',
-          status: 'en_cours',
-          documents: [newDocument],
-          user: testUser._id
-        });
-
-        newRequest.save(function(err, request) {
-          if (err) {
-            return done(err);
-          }
-
-          idDoc = request.documents[0]._id;
-          done();
-        });
-      });
-
-      afterEach(done => {
-        //clear mdphs after testing
-        Request.remove().exec(done);
-      });
-
-      it('should return 200', done => {
-        api
-          .delete('/api/requests/1234/document/' + idDoc + '?access_token=' + token)
-          .expect(200, done);
-      });
-    });
   });
 });

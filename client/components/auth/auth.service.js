@@ -1,77 +1,73 @@
 'use strict';
 
-angular.module('impactApp')
-  .factory('Auth', function Auth($state, $rootScope, $http, User, $cookies, $q, $sessionStorage) {
+(function() {
+
+  function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
+    var safeCb = Util.safeCb;
     var currentUser = {};
-    if ($cookies.get('token')) {
+    var userRoles = appConfig.userRoles || [];
+
+    if ($cookies.get('token') && $location.path() !== '/logout') {
       currentUser = User.get();
     }
 
-    return {
+    var Auth = {
 
       /**
        * Authenticate user and save token
        *
        * @param  {Object}   user     - login info
-       * @param  {Function} callback - optional
+       * @param  {Function} callback - optional, function(error, user)
        * @return {Promise}
        */
-      login: function(user, callback) {
-        var cb = callback || angular.noop;
-        var deferred = $q.defer();
-
-        $http.post('/auth/local', {
-          email: user.email,
-          password: user.password
-        }).
-        success(function(data) {
-          $cookies.put('token', data.token);
-          currentUser = User.get();
-          deferred.resolve(data.user);
-          return cb({}, data);
-        }).
-        error(function(err) {
-          this.logout();
-          deferred.reject(err);
-          return cb(err);
-        }.bind(this));
-
-        return deferred.promise;
+      login({email, password}, callback) {
+        return $http.post('/auth/local', {
+          email: email,
+          password: password
+        })
+          .then(res => {
+            $cookies.put('token', res.data.token);
+            currentUser = User.get();
+            return currentUser.$promise;
+          })
+          .then(user => {
+            safeCb(callback)(null, user);
+            return user;
+          })
+          .catch(err => {
+            Auth.logout();
+            safeCb(callback)(err.data);
+            return $q.reject(err.data);
+          });
       },
 
       /**
        * Delete access token and user info
-       *
-       * @param  {Function}
        */
-      logout: function() {
+      logout() {
         $cookies.remove('token');
-        $sessionStorage.$reset();
         currentUser = {};
-        $state.go('departement', {}, {reload: true});
       },
 
       /**
        * Create a new user
        *
        * @param  {Object}   user     - user info
-       * @param  {Function} callback - optional
+       * @param  {Function} callback - optional, function(error, user)
        * @return {Promise}
        */
-      createUser: function(user, callback) {
-        var cb = callback || angular.noop;
-
+      createUser(user, callback) {
         return User.save(user,
           function(data) {
             $cookies.put('token', data.token);
             currentUser = User.get();
-            return cb(user);
+            return safeCb(callback)(null, user);
           },
 
           function(err) {
-            this.logout();
-            return cb(err);
-          }.bind(this)).$promise;
+            Auth.logout();
+            return safeCb(callback)(err);
+          }).$promise;
       },
 
       /**
@@ -79,95 +75,131 @@ angular.module('impactApp')
        *
        * @param  {String}   oldPassword
        * @param  {String}   newPassword
-       * @param  {Function} callback    - optional
+       * @param  {Function} callback    - optional, function(error, user)
        * @return {Promise}
        */
-      changePassword: function(oldPassword, newPassword, callback) {
-        var cb = callback || angular.noop;
-
+      changePassword(oldPassword, newPassword, callback) {
         return User.changePassword({ id: currentUser._id }, {
           oldPassword: oldPassword,
           newPassword: newPassword
-        }, function(user) {
-          return cb(user);
+        },
+
+        function() {
+          return safeCb(callback)(null);
         },
 
         function(err) {
-          return cb(err);
+          return safeCb(callback)(err);
         }).$promise;
       },
 
       /**
-       * Gets all available info on authenticated user
+       * Gets all available info on a user
+       *   (synchronous|asynchronous)
        *
-       * @return {Object} user
+       * @param  {Function|*} callback - optional, funciton(user)
+       * @return {Object|Promise}
        */
-      getCurrentUser: function() {
-        return currentUser;
-      },
-
-      /**
-       * Waits for currentUser to resolve before getting all available info on authenticated user
-       */
-      getCurrentUserAsync: function(cb) {
-        if (currentUser.hasOwnProperty('$promise')) {
-          currentUser.$promise.then(function(user) {
-            cb(user);
-          });
-        } else {
+      getCurrentUser(callback) {
+        if (arguments.length === 0) {
           return currentUser;
         }
+
+        var value = (currentUser.hasOwnProperty('$promise')) ?
+          currentUser.$promise : currentUser;
+        return $q.when(value)
+          .then(user => {
+            safeCb(callback)(user);
+            return user;
+          }, () => {
+            safeCb(callback)({});
+            return {};
+          });
       },
 
       /**
        * Check if a user is logged in
+       *   (synchronous|asynchronous)
        *
-       * @return {Boolean}
+       * @param  {Function|*} callback - optional, function(is)
+       * @return {Bool|Promise}
        */
-      isLoggedIn: function() {
-        return currentUser.hasOwnProperty('role');
-      },
-
-      /**
-       * Waits for currentUser to resolve before checking if user is logged in
-       */
-      isLoggedInAsync: function(cb) {
-        if (currentUser.hasOwnProperty('$promise')) {
-          currentUser.$promise.then(function() {
-            cb(true);
-          }).catch(function() {
-            cb(false);
-          });
-        } else if (currentUser.hasOwnProperty('role')) {
-          cb(true);
-        } else {
-          cb(false);
+      isLoggedIn(callback) {
+        if (arguments.length === 0) {
+          return currentUser.hasOwnProperty('role');
         }
+
+        return Auth.getCurrentUser(null)
+          .then(user => {
+            var is = user.hasOwnProperty('role');
+            safeCb(callback)(is);
+            return is;
+          });
       },
 
       /**
-       * Check if a user is an admin
-       *
-       * @return {Boolean}
-       */
-      isAdmin: function() {
-        return currentUser.role === 'admin';
+        * Check if a user has a specified role or higher
+        *   (synchronous|asynchronous)
+        *
+        * @param  {String}     role     - the role to check against
+        * @param  {Function|*} callback - optional, function(has)
+        * @return {Bool|Promise}
+        */
+      hasRole(role, callback) {
+        var hasRole = function(r, h) {
+          return userRoles.indexOf(r) >= userRoles.indexOf(h);
+        };
+
+        if (arguments.length < 2) {
+          return hasRole(currentUser.role, role);
+        }
+
+        return Auth.getCurrentUser(null)
+          .then(user => {
+            var has = (user.hasOwnProperty('role')) ?
+              hasRole(user.role, role) : false;
+            safeCb(callback)(has);
+            return has;
+          });
       },
 
       /**
-       * Check if a user is from an mdph
-       *
-       * @return {Boolean}
-       */
+        * Check if a user is an admin
+        *   (synchronous|asynchronous)
+        *
+        * @param  {Function|*} callback - optional, function(is)
+        * @return {Bool|Promise}
+        */
+      isAdmin() {
+        return Auth.hasRole
+          .apply(Auth, [].concat.apply(['admin'], arguments));
+      },
+
+      /**
+        * Check if a user is an admin
+        *   (synchronous|asynchronous)
+        *
+        * @param  {Function|*} callback - optional, function(is)
+        * @return {Bool|Promise}
+        */
       isAdminMdph: function() {
-        return currentUser.role === 'adminMdph';
+        return Auth.hasRole
+          .apply(Auth, [].concat.apply(['adminMdph'], arguments));
       },
 
       /**
        * Get auth token
+       *
+       * @return {String} - a token string used for authenticating
        */
-      getToken: function() {
+      getToken() {
         return $cookies.get('token');
       }
     };
-  });
+
+    return Auth;
+  }
+
+  angular.module('impactApp.auth').factory('Auth', AuthService);
+
+})();

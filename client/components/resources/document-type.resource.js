@@ -5,4 +5,7 @@ angular.module('impactApp')
     return $resource('/api/document-types/:id', {
       id: '@_id'
     });
+  })
+  .factory('MdphDocumentTypeResource', function($resource) {
+    return $resource('/api/mdphs/:zipcode/categories/document-types');
   });

@@ -73,12 +73,16 @@ describe('Document Integration', function() {
         });
       });
 
-      it('should respond 200', function(done) {
+      it('should respond 204 and delete document', function(done) {
         api
           .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
-          .expect(200)
+          .expect(204)
           .end(function(err, res) {
-            return done(err);
+
+            Request.findOne({shortId: 1234}).exec().then(request => {
+              request.documents.length.should.eql(0);
+              return done();
+            }).catch(done);
           });
       });
     });

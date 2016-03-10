@@ -22,11 +22,11 @@ module.exports = function(request, requestTempPdfPath, documentList, callback) {
 
       async.parallel([
         function(callback) {
-          DocumentCategoryCtrl.findAndSortCategoriesForMdph(mdph, callback);
+          DocumentCategoryCtrl.showDocumentCategoriesLocal(mdph).then(documentCategories => callback(null, documentCategories));
         },
 
         function(callback) {
-          DocumentCategoryCtrl.getUnclassifiedCategory(mdph, callback);
+          DocumentCategoryCtrl.getUnclassifiedCategoryLocal(mdph).then(unclassifiedCategory => callback(null, unclassifiedCategory));
         }
       ], function(err, results) {
         if (err) {

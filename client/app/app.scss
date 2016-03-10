@@ -26,9 +26,9 @@ $bg-blue: lighten($lighter-blue, 10%);
 $border-blue: darken($lighter-blue, 5%);
 $disabled-blue: lighten($light-blue, 30%);
 
-$primary: $lighter-blue;
+$primary: $orange;
 $primary-hover: $light-blue;
-$brand-primary: $bg-blue;
+$brand-primary: $orange;
 
 @import 'bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
@@ -40,12 +40,24 @@ $brand-primary: $bg-blue;
   border-radius: 0px;
 }
 
+a {
+  color: $flat-ui-blue;
+
+  &:hover, &:focus {
+    color: $bg-blue;
+  }
+}
+
 .box-shadow-z4 {
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.08),0 1px 1px 0 rgba(0,0,0,.06),0 2px 1px -1px rgba(0,0,0,.05);
 }
 
 .box-shadow-z1 {
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+.background-white {
+  background-color: white;
 }
 
 .browsehappy {
@@ -64,10 +76,15 @@ $brand-primary: $bg-blue;
   white-space: normal;
 }
 
-.banner {
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  color: $light-white;
-  background: $light-blue;
+.btn-blue {
+  color: darkcyan;
+  border: 1px solid darkcyan;
+  background-color: white;
+
+  &:hover, &:focus {
+    color: white;
+    background-color: darkcyan;
+  }
 }
 
 .row.push-down {
@@ -158,7 +175,6 @@ fieldset {
   background-color: whitesmoke;
 }
 
-// Component styles are injected through grunt
 // injector
 @import 'account/account.scss';
 @import 'apropos/apropos.scss';

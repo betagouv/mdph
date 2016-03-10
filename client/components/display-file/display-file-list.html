@@ -1,14 +1,8 @@
-<div ng-if="empty()">
-  <ul class="list-group">
-    <li class="list-group-item">Aucune pièce</li>
-  </ul>
-</div>
-
 <div ng-if="!empty()">
   <div ng-repeat="category in categories">
     <h4>{{category.documentType.label}}</h4>
-    <ul class="list-group">
-      <li ng-repeat="document in category.documentList" class="list-group-item">
+    <ul class="list-unstyled">
+      <li ng-repeat="document in category.documentList">
         <display-file file="document" request="request" user="user"></display-file>
       </li>
     </ul>
