@@ -288,3 +288,69 @@ export function getSynthesePdf(req, res) {
     });
   });
 }
+
+function processDocument(file, fileData, done) {
+  if (typeof file === 'undefined') {
+    return done({status: 304});
+  }
+
+  resizeAndMove(file, function() {
+    var document = _.extend(file, {
+      type: fileData.type,
+      partenaire: fileData.partenaire
+    });
+
+    return done(null, document);
+  });
+}
+
+export function saveFilePartenaire(req, res) {
+  var _document = null;
+  var _request = null;
+  var _partenaire = null;
+
+  async.waterfall([
+    function(callback) {
+      processDocument(req.file, req.body, callback);
+    },
+
+    function(document, callback) {
+      _document = document;
+      Request.findOne({shortId: req.params.shortId}, callback);
+    },
+
+    function(request, callback) {
+      _request = request;
+      request.documents.push(_document);
+      request.save();
+      callback();
+    },
+
+    function(callback) {
+      Partenaire.findById(_document.partenaire, callback);
+    },
+
+    function(partenaire, callback) {
+      if (!partenaire) { res.sendStatus(404); }
+
+      _partenaire = partenaire;
+      partenaire.secret = shortid.generate();
+      partenaire.save();
+      callback();
+    },
+
+    function(callback) {
+      const confirmationUrl = req.headers.host + '/api/partenaires/' + _partenaire._id + '/' + _partenaire.secret;
+      MailActions.sendConfirmationMail(_partenaire.email, confirmationUrl);
+
+      _request.saveActionLog(actions.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
+      callback();
+    }
+  ], function(err, result) {
+    if (err) {
+      return handleError(req, res, err);
+    }
+
+    return res.json(_document);
+  });
+}

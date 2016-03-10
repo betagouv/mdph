@@ -146,8 +146,7 @@ describe('Request Integration', function() {
       //initialize a request
       beforeEach(done => {
         var newDocument = {
-          type: 'carteIdentite',
-          path: 'toto'
+          type: 'carteIdentite'
         };
 
         var newRequest = new Request({
@@ -172,10 +171,10 @@ describe('Request Integration', function() {
         Request.remove().exec(done);
       });
 
-      it('should return 200', done => {
+      it('should return 204', done => {
         api
           .delete('/api/requests/1234/document/' + idDoc + '?access_token=' + token)
-          .expect(200, done);
+          .expect(204, done);
       });
     });
   });

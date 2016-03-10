@@ -47,7 +47,6 @@ export default {
 
   show: function(req, res) {
     const documentType = _.find(allDocumentTypes, {id: req.params.id});
-    console.log(req.query.type);
 
     if (!documentType) {
       return res.sendStatus(404);
@@ -57,7 +56,6 @@ export default {
   },
 
   index: function(req, res) {
-    console.log(req.query.type);
     const type = req.query.type;
 
     if (type) {

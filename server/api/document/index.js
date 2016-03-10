@@ -3,16 +3,15 @@
 import {Router} from 'express';
 import multer from 'multer';
 import controller from './document.controller';
-import auth from '../../auth/auth.service';
+import * as Auth from '../../auth/auth.service';
 import config from '../../config/environment';
 
 const upload = multer({ dest: config.uploadDir });
 const router = new Router({mergeParams: true});
 
-router.post('/', auth.isAuthorized(), upload.single('file'), controller.saveFile);
-router.post('/partenaire', upload.single('file'), controller.saveFilePartenaire);
-router.put('/:fileId', auth.isAuthorized(), controller.updateFile);
-router.get('/:fileName', auth.isAuthorized(), controller.downloadFile);
-router.delete('/:fileId', auth.isAuthenticated(), controller.deleteFile);
+router.post('/', upload.single('file'), controller.saveFile);
+router.put('/:fileId', controller.updateFile);
+router.get('/:fileName', controller.downloadFile);
+router.delete('/:fileId', controller.deleteFile);
 
 export default router;

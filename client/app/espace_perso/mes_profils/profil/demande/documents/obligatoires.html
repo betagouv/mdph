@@ -11,13 +11,8 @@
         </a>
       </p>
 
-      <ul ng-if="!request.documents.obligatoires[documentType.id]" class="list-group">
-        <li class="list-group-item">
-          Pas de document
-        </li>
-      </ul>
-      <ul ng-if="request.documents.obligatoires[documentType.id]" class="list-group">
-        <li ng-repeat="file in request.documents.obligatoires[documentType.id].documentList" class="list-group-item">
+      <ul ng-if="request.documents.obligatoires[documentType.id]" class="list-unstyled background-white">
+        <li ng-repeat="file in request.documents.obligatoires[documentType.id].documentList">
           <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request"></display-file>
           <div ng-if="file.progress">
             {{file.name}} - en cours...

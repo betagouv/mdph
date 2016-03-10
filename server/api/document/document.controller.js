@@ -53,54 +53,56 @@ function handleUserNotAuthorized(user, res) {
   };
 }
 
-function handleStatusError(user, res) {
-  return function(request) {
-    if (Auth.meetsRequirements(user.role, 'adminMdph')) {
-      return request;
+function handleStatusError(req, res) {
+  return new Promise(function(resolve, reject) {
+    if (Auth.meetsRequirements(req.user.role, 'adminMdph')) {
+      return resolve();
     }
 
-    if (request.status === 'en_cours') {
-      return request;
+    if (req.request.status === 'en_cours') {
+      return resolve();
     }
 
-    throw(403);
-  };
+    reject(403);
+  });
 }
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
-  return function(request) {
-    res.status(statusCode).json(request);
+  return function(entity) {
+    if (entity) {
+      res.status(statusCode).json(entity);
+    } else {
+      res.sendStatus(statusCode);
+    }
+
     return null;
   };
 }
 
 function handleDeleteFile(req) {
-  return function(request) {
-    const file = request.documents.id(req.params.fileId);
+  return new Promise(function(resolve, reject) {
+    const file = req.request.documents.id(req.params.fileId);
 
     if (!file) {
       throw(304);
     }
 
     if (file.path) {
-      fs.unlink(file.path, function() {
-        // ignore errors
-        file.remove();
-      });
+      fs.unlink(file.path);
     }
 
-    request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
-    return request.save();
-  };
-}
+    file.remove(function(err, updated) {
+      if (err) return reject(err);
 
-function findAndPopulate(shortId) {
-  return Request
-    .findOne({shortId: shortId})
-    .populate('user')
-    .populate('evaluator')
-    .exec();
+      req.request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
+      req.request.save(function(err, updated) {
+        if (err) return reject(err);
+
+        resolve(updated);
+      });
+    });
+  });
 }
 
 function processDocument(file, fileData, done) {
@@ -138,57 +140,6 @@ exports.saveFile = function(req, res, next) {
   });
 };
 
-exports.saveFilePartenaire = function(req, res) {
-  var _document = null;
-  var _request = null;
-  var _partenaire = null;
-
-  async.waterfall([
-    function(callback) {
-      processDocument(req.file, req.body, callback);
-    },
-
-    function(document, callback) {
-      _document = document;
-      Request.findOne({shortId: req.params.shortId}, callback);
-    },
-
-    function(request, callback) {
-      _request = request;
-      request.documents.push(_document);
-      request.save();
-      callback();
-    },
-
-    function(callback) {
-      Partenaire.findById(_document.partenaire, callback);
-    },
-
-    function(partenaire, callback) {
-      if (!partenaire) { res.sendStatus(404); }
-
-      _partenaire = partenaire;
-      partenaire.secret = shortid.generate();
-      partenaire.save();
-      callback();
-    },
-
-    function(callback) {
-      const confirmationUrl = req.headers.host + '/api/partenaires/' + _partenaire._id + '/' + _partenaire.secret;
-      MailActions.sendConfirmationMail(_partenaire.email, confirmationUrl);
-
-      _request.saveActionLog(Actions.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
-      callback();
-    }
-  ], function(err, result) {
-    if (err) {
-      return handleError(req, res, err);
-    }
-
-    return res.json(_document);
-  });
-};
-
 exports.downloadFile = function(req, res) {
   var filePath = path.join(config.root + '/server/uploads/', req.params.fileName);
   var stat = fs.statSync(filePath);
@@ -202,12 +153,9 @@ exports.downloadFile = function(req, res) {
 };
 
 exports.deleteFile = function(req, res) {
-  findAndPopulate(req.params.shortId)
-    .then(handleEntityNotFound(res))
-    .then(handleUserNotAuthorized(req.user, res))
-    .then(handleStatusError(req.user, res))
+  handleStatusError(req, res)
     .then(handleDeleteFile(req))
-    .then(respondWithResult(res))
+    .then(respondWithResult(res, 204))
     .catch(handleError(req, res));
 };
 
