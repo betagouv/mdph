@@ -89,7 +89,11 @@ function handleDeleteFile(req) {
     }
 
     if (file.path) {
-      fs.unlink(file.path);
+      fs.exists(file.path, function(exists) {
+        if (exists) {
+          fs.unlink(file.path);
+        }
+      });
     }
 
     file.remove(function(err, updated) {
