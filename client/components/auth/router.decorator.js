@@ -23,7 +23,7 @@
             }
 
             event.preventDefault();
-            $state.go('login');
+            $state.go('login', nextParams);
           });
 
           return;
