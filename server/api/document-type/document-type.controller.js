@@ -33,11 +33,16 @@ export default {
         if (documentType.mandatory) {
           addToDocumentGroups(result.obligatoires, currentDocument, documentType);
         } else {
-          addToDocumentGroups(result.complementaires, currentDocument, documentType);
+          if (request.askedDocumentTypes && request.askedDocumentTypes.indexOf(currentDocument.type) >= 0) {
+            addToDocumentGroups(result.asked, currentDocument, documentType);
+          }
+          else {
+            addToDocumentGroups(result.complementaires, currentDocument, documentType);
+          }
         }
 
         return result;
-      }, {obligatoires: {}, complementaires: {}});
+      }, {obligatoires: {}, complementaires: {}, asked: {}});
 
       request.documents = groupedDocuments;
     }

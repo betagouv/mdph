@@ -125,6 +125,15 @@ angular.module('impactApp').config(function($stateProvider) {
           }
         }
       },
+      'asked@espace_perso.mes_profils.profil.demande': {
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/asked.html',
+        controller: 'AskedDocumentsCtrl',
+        resolve: {
+          documentTypes: function(DocumentTypeResource) {
+            return DocumentTypeResource.query({type: 'asked'}).$promise;
+          }
+        }
+      },
       'complementaires@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/complementaires.html',
         controller: 'DocumentsComplementairesCtrl',

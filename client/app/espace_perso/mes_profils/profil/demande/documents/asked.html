@@ -1,0 +1,36 @@
+<h3>Documents demandés</h3>
+
+<div class="row">
+  <div class="document-wrapper" ng-repeat="documentType in askedDocumentTypes">
+    <div class="document-box">
+      <h4>{{documentType.label}}</h4>
+      <p>{{documentType.desc}}</p>
+
+      <ul ng-if="!request.documents.asked[documentType.id]" class="list-group">
+        <li class="list-group-item">
+          Pas de document
+        </li>
+      </ul>
+
+      <ul ng-if="request.documents.asked[documentType.id]" class="list-unstyled background-white">
+        <li ng-repeat="file in request.documents.asked[documentType.id].documentList">
+          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+          <div ng-if="file.progress">
+            {{file.name}} - en cours...
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
+                {{file.progress}}%
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="text-right">
+        <button type="button" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
+          <i class="fa fa-upload"></i> Attacher un fichier</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
