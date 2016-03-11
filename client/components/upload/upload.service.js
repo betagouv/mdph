@@ -14,14 +14,23 @@ angular.module('impactApp')
           if (!request.documents.obligatoires) {
             request.documents.obligatoires = {};
           }
-
           model = request.documents.obligatoires;
+
         } else {
-          if (!request.documents.complementaires) {
-            request.documents.complementaires = {};
+          if (request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) >= 0) {
+            if (!request.documents.asked) {
+              request.documents.asked = {};
+            }
+            model = request.documents.asked;
           }
 
-          model = request.documents.complementaires;
+          else {
+              if (!request.documents.complementaires) {
+                request.documents.complementaires = {};
+              }
+              model = request.documents.complementaires;
+            }
+
         }
 
         if (!model[documentType.id]) {

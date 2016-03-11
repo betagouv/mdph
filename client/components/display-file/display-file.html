@@ -28,9 +28,9 @@
         <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
       </div>
 
-      <a class="trash" ng-click="delete()" ng-if="user.role !== 'user' || request.status === 'en_cours' || request.status === 'en_attente_usager'">
-        Supprimer
-      </a>
+      <button class="trash" ng-click="delete()" ng-if="user.role !== 'user' || request.status === 'en_cours' || request.status === 'en_attente_usager'">
+        <i class="fa fa-trash"></i>&nbsp;Supprimer
+      </button>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
   </div>
 
   <div ng-if="hideActions">
-    <div class="validation-actions" ng-if="showValidationStatus">
+    <div class="validation-actions">
       <div class="fab invert-refuse" ng-if="file.isInvalid === true" tooltip="Ce document à été refusé"><i class="fa fa-thumbs-down"></i></div>
       <div class="fab invert-valid" ng-if="file.isInvalid === false" tooltip="Ce document à été validé"><i class="fa fa-thumbs-up"></i></div>
     </div>
