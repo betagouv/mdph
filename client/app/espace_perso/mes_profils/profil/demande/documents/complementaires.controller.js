@@ -4,9 +4,20 @@ angular.module('impactApp')
   .controller('DocumentsComplementairesCtrl', function($scope, $modal, UploadService, request, documentTypes, currentUser) {
     $scope.request = request;
     $scope.documentTypes = documentTypes;
-    $scope.selectedTypes = _.map(request.documents.complementaires, function(category) {
+
+    $scope.selectedTypes = documentTypes.filter(function(value) {
+      return request.askedDocumentTypes.indexOf(value.id) > -1;
+    });
+
+    var complementairesTypes = _.map(request.documents.complementaires, function(category) {
       return category.documentType;
     });
+
+    complementairesTypes.forEach(function(value) {
+      if ($scope.selectedTypes.indexOf(value) === -1) {
+        $scope.selectedTypes.push(value);
+      }
+    })
 
     $scope.user = currentUser;
 
