@@ -15,19 +15,15 @@ angular.module('impactApp')
           $scope.error = err.message;
         })
         .then(function(user) {
-          if ($rootScope.returnToState) {
-            return $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
+          if (Auth.isAdmin()) {
+            return $state.go('dashboard.workflow', {codeDepartement: currentMdph.zipcode}, {reload: true});
           }
 
-          if (Auth.isAdmin(user)) {
-            return $state.go('dashboard.workflow', {codeDepartement: currentMdph.zipcode});
+          if (Auth.isAdminMdph()) {
+            return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 
-          if (Auth.isAdminMdph(user)) {
-            return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode});
-          }
-
-          return $state.go('espace_perso.mes_profils');
+          return $state.go('espace_perso.mes_profils', {}, {reload: true});
         });
       }
     };
