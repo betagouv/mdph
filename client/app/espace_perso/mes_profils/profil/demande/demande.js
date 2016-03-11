@@ -29,62 +29,7 @@ angular.module('impactApp').config(function($stateProvider) {
     views: {
       '': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/demande.html',
-        controller: function($scope, $state, $filter, toastr, RequestResource, ProfileService, RequestService, currentUser, request, profile, prestations) {
-          $scope.request = request;
-          $scope.currentUser = currentUser;
-
-          if (request.prestations && request.prestations.length > 0) {
-            _.map(request.prestations, function(prestation) {
-              _.find(prestations, { id: prestation }).isSelected = true;
-            });
-          }
-
-          $scope.isEditable = function() {
-            return (request.status === 'en_cours' || request.status === 'en_attente_usager');
-          }
-
-          function getSelectedPrestationIdList() {
-            return _.chain(prestations)
-             .filter({choice: 'true'})
-             .pluck('id')
-             .value();
-          }
-
-          function getRenewalPrestationIdList() {
-            return _.chain(prestations)
-             .filter({choice: 'renouvellement'})
-             .pluck('id')
-             .value();
-          }
-
-          $scope.submit = function(form) {
-            if (!form.$valid) {
-              toastr.error('Vous n\'avez pas spécifié de MDPH destinataire de votre demande.', 'Erreur lors de la tentative d\'envoi');
-            } else {
-
-              if (!request.prestations) {
-                request.prestations = getSelectedPrestationIdList();
-              }
-              if (!request.prestations) {
-                request.renouvellements = getRenewalPrestationIdList();
-              }
-
-              if (!RequestService.getCompletion(request)) {
-                toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
-              } else if (currentUser.unconfirmed) {
-                toastr.error('Vous n\'avez pas confirmé votre compte ' + currentUser.email, 'Erreur lors de la tentative d\'envoi');
-              } else if (request.prestations.length < 1 && request.renouvellements.length < 1) {
-                toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
-              } else {
-                request.status = 'emise';
-                request.submittedAt = Date.now();
-                request.$update({isSendingRequest: true}, function() {
-                  $state.go('^', {}, {reload: true});
-                });
-              }
-            }
-          };
-        }
+        controller: 'DemandeCtrl'
       },
       'choix_mdph@espace_perso.mes_profils.profil.demande': {
         templateUrl: 'app/espace_perso/mes_profils/profil/demande/choix_mdph/choix_mdph.html',
