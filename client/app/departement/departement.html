@@ -7,7 +7,7 @@
       <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">
         S'inscrire
       </a>
-      <a class="hero-button" ui-sref="signup" ng-if="isLoggedIn()">
+      <a class="hero-button" ui-sref="espace_perso.mes_profils" ng-if="isLoggedIn()">
         Voir mes profils
       </a>
       <a class="hero-button inverted" ng-if="isAdmin()" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
