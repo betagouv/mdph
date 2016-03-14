@@ -306,9 +306,9 @@ function populateList(list) {
 }
 
 export function showDocumentCategoriesLocal(mdph) {
-  return DocumentCategory
-    .find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec()
-    .then(populateList);
+  return function() {
+    return DocumentCategory.find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec().then(populateList);
+  };
 }
 
 function createPdfCategoryIfNecessary(req) {
