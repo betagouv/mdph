@@ -206,45 +206,39 @@ export function getDocumentCategoryFile(req, res) {
   });
 }
 
-export function updateDocumentCategory(categoryId, label, callback) {
-  DocumentCategory.findById(categoryId, function(err, category) {
-    if (err) { return callback(err); }
+export function updateDocumentCategory(req, res) {
+  DocumentCategory.findById(req.params.categoryId, function(err, category) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    if (!category) {
+      return res.sendStatus(404);
+    }
 
     category
-      .set('label', label)
+      .set('label', req.body.label)
       .save(function(err, updated) {
-        if (err) { return callback(err); }
-
-        return callback(null, updated);
-      });
-  });
-}
-
-export function removeDocumentCategory(categoryId, callback) {
-  DocumentCategory
-    .findById(categoryId)
-    .remove()
-    .exec(callback);
-}
-
-export function updateDocumentCategories(updatedCategories, callback) {
-  async.map(updatedCategories, function(positionObj, mapCallback) {
-    DocumentCategory
-      .findById(positionObj._id)
-      .exec(function(err, category) {
         if (err) {
-          mapCallback(err);
+          return res.status(500).send(err);
         }
 
-        category
-          .set('position', positionObj.position)
-          .save(mapCallback);
+        return res.json(updated);
       });
-  },
-
-  function(err) {
-    callback(err);
   });
+}
+
+export function removeDocumentCategory(req, res) {
+  DocumentCategory
+    .findById(req.params.categoryId)
+    .remove()
+    .exec(err => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      res.sendStatus(204);
+    });
 }
 
 export function updateDocumentType(req, res) {

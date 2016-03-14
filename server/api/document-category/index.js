@@ -17,12 +17,7 @@ router.get('/document-types', controller.showUncategorizedDocumentTypes);
 router.post('/:categoryId/file', upload.single('file'), controller.saveDocumentCategoryFile);
 router.get('/:categoryId/file', controller.getDocumentCategoryFile);
 
-//router.put('/', isAuthenticated(), controller.updateDocumentCategories);
-
-// router.put('/:categoryId', isAuthenticated(), controller.updateDocumentCategory);
-// router.delete('/:categoryId', isAuthenticated(), controller.removeDocumentCategory);
-//
-
-// router.post('/:categoryId/moveDocument/:newCategoryId', isAuthenticated(), controller.updateDocument);
+router.delete('/:categoryId', controller.removeDocumentCategory);
+router.post('/:categoryId', controller.updateDocumentCategory);
 
 export default router;
