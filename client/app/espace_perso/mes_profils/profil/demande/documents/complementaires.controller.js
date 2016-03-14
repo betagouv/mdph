@@ -14,7 +14,7 @@ angular.module('impactApp')
     });
 
     complementairesTypes.forEach(function(value) {
-      if ($scope.selectedTypes.indexOf(value) === -1) {
+      if (typeof _.find($scope.selectedTypes, {id: value.id}) === 'undefined') {
         $scope.selectedTypes.push(value);
       }
     })
@@ -32,7 +32,7 @@ angular.module('impactApp')
         resolve: {
           filteredDocumentTypes: function() {
             var filtered = _.filter(documentTypes, function(type) {
-              return typeof _.find($scope.request.documents.complementaires, {documentType: {id: type.id}}) === 'undefined';
+              return typeof _.find($scope.selectedTypes, {id: type.id}) === 'undefined';
             });
 
             return filtered;
