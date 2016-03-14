@@ -1,23 +1,49 @@
 .display-file {
+  padding: 10px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
 
-  .logo {
-    font-size: 20px;
-    color: $bg-grey;
-    margin-right: 10px;
+  .text {
+    i {
+      font-size: 20px;
+      color: $bg-grey;
+      width: 20px;
+    }
+    .name {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 
   .description {
     display: flex;
     flex-direction: row;
     align-items: center;
+    overflow: hidden;
   }
 
   .file-actions {
     display: flex;
     flex-direction: column;
+  }
+
+  .text-validation {
+    text-align: center;
+  }
+
+  .invert-valid {
+    border: 1px solid $green;
+    background-color: white;
+    color: $green;
+  }
+
+  .invert-refuse {
+    border: 1px solid $light-red;
+    background-color: white;
+    color: $light-red;
   }
 
   .validation-actions {
@@ -42,25 +68,13 @@
       color: white;
     }
 
-    .fab.invert-valid {
-      border: 1px solid $green;
-      background-color: white;
-      color: $green;
-    }
-
-    .fab.invert-refuse {
-      border: 1px solid $light-red;
-      background-color: white;
-      color: $light-red;
-    }
-
-    .fab.invert-valid.muted {
+    .invert-valid.muted {
       border: 1px solid $bg-grey;
       background-color: white;
       color: $bg-grey;
     }
 
-    .fab.invert-refuse.muted {
+    .invert-refuse.muted {
       border: 1px solid $bg-grey;
       background-color: white;
       color: $bg-grey;

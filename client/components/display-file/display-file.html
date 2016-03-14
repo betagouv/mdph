@@ -1,17 +1,16 @@
 <div class="display-file">
   <div class="description">
-    <div class="logo">
-      <i class="fa" ng-class="{
-      'fa-file-pdf-o': file.mimetype === 'application/pdf',
-      'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
-      'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'
-    }"></i>
-    </div>
     <div class="text">
       <div class="name">
         <div ng-if="file.sending">
           <i class="fa fa-spin fa-circle-o-notch"></i> Envoi en cours...
         </div>
+        <i class="fa" ng-class="{
+        'fa-file-pdf-o': file.mimetype === 'application/pdf',
+        'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
+        'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'}">
+        </i>
+
         <a
           target="_self"
           ng-if="!file.sending"
@@ -28,9 +27,6 @@
         <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
       </div>
 
-      <button type="button" class="trash" ng-click="delete()" ng-if="user.role !== 'user' || request.status === 'en_cours' || request.status === 'en_attente_usager'">
-        <i class="fa fa-trash"></i>&nbsp;Supprimer
-      </button>
     </div>
   </div>
 
@@ -42,10 +38,12 @@
   </div>
 
   <div ng-if="hideActions">
-    <div class="validation-actions">
-      <div class="fab invert-refuse" ng-if="file.isInvalid === true" tooltip="Ce document à été refusé"><i class="fa fa-thumbs-down"></i></div>
-      <div class="fab invert-valid" ng-if="file.isInvalid === false" tooltip="Ce document à été validé"><i class="fa fa-thumbs-up"></i></div>
-    </div>
+    <div class="text-validation invert-refuse" ng-if="file.isInvalid === true"><i class="fa fa-thumbs-down"></i>&nbsp;document non conforme</div>
+    <div class="text-validation invert-valid" ng-if="file.isInvalid === false"><i class="fa fa-thumbs-up"></i>&nbsp;document validé</div>
   </div>
+
+  <button type="button" class="trash" ng-click="delete()" ng-if="user.role !== 'user' || request.status === 'en_cours' || request.status === 'en_attente_usager'">
+    <i class="fa fa-trash"></i>&nbsp;Supprimer
+  </button>
 
 </div>

@@ -70,6 +70,30 @@
     @extend .col-sm-4;
   }
 
+  .file-card {
+    border: 1px solid $medium-heavy-grey;
+    height: 150px;
+  }
+
+  .file-card-add {
+    border: 1px dashed $medium-heavy-grey;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #e6e6e6;
+    }
+
+    button {
+      border: none;
+      font-size: 24px;
+      background-color: rgba(255,255,255,0);
+    }
+  }
+
   .document-box {
     background-color: whitesmoke;
     border: 1px solid #eee;
