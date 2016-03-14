@@ -31,8 +31,14 @@ angular.module('impactApp', [
     treeConfig.dragClass = 'angular-ui-tree-drag';
   })
   .run(function($rootScope, $window, $location) {
-    $rootScope.$on('$stateChangeSuccess', function() {
+    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       window.scrollTo(0, 0);
+
+      if (toState.data && toState.data.title) {
+        $rootScope.title = toState.data.title + ' - Votre MDPH en ligne';
+      } else {
+        $rootScope.title = 'Votre MDPH en ligne';
+      }
 
       if ($window._paq) {
         $window._paq.push(['setCustomUrl', $location.path()]);

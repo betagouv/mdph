@@ -9,7 +9,7 @@ angular.module('impactApp')
         controller: 'MonCompteCtrl',
         authenticate: true,
         data: {
-          title: 'Votre compte'
+          title: 'Mon compte'
         }
       })
       .state('dashboard.espace_perso.mon_compte', {
@@ -18,7 +18,7 @@ angular.module('impactApp')
         controller: 'MonCompteCtrl',
         authenticate: true,
         data: {
-          title: 'Votre compte'
+          title: 'Mon compte'
         }
       });
   });
