@@ -207,25 +207,24 @@ export function getDocumentCategoryFile(req, res) {
 }
 
 export function updateDocumentCategory(req, res) {
-  DocumentCategory.findById(req.params.categoryId, function(err, category) {
-    if (err) {
+  DocumentCategory
+    .findById(req.params.categoryId)
+    .exec()
+    .then(populateCategoryBarcode)
+    .then(function(category) {
+      if (!category) {
+        return res.sendStatus(404);
+      }
+
+      return category
+        .set('label', req.body.label)
+        .save(function(err, updated) {
+          return populateSingle(updated.toObject()).then(populated => res.json(populated));
+        });
+    })
+    .catch(err => {
       return res.status(500).send(err);
-    }
-
-    if (!category) {
-      return res.sendStatus(404);
-    }
-
-    category
-      .set('label', req.body.label)
-      .save(function(err, updated) {
-        if (err) {
-          return res.status(500).send(err);
-        }
-
-        return res.json(updated);
-      });
-  });
+    });
 }
 
 export function removeDocumentCategory(req, res) {
@@ -295,23 +294,24 @@ export function createNewDocumentCategory(req, res) {
     .catch(handleError(req, res));
 }
 
+function populateSingle(category) {
+  if (category.documentTypes && category.documentTypes.length > 0) {
+    // Poor man's population
+    let fullTypes = [];
+    category.documentTypes.forEach(function(documentType) {
+      fullTypes.push(_.find(allDocumentTypes, {id: documentType}));
+    });
+
+    category.documentTypes = fullTypes;
+  }
+
+  return populateCategoryBarcode(category);
+}
+
 function populateList(list) {
   return new Promise(function(resolve, reject) {
-    // "Populate" documents
-    var gfs = grid(mongoose.connection.db);
-
     async.map(list, function(category, mapCallback) {
-      if (category.documentTypes && category.documentTypes.length > 0) {
-        // Poor man's population
-        let fullTypes = [];
-        category.documentTypes.forEach(function(documentType) {
-          fullTypes.push(_.find(allDocumentTypes, {id: documentType}));
-        });
-
-        category.documentTypes = fullTypes;
-      }
-
-      populateCategoryBarcode(category).then(mapCallback);
+      populateSingle(category).then(mapCallback);
     },
 
     function() {
