@@ -1,19 +1,19 @@
 <h3>Documents obligatoires</h3>
+<div ng-repeat="documentType in documentTypes">
+    <h4>{{documentType.label}}</h4>
+    <p>{{documentType.desc}}</p>
+    <p ng-if="documentType.emptyDoc">
+      <a target="_blank" download ng-href="/assets/documents/{{documentType.emptyDoc}}">
+        Télécharger un modèle de ce document
+      </a>
+    </p>
 
-<div class="row">
-  <div class="document-wrapper" ng-repeat="documentType in documentTypes">
-    <div class="document-box">
-      <h4>{{documentType.label}}</h4>
-      <p>{{documentType.desc}}</p>
-      <p ng-if="documentType.emptyDoc">
-        <a target="_blank" download ng-href="/assets/documents/{{documentType.emptyDoc}}">
-          Télécharger un modèle de ce document
-        </a>
-      </p>
-
-      <ul ng-if="request.documents.obligatoires[documentType.id]" class="list-unstyled background-white">
-        <li ng-repeat="file in request.documents.obligatoires[documentType.id].documentList">
+  <div class="row">
+    <div ng-if="request.documents.obligatoires[documentType.id]">
+      <div class="document-wrapper" ng-repeat="file in request.documents.obligatoires[documentType.id].documentList">
+        <div class="file-card">
           <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+
           <div ng-if="file.progress">
             {{file.name}} - en cours...
             <div class="progress">
@@ -22,13 +22,16 @@
               </div>
             </div>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
+    </div>
 
-      <div class="text-right">
-        <button type="button" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false" class="btn btn-default">
-          <i class="fa fa-upload"></i> Attacher un fichier</span>
+    <div class="document-wrapper" class="text-right">
+      <div class="file-card file-card-add" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+        <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+          <i class="fa fa-plus"></i>
         </button>
+        Ajouter un fichier
       </div>
     </div>
   </div>
