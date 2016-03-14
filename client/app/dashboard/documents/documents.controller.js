@@ -23,7 +23,7 @@ angular.module('impactApp')
     }
 
     function updateDocumentType(documentType, oldCategoryId, newCategoryId, callback) {
-      $http.post('api/mdphs/' + currentMdph.zipcode + '/document-types', {
+      $http.post('api/mdphs/' + currentMdph.zipcode + '/categories/document-types', {
         documentType: documentType.id,
         oldCategoryId: oldCategoryId,
         newCategoryId: newCategoryId

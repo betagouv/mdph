@@ -225,17 +225,17 @@ export function updateDocumentCategories(updatedCategories, callback) {
 }
 
 export function updateDocumentType(req, res) {
-  if (!req.params.categoryId || !req.body.documentType) {
+  if (!req.body.newCategoryId || !req.body.documentType) {
     return res.status(500).send(); // TODO: status malformed request
   }
 
   async.parallel({
     old: function(cb) {
-      DocumentCategory.findById(req.params.categoryId).exec(cb);
+      DocumentCategory.findById(req.body.oldCategoryId).exec(cb);
     },
 
     new: function(cb) {
-      DocumentCategory.findById(req.params.newCategoryId).exec(cb);
+      DocumentCategory.findById(req.body.newCategoryId).exec(cb);
     }
   },
   function(err, results) {
