@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SignupCtrl', function($rootScope, $scope, $state, ProfileResource, Auth) {
+  .controller('SignupCtrl', function($rootScope, $scope, $state, ProfileResource, Auth, currentMdph) {
     $scope.user = {};
     $scope.inputType = 'password';
 
@@ -22,7 +22,8 @@ angular.module('impactApp')
         Auth.createUser({
           name: form.name.$modelValue,
           email: form.email.$modelValue,
-          password: form.password.$modelValue
+          password: form.password.$modelValue,
+          mdph: currentMdph.zipcode
         })
         .then(function(data) {
           // Logged in, redirect

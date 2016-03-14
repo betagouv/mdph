@@ -56,7 +56,7 @@
        * @param  {Function} callback - optional, function(error, user)
        * @return {Promise}
        */
-      createUser(user, callback) {
+      createUser(user, mdph, callback) {
         return User.save(user,
           function(data) {
             $cookies.put('token', data.token);

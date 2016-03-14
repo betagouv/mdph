@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('ForgottenPasswordCtrl', function($scope, $state, User) {
+  .controller('ForgottenPasswordCtrl', function($scope, $state, User, currentMdph) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -9,7 +9,7 @@ angular.module('impactApp')
       $scope.submitted = true;
 
       if (form.$valid) {
-        User.generateToken({email: $scope.user.email});
+        User.generateToken({email: $scope.user.email, mdph: currentMdph.zipcode});
         $state.go('.confirmation');
       }
     };

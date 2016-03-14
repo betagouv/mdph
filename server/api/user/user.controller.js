@@ -30,7 +30,9 @@ exports.index = function(req, res) {
  * Creates a new user
  */
 exports.create = function(req, res, next) {
-  var newUser = new User(req.body);
+  var mdph = req.body.mdph;
+  var newUser = new User(_.omit(req.body, 'mdph'));
+
   newUser.provider = 'local';
   newUser.unconfirmed = true;
   newUser.save(function(err, user) {
@@ -39,7 +41,7 @@ exports.create = function(req, res, next) {
     user.newMailToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);
-      const confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+      const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
       MailActions.sendConfirmationMail(user.email, confirmationUrl);
     });
 
@@ -165,17 +167,19 @@ exports.authCallback = function(req, res, next) {
  * Post to check if email exists
  */
 exports.generateTokenForPassword = function(req, res, next) {
-  var email = req.body.email;
+  let email = req.body.email;
+  let mdph = req.body.mdph;
+
   User.findOne({
     email: email
   }, function(err, user) {
     if (err) return next(err);
     if (!user) return res.sendStatus(200);
-    var newPasswordToken = shortid.generate();
+    let newPasswordToken = shortid.generate();
     user.newPasswordToken = newPasswordToken;
     user.save(function(err) {
       if (err) return validationError(res, err);
-      var confirmationUrl = 'http://' + req.headers.host + '/nouveau_mot_de_passe/' + user._id + '/' + user.newPasswordToken;
+      let confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/nouveau_mot_de_passe/' + user._id + '/' + user.newPasswordToken;
       Mailer.sendMail(
         user.email,
         'Nouveau mot de passe',
@@ -231,7 +235,7 @@ exports.resendConfirmation = function(req, res) {
       token = user.newMailToken;
     }
 
-    var confirmationUrl = 'http://' + req.headers.host + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+    var confirmationUrl = 'http://' + req.headers.host + '/mdph/' + req.body.mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
     Mailer.sendMail(
       user.email,
       'Validation de votre adresse',
