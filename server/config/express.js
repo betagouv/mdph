@@ -78,9 +78,8 @@ export default function(app) {
 
   if (env === 'production') {
     app.use(require('express-bunyan-logger')());
-    app.use(favicon(path.join(config.root, 'dist', 'favicon.ico')));
-    app.use(express.static(path.join(config.root, 'dist')));
-    app.set('appPath', config.root + '/dist');
+    app.use(favicon(path.join(app.get('appPath'), 'favicon.ico')));
+    app.use(express.static(app.get('appPath')));
   }
 
   if (env === 'development') {
