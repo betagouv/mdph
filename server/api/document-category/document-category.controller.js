@@ -133,8 +133,11 @@ export function getUnclassifiedCategory(req, res) {
     .catch(handleError(req, res));
 }
 
-export function saveDocumentCategoryFile(file, categoryId, logger, callback) {
+export function saveDocumentCategoryFile(req, res) {
   var gfs = grid(mongoose.connection.db);
+  var file = req.file;
+  var categoryId = req.params.categoryId;
+  var logger = req.log;
 
   var writeStream = gfs.createWriteStream({
     filename: file.originalname,
@@ -147,12 +150,21 @@ export function saveDocumentCategoryFile(file, categoryId, logger, callback) {
 
   writeStream.on('close', function(file) {
     DocumentCategory.findById(categoryId, function(err, category) {
-      if (err) { return callback(err); }
+      if (err) {
+        req.log.error(err);
+        return res.status(500).send(err);
+      }
+
+      if (!category) {
+        return res.sendStatus(404);
+      }
 
       if (category.barcode) {
         // remove existing file, only one allowed
         gfs.remove({_id: category.barcode}, function(err) {
-          if (err) return callback(err);
+          if (err) {
+            req.log.error(err);
+          }
 
           logger.info('Removed gfs file "' + category.barcode + '" for category "' + category._id + '"', category);
         });
@@ -161,24 +173,35 @@ export function saveDocumentCategoryFile(file, categoryId, logger, callback) {
       category
         .set('barcode', file._id)
         .save(function(err, updated) {
-          if (err) { return callback(err); }
+          if (err) {
+            req.log.error(err);
+            return res.status(500).send(err);
+          }
 
-          return callback(null, file);
+          return res.json(file);
         });
     });
   });
 }
 
-export function getDocumentCategoryFile(categoryId, callback) {
-  DocumentCategory.findById(categoryId, function(err, category) {
-    if (err) { return callback(err); }
+export function getDocumentCategoryFile(req, res) {
+  DocumentCategory.findById(req.params.categoryId, function(err, category) {
+    if (err) {
+      req.log.error(err);
+      return res.status(500).send(err);
+    }
+
+    if (!category) {
+      return res.sendStatus(404);
+    }
 
     if (category.barcode) {
       var gfs = grid(mongoose.connection.db);
-      var readstream = gfs.createReadStream({_id: category.barcode});
-      callback(null, readstream);
+      var readStream = gfs.createReadStream({_id: category.barcode});
+
+      return readStream.pipe(res);
     } else {
-      callback();
+      return res.sendStatus(200);
     }
   });
 }
