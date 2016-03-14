@@ -17,20 +17,10 @@ angular.module('impactApp')
           model = request.documents.obligatoires;
 
         } else {
-          if (request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) >= 0) {
-            if (!request.documents.asked) {
-              request.documents.asked = {};
-            }
-            model = request.documents.asked;
+          if (!request.documents.complementaires) {
+            request.documents.complementaires = {};
           }
-
-          else {
-              if (!request.documents.complementaires) {
-                request.documents.complementaires = {};
-              }
-              model = request.documents.complementaires;
-            }
-
+          model = request.documents.complementaires;
         }
 
         if (!model[documentType.id]) {
