@@ -102,7 +102,7 @@ angular.module('impactApp')
     $scope.removeDocumentType = function(scope, category) {
       var documentType = scope.$nodeScope.$modelValue;
 
-      category.removeDocumentType(documentType).then(function() {
+      updateDocumentType(documentType, category._id, null, function() {
         var index = category.documentTypes.indexOf(documentType);
         if (index >= 0) {
           category.documentTypes.splice(index, 1);

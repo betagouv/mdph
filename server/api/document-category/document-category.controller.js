@@ -225,7 +225,7 @@ export function updateDocumentCategories(updatedCategories, callback) {
 }
 
 export function updateDocumentType(req, res) {
-  if (!req.body.newCategoryId || !req.body.documentType) {
+  if (!(req.body.newCategoryId || req.body.oldCategoryId)  || !req.body.documentType) {
     return res.status(500).send(); // TODO: status malformed request
   }
 
