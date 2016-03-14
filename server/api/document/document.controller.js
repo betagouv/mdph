@@ -102,7 +102,6 @@ function handleDeleteFile(req) {
       req.request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
       req.request.save(function(err, updated) {
         if (err) return reject(err);
-
         resolve(updated);
       });
     });

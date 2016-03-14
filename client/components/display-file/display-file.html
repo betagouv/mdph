@@ -28,7 +28,7 @@
         <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
       </div>
 
-      <button class="trash" ng-click="delete()" ng-if="user.role !== 'user' || request.status === 'en_cours' || request.status === 'en_attente_usager'">
+      <button type="button" class="trash" ng-click="delete()" ng-if="user.role !== 'user' || request.status === 'en_cours' || request.status === 'en_attente_usager'">
         <i class="fa fa-trash"></i>&nbsp;Supprimer
       </button>
     </div>
