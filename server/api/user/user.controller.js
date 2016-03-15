@@ -26,28 +26,42 @@ exports.index = function(req, res) {
   });
 };
 
+function saveUserAndSendConfirmation(req, res) {
+  return function(user, mdph) {
+    user.save(function(err, user) {
+      if (err) return validationError(res, err);
+
+      user.newMailToken = shortid.generate();
+      user.save(function(err) {
+        if (err) return validationError(res, err);
+        const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+        MailActions.sendConfirmationMail(user.email, confirmationUrl);
+      });
+
+      const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+      return res.json({ token: token, id: user._id });
+    });
+  };
+}
+
 /**
  * Creates a new user
  */
 exports.create = function(req, res, next) {
-  var mdph = req.body.mdph;
   var newUser = new User(_.omit(req.body, 'mdph'));
 
   newUser.provider = 'local';
-  newUser.unconfirmed = true;
-  newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
+  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
+};
 
-    user.newMailToken = shortid.generate();
-    user.save(function(err) {
-      if (err) return validationError(res, err);
-      const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-      MailActions.sendConfirmationMail(user.email, confirmationUrl);
-    });
+/**
+ * Creates a new agent
+ */
+exports.createAgent = function(req, res, next) {
+  var newUser = new User(req.body);
 
-    const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-    res.json({ token: token, id: user._id });
-  });
+  newUser.provider = 'local';
+  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
 };
 
 /**

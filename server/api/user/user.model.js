@@ -8,7 +8,7 @@ var Request = require('../request/request.model');
 var UserSchema = new Schema({
   name: String,
   hashedPassword: { type: String, select: false },
-  unconfirmed: { type: Boolean },
+  unconfirmed: { type: Boolean, default: true },
   provider: String,
   salt:  { type: String, select: false },
   role: { type: String, default: 'user' },
