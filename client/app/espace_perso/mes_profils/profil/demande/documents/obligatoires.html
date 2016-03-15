@@ -1,9 +1,9 @@
 <h3>Documents</h3>
 <div ng-repeat="documentType in documentTypes">
 
-  <div class="row-document-type">
+  <div class="row-document-type" ng-class="getClass(documentType)">
     <div class="col-document-type">
-      <div class="title-card">
+      <div class="title-card" ng-class="getClass(documentType)">
         <h4>{{documentType.label}}</h4>
         <p>{{documentType.desc}}</p>
         <p ng-if="documentType.emptyDoc">
@@ -11,30 +11,30 @@
             Télécharger un modèle de ce document
           </a>
         </p>
-        <hr>
-        <p>Obligatoire</p>
+        <div ng-if="getText(documentType)">
+          <hr>
+          <p ng-bind="getText(documentType)"></p>
+        </div>
       </div>
     </div>
 
     <div class="col-documents">
-      <div ng-if="request.documents.obligatoires[documentType.id]">
-        <div class="col-sm-3" ng-repeat="file in request.documents.obligatoires[documentType.id].documentList">
-          <div class="file-card">
-            <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+      <div class="col-sm-6 col-md-4" ng-repeat="file in getDocuments(documentType)">
+        <div class="file-card">
+          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
 
-            <div ng-if="file.progress">
-              {{file.name}} - en cours...
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
-                  {{file.progress}}%
-                </div>
+          <div ng-if="file.progress">
+            {{file.name}} - en cours...
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
+                {{file.progress}}%
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3" class="text-right" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+      <div class="col-sm-6 col-md-4" class="text-right" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
         <div class="file-card file-card-add">
           <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
             <i class="fa fa-plus"></i>
@@ -45,3 +45,7 @@
     </div>
   </div>
 </div>
+
+<button class="btn btn-primary" ng-click="chooseType()" type="button">
+  <i class="fa fa-plus-circle"></i> Ajouter un type de document
+</button>

@@ -66,16 +66,7 @@ angular.module('impactApp').config(function($stateProvider) {
         controller: 'DocumentsObligatoiresCtrl',
         resolve: {
           documentTypes: function(DocumentTypeResource) {
-            return DocumentTypeResource.query({type: 'obligatoires'}).$promise;
-          }
-        }
-      },
-      'complementaires@espace_perso.mes_profils.profil.demande': {
-        templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/complementaires.html',
-        controller: 'DocumentsComplementairesCtrl',
-        resolve: {
-          documentTypes: function(DocumentTypeResource) {
-            return DocumentTypeResource.query({type: 'complementaires'}).$promise;
+            return DocumentTypeResource.query().$promise;
           }
         }
       },
