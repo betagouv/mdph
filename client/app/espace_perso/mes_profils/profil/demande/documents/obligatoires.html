@@ -1,9 +1,9 @@
-<h3>Documents obligatoires</h3>
-<div class="document-div" ng-repeat="documentType in documentTypes">
+<h3>Documents</h3>
+<div ng-repeat="documentType in documentTypes">
 
-  <div class="row">
-    <div class="col-sm-4 col-lg-3">
-      <div class="file-card title-card">
+  <div class="row-document-type">
+    <div class="col-document-type">
+      <div class="title-card">
         <h4>{{documentType.label}}</h4>
         <p>{{documentType.desc}}</p>
         <p ng-if="documentType.emptyDoc">
@@ -11,35 +11,37 @@
             Télécharger un modèle de ce document
           </a>
         </p>
+        <hr>
+        <p>Obligatoire</p>
       </div>
     </div>
 
-    <div ng-if="request.documents.obligatoires[documentType.id]">
-      <div class="col-sm-4 col-lg-3" ng-repeat="file in request.documents.obligatoires[documentType.id].documentList">
-        <div class="file-card">
-          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+    <div class="col-documents">
+      <div ng-if="request.documents.obligatoires[documentType.id]">
+        <div class="col-sm-3" ng-repeat="file in request.documents.obligatoires[documentType.id].documentList">
+          <div class="file-card">
+            <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
 
-          <div ng-if="file.progress">
-            {{file.name}} - en cours...
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
-                {{file.progress}}%
+            <div ng-if="file.progress">
+              {{file.name}} - en cours...
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
+                  {{file.progress}}%
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-sm-4 col-lg-3" class="text-right" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
-      <div class="file-card file-card-add">
-        <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
-          <i class="fa fa-plus"></i>
-        </button>
-        Ajouter un fichier
+      <div class="col-sm-3" class="text-right" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+        <div class="file-card file-card-add">
+          <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+            <i class="fa fa-plus"></i>
+          </button>
+          Ajouter un fichier
+        </div>
       </div>
     </div>
   </div>
-
-  <hr class="style-one">
 </div>

@@ -13,24 +13,24 @@
   <div id="demande" class="demande-container">
     <ui-view>
       <form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
-        <section class="demande-section">
+        <section>
           <div ui-view="choix_mdph"></div>
         </section>
 
-        <section class="demande-section">
+        <section>
           <div ui-view="obligatoires"></div>
         </section>
 
-        <section class="demande-section">
+        <section>
           <div ui-view="complementaires"></div>
           <div ui-view="suggestions"></div>
         </section>
 
-        <section class="demande-section">
+        <section>
           <div ui-view="prestations"></div>
         </section>
 
-        <section class="demande-section" ng-if="isEditable()">
+        <section ng-if="isEditable()">
           <div ui-view="validation"></div>
         </section>
 
