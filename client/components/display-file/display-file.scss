@@ -32,18 +32,14 @@
 
   .text-validation {
     text-align: center;
-  }
 
-  .invert-valid {
-    border: 1px solid $green;
-    background-color: white;
-    color: $green;
-  }
+    &.text-invalid {
+      color: $light-red;
+    }
 
-  .invert-refuse {
-    border: 1px solid $light-red;
-    background-color: white;
-    color: $light-red;
+    &.text-valid {
+      color: $green;
+    }
   }
 
   .validation-actions {
@@ -68,6 +64,17 @@
       color: white;
     }
 
+    .invert-valid {
+      border: 1px solid $green;
+      background-color: white;
+      color: $green;
+    }
+
+    .invert-refuse {
+      border: 1px solid $light-red;
+      background-color: white;
+      color: $light-red;
+    }
     .invert-valid.muted {
       border: 1px solid $bg-grey;
       background-color: white;
@@ -79,5 +86,10 @@
       background-color: white;
       color: $bg-grey;
     }
+  }
+
+  .trash {
+    align-self: flex-end;
+    color: $medium-heavy-grey;
   }
 }
