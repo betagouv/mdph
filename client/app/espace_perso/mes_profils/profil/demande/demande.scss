@@ -70,9 +70,21 @@
     @extend .col-sm-4;
   }
 
+  .document-div {
+    margin-bottom: 20px;
+  }
+
   .file-card {
     border: 1px solid $medium-heavy-grey;
     height: 150px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .title-card {
+    background-color: $medium-heavy-grey;
+    color: white;
+    padding: 10px;
   }
 
   .file-card-add {
@@ -92,6 +104,14 @@
       font-size: 24px;
       background-color: rgba(255,255,255,0);
     }
+  }
+
+  hr.style-one {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 80%;
   }
 
   .document-box {
