@@ -3,7 +3,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: flex-start;
+  text-overflow: ellipsis;
   height: 100%;
+
+  * {
+    max-width: 100%;
+  }
 
   .text {
     i {
@@ -12,9 +18,9 @@
       width: 20px;
     }
     .name {
+      white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      white-space: nowrap;
     }
   }
 

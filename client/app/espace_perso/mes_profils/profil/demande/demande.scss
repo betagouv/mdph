@@ -79,22 +79,39 @@
   }
 
   .title-card {
-    background-color: $bg-blue;
     color: white;
     padding: 10px;
     margin: 0;
+    background-color: $medium-heavy-grey;
+
+    &.mandatory {
+      background-color: $bg-blue;
+    }
+
+    &.complete {
+      background-color: darkcyan;
+    }
   }
 
   .row-document-type {
     display: flex;
-    border: 1px solid $bg-blue;
-    background-color: $bg-blue;
+    border: 1px solid $medium-heavy-grey;
+    background-color: $medium-heavy-grey;
     margin-bottom: 20px;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
+
+    &.mandatory {
+      border: 1px solid $bg-blue;
+      background-color: $bg-blue;
+    }
+
+    &.complete {
+      border: 1px solid darkcyan;
+      background-color: darkcyan;
+    }
   }
 
   .col-document-type {
-    width: 20%;
     text-align: center;
     padding: 0;
 
@@ -107,8 +124,21 @@
   }
 
   .col-documents {
-    width: 80%;
     background-color: whitesmoke;
+  }
+
+  @media (min-width: $screen-md-min) {
+    .row-document-type {
+      flex-flow: row wrap;
+    }
+
+    .col-document-type {
+      width: 20%;
+    }
+
+    .col-documents {
+      width: 80%;
+    }
   }
 
   .file-card-add {
