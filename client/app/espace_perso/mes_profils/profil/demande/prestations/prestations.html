@@ -1,6 +1,6 @@
 <h3 class="required">Prestations demandées</h3>
 
-<table class="table" ng-if="request.status === 'en_cours'">
+<table class="table table-prestations" ng-if="request.status === 'en_cours'">
   <tbody ng-repeat="(key, type) in types">
     <tr class="table-header">
       <th>{{key | prestationType}}</th>
