@@ -50,7 +50,7 @@ function findSecteur(request) {
 
 function handleSecteurNotFound(secteur) {
   if (!secteur) {
-    throw(404);
+    throw new Error('Not found');
   }
 
   return secteur;

@@ -32,9 +32,15 @@ angular.module('impactApp')
         } else if (request.prestations.length < 1 && request.renouvellements.length < 1) {
           toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
         } else {
-          request.status = 'emise';
-          request.submittedAt = Date.now();
-          request.$update({isSendingRequest: true}, function() {
+          return RequestService.postAction(request, {
+            id: 'submit',
+            prestations: request.prestations,
+            renouvellements: request.renouvellements,
+            mdph: request.mdph,
+            renouvellement: request.estRenouvellement,
+            old_mdph: request.old_mdph,
+            numeroDossier: request.numeroDossier
+          }).then(() => {
             $state.go('^', {}, {reload: true});
           });
         }

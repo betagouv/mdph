@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('RequestService', function RequestService() {
+  .factory('RequestService', function RequestService($http) {
     function allMandatoryFilesPresent(request) {
       return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
     }
@@ -68,10 +68,11 @@ angular.module('impactApp')
     }
 
     return {
-      findRefusedDocuments: findRefusedDocuments,
-      getAskedDocumentTypes: getAskedDocumentTypes,
-      getCompletion: getCompletion,
-      groupByAge: function(requests) {
+      findRefusedDocuments,
+      getAskedDocumentTypes,
+      getCompletion,
+
+      groupByAge(requests) {
         if (typeof requests === 'undefined' || requests.length === 0) {
           return null;
         }
@@ -99,6 +100,10 @@ angular.module('impactApp')
         }, groupedByAge);
 
         return groupedByAge;
+      },
+
+      postAction(request, action) {
+        return $http.post(`api/requests/${request.shortId}/action`, action);
       }
     };
   });

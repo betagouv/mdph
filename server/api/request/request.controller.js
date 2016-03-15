@@ -87,23 +87,21 @@ function respondWithResult(res, statusCode) {
   };
 }
 
-function saveUserAction(req) {
+function sendMailReceivedTransmission(req) {
   return function(request) {
-    if (req.action) {
-      ActionModel.create({
-        action: req.action.id,
-        request: request._id,
-        user: req.user._id,
-        date: Date.now(),
-        params: req.action
-      });
-    }
+    let options = {
+      request: request,
+      host: req.headers.host,
+      user: req.user,
+      email: req.user.email
+    };
 
+    MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
     return request;
   };
 }
 
-function processUserAction(req) {
+function saveActionLog(action, req) {
   return function(request) {
     if (req.query) {
       switch (req.query.id) {
@@ -143,17 +141,17 @@ function processUserAction(req) {
   };
 }
 
-function saveActionLog(action, req) {
+function populateAndRespond(res) {
   return function(request) {
-    request.saveActionLog(action, req.user, req.log);
+    return populateAndSortPrestations(request)
+      .then(populateAndSortDocumentTypes)
+      .then(respondWithResult(res));
   };
 }
 
 // Get a single request
 export function show(req, res, next) {
-  populateAndSortPrestations(req.request)
-    .then(populateAndSortDocumentTypes)
-    .then(respondWithResult(res))
+  populateAndRespond(res)(req.request)
     .catch(handleError(req, res));
 }
 
@@ -192,13 +190,66 @@ export function showUserRequests(req, res, next) {
   .catch(handleError(req, res));
 }
 
+function resolveSubmit(req) {
+  return req.request
+    .set('status', 'emise')
+    .set('mdph', req.body.mdph)
+    .set('prestations', req.body.prestations)
+    .set('renouvellements', req.body.renouvellements)
+    .set('estRenouvellement', req.body.estRenouvellement)
+    .set('old_mdph', req.body.old_mdph)
+    .set('numeroDossier', req.body.numeroDossier)
+    .set('submittedAt', Date.now())
+    .save()
+    .then(request => {
+      request.saveActionLog(actions.SUBMIT, req.user, req.log);
+      return request;
+    })
+    .then(sendMailReceivedTransmission(req))
+    .then(dispatchSecteur(req));
+}
+
+function dispatchSecteur(req) {
+  return function(request) {
+    return Dispatcher.dispatch(request)
+      .then(secteur => { // Service disatches to agents
+        request.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
+        return request.set('secteur', secteur).save();
+      })
+      .catch(err => {
+        // Ignore no sector found
+      });
+  };
+}
+
+function dispatchAction(req) {
+  return new Promise(function(resolve, reject) {
+    switch (req.body.id) {
+      case actions.SUCCES_ENREGISTREMENT.id:
+        MailActions.sendMailCompletude(req.request, req.user); // Agent sends KO to user
+        break;
+      case actions.ERREUR_ENREGISTREMENT.id:
+        MailActions.sendMailDemandeDocuments(req.request, req.user); // Agent sends OK to user
+        break;
+      case actions.SUBMIT.id:
+        return resolveSubmit(req).then(resolve);
+      default:
+        req.log.error('Action not found');
+    }
+
+    return resolve(req.request);
+  });
+}
+
+export function saveAction(req, res, next) {
+  dispatchAction(req)
+    .then(respondWithResult(res, 201))
+    .catch(handleError(req, res));
+}
+
 export function update(req, res, next) {
   saveUpdates(req)
-    .then(processUserAction(req))
-    .then(saveUserAction(req))
-    .then(populateAndSortPrestations)
-    .then(populateAndSortDocumentTypes)
-    .then(respondWithResult(res))
+    .then(populateAndRespond(res))
     .catch(handleError(req, res));
 }
 
