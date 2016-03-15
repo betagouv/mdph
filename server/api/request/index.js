@@ -22,6 +22,7 @@ router.put('/:shortId', isAuthorized(), controller.update);
 
 router.delete('/:shortId', isAuthorized(), controller.destroy);
 
+router.post('/:shortId/action', isAuthorized(), controller.saveAction);
 router.get('/:shortId/history', isAuthorized(), controller.getHistory);
 router.get('/:shortId/recapitulatif', isAuthorized(), controller.getRecapitulatif);
 

@@ -15,6 +15,12 @@ angular.module('impactApp')
           controller: 'transfer'
         }
       },
+      action: {
+        method: 'POST',
+        params: {
+          controller: 'action'
+        }
+      },
       getPartenaire: {
         method: 'GET',
         params: {
