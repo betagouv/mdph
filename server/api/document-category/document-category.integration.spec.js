@@ -102,7 +102,7 @@ describe('Document Category Integration', function() {
     });
   });
 
-  describe.only('When getting default document categories', function() {
+  describe('When getting default document categories', function() {
     before(done => {
       DocumentCategory.remove().exec(done);
     });
