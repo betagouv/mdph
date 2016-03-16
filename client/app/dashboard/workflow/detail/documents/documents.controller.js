@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestDocumentsCtrl', function($scope, RequestService, request, documentTypes, currentUser) {
+  .controller('RequestDocumentsCtrl', function($scope, $state, RequestService, request, documentTypes) {
     $scope.documentTypes = documentTypes;
     $scope.selected = null;
 
@@ -29,21 +29,27 @@ angular.module('impactApp')
       request.askedDocumentTypes.splice(idx, 1);
     };
 
-    $scope.save = function(isSuccess) {
-      var newStatus = isSuccess ? 'enregistree' : 'en_attente_usager';
+    $scope.preview = function() {
+      RequestService
+        .getMailPreview(request)
+        .then(html => {
+          $scope.mailPreview = html;
+        })
+        .catch(err => {
+          $scope.mailPreview = err;
+        });
+    };
 
-      var action = {
+    $scope.save = function(isSuccess) {
+      return RequestService.postAction(request, {
         id: isSuccess ? 'succes_enregistrement' : 'erreur_enregistrement',
-        user: currentUser._id,
-        newStatus: newStatus,
-        oldStatus: request.status,
+        status: isSuccess ? 'enregistree' : 'en_attente_usager',
         comments: request.comments,
         numeroDossier: request.numeroDossier,
         refusedDocuments: RequestService.findRefusedDocuments(request),
         askedDocumentTypes: RequestService.getAskedDocumentTypes(request)
-      };
-
-      request.status = newStatus;
-      request.$save(action);
+      }).then(() => {
+        $state.go('.', {}, {reload: true});
+      });
     };
   });

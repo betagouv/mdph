@@ -7,6 +7,11 @@ const fs = require('fs');
 const path = require('path');
 import pdfMaker from '../../components/pdf-maker';
 
+// const incompleteRequestMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'refused-request-email-premailer.html')));
+
+const incompleteRequestMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'refused-request-email.html')));
+const incompleteRequestMailCompiled = Handlebars.compile(incompleteRequestMailTemplate);
+
 const confirmationMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'confirm-email-premailer.html')));
 const confirmationMailCompiled = Handlebars.compile(confirmationMailTemplate);
 
@@ -43,6 +48,16 @@ exports.sendMailReceivedTransmission = function(options) {
       );
     }
   });
+};
+
+exports.sendMailDemandeDocuments = function(request, evaluator) {
+
+  const body = incompleteRequestMailCompiled({
+    requestUrl: request.shortId,
+    receivedAt: request.receivedAt
+  });
+
+  Mailer.sendMail(request.user.email, 'Demande de complétude de votre dossier', body);
 };
 
 exports.sendConfirmationMail = function(to, confirmationUrl) {

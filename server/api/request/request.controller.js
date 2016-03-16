@@ -222,15 +222,43 @@ function dispatchSecteur(req) {
   };
 }
 
+function resolveEnregistrement(req, action) {
+  // .set('status', req.body.status) TODO: set this after debug
+  return req.request
+    .set('comments', req.body.comments)
+    .set('numeroDossier', req.body.numeroDossier)
+    .set('refusedDocuments', req.body.refusedDocuments)
+    .set('askedDocumentTypes', req.body.askedDocumentTypes)
+    .save()
+    .then(request => {
+      request.saveActionLog(action, req.user, req.log);
+      return request;
+    });
+}
+
+function resolveErreurEnregistrement(req) {
+  return resolveEnregistrement(req, actions.ERREUR_ENREGISTREMENT)
+    .then(request => {
+      MailActions.sendMailDemandeDocuments(request, req.user);
+      return request;
+    });
+}
+
+function resolveSuccesEnregistrement(req) {
+  return resolveEnregistrement(req, actions.SUCCES_ENREGISTREMENT)
+    .then(request => {
+      MailActions.sendMailCompletude(request, req.user);
+      return request;
+    });
+}
+
 function dispatchAction(req) {
   return new Promise(function(resolve, reject) {
     switch (req.body.id) {
       case actions.SUCCES_ENREGISTREMENT.id:
-        MailActions.sendMailCompletude(req.request, req.user); // Agent sends KO to user
-        break;
+        return resolveSuccesEnregistrement(req).then(resolve);
       case actions.ERREUR_ENREGISTREMENT.id:
-        MailActions.sendMailDemandeDocuments(req.request, req.user); // Agent sends OK to user
-        break;
+        return resolveErreurEnregistrement(req, actions).then(resolve);
       case actions.SUBMIT.id:
         return resolveSubmit(req).then(resolve);
       default:
