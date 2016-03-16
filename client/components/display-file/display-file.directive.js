@@ -13,7 +13,6 @@ angular.module('impactApp')
       controller: function($scope, $http, $cookies) {
         $scope.token = $cookies.get('token');
 
-
         if ($scope.file.partenaire) {
           // TODO do this server-side
           $http.get('/api/partenaires/' + $scope.file.partenaire).then(function(result) {

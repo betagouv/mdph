@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsObligatoiresCtrl', function($scope, $modal, UploadService, request, documentTypes, currentUser) {
+  .controller('DocumentsCtrl', function($scope, $modal, UploadService, request, documentTypes, currentUser) {
     $scope.request = request;
 
     $scope.documentTypes = _.filter(documentTypes, {mandatory: true});
@@ -54,7 +54,7 @@ angular.module('impactApp')
       } else if ($scope.request.documents.complementaires[currentDoc.id]) {
         return $scope.request.documents.complementaires[currentDoc.id].documentList;
       }
-    }
+    };
 
     $scope.upload = function(file, documentType) {
       UploadService.upload(request, file, documentType);

@@ -61,9 +61,9 @@ angular.module('impactApp').config(function($stateProvider) {
           }
         }
       },
-      'obligatoires@espace_perso.mes_profils.profil.demande': {
-        templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/obligatoires.html',
-        controller: 'DocumentsObligatoiresCtrl',
+      'documents@espace_perso.mes_profils.profil.demande': {
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/documents/documents.html',
+        controller: 'DocumentsCtrl',
         resolve: {
           documentTypes: function(DocumentTypeResource) {
             return DocumentTypeResource.query().$promise;

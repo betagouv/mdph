@@ -14,12 +14,14 @@ angular.module('impactApp')
           if (!request.documents.obligatoires) {
             request.documents.obligatoires = {};
           }
+
           model = request.documents.obligatoires;
 
         } else {
           if (!request.documents.complementaires) {
             request.documents.complementaires = {};
           }
+
           model = request.documents.complementaires;
         }
 
