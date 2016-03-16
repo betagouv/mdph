@@ -6,18 +6,41 @@ angular.module('impactApp')
       return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
     }
 
-    function noInvalidatedFiles(request) {
+    function hasInvalidFile(request) {
       var found = false;
 
       _.forEach(request.documents.obligatoires, function(category) {
         category.documentList.forEach(function(document) {
-          if (document.validation === 'false') {
+          if (document.isInvalid === true) {
             found = true;
           }
         });
       });
 
+      if (!found) {
+        _.forEach(request.documents.complementaires, function(category) {
+          category.documentList.forEach(function(document) {
+            if (document.isInvalid === true) {
+              found = true;
+            }
+          });
+        });
+      }
+
       return found;
+    }
+
+    function allAskedFilesPresent(request) {
+      var allAskedFilesComplete = true;
+
+      _.forEach(request.askedDocumentTypes, function(askedType) {
+        let askedDocs = _.get(request.documents, ['complementaires', askedType, 'documentList']);
+        if (typeof askedDocs === 'undefined' || askedDocs.length == 0) {
+          allAskedFilesComplete = false;
+        }
+      });
+
+      return allAskedFilesComplete;
     }
 
     function getCompletion(request) {
@@ -25,7 +48,7 @@ angular.module('impactApp')
         return false;
       }
 
-      return allMandatoryFilesPresent(request) && !noInvalidatedFiles(request);
+      return allMandatoryFilesPresent(request) && !hasInvalidFile(request) && allAskedFilesPresent(request);
     }
 
     function findInvalid(categories) {
