@@ -47,8 +47,9 @@ function saveUserAndSendConfirmation(req, res) {
 /**
  * Creates a new user
  */
-exports.create = function(req, res, next) {
+exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
+  newUser.role = 'user';
 
   newUser.provider = 'local';
   return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
@@ -57,7 +58,7 @@ exports.create = function(req, res, next) {
 /**
  * Creates a new agent
  */
-exports.createAgent = function(req, res, next) {
+exports.createAgent = function(req, res) {
   var newUser = new User(req.body);
 
   newUser.provider = 'local';
@@ -99,7 +100,7 @@ exports.destroy = function(req, res) {
 /**
  * Change a users password
  */
-exports.changePassword = function(req, res, next) {
+exports.changePassword = function(req, res) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
@@ -120,7 +121,7 @@ exports.changePassword = function(req, res, next) {
 /**
  * Change a user's personal information
  */
-exports.changeInfo = function(req, res, next) {
+exports.changeInfo = function(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (req.user.role === 'admin' || req.user.role === 'adminMdph') {
       user.set('email', req.body.email);
@@ -173,7 +174,7 @@ exports.search = function(req, res, next) {
 /**
  * Authentication callback
  */
-exports.authCallback = function(req, res, next) {
+exports.authCallback = function(req, res) {
   res.redirect('/');
 };
 
@@ -189,8 +190,7 @@ exports.generateTokenForPassword = function(req, res, next) {
   }, function(err, user) {
     if (err) return next(err);
     if (!user) return res.sendStatus(200);
-    let newPasswordToken = shortid.generate();
-    user.newPasswordToken = newPasswordToken;
+    user.newPasswordToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);
       let confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/nouveau_mot_de_passe/' + user._id + '/' + user.newPasswordToken;
@@ -245,8 +245,6 @@ exports.resendConfirmation = function(req, res) {
       token = shortid.generate();
       user.newMailToken = token;
       user.save();
-    } else {
-      token = user.newMailToken;
     }
 
     var confirmationUrl = 'http://' + req.headers.host + '/mdph/' + req.body.mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
