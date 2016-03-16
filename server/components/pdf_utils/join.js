@@ -18,9 +18,10 @@ var PdfJoin = function() {
     callback = callback || function() { };
 
     tmp.file({keep: true}, function _tempFileCreated(err, pdfPath, fd, cleanupCallback) {
-      if (err) callback(err);
+      if (err) return callback(err);
 
       var args = fileList.concat(['cat', 'output', pdfPath]);
+      console.log(args);
       var pdftk = spawn('pdftk', args);
 
       pdftk.stderr.on('data', function(data) {
