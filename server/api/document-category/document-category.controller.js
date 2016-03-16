@@ -9,13 +9,7 @@ import async from 'async';
 import DocumentCategory from './document-category.model';
 import {allDocumentTypes} from '../document-type/document-type.controller';
 import * as Auth from '../../auth/auth.service';
-
-function getGridfs() {
-  let app = require('../../app').app;
-  let gridfs = app.get('gridfs');
-
-  return gridfs;
-}
+import gridfs from '../../components/gridfs';
 
 function handleError(req, res) {
   return function(statusCode, err) {
@@ -94,7 +88,7 @@ function populateCategoryBarcode(category) {
       return resolve(category);
     }
 
-    let gfs = getGridfs();
+    let gfs = gridfs();
     gfs.findOne({_id: category.barcode}, function(err, file) {
       if (err) {
         return reject(err);
@@ -142,7 +136,7 @@ export function getUnclassifiedCategory(req, res) {
 }
 
 export function saveDocumentCategoryFile(req, res) {
-  var gfs = getGridfs();
+  var gfs = gridfs();
   var file = req.file;
   var categoryId = req.params.categoryId;
   var logger = req.log;
@@ -204,7 +198,7 @@ export function getDocumentCategoryFile(req, res) {
     }
 
     if (category.barcode) {
-      var gfs = getGridfs();
+      var gfs = gridfs();
       var readStream = gfs.createReadStream({_id: category.barcode});
 
       return readStream.pipe(res);

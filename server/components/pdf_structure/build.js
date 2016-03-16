@@ -4,10 +4,9 @@ var _ = require('lodash');
 var path = require('path');
 var async = require('async');
 var fs = require('fs');
-var mongoose = require('mongoose');
-var grid = require('gridfs-stream');
 var config = require('../../config/environment');
 
+var gridfs = require('../gridfs');
 var auth = require('../../auth/auth.service');
 var Mdph = require('../../api/mdph/mdph.model');
 var DocumentCategoryCtrl = require('../../api/document-category/document-category.controller');
@@ -37,7 +36,7 @@ module.exports = function(request, requestTempPdfPath, documentList, callback) {
         const documentCategories = results[0];
         const unclassifiedCategory = results[1];
         const pdfStructure = [];
-        const gfs = grid(mongoose.connection.db);
+        const gfs = gridfs();
 
         // Documents sorted by categories
         _.forEach(documentCategories, function(category) {

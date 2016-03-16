@@ -12,7 +12,7 @@ module.exports = function(pdfStructure, directory, callback) {
     const mapCallBackOnce = _.once(mapCallBack);
 
     if (typeof currentFile !== 'string') {
-      tmp.file({dir: directory}, function _tempFileCreated(err, path) {
+      tmp.file({dir: directory, keep: true}, function _tempFileCreated(err, path) {
         if (err) return mapCallBackOnce(err);
 
         const writeStream = fs.createWriteStream(path);

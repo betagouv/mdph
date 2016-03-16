@@ -25,7 +25,7 @@ var pdfOptions = {
   }
 };
 
-var debug = false;
+var debug = true;
 
 function printDebug(str, obj) {
   if (debug) {
@@ -38,7 +38,7 @@ exports.make = function({request, host, role}, done) {
   printDebug('makePdf: Transforming html to pdf');
 
   Recapitulatif.answersToHtml({request, host}, function(err, recapitulatifHtml) {
-    tmp.dir({unsafeCleanup: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
+    tmp.dir({unsafeCleanup: true, keep: true}, function _tempDirCreated(err, tempDirPath, cleanupCallback) {
       if (err) throw err;
 
       var requestTempPdfPath = tempDirPath + '/' + request.shortId + '.pdf';
@@ -73,14 +73,13 @@ exports.make = function({request, host, role}, done) {
             return convertFromGridFS(pdfStructure, tempDirPath, cb);
           },
 
-          // Load everything in scissors
+          // Load everything in one PDF
           PdfJoin.join
-
         ],
 
         function(err, pdfPath, joinCleanupCallback) {
-          if (err) return done(err);
           printDebug('make: finished building pdf');
+          if (err) return done(err);
 
           setTimeout(function() {
             cleanupCallback();
