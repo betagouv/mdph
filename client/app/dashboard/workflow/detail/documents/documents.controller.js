@@ -29,21 +29,21 @@ angular.module('impactApp')
       request.askedDocumentTypes.splice(idx, 1);
     };
 
-    $scope.preview = function() {
-      RequestService
-        .getMailPreview(request)
-        .then(html => {
-          $scope.mailPreview = html;
-        })
-        .catch(err => {
-          $scope.mailPreview = err;
-        });
+    $scope.preview = function(isSuccess) {
+      return RequestService.postAction(request, {
+        id: isSuccess ? 'preview_succes_enregistrement' : 'preview_erreur_enregistrement',
+        comments: request.comments,
+        numeroDossier: request.numeroDossier,
+        refusedDocuments: RequestService.findRefusedDocuments(request),
+        askedDocumentTypes: RequestService.getAskedDocumentTypes(request)
+      }).then(html => {
+        $scope.previewMail = html;
+      });
     };
 
     $scope.save = function(isSuccess) {
       return RequestService.postAction(request, {
         id: isSuccess ? 'succes_enregistrement' : 'erreur_enregistrement',
-        status: isSuccess ? 'enregistree' : 'en_attente_usager',
         comments: request.comments,
         numeroDossier: request.numeroDossier,
         refusedDocuments: RequestService.findRefusedDocuments(request),
