@@ -6,6 +6,12 @@ angular.module('impactApp')
       id: '@_id'
     },
     {
+      saveAgent: {
+        method: 'POST',
+        params: {
+          controller: 'agent'
+        }
+      },
       changePassword: {
         method: 'PUT',
         params: {
