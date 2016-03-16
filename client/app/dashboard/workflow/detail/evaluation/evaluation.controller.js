@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookies, sections, model, GevaService, prestations, request) {
+  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookies, sections, model, GevaService, allPrestations, currentRequest) {
     $scope.model = model;
     $scope.sections = sections;
-    $scope.request = request;
+    $scope.request = currentRequest;
     $scope.token = $cookies.get('token');
 
-    if (!request.synthese) {
-      request.synthese = {};
+    if (!currentRequest.synthese) {
+      currentRequest.synthese = {};
     }
 
     $scope.afficherSynthese = function() {
@@ -18,11 +18,11 @@ angular.module('impactApp')
         size: 'lg',
         resolve: {
           prestations: function() {
-            return prestations;
+            return allPrestations;
           },
 
           request: function() {
-            return request;
+            return currentRequest;
           }
         }
       });
