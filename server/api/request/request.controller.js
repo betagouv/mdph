@@ -13,7 +13,7 @@ import * as Auth from '../../auth/auth.service';
 import config from '../../config/environment';
 import Recapitulatif from '../../components/recapitulatif';
 import Synthese from '../../components/synthese';
-import MakePdf from '../../components/make-pdf';
+import pdfMaker from '../../components/pdf-maker';
 
 import Prestation from '../prestation/prestation.controller';
 import Request from './request.model';
@@ -239,29 +239,6 @@ export function getHistory(req, res) {
     .catch(handleError(req, res));
 }
 
-function respondWithFile(res) {
-  return function(pdfPath) {
-    console.log(pdfPath);
-    res.sendFile(pdfPath);
-  };
-}
-
-function generateRecapitulatifPdf(req) {
-  return new Promise(function(resolve, reject) {
-    MakePdf.make({
-      request: req.request,
-      host: req.headers.host,
-      user: req.user
-    }, function(err, pdfPath) {
-      if (err) {
-        return reject(err);
-      }
-
-      return resolve(pdfPath);
-    });
-  });
-}
-
 export function getRecapitulatif(req, res) {
   Recapitulatif.answersToHtml({
     request: req.request,
@@ -276,8 +253,15 @@ export function getRecapitulatif(req, res) {
 }
 
 export function getPdf(req, res) {
-  generateRecapitulatifPdf(req)
-    .then(respondWithFile(res))
+  pdfMaker({
+      request: req.request,
+      host: req.headers.host,
+      user: req.user
+    })
+    .then(pdfPath => {
+      res.sendFile(pdfPath);
+      return null;
+    })
     .catch(handleError(req, res));
 }
 

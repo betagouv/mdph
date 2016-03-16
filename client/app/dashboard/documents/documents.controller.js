@@ -118,10 +118,7 @@ angular.module('impactApp')
       Upload.upload({
         url: 'api/mdphs/' + currentMdph.zipcode + '/categories/' + current._id + '/file',
         method: 'POST',
-        file: file,
-        data: {
-          category: current
-        }
+        file: file
       })
       .progress(function(evt) {
         if (evt.config.file) {

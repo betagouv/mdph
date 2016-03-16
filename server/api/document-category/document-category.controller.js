@@ -320,10 +320,8 @@ function populateList(list) {
   });
 }
 
-export function showDocumentCategoriesLocal(mdph) {
-  return function() {
-    return DocumentCategory.find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec().then(populateList);
-  };
+export function showDocumentCategoriesPromise(mdph) {
+  return DocumentCategory.find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec().then(populateList);
 }
 
 function createPdfCategoryIfNecessary(req) {
@@ -350,7 +348,9 @@ function createPdfCategoryIfNecessary(req) {
 
 export function showDocumentCategories(req, res) {
   createPdfCategoryIfNecessary(req)
-    .then(showDocumentCategoriesLocal(req.mdph))
+    .then(() => {
+      return showDocumentCategoriesPromise(req.mdph);
+    })
     .then(respondWithResult(res))
     .catch(handleError(req, res));
 }

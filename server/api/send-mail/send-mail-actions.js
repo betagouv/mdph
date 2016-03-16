@@ -5,7 +5,7 @@ const Mailer = require('./send-mail.controller');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
-const MakePdf = require('../../components/make-pdf');
+import pdfMaker from '../../components/pdf-maker';
 
 const confirmationMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'confirm-email-premailer.html')));
 const confirmationMailCompiled = Handlebars.compile(confirmationMailTemplate);
@@ -29,7 +29,7 @@ exports.sendMailDemandeDocuments = function(request, evaluator) {
 };
 
 exports.sendMailReceivedTransmission = function(options) { //request, email, pdfPath) {
-  MakePdf.make(options, function(err, pdfPath) {
+  pdfMaker(options).then(pdfPath => {
     if (pdfPath) {
       Mailer.sendMail(options.email,
         'Votre demande à bien été transmise',
