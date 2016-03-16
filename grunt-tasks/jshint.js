@@ -1,6 +1,7 @@
 module.exports = {
   options: {
-    jshintrc: '<%= app.dirs.client %>/.jshintrc'
+    jshintrc: '<%= app.dirs.client %>/.jshintrc',
+    reporter: require('jshint-stylish')
   },
   server: {
     options: {
