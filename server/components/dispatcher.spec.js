@@ -124,7 +124,10 @@ describe('Dispatcher', function() {
       },
 
       function(callback) {
-        secteurCaen.save(callback);
+        secteurCaen.save((err, saved) => {
+          secteurCaen = saved;
+          callback();
+        });
       },
 
       function(callback) {
@@ -163,6 +166,8 @@ describe('Dispatcher', function() {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurCaen.id);
       done();
+    }).catch(err => {
+      console.log(err);
     });
   });
 
