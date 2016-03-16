@@ -3,7 +3,6 @@
 import _ from 'lodash';
 import path from 'path';
 import stream from 'stream';
-import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
 import Promise from 'bluebird';
 import async from 'async';
@@ -11,7 +10,12 @@ import DocumentCategory from './document-category.model';
 import {allDocumentTypes} from '../document-type/document-type.controller';
 import * as Auth from '../../auth/auth.service';
 
-grid.mongo = mongoose.mongo;
+function getGridfs() {
+  let app = require('../../app').app;
+  let gridfs = app.get('gridfs');
+
+  return gridfs;
+}
 
 function handleError(req, res) {
   return function(statusCode, err) {
@@ -90,8 +94,12 @@ function populateCategoryBarcode(category) {
       return resolve(category);
     }
 
-    var gfs = grid(mongoose.connection.db);
+    let gfs = getGridfs();
     gfs.findOne({_id: category.barcode}, function(err, file) {
+      if (err) {
+        return reject(err);
+      }
+
       category.barcode = file;
       return resolve(category);
     });
@@ -134,7 +142,7 @@ export function getUnclassifiedCategory(req, res) {
 }
 
 export function saveDocumentCategoryFile(req, res) {
-  var gfs = grid(mongoose.connection.db);
+  var gfs = getGridfs();
   var file = req.file;
   var categoryId = req.params.categoryId;
   var logger = req.log;
@@ -196,7 +204,7 @@ export function getDocumentCategoryFile(req, res) {
     }
 
     if (category.barcode) {
-      var gfs = grid(mongoose.connection.db);
+      var gfs = getGridfs();
       var readStream = gfs.createReadStream({_id: category.barcode});
 
       return readStream.pipe(res);
@@ -310,11 +318,7 @@ function populateSingle(category) {
 
 function populateList(list) {
   return new Promise(function(resolve, reject) {
-    async.map(list, function(category, mapCallback) {
-      populateSingle(category).then(mapCallback);
-    },
-
-    function() {
+    Promise.map(list, populateSingle).then(function() {
       // Sort by position in the tree
       list.sort(comparePosition);
       return resolve(list);

@@ -22,7 +22,7 @@ module.exports = function(request, requestTempPdfPath, documentList, callback) {
 
       async.parallel([
         function(callback) {
-          DocumentCategoryCtrl.showDocumentCategoriesLocal(mdph).then(documentCategories => callback(null, documentCategories));
+          DocumentCategoryCtrl.showDocumentCategoriesLocal(mdph)().then(documentCategories => callback(null, documentCategories));
         },
 
         function(callback) {
