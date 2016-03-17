@@ -12,6 +12,10 @@ angular.module('impactApp')
         resolve: {
           sections: function(SectionFrontConstants) {
             return SectionFrontConstants;
+          },
+
+          sectionsUniqueProfile: function(SectionFrontConstantsUniqueProfile) {
+            return SectionFrontConstantsUniqueProfile;
           }
         },
         abstract: true
