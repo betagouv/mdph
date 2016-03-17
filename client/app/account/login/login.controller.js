@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LoginCtrl', function($rootScope, $scope, Auth, $location, $state, currentMdph, ProfileResource) {
+  .controller('LoginCtrl', function($rootScope, $scope, Auth, $location, $state, currentMdph) {
     $scope.user = {};
     $scope.error = null;
 

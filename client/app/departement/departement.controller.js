@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, Auth, currentUser, currentMdph, ProfileResource) {
+  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, Auth, currentUser, currentMdph) {
     $scope.$emit('event:mdph-changed', currentMdph);
     $scope.currentUser = currentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
