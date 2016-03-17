@@ -10,6 +10,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -20,9 +21,10 @@
             <div class="form-group">
               <label for="email" class="control-label">Email</label>
               <div>
-                <p class="control-label">{{user.email}}</p>
+                <p id="email" class="control-label">{{user.email}}</p>
               </div>
             </div>
+
             <div class="form-group">
               <label for="name" class="control-label">Nom</label>
               <div>
@@ -33,9 +35,15 @@
                 </div>
               </div>
             </div>
+
+            <div class="form-group">
+              <input id="multiProfile" type="checkbox" ng-model="user.isMultiProfiles">
+              <label for="multiProfile">Gestion de plusieurs profiles</label>
+            </div>
+
             <p class="help-block"> {{ infoMessage }} </p>
             <div class="text-right">
-              <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
+              <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider">
             </div>
           </form>
         </div>
@@ -81,7 +89,7 @@
 
             <p class="help-block"> {{ passwordMessage }} </p>
             <div class="text-right">
-              <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider"></input>
+              <input class="btn btn-lg btn-primary" type="submit" name="submit" alt="Valider">
             </div>
           </form>
         </div>

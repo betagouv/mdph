@@ -1,10 +1,21 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, Auth, currentUser, currentMdph) {
+  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, Auth, currentUser, currentMdph, ProfileResource) {
     $scope.$emit('event:mdph-changed', currentMdph);
     $scope.currentUser = currentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
+
+    $scope.uniqueProfile = false;
+    if (currentUser && !currentUser.isMultiProfiles) {
+      $scope.profiles = ProfileResource.query({userId: currentUser._id})
+        .$promise
+        .then(function(profiles) {
+          if (profiles.length === 1) {
+            $scope.uniqueProfile = profiles[0]._id;
+          }
+        });
+    }
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiaW1wYWN0LW1hcGJveCIsImEiOiJjaWt6bmpqYTUwMDcwd29tNDRpczM2N2pwIn0.Qh9eYg3TMD00z22WzmDXyQ';
 
