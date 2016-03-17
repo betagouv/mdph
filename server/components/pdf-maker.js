@@ -37,7 +37,7 @@ function dir(opts) {
 
 function buildStructure(request, recapitulatifPdfPath) {
   return function(convertedDocumentList) {
-    return pdfBuild(request, recapitulatifPdfPath, convertedDocumentList);
+    return pdfBuild(request.mdph, recapitulatifPdfPath, convertedDocumentList);
   };
 }
 

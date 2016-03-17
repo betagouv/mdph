@@ -13,9 +13,9 @@ var DocumentCategoryCtrl = require('../../api/document-category/document-categor
 
 import Promise from 'bluebird';
 
-module.exports = function(request, requestTempPdfPath, documentList) {
+module.exports = function(zipcode, requestTempPdfPath, documentList) {
   return Promise.using(
-    Mdph.findOne({zipcode: request.mdph}).exec(),
+    Mdph.findOne({zipcode: zipcode}).exec(),
 
     (mdph) => {
       return Promise.using(
@@ -31,11 +31,11 @@ module.exports = function(request, requestTempPdfPath, documentList) {
 
             // Main request document
             if (category.required) {
+              pdfStructure.unshift(requestTempPdfPath);
               if (category.barcode) {
-                pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
+                pdfStructure.unshift(gfs.createReadStream({_id: category.barcode._id}));
               }
 
-              pdfStructure.push(requestTempPdfPath);
               documentFoundForThisCategory = true;
             }
 
@@ -52,19 +52,19 @@ module.exports = function(request, requestTempPdfPath, documentList) {
                 }
               });
             });
+          });
 
-            // Other documents
-            var unclassifiedDocuments = _.filter(documentList, function(document) {
-              return !document.___classified;
-            });
+          // Other documents
+          var unclassifiedDocuments = _.filter(documentList, function(document) {
+            return !document.___classified;
+          });
 
-            if (unclassifiedCategory.barcode && unclassifiedDocuments.length > 0) {
-              pdfStructure.push(gfs.createReadStream({_id: unclassifiedCategory.barcode._id}));
-            }
+          if (unclassifiedCategory.barcode && unclassifiedDocuments.length > 0) {
+            pdfStructure.push(gfs.createReadStream({_id: unclassifiedCategory.barcode._id}));
+          }
 
-            _.forEach(unclassifiedDocuments, function(currentDocument) {
-              pdfStructure.push(currentDocument.path);
-            });
+          _.forEach(unclassifiedDocuments, function(currentDocument) {
+            pdfStructure.push(currentDocument.path);
           });
 
           return pdfStructure;

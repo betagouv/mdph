@@ -321,24 +321,27 @@ function populateList(list) {
 }
 
 export function showDocumentCategoriesPromise(mdph) {
-  return DocumentCategory.find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec().then(populateList);
+  return createPdfCategoryIfNecessary(mdph)
+    .then(() => {
+      return DocumentCategory.find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec().then(populateList);
+    });
 }
 
-function createPdfCategoryIfNecessary(req) {
+function createPdfCategoryIfNecessary(mdph) {
   return new Promise(function(resolve, reject) {
     DocumentCategory
-      .findOne({mdph: req.mdph._id, required: true})
+      .findOne({mdph: mdph._id, required: true})
       .exec((err, result) => {
         if (err) return reject(err);
         if (result) return resolve(result);
 
-        var requiredCategory = new DocumentCategory({mdph: req.mdph._id, required: true, label: 'Document de la demande'});
+        var requiredCategory = new DocumentCategory({mdph: mdph._id, required: true, label: 'Document de la demande'});
 
         requiredCategory.save((err, saved) => {
           if (err) return reject(err);
 
           DocumentCategory
-            .find({mdph: req.mdph._id, unclassified: {$ne: true}}).lean().exec(function(err, list) {
+            .find({mdph: mdph._id, unclassified: {$ne: true}}).lean().exec(function(err, list) {
               resolve(list);
             });
         });
