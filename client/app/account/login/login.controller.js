@@ -15,11 +15,11 @@ angular.module('impactApp')
           $scope.error = err.message;
         })
         .then(function(user) {
-          if (Auth.isAdmin()) {
+          if (Auth.hasRoleAdmin()) {
             return $state.go('dashboard.workflow', {codeDepartement: currentMdph.zipcode}, {reload: true});
           }
 
-          if (Auth.isAdminMdph()) {
+          if (Auth.hasRoleAdminMdph()) {
             return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 

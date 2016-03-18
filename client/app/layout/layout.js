@@ -6,10 +6,6 @@ angular.module('impactApp')
       .state('layout', {
         url: '',
         resolve: {
-          currentUser: function(Auth) {
-            return Auth.getCurrentUser().$promise;
-          },
-
           mdphs: function(MdphResource) {
             return MdphResource.query({enabled: true}).$promise;
           }
