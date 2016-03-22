@@ -1,5 +1,10 @@
 <h2>{{section.label}}</h2>
 
+<label>
+  <input type="checkbox" name="displayMode" ng-checked="getReadMode()" ng-click="toggle()">
+  mode compact
+</label>
+
 <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
   <h3 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h3>
 

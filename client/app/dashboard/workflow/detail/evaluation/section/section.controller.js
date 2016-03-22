@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, GevaService, request) {
+  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, GevaService, request, ReadModeService) {
     if (!request.synthese) {
       request.synthese = {};
     }
@@ -15,6 +15,10 @@ angular.module('impactApp')
     }
 
     $scope.section = section;
+
+    $scope.getReadMode = ReadModeService.getReadMode;
+
+    $scope.toggle = ReadModeService.toggle;
 
     function findDeep(array, id) {
       var question = _.find(array, {id: id});
@@ -73,5 +77,18 @@ angular.module('impactApp')
       request.$update(function() {
         $state.go('^');
       });
+    };
+  })
+  .factory('ReadModeService', function() {
+    var readMode = true;
+
+    return {
+      getReadMode() {
+        return readMode;
+      },
+
+      toggle() {
+        readMode = !readMode;
+      }
     };
   });
