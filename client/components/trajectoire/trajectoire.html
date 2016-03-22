@@ -4,8 +4,8 @@
       <button type="button" class="btn btn-link" ng-click="question.isSelected = !question.isSelected" ng-disabled="getReadMode()">
         {{question.Libelle | capitalize}}
       </button>
-      <button type="button" class="btn btn-link" ng-click="question.isSelected = !question.isSelected" ng-if="question.Reponses && !getReadMode()">
-        <i class="fa fa-plus pull-right"></i>
+      <button type="button" class="btn btn-link" ng-click="toggleCollapse(question)" ng-if="question.Reponses && !getReadMode()">
+        <i class="fa fa-plus"></i>
       </button>
     </div>
 

@@ -7,4 +7,9 @@ angular.module('impactApp')
     $scope.filterByMode = function(question) {
       return (!ReadModeService.getReadMode() || question.isSelected);
     };
+
+    $scope.toggleCollapse = function(question) {
+      question.isCollapsed = !question.isCollapsed;
+      question.isSelected = question.isCollapsed;
+    };
   });
