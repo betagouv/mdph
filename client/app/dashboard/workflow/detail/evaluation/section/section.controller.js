@@ -44,6 +44,7 @@ angular.module('impactApp')
           var question = findDeep(trajectoire, id);
           if (question) {
             question.isSelected = true;
+            question.isExpanded = true;
           }
         });
       });

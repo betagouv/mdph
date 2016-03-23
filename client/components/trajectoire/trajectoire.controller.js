@@ -9,7 +9,7 @@ angular.module('impactApp')
     };
 
     $scope.toggleCollapse = function(question) {
-      question.isCollapsed = !question.isCollapsed;
-      question.isSelected = question.isCollapsed;
+      question.isExpanded = !question.isExpanded;
+      question.isSelected = true;
     };
   });
