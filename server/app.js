@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
+import moment from 'moment';
 
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -26,8 +27,12 @@ if (config.seedDB) { require('./config/seed'); }
 // Setup server
 var app = express();
 var server = http.createServer(app);
+
 require('./config/express')(app);
 require('./routes')(app);
+require('./components/register-handlebars');
+
+moment.locale('fr');
 
 // Start server
 function startServer() {

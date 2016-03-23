@@ -26,9 +26,12 @@ $bg-blue: lighten($lighter-blue, 10%);
 $border-blue: darken($lighter-blue, 5%);
 $disabled-blue: lighten($light-blue, 30%);
 
-$primary: $orange;
-$primary-hover: $light-blue;
+
 $brand-primary: $orange;
+$brand-success: $green;
+$brand-warning: $lighter-red;
+$brand-error: $lighter-red;
+
 
 @import 'bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';

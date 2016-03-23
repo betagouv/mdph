@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h1 class="modal-title">Aperçu de l'e-mail</h1>
+</div>
+<div class="modal-body">
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe src="{{modalRdc.src}}" class="embed-responsive-item"></iframe>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="modalRdc.cancel()">Annuler</button>
+  <button class="btn btn-success" ng-click="modalRdc.ok()">Envoyer</button>
+</div>

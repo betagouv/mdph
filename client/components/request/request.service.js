@@ -6,10 +6,9 @@ angular.module('impactApp')
       return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
     }
 
-    function hasInvalidFile(request) {
-      var found = false;
-
-      _.forEach(request.documents.obligatoires, function(category) {
+    function hasInvalidFileInCategories(categories) {
+      let found = false;
+      _.forEach(categories, function(category) {
         category.documentList.forEach(function(document) {
           if (document.isInvalid === true) {
             found = true;
@@ -17,17 +16,11 @@ angular.module('impactApp')
         });
       });
 
-      if (!found) {
-        _.forEach(request.documents.complementaires, function(category) {
-          category.documentList.forEach(function(document) {
-            if (document.isInvalid === true) {
-              found = true;
-            }
-          });
-        });
-      }
-
       return found;
+    }
+
+    function hasInvalidFile(request) {
+      return hasInvalidFileInCategories(request.documents.obligatoires) || hasInvalidFileInCategories(request.documents.complementaires);
     }
 
     function allAskedFilesPresent(request) {
@@ -35,7 +28,7 @@ angular.module('impactApp')
 
       _.forEach(request.askedDocumentTypes, function(askedType) {
         let askedDocs = _.get(request.documents, ['complementaires', askedType, 'documentList']);
-        if (typeof askedDocs === 'undefined' || askedDocs.length == 0) {
+        if (typeof askedDocs === 'undefined' || askedDocs.length === 0) {
           allAskedFilesComplete = false;
         }
       });
@@ -127,6 +120,10 @@ angular.module('impactApp')
 
       postAction(request, action) {
         return $http.post(`api/requests/${request.shortId}/action`, action);
+      },
+
+      generateReceptionMail(request) {
+        return $http.get(`api/requests/${request.shortId}/generate-reception-mail`);
       }
     };
   });

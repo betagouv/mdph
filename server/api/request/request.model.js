@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var moment = require('moment');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -60,7 +61,7 @@ RequestSchema.pre('save', function(next) {
 });
 
 RequestSchema.methods = {
-  saveActionLog: function(action, user, log, params, done) {
+  saveActionLog(action, user, log, params, done) {
     ActionModel.create({
       action: action.id,
       request: this._id,
@@ -74,7 +75,7 @@ RequestSchema.methods = {
     });
   },
 
-  getDateNaissance: function() {
+  getDateNaissance() {
     if (this.formAnswers && this.formAnswers.identites && this.formAnswers.identites.beneficiaire && this.formAnswers.identites.beneficiaire.dateNaissance) {
       var date = this.formAnswers.identites.beneficiaire.dateNaissance;
       return moment(date, moment.ISO_8601);
@@ -83,20 +84,60 @@ RequestSchema.methods = {
     return null;
   },
 
-  isAdult: function() {
+  isAdult() {
     return DateUtils.isAdult(this.getDateNaissance());
   },
 
-  getType: function() {
+  getType() {
     return DateUtils.getType(this.getDateNaissance());
   },
 
-  getCodePostal: function() {
+  getCodePostal() {
     if (this.formAnswers && this.formAnswers.identites && this.formAnswers.identites.beneficiaire) {
       return this.formAnswers.identites.beneficiaire.code_postal;
     }
 
     return null;
+  },
+
+  getInvalidDocuments() {
+    if (!this.documents) {
+      return [];
+    }
+
+    return _.filter(this.documents, 'isInvalid');
+  },
+
+  getInvalidDocumentTypes() {
+    return _.reduce(this.getInvalidDocuments(), function(types, currentDocument) {
+      if (types.indexOf(currentDocument.type) < 0) {
+        types.push(currentDocument.type);
+      }
+
+      return types;
+    }, []);
+  },
+
+  getNonPresentAskedDocumentTypes() {
+    if (!this.askedDocumentTypes || this.askedDocumentTypes.length === 0) {
+      return [];
+    }
+
+    return _.reduce(this.askedDocumentTypes, (types, currentType) => {
+      let found = false;
+
+      _.forEach(this.documents, (document) => {
+        if (document.type === currentType) {
+          found = true;
+        }
+      });
+
+      if (!found) {
+        types.push(currentType);
+      }
+
+      return types;
+    }, []);
   }
 };
 

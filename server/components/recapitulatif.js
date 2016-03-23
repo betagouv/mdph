@@ -3,10 +3,12 @@
 var _ = require('lodash');
 var async = require('async');
 var moment = require('moment');
+var Handlebars = require('handlebars');
+
+import {recapitulatif} from './templates';
 
 var sections = require('../api/sections/sections.json');
 var Prestation = require('../api/prestation/prestation.controller');
-var recapitulatif = require('./register-handlebars').recapitulatif;
 
 function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){

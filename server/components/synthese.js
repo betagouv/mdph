@@ -3,9 +3,9 @@
 var _ = require('lodash');
 var async = require('async');
 
-var questions = require('../api/geva/questions.json');
-var synthese = require('./register-handlebars').synthese;
+import {synthese} from './templates';
 
+var questions = require('../api/geva/questions.json');
 var sections = _.groupBy(questions, 'Section');
 
 // TODO: Refactor

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowDetailCtrl', function($scope, $state, $cookies, $modal, request) {
+  .controller('WorkflowDetailCtrl', function($scope, $state, $cookies, request) {
     $scope.request = request;
     $scope.token = $cookies.get('token');
     $scope.pdfName = (request.formAnswers.identites.beneficiaire.nom).toLowerCase() +
