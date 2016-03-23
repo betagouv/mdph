@@ -5,9 +5,8 @@ var fs = require('fs');
 var path = require('path');
 var moment = require('moment');
 
-function readTemplateSync(template) {
-  return String(fs.readFileSync(path.join(__dirname, 'templates', template)));
-}
+import {readTemplateSync} from './templates';
+import {allDocumentTypesById} from '../api/document-type/document-type.controller';
 
 function isMale(sex) {
   return !sex || sex === 'masculin';
@@ -38,7 +37,12 @@ Handlebars.registerPartial({
 
 Handlebars.registerHelper('moment', function(str) {
   if (str) {
-    var date = moment(str, moment.ISO_8601);
+    let date = str;
+
+    if (!moment.isMoment(str)) {
+      date = moment(str, moment.ISO_8601);
+    }
+
     if (date.isValid()) {
       return date.format('DD/MM/YYYY');
     } else {
@@ -55,6 +59,20 @@ Handlebars.registerHelper('contact', function(str) {
 
 Handlebars.registerHelper('ntobr', function(str) {
   return str && str.replace(/\n/g, '<br>');
+});
+
+Handlebars.registerHelper('documentType', function(item) {
+  return allDocumentTypesById[item].label;
+});
+
+Handlebars.registerHelper('documentTypeList', function(items, options) {
+  var out = '<ul>';
+
+  for (let i = 0, l = items.length; i < l; i++) {
+    out = out + '<li>' + options.fn(items[i]) + '</li>';
+  }
+
+  return out + '</ul>';
 });
 
 Handlebars.registerHelper('capitalize', function(str, force) {
@@ -86,11 +104,3 @@ Handlebars.registerHelper('pronoun', function(sexe, capitalize) {
 
   return isMale(sexe) ? 'il' : 'elle';
 });
-
-var recapitulatif = Handlebars.compile(readTemplateSync('pdfAnswers.html'));
-var synthese = Handlebars.compile(readTemplateSync('pdfSynthese.html'));
-
-module.exports = {
-  recapitulatif: recapitulatif,
-  synthese: synthese
-};

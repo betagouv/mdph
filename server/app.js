@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
+import moment from 'moment';
 import Grid from 'gridfs-stream';
 
 // Populate databases with sample data
@@ -34,8 +35,15 @@ mongoose.connection.once('open', function() {
   app.set('gridfs', gfs);
 });
 
+// Setup server
+var app = express();
+var server = http.createServer(app);
+
 require('./config/express')(app);
 require('./routes')(app);
+require('./components/register-handlebars');
+
+moment.locale('fr');
 
 // Start server
 function startServer() {

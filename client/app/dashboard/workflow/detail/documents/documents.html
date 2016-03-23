@@ -2,61 +2,40 @@
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces obligatoires</div>
     <div class="panel-body">
-      <display-file-list categories="request.documents.obligatoires" request="request" user="currentUser"></display-file-list>
+      <display-file-list categories="rdc.request.documents.obligatoires" request="rdc.request" user="rdc.currentUser"></display-file-list>
     </div>
   </div>
 
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces complémentaires</div>
     <div class="panel-body">
-      <display-file-list categories="request.documents.complementaires" request="request" user="currentUser"></display-file-list>
+      <display-file-list categories="rdc.request.documents.complementaires" request="rdc.request" user="rdc.currentUser"></display-file-list>
     </div>
   </div>
 
-  <div ng-if="request.status === 'emise'" class="panel panel-flat-warning">
-    <div class="panel-heading">Accusé de réception</div>
-
+  <div class="panel panel-flat-default">
+    <div class="panel-heading">Demandes de documents complémentaires</div>
     <div class="panel-body">
-      <form name="form">
-        <div class="form-group">
-          <label class="control-label" for="numeroDossier">Numéro de dossier interne (GINETH, IODAS, etc)</label>
-          <input type="text" id="numeroDossier" ng-model="request.numeroDossier" class="form-control">
-        </div>
+      <input typeahead="documentType as documentType.label for documentType in rdc.documentTypes | filter:$viewValue"
+      typeahead-min-length="0" typeahead-on-select="rdc.addSelectedType(selectedDocument); selectedDocument = '';" name="typeahead"
+      type="text" ng-model="selectedDocument" class="form-control" placeholder="Ajouter un type complémentaire">
 
-        <div class="form-group">
-          <label class="control-label" for="request-comments">Ajouter un commentaire</label>
-          <textarea id="request-comments" ng-model="request.comments" class="form-control"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label class="control-label">Demandes de documents complémentaires</label>
-
-          <input typeahead="documentType as documentType.label for documentType in documentTypes | filter:$viewValue"
-          typeahead-min-length="0" typeahead-on-select="addSelectedType(selectedDocument); selectedDocument = '';" name="typeahead"
-          type="text" ng-model="selectedDocument" class="form-control" placeholder="Ajouter un type complémentaire">
-
-          <div class="selected-types">
-            <em ng-hide="request.askedDocumentTypes.length">Pas de demande complémentaire</em>
-            <ul class="list-group">
-              <li class="list-group-item" ng-click="removeSelectedType(idx)" ng-repeat="(idx, type) in request.askedDocumentTypes">
-                {{ showLabel(type) }}
-                <a href="#" class="pull-right">
-                  Supprimer
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="text-right">
-          <button class="btn btn-danger" ng-click="save(false)">
-            <i class="fa fa-times"></i>&nbsp;Demande incomplète
-          </button>
-          <button class="btn btn-success" ng-click="save(true)">
-            <i class="fa fa-check"></i>&nbsp;Demande complète
-          </button>
-        </div>
-      </form>
+      <div class="selected-types">
+        <em ng-hide="rdc.request.askedDocumentTypes.length">Pas de demande complémentaire</em>
+        <ul class="list-group">
+          <li class="list-group-item" ng-click="rdc.removeSelectedType(idx)" ng-repeat="(idx, type) in rdc.request.askedDocumentTypes">
+            {{ rdc.showLabel(type) }}
+            <a href="#" class="pull-right">
+              Supprimer
+            </a>
+          </li>
+        </ul>
     </div>
   </div>
+</div>
+
+<div class="text-right">
+  <button type="button" ng-click="rdc.openModal()" ng-if="rdc.request.status === 'emise' || rdc.request.status === 'en_attente_usager'" class="btn btn-lg btn-primary">
+    Envoyer un accusé de réception
+  </button>
 </div>

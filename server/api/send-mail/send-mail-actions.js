@@ -5,35 +5,38 @@ const Mailer = require('./send-mail.controller');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
+
 import pdfMaker from '../../components/pdf-maker';
 
-// const incompleteRequestMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'refused-request-email-premailer.html')));
+const moment = require('moment');
 
-const incompleteRequestMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'refused-request-email.html')));
-const incompleteRequestMailCompiled = Handlebars.compile(incompleteRequestMailTemplate);
+// const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email-premailer.html')));
+//
+// const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email.html')));
+// const receptionMailCompiled = Handlebars.compile(receptionMailTemplate);
 
 const confirmationMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'confirm-email-premailer.html')));
 const confirmationMailCompiled = Handlebars.compile(confirmationMailTemplate);
 
-exports.sendMailNotificationAgent = function(request, email, callback) {
+export function sendMailNotificationAgent(request, email, callback) {
   Mailer.sendMail(email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
-};
+}
 
-exports.sendMailCompletude = function(request, evaluator) {
+export function sendMailCompletude(request, evaluator) {
   Mailer.sendMail(request.user.email,
     'Accusé de complétude de votre dossier',
     'Les documents obligatoires que vous nous avez transmis ont tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '. Votre dosser est désormais considéré comme complet.'
   );
-};
+}
 
-exports.sendMailDemandeDocuments = function(request, evaluator) {
+export function sendMailDemandeDocuments(request, evaluator) {
   Mailer.sendMail(request.user.email,
     'Demande de complétude de votre dossier',
     'Les documents obligatoires que vous nous avez transmis n\'ont pas tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '.\nVous devez vous reconnecter pour renvoyer les pièces en erreur manquantes.'
   );
-};
+}
 
-exports.sendMailReceivedTransmission = function(options) {
+export function sendMailReceivedTransmission(options) {
   pdfMaker(options).then(pdfPath => {
     if (pdfPath) {
       Mailer.sendMail(options.email,
@@ -48,20 +51,45 @@ exports.sendMailReceivedTransmission = function(options) {
       );
     }
   });
-};
+}
 
-exports.sendMailDemandeDocuments = function(request, evaluator) {
+export function generateReceptionMail(request) {
+  const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email.html')));
+  const receptionMailCompiled = Handlebars.compile(receptionMailTemplate);
 
-  const body = incompleteRequestMailCompiled({
-    requestUrl: request.shortId,
-    receivedAt: request.receivedAt
+  const options = {};
+
+  const invalidDocumentTypes = request.getInvalidDocumentTypes();
+  const nonPresentAskedDocumentTypes = request.getNonPresentAskedDocumentTypes();
+
+  if (!request.receivedAt) {
+    options.receivedAt = moment();
+  } else {
+    options.receivedAt = request.receivedAt;
+  }
+
+  if (invalidDocumentTypes.length > 0) {
+    options.en_attente_usager = true;
+    options.invalidDocumentTypes = invalidDocumentTypes;
+  } else if (nonPresentAskedDocumentTypes.length > 0) {
+    options.en_attente_usager = true;
+    options.nonPresentAskedDocumentTypes = nonPresentAskedDocumentTypes;
+  } else {
+    options.enregistree = true;
+  }
+
+  return new Promise(function(resolve) {
+    let body = receptionMailCompiled({
+      request,
+      options
+    });
+
+    resolve(body);
   });
+}
 
-  Mailer.sendMail(request.user.email, 'Demande de complétude de votre dossier', body);
-};
-
-exports.sendConfirmationMail = function(to, confirmationUrl) {
+export function sendConfirmationMail(to, confirmationUrl) {
   const body = confirmationMailCompiled({confirmationUrl: confirmationUrl});
 
   Mailer.sendMail(to, 'Veuillez confirmer votre adresse e-mail', body);
-};
+}

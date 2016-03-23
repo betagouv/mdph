@@ -20,7 +20,7 @@ import Request from './request.model';
 import User from '../user/user.model';
 import Partenaire from '../partenaire/partenaire.model';
 import Mdph from '../mdph/mdph.model';
-import MailActions from '../send-mail/send-mail-actions';
+import * as MailActions from '../send-mail/send-mail-actions';
 
 import Dispatcher from '../../components/dispatcher';
 import ActionModel from './action.model';
@@ -150,13 +150,13 @@ function populateAndRespond(res) {
 }
 
 // Get a single request
-export function show(req, res, next) {
+export function show(req, res) {
   populateAndRespond(res)(req.request)
     .catch(handleError(req, res));
 }
 
 // Get a single request
-export function showPartenaire(req, res, next) {
+export function showPartenaire(req, res) {
   Request
     .findOne({
       shortId: req.params.shortId
@@ -179,7 +179,7 @@ export function destroy(req, res) {
 /**
  * Get user requests
  */
-export function showUserRequests(req, res, next) {
+export function showUserRequests(req, res) {
   Request.find({
     user: req.user._id
   })
@@ -223,16 +223,16 @@ function dispatchSecteur(req) {
 }
 
 function resolveEnregistrement(req) {
-  // .set('status', req.body.status) TODO: set this after debug
+  let action = actionsById[req.body.id];
   return req.request
-    .set('status', req.body.status)
+    .set('status', action.status)
     .set('comments', req.body.comments)
     .set('numeroDossier', req.body.numeroDossier)
     .set('refusedDocuments', req.body.refusedDocuments)
     .set('askedDocumentTypes', req.body.askedDocumentTypes)
     .save()
     .then(request => {
-      request.saveActionLog(actionsById[req.body.id], req.user, req.log);
+      request.saveActionLog(action, req.user, req.log);
       return request;
     })
     .then(request => {
@@ -262,16 +262,22 @@ export function saveAction(req, res, next) {
     .catch(handleError(req, res));
 }
 
-export function update(req, res, next) {
+export function update(req, res) {
   saveUpdates(req)
     .then(populateAndRespond(res))
+    .catch(handleError(req, res));
+}
+
+export function generateReceptionMail(req, res) {
+  MailActions.generateReceptionMail(req.request)
+    .then(html => res.send(html))
     .catch(handleError(req, res));
 }
 
 /**
  * Create request
  */
-export function create(req, res, next) {
+export function create(req, res) {
   Request.create(req.body)
     .then(respondWithResult(res, 201))
     .then(saveActionLog(actions.CREATION, req))
@@ -304,6 +310,28 @@ export function getHistory(req, res) {
   findActionHistory(req)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
+}
+
+function respondWithFile(res) {
+  return function(pdfPath) {
+    res.sendFile(pdfPath);
+  };
+}
+
+function generateRecapitulatifPdf(req) {
+  return new Promise(function(resolve, reject) {
+    MakePdf.make({
+      request: req.request,
+      host: req.headers.host,
+      user: req.user
+    }, function(err, pdfPath) {
+      if (err) {
+        return reject(err);
+      }
+
+      return resolve(pdfPath);
+    });
+  });
 }
 
 export function getRecapitulatif(req, res) {
