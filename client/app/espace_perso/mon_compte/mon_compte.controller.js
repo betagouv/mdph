@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($scope, User, Auth, currentUser) {
+  .controller('MonCompteCtrl', function($scope, $state, User, Auth, currentUser) {
     $scope.errors = {};
     $scope.user = currentUser;
 
@@ -24,6 +24,7 @@ angular.module('impactApp')
       if (form.$valid) {
         $scope.user.$changeInfo(function() {
           $scope.infoMessage = 'Vos informations ont bien été modifiées.';
+          $state.go('.', {}, {reload: true});
         });
       } else {
         form.showError = true;

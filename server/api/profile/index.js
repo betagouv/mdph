@@ -8,6 +8,7 @@ var router = express.Router({mergeParams: true});
 
 router.get('/', auth.canAccessProfile(), controller.index);
 router.post('/', auth.canAccessProfile(), controller.create);
+router.get('/me', auth.canAccessProfile(), controller.showMe);
 router.get('/:profileId', auth.isAuthorized(), controller.show);
 router.post('/:profileId', auth.isAuthorized(), controller.update);
 router.delete('/:profileId', auth.isAuthorized(), controller.destroy);

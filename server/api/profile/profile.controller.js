@@ -29,6 +29,18 @@ exports.show = function(req, res) {
     });
 };
 
+exports.showMe = function(req, res) {
+  Profile
+    .findOne({user: req.user._id})
+    .exec(function(err, profile) {
+      if (err) { return handleError(req, res, err); }
+
+      if (!profile) { return res.sendStatus(404); }
+
+      return res.json(profile);
+    });
+};
+
 exports.update = function(req, res) {
   Profile.findById(req.params.profileId, function(err, profile) {
     if (err) { return handleError(req, res, err); }

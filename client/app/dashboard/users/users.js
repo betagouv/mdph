@@ -49,10 +49,6 @@ angular.module('impactApp')
             } else {
               return new User();
             }
-          },
-
-          currentUser: function(Auth) {
-            return Auth.getCurrentUser();
           }
         },
         authenticate: true
