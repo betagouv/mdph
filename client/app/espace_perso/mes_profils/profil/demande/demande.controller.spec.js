@@ -4,6 +4,14 @@ describe('Controller: demande', function() {
   let RequestService = {
     getCompletion() {
       return true;
+    },
+
+    postAction() {
+      return {
+        then() {
+          return true;
+        }
+      };
     }
   };
 
