@@ -16,14 +16,8 @@ angular.module('impactApp')
       }
     }
 
-    function getUpdatedCategories(categories) {
-      return _.map(categories, function(current, key) {
-        return {_id: current._id, position: key};
-      });
-    }
-
     function updateDocumentType(documentType, oldCategoryId, newCategoryId, callback) {
-      $http.post('api/mdphs/' + currentMdph.zipcode + '/document-types', {
+      $http.post('api/mdphs/' + currentMdph.zipcode + '/categories/document-types', {
         documentType: documentType.id,
         oldCategoryId: oldCategoryId,
         newCategoryId: newCategoryId
@@ -32,18 +26,6 @@ angular.module('impactApp')
           callback();
         }
 
-        showAlert();
-        return true;
-      },
-
-      function() {
-        showAlert(true);
-        return false;
-      });
-    }
-
-    function saveUpdatedCategories(updatedCategories) {
-      $http.put('api/mdphs/' + currentMdph.zipcode + '/categories', updatedCategories).then(function() {
         showAlert();
         return true;
       },
@@ -81,9 +63,6 @@ angular.module('impactApp')
           if (oldCategoryId !== newCategoryId) {
             return updateDocumentType(documentType, oldCategoryId, newCategoryId);
           }
-        } else {
-          var updatedCategories = getUpdatedCategories($scope.categories);
-          return saveUpdatedCategories(updatedCategories);
         }
       }
     };
@@ -102,7 +81,7 @@ angular.module('impactApp')
     $scope.removeDocumentType = function(scope, category) {
       var documentType = scope.$nodeScope.$modelValue;
 
-      category.removeDocumentType(documentType).then(function() {
+      updateDocumentType(documentType, category._id, null, function() {
         var index = category.documentTypes.indexOf(documentType);
         if (index >= 0) {
           category.documentTypes.splice(index, 1);
@@ -115,7 +94,7 @@ angular.module('impactApp')
     $scope.removeCategory = function(scope) {
       var category = scope.$nodeScope.$modelValue;
 
-      category.delete().then(function() {
+      category.$delete({zipcode: currentMdph.zipcode}).then(function() {
         showAlert();
         scope.remove();
       },
@@ -126,7 +105,7 @@ angular.module('impactApp')
     };
 
     $scope.save = function(category) {
-      category.save().then(function() {
+      category.$save({zipcode: currentMdph.zipcode}).then(function() {
         showAlert();
       },
 
@@ -139,10 +118,7 @@ angular.module('impactApp')
       Upload.upload({
         url: 'api/mdphs/' + currentMdph.zipcode + '/categories/' + current._id + '/file',
         method: 'POST',
-        file: file,
-        data: {
-          category: current
-        }
+        file: file
       })
       .progress(function(evt) {
         if (evt.config.file) {

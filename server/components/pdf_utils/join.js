@@ -2,44 +2,30 @@
 
 'use strict';
 
-var async = require('async');
-var tmp = require('tmp');
-var spawn = require('child_process').spawn;
-var fs = require('fs');
-var path = require('path');
+import tmp from 'tmp';
+import {spawn} from 'child_process';
+import fs from 'fs';
+import path from 'path';
 
-var PdfJoin = function() {
+export default function(fileList, directory) {
+  return new Promise((resolve, reject) => {
+    tmp.file({dir: directory, keep: true}, (err, tempFilePath) => {
+      if (err) {
+        return reject(err);
+      }
 
-  if (!(this instanceof PdfJoin)) {
-    return new PdfJoin();
-  }
-
-  var join = function(fileList, callback) {
-    callback = callback || function() { };
-
-    tmp.file({keep: true}, function _tempFileCreated(err, pdfPath, fd, cleanupCallback) {
-      if (err) callback(err);
-
-      var args = fileList.concat(['cat', 'output', pdfPath]);
-      var pdftk = spawn('pdftk', args);
+      const args = fileList.concat(['cat', 'output', tempFilePath]);
+      const pdftk = spawn('pdftk', args);
 
       pdftk.stderr.on('data', function(data) {
         // TODO log and return error in pdf
         console.log('pdftk encountered an error:\n', String(data));
-        callback(null, path.join(__dirname, 'pdf-sample.pdf'), cleanupCallback);
+        return resolve(path.join(__dirname, 'pdf-sample.pdf'));
       });
 
-      pdftk.on('exit', function(code) {
-        callback(null, pdfPath, cleanupCallback);
+      pdftk.on('exit', function() {
+        return resolve(tempFilePath);
       });
     });
-  };
-
-  /*
-   * Expose public API calls
-   */
-  this.join = join;
-  return this;
-};
-
-module.exports = PdfJoin;
+  });
+}
