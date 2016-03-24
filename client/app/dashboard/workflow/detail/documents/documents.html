@@ -2,29 +2,29 @@
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces obligatoires</div>
     <div class="panel-body">
-      <display-file-list categories="rdc.request.documents.obligatoires" request="rdc.request" user="rdc.currentUser"></display-file-list>
+      <display-file-list categories="request.documents.obligatoires" request="request" user="currentUser"></display-file-list>
     </div>
   </div>
 
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces complémentaires</div>
     <div class="panel-body">
-      <display-file-list categories="rdc.request.documents.complementaires" request="rdc.request" user="rdc.currentUser"></display-file-list>
+      <display-file-list categories="request.documents.complementaires" request="request" user="currentUser"></display-file-list>
     </div>
   </div>
 
   <div class="panel panel-flat-default">
     <div class="panel-heading">Demandes de documents complémentaires</div>
     <div class="panel-body">
-      <input typeahead="documentType as documentType.label for documentType in rdc.documentTypes | filter:$viewValue"
-      typeahead-min-length="0" typeahead-on-select="rdc.addSelectedType(selectedDocument); selectedDocument = '';" name="typeahead"
+      <input typeahead="documentType as documentType.label for documentType in documentTypes | filter:$viewValue"
+      typeahead-min-length="0" typeahead-on-select="addSelectedType(selectedDocument); selectedDocument = '';" name="typeahead"
       type="text" ng-model="selectedDocument" class="form-control" placeholder="Ajouter un type complémentaire">
 
       <div class="selected-types">
-        <em ng-hide="rdc.request.askedDocumentTypes.length">Pas de demande complémentaire</em>
+        <em ng-hide="request.askedDocumentTypes.length">Pas de demande complémentaire</em>
         <ul class="list-group">
-          <li class="list-group-item" ng-click="rdc.removeSelectedType(idx)" ng-repeat="(idx, type) in rdc.request.askedDocumentTypes">
-            {{ rdc.showLabel(type) }}
+          <li class="list-group-item" ng-click="removeSelectedType(idx)" ng-repeat="(idx, type) in request.askedDocumentTypes">
+            {{ showLabel(type) }}
             <a href="#" class="pull-right">
               Supprimer
             </a>
@@ -35,7 +35,7 @@
 </div>
 
 <div class="text-right">
-  <button type="button" ng-click="rdc.openModal()" ng-if="rdc.request.status === 'emise' || rdc.request.status === 'en_attente_usager'" class="btn btn-lg btn-primary">
+  <button type="button" ng-click="openModal()" ng-if="request.status === 'emise' || request.status === 'en_attente_usager'" class="btn btn-lg btn-primary">
     Envoyer un accusé de réception
   </button>
 </div>

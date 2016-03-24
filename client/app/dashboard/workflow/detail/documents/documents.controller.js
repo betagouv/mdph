@@ -1,46 +1,43 @@
 'use strict';
 
-(function() {
-  function alreadySelected(request, typeId) {
-    return _.find(request.askedDocumentTypes, function(current) {
-      return current === typeId;
-    });
-  }
+angular.module('impactApp')
+  .controller('RequestDocumentsCtrl', function($scope, $modal, Auth, request, documentTypes, currentUser) {
+    $scope.documentTypes = documentTypes;
+    $scope.request = request;
+    $scope.currentUser = currentUser;
+    $scope.token = Auth.getToken();
 
-  class RequestDocumentsCtrl {
-    constructor($modal, Auth, request, documentTypes, currentUser) {
-      this.documentTypes = documentTypes;
-      this.request = request;
-      this.currentUser = currentUser;
-      this.$modal = $modal;
-      this.token = Auth.getToken();
+    function alreadySelected(request, typeId) {
+      return _.find(request.askedDocumentTypes, function(current) {
+        return current === typeId;
+      });
+    }
 
-      if (!request.askedDocumentTypes) {
-        request.askedDocumentTypes = [];
+    if (!request.askedDocumentTypes) {
+      request.askedDocumentTypes = [];
+    }
+
+    $scope.showLabel = function(type) {
+      return _.find($scope.documentTypes, {id: type}).label;
+    };
+
+    $scope.addSelectedType = function(type) {
+      if (!alreadySelected($scope.request, type.id)) {
+        $scope.request.askedDocumentTypes.push(type.id);
+        $scope.request.$save();
       }
-    }
+    };
 
-    showLabel(type) {
-      return _.find(this.documentTypes, {id: type}).label;
-    }
+    $scope.removeSelectedType = function(idx) {
+      $scope.request.askedDocumentTypes.splice(idx, 1);
+      $scope.request.$save();
+    };
 
-    addSelectedType(type) {
-      if (!alreadySelected(this.request, type.id)) {
-        this.request.askedDocumentTypes.push(type.id);
-        this.request.$save();
-      }
-    }
+    $scope.openModal = function() {
+      let request = $scope.request;
+      let token = $scope.token;
 
-    removeSelectedType(idx) {
-      this.request.askedDocumentTypes.splice(idx, 1);
-      this.request.$save();
-    }
-
-    openModal() {
-      let request = this.request;
-      let token = this.token;
-
-      this.$modal.open({
+      $modal.open({
         templateUrl: 'app/dashboard/workflow/detail/documents/modal.html',
         controllerAs: 'modalRdc',
         size: 'lg',
@@ -61,9 +58,5 @@
           };
         }
       });
-    }
-  }
-
-  angular.module('impactApp')
-    .controller('RequestDocumentsCtrl', RequestDocumentsCtrl);
-})();
+    };
+  });
