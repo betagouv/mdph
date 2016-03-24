@@ -35,10 +35,6 @@ mongoose.connection.once('open', function() {
   app.set('gridfs', gfs);
 });
 
-// Setup server
-var app = express();
-var server = http.createServer(app);
-
 require('./config/express')(app);
 require('./routes')(app);
 require('./components/register-handlebars');
