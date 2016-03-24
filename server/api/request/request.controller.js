@@ -118,7 +118,8 @@ function processUserAction(req) {
             request: request,
             host: req.headers.host,
             user: req.user,
-            email: req.user.email
+            email: req.user.email,
+            role: req.user.role
           };
 
           MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
@@ -256,7 +257,8 @@ export function getPdf(req, res) {
   pdfMaker({
       request: req.request,
       host: req.headers.host,
-      user: req.user
+      user: req.user,
+      role: req.user.role
     })
     .then(pdfPath => {
       res.sendFile(pdfPath);

@@ -78,6 +78,8 @@ function createRequestPdf({role, request, host, tempDirPath}) {
           return reject(err);
         }
 
+        console.log(role);
+
         if (role !== 'user') {
           return createStructuredRequestPdf({tempDirPath, recapitulatifPdfPath, request}).then(pdfPath => {
             return resolve(pdfPath);

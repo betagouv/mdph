@@ -28,7 +28,7 @@ exports.sendMailDemandeDocuments = function(request, evaluator) {
   );
 };
 
-exports.sendMailReceivedTransmission = function(options) { //request, email, pdfPath) {
+exports.sendMailReceivedTransmission = function(options) {
   pdfMaker(options).then(pdfPath => {
     if (pdfPath) {
       Mailer.sendMail(options.email,
