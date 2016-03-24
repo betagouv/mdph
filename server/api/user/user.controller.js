@@ -26,28 +26,43 @@ exports.index = function(req, res) {
   });
 };
 
+function saveUserAndSendConfirmation(req, res) {
+  return function(user, mdph) {
+    user.save(function(err, user) {
+      if (err) return validationError(res, err);
+
+      user.newMailToken = shortid.generate();
+      user.save(function(err) {
+        if (err) return validationError(res, err);
+        const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+        MailActions.sendConfirmationMail(user.email, confirmationUrl);
+      });
+
+      const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+      return res.json({ token: token, id: user._id });
+    });
+  };
+}
+
 /**
  * Creates a new user
  */
-exports.create = function(req, res, next) {
-  var mdph = req.body.mdph;
+exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
+  newUser.role = 'user';
 
   newUser.provider = 'local';
-  newUser.unconfirmed = true;
-  newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
+  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
+};
 
-    user.newMailToken = shortid.generate();
-    user.save(function(err) {
-      if (err) return validationError(res, err);
-      const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-      MailActions.sendConfirmationMail(user.email, confirmationUrl);
-    });
+/**
+ * Creates a new agent
+ */
+exports.createAgent = function(req, res) {
+  var newUser = new User(req.body);
 
-    const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-    res.json({ token: token, id: user._id });
-  });
+  newUser.provider = 'local';
+  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
 };
 
 /**
@@ -85,7 +100,7 @@ exports.destroy = function(req, res) {
 /**
  * Change a users password
  */
-exports.changePassword = function(req, res, next) {
+exports.changePassword = function(req, res) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
@@ -106,7 +121,7 @@ exports.changePassword = function(req, res, next) {
 /**
  * Change a user's personal information
  */
-exports.changeInfo = function(req, res, next) {
+exports.changeInfo = function(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (req.user.role === 'admin' || req.user.role === 'adminMdph') {
       user.set('email', req.body.email);
@@ -114,6 +129,7 @@ exports.changeInfo = function(req, res, next) {
 
     user
       .set('name', req.body.name)
+      .set('isMultiProfiles', req.body.isMultiProfiles)
       .save(function(err, result) {
         if (err) return validationError(res, err);
 
@@ -159,7 +175,7 @@ exports.search = function(req, res, next) {
 /**
  * Authentication callback
  */
-exports.authCallback = function(req, res, next) {
+exports.authCallback = function(req, res) {
   res.redirect('/');
 };
 
@@ -175,8 +191,7 @@ exports.generateTokenForPassword = function(req, res, next) {
   }, function(err, user) {
     if (err) return next(err);
     if (!user) return res.sendStatus(200);
-    let newPasswordToken = shortid.generate();
-    user.newPasswordToken = newPasswordToken;
+    user.newPasswordToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);
       let confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/nouveau_mot_de_passe/' + user._id + '/' + user.newPasswordToken;
@@ -231,8 +246,6 @@ exports.resendConfirmation = function(req, res) {
       token = shortid.generate();
       user.newMailToken = token;
       user.save();
-    } else {
-      token = user.newMailToken;
     }
 
     var confirmationUrl = 'http://' + req.headers.host + '/mdph/' + req.body.mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;

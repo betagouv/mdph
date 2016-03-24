@@ -2,6 +2,7 @@
 
 angular.module('impactApp')
   .filter('requestStatus', function(banettes) {
+
     var flatBannettes = _(banettes).pluck('statuses').flatten().indexBy('id').value();
     return function(input) {
       if (!input) {

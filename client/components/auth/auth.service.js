@@ -167,24 +167,45 @@
         * Check if a user is an admin
         *   (synchronous|asynchronous)
         *
-        * @param  {Function|*} callback - optional, function(is)
         * @return {Bool|Promise}
         */
-      isAdmin() {
+      hasRoleAdmin() {
         return Auth.hasRole
           .apply(Auth, [].concat.apply(['admin'], arguments));
       },
 
       /**
-        * Check if a user is an admin
+        * Check if a user is an adminMdph
         *   (synchronous|asynchronous)
         *
-        * @param  {Function|*} callback - optional, function(is)
+        * @param  {String|*} mdph - optional
         * @return {Bool|Promise}
         */
-      isAdminMdph: function() {
+      hasRoleAdminMdph: function() {
         return Auth.hasRole
           .apply(Auth, [].concat.apply(['adminMdph'], arguments));
+      },
+
+      /**
+        * Check if a user can access an mdph admin
+        *   (synchronous|asynchronous)
+        *
+        * @param  {String} mdph
+        * @return {Bool|Promise}
+        */
+      isAdminMdph(mdph) {
+        return Auth.getCurrentUser(null)
+          .then(user => {
+            if (Auth.hasRole('admin')) {
+              return true;
+            }
+
+            if (Auth.hasRole('adminMdph')) {
+              return user.mdph.zipcode === mdph.zipcode;
+            }
+
+            return false;
+          });
       },
 
       /**

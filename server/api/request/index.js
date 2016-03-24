@@ -57,7 +57,7 @@ function isAuthorized() {
         return next();
       }
 
-      if (Auth.meetsRequirements(req.user.role, 'adminMdph')) {
+      if (Auth.meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph.zipcode === req.request.mdph) {
         return next();
       }
 

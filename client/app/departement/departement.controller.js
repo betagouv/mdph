@@ -1,27 +1,17 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, Auth, currentUser, currentMdph) {
+  .controller('DepartementCtrl', function($scope, $rootScope, $state, $timeout, Auth, currentMdph) {
     $scope.$emit('event:mdph-changed', currentMdph);
-    $scope.currentUser = currentUser;
+
+    $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
 
+    Auth.isAdminMdph(currentMdph).then(is => {
+      $scope.isAdminMdph = is;
+    });
+
     L.mapbox.accessToken = 'pk.eyJ1IjoiaW1wYWN0LW1hcGJveCIsImEiOiJjaWt6bmpqYTUwMDcwd29tNDRpczM2N2pwIn0.Qh9eYg3TMD00z22WzmDXyQ';
-
-    $scope.isAdmin = function() {
-      if (!currentUser) {
-        return false;
-      }
-
-      switch (currentUser.role) {
-        case 'admin':
-          return true;
-        case 'adminMdph':
-          return currentUser.mdph.zipcode === currentMdph.zipcode;
-        default:
-          return false;
-      }
-    };
 
     $scope.generateMap = function() {
       var map = L.mapbox.map('map', 'mapbox.streets').setView([currentMdph.coordinates.coordy, currentMdph.coordinates.coordx], 14);

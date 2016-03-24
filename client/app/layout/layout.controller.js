@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($scope, $rootScope, Auth, $localStorage, $timeout, mdphs, currentUser) {
+  .controller('LayoutCtrl', function($scope, $rootScope, Auth, $localStorage, $timeout, mdphs) {
     $scope.isCollapsed = true;
     $scope.mdphs = mdphs;
-    $scope.currentUser = currentUser;
 
+    $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.logout = Auth.logout;
 

@@ -9,6 +9,7 @@ angular.module('impactApp')
         sublevel: '=',
         questions: '=',
         request: '='
-      }
+      },
+      controller: 'TrajectoireController'
     };
   });

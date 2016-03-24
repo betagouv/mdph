@@ -13,7 +13,7 @@
             <h2 ng-if="trajectoire !== 'Toutes'">{{trajectoire}}</h2>
 
             <ul>
-              <li ng-repeat="question in questions">{{question.Libelle | capitalize}}</li>
+              <li ng-repeat="question in questions">{{question.Libelle | capitalizeString}}</li>
             </ul>
           </div>
         </div>
@@ -26,7 +26,7 @@
       <i class="fa fa-download"></i>
       Télécharger la synthèse
     </a>
-    <button class="btn btn-primary" ng-click="afficherSynthese()">Proposition de l'équipe</button>
+    <!-- <button class="btn btn-primary" ng-click="afficherSynthese()">Proposition de l'équipe</button> -->
   </div>
   <div class="clearfix"></div>
 </ui-view>
