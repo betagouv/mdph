@@ -10,10 +10,14 @@
       <a class="hero-button" ui-sref="espace_perso.mes_profils" ng-if="isLoggedIn() && currentUser.isMultiProfiles">
         Voir mes profils
       </a>
+<<<<<<< HEAD
       <a class="hero-button" ui-sref="espace_perso.mes_profils.profil({profileId: 'me'})" ng-if="isLoggedIn() && !currentUser.isMultiProfiles">
         Voir mon profil
       </a>
       <a class="hero-button inverted" ng-if="isAdmin()" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
+=======
+      <a class="hero-button inverted" ng-if="isAdminMdph()" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
+>>>>>>> master
         Tableau de bord
       </a>
     </div>
