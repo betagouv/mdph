@@ -10,8 +10,12 @@ angular.module('impactApp')
         controller: 'EspacePersoCtrl',
         authenticate: true,
         resolve: {
-          sections: function(SectionFrontConstants) {
-            return SectionFrontConstants;
+          sections: function(SectionFrontConstants, SectionFrontConstantsUniqueProfile, currentUser) {
+            if (currentUser.isMultiProfiles) {
+              return SectionFrontConstants;
+            } else {
+              return SectionFrontConstantsUniqueProfile;
+            }
           },
 
           currentUser: function(Auth) {

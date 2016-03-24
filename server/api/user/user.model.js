@@ -16,7 +16,8 @@ var UserSchema = new Schema({
   mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
   newPasswordToken: { type: String, select: false },
   newMailToken: { type: String, select: false },
-  secteurs: [{ type: Schema.Types.ObjectId, ref: 'Secteur' }]
+  secteurs: [{ type: Schema.Types.ObjectId, ref: 'Secteur' }],
+  isMultiProfiles: { type: Boolean, default: false }
 });
 
 /**
@@ -44,7 +45,8 @@ UserSchema
         role: this.role,
         email: this.email,
         mdph: this.mdph,
-        unconfirmed: this.unconfirmed
+        unconfirmed: this.unconfirmed,
+        isMultiProfiles: this.isMultiProfiles
       };
     }
 
@@ -53,7 +55,8 @@ UserSchema
       name: this.name,
       role: this.role,
       email: this.email,
-      unconfirmed: this.unconfirmed
+      unconfirmed: this.unconfirmed,
+      isMultiProfiles: this.isMultiProfiles
     };
   });
 
