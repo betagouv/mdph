@@ -6,7 +6,10 @@ angular.module('impactApp')
 
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
-    $scope.isAdmin = Auth.isAdmin;
+
+    Auth.isAdminMdph(currentMdph).then(is => {
+      $scope.isAdminMdph = is;
+    });
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiaW1wYWN0LW1hcGJveCIsImEiOiJjaWt6bmpqYTUwMDcwd29tNDRpczM2N2pwIn0.Qh9eYg3TMD00z22WzmDXyQ';
 
