@@ -1,12 +1,15 @@
 'use strict';
 
 describe('TrajectoireController', function() {
+  var scope;
+  var controller;
+  var ReadModeService;
+  var $controller;
 
   beforeEach(function() {
     module('impactApp');
+    scope = {};
   });
-
-  var $controller;
 
   beforeEach(inject(function(_$controller_) {
     $controller = _$controller_;
@@ -14,12 +17,7 @@ describe('TrajectoireController', function() {
 
   describe('filterByMode', function() {
     describe('Read mode', function() {
-      var scope;
-      var controller;
-      var ReadModeService;
-
       beforeEach(function() {
-        scope = {};
         ReadModeService = {
           getReadMode() {
             return true;
@@ -30,24 +28,14 @@ describe('TrajectoireController', function() {
       });
 
       it('should return question.isSelected and show the question only if selected', function() {
-        //given
         var question = { isSelected: false };
-
-        //when
         var result = scope.filterByMode(question);
-
-        //then
         expect(result).toBe(question.isSelected);
       });
     });
 
     describe('Not in read mode', function() {
-      var scope;
-      var controller;
-      var ReadModeService;
-
       beforeEach(function() {
-        scope = {};
         ReadModeService = {
           getReadMode() {
             return false;
@@ -70,35 +58,43 @@ describe('TrajectoireController', function() {
   });
 
   describe('toggleSelected', function() {
-    var scope;
-    var controller;
-    var ReadModeService;
-
     beforeEach(function() {
-      scope = {};
       ReadModeService = {
-        getReadMode() {
-          return true;
-        }
+        getReadMode() {}
       };
 
       controller = $controller('TrajectoireController', { $scope: scope, ReadModeService: ReadModeService });
     });
 
     it('should toggle the question selection and collapse the question if not selected', function() {
-      //given
-      var question = { isSelected: false };
-
-      //when
-      var result = scope.filterByMode(question);
-
-      //then
-      expect(result).toBe(question.isSelected);
+      var question = {
+        isSelected: true,
+        isExpanded: true
+      };
+      scope.toggleSelected(question);
+      expect(question.isSelected).toBe(false);
+      expect(question.isExpanded).toBe(false);
     });
   });
 
   describe('toggleCollapse', function() {
+    beforeEach(function() {
+      ReadModeService = {
+        getReadMode() {}
+      };
 
+      controller = $controller('TrajectoireController', { $scope: scope, ReadModeService: ReadModeService });
+    });
+
+    it('should toogle the expansion of the question and select it', function() {
+      var question = {
+        isSelected: false,
+        isExpanded: false
+      };
+      scope.toggleCollapse(question);
+      expect(question.isSelected).toBe(true);
+      expect(question.isExpanded).toBe(true);
+    });
   });
 
 });
