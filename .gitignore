@@ -15,6 +15,7 @@ server/uploads/*
 server/uploads/temp/*
 !server/uploads/temp/.gitkeep
 !server/uploads/run_compress.js
+coverage
 
 #OSX
 .DS_Store
