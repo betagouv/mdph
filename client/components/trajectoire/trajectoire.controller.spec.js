@@ -12,7 +12,64 @@ describe('TrajectoireController', function() {
     $controller = _$controller_;
   }));
 
-  describe('Read mode', function() {
+  describe('filterByMode', function() {
+    describe('Read mode', function() {
+      var scope;
+      var controller;
+      var ReadModeService;
+
+      beforeEach(function() {
+        scope = {};
+        ReadModeService = {
+          getReadMode() {
+            return true;
+          }
+        };
+
+        controller = $controller('TrajectoireController', { $scope: scope, ReadModeService: ReadModeService });
+      });
+
+      it('should return question.isSelected and show the question only if selected', function() {
+        //given
+        var question = { isSelected: false };
+
+        //when
+        var result = scope.filterByMode(question);
+
+        //then
+        expect(result).toBe(question.isSelected);
+      });
+    });
+
+    describe('Not in read mode', function() {
+      var scope;
+      var controller;
+      var ReadModeService;
+
+      beforeEach(function() {
+        scope = {};
+        ReadModeService = {
+          getReadMode() {
+            return false;
+          }
+        };
+        controller = $controller('TrajectoireController', { $scope: scope, ReadModeService: ReadModeService });
+      });
+
+      it('should return false and not show the question', function() {
+        //given
+        var question = { isSelected: false };
+
+        //when
+        var result = scope.filterByMode(question);
+
+        //then
+        expect(result).toBe(true);
+      });
+    });
+  });
+
+  describe('toggleSelected', function() {
     var scope;
     var controller;
     var ReadModeService;
@@ -28,7 +85,7 @@ describe('TrajectoireController', function() {
       controller = $controller('TrajectoireController', { $scope: scope, ReadModeService: ReadModeService });
     });
 
-    it('should return question.isSelected and show the question only if selected', function() {
+    it('should toggle the question selection and collapse the question if not selected', function() {
       //given
       var question = { isSelected: false };
 
@@ -40,31 +97,8 @@ describe('TrajectoireController', function() {
     });
   });
 
-  describe('Not in read mode', function() {
-    var scope;
-    var controller;
-    var ReadModeService;
+  describe('toggleCollapse', function() {
 
-    beforeEach(function() {
-      scope = {};
-      ReadModeService = {
-        getReadMode() {
-          return false;
-        }
-      };
-      controller = $controller('TrajectoireController', { $scope: scope, ReadModeService: ReadModeService });
-    });
-
-    it('should return false and not show the question', function() {
-      //given
-      var question = { isSelected: false };
-
-      //when
-      var result = scope.filterByMode(question);
-
-      //then
-      expect(result).toBe(true);
-    });
   });
 
 });

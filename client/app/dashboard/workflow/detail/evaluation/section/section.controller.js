@@ -17,8 +17,7 @@ angular.module('impactApp')
     $scope.section = section;
 
     $scope.getReadMode = ReadModeService.getReadMode;
-
-    $scope.toggle = ReadModeService.toggle;
+    $scope.toggleMode = ReadModeService.toggle;
 
     function findDeep(array, id) {
       var question = _.find(array, {id: id});
@@ -38,7 +37,6 @@ angular.module('impactApp')
 
     (function applyModelToSection(request, section) {
       var model = request.synthese.geva[section.id];
-
       _.forEach(section.trajectoires, function(trajectoire) {
         _.forEach(model, function(id) {
           var question = findDeep(trajectoire, id);
@@ -51,15 +49,21 @@ angular.module('impactApp')
 
     })(request, section);
 
-    function answersToIdArray(root) {
+    function answersToIdArray(root, level) {
       return _.reduce(root, function(result, question) {
-        if (question.Reponses) {
-          var reponses = answersToIdArray(question.Reponses);
-          result = result.concat(reponses);
-        }
-
         if (question.isSelected) {
-          result.push(question.id);
+          var reponses = [];
+
+          if (question.Reponses) {
+            reponses = answersToIdArray(question.Reponses, level + 1);
+            result = result.concat(reponses);
+          }
+
+          if (level !== 0 || reponses.length > 0) {
+            result.push(question.id);
+          } else {
+            question.isSelected = false;
+          }
         }
 
         return result;
@@ -68,15 +72,24 @@ angular.module('impactApp')
 
     function trajectoiresToIdArray(trajectoires) {
       return _.reduce(trajectoires, function(result, trajectoire) {
-        return result.concat(answersToIdArray(trajectoire));
+        return result.concat(answersToIdArray(trajectoire, 0));
       }, []);
+    }
+
+    $scope.noAnswer = (trajectoiresToIdArray($scope.section.trajectoires).length === 0);
+
+    if ($scope.noAnswer) {
+      if ($scope.getReadMode()) {
+        $scope.toggleMode();
+      }
     }
 
     $scope.validate = function() {
       request.synthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+      $scope.noAnswer = (request.synthese.geva[section.id].length === 0);
 
       request.$update(function() {
-        $state.go('^');
+        $scope.toggleMode();
       });
     };
   })

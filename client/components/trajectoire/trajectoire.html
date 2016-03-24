@@ -1,7 +1,7 @@
 <div class="trajectoire-wrapper" ng-class="{'sub-level': sublevel, 'main-level': !sublevel}">
   <div ng-repeat="question in questions" ng-if="filterByMode(question)">
     <div class="question" ng-class="{'question-active': question.isSelected}">
-      <button type="button" class="btn btn-link" ng-click="question.isSelected = !question.isSelected" ng-disabled="getReadMode()">
+      <button type="button" class="btn btn-link" ng-click="toggleSelected(question)" ng-disabled="getReadMode()">
         {{question.Libelle | capitalize}}
       </button>
       <button type="button" class="btn btn-link" ng-click="toggleCollapse(question)" ng-if="question.Reponses && !getReadMode()">

@@ -1,16 +1,18 @@
 <h2>{{section.label}}</h2>
 
-<label>
-  <input type="checkbox" name="displayMode" ng-checked="getReadMode()" ng-click="toggle()">
-  mode compact
-</label>
+<button type="button" class="btn-section btn btn-md btn-primary" ng-click="toggleMode()" ng-if="getReadMode()">
+  Editer
+</button>
+<button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
+  Sauvegarder
+</button>
 
 <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
   <h3 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h3>
 
-  <trajectoire questions="questions" level="0"></trajectoire>
+  <trajectoire questions="questions"></trajectoire>
 </div>
 
-<div class="btn-geva">
-  <a class="btn btn-lg btn-primary" ng-click="validate()">Valider</a>
-</div>
+<button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
+  Sauvegarder
+</button>
