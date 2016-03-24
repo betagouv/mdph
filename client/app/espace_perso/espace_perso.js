@@ -19,7 +19,7 @@ angular.module('impactApp')
           },
 
           currentUser: function(Auth) {
-            return Auth.getCurrentUser();
+            return Auth.getCurrentUser().$promise;
           }
         },
         abstract: true

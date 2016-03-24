@@ -298,7 +298,7 @@ export function update(req, res) {
 }
 
 export function generateReceptionMail(req, res) {
-  const options = computeEnregistrementOptions(req.request);
+  const options = computeEnregistrementOptions(req.request, req.headers.host);
 
   MailActions.generateReceptionMail(req.request, options)
     .then(html => res.send(html))

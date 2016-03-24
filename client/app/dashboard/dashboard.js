@@ -15,7 +15,7 @@ angular.module('impactApp')
 
         resolve: {
           currentUser: function(Auth) {
-            return Auth.getCurrentUser();
+            return Auth.getCurrentUser().$promise;
           }
         }
       });
