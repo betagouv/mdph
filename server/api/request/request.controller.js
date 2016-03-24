@@ -349,22 +349,6 @@ function respondWithFile(res) {
   };
 }
 
-function generateRecapitulatifPdf(req) {
-  return new Promise(function(resolve, reject) {
-    MakePdf.make({
-      request: req.request,
-      host: req.headers.host,
-      user: req.user
-    }, function(err, pdfPath) {
-      if (err) {
-        return reject(err);
-      }
-
-      return resolve(pdfPath);
-    });
-  });
-}
-
 export function getRecapitulatif(req, res) {
   Recapitulatif.answersToHtml({
     request: req.request,
