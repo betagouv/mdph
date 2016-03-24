@@ -8,12 +8,8 @@ const path = require('path');
 
 import pdfMaker from '../../components/pdf-maker';
 
-const moment = require('moment');
-
-// const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email-premailer.html')));
-//
-// const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email.html')));
-// const receptionMailCompiled = Handlebars.compile(receptionMailTemplate);
+const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email.html')));
+const receptionMailCompiled = Handlebars.compile(receptionMailTemplate);
 
 const confirmationMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'confirm-email-premailer.html')));
 const confirmationMailCompiled = Handlebars.compile(confirmationMailTemplate);
@@ -22,18 +18,16 @@ export function sendMailNotificationAgent(request, email, callback) {
   Mailer.sendMail(email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
 }
 
-export function sendMailCompletude(request, evaluator) {
-  Mailer.sendMail(request.user.email,
-    'Accusé de complétude de votre dossier',
-    'Les documents obligatoires que vous nous avez transmis ont tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '. Votre dosser est désormais considéré comme complet.'
-  );
-}
+export function sendMailCompletude(request,options) {
+  return generateReceptionMail(request, options)
+    .then(html => {
+      Mailer.sendMail(request.user.email,
+        'Accusé de réception de votre MDPH',
+        html
+      );
 
-export function sendMailDemandeDocuments(request, evaluator) {
-  Mailer.sendMail(request.user.email,
-    'Demande de complétude de votre dossier',
-    'Les documents obligatoires que vous nous avez transmis n\'ont pas tous été validés par ' + evaluator.name + ' de la MDPH ' + request.mdph + '.\nVous devez vous reconnecter pour renvoyer les pièces en erreur manquantes.'
-  );
+      return html;
+    });
 }
 
 export function sendMailReceivedTransmission(options) {
@@ -53,31 +47,7 @@ export function sendMailReceivedTransmission(options) {
   });
 }
 
-export function generateReceptionMail(request) {
-  const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email.html')));
-  const receptionMailCompiled = Handlebars.compile(receptionMailTemplate);
-
-  const options = {};
-
-  const invalidDocumentTypes = request.getInvalidDocumentTypes();
-  const nonPresentAskedDocumentTypes = request.getNonPresentAskedDocumentTypes();
-
-  if (!request.receivedAt) {
-    options.receivedAt = moment();
-  } else {
-    options.receivedAt = request.receivedAt;
-  }
-
-  if (invalidDocumentTypes.length > 0) {
-    options.en_attente_usager = true;
-    options.invalidDocumentTypes = invalidDocumentTypes;
-  } else if (nonPresentAskedDocumentTypes.length > 0) {
-    options.en_attente_usager = true;
-    options.nonPresentAskedDocumentTypes = nonPresentAskedDocumentTypes;
-  } else {
-    options.enregistree = true;
-  }
-
+export function generateReceptionMail(request, options) {
   return new Promise(function(resolve) {
     let body = receptionMailCompiled({
       request,
