@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookies, sections, model, GevaService, allPrestations, currentRequest) {
+  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookies, sections, model, GevaService, allPrestations, currentRequest, synthese) {
     $scope.model = model;
     $scope.sections = sections;
     $scope.request = currentRequest;
@@ -23,6 +23,10 @@ angular.module('impactApp')
 
           request: function() {
             return currentRequest;
+          },
+
+          synthese: function() {
+            return synthese;
           }
         }
       });
