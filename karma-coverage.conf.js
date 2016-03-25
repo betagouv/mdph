@@ -41,9 +41,19 @@ module.exports = function(config) {
       'client/{app,components}/**/*.html'
     ],
 
+    // coverage reporter generates the coverage
+    reporters: ['coverage'],
+
     preprocessors: {
       '**/*.html': 'ng-html2js',
       'client/{app,components}/**/*.js': ['babel'],
+      'client/{app,components}/**/!(*spec).js': ['coverage'],
+    },
+
+    // optionally, configure the reporter
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/'
     },
 
     ngHtml2JsPreprocessor: {

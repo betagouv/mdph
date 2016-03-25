@@ -28,6 +28,7 @@
     "moment": true,
     "describe": true,
     "beforeEach": true,
+    "spyOn": true,
     "module": true,
     "inject": true,
     "it": true,
