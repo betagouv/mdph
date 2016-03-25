@@ -1,5 +1,10 @@
-.btn-section {
-  margin: 10px 0;
+.container-btn {
+  display: flex;
+  justify-content: flex-end;
+
+  .btn-section {
+    margin: 10px 0px 10px 20px;
+  }
 }
 
 .btn-checkbox {
