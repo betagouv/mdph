@@ -96,6 +96,13 @@
     "id": "sms",
     "type": "accompagnement",
     "label": "SMS",
+    "title": "Orientation en Etablissements et Services médico-sociaux",
+    "description": "Ce sont des établissements médico-sociaux chargés d’offrir aux personnes accueillies différentes activités à caractère professionnel qui donnent lieu au versement d’une rémunération garantie et à un soutien médico-social et éducatif. La personne est accueillie dans les Etablissements et Services d’Aide par le Travail (ESAT) à temps complet ou à temps partiel (combiné à une section occupationnelle à temps partiel)."
+  },
+  {
+    "id": "sms_enfant",
+    "type": "enfant",
+    "label": "SMS enfant",
     "title": "Orientation en Etablissements et Services médico-sociaux et Médico-éducatifs",
     "description": "Au cours de son parcours de formation, l'élève handicapé peut être amené à séjourner, à temps plein ou à temps partiel, dans un établissement médico-social. Ces établissements médico-sociaux, publics ou privés, se caractérisent par des spécificités qui permettent de répondre aux besoins des enfants et adolescents handicapés.",
     "link": "http://eduscol.education.fr/cid53162/les-etablissements-medico-sociaux.html"
@@ -106,6 +113,6 @@
     "label": "AC",
     "title": "Allocation compensatrice",
     "link": "http://vosdroits.service-public.fr/particuliers/F2475.xhtml",
-    "description": "Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du handicap (PCH). Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver."
+    "description": "Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du handicap. Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver."
   }
 ]
