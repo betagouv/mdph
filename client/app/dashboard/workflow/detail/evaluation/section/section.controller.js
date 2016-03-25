@@ -92,6 +92,11 @@ angular.module('impactApp')
         $scope.toggleMode();
       });
     };
+
+    $scope.cancel = function() {
+      $state.go('.', {}, {reload: true})
+        .then($scope.toggleMode());
+    };
   })
   .factory('ReadModeService', function() {
     var readMode = true;
