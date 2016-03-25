@@ -86,7 +86,18 @@ module.exports = function(grunt) {
         'injector',
         'postcss',
         'wiredep:test',
-        'karma'
+        'karma:unit'
+      ]);
+    } else if (target === 'coverage') {
+      return grunt.task.run([
+        'clean:server',
+        'env:all',
+        'injector:sass',
+        'concurrent:test',
+        'injector',
+        'postcss',
+        'wiredep:test',
+        'karma:coverage'
       ]);
     } else if (target === 'watch') {
       return grunt.task.run([

@@ -22,7 +22,7 @@ describe('RequestSectionCtrl', function() {
 
   describe('noAnswer', function() {
     describe('When there is no answer', function() {
-      var MockSection = {
+      var fakeSection = {
         id:'environnement',
         label:'Éléments environnementaux',
         trajectoires:{
@@ -71,7 +71,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: MockSection, request: {}, ReadModeService: MockReadModeService});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService});
       });
 
       it('should be true', function() {
@@ -81,7 +81,7 @@ describe('RequestSectionCtrl', function() {
     });
 
     describe('When there is an answer', function() {
-      var MockSection = {
+      var fakeSection = {
         id:'environnement',
         label:'Éléments environnementaux',
         trajectoires:{
@@ -130,12 +130,85 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: MockSection, request: {}, ReadModeService: MockReadModeService});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService});
       });
 
       it('should be false', function() {
         var result = scope.noAnswer;
         expect(result).toBe(false);
+      });
+    });
+  });
+
+  describe('validate', function() {
+    describe('When there is some answers', function() {
+      var fakeSection = {
+        id:'environnement',
+        label:'Éléments environnementaux',
+        trajectoires:{
+          Toutes:[
+            {
+              id:0,
+              Section:'éléments environnementaux',
+              Libelle:'Composition du foyer',
+              Trajectoire:'Toutes',
+              Question:'Quelle est la situation familiale de la personne ?',
+              Type:'CM',
+              Reponses:[
+                {
+                  id:'II_1 bis_1',
+                  CodeValeur:'II.1 bis.1',
+                  Tri:'1',
+                  Libelle:'vit seul',
+                  isSelected:true,
+                  isExpanded:true
+                },
+                {
+                  id:'II_1 bis_2',
+                  CodeValeur:'II.1 bis.2',
+                  Tri:'2',
+                  Libelle:'vit avec d\'autres personnes'
+                },
+                {
+                  id:'II_1 bis_4',
+                  CodeValeur:'II.1 bis.4',
+                  Tri:'3',
+                  Libelle:'a des relations familiales ou amicales'
+                },
+                {
+                  id:'II_1 bis_5',
+                  CodeValeur:'II.1 bis.5',
+                  Tri:'4',
+                  Libelle:'n\'a pas de relation familiale ou amicale'
+                }
+              ],
+              isSelected:true,
+              isExpanded:true
+            }
+          ]
+        }
+      };
+
+      var fakeRequest = {
+        synthese: {
+          geva: {
+            environnement: {}
+          }
+        },
+
+        $update() {}
+      };
+
+      beforeEach(function() {
+        spyOn(fakeRequest, '$update');
+        scope = {};
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: fakeRequest, ReadModeService: MockReadModeService});
+      });
+
+      it('should save the answer in the request', function() {
+        scope.validate();
+        expect(fakeRequest.synthese.geva.environnement).toEqual(['II_1 bis_1', 0]);
+        expect(fakeRequest.$update).toHaveBeenCalled();
       });
     });
   });
