@@ -1,0 +1,25 @@
+ul.list-prestations {
+  list-style: none;
+  margin: 0;
+
+  li {
+    display: flex;
+    flex-direction: row;
+
+    input[type=checkbox] {
+      display: none;
+
+      label:before {
+        display: block;
+        font-family: "FontAwesome";
+        content: "\f096";
+        color: $light-grey;
+      }
+
+      &:checked > label:before {
+        content: "\f14a";
+        color: $green;
+      }
+    }
+  }
+}
