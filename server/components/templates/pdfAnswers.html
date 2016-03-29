@@ -35,5 +35,9 @@
     {{#sections}}
       {{> section}}
     {{/sections}}
+
+    {{#if request.prestations}}
+      {{> prestations}}
+    {{/if}}
   </body>
 </html>
