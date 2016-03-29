@@ -5,7 +5,7 @@
       "label": "Certificat médical",
       "canDelegate": true,
       "mandatory": true,
-      "desc": "Un certificat médical de moins de 3 mois"
+      "desc": "Un certificat médical de moins de 6 mois"
     },
     {
       "id": "justificatifDomicile",
