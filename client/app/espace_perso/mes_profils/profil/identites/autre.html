@@ -9,7 +9,7 @@
   <section class="identite-section">
     <div class="form-group required" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
       <fieldset>
-        <legend class="control-label" id="identite-type">Vous êtes</legend>
+        <legend class="control-label" id="identite-type">La personne vous aidant dans votre démarche est</legend>
         <select name="identite-type" class="form-control" id="identite-type" ng-model="identite.type" ng-required="!identite.type">
           <option value="proche">Un proche</option>
           <option value="association">Une association</option>
@@ -27,7 +27,7 @@
 
     <div class="section-row">
       <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
-        <label for="nom" class="control-label">Nom ou intitulé</label>
+        <label for="nom" class="control-label">Nom (ou intitulé)</label>
         <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
         <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
           <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
