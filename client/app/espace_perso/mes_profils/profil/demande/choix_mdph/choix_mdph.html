@@ -5,8 +5,10 @@
     <fieldset>
       <legend class="control-label" id="request-mdph">Sélectionnez la MDPH destinaire de votre demande</legend>
       <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in enabledMdphs"
-              ng-change="resetOldMdph()" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.mdph" required></select>
+              ng-change="resetOldMdph()" name="request-mdph" class="form-control" id="request-mdph"
+              ng-model="request.mdph" required></select>
     </fieldset>
+
     <div ng-if="!request.mdph && infoForm.$submitted">
       <p class="help-block">Ce champ est obligatoire.</p>
     </div>
@@ -21,11 +23,12 @@
       <label class="radio-inline" for="nouvelle_demande">Non</label>
     </fieldset>
   </div>
-  <div class="form-group" ng-if="request.estRenouvellement === true">
+  <div class="form-group" ng-if="request.estRenouvellement">
     <fieldset>
       <legend class="control-label" id="request-mdph">Dans quelle MDPH se trouve ce dossier ?</legend>
-      <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in mdphs"
-              ng-init="request.old_mdph = request.mdph" name="request-mdph" class="form-control" id="request-mdph" ng-model="request.old_mdph" ng-change="request.numeroDossier = null" required></select>
+      <select ng-options="mdph.code_departement as mdph.nom_du_departement group by mdph.nom_de_la_region for mdph in fullMdphList"
+              ng-init="request.old_mdph = request.mdph" name="request-mdph" class="form-control" id="request-mdph"
+              ng-model="request.old_mdph" ng-change="request.numeroDossier = null" required></select>
     </fieldset>
   </div>
   <div class="form-group" ng-if="request.old_mdph && request.mdph === request.old_mdph">
@@ -41,5 +44,5 @@
 </div>
 
 <div ng-if="request.status !== 'en_cours'">
-  <p>Vous avez transmis cette demande le <strong>{{request.submittedAt | moment}}</strong>, à la <strong>MDPH {{selectedMdph.nom_du_departement}}, {{selectedMdph.code_departement}}</strong>.</p>
+  <p>Vous avez transmis cette demande le <strong>{{request.submittedAt | moment}}</strong>, à la <strong>MDPH {{request.mdph | fullMdphName}}</strong>.</p>
 </div>
