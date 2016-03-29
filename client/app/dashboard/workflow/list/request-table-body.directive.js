@@ -7,7 +7,7 @@ angular.module('impactApp')
       transclude: true,
       scope: {
         requestGroup: '=',
-        title: '=',
+        groupTitle: '=',
         query: '='
       },
       compile: function(tElement, attrs, transclude) {
