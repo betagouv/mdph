@@ -48,7 +48,7 @@ function isAuthorized() {
         return next();
       }
 
-      if (Auth.meetsRequirements(req.user.role, 'adminMdph') && String(req.user.mdph) === String(req.mdph._id)) {
+      if (Auth.meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph._id.equals(req.mdph._id)) {
         return next();
       }
 
