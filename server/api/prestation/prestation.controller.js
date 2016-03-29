@@ -7,13 +7,13 @@ var prestations = require('./prestations.json');
 var prestationsById = indexBy(prestations, 'id');
 
 let reducer = function(array) {
-  var reducedArray = {};
+  var reducedArray = [];
 
   if (array && array.length > 0) {
     array = array.map(str => str.toLowerCase());
 
     reduce(array, (result, current) => {
-      result[current] = prestationsById[current];
+      result.push(prestationsById[current]);
       return result;
     }, reducedArray);
   }

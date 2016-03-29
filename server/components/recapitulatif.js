@@ -6,9 +6,9 @@ var moment = require('moment');
 var Handlebars = require('handlebars');
 
 import {recapitulatif} from './templates';
+import { populateAndSortPrestations } from '../api/prestation/prestation.controller';
 
 var sections = require('../api/sections/sections.json');
-var Prestation = require('../api/prestation/prestation.controller');
 
 function rebuildAnswersFromModel(question, questionAnswers) {
   switch (question.type){
@@ -178,7 +178,9 @@ exports.answersToHtml = function({request, host}, next) {
     },
 
     request: function(callback) {
-      callback(null, request);
+      populateAndSortPrestations(request).then(request => {
+        callback(null, request);
+      });
     },
 
     colors: function(callback) {
