@@ -330,7 +330,13 @@ function findActionHistory(req) {
 function populateActionLabels(actions) {
   return new Promise(function(resolve) {
     actions.forEach(function(action) {
-      action.label = actionsById[action.action].label;
+      let fullAction = actionsById[action.action];
+
+      if (fullAction) {
+        action.label = fullAction.label;
+      } else {
+        action.label = action.action;
+      }
     });
 
     return resolve(actions);
