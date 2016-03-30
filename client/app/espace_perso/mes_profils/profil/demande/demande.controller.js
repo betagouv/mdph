@@ -9,9 +9,9 @@ angular.module('impactApp')
       return (request.status === 'en_cours' || request.status === 'en_attente_usager');
     };
 
-    function getSelectedPrestationIdList(choice) {
+    function getSelectedPrestationIdList(filter) {
       return _.chain(prestations)
-       .filter({choice})
+       .filter(filter)
        .pluck('id')
        .value();
     }
@@ -21,8 +21,10 @@ angular.module('impactApp')
         toastr.error('Vous n\'avez pas spécifié de MDPH destinataire de votre demande.', 'Erreur lors de la tentative d\'envoi');
       } else {
         if (request.status === 'en_cours') {
-          request.prestations = getSelectedPrestationIdList('true');
-          request.renouvellements = getSelectedPrestationIdList('renouvellement');
+          request.renouvellements = getSelectedPrestationIdList({choice: true, renouvellement: true});
+          request.prestations = getSelectedPrestationIdList(function(current) {
+            return current.choice && !current.renouvellement;
+          });
         }
 
         if (!RequestService.getCompletion(request)) {

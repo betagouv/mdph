@@ -2,60 +2,31 @@
 
 <div ng-if="request.status === 'en_cours'">
   <div ng-repeat="(type, prestations) in types">
-    <h4>{{type | prestationType}}</h4>
+    <h4 class="weak-h4">{{type | prestationType}}</h4>
 
     <ul class="list-prestations">
       <li ng-repeat="prestation in prestations">
-        <input type="checkbox" name="{{prestation.id}}" id="{{prestation.id}}" />
-        <label for="{{prestation.id}}">{{prestation.title}}</label>
+        <div class="input">
+          <input type="checkbox" ng-model="prestation.choice" name="{{prestation.id}}" id="{{prestation.id}}" />
+        </div>
 
-        <div class="prestation-details">
-
-          <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail" type="button">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
-          <div class="text-justify" ng-if="prestation.showDetail">
+        <div class="detail">
+          <label for="{{prestation.id}}">{{prestation.title}}</label>
+          <div class="text-justify">
             {{prestation.description}}
-            <a href="{{prestation.link}}">{{prestation.link}}</a>
+            <br>
+            <a target="_blank" href="{{prestation.link}}">En savoir plus</a>
+            <br>
+            <div>
+              <input ng-disabled="!prestation.choice" type="checkbox" ng-model="prestation.renouvellement" name="{{prestation.id}}-renouvellement" id="{{prestation.id}}-renouvellement" />
+              <label for="{{prestation.id}}-renouvellement">Je perçois déjà cette prestation</label>
+            </div>
           </div>
         </div>
       </li>
     </ul>
   </div>
 </div>
-
-<table class="table table-prestations" ng-if="request.status === 'en_cours'">
-  <tbody ng-repeat="(key, type) in types">
-    <tr class="table-header">
-      <th>{{key | prestationType}}</th>
-      <td id="yes-{{key}}" class="center-text">Oui</td>
-      <td id="no-{{key}}" class="center-text">Non</td>
-      <td id="renew-{{key}}" class="center-text">Renouvellement</td>
-    </tr>
-    <tr ng-repeat="prestation in type">
-      <td>
-        <div id="{{prestation.id}}">
-          {{prestation.title}}
-        </div>
-        <div>
-          <button class="btn btn-link" ng-click="prestation.showDetail = !prestation.showDetail" type="button">{{prestation.showDetail ? 'Moins' : 'Plus'}} de détails</button>
-        </div>
-        <div class="text-justify" ng-if="prestation.showDetail">
-          {{prestation.description}}
-          <a href="{{prestation.link}}">{{prestation.link}}</a>
-        </div>
-      </td>
-
-      <td class="center-text" ng-click="prestation.choice = 'true'">
-        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="true" aria-labelledby="{{prestation.id}} yes-{{key}}">
-      </td>
-      <td class="center-text" ng-click="prestation.choice = 'false'">
-        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="false" aria-labelledby="{{prestation.id}} no-{{key}}">
-      </td>
-      <td class="center-text" ng-click="prestation.choice = 'renouvellement'">
-        <input type="radio" name="{{prestation.id}}" ng-model="prestation.choice" value="renouvellement" aria-labelledby="{{prestation.id}} renew-{{key}}">
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 <div ng-if="request.status !== 'en_cours'">
   <h4 ng-show="request.detailPrestations">Nouvelles prestations</h4>
