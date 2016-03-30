@@ -19,9 +19,7 @@ angular.module('impactApp').config(function($stateProvider) {
 
       prestations: function($http) {
         return $http.get('api/prestations').then(function(result) {
-          return _.map(result.data, function(element) {
-            return _.extend({}, element, {choice: 'false'});
-          });
+          return result.data;
         });
       },
     },
@@ -39,6 +37,10 @@ angular.module('impactApp').config(function($stateProvider) {
 
           if (!request.mdph) {
             request.mdph = currentMdph.zipcode;
+          }
+
+          if (!request.estRenouvellement) {
+            request.estRenouvellement = false;
           }
 
           $scope.request = request;
