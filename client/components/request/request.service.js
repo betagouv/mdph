@@ -83,10 +83,54 @@ angular.module('impactApp')
       return request.askedDocumentTypes;
     }
 
+    function getMandatoryTypes(documentTypes) {
+      return _.filter(documentTypes, {mandatory: true});
+    }
+
+    function findExistingTypes(request) {
+      return _.pluck(request.documents.complementaires, 'documentType');
+    }
+
+    function findAskedTypes(request, documentTypes) {
+      return _(documentTypes)
+        .filter(function(documentType) {
+          return !documentType.mandatory && request.askedDocumentTypes.indexOf(documentType.id) > -1;
+        })
+        .map(function(documentType) {
+          documentType.asked = true;
+          return documentType;
+        })
+        .value();
+    }
+
+    function concatTypes(accumulator, type) {
+      if (_.find(accumulator, {id: type.id})) {
+        return accumulator;
+      }
+
+      accumulator.push(type);
+      return accumulator;
+    }
+
+    function computeSelectedDocumentTypes(request, documentTypes) {
+      var selectedDocumentTypes = [];
+
+      var mandatoryTypes = getMandatoryTypes(documentTypes);
+      var existingTypes = findExistingTypes(request, documentTypes);
+      var askedTypes = findAskedTypes(request);
+
+      _.reduce(mandatoryTypes, concatTypes, selectedDocumentTypes);
+      _.reduce(existingTypes, concatTypes, selectedDocumentTypes);
+      _.reduce(askedTypes, concatTypes, selectedDocumentTypes);
+
+      return selectedDocumentTypes;
+    }
+
     return {
       findRefusedDocuments,
       getAskedDocumentTypes,
       getCompletion,
+      computeSelectedDocumentTypes,
 
       groupByAge(requests) {
         if (typeof requests === 'undefined' || requests.length === 0) {

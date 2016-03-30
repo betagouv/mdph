@@ -1,35 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, UploadService, request, documentTypes, currentUser) {
+  .controller('DocumentsCtrl', function($scope, $modal, UploadService, RequestService, request, documentTypes, currentUser) {
     $scope.request = request;
-
-    $scope.documentTypes = _.filter(documentTypes, {mandatory: true});
-
-    var complDocTypes = _.filter(documentTypes, function(o) {
-      return !o.mandatory;
-    });
-
-    var askedDocTypes = complDocTypes.filter(function(value) {
-      return request.askedDocumentTypes.indexOf(value.id) > -1;
-    });
-
-    askedDocTypes.forEach(function(o) {
-      o.asked = true;
-    });
-
-    $scope.documentTypes = $scope.documentTypes.concat(askedDocTypes);
-
-    var complFilterTypes = _.map(request.documents.complementaires, function(category) {
-      return category.documentType;
-    });
-
-    complFilterTypes.forEach(function(value) {
-      if (typeof _.find(askedDocTypes, {id: value.id}) === 'undefined') {
-        $scope.documentTypes.push(value);
-      }
-    });
-
+    $scope.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(request, documentTypes);
     $scope.user = currentUser;
 
     $scope.getText = function(documentType) {
@@ -49,10 +23,13 @@ angular.module('impactApp')
     };
 
     $scope.getDocuments = function(currentDoc) {
-      if ($scope.request.documents.obligatoires[currentDoc.id]) {
-        return $scope.request.documents.obligatoires[currentDoc.id].documentList;
-      } else if ($scope.request.documents.complementaires[currentDoc.id]) {
-        return $scope.request.documents.complementaires[currentDoc.id].documentList;
+      var documents = $scope.request.documents;
+      var documentId = currentDoc.id;
+
+      if (documents.obligatoires[documentId]) {
+        return documents.obligatoires[documentId].documentList;
+      } else if (documents.complementaires[documentId]) {
+        return documents.complementaires[documentId].documentList;
       }
     };
 
@@ -67,7 +44,7 @@ angular.module('impactApp')
         resolve: {
           filteredDocumentTypes: function() {
             var filtered = _.filter(documentTypes, function(type) {
-              return typeof _.find($scope.selectedTypes, {id: type.id}) === 'undefined';
+              return typeof _.find($scope.selectedDocumentTypes, {id: type.id}) === 'undefined';
             });
 
             return filtered;
@@ -76,7 +53,7 @@ angular.module('impactApp')
       });
 
       modalInstance.result.then(function(selected) {
-        $scope.documentTypes.push(selected);
+        $scope.selectedDocumentTypes.push(selected);
       });
     };
   })
