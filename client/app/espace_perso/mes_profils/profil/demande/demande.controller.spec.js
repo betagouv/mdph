@@ -70,8 +70,9 @@ describe('Controller: demande', function() {
       });
     });
 
-    prestations[0].choice = 'true';
-    prestations[1].choice = 'renouvellement';
+    prestations[0].choice = true;
+    prestations[1].choice = true;
+    prestations[1].renouvellement = true;
     $scope.submit({$valid: true});
 
     //then
