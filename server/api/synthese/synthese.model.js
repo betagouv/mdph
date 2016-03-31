@@ -1,13 +1,14 @@
 'use strict';
 
-var _ = require('lodash');
-var mongoose = require('mongoose');
+import _ from 'lodash';
+import mongoose from 'mongoose';
+
 var Schema = mongoose.Schema;
 
 var SyntheseSchema = new Schema({
   user:           { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  profile:        { type: Schema.Types.ObjectId, ref: 'Profile', required: true },
-  request:        { type: Schema.Types.ObjectId, ref: 'Request', required: true },
+  profile:        { type: Schema.Types.ObjectId, ref: 'Profile'},
+  request:        { type: Schema.Types.ObjectId, ref: 'Request'},
   createdAt:      Date,
   updatedAt:      Date,
   geva:           Schema.Types.Mixed

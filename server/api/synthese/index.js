@@ -18,12 +18,12 @@ router.param('syntheseId', function(req, res, next, syntheseId) {
     .findById(syntheseId)
     .populate('user')
     .exec(function(err, synthese) {
-    if (err) return next(err);
-    if (!synthese) return res.sendStatus(404);
+      if (err) return next(err);
+      if (!synthese) return res.sendStatus(404);
 
-    req.synthese = synthese;
-    next();
-  });
+      req.synthese = synthese;
+      next();
+    });
 });
 
 function isAuthorized() {

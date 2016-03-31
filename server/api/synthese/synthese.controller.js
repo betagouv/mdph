@@ -45,8 +45,7 @@ export function create(req, res) {
 }
 
 export function show(req, res) {
-  respondWithResult(res)(req.synthese)
-    .catch(handleError(req, res));
+  respondWithResult(res)(req.synthese);
 }
 
 export function update(req, res) {

@@ -29,6 +29,30 @@ describe('Request Integration', function() {
     done();
   });
 
+  describe('Create Request', function() {
+    after(done => {
+      Request.remove().exec(done);
+    });
+
+    it('should respond with the created thing', done => {
+
+      api
+        .post('/api/requests/?access_token=' + token)
+        .send({ shortId: '1234', user: testUser._id, mdph: 'fakeMDPH' })
+        .expect(201)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
+
+          var createdRequest = res.body;
+          createdRequest.mdph.should.equal('fakeMDPH');
+          done();
+        });
+    });
+  });
+
   describe('Get single Request', function() {
     beforeEach(done => {
       var newRequest = new Request({

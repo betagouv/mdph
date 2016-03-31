@@ -106,12 +106,6 @@ function saveActionLog(action, req) {
   return function(request) {
     if (req.query) {
       switch (req.query.id) {
-        case actions.SUCCES_ENREGISTREMENT.id:
-          MailActions.sendMailCompletude(request, req.user); // Agent sends KO to user
-          break;
-        case actions.ERREUR_ENREGISTREMENT.id:
-          MailActions.sendMailDemandeDocuments(request, req.user); // Agent sends OK to user
-          break;
         case actions.SUBMIT.id:
           let options = {
             request: request,
@@ -310,8 +304,8 @@ export function generateReceptionMail(req, res) {
  */
 export function create(req, res) {
   Request.create(req.body)
-    .then(respondWithResult(res, 201))
     .then(saveActionLog(actions.CREATION, req))
+    .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
