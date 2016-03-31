@@ -71,7 +71,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: {}});
       });
 
       it('should be true', function() {
@@ -130,7 +130,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: {}});
       });
 
       it('should be false', function() {
@@ -189,7 +189,7 @@ describe('RequestSectionCtrl', function() {
         }
       };
 
-      var fakeRequest = {
+      var fakeSynthese = {
         synthese: {
           geva: {
             environnement: {}
@@ -200,15 +200,15 @@ describe('RequestSectionCtrl', function() {
       };
 
       beforeEach(function() {
-        spyOn(fakeRequest, '$update');
+        spyOn(fakeSynthese, '$update');
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: fakeRequest, ReadModeService: MockReadModeService});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: fakeSynthese});
       });
 
       it('should save the answer in the request', function() {
         scope.validate();
-        expect(fakeRequest.synthese.geva.environnement).toEqual(['II_1 bis_1', 0]);
-        expect(fakeRequest.$update).toHaveBeenCalled();
+        expect(fakeSynthese.geva.environnement).toEqual(['II_1 bis_1', 0]);
+        expect(fakeSynthese.$update).toHaveBeenCalled();
       });
     });
   });

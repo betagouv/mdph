@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.workflow.detail.evaluation', {
         url: '/evaluation',
-        templateUrl: 'app/dashboard/workflow/detail/evaluation/evaluation.html',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/list/list.html',
         controller: 'RequestEvaluationCtrl',
         resolve: {
           sections: function(GevaService) {
@@ -26,15 +26,26 @@ angular.module('impactApp')
             return request;
           },
 
-          synthese: function(SyntheseResource, request) {
-            return SyntheseResource.get({userId: request.user._id, profileId: request.profile}).$promise;
+          profileSyntheses: function(SyntheseResource, request) {
+            return SyntheseResource.query({userId: request.user._id, profileId: request.profile}).$promise;
           }
         },
         authenticate: true
       })
-      .state('dashboard.workflow.detail.evaluation.section', {
+      .state('detailEvaluation', {
+        url: '/:syntheseId',
+        parent: 'dashboard.workflow.detail.evaluation',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/detail/detail.html',
+        resolve: {
+          profileSynthese: function(SyntheseResource, $stateParams, request) {
+            return SyntheseResource.get({userId: request.user._id, profileId: request.profile, syntheseId: $stateParams.syntheseId}).$promise;
+          }
+        }
+      })
+      .state('sectionEvaluation', {
         url: '/:sectionId',
-        templateUrl: 'app/dashboard/workflow/detail/evaluation/section/section.html',
+        parent: 'detailEvaluation',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/detail/section/section.html',
         controller: 'RequestSectionCtrl',
         resolve: {
           section: function($stateParams, sections, model) {

@@ -1,0 +1,7 @@
+<ul>
+  <li ng-repeat="synthese in profileSyntheses">
+    <a ui-sref="detailEvaluation({syntheseId: synthese._id})">{{synthese._id}}</a>
+  </li>
+</ul>
+
+<ui-view></ui-view>

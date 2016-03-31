@@ -1,0 +1,32 @@
+<ui-view>
+  <div class="geva">
+    <div class="geva-section" ng-repeat="section in sections">
+      <div class="geva-section-content">
+        <div class="head">
+          <a ui-sref="sectionEvaluation({sectionId: section.id})">
+            <span>{{$index + 1}}</span>
+            <h1>{{section.label}}</h1>
+          </a>
+        </div>
+        <div class="body">
+          <div ng-repeat="(trajectoire, questions) in model[section.libelle]" ng-class="{optionnal: trajectoire !== 'Toutes'}">
+            <h2 ng-if="trajectoire !== 'Toutes'">{{trajectoire}}</h2>
+
+            <ul>
+              <li ng-repeat="question in questions">{{question.Libelle | capitalizeString}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-right">
+    <a target="_blank" ng-disabled="!request.synthese.proposition" class="btn btn-primary" href="api/requests/{{request.shortId}}/synthese.pdf?access_token={{token}}" download>
+      <i class="fa fa-download"></i>
+      Télécharger la synthèse
+    </a>
+    <!-- <button class="btn btn-primary" ng-click="afficherSynthese()">Proposition de l'équipe</button> -->
+  </div>
+  <div class="clearfix"></div>
+</ui-view>
