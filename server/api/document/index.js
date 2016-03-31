@@ -2,7 +2,7 @@
 
 import {Router} from 'express';
 import multer from 'multer';
-import controller from './document.controller';
+import * as controller from './document.controller';
 import * as Auth from '../../auth/auth.service';
 import config from '../../config/environment';
 

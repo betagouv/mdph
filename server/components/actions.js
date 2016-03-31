@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+import _ from 'lodash';
 
 var actions = {
   CREATION: {

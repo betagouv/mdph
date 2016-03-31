@@ -1,9 +1,9 @@
 'use strict';
 
-var should = require('should');
-var Mdph = require('./mdph.model');
+import should from 'should';
+import Mdph from './mdph.model';
 
-var startServer = require('../../test/utils/server');
+import {startServer} from '../../test/utils/server';
 
 var mdph = new Mdph({
   name: 'FakeMDPH',

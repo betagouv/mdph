@@ -37,6 +37,7 @@ module.exports = function(config) {
       'client/bower_components/angular-scenario/angular-scenario.js',
       // endbower
       'client/app/app.js',
+      'client/{app,components}/**/*.module.js',
       'client/{app,components}/**/*.js',
       'client/{app,components}/**/*.html'
     ],
@@ -52,10 +53,7 @@ module.exports = function(config) {
 
     babelPreprocessor: {
       options: {
-        sourceMap: 'inline',
-        optional: [
-          'es7.classProperties'
-        ]
+        sourceMap: 'inline'
       },
       filename: function(file) {
         return file.originalPath.replace(/\.js$/, '.es5.js');

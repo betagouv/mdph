@@ -1,5 +1,5 @@
-var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
+import nodemailer from 'nodemailer';
+import smtpTransport from 'nodemailer-smtp-transport';
 
 // Initialization class
 var Mailjet = function(apiKey, secretKey) {

@@ -1,13 +1,13 @@
 'use strict';
 
-var _ = require('lodash');
-var User = require('./user.model');
-var passport = require('passport');
-var config = require('../../config/environment');
-var jwt = require('jsonwebtoken');
-var shortid = require('shortid');
-var Mailer = require('../send-mail/send-mail.controller');
-var MailActions = require('../send-mail/send-mail-actions');
+import _ from 'lodash';
+import User from './user.model';
+import passport from 'passport';
+import config from '../../config/environment';
+import jwt from 'jsonwebtoken';
+import shortid from 'shortid';
+import * as Mailer from '../send-mail/send-mail.controller';
+import * as MailActions from '../send-mail/send-mail-actions';
 
 var validationError = function(res, err) {
   return res.status(422).json(err);

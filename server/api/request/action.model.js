@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
 
 var ActionSchema = new Schema({
   mdph:           { type: String },

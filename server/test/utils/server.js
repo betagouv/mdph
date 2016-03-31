@@ -1,11 +1,11 @@
-var supertest = require('supertest');
-var jwt = require('jsonwebtoken');
+import supertest from 'supertest';
+import jwt from 'jsonwebtoken';
 
-var User = require('../../api/user/user.model');
-var Mdph = require('../../api/mdph/mdph.model');
+import User from '../../api/user/user.model';
+import Mdph from '../../api/mdph/mdph.model';
 
-var signToken = require('../../auth/auth.service').signToken;
-var config = require('../../config/environment');
+import {signToken} from '../../auth/auth.service';
+import config from '../../config/environment';
 
 import {app, server} from '../../app';
 
@@ -69,7 +69,7 @@ function removeUsers() {
   };
 }
 
-function startServer(done) {
+export function startServer(done) {
 
   var testMdph;
   var fakeUser;
@@ -122,5 +122,3 @@ function startServer(done) {
       });
     });
 }
-
-export default startServer;

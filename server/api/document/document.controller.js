@@ -7,14 +7,14 @@ import path from 'path';
 import fs from 'fs';
 
 import config from '../../config/environment';
+import Request from '../request/request.model';
 
-const Request = require('../request/request.model');
-const User = require('../user/user.model');
-const Partenaire = require('../partenaire/partenaire.model');
-const Auth = require('../../auth/auth.service');
-const resizeAndMove = require('../../components/resize-image');
-const Actions = require('../../components/actions').actions;
-const MailActions = require('../send-mail/send-mail-actions');
+import User from '../user/user.model';
+import Partenaire from '../partenaire/partenaire.model';
+import Auth from '../../auth/auth.service';
+import resizeAndMove from '../../components/resize-image';
+import {actions as Actions} from '../../components/actions';
+import * as MailActions from '../send-mail/send-mail-actions';
 
 function handleError(req, res) {
   return function(statusCode, err) {
@@ -123,7 +123,7 @@ function processDocument(file, fileData, done) {
   });
 }
 
-exports.saveFile = function(req, res, next) {
+export function saveFile(req, res, next) {
   processDocument(req.file, req.body, function(err, document) {
     if (err) {
       return res.sendStatus(err.status);
@@ -141,9 +141,9 @@ exports.saveFile = function(req, res, next) {
       return res.json(savedDocument);
     });
   });
-};
+}
 
-exports.downloadFile = function(req, res) {
+export function downloadFile(req, res) {
   var filePath = path.join(config.root + '/server/uploads/', req.params.fileName);
   var stat = fs.statSync(filePath);
 
@@ -153,16 +153,16 @@ exports.downloadFile = function(req, res) {
 
   var readStream = fs.createReadStream(filePath);
   readStream.pipe(res);
-};
+}
 
-exports.deleteFile = function(req, res) {
+export function deleteFile(req, res) {
   handleStatusError(req, res)
     .then(handleDeleteFile(req))
     .then(respondWithResult(res, 204))
     .catch(handleError(req, res));
-};
+}
 
-exports.updateFile = function(req, res) {
+export function updateFile(req, res) {
   var request = req.request;
   var file = request.documents.id(req.params.fileId);
   var isInvalid = req.body.isInvalid;
@@ -185,4 +185,4 @@ exports.updateFile = function(req, res) {
     request.saveActionLog(action, req.user, req.log, {document: file});
     return res.json(file);
   });
-};
+}

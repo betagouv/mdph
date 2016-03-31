@@ -1,6 +1,6 @@
 'use strict';
 
-var moment = require('moment');
+import moment from 'moment';
 
 function isMoreThan(dateNaissance, age) {
   if (!dateNaissance) {

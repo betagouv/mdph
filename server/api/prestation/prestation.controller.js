@@ -2,8 +2,8 @@
 
 import Promise from 'bluebird';
 import {indexBy, reduce} from 'lodash';
+import prestations from './prestations.json';
 
-var prestations = require('./prestations.json');
 var prestationsById = indexBy(prestations, 'id');
 
 let reducer = function(array) {
@@ -21,23 +21,21 @@ let reducer = function(array) {
   return reducedArray;
 };
 
-export default {
-  index: function(req, res) {
-    return res.json(prestations);
-  },
+export function index(req, res) {
+  return res.json(prestations);
+}
 
-  populateAndSortPrestations: function(request) {
-    return new Promise(resolve => {
-      if (!request) {
-        return resolve(null);
-      }
+export function populateAndSortPrestations(request) {
+  return new Promise(resolve => {
+    if (!request) {
+      return resolve(null);
+    }
 
-      let requestObj = request.toObject();
+    let requestObj = request.toObject();
 
-      requestObj.detailPrestations = reducer(request.prestations);
-      requestObj.detailRenouvellements = reducer(request.renouvellements);
+    requestObj.detailPrestations = reducer(request.prestations);
+    requestObj.detailRenouvellements = reducer(request.renouvellements);
 
-      resolve(requestObj);
-    });
-  }
-};
+    resolve(requestObj);
+  });
+}
