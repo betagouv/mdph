@@ -34,7 +34,8 @@ function isAuthorized() {
         return next();
       }
 
-      if (Auth.meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph.zipcode === req.request.mdph) {
+      if (Auth.meetsRequirements(req.user.role, 'adminMdph')) {
+        //TODO rajouter une liste de MDPHS pour verifier les droits
         return next();
       }
 

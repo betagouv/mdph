@@ -92,12 +92,12 @@ describe('Synthese Integration', function() {
       });
     });
 
-    describe('Get a single Synthese with an admin', function() {
+    describe('Get a single Synthese with an admin MDPH', function() {
       it('should return the specified synthese', done => {
         var gettedSynthese;
 
         api
-          .get(`/api/users/${testUser._id}/profiles/${profileId}/syntheses/${syntheseId}?access_token=${tokenAdmin}`)
+          .get(`/api/users/${testUser._id}/profiles/${profileId}/syntheses/${syntheseId}?access_token=${tokenAdminMdph}`)
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function(err, res) {
