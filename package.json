@@ -113,7 +113,7 @@
     "postinstall": "bower install",
     "prestart": "npm install && grunt build",
     "start": "node server/app.js",
-    "test": "npm run test-server",
+    "test": "grunt test",
     "test-server": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js",
     "test-watch": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js -w",
     "test-watch-swag": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js -w --reporter nyan --growl",
