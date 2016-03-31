@@ -2,8 +2,8 @@
 
 angular.module('impactApp')
   .factory('SyntheseResource', function($resource) {
-    return $resource('/api/syntheses/:shortId', {
-      shortId: '@shortId'
+    return $resource('/api/users/:userId/profiles/:profileId/syntheses/:syntheseId', {
+      syntheseId: '@syntheseId'
     },
     {
       update: {

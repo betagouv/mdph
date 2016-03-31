@@ -26,8 +26,8 @@ angular.module('impactApp')
             return request;
           },
 
-          synthese: function($http, $stateParams, SyntheseResource) {
-            return SyntheseResource.get({shortId: $stateParams.shortId}).$promise;
+          synthese: function(SyntheseResource, request) {
+            return SyntheseResource.get({userId: request.user._id, profileId: request.profile}).$promise;
           }
         },
         authenticate: true

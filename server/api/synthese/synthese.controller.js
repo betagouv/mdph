@@ -48,6 +48,12 @@ export function show(req, res) {
   respondWithResult(res)(req.synthese);
 }
 
+export function showAllByProfile(req, res) {
+  Synthese.find({profile: req.profile._id})
+    .then(respondWithResult(res, 200))
+    .catch(handleError(res));
+}
+
 export function update(req, res) {
   saveUpdates(req)
     .then(respondWithResult(res))

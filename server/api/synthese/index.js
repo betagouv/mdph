@@ -9,7 +9,7 @@ import compose from 'composable-middleware';
 var router = new Router();
 
 router.post('/', isAuthorized(), controller.create);
-
+router.get('/', isAuthorized(), controller.showAllByProfile);
 router.get('/:syntheseId', isAuthorized(), controller.show);
 router.put('/:syntheseId', isAuthorized(), controller.update);
 
