@@ -1,11 +1,11 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./document-type.controller');
+import {Router} from 'express';
+import {index, show} from './document-type.controller';
 
-var router = express.Router();
+var router = new Router();
 
-router.get('/', controller.index);
-router.get('/:id', controller.show);
+router.get('/', index);
+router.get('/:id', show);
 
-export default router;
+module.exports = router;

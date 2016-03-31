@@ -1,9 +1,9 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./geva.controller');
+import {Router} from 'express';
+import * as controller from './geva.controller';
 
-var router = express.Router();
+var router = new Router();
 
 router.get('/', controller.index);
 

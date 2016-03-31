@@ -1,8 +1,8 @@
 'use strict';
 
-var should = require('should');
-var Request = require('./request.model');
-var User = require('../user/user.model');
+import should from 'should';
+import Request from './request.model';
+import User from '../user/user.model';
 
 describe('Request Model', function() {
   before(function(done) {

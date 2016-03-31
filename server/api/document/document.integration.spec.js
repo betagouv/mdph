@@ -1,10 +1,11 @@
 'use strict';
 
-var should = require('should');
-var Request = require('../request/request.model');
-var controller = require('../request/request.controller');
-var startServer = require('../../test/utils/server');
-var User = require('../user/user.model');
+import should from 'should';
+import Request from '../request/request.model';
+import * as controller from '../request/request.controller';
+import User from '../user/user.model';
+
+import {startServer} from '../../test/utils/server';
 
 describe('Document Integration', function() {
   var api;

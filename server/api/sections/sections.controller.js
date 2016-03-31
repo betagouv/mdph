@@ -1,7 +1,7 @@
 'use strict';
 
-var sections = require('./sections.json');
+import sections from './sections.json';
 
-exports.index = function(req, res) {
+export function index(req, res) {
   return res.json(sections);
-};
+}

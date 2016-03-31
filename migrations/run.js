@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-require('babel-core/register');
+require('babel-register');
 
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Connect to database
 var options = {

@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
 
 var ProfileSchema = new Schema({
   user:                     { type: Schema.Types.ObjectId, ref: 'User' },
@@ -28,10 +27,4 @@ ProfileSchema.pre('save', function(next) {
   next();
 });
 
-try {
-  mongoose.model('Profile', ProfileSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Profile');
+export default mongoose.model('Profile', ProfileSchema);

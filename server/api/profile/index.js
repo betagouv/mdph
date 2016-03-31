@@ -1,18 +1,18 @@
 'use strict';
 
-var auth = require('../../auth/auth.service');
-var express = require('express');
-var controller = require('./profile.controller');
+import {canAccessProfile, isAuthorized} from '../../auth/auth.service';
+import {Router} from 'express';
+import * as controller from './profile.controller';
 
-var router = express.Router({mergeParams: true});
+var router = new Router({mergeParams: true});
 
-router.get('/', auth.canAccessProfile(), controller.index);
-router.post('/', auth.canAccessProfile(), controller.create);
-router.get('/me', auth.canAccessProfile(), controller.showMe);
-router.get('/:profileId', auth.isAuthorized(), controller.show);
-router.post('/:profileId', auth.isAuthorized(), controller.update);
-router.delete('/:profileId', auth.isAuthorized(), controller.destroy);
+router.get('/', canAccessProfile(), controller.index);
+router.post('/', canAccessProfile(), controller.create);
+router.get('/me', canAccessProfile(), controller.showMe);
+router.get('/:profileId', isAuthorized(), controller.show);
+router.post('/:profileId', isAuthorized(), controller.update);
+router.delete('/:profileId', isAuthorized(), controller.destroy);
 
-router.get('/:profileId/requests', auth.isAuthorized(), controller.indexRequests);
+router.get('/:profileId/requests', isAuthorized(), controller.indexRequests);
 
 module.exports = router;

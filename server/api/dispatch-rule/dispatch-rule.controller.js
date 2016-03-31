@@ -1,11 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
-var DispatchRule = require('./dispatch-rule.model');
-var path = require('path');
+import _ from 'lodash';
+import DispatchRule from './dispatch-rule.model';
+import path from 'path';
 
 // Get list of DispatchRule
-exports.index = function(req, res) {
+export function index(req, res) {
   let mdph;
 
   if (req.query.mdph) {
@@ -23,9 +23,9 @@ exports.index = function(req, res) {
 
       return res.json(rules);
     });
-};
+}
 
-exports.show = function(req, res) {
+export function show(req, res) {
   DispatchRule
     .findById(req.params.id)
     .populate('secteur.enfant secteur.adulte')
@@ -36,9 +36,9 @@ exports.show = function(req, res) {
 
     return res.json(rule);
   });
-};
+}
 
-var update = function(req, res) {
+export function update(req, res) {
   DispatchRule.findById(req.params.id, function(err, rule) {
     if (err) { return handleError(req, res, err); }
 
@@ -54,12 +54,10 @@ var update = function(req, res) {
         return res.status(200).json(rule);
       });
   });
-};
-
-exports.update = update;
+}
 
 // Creates a new partenaire in the DB.
-exports.create = function(req, res) {
+export function create(req, res) {
   if (req.body._id) {
     return update(req, res);
   } else {
@@ -69,16 +67,16 @@ exports.create = function(req, res) {
       return res.status(201).json(rule);
     });
   }
-};
+}
 
 // Deletes a partenaire from the DB.
-exports.destroy = function(req, res) {
+export function destroy(req, res) {
   DispatchRule.findById(req.params.id).remove().exec(function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(204);
   });
-};
+}
 
 function handleError(req, res, err) {
   req.log.error(err);

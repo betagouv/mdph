@@ -1,8 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
-var User = require('../api/user/user.model');
-var Profile = require('../api/profile/profile.model');
+import _ from 'lodash';
+import User from '../server/api/user/user.model';
+import Profile from '../server/api/profile/profile.model';
 
 (function() {
   User

@@ -1,9 +1,9 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./stats.controller');
+import {Router} from 'express';
+import * as controller from './stats.controller';
 
-var router = express.Router();
+var router = new Router();
 
 router.get('/mdph', controller.mdph);
 router.get('/site', controller.site);
