@@ -3,8 +3,11 @@
 var auth = require('../../auth/auth.service');
 var express = require('express');
 var controller = require('./profile.controller');
+var synthesesRouter = require('../synthese');
 
 var router = express.Router({mergeParams: true});
+
+router.use('/:profileId/syntheses', synthesesRouter);
 
 router.get('/', auth.canAccessProfile(), controller.index);
 router.post('/', auth.canAccessProfile(), controller.create);

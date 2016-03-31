@@ -10,18 +10,18 @@ var router = new Router();
 
 router.post('/', isAuthorized(), controller.create);
 
-router.get('/:shortId', isAuthorized(), controller.show);
-router.put('/:shortId', isAuthorized(), controller.update);
+router.get('/:syntheseId', isAuthorized(), controller.show);
+router.put('/:syntheseId', isAuthorized(), controller.update);
 
-router.param('shortId', function(req, res, next, shortId) {
+router.param('syntheseId', function(req, res, next, syntheseId) {
   Synthese
-    .findOne({shortId: shortId})
+    .findById(syntheseId)
     .populate('user')
-    .exec(function(err, request) {
+    .exec(function(err, synthese) {
     if (err) return next(err);
-    if (!request) return res.sendStatus(404);
+    if (!synthese) return res.sendStatus(404);
 
-    req.request = request;
+    req.synthese = synthese;
     next();
   });
 });

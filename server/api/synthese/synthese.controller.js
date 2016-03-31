@@ -1,17 +1,11 @@
 import Synthese from './synthese.model';
+import _ from 'lodash';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(synthese) {
     res.status(statusCode).json(synthese);
     return null;
-  };
-}
-
-function populateAndRespond(res) {
-  return function(synthese) {
-    // return populateAndSortPrestations(synthese)
-    //   .then(respondWithResult(res));
   };
 }
 
@@ -32,7 +26,9 @@ function handleError(req, res) {
 
 function saveUpdates(req) {
   return new Promise(function(resolve, reject) {
-    req.synthese.set(req.body).save(function(err, updated) {
+    let filteredUpdates = _.pick(req.body, 'geva');
+
+    req.synthese.set(filteredUpdates).save(function(err, updated) {
       if (err) {
         return reject(err);
       }
@@ -49,12 +45,12 @@ export function create(req, res) {
 }
 
 export function show(req, res) {
-  populateAndRespond(res)(req.synthese)
+  respondWithResult(res)(req.synthese)
     .catch(handleError(req, res));
 }
 
 export function update(req, res) {
   saveUpdates(req)
-    .then(populateAndRespond(res))
+    .then(respondWithResult(res))
     .catch(handleError(req, res));
 }
