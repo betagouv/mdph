@@ -27,10 +27,4 @@ ProfileSchema.pre('save', function(next) {
   next();
 });
 
-try {
-  mongoose.model('Profile', ProfileSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Profile');
+export default mongoose.model('Profile', ProfileSchema);

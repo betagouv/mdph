@@ -140,10 +140,4 @@ RequestSchema.methods = {
   }
 };
 
-try {
-  mongoose.model('Request', RequestSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Request');
+export default mongoose.model('Request', RequestSchema);

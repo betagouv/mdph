@@ -168,10 +168,4 @@ UserSchema.methods = {
   }
 };
 
-try {
-  mongoose.model('User', UserSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('User');
+export default mongoose.model('User', UserSchema);

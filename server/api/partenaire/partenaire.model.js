@@ -10,10 +10,4 @@ var PartenaireSchema = new Schema({
   mdph:       { type: Schema.Types.ObjectId, ref: 'Mdph' }
 });
 
-try {
-  mongoose.model('Partenaire', PartenaireSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Partenaire');
+export default mongoose.model('Partenaire', PartenaireSchema);
