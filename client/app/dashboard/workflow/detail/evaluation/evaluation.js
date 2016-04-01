@@ -4,8 +4,8 @@ angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('dashboard.workflow.detail.evaluation', {
-        url: '/evaluation',
-        templateUrl: 'app/dashboard/workflow/detail/evaluation/list/list.html',
+        url: '/evaluation/:syntheseId',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/evaluation.html',
         controller: 'RequestEvaluationCtrl',
         resolve: {
           sections: function(GevaService) {
@@ -16,41 +16,31 @@ angular.module('impactApp')
             return GevaService.getModel();
           },
 
-          allPrestations: function($http) {
-            return $http.get('api/prestations').then(function(result) {
-              return result.data;
-            });
-          },
-
           currentRequest: function(request) {
             return request;
           },
 
-          profileSyntheses: function(SyntheseResource, request) {
-            return SyntheseResource.query({userId: request.user._id, profileId: request.profile}).$promise;
-          }
-        },
-        authenticate: true
-      })
-      .state('detailEvaluation', {
-        url: '/:syntheseId',
-        parent: 'dashboard.workflow.detail.evaluation',
-        templateUrl: 'app/dashboard/workflow/detail/evaluation/detail/detail.html',
-        resolve: {
-          profileSynthese: function(SyntheseResource, $stateParams, request) {
-            return SyntheseResource.get({userId: request.user._id, profileId: request.profile, syntheseId: $stateParams.syntheseId}).$promise;
+          listProfileSyntheses: function(SyntheseResource, request) {
+            return SyntheseResource.query({shortId: request.shortId}).$promise;
           }
         }
       })
       .state('sectionEvaluation', {
         url: '/:sectionId',
-        parent: 'detailEvaluation',
-        templateUrl: 'app/dashboard/workflow/detail/evaluation/detail/section/section.html',
+        parent: 'dashboard.workflow.detail.evaluation',
+        templateUrl: 'app/dashboard/workflow/detail/evaluation/section/section.html',
         controller: 'RequestSectionCtrl',
         resolve: {
-          section: function($stateParams, sections, model) {
-            var id = $stateParams.sectionId;
-            var section = _.find(sections, {id: id});
+          sectionId: function($stateParams) {
+            return $stateParams.sectionId;
+          },
+
+          profileSynthese: function(SyntheseResource, $stateParams, request) {
+            return SyntheseResource.get({shortId: request.shortId, syntheseId: $stateParams.syntheseId}).$promise;
+          },
+
+          section: function($stateParams, sections, model, sectionId) {
+            var section = _.find(sections, {id: sectionId});
 
             return {
               id: section.id,

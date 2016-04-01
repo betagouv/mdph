@@ -1,10 +1,11 @@
 'use strict';
 
-var should = require('should');
-var Synthese = require('./synthese.model');
-var controller = require('./synthese.controller');
-var User = require('../user/user.model');
-var Profile = require('../profile/profile.model');
+import should from 'should';
+import Synthese from './synthese.model';
+import * as controller from './synthese.controller';
+import User from '../user/user.model';
+import Profile from '../profile/profile.model';
+import Request from '../request/request.model';
 
 import startServer from '../../test/utils/server';
 
@@ -15,8 +16,7 @@ describe('Synthese Integration', function() {
   let tokenAdminMdph;
   let testUser;
   let server;
-  let syntheseId;
-  let profileId;
+  let newRequest;
   let newSynthese;
   let newProfile;
 
@@ -28,30 +28,45 @@ describe('Synthese Integration', function() {
       tokenAdmin = result.tokenAdmin;
       tokenAdminMdph = result.tokenAdminMdph;
       testUser = result.fakeUser;
-      newProfile = new Profile({
-        user: testUser._id
-      });
 
-      newProfile.save(function(err, res) {
-        profileId = res._id;
-
-        newSynthese = new Synthese({
-          user: testUser._id,
-          profile: profileId,
-          geva: 'fakeGeva'
-        });
-
-        newSynthese.save(function(err, res) {
-          syntheseId = res._id;
+      Profile
+        .create({
+          user: testUser._id
+        })
+        .then(created => {
+          newProfile = created;
+          return newProfile;
+        })
+        .then(profile => {
+          return Request.create({
+            user: profile.user,
+            profile: profile._id,
+            shortId: '1234'
+          });
+        })
+        .then(created => {
+          newRequest = created;
+          return newRequest;
+        })
+        .then(request => {
+          return Synthese.create({
+            user: request.user,
+            profile: request.profile,
+            request: request._id,
+            geva: 'fakeGeva'
+          });
+        })
+        .then(created => {
+          newSynthese = created;
           done();
         });
-      });
     });
   });
 
   after(done => {
     Synthese.remove().exec();
     Profile.remove().exec();
+    Request.remove().exec();
     server.close();
     done();
   });
@@ -61,10 +76,10 @@ describe('Synthese Integration', function() {
       var updatedSynthese;
 
       api
-        .post(`/api/users/${testUser._id}/profiles/${profileId}/syntheses/?access_token=${tokenAdmin}`)
+        .post(`/api/requests/${newRequest.shortId}/syntheses/?access_token=${tokenAdmin}`)
         .send({
           user: testUser._id,
-          profile: profileId,
+          profile: newProfile._id,
           geva: 'fakeGeva'
         })
         .expect(201)
@@ -87,7 +102,7 @@ describe('Synthese Integration', function() {
         var gettedSynthese;
 
         api
-          .get(`/api/users/${testUser._id}/profiles/${profileId}/syntheses/${syntheseId}?access_token=${token}`)
+          .get(`/api/requests/${newRequest.shortId}/syntheses/${newSynthese._id}?access_token=${token}`)
           .expect(401, done);
       });
     });
@@ -97,7 +112,7 @@ describe('Synthese Integration', function() {
         var gettedSynthese;
 
         api
-          .get(`/api/users/${testUser._id}/profiles/${profileId}/syntheses/${syntheseId}?access_token=${tokenAdminMdph}`)
+          .get(`/api/requests/${newRequest.shortId}/syntheses/${newSynthese._id}?access_token=${tokenAdminMdph}`)
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function(err, res) {
@@ -119,7 +134,7 @@ describe('Synthese Integration', function() {
       var updatedSynthese;
 
       api
-        .put(`/api/users/${testUser._id}/profiles/${profileId}/syntheses/${syntheseId}?access_token=${tokenAdmin}`)
+        .put(`/api/requests/${newRequest.shortId}/syntheses/${newSynthese._id}?access_token=${tokenAdmin}`)
         .send({
           geva: 'updatedGeva'
         })

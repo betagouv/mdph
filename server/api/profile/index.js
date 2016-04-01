@@ -3,12 +3,9 @@
 import auth from '../../auth/auth.service';
 import {Router} from 'express';
 import controller from './profile.controller';
-import synthesesRouter from '../synthese';
 import Profile from './profile.model';
 
 var router = new Router({mergeParams: true});
-
-router.use('/:profileId/syntheses', synthesesRouter);
 
 router.get('/', auth.canAccessProfile(), controller.index);
 router.post('/', auth.canAccessProfile(), controller.create);

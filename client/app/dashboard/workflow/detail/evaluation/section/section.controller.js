@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, GevaService, request, ReadModeService, profileSynthese) {
+  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, sectionId, GevaService, request, ReadModeService, profileSynthese) {
+    $scope.sectionId = sectionId;
+
     if (!profileSynthese.geva) {
       profileSynthese.geva = {};
     }

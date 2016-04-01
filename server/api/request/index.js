@@ -8,6 +8,7 @@ import * as Auth from '../../auth/auth.service';
 import Request from './request.model';
 import compose from 'composable-middleware';
 import config from '../../config/environment';
+import synthesesRouter from '../synthese';
 
 var router = new Router();
 const upload = multer({ dest: config.uploadDir });
@@ -28,6 +29,8 @@ router.get('/:shortId/history', isAuthorized(), controller.getHistory);
 router.get('/:shortId/recapitulatif', isAuthorized(), controller.getRecapitulatif);
 
 router.get('/:shortId/pdf/:fileName', isAuthorized(), controller.getPdf);
+
+router.use('/:shortId/syntheses', synthesesRouter);
 router.get('/:shortId/synthese.pdf', isAuthorized(), controller.getSynthesePdf);
 
 router.use('/:shortId/document', isAuthorized(), documentsRouter);

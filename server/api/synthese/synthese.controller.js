@@ -38,6 +38,29 @@ function saveUpdates(req) {
   });
 }
 
+export function findOrCreateRequestSynthese(options) {
+  let {syntheses, req} = options;
+
+  let found = _.find(syntheses, {request: req.request._id});
+
+  if (!found) {
+    return Synthese
+      .create({
+        user:           req.request.user,
+        profile:        req.request.profile,
+        request:        req.request._id
+      })
+      .then(created => {
+        created.selected = true;
+        syntheses.push(created);
+        return options;
+      });
+  } else {
+    found.selected = true;
+    return options;
+  }
+}
+
 export function create(req, res) {
   Synthese.create(req.body)
     .then(respondWithResult(res, 201))
@@ -49,7 +72,13 @@ export function show(req, res) {
 }
 
 export function showAllByProfile(req, res) {
-  Synthese.find({profile: req.profile._id})
+  let options = {req, res};
+  Synthese.find({profile: req.request.profile})
+    .exec(syntheses => {
+      options.syntheses = syntheses;
+      return options;
+    })
+    .then(findOrCreateRequestSynthese)
     .then(respondWithResult(res, 200))
     .catch(handleError(res));
 }

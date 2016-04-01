@@ -1,3 +1,9 @@
+<ul>
+  <li ng-repeat="synthese in profileSyntheses">
+    <a ui-sref="{syntheseId: synthese._id, sectionId: sectionId}">{{synthese._id}}</a>
+  </li>
+</ul>
+
 <h2>{{section.label}}</h2>
 <div class="container-btn">
   <button type="button" class="btn-section btn btn-md btn-primary" ng-click="toggleMode()" ng-if="getReadMode()">
