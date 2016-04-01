@@ -130,7 +130,11 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
+<<<<<<< HEAD
         controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: {}});
+=======
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService});
+>>>>>>> master
       });
 
       it('should be false', function() {
