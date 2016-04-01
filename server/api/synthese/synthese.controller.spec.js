@@ -36,7 +36,7 @@ describe('Synthese controller', function() {
       it('should select the synthese', function(done) {
         result = SyntheseController.findOrCreateRequestSynthese(fakeOptions);
         should.exist(result);
-        result.syntheses[0].selected.should.be.exactly(true);
+        result[0].selected.should.be.exactly(true);
         done();
       });
     });
@@ -57,11 +57,10 @@ describe('Synthese controller', function() {
       let result;
 
       it('should create the synthese and select it', function(done) {
-        console.log(SyntheseController.Synthese);
         result = SyntheseController.findOrCreateRequestSynthese(fakeOptions);
         should.exist(result);
-        result.syntheses[1].selected.should.be.exactly(true);
-        result.syntheses[1].request.should.be.exactly('5678');
+        result[1].selected.should.be.exactly(true);
+        result[1].request.should.be.exactly('5678');
         done();
       });
     });

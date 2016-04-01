@@ -53,18 +53,18 @@ export function findOrCreateRequestSynthese(options) {
       .then(created => {
         created.selected = true;
         syntheses.push(created);
-        return options;
+        return syntheses;
       });
   } else {
     found.selected = true;
-    return options;
+    return syntheses;
   }
 }
 
 export function create(req, res) {
   Synthese.create(req.body)
     .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+    .catch(handleError(req, res));
 }
 
 export function show(req, res) {
@@ -73,14 +73,17 @@ export function show(req, res) {
 
 export function showAllByProfile(req, res) {
   let options = {req, res};
-  Synthese.find({profile: req.request.profile})
-    .exec(syntheses => {
+  Synthese
+    .find({profile: req.request.profile})
+    .lean()
+    .exec()
+    .then(syntheses => {
       options.syntheses = syntheses;
       return options;
     })
     .then(findOrCreateRequestSynthese)
     .then(respondWithResult(res, 200))
-    .catch(handleError(res));
+    .catch(handleError(req, res));
 }
 
 export function update(req, res) {

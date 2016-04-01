@@ -1,5 +1,33 @@
-<ul>
-  <li ng-repeat="synthese in profileSyntheses">
-    <a ui-sref="{syntheseId: synthese._id, sectionId: sectionId}">{{synthese._id}}</a>
-  </li>
-</ul>
+<div class="list-group">
+  <a class="list-group-item" ng-class="{'active': synthese.selected}" ng-repeat="synthese in profileSyntheses" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}">
+    Demande {{synthese.request}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}
+  </a>
+</div>
+
+<h2>{{section.label}}</h2>
+<div class="container-btn">
+  <button type="button" class="btn-section btn btn-md btn-primary" ng-click="toggleMode()" ng-if="getReadMode()">
+    Editer
+  </button>
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode()">
+    Annuler
+  </button>
+  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
+    Sauvegarder
+  </button>
+</div>
+
+<div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
+  <h3 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h3>
+
+  <trajectoire questions="questions"></trajectoire>
+</div>
+
+<div class="container-btn">
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode()">
+    Annuler
+  </button>
+  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
+    Sauvegarder
+  </button>
+</div>

@@ -306,7 +306,7 @@ export function create(req, res) {
   Request.create(req.body)
     .then(saveActionLog(actions.CREATION, req))
     .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+    .catch(handleError(req, res));
 }
 
 function findActionHistory(req) {
