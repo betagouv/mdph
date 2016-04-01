@@ -8,7 +8,7 @@ angular.module('impactApp')
     $scope.token = $cookies.get('token');
     $scope.profileSyntheses = listProfileSyntheses;
 
-    // let currentRequestSynthese = 
+    // let currentRequestSynthese
 
     $scope.select = function(synthese) {
       $scope.selected = synthese;

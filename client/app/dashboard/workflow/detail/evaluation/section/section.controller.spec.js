@@ -71,7 +71,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: {}});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: {}, sectionId: {}});
       });
 
       it('should be true', function() {
@@ -130,11 +130,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-<<<<<<< HEAD
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: {}});
-=======
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService});
->>>>>>> master
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: {}, sectionId: {}});
       });
 
       it('should be false', function() {
@@ -206,7 +202,7 @@ describe('RequestSectionCtrl', function() {
       beforeEach(function() {
         spyOn(fakeSynthese, '$update');
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: fakeSynthese});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, profileSynthese: fakeSynthese, sectionId: {}});
       });
 
       it('should save the answer in the request', function() {
