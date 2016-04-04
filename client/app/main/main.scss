@@ -27,10 +27,11 @@
   .hero-button {
     @extend .btn;
     @extend .btn-primary;
-    padding: 10px 20px;
+    padding: 10px 40px;
     font-variant: small-caps;
     font-size: 2em;
     font-weight: 500;
+    border-radius: 2px;
 
     &.inverted {
       color: $brand-primary;
