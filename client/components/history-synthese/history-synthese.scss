@@ -1,0 +1,42 @@
+.synthese-slider-wrapper {
+  background-color: whitesmoke;
+  border: 1px solid $lighter-grey;
+  border-radius: 2px;
+  padding: 10px;
+
+  .synthese-slider {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    background-color: transparent;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 0px;
+      border-bottom: 2px $lighter-blue solid;
+      width: 100%;
+    }
+
+    div {
+      z-index: 2;
+      text-align: center;
+    }
+
+    a {
+      font-size: 18px;
+      color: $lighter-blue;
+
+      &:hover {
+        font-size: 22px;
+      }
+
+      &.active {
+        font-size: 22px;
+        color: $orange;
+      }
+    }
+  }
+}

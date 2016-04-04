@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, sectionId, GevaService, request, ReadModeService, profileSynthese) {
+  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, sectionId, GevaService, request, ReadModeService, currentSynthese) {
     $scope.sectionId = sectionId;
 
-    if (!profileSynthese.geva) {
-      profileSynthese.geva = {};
+    if (!currentSynthese.geva) {
+      currentSynthese.geva = {};
     }
 
-    if (!profileSynthese.geva[section.id]) {
-      profileSynthese.geva[section.id] = {};
+    if (!currentSynthese.geva[section.id]) {
+      currentSynthese.geva[section.id] = {};
     }
 
-    $scope.profileSynthese = profileSynthese;
+    $scope.currentSynthese = currentSynthese;
 
     $scope.section = section;
 
@@ -36,7 +36,7 @@ angular.module('impactApp')
     }
 
     (function applyModelToSection(request, section) {
-      var model = profileSynthese.geva[section.id];
+      var model = currentSynthese.geva[section.id];
       _.forEach(section.trajectoires, function(trajectoire) {
         _.forEach(model, function(id) {
           var question = findDeep(trajectoire, id);
@@ -85,10 +85,10 @@ angular.module('impactApp')
     }
 
     $scope.validate = function() {
-      profileSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
-      $scope.noAnswer = (profileSynthese.geva[section.id].length === 0);
+      currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+      $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
 
-      profileSynthese.$update({shortId: profileSynthese.request.shortId}, function() {
+      currentSynthese.$update({shortId: currentSynthese.request.shortId}, function() {
         $scope.toggleMode();
       });
     };

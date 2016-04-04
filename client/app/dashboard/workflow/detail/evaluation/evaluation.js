@@ -20,7 +20,7 @@ angular.module('impactApp')
             return request;
           },
 
-          listProfileSyntheses: function(SyntheseResource, request) {
+          listSyntheses: function(SyntheseResource, request) {
             return SyntheseResource.query({shortId: request.shortId}).$promise;
           }
         }
@@ -35,7 +35,7 @@ angular.module('impactApp')
             return $stateParams.sectionId;
           },
 
-          profileSynthese: function(SyntheseResource, $stateParams, request) {
+          currentSynthese: function(SyntheseResource, $stateParams, request) {
             return SyntheseResource.get({shortId: request.shortId, syntheseId: $stateParams.syntheseId}).$promise;
           },
 

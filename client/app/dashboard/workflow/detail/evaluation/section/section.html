@@ -26,19 +26,4 @@
   </button>
 </div>
 
-<h4>
-  Synthèse mise à jour le {{profileSynthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}
-  <small>Demande {{profileSynthese.request.shortId}}</small>
-</h4>
-
-<div class="synthese-slider-wrapper">
-  <div class="synthese-slider">
-    <div ng-repeat="synthese in profileSyntheses">
-      <a ng-class="{'active': profileSynthese._id == synthese._id}" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}"
-         tooltip="Demande {{synthese.request.shortId}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}">
-        <i class="fa fa-circle"></i>
-      </a>
-      <div>{{profileSynthese.updatedAt | date:'dd/MM/yy'}}</div>
-    </div>
-  </div>
-</div>
+<history-synthese list-syntheses="listSyntheses" current-synthese="currentSynthese" section-id="sectionId"></history-synthese>
