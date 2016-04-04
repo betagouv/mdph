@@ -190,12 +190,12 @@ describe('RequestSectionCtrl', function() {
       };
 
       var fakeSynthese = {
-        synthese: {
-          geva: {
-            environnement: {}
-          }
+        geva: {
+          environnement: {}
         },
-
+        request: {
+          shortId: '1234'
+        },
         $update() {}
       };
 

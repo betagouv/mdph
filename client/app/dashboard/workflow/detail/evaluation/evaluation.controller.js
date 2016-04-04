@@ -9,7 +9,7 @@ angular.module('impactApp')
     $scope.profileSyntheses = listProfileSyntheses;
 
     if (!$stateParams.syntheseId) {
-      let currentRequestSynthese = _.find(listProfileSyntheses, {selected: true});
+      let currentRequestSynthese = _.find(listProfileSyntheses, {current: true});
       $state.go($state.current, {syntheseId: currentRequestSynthese._id});
     }
   });

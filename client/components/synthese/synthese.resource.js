@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .factory('SyntheseResource', function($resource) {
     return $resource('/api/requests/:shortId/syntheses/:syntheseId', {
-      syntheseId: '@syntheseId'
+      syntheseId: '@_id'
     },
     {
       update: {

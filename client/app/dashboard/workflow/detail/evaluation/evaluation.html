@@ -1,7 +1,7 @@
 <ui-view>
   <div class="list-group">
     <a class="list-group-item" ng-class="{'active': synthese.selected}" ng-repeat="synthese in profileSyntheses" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}">
-      Demande {{synthese.request}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}
+      Demande {{synthese.request.shortId}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}
     </a>
   </div>
 

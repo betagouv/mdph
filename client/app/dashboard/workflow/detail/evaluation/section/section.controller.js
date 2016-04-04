@@ -12,6 +12,8 @@ angular.module('impactApp')
       profileSynthese.geva[section.id] = {};
     }
 
+    $scope.profileSynthese = profileSynthese;
+
     $scope.section = section;
 
     $scope.getReadMode = ReadModeService.getReadMode;
@@ -86,7 +88,7 @@ angular.module('impactApp')
       profileSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
       $scope.noAnswer = (profileSynthese.geva[section.id].length === 0);
 
-      profileSynthese.$update(function() {
+      profileSynthese.$update({shortId: profileSynthese.request.shortId}, function() {
         $scope.toggleMode();
       });
     };

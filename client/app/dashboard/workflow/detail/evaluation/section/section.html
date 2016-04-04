@@ -1,15 +1,9 @@
-<div class="list-group">
-  <a class="list-group-item" ng-class="{'active': synthese.selected}" ng-repeat="synthese in profileSyntheses" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}">
-    Demande {{synthese.request}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}
-  </a>
-</div>
-
 <h2>{{section.label}}</h2>
 <div class="container-btn">
   <button type="button" class="btn-section btn btn-md btn-primary" ng-click="toggleMode()" ng-if="getReadMode()">
     Editer
   </button>
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode()">
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
     Annuler
   </button>
   <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
@@ -24,10 +18,27 @@
 </div>
 
 <div class="container-btn">
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode()">
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
     Annuler
   </button>
   <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
     Sauvegarder
   </button>
+</div>
+
+<h4>
+  Synthèse mise à jour le {{profileSynthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}
+  <small>Demande {{profileSynthese.request.shortId}}</small>
+</h4>
+
+<div class="synthese-slider-wrapper">
+  <div class="synthese-slider">
+    <div ng-repeat="synthese in profileSyntheses">
+      <a ng-class="{'active': profileSynthese._id == synthese._id}" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}"
+         tooltip="Demande {{synthese.request.shortId}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}">
+        <i class="fa fa-circle"></i>
+      </a>
+      <div>{{profileSynthese.updatedAt | date:'dd/MM/yy'}}</div>
+    </div>
+  </div>
 </div>

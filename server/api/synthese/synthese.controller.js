@@ -41,7 +41,9 @@ function saveUpdates(req) {
 export function findOrCreateRequestSynthese(options) {
   let {syntheses, req} = options;
 
-  let found = _.find(syntheses, {request: req.request._id});
+  let found = _.find(syntheses, (synthese) => {
+    return synthese.request._id.equals(req.request._id);
+  });
 
   if (!found) {
     return Synthese
@@ -51,12 +53,13 @@ export function findOrCreateRequestSynthese(options) {
         request:        req.request._id
       })
       .then(created => {
-        created.selected = true;
-        syntheses.push(created);
+        let createdObj = created.toObject();
+        createdObj.current = true;
+        syntheses.push(createdObj);
         return syntheses;
       });
   } else {
-    found.selected = true;
+    found.current = true;
     return syntheses;
   }
 }
@@ -75,6 +78,7 @@ export function showAllByProfile(req, res) {
   let options = {req, res};
   Synthese
     .find({profile: req.request.profile})
+    .populate('request', 'shortId')
     .lean()
     .exec()
     .then(syntheses => {
