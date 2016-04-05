@@ -1,10 +1,10 @@
 'use strict';
 
-const _ = require('lodash');
-const Mailer = require('./send-mail.controller');
-const Handlebars = require('handlebars');
-const fs = require('fs');
-const path = require('path');
+import _ from 'lodash';
+import Handlebars from 'handlebars';
+import fs from 'fs';
+import path from 'path';
+import * as Mailer from './send-mail.controller';
 
 import pdfMaker from '../../components/pdf-maker';
 

@@ -1,18 +1,18 @@
 'use strict';
 
-var _ = require('lodash');
-var mongoose = require('mongoose');
-var async = require('async');
-var path = require('path');
-var Mdph = require('./mdph.model');
-var User = require('../user/user.model');
-var Secteur = require('../secteur/secteur.model');
-var Request = require('../request/request.model');
-var Partenaire = require('../partenaire/partenaire.model');
-var DocumentCategoryCtrl = require('../document-category/document-category.controller');
+import _ from 'lodash';
+import mongoose from 'mongoose';
+import async from 'async';
+import path from 'path';
+import Mdph from './mdph.model';
+import User from '../user/user.model';
+import Secteur from '../secteur/secteur.model';
+import Request from '../request/request.model';
+import Partenaire from '../partenaire/partenaire.model';
+import DocumentCategoryCtrl from '../document-category/document-category.controller';
 
 // Get all users linked to a single mdph
-exports.showUsers = function(req, res) {
+export function showUsers(req, res) {
   User.find({
     mdph: req.mdph._id
   }, function(err, list) {
@@ -22,41 +22,41 @@ exports.showUsers = function(req, res) {
 
     return res.json(list);
   });
-};
+}
 
-exports.showDocumentCategories = function(req, res) {
+export function showDocumentCategories(req, res) {
   DocumentCategoryCtrl.findAndSortCategoriesForMdph(req.mdph, function(err, tree) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(tree);
   });
-};
+}
 
-exports.getUnclassifiedCategory = function(req, res) {
+export function getUnclassifiedCategory(req, res) {
   DocumentCategoryCtrl.getUnclassifiedCategory(req.mdph, function(err, unclassifiedCategory) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(unclassifiedCategory);
   });
-};
+}
 
-exports.showUncategorizedDocumentTypes = function(req, res) {
+export function showUncategorizedDocumentTypes(req, res) {
   DocumentCategoryCtrl.showUncategorizedDocumentTypes(req.mdph, function(err, list) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(list);
   });
-};
+}
 
-exports.saveDocumentCategoryFile = function(req, res) {
+export function saveDocumentCategoryFile(req, res) {
   DocumentCategoryCtrl.saveDocumentCategoryFile(req.file, req.params.categoryId, req.log, function(err, file) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(file);
   });
-};
+}
 
-exports.getDocumentCategoryFile = function(req, res) {
+export function getDocumentCategoryFile(req, res) {
   DocumentCategoryCtrl.getDocumentCategoryFile(req.params.categoryId, function(err, fileStream) {
     if (err) { return handleError(req, res, err); }
 
@@ -66,41 +66,41 @@ exports.getDocumentCategoryFile = function(req, res) {
       res.sendStatus(404);
     }
   });
-};
+}
 
-exports.createNewDocumentCategory = function(req, res) {
+export function createNewDocumentCategory(req, res) {
   DocumentCategoryCtrl.createNewDocumentCategory(req.mdph, req.body.position, function(err, obj) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(obj);
   });
-};
+}
 
-exports.updateDocumentCategory = function(req, res) {
+export function updateDocumentCategory(req, res) {
   DocumentCategoryCtrl.updateDocumentCategory(req.params.categoryId, req.body.label, function(err, obj) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(obj);
   });
-};
+}
 
-exports.updateDocumentCategories = function(req, res) {
+export function updateDocumentCategories(req, res) {
   DocumentCategoryCtrl.updateDocumentCategories(req.body, function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(200);
   });
-};
+}
 
-exports.removeDocumentCategory = function(req, res) {
+export function removeDocumentCategory(req, res) {
   DocumentCategoryCtrl.removeDocumentCategory(req.params.categoryId, function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(200);
   });
-};
+}
 
-exports.showSecteurs = function(req, res) {
+export function showSecteurs(req, res) {
   Secteur
     .find({mdph: req.mdph._id})
     .sort('name')
@@ -134,9 +134,9 @@ exports.showSecteurs = function(req, res) {
           return res.json(secteurs);
         });
     });
-};
+}
 
-exports.getSecteur = function(req, res) {
+export function getSecteur(req, res) {
   Secteur
     .findOne({mdph: req.mdph._id, _id: req.params.secteurId})
     .sort('name')
@@ -146,9 +146,9 @@ exports.getSecteur = function(req, res) {
 
       return res.json(secteur);
     });
-};
+}
 
-exports.showRequests = function(req, res) {
+export function showRequests(req, res) {
   const search = {
     mdph: req.mdph.zipcode
   };
@@ -167,9 +167,9 @@ exports.showRequests = function(req, res) {
 
       return res.send(requests);
     });
-};
+}
 
-exports.showRequestsByStatus = function(req, res) {
+export function showRequestsByStatus(req, res) {
   Request
     .aggregate([
       {$match: {mdph: req.mdph.zipcode}},
@@ -180,9 +180,9 @@ exports.showRequestsByStatus = function(req, res) {
 
       return res.send(requestsGroups);
     });
-};
+}
 
-exports.showRequestsForSecteur = function(req, res) {
+export function showRequestsForSecteur(req, res) {
   var search = {
     status: req.query && req.query.status ? req.query.status : 'emise',
     mdph: req.mdph.zipcode,
@@ -203,10 +203,10 @@ exports.showRequestsForSecteur = function(req, res) {
       if (err) return handleError(req, res, err);
       return res.send(requests);
     });
-};
+}
 
 // Get list of partenaires
-exports.showPartenaires = function(req, res) {
+export function showPartenaires(req, res) {
   Partenaire
     .find({certified: req.query.status, mdph: req.mdph._id})
     .sort('email')
@@ -215,37 +215,37 @@ exports.showPartenaires = function(req, res) {
 
       return res.json(partenaires);
     });
-};
+}
 
 // Get list of mdphs
-exports.index = function(req, res) {
+export function index(req, res) {
   Mdph.find(req.query).sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(mdphs);
   });
-};
+}
 
 // Get a single mdph by zipcode
-exports.show = function(req, res) {
+export function show(req, res) {
   Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(mdph);
   });
-};
+}
 
 // Creates a new mdph in the DB.
-exports.create = function(req, res) {
+export function create(req, res) {
   Mdph.create(req.body, function(err, mdph) {
     if (err) { return handleError(req, res, err); }
 
     return res.status(201).json(mdph);
   });
-};
+}
 
 // Updates an existing mdph in the DB.
-exports.update = function(req, res) {
+export function update(req, res) {
   if (req.body._id) { delete req.body._id; }
 
   Mdph.findOne({
@@ -262,10 +262,10 @@ exports.update = function(req, res) {
       return res.status(200).json(mdph);
     });
   });
-};
+}
 
 // Deletes a mdph from the DB.
-exports.destroy = function(req, res) {
+export function destroy(req, res) {
   Mdph.findOne({
     id: req.params.id
   }, function(err, mdph) {
@@ -279,11 +279,11 @@ exports.destroy = function(req, res) {
       return res.sendStatus(204);
     });
   });
-};
+}
 
-exports.list = function(req, res) {
+export function list(req, res) {
   res.status(200).sendFile(path.join(__dirname, '/', 'mdph.json'));
-};
+}
 
 function handleError(req, res, err) {
   req.log.error(err);

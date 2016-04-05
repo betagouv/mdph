@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
 
 var DispatchRuleSchema = new Schema({
   mdph:           { type: Schema.Types.ObjectId, ref: 'Mdph', required: true },
@@ -17,10 +16,4 @@ var DispatchRuleSchema = new Schema({
   }
 });
 
-try {
-  mongoose.model('DispatchRule', DispatchRuleSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('DispatchRule');
+export default mongoose.model('DispatchRule', DispatchRuleSchema);

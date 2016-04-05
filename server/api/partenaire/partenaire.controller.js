@@ -7,7 +7,7 @@ var Mdph = require('../mdph/mdph.model');
 var path = require('path');
 var shortid = require('shortid');
 
-exports.show = function(req, res) {
+export function show(req, res) {
   Partenaire.findById(req.params.id, function(err, partenaire) {
     if (err) { return handleError(req, res, err); }
 
@@ -15,10 +15,10 @@ exports.show = function(req, res) {
 
     return res.json(partenaire);
   });
-};
+}
 
 // Save a partenaire in the DB.
-exports.save = function(req, res) {
+export function save(req, res) {
   Partenaire.findOne({email: req.body.email}).exec(function(err, partenaire) {
     if (err) { return handleError(req, res, err); }
 
@@ -57,19 +57,18 @@ exports.save = function(req, res) {
       });
     }
   });
-
-};
+}
 
 // Deletes a partenaire from the DB.
-exports.destroy = function(req, res) {
+export function destroy(req, res) {
   Partenaire.remove({id: req.params.id}, function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(204);
   });
-};
+}
 
-exports.confirm = function(req, res) {
+export function confirm(req, res) {
   Partenaire.findById(req.params.id, '+secret', function(err, partenaire) {
     if (err) { return handleError(req, res, err); }
 
@@ -87,7 +86,7 @@ exports.confirm = function(req, res) {
       res.sendStatus(400);
     }
   });
-};
+}
 
 function handleError(req, res, err) {
   req.log.error(err);

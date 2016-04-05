@@ -1,11 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
-var Profile = require('./profile.model');
-var User = require('../user/user.model');
-var Request = require('../request/request.model');
+import _ from 'lodash';
+import Profile from './profile.model';
+import User from '../user/user.model';
+import Request from '../request/request.model';
 
-exports.index = function(req, res) {
+export function index(req, res) {
   Profile
     .find({user: req.params.userId})
     .sort('createdAt')
@@ -15,13 +15,13 @@ exports.index = function(req, res) {
 
       return res.json(profiles);
     });
-};
+}
 
-exports.show = function(req, res) {
+export function show(req, res) {
   return res.json(req.profile);
-};
+}
 
-exports.showMe = function(req, res) {
+export function showMe(req, res) {
   Profile
     .findOne({user: req.user._id})
     .exec(function(err, profile) {
@@ -31,9 +31,9 @@ exports.showMe = function(req, res) {
 
       return res.json(profile);
     });
-};
+}
 
-exports.update = function(req, res) {
+export function update(req, res) {
   let profile = req.profile;
 
   for (let property in req.body) {
@@ -45,25 +45,25 @@ exports.update = function(req, res) {
 
     return res.json(saved);
   });
-};
+}
 
-exports.create = function(req, res) {
+export function create(req, res) {
   Profile.create({user: req.params.userId}, function(err, profile) {
     if (err) { return handleError(req, res, err); }
 
     return res.status(201).json(profile);
   });
-};
+}
 
-exports.destroy = function(req, res) {
+export function destroy(req, res) {
   req.profile.remove().exec(function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(204);
   });
-};
+}
 
-exports.indexRequests = function(req, res) {
+export function indexRequests(req, res) {
   let profile = req.profile;
   Request
     .find({profile: profile._id})
@@ -73,7 +73,7 @@ exports.indexRequests = function(req, res) {
 
       return res.json(requests);
     });
-};
+}
 
 function handleError(req, res, err) {
   req.log.error(err);

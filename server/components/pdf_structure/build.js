@@ -1,15 +1,15 @@
 'use strict';
 
-var _ = require('lodash');
-var path = require('path');
-var async = require('async');
-var fs = require('fs');
-var config = require('../../config/environment');
+import _ from 'lodash';
+import path from 'path';
+import async from 'async';
+import fs from 'fs';
+import config from '../../config/environment';
 
-var gridfs = require('../gridfs');
-var auth = require('../../auth/auth.service');
-var Mdph = require('../../api/mdph/mdph.model');
-var DocumentCategoryCtrl = require('../../api/document-category/document-category.controller');
+import gridfs from '../gridfs';
+import auth from '../../auth/auth.service';
+import Mdph from '../../api/mdph/mdph.model';
+import * as DocumentCategoryCtrl from '../../api/document-category/document-category.controller';
 
 import Promise from 'bluebird';
 

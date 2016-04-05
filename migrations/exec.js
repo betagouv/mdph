@@ -1,11 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
-var Request = require('../api/request/request.model');
-var Profile = require('../api/profile/profile.model');
-var Synthese = require('../api/synthese/synthese.model');
-
-//migrate request.synthese to synthese
+import _ from 'lodash';
+import Request from '../api/request/request.model';
+import Synthese from '../api/synthese/synthese.model';
 
 (function() {
   Request

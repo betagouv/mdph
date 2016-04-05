@@ -1,16 +1,16 @@
 'use strict';
 
-var auth = require('../../auth/auth.service');
-var express = require('express');
-var controller = require('./dispatch-rule.controller');
+import {Router} from 'express';
+import {hasRole} from '../../auth/auth.service';
+import * as controller from './dispatch-rule.controller';
 
-var router = express.Router();
+var router = new Router();
 
-router.get('/', auth.hasRole('adminMdph'), controller.index);
-router.post('/', auth.hasRole('adminMdph'), controller.create);
-router.get('/:id', auth.hasRole('adminMdph'), controller.show);
-router.post('/:id', auth.hasRole('adminMdph'), controller.update);
-router.patch('/:id', auth.hasRole('adminMdph'), controller.update);
-router.delete('/:id', auth.hasRole('adminMdph'), controller.destroy);
+router.get('/', hasRole('adminMdph'), controller.index);
+router.post('/', hasRole('adminMdph'), controller.create);
+router.get('/:id', hasRole('adminMdph'), controller.show);
+router.post('/:id', hasRole('adminMdph'), controller.update);
+router.patch('/:id', hasRole('adminMdph'), controller.update);
+router.delete('/:id', hasRole('adminMdph'), controller.destroy);
 
 module.exports = router;

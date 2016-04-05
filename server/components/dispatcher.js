@@ -1,12 +1,11 @@
 'use strict';
 
-const async = require('async');
-
-const DispatchRuleModel = require('../api/dispatch-rule/dispatch-rule.model');
-const SecteurModel = require('../api/secteur/secteur.model');
-const MdphModel = require('../api/mdph/mdph.model');
-const MailActions = require('../api/send-mail/send-mail-actions');
-const Bluebird = require('bluebird');
+import Bluebird from 'bluebird';
+import async from 'async';
+import DispatchRuleModel from '../api/dispatch-rule/dispatch-rule.model';
+import SecteurModel from '../api/secteur/secteur.model';
+import MdphModel from '../api/mdph/mdph.model';
+import * as MailActions from '../api/send-mail/send-mail-actions';
 
 function sendMailToSecteur(request, secteur) {
   if (secteur) {

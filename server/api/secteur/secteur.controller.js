@@ -1,11 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
-var Secteur = require('./secteur.model');
-var Request = require('../request/request.model');
-var Mdph = require('../mdph/mdph.model');
+import _ from 'lodash';
+import Secteur from './secteur.model';
+import Request from '../request/request.model';
+import Mdph from '../mdph/mdph.model';
 
-exports.index = function(req, res) {
+export function index(req, res) {
   const mdph = req.query.mdph ? req.query.mdph : req.user.mdph;
 
   Secteur
@@ -17,9 +17,9 @@ exports.index = function(req, res) {
 
       return res.json(secteurs);
     });
-};
+}
 
-exports.show = function(req, res) {
+export function show(req, res) {
   Secteur
     .findById(req.params.id)
     .exec(function(err, secteur) {
@@ -29,9 +29,9 @@ exports.show = function(req, res) {
 
       return res.json(secteur);
     });
-};
+}
 
-var update = function(req, res) {
+export function update(req, res) {
   Secteur.findById(req.params.id, function(err, secteur) {
     if (err) { return handleError(req, res, err); }
 
@@ -48,12 +48,10 @@ var update = function(req, res) {
         return res.status(200).json(secteur);
       });
   });
-};
-
-exports.update = update;
+}
 
 // Creates a new partenaire in the DB.
-exports.create = function(req, res) {
+export function create(req, res) {
   if (req.body._id) {
     return update(req, res);
   } else {
@@ -63,16 +61,16 @@ exports.create = function(req, res) {
       return res.status(201).json(secteur);
     });
   }
-};
+}
 
 // Deletes a partenaire from the DB.
-exports.destroy = function(req, res) {
+export function destroy(req, res) {
   Secteur.findById(req.params.id).remove().exec(function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(204);
   });
-};
+}
 
 function handleError(req, res, err) {
   req.log.error(err);

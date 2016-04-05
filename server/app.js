@@ -35,8 +35,8 @@ mongoose.connection.once('open', function() {
   app.set('gridfs', gfs);
 });
 
-require('./config/express')(app);
-require('./routes')(app);
+require('./config/express').default(app);
+require('./routes').default(app);
 require('./components/register-handlebars');
 
 moment.locale('fr');
