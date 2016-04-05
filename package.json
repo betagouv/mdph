@@ -115,7 +115,6 @@
     "node": ">=4.2.1"
   },
   "scripts": {
-    "postinstall": "bower install",
     "prestart": "npm install && grunt build",
     "start": "node server/app.js",
     "test": "grunt test",
