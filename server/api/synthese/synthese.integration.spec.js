@@ -2,12 +2,12 @@
 
 import should from 'should';
 import Synthese from './synthese.model';
-import * as controller from './synthese.controller';
 import User from '../user/user.model';
 import Profile from '../profile/profile.model';
 import Request from '../request/request.model';
+import * as controller from './synthese.controller';
 
-import startServer from '../../test/utils/server';
+import {startServer} from '../../test/utils/server';
 
 describe('Synthese Integration', function() {
   let api;

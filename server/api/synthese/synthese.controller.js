@@ -41,12 +41,17 @@ function saveUpdates(req) {
 export function findOrCreateRequestSynthese(options) {
   let {syntheses, req} = options;
 
-  let found = _.find(syntheses, (synthese) => {
-    return synthese.request._id.equals(req.request._id);
-  });
+  return new Promise((resolve, reject) => {
+    let found = _.find(syntheses, (synthese) => {
+      return synthese.request._id.equals(req.request._id);
+    });
 
-  if (!found) {
-    return Synthese
+    if (found) {
+      found.current = true;
+      return resolve(syntheses);
+    }
+
+    Synthese
       .create({
         user:           req.request.user,
         profile:        req.request.profile,
@@ -56,12 +61,9 @@ export function findOrCreateRequestSynthese(options) {
         let createdObj = created.toObject();
         createdObj.current = true;
         syntheses.push(createdObj);
-        return syntheses;
+        resolve(syntheses);
       });
-  } else {
-    found.current = true;
-    return syntheses;
-  }
+  });
 }
 
 export function create(req, res) {
@@ -75,7 +77,7 @@ export function show(req, res) {
 }
 
 export function showAllByProfile(req, res) {
-  let options = {req, res};
+  let options = {req, res, Synthese};
   Synthese
     .find({profile: req.request.profile})
     .populate('request', 'shortId')
