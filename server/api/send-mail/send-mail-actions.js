@@ -6,60 +6,90 @@ const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
 
+const EmailTemplate = require('email-templates').EmailTemplate;
+
 import pdfMaker from '../../components/pdf-maker';
 
-const receptionMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'reception-request-email.html')));
-const receptionMailCompiled = Handlebars.compile(receptionMailTemplate);
-
-const confirmationMailTemplate =  String(fs.readFileSync(path.join(__dirname, 'confirm-email-premailer.html')));
-const confirmationMailCompiled = Handlebars.compile(confirmationMailTemplate);
-
-export function sendMailNotificationAgent(request, email, callback) {
-  Mailer.sendMail(email, 'Vous avez reçu une nouvelle demande', 'Référence de la demande: ' + request.shortId);
+function compileContent(contentFile) {
+  const contentTemplate =  String(fs.readFileSync(path.join(__dirname, 'templates', 'specific-content', contentFile)));
+  return Handlebars.compile(contentTemplate);
 }
 
-export function sendMailCompletude(request,options) {
-  return generateReceptionMail(request, options)
-    .then(html => {
-      Mailer.sendMail(request.user.email,
-        'Accusé de réception de votre MDPH',
-        html
-      );
+const receptionContentCompiled = compileContent('reception-request-content.html');
+const receptionFooterCompiled = compileContent('reception-request-footer.html');
 
-      return html;
+const confirmationContentCompiled = compileContent('confirm-content.html');
+const confirmationFooterCompiled = compileContent('confirm-footer.html');
+
+const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
+
+function generateEmailBodyWithTemplate(options) {
+  let {title, content, footer} = options;
+  let template = new EmailTemplate(genericTemplate);
+
+  let locals = {};
+  locals.title = new Handlebars.SafeString(title);
+  locals.content = new Handlebars.SafeString(content);
+  if (footer) {
+    locals.footer = new Handlebars.SafeString(footer);
+  }
+
+  template
+    .render(locals)
+    .then(function(result) {
+      return result.html;
     });
+}
+
+export function sendMailNotificationAgent(request, email) {
+  let par = {};
+  par.title = 'Vous avez reçu une nouvelle demande';
+  par.content = '<p>Référence de la demande: ' + request.shortId + '</p>';
+  let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
+  Mailer.sendMail(email, par.title, htmlContent);
 }
 
 export function sendMailReceivedTransmission(options) {
   pdfMaker(options).then(pdfPath => {
     if (pdfPath) {
-      Mailer.sendMail(options.email,
-        'Votre demande à bien été transmise',
-        'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.',
-        [
-          {
-            filename: options.request.shortId + '.pdf',
-            path: pdfPath
-          }
-        ]
-      );
+      let par = {};
+      par.title = 'Votre demande à bien été transmise';
+      par.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
+      let attachements = [{filename: options.request.shortId + '.pdf', path: pdfPath}];
+      let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
+      Mailer.sendMail(options.email, par.title, htmlContent, attachements);
     }
   });
 }
 
-export function generateReceptionMail(request, options) {
-  return new Promise(function(resolve) {
-    let body = receptionMailCompiled({
-      request,
-      options
-    });
+export function sendConfirmationMail(emailDest, confirmationUrl) {
+  let par = {};
+  par.title = 'Veuillez confirmer votre adresse e-mail';
+  par.content = confirmationContentCompiled({confirmationUrl: confirmationUrl});
+  par.footer = confirmationFooterCompiled({confirmationUrl: confirmationUrl});
+  let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
+  Mailer.sendMail(emailDest, par.title, htmlContent);
+}
 
-    resolve(body);
+export function generateReceptionMail(request, options, title) {
+  return new Promise(function(resolve) {
+    let par = {};
+    par.title = title;
+    par.content = receptionContentCompiled({request, options});
+    par.footer = receptionFooterCompiled({request, options});
+    let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
+
+    resolve(htmlContent);
   });
 }
 
-export function sendConfirmationMail(to, confirmationUrl) {
-  const body = confirmationMailCompiled({confirmationUrl: confirmationUrl});
+export function sendMailCompletude(request,options) {
+  let title = 'Accusé de réception de votre MDPH';
 
-  Mailer.sendMail(to, 'Veuillez confirmer votre adresse e-mail', body);
+  return generateReceptionMail(request, options, title)
+    .then(html => {
+      Mailer.sendMail(request.user.email, title, html);
+
+      return html;
+    });
 }
