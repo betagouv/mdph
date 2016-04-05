@@ -1,0 +1,16 @@
+<h4>
+  Synthèse mise à jour le {{currentSynthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}
+  <small>Demande {{currentSynthese.request.shortId}}</small>
+</h4>
+
+<div class="synthese-slider-wrapper">
+  <div class="synthese-slider">
+    <div ng-repeat="synthese in listSyntheses">
+      <a ng-class="{'active': synthese._id === currentSynthese._id}" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}"
+         tooltip="Demande {{synthese.request.shortId}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}">
+        <i class="fa fa-circle"></i>
+      </a>
+      <div>{{synthese.updatedAt | date:'dd/MM/yy'}}</div>
+    </div>
+  </div>
+</div>

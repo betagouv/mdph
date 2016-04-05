@@ -69,6 +69,7 @@ describe('Document Integration', function() {
         });
 
         newRequest.save((err, res) => {
+          console.log(err);
           savedDocument = res.documents[0];
           done();
         });

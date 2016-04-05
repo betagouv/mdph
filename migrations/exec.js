@@ -1,19 +1,26 @@
 'use strict';
 
 import _ from 'lodash';
-import User from '../server/api/user/user.model';
-import Profile from '../server/api/profile/profile.model';
+import Request from '../api/request/request.model';
+import Synthese from '../api/synthese/synthese.model';
 
 (function() {
-  User
+  Request
     .find()
-    .exec(function(err, users) {
-      _.forEach(users, function(user) {
-        Profile.find({user: user._id}, function(err, profiles) {
-          if (profiles && profiles.length > 1) {
-            user.set('isMultiProfiles', true).save();
-          }
-        });
+    .exec(function(err, requests) {
+      _.forEach(requests, function(request) {
+        if (request.synthese && request.synthese.geva) {
+          var newSynthese = new Synthese({
+            user: request.user,
+            profile: request.profile,
+            request: request._id,
+            geva: request.synthese.geva
+          });
+
+          newSynthese.save();
+        }
       });
+
+      console.log('FINISH!');
     });
 })();

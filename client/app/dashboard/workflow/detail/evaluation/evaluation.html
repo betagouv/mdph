@@ -1,9 +1,11 @@
 <ui-view>
+  <history-synthese list-syntheses="listSyntheses" current-synthese="currentSynthese"></history-synthese>
+
   <div class="geva">
     <div class="geva-section" ng-repeat="section in sections">
       <div class="geva-section-content">
         <div class="head">
-          <a ui-sref=".section({sectionId: section.id})">
+          <a ui-sref="sectionEvaluation({sectionId: section.id})">
             <span>{{$index + 1}}</span>
             <h1>{{section.label}}</h1>
           </a>

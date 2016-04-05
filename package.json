@@ -106,6 +106,8 @@
     "proxyquire": "^1.7.4",
     "requirejs": "^2.1.17",
     "should": "~8.3",
+    "sinon": "^1.17.3",
+    "sinon-as-promised": "^4.0.0",
     "supertest": "^1.0.1",
     "time-grunt": "^1.2.1"
   },

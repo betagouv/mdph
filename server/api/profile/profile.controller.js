@@ -18,15 +18,7 @@ export function index(req, res) {
 }
 
 export function show(req, res) {
-  Profile
-    .findById(req.params.profileId)
-    .exec(function(err, profile) {
-      if (err) { return handleError(req, res, err); }
-
-      if (!profile) { return res.sendStatus(404); }
-
-      return res.json(profile);
-    });
+  return res.json(req.profile);
 }
 
 export function showMe(req, res) {
@@ -42,20 +34,16 @@ export function showMe(req, res) {
 }
 
 export function update(req, res) {
-  Profile.findById(req.params.profileId, function(err, profile) {
-    if (err) { return handleError(req, res, err); }
+  let profile = req.profile;
 
-    if (!profile) { return res.sendStatus(404); }
+  for (let property in req.body) {
+    profile.set(property, req.body[property]);
+  }
 
-    for (let property in req.body) {
-      profile.set(property, req.body[property]);
-    }
+  profile.save(function(err, saved) {
+    if (err) { return handleError(res, err); }
 
-    profile.save(function(err, saved) {
-      if (err) { return handleError(res, err); }
-
-      return res.json(saved);
-    });
+    return res.json(saved);
   });
 }
 
@@ -68,7 +56,7 @@ export function create(req, res) {
 }
 
 export function destroy(req, res) {
-  Profile.findById(req.params.profileId).remove().exec(function(err) {
+  req.profile.remove().exec(function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(204);
@@ -76,20 +64,14 @@ export function destroy(req, res) {
 }
 
 export function indexRequests(req, res) {
-  Profile
-    .findById(req.params.profileId)
-    .exec(function(err, profile) {
-      if (err) { return handleError(req, res, err); }
+  let profile = req.profile;
+  Request
+    .find({profile: profile._id})
+    .sort('-submittedAt')
+    .exec(function(err, requests) {
+      if (err) return handleError(req, res, err);
 
-      if (!profile) { return res.sendStatus(404); }
-
-      Request.find({profile: profile._id})
-        .sort('-submittedAt')
-        .exec(function(err, requests) {
-          if (err) return handleError(req, res, err);
-
-          return res.json(requests);
-        });
+      return res.json(requests);
     });
 }
 

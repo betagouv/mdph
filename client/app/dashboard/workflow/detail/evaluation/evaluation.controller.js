@@ -1,85 +1,17 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookies, sections, model, GevaService, allPrestations, currentRequest) {
+  .controller('RequestEvaluationCtrl', function($scope, $modal, $cookies, $state, $stateParams, sections, model, GevaService, currentRequest, listSyntheses) {
     $scope.model = model;
     $scope.sections = sections;
     $scope.request = currentRequest;
     $scope.token = $cookies.get('token');
+    $scope.listSyntheses = listSyntheses;
 
-    if (!currentRequest.synthese) {
-      currentRequest.synthese = {};
+    if (!$stateParams.syntheseId) {
+      let currentSynthese = _.find(listSyntheses, {current: true});
+      $state.go($state.current, {syntheseId: currentSynthese._id});
+    } else {
+      $scope.currentSynthese = _.find(listSyntheses, {_id: $stateParams.syntheseId});
     }
-
-    $scope.afficherSynthese = function() {
-      $modal.open({
-        templateUrl: 'app/dashboard/workflow/detail/evaluation/synthese.html',
-        controller: 'ModalSyntheseCtrl',
-        size: 'lg',
-        resolve: {
-          prestations: function() {
-            return allPrestations;
-          },
-
-          request: function() {
-            return currentRequest;
-          }
-        }
-      });
-    };
-  })
-  .controller('ModalSyntheseCtrl', function($scope, $modalInstance, prestations, request) {
-    $scope.prestations = prestations;
-    if (!request.synthese.proposition) {
-      request.synthese.proposition = {};
-    }
-
-    $scope.proposition = request.synthese.proposition;
-    if (!$scope.proposition.prestaDemande) {
-      $scope.proposition.prestaDemande = [
-        {
-          label: '',
-          motivation: ''
-        }
-      ];
-    }
-
-    if (!$scope.proposition.prestaAutre) {
-      $scope.proposition.prestaAutre = [
-        {
-          label: '',
-          motivation: ''
-        }
-      ];
-    }
-
-    if (!$scope.proposition.preconisations) {
-      $scope.proposition.preconisations = '';
-    }
-
-    $scope.ajouterPrestaDemande = function() {
-      $scope.proposition.prestaDemande.push({
-        label: '',
-        eligibilite: '',
-        motivation: ''
-      });
-    };
-
-    $scope.retirerPresta = function(type) {
-      var lastIndex = type.indexOf(_.last(type));
-      type.splice(lastIndex, 1);
-    };
-
-    $scope.ajouterPrestaAutre = function() {
-      $scope.proposition.prestaAutre.push({
-        label: '',
-        motivation: ''
-      });
-    };
-
-    $scope.ok = function() {
-      request.synthese.proposition = $scope.proposition;
-      request.$update();
-      $modalInstance.close();
-    };
   });

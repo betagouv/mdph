@@ -3,7 +3,7 @@
   <button type="button" class="btn-section btn btn-md btn-primary" ng-click="toggleMode()" ng-if="getReadMode()">
     Editer
   </button>
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode()">
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
     Annuler
   </button>
   <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
@@ -18,10 +18,12 @@
 </div>
 
 <div class="container-btn">
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode()">
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
     Annuler
   </button>
   <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
     Sauvegarder
   </button>
 </div>
+
+<history-synthese list-syntheses="listSyntheses" current-synthese="currentSynthese" section-id="sectionId"></history-synthese>
