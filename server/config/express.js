@@ -18,7 +18,6 @@ import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import bunyan from 'bunyan';
-import morgan from 'morgan';
 
 var MongoStore = connectMongo(session);
 
@@ -87,6 +86,7 @@ export default function(app) {
   }
 
   if (env === 'development' || env === 'test') {
+    let morgan = require('morgan');
     app.use(morgan('dev'));
     app.use(fakeLogger);
     app.use(express.static(path.join(config.root, '.tmp')));
