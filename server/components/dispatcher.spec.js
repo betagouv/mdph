@@ -83,7 +83,7 @@ var ruleHerouville = new DispatchRule({
   }
 });
 
-describe.only('Dispatcher', function() {
+describe('Dispatcher', function() {
   before(function(done) {
     // Init mongo
     async.series([

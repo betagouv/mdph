@@ -24,29 +24,34 @@ const confirmationFooterCompiled = compileContent('confirm-footer.html');
 const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
 
 function generateEmailBodyWithTemplate(options) {
-  let {title, content, footer} = options;
-  let template = new EmailTemplate(genericTemplate);
+  return new Promise(function(resolve) {
+    let {title, content, footer} = options;
+    let template = new EmailTemplate(genericTemplate);
 
-  let locals = {};
-  locals.title = new Handlebars.SafeString(title);
-  locals.content = new Handlebars.SafeString(content);
-  if (footer) {
-    locals.footer = new Handlebars.SafeString(footer);
-  }
+    let locals = {};
+    locals.title = new Handlebars.SafeString(title);
+    locals.content = new Handlebars.SafeString(content);
+    if (footer) {
+      locals.footer = new Handlebars.SafeString(footer);
+    }
 
-  template
-    .render(locals)
-    .then(function(result) {
-      return result.html;
-    });
+    template
+      .render(locals)
+      .then(function(result) {
+        resolve(result.html);
+      });
+  });
 }
 
 export function sendMailNotificationAgent(request, email) {
   let par = {};
   par.title = 'Vous avez reçu une nouvelle demande';
   par.content = '<p>Référence de la demande: ' + request.shortId + '</p>';
-  let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
-  Mailer.sendMail(email, par.title, htmlContent);
+
+  return generateEmailBodyWithTemplate(par)
+    .then(htmlContent => {
+      Mailer.sendMail(email, par.title, htmlContent);
+    });
 }
 
 export function sendMailReceivedTransmission(options) {
@@ -56,8 +61,12 @@ export function sendMailReceivedTransmission(options) {
       par.title = 'Votre demande à bien été transmise';
       par.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
       let attachements = [{filename: options.request.shortId + '.pdf', path: pdfPath}];
-      let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
-      Mailer.sendMail(options.email, par.title, htmlContent, attachements);
+
+      generateEmailBodyWithTemplate(par)
+        .then(htmlContent => {
+          console.log('TOOT');
+          Mailer.sendMail(options.email, par.title, htmlContent, attachements);
+        });
     }
   });
 }
@@ -67,8 +76,11 @@ export function sendConfirmationMail(emailDest, confirmationUrl) {
   par.title = 'Veuillez confirmer votre adresse e-mail';
   par.content = confirmationContentCompiled({confirmationUrl: confirmationUrl});
   par.footer = confirmationFooterCompiled({confirmationUrl: confirmationUrl});
-  let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
-  Mailer.sendMail(emailDest, par.title, htmlContent);
+
+  return generateEmailBodyWithTemplate(par)
+    .then(htmlContent => {
+      Mailer.sendMail(emailDest, par.title, htmlContent);
+    });
 }
 
 export function generateReceptionMail(request, options, title) {
@@ -76,14 +88,16 @@ export function generateReceptionMail(request, options, title) {
     let par = {};
     par.title = title;
     par.content = receptionContentCompiled({request, options});
-    par.footer = receptionFooterCompiled({request, options});
-    let htmlContent = generateEmailBodyWithTemplate(par); //toPromisify
+    par.footer = receptionFooterCompiled({options});
 
-    resolve(htmlContent);
+    generateEmailBodyWithTemplate(par)
+      .then(htmlContent => {
+        resolve(htmlContent);
+      });
   });
 }
 
-export function sendMailCompletude(request,options) {
+export function sendMailCompletude(request, options) {
   let title = 'Accusé de réception de votre MDPH';
 
   return generateReceptionMail(request, options, title)
