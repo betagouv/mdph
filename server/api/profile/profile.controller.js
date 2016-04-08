@@ -56,7 +56,7 @@ export function create(req, res) {
 }
 
 export function destroy(req, res) {
-  req.profile.remove().exec(function(err) {
+  req.profile.remove(function(err) {
     if (err) { return handleError(req, res, err); }
 
     return res.sendStatus(204);
