@@ -242,7 +242,7 @@ function computeEnregistrementOptions(request, host) {
     options.enregistree = true;
   }
 
-  options.url = `${host}/mdph/${request.mdph}/espace_perso/mes_profils/${request.profile}/demande/${request.shortId}`;
+  options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
 
   return options;
 }

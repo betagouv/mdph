@@ -32,7 +32,7 @@
         <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="signup({codeDepartement: currentMdph.zipcode})" title="S'inscrire">Inscription</a></li>
         <li role="menuitem" ng-if="!isLoggedIn()" ui-sref-active="active"><a ui-sref="login({codeDepartement: currentMdph.zipcode})" title="Se connecter">Connexion</a></li>
         <li role="menuitem" ng-if="isLoggedIn()">
-          <a ui-sref="espace_perso.mon_compte" title="Gérer mon compte">
+          <a ui-sref="mon_compte" title="Gérer mon compte">
             Mon compte
           </a>
         </li>

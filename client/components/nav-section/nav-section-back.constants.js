@@ -34,12 +34,5 @@ angular.module('impactApp').constant('SectionBackConstants', [
     include: 'dashboard.documents.**',
     fa: 'fa-book',
     label: 'Classement des documents'
-  },
-
-  {
-    sref: 'dashboard.espace_perso.mon_compte',
-    include: 'dashboard.espace_perso.mon_compte.**',
-    fa: 'fa-cogs',
-    label: 'Mon compte',
   }
 ]);
