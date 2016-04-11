@@ -7,10 +7,11 @@
     Retour au profil
   </button>
 
-  <button class="btn" ng-class="{'btn-primary': isLastQuestion}" type="submit" ng-click="check(questionForm)"
+  <button class="btn" type="submit" ng-click="check(questionForm)"
     ng-class="{
-      'btn-success': questionForm.$valid,
-      'btn-invalid': !questionForm.$valid
+      'btn-success': questionForm.$valid && !isLastQuestion,
+      'btn-invalid': !questionForm.$valid,
+      'btn-primary': questionForm.$valid && isLastQuestion
     }">
     {{isLastQuestion ? 'Valider' : 'Question suivante'}}
   </button>

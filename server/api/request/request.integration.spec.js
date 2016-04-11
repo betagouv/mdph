@@ -13,6 +13,7 @@ describe('Request Integration', function() {
   var token;
   var testUser;
   var server;
+  var testMdph;
 
   before(done => {
     startServer((result) => {
@@ -20,6 +21,7 @@ describe('Request Integration', function() {
       api = result.api;
       token = result.token;
       testUser = result.fakeUser;
+      testMdph = result.testMdph;
       done();
     });
   });
@@ -31,7 +33,7 @@ describe('Request Integration', function() {
 
   describe('Create Request', function() {
     after(done => {
-      Request.remove().exec(done);
+      Request.remove().then(() => done());
     });
 
     it('should respond with the created thing', done => {
@@ -72,7 +74,7 @@ describe('Request Integration', function() {
     });
 
     afterEach(done => {
-      Request.remove().exec(done);
+      Request.remove().then(() => done());
     });
 
     it('should get the specified populated request', done => {
@@ -105,7 +107,7 @@ describe('Request Integration', function() {
     });
 
     afterEach(done => {
-      Request.remove().exec(done);
+      Request.remove().then(() => done());
     });
 
     describe('When the user is authenticated', function() {

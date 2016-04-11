@@ -2,7 +2,7 @@
 
 angular.module('impactApp').config(function($stateProvider) {
   $stateProvider.state('profil', {
-    url: '/:profileId',
+    url: '/profil/:profileId',
     parent: 'departement',
     templateUrl: 'app/profil/profil.html',
     controller: 'ProfilCtrl',
@@ -29,9 +29,14 @@ angular.module('impactApp').config(function($stateProvider) {
         return ProfileResource.get({userId: currentUser._id, id: profileId}).$promise;
       },
 
-      requests: function($http, currentUser, profile) {
-        return $http.get('/api/users/' + currentUser._id + '/profiles/' + profile._id + '/requests').then(function(result) {
+      lastCreatedRequest: function($http, currentUser, profile) {
+        return $http.get(`/api/users/${currentUser._id}/profiles/${profile._id}/requests/current`).then(function(result) {
           return result.data;
+        },
+
+        function() {
+          // No request found, no worries
+          return null;
         });
       }
     }

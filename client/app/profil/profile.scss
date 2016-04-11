@@ -2,13 +2,33 @@
   @extend .container;
   padding-top: 30px;
   padding-bottom: 30px;
+
+  .request-box {
+    padding: 10px 25px;
+    border-radius: 2px;
+    border: 1px solid $light-grey;
+    background-color: white;
+
+    h2 {
+      font-size: 1em;
+      font-weight: 200;
+      margin: 0;
+    }
+
+    h3 {
+      margin-top: 5px;
+    }
+  }
+}
+
+.button-container {
+  margin: 45px 0;
+  text-align: center;
 }
 
 section.profile-section {
-  margin-top: 40px;
-
-  h1, h2, h3 {
-    margin: 0;
+  h2 {
+    margin-top: 40px;
   }
 
   .section-subhead {

@@ -39,6 +39,16 @@
   }
 }
 
+.profile-card.profile-card-new {
+  background-color: $flat-ui-blue;
+  min-height: 173px;
+  justify-content: center;
+
+  > .profile-card-header {
+    padding: 0;
+  }
+}
+
 .profile-card > .profile-card-content {
   padding: 16px;
   border-top: 1px solid #eee;

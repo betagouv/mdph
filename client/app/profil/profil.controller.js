@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, User, ProfileService, RequestResource, currentUser, profile, requests, toastr, $anchorScroll) {
+angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $modal, $http, User, ProfileService, RequestResource, currentUser, profile, lastCreatedRequest, toastr, $anchorScroll) {
   $scope.profile = profile;
   $scope.estAdulte = ProfileService.estAdulte(profile);
-  $scope.requests = requests;
+  $scope.lastCreatedRequest = lastCreatedRequest;
 
   var hasSubmitted = false;
 
@@ -23,7 +23,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
     } else {
       var formAnswers = _.pick(profile, 'identites', 'vie_quotidienne', 'vie_scolaire', 'vie_au_travail', 'aidant', 'situations_particulieres');
       new RequestResource({profile: profile._id, user: currentUser._id, formAnswers: formAnswers}).$save(function(saved) {
-        $scope.requests.push(saved);
         $state.go('.demande', {shortId: saved.shortId});
       });
     }
@@ -106,5 +105,27 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, Us
         sref: 'profil.situations_particulieres'
       }
     }
+  };
+
+  $scope.openRequestHistory = function() {
+    $modal.open({
+      templateUrl: 'app/profil/history.modal.html',
+      controllerAs: 'modalHistory',
+      size: 'lg',
+      resolve: {
+        requests: function($http) {
+          return $http.get(`/api/users/${currentUser._id}/profiles/${profile._id}/requests`).then(function(result) {
+            return result.data;
+          });
+        }
+      },
+      controller($modalInstance, $state, requests) {
+        this.requests = requests;
+
+        this.ok = function() {
+          $modalInstance.close();
+        };
+      }
+    });
   };
 });

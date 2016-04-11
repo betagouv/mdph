@@ -2,4 +2,5 @@
   <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
 </div>
 <br>
+<a class="btn btn-lg btn-link" ui-sref="^">Retour</a>
 <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{request.shortId}}/pdf/{{pdfName}}?access_token={{token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>

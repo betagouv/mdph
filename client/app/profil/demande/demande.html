@@ -1,86 +1,83 @@
-<div id="demande" class="demande-wrapper">
-  <div class="list-group-demande no-margin">
-  <a class="list-group-item section" ui-sref="profil.demande({ shortId: request.shortId })">
-      <i class="fa fa-chevron-circle-right"></i>
-      <span class="list-group-item-content">
-        <h2 class="list-group-item-heading">Demande {{request.shortId}}</h2>
-        <p class="list-group-item-text">Status: {{request.status | requestStatus}}<br/>
-        Dernière mise à jour le {{ request.updatedAt | moment }}</p>
-      </span>
-    </a>
+<a class="btn btn-lg btn-link" ui-sref="^">Retour au profil</a>
+
+<div id="demande" class="demande-container">
+  <div ng-if="request.status === 'en_cours'">
+    <h1>Nouvelle demande</h1>
   </div>
 
-  <div id="demande" class="demande-container">
-    <ui-view>
-      <form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
-        <section>
-          <div ui-view="choix_mdph"></div>
-        </section>
+  <div ng-if="request.status !== 'en_cours'">
+    <h1>Détail de la demande</h1>
+    <p>
+      Envoyée le {{ request.submittedAt | moment }} à la MDPH {{ request.mdph | fullMdphName }}
+      <br>
+      Identifiant de la demande : <strong>{{ request.shortId }}</strong>
+    </p>
+  </div>
 
-        <section>
-          <div ui-view="documents"></div>
-        </section>
+  <ui-view>
+    <form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+      <section ng-if="request.status === 'en_cours'">
+        <div ui-view="choix_mdph"></div>
+      </section>
+      <hr>
+      <section>
+        <div ui-view="documents"></div>
+      </section>
 
-        <section>
-          <div ui-view="complementaires"></div>
-          <div ui-view="suggestions"></div>
-        </section>
+      <section>
+        <div ui-view="complementaires"></div>
+        <div ui-view="suggestions"></div>
+      </section>
+      <hr>
+      <section>
+        <div ui-view="prestations"></div>
+      </section>
 
-        <section>
-          <div ui-view="prestations"></div>
-        </section>
+      <div class="text-center" ng-if="isEditable()">
+        <button type="submit" name="submit" alt="Valider" class="btn hero-button btn-success">Envoyer</button>
+      </div>
+    </form>
 
-        <section ng-if="isEditable()">
-          <div ui-view="validation"></div>
-        </section>
+    <ul class="profile-card-row" ng-if="!isEditable()">
+      <li class="profile-card-row-item">
+        <div class="profile-category">
+          <div class="profile-category-icon"><i class="fa fa-file-pdf-o icon"></i></div>
 
-        <div class="text-right" ng-if="isEditable()">
-          <a ui-sref="^" class="btn btn-lg btn-link" role="button">Annuler</a>
-          <button type="submit" name="submit" alt="Valider" class="btn btn-lg btn-success">Envoyer</button>
+          <div class="profile-category-content">
+            <div class="profile-category-header">
+              <span class="profile-category-header-text">
+                <h2 class="profile-category-header-text-title">Récapitulatif</h2>
+              </span>
+            </div>
+            <div class="profile-category-content-text">
+              Un document téléchargable au format PDF récapitulant l'ensemble de cette demande.
+            </div>
+            <div class="profile-category-actions">
+              <a ui-sref=".recapitulatif" class="btn btn-primary">Accéder</a>
+            </div>
+          </div>
         </div>
-      </form>
+      </li>
 
-      <ul class="profile-card-row" ng-if="!isEditable()">
-        <li class="profile-card-row-item">
-          <div class="profile-category">
-            <div class="profile-category-icon"><i class="fa fa-file-pdf-o icon"></i></div>
+      <li class="profile-card-row-item">
+        <div class="profile-category">
+          <div class="profile-category-icon"><i class="fa fa-calendar icon"></i></div>
 
-            <div class="profile-category-content">
-              <div class="profile-category-header">
-                <span class="profile-category-header-text">
-                  <h2 class="profile-category-header-text-title">Récapitulatif</h2>
-                </span>
-              </div>
-              <div class="profile-category-content-text">
-                Un document téléchargable au format PDF récapitulant l'ensemble de cette demande.
-              </div>
-              <div class="profile-category-actions">
-                <a ui-sref=".recapitulatif" class="btn btn-primary">Accéder</a>
-              </div>
+          <div class="profile-category-content">
+            <div class="profile-category-header">
+              <span class="profile-category-header-text">
+                <h2 class="profile-category-header-text-title">Historique</h2>
+              </span>
+            </div>
+            <div class="profile-category-content-text">
+              Pour suivre l'évolution de votre demande au cours de son traitement.
+            </div>
+            <div class="profile-category-actions">
+              <a ui-sref=".vie_de_la_demande" class="btn btn-primary">Accéder</a>
             </div>
           </div>
-        </li>
-
-        <li class="profile-card-row-item">
-          <div class="profile-category">
-            <div class="profile-category-icon"><i class="fa fa-calendar icon"></i></div>
-
-            <div class="profile-category-content">
-              <div class="profile-category-header">
-                <span class="profile-category-header-text">
-                  <h2 class="profile-category-header-text-title">Historique</h2>
-                </span>
-              </div>
-              <div class="profile-category-content-text">
-                Pour suivre l'évolution de votre demande au cours de son traitement.
-              </div>
-              <div class="profile-category-actions">
-                <a ui-sref=".vie_de_la_demande" class="btn btn-primary">Accéder</a>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </ui-view>
-  </div>
+        </div>
+      </li>
+    </ul>
+  </ui-view>
 </div>

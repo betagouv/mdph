@@ -1,5 +1,3 @@
-<h3 class="required">Prestations demandées</h3>
-
 <div ng-if="request.status === 'en_cours'">
   <div ng-repeat="(type, prestations) in types">
     <h4 class="weak-h4">{{type | prestationType}}</h4>
@@ -12,7 +10,7 @@
 
         <div class="detail">
           <label for="{{prestation.id}}">{{prestation.title}}</label>
-          <div class="text-justify">
+          <div class="text-justify" for="{{prestation.id}}">
             {{prestation.description}}
             <br>
             <a target="_blank" href="{{prestation.link}}">En savoir plus</a>
