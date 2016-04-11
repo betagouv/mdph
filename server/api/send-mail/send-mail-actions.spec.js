@@ -8,7 +8,7 @@ require('sinon-as-promised');
 
 const Mailer = require('./send-mail.controller');
 
-describe.only('Send Mail Actions', function() {
+describe('Send Mail Actions', function() {
   describe('sendMailNotificationAgent', function() {
     let sendMailSpy = sinon.spy();
 

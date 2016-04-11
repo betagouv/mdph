@@ -66,9 +66,6 @@ export function sendMailReceivedTransmission(options) {
     .then(generateEmailBodyWithTemplate)
     .then(htmlContent => {
       Mailer.sendMail(options.email, options.title, htmlContent, attachements);
-    })
-    .catch(err => {
-      console.log(err);
     });
 }
 
