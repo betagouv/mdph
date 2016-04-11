@@ -6,7 +6,7 @@ import proxyquire from 'proxyquire';
 
 const Mailer = require('./send-mail.controller');
 
-describe.only('Send Mail Actions', function() {
+describe('Send Mail Actions', function() {
   describe('sendMailNotificationAgent', function() {
     let sendMailSpy = sinon.spy();
 
@@ -35,19 +35,17 @@ describe.only('Send Mail Actions', function() {
 
   });
 
-  describe.skip('sendMailReceivedTransmission', function() {
+  describe.only('sendMailReceivedTransmission', function() {
     let sendMailSpy = sinon.spy();
+
+    const PdfMakerStub = sinon.stub().resolves('lol');
 
     const SendMailAction = proxyquire('./send-mail-actions', {
       './send-mail.controller': {
         sendMail: sendMailSpy
       },
       '../../components/pdf-maker': {
-        pdfMaker(options) {
-          return new Promise(function(resolve) {
-            resolve('toto');
-          });
-        }
+        default: PdfMakerStub
       }
     });
 

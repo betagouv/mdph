@@ -55,20 +55,22 @@ export function sendMailNotificationAgent(request, email) {
 }
 
 export function sendMailReceivedTransmission(options) {
-  pdfMaker(options).then(pdfPath => {
-    if (pdfPath) {
-      let par = {};
-      par.title = 'Votre demande à bien été transmise';
-      par.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
-      let attachements = [{filename: options.request.shortId + '.pdf', path: pdfPath}];
+  console.log(pdfMaker);
+  pdfMaker(options)
+    .then(pdfPath => {
+      console.log('TOTOO');
+      if (pdfPath) {
+        let par = {};
+        par.title = 'Votre demande à bien été transmise';
+        par.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
+        let attachements = [{filename: options.request.shortId + '.pdf', path: pdfPath}];
 
-      generateEmailBodyWithTemplate(par)
-        .then(htmlContent => {
-          console.log('TOOT');
-          Mailer.sendMail(options.email, par.title, htmlContent, attachements);
-        });
-    }
-  });
+        generateEmailBodyWithTemplate(par)
+          .then(htmlContent => {
+            Mailer.sendMail(options.email, par.title, htmlContent, attachements);
+          });
+      }
+    });
 }
 
 export function sendConfirmationMail(emailDest, confirmationUrl) {
