@@ -1,7 +1,7 @@
 'use strict';
 
-var should = require('should');
-var User = require('./user.model');
+import should from 'should';
+import User from './user.model';
 
 var user = new User({
   provider: 'local',

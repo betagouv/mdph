@@ -1,21 +1,21 @@
 'use strict';
 
 import {Router} from 'express';
-import controller from './mdph.controller';
-import * as Auth from '../../auth/auth.service';
+import * as controller from './mdph.controller';
+import {hasRole, isAuthenticated, meetsRequirements} from '../../auth/auth.service';
 import categoriesRouter from '../document-category';
 import compose from 'composable-middleware';
+import Mdph from './mdph.model';
 
-var Mdph = require('./mdph.model');
 var router = new Router();
 
 router.get('/', controller.index);
 router.get('/list', controller.list);
 router.get('/:id', controller.show);
-router.post('/', Auth.hasRole('admin'), controller.create);
+router.post('/', hasRole('admin'), controller.create);
 router.put('/:id', isAuthorized(), controller.update);
 router.patch('/:id', isAuthorized(), controller.update);
-router.delete('/:id', Auth.hasRole('admin'), controller.destroy);
+router.delete('/:id', hasRole('admin'), controller.destroy);
 
 router.get('/:id/requests', isAuthorized(), controller.showRequests);
 router.get('/:id/requests/byStatus', isAuthorized(), controller.showRequestsByStatus);
@@ -42,13 +42,13 @@ router.param('id', function(req, res, next, id) {
 
 function isAuthorized() {
   return compose()
-    .use(Auth.isAuthenticated())
+    .use(isAuthenticated())
     .use(function(req, res, next) {
-      if (Auth.meetsRequirements(req.user.role, 'admin')) {
+      if (meetsRequirements(req.user.role, 'admin')) {
         return next();
       }
 
-      if (Auth.meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph._id.equals(req.mdph._id)) {
+      if (meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph._id.equals(req.mdph._id)) {
         return next();
       }
 

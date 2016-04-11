@@ -7,8 +7,8 @@ var Schema = mongoose.Schema;
 
 var SyntheseSchema = new Schema({
   user:           { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  profile:        { type: Schema.Types.ObjectId, ref: 'Profile'},
-  request:        { type: Schema.Types.ObjectId, ref: 'Request'},
+  profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
+  request:        { type: Schema.Types.ObjectId, ref: 'Request' },
   geva:           Schema.Types.Mixed,
   createdAt:      Date,
   updatedAt:      Date

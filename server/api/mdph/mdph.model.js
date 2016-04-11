@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
 
 var MdphSchema = new Schema({
   zipcode:  { type: String, unique: true },
@@ -17,10 +16,4 @@ var MdphSchema = new Schema({
   email:    { type: String }
 });
 
-try {
-  mongoose.model('Mdph', MdphSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Mdph');
+export default mongoose.model('Mdph', MdphSchema);

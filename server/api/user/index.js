@@ -1,13 +1,13 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./user.controller');
-var config = require('../../config/environment');
-var auth = require('../../auth/auth.service');
-var requestController = require('../request/request.controller');
-var profilesRouter = require('../profile');
+import {Router} from 'express';
+import * as controller from './user.controller';
+import config from '../../config/environment';
+import auth from '../../auth/auth.service';
+import {showUserRequests} from '../request/request.controller';
+import profilesRouter from '../profile';
 
-var router = express.Router();
+var router = new Router();
 
 router.use('/:userId/profiles', profilesRouter);
 
@@ -21,7 +21,7 @@ router.post('/generate_token', controller.generateTokenForPassword);
 
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 
-router.get('/me/requests', auth.isAuthenticated(), requestController.showUserRequests);
+router.get('/me/requests', auth.isAuthenticated(), showUserRequests);
 
 router.get('/:id', auth.isAuthenticated(), controller.show);
 

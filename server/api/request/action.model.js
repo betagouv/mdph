@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
 
 var ActionSchema = new Schema({
   mdph:           { type: String },
@@ -12,10 +11,4 @@ var ActionSchema = new Schema({
   params:         Schema.Types.Mixed
 });
 
-try {
-  mongoose.model('Action', ActionSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Action');
+export default mongoose.model('Action', ActionSchema);

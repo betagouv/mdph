@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
 
 var DocumentCategorySchema = new Schema({
   mdph:             { type: Schema.Types.ObjectId, ref: 'Mdph' },
@@ -13,10 +12,4 @@ var DocumentCategorySchema = new Schema({
   unclassified:     { type: Boolean, default: false }
 });
 
-try {
-  mongoose.model('DocumentCategory', DocumentCategorySchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('DocumentCategory');
+export default mongoose.model('DocumentCategory', DocumentCategorySchema);

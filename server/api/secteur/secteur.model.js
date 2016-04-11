@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose, {Schema} from 'mongoose';
 
 var SecteurSchema = new Schema({
   mdph:           { type: Schema.Types.ObjectId, ref: 'Mdph', required: true },
@@ -15,10 +14,4 @@ var SecteurSchema = new Schema({
   }
 });
 
-try {
-  mongoose.model('Secteur', SecteurSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Secteur');
+export default mongoose.model('Secteur', SecteurSchema);

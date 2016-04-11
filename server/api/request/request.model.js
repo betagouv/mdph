@@ -1,12 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
-var moment = require('moment');
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var shortId = require('shortid');
-var ActionModel = require('./action.model');
-var DateUtils = require('../../components/dateUtils');
+import mongoose, {Schema} from 'mongoose';
+import _ from 'lodash';
+import moment from 'moment';
+import shortId from 'shortid';
+import ActionModel from './action.model';
+import DateUtils from '../../components/dateUtils';
 
 var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
@@ -141,10 +140,4 @@ RequestSchema.methods = {
   }
 };
 
-try {
-  mongoose.model('Request', RequestSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('Request');
+export default mongoose.model('Request', RequestSchema);

@@ -1,11 +1,11 @@
 'use strict';
 
-var should = require('should');
-var Request = require('./request.model');
-var controller = require('./request.controller');
-var User = require('../user/user.model');
+import should from 'should';
+import Request from './request.model';
+import * as controller from './request.controller';
+import User from '../user/user.model';
 
-import startServer from '../../test/utils/server';
+import {startServer} from '../../test/utils/server';
 
 describe('Request Integration', function() {
 

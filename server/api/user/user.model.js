@@ -1,9 +1,8 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var crypto = require('crypto');
-var Request = require('../request/request.model');
+import mongoose, {Schema} from 'mongoose';
+import crypto from 'crypto';
+import Request from '../request/request.model';
 
 var UserSchema = new Schema({
   name: String,
@@ -169,10 +168,4 @@ UserSchema.methods = {
   }
 };
 
-try {
-  mongoose.model('User', UserSchema);
-} catch (_) {
-  // Used only for mocha in watch mode
-}
-
-export default mongoose.model('User');
+export default mongoose.model('User', UserSchema);

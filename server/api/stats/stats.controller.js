@@ -84,7 +84,7 @@ function countCertificats(data, mdphs, done) {
   return data;
 }
 
-exports.mdph = function(req, res) {
+export function mdph(req, res) {
   Mdph.find().sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
@@ -115,9 +115,9 @@ exports.mdph = function(req, res) {
       res.json(data);
     });
   });
-};
+}
 
-exports.site = function(req, res) {
+export function site(req, res) {
   User.find().exec(function(err, users) {
     if (err) { return handleError(req, res, err); }
 
@@ -127,7 +127,7 @@ exports.site = function(req, res) {
 
     res.json(data);
   });
-};
+}
 
 function getOneWeekAgo() {
   var oneWeekAgo = new Date();
@@ -135,7 +135,7 @@ function getOneWeekAgo() {
   return oneWeekAgo;
 }
 
-exports.history = function(req, res) {
+export function history(req, res) {
   Request.find({
     createdAt: {$gte: getOneWeekAgo()}
   }).sort('createdAt').exec(function(err, requests) {
@@ -160,9 +160,9 @@ exports.history = function(req, res) {
 
     res.json(data);
   });
-};
+}
 
-exports.certificats = function(req, res) {
+export function certificats(req, res) {
   Request.find().exec(function(err, requests) {
     if (err) { return handleError(req, res, err); }
 
@@ -183,7 +183,7 @@ exports.certificats = function(req, res) {
 
     res.json(data);
   });
-};
+}
 
 function handleError(req, res, err) {
   req.log.error(err);

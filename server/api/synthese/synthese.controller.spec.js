@@ -1,89 +1,84 @@
 'use strict';
 
-var should = require('should');
+import sinon from 'sinon';
+import should from 'should';
 import mongoose from 'mongoose';
-
 import proxyquire from 'proxyquire';
 
-const SyntheseController = proxyquire('./synthese.controller', {
-  './synthese.model': {
-    create(params) {
-      return {
-        then(func) {
-          params.toObject = function() {
-            return {
-              user: '1234',
-              profile: '1234',
-              request: {
-                _id: params.request
-              }
-            };
-          };
-
-          return func(params);
-        }
-      };
-    }
-  }
-});
+require('sinon-as-promised');
 
 describe('Synthese controller', function() {
   describe('findOrCreateRequestSynthese', function() {
-
-    let fakeId = new mongoose.Types.ObjectId();
-    let anotherFakeId = new mongoose.Types.ObjectId();
+    const fakeRequestId = new mongoose.Types.ObjectId();
+    const Synthese = mongoose.model('Synthese');
+    const SyntheseMock = sinon.mock(Synthese);
 
     describe('when there is a synthese linked to the request', function() {
-      let fakeOptions = {
-        syntheses: [{
-          request: {
-            _id: fakeId
-          }
-        }],
-        req: {
-          user: '1234',
-          profile: '1234',
-          request: {
-            _id: fakeId
-          }
+      const fakeRequest = {
+        request: {
+          _id: fakeRequestId
         }
       };
-      let result;
+
+      const SyntheseController = require('./synthese.controller');
+
+      const fakeOptions = {
+        syntheses: [{
+          request: {
+            _id: fakeRequestId
+          }
+        }],
+        req: fakeRequest
+      };
 
       it('should select the synthese', function(done) {
-        result = SyntheseController.findOrCreateRequestSynthese(fakeOptions);
-        should.exist(result);
-        result[0].current.should.be.exactly(true);
-        result.should.have.length(1);
-        done();
+        SyntheseController.findOrCreateRequestSynthese(fakeOptions).then(result => {
+          should.exist(result);
+          result[0].current.should.be.exactly(true);
+          result.should.have.length(1);
+          done();
+        });
       });
     });
 
     describe('when there is no synthese linked to the request', function() {
 
-      let fakeOptions = {
-        syntheses: [{
-          request: {
-            _id: fakeId
-          }
-        }],
-        req: {
-          user: '1234',
-          profile: '1234',
-          request: {
-            _id: anotherFakeId
-          }
+      const anotherFakeRequestId = new mongoose.Types.ObjectId();
+
+      const fakeRequest = {
+        request: {
+          _id: anotherFakeRequestId
+        },
+        toObject() {
+          return this;
         }
       };
-      let result;
+
+      SyntheseMock.create = sinon.stub().resolves(fakeRequest);
+
+      const SyntheseController = proxyquire('./synthese.controller', {
+        './synthese.model': {
+          default: SyntheseMock
+        }
+      });
 
       it('should create the synthese and select it', function(done) {
-        result = SyntheseController.findOrCreateRequestSynthese(fakeOptions);
-        should.exist(result);
-        result[1].current.should.be.exactly(true);
-        result[1].request._id.should.be.exactly(anotherFakeId);
-        result.should.have.length(2);
-        done();
+        const fakeOptions = {
+          syntheses: [{
+            request: {
+              _id: fakeRequestId
+            }
+          }],
+          req: fakeRequest
+        };
+
+        SyntheseController.findOrCreateRequestSynthese(fakeOptions).then(result => {
+          should.exist(result);
+          result[1].current.should.be.exactly(true);
+          result[1].request._id.should.be.exactly(anotherFakeRequestId);
+          result.should.have.length(2);
+          done();
+        });
       });
     });
   });

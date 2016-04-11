@@ -1,10 +1,10 @@
 'use strict';
 
-var express = require('express');
-var passport = require('passport');
-var auth = require('../auth.service');
+import {Router} from 'express';
+import passport from 'passport';
+import auth from '../auth.service';
 
-var router = express.Router();
+var router = new Router();
 
 router.post('/', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {

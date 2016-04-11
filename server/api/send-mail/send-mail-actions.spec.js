@@ -4,9 +4,11 @@ var should = require('should');
 var sinon = require('sinon');
 import proxyquire from 'proxyquire';
 
+require('sinon-as-promised');
+
 const Mailer = require('./send-mail.controller');
 
-describe('Send Mail Actions', function() {
+describe.only('Send Mail Actions', function() {
   describe('sendMailNotificationAgent', function() {
     let sendMailSpy = sinon.spy();
 
@@ -22,23 +24,28 @@ describe('Send Mail Actions', function() {
     let fakeEmail = 'toto@toto.com';
 
     it('should send the correct email to the correct adress', function(done) {
-      var promise = SendMailAction.sendMailNotificationAgent(fakeRequest, fakeEmail);
-      promise.then(function() {
-        sendMailSpy.calledOnce.should.equal(true);
-        sendMailSpy.args[0][0].should.equal(fakeEmail);
-        sendMailSpy.args[0][1].should.equal('Vous avez reçu une nouvelle demande');
-        sendMailSpy.args[0][2].should.containEql('Référence de la demande: 1234');
-        done();
-      });
+      SendMailAction
+        .sendMailNotificationAgent(fakeRequest, fakeEmail)
+        .then(function() {
+          sendMailSpy.calledOnce.should.equal(true);
+          sendMailSpy.args[0][0].should.equal(fakeEmail);
+          sendMailSpy.args[0][1].should.equal('Vous avez reçu une nouvelle demande');
+          sendMailSpy.args[0][2].should.containEql('Référence de la demande: 1234');
+          done();
+        })
+        .catch(function(e) {
+          done(e);
+        });
 
     });
 
   });
 
-  describe.only('sendMailReceivedTransmission', function() {
+  describe('sendMailReceivedTransmission', function() {
     let sendMailSpy = sinon.spy();
 
-    const PdfMakerStub = sinon.stub().resolves('lol');
+    let fakePath = 'toto/lol/';
+    const PdfMakerStub = sinon.stub().resolves(fakePath);
 
     const SendMailAction = proxyquire('./send-mail-actions', {
       './send-mail.controller': {
@@ -53,18 +60,23 @@ describe('Send Mail Actions', function() {
       request: {
         shortId: '1234'
       },
-      fakeEmail: 'toto@toto.com'
+      email: 'toto@toto.com'
     };
 
     it('should send the correct email to the correct adress', function(done) {
-      var promise = SendMailAction.sendMailReceivedTransmission(fakeOptions);
-      promise.then(function() {
-        sendMailSpy.calledOnce.should.equal(true);
-        sendMailSpy.args[0][0].should.equal(fakeOptions.fakeEmail);
-        sendMailSpy.args[0][1].should.equal('Votre demande à bien été transmise');
-        sendMailSpy.args[0][2].should.containEql('Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.');
-        done();
-      });
+      SendMailAction.sendMailReceivedTransmission(fakeOptions)
+        .then(function() {
+          sendMailSpy.calledOnce.should.equal(true);
+          sendMailSpy.args[0][0].should.equal(fakeOptions.email);
+          sendMailSpy.args[0][1].should.equal('Votre demande a bien été transmise');
+          sendMailSpy.args[0][2].should.containEql('Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.');
+          sendMailSpy.args[0][3][0].filename.should.containEql(fakeOptions.request.shortId);
+          sendMailSpy.args[0][3][0].path.should.equal(fakePath);
+          done();
+        })
+        .catch(function(e) {
+          done(e);
+        });
 
     });
 
@@ -83,14 +95,17 @@ describe('Send Mail Actions', function() {
     let fakeEmail = 'toto@toto.com';
 
     it('should send the correct email to the correct adress', function(done) {
-      var promise = SendMailAction.sendConfirmationMail(fakeEmail, fakeURL);
-      promise.then(function() {
-        sendMailSpy.calledOnce.should.equal(true);
-        sendMailSpy.args[0][0].should.equal(fakeEmail);
-        sendMailSpy.args[0][1].should.equal('Veuillez confirmer votre adresse e-mail');
-        sendMailSpy.args[0][2].should.containEql(fakeURL);
-        done();
-      });
+      SendMailAction.sendConfirmationMail(fakeEmail, fakeURL)
+        .then(function() {
+          sendMailSpy.calledOnce.should.equal(true);
+          sendMailSpy.args[0][0].should.equal(fakeEmail);
+          sendMailSpy.args[0][1].should.equal('Veuillez confirmer votre adresse e-mail');
+          sendMailSpy.args[0][2].should.containEql(fakeURL);
+          done();
+        })
+        .catch(function(e) {
+          done(e);
+        });
 
     });
 
@@ -118,15 +133,18 @@ describe('Send Mail Actions', function() {
     };
 
     it('should send the correct email to the correct adress', function(done) {
-      var promise = SendMailAction.sendMailCompletude(fakeRequest, fakeOptions);
-      promise.then(function() {
-        sendMailSpy.calledOnce.should.equal(true);
-        sendMailSpy.args[0][0].should.equal(fakeRequest.user.email);
-        sendMailSpy.args[0][1].should.equal('Accusé de réception de votre MDPH');
-        sendMailSpy.args[0][2].should.containEql(fakeRequest.mdph);
-        sendMailSpy.args[0][2].should.containEql(fakeOptions.url + '</p>');
-        done();
-      });
+      SendMailAction.sendMailCompletude(fakeRequest, fakeOptions)
+          .then(function() {
+          sendMailSpy.calledOnce.should.equal(true);
+          sendMailSpy.args[0][0].should.equal(fakeRequest.user.email);
+          sendMailSpy.args[0][1].should.equal('Accusé de réception de votre MDPH');
+          sendMailSpy.args[0][2].should.containEql(fakeRequest.mdph);
+          sendMailSpy.args[0][2].should.containEql(fakeOptions.url);
+          done();
+        })
+        .catch(function(e) {
+          done(e);
+        });
 
     });
 

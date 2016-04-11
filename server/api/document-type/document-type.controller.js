@@ -1,11 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
-var path = require('path');
-var DocumentTypes = require('./documentTypes');
-
-var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.complementaires);
-var allDocumentTypesById = _.indexBy(allDocumentTypes, 'id');
+import _ from 'lodash';
+import path from 'path';
+import DocumentTypes from './documentTypes.json';
 
 function addToDocumentGroups(documentGroups, document, documentType) {
   if (documentGroups[document.type]) {
@@ -18,50 +15,49 @@ function addToDocumentGroups(documentGroups, document, documentType) {
   }
 }
 
-export default {
-  allDocumentTypes: allDocumentTypes,
-  allDocumentTypesById: allDocumentTypesById,
+export var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.complementaires);
 
-  populateAndSortDocumentTypes: function(request) {
-    if (request.documents && request.documents.length >= 0) {
-      var groupedDocuments = _.reduce(request.documents, function(result, currentDocument) {
-        var documentType = allDocumentTypesById[currentDocument.type];
-        if (!documentType) {
-          documentType = allDocumentTypesById.autre;
-        }
+export var allDocumentTypesById = _.indexBy(allDocumentTypes, 'id');
 
-        if (documentType.mandatory) {
-          addToDocumentGroups(result.obligatoires, currentDocument, documentType);
-        } else {
-          addToDocumentGroups(result.complementaires, currentDocument, documentType);
-        }
+export function populateAndSortDocumentTypes(request) {
+  if (request.documents && request.documents.length >= 0) {
+    var groupedDocuments = _.reduce(request.documents, function(result, currentDocument) {
+      var documentType = allDocumentTypesById[currentDocument.type];
+      if (!documentType) {
+        documentType = allDocumentTypesById.autre;
+      }
 
-        return result;
-      }, {obligatoires: {}, complementaires: {}});
+      if (documentType.mandatory) {
+        addToDocumentGroups(result.obligatoires, currentDocument, documentType);
+      } else {
+        addToDocumentGroups(result.complementaires, currentDocument, documentType);
+      }
 
-      request.documents = groupedDocuments;
-    }
+      return result;
+    }, {obligatoires: {}, complementaires: {}});
 
-    return request;
-  },
-
-  show: function(req, res) {
-    const documentType = _.find(allDocumentTypes, {id: req.params.id});
-
-    if (!documentType) {
-      return res.sendStatus(404);
-    } else {
-      return res.json(documentType);
-    }
-  },
-
-  index: function(req, res) {
-    const type = req.query.type;
-
-    if (type) {
-      return res.json(DocumentTypes[type]);
-    } else {
-      return res.json(allDocumentTypes);
-    }
+    request.documents = groupedDocuments;
   }
-};
+
+  return request;
+}
+
+export function show(req, res) {
+  const documentType = _.find(allDocumentTypes, {id: req.params.id});
+
+  if (!documentType) {
+    return res.sendStatus(404);
+  } else {
+    return res.json(documentType);
+  }
+}
+
+export function index(req, res) {
+  const type = req.query.type;
+
+  if (type) {
+    return res.json(DocumentTypes[type]);
+  } else {
+    return res.json(allDocumentTypes);
+  }
+}

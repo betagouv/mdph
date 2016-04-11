@@ -1,10 +1,10 @@
 'use strict';
 
-const _ = require('lodash');
-const Mailer = require('./send-mail.controller');
-const Handlebars = require('handlebars');
-const fs = require('fs');
-const path = require('path');
+import _ from 'lodash';
+import Handlebars from 'handlebars';
+import fs from 'fs';
+import path from 'path';
+import * as Mailer from './send-mail.controller';
 
 const EmailTemplate = require('email-templates').EmailTemplate;
 
@@ -44,55 +44,53 @@ function generateEmailBodyWithTemplate(options) {
 }
 
 export function sendMailNotificationAgent(request, email) {
-  let par = {};
-  par.title = 'Vous avez reçu une nouvelle demande';
-  par.content = '<p>Référence de la demande: ' + request.shortId + '</p>';
+  let options = {};
+  options.title = 'Vous avez reçu une nouvelle demande';
+  options.content = '<p>Référence de la demande: ' + request.shortId + '</p>';
 
-  return generateEmailBodyWithTemplate(par)
+  return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
-      Mailer.sendMail(email, par.title, htmlContent);
+      Mailer.sendMail(email, options.title, htmlContent);
     });
 }
 
 export function sendMailReceivedTransmission(options) {
-  console.log(pdfMaker);
-  pdfMaker(options)
+  let attachements;
+  return pdfMaker(options)
     .then(pdfPath => {
-      console.log('TOTOO');
-      if (pdfPath) {
-        let par = {};
-        par.title = 'Votre demande à bien été transmise';
-        par.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
-        let attachements = [{filename: options.request.shortId + '.pdf', path: pdfPath}];
-
-        generateEmailBodyWithTemplate(par)
-          .then(htmlContent => {
-            Mailer.sendMail(options.email, par.title, htmlContent, attachements);
-          });
-      }
+      options.title = 'Votre demande a bien été transmise';
+      options.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
+      attachements = [{filename: options.request.shortId + '.pdf', path: pdfPath}];
+      return options;
+    })
+    .then(generateEmailBodyWithTemplate)
+    .then(htmlContent => {
+      Mailer.sendMail(options.email, options.title, htmlContent, attachements);
+    })
+    .catch(err => {
+      console.log(err);
     });
 }
 
 export function sendConfirmationMail(emailDest, confirmationUrl) {
-  let par = {};
-  par.title = 'Veuillez confirmer votre adresse e-mail';
-  par.content = confirmationContentCompiled({confirmationUrl: confirmationUrl});
-  par.footer = confirmationFooterCompiled({confirmationUrl: confirmationUrl});
+  let options = {};
+  options.title = 'Veuillez confirmer votre adresse e-mail';
+  options.content = confirmationContentCompiled({confirmationUrl: confirmationUrl});
+  options.footer = confirmationFooterCompiled({confirmationUrl: confirmationUrl});
 
-  return generateEmailBodyWithTemplate(par)
+  return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
-      Mailer.sendMail(emailDest, par.title, htmlContent);
+      Mailer.sendMail(emailDest, options.title, htmlContent);
     });
 }
 
 export function generateReceptionMail(request, options, title) {
   return new Promise(function(resolve) {
-    let par = {};
-    par.title = title;
-    par.content = receptionContentCompiled({request, options});
-    par.footer = receptionFooterCompiled({options});
+    options.title = title;
+    options.content = receptionContentCompiled({request, options});
+    options.footer = receptionFooterCompiled({options});
 
-    generateEmailBodyWithTemplate(par)
+    generateEmailBodyWithTemplate(options)
       .then(htmlContent => {
         resolve(htmlContent);
       });

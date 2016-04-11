@@ -1,9 +1,6 @@
 module.exports = {
   options: {
-    sourceMap: true,
-    optional: [
-      'es7.classProperties'
-    ]
+    sourceMap: true
   },
   client: {
     files: [{
@@ -15,7 +12,10 @@ module.exports = {
   },
   server: {
     options: {
-      optional: ['runtime']
+      plugins: [
+        'transform-class-properties',
+        'transform-runtime'
+      ]
     },
     files: [{
       expand: true,

@@ -1,10 +1,10 @@
 'use strict';
 
-var should = require('should');
-var controller = require('./mdph.controller');
-var startServer = require('../../test/utils/server');
-var User = require('../user/user.model');
-var Mdph = require('../mdph/mdph.model');
+import should from 'should';
+import * as controller from './mdph.controller';
+import {startServer} from '../../test/utils/server';
+import User from '../user/user.model';
+import Mdph from '../mdph/mdph.model';
 
 describe('Mdph Integration', function() {
   var api;

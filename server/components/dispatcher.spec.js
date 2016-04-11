@@ -1,15 +1,15 @@
 'use strict';
 
-var should = require('should');
-var async = require('async');
+import should from 'should';
+import async from 'async';
 
-var Dispatcher = require('./dispatcher');
+import Dispatcher from './dispatcher';
 
-var DispatchRule = require('../api/dispatch-rule/dispatch-rule.model');
-var Secteur = require('../api/secteur/secteur.model');
-var Mdph = require('../api/mdph/mdph.model');
-var Request = require('../api/request/request.model');
-var User = require('../api/user/user.model');
+import DispatchRule from '../api/dispatch-rule/dispatch-rule.model';
+import Secteur from '../api/secteur/secteur.model';
+import Mdph from '../api/mdph/mdph.model';
+import Request from '../api/request/request.model';
+import User from '../api/user/user.model';
 
 var nord = new Mdph({
   name: 'Nord',

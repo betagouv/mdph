@@ -1,8 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
-var questions = require('./questions.json');
+import _ from 'lodash';
+import questions from './questions_v9.json';
 
-exports.index = function(req, res) {
+export function index(req, res) {
   return res.json(questions);
-};
+}

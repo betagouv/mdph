@@ -4,7 +4,7 @@ import should from 'should';
 import Request from '../../api/request/request.model';
 import User from '../../api/user/user.model';
 import DocumentCategory from '../../api/document-category/document-category.model';
-import startServer from '../../test/utils/server';
+import {startServer} from '../../test/utils/server';
 import proxyquire from 'proxyquire';
 import {Readable} from 'stream';
 

@@ -1,8 +1,9 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./sections.controller');
-var router = express.Router();
+import {Router} from 'express';
+import * as controller from './sections.controller';
+
+var router = new Router();
 
 router.get('/', controller.index);
 
