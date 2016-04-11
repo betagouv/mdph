@@ -445,7 +445,7 @@ export function saveFilePartenaire(req, res) {
     }
   ], function(err, result) {
     if (err) {
-      return handleError(req, res, err);
+      return handleError(req, res);
     }
 
     return res.json(_document);

@@ -20,39 +20,10 @@
   <div class="profile-card profile-card-vertical">
     <div class="profile-card-header">
       <span class="profile-card-avatar">
-        <span class="profile-card-icon"><i class="fa fa-users"></i></span>
-      </span>
-      <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title">Mes profils</h1>
-      </div>
-    </div>
-    <div class="profile-card-content">
-      <div ng-if="!user.isMultiProfiles">
-        <p>
-          Vous gérez actuellement un unique profil bénéficiaire. <br>
-          Si vous le souhaitez, vous pouvez activer la gestion de plusieurs profils pour effectuer des demandes au nom de plusieurs bénéficiaires.
-        </p>
-
-        <div class="text-right">
-          <button type="button" class="btn btn-primary" ng-click="activateMultiProfiles()">
-            Activer la gestion de plusieurs profil <br>
-            <em>Cette action est définitive</em>
-          </button>
-        </div>
-      </div>
-      <div ng-if="user.isMultiProfiles">
-        <div ui-view="mes_profils"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="profile-card profile-card-vertical">
-    <div class="profile-card-header">
-      <span class="profile-card-avatar">
         <span class="profile-card-icon"><i class="fa fa-cogs"></i></span>
       </span>
       <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title">Mes informations personnelles</h1>
+        <h1 class="profile-card-header-text-title">Modifier mon mot de passe</h1>
       </div>
     </div>
     <div class="profile-card-content">
@@ -95,10 +66,38 @@
         </div>
 
         <p class="help-block"> {{ passwordMessage }} </p>
-        <div class="text-right">
-          <button class="btn btn-primary" type="submit" name="submit">Valider</button>
-        </div>
+        <button class="btn btn-primary" type="submit" name="submit">Valider</button>
       </form>
+    </div>
+  </div>
+
+  <div class="profile-card profile-card-vertical">
+    <div class="profile-card-header">
+      <span class="profile-card-avatar">
+        <span class="profile-card-icon"><i class="fa fa-users"></i></span>
+      </span>
+      <div class="profile-card-header-text">
+        <h1 class="profile-card-header-text-title">Mes profils</h1>
+      </div>
+    </div>
+    <div class="profile-card-content">
+      <div ng-if="!user.isMultiProfiles">
+        <p>
+          Vous gérez actuellement un unique profil bénéficiaire. <br>
+          Si vous le souhaitez, vous pouvez activer la gestion de plusieurs profils pour effectuer des demandes au nom de plusieurs bénéficiaires.
+        </p>
+
+        <button type="button" class="btn btn-primary" ng-click="activateMultiProfiles()">
+          Activer
+        </button>
+      </div>
+      <div ng-if="user.isMultiProfiles">
+        <div ui-view="mes_profils"></div>
+
+        <button type="button" class="btn btn-primary" ng-click="desactivateMultiProfiles()">
+          Désactiver la gestion de plusieurs profil
+        </button>
+      </div>
     </div>
   </div>
 </div>

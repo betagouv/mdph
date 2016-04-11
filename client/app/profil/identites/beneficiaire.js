@@ -22,7 +22,7 @@ angular.module('impactApp')
             return profile.identites.beneficiaire;
           }
         },
-        controller: function($scope, $state, profile, currentUser, identite, $window, AdressService) {
+        controller: function($scope, $state, ProfileService, profile, currentUser, identite, $window, AdressService) {
           $scope.identite = identite;
 
           $window.navigator.geolocation.getCurrentPosition(function(position) {
@@ -46,7 +46,11 @@ angular.module('impactApp')
               identite.updatedAt = Date.now();
               profile.identites.beneficiaire = identite;
               profile.$save({userId: currentUser._id}, function() {
-                $state.go('^', {}, {reload: true});
+                if (ProfileService.estAdulte(profile)) {
+                  $state.go('^.vie_quotidienne');
+                } else {
+                  $state.go('^.autorite');
+                }
               });
             }
           };
