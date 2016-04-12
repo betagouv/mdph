@@ -21,8 +21,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
         $scope.options[sectionId].error = true;
       });
     } else {
-      var formAnswers = _.pick(profile, 'identites', 'vie_quotidienne', 'vie_scolaire', 'vie_au_travail', 'aidant', 'situations_particulieres');
-      new RequestResource({profile: profile._id, user: currentUser._id, formAnswers: formAnswers}).$save(function(saved) {
+      new RequestResource({profile: profile._id, user: currentUser._id}).$save(function(saved) {
         $state.go('.demande', {shortId: saved.shortId});
       });
     }

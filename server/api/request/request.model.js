@@ -60,8 +60,8 @@ RequestSchema.pre('save', function(next) {
 });
 
 RequestSchema.methods = {
-  saveActionLog(action, user, log, params, done) {
-    ActionModel.create({
+  saveActionLog(action, user, log, params) {
+    return ActionModel.create({
       action: action.id,
       request: this._id,
       user: user._id,
