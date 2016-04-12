@@ -4,4 +4,4 @@ machine:
 dependencies:
   pre:
     - npm install -g bower grunt-cli
-    - gem install sass
+    - gem install sass -v 3.4.19
