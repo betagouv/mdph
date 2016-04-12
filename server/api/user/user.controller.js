@@ -195,11 +195,7 @@ exports.generateTokenForPassword = function(req, res, next) {
     user.save(function(err) {
       if (err) return validationError(res, err);
       let confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/nouveau_mot_de_passe/' + user._id + '/' + user.newPasswordToken;
-      Mailer.sendMail(
-        user.email,
-        'Nouveau mot de passe',
-        'Veuillez cliquer ici pour continuer votre changement de mot de passe :<br>' + confirmationUrl
-      );
+      MailActions.sendMailRenewPassword(user.email, confirmationUrl);
       res.sendStatus(200);
     });
   });
@@ -249,11 +245,7 @@ exports.resendConfirmation = function(req, res) {
     }
 
     var confirmationUrl = 'http://' + req.headers.host + '/mdph/' + req.body.mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-    Mailer.sendMail(
-      user.email,
-      'Validation de votre adresse',
-      'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
-    );
+    Mailer.sendConfirmationMail(user.email, confirmationUrl);
     res.sendStatus(200);
   });
 };

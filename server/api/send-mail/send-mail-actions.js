@@ -98,3 +98,14 @@ export function sendMailCompletude(request, options) {
       return html;
     });
 }
+
+export function sendMailRenewPassword(emailDest, confirmationUrl) {
+  let options = {};
+  options.title = 'Nouveau mot de passe';
+  options.content = 'Veuillez cliquer ici pour continuer votre changement de mot de passe :<br>' + confirmationUrl;
+
+  return generateEmailBodyWithTemplate(options)
+    .then(htmlContent => {
+      Mailer.sendMail(emailDest, options.title, htmlContent);
+    });
+}
