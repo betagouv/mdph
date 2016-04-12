@@ -10,8 +10,7 @@ module.exports = function(grunt) {
     ngtemplates: 'grunt-angular-templates',
     protractor: 'grunt-protractor-runner',
     injector: 'grunt-injector',
-    sass: 'grunt-sass',
-    istanbul_check_coverage: 'grunt-mocha-istanbul'
+    sass: 'grunt-sass'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -99,8 +98,7 @@ module.exports = function(grunt) {
         'injector',
         'postcss',
         'wiredep:test',
-        'karma:coverage',
-        'mocha_istanbul'
+        'karma:coverage'
       ]);
     } else if (target === 'watch') {
       return grunt.task.run([
