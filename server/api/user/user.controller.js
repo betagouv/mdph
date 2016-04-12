@@ -6,7 +6,6 @@ import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
-import * as Mailer from '../send-mail/send-mail.controller';
 import * as MailActions from '../send-mail/send-mail-actions';
 
 var validationError = function(res, err) {
@@ -28,19 +27,15 @@ exports.index = function(req, res) {
 
 function saveUserAndSendConfirmation(req, res) {
   return function(user, mdph) {
-    user.save(function(err, user) {
+    user.newMailToken = shortid.generate();
+    user.save(function(err) {
       if (err) return validationError(res, err);
-
-      user.newMailToken = shortid.generate();
-      user.save(function(err) {
-        if (err) return validationError(res, err);
-        const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-        MailActions.sendConfirmationMail(user.email, confirmationUrl);
-      });
-
-      const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-      return res.json({ token: token, id: user._id });
+      const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+      MailActions.sendConfirmationMail(user.email, confirmationUrl);
     });
+
+    const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    return res.json({ token: token, id: user._id });
   };
 }
 
@@ -50,7 +45,6 @@ function saveUserAndSendConfirmation(req, res) {
 exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
   newUser.role = 'user';
-
   newUser.provider = 'local';
   return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
 };
@@ -245,7 +239,7 @@ exports.resendConfirmation = function(req, res) {
     }
 
     var confirmationUrl = 'http://' + req.headers.host + '/mdph/' + req.body.mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-    Mailer.sendConfirmationMail(user.email, confirmationUrl);
+    MailActions.sendConfirmationMail(user.email, confirmationUrl);
     res.sendStatus(200);
   });
 };
