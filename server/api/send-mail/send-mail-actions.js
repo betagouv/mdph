@@ -24,7 +24,6 @@ const confirmationFooterCompiled = compileContent('confirm-footer.html');
 const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
 
 function generateEmailBodyWithTemplate(options) {
-  return new Promise(function(resolve) {
     let {title, content, footer} = options;
     let template = new EmailTemplate(genericTemplate);
 
@@ -35,12 +34,11 @@ function generateEmailBodyWithTemplate(options) {
       locals.footer = new Handlebars.SafeString(footer);
     }
 
-    template
-      .render(locals)
-      .then(function(result) {
-        resolve(result.html);
-      });
-  });
+  return template
+    .render(locals)
+    .then(function(result) {
+      return result.html;
+    });
 }
 
 export function sendMailNotificationAgent(request, email) {
