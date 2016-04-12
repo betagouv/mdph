@@ -10,6 +10,7 @@ import moment from 'moment';
 import fs from 'fs';
 import shortid from 'shortid';
 import async from 'async';
+import Promise from 'bluebird';
 import * as Auth from '../../auth/auth.service';
 import config from '../../config/environment';
 import Recapitulatif from '../../components/recapitulatif';
@@ -18,6 +19,7 @@ import pdfMaker from '../../components/pdf-maker';
 
 import Prestation from '../prestation/prestation.controller';
 import Request from './request.model';
+import Profile from '../profile/profile.model';
 import User from '../user/user.model';
 import Partenaire from '../partenaire/partenaire.model';
 import Mdph from '../mdph/mdph.model';
@@ -36,12 +38,10 @@ function handleError(req, res) {
 
     if (err) {
       req.log.error(err);
-      res.status(statusCode).send(err);
+      return res.status(statusCode).send(err);
     } else {
-      res.status(statusCode).send('Server error');
+      return res.status(statusCode).send('Server error');
     }
-
-    return null;
   };
 }
 
@@ -85,54 +85,6 @@ function respondWithResult(res, statusCode) {
   return function(request) {
     res.status(statusCode).json(request);
     return null;
-  };
-}
-
-function sendMailReceivedTransmission(req) {
-  return function(request) {
-    let options = {
-      request: request,
-      host: req.headers.host,
-      user: req.user,
-      email: req.user.email
-    };
-
-    MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
-    return request;
-  };
-}
-
-function saveActionLog(action, req) {
-  return function(request) {
-    if (req.query) {
-      switch (req.query.id) {
-        case actions.SUBMIT.id:
-          let options = {
-            request: request,
-            host: req.headers.host,
-            user: req.user,
-            email: req.user.email,
-            role: req.user.role
-          };
-
-          MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
-
-          Dispatcher.dispatch(request)
-            .then(secteur => { // Service disatches to agents
-              request.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-              request.set('secteur', secteur).save();
-            })
-            .catch(err => {
-              req.log.err(err);
-            });
-
-          break;
-        default:
-          console.log('Action not found');
-      }
-    }
-
-    return request;
   };
 }
 
@@ -185,34 +137,78 @@ export function showUserRequests(req, res) {
   .catch(handleError(req, res));
 }
 
+function fillRequestOnSubmit(request, submitForm) {
+  return function(profile) {
+    let formAnswers = _.pick(
+      profile,
+      'identites',
+      'vie_quotidienne',
+      'vie_scolaire',
+      'vie_au_travail',
+      'aidant',
+      'situations_particulieres'
+    );
+
+    return request
+      .set('status', 'emise')
+      .set('formAnswers', formAnswers)
+      .set('mdph', submitForm.mdph)
+      .set('prestations', submitForm.prestations)
+      .set('renouvellements', submitForm.renouvellements)
+      .set('estRenouvellement', submitForm.estRenouvellement)
+      .set('old_mdph', submitForm.old_mdph)
+      .set('numeroDossier', submitForm.numeroDossier)
+      .set('submittedAt', Date.now());
+  };
+}
+
+function saveRequestOnSubmit(req) {
+  return function(request) {
+    return request
+      .save()
+      .then(saved => {
+        saved.saveActionLog(actions.SUBMIT, req.user, req.log);
+        return saved;
+      });
+  };
+}
+
 function resolveSubmit(req) {
-  return req.request
-    .set('status', 'emise')
-    .set('mdph', req.body.mdph)
-    .set('prestations', req.body.prestations)
-    .set('renouvellements', req.body.renouvellements)
-    .set('estRenouvellement', req.body.estRenouvellement)
-    .set('old_mdph', req.body.old_mdph)
-    .set('numeroDossier', req.body.numeroDossier)
-    .set('submittedAt', Date.now())
-    .save()
-    .then(request => {
-      request.saveActionLog(actions.SUBMIT, req.user, req.log);
-      return request;
-    })
+  return Profile
+    .findById(req.request.profile)
+    .exec()
+    .then(fillRequestOnSubmit(req.request, req.body))
+    .then(saveRequestOnSubmit(req))
     .then(sendMailReceivedTransmission(req))
     .then(dispatchSecteur(req));
+}
+
+function sendMailReceivedTransmission(req) {
+  return function(request) {
+    let options = {
+      request: request,
+      host: req.headers.host,
+      user: req.user,
+      email: req.user.email
+    };
+
+    MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
+    return request;
+  };
 }
 
 function dispatchSecteur(req) {
   return function(request) {
     return Dispatcher.dispatch(request)
       .then(secteur => { // Service disatches to agents
-        request.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-        return request.set('secteur', secteur).save();
+        return request.set('secteur', secteur).save().then(saved => {
+          saved.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
+          return saved;
+        });
       })
       .catch(err => {
         // Ignore no sector found
+        return request;
       });
   };
 }
@@ -264,24 +260,19 @@ function resolveEnregistrement(req) {
 }
 
 function dispatchAction(req) {
-  return new Promise(function(resolve, reject) {
-    switch (req.body.id) {
-      case actions.ENREGISTREMENT.id:
-        return resolveEnregistrement(req).then(resolve);
-      case actions.SUBMIT.id:
-        return resolveSubmit(req).then(resolve);
-      default:
-        req.log.error('Action not found');
-        return reject(new Error('Action not found'));
-    }
-
-    return resolve(req.request);
-  });
+  switch (req.body.id) {
+    case actions.ENREGISTREMENT.id:
+      return resolveEnregistrement(req);
+    case actions.SUBMIT.id:
+      return resolveSubmit(req);
+    default:
+      return Promise.reject('Action not found');
+  }
 }
 
 export function saveAction(req, res, next) {
   dispatchAction(req)
-    .then(respondWithResult(res, 201))
+    .then(populateAndRespond(res))
     .catch(handleError(req, res));
 }
 
@@ -303,8 +294,15 @@ export function generateReceptionMail(req, res) {
  * Create request
  */
 export function create(req, res) {
-  Request.create(req.body)
-    .then(saveActionLog(actions.CREATION, req))
+  Request
+    .create({
+      profile: req.body.profile,
+      user: req.body.user
+    })
+    .then(request => {
+      request.saveActionLog(actions.CREATION, req.user, req.log);
+      return request;
+    })
     .then(respondWithResult(res, 201))
     .catch(handleError(req, res));
 }
