@@ -80,16 +80,11 @@ export function sendConfirmationMail(emailDest, confirmationUrl) {
 }
 
 export function generateReceptionMail(request, options, title) {
-  return new Promise(function(resolve) {
-    options.title = title;
-    options.content = receptionContentCompiled({request, options});
-    options.footer = receptionFooterCompiled({options});
+  options.title = title;
+  options.content = receptionContentCompiled({request, options});
+  options.footer = receptionFooterCompiled({options});
 
-    generateEmailBodyWithTemplate(options)
-      .then(htmlContent => {
-        resolve(htmlContent);
-      });
-  });
+  return generateEmailBodyWithTemplate(options);
 }
 
 export function sendMailCompletude(request, options) {
