@@ -22,13 +22,11 @@ angular.module('impactApp')
             return profile.identites.beneficiaire;
           }
         },
-        controller: function($scope, $state, profile, currentUser, identite, $window, AdressService) {
+        controller: function($scope, $state, profile, currentUser, identite, $window, AdressService, currentMdph) {
           $scope.identite = identite;
 
-          $window.navigator.geolocation.getCurrentPosition(function(position) {
-            $scope.lat = position.coords.latitude;
-            $scope.long = position.coords.longitude;
-          });
+          $scope.lat = currentMdph.coordinates.coordy;
+          $scope.long = currentMdph.coordinates.coordx;
 
           $scope.getAdress = AdressService.getAdress;
 
