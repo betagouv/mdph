@@ -150,7 +150,7 @@ describe('Send Mail Actions', function() {
 
   });
 
-  describe.only('sendMailRenewPassword', function() {
+  describe('sendMailRenewPassword', function() {
     let sendMailSpy = sinon.spy();
 
     const SendMailAction = proxyquire('./send-mail-actions', {
