@@ -14,25 +14,8 @@
       <ui-view>
 
         <div ng-if="lastCreatedRequest" class="request-box">
-          <h2>État de votre dernière demande</h2>
-          <div ng-switch="lastCreatedRequest.status">
-            <div ng-switch-when="en_cours">
-              <h3>Demande incomplète, non transmise</h3>
-              <a class="btn btn-success" ui-sref=".demande({shortId: lastCreatedRequest.shortId})">Compléter</a>
-            </div>
-            <div ng-switch-when="emise">
-              <h3>Demande en cours de traitement</h3>
-              <a class="btn btn-success" ui-sref=".demande({shortId: lastCreatedRequest.shortId})">Voir le détail</a>
-            </div>
-            <div ng-switch-when="en_attente_usager">
-              <h3>Demande refusée, informations manquantes</h3>
-              <a class="btn btn-success" ui-sref=".demande({shortId: lastCreatedRequest.shortId})">Corriger/ajouter des documents</a>
-            </div>
-            <div ng-switch-when="enregistree">
-              <h3>Demande enregistrée</h3>
-              <a class="btn btn-success" ui-sref=".demande({shortId: lastCreatedRequest.shortId})">Voir le détail</a>
-            </div>
-          </div>
+          <h2>État de votre demande</h2>
+          <request-progress request="lastCreatedRequest"></request-progress>
         </div>
         <div class="text-right">
           <button ng-click="openRequestHistory()" class="btn btn-link">Historique de vos demandes passées</button>

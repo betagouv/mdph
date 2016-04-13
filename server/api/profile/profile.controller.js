@@ -74,7 +74,7 @@ export function indexRequests(req, res) {
 export function showLastCreatedRequest(req, res) {
   Request
     .findOne({ profile: req.profile._id }, {}, { sort: { createdAt: -1 } })
-    .select('shortId user _id profile status mdph')
+    .select('shortId user _id profile status mdph submittedAt createdAt')
     .exec()
     .then(request => {
       if (!request) {
