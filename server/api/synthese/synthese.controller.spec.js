@@ -14,13 +14,13 @@ describe('Synthese controller', function() {
     const SyntheseMock = sinon.mock(Synthese);
 
     describe('when there is a synthese linked to the request', function() {
+      const SyntheseController = require('./synthese.controller');
+
       const fakeRequest = {
         request: {
           _id: fakeRequestId
         }
       };
-
-      const SyntheseController = require('./synthese.controller');
 
       const fakeOptions = {
         syntheses: [{

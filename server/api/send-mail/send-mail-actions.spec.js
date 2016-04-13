@@ -91,8 +91,8 @@ describe('Send Mail Actions', function() {
       }
     });
 
-    let fakeURL = 'www.toto.com';
     let fakeEmail = 'toto@toto.com';
+    let fakeURL = 'www.toto.com';
 
     it('should send the correct email to the correct adress', function(done) {
       SendMailAction.sendConfirmationMail(fakeEmail, fakeURL)
@@ -140,6 +140,36 @@ describe('Send Mail Actions', function() {
           sendMailSpy.args[0][1].should.equal('Accusé de réception de votre MDPH');
           sendMailSpy.args[0][2].should.containEql(fakeRequest.mdph);
           sendMailSpy.args[0][2].should.containEql(fakeOptions.url);
+          done();
+        })
+        .catch(function(e) {
+          done(e);
+        });
+
+    });
+
+  });
+
+  describe('sendMailRenewPassword', function() {
+    let sendMailSpy = sinon.spy();
+
+    const SendMailAction = proxyquire('./send-mail-actions', {
+      './send-mail.controller': {
+        sendMail: sendMailSpy
+      }
+    });
+
+    let fakeEmail = 'toto@toto.com';
+    let fakeURL = 'www.toto.com';
+
+    it('should send the correct email to the correct adress', function(done) {
+      SendMailAction
+        .sendMailRenewPassword(fakeEmail, fakeURL)
+        .then(function() {
+          sendMailSpy.calledOnce.should.equal(true);
+          sendMailSpy.args[0][0].should.equal(fakeEmail);
+          sendMailSpy.args[0][1].should.equal('Nouveau mot de passe');
+          sendMailSpy.args[0][2].should.containEql(fakeURL);
           done();
         })
         .catch(function(e) {

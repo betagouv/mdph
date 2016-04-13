@@ -6,7 +6,6 @@ import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
-import * as Mailer from '../send-mail/send-mail.controller';
 import * as MailActions from '../send-mail/send-mail-actions';
 
 var validationError = function(res, err) {
@@ -28,19 +27,15 @@ exports.index = function(req, res) {
 
 function saveUserAndSendConfirmation(req, res) {
   return function(user, mdph) {
-    user.save(function(err, user) {
+    user.newMailToken = shortid.generate();
+    user.save(function(err) {
       if (err) return validationError(res, err);
-
-      user.newMailToken = shortid.generate();
-      user.save(function(err) {
-        if (err) return validationError(res, err);
-        const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-        MailActions.sendConfirmationMail(user.email, confirmationUrl);
-      });
-
-      const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-      return res.json({ token: token, id: user._id });
+      const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+      MailActions.sendConfirmationMail(user.email, confirmationUrl);
     });
+
+    const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+    return res.json({ token: token, id: user._id });
   };
 }
 
@@ -50,7 +45,6 @@ function saveUserAndSendConfirmation(req, res) {
 exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
   newUser.role = 'user';
-
   newUser.provider = 'local';
   return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
 };
@@ -60,7 +54,7 @@ exports.create = function(req, res) {
  */
 exports.createAgent = function(req, res) {
   var newUser = new User(req.body);
-
+  newUser.role = 'agent';
   newUser.provider = 'local';
   return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
 };
@@ -195,11 +189,7 @@ exports.generateTokenForPassword = function(req, res, next) {
     user.save(function(err) {
       if (err) return validationError(res, err);
       let confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/nouveau_mot_de_passe/' + user._id + '/' + user.newPasswordToken;
-      Mailer.sendMail(
-        user.email,
-        'Nouveau mot de passe',
-        'Veuillez cliquer ici pour continuer votre changement de mot de passe :<br>' + confirmationUrl
-      );
+      MailActions.sendMailRenewPassword(user.email, confirmationUrl);
       res.sendStatus(200);
     });
   });
@@ -249,11 +239,7 @@ exports.resendConfirmation = function(req, res) {
     }
 
     var confirmationUrl = 'http://' + req.headers.host + '/mdph/' + req.body.mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-    Mailer.sendMail(
-      user.email,
-      'Validation de votre adresse',
-      'Veuillez cliquer ici pour confirmer votre adresse :<br>' + confirmationUrl
-    );
+    MailActions.sendConfirmationMail(user.email, confirmationUrl);
     res.sendStatus(200);
   });
 };
