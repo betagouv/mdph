@@ -92,6 +92,7 @@ module.exports = function(grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
+        'env:test',
         'injector:sass',
         'concurrent:test',
         'injector',
