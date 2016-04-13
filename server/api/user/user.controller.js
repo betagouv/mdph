@@ -54,7 +54,7 @@ exports.create = function(req, res) {
  */
 exports.createAgent = function(req, res) {
   var newUser = new User(req.body);
-
+  newUser.role = 'agent';
   newUser.provider = 'local';
   return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
 };

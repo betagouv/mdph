@@ -5,7 +5,7 @@ import should from 'should';
 import mongoose from 'mongoose';
 import proxyquire from 'proxyquire';
 
-describe('user.controller', function() {
+describe.only('user.controller', function() {
   describe('create', function() {
     let fakeReq = {
       body: {
@@ -28,17 +28,15 @@ describe('user.controller', function() {
 
     let sendMailSpy = sinon.spy();
 
-    let fakeToken = '1234';
-    let jwtMock = function() {
-      return fakeToken;
-    };
-
-    let fakeId = '5678';
+    let fakeId = '1234';
+    let fakeToken = '5678';
+    let saveSpy = sinon.spy();
     const UserController = proxyquire('./user.controller', {
       './user.model': {
         default: function(par) {
           par._id = fakeId;
           par.save = function(cb) {
+            saveSpy(this);
             cb();
           };
 
@@ -49,20 +47,53 @@ describe('user.controller', function() {
         sendConfirmationMail: sendMailSpy
       },
       jsonwebtoken: {
-        sign: jwtMock
+        sign: function() {
+          return fakeToken;
+        }
       }
     });
 
-    it('should return the result with an access token and the id of the created user', function(done) {
-      let result = UserController.create(fakeReq, fakeRes);
-      should.exist(result);
-      result.body.id.should.equal(fakeId);
-      result.body.token.should.equal(fakeToken);
+    beforeEach(function() {
+      saveSpy.reset();
+      sendMailSpy.reset();
+    });
 
-      sendMailSpy.calledOnce.should.equal(true);
-      sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
-      sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
-      done();
+    describe('create an user', function() {
+      it('should create an user and return an access token and the id of the created user', function(done) {
+        let result = UserController.create(fakeReq, fakeRes);
+        should.exist(result);
+        result.body.id.should.equal(fakeId);
+        result.body.token.should.equal(fakeToken);
+
+        saveSpy.calledOnce.should.equal(true);
+        saveSpy.args[0][0]._id.should.equal(fakeId);
+        saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
+        saveSpy.args[0][0].role.should.equal('user');
+
+        sendMailSpy.calledOnce.should.equal(true);
+        sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
+        sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
+        done();
+      });
+    });
+
+    describe('createAgent', function() {
+      it('should create an agent and return an access token and the id of the created agent', function(done) {
+        let result = UserController.createAgent(fakeReq, fakeRes);
+        should.exist(result);
+        result.body.id.should.equal(fakeId);
+        result.body.token.should.equal(fakeToken);
+
+        saveSpy.calledOnce.should.equal(true);
+        saveSpy.args[0][0]._id.should.equal(fakeId);
+        saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
+        saveSpy.args[0][0].role.should.equal('agent');
+
+        sendMailSpy.calledOnce.should.equal(true);
+        sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
+        sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
+        done();
+      });
     });
   });
 });
