@@ -5,7 +5,7 @@ import should from 'should';
 import mongoose from 'mongoose';
 import proxyquire from 'proxyquire';
 
-describe.only('user.controller', function() {
+describe('user.controller', function() {
   describe('create', function() {
     let fakeReq = {
       body: {
