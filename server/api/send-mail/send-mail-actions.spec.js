@@ -179,4 +179,40 @@ describe('Send Mail Actions', function() {
     });
 
   });
+
+  describe('sendMailNewDocument', function() {
+    let sendMailSpy = sinon.spy();
+
+    const SendMailAction = proxyquire('./send-mail-actions', {
+      './send-mail.controller': {
+        sendMail: sendMailSpy
+      }
+    });
+
+    const fakeEmail = 'toto@toto.com';
+    const fakeRequest = {
+      shortId: '1234',
+      mdph: '11',
+      user: {
+        email: 'toto@toto.com'
+      }
+    };
+
+    it('should send the correct email to the correct adress', function(done) {
+      SendMailAction
+        .sendMailNewDocument(fakeEmail, fakeRequest)
+        .then(function() {
+          sendMailSpy.calledOnce.should.equal(true);
+          sendMailSpy.args[0][0].should.equal(fakeEmail);
+          sendMailSpy.args[0][1].should.containEql(fakeRequest.shortId);
+          sendMailSpy.args[0][2].should.containEql(fakeRequest.shortId);
+          done();
+        })
+        .catch(function(e) {
+          done(e);
+        });
+
+    });
+
+  });
 });

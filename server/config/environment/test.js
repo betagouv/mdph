@@ -1,5 +1,7 @@
 'use strict';
 
+var path = require('path');
+
 // Test specific configuration
 // ===========================
 module.exports = {
@@ -10,5 +12,8 @@ module.exports = {
 
   port: 3001,
 
-  uploadDir: '.tmp'
+  uploadDir: '.tmp',
+
+  root: path.normalize(__dirname + '/../../test/')
+
 };

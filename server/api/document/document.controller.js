@@ -91,7 +91,11 @@ function handleDeleteFile(req) {
     if (file.path) {
       fs.exists(file.path, function(exists) {
         if (exists) {
-          fs.unlink(file.path);
+          console.log('PATH', file.path);
+          fs.unlink(file.path, function(err) {
+            if (err) return console.log('ERRORRRR!!!', err);
+            console.log(file.path, 'SHOULD BE REMOVED');
+          });
         }
       });
     }
@@ -132,19 +136,26 @@ export function saveFile(req, res, next) {
     var request = req.request;
     request.documents.push(document);
 
+    if (request.status === 'enregistree') {
+      MailActions.sendMailNewDocument('toto@toto.com', request);
+    }
+
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
 
       request.saveActionLog(Actions.DOCUMENT_ADDED, req.user, req.log, {document: document});
 
       var savedDocument = _.find(saved.documents, {filename: document.filename});
-      return res.json(savedDocument);
+      return res
+        .status(201)
+        .json(savedDocument);
     });
   });
 }
 
 export function downloadFile(req, res) {
   var filePath = path.join(config.root + '/server/uploads/', req.params.fileName);
+
   var stat = fs.statSync(filePath);
 
   res.writeHead(200, {
