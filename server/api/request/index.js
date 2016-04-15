@@ -35,9 +35,6 @@ router.get('/:shortId/synthese.pdf', isAuthorized(), controller.getSynthesePdf);
 
 router.use('/:shortId/document', isAuthorized(), documentsRouter);
 
-// TODO FIX THIS
-router.post('/partenaire', upload.single('file'), controller.saveFilePartenaire);
-
 router.param('shortId', function(req, res, next, shortId) {
   Request
     .findOne({shortId: shortId})

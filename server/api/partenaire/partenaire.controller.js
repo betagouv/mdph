@@ -1,11 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
-var Partenaire = require('./partenaire.model');
-var Request = require('../request/request.model');
-var Mdph = require('../mdph/mdph.model');
-var path = require('path');
-var shortid = require('shortid');
+import _ from 'lodash';
+import Partenaire from './partenaire.model';
+import Request from '../request/request.model';
+import Mdph from '../mdph/mdph.model';
+import path from 'path';
+import shortid from 'shortid';
 
 export function show(req, res) {
   Partenaire.findById(req.params.id, function(err, partenaire) {
