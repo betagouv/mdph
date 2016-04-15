@@ -9,6 +9,7 @@ module.exports = {
         '*.{ico,png,txt}',
         '.htaccess',
         'bower_components/**/*',
+        'assets/documents/**/*',
         'assets/images/{,*/}*.{webp}',
         'assets/fonts/**/*',
         'index.html'
