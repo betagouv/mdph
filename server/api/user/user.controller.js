@@ -30,12 +30,13 @@ function saveUserAndSendConfirmation(req, res) {
     user.newMailToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);
-      const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
-      MailActions.sendConfirmationMail(user.email, confirmationUrl);
-    });
 
-    const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-    return res.json({ token: token, id: user._id });
+      const confirmationUrl = `http://${req.headers.host}/mdph/${mdph}/confirmer_mail/${user._id}/${user.newMailToken}`;
+      MailActions.sendConfirmationMail(user.email, confirmationUrl);
+
+      const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+      return res.json({ token: token, id: user._id });
+    });
   };
 }
 
