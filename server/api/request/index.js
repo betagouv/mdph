@@ -33,6 +33,7 @@ router.get('/:shortId/pdf/:fileName', isAuthorized(), controller.getPdf);
 router.use('/:shortId/syntheses', synthesesRouter);
 router.get('/:shortId/synthese.pdf', isAuthorized(), controller.getSynthesePdf);
 
+router.post('/:shortId/document/partenaire', upload.single('file'), controller.saveFilePartenaire);
 router.use('/:shortId/document', isAuthorized(), documentsRouter);
 
 router.param('shortId', function(req, res, next, shortId) {

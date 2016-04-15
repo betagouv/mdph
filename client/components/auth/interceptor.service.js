@@ -18,12 +18,11 @@
       // Intercept 401s and redirect you to login
       responseError(response) {
         if (response.status === 401) {
-          var state = (state || (state = $injector.get('$state')));
           var path = $window.location.pathname.split('/');
           if (path[0] === 'mdph') {
-            state.go('login', {codeDepartement: path[1]});
+            (state || (state = $injector.get('$state'))).go('login', {codeDepartement: path[1]});
           } else {
-            state.go('main');
+            (state || (state = $injector.get('$state'))).go('main');
           }
 
           // remove any stale tokens
