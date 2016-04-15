@@ -274,8 +274,6 @@ function dispatchAction(req) {
         req.log.error('Action not found');
         return reject(new Error('Action not found'));
     }
-
-    return resolve(req.request);
   });
 }
 
