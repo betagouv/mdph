@@ -136,10 +136,6 @@ export function saveFile(req, res, next) {
     var request = req.request;
     request.documents.push(document);
 
-    if (request.status === 'enregistree') {
-      MailActions.sendMailNewDocument('toto@toto.com', request);
-    }
-
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
 

@@ -109,14 +109,3 @@ export function sendMailRenewPassword(emailDest, confirmationUrl) {
       Mailer.sendMail(emailDest, options.title, htmlContent);
     });
 }
-
-export function sendMailNewDocument(emailDest, request) {
-  let options = {};
-  options.title = 'Nouveau document ajouté dans la demande ' + request.shortId;
-  options.content = 'Un nouveau document a été ajouté dans la demande ' + request.shortId + ' après sa transmission';
-
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(emailDest, options.title, htmlContent);
-    });
-}
