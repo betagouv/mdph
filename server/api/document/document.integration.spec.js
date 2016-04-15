@@ -43,6 +43,8 @@ describe('Document Integration', function() {
   });
 
   describe('Create a single Document', function() {
+    let savedDocument;
+
     beforeEach(function(done) {
       var newRequest = new Request({
         shortId: '1234',
@@ -54,6 +56,10 @@ describe('Document Integration', function() {
       newRequest.save((err, res) => {
         done();
       });
+    });
+
+    afterEach(function(done) {
+      fs.unlink(savedDocument.path, done);
     });
 
     it('should respond 201 and return the created document', function(done) {
@@ -72,8 +78,9 @@ describe('Document Integration', function() {
             return done(err);
           }
 
-          should.exist(res.body._id);
-          res.body.originalname.should.be.exactly('test.jpg');
+          savedDocument = res.body;
+          should.exist(savedDocument._id);
+          savedDocument.originalname.should.be.exactly('test.jpg');
           done();
         });
     });
@@ -117,11 +124,7 @@ describe('Document Integration', function() {
     });
 
     afterEach(function(done) {
-      api
-        .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
-        .end((err, res) => {
-          done();
-        });
+      fs.unlink(savedDocument.path, done);
     });
 
     it('should respond 200 and return the document', function(done) {

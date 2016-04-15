@@ -80,36 +80,36 @@ function respondWithResult(res, statusCode) {
   };
 }
 
-function handleDeleteFile(req) {
+function removeFileFromFS(path) {
   return new Promise(function(resolve, reject) {
-    const file = req.request.documents.id(req.params.fileId);
-
-    if (!file) {
-      throw(304);
+    if (!path) {
+      return resolve();
     }
 
-    if (file.path) {
-      fs.exists(file.path, function(exists) {
-        if (exists) {
-          console.log('PATH', file.path);
-          fs.unlink(file.path, function(err) {
-            if (err) return console.log('ERRORRRR!!!', err);
-            console.log(file.path, 'SHOULD BE REMOVED');
-          });
-        }
-      });
-    }
-
-    file.remove(function(err, updated) {
-      if (err) return reject(err);
-
-      req.request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
-      req.request.save(function(err, updated) {
-        if (err) return reject(err);
-        resolve(updated);
-      });
+    fs.exists(path, function(exists) {
+      if (exists) {
+        fs.unlink(path, resolve);
+      } else {
+        resolve();
+      }
     });
   });
+}
+
+function handleDeleteFile(req) {
+  const file = req.request.documents.id(req.params.fileId);
+
+  if (!file) {
+    throw(304);
+  }
+
+  return removeFileFromFS(file.path)
+    .then(() => {
+      return file.remove(updated => {
+        req.request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
+        return req.request.save();
+      });
+    });
 }
 
 function processDocument(file, fileData, done) {
