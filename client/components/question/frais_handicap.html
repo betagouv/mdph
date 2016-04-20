@@ -3,7 +3,7 @@
   <em>{{question.placeholder}}</em>
 
   <table aria-label="Liste des frais liés au handicap" class="table my-table-striped">
-    <thead>
+    <thead ng-if="model.listeFrais.length > 0">
       <th id="frais">Frais engagés</th>
       <th>
         <span id="montant1">Montant total</span>/

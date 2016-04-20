@@ -1,7 +1,7 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <table class="table my-table-striped">
-    <thead>
+    <thead ng-if="model.listeDiplomes.length > 0">
       <th id="diplome">Diplômes</th>
       <th id="annee">Année d'obtention</th>
       <th id="domaine">Domaine</th>
@@ -24,11 +24,9 @@
             ng-model="diplome.annee"
             input-date
             date-autocomplete
-            placeholder="JJ/MM/AAAA"
             aria-labelledby="annee"
             aria-describedby="help-annee">
           <div ng-messages="questionForm.annee.$error" ng-if="questionForm.showError">
-            <div class="help-block" id="help-annee" ng-message='inputDate'><i class="fa fa-warning"></i> Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</div>
             <div class="help-block" id="help-annee" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
           </div>
         </td>
