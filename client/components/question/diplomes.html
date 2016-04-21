@@ -22,8 +22,7 @@
             id="annee"
             required
             ng-model="diplome.annee"
-            input-date
-            date-autocomplete
+            ui-mask="9999"
             aria-labelledby="annee"
             aria-describedby="help-annee">
           <div ng-messages="questionForm.annee.$error" ng-if="questionForm.showError">
