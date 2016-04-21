@@ -1,11 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
-var async = require('async');
-var Mdph = require('../mdph/mdph.model');
-var User = require('../user/user.model');
-var Request = require('../request/request.model');
-var moment = require('moment');
+import _ from 'lodash';
+import async from 'async';
+import Mdph from '../mdph/mdph.model';
+import User from '../user/user.model';
+import Request from '../request/request.model';
+import moment from 'moment';
 
 function countAgents(data, mdphs, done) {
   async.eachSeries(mdphs, function(mdph, callback) {
