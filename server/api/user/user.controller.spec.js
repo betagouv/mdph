@@ -23,6 +23,11 @@ describe('user.controller', function() {
       json: function(par) {
         this.body = par;
         return this;
+      },
+
+      status: function(par) {
+        this.statusCode = par;
+        return this;
       }
     };
 
@@ -64,6 +69,9 @@ describe('user.controller', function() {
           .create(fakeReq, fakeRes)
           .then(result => {
             should.exist(result);
+
+            result.statusCode.should.equal(201);
+
             result.body.id.should.equal(fakeId);
             result.body.token.should.equal(fakeToken);
 
@@ -86,6 +94,9 @@ describe('user.controller', function() {
           .createAgent(fakeReq, fakeRes)
           .then(result => {
             should.exist(result);
+
+            result.statusCode.should.equal(201);
+
             result.body.id.should.equal(fakeId);
             result.body.token.should.equal(fakeToken);
 

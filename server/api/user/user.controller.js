@@ -37,6 +37,7 @@ function saveUserAndSendConfirmation(req, res, user, mdph) {
       MailActions.sendConfirmationMail(user.email, confirmationUrl);
 
       const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+      res.status(201);
       return resolve(res.json({ token: token, id: user._id }));
     });
   });
@@ -108,7 +109,10 @@ exports.changePassword = function(req, res) {
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 
-  User.findById(userId, function(err, user) {
+  User
+    .findById(userId)
+    .select('+hashedPassword +salt')
+    .exec(function(err, user) {
     if (user.authenticate(oldPass)) {
       user.password = newPass;
       user.save(function(err) {
@@ -226,7 +230,6 @@ exports.confirmMail = function(req, res) {
     if (!req.params.secret) return res.sendStatus(400);
     if (req.params.secret !== user.newMailToken) return res.sendStatus(400);
     if (user.unconfirmed === false) return res.sendStatus(304);
-
     user.unconfirmed = false;
     user.save(function(err) {
       if (err) return validationError(res, err);
