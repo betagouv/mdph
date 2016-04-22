@@ -60,39 +60,45 @@ describe('user.controller', function() {
 
     describe('create an user', function() {
       it('should create an user and return an access token and the id of the created user', function(done) {
-        let result = UserController.create(fakeReq, fakeRes);
-        should.exist(result);
-        result.body.id.should.equal(fakeId);
-        result.body.token.should.equal(fakeToken);
+        UserController
+          .create(fakeReq, fakeRes)
+          .then(result => {
+            should.exist(result);
+            result.body.id.should.equal(fakeId);
+            result.body.token.should.equal(fakeToken);
 
-        saveSpy.calledOnce.should.equal(true);
-        saveSpy.args[0][0]._id.should.equal(fakeId);
-        saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
-        saveSpy.args[0][0].role.should.equal('user');
+            saveSpy.calledOnce.should.equal(true);
+            saveSpy.args[0][0]._id.should.equal(fakeId);
+            saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
+            saveSpy.args[0][0].role.should.equal('user');
 
-        sendMailSpy.calledOnce.should.equal(true);
-        sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
-        sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
-        done();
+            sendMailSpy.calledOnce.should.equal(true);
+            sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
+            sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
+            done();
+          });
       });
     });
 
     describe('createAgent', function() {
       it('should create an agent and return an access token and the id of the created agent', function(done) {
-        let result = UserController.createAgent(fakeReq, fakeRes);
-        should.exist(result);
-        result.body.id.should.equal(fakeId);
-        result.body.token.should.equal(fakeToken);
+        UserController
+          .createAgent(fakeReq, fakeRes)
+          .then(result => {
+            should.exist(result);
+            result.body.id.should.equal(fakeId);
+            result.body.token.should.equal(fakeToken);
 
-        saveSpy.calledOnce.should.equal(true);
-        saveSpy.args[0][0]._id.should.equal(fakeId);
-        saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
-        saveSpy.args[0][0].role.should.equal('agent');
+            saveSpy.calledOnce.should.equal(true);
+            saveSpy.args[0][0]._id.should.equal(fakeId);
+            saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
+            saveSpy.args[0][0].role.should.equal('agent');
 
-        sendMailSpy.calledOnce.should.equal(true);
-        sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
-        sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
-        done();
+            sendMailSpy.calledOnce.should.equal(true);
+            sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
+            sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
+            done();
+          });
       });
     });
   });

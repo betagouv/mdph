@@ -8,6 +8,8 @@ import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
 import * as MailActions from '../send-mail/send-mail-actions';
 
+import Promise from 'bluebird';
+
 var validationError = function(res, err) {
   return res.status(422).json(err);
 };
@@ -25,19 +27,19 @@ exports.index = function(req, res) {
   });
 };
 
-function saveUserAndSendConfirmation(req, res) {
-  return function(user, mdph) {
+function saveUserAndSendConfirmation(req, res, user, mdph) {
+  return new Promise(function(resolve, reject) {
     user.newMailToken = shortid.generate();
     user.save(function(err) {
-      if (err) return validationError(res, err);
+      if (err) return reject(validationError(res, err));
 
       const confirmationUrl = `http://${req.headers.host}/mdph/${mdph}/confirmer_mail/${user._id}/${user.newMailToken}`;
       MailActions.sendConfirmationMail(user.email, confirmationUrl);
 
       const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-      return res.json({ token: token, id: user._id });
+      return resolve(res.json({ token: token, id: user._id }));
     });
-  };
+  });
 }
 
 /**
@@ -47,7 +49,10 @@ exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
   newUser.role = 'user';
   newUser.provider = 'local';
-  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
+  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
+    .then(result => {
+      return result;
+    });
 };
 
 /**
@@ -57,7 +62,10 @@ exports.createAgent = function(req, res) {
   var newUser = new User(req.body);
   newUser.role = 'agent';
   newUser.provider = 'local';
-  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
+  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
+    .then(result => {
+      return result;
+    });
 };
 
 /**
