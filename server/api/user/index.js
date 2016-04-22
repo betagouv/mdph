@@ -12,10 +12,12 @@ var router = new Router();
 router.use('/:userId/profiles', profilesRouter);
 
 router.get('/', auth.hasRole('adminMdph'), controller.index);
-router.get('/:id', auth.isAuthenticated(), controller.show);
 router.get('/me', auth.isAuthenticated(), controller.me);
-router.get('/search', auth.isAuthenticated(), controller.search);
+
 router.get('/me/requests', auth.isAuthenticated(), showUserRequests);
+
+router.get('/search', auth.isAuthenticated(), controller.search);
+router.get('/:id', auth.isAuthenticated(), controller.show);
 
 router.post('/', controller.create);
 router.post('/agent', auth.hasRole('adminMdph'), controller.createAgent);
