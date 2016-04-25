@@ -8,11 +8,6 @@ angular.module('impactApp')
       });
     };
   })
-  .filter('fullCapitalize', function() {
-    return function(input) {
-      return input.toUpperCase();
-    };
-  })
   .filter('capitalizeString', function() {
     return function(input) {
       return input.substring(0, 1).toUpperCase() + input.substring(1);
