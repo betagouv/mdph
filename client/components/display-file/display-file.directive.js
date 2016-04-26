@@ -10,7 +10,7 @@ angular.module('impactApp')
         user: '='
       },
       templateUrl: 'components/display-file/display-file.html',
-      controller: function($scope, $http, $cookies) {
+      controller: function($scope, $http, $cookies, $modal) {
         $scope.token = $cookies.get('token');
 
         if ($scope.file.partenaire) {
@@ -40,8 +40,24 @@ angular.module('impactApp')
         };
 
         $scope.delete = function() {
-          $http.delete('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id).success(function() {
-            $state.go($state.current, {}, {reload: true});
+          $modal.open({
+            templateUrl: 'components/display-file/modal.html',
+            controllerAs: 'modalDisplayFile',
+            size: 'md',
+            controller($modalInstance, $state) {
+              this.ok = function() {
+                $http
+                  .delete('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id)
+                  .success(function() {
+                    $modalInstance.close();
+                    $state.go($state.current, {}, {reload: true});
+                  });
+              };
+
+              this.cancel = function() {
+                $modalInstance.dismiss('cancel');
+              };
+            }
           });
         };
       }
