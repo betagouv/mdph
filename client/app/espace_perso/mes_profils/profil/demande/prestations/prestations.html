@@ -12,11 +12,9 @@
 
         <div class="detail">
           <label for="{{prestation.id}}">{{prestation.title}}</label>
+
           <div class="text-justify">
-            {{prestation.description}}
-            <br>
-            <a target="_blank" href="{{prestation.link}}">En savoir plus</a>
-            <br>
+            <a target="_blank" href="{{prestation.link}}">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
             <div>
               <input ng-disabled="!prestation.choice" type="checkbox" ng-model="prestation.renouvellement" name="{{prestation.id}}-renouvellement" id="{{prestation.id}}-renouvellement" />
               <label for="{{prestation.id}}-renouvellement">Je perçois déjà cette prestation</label>

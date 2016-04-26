@@ -14,6 +14,14 @@ ul.list-prestations {
 
     > div.detail > .text-justify {
       font-size: 13px;
+
+      label {
+        font-weight: normal;
+      }
+    }
+
+    a {
+      font-size: 13px;
     }
   }
 }
