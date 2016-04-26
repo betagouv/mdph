@@ -30,6 +30,18 @@ angular.module('impactApp')
 
           $scope.getAdress = AdressService.getAdress;
 
+          if ($scope.identite.email === currentUser.email) {
+            $scope.cbEmail = true;
+          }
+
+          $scope.toggleCheckBoxEmail = function() {
+            if ($scope.cbEmail) {
+              $scope.identite.email = currentUser.email;
+            } else {
+              $scope.identite.email = '';
+            }
+          };
+
           $scope.fillAdressOnSelect = function(result) {
             $scope.identite.nomVoie = result.properties.name;
             $scope.identite.code_postal = result.properties.postcode;
