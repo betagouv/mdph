@@ -26,10 +26,18 @@ angular.module('impactApp')
         controller: function($scope, $state, ProfileService, profile, currentUser, identite, $window, AdressService, currentMdph) {
           $scope.identite = identite;
 
+          if (!identite.email) {
+            identite.email = currentUser.email;
+          }
+
           $scope.lat = currentMdph.coordinates.coordy;
           $scope.long = currentMdph.coordinates.coordx;
 
           $scope.getAdress = AdressService.getAdress;
+
+          if ($scope.identite.email === currentUser.email) {
+            $scope.cbEmail = true;
+          }
 
           $scope.fillAdressOnSelect = function(result) {
             $scope.identite.nomVoie = result.properties.name;

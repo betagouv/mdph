@@ -155,7 +155,7 @@
   <section class="identite-section">
     <div class="form-group required" ng-class="{'has-error': infoForm.email.$invalid && infoForm.$submitted}">
       <label for="email" class="control-label">Email</label>
-      <input id="email" type="email" name="email" class="form-control" ng-model="identite.email" required>
+      <input id="email" type="email" name="email" class="form-control" ng-model="identite.email" ng-init="currentUser.email" required>
       <div ng-messages="infoForm.email.$error" ng-if="infoForm.$submitted">
         <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
