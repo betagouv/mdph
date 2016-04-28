@@ -25,6 +25,10 @@ angular.module('impactApp')
         controller: function($scope, $state, profile, currentUser, identite, $window, AdressService, currentMdph) {
           $scope.identite = identite;
 
+          if (!identite.email) {
+            identite.email = currentUser.email;
+          }
+
           $scope.lat = currentMdph.coordinates.coordy;
           $scope.long = currentMdph.coordinates.coordx;
 
@@ -33,14 +37,6 @@ angular.module('impactApp')
           if ($scope.identite.email === currentUser.email) {
             $scope.cbEmail = true;
           }
-
-          $scope.toggleCheckBoxEmail = function() {
-            if ($scope.cbEmail) {
-              $scope.identite.email = currentUser.email;
-            } else {
-              $scope.identite.email = '';
-            }
-          };
 
           $scope.fillAdressOnSelect = function(result) {
             $scope.identite.nomVoie = result.properties.name;
