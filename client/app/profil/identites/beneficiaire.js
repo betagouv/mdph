@@ -22,6 +22,7 @@ angular.module('impactApp')
             return profile.identites.beneficiaire;
           }
         },
+
         controller: function($scope, $state, ProfileService, profile, currentUser, identite, $window, AdressService, currentMdph) {
           $scope.identite = identite;
 
