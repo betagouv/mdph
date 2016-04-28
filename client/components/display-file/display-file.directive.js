@@ -42,9 +42,11 @@ angular.module('impactApp')
         $scope.delete = function() {
           $modal.open({
             templateUrl: 'components/display-file/modal.html',
-            controllerAs: 'modalDisplayFile',
+            controllerAs: 'mdf',
             size: 'md',
             controller($modalInstance, $state) {
+              this.file = $scope.file;
+
               this.ok = function() {
                 $http
                   .delete('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id)
