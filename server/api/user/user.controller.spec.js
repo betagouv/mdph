@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import should from 'should';
 import mongoose from 'mongoose';
 import proxyquire from 'proxyquire';
+import Promise from 'bluebird';
 
 describe('user.controller', function() {
   describe('create', function() {
@@ -40,9 +41,11 @@ describe('user.controller', function() {
       './user.model': {
         default: function(par) {
           par._id = fakeId;
-          par.save = function(cb) {
-            saveSpy(this);
-            cb();
+          par.save = function() {
+            return new Promise((resolve) => {
+              saveSpy(this);
+              resolve();
+            });
           };
 
           return par;

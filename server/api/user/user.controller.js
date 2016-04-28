@@ -28,19 +28,20 @@ exports.index = function(req, res) {
 };
 
 function saveUserAndSendConfirmation(req, res, user, mdph) {
-  return new Promise(function(resolve, reject) {
-    user.newMailToken = shortid.generate();
-    user.save(function(err) {
-      if (err) return reject(validationError(res, err));
-
+  user.newMailToken = shortid.generate();
+  return user
+    .save()
+    .then(() => {
       const confirmationUrl = `http://${req.headers.host}/mdph/${mdph}/confirmer_mail/${user._id}/${user.newMailToken}`;
       MailActions.sendConfirmationMail(user.email, confirmationUrl);
 
       const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
       res.status(201);
-      return resolve(res.json({ token: token, id: user._id }));
+      return res.json({ token: token, id: user._id });
+    })
+    .catch(err => {
+      return validationError(res, err);
     });
-  });
 }
 
 /**
