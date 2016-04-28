@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SignupCtrl', function($rootScope, $scope, $state, ProfileResource, Auth, currentMdph) {
+  .controller('SignupCtrl', function($rootScope, $scope, $state, ProfileResource, Auth) {
     $scope.user = {};
     $scope.inputType = 'password';
 
@@ -20,16 +20,14 @@ angular.module('impactApp')
     $scope.register = function(form) {
       if (form.$valid) {
         Auth.createUser({
-          name: form.name.$modelValue,
           email: form.email.$modelValue,
-          password: form.password.$modelValue,
-          mdph: currentMdph.zipcode
+          password: form.password.$modelValue
         })
         .then(function(data) {
           // Logged in, redirect
           var newProfile = new ProfileResource();
           newProfile.$save({userId: data.id}, function(result) {
-            return $state.go('espace_perso.mes_profils.profil.beneficiaire', {profileId: result._id}, {reload: true});
+            return $state.go('profil.beneficiaire', {profileId: result._id}, {reload: true});
           });
         })
         .catch(function(err) {

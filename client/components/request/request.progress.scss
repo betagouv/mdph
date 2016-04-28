@@ -1,0 +1,67 @@
+#progressbar {
+	margin: 15px auto;
+  padding: 0;
+	overflow: hidden;
+	counter-reset: step;
+  color: $light-blue;
+  max-width: 640px;
+}
+
+#progressbar li {
+	list-style-type: none;
+  display: block;
+	text-transform: uppercase;
+	font-size: 0.9em;
+	width: 33.33%;
+	float: left;
+	position: relative;
+  text-align: center;
+  color: $light-blue;
+}
+
+#progressbar li div {
+  font-size: 0.9em;
+  text-transform: none;
+}
+
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 12px;
+	color: $light-blue;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+  background: $light-grey;
+}
+
+#progressbar li.done:before {
+	background: $green;
+	color: white;
+}
+
+#progressbar li.active:before {
+	background: $orange;
+	color: white;
+}
+
+#progressbar li.warning:before {
+	background: $brand-warning;
+}
+
+@media (max-width: $screen-sm-min) {
+	#progressbar li {
+		display: none;
+	}
+
+	#progressbar li.active {
+		display: block;
+		width: 100%;
+	}
+
+	#progressbar li.active:before {
+		display: none;
+	}
+}

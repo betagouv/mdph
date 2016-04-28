@@ -2,16 +2,16 @@
   "name": "impact",
   "version": "0.0.2",
   "dependencies": {
-    "angular": ">=1.4.*",
-    "angular-animate": ">=1.4.*",
-    "angular-aria": ">=1.4.*",
+    "angular": ">=1.5.*",
+    "angular-animate": ">=1.5.*",
+    "angular-aria": ">=1.5.*",
     "angular-bootstrap": "0.13.3",
     "angular-chart.js": "~0.9.0",
-    "angular-cookies": ">=1.4.*",
-    "angular-i18n": ">=1.4.*",
-    "angular-messages": ">=1.4.*",
-    "angular-resource": ">=1.4.*",
-    "angular-sanitize": ">=1.4.*",
+    "angular-cookies": ">=1.5.*",
+    "angular-i18n": ">=1.5.*",
+    "angular-messages": ">=1.5.*",
+    "angular-resource": ">=1.5.*",
+    "angular-sanitize": ">=1.5.*",
     "angular-ui-router": "0.2.18",
     "bootstrap": "3.3.6",
     "bootstrap-sass": "3.3.6",
@@ -32,6 +32,6 @@
     "angular-scenario": ">=1.2.*"
   },
   "resolutions": {
-    "angular": ">=1.4.*"
+    "angular": ">=1.5.*"
   }
 }

@@ -8,6 +8,8 @@ import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
 import * as MailActions from '../send-mail/send-mail-actions';
 
+import Promise from 'bluebird';
+
 var validationError = function(res, err) {
   return res.status(422).json(err);
 };
@@ -25,18 +27,21 @@ exports.index = function(req, res) {
   });
 };
 
-function saveUserAndSendConfirmation(req, res) {
-  return function(user, mdph) {
-    user.newMailToken = shortid.generate();
-    user.save(function(err) {
-      if (err) return validationError(res, err);
-      const confirmationUrl = 'http://' + req.headers.host + '/mdph/' + mdph + '/confirmer_mail/' + user._id + '/' + user.newMailToken;
+function saveUserAndSendConfirmation(req, res, user, mdph) {
+  user.newMailToken = shortid.generate();
+  return user
+    .save()
+    .then(() => {
+      const confirmationUrl = `http://${req.headers.host}/mdph/${mdph}/confirmer_mail/${user._id}/${user.newMailToken}`;
       MailActions.sendConfirmationMail(user.email, confirmationUrl);
-    });
 
-    const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-    return res.json({ token: token, id: user._id });
-  };
+      const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+      res.status(201);
+      return res.json({ token: token, id: user._id });
+    })
+    .catch(err => {
+      return validationError(res, err);
+    });
 }
 
 /**
@@ -46,7 +51,10 @@ exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
   newUser.role = 'user';
   newUser.provider = 'local';
-  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
+  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
+    .then(result => {
+      return result;
+    });
 };
 
 /**
@@ -56,7 +64,10 @@ exports.createAgent = function(req, res) {
   var newUser = new User(req.body);
   newUser.role = 'agent';
   newUser.provider = 'local';
-  return saveUserAndSendConfirmation(req, res)(newUser, req.body.mdph);
+  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
+    .then(result => {
+      return result;
+    });
 };
 
 /**
@@ -99,7 +110,10 @@ exports.changePassword = function(req, res) {
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 
-  User.findById(userId, function(err, user) {
+  User
+    .findById(userId)
+    .select('+hashedPassword +salt')
+    .exec(function(err, user) {
     if (user.authenticate(oldPass)) {
       user.password = newPass;
       user.save(function(err) {
@@ -217,7 +231,6 @@ exports.confirmMail = function(req, res) {
     if (!req.params.secret) return res.sendStatus(400);
     if (req.params.secret !== user.newMailToken) return res.sendStatus(400);
     if (user.unconfirmed === false) return res.sendStatus(304);
-
     user.unconfirmed = false;
     user.save(function(err) {
       if (err) return validationError(res, err);

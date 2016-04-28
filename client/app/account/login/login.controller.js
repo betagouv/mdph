@@ -24,9 +24,9 @@ angular.module('impactApp')
           }
 
           if (user.isMultiProfiles) {
-            return $state.go('espace_perso.mes_profils', {}, {reload: true});
+            return $state.go('mon_compte', {}, {reload: true});
           } else {
-            return $state.go('espace_perso.mes_profils.profil', {profileId: 'me'}, {reload: true});
+            return $state.go('profil', {profileId: 'me'}, {reload: true});
           }
 
         });
