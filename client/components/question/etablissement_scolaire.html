@@ -1,7 +1,7 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <table aria-label="Etablissements de scolarité actuels" class="table my-table-striped">
-    <thead>
+    <thead ng-if="model.etablissements.length > 0">
       <th id="nom">Nom</th>
       <th id="rue">Rue</th>
       <th id="ville">Ville</th>
