@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PieceJointeCtrl', function($scope, $modal, Upload, $state, documentTypes, request, partenaire) {
+  .controller('PieceJointeCtrl', function($scope, $modal, Upload, $state, documentTypes, request, partenaire, currentMdph) {
     $scope.request = request;
     $scope.partenaire = partenaire;
     $scope.documentTypes = documentTypes;
@@ -24,7 +24,7 @@ angular.module('impactApp')
               $scope.type = type;
               $scope.ok = function() {
                 $modalInstance.close();
-                $state.go('main');
+                $state.go('departement', {codeDepartement: currentMdph.zipcode});
               };
             },
 
