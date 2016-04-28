@@ -91,15 +91,11 @@ angular.module('impactApp')
       });
     };
 
-    $scope.removeCategory = function(categoryToDel) {
+    $scope.removeCategory = function(scope, categoryToDel) {
 
       categoryToDel.$delete({zipcode: currentMdph.zipcode}).then(function() {
         showAlert();
-
-        let index = $scope.categories.indexOf(categoryToDel);
-        if (index >= 0) {
-          $scope.categories.splice(index, 1);
-        }
+        scope.remove();
       },
 
       function() {

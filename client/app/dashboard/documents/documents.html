@@ -26,7 +26,7 @@
                           ng-model="category.label">
                       </div>
                       <div class="actions">
-                        <a class="text-danger-lite" ng-if="!category.required" data-nodrag ng-click="removeCategory(category)">
+                        <a class="text-danger-lite" ng-if="!category.required" data-nodrag ng-click="removeCategory(this, category)">
                           <span>Supprimer</span><i class="fa fa-times"></i>
                         </a>
                         <div class="files" data-nodrag>
