@@ -1,20 +1,22 @@
 'use strict';
 
-var _ = require('lodash');
-var User = require('../api/user/user.model');
-var Profile = require('../api/profile/profile.model');
+import _ from 'lodash';
+import User from '../server/api/user/user.model';
+import Profile from '../server/api/profile/profile.model';
 
 (function() {
   User
     .find()
-    .exec(function(err, users) {
+    .exec((err, users) => {
       _.forEach(users, function(user) {
-        Profile.find({user: user._id}, function(err, profiles) {
-          if (err) {
-            console.log('ERROR', user.email);
-            console.log(err);
-          }
-        });
+        Profile
+          .find({user: user._id})
+          .exec((err, profiles) => {
+            if (profiles.length === 0) {
+              console.log('EMAIL', user.email);
+              Profile.create({user: user._id});
+            }
+          });
       });
     });
 })();
