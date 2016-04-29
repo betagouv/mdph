@@ -19,7 +19,7 @@
       responseError(response) {
         if (response.status === 401) {
           var path = $window.location.pathname.split('/');
-          if (path[0] === 'mdph') {
+          if (path[1] === 'mdph') {
             (state || (state = $injector.get('$state'))).go('login', {codeDepartement: path[1]});
           } else {
             (state || (state = $injector.get('$state'))).go('main');
