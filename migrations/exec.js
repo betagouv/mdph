@@ -1,26 +1,20 @@
 'use strict';
 
-import _ from 'lodash';
-import Request from '../api/request/request.model';
-import Synthese from '../api/synthese/synthese.model';
+var _ = require('lodash');
+var User = require('../api/user/user.model');
+var Profile = require('../api/profile/profile.model');
 
 (function() {
-  Request
+  User
     .find()
-    .exec(function(err, requests) {
-      _.forEach(requests, function(request) {
-        if (request.synthese && request.synthese.geva) {
-          var newSynthese = new Synthese({
-            user: request.user,
-            profile: request.profile,
-            request: request._id,
-            geva: request.synthese.geva
-          });
-
-          newSynthese.save();
-        }
+    .exec(function(err, users) {
+      _.forEach(users, function(user) {
+        Profile.find({user: user._id}, function(err, profiles) {
+          if (err) {
+            console.log('ERROR', user.email);
+            console.log(err);
+          }
+        });
       });
-
-      console.log('FINISH!');
     });
 })();
