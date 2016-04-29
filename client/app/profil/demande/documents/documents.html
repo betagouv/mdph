@@ -1,3 +1,4 @@
+<div class="file-legend">Types de documents acceptés : images (jpg, png) et pdf.</div>
 <div ng-repeat="documentType in selectedDocumentTypes">
 
   <div class="row-document-type" ng-class="getClass(documentType)">
@@ -33,7 +34,9 @@
         </div>
       </div>
 
-      <div class="col-sm-6 col-md-4" class="text-right" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+      <div class="col-sm-6 col-md-4" class="text-right"
+           ngf-select ngf-change="upload($file, documentType)" ngf-multiple="false"
+           ngf-pattern=".jpg,.png,.pdf" accept=".jpg,.png,.pdf" >
         <div class="file-card file-card-add">
           <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
             <i class="fa fa-plus"></i>
