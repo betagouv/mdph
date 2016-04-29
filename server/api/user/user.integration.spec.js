@@ -148,7 +148,6 @@ describe('User Integration', function() {
             }
 
             result = res.body;
-            console.log('LOLOLOL', result);
             result.should.have.property('token');
             result.should.have.property('id');
             result.should.have.property('profile');
