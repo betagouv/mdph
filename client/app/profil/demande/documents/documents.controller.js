@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, UploadService, RequestService, request, documentTypes, currentUser) {
+  .controller('DocumentsCtrl', function($scope, $modal, toastr, UploadService, RequestService, request, documentTypes, currentUser) {
     $scope.request = request;
     $scope.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(request, documentTypes);
     $scope.user = currentUser;
+
+    $scope.$on('file-upload-error', function() {
+      toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document');
+    });
 
     $scope.getText = function(documentType) {
       if (documentType.mandatory || documentType.asked) {

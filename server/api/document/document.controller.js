@@ -113,6 +113,11 @@ function processDocument(file, fileData, done) {
     return done({status: 304});
   }
 
+  var supportedFileTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+  if (supportedFileTypes.indexOf(file.mimetype) < 0) {
+    return done({status: 403});
+  }
+
   resizeAndMove(file, function() {
     var document = _.extend(file, {
       type: fileData.type,
