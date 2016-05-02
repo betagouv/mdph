@@ -5,8 +5,9 @@
 
   <div class="alert alert-info">
     <p class="text-justify">
-      Ce nouveau certificat médical MDPH est en cours d’expérimentation et vise à remplace le Cerfa N° 13878*01.
-      <br>
+      Le nouveau certificat médical MDPH est en cours d’expérimentation et vise à remplace le Cerfa N° 13878*01.
+    </p>
+    <p>
       Il permet :
       <ul>
         <li>Un remplissage direct en ligne</li>
@@ -17,30 +18,23 @@
     </p>
   </div>
 
-  <hr>
-
-  <h2>Étape 1 : remplir le certificat médical en ligne</h2>
-  <p class="text-justify">
-    Vous pouvez télécharger ce certificat ci-dessous et saisir les informations directement dans le document. Pensez à l’enregistrer sur votre ordinateur.
-    <br>
-    Condition requise pour accéder au document interactif :
-    <a href="http://www.adobe.com/go/getreader" title="Télécharger Adobe Reader">
-      disposer d’Adobe Reader version minimale XI
-    </a>.
-  </p>
+  <h2>Remplir le certificat médical en ligne</h2>
+  <div class="text-justify">
+    Vous pouvez télécharger ce certificat et saisir les informations directement dans le document.
+  </div>
   <div class="text-center">
-    <a class="btn btn-primary btn-lg" target="_blank" download href="/assets/documents/CM.pdf">
+    <a class="btn btn-primary btn-lg download-button" target="_blank" download href="/assets/documents/CM.pdf">
       Télécharger le nouveau certificat
     </a>
   </div>
+  <div class="requirement">
+    Condition requise pour utiliser le nouveau certificat :
+    <a href="http://www.adobe.com/go/getreader" title="Télécharger Adobe Reader">
+      Adobe Reader version XI
+    </a>.
+  </div>
 
-  <hr>
-
-  <h2>Étape 2 : joindre le certificat médical à la demande de votre patient</h2>
-  <p class="text-justify">
-    Une fois le certificat rempli, pour le joindre à la demande de votre patient, saisissez :
-  </p>
-
+  <h2>Joindre le certificat médical à la demande de votre patient</h2>
   <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
     <div class="form-group">
       <label>La référence demande du patient</label>
@@ -75,14 +69,13 @@
     </div>
   </form>
 
-  <hr>
+  <br/>
 
-  <h2>Étape 3 : télé-transmettre le certificat à la MDPH</h2>
-  <p class="text-justify">
-    Une fois le certificat ajouté, un mail vous sera automatiquement envoyé pour vous authentifier et pour que vous confirmiez l'ajout du document.
-  </p>
-
-  <div class="alert alert-warning"><i class="fa fa-warning"></i> Le certificat ne sera ajouté à la demande que si le mail envoyé sur votre boîte mail est validé.</div>
-
-  <div class="alert alert-warning"><i class="fa fa-warning"></i> La MDPH pourra vérifier l'authenticité du certificat avec vos numéros RPPS et ADELI.</div>
+  <div class="alert alert-warning warning-box-flex">
+    <i class="fa fa-warning"></i>
+    <div>
+      Le document ne sera ajouté à la demande que si l'email envoyé à cette adresse est validé.
+      <br/> La MDPH pourra vérifier l'authenticité du certificat avec vos numéros RPPS et ADELI.
+    </div>
+  </div>
 </div>

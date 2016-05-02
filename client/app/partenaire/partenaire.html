@@ -1,14 +1,12 @@
 <ui-view>
   <div class="partenaire-view">
     <h1>Partenaire</h1>
-    <p class="text-justify">
-      Pour ajouter un document à une demande, vous devez renseigner votre adresse email. Une fois le document ajouté, un mail vous sera envoyé afin que vous confirmiez son ajout. Le document ne sera ajouté à la demande que si le mail envoyé sur votre boîte mail est validé.
-    </p>
+    <p>Compléter une demande de prestations avec un document complémentaire</p>
 
     <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
       <div class="form-group">
         <label>Référence demande, fournie par le demandeur</label>
-        <input type="text" name="shortId" class="form-control" ng-model="shortId" required>
+        <input type="text" name="shortId" class="form-control" ng-model="shortId" placeholder="8 caractères, chiffres et lettres, ex: Qyq1v096" required>
       </div>
 
       <div class="form-group has-error">
@@ -19,7 +17,7 @@
 
       <div class="form-group">
         <label for="inputEmail">Votre e-mail</label>
-        <input type="email" class="form-control" name="inputEmail" placeholder="Email" required ng-model="partenaire.email">
+        <input type="email" class="form-control" name="inputEmail" placeholder="Ex: email@domaine.fr" required ng-model="partenaire.email">
       </div>
 
       <div class="form-group has-error">
@@ -38,5 +36,14 @@
         </button>
       </div>
     </form>
+
+    <br/>
+
+    <div class="alert alert-warning warning-box-flex">
+      <i class="fa fa-warning"></i>
+      <div>
+        Le document ne sera ajouté à la demande que si l'email envoyé à cette adresse est validé.
+     </div>
+    </div>
   </div>
 </ui-view>

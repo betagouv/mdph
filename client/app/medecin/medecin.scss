@@ -1,0 +1,19 @@
+.partenaire-view {
+  .download-button {
+    margin: 10px;
+  }
+
+  .requirement {
+    font-size: 0.8em;
+  }
+
+  .warning-box-flex {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 2em;
+      margin-right: 10px;
+    }
+  }
+}
