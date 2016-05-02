@@ -150,6 +150,7 @@ describe('User Integration', function() {
             result = res.body;
             result.should.have.property('token');
             result.should.have.property('id');
+            result.should.have.property('profile');
             done();
           });
       });
@@ -181,6 +182,7 @@ describe('User Integration', function() {
             result = res.body;
             result.should.have.property('token');
             result.should.have.property('id');
+            result.should.have.property('profile');
             done();
           });
       });

@@ -13,4 +13,4 @@ var options = {
 
 mongoose.connect('mongodb://localhost/impact', options);
 
-require('./find-removed-files.js');
+require('./default_profiles.js');

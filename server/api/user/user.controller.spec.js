@@ -35,6 +35,7 @@ describe('user.controller', function() {
     let sendMailSpy = sinon.spy();
 
     let fakeId = '1234';
+    let fakeIdProfile = '1337';
     let fakeToken = '5678';
     let saveSpy = sinon.spy();
     const UserController = proxyquire('./user.controller', {
@@ -49,6 +50,13 @@ describe('user.controller', function() {
           };
 
           return par;
+        }
+      },
+      '../profile/profile.model': {
+        default: {
+          create() {
+            return Promise.resolve({_id: fakeIdProfile});
+          }
         }
       },
       '../send-mail/send-mail-actions': {
@@ -66,8 +74,8 @@ describe('user.controller', function() {
       sendMailSpy.reset();
     });
 
-    describe('create an user', function() {
-      it('should create an user and return an access token and the id of the created user', function(done) {
+    describe('create a user', function() {
+      it('should return an access token and the id of the created user', function(done) {
         UserController
           .create(fakeReq, fakeRes)
           .then(result => {
@@ -92,7 +100,7 @@ describe('user.controller', function() {
     });
 
     describe('createAgent', function() {
-      it('should create an agent and return an access token and the id of the created agent', function(done) {
+      it('should return an access token and the id of the created agent', function(done) {
         UserController
           .createAgent(fakeReq, fakeRes)
           .then(result => {

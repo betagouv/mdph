@@ -8,6 +8,8 @@ import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
 import * as MailActions from '../send-mail/send-mail-actions';
 
+import Profile from '../profile/profile.model';
+
 import Promise from 'bluebird';
 
 var validationError = function(res, err) {
@@ -32,12 +34,15 @@ function saveUserAndSendConfirmation(req, res, user, mdph) {
   return user
     .save()
     .then(() => {
+      return Profile.create({user: user._id});
+    })
+    .then((profile) => {
       const confirmationUrl = `http://${req.headers.host}/mdph/${mdph}/confirmer_mail/${user._id}/${user.newMailToken}`;
       MailActions.sendConfirmationMail(user.email, confirmationUrl);
 
       const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
       res.status(201);
-      return res.json({ token: token, id: user._id });
+      return res.json({ token: token, id: user._id, profile: profile._id });
     })
     .catch(err => {
       return validationError(res, err);
@@ -51,10 +56,7 @@ exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
   newUser.role = 'user';
   newUser.provider = 'local';
-  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
-    .then(result => {
-      return result;
-    });
+  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph);
 };
 
 /**
