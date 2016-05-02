@@ -13,4 +13,4 @@ var options = {
 
 mongoose.connect('mongodb://localhost/impact', options);
 
-require('./exec.js');
+require('./default_profiles.js');

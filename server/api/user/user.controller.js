@@ -56,10 +56,7 @@ exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
   newUser.role = 'user';
   newUser.provider = 'local';
-  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
-    .then(result => {
-      return result;
-    });
+  return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph);
 };
 
 /**
