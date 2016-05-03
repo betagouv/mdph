@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  function authInterceptor($rootScope, $q, $cookies, $injector, $window, Util) {
+  function authInterceptor($rootScope, $q, $cookies, $injector, $window) {
     var state;
 
     return {
