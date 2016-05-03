@@ -1,15 +1,21 @@
 <div class="partenaire-view">
-  <div>
-    <div>
-      <img src="/assets/images/old_cm.png">
+  <h1>Médecin</h1>
+
+  <div class="flex-row">
+    <div class="cm-box">
+      <a class="link-img" target="_blank" download href="/assets/documents/cerfa_13878-01.pdf">
+        <img src="/assets/images/old_cm.png">
+      </a>
       <a target="_blank" download href="/assets/documents/cerfa_13878-01.pdf">
-        Télécharger l'ancien certificat
+        Ancien certificat médical
       </a>
     </div>
-    <div>
-      <img src="/assets/images/new_cm.png">
+    <div class="cm-box">
+      <a class="link-img" target="_blank" download href="/assets/documents/CM.pdf">
+        <img src="/assets/images/new_cm.png">
+      </a>
       <a target="_blank" download href="/assets/documents/CM.pdf">
-        Télécharger le nouveau certificat
+        Nouveau certificat médical
       </a>
     </div>
   </div>
@@ -20,7 +26,8 @@
     </a>.
   </div>
 
-  <h2>Joindre le certificat médical à la demande de votre patient</h2>
+  <br/>
+
   <form class="form" name="form" ng-submit="enterShortId(form)" novalidate>
     <div class="form-group">
       <label>La référence demande du patient</label>
@@ -54,14 +61,4 @@
       </button>
     </div>
   </form>
-
-  <br/>
-
-  <div class="alert alert-warning warning-box-flex">
-    <i class="fa fa-warning"></i>
-    <div>
-      Le document ne sera ajouté à la demande que si l'email envoyé à cette adresse est validé.
-      <br/> La MDPH pourra vérifier l'authenticité du certificat avec vos numéros RPPS et ADELI.
-    </div>
-  </div>
 </div>
