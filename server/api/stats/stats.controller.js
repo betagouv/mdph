@@ -30,13 +30,14 @@ function countAgents(data, mdphs, done) {
 function countRequests(data, mdphs, done) {
   async.eachSeries(mdphs, function(mdph, callback) {
     Request.find({
-      mdph: mdph.zipcode
+      mdph: mdph.zipcode,
+      status: {$ne: 'en_cours'}
     }, function(err, list) {
       data[mdph.zipcode].requests = {};
       data[mdph.zipcode].requests.total = err || !list ? 0 : list.length;
 
       var requestByStatus = _.groupBy(list, 'status');
-      _.forEach(['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], function(status) {
+      _.forEach(['emise', 'enregistree', 'en_attente_usager', 'archive'], function(status) {
         var requestsForStatus = requestByStatus[status] ? requestByStatus[status].length : 0;
         data[mdph.zipcode].requests[status] = requestsForStatus;
       });

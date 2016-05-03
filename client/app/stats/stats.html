@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="section">
-        <h1>Nombre de demandes</h1>
+        <h1>Nombre de demandes émises</h1>
         <hr>
         <div class="bigup">{{sumRequests(mdphs)}}</div>
       </div>
@@ -23,24 +23,24 @@
     </div>
     <div class="col-sm-6">
       <div class="section">
-        <h1>Historique des demandes</h1>
-        <hr>
-        <canvas id="line" class="chart chart-line" data="historyData" labels="historyLabels" series="historySeries" legend="true"></canvas>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="section">
-        <h1>Demandes par MDPH</h1>
+        <h1>Demandes émises par MDPH</h1>
         <hr>
         <canvas id="pie" class="chart chart-pie" data="dataTotal" labels="labels"
           legend="true"></canvas>
       </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-6">
       <div class="section">
         <h1>Détail des demandes</h1>
         <hr>
         <canvas id="bar" class="chart chart-bar" data="data" labels="labels" series="series" legend="true"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="section">
+        <h1>Historique des demandes</h1>
+        <hr>
+        <canvas id="line" class="chart chart-line" data="historyData" labels="historyLabels" series="historySeries" legend="true"></canvas>
       </div>
     </div>
   </div>

@@ -15,7 +15,7 @@ angular.module('impactApp')
 
     function sumByType(mdphs) {
       var series = [];
-      var types = ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'];
+      var types = ['emise', 'enregistree', 'en_attente_usager', 'archive'];
       types.forEach(function(type) {
         var data = [];
         mdphs.forEach(function(mdph) {
@@ -33,7 +33,7 @@ angular.module('impactApp')
       $scope.labels = _.pluck(result.data, 'name');
       $scope.dataTotal = _.pluck(result.data, 'requests.total');
 
-      $scope.series = ['En cours', 'Émise', 'Enregistrée', 'En attente usager', 'Archivée'];
+      $scope.series = ['Émise', 'Enregistrée', 'En attente usager', 'Archivée'];
       $scope.data = sumByType(result.data);
     });
 
