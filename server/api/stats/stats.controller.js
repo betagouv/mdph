@@ -36,7 +36,7 @@ function countRequests(data, mdphs, done) {
       data[mdph.zipcode].requests.total = err || !list ? 0 : list.length;
 
       var requestByStatus = _.groupBy(list, 'status');
-      _.forEach(['en_cours', 'emise', 'evaluation'], function(status) {
+      _.forEach(['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], function(status) {
         var requestsForStatus = requestByStatus[status] ? requestByStatus[status].length : 0;
         data[mdph.zipcode].requests[status] = requestsForStatus;
       });
