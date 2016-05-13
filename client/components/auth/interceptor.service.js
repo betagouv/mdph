@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  function authInterceptor($rootScope, $q, $cookies, $injector, $window) {
+  function authInterceptor($rootScope, $q, $cookies, $injector, $window, Util) {
     var state;
 
     return {
@@ -9,9 +9,7 @@
       request(config) {
         config.headers = config.headers || {};
 
-        // Need to test this on IE
-        // && Util.isSameOrigin(config.url)
-        if ($cookies.get('token')) {
+        if ($cookies.get('token') && Util.isSameOrigin(config.url)) {
           config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
 

@@ -19,8 +19,8 @@ angular.module('impactApp')
       types.forEach(function(type) {
         var data = [];
         mdphs.forEach(function(mdph) {
-           data.push(mdph.requests[type]);
-         });
+          data.push(mdph.requests[type]);
+        });
 
         series.push(data);
       });
