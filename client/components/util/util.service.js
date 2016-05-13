@@ -46,7 +46,6 @@
         origins.push($window.location);
         origins = origins.filter(function(o) {
           return url.hostname === o.hostname &&
-            url.port === o.port &&
             url.protocol === o.protocol;
         });
 
