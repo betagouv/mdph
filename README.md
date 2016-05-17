@@ -11,7 +11,6 @@ Projet de simplification des demandes à la MDPH
 
 ### Prerequisites
 
-- [Git](https://git-scm.com/)
 - [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
 - [Ruby & Sass](https://www.ruby-lang.org) and then `gem install sass`
 - [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
