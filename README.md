@@ -3,7 +3,6 @@ Projet de simplification des demandes à la MDPH
 
 
 [![Build Status](https://circleci.com/gh/sgmap/impact.svg?style=svg)](https://circleci.com/gh/sgmap/impact)
-
 [![Dependencies](https://david-dm.org/sgmap/impact.svg)](https://david-dm.org/sgmap/impact#info=dependencies&view=table)
 [![Dev-dependencies](https://david-dm.org/sgmap/impact/dev-status.svg)](https://david-dm.org/sgmap/impact#info=devDependencies&view=table)
 
@@ -19,21 +18,10 @@ Projet de simplification des demandes à la MDPH
 
 1. Run `npm install` to install server dependencies.
 
-2. Run `bower install` to install front-end dependencies.
+2. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
 
-3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
-
-4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
-
-## Build & development
-
-Run `grunt build` for building and `grunt serve` for preview.
+3. Run `npm run dev` to start the development server. It should automatically open the client in your browser when ready.
 
 ## Testing
 
 - Running `npm test` will run the tests with karma and mocha.
-- Run `npm run test-watch` to enable watcher.
-- To enable test notifications, you need a notifier:
-  - Mac OS X: 'sudo gem install terminal-notifier'
-  - Ubuntu: 'sudo apt-get install libnotify-bin'
-  - Windows: install growlnotify
