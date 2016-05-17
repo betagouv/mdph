@@ -166,8 +166,6 @@ describe('Dispatcher', function() {
       should.exist(secteur);
       secteur.id.should.be.exactly(secteurCaen.id);
       done();
-    }).catch(err => {
-      console.log(err);
     });
   });
 

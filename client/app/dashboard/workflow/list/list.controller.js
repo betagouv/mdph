@@ -86,6 +86,35 @@ angular.module('impactApp')
 
       actionOnSelectedRequests(requests, download);
     };
+
+    function archiveRequests(requests) {
+      var archive = function(request) {
+        request.status = 'archive';
+        return RequestResource.update(request).$promise;
+      };
+
+      var afterTransfer = function() {
+        $state.go('.', {}, {reload: true});
+      };
+
+      actionOnSelectedRequests(requests, archive, afterTransfer);
+    }
+
+    $scope.openArchiveModal = function() {
+      if (_.find($scope.requests, 'isSelected')) {
+        var modalInstance = $modal.open({
+          animation: false,
+          templateUrl: 'app/dashboard/workflow/list/modalArchive.html',
+          controller: 'ModalArchiveCtrl'
+        });
+
+        modalInstance.result.then(
+          function() {
+            archiveRequests($scope.requests);
+          }
+        );
+      }
+    };
   })
   .controller('ModalSecteursCtrl', function($scope, $modalInstance, secteurs) {
     $scope.secteurs = secteurs;
@@ -93,6 +122,15 @@ angular.module('impactApp')
 
     $scope.transfer = function() {
       $modalInstance.close($scope.secteurId);
+    };
+
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
+  })
+  .controller('ModalArchiveCtrl', function($scope, $modalInstance) {
+    $scope.archive = function() {
+      $modalInstance.close();
     };
 
     $scope.cancel = function() {

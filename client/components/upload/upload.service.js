@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('UploadService', function UploadService(Upload) {
+  .factory('UploadService', function UploadService(Upload, $rootScope) {
     return {
       upload: function(request, file, documentType) {
         if (!file) {
@@ -52,6 +52,8 @@ angular.module('impactApp')
 
         function(resp) {
           console.log('Error status: ' + resp.status);
+          $rootScope.$broadcast('file-upload-error', documentType.id);
+          model[documentType.id].documentList.pop(uploadedFile);
         },
 
         function(evt) {

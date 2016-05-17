@@ -12,7 +12,7 @@
       </li>
       <div class="well well-detail slide" ng-if="model['valeur']">
         <table class="table my-table-striped">
-          <thead>
+          <thead ng-if="model.structures.length > 0">
             <th>Nom de la structure</th>
             <th colspan="2">Etes-vous déjà en contact ?</th>
           </thead>

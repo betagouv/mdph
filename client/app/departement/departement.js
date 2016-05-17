@@ -10,7 +10,11 @@ angular.module('impactApp')
         controller: 'DepartementCtrl',
         resolve: {
           currentMdph: function(MdphResource, $stateParams) {
-            return MdphResource.get({zipcode: $stateParams.codeDepartement}).$promise;
+            if ($stateParams.codeDepartement) {
+              return MdphResource.get({zipcode: $stateParams.codeDepartement}).$promise;
+            } else {
+              return null;
+            }
           }
         }
       });

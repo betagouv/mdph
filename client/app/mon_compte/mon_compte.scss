@@ -1,0 +1,27 @@
+#mon-compte {
+  margin-top: 30px;
+
+  .panel-danger {
+    .panel-heading {
+      background-color: $light-red;
+      color: white;
+      border-bottom: none;
+
+      h1 {
+        font-size: 1.4em;
+      }
+    }
+  }
+
+  .panel-default {
+    .panel-heading {
+      background-color: lighten($lighter-blue, 5%);
+      color: white;
+      border-bottom: none;
+
+      h1 {
+        font-size: 1.4em;
+      }
+    }
+  }
+}

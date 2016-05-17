@@ -30,10 +30,14 @@
     </div>
   </div>
 
-  <div class="file-actions" ng-if="!hideActions">
+  <div class="file-actions" ng-if="!hideActions && fileEditable">
     <div class="validation-actions">
-      <button type="button" class="fab invert-refuse" ng-click="setInvalid(true)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === false}"><i class="fa fa-thumbs-down"></i></button>
-      <button type="button" class="fab invert-valid" ng-click="setInvalid(false)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === true}"><i class="fa fa-thumbs-up"></i></button>
+      <button type="button" class="fab invert-refuse" ng-click="setInvalid(true)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === false}">
+        <i class="fa fa-thumbs-down"></i>
+      </button>
+      <button type="button" class="fab invert-valid" ng-click="setInvalid(false)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === true}">
+        <i class="fa fa-thumbs-up"></i>
+      </button>
     </div>
   </div>
 
@@ -42,7 +46,7 @@
     <div class="text-validation text-valid" ng-if="file.isInvalid === false">document validé</div>
   </div>
 
-  <button type="button" class="trash btn btn-link" ng-click="delete()" ng-if="user.role !== 'user' || request.status === 'en_cours' || request.status === 'en_attente_usager'">
+  <button type="button" class="trash btn btn-link" ng-click="delete()" ng-if="fileEditable">
     <i class="fa fa-trash"></i>&nbsp;Supprimer
   </button>
 

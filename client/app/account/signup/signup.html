@@ -1,20 +1,7 @@
 <div class="login-view-white login-view-white__no-header">
   <form class="form" name="form" ng-submit="register(form)" novalidate>
-
-    <div class="form-group required" ng-class="{ 'has-error': form.name.$invalid && form.$submitted }">
-      <label for="signup-name" class="control-label">Nom et prénom</label>
-      <input id="signup-name" type="text" name="name" class="form-control" ng-model="user.name"
-             required/>
-
-      <div class="has-error" ng-show="form.name.$error.required && form.$submitted">
-        <p class="help-block">
-          Veuillez entrer un nom.
-        </p>
-      </div>
-    </div>
-
     <div class="form-group required" ng-class="{ 'has-error': form.email.$invalid && form.$submitted }">
-      <label for="email" class="control-label">Adresse mail</label>
+      <label for="email" class="control-label">Adresse email</label>
 
       <input id="email" type="email" name="email" class="form-control" ng-model="user.email"
              required

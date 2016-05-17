@@ -2,7 +2,7 @@
 
 require('babel-register');
 
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 // Connect to database
 var options = {
@@ -13,4 +13,4 @@ var options = {
 
 mongoose.connect('mongodb://localhost/impact', options);
 
-require('./exec.js');
+require('./default_profiles.js');
