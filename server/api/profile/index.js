@@ -11,10 +11,12 @@ router.get('/', canAccessProfile(), controller.index);
 router.post('/', canAccessProfile(), controller.create);
 router.get('/me', canAccessProfile(), controller.showMe);
 router.get('/:profileId', isAuthorized(), controller.show);
+
 router.post('/:profileId', isAuthorized(), controller.update);
 router.delete('/:profileId', isAuthorized(), controller.destroy);
 
 router.get('/:profileId/requests', isAuthorized(), controller.indexRequests);
+router.get('/:profileId/requests/current', isAuthorized(), controller.showLastCreatedRequest);
 
 router.param('profileId', function(req, res, next, profileId) {
   Profile

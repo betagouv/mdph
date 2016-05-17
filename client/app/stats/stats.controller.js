@@ -15,28 +15,12 @@ angular.module('impactApp')
 
     function sumByType(mdphs) {
       var series = [];
-      var types = ['en_cours', 'emise', 'evaluation'];
+      var types = ['emise', 'enregistree', 'en_attente_usager', 'archive'];
       types.forEach(function(type) {
         var data = [];
         mdphs.forEach(function(mdph) {
-           data.push(mdph.requests[type]);
-         });
-
-        series.push(data);
-      });
-
-      return series;
-    }
-
-    function sumCertificatsByType(mdphs) {
-      var series = [];
-      var types = ['partenaire', 'direct'];
-
-      types.forEach(function(type) {
-        var data = [];
-        mdphs.forEach(function(mdph) {
-           data.push(mdph.certificats[type]);
-         });
+          data.push(mdph.requests[type]);
+        });
 
         series.push(data);
       });
@@ -49,19 +33,12 @@ angular.module('impactApp')
       $scope.labels = _.pluck(result.data, 'name');
       $scope.dataTotal = _.pluck(result.data, 'requests.total');
 
-      $scope.series = ['En cours', 'Émises', 'En évaluation'];
+      $scope.series = ['Émise', 'Enregistrée', 'En attente usager', 'Archivée'];
       $scope.data = sumByType(result.data);
-
-      $scope.seriesCertificats = ['Partenaire', 'Direct'];
-      $scope.dataCertificats = sumCertificatsByType(result.data);
     });
 
     $http.get('/api/stats/site').then(function(result) {
       $scope.site = result.data;
-    });
-
-    $http.get('/api/stats/certificats').then(function(result) {
-      $scope.certificats = result.data;
     });
 
     $http.get('/api/stats/history').then(function(result) {

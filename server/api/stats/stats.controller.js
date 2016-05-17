@@ -7,6 +7,8 @@ import User from '../user/user.model';
 import Request from '../request/request.model';
 import moment from 'moment';
 
+const officialMdphs =  ['14', '17', '54'];
+
 function countAgents(data, mdphs, done) {
   async.eachSeries(mdphs, function(mdph, callback) {
     User.find({
@@ -28,13 +30,14 @@ function countAgents(data, mdphs, done) {
 function countRequests(data, mdphs, done) {
   async.eachSeries(mdphs, function(mdph, callback) {
     Request.find({
-      mdph: mdph.zipcode
+      mdph: mdph.zipcode,
+      status: {$ne: 'en_cours'}
     }, function(err, list) {
       data[mdph.zipcode].requests = {};
       data[mdph.zipcode].requests.total = err || !list ? 0 : list.length;
 
       var requestByStatus = _.groupBy(list, 'status');
-      _.forEach(['en_cours', 'emise', 'evaluation'], function(status) {
+      _.forEach(['emise', 'enregistree', 'en_attente_usager', 'archive'], function(status) {
         var requestsForStatus = requestByStatus[status] ? requestByStatus[status].length : 0;
         data[mdph.zipcode].requests[status] = requestsForStatus;
       });
@@ -50,42 +53,8 @@ function countRequests(data, mdphs, done) {
   });
 }
 
-function countCertificats(data, mdphs, done) {
-  async.eachSeries(mdphs, function(mdph, callback) {
-    Request.find({
-      mdph: mdph.zipcode
-    }, function(err, list) {
-      data[mdph.zipcode].certificats = {partenaire: 0, direct: 0};
-
-      list.forEach(function(request) {
-        if (request.documents && request.documents.length > 0) {
-          request.documents.forEach(function(doc) {
-            if (doc.type === 'certificatMedical') {
-              if (doc.partenaire) {
-                data[mdph.zipcode].certificats.partenaire += 1;
-              } else {
-                data[mdph.zipcode].certificats.direct += 1;
-              }
-            }
-          });
-        }
-      });
-
-      callback();
-    });
-  },
-
-  function(err) {
-    if (err) { throw err; }
-
-    return done();
-  });
-
-  return data;
-}
-
 export function mdph(req, res) {
-  Mdph.find().sort('zipcode').exec(function(err, mdphs) {
+  Mdph.find({zipcode: {$in: officialMdphs}}).sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
     var data = [];
@@ -105,10 +74,6 @@ export function mdph(req, res) {
 
       function(cb) {
         countRequests(dataByZipcode, mdphs, cb);
-      },
-
-      function(cb) {
-        countCertificats(dataByZipcode, mdphs, cb);
       }
 
     ], function(err) {
@@ -137,7 +102,8 @@ function getOneWeekAgo() {
 
 export function history(req, res) {
   Request.find({
-    createdAt: {$gte: getOneWeekAgo()}
+    createdAt: {$gte: getOneWeekAgo()},
+    mdph: {$in: officialMdphs}
   }).sort('createdAt').exec(function(err, requests) {
     if (err) { return handleError(req, res, err); }
 
@@ -163,7 +129,7 @@ export function history(req, res) {
 }
 
 export function certificats(req, res) {
-  Request.find().exec(function(err, requests) {
+  Request.find({mdph: {$in: officialMdphs}}).exec(function(err, requests) {
     if (err) { return handleError(req, res, err); }
 
     if (!requests) {

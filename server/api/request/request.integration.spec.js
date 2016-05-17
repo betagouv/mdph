@@ -4,6 +4,7 @@ import should from 'should';
 import Request from './request.model';
 import * as controller from './request.controller';
 import User from '../user/user.model';
+import Profile from '../profile/profile.model';
 
 import {startServer} from '../../test/utils/server';
 
@@ -13,6 +14,7 @@ describe('Request Integration', function() {
   var token;
   var testUser;
   var server;
+  var testMdph;
 
   before(done => {
     startServer((result) => {
@@ -20,6 +22,7 @@ describe('Request Integration', function() {
       api = result.api;
       token = result.token;
       testUser = result.fakeUser;
+      testMdph = result.testMdph;
       done();
     });
   });
@@ -27,30 +30,6 @@ describe('Request Integration', function() {
   after(done => {
     server.close();
     done();
-  });
-
-  describe('Create Request', function() {
-    after(done => {
-      Request.remove().exec(done);
-    });
-
-    it('should respond with the created thing', done => {
-
-      api
-        .post('/api/requests/?access_token=' + token)
-        .send({ shortId: '1234', user: testUser._id, mdph: 'fakeMDPH' })
-        .expect(201)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-
-          var createdRequest = res.body;
-          createdRequest.mdph.should.equal('fakeMDPH');
-          done();
-        });
-    });
   });
 
   describe('Get single Request', function() {
@@ -72,7 +51,7 @@ describe('Request Integration', function() {
     });
 
     afterEach(done => {
-      Request.remove().exec(done);
+      Request.remove().then(() => done());
     });
 
     it('should get the specified populated request', done => {
@@ -105,7 +84,7 @@ describe('Request Integration', function() {
     });
 
     afterEach(done => {
-      Request.remove().exec(done);
+      Request.remove().then(() => done());
     });
 
     describe('When the user is authenticated', function() {
@@ -159,6 +138,73 @@ describe('Request Integration', function() {
             .expect(401, done);
         });
       });
+    });
+  });
+
+  describe('Request worflow', function() {
+    let profile;
+    let request;
+
+    before(done => {
+      Request.remove().then(() => done());
+    });
+
+    before(done => {
+      Profile.create({user: testUser._id, vie_quotidienne: 'content_vie_quotidienne', identites: 'content_identites'}).then(created => {
+        profile = created;
+        done();
+      });
+    });
+
+    it('should create a valid request', done => {
+      api
+        .post(`/api/requests?access_token=${token}`)
+        .send({ profile: profile._id, user: testUser._id })
+        .expect(201)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
+
+          request = res.body;
+          request.profile.should.equal(profile.id);
+          request.user.should.equal(testUser.id);
+
+          done();
+        });
+    });
+
+    it('should submit that same request', done => {
+      let action = {
+        id: 'submit',
+        prestations: ['aah', 'pch'],
+        renouvellements: ['aeeh'],
+        mdph: ['14'],
+        renouvellement: true,
+        old_mdph: ['54'],
+        numeroDossier: 'legacy_id'
+      };
+
+      api
+        .post(`/api/requests/${request.shortId}/action?access_token=${token}`)
+        .send(action)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
+
+          request = res.body;
+          request.profile.should.equal(profile.id);
+          request.user._id.should.equal(testUser.id);
+
+          request.formAnswers.vie_quotidienne.should.equal('content_vie_quotidienne');
+          request.formAnswers.identites.should.equal('content_identites');
+
+          done();
+        });
     });
   });
 });

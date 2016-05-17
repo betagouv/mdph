@@ -6,6 +6,26 @@
   background: linear-gradient(45deg, $light-blue, $bg-blue);
 }
 
+.hero-button {
+  @extend .btn;
+  @extend .btn-primary;
+  padding: 10px 40px;
+  font-variant: small-caps;
+  font-size: 2em;
+  font-weight: 500;
+  border-radius: 2px;
+
+  &.inverted {
+    color: $brand-primary;
+    background-color: white;
+
+    &:focus, &:hover {
+      background: whitesmoke;
+      color: $brand-primary;
+    }
+  }
+}
+
 .hero-unit {
   color: $light-white;
   text-align: center;
@@ -22,26 +42,6 @@
   p {
     font-size: 2.1em;
     margin-bottom: 1em;
-  }
-
-  .hero-button {
-    @extend .btn;
-    @extend .btn-primary;
-    padding: 10px 40px;
-    font-variant: small-caps;
-    font-size: 2em;
-    font-weight: 500;
-    border-radius: 2px;
-
-    &.inverted {
-      color: $brand-primary;
-      background-color: white;
-
-      &:focus, &:hover {
-        background: whitesmoke;
-        color: $brand-primary;
-      }
-    }
   }
 
   ul.mdph-choices {

@@ -29,7 +29,11 @@ angular.module('impactApp')
           visibleBanettesWithCount: function(visibleBanettes, requestCountByStatus) {
             visibleBanettes.forEach(function(banette) {
               banette.statuses.forEach(function(status) {
-                status.count = requestCountByStatus[status.id] && requestCountByStatus[status.id].count;
+                if (requestCountByStatus[status.id]) {
+                  status.count = requestCountByStatus[status.id].count;
+                } else {
+                  status.count = 0;
+                }
               });
             });
 

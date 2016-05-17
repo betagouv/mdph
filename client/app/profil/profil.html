@@ -1,0 +1,53 @@
+<div id="profile" class="profile-container">
+  <div class="profile-card profile-card-vertical">
+    <div class="profile-card-header">
+      <span class="profile-card-avatar">
+        <span class="profile-card-icon"><a ui-sref="." title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
+      </span>
+      <div class="profile-card-header-text">
+        <h1 class="profile-card-header-text-title"><a ui-sref=".">{{ ::profile.getTitle() }}</a></h1>
+        <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
+      </div>
+    </div>
+
+    <div class="profile-card-content">
+      <ui-view>
+
+        <div ng-if="lastCreatedRequest" class="request-box">
+          <h2>État de votre demande</h2>
+          <request-progress request="lastCreatedRequest"></request-progress>
+        </div>
+        <div class="text-right" ng-if="lastCreatedRequest">
+          <button ng-click="openRequestHistory()" class="btn btn-link">Historique de vos demandes passées</button>
+        </div>
+
+        <section class="profile-section">
+          <p class="section-subhead">&nbsp;</p>
+          <ul class="profile-card-row">
+            <li id="beneficiaire" class="profile-card-row-item" profile-category profile="profile" options="options.beneficiaire"></li>
+            <li id="autorite" class="profile-card-row-item" profile-category profile="profile" options="options.autorite" ng-if="!estAdulte"></li>
+            <li id="vieQuotidienne" class="profile-card-row-item" profile-category profile="profile" options="options.vieQuotidienne"></li>
+          </ul>
+        </section>
+
+        <section class="profile-section">
+          <h2>Informations complémentaires</h2>
+          <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
+          <ul class="profile-card-row">
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.vieScolaire"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.vieTravail"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.aidant"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.autre"></li>
+            <li class="profile-card-row-item" profile-category profile="profile" options="options.particulieres"></li>
+          </ul>
+        </section>
+
+        <div class="button-container" ng-if="!lastCreatedRequest || lastCreatedRequest.status === 'enregistree'">
+          <button type="button" ng-click="nouvelleDemande()" class="btn hero-button btn-primary">
+            Nouvelle demande
+          </button>
+        </div>
+      </ui-view>
+    </div>
+  </div>
+</div>

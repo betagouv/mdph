@@ -1,0 +1,221 @@
+#profil-demande {
+  .demande-section {
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    border: 1px solid rgba(34,36,38,.15);
+    padding: 15px 20px;
+
+    .table > tbody + tbody {
+      border-top: none;
+      padding-top: 5px;
+    }
+
+    tr.table-header {
+      background-color: $light-white;
+
+      th, td {
+        border-top: none;
+      }
+    }
+
+    td {
+      button {
+        padding: 0px;
+        font-size: 13px;
+      }
+
+      &.center-text {
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+
+    .justify-text {
+      text-align: justify;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  h3.required:after {
+     content: " *";
+     color: red;
+  }
+
+  .btn-primary {
+    margin: 10px 0;
+  }
+
+  ul.demande-prestations {
+    list-style: none;
+    padding-left: 0;
+
+    label {
+      font-weight: 200;
+    }
+
+    .btn-link {
+      padding: 0;
+      margin: 0;
+      padding-bottom: 2px;
+      margin-left: 10px;
+    }
+  }
+
+  .file-legend {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
+
+  .document-wrapper {
+    @extend .col-sm-4;
+  }
+
+  .file-card {
+    background-color: white;
+    border: 1px solid $medium-heavy-grey;
+    height: 100px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  .title-card {
+    color: white;
+    padding: 10px;
+    margin: 0;
+    background-color: $medium-heavy-grey;
+
+    &.mandatory {
+      background-color: $bg-blue;
+    }
+
+    h4 {
+      font-weight: normal;
+    }
+  }
+
+  .row-document-type {
+    display: flex;
+    border: 1px solid $medium-heavy-grey;
+    background-color: $medium-heavy-grey;
+    margin-bottom: 20px;
+    flex-flow: column wrap;
+
+    &.mandatory {
+      border: 1px solid $bg-blue;
+      background-color: $bg-blue;
+    }
+
+    &.complete {
+      border: 1px solid darkcyan;
+      background-color: darkcyan;
+    }
+  }
+
+  .col-document-type {
+    text-align: center;
+    padding: 0;
+
+    hr {
+      width: 80%;
+      border-color: $light-blue;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .col-documents {
+    background-color: whitesmoke;
+  }
+
+  @media (min-width: $screen-md-min) {
+    .row-document-type {
+      flex-flow: row wrap;
+    }
+
+    .col-document-type {
+      width: 20%;
+    }
+
+    .col-documents {
+      width: 80%;
+    }
+  }
+
+  .file-card-add {
+    background-color: white;
+    border: 1px dashed $medium-heavy-grey;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #e6e6e6;
+    }
+
+    button {
+      border: none;
+      font-size: 24px;
+      background-color: rgba(255,255,255,0);
+    }
+  }
+
+  hr.style-one {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 80%;
+  }
+
+  .document-box {
+    background-color: whitesmoke;
+    border: 1px solid #eee;
+    padding: 5px;
+
+    h4, p {
+      text-align: center;
+    }
+  }
+
+  .table-wrapper {
+    padding: 15px;
+    tr.envoi-success>td:before {
+      content: '\f05d';
+      font-family: 'FontAwesome';
+      color: $green;
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+
+    tr.envoi-warning>td:before {
+      content: '\f071';
+      font-family: 'FontAwesome';
+      color: $orange;
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+  }
+
+  .submit-error {
+    @extend .alert, .alert-danger;
+    margin-top: 15px;
+  }
+}
+
+.list-group-demande.no-margin {
+  margin-bottom: 0;
+}
+
+.demande-container {
+  background-color: white;
+  border: 1px solid rgba(34,36,38,.15);
+  border-top: 0;
+  padding: 30px;
+}

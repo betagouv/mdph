@@ -1,0 +1,11 @@
+<ul id="progressbar">
+	<li class="done">
+    <span ng-if="!value.active">Création</span>
+    <div>Créée le {{ rpg.request.createdAt | moment }}</div>
+  </li>
+	<li ng-class="{'active': value.active, 'done': value.done, 'warning': value.warning}" ng-if="!value.hidden" ng-repeat="value in rpg.values">
+    <a ng-if="value.active" title="{{ value.title }}" ui-sref=".demande({shortId: rpg.request.shortId})">{{ value.title }}</a>
+    <span ng-if="!value.active">{{ value.title }}</span>
+    <div>{{ rpg.getDesc(value) }}</div>
+  </li>
+</ul>
