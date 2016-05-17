@@ -1,6 +1,6 @@
 <div ng-if="request.status === 'en_cours'">
   <div ng-repeat="(type, prestations) in types">
-    <h4 class="weak-h4">{{type | prestationType}}</h4>
+    <h4>{{type | prestationType}}</h4>
 
     <ul class="list-prestations">
       <li ng-repeat="prestation in prestations">
@@ -9,10 +9,9 @@
         </div>
 
         <div class="detail">
-          <label for="{{prestation.id}}">{{prestation.title}}</label>
-          <div class="text-justify" for="{{prestation.id}}">
-            <a target="_blank" href="{{prestation.link}}">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-            <div>
+          <label for="{{prestation.id}}">{{prestation.title}}</label>&nbsp;&nbsp;<a target="_blank" href="{{prestation.link}}">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <div class="text-justify">
+            <div ng-if="prestation.choice">
               <input ng-disabled="!prestation.choice" type="checkbox" ng-model="prestation.renouvellement" name="{{prestation.id}}-renouvellement" id="{{prestation.id}}-renouvellement" />
               <label for="{{prestation.id}}-renouvellement">Je perçois déjà cette prestation</label>
             </div>
