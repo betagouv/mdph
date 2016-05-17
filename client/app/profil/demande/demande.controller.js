@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function($scope, $state, $filter, toastr, RequestService, currentUser, request, prestations) {
+  .controller('DemandeCtrl', function($scope, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations) {
     $scope.request = request;
     $scope.currentUser = currentUser;
 
@@ -15,6 +15,19 @@ angular.module('impactApp')
        .pluck('id')
        .value();
     }
+
+    let openConfirmModal = () => {
+      $modal.open({
+        templateUrl: 'app/espace_perso/mes_profils/profil/demande/modal.html',
+        controllerAs: 'requestModalCtrl',
+        size: 'md',
+        controller($modalInstance) {
+          this.ok = function() {
+            $modalInstance.close();
+          };
+        }
+      });
+    };
 
     $scope.submit = function(form) {
       if (!form.$valid) {
@@ -44,6 +57,7 @@ angular.module('impactApp')
             numeroDossier: request.numeroDossier
           }).then(() => {
             $state.go('^', {}, {reload: true});
+            openConfirmModal();
           });
         }
       }
