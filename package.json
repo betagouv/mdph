@@ -119,11 +119,12 @@
     "node": ">=4.2.1"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "if [ -z \"$npm_config_production\" ]; then bower install; fi",
     "prestart": "grunt build",
     "start": "NODE_ENV=production node dist/server/app.js",
     "dev": "grunt",
     "test": "grunt test",
+    "build": "grunt build",
     "mocha": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js",
     "nyc": "NODE_ENV=test nyc --reporter=lcov --require babel-core/register mocha server --recursive ./server/**/*spec.js"
   },
