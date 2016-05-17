@@ -119,7 +119,7 @@
     "node": ">=4.2.1"
   },
   "scripts": {
-    "postinstall": "bower install || exit 0",
+    "postinstall": "bower install",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node dist/server/app.js",
     "dev": "grunt",

@@ -23,7 +23,7 @@ module.exports = {
       expand: true,
       dest: '<%= app.dirs.dist %>',
       src: [
-        'package.json',
+        'node_modules/**/*',
         '<%= app.dirs.server %>/**/*',
         '!<%= app.dirs.server %>/config/local.env.sample.js'
       ]
