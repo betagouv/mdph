@@ -119,8 +119,8 @@
     "node": ">=4.2.1"
   },
   "scripts": {
-    "postinstall": "if [ -z \"$npm_config_production\" ]; then bower install; fi",
-    "prestart": "grunt build",
+    "postinstall": "bower install || exit 0",
+    "prestart": "npm run build",
     "start": "NODE_ENV=production node dist/server/app.js",
     "dev": "grunt",
     "test": "grunt test",
