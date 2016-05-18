@@ -1,22 +1,39 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TrajectoireController', function($scope, ReadModeService) {
-    $scope.getReadMode = ReadModeService.getReadMode;
+  .controller('TrajectoireController', function($scope) {
+    $scope.getRootQuestion = function(question) {
+      if ($scope.sublevel) {
+        return $scope.root;
+      } else {
+        return question;
+      }
+    };
 
-    $scope.filterByMode = function(question) {
-      return (!ReadModeService.getReadMode() || question.isSelected);
+    $scope.isCurrentQuestion = function(question) {
+      if ($scope.currentQuestionId !== null) {
+        return ($scope.currentQuestionId === ($scope.getRootQuestion(question)).id);
+      } else {
+        return false;
+      }
+    };
+
+    $scope.filterQuestion = function(question) {
+      return (!$scope.sublevel || $scope.isCurrentQuestion(question) || question.isSelected);
     };
 
     $scope.toggleSelected = function(question) {
       question.isSelected = !question.isSelected;
-      if (!question.isSelected) {
-        question.isExpanded = false;
+      if (question.isSelected) {
+        $scope.root.isSelected = true;
       }
     };
 
     $scope.toggleCollapse = function(question) {
-      question.isExpanded = !question.isExpanded;
-      question.isSelected = true;
+      if ($scope.currentQuestionId !== ($scope.getRootQuestion(question)).id) {
+        $scope.currentQuestionId = ($scope.getRootQuestion(question)).id;
+      } else {
+        $scope.currentQuestionId = null;
+      }
     };
   });

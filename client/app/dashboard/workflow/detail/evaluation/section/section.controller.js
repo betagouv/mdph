@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, sectionId, GevaService, request, ReadModeService, currentSynthese) {
+  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, sectionId, questionId, GevaService, request, currentSynthese) {
     $scope.sectionId = sectionId;
+    $scope.currentQuestionId = questionId;
 
     if (!currentSynthese.geva) {
       currentSynthese.geva = {};
@@ -15,9 +16,6 @@ angular.module('impactApp')
     $scope.currentSynthese = currentSynthese;
 
     $scope.section = section;
-
-    $scope.getReadMode = ReadModeService.getReadMode;
-    $scope.toggleMode = ReadModeService.toggle;
 
     function findDeep(array, id) {
       var question = _.find(array, {id: id});
@@ -42,7 +40,6 @@ angular.module('impactApp')
           var question = findDeep(trajectoire, id);
           if (question) {
             question.isSelected = true;
-            question.isExpanded = true;
           }
         });
       });
@@ -78,36 +75,16 @@ angular.module('impactApp')
 
     $scope.noAnswer = (trajectoiresToIdArray($scope.section.trajectoires).length === 0);
 
-    if ($scope.noAnswer) {
-      if ($scope.getReadMode()) {
-        $scope.toggleMode();
-      }
-    }
-
     $scope.validate = function() {
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
 
       currentSynthese.$update({shortId: currentSynthese.request.shortId}, function() {
-        $scope.toggleMode();
+        $state.go('.', {}, {reload: true});
       });
     };
 
     $scope.cancel = function() {
-      $state.go('.', {}, {reload: true})
-        .then($scope.toggleMode());
-    };
-  })
-  .factory('ReadModeService', function() {
-    var readMode = true;
-
-    return {
-      getReadMode() {
-        return readMode;
-      },
-
-      toggle() {
-        readMode = !readMode;
-      }
+      $state.go('.', {}, {reload: true});
     };
   });

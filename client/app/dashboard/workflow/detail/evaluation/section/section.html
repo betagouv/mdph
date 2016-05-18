@@ -1,12 +1,10 @@
 <h2>{{section.label}}</h2>
+
 <div class="container-btn">
-  <button type="button" class="btn-section btn btn-md btn-primary" ng-click="toggleMode()" ng-if="getReadMode()">
-    Editer
-  </button>
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!noAnswer">
     Annuler
   </button>
-  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
+  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()">
     Sauvegarder
   </button>
 </div>
@@ -14,14 +12,14 @@
 <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
   <h3 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h3>
 
-  <trajectoire questions="questions"></trajectoire>
+  <trajectoire questions="questions" current-question-id="currentQuestionId"></trajectoire>
 </div>
 
 <div class="container-btn">
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
-    Annuler
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!noAnswer">
+    Modifier
   </button>
-  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
+  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()">
     Sauvegarder
   </button>
 </div>

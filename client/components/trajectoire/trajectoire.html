@@ -1,14 +1,15 @@
 <div class="trajectoire-wrapper" ng-class="{'sub-level': sublevel, 'main-level': !sublevel}">
-  <div ng-repeat="question in questions" ng-if="filterByMode(question)">
+  <div ng-repeat="question in questions" ng-if="filterQuestion(question)">
     <div class="question" ng-class="{'question-active': question.isSelected}">
-      <button type="button" class="btn btn-link" ng-click="toggleSelected(question)" ng-disabled="getReadMode()">
+      <button type="button" class="btn btn-link" ng-click="toggleSelected(question)">
+        <i class="fa" ng-class="question.isSelected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true"></i>
         {{question.Question ? question.Question : (question.Libelle | capitalize)}}
       </button>
-      <button type="button" class="btn btn-link" ng-click="toggleCollapse(question)" ng-if="question.Reponses && !getReadMode()">
-        <i class="fa" ng-class="question.isExpanded ? 'fa-minus' : 'fa-plus'"></i>
+      <button type="button" class="btn btn-link" ng-click="toggleCollapse(question)" ng-if="!sublevel">
+        <i class="fa" ng-class="isCurrentQuestion(question) ? 'fa-minus' : 'fa-plus'"></i>
       </button>
     </div>
 
-    <sublevel question="question"></sublevel>
+    <sublevel question="question" current-question-id="currentQuestionId" root="getRootQuestion(question)"></sublevel>
   </div>
 </div>
