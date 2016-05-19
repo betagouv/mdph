@@ -7,7 +7,7 @@ angular.module('impactApp')
 
     $stateProvider.state(index + '.situation_professionnelle', {
       url: '/situation_professionnelle',
-      template: '<ui-view/>',
+      template: '<div ui-view></div>',
       abstract: true
     })
     .state(index + '.situation_professionnelle.condition', {

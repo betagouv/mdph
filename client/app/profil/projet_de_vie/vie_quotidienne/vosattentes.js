@@ -5,7 +5,7 @@ angular.module('impactApp')
     var index = 'profil.vie_quotidienne.vos_attentes';
     $stateProvider.state(index, {
       url: '/vos_attentes',
-      template: '<ui-view/>',
+      template: '<div ui-view></div>',
       abstract: true
     }).state(index + '.type_aide', {
       url: '/type_aide',

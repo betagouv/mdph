@@ -14,7 +14,7 @@
     </p>
   </div>
 
-  <ui-view>
+  <div ui-view>
     <form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
       <section ng-if="request.status === 'en_cours'">
         <div ui-view="choix_mdph"></div>
@@ -79,5 +79,5 @@
         </div>
       </li>
     </ul>
-  </ui-view>
+  </div>
 </div>

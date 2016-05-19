@@ -7,7 +7,7 @@ angular.module('impactApp')
 
     $stateProvider.state(index + '.vos_attentes', {
       url: '/vos_attentes',
-      template: '<ui-view/>',
+      template: '<div ui-view></div>',
       abstract: true
     })
     .state(index + '.vos_attentes.scolarite', {

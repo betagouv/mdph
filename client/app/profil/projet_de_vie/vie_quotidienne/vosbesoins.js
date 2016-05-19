@@ -5,7 +5,7 @@ angular.module('impactApp')
     var index = 'profil.vie_quotidienne.vos_besoins';
     $stateProvider.state(index, {
       url: '/vos_besoins',
-      template: '<ui-view/>',
+      template: '<div ui-view></div>',
       controller: function($scope) {
         $scope.helpTemplate = 'components/help/besoins.html';
       },
