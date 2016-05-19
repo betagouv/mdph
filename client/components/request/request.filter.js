@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .filter('requestStatus', function(banettes) {
+  .filter('requestStatus', function(BanettesConstant) {
 
-    var flatBannettes = _(banettes).pluck('statuses').flatten().indexBy('id').value();
+    var flatBannettes = _(BanettesConstant).pluck('statuses').flatten().indexBy('id').value();
     return function(input) {
       if (!input) {
         return 'Nouvelles';

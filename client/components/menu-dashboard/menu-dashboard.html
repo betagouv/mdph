@@ -1,0 +1,56 @@
+<div>
+  <a href ui-sref="dashboard.workflow">
+    <i class="fa fa-inbox"></i>
+    <span>Flux de demandes</span>
+  </a>
+  <div class='dashboard-sub-menu' ng-repeat='banette in md.banettes'>
+    <ul>
+      <li ng-repeat="status in banette.statuses">
+        <a ui-sref-active="active" ui-sref="dashboard.workflow.list({status: status.id})">
+          {{status.label}}
+          <span
+            ng-class="{
+              'label-danger': status.count >= 30,
+              'label-warning': status.count >= 10 && status.count < 30,
+              'label-success': status.count < 10 && status.count > 0,
+              'label-default': status.count == 0}"
+            class="label pull-right">
+            {{status.count}}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div>
+  <a href ui-sref="dashboard.users.agents">
+    <i class="fa fa-users"></i>
+    <span>Gestion des utilisateurs</span>
+  </a>
+</div>
+<div>
+  <a href ui-sref="dashboard.dispatch.secteurs">
+    <i class="fa fa-code-fork"></i>
+    <span>Dispatch des demandes</span>
+  </a>
+  <div class='dashboard-sub-menu'>
+    <ul>
+      <li>
+        <a ui-sref-active="active" ui-sref="dashboard.dispatch.secteurs">
+          Gestion des secteurs
+        </a>
+      </li>
+      <li>
+        <a ui-sref-active="active" ui-sref="dashboard.dispatch.regles">
+          Règles de dispatch automatique
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div>
+  <a href ui-sref="dashboard.documents">
+    <i class="fa fa-book"></i>
+    <span>Classement des documents</span>
+  </a>
+</div>

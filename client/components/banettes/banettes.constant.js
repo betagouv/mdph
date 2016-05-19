@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('impactApp').constant('banettes', [
+angular.module('impactApp').constant('BanettesConstant', [
   {
     id: 'workflow',
     label: 'Bannettes',
@@ -16,16 +16,6 @@ angular.module('impactApp').constant('banettes', [
       {
         id: 'en_attente_usager',
         label: 'En attente'
-      }
-    ]
-  },
-  {
-    id: 'special',
-    label: 'Autres',
-    statuses: [
-      {
-        id: 'toutes',
-        label: 'Toutes'
       },
       {
         id: 'archive',

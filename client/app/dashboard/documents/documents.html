@@ -1,125 +1,121 @@
-<div class="container-dashboard">
-  <div class="main-dashboard">
-    <div class="plan-classement">
-      <div class="wrapper">
-        <div class="trees">
-          <div class="tree-wrapper">
-            <div class="tree-title">
-              <h3>Catégories</h3>
-              <a class="btn btn-success" data-nodrag ng-click="newCategory(this)" style="margin-right: 8px;">
-                Nouvelle catégorie <i class="fa fa-plus"></i>
-              </a>
-            </div>
+<div class="plan-classement">
+  <div class="wrapper">
+    <div class="trees">
+      <div class="tree-wrapper">
+        <div class="tree-title">
+          <h3>Catégories</h3>
+          <a class="btn btn-success" data-nodrag ng-click="newCategory(this)" style="margin-right: 8px;">
+            Nouvelle catégorie <i class="fa fa-plus"></i>
+          </a>
+        </div>
 
-            <div ui-tree="treeOptions" id="tree-categories">
-              <ol ui-tree-nodes="" ng-model="categories">
-                <li ng-repeat="category in categories" ui-tree-node>
-                  <div ui-tree-handle>
-                    <div class="ui-tree-document-category ui-tree-category-content">
-                      <div class="detail" data-nodrag>
-                        <h3 ng-if="!category.required" class="category-type">Catégorie personnalisée</h3>
-                        <h3 ng-if="category.required" class="category-type">Catégorie obligatoire</h3>
-                        <input class="input-category-label" data-nodrag type="text"
-                          ng-change="save(category)"
-                          ng-keydown="saving = 'waiting'"
-                          ng-model-options="{ debounce: 1000 }"
-                          ng-model="category.label">
-                      </div>
-                      <div class="actions">
-                        <a class="text-danger-lite" ng-if="!category.required" data-nodrag ng-click="removeCategory(this, category)">
-                          <span>Supprimer</span><i class="fa fa-times"></i>
-                        </a>
-                        <div class="files" data-nodrag>
-                          <a
-                            ng-if="category.barcode"
-                            style="margin-right: 16px;"
-                            target="_self"
-                            download="{{category.barcode.filename}}"
-                            href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
-                            {{category.barcode.filename}}
-                          </a>
-                          <em
-                            class="text-muted"
-                            ng-if="!category.barcode"
-                            style="margin-right: 16px;">
-                            Aucun séparateur associé
-                          </em>
-
-                          <button ngf-select ngf-change="upload($file, category)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
-                            <i class="fa fa-upload"></i> Modifier</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+        <div ui-tree="treeOptions" id="tree-categories">
+          <ol ui-tree-nodes="" ng-model="categories">
+            <li ng-repeat="category in categories" ui-tree-node>
+              <div ui-tree-handle>
+                <div class="ui-tree-document-category ui-tree-category-content">
+                  <div class="detail" data-nodrag>
+                    <h3 ng-if="!category.required" class="category-type">Catégorie personnalisée</h3>
+                    <h3 ng-if="category.required" class="category-type">Catégorie obligatoire</h3>
+                    <input class="input-category-label" data-nodrag type="text"
+                      ng-change="save(category)"
+                      ng-keydown="saving = 'waiting'"
+                      ng-model-options="{ debounce: 1000 }"
+                      ng-model="category.label">
                   </div>
-
-                  <ol ui-tree-nodes="" ng-model="category.documentTypes">
-                    <li ng-repeat="documentType in category.documentTypes" ui-tree-node>
-                      <div ui-tree-handle>
-                        <div class="ui-tree-category-content">
-                          <div class="detail" data-nodrag>
-                            <h3 class="category-type">Document {{documentType.mandatory ? 'obligatoire' : 'complémentaire'}}</h3>
-                            {{documentType.label}}
-                          </div>
-                          <a class="text-danger-lite" data-nodrag ng-click="removeDocumentType(this, category)">
-                            <span>Supprimer</span><i class="fa fa-times"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </li>
-                  </ol>
-                </li>
-              </ol>
-            </div>
-          </div>
-
-          <div class="tree-wrapper">
-            <h3>Non-catégorisés</h3>
-            <div ui-tree="treeOptions" data-nodrop-enabled="true">
-              <ol ui-tree-nodes="" ng-model="noCategories">
-                <li class="angular-ui-tree-handle angular-ui-tree-node-no-drag">
-                  <div class="ui-tree-document-category ui-tree-category-content">
-                    <div class="detail" data-nodrag>
-                      <h3 class="category-type">Catégorie obligatoire</h3>
-                      <p>{{unclassifiedCategory.label}}</p>
-                    </div>
+                  <div class="actions">
+                    <a class="text-danger-lite" ng-if="!category.required" data-nodrag ng-click="removeCategory(this, category)">
+                      <span>Supprimer</span><i class="fa fa-times"></i>
+                    </a>
                     <div class="files" data-nodrag>
                       <a
-                        ng-if="unclassifiedCategory.barcode"
+                        ng-if="category.barcode"
                         style="margin-right: 16px;"
                         target="_self"
-                        download="{{unclassifiedCategory.barcode.filename}}"
-                        href="api/mdphs/{{currentMdph.zipcode}}/categories/{{unclassifiedCategory._id}}/file?access_token={{token}}">
-                        {{unclassifiedCategory.barcode.filename}}
+                        download="{{category.barcode.filename}}"
+                        href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
+                        {{category.barcode.filename}}
                       </a>
                       <em
                         class="text-muted"
-                        ng-if="!unclassifiedCategory.barcode"
+                        ng-if="!category.barcode"
                         style="margin-right: 16px;">
                         Aucun séparateur associé
                       </em>
 
-                      <button ngf-select ngf-change="upload($file, unclassifiedCategory)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
+                      <button ngf-select ngf-change="upload($file, category)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
                         <i class="fa fa-upload"></i> Modifier</span>
                       </button>
                     </div>
                   </div>
-                  <ol ui-tree-nodes="" ng-model="documentTypes">
-                    <li ng-repeat="document in documentTypes" ui-tree-node>
-                      <div ui-tree-handle class="tree-node tree-node-content">
-                        <div class="ui-tree-category-content">
-                          <div class="detail">
-                            <h3 class="category-type">Document {{document.mandatory ? 'obligatoire' : 'complémentaire'}}</h3>
-                            {{document.label}}
-                          </div>
-                        </div>
+                </div>
+              </div>
+
+              <ol ui-tree-nodes="" ng-model="category.documentTypes">
+                <li ng-repeat="documentType in category.documentTypes" ui-tree-node>
+                  <div ui-tree-handle>
+                    <div class="ui-tree-category-content">
+                      <div class="detail" data-nodrag>
+                        <h3 class="category-type">Document {{documentType.mandatory ? 'obligatoire' : 'complémentaire'}}</h3>
+                        {{documentType.label}}
                       </div>
-                    </li>
-                  </ol>
+                      <a class="text-danger-lite" data-nodrag ng-click="removeDocumentType(this, category)">
+                        <span>Supprimer</span><i class="fa fa-times"></i>
+                      </a>
+                    </div>
+                  </div>
                 </li>
               </ol>
-            </div>
-          </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="tree-wrapper">
+        <h3>Non-catégorisés</h3>
+        <div ui-tree="treeOptions" data-nodrop-enabled="true">
+          <ol ui-tree-nodes="" ng-model="noCategories">
+            <li class="angular-ui-tree-handle angular-ui-tree-node-no-drag">
+              <div class="ui-tree-document-category ui-tree-category-content">
+                <div class="detail" data-nodrag>
+                  <h3 class="category-type">Catégorie obligatoire</h3>
+                  <p>{{unclassifiedCategory.label}}</p>
+                </div>
+                <div class="files" data-nodrag>
+                  <a
+                    ng-if="unclassifiedCategory.barcode"
+                    style="margin-right: 16px;"
+                    target="_self"
+                    download="{{unclassifiedCategory.barcode.filename}}"
+                    href="api/mdphs/{{currentMdph.zipcode}}/categories/{{unclassifiedCategory._id}}/file?access_token={{token}}">
+                    {{unclassifiedCategory.barcode.filename}}
+                  </a>
+                  <em
+                    class="text-muted"
+                    ng-if="!unclassifiedCategory.barcode"
+                    style="margin-right: 16px;">
+                    Aucun séparateur associé
+                  </em>
+
+                  <button ngf-select ngf-change="upload($file, unclassifiedCategory)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
+                    <i class="fa fa-upload"></i> Modifier</span>
+                  </button>
+                </div>
+              </div>
+              <ol ui-tree-nodes="" ng-model="documentTypes">
+                <li ng-repeat="document in documentTypes" ui-tree-node>
+                  <div ui-tree-handle class="tree-node tree-node-content">
+                    <div class="ui-tree-category-content">
+                      <div class="detail">
+                        <h3 class="category-type">Document {{document.mandatory ? 'obligatoire' : 'complémentaire'}}</h3>
+                        {{document.label}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ol>
+            </li>
+          </ol>
         </div>
       </div>
     </div>

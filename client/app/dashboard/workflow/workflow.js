@@ -20,8 +20,8 @@ angular.module('impactApp')
             });
           },
 
-          visibleBanettes: function(banettes) {
-            return _.filter(banettes, function(banette) {
+          visibleBanettes: function(BanettesConstant) {
+            return _.filter(BanettesConstant, function(banette) {
               return banette.id !== 'hidden';
             });
           },

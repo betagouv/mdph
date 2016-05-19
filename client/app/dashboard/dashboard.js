@@ -9,10 +9,6 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/dashboard.html',
         authenticate: true,
         redirectTo: 'dashboard.workflow',
-        controller: function($scope, SectionBackConstants) {
-          $scope.sections = SectionBackConstants;
-        },
-
         resolve: {
           currentUser: function(Auth) {
             return Auth.getCurrentUser().$promise;

@@ -1,5 +1,11 @@
-<nav-section sections="sections"></nav-section>
+<div class="dashboard-view container-dashboard">
+  <div class="row">
+    <div class="col-sm-2 menu-dashboard">
+      <menu-dashboard mdph="currentMdph"></menu-dashboard>
+    </div>
 
-<div class="dashboard-view">
-  <ui-view></ui-view>
+    <div class="col-sm-10">
+      <div ui-view class="main-dashboard"></div>
+    </div>
+  </div>
 </div>
