@@ -29,7 +29,6 @@ angular.module('impactApp')
         this.banettes = visibleBanettes;
       });
 
-      this.toggleMenu = MenuCollapsed.toggle;
       this.isCollapsed = MenuCollapsed.isCollapsed;
     }
   });

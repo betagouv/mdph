@@ -3,20 +3,20 @@
   position: fixed;
   width: 240px;
   top: 0;
-  padding-top: 50px;
+  padding-top: 60px;
   height: 100%;
-
-  .btn-link {
-    width: 50px;
-    font-size: 1.5em;
-
-  }
+  transition: width 500ms;
+  overflow: hidden;
 
   &.collapsed-menu {
-    width: 50px;
+    width: 0;
 
     > .menu-dashboard-section {
       display: none;
+    }
+
+    .btn-link {
+      transform: rotate(90deg);
     }
   }
 
@@ -26,6 +26,7 @@
 
   .menu-dashboard-section {
     margin-bottom: 20px;
+    width: 240px;
   }
 
   i {

@@ -11,6 +11,7 @@ angular.module('impactApp')
         redirectTo: 'dashboard.workflow',
         controller: function($scope, MenuCollapsed) {
           $scope.isCollapsed = MenuCollapsed.isCollapsed;
+          $scope.toggleMenu = MenuCollapsed.toggle;
         },
 
         resolve: {

@@ -4,14 +4,16 @@
 
 .flex-main-container {
   width: 100%;
-
-  &.collapsed-main-container {
-    padding-left: 50px;
-  }
+  transition: padding-left 500ms;
 
   &.expanded-main-container {
     padding-left: 240px;
   }
+}
+
+.btn-menu-link {
+  width: 50px;
+  font-size: 1.5em;
 }
 
 .container-dashboard {
@@ -22,5 +24,4 @@
 .main-dashboard {
   background-color: white;
   border: 1px solid $lighter-grey;
-  padding-top: 20px;
 }
