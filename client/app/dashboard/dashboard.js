@@ -9,6 +9,10 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/dashboard.html',
         authenticate: true,
         redirectTo: 'dashboard.workflow',
+        controller: function($scope, MenuCollapsed) {
+          $scope.isCollapsed = MenuCollapsed.isCollapsed;
+        },
+
         resolve: {
           currentUser: function(Auth) {
             return Auth.getCurrentUser().$promise;

@@ -1,5 +1,28 @@
 .menu-dashboard {
   background-color: $bg-blue;
+  position: fixed;
+  width: 240px;
+  top: 0;
+  padding-top: 50px;
+  height: 100%;
+
+  .btn-link {
+    width: 50px;
+    font-size: 1.5em;
+
+  }
+
+  &.collapsed-menu {
+    width: 50px;
+
+    > .menu-dashboard-section {
+      display: none;
+    }
+  }
+
+  &.expanded-menu > .menu-dashboard-section {
+    display: block;
+  }
 
   .menu-dashboard-section {
     margin-bottom: 20px;
@@ -8,7 +31,6 @@
   i {
     width: 20px;
     text-align: center;
-    color: $bg-blue;
   }
 
   a {
@@ -21,6 +43,10 @@
     &.active, &:focus, &:hover {
       text-decoration: none;
       background-color: $disabled-blue;
+    }
+
+    i {
+      color: $bg-blue;
     }
   }
 

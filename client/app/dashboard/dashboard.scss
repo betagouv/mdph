@@ -2,12 +2,16 @@
   display: flex;
 }
 
-.flex-left-menu {
-  min-width: 240px;
-}
-
 .flex-main-container {
   width: 100%;
+
+  &.collapsed-main-container {
+    padding-left: 50px;
+  }
+
+  &.expanded-main-container {
+    padding-left: 240px;
+  }
 }
 
 .container-dashboard {

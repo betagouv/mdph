@@ -7,7 +7,7 @@ angular.module('impactApp')
     },
     templateUrl: 'components/menu-dashboard/menu-dashboard.html',
     controllerAs: 'md',
-    controller(SectionBackConstants, BanettesConstant, MdphResource) {
+    controller(SectionBackConstants, BanettesConstant, MdphResource, MenuCollapsed) {
       this.sections = SectionBackConstants;
 
       var visibleBanettes = _.filter(BanettesConstant, function(banette) {
@@ -28,5 +28,8 @@ angular.module('impactApp')
 
         this.banettes = visibleBanettes;
       });
+
+      this.toggleMenu = MenuCollapsed.toggle;
+      this.isCollapsed = MenuCollapsed.isCollapsed;
     }
   });

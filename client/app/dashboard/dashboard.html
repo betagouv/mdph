@@ -1,10 +1,8 @@
 <div class="dashboard-view container-dashboard">
   <div class="flex-container">
-    <div class="menu-dashboard flex-left-menu">
-      <menu-dashboard mdph="currentMdph"></menu-dashboard>
-    </div>
+    <menu-dashboard mdph="currentMdph"></menu-dashboard>
 
-    <div class="flex-main-container">
+    <div class="flex-main-container" ng-class="isCollapsed() ? 'collapsed-main-container' : 'expanded-main-container'">
       <div ui-view class="main-dashboard"></div>
     </div>
   </div>
