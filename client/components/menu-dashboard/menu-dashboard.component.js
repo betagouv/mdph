@@ -7,8 +7,10 @@ angular.module('impactApp')
     },
     templateUrl: 'components/menu-dashboard/menu-dashboard.html',
     controllerAs: 'md',
-    controller(SectionBackConstants, BanettesConstant, MdphResource, MenuCollapsed) {
+    controller(SectionBackConstants, BanettesConstant, MdphResource, MenuCollapsed, $state) {
       this.sections = SectionBackConstants;
+      // this.detail = $state.includes('dashboard.workflow.detail');
+      this.state = $state;
 
       var visibleBanettes = _.filter(BanettesConstant, function(banette) {
         return banette.id !== 'hidden';

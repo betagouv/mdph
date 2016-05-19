@@ -7,6 +7,26 @@
   height: 100%;
   transition: width 500ms;
   overflow: hidden;
+  display: flex;
+
+  .menu-slider {
+    display: flex;
+    // width: 480px;
+
+    &.show-general {
+      transition: margin-left 500ms ease-in-out;
+      margin-left: 0;
+    }
+    &.show-detail {
+      transition: margin-left 500ms ease-in-out;
+      margin-left: -240px;
+    }
+  }
+
+  .menu-detail.hidden-right {
+    transition: margin-left 500ms ease-in-out;
+    margin-left: 240px;
+  }
 
   &.collapsed-menu {
     width: 0;

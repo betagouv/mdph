@@ -1,58 +1,80 @@
 <div class="menu-dashboard" ng-class="md.isCollapsed() ? 'collapsed-menu' : 'expanded-menu'">
-  <div class="menu-dashboard-section">
-    <a href ui-sref="dashboard.workflow" ui-sref-active="active">
-      <i class="fa fa-inbox"></i>
-      <span>Flux de demandes</span>
-    </a>
-    <div class='dashboard-sub-menu' ng-repeat='banette in md.banettes'>
-      <ul>
-        <li ng-repeat="status in banette.statuses">
-          <a ui-sref-active="active" ui-sref="dashboard.workflow.list({status: status.id})">
-            {{status.label}}
-            <span
-              ng-class="{
-                'label-danger': status.count >= 30,
-                'label-warning': status.count >= 10 && status.count < 30,
-                'label-success': status.count < 10 && status.count > 0,
-                'label-default': status.count == 0}"
-              class="label pull-right">
-              {{status.count}}
-            </span>
-          </a>
-        </li>
-      </ul>
+  <div class="menu-slider" ng-class="md.state.includes('dashboard.workflow.detail') ? 'show-detail' : 'show-general'">
+    <div class="menu-general">
+      <div class="menu-dashboard-section">
+        <a href ui-sref="dashboard.workflow" ui-sref-active="active">
+          <i class="fa fa-inbox"></i>
+          <span>Flux de demandes</span>
+        </a>
+        <div class='dashboard-sub-menu' ng-repeat='banette in md.banettes'>
+          <ul>
+            <li ng-repeat="status in banette.statuses">
+              <a ui-sref-active="active" ui-sref="dashboard.workflow.list({status: status.id})">
+                {{status.label}}
+                <span
+                  ng-class="{
+                    'label-danger': status.count >= 30,
+                    'label-warning': status.count >= 10 && status.count < 30,
+                    'label-success': status.count < 10 && status.count > 0,
+                    'label-default': status.count == 0}"
+                  class="label pull-right">
+                  {{status.count}}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="menu-dashboard-section">
+        <a href ui-sref="dashboard.users.agents" ui-sref-active="active">
+          <i class="fa fa-users"></i>
+          <span>Gestion des utilisateurs</span>
+        </a>
+      </div>
+      <div class="menu-dashboard-section">
+        <a href ui-sref="dashboard.dispatch.secteurs" ui-sref-active="active">
+          <i class="fa fa-code-fork"></i>
+          <span>Dispatch des demandes</span>
+        </a>
+        <div class='dashboard-sub-menu'>
+          <ul>
+            <li>
+              <a ui-sref-active="active" ui-sref="dashboard.dispatch.secteurs">
+                Gestion des secteurs
+              </a>
+            </li>
+            <li>
+              <a ui-sref-active="active" ui-sref="dashboard.dispatch.regles">
+                Règles de dispatch automatique
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="menu-dashboard-section">
+        <a href ui-sref="dashboard.documents" ui-sref-active="active">
+          <i class="fa fa-book"></i>
+          <span>Classement des documents</span>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="menu-dashboard-section">
-    <a href ui-sref="dashboard.users.agents" ui-sref-active="active">
-      <i class="fa fa-users"></i>
-      <span>Gestion des utilisateurs</span>
-    </a>
-  </div>
-  <div class="menu-dashboard-section">
-    <a href ui-sref="dashboard.dispatch.secteurs" ui-sref-active="active">
-      <i class="fa fa-code-fork"></i>
-      <span>Dispatch des demandes</span>
-    </a>
-    <div class='dashboard-sub-menu'>
-      <ul>
-        <li>
-          <a ui-sref-active="active" ui-sref="dashboard.dispatch.secteurs">
-            Gestion des secteurs
-          </a>
-        </li>
-        <li>
-          <a ui-sref-active="active" ui-sref="dashboard.dispatch.regles">
-            Règles de dispatch automatique
-          </a>
-        </li>
-      </ul>
+
+    <div class="menu-detail">
+      <div class="menu-dashboard-section">
+        <a ui-sref="dashboard.workflow">
+          <i class="fa fa-arrow-left"></i>
+          <span>Retour au flux des demandes</span>
+        </a>
+        <div class='dashboard-sub-menu'>
+          <ul>
+            <li ui-sref-active="active"><a ui-sref="dashboard.workflow.detail.pre_evaluation">Récapitulatif</a></li>
+            <li ui-sref-active="active"><a ui-sref="dashboard.workflow.detail.documents">Documents associés</a></li>
+            <li ui-sref-active="active"><a ui-sref="dashboard.workflow.detail.evaluation">Synthèse de l'évaluation</a></li>
+            <li ui-sref-active="active"><a ui-sref="dashboard.workflow.detail.history">Vie de la demande</a></li>
+            <li ui-sref-active="active"><a ui-sref="dashboard.workflow.detail.comments">Commentaires</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="menu-dashboard-section">
-    <a href ui-sref="dashboard.documents" ui-sref-active="active">
-      <i class="fa fa-book"></i>
-      <span>Classement des documents</span>
-    </a>
   </div>
 </div>
