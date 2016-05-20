@@ -12,6 +12,7 @@ angular.module('impactApp')
       this.state = $state;
       this.isLoggedIn = Auth.isLoggedIn;
       this.getCurrentUser = Auth.getCurrentUser;
+      this.toggleMenu = MenuCollapsed.toggle;
 
       // this.detail = $state.includes('dashboard.workflow.detail');
 
