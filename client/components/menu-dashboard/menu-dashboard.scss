@@ -17,6 +17,7 @@
       transition: margin-left 500ms ease-in-out;
       margin-left: 0;
     }
+
     &.show-detail {
       transition: margin-left 500ms ease-in-out;
       margin-left: -240px;
@@ -67,13 +68,24 @@
     }
 
     i {
-      color: $bg-blue;
+      color: lighten($flat-ui-blue, 10%);
     }
   }
 
   .dashboard-sub-menu {
     a {
       padding: 5px 10px 5px 40px;
+      position: relative;
+
+      &:before {
+        font-family: 'FontAwesome';
+        content: '\f0da';
+        color: lighten($flat-ui-blue, 10%);
+        position: absolute;
+        font-size: 11px;
+        left: 28px;
+        top: 7px;
+      }
     }
   }
 
