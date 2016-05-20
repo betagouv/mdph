@@ -7,29 +7,28 @@ angular.module('impactApp')
     },
     templateUrl: 'components/menu-dashboard/menu-dashboard.html',
     controllerAs: 'md',
-    controller(SectionBackConstants, BanettesConstant, MdphResource, MenuCollapsed, $state) {
+    controller(SectionBackConstants, BanettesConstant, MdphResource, MenuCollapsed, Auth, $state) {
       this.sections = SectionBackConstants;
-      // this.detail = $state.includes('dashboard.workflow.detail');
       this.state = $state;
+      this.isLoggedIn = Auth.isLoggedIn;
+      this.getCurrentUser = Auth.getCurrentUser;
 
-      var visibleBanettes = _.filter(BanettesConstant, function(banette) {
-        return banette.id !== 'hidden';
-      });
+      // this.detail = $state.includes('dashboard.workflow.detail');
 
-      MdphResource.queryTotalRequestsCount({zipcode: this.mdph.zipcode}).$promise.then((result) => {
-        var requestCountByStatus = _.indexBy(result, '_id');
-        visibleBanettes.forEach((banette) => {
-          banette.statuses.forEach((status) => {
-            if (requestCountByStatus[status.id]) {
-              status.count = requestCountByStatus[status.id].count;
+      if (this.mdph && $state.includes('dashboard')) {
+        MdphResource.queryTotalRequestsCount({zipcode: this.mdph.zipcode}).$promise.then((result) => {
+          var requestCountByStatus = _.indexBy(result, '_id');
+          BanettesConstant.forEach((banette) => {
+            if (requestCountByStatus[banette.id]) {
+              banette.count = requestCountByStatus[banette.id].count;
             } else {
-              status.count = 0;
+              banette.count = 0;
             }
           });
-        });
 
-        this.banettes = visibleBanettes;
-      });
+          this.banettes = BanettesConstant;
+        });
+      }
 
       this.isCollapsed = MenuCollapsed.isCollapsed;
     }

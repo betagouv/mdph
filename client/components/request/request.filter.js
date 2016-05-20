@@ -3,13 +3,13 @@
 angular.module('impactApp')
   .filter('requestStatus', function(BanettesConstant) {
 
-    var flatBannettes = _(BanettesConstant).pluck('statuses').flatten().indexBy('id').value();
+    var flatBannettes = _(BanettesConstant).indexBy('id').value();
     return function(input) {
       if (!input) {
         return 'Nouvelles';
       }
 
       var banette = flatBannettes[input];
-      return banette ? banette.label : 'Label not found';
+      return banette ? banette.label : 'En cours';
     };
   });

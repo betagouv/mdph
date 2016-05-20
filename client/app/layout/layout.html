@@ -1,3 +1,15 @@
+<div class="flex-container">
+  <menu-dashboard mdph="currentMdph"></menu-dashboard>
+
+  <div class="flex-main-container" ng-class="isCollapsed() ? 'collapsed-main-container' : 'expanded-main-container'">
+    <button type="button" class="btn btn-link btn-menu-link" ng-click="toggleMenu()">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+    <div ui-view></div>
+  </div>
+</div>
+
+<!--
 <div class="navbar navbar-default navbar-static-top" ng-class="{'has-intro': showIntro}">
   <div class="intro" ng-cloak ng-show="showIntro">
     <div class="content" ng-click="hideIntro()">
@@ -54,4 +66,4 @@
 
 <div class="layout-wrapper">
   <div ui-view></div>
-</div>
+</div> -->
