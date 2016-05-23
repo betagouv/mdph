@@ -13,7 +13,7 @@ describe('requestStatus filter', function() {
   describe('When the status is not found', function() {
     it('should return Label not found',
         inject(function(requestStatusFilter) {
-      expect(requestStatusFilter('badLabel')).toBe('Label not found');
+      expect(requestStatusFilter('badLabel')).toBe('En cours');
     }));
   });
 });
