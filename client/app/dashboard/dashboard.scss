@@ -1,14 +1,6 @@
-.flex-container {
-  display: flex;
-}
-
 .flex-main-container {
   width: 100%;
   transition: padding-left 500ms;
-
-  &.expanded-main-container {
-    padding-left: 240px;
-  }
 }
 
 .container-dashboard {
@@ -19,4 +11,14 @@
 .main-dashboard {
   background-color: white;
   border: 1px solid $lighter-grey;
+}
+
+@media (min-width: $screen-sm-min) {
+  .flex-container {
+    display: flex;
+  }
+
+  .flex-main-container.expanded-main-container {
+    padding-left: 240px;
+  }
 }

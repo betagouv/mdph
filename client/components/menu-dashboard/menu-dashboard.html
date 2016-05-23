@@ -8,6 +8,8 @@
     <ul>
       <li ng-if="!md.isLoggedIn()">
         <a class="icon" ui-sref="signup({codeDepartement: md.mdph.zipcode})" title="Inscription">Inscription</a>
+      </li>
+      <li ng-if="!md.isLoggedIn()">
         <a class="icon" ui-sref="login({codeDepartement: md.mdph.zipcode})" title="Connexion">Connexion</a>
       </li>
       <li ng-if="md.isLoggedIn()">
