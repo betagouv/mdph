@@ -68,6 +68,8 @@
   @extend .container;
   padding-top: 50px;
   padding-bottom: 50px;
+  width: 100%;
+  max-width: 1170px;
 
   h2 {
     margin-top: 15px;
@@ -272,7 +274,7 @@
     }
   }
 
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-md-min) {
     .card-contact {
       position: absolute;
       top: 1rem;
