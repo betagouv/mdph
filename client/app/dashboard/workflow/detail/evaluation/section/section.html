@@ -21,7 +21,7 @@
 <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
   <h3 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h3>
 
-  <trajectoire questions="questions" current-question-id="currentQuestionId"></trajectoire>
+  <trajectoire questions="questions" current-question-id="currentQuestionId" read-only="(currentSynthese.request) === true"></trajectoire>
 </div>
 
 <div class="container-btn">

@@ -43,7 +43,8 @@ export function findOrCreateRequestSynthese(options) {
 
   return new Promise((resolve, reject) => {
     let found = _.find(syntheses, (synthese) => {
-      return synthese.request._id.equals(req.request._id);
+      //search synthese without request => current working synthese
+      return !synthese.request;
     });
 
     if (found) {
@@ -54,8 +55,7 @@ export function findOrCreateRequestSynthese(options) {
     Synthese
       .create({
         user:           req.request.user,
-        profile:        req.request.profile,
-        request:        req.request._id
+        profile:        req.request.profile
       })
       .then(created => {
         let createdObj = created.toObject();
@@ -78,6 +78,7 @@ export function show(req, res) {
 
 export function showAllByProfile(req, res) {
   let options = {req, res, Synthese};
+  console.log('TOOTOTTOTOTOOTOTOT');
   Synthese
     .find({profile: req.request.profile})
     .populate('request', 'shortId')

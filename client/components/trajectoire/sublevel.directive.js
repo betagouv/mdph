@@ -8,12 +8,13 @@ angular.module('impactApp')
     scope: {
       question: '=',
       currentQuestionId: '=',
-      root: '='
+      root: '=',
+      readOnly: '='
     },
     template: '<div></div>',
     link: function(scope, element) {
       if (scope.question.Reponses) {
-        $compile('<trajectoire ng-if="currentQuestionId === question.id || question.isSelected" model="question.id" questions="question.Reponses" sublevel="true" current-question-id="currentQuestionId" root="root"></trajectoire>')(scope, function(cloned, scope) { // jshint ignore:line
+        $compile('<trajectoire ng-if="currentQuestionId === question.id || question.isSelected" model="question.id" questions="question.Reponses" sublevel="true" current-question-id="currentQuestionId" root="root" read-only="readOnly"></trajectoire>')(scope, function(cloned, scope) { // jshint ignore:line
           element.append(cloned);
         });
       }

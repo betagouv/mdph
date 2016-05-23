@@ -79,7 +79,8 @@ angular.module('impactApp')
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
 
-      currentSynthese.$update({shortId: currentSynthese.request.shortId}, function() {
+      debugger;
+      currentSynthese.$update(function() {
         $state.go('.', {}, {reload: true});
       });
     };
