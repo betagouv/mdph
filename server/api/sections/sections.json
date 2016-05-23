@@ -327,8 +327,8 @@
       },
       "pensionInvalidite": {
         "model": "pensionInvalidite",
-        "titleDefault": "Vous percevez une ou plusieurs des aides suivantes :",
-        "titleRep": "<%= name %> perçoit une ou plusieurs des aides suivantes :",
+        "titleDefault": "Vous percevez une autre pension de ce type :",
+        "titleRep": "<%= name %> perçoit une autre pension de ce type :",
         "type": "checkbox",
         "answers": [
           {
@@ -393,8 +393,8 @@
       },
       "aidesRetraite": {
         "model": "aidesRetraite",
-        "titleDefault": "Vous percevez une ou plusieurs des aides suivantes :",
-        "titleRep": "<%= name %> perçoit une ou plusieurs des aides suivantes :",
+        "titleDefault": "Vous percevez une autre pension de ce type :",
+        "titleRep": "<%= name %> perçoit une autre pension de ce type :",
         "type": "checkbox",
         "answers": [
           {
