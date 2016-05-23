@@ -1,6 +1,7 @@
 .flex-main-container {
   width: 100%;
   transition: padding-left 500ms;
+  padding-top: 20px;
 }
 
 .container-dashboard {
@@ -16,6 +17,10 @@
 @media (min-width: $screen-sm-min) {
   .flex-container {
     display: flex;
+  }
+
+  .flex-main-container h2 {
+    padding-left: 40px;
   }
 
   .flex-main-container.expanded-main-container {
