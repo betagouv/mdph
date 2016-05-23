@@ -4,7 +4,6 @@
       <h1>Trouvez le service en ligne de votre MDPH</h1>
 
       <ul class="mdph-choices">
-        <li class="col-sm-3"></li>
         <li ng-repeat="mdph in mdphs" class="mdph-choice">
           <a class="btn btn-default" ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{mdph.zipcode}}</strong> <br> {{mdph.name}}</a>
         </li>
