@@ -3,7 +3,7 @@
     <div class="question" ng-class="{'question-active': question.isSelected}">
       <button type="button" class="btn btn-link" ng-click="toggleSelected(question)" ng-disabled="readOnly">
         <i class="fa" ng-class="question.isSelected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true"></i>
-        {{question.Question ? question.Question : (question.Libelle | capitalize)}} {{readOnly}}
+        {{question.Question ? question.Question : (question.Libelle | capitalize)}}
       </button>
       <button type="button" class="btn btn-link" ng-click="toggleCollapse(question)" ng-if="!sublevel  && !readOnly">
         <i class="fa" ng-class="isCurrentQuestion(question) ? 'fa-minus' : 'fa-plus'"></i>
