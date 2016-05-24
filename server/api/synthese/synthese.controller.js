@@ -78,9 +78,8 @@ export function show(req, res) {
 
 export function showAllByProfile(req, res) {
   let options = {req, res, Synthese};
-  console.log('TOOTOTTOTOTOOTOTOT');
   Synthese
-    .find({profile: req.request.profile})
+    .find({profile: req.profile})
     .populate('request', 'shortId')
     .lean()
     .exec()

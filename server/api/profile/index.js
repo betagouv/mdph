@@ -5,6 +5,8 @@ import {Router} from 'express';
 import * as controller from './profile.controller';
 import Profile from './profile.model';
 
+import synthesesRouter from '../synthese';
+
 var router = new Router({mergeParams: true});
 
 router.get('/', canAccessProfile(), controller.index);
@@ -17,6 +19,8 @@ router.delete('/:profileId', isAuthorized(), controller.destroy);
 
 router.get('/:profileId/requests', isAuthorized(), controller.indexRequests);
 router.get('/:profileId/requests/current', isAuthorized(), controller.showLastCreatedRequest);
+
+router.use('/:profileId/syntheses', synthesesRouter);
 
 router.param('profileId', function(req, res, next, profileId) {
   Profile

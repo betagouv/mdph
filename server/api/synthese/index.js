@@ -16,10 +16,13 @@ router.put('/:syntheseId', isAuthorized(), controller.update);
 router.param('syntheseId', function(req, res, next, syntheseId) {
   Synthese
     .findById(syntheseId)
-    .populate('user')
-    .populate('request', 'shortId')
+    //.populate('user')
+    //.populate('request', 'shortId')
     .exec(function(err, synthese) {
-      if (err) return next(err);
+      if (err) {
+        return next(err);
+      }
+
       if (!synthese) return res.sendStatus(404);
 
       req.synthese = synthese;
