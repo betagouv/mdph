@@ -80,7 +80,7 @@ angular.module('impactApp')
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
 
       debugger;
-      currentSynthese.$update(function() {
+      currentSynthese.$update({userId: currentSynthese.user._id, profileId: currentSynthese.profile, syntheseId: currentSynthese._id}, function() {
         $state.go('.', {}, {reload: true});
       });
     };
