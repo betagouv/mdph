@@ -1,7 +1,7 @@
 <div class="row form-horizontal control-group">
-  <label class="col-md-2 control-label">{{answer.detailLabel}}</label>
+  <label class="col-md-2 control-label" for="inputPourcent">{{answer.detailLabel}}</label>
   <div class="col-md-10 input-group">
-    <input type="number" class="form-control" ng-model="sectionModel[answer.detailModel]" min="0" max="100" placeholder="{{answer.placeholder}}">
+    <input id="inputPourcent" type="number" class="form-control" ng-model="sectionModel[answer.detailModel]" min="0" max="100" placeholder="{{answer.placeholder}}">
     <div class="input-group-addon">%</div>
   </div>
 </div>
