@@ -13,21 +13,21 @@
       <div class="well well-detail slide" ng-if="model['valeur']">
         <table class="table my-table-striped">
           <thead ng-if="model.structures.length > 0">
-            <th>Nom de la structure</th>
-            <th colspan="2">Etes-vous déjà en contact ?</th>
+            <th id="idLabelNomStructure">Nom de la structure</th>
+            <th id="idQuestionContact" colspan="2">Etes-vous déjà en contact ?</th>
           </thead>
           <tbody>
             <tr ng-repeat="structure in model.structures">
               <td>
-                <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure">
+                <input type="text" class="form-control" ng-model="structure.name" placeholder="Nom de la structure" aria-labelledby="idLabelNomStructure">
               </td>
               <td>
-                <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'oui'">
+                <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'oui'" aria-labelledby="idQuestionContact">
                   Oui
                 </button>
               </td>
               <td>
-                <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'non'">
+                <button class="btn btn-default form-control btn-block" ng-model="structure.contact" btn-radio="'non'" aria-labelledby="idQuestionContact">
                   Non
                 </button>
               </td>
@@ -45,11 +45,10 @@
           </tbody>
         </table>
       </div>
-      <li
-        class="btn-answer" ng-class="{'active': model['valeur'] === false}"
-        ng-click="model['valeur'] = false">
+      <li class="btn-answer" ng-class="{'active': model['valeur'] === false}"
+          ng-click="model['valeur'] = false">
         <input type="radio" name="{{question.model}}" id="{{question.model}}-non"
-          ng-model="model['valeur']" ng-value="false" ng-required="!model['valeur']"/>
+               ng-model="model['valeur']" ng-value="false" ng-required="!model['valeur']"/>
         <label for="{{question.model}}-non">Non</label>
       </li>
     </ul>
