@@ -248,16 +248,36 @@ function computeEnregistrementOptions(request, host) {
 // create a snapshot of the current synthesis for a saved request
 function snapshotSynthese(request) {
   Synthese
-    .findOne({profile: request.profile, request: null})
+    .find({profile: request.profile})
     .exec(
-      function(err, currentSynthese) {
-        var snapshotSynthese = new Synthese(currentSynthese);
-        snapshotSynthese._id = mongoose.Types.ObjectId();
-        snapshotSynthese.request = request._id;
+      function(err, profileSyntheses) {
+        if (err) return;
+
+        var snapshotSynthese;
         var now = Date.now();
-        snapshotSynthese.createdAt = now;
+
+        var existingRequestSynthese = _.find(profileSyntheses, function(synthese) {
+          return synthese.request === request._id;
+        });
+
+        var currentProfileSynthese = _.find(profileSyntheses, function(synthese) {
+          return synthese.request === null;
+        });
+
+        if (!currentProfileSynthese) return;
+
+        if (existingRequestSynthese) {
+          snapshotSynthese = existingRequestSynthese;
+          snapshotSynthese.geva = currentProfileSynthese.geva;
+        } else {
+          snapshotSynthese = new Synthese(currentProfileSynthese);
+          snapshotSynthese._id = mongoose.Types.ObjectId();
+          snapshotSynthese.request = request._id;
+          snapshotSynthese.createdAt = now;
+          snapshotSynthese.isNew = true;
+        }
+
         snapshotSynthese.updatedAt = now;
-        snapshotSynthese.isNew = true;
         snapshotSynthese.save();
       }
     );

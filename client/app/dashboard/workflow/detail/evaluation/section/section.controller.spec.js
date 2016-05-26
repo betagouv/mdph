@@ -187,6 +187,10 @@ describe('RequestSectionCtrl', function() {
         request: {
           shortId: '1234'
         },
+        user: {
+          _id: '1234'
+        },
+        profile: '1234',
         $update() {}
       };
 

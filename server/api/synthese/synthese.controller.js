@@ -41,21 +41,24 @@ function saveUpdates(req) {
 export function findOrCreateRequestSynthese(options) {
   let {syntheses, req} = options;
 
-  return new Promise((resolve, reject) => {
-    let found = _.find(syntheses, (synthese) => {
+  return new Promise((resolve) => {
+    let foundCurrent = _.find(syntheses, (synthese) => {
       //search synthese without request => current working synthese
       return !synthese.request;
     });
 
-    if (found) {
-      found.current = true;
+    if (foundCurrent) {
+      foundCurrent.current = true;
       return resolve(syntheses);
     }
 
+    console.log(req.user);
+    console.log(req.profile);
+
     Synthese
       .create({
-        user:           req.request.user,
-        profile:        req.request.profile
+        user:           req.user._id,
+        profile:        req.profile._id
       })
       .then(created => {
         let createdObj = created.toObject();
@@ -79,13 +82,19 @@ export function show(req, res) {
 function sortSyntheseByDate(syntheses) {
   return new Promise((resolve) => {
     syntheses.sort(function(a, b) {
+      if (!a) {
+        return 1;
+      }
+
       if (a.request === null) {
         return 1;
-      } else if (b.request === null) {
-        return -1;
-      } else {
-        return a.createdAt - b.createdAt;
       }
+
+      if (b.request === null) {
+        return -1;
+      }
+
+      return a.createdAt - b.createdAt;
     });
 
     resolve(syntheses);

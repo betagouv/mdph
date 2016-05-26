@@ -76,7 +76,7 @@ describe('Synthese Integration', function() {
       var updatedSynthese;
 
       api
-        .post(`/api/requests/${newRequest.shortId}/syntheses/?access_token=${tokenAdmin}`)
+        .post(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/?access_token=${tokenAdmin}`)
         .send({
           user: testUser._id,
           profile: newProfile._id,
@@ -102,7 +102,7 @@ describe('Synthese Integration', function() {
         var gettedSynthese;
 
         api
-          .get(`/api/requests/${newRequest.shortId}/syntheses/${newSynthese._id}?access_token=${token}`)
+          .get(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${token}`)
           .expect(401, done);
       });
     });
@@ -112,7 +112,7 @@ describe('Synthese Integration', function() {
         var gettedSynthese;
 
         api
-          .get(`/api/requests/${newRequest.shortId}/syntheses/${newSynthese._id}?access_token=${tokenAdminMdph}`)
+          .get(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${tokenAdminMdph}`)
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function(err, res) {
@@ -134,7 +134,7 @@ describe('Synthese Integration', function() {
       var updatedSynthese;
 
       api
-        .put(`/api/requests/${newRequest.shortId}/syntheses/${newSynthese._id}?access_token=${tokenAdmin}`)
+        .put(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${tokenAdmin}`)
         .send({
           geva: 'updatedGeva'
         })

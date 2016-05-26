@@ -10,6 +10,8 @@ require('sinon-as-promised');
 describe('Synthese controller', function() {
   describe('findOrCreateRequestSynthese', function() {
     const fakeRequestId = new mongoose.Types.ObjectId();
+    const fakeUserId = new mongoose.Types.ObjectId();
+    const fakeProfileId = new mongoose.Types.ObjectId();
     const Synthese = mongoose.model('Synthese');
     const SyntheseMock = sinon.mock(Synthese);
 
@@ -19,6 +21,12 @@ describe('Synthese controller', function() {
       const fakeRequest = {
         request: {
           _id: fakeRequestId
+        },
+        user: {
+          _id: fakeUserId
+        },
+        profile: {
+          _id: fakeProfileId
         }
       };
 
@@ -58,6 +66,12 @@ describe('Synthese controller', function() {
       const fakeRequest = {
         request: {
           _id: fakeRequestId
+        },
+        user: {
+          _id: fakeUserId
+        },
+        profile: {
+          _id: fakeProfileId
         }
       };
 

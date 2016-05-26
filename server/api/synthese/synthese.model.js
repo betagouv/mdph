@@ -1,6 +1,5 @@
 'use strict';
 
-import _ from 'lodash';
 import mongoose from 'mongoose';
 
 var Schema = mongoose.Schema;
@@ -32,4 +31,4 @@ try {
   // Used only for mocha in watch mode
 }
 
-export default mongoose.model('Synthese');
+export default mongoose.model('Synthese', SyntheseSchema);
