@@ -28,6 +28,7 @@
     a {
       font-size: 18px;
       color: $lighter-blue;
+      transition: all 500ms;
 
       &:hover {
         font-size: 22px;

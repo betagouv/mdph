@@ -8,7 +8,7 @@
     <div ng-repeat="synthese in listSyntheses">
       <div ng-if="synthese.request">
         <a ui-sref-active="active" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}"
-           tooltip="Demande {{synthese.request.shortId}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}">
+           tooltip="Synthèse de la demande {{synthese.request.shortId}} validée le {{synthese.updatedAt | date:'dd/MM/yyyy'}}">
           <i class="fa fa-circle"></i>
         </a>
         <div>{{synthese.updatedAt | date:'dd/MM/yy'}}</div>

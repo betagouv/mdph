@@ -76,6 +76,22 @@ export function show(req, res) {
   respondWithResult(res)(req.synthese);
 }
 
+function sortSyntheseByDate(syntheses) {
+  return new Promise((resolve) => {
+    syntheses.sort(function(a, b) {
+      if (a.request === null) {
+        return 1;
+      } else if (b.request === null) {
+        return -1;
+      } else {
+        return a.createdAt - b.createdAt;
+      }
+    });
+
+    resolve(syntheses);
+  });
+}
+
 export function showAllByProfile(req, res) {
   let options = {req, res, Synthese};
   Synthese
@@ -88,6 +104,7 @@ export function showAllByProfile(req, res) {
       return options;
     })
     .then(findOrCreateRequestSynthese)
+    .then(sortSyntheseByDate)
     .then(respondWithResult(res, 200))
     .catch(handleError(req, res));
 }
