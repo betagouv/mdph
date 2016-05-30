@@ -72,6 +72,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
     vieScolaire: {
       title: 'Vie scolaire',
       model: 'vie_scolaire',
+      content: 'Concerne les personnes en cours de scolarisation ou désirant reprendre un cursus scolaire',
       icon: 'fa-university',
       action: {
         sref: 'profil.vie_scolaire'
@@ -81,6 +82,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
     vieTravail: {
       title: 'Vie au travail',
       model: 'vie_au_travail',
+      content: 'Concerne les personnes en âge de travailler',
       icon: 'fa-industry',
       action: {
         sref: 'profil.vie_au_travail'
