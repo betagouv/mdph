@@ -68,21 +68,24 @@
     "type": "accompagnement",
     "label": "EMS",
     "title": "Accompagnement par un service ou établissement médico-social",
-    "description": "Orientation vers un établissement médical de santé."
+    "description": "Orientation vers un établissement médical de santé.",
+    "link": "http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux"
   },
   {
     "id": "pps",
     "type": "enfant",
     "label": "PPS",
     "title": "Plan personnalisé de scolarisation",
-    "description": "Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales et paramédicales répondant aux besoins particuliers des élèves présentant un handicap."
+    "description": "Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.",
+    "link": "http://www.education.gouv.fr/pid25535/bulletin_officiel.html&cid_bo=86108"
   },
   {
     "id": "orp",
     "type": "travail",
     "label": "ORP",
     "title": "Orientation professionnelle",
-    "description": "La demande d'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation."
+    "description": "La demande d'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F211"
   },
   {
     "id": "formation",
@@ -97,7 +100,8 @@
     "type": "accompagnement",
     "label": "SMS",
     "title": "Orientation en Etablissements et Services médico-sociaux",
-    "description": "Ce sont des établissements médico-sociaux chargés d’offrir aux personnes accueillies différentes activités à caractère professionnel qui donnent lieu au versement d’une rémunération garantie et à un soutien médico-social et éducatif. La personne est accueillie dans les Etablissements et Services d’Aide par le Travail (ESAT) à temps complet ou à temps partiel (combiné à une section occupationnelle à temps partiel)."
+    "description": "Ce sont des établissements médico-sociaux chargés d’offrir aux personnes accueillies différentes activités à caractère professionnel qui donnent lieu au versement d’une rémunération garantie et à un soutien médico-social et éducatif. La personne est accueillie dans les Etablissements et Services d’Aide par le Travail (ESAT) à temps complet ou à temps partiel (combiné à une section occupationnelle à temps partiel).",
+    "link": "http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux"
   },
   {
     "id": "sms_enfant",
