@@ -5,17 +5,8 @@ angular.module('impactApp')
     $stateProvider
       .state('departement', {
         parent: 'layout',
-        url: '/mdph/:codeDepartement',
+        url: '',
         templateUrl: 'app/departement/departement.html',
-        controller: 'DepartementCtrl',
-        resolve: {
-          currentMdph: function(MdphResource, $stateParams) {
-            if ($stateParams.codeDepartement) {
-              return MdphResource.get({zipcode: $stateParams.codeDepartement}).$promise;
-            } else {
-              return null;
-            }
-          }
-        }
+        controller: 'DepartementCtrl'
       });
   });

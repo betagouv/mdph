@@ -4,6 +4,10 @@
   angular.module('impactApp.auth')
     .run(function($rootScope, $state, Auth) {
       // Redirect to login if route requires auth and the user is not logged in, or doesn't have required role
+      $rootScope.$on('$stateChangeSuccess', function() {
+        $rootScope.$broadcast('refreshMenu');
+      });
+
       $rootScope.$on('$stateChangeStart', function(event, next, nextParams) {
         if (!next.authenticate && !next.redirectTo) {
           return;
