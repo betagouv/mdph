@@ -4,9 +4,13 @@ angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('main', {
-        parent: 'layout',
         url: '',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+          mdphs: function(MdphResource) {
+            return MdphResource.query({enabled: true}).$promise;
+          }
+        }
       });
   });

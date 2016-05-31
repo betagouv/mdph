@@ -1,27 +1,27 @@
-<div class="menu-dashboard" ng-class="md.isCollapsed() ? 'collapsed-menu' : 'expanded-menu'">
+<div class="menu-dashboard" ng-class="isCollapsed() ? 'collapsed-menu' : 'expanded-menu'">
   <div class="shared-menu">
-    <a ng-show="md.mdph" ui-sref="departement({codeDepartement: md.mdph.zipcode})"><img ng-src="assets/images/{{md.mdph.logo}}" alt="Accueil"></a>
-    <a ng-hide="md.mdph" ui-sref="main"><img src="assets/images/logo_marianne.png" alt="Accueil"></a>
+    <a ng-show="mdph" ui-sref="departement({codeDepartement: mdph.zipcode})"><img ng-src="assets/images/{{mdph.logo}}" alt="Accueil"></a>
+    <a ng-hide="mdph" ui-sref="main"><img src="assets/images/logo_marianne.png" alt="Accueil"></a>
   </div>
 
   <div class="menu-general">
     <ul>
-      <li ng-if="!md.isLoggedIn()">
-        <a class="icon" ui-sref="signup({codeDepartement: md.mdph.zipcode})" title="Inscription">Inscription</a>
+      <li ng-if="!isLoggedIn()">
+        <a class="icon" ui-sref="signup({codeDepartement: mdph.zipcode})" title="Inscription">Inscription</a>
       </li>
-      <li ng-if="!md.isLoggedIn()">
-        <a class="icon" ui-sref="login({codeDepartement: md.mdph.zipcode})" title="Connexion">Connexion</a>
+      <li ng-if="!isLoggedIn()">
+        <a class="icon" ui-sref="login({codeDepartement: mdph.zipcode})" title="Connexion">Connexion</a>
       </li>
-      <li ng-if="md.isLoggedIn()">
-        <a class="icon user" ui-sref-active="active" ui-sref="mon_compte" title="Gérer mon compte">{{ md.getCurrentUser().email }}</a>
+      <li ng-if="isLoggedIn()">
+        <a class="icon user" ui-sref-active="active" ui-sref="mon_compte" title="Gérer mon compte">{{ getCurrentUser().email }}</a>
       </li>
-      <li ng-if="md.isLoggedIn()">
+      <li ng-if="isLoggedIn()">
         <a class="icon sign-out" ui-sref="logout">Se déconnecter</a>
       </li>
     </ul>
   </div>
 
-  <div class="menu-slider" ng-if="md.state.includes('dashboard')" ng-class="md.state.includes('dashboard.workflow.detail') ? 'show-detail' : 'show-general'">
+  <div class="menu-slider" ng-if="state.includes('dashboard')" ng-class="state.includes('dashboard.workflow.detail') ? 'show-detail' : 'show-general'">
     <div class="menu-general">
       <ul>
         <li>
@@ -29,7 +29,7 @@
             Flux de demandes
           </a>
         </li>
-        <li ng-repeat="banette in md.banettes">
+        <li ng-repeat="banette in banettes">
           <a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.list({status: banette.id})">
             {{banette.label}}
             <span
@@ -94,7 +94,7 @@
     </div>
   </div>
 
-  <div class="menu-dashboard-footer" ng-show="md.mdph">
+  <div class="menu-dashboard-footer" ng-show="mdph">
     <table>
       <tbody>
         <tr>
@@ -105,26 +105,26 @@
         </tr>
         <tr>
           <td class="cell-icon"><i class="fa fa-home"></i></td>
-          <td><span ng-bind="md.mdph.address"></span></td>
+          <td><span ng-bind="mdph.address"></span></td>
         </tr>
         <tr>
           <td class="cell-icon"><i class="fa fa-phone"></i></td>
-          <td><span ng-bind="md.mdph.phone"></span></td>
+          <td><span ng-bind="mdph.phone"></span></td>
         </tr>
-        <tr ng-if="md.mdph.email">
+        <tr ng-if="mdph.email">
           <td class="cell-icon"><i class="fa fa-envelope"></i></td>
-          <td><a href="mailto:{{md.mdph.email}}" title="Envoyer un mail de contact">{{md.mdph.email}}</a></td>
+          <td><a href="mailto:{{mdph.email}}" title="Envoyer un mail de contact">{{mdph.email}}</a></td>
         </tr>
         <tr>
           <td class="cell-icon"><i class="fa fa-clock-o"></i></td>
-          <td><span ng-bind="md.mdph.schedule"></span></td>
+          <td><span ng-bind="mdph.schedule"></span></td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<button type="button" class="btn-menu-link" ng-click="md.toggleMenu()" ng-class="md.isCollapsed() ? 'expand-btn' : 'collapse-btn'">
+<button type="button" class="btn-menu-link" ng-click="toggleMenu()" ng-class="isCollapsed() ? 'expand-btn' : 'collapse-btn'">
   <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->
   <div class="menu-opener-inner"></div>
 </button>

@@ -41,21 +41,24 @@ function saveUpdates(req) {
 export function findOrCreateRequestSynthese(options) {
   let {syntheses, req} = options;
 
-  return new Promise((resolve, reject) => {
-    let found = _.find(syntheses, (synthese) => {
-      return synthese.request._id.equals(req.request._id);
+  return new Promise((resolve) => {
+    let foundCurrent = _.find(syntheses, (synthese) => {
+      //search synthese without request => current working synthese
+      return !synthese.request;
     });
 
-    if (found) {
-      found.current = true;
+    if (foundCurrent) {
+      foundCurrent.current = true;
       return resolve(syntheses);
     }
 
+    console.log(req.user);
+    console.log(req.profile);
+
     Synthese
       .create({
-        user:           req.request.user,
-        profile:        req.request.profile,
-        request:        req.request._id
+        user:           req.user._id,
+        profile:        req.profile._id
       })
       .then(created => {
         let createdObj = created.toObject();
@@ -76,10 +79,32 @@ export function show(req, res) {
   respondWithResult(res)(req.synthese);
 }
 
+function sortSyntheseByDate(syntheses) {
+  return new Promise((resolve) => {
+    syntheses.sort(function(a, b) {
+      if (!a) {
+        return 1;
+      }
+
+      if (a.request === null) {
+        return 1;
+      }
+
+      if (b.request === null) {
+        return -1;
+      }
+
+      return a.createdAt - b.createdAt;
+    });
+
+    resolve(syntheses);
+  });
+}
+
 export function showAllByProfile(req, res) {
   let options = {req, res, Synthese};
   Synthese
-    .find({profile: req.request.profile})
+    .find({profile: req.profile})
     .populate('request', 'shortId')
     .lean()
     .exec()
@@ -88,6 +113,7 @@ export function showAllByProfile(req, res) {
       return options;
     })
     .then(findOrCreateRequestSynthese)
+    .then(sortSyntheseByDate)
     .then(respondWithResult(res, 200))
     .catch(handleError(req, res));
 }

@@ -19,12 +19,12 @@ angular.module('impactApp')
     };
 
     $scope.filterQuestion = function(question) {
-      return (!$scope.sublevel || $scope.isCurrentQuestion(question) || question.isSelected);
+      return ((!$scope.sublevel && !$scope.readOnly) || $scope.isCurrentQuestion(question) || question.isSelected);
     };
 
     $scope.toggleSelected = function(question) {
       question.isSelected = !question.isSelected;
-      if (question.isSelected) {
+      if (question.isSelected && $scope.sublevel) {
         $scope.root.isSelected = true;
       }
     };

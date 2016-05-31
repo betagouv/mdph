@@ -10,7 +10,8 @@ angular.module('impactApp')
         questions: '=',
         request: '=',
         currentQuestionId: '=',
-        root: '='
+        root: '=',
+        readOnly: '='
       },
       controller: 'TrajectoireController'
     };

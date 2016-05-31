@@ -4,10 +4,14 @@ angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('layout', {
-        url: '',
+        url: '/mdph/:codeDepartement',
         resolve: {
-          mdphs: function(MdphResource) {
-            return MdphResource.query({enabled: true}).$promise;
+          currentMdph: function(MdphResource, $stateParams) {
+            if ($stateParams.codeDepartement) {
+              return MdphResource.get({zipcode: $stateParams.codeDepartement}).$promise;
+            } else {
+              return null;
+            }
           }
         },
         templateUrl: 'app/layout/layout.html',

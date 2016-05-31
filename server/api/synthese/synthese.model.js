@@ -1,6 +1,5 @@
 'use strict';
 
-import _ from 'lodash';
 import mongoose from 'mongoose';
 
 var Schema = mongoose.Schema;
@@ -8,7 +7,7 @@ var Schema = mongoose.Schema;
 var SyntheseSchema = new Schema({
   user:           { type: Schema.Types.ObjectId, ref: 'User', required: true },
   profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
-  request:        { type: Schema.Types.ObjectId, ref: 'Request' },
+  request:        { type: Schema.Types.ObjectId, ref: 'Request', default: null },
   geva:           Schema.Types.Mixed,
   createdAt:      Date,
   updatedAt:      Date
@@ -32,4 +31,4 @@ try {
   // Used only for mocha in watch mode
 }
 
-export default mongoose.model('Synthese');
+export default mongoose.model('Synthese', SyntheseSchema);

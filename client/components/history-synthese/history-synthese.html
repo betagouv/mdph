@@ -6,11 +6,21 @@
 <div class="synthese-slider-wrapper">
   <div class="synthese-slider">
     <div ng-repeat="synthese in listSyntheses">
-      <a ng-class="{'active': synthese._id === currentSynthese._id}" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}"
-         tooltip="Demande {{synthese.request.shortId}} mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}">
-        <i class="fa fa-circle"></i>
-      </a>
-      <div>{{synthese.updatedAt | date:'dd/MM/yy'}}</div>
+      <div ng-if="synthese.request">
+        <a ui-sref-active="active" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}"
+           tooltip="Synthèse de la demande {{synthese.request.shortId}} validée le {{synthese.updatedAt | date:'dd/MM/yyyy'}}">
+          <i class="fa fa-circle"></i>
+        </a>
+        <div>{{synthese.updatedAt | date:'dd/MM/yy'}}</div>
+      </div>
+
+      <div ng-if="!synthese.request">
+        <a ui-sref-active="active" ui-sref="{syntheseId: synthese._id, sectionId: sectionId}"
+           tooltip="Synthèse courante mise à jour le {{synthese.updatedAt | date:'dd/MM/yyyy à HH:mm'}}">
+          <i class="fa fa-circle"></i>
+        </a>
+        <div>Synthèse courante</div>
+      </div>
     </div>
   </div>
 </div>

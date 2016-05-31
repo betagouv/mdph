@@ -2,6 +2,7 @@
 
 import { populateAndSortPrestations } from '../prestation/prestation.controller';
 import { populateAndSortDocumentTypes } from '../document-type/document-type.controller';
+import mongoose from 'mongoose';
 
 import _ from 'lodash';
 import path from 'path';
@@ -14,7 +15,7 @@ import Promise from 'bluebird';
 import * as Auth from '../../auth/auth.service';
 import config from '../../config/environment';
 import Recapitulatif from '../../components/recapitulatif';
-import Synthese from '../../components/synthese';
+import SynthesePDF from '../../components/synthese';
 import pdfMaker from '../../components/pdf-maker';
 
 import Prestation from '../prestation/prestation.controller';
@@ -24,6 +25,7 @@ import User from '../user/user.model';
 import Partenaire from '../partenaire/partenaire.model';
 import Mdph from '../mdph/mdph.model';
 import * as MailActions from '../send-mail/send-mail-actions';
+import Synthese from '../synthese/synthese.model';
 
 import Dispatcher from '../../components/dispatcher';
 import ActionModel from './action.model';
@@ -243,12 +245,52 @@ function computeEnregistrementOptions(request, host) {
   return options;
 }
 
+// create a snapshot of the current synthesis for a saved request
+function snapshotSynthese(request) {
+  Synthese
+    .find({profile: request.profile})
+    .exec(
+      function(err, profileSyntheses) {
+        if (err) return;
+
+        var snapshotSynthese;
+        var now = Date.now();
+
+        var existingRequestSynthese = _.find(profileSyntheses, function(synthese) {
+          return synthese.request === request._id;
+        });
+
+        var currentProfileSynthese = _.find(profileSyntheses, function(synthese) {
+          return synthese.request === null;
+        });
+
+        if (!currentProfileSynthese) return;
+
+        if (existingRequestSynthese) {
+          snapshotSynthese = existingRequestSynthese;
+          snapshotSynthese.geva = currentProfileSynthese.geva;
+        } else {
+          snapshotSynthese = new Synthese(currentProfileSynthese);
+          snapshotSynthese._id = mongoose.Types.ObjectId();
+          snapshotSynthese.request = request._id;
+          snapshotSynthese.createdAt = now;
+          snapshotSynthese.isNew = true;
+        }
+
+        snapshotSynthese.updatedAt = now;
+        snapshotSynthese.save();
+      }
+    );
+  return request;
+}
+
 function resolveEnregistrement(req) {
   const options = computeEnregistrementOptions(req.request, req.headers.host);
 
   return req.request
     .set('status', options.status)
     .save()
+    .then(snapshotSynthese)
     .then(request => {
       MailActions.sendMailCompletude(request, options);
       return request;
@@ -375,7 +417,7 @@ export function getPdf(req, res) {
 }
 
 export function getSynthesePdf(req, res) {
-  Synthese.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
+  SynthesePDF.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
     if (err) { throw(500, err); }
 
     pdf.create(html).toStream(function(err, stream) {

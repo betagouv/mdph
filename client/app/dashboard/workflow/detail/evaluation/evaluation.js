@@ -21,7 +21,8 @@ angular.module('impactApp')
           },
 
           listSyntheses: function(SyntheseResource, request) {
-            return SyntheseResource.query({shortId: request.shortId}).$promise;
+            // return SyntheseResource.query({shortId: request.shortId}).$promise;
+            return SyntheseResource.query({userId: request.user._id, profileId: request.profile}).$promise;
           }
         }
       })
@@ -43,7 +44,8 @@ angular.module('impactApp')
           },
 
           currentSynthese: function(SyntheseResource, $stateParams, request) {
-            return SyntheseResource.get({shortId: request.shortId, syntheseId: $stateParams.syntheseId}).$promise;
+            // return SyntheseResource.get({shortId: request.shortId, syntheseId: $stateParams.syntheseId}).$promise;
+            return SyntheseResource.get({userId: request.user._id, profileId: request.profile, syntheseId: $stateParams.syntheseId}).$promise;
           },
 
           section: function($stateParams, sections, model, sectionId) {
