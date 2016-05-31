@@ -52,9 +52,6 @@ export function findOrCreateRequestSynthese(options) {
       return resolve(syntheses);
     }
 
-    console.log(req.user);
-    console.log(req.profile);
-
     Synthese
       .create({
         user:           req.user._id,
