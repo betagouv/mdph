@@ -24,6 +24,11 @@ angular.module('impactApp')
 
     $scope.toggleSelected = function(question) {
       question.isSelected = !question.isSelected;
+
+      if (question.isSelected) {
+        $scope.currentQuestionId = ($scope.getRootQuestion(question)).id;
+      }
+
       if (question.isSelected && $scope.sublevel) {
         $scope.root.isSelected = true;
       }
