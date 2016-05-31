@@ -38,23 +38,21 @@
     <div ui-view=""></div>
 
     <script type="text/javascript">
-      if (window.location.hostname === 'mdph.beta.gouv.fr') {
-        var _paq = _paq || [];
-        _paq.push(['enableLinkTracking']);
-        (function() {
-          var u = '//stats.data.gouv.fr/';
-          _paq.push(['setTrackerUrl', u + 'piwik.php']);
-          _paq.push(['setSiteId', 14]);
-          var d = document;
-          var g = d.createElement('script');
-          var s = d.getElementsByTagName('script')[0];
-          g.type = 'text/javascript';
-          g.async = true;
-          g.defer = true;
-          g.src = u + 'piwik.js';
-          s.parentNode.insertBefore(g, s);
-        })();
-      }
+      var _paq = _paq || [];
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = '//stats.data.gouv.fr/';
+        _paq.push(['setTrackerUrl', u + 'piwik.php']);
+        _paq.push(['setSiteId', 14]);
+        var d = document;
+        var g = d.createElement('script');
+        var s = d.getElementsByTagName('script')[0];
+        g.type = 'text/javascript';
+        g.async = true;
+        g.defer = true;
+        g.src = u + 'piwik.js';
+        s.parentNode.insertBefore(g, s);
+      })();
     </script>
     <noscript><p><img src="//stats.data.gouv.fr/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
 
