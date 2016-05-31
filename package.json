@@ -113,7 +113,8 @@
     "sinon": "^1.17.3",
     "sinon-as-promised": "^4.0.0",
     "supertest": "^1.0.1",
-    "time-grunt": "^1.2.1"
+    "time-grunt": "^1.2.1",
+    "to-iso-string": "0.0.2"
   },
   "engines": {
     "node": ">=4.2.1"
