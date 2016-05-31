@@ -6,12 +6,11 @@ angular.module('impactApp')
       mdph: '<'
     },
     templateUrl: 'components/menu-dashboard/menu-dashboard.html',
-    controller($scope, $rootScope, SectionBackConstants, BanettesConstant, MdphResource, MenuCollapsed, Auth, $state) {
+    controller($scope, $rootScope, SectionBackConstants, BanettesConstant, MdphResource, Auth, $state) {
       $scope.sections = SectionBackConstants;
       $scope.state = $state;
       $scope.isLoggedIn = Auth.isLoggedIn;
       $scope.getCurrentUser = Auth.getCurrentUser;
-      $scope.toggleMenu = MenuCollapsed.toggle;
       $scope.mdph = this.mdph;
 
       const refreshBanettes = () => {
@@ -30,8 +29,6 @@ angular.module('impactApp')
           });
         }
       };
-
-      $scope.isCollapsed = MenuCollapsed.isCollapsed;
 
       $rootScope.$on('refreshMenu', refreshBanettes);
       refreshBanettes();

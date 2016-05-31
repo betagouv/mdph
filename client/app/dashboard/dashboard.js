@@ -6,14 +6,9 @@ angular.module('impactApp')
       .state('dashboard', {
         url: '/dashboard',
         parent: 'departement',
-        templateUrl: 'app/dashboard/dashboard.html',
+        template: '<div ui-view></div>',
         authenticate: true,
         redirectTo: 'dashboard.workflow',
-        controller: function($scope, MenuCollapsed) {
-          $scope.isCollapsed = MenuCollapsed.isCollapsed;
-          $scope.toggleMenu = MenuCollapsed.toggle;
-        },
-
         resolve: {
           currentUser: function(Auth) {
             return Auth.getCurrentUser().$promise;
