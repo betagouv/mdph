@@ -1,4 +1,4 @@
-<div class="menu-dashboard" ng-class="isCollapsed() ? 'collapsed-menu' : 'expanded-menu'">
+<div class="menu-dashboard">
   <div class="shared-menu">
     <a ng-show="mdph" ui-sref="departement({codeDepartement: mdph.zipcode})"><img ng-src="assets/images/{{mdph.logo}}" alt="Accueil"></a>
     <a ng-hide="mdph" ui-sref="main"><img src="assets/images/logo_marianne.png" alt="Accueil"></a>
@@ -123,8 +123,3 @@
     </table>
   </div>
 </div>
-
-<button type="button" class="btn-menu-link" ng-click="toggleMenu()" ng-class="isCollapsed() ? 'expand-btn' : 'collapse-btn'">
-  <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->
-  <div class="menu-opener-inner"></div>
-</button>

@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.workflow', {
         url: '/workflow',
-        templateUrl: 'app/dashboard/workflow/workflow.html',
+        template: '<div ui-view></div>',
         redirectTo: {
           url: 'dashboard.workflow.list',
           params: {

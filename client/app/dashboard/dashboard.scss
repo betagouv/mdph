@@ -1,9 +1,6 @@
 .flex-main-container {
   width: 100%;
-  transition: padding-left 500ms;
-  padding-top: 20px;
 }
-
 .container-dashboard {
   background-color: whitesmoke;
   min-height: 700px;
@@ -19,11 +16,7 @@
     display: flex;
   }
 
-  .flex-main-container h2.padding-title {
-    padding-left: 40px;
-  }
-
-  .flex-main-container.expanded-main-container {
-    padding-left: 240px;
+  .flex-main-container {
+    margin-left: 240px;
   }
 }
