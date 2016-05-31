@@ -1,7 +1,7 @@
 <div class="list-header">
   <div class="dashboard-demande-header">
     <div class="detail">
-      <h2><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong> - {{request.shortId}}</h2>
+      <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong> - {{request.shortId}}</h2>
       <div class="header-actions">
         <a target="_blank"
           class="btn btn-primary"
@@ -49,15 +49,15 @@
 </div>
 
 <div class="detail-main">
-  <ul class="nav nav-tabs">
+  <!-- <ul class="nav nav-tabs">
     <li role="presentation" ui-sref-active="active"><a ui-sref=".pre_evaluation">Récapitulatif</a></li>
     <li role="presentation" ui-sref-active="active"><a ui-sref=".documents">Documents associés</a></li>
     <li role="presentation" ui-sref-active="active"><a ui-sref=".evaluation">Synthèse de l'évaluation</a></li>
     <li role="presentation" ui-sref-active="active"><a ui-sref=".history">Vie de la demande</a></li>
     <li role="presentation" ui-sref-active="active"><a ui-sref=".comments">Commentaires</a></li>
-  </ul>
+  </ul> -->
 
   <div class="detail-tab">
-    <ui-view/>
+    <div ui-view></div>
   </div>
 </div>

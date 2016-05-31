@@ -6,7 +6,7 @@ angular.module('impactApp')
     $stateProvider
       .state(index, {
         url: '/situation',
-        template: '<ui-view/>',
+        template: '<div ui-view></div>',
         redirectTo: index + '.vie_famille'
       })
       .state(index + '.vie_famille', {

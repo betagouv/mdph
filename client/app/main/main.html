@@ -1,10 +1,9 @@
-<ui-view>
+<div ui-view>
   <header class="banner banner-blue">
     <div class="hero-unit">
       <h1>Trouvez le service en ligne de votre MDPH</h1>
 
       <ul class="mdph-choices">
-        <li class="col-sm-3"></li>
         <li ng-repeat="mdph in mdphs" class="mdph-choice">
           <a class="btn btn-default" ui-sref="departement({codeDepartement: mdph.zipcode})"><strong>{{mdph.zipcode}}</strong> <br> {{mdph.name}}</a>
         </li>
@@ -15,15 +14,15 @@
   <div class="section-main section-flow">
     <div class="flow">
       <div>
-        <img src="/assets/images/MDPH_Step1.png" alt="Saisie en ligne">
+        <img src="/assets/images/MDPH_Step1.png" alt="Je complète mon profil">
         <p><span>1</span>&nbsp;Je complète mon profil</p>
       </div>
       <div>
-        <img src="/assets/images/MDPH_Step2.png" alt="Saisie en ligne">
+        <img src="/assets/images/MDPH_Step2.png" alt="Je transmets ma demande">
         <p><span>2</span>&nbsp;Je transmets ma demande</p>
       </div>
       <div>
-        <img src="/assets/images/MDPH_Step3.png" alt="Saisie en ligne">
+        <img src="/assets/images/MDPH_Step3.png" alt="Je consulte le suivi de mon dossier">
         <p><span>3</span>&nbsp;Je consulte le suivi de mon dossier</p>
       </div>
     </div>
@@ -107,7 +106,7 @@
   </div>
 
   <footer class="footer">
-    <div class="container">
+    <div class="section-main">
       <p>
         <a ui-sref="stats" title="Statistiques">Statistiques</a>
          |
@@ -117,4 +116,4 @@
       </p>
     </div>
   </footer>
-</ui-view>
+</div>

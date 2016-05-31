@@ -1,4 +1,4 @@
-<ui-view>
+<div ui-view>
   <header class="banner bg" ng-class="'bg-' + currentMdph.zipcode">
     <div class="hero-unit">
       <h1 ng-if="currentMdph">MDPH - {{currentMdph.name}}</h1>
@@ -22,15 +22,15 @@
   <div class="section-main section-flow">
     <div class="flow">
       <div>
-        <img src="/assets/images/MDPH_Step1.png" alt="Saisie en ligne">
+        <img src="/assets/images/MDPH_Step1.png" alt="Je complète mon profil">
         <p><span>1</span>&nbsp;Je complète mon profil</p>
       </div>
       <div>
-        <img src="/assets/images/MDPH_Step2.png" alt="Saisie en ligne">
+        <img src="/assets/images/MDPH_Step2.png" alt="Je transmets ma demande">
         <p><span>2</span>&nbsp;Je transmets ma demande</p>
       </div>
       <div>
-        <img src="/assets/images/MDPH_Step3.png" alt="Saisie en ligne">
+        <img src="/assets/images/MDPH_Step3.png" alt="Je consulte le suivi de mon dossier">
         <p><span>3</span>&nbsp;Je consulte le suivi de mon dossier</p>
       </div>
     </div>
@@ -79,7 +79,7 @@
     </div>
   </div>
 
-  <div class="section-blue">
+  <div class="section-blue section-padding">
     <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">
       S'inscrire
     </a>
@@ -159,7 +159,7 @@
   </div>
 
   <div class="section-blue">
-    <div class="container">
+    <div class="section-main">
       <div class="row">
         <div class="col-sm-6">
           <div class="card">
@@ -201,4 +201,4 @@
       </p>
     </div>
   </footer>
-</ui-view>
+</div>

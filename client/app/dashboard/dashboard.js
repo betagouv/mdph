@@ -9,8 +9,9 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/dashboard.html',
         authenticate: true,
         redirectTo: 'dashboard.workflow',
-        controller: function($scope, SectionBackConstants) {
-          $scope.sections = SectionBackConstants;
+        controller: function($scope, MenuCollapsed) {
+          $scope.isCollapsed = MenuCollapsed.isCollapsed;
+          $scope.toggleMenu = MenuCollapsed.toggle;
         },
 
         resolve: {

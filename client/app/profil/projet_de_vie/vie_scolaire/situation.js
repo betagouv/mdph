@@ -7,7 +7,7 @@ angular.module('impactApp')
 
     $stateProvider.state(index + '.situation', {
       url: '/situation',
-      template: '<ui-view/>',
+      template: '<div ui-view></div>',
       redirectTo: index + '.situation.condition'
     })
     .state(index + '.situation.condition', {

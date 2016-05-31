@@ -3,10 +3,31 @@
 
   .trees {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
 
-    > div {
+
+  }
+
+  .tree-wrapper {
+    padding: 0px 10px 10px 10px;
+  }
+
+  @media (max-width: $screen-md-max) {
+    .trees {
+      flex-direction: column;
+    }
+
+    .tree-wrapper {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $screen-lg-min) {
+    .trees {
+      flex-direction: row;
+    }
+
+    .tree-wrapper {
       width: 50%;
     }
   }
@@ -18,9 +39,7 @@
     align-items: center;
   }
 
-  .tree-wrapper {
-    padding: 10px;
-  }
+
 }
 
 .angular-ui-tree {

@@ -1,15 +1,27 @@
 .partenaire-view {
+  h1 {
+    text-align: center;
+  }
+
   .flex-row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .flex-row {
+      flex-direction: row;
+    }
   }
 
   .cm-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
+    margin: auto;
+    max-width: 350px;
+    padding: 0px 20px;
 
     a {
       font-size: 18px;
@@ -17,6 +29,13 @@
 
     img {
       width: 100%;
+      display: none;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      img {
+        display: block;
+      }
     }
 
     .box-img {

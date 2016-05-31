@@ -1,46 +1,20 @@
 'use strict';
 
-angular.module('impactApp').constant('banettes', [
+angular.module('impactApp').constant('BanettesConstant', [
   {
-    id: 'workflow',
-    label: 'Bannettes',
-    statuses: [
-      {
-        id: 'emise',
-        label: 'Émise'
-      },
-      {
-        id: 'enregistree',
-        label: 'Enregistrée'
-      },
-      {
-        id: 'en_attente_usager',
-        label: 'En attente'
-      }
-    ]
+    id: 'emise',
+    label: 'Émise'
   },
   {
-    id: 'special',
-    label: 'Autres',
-    statuses: [
-      {
-        id: 'toutes',
-        label: 'Toutes'
-      },
-      {
-        id: 'archive',
-        label: 'Archivée'
-      }
-    ]
+    id: 'enregistree',
+    label: 'Enregistrée'
   },
   {
-    id: 'hidden',
-    label: 'Cachées',
-    statuses: [
-      {
-        id: 'en_cours',
-        label: 'En cours'
-      }
-    ]
+    id: 'en_attente_usager',
+    label: 'En attente'
+  },
+  {
+    id: 'archive',
+    label: 'Archivée'
   }
 ]);

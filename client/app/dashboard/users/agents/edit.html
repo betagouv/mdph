@@ -1,7 +1,7 @@
 <div class="edit-partenaire">
   <div class="list-header">
-    <h2 ng-if="!user._id">Création d'un agent</h2>
-    <h2 ng-if="user._id">Edition d'un agent</h2>
+    <h2 class="padding-title" ng-if="!user._id">Création d'un agent</h2>
+    <h2 class="padding-title" ng-if="user._id">Edition d'un agent</h2>
   </div>
   <form class="form-horizontal" name="userForm" ng-submit="update(userForm)" >
     <div class="form-group">

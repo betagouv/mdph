@@ -1,4 +1,6 @@
 #mon-compte {
+  @extend .container;
+  width: 90%;
   margin-top: 30px;
 
   .panel-danger {
