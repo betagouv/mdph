@@ -16,9 +16,10 @@
   <div class="panel panel-flat-default">
     <div class="panel-heading">Demandes de documents complémentaires</div>
     <div class="panel-body">
-      <input typeahead="documentType as documentType.label for documentType in documentTypes | filter:$viewValue"
+      <label for="inputDocCompl">Ajouter un type de document complémentaire</label>
+      <input id="inputDocCompl" typeahead="documentType as documentType.label for documentType in documentTypes | filter:$viewValue"
       typeahead-min-length="0" typeahead-on-select="addSelectedType(selectedDocument); selectedDocument = '';" name="typeahead"
-      type="text" ng-model="selectedDocument" class="form-control" placeholder="Ajouter un type complémentaire">
+      type="text" ng-model="selectedDocument" class="form-control" placeholder="Justificatif, carte, certificat ...">
 
       <div class="selected-types">
         <em ng-hide="request.askedDocumentTypes.length">Pas de demande complémentaire</em>

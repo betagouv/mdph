@@ -2,7 +2,7 @@
   <qtitle ng-hide="hideTitle"></qtitle>
   <table aria-label="Etablissements de scolarité actuels" class="table my-table-striped">
     <thead ng-if="model.etablissements.length > 0">
-      <th id="nom">Nom</th>
+      <th id="nom">Nom de l'établissement</th>
       <th id="rue">Rue</th>
       <th id="ville">Ville</th>
       <th id="duree">Depuis le</th>
@@ -10,19 +10,19 @@
     <tbody>
       <tr ng-repeat="(idx, etablissement) in model.etablissements">
         <td class="col-md-3">
-          <input aria-labelledby="nom" name="nom{{idx}}" type="text" class="form-control" ng-model="etablissement.nom" placeholder="Nom de l'établissement" required>
+          <input aria-labelledby="nom" name="nom{{idx}}" type="text" class="form-control" ng-model="etablissement.nom" placeholder="Ex : collège Jules Ferry" required>
           <div ng-messages="questionForm['nom' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
         <td class="col-md-3">
-          <input aria-labelledby="rue" name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Rue">
+          <input aria-labelledby="rue" name="rue{{idx}}" type="text" class="form-control" ng-model="etablissement.rue" placeholder="Ex : 1, rue de l'église">
           <div ng-messages="questionForm['rue' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
         </td>
         <td class="col-md-3">
-          <input aria-labelledby="ville" name="ville{{idx}}" type="text" class="form-control" ng-model="etablissement.ville" placeholder="Ville" required>
+          <input aria-labelledby="ville" name="ville{{idx}}" type="text" class="form-control" ng-model="etablissement.ville" placeholder="Ex : Paris" required>
           <div ng-messages="questionForm['ville' + idx].$error" ng-if="questionForm.showError">
             <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
           </div>
