@@ -28,11 +28,18 @@ angular.module('impactApp')
       .state('sectionEvaluation', {
         url: '/:sectionId',
         parent: 'dashboard.workflow.detail.evaluation',
+        params: {
+          questionId: null,
+        },
         templateUrl: 'app/dashboard/workflow/detail/evaluation/section/section.html',
         controller: 'RequestSectionCtrl',
         resolve: {
           sectionId: function($stateParams) {
             return $stateParams.sectionId;
+          },
+
+          questionId: function($stateParams) {
+            return $stateParams.questionId;
           },
 
           currentSynthese: function(SyntheseResource, $stateParams, request) {

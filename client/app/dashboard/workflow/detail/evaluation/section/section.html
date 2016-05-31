@@ -1,28 +1,35 @@
+<ul class="nav nav-pills">
+  <li role="presentation">
+    <a ui-sref="^"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+  </li>
+  <li ui-sref-active="active-blue" ng-repeat="section in sections" role="presentation">
+    <a ui-sref="sectionEvaluation({sectionId: section.id})">{{section.label}}</a>
+  </li>
+</ul>
+
 <h2>{{section.label}}</h2>
+
 <div class="container-btn">
-  <button type="button" class="btn-section btn btn-md btn-primary" ng-click="toggleMode()" ng-if="getReadMode()">
-    Editer
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!noAnswer">
+    Annuler <i class="fa fa-undo" aria-hidden="true"></i>
   </button>
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
-    Annuler
-  </button>
-  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
-    Sauvegarder
+  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()">
+    Sauvegarder <i class="fa fa-save" aria-hidden="true"></i>
   </button>
 </div>
 
 <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
   <h3 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h3>
 
-  <trajectoire questions="questions"></trajectoire>
+  <trajectoire questions="questions" current-question-id="currentQuestionId"></trajectoire>
 </div>
 
 <div class="container-btn">
-  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!getReadMode() && !noAnswer">
-    Annuler
+  <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!noAnswer">
+    Modifier <i class="fa fa-undo" aria-hidden="true"></i>
   </button>
-  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!getReadMode()">
-    Sauvegarder
+  <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()">
+    Sauvegarder <i class="fa fa-save" aria-hidden="true"></i>
   </button>
 </div>
 

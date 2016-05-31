@@ -4,13 +4,6 @@ describe('RequestSectionCtrl', function() {
   var $controller;
   var scope;
   var controller;
-  var MockReadModeService = {
-    getReadMode() {
-      return true;
-    },
-
-    toggle() {}
-  };
 
   beforeEach(function() {
     module('impactApp');
@@ -41,7 +34,6 @@ describe('RequestSectionCtrl', function() {
                   Tri:'1',
                   Libelle:'vit seul',
                   isSelected:false,
-                  isExpanded:false
                 },
                 {
                   id:'II_1 bis_2',
@@ -62,8 +54,7 @@ describe('RequestSectionCtrl', function() {
                   Libelle:'n\'a pas de relation familiale ou amicale'
                 }
               ],
-              isSelected:false,
-              isExpanded:false
+              isSelected:false
             }
           ]
         }
@@ -71,7 +62,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, currentSynthese: {}, sectionId: {}});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, currentSynthese: {}, sectionId: {}, questionId: {}});
       });
 
       it('should be true', function() {
@@ -130,7 +121,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, currentSynthese: {}, sectionId: {}});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, currentSynthese: {}, sectionId: {}, questionId: {}});
       });
 
       it('should be false', function() {
@@ -202,7 +193,7 @@ describe('RequestSectionCtrl', function() {
       beforeEach(function() {
         spyOn(fakeSynthese, '$update');
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, ReadModeService: MockReadModeService, currentSynthese: fakeSynthese, sectionId: {}});
+        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, currentSynthese: fakeSynthese, sectionId: {}, questionId: {}});
       });
 
       it('should save the answer in the request', function() {

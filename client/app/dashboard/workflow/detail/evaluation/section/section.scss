@@ -1,3 +1,14 @@
+.active-blue {
+  a {
+    background-color: $bg-blue;
+    color: white;
+  }
+
+  a:hover, a:focus {
+    background-color: $disabled-blue !important;
+  }
+}
+
 .container-btn {
   display: flex;
   justify-content: flex-end;

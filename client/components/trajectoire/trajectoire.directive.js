@@ -8,7 +8,9 @@ angular.module('impactApp')
       scope: {
         sublevel: '=',
         questions: '=',
-        request: '='
+        request: '=',
+        currentQuestionId: '=',
+        root: '='
       },
       controller: 'TrajectoireController'
     };
