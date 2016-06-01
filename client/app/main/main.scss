@@ -24,9 +24,11 @@
 
 .hero-unit {
   color: $light-white;
-  text-align: center;
-  margin:auto;
-  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 330px;
 
   h1 {
     margin: 0;
@@ -193,11 +195,16 @@
 
 .footer {
   text-align: center;
-  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 192px;
+  background-color: $light-blue;
+
   a {
     color: #eee;
+    margin: 0 25px;
   }
-  background-color: $light-blue;
 }
 
 .card {

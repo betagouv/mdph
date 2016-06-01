@@ -1,7 +1,9 @@
 #mon-compte {
-  @extend .container;
-  width: 90%;
-  margin-top: 30px;
+  padding: 40px 60px;
+
+  form {
+    max-width: 340px;
+  }
 
   .panel-danger {
     .panel-heading {
@@ -25,5 +27,11 @@
         font-size: 1.4em;
       }
     }
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  #mon-compte {
+    padding: 0;
   }
 }

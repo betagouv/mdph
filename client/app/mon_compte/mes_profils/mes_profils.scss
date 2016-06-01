@@ -26,10 +26,9 @@
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   background-color: $bg-blue;
   color: white;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 
   &.nouvelle-demande {
     background-color: $flat-ui-blue;
@@ -52,7 +51,7 @@
 }
 
 .profile-card > .profile-card-content {
-  padding: 16px;
+  padding: 40px 60px;
   border-top: 1px solid #eee;
   background-color: whitesmoke;
   color: black;
@@ -68,6 +67,7 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 30px;
+  min-height: 120px;
 
   .trash {
     background-color:rgb(209, 91, 71);
@@ -160,5 +160,12 @@
   .profile-card-header-text {
     align-items: flex-start;
     align-items: flex-start;
+  }
+}
+
+
+@media (max-width: $screen-sm-max) {
+  .panel-content {
+    padding: 20px;
   }
 }

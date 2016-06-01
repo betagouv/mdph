@@ -1,7 +1,8 @@
 <div ui-view>
   <header class="banner bg" ng-class="'bg-' + currentMdph.zipcode">
     <div class="hero-unit">
-      <h1 ng-if="currentMdph">MDPH - {{currentMdph.name}}</h1>
+      <h1 ng-if="currentMdph">Votre MDPH {{currentMdph.name}}</h1>
+
       <p>Gérez vos demandes en ligne</p>
 
       <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">

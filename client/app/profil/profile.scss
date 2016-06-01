@@ -1,8 +1,4 @@
 #profile {
-  @extend .container;
-  padding-top: 30px;
-  padding-bottom: 30px;
-
   .request-box {
     padding: 10px 25px;
     border-radius: 2px;
@@ -18,6 +14,14 @@
     h3 {
       margin-top: 5px;
     }
+  }
+
+  .profile-card {
+    margin: 0;
+  }
+
+  .profile-card-content {
+    padding: 40px 60px;
   }
 }
 

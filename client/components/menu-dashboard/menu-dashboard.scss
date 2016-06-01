@@ -97,6 +97,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 120px;
+  overflow: hidden;
+  text-align: center;
+
+  a {
+    max-width: 70%;
+    height: auto;
+    vertical-align: middle;
+  }
 }
 
 @media (max-width: $screen-xs-max) {
@@ -163,8 +172,10 @@
       display: block;
       margin-top: auto;
       width: $menu-width;
-      padding: 10px 10px 40px 10px;
-      background-color: whitesmoke;
+      min-height: 192px;
+      padding: 20px 10px;
+      background-color: $light-blue;
+      color: white;
 
       .cell-icon {
         width: 30px;
