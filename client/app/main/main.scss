@@ -66,12 +66,10 @@
 }
 
 .section-main {
-  @extend .container;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 50px 15px;
   width: 100%;
   max-width: 1170px;
-
+  
   h2 {
     margin-top: 15px;
     margin-right: 15px;
@@ -80,6 +78,8 @@
 
 .section-main.section-flow > .flow {
   @extend .row;
+  margin-left: 0px;
+  margin-right: 0px;
 
   p {
     @extend .lead;
