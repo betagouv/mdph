@@ -1,11 +1,13 @@
-.active-blue {
-  a {
-    background-color: $bg-blue;
-    color: white;
-  }
+.panel.with-nav-tabs .panel-heading{
+  padding: 5px 5px 0 5px;
 
-  a:hover, a:focus {
-    background-color: $disabled-blue !important;
+  .nav-justified{
+    margin-bottom: -1px;
+    max-width: 700px;
+
+    li {
+      width: auto;
+    }
   }
 }
 
