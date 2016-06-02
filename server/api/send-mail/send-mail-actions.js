@@ -16,10 +16,9 @@ function compileContent(contentFile) {
 }
 
 const receptionContentCompiled = compileContent('reception-request-content.html');
-const receptionFooterCompiled = compileContent('reception-request-footer.html');
-
 const confirmationContentCompiled = compileContent('confirm-content.html');
-const confirmationFooterCompiled = compileContent('confirm-footer.html');
+const medicContentCompiled = compileContent('medic-content.html');
+const urlFooterCompiled = compileContent('url-footer.html');
 
 const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
 
@@ -72,7 +71,7 @@ export function sendConfirmationMail(emailDest, confirmationUrl) {
   let options = {};
   options.title = 'Veuillez confirmer votre adresse e-mail';
   options.content = confirmationContentCompiled({confirmationUrl: confirmationUrl});
-  options.footer = confirmationFooterCompiled({confirmationUrl: confirmationUrl});
+  options.footer = urlFooterCompiled({url: confirmationUrl});
 
   return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
@@ -83,7 +82,7 @@ export function sendConfirmationMail(emailDest, confirmationUrl) {
 export function generateReceptionMail(request, options, title) {
   options.title = title;
   options.content = receptionContentCompiled({request, options});
-  options.footer = receptionFooterCompiled({options});
+  options.footer = urlFooterCompiled({url: options.url});
 
   return generateEmailBodyWithTemplate(options);
 }
@@ -107,5 +106,18 @@ export function sendMailRenewPassword(emailDest, confirmationUrl) {
   return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
       Mailer.sendMail(emailDest, options.title, htmlContent);
+    });
+}
+
+export function sendMailMedic(request, email) {
+  let url = `https://mdph.beta.gouv.fr/mdph/14/medecin?shortId=${request.shortId}&email=${email}`;
+  let options = {};
+  options.title = 'Demande de certificat médical';
+  options.content = medicContentCompiled({request, url});
+  options.footer = urlFooterCompiled({url});
+
+  return generateEmailBodyWithTemplate(options)
+    .then(htmlContent => {
+      Mailer.sendMail(email, options.title, htmlContent);
     });
 }

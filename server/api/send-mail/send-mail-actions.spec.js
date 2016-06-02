@@ -179,4 +179,44 @@ describe('Send Mail Actions', function() {
     });
 
   });
+
+  describe('sendMailMedic', function() {
+    let sendMailSpy = sinon.spy();
+
+    const SendMailAction = proxyquire('./send-mail-actions', {
+      './send-mail.controller': {
+        sendMail: sendMailSpy
+      }
+    });
+
+    let fakeEmail = 'toto@toto.com';
+    let fakeRequest = {
+      shortId: '1234',
+      user: {
+        name: 'toto tata'
+      }
+    };
+    let fakeUrl = `https://mdph.beta.gouv.fr/mdph/14/medecin?shortId=${fakeRequest.shortId}&email=${fakeEmail}`;
+
+    it('should send the email to the correct adress with correct content', function(done) {
+      SendMailAction
+        .sendMailMedic(fakeRequest, fakeEmail)
+        .then(function() {
+          sendMailSpy.calledOnce.should.equal(true);
+          sendMailSpy.args[0][0].should.equal(fakeEmail);
+          sendMailSpy.args[0][1].should.equal('Demande de certificat médical');
+          sendMailSpy.args[0][2].should.containEql(fakeRequest.user.name);
+
+          // sendMailSpy.args[0][2].should.containEql(fakeUrl);
+          sendMailSpy.args[0][2].should.containEql(fakeRequest.shortId);
+          sendMailSpy.args[0][2].should.containEql(fakeRequest.user.name);
+          done();
+        })
+        .catch(function(e) {
+          done(e);
+        });
+
+    });
+
+  });
 });
