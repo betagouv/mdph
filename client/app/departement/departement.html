@@ -5,18 +5,28 @@
 
       <p>Gérez vos demandes en ligne</p>
 
-      <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">
-        S'inscrire
-      </a>
-      <a class="hero-button" ui-sref="mon_compte" ng-if="isLoggedIn() && currentUser.isMultiProfiles">
-        Voir mes profils
-      </a>
-      <a class="hero-button" ui-sref="profil({profileId: 'me'})" ng-if="isLoggedIn() && !currentUser.isMultiProfiles">
-        Voir mon profil
-      </a>
-      <a class="hero-button inverted" ng-if="isAdminMdph" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
-        Tableau de bord
-      </a>
+      <ul class="mdph-choices">
+        <li class="mdph-choice" ng-if="!isLoggedIn()">
+          <a class="hero-button" ui-sref="signup">
+            S'inscrire
+          </a>
+        </li>
+        <li class="mdph-choice" ng-if="isLoggedIn() && currentUser.isMultiProfiles">
+          <a class="hero-button" ui-sref="mon_compte">
+            Voir mes profils
+          </a>
+        </li>
+        <li class="mdph-choice" ng-if="isLoggedIn() && !currentUser.isMultiProfiles">
+          <a class="hero-button" ui-sref="profil({profileId: 'me'})">
+            Voir mon profil
+          </a>
+        </li>
+        <li class="mdph-choice" ng-if="isAdminMdph">
+          <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
+            Tableau de bord
+          </a>
+        </li>
+      </ul>
     </div>
   </header>
 
