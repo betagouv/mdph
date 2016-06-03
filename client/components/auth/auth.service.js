@@ -145,7 +145,7 @@
         * @param  {Function|*} callback - optional, function(has)
         * @return {Bool|Promise}
         */
-      hasRole(role, callback) {
+      hasRole(user, role, callback) {
         var hasRole = function(r, h) {
           return userRoles.indexOf(r) >= userRoles.indexOf(h);
         };
@@ -154,36 +154,10 @@
           return hasRole(currentUser.role, role);
         }
 
-        return Auth.getCurrentUser(null)
-          .then(user => {
-            var has = (user.hasOwnProperty('role')) ?
-              hasRole(user.role, role) : false;
-            safeCb(callback)(has);
-            return has;
-          });
-      },
+        var has = (user.hasOwnProperty('role')) ? hasRole(user.role, role) : false;
 
-      /**
-        * Check if a user is an admin
-        *   (synchronous|asynchronous)
-        *
-        * @return {Bool|Promise}
-        */
-      hasRoleAdmin() {
-        return Auth.hasRole
-          .apply(Auth, [].concat.apply(['admin'], arguments));
-      },
-
-      /**
-        * Check if a user is an adminMdph
-        *   (synchronous|asynchronous)
-        *
-        * @param  {String|*} mdph - optional
-        * @return {Bool|Promise}
-        */
-      hasRoleAdminMdph: function() {
-        return Auth.hasRole
-          .apply(Auth, [].concat.apply(['adminMdph'], arguments));
+        safeCb(callback)(has);
+        return has;
       },
 
       /**
@@ -193,19 +167,16 @@
         * @param  {String} mdph
         * @return {Bool|Promise}
         */
-      isAdminMdph(mdph) {
-        return Auth.getCurrentUser(null)
-          .then(user => {
-            if (Auth.hasRole('admin')) {
-              return true;
-            }
+      isAdminMdph(user, mdph) {
+        if (Auth.hasRole(user, 'admin')) {
+          return true;
+        }
 
-            if (Auth.hasRole('adminMdph')) {
-              return user.mdph.zipcode === mdph.zipcode;
-            }
+        if (Auth.hasRole(user, 'adminMdph')) {
+          return user.mdph.zipcode === mdph.zipcode;
+        }
 
-            return false;
-          });
+        return false;
       },
 
       /**
