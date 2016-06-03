@@ -55,6 +55,14 @@
       "label": "Devis / facture aide technique"
     },
     {
+      "id": "audiogramme",
+      "label": "Audiogramme"
+    },
+    {
+      "id": "livret_de_famille",
+      "label": "Livret de famille"
+    },
+    {
       "id": "facture_cantine",
       "label": "Facture cantine (restaurant scolaire)"
     },
