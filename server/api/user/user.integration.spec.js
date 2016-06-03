@@ -105,8 +105,8 @@ describe('User Integration', function() {
         api
           .get('/api/users/search')
           .query({
-            access_token: token,
-            email: 'user@test.com'
+            access_token: tokenAdminMdph,
+            search: 'user@test.com'
           })
           .expect(200)
           .expect('Content-Type', /json/)
@@ -115,7 +115,7 @@ describe('User Integration', function() {
               return done(err);
             }
 
-            gettedUser = res.body;
+            gettedUser = res.body[0];
             gettedUser.email.should.equal('user@test.com');
             done();
           });
