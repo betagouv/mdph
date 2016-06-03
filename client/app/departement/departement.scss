@@ -6,8 +6,10 @@
   color: #444;
   background-color: $lighter-blue;
 
-  .container {
+  .row {
     padding: 60px 0;
+    max-width: 1170px;
+    margin: auto;
   }
 
   .p {
