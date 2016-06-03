@@ -6,6 +6,12 @@
   color: #444;
   background-color: $lighter-blue;
 
+  .row {
+    padding: 60px 0;
+    max-width: 1170px;
+    margin: auto;
+  }
+
   .p {
     color: #6b6b6b;
   }
@@ -28,11 +34,6 @@
   background-position: center top;
   background-size: cover;
   width: 100%;
-
-
-  .hero-unit > h1, p {
-    text-shadow: 2px 2px 0px #595959;
-  }
 
   &.bg-59 {
     background-image: url('../assets/images/saint_amand.jpg');

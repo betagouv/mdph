@@ -76,20 +76,6 @@
 
       }
     }
-
-    &.form-send {
-      a {
-        color: $light-red;
-      }
-
-      &.selected {
-        a {
-          color: white;
-          text-shadow: 0 0 3px $light-red;
-        }
-
-      }
-    }
   }
 
   &:after {
