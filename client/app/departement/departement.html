@@ -11,17 +11,17 @@
             S'inscrire
           </a>
         </li>
-        <li class="mdph-choice" ng-if="isLoggedIn() && currentUser.isMultiProfiles">
+        <li class="mdph-choice" ng-if="isLoggedIn() && getCurrentUser().isMultiProfiles">
           <a class="hero-button" ui-sref="mon_compte">
             Voir mes profils
           </a>
         </li>
-        <li class="mdph-choice" ng-if="isLoggedIn() && !currentUser.isMultiProfiles">
+        <li class="mdph-choice" ng-if="isLoggedIn() && !getCurrentUser().isMultiProfiles">
           <a class="hero-button" ui-sref="profil({profileId: 'me'})">
             Voir mon profil
           </a>
         </li>
-        <li class="mdph-choice" ng-if="isAdminMdph">
+        <li class="mdph-choice" ng-if="getCurrentUser() && isAdminMdph(getCurrentUser(), currentMdph)">
           <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
             Tableau de bord
           </a>
