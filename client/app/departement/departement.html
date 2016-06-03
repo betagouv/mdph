@@ -28,7 +28,7 @@
         </li>
       </ul>
 
-      <a class="btn btn-link" ui-sref="login">
+      <a class="btn btn-link" ng-if="!isLoggedIn()" ui-sref="login">
         J'ai déjà un compte
       </a>
     </div>
