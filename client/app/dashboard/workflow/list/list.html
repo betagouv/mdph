@@ -1,6 +1,8 @@
 <div ui-view>
   <div class="list-header">
-    <form class="pull-right">
+    <h2 class="padding-title">{{status | requestStatus}}</h2>
+
+    <form class="form-group">
       <div class="input-group search">
         <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
         <div class="input-group-btn">
@@ -10,8 +12,6 @@
         </div>
       </div>
     </form>
-
-    <h2 class="padding-title">{{status | requestStatus}}</h2>
 
     <div class="tools">
       <div class="btn-group" dropdown>

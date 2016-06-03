@@ -23,8 +23,15 @@ angular.module('impactApp')
       },
       search: {
         method: 'GET',
+        isArray: true,
         params: {
           id: 'search'
+        }
+      },
+      confirm: {
+        method: 'POST',
+        params: {
+          controller: 'confirm'
         }
       },
       get: {

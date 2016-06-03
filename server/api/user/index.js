@@ -16,7 +16,7 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 
 router.get('/me/requests', auth.isAuthenticated(), showUserRequests);
 
-router.get('/search', auth.isAuthenticated(), controller.search);
+router.get('/search', auth.hasRole('adminMdph'), controller.search);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 
 router.post('/', controller.create);
@@ -25,6 +25,8 @@ router.post('/generate_token', controller.generateTokenForPassword);
 router.post('/:id/reset_password/:secret', controller.resetPassword);
 router.post('/:id/confirmer_mail/:secret', controller.confirmMail);
 router.post('/:id/resend_confirmation', controller.resendConfirmation);
+
+router.post('/:id/confirm', auth.hasRole('adminMdph'), controller.confirm);
 
 router.put('/:id', auth.isAuthenticated(), controller.changeInfo);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
