@@ -23,6 +23,7 @@ router.put('/:shortId', isAuthorized(), controller.update);
 router.delete('/:shortId', isAuthorized(), controller.destroy);
 
 router.get('/:shortId/generate-reception-mail', isAuthorized(), controller.generateReceptionMail);
+router.post('/:shortId/generate-medic-mail', isAuthorized(), controller.generateMedicMail);
 router.post('/:shortId/action', isAuthorized(), controller.saveAction);
 router.get('/:shortId/history', isAuthorized(), controller.getHistory);
 router.get('/:shortId/recapitulatif', isAuthorized(), controller.getRecapitulatif);

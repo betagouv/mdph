@@ -491,3 +491,9 @@ export function saveFilePartenaire(req, res) {
     return res.json(_document);
   });
 }
+
+export function generateMedicMail(req, res) {
+  MailActions.sendMailMedic(req.request, req.body.emailMedic)
+    .then(html => res.send(html))
+    .catch(handleError(req, res));
+}
