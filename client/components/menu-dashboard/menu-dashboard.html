@@ -28,20 +28,22 @@
           <a class="icon inbox" href ui-sref="dashboard.workflow" ui-sref-active="active">
             Flux de demandes
           </a>
-        </li>
-        <li ng-repeat="banette in banettes">
-          <a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.list({status: banette.id})">
-            {{banette.label}}
-            <span
-              ng-class="{
-                'label-danger': banette.count >= 30,
-                'label-warning': banette.count >= 10 && banette.count < 30,
-                'label-success': banette.count < 10 && banette.count > 0,
-                'label-default': banette.count == 0}"
-              class="label pull-right">
-              {{banette.count}}
-            </span>
-          </a>
+          <ul>
+            <li ng-repeat="banette in banettes">
+              <a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.list({status: banette.id})">
+                {{banette.label}}
+                <span
+                  ng-class="{
+                    'label-danger': banette.count >= 30,
+                    'label-warning': banette.count >= 10 && banette.count < 30,
+                    'label-success': banette.count < 10 && banette.count > 0,
+                    'label-default': banette.count == 0}"
+                  class="label pull-right">
+                  {{banette.count}}
+                </span>
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
       <ul>
@@ -49,6 +51,16 @@
           <a class="icon users" href ui-sref="dashboard.users.agents" ui-sref-active="active">
             Gestion des utilisateurs
           </a>
+          <ul>
+            <li>
+              <a class="icon" ui-sref-active="active" ui-sref="dashboard.users.agents">
+                Agents
+              </a>
+              <a class="icon" ui-sref-active="active" ui-sref="dashboard.users.beneficiaires">
+                Bénéficiaires
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
       <ul>
