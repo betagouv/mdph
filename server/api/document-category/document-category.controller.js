@@ -350,7 +350,7 @@ function createPdfCategoryIfNecessary(mdph) {
 }
 
 export function showDocumentCategories(req, res) {
-  createPdfCategoryIfNecessary(req)
+  createPdfCategoryIfNecessary(req.mdph)
     .then(() => {
       return showDocumentCategoriesPromise(req.mdph);
     })
