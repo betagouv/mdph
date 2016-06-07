@@ -21,7 +21,13 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
         $scope.options[sectionId].error = true;
       });
     } else {
-      new RequestResource({profile: profile._id, user: currentUser._id}).$save(function(saved) {
+      let askedDocumentTypes = [];
+
+      if (ProfileService.needCV(profile)) {
+        askedDocumentTypes.push('cv');
+      }
+
+      new RequestResource({profile: profile._id, user: currentUser._id, askedDocumentTypes: askedDocumentTypes}).$save(function(saved) {
         $state.go('.demande', {shortId: saved.shortId});
       });
     }

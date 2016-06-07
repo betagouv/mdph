@@ -69,6 +69,10 @@ angular.module('impactApp')
         }
       },
 
+      needCV: function(profile) {
+        return (typeof (profile.vie_au_travail) !== 'undefined');
+      },
+
       estAdulte: estAdulteProfile,
       estMineur: estMineurProfile,
       getCompletion: getCompletion,
