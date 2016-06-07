@@ -9,22 +9,23 @@ angular.module('impactApp')
       template: '<div ui-view></div>',
       abstract: true
     })
-    .state(index + '.parcours_professionnel.cv', {
-      url: '/cv',
-      templateUrl: 'components/question/cv.html',
-      controller: 'CvQuestionCtrl',
-      resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'cv', profile);
-        },
 
-        nextStep: function($state) {
-          return function() {
-            $state.go('^.qualification');
-          };
-        }
-      }
-    })
+    // .state(index + '.parcours_professionnel.cv', {
+    //   url: '/cv',
+    //   templateUrl: 'components/question/cv.html',
+    //   controller: 'CvQuestionCtrl',
+    //   resolve: {
+    //     question: function(QuestionService, section, profile) {
+    //       return QuestionService.get(section, 'cv', profile);
+    //     },
+    //
+    //     nextStep: function($state) {
+    //       return function() {
+    //         $state.go('^.qualification');
+    //       };
+    //     }
+    //   }
+    // })
     .state(index + '.parcours_professionnel.qualification', {
       url: '/qualification',
       templateUrl: 'components/question/radio.html',
