@@ -70,7 +70,7 @@ angular.module('impactApp')
       },
 
       needCV: function(profile) {
-        return (typeof (profile.vie_au_travail) !== 'undefined');
+        return (profile.vie_au_travail.cv.experiences[0] === 'cv');
       },
 
       estAdulte: estAdulteProfile,

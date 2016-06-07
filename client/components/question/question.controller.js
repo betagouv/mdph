@@ -18,6 +18,8 @@ angular.module('impactApp')
     var modification = false;
     var index = -1;
 
+    $scope.uploadCV = false;
+
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[$scope.question.model] = {
         experiences: []
@@ -25,6 +27,14 @@ angular.module('impactApp')
     }
 
     $scope.experiences = $scope.sectionModel[$scope.question.model].experiences;
+
+    $scope.toggleUpload = function(checked) {
+      if (checked) {
+        $scope.experiences = ['upload'];
+      } else {
+        $scope.experiences = [];
+      }
+    };
 
     $scope.ajouterExperience = function() {
       $scope.ajoutEnCours = true;

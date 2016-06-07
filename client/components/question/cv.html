@@ -1,7 +1,7 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
   <div class="row">
-    <div class="list-group col-sm-offset-1 col-sm-10 cv" ng-if="experiences.length > 0">
+    <div class="list-group col-sm-offset-1 col-sm-10 cv" ng-if="(experiences.length > 0)">
       <div ng-repeat="experience in experiences | orderBy:'-debut'" class="list-group-item row">
         <a ng-click="modifierExperience(experience)" class="col-md-11">
           <span class="list-group-item-heading col-md-6">
@@ -101,12 +101,21 @@
         <button class="btn btn-success btn-block" ng-click="validerExperience(questionForm)">Valider l'expérience</button>
       </div>
     </div>
+  </div>
 
-    <div class="text-center" ng-if="!ajoutEnCours">
+  <div ng-if="!ajoutEnCours">
+    <div class="form-group">
+      <div class="checkbox">
+        <input type="checkbox" id="cbUploadCV" ng-model="uploadCV" ng-change="toggleUpload(uploadCV)"></input>
+        <label for="cbUploadCV">J'ai déjà un CV que je souhaite numériser et joindre à ma demande lors de sa finalisation</label>
+      </div>
+    </div>
 
-      <button class="btn btn-success btn-lg" ng-click="ajouterExperience()">Ajouter une expérience</button>
+    <div class="text-center">
+      <button class="btn btn-success btn-lg" ng-disabled="uploadCV" ng-click="ajouterExperience()">Ajouter une expérience</button>
     </div>
   </div>
+
   <nav-steps ng-if="!ajoutEnCours" ng-hide="hideSteps"></nav-steps>
 
 </form>

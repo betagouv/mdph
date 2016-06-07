@@ -129,8 +129,9 @@ angular.module('impactApp')
 
         nextStep: function($state) {
           return function() {
-            // $state.go('^.^.parcours_professionnel.cv');
-            $state.go('^.^.parcours_professionnel.qualification');
+            $state.go('^.^.parcours_professionnel.cv');
+
+            // $state.go('^.^.parcours_professionnel.qualification');
           };
         }
       }
