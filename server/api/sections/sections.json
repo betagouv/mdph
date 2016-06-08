@@ -1379,6 +1379,22 @@
           }
         ]
       },
+      "uploadCV": {
+        "titleRep": "Souhaitez-vous saisir ses expériences professionnelles dans le formulaire ou numériser son CV ?",
+        "titleDefault": "Souhaitez-vous saisir vos expériences professionnelles dans le formulaire ou numériser votre CV ?",
+        "model": "needUploadCV",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Numériser le CV et l'ajouter à ma demande lors de sa finalisation",
+            "model": true
+          },
+          {
+            "label": "Saisir mes expériences professionnelles dans ce formulaire",
+            "model": false
+          }
+        ]
+      },
       "cv": {
         "titleRep": "Précisez ses expériences professionnelles, y compris les stages et structures d'insertion.",
         "titleDefault": "Précisez vos expériences professionnelles, y compris les stages et structures d'insertion.",

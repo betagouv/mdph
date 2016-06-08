@@ -339,7 +339,8 @@ export function create(req, res) {
   Request
     .create({
       profile: req.body.profile,
-      user: req.body.user
+      user: req.body.user,
+      askedDocumentTypes: req.body.askedDocumentTypes
     })
     .then(request => {
       request.saveActionLog(actions.CREATION, req.user, req.log);

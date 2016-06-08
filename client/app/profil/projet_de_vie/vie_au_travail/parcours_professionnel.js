@@ -9,6 +9,26 @@ angular.module('impactApp')
       template: '<div ui-view></div>',
       abstract: true
     })
+    .state(index + '.parcours_professionnel.uploadCV', {
+      url: '/upload_cv',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'uploadCV', profile);
+        },
+
+        nextStep: function($state, sectionModel) {
+          return function() {
+            if (sectionModel.needUploadCV) {
+              $state.go('^.qualification');
+            } else {
+              $state.go('^.cv');
+            }
+          };
+        }
+      }
+    })
     .state(index + '.parcours_professionnel.cv', {
       url: '/cv',
       templateUrl: 'components/question/cv.html',
