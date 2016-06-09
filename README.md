@@ -27,9 +27,9 @@ Projet de simplification des demandes à la MDPH
 - `npm run test` will run the tests with karma and mocha.
   - You can also add `-front` or `-back` to run either front or back tests.
 
-- `npm run coverage` will run the test coverage and generate a report in html in the _/coverage_ directory
-  - _lcov-report_ is the directory for server coverage
-  - _PhantomJS_ is the directory for client coverage
+- `npm run coverage` will run the test coverage and generate a report in html in the `coverage` directory
+  - `lcov-report` is the directory for server coverage
+  - `PhantomJS` is the directory for client coverage
 
 ## Production
 
