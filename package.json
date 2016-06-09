@@ -122,13 +122,16 @@
   },
   "scripts": {
     "postinstall": "bower install",
+    "dev": "grunt",
+    "build": "grunt build",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node dist/server/app.js",
-    "dev": "grunt",
+    "test-front": "grunt test:client",
+    "test-back": "grunt test:server",
     "test": "grunt test",
-    "build": "grunt build",
-    "mocha": "NODE_ENV=test mocha server --recursive ./server/**/*spec.js --require mocha.conf.js",
-    "nyc": "NODE_ENV=test nyc --reporter=lcov --require babel-core/register mocha server --recursive ./server/**/*spec.js"
+    "coverage-front": "grunt test:coverage",
+    "coverage-back": "NODE_ENV=test nyc report --reporter=lcov --require babel-core/register mocha server --recursive ./server/**/*spec.js",
+    "coverage": "npm run coverage-back && npm run coverage-front"
   },
   "private": true
 }
