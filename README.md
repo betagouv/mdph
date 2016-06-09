@@ -28,8 +28,8 @@ Projet de simplification des demandes à la MDPH
   - You can also add `-front` or `-back` to run either front or back tests.
 
 - `npm run coverage` will run the test coverage and generate a report in html in the `coverage` directory
-  - `lcov-report` is the directory for server coverage
-  - `PhantomJS` is the directory for client coverage
+  - `lcov-report` is the directory for server coverage, just open the `index.html` to browse the results
+  - `PhantomJS` is the directory for client coverage, just open the `index.html` to browse the results
 
 ## Production
 
