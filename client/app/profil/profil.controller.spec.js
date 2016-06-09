@@ -8,6 +8,12 @@ describe('ProfilCtrl', function() {
     error() {}
   };
 
+  var spyRequestRessource = jasmine.createSpy('spy');
+  function RequestResource(par) {
+    spyRequestRessource(par);
+    this.$save = function() {};
+  }
+
   beforeEach(function() {
     module('impactApp');
   });
@@ -19,51 +25,91 @@ describe('ProfilCtrl', function() {
   describe('nouvelleDemande', function() {
 
     describe('without missing section', function() {
-      let ProfileService = {
-        estAdulte() {
-          return true;
-        },
+      describe('with a need for CV', function() {
+        let ProfileService = {
+          estAdulte() {
+            return true;
+          },
 
-        getMissingSection() {
-          return [];
-        },
+          getMissingSection() {
+            return [];
+          },
 
-        needUploadCV() {
-          return true;
-        }
-      };
+          needUploadCV() {
+            return true;
+          }
+        };
 
-      var spyRequestRessource = jasmine.createSpy('spy');
-      function RequestResource(par) {
-        spyRequestRessource(par);
-        this.$save = function() {};
-      }
-
-      beforeEach(function() {
-        $controller('ProfilCtrl', {
-          $scope,
-          $state: {},
-          $modal: {},
-          $http: {},
-          User: {},
-          ProfileService,
-          RequestResource,
-          currentUser: {_id: '5678'},
-          profile: {_id: '1234'},
-          lastCreatedRequest: {},
-          toastr,
-          $anchorScroll: {}
+        beforeEach(function() {
+          $controller('ProfilCtrl', {
+            $scope,
+            $state: {},
+            $modal: {},
+            $http: {},
+            User: {},
+            ProfileService,
+            RequestResource,
+            currentUser: {_id: '5678'},
+            profile: {_id: '1234'},
+            lastCreatedRequest: {},
+            toastr,
+            $anchorScroll: {}
+          });
         });
+
+        it('should create a Request with the correct parameters', function() {
+          $scope.nouvelleDemande();
+          expect(spyRequestRessource).toHaveBeenCalled();
+          expect(spyRequestRessource.calls.first().args[0].profile).toEqual('1234');
+          expect(spyRequestRessource.calls.first().args[0].user).toEqual('5678');
+          expect(spyRequestRessource.calls.first().args[0].askedDocumentTypes[0]).toEqual('cv');
+        });
+
       });
 
-      it('should create a Request with the correct parameters', function() {
-        $scope.nouvelleDemande();
-        expect(spyRequestRessource).toHaveBeenCalled();
-        expect(spyRequestRessource.calls.first().args[0].profile).toEqual('1234');
-        expect(spyRequestRessource.calls.first().args[0].user).toEqual('5678');
-        expect(spyRequestRessource.calls.first().args[0].askedDocumentTypes[0]).toEqual('cv');
-      });
+      describe('without a need for CV', function() {
+        let ProfileService = {
+          estAdulte() {
+            return true;
+          },
 
+          getMissingSection() {
+            return [];
+          },
+
+          needUploadCV() {
+            return false;
+          }
+        };
+
+        beforeEach(function() {
+          $controller('ProfilCtrl', {
+            $scope,
+            $state: {},
+            $modal: {},
+            $http: {},
+            User: {},
+            ProfileService,
+            RequestResource,
+            currentUser: {_id: '5678'},
+            profile: {_id: '1234'},
+            lastCreatedRequest: {},
+            toastr,
+            $anchorScroll: {}
+          });
+
+          spyRequestRessource.calls.reset();
+        });
+
+        it('should create a Request with the correct parameters', function() {
+          $scope.nouvelleDemande();
+          expect(spyRequestRessource).toHaveBeenCalled();
+          expect(spyRequestRessource.calls.first().args[0].profile).toEqual('1234');
+          expect(spyRequestRessource.calls.first().args[0].user).toEqual('5678');
+          expect(spyRequestRessource.calls.first().args[0].askedDocumentTypes.length).toEqual(0);
+        });
+
+      });
     });
 
     describe('with a missing section', function() {
