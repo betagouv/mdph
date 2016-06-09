@@ -25,10 +25,10 @@ Projet de simplification des demandes à la MDPH
 ## Testing
 
 - `npm run test` will run the tests with karma and mocha.
-  - (you can also add `-front` or `-back` to run either front or back tests).
+  - You can also add `-front` or `-back` to run either front or back tests.
 
 - `npm run coverage` will run the test coverage
-  - (you can also add `-front` or `-back` to run either front or back coverage).
+  - You can also add `-front` or `-back` to run either front or back coverage.
 
 ## Production
 
