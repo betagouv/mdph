@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    ports:
+      - 9000:9000
+    links:
+      - mongo:mongo
+    environment:
+      MONGODB_URL: mongodb://mongo:27017/impact
+
+  mongo:
+    image: mongo
+
+  restore:
+    image: mongo
+    volumes:
+      - ./dump:/var/dump
+    links:
+      - mongo:mongo
+    command: mongorestore --host mongo:27017 --db impact /var/dump/impact
