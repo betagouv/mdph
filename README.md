@@ -31,6 +31,11 @@ Projet de simplification des demandes à la MDPH
   - `lcov-report` is the directory for server coverage, just open the `index.html` to browse the results
   - `PhantomJS` is the directory for client coverage, just open the `index.html` to browse the results
 
+## Docker
+
+Use `docker-compose up` to start the application within a docker container.
+The docker application is bundled with an empty database.
+
 ## Production
 
 Use `npm start` to build the application and run it in production mode.
