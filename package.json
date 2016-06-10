@@ -124,7 +124,6 @@
     "postinstall": "bower install",
     "dev": "grunt",
     "build": "grunt build",
-    "prestart": "npm run build",
     "start": "NODE_ENV=production node dist/server/app.js",
     "test-front": "grunt test:client",
     "test-back": "grunt test:server",
