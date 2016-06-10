@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"impact.mdphs"},{"v":1,"unique":true,"key":{"zipcode":1},"name":"zipcode_1","ns":"impact.mdphs","background":true}]}
