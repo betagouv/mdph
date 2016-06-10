@@ -3,18 +3,21 @@
 
 'use strict';
 
-exports.config = {
+var path = require('path');
+
+var config = {
   // The timeout for each script run on the browser. This should be longer
   // than the maximum time your application needs to stabilize between tasks.
   allScriptsTimeout: 110000,
 
   // A base URL for your application under test. Calls to protractor.get()
   // with relative paths will be prepended with this.
-  baseUrl: 'http://localhost:' + (process.env.PORT || '9000'),
+  baseUrl: 'http://localhost:' + (process.env.PORT || '9000') + '/mdph/14',
 
-  // If true, only chromedriver will be started, not a standalone selenium.
-  // Tests for browsers other than chrome will not run.
-  chromeOnly: true,
+  // Credientials for Saucelabs
+  sauceUser: process.env.SAUCE_USERNAME,
+
+  sauceKey: process.env.SAUCE_ACCESS_KEY,
 
   // list of files / patterns to load in the browser
   specs: [
@@ -31,7 +34,10 @@ exports.config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'name': 'Fullstack E2E',
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+    'build': process.env.TRAVIS_BUILD_NUMBER
   },
 
   // ----- The test framework -----
@@ -39,12 +45,36 @@ exports.config = {
   // Jasmine and Cucumber are fully supported as a test and assertion framework.
   // Mocha has limited beta support. You will need to include your own
   // assertion framework if working with mocha.
-  framework: 'jasmine',
+  framework: 'jasmine2',
 
   // ----- Options to be passed to minijasminenode -----
   //
-  // See the full list at https://github.com/juliemr/minijasminenode
+  // See the full list at https://github.com/jasmine/jasmine-npm
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
+    defaultTimeoutInterval: 30000,
+    print: function() {}  // for jasmine-spec-reporter
+  },
+
+  // Prepare environment for tests
+  params: {
+    serverConfig: require('./server/config/environment')
+  },
+
+  onPrepare: function() {
+    // require('babel-core/register');
+    // var SpecReporter = require('jasmine-spec-reporter');
+    // // add jasmine spec reporter
+    // jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
+
+    var serverConfig = config.params.serverConfig;
+
+    // Setup mongo for tests
+    var mongoose = require('mongoose');
+    mongoose.connect(serverConfig.mongo.uri, serverConfig.mongo.options); // Connect to database
   }
 };
+
+config.params.serverConfig.root = path.normalize(config.params.serverConfig.root + '/../..');
+
+config.params.baseUrl = config.baseUrl;
+exports.config = config;
