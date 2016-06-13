@@ -14,18 +14,18 @@ var config = {
   // with relative paths will be prepended with this.
   baseUrl: 'http://localhost:' + (process.env.PORT || '9000') + '/mdph/14',
 
-  // Credientials for Saucelabs
-  sauceUser: process.env.SAUCE_USERNAME,
-
-  sauceKey: process.env.SAUCE_ACCESS_KEY,
+  // // Credientials for Saucelabs
+  // sauceUser: process.env.SAUCE_USERNAME,
+  //
+  // sauceKey: process.env.SAUCE_ACCESS_KEY,
 
   // list of files / patterns to load in the browser
   specs: [
     'e2e/**/*.spec.js'
   ],
 
-  // Patterns to exclude.
-  exclude: [],
+  // // Patterns to exclude.
+  // exclude: [],
 
   // ----- Capabilities to be passed to the webdriver instance ----
   //
@@ -34,10 +34,11 @@ var config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   capabilities: {
-    'browserName': 'chrome',
-    'name': 'Fullstack E2E',
-    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-    'build': process.env.TRAVIS_BUILD_NUMBER
+    browserName: 'chrome',
+    name: 'Fullstack E2E',
+
+    // tunnel-identifier: process.env.TRAVIS_JOB_NUMBER,
+    // build: process.env.TRAVIS_BUILD_NUMBER
   },
 
   // ----- The test framework -----
