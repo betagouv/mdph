@@ -1,7 +1,7 @@
 'use strict';
 
 var config = browser.params;
-console.log('root', config.serverConfig.root);
+
 // var UserModel = require(config.serverConfig.root + '/server/api/user/user.model');
 // console.log('TOTOOT', UserModel);
 
@@ -13,29 +13,29 @@ describe('Login View', function() {
     page = require('./login.po');
   };
 
-  console.log('url', browser);
+  // var testUser = {
+  //   name: 'Test User',
+  //   email: 'test@example.com',
+  //   password: 'test'
+  // };
 
-  var testUser = {
-    name: 'Test User',
-    email: 'test@example.com',
-    password: 'test'
-  };
-
-  // beforeEach(function(done) {
-  //   UserModel.removeAsync()
-  //     .then(function() {
-  //       return UserModel.createAsync(testUser);
-  //     })
-  //     .then(loadPage)
-  //     .finally(function() {
-  //       browser.wait(function() {
-  //         //console.log('waiting for angular...');
-  //         return browser.executeScript('return !!window.angular');
-  //
-  //       }, 5000).then(done);
-  //
-  //     });
-  // });
+  beforeEach(function(done) {
+    // UserModel.removeAsync()
+    //   .then(function() {
+    //     return UserModel.createAsync(testUser);
+    //   })
+    //   .then(loadPage)
+    //   .finally(function() {
+    //     browser.wait(function() {
+    //       //console.log('waiting for angular...');
+    //       return browser.executeScript('return !!window.angular');
+    //
+    //     }, 5000).then(done);
+    //
+    //   });
+    loadPage();
+    done();
+  });
 
   it('should include login form with correct inputs and submit button', function() {
     expect(page.form.email.getAttribute('type')).toBe('email');
@@ -43,7 +43,7 @@ describe('Login View', function() {
     expect(page.form.password.getAttribute('type')).toBe('password');
     expect(page.form.password.getAttribute('name')).toBe('password');
     expect(page.form.submit.getAttribute('type')).toBe('submit');
-    // expect(page.form.submit.getText()).toBe('Login');
+    expect(page.form.submit.getAttribute('value')).toBe('Connectez-vous');
   });
 
   // describe('with local auth', function() {
