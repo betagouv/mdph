@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($scope, $rootScope, Auth, $localStorage, $timeout, currentMdph) {
+  .controller('LayoutCtrl', function($scope, $rootScope, Auth, $localStorage, $interval, currentMdph) {
     $scope.currentMdph = currentMdph;
 
     $scope.getCurrentUser = Auth.getCurrentUser;
@@ -16,9 +16,9 @@ angular.module('impactApp')
     }
 
     angular.element(document).ready(function() {
-      $timeout(function() {
+      $interval(function() {
         $scope.showIntro = !$localStorage.hideIntro;
-      }, 500);
+      }, 500, 1);
     });
 
     $scope.hideIntro = function() {

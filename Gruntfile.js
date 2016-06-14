@@ -70,7 +70,7 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('test', function(target) {
+  grunt.registerTask('test', function(target, option) {
     if (target === 'server') {
       return grunt.task.run([
         'env:all',
@@ -87,6 +87,20 @@ module.exports = function(grunt) {
         'postcss',
         'wiredep:test',
         'karma:unit'
+      ]);
+    } else if (target === 'e2e') {
+      return grunt.task.run([
+        'bunyan',
+        'clean:server',
+        'env:all',
+        'env:test',
+        'injector:sass',
+        'concurrent:server',
+        'injector',
+        'wiredep:client',
+        'postcss',
+        'express:dev',
+        'protractor'
       ]);
     } else if (target === 'coverage') {
       return grunt.task.run([

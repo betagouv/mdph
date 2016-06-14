@@ -2,7 +2,8 @@
 
   <h1>Connectez-vous pour reprendre votre démarche</h1>
 
-  <form class="form" name="form" novalidate ng-submit="login(form)">
+  <!-- <form id="form-login" class="form" name="form" novalidate ng-submit="login(form)"> -->
+  <form id="form-login" class="form" name="form" novalidate>
 
     <div class="form-group required">
       <label for="emailLogin" class="control-label">Adresse email</label>
@@ -47,7 +48,7 @@
     </div>
 
     <div class="text-center">
-      <input role="button" class="btn btn-primary btn-lg btn-login" type="submit" value="Connectez-vous">
+      <input id="btn-login" role="button" class="btn btn-primary btn-lg btn-login" type="submit" value="Connectez-vous" ng-click="login(form)")>
     </div>
   </form>
 
