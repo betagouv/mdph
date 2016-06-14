@@ -5,6 +5,7 @@ import Request from '../request/request.model';
 import Profile from './profile.model';
 
 import {startServer} from '../../test/utils/server';
+import {populate} from '../../test/utils/seed';
 
 describe('Profile Integration', function() {
 
@@ -16,10 +17,13 @@ describe('Profile Integration', function() {
   before(done => {
     startServer((result) => {
       api = result.api;
-      token = result.token;
-      testUser = result.fakeUser;
-      testMdph = result.testMdph;
-      done();
+
+      populate((result) => {
+        token = result.token;
+        testUser = result.fakeUser;
+        testMdph = result.testMdph;
+        done();
+      });
     });
   });
 

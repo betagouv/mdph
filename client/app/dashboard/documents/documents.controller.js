@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DocumentCategoriesCtrl', function($scope, $timeout, $http, $cookies, toastr, DocumentCategoryResource, MdphResource, currentMdph, categories, unclassifiedCategory, documentTypes, Upload) {
+  .controller('DocumentCategoriesCtrl', function($scope, $http, $cookies, toastr, DocumentCategoryResource, MdphResource, currentMdph, categories, unclassifiedCategory, documentTypes, Upload) {
     $scope.categories = categories;
     $scope.currentMdph = currentMdph;
     $scope.documentTypes = documentTypes;

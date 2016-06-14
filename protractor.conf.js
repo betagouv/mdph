@@ -8,11 +8,11 @@ var path = require('path');
 var config = {
   // The timeout for each script run on the browser. This should be longer
   // than the maximum time your application needs to stabilize between tasks.
-  allScriptsTimeout: 110000,
+  allScriptsTimeout: 20000,
 
   // A base URL for your application under test. Calls to protractor.get()
   // with relative paths will be prepended with this.
-  baseUrl: 'http://localhost:' + (process.env.PORT || '9000') + '/mdph/14',
+  baseUrl: 'http://localhost:' + (process.env.PORT || '9000') + '/mdph/test',
 
   // // Credientials for Saucelabs
   // sauceUser: process.env.SAUCE_USERNAME,
@@ -62,10 +62,11 @@ var config = {
   },
 
   onPrepare: function() {
-    // require('babel-core/register');
-    // var SpecReporter = require('jasmine-spec-reporter');
-    // // add jasmine spec reporter
-    // jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
+    require('babel-core/register');
+    var SpecReporter = require('jasmine-spec-reporter');
+
+    // add jasmine spec reporter
+    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
 
     var serverConfig = config.params.serverConfig;
 

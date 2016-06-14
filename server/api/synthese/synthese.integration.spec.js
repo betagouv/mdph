@@ -8,6 +8,7 @@ import Request from '../request/request.model';
 import * as controller from './synthese.controller';
 
 import {startServer} from '../../test/utils/server';
+import {populate} from '../../test/utils/seed';
 
 describe('Synthese Integration', function() {
   let api;
@@ -24,42 +25,45 @@ describe('Synthese Integration', function() {
     startServer((result) => {
       server = result.server;
       api = result.api;
-      token = result.token;
-      tokenAdmin = result.tokenAdmin;
-      tokenAdminMdph = result.tokenAdminMdph;
-      testUser = result.fakeUser;
 
-      Profile
-        .create({
-          user: testUser._id
-        })
-        .then(created => {
-          newProfile = created;
-          return newProfile;
-        })
-        .then(profile => {
-          return Request.create({
-            user: profile.user,
-            profile: profile._id,
-            shortId: '1234'
+      populate((result) => {
+        token = result.token;
+        tokenAdmin = result.tokenAdmin;
+        tokenAdminMdph = result.tokenAdminMdph;
+        testUser = result.fakeUser;
+
+        Profile
+          .create({
+            user: testUser._id
+          })
+          .then(created => {
+            newProfile = created;
+            return newProfile;
+          })
+          .then(profile => {
+            return Request.create({
+              user: profile.user,
+              profile: profile._id,
+              shortId: '1234'
+            });
+          })
+          .then(created => {
+            newRequest = created;
+            return newRequest;
+          })
+          .then(request => {
+            return Synthese.create({
+              user: request.user,
+              profile: request.profile,
+              request: request._id,
+              geva: 'fakeGeva'
+            });
+          })
+          .then(created => {
+            newSynthese = created;
+            done();
           });
-        })
-        .then(created => {
-          newRequest = created;
-          return newRequest;
-        })
-        .then(request => {
-          return Synthese.create({
-            user: request.user,
-            profile: request.profile,
-            request: request._id,
-            geva: 'fakeGeva'
-          });
-        })
-        .then(created => {
-          newSynthese = created;
-          done();
-        });
+      });
     });
   });
 

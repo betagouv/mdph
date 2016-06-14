@@ -155,7 +155,8 @@ export function saveFile(req, res, next) {
 }
 
 export function downloadFile(req, res) {
-  var filePath = path.join(config.root + '/server/uploads/', req.params.fileName);
+  var filePath = path.join(config.uploadDir, req.params.fileName);
+  console.log('FILEPATH', filePath);
 
   var stat = fs.statSync(filePath);
 

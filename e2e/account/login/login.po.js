@@ -6,10 +6,10 @@
 'use strict';
 
 var LoginPage = function() {
-  var form = this.form = element(by.css('.form'));
+  var form = this.form = element(by.id('form-login'));
   form.email = form.element(by.model('user.email'));
   form.password = form.element(by.model('user.password'));
-  form.submit = form.element(by.css('.btn-login'));
+  form.submit = form.element(by.id('btn-login'));
 
   this.login = function(data) {
     for (var prop in data) {

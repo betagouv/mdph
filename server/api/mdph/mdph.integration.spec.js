@@ -3,6 +3,7 @@
 import should from 'should';
 import * as controller from './mdph.controller';
 import {startServer} from '../../test/utils/server';
+import {populate} from '../../test/utils/seed';
 import User from '../user/user.model';
 import Mdph from '../mdph/mdph.model';
 
@@ -18,11 +19,14 @@ describe('Mdph Integration', function() {
     startServer((result) => {
       server = result.server;
       api = result.api;
-      tokenAdminMdph = result.tokenAdminMdph;
-      testUser = result.fakeUser;
-      testMdph = result.testMdph;
-      token = result.token;
-      done();
+
+      populate((result) => {
+        tokenAdminMdph = result.tokenAdminMdph;
+        testUser = result.fakeUser;
+        testMdph = result.testMdph;
+        token = result.token;
+        done();
+      });
     });
   });
 
