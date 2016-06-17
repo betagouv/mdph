@@ -1,5 +1,7 @@
 'use strict';
 
+/* globals jasmine */
+
 describe('ProfilCtrl', function() {
   let $controller;
   let $scope = {};
