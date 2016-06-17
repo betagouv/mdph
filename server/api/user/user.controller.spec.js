@@ -90,6 +90,7 @@ describe('user.controller', function() {
             saveSpy.args[0][0]._id.should.equal(fakeId);
             saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
             saveSpy.args[0][0].role.should.equal('user');
+            saveSpy.args[0][0].unconfirmed.should.equal(true);
 
             sendMailSpy.calledOnce.should.equal(true);
             sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
@@ -115,10 +116,9 @@ describe('user.controller', function() {
             saveSpy.args[0][0]._id.should.equal(fakeId);
             saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
             saveSpy.args[0][0].role.should.equal('agent');
+            saveSpy.args[0][0].unconfirmed.should.equal(false);
 
-            sendMailSpy.calledOnce.should.equal(true);
-            sendMailSpy.args[0][0].should.equal(fakeReq.body.email);
-            sendMailSpy.args[0][1].should.containEql(`http://${fakeReq.headers.host}/mdph/${fakeReq.body.mdph}/confirmer_mail/${fakeId}`);
+            sendMailSpy.calledOnce.should.equal(false);
             done();
           });
       });
