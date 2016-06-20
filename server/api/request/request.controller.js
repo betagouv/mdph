@@ -32,8 +32,6 @@ import ActionModel from './action.model';
 import {actions, actionsById} from '../../components/actions';
 import resizeAndMove from '../../components/resize-image';
 
-const domain = process.env.DOMAIN || config.DOMAIN;
-
 function handleError(req, res) {
   return function(statusCode, err) {
     statusCode = statusCode || 500;

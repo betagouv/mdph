@@ -22,6 +22,12 @@ var all = {
   // Upload directory
   uploadDir: path.normalize(__dirname + '/../../uploads/'),
 
+  // Mailjet config
+  mailjet: {
+    apiKey: process.env.API_KEY || 'mailjet_api_key',
+    secretKey: process.env.SECRET_KEY || 'mailjet_secret_key',
+  },
+
   // Server port
   port: process.env.PORT || 9000,
 
@@ -30,7 +36,7 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'impact-secret'
+    session: process.env.SESSION_SECRET || 'mdph-secret'
   },
 
   // List of user roles
@@ -43,11 +49,7 @@ var all = {
         safe: true
       }
     }
-  },
-
-  // Cerfa form filler
-  cerfaFormFillerUrl: process.env.CERFA_FORM_FILLER_URL
-
+  }
 };
 
 // Export the config object based on the NODE_ENV

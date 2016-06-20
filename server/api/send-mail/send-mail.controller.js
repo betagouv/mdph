@@ -1,10 +1,9 @@
 'use strict';
 
 import Mailjet from '../../mailjet/mailjet';
+import config from '../../config/environment';
 
-const apiKey = process.env.API_KEY;
-const secretKey = process.env.SECRET_KEY;
-const mailjet = new Mailjet(apiKey, secretKey);
+const mailjet = new Mailjet(config.mailjet.apiKey, config.mailjet.secretKey);
 
 export function sendMail(mail, title, body, attachements) {
   if (process.env.NODE_ENV !== 'production') {
