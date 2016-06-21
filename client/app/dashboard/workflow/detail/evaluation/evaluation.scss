@@ -1,74 +1,68 @@
-.geva {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: stretch;
-  align-items: stretch;
-}
-
 .geva-section {
   width: 100%;
   padding: 10px;
-  display: flex;
-}
 
-.geva-section-content {
-  display: flex;
-  flex-grow: 1;
-  border: 1px solid $lighter-blue;
-  border-radius: 4px;
+  a {
+    opacity: 0.8;
 
-  .head {
-    width: 30%;
-    background-color: $bg-blue;
-    padding: 20px 8px;
-    text-align: center;
-
-    span {
-      color: $disabled-blue;
-      font-size: 45px;
+    &:hover, &:focus {
+      text-decoration: none;
+      opacity: 1;
     }
 
-    h1 {
-      color: white;
-      font-size: 1.3em;
-      margin: 0;
-    }
+    h3 {
+      color: $bg-blue;
+      opacity: 0.8;
 
-    a {
+      &:first-child {
+        margin-top: 0px;
+      }
+
       &:hover, &:focus {
-        text-decoration: none;
-        span {
-          color: white;
-        }
+        opacity: 1;
       }
     }
   }
 
-  .body {
-    width: 70%;
-    padding: 20px;
+  h4 {
+    margin-left: 5px;
+  }
 
-    ul {
-      margin: 0;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .optionnal {
+    &:first-child {
+      margin-bottom: 15px;
     }
+  }
 
-    .optionnal {
-      margin-top: 15px;
-      ul {
-        background-color: whitesmoke;
-      }
-    }
+  li {
+    padding: 2px 20px;
 
-    li:first-letter {
+    &:first-letter {
       text-transform: capitalize;
     }
+    a{
+      color: $medium-heavy-grey;
+    }
+  }
 
-    h2 {
-      padding-bottom: 5px;
-      text-align: right;
-      font-size: 1.2em;
-      margin: 0;
-      border-bottom: 1px solid $bg-blue;
+  li.answered {
+    color: #337ab7;
+
+    &:before{
+        content: "\f046";
+        font-family: 'FontAwesome';
+        display: inline-block;
+        width: 1.2em;
+      }
+
+    a{
+      color: #337ab7;
     }
   }
 }

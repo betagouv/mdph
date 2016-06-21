@@ -1,52 +1,69 @@
-.panel.with-nav-tabs .panel-heading{
-  padding: 5px 5px 0 5px;
+.section-detail {
+  .panel {
+    margin-top: 5px;
+  }
 
-  .nav-justified{
-    margin-bottom: -1px;
-    max-width: 700px;
+  .panel.with-nav-tabs .panel-heading {
+    padding: 5px 5px 0 5px;
 
-    li {
-      width: auto;
+    .nav-justified{
+      margin-bottom: -1px;
+      max-width: 700px;
+
+      li {
+        width: auto;
+        a{
+          font-size: 15px;
+          color: $medium-heavy-grey;
+        }
+
+        &.active {
+          a {
+            font-weight: bold;
+            color: $bg-blue;
+          }
+        }
+      }
     }
   }
-}
 
-.container-btn {
-  display: flex;
-  justify-content: flex-end;
+  .container-btn {
+    display: flex;
+    justify-content: flex-end;
 
-  .btn-section {
-    margin: 10px 0px 10px 20px;
+    .btn-section {
+      margin: 10px 0px 10px 20px;
+    }
   }
-}
 
-.btn-checkbox {
-  &.active {
+  .btn-checkbox {
+    &.active {
+      &:before {
+        content: '\f14a';
+      }
+    }
     &:before {
-      content: '\f14a';
+      content: '\f096';
     }
   }
-  &:before {
-    content: '\f096';
-  }
-}
 
-.btn-radio {
-  &.active {
+  .btn-radio {
+    &.active {
+      &:before {
+        content: '\f192';
+      }
+    }
     &:before {
-      content: '\f192';
+      content: '\f10c';
     }
   }
-  &:before {
-    content: '\f10c';
+
+  .well-sousdetail {
+    @extend .well-detail;
+    background-color: white;
   }
-}
 
-.well-sousdetail {
-  @extend .well-detail;
-  background-color: white;
-}
-
-.trajectoire-body {
-  padding-bottom: 10px;
+  .trajectoire-body {
+    padding-bottom: 10px;
+  }
 }
