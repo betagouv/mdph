@@ -37,8 +37,11 @@ function saveUserAndSendConfirmation(req, res, user, mdph) {
       return Profile.create({user: user._id});
     })
     .then((profile) => {
-      const confirmationUrl = `http://${req.headers.host}/mdph/${mdph}/confirmer_mail/${user._id}/${user.newMailToken}`;
-      MailActions.sendConfirmationMail(user.email, confirmationUrl);
+
+      if (user.unconfirmed) {
+        const confirmationUrl = `http://${req.headers.host}/mdph/${mdph}/confirmer_mail/${user._id}/${user.newMailToken}`;
+        MailActions.sendConfirmationMail(user.email, confirmationUrl);
+      }
 
       const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
       res.status(201);
@@ -56,6 +59,7 @@ exports.create = function(req, res) {
   var newUser = new User(_.omit(req.body, 'mdph'));
   newUser.role = 'user';
   newUser.provider = 'local';
+  newUser.unconfirmed = true;
   return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph);
 };
 
@@ -66,6 +70,7 @@ exports.createAgent = function(req, res) {
   var newUser = new User(req.body);
   newUser.role = 'agent';
   newUser.provider = 'local';
+  newUser.unconfirmed = false;
   return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
     .then(result => {
       return result;
