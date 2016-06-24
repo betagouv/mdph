@@ -1,0 +1,17 @@
+{
+  "apps" : [
+    {
+      "name"      : "MDPH en ligne",
+      "script"    : "server/app.js",
+      "instances"  : 2,
+      "exec_mode"  : "cluster_mode",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 9000,
+        "SESSION_SECRET": "session_secret",
+        "API_KEY": "mailjet_api_key",
+        "SECRET_KEY": "mailjet_secret_key"
+      }
+    }
+  ]
+}
