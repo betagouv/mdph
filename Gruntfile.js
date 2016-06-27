@@ -70,7 +70,7 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('test', function(target, option) {
+  grunt.registerTask('test', function(target) {
     if (target === 'server') {
       return grunt.task.run([
         'env:all',

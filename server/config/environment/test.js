@@ -12,6 +12,4 @@ module.exports = {
 
   uploadDir: '.tmp',
 
-  // root: path.normalize(__dirname + '/../../test/')
-
 };
