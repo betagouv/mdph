@@ -7,6 +7,7 @@ import User from '../user/user.model';
 import Profile from '../profile/profile.model';
 
 import {startServer} from '../../test/utils/server';
+import {populate} from '../../test/utils/seed';
 
 describe('Request Integration', function() {
 
@@ -20,10 +21,13 @@ describe('Request Integration', function() {
     startServer((result) => {
       server = result.server;
       api = result.api;
-      token = result.token;
-      testUser = result.fakeUser;
-      testMdph = result.testMdph;
-      done();
+
+      populate((result) => {
+        token = result.token;
+        testUser = result.fakeUser;
+        testMdph = result.testMdph;
+        done();
+      });
     });
   });
 

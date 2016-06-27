@@ -5,6 +5,7 @@ import Request from '../../api/request/request.model';
 import User from '../../api/user/user.model';
 import DocumentCategory from '../../api/document-category/document-category.model';
 import {startServer} from '../../test/utils/server';
+import {populate} from '../../test/utils/seed';
 import proxyquire from 'proxyquire';
 import {Readable} from 'stream';
 
@@ -50,10 +51,13 @@ describe('Build pdf structure', function() {
     startServer((result) => {
       server = result.server;
       api = result.api;
-      token = result.token;
-      testUser = result.fakeUser;
-      testMdph = result.testMdph;
-      done();
+
+      populate((result) => {
+        token = result.token;
+        testUser = result.fakeUser;
+        testMdph = result.testMdph;
+        done();
+      });
     });
   });
 

@@ -10,10 +10,6 @@ module.exports = {
     uri: 'mongodb://localhost/impact-test'
   },
 
-  port: 3001,
-
   uploadDir: '.tmp',
-
-  root: path.normalize(__dirname + '/../../test/')
 
 };

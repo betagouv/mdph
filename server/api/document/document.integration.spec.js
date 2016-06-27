@@ -11,6 +11,7 @@ import config from '../../config/environment';
 import crypto from 'crypto';
 
 import {startServer} from '../../test/utils/server';
+import {populate} from '../../test/utils/seed';
 
 function fileToSha(file) {
   const hash = crypto.createHash('sha256');
@@ -23,14 +24,17 @@ describe('Document Integration', function() {
   var token;
   var testUser;
 
-  let testFile = path.join(config.root + '/server/uploads/', 'test.jpg');
+  let testFile = path.join(config.root + '/server/test/server/uploads/', 'test.jpg');
 
   before(function(done) {
     startServer((result) => {
       api = result.api;
-      token = result.token;
-      testUser = result.fakeUser;
-      done();
+
+      populate((result) => {
+        token = result.token;
+        testUser = result.fakeUser;
+        done();
+      });
     });
   });
 
@@ -90,9 +94,10 @@ describe('Document Integration', function() {
   describe('Get single Document', function() {
     let savedDocument;
     let shaFile;
+    let file;
 
     before(function(done) {
-      let file = fs.readFileSync(testFile, 'utf8');
+      file = fs.readFileSync(testFile, 'utf8');
       shaFile = fileToSha(file);
       done();
     });
@@ -129,7 +134,7 @@ describe('Document Integration', function() {
 
     it('should respond 200 and return the document', function(done) {
       api
-        .get(`/api/requests/1234/document/${savedDocument.originalname}?access_token=${token}`)
+        .get(`/api/requests/1234/document/${savedDocument.filename}?access_token=${token}`)
         .expect(200)
         .end((err, res) => {
           let shaRes = fileToSha(res.text);

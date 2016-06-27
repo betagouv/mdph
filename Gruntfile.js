@@ -88,6 +88,20 @@ module.exports = function(grunt) {
         'wiredep:test',
         'karma:unit'
       ]);
+    } else if (target === 'e2e') {
+      return grunt.task.run([
+        'bunyan',
+        'clean:server',
+        'env:all',
+        'env:test',
+        'injector:sass',
+        'concurrent:server',
+        'injector',
+        'wiredep:client',
+        'postcss',
+        'express:dev',
+        'protractor'
+      ]);
     } else if (target === 'coverage') {
       return grunt.task.run([
         'clean:server',

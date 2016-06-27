@@ -2,6 +2,7 @@
 
 import should from 'should';
 import {startServer} from '../../test/utils/server';
+import {populate} from '../../test/utils/seed';
 import * as controller from './user.controller';
 import User from '../user/user.model';
 
@@ -18,12 +19,15 @@ describe('User Integration', function() {
     startServer(result => {
       server = result.server;
       api = result.api;
-      token = result.token;
-      tokenAdmin = result.tokenAdmin;
-      tokenAdminMdph = result.tokenAdminMdph;
-      testUser = result.fakeUser;
-      testMdph = result.testMdph;
-      done();
+
+      populate((result) => {
+        token = result.token;
+        tokenAdmin = result.tokenAdmin;
+        tokenAdminMdph = result.tokenAdminMdph;
+        testUser = result.fakeUser;
+        testMdph = result.testMdph;
+        done();
+      });
     });
   });
 

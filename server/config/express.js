@@ -82,7 +82,13 @@ export default function(app) {
   }
 
   if (env === 'development') {
-    app.use(require('connect-livereload')());
+    app.use(require('connect-livereload')({
+      ignore: [
+        /^\/api\/(.*)/,
+        /\.js(\?.*)?$/, /\.css(\?.*)?$/, /\.svg(\?.*)?$/, /\.ico(\?.*)?$/, /\.woff(\?.*)?$/,
+        /\.png(\?.*)?$/, /\.jpg(\?.*)?$/, /\.jpeg(\?.*)?$/, /\.gif(\?.*)?$/, /\.pdf(\?.*)?$/
+      ]
+    }));
   }
 
   if (env === 'development' || env === 'test') {

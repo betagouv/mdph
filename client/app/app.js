@@ -9,7 +9,6 @@ angular.module('impactApp', [
     'ui.tree',
     'ui.mask',
     'ngStorage',
-    'ngAnimate',
     'ngFileUpload',
     'ngMessages',
     'ngCookies',

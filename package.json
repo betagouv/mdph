@@ -26,6 +26,7 @@
     "html-pdf": "^2.0.1",
     "imagemin": "4.0.0",
     "imagemin-jpeg-recompress": "4.2.1",
+    "jasmine-spec-reporter": "2.5.0",
     "jsonwebtoken": "^6.2.0",
     "lodash": "3.9.3",
     "lunr": "^0.7.1",
@@ -127,10 +128,12 @@
     "start": "NODE_ENV=production node dist/server/app.js",
     "test-front": "grunt test:client",
     "test-back": "grunt test:server",
+    "protractor": "grunt test:e2e",
     "test": "grunt test",
     "coverage-front": "grunt test:coverage",
     "coverage-back": "NODE_ENV=test nyc report --reporter=lcov --require babel-core/register mocha server --recursive ./server/**/*spec.js",
-    "coverage": "npm run coverage-back && npm run coverage-front"
+    "coverage": "npm run coverage-back && npm run coverage-front",
+    "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true
 }
