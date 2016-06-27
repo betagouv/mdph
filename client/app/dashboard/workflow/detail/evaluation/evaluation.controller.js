@@ -14,4 +14,13 @@ angular.module('impactApp')
     } else {
       $scope.currentSynthese = _.find(listSyntheses, {_id: $stateParams.syntheseId});
     }
+
+    $scope.isAnswered = (question) => {
+      if ($scope.currentSynthese) {
+        let all_answers = _($scope.currentSynthese.geva).values().flatten().value();
+        return all_answers.indexOf(question.id) >= 0;
+      }
+
+      return false;
+    };
   });
