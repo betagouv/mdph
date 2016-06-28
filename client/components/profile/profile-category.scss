@@ -114,3 +114,17 @@
     }
   }
 }
+
+@media (max-width: $screen-xs-max) {
+  .profile-category {
+    flex-direction: column;
+  }
+
+  .profile-category-icon {
+    width: 100%;
+  }
+
+  .profile-category-content {
+    width: 100%;
+  }
+}
