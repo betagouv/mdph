@@ -105,7 +105,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
     },
     particulieres: {
       title: 'Situations particulières',
-      content: 'Si vous vous trouvez dans une situation nécessitant une attention particulière.',
+      content: 'Concerne les situations nécessitant une attention particulière.',
       model: 'situations_particulieres',
       icon: 'fa-warning',
       action: {
