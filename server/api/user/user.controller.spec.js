@@ -115,7 +115,7 @@ describe('user.controller', function() {
             saveSpy.calledOnce.should.equal(true);
             saveSpy.args[0][0]._id.should.equal(fakeId);
             saveSpy.args[0][0].email.should.equal(fakeReq.body.email);
-            saveSpy.args[0][0].role.should.equal('agent');
+            saveSpy.args[0][0].role.should.equal('adminMdph');
             saveSpy.args[0][0].unconfirmed.should.equal(false);
 
             sendMailSpy.calledOnce.should.equal(false);
