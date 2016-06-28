@@ -64,11 +64,11 @@ exports.create = function(req, res) {
 };
 
 /**
- * Creates a new agent
+ * Creates a new adminMdph
  */
 exports.createAgent = function(req, res) {
   var newUser = new User(req.body);
-  newUser.role = 'agent';
+  newUser.role = 'adminMdph';
   newUser.provider = 'local';
   newUser.unconfirmed = false;
   return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
