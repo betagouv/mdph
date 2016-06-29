@@ -4,8 +4,6 @@ import {populate} from '../../../server/test/utils/seed';
 
 var config = browser.params;
 
-// var UserModel = require(config.serverConfig.root + '/server/api/user/user.model').default;
-
 describe('Login View', function() {
   var page;
 
@@ -27,7 +25,9 @@ describe('Login View', function() {
 
   beforeEach(function(done) {
     loadPage();
-    done();
+    browser.wait(function() {
+        return browser.executeScript('return !!window.angular');
+    }, 5000).then(done);
   });
 
   it('should include login form with correct inputs and submit button', function() {

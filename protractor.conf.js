@@ -76,7 +76,5 @@ var config = {
   }
 };
 
-config.params.serverConfig.root = path.normalize(config.params.serverConfig.root + '/../..');
-
 config.params.baseUrl = config.baseUrl;
 exports.config = config;

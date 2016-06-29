@@ -105,7 +105,8 @@
     <div class="form-group required" ng-class="{'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
       <label for="nomVoie" class="control-label">Adresse</label>
       <div class="input-group">
-        <input type="search"
+        <input id="address"
+          type="search"
           typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
           typeahead-min-length='3'
           typeahead-on-select='fillAdressOnSelect($item)'
@@ -235,6 +236,6 @@
 
   <div class="identity-form-actions">
     <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
-    <button type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
+    <button id="submit-benef" type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
   </div>
 </form>
