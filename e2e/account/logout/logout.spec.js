@@ -24,7 +24,7 @@ describe('Logout View', function() {
   beforeEach(function(done) {
     login(testUser);
     browser.wait(function() {
-        return browser.executeScript('return !!window.angular');
+      return browser.executeScript('return !!window.angular');
     }, 5000).then(done);
   });
 

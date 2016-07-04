@@ -1,5 +1,6 @@
 import User from '../../api/user/user.model';
 import Profile from '../../api/profile/profile.model';
+import Request from '../../api/request/request.model';
 import Mdph from '../../api/mdph/mdph.model';
 
 import jwt from 'jsonwebtoken';
@@ -33,7 +34,8 @@ function saveUser() {
       name: 'Fake User',
       email: 'user@test.com',
       password: 'hashedPassword',
-      role: 'user'
+      role: 'user',
+      unconfirmed: false
     });
 
     return fakeUser.save();
@@ -48,7 +50,8 @@ function saveUserAdminMdph() {
       email: 'admin-mdph@test.com',
       password: 'hashedPassword',
       role: 'adminMdph',
-      mdph: testMdph._id
+      mdph: testMdph._id,
+      unconfirmed: false
     });
 
     return fakeUserAdminMdph.save();
@@ -62,7 +65,8 @@ function saveUserAdmin() {
       name: 'Fake User Admin',
       email: 'admin@test.com',
       password: 'hashedPassword',
-      role: 'admin'
+      role: 'admin',
+      unconfirmed: false
     });
 
     return fakeUserAdmin.save();
@@ -81,6 +85,12 @@ function removeProfiles() {
   };
 }
 
+function removeRequests() {
+  return function() {
+    Request.remove().exec();
+  };
+}
+
 export function populate(done) {
   var testMdph;
   var fakeUser;
@@ -94,6 +104,7 @@ export function populate(done) {
     .remove().exec()
     .then(removeUsers())
     .then(removeProfiles())
+    .then(removeRequests())
     .then(saveMdph(testMdph))
     .then(mdph => {
       testMdph = mdph;
