@@ -50,7 +50,6 @@ describe('Login View', function() {
 
     it('should login a user and redirecting to "/"', function() {
       page.login(testUser);
-
       expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/profil/me');
     });
 
