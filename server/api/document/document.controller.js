@@ -81,19 +81,17 @@ function respondWithResult(res, statusCode) {
 }
 
 function removeFileFromFS(path) {
-  return new Promise(function(resolve, reject) {
-    if (!path) {
-      return resolve();
-    }
-
+  if (path) {
     fs.exists(path, function(exists) {
       if (exists) {
-        fs.unlink(path, resolve);
-      } else {
-        resolve();
+        fs.unlink(path, () => {
+          return Promise.resolve();
+        });
       }
     });
-  });
+  }
+
+  return Promise.resolve();
 }
 
 function handleDeleteFile(req) {
@@ -105,7 +103,7 @@ function handleDeleteFile(req) {
 
   return removeFileFromFS(file.path)
     .then(() => {
-      return file.remove(updated => {
+      return file.remove({}, updated => {
         req.request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
         return req.request.save();
       });
