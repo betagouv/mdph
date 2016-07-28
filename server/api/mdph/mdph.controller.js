@@ -273,7 +273,7 @@ export function destroy(req, res) {
 
     if (!mdph) { return res.sendStatus(404); }
 
-    mdph.remove(function(err) {
+    mdph.remove({}, function(err) {
       if (err) { return handleError(req, res, err); }
 
       return res.sendStatus(204);
