@@ -6,23 +6,6 @@ angular.module('impactApp')
       return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
     }
 
-    function hasInvalidFileInCategories(categories) {
-      let found = false;
-      _.forEach(categories, function(category) {
-        category.documentList.forEach(function(document) {
-          if (document.isInvalid === true) {
-            found = true;
-          }
-        });
-      });
-
-      return found;
-    }
-
-    function hasInvalidFile(request) {
-      return hasInvalidFileInCategories(request.documents.obligatoires) || hasInvalidFileInCategories(request.documents.complementaires);
-    }
-
     function allAskedFilesPresent(request) {
       var allAskedFilesComplete = true;
 
@@ -41,7 +24,7 @@ angular.module('impactApp')
         return false;
       }
 
-      return allMandatoryFilesPresent(request) && !hasInvalidFile(request) && allAskedFilesPresent(request);
+      return allMandatoryFilesPresent(request) && allAskedFilesPresent(request);
     }
 
     function findInvalid(categories) {
