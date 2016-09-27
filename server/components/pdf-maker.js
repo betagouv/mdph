@@ -6,6 +6,7 @@ import pdfConvert from './pdf_utils/convert';
 import pdfJoin from './pdf_utils/join';
 import pdfBuild from './pdf_structure/build';
 import pdfDecrypt from './pdf_utils/decrypt';
+import pdfFilterMissing from './pdf_utils/filter-missing';
 import writeGridfsToFile from './pdf_structure/writeGridfsToFile';
 import Recapitulatif from './recapitulatif';
 
@@ -61,6 +62,7 @@ function joinPdfStructureInOneFile(tempDirPath) {
 function createStructuredRequestPdf({tempDirPath, recapitulatifPdfPath, request}) {
   return transformImagesToPdf(tempDirPath, request)
     .then(() => pdfDecrypt(tempDirPath, request.documents))
+    .then(() => pdfFilterMissing(request.documents))
     .then(buildStructure(request, recapitulatifPdfPath))
     .then(writeCategoriesSeparatorsToFile(tempDirPath))
     .then(joinPdfStructureInOneFile(tempDirPath));
