@@ -35,14 +35,21 @@ function decryptSingle(outputDir) {
       var outputPath = path.join(outputDir, '_decrypted' + path.basename(file.path));
       var args = ['--decrypt', file.path, outputPath];
       var decrypt = spawn('qpdf', args);
+      var errorMessage = 'decrypt encountered an error:\n';
+      var error = false;
 
       decrypt.stderr.on('data', function(data) {
-        console.log('decrypt encountered an error:\n', String(data));
-        return reject(file);
+        error = true;
+        errorMessage += String(data);
       });
 
       decrypt.on('exit', function(code) {
-        file.path = outputPath;
+        if (!error) {
+          file.path = outputPath;
+        } else {
+          console.error(errorMessage);
+        }
+
         return resolve(file);
       });
     });
