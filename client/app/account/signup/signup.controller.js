@@ -21,8 +21,7 @@ angular.module('impactApp')
       if (form.$valid) {
         Auth.createUser({
           email: form.email.$modelValue,
-          password: form.password.$modelValue,
-          isMultiProfiles: form.isMultiProfiles.$modelValue
+          password: form.password.$modelValue
         })
         .then(function(data) {
           // Logged in, redirect
