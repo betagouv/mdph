@@ -6,7 +6,7 @@
       <li
         class="btn-answer" ng-class="{'active': model['valeur'] === true}"
         ng-click="model['valeur'] = true">
-        <input type="radio" name="{{question.model}}" id="{{question.model}}-oui"
+        <input type="radio" class="radio-answers" name="{{question.model}}" id="{{question.model}}-oui"
           ng-model="model['valeur']" ng-value="true" ng-required="!model['valeur']"/>
         <label for="{{question.model}}-oui">Oui</label>
       </li>

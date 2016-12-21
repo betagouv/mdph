@@ -30,8 +30,10 @@ angular.module('impactApp')
             identite.email = currentUser.email;
           }
 
-          $scope.lat = currentMdph.coordinates.coordy;
-          $scope.long = currentMdph.coordinates.coordx;
+          if (currentMdph.coordinates) {
+            $scope.lat = currentMdph.coordinates.coordy;
+            $scope.long = currentMdph.coordinates.coordx;
+          }
 
           $scope.getAdress = AdressService.getAdress;
 
