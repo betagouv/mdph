@@ -8,6 +8,9 @@
   <div class="form-group">
     <input type="text" name="inputname" id="inputid" class="form-control" ng-model="sectionModel[question.model]"
       placeholder="{{question.placeholder}}" ng-required="!question.isOptionnal">
+
+    <p class="help-block">Dernière réponse enregistrée le {{ previousModel.updatedAt | moment }}: {{ previousModel[question.model] }}</p>
+
     <div ng-messages="questionForm.inputname.$error" ng-if="questionForm.showError">
       <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
     </div>
