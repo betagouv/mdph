@@ -18,12 +18,12 @@ angular.module('impactApp')
             return _.find(sections, {id: sectionId});
           },
 
-          sectionModel: function(profile, sectionId) {
-            if (!profile[sectionId]) {
-              profile[sectionId] = {};
-            }
+          sectionModel: function(previousModel) {
+            return {};
+          },
 
-            return profile[sectionId];
+          previousModel: function(profile, sectionId) {
+            return _.cloneDeep(profile[sectionId]);
           },
 
           saveSection: function($state, currentUser, profile, sectionId, sectionModel) {
