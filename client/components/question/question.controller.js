@@ -2,17 +2,28 @@
 
 angular.module('impactApp')
   .factory('initQuestionScope', function() {
-    return function(scope, question, nextStep, data) {
+    return function(scope, question, nextStep, data, previousModel, sectionModel) {
       scope.question = question;
       scope.nextStep = nextStep;
       scope.hideBack = data && data.hideBack;
       scope.isLastQuestion = data && data.isLastQuestion;
+
+      // Si pas encore de réponse, on reprend la dernière
+      if (!sectionModel[question.model]) {
+        sectionModel[question.model] = previousModel[question.model];
+
+        if (question.answers) {
+          question.answers.map(function(answer) {
+            sectionModel[answer.detailModel] = previousModel[answer.detailModel];
+          });
+        }
+      }
     };
   })
-  .controller('QuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep, $state.current.data);
+  .controller('QuestionCtrl', function($scope, $state, question, previousModel, sectionModel, nextStep, initQuestionScope) {
+    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
   })
-  .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope) {
+  .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope, previousModel, sectionModel) {
     initQuestionScope($scope, question, nextStep);
     $scope.ajoutEnCours = false;
     var modification = false;
@@ -77,8 +88,8 @@ angular.module('impactApp')
       }
     };
   })
-  .controller('RenseignementsQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep, $state.current.data);
+  .controller('RenseignementsQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel) {
+    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
 
     $scope.placeholder = 'Autres renseignements';
 
@@ -86,8 +97,8 @@ angular.module('impactApp')
       $scope.sectionModel.autresRenseignements = '';
     }
   })
-  .controller('ListQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName) {
-    initQuestionScope($scope, question, nextStep, $state.current.data);
+  .controller('ListQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName, previousModel, sectionModel) {
+    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[question.model] = {};
@@ -110,8 +121,8 @@ angular.module('impactApp')
       $scope.model[listName].pop();
     };
   })
-  .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep, $state.current.data);
+  .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel) {
+    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
 
     $scope.jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
     $scope.currentModel = question.model;
@@ -132,7 +143,7 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel[$scope.currentModel];
   })
-  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep, $state.current.data);
+  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep, initQuestionScope, previousModel) {
+    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
     $scope.sectionModel = sectionModel;
   });
