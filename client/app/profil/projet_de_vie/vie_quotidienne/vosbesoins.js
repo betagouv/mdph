@@ -4,7 +4,7 @@ angular.module('impactApp')
   .config(function($stateProvider) {
     var index = 'profil.vie_quotidienne.vos_besoins';
     $stateProvider.state(index, {
-      url: '/vos_besoins',
+      url: '',
       template: '<div ui-view></div>',
       controller: function($scope) {
         $scope.helpTemplate = 'components/help/besoins.html';
@@ -12,7 +12,7 @@ angular.module('impactApp')
 
       redirectTo: index + '.quotidien',
     }).state(index + '.quotidien', {
-      url: '/quotidien',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -27,7 +27,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.deplacement', {
-      url: '/deplacement',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -42,7 +42,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.transport', {
-      url: '/transport',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -57,7 +57,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.social', {
-      url: '/social',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {

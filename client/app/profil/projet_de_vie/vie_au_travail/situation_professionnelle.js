@@ -6,12 +6,12 @@ angular.module('impactApp')
     var index = 'profil.vie_au_travail';
 
     $stateProvider.state(index + '.situation_professionnelle', {
-      url: '/situation_professionnelle',
+      url: '',
       template: '<div ui-view></div>',
       abstract: true
     })
     .state(index + '.situation_professionnelle.condition', {
-      url: '/condition',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       data: {
@@ -34,7 +34,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation_professionnelle.milieu', {
-      url: '/milieu',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -54,7 +54,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation_professionnelle.type', {
-      url: '/type',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -74,7 +74,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation_professionnelle.employeur', {
-      url: '/employeur',
+      url: '',
       templateUrl: 'components/question/employeur.html',
       controller: function($scope, question, nextStep) {
         if (angular.isUndefined($scope.sectionModel.employeur)) {
@@ -103,7 +103,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation_professionnelle.prestations', {
-      url: '/prestaions',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -119,7 +119,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation_professionnelle.rqth', {
-      url: '/rqth',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {

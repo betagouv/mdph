@@ -5,7 +5,7 @@ angular.module('impactApp')
     var index = 'profil.vie_au_travail';
 
     $stateProvider.state(index + '.parcours_professionnel', {
-      url: '/parcours_professionnel',
+      url: '',
       template: '<div ui-view></div>',
       abstract: true
     })
@@ -30,7 +30,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.parcours_professionnel.cv', {
-      url: '/cv',
+      url: '',
       templateUrl: 'components/question/cv.html',
       controller: 'CvQuestionCtrl',
       resolve: {
@@ -46,7 +46,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.parcours_professionnel.qualification', {
-      url: '/qualification',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -62,7 +62,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.parcours_professionnel.derniereClasse', {
-      url: '/derniere_classe',
+      url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -78,7 +78,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.parcours_professionnel.formations', {
-      url: '/formations',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -94,7 +94,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.parcours_professionnel.diplomes', {
-      url: '/diplomes',
+      url: '',
       templateUrl: 'components/question/diplomes.html',
       controller: 'ListQuestionCtrl',
       resolve: {

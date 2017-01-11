@@ -5,7 +5,7 @@ angular.module('impactApp')
     var index = 'profil.vie_au_travail.situation_professionnelle.sans_emploi';
     $stateProvider
       .state(index, {
-        url: '/sans_emploi',
+        url: '',
         template: '<div ui-view></div>',
         abstract: true
       })
@@ -26,7 +26,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.pole_emploi', {
-        url: '/pole_emploi',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -46,7 +46,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.stage', {
-        url: '/stage',
+        url: '',
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -62,7 +62,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.accompagnement', {
-        url: '/accompagnement',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
