@@ -24,7 +24,7 @@ angular.module('impactApp')
     initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
   })
   .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope, previousModel, sectionModel) {
-    initQuestionScope($scope, question, nextStep);
+    initQuestionScope($scope, question, nextStep, null, previousModel, sectionModel);
     $scope.ajoutEnCours = false;
     var modification = false;
     var index = -1;

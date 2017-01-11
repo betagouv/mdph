@@ -13,7 +13,6 @@ module.exports = function(config) {
     files: [
 
       // bower:js
-      'client/bower_components/jquery/dist/jquery.js',
       'client/bower_components/angular/angular.js',
       'client/bower_components/angular-aria/angular-aria.js',
       'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -27,6 +26,7 @@ module.exports = function(config) {
       'client/bower_components/angular-ui-mask/dist/mask.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
+      'client/bower_components/jquery/dist/jquery.js',
       'client/bower_components/lodash/lodash.js',
       'client/bower_components/mapbox.js/mapbox.js',
       'client/bower_components/moment/moment.js',
