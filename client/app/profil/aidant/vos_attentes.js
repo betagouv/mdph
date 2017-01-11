@@ -6,12 +6,12 @@ angular.module('impactApp')
     var index = 'profil.aidant.vos_attentes';
 
     $stateProvider.state(index, {
-      url: '/vos_attentes',
+      url: '',
       template: '<div ui-view></div>',
       abstract: true
     })
     .state(index + '.type_attente', {
-      url: '/type_attente',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -27,7 +27,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.structure', {
-      url: '/structure',
+      url: '',
       templateUrl: 'components/question/structure.html',
       controller: 'ListQuestionCtrl',
       resolve: {
@@ -47,7 +47,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.renseignements', {
-      url: '/renseignements',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -63,7 +63,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.autres_renseignements', {
-      url: '/autres_renseignements',
+      url: '',
       templateUrl: 'components/question/autres_renseignements.html',
       controller: 'RenseignementsQuestionCtrl',
       data: {

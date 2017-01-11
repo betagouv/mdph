@@ -5,7 +5,7 @@ angular.module('impactApp')
     var index = 'profil.vie_quotidienne.situation';
     $stateProvider
       .state(index, {
-        url: '/situation',
+        url: '',
         template: '<div ui-view></div>',
         redirectTo: index + '.vie_famille'
       })
@@ -29,7 +29,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.logement', {
-        url: '/logement',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -45,7 +45,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.aides', {
-        url: '/aides',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -72,7 +72,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.aideFinancierePresent', {
-        url: '/aides_financieres',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -99,7 +99,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.aideFinancierePasse', {
-        url: '/revenus',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -122,7 +122,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.aideTechnique', {
-        url: '/aides_techniques',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -143,7 +143,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.aidePersonne', {
-        url: '/aides_personnes',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -159,7 +159,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.pensionInvalidite', {
-        url: '/pension_invalidite',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -175,7 +175,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.ipp', {
-        url: '/taux_ipp',
+        url: '',
         templateUrl: 'components/question/textinput.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -195,7 +195,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.retraite', {
-        url: '/retraite',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -215,7 +215,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.aidesRetraite', {
-        url: '/aides_retraite',
+        url: '',
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -231,7 +231,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.fraisHandicap', {
-        url: '/frais_handicap',
+        url: '',
         templateUrl: 'components/question/frais_handicap.html',
         controller: 'ListQuestionCtrl',
         resolve: {
