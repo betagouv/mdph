@@ -18,7 +18,7 @@ angular.module('impactApp')
             return _.find(sections, {id: sectionId});
           },
 
-          sectionModel: function(previousModel) {
+          sectionModel: function() {
             return {};
           },
 

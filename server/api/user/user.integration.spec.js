@@ -327,7 +327,7 @@ describe('User Integration', function() {
         role: 'user'
       });
 
-      return fakeUser.save(function(err) {
+      fakeUser.save(function(err) {
         if (err) console.log(err);
 
         User
