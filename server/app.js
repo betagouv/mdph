@@ -12,9 +12,6 @@ import http from 'http';
 import moment from 'moment';
 import Grid from 'gridfs-stream';
 
-// Populate databases with sample data
-if (config.seedDB) { require('./config/seed'); }
-
 // Setup server
 var app = express();
 var server = http.createServer(app);
