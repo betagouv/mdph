@@ -100,7 +100,7 @@ angular.module('impactApp')
 
       var mandatoryTypes = getMandatoryTypes(documentTypes);
       var existingTypes = findExistingTypes(request, documentTypes);
-      var askedTypes = findAskedTypes(request);
+      var askedTypes = findAskedTypes(request, documentTypes);
 
       _.reduce(mandatoryTypes, concatTypes, selectedDocumentTypes);
       _.reduce(existingTypes, concatTypes, selectedDocumentTypes);

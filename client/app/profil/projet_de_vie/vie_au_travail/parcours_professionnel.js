@@ -9,6 +9,7 @@ angular.module('impactApp')
       template: '<div ui-view></div>',
       abstract: true
     })
+
     .state(index + '.parcours_professionnel.cv', {
       url: '/cv',
       templateUrl: 'components/question/cv.html',
