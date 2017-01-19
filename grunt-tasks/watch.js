@@ -1,17 +1,17 @@
 module.exports = {
   babel: {
-    files: ['<%= app.dirs.client %>/{app,components}/**/!(*.spec|*.mock).js'],
+    files: ['client/{app,components}/**/!(*.spec|*.mock).js'],
     tasks: ['newer:babel:client']
   },
   injectJS: {
     files: [
-      '<%= app.dirs.client %>/{app,components}/**/!(*.spec|*.mock).js',
-      '!<%= app.dirs.client %>/app/app.js'
+      'client/{app,components}/**/!(*.spec|*.mock).js',
+      '!client/app/app.js'
     ],
     tasks: ['injector:scripts']
   },
   injectCss: {
-    files: ['<%= app.dirs.client %>/{app,components}/**/*.css'],
+    files: ['client/{app,components}/**/*.css'],
     tasks: ['injector:css']
   },
   mochaTest: {
@@ -22,17 +22,17 @@ module.exports = {
     tasks: ['env:test', 'mochaTest']
   },
   jsTest: {
-    files: ['<%= app.dirs.client %>/{app,components}/**/*.{spec,mock}.js'],
+    files: ['client/{app,components}/**/*.{spec,mock}.js'],
     tasks: ['newer:jshint:all', 'wiredep:test', 'karma']
   },
   injectSass: {
     files: [
-      '<%= app.dirs.client %>/{app,components}/**/*.{scss,sass}'],
+      'client/{app,components}/**/*.{scss,sass}'],
     tasks: ['injector:sass']
   },
   sass: {
     files: [
-      '<%= app.dirs.client %>/{app,components}/**/*.{scss,sass}'],
+      'client/{app,components}/**/*.{scss,sass}'],
     tasks: ['sass', 'postcss']
   },
   gruntfile: {
@@ -40,9 +40,9 @@ module.exports = {
   },
   livereload: {
     files: [
-      '{.tmp,<%= app.dirs.client %>}/{app,components}/**/*.{css,html}',
-      '{.tmp,<%= app.dirs.client %>}/{app,components}/**/!(*.spec|*.mock).js',
-      '<%= app.dirs.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
+      '{.tmp,client}/{app,components}/**/*.{css,html}',
+      '{.tmp,client}/{app,components}/**/!(*.spec|*.mock).js',
+      'client/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
     ],
     options: {
       livereload: true

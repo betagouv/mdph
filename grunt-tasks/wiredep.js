@@ -10,8 +10,8 @@ module.exports = {
     ]
   },
   client: {
-    src: '<%= app.dirs.client %>/index.html',
-    ignorePath: '<%= app.dirs.client %>/',
+    src: 'client/index.html',
+    ignorePath: 'client/',
   },
   test: {
     src: './karma.conf.js',

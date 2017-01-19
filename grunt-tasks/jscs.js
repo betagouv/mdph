@@ -12,14 +12,14 @@ module.exports = {
     src: ['server/**/*.spec.js']
   },
   all: [
-    '<%= app.dirs.client %>/{app,components}/**/*.js',
-    '!<%= app.dirs.client %>/{app,components}/**/*.spec.js',
-    '!<%= app.dirs.client %>/{app,components}/**/*.mock.js'
+    'client/{app,components}/**/*.js',
+    '!client/{app,components}/**/*.spec.js',
+    '!client/{app,components}/**/*.mock.js'
   ],
   test: {
     src: [
-      '<%= app.dirs.client %>/{app,components}/**/*.spec.js',
-      '<%= app.dirs.client %>/{app,components}/**/*.mock.js'
+      'client/{app,components}/**/*.spec.js',
+      'client/{app,components}/**/*.mock.js'
     ]
   }
 };

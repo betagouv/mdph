@@ -1,6 +1,6 @@
 module.exports = {
   options: {
-    jshintrc: '<%= app.dirs.client %>/.jshintrc',
+    jshintrc: 'client/.jshintrc',
     reporter: require('jshint-stylish')
   },
   server: {
@@ -20,14 +20,14 @@ module.exports = {
     src: ['server/**/*.{spec,integration}.js', 'server/test/**/*.js']
   },
   all: [
-    '<%= app.dirs.client %>/{app,components}/**/*.js',
-    '!<%= app.dirs.client %>/{app,components}/**/*.spec.js',
-    '!<%= app.dirs.client %>/{app,components}/**/*.mock.js'
+    'client/{app,components}/**/*.js',
+    '!client/{app,components}/**/*.spec.js',
+    '!client/{app,components}/**/*.mock.js'
   ],
   test: {
     src: [
-      '<%= app.dirs.client %>/{app,components}/**/*.spec.js',
-      '<%= app.dirs.client %>/{app,components}/**/*.mock.js'
+      'client/{app,components}/**/*.spec.js',
+      'client/{app,components}/**/*.mock.js'
     ]
   }
 };

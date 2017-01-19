@@ -4,13 +4,13 @@ module.exports = {
   },
   dev: {
     options: {
-      script: '<%= app.dirs.server %>',
+      script: 'server',
       debug: true
     }
   },
   prod: {
     options: {
-      script: '<%= app.dirs.dist %>/<%= app.dirs.server %>'
+      script: 'dist/server'
     }
   }
 };

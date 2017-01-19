@@ -22,9 +22,7 @@
     "json3": "~3.3.1",
     "lodash": "3.9.3",
     "mapbox.js": "^2.3.0",
-    "moment": "2.10.3",
-    "ng-file-upload": "~12.0",
-    "ngstorage": "0.3.7"
+    "moment": "2.10.3"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
