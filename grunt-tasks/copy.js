@@ -3,8 +3,8 @@ module.exports = {
     files: [{
       expand: true,
       dot: true,
-      cwd: '<%= app.dirs.client %>',
-      dest: '<%= app.dirs.dist %>/<%= app.dirs.client %>',
+      cwd: 'client',
+      dest: 'dist/client',
       src: [
         '*.{ico,png,txt}',
         '.htaccess',
@@ -17,21 +17,21 @@ module.exports = {
     }, {
       expand: true,
       cwd: '.tmp/images',
-      dest: '<%= app.dirs.dist %>/<%= app.dirs.client %>/assets/images',
+      dest: 'dist/client/assets/images',
       src: ['generated/*']
     }, {
       expand: true,
-      dest: '<%= app.dirs.dist %>',
+      dest: 'dist',
       src: [
         'node_modules/**/*',
-        '<%= app.dirs.server %>/**/*',
-        '!<%= app.dirs.server %>/config/local.env.sample.js'
+        'server/**/*',
+        '!server/config/local.env.sample.js'
       ]
     }]
   },
   styles: {
     expand: true,
-    cwd: '<%= app.dirs.client %>',
+    cwd: 'client',
     dest: '.tmp/',
     src: ['{app,components}/**/*.css']
   }

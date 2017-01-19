@@ -23,11 +23,6 @@ module.exports = function(grunt) {
     data: {
       pkg: grunt.file.readJSON('package.json'),
       app: {
-        dirs: {
-          client: 'client',
-          dist: 'dist',
-          server: 'server'
-        },
         port: process.env.PORT || 9000
       }
     },
@@ -45,21 +40,14 @@ module.exports = function(grunt) {
     }, 1500);
   });
 
-  grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
-    this.async();
-  });
-
   grunt.registerTask('serve', function(target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
-    }
-
     grunt.task.run([
       'bunyan',
       'clean:server',
       'env:all',
       'injector:sass',
-      'concurrent:server',
+      'newer:babel:client',
+      'sass',
       'injector',
       'wiredep:client',
       'postcss',
@@ -82,7 +70,8 @@ module.exports = function(grunt) {
         'clean:server',
         'env:all',
         'injector:sass',
-        'concurrent:test',
+        'newer:babel:client',
+        'sass',
         'injector',
         'postcss',
         'wiredep:test',
@@ -95,7 +84,8 @@ module.exports = function(grunt) {
         'env:all',
         'env:test',
         'injector:sass',
-        'concurrent:server',
+        'newer:babel:client',
+        'sass',
         'injector',
         'wiredep:client',
         'postcss',
@@ -108,7 +98,8 @@ module.exports = function(grunt) {
         'env:all',
         'env:test',
         'injector:sass',
-        'concurrent:test',
+        'newer:babel:client',
+        'sass',
         'injector',
         'postcss',
         'wiredep:test',
@@ -130,11 +121,11 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', [
-    'jshint',
-    'jscs',
     'clean:dist',
     'injector:sass',
-    'concurrent:dist',
+    'newer:babel:client',
+    'sass',
+    'imagemin',
     'injector',
     'wiredep:client',
     'useminPrepare',
