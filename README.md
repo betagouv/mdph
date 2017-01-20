@@ -3,8 +3,6 @@ Projet de simplification des demandes à la MDPH
 
 
 [![Build Status](https://circleci.com/gh/sgmap/mdph.svg?style=svg)](https://circleci.com/gh/sgmap/mdph)
-[![Dependencies](https://david-dm.org/sgmap/mdph.svg)](https://david-dm.org/sgmap/mdph#info=dependencies&view=table)
-[![Dev-dependencies](https://david-dm.org/sgmap/mdph/dev-status.svg)](https://david-dm.org/sgmap/mdph#info=devDependencies&view=table)
 
 ## Getting Started
 
