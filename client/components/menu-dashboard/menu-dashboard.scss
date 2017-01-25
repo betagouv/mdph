@@ -6,7 +6,7 @@
   z-index: 1;
 
   ul {
-    margin-bottom: 5px;
+    margin: 5px 0px;
     padding: 0;
   }
 
@@ -15,7 +15,7 @@
   }
 
   ul > li > a {
-    padding: 5px;
+    padding: 4px;
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -164,10 +164,6 @@
     height: 100%;
     transition: width 500ms;
 
-    .shared-menu {
-      margin-bottom: 5px;
-    }
-
     .menu-dashboard-footer {
       display: block;
       margin-top: auto;
@@ -185,7 +181,7 @@
 
     .menu-general {
       width: $menu-width;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
     }
 
     .menu-detail {
