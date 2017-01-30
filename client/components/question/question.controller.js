@@ -9,7 +9,7 @@ angular.module('impactApp')
       scope.isLastQuestion = data && data.isLastQuestion;
 
       // Si pas encore de réponse, on reprend la dernière
-      if (!sectionModel[question.model]) {
+      if (previousModel && !sectionModel[question.model]) {
         sectionModel[question.model] = previousModel[question.model];
 
         if (question.answers) {
