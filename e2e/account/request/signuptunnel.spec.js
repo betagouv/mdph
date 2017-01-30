@@ -58,22 +58,26 @@ describe('fill a Request following a signup', function() {
   });
 
   it('should fill the \'vie_quotidienne\' form', function() {
-    expect(browser.getCurrentUrl()).toContain('vie_quotidienne/situation');
+    expect(browser.getCurrentUrl()).toContain('vie_quotidienne');
+
+    // situation
     answerRadio();
     answerSub();
     answerOptional();
     answerOptional();
 
-    expect(browser.getCurrentUrl()).toContain('vie_quotidienne/vos_besoins');
+    // vos_besoins
     answerOptional();
     answerOptional();
     answerRadio();
     answerOptional();
 
-    expect(browser.getCurrentUrl()).toContain('vie_quotidienne/vos_attentes');
+    // vos_attentes
     answerOptional();
     answerRadio();
     answerOptional();
+
+    expect(browser.getCurrentUrl()).toContain('/profil/');
   });
 
   it('should return to the profile page and create the request', function() {
