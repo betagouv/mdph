@@ -129,7 +129,7 @@
     "coverage-front": "grunt test:coverage",
     "coverage-back": "NODE_ENV=test nyc report --reporter=lcov --require babel-core/register mocha server --recursive ./server/**/*spec.js",
     "coverage": "npm run coverage-back && npm run coverage-front",
-    "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
+    "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true
 }

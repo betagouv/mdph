@@ -6,12 +6,12 @@ angular.module('impactApp')
     var index = 'profil.aidant.situation';
 
     $stateProvider.state(index, {
-      url: '/situation',
+      url: '',
       template: '<div ui-view></div>',
       abstract: true
     })
     .state(index + '.nom_aidant', {
-      url: '/',
+      url: '',
       templateUrl: 'components/question/textinput.html',
       controller: 'QuestionCtrl',
       data: {
@@ -30,7 +30,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.date_naissance_aidant', {
-      url: '/date_naissance_aidant',
+      url: '',
       templateUrl: 'components/question/date.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -46,7 +46,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.lien', {
-      url: '/lien',
+      url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -62,7 +62,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.vie', {
-      url: '/vie',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -78,7 +78,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.emploi', {
-      url: '/emploi',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -94,7 +94,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.nature_aide', {
-      url: '/nature_aide',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -110,7 +110,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.dedommagement', {
-      url: '/dedommagement',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -126,7 +126,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.accompagnement', {
-      url: '/accompagnement',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -142,7 +142,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.soutien', {
-      url: '/soutien',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -158,7 +158,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.empechement', {
-      url: '/empechement',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -174,7 +174,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation_future', {
-      url: '/situation_future',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {

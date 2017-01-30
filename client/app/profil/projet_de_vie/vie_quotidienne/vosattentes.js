@@ -4,11 +4,11 @@ angular.module('impactApp')
   .config(function($stateProvider) {
     var index = 'profil.vie_quotidienne.vos_attentes';
     $stateProvider.state(index, {
-      url: '/vos_attentes',
+      url: '',
       template: '<div ui-view></div>',
       abstract: true
     }).state(index + '.type_aide', {
-      url: '/type_aide',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -23,7 +23,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.structure', {
-      url: '/structure',
+      url: '',
       templateUrl: 'components/question/structure.html',
       controller: 'ListQuestionCtrl',
       resolve: {
@@ -42,7 +42,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.autres_renseignements', {
-      url: '/autres_renseignements',
+      url: '',
       templateUrl: 'components/question/autres_renseignements.html',
       controller: 'RenseignementsQuestionCtrl',
       data: {

@@ -6,7 +6,7 @@ angular.module('impactApp')
     var index = 'profil.vie_scolaire';
 
     $stateProvider.state(index + '.situation', {
-      url: '/situation',
+      url: '',
       template: '<div ui-view></div>',
       redirectTo: index + '.situation.condition'
     })
@@ -34,7 +34,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.type_scolaire', {
-      url: '/type_scolaire',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -59,7 +59,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.etablissement', {
-      url: '/etablissement',
+      url: '',
       templateUrl: 'components/question/etablissement_scolaire.html',
       controller: 'ListQuestionCtrl',
       resolve: {
@@ -79,7 +79,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.internat', {
-      url: '/internat',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -95,7 +95,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.type_etudes', {
-      url: '/type_etudes',
+      url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -111,7 +111,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.diplomes_passes', {
-      url: '/diplomes_passes',
+      url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -127,7 +127,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.diplome_present', {
-      url: '/diplome',
+      url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -143,7 +143,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.diplome_etablissement', {
-      url: '/diplome_etablissement',
+      url: '',
       templateUrl: 'components/question/etablissement_scolaire.html',
       controller: 'ListQuestionCtrl',
       resolve: {
@@ -163,7 +163,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.parcours', {
-      url: '/parcours',
+      url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -179,7 +179,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.accompagnement', {
-      url: '/accompagnement',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -195,7 +195,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.adaptation', {
-      url: '/adaptation',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -211,7 +211,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.emploi_du_temps', {
-      url: '/emploi_du_temps',
+      url: '',
       templateUrl: 'components/question/emploi_du_temps.html',
       controller: 'EmploiDuTempsCtrl',
       resolve: {
@@ -227,7 +227,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation.raison_non_scolaire', {
-      url: '/raison_non_scolaire',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {

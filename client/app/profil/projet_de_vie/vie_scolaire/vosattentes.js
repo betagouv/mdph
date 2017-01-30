@@ -6,12 +6,12 @@ angular.module('impactApp')
     var index = 'profil.vie_scolaire';
 
     $stateProvider.state(index + '.vos_attentes', {
-      url: '/vos_attentes',
+      url: '',
       template: '<div ui-view></div>',
       abstract: true
     })
     .state(index + '.vos_attentes.scolarite', {
-      url: '/scolarite',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -47,7 +47,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.vos_attentes.referent', {
-      url: '/enseignant_referent',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -63,7 +63,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.vos_attentes.autres_renseignements', {
-      url: '/autres_renseignements',
+      url: '',
       templateUrl: 'components/question/autres_renseignements.html',
       controller: 'RenseignementsQuestionCtrl',
       data: {

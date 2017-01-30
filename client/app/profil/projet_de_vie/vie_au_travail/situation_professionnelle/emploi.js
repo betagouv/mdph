@@ -6,12 +6,12 @@ angular.module('impactApp')
 
     $stateProvider
       .state(index, {
-        url: '/emploi',
+        url: '',
         template: '<div ui-view></div>',
         abstract: true
       })
       .state(index + '.nom_poste', {
-        url: '/nom_poste',
+        url: '',
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -43,7 +43,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.adapte', {
-        url: '/adapte',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -59,7 +59,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.difficultes', {
-        url: '/difficultes',
+        url: '',
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -75,7 +75,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.conservation', {
-        url: '/conservation_emploi',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -91,7 +91,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.amenagement', {
-        url: '/amenagement',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -107,7 +107,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.arret_de_travail', {
-        url: '/arret_de_travail',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -127,7 +127,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.raison_arret_de_travail', {
-        url: '/raison_arret_de_travail',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -143,7 +143,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.professionnel_social', {
-        url: '/professionnel_social',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {
@@ -159,7 +159,7 @@ angular.module('impactApp')
         }
       })
       .state(index + '.medecin_travail', {
-        url: '/medecin_travail',
+        url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
         resolve: {

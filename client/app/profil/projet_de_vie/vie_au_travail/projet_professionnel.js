@@ -5,12 +5,12 @@ angular.module('impactApp')
     var index = 'profil.vie_au_travail';
 
     $stateProvider.state(index + '.projet_professionnel', {
-      url: '/projet_professionnel',
+      url: '',
       template: '<div ui-view></div>',
       abstract: true
     })
     .state(index + '.projet_professionnel.description', {
-      url: '/description',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -26,7 +26,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.projet_professionnel.besoin_soutien', {
-      url: '/besoin_soutien',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -42,7 +42,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.projet_professionnel.structure', {
-      url: '/structure',
+      url: '',
       templateUrl: 'components/question/structure.html',
       controller: 'ListQuestionCtrl',
       resolve: {
@@ -62,7 +62,7 @@ angular.module('impactApp')
       }
     })
     .state(index + '.projet_professionnel.autres_renseignements', {
-      url: '/autres_renseignements',
+      url: '',
       templateUrl: 'components/question/autres_renseignements.html',
       controller: 'RenseignementsQuestionCtrl',
       data: {

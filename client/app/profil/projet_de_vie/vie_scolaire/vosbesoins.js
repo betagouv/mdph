@@ -6,7 +6,7 @@ angular.module('impactApp')
     var index = 'profil.vie_scolaire';
 
     $stateProvider.state(index + '.vos_besoins', {
-      url: '/vos_besoins',
+      url: '',
       template: '<div ui-view></div>',
       controller: function($scope) {
         $scope.helpTemplate = 'components/help/besoins.html';
@@ -15,7 +15,7 @@ angular.module('impactApp')
       abstract: true
 
     }).state(index + '.vos_besoins.scolarite', {
-      url: '/scolarite',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -30,7 +30,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.vos_besoins.communication', {
-      url: '/communication',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -45,7 +45,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.vos_besoins.entretien', {
-      url: '/entretien',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
@@ -60,7 +60,7 @@ angular.module('impactApp')
         }
       }
     }).state(index + '.vos_besoins.deplacement', {
-      url: '/deplacement',
+      url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
       resolve: {
