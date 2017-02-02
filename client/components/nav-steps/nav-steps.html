@@ -1,9 +1,5 @@
 <div class="nav-steps">
-  <button type="button" class="btn btn-default" ng-if="!hideBack" ng-click="previousStep()">
-    Question précédente
-  </button>
-
-  <button type="button" class="btn btn-default" ng-if="hideBack" ui-sref="profil({profileId: profile._id})">
+  <button type="button" class="btn btn-default" ui-sref="profil({profileId: profile._id})">
     Retour au profil
   </button>
 

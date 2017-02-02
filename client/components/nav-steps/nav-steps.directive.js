@@ -14,10 +14,6 @@ angular.module('impactApp')
             $scope.nextStep();
           }
         };
-
-        $scope.previousStep = function() {
-          $window.history.back();
-        };
       }
     };
   });
