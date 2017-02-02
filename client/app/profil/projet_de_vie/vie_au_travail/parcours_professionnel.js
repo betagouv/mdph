@@ -10,7 +10,7 @@ angular.module('impactApp')
       abstract: true
     })
     .state(index + '.parcours_professionnel.uploadCV', {
-      url: '/upload_cv',
+      url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
       resolve: {
