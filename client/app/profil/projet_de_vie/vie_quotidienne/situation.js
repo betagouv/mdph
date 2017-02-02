@@ -13,9 +13,6 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
-        data: {
-          hideBack: true
-        },
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'famille', profile);

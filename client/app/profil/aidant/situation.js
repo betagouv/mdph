@@ -14,9 +14,6 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textinput.html',
       controller: 'QuestionCtrl',
-      data: {
-        hideBack: true
-      },
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'nomAidant', profile);
