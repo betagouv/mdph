@@ -20,7 +20,7 @@ var all = {
   root: path.normalize(__dirname + '/../../..'),
 
   // Upload directory
-  uploadDir: path.normalize(__dirname + '/../../uploads/'),
+  uploadDir: process.env.UPLOAD_DIR || path.normalize(__dirname + '/../../uploads/'),
 
   // Mailjet config
   mailjet: {
