@@ -106,6 +106,7 @@ export function listSecteurs(req, res) {
     .sort('name')
     .exec(function(err, secteurs) {
       if (err) { return handleError(req, res, err); }
+
       return res.json(secteurs);
     });
 }
