@@ -56,13 +56,14 @@ angular.module('impactApp')
 
     $scope.openTransferModal = function() {
       if (_.find($scope.requests, 'isSelected')) {
+
         var modalInstance = $modal.open({
           animation: false,
           templateUrl: 'app/dashboard/workflow/list/modalSecteurs.html',
           controller: 'ModalSecteursCtrl',
           resolve: {
             secteurs: function(MdphResource) {
-              return MdphResource.querySecteurs({zipcode: currentMdph.zipcode}).$promise;
+              return MdphResource.querySecteursList({zipcode: currentMdph.zipcode}).$promise;
             }
           }
         });

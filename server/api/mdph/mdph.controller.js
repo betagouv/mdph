@@ -100,7 +100,17 @@ export function removeDocumentCategory(req, res) {
   });
 }
 
-export function showSecteurs(req, res) {
+export function listSecteurs(req, res) {
+  Secteur
+    .find({mdph: req.mdph._id})
+    .sort('name')
+    .exec(function(err, secteurs) {
+      if (err) { return handleError(req, res, err); }
+      return res.json(secteurs);
+    });
+}
+
+export function populateAndShowSecteurs(req, res) {
   Secteur
     .find({mdph: req.mdph._id})
     .sort('name')
