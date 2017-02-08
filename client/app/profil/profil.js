@@ -42,7 +42,7 @@ angular.module('impactApp').config(function($stateProvider) {
 
       hasRequest: function($http, currentUser, profile) {
         return $http.get(`/api/users/${currentUser._id}/profiles/${profile._id}/requests/count`).then(function(result) {
-          return result.data;
+          return result.data !== 0;
         });
       }
     }
