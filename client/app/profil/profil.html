@@ -13,11 +13,11 @@
     <div class="profile-card-content">
       <div ui-view>
 
-        <div ng-if="lastCreatedRequest" class="request-box">
+        <div ng-if="currentRequest" class="request-box">
           <h2>État de votre demande</h2>
-          <request-progress request="lastCreatedRequest"></request-progress>
+          <request-progress request="currentRequest"></request-progress>
         </div>
-        <div class="text-right" ng-if="lastCreatedRequest">
+        <div class="text-right" ng-if="hasRequest">
           <button ng-click="openRequestHistory()" class="btn btn-link">Historique de vos demandes passées</button>
         </div>
 

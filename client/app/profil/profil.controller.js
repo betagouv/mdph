@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $modal, $http, User, ProfileService, RequestResource, currentUser, profile, lastCreatedRequest, toastr, $anchorScroll) {
+angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $modal, $http, User, ProfileService, RequestResource, currentUser, profile, currentRequest, hasRequest, toastr, $anchorScroll) {
   $scope.profile = profile;
   $scope.estAdulte = ProfileService.estAdulte(profile);
-  $scope.lastCreatedRequest = lastCreatedRequest;
+  $scope.currentRequest = currentRequest;
+  $scope.hasRequest = hasRequest;
 
   var hasSubmitted = false;
 

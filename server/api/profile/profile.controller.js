@@ -71,17 +71,26 @@ export function indexRequests(req, res) {
     .catch(handleError(req, res));
 }
 
-export function showLastCreatedRequest(req, res) {
+export function showCurrentRequest(req, res) {
   Request
-    .findOne({ profile: req.profile._id }, {}, { sort: { createdAt: -1 } })
+    .findOne({ profile: req.profile._id, status: { $ne: 'archive' } }, {}, { sort: { createdAt: -1 } })
     .select('shortId user _id profile status mdph submittedAt createdAt')
     .exec()
     .then(request => {
       if (!request) {
-        return res.sendStatus(404);
+        return res.sendStatus(204);
       }
 
       return res.json(request);
+    });
+}
+
+export function count(req, res) {
+  Request
+    .count({ profile: req.profile._id })
+    .exec()
+    .then(count => {
+      return res.json(count);
     });
 }
 
