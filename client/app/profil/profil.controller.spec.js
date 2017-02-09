@@ -53,7 +53,8 @@ describe('ProfilCtrl', function() {
             RequestResource,
             currentUser: {_id: '5678'},
             profile: {_id: '1234'},
-            lastCreatedRequest: {},
+            currentRequest: {},
+            hasRequest: false,
             toastr,
             $anchorScroll: {}
           });
@@ -95,7 +96,8 @@ describe('ProfilCtrl', function() {
             RequestResource,
             currentUser: {_id: '5678'},
             profile: {_id: '1234'},
-            lastCreatedRequest: {},
+            currentRequest: {},
+            hasRequest: 0,
             toastr,
             $anchorScroll: {}
           });
@@ -142,7 +144,8 @@ describe('ProfilCtrl', function() {
           RequestResource: {},
           currentUser: {_id: '5678'},
           profile: {_id: '1234'},
-          lastCreatedRequest: {},
+          currentRequest: {},
+          hasRequest: 0,
           toastr,
           $anchorScroll
         });

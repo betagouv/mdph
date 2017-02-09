@@ -51,10 +51,10 @@ describe('Profile Integration', function() {
         Request.remove().then(() => done());
       });
 
-      it('should return 404', done => {
+      it('should return 204', done => {
         api
           .get(`/api/users/${testUser._id}/profiles/${fakeProfile._id}/requests/current?access_token=${token}`)
-          .expect(404)
+          .expect(204)
           .end(function(err, res) {
             if (err) {
               return done(err);

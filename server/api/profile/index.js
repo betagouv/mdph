@@ -18,7 +18,8 @@ router.post('/:profileId', isAuthorized(), controller.update);
 router.delete('/:profileId', isAuthorized(), controller.destroy);
 
 router.get('/:profileId/requests', isAuthorized(), controller.indexRequests);
-router.get('/:profileId/requests/current', isAuthorized(), controller.showLastCreatedRequest);
+router.get('/:profileId/requests/current', isAuthorized(), controller.showCurrentRequest);
+router.get('/:profileId/requests/count', isAuthorized(), controller.count);
 
 router.use('/:profileId/syntheses', synthesesRouter);
 

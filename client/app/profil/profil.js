@@ -29,7 +29,7 @@ angular.module('impactApp').config(function($stateProvider) {
         return ProfileResource.get({userId: currentUser._id, id: profileId}).$promise;
       },
 
-      lastCreatedRequest: function($http, currentUser, profile) {
+      currentRequest: function($http, currentUser, profile) {
         return $http.get(`/api/users/${currentUser._id}/profiles/${profile._id}/requests/current`).then(function(result) {
           return result.data;
         },
@@ -37,6 +37,12 @@ angular.module('impactApp').config(function($stateProvider) {
         function() {
           // No request found, no worries
           return null;
+        });
+      },
+
+      hasRequest: function($http, currentUser, profile) {
+        return $http.get(`/api/users/${currentUser._id}/profiles/${profile._id}/requests/count`).then(function(result) {
+          return result.data !== 0;
         });
       }
     }
