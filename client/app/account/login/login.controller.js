@@ -20,11 +20,7 @@ angular.module('impactApp')
             return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 
-          if (user.isMultiProfiles) {
-            return $state.go('mon_compte', {}, {reload: true});
-          } else {
-            return $state.go('profil', {profileId: 'me'}, {reload: true});
-          }
+          return $state.go('mon_compte', {}, {reload: true});
 
         })
         .catch(function(err) {

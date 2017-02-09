@@ -16,7 +16,6 @@ var UserSchema = new Schema({
   newPasswordToken: { type: String, select: false },
   newMailToken: { type: String, select: false },
   secteurs: [{ type: Schema.Types.ObjectId, ref: 'Secteur' }],
-  isMultiProfiles: { type: Boolean, default: false }
 });
 
 /**
@@ -45,7 +44,6 @@ UserSchema
         email: this.email,
         mdph: this.mdph,
         unconfirmed: this.unconfirmed,
-        isMultiProfiles: this.isMultiProfiles
       };
     }
 
@@ -55,7 +53,6 @@ UserSchema
       role: this.role,
       email: this.email,
       unconfirmed: this.unconfirmed,
-      isMultiProfiles: this.isMultiProfiles
     };
   });
 
