@@ -2,27 +2,30 @@ import nodemailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
 
 // Initialization class
-var Mailjet = function(apiKey, secretKey) {
-  this._apiKey = apiKey;
-  this._secretKey = secretKey;
+var MailSender = function(smtpUser, smtpPass, smtpHost, smtpPort, mailFrom) {
+  this._smtpUser = smtpUser;
+  this._smtpPass = smtpPass;
+  this._smtpHost = smtpHost;
+  this._smtpPort = smtpPort;
+  this._mailFrom = mailFrom;
 };
 
-Mailjet.prototype = {};
+MailSender.prototype = {};
 
 // Email sending code
-Mailjet.prototype.sendContent = function(to, subject, body, attachments, cb) {
+MailSender.prototype.sendContent = function(to, subject, body, attachments, cb) {
   var transporter = nodemailer.createTransport(smtpTransport({
-    port: 465,
-    host: 'in.mailjet.com',
+    port: this._smtpPort,
+    host: this._smtpHost,
     secure: true,
     auth: {
-        user: this._apiKey,
-        pass: this._secretKey
+        user: this._smtpUser,
+        pass: this._smtpPass
       }
   }));
 
   var mailOptions = {
-    from: 'impact@sgmap.fr',
+    from: this._mailFrom,
     to: to,
     subject: subject,
     html: body
@@ -43,4 +46,4 @@ Mailjet.prototype.sendContent = function(to, subject, body, attachments, cb) {
   });
 };
 
-module.exports = Mailjet;
+module.exports = MailSender;
