@@ -42,7 +42,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('serve', function(target) {
     grunt.task.run([
-      'bunyan',
       'clean:server',
       'env:all',
       'injector:sass',
@@ -79,7 +78,6 @@ module.exports = function(grunt) {
       ]);
     } else if (target === 'e2e') {
       return grunt.task.run([
-        'bunyan',
         'clean:server',
         'env:all',
         'env:test',
