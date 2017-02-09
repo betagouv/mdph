@@ -30,6 +30,15 @@ angular.module('impactApp')
         }
       },
 
+      querySecteursList: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller:'secteurs',
+          controllerid: 'list'
+        }
+      },
+
       getSecteur: {
         method: 'GET',
         params: {

@@ -24,7 +24,8 @@ router.get('/:id/users', isAuthorized(), controller.showUsers);
 
 router.get('/:id/partenaires', isAuthorized(), controller.showPartenaires);
 
-router.get('/:id/secteurs', isAuthorized(), controller.showSecteurs);
+router.get('/:id/secteurs', isAuthorized(), controller.populateAndShowSecteurs);
+router.get('/:id/secteurs/list', isAuthorized(), controller.listSecteurs);
 router.get('/:id/secteurs/:secteurId', isAuthorized(), controller.getSecteur);
 router.get('/:id/secteurs/:secteurId/requests', isAuthorized(), controller.showRequestsForSecteur);
 

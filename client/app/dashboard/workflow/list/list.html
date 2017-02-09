@@ -26,10 +26,10 @@
           <li role="menuitem">
             <a href="#" ng-click="download()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
-          <li role="menuitem">
+          <li role="menuitem" ng-if="status !== 'archive'">
             <a href="#" ng-click="openTransferModal()"><i class="fa fa-share"></i> Transférer vers un autre secteur</a>
           </li>
-          <li role="menuitem">
+          <li role="menuitem" ng-if="status !== 'archive'">
             <a href="#" ng-click="openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
           </li>
         </ul>
