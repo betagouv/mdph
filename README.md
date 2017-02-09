@@ -11,8 +11,8 @@ Projet de simplification des demandes à la MDPH
 - [Node.js and npm](https://nodejs.org/) Node ^6.5.9, npm ^3.*
 - [yarn](https://yarnpkg.com/) ^0.19
 - [Ruby](https://www.ruby-lang.org) and then `gem install sass` for [Sass](http://sass-lang.com/)
-- [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
-- [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit) pdftk_server-2.02-win-setup
+- [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod` ^3.0
+- [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit) pdftk_server-2.02
 - [imageMagic](https://www.imagemagick.org/script/download.php) ImageMagic ^7.0.4.6
 - [qpdf](https://sourceforge.net/projects/qpdf/files/?SetFreedomCookie) qpdf ^5.1.2
 
