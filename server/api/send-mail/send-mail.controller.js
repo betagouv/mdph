@@ -1,9 +1,9 @@
 'use strict';
 
-import MailSender from '../../mailsender/mail-sender';
+import MailSender from '../../components/mailsender/mail-sender';
 import config from '../../config/environment';
 
-const mailSender = new MailSender(config.mailSender.smtpUser, config.mailSender.smtpPass, config.mailSender.smtpHost, config.mailSender.smtpPort, config.mailSender.mailFrom);
+const mailSender = new MailSender(config.mailSender);
 
 export function sendMail(mail, title, body, attachements) {
   if (process.env.NODE_ENV !== 'production') {
