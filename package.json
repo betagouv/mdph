@@ -82,6 +82,7 @@
     "istanbul": "^0.4.5",
     "jasmine-core": "^2.4.1",
     "jit-grunt": "^0.10.0",
+    "jscs": "^3.0.7",
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.1.0",
     "karma": "0.13.22",
@@ -132,7 +133,6 @@
     "lint-back": "jshint --reporter=node_modules/jshint-stylish --config server/.jshintrc server",
     "mocha-back": "mocha --compilers js:babel-core/register -r mocha.conf.js -t 5000 \"server/**/*.spec.js\"",
     "coverage-back": "nyc report --require babel-core/register --require mocha.conf.js --timeout 5000 mocha \"server/**/*.spec.js\"",
-
     "test-e2e": "grunt test:e2e",
     "test-e2e-update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"
   },
