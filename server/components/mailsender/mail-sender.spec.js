@@ -20,7 +20,7 @@ describe('MailSender', () => {
     before(done => {
 
       const MailSender = proxyquire('./mail-sender', {
-        'nodemailer': {
+        nodemailer: {
           createTransport() {
             return {
               sendMail: sendMailSpy
@@ -56,7 +56,7 @@ describe('MailSender', () => {
 
     before(done => {
       const MailSender = proxyquire('./mail-sender', {
-        'nodemailer': {
+        nodemailer: {
           createTransport: createTransportSpy
         }
       });
