@@ -45,7 +45,9 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.html': 'ng-html2js',
       'client/{app,components}/**/*.js': ['babel'],
+      'client/{app,components}/**/!(*spec).js': ['coverage'],
     },
+
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'client/'
@@ -62,6 +64,13 @@ module.exports = function(config) {
       sourceFileName: function(file) {
         return file.originalPath;
       }
+    },
+
+    // coverage reporter generates the coverage
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type : 'text-summary'
     },
 
     // list of files / patterns to exclude
