@@ -58,13 +58,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('test', function(target) {
-    if (target === 'server') {
-      return grunt.task.run([
-        'env:all',
-        'env:test',
-        'mochaTest'
-      ]);
-    } else if (target === 'client') {
+    if (target === 'client') {
       return grunt.task.run([
         'clean:server',
         'env:all',

@@ -73,7 +73,6 @@
     "grunt-injector": "^1.1.0",
     "grunt-jscs": "^3.0.0",
     "grunt-karma": "^0.12.1",
-    "grunt-mocha-test": "~0.12.7",
     "grunt-newer": "~1.2.0",
     "grunt-ng-annotate": "^3.0.0",
     "grunt-open": "~0.2.3",
@@ -123,13 +122,15 @@
     "build": "grunt build",
     "start": "NODE_ENV=production node dist/server/app.js",
     "test-front": "grunt test:client",
-    "test-back": "grunt test:server",
     "protractor": "grunt test:e2e",
     "test": "grunt test",
     "coverage-front": "grunt test:coverage",
-    "coverage-back": "NODE_ENV=test nyc report --reporter=lcov --require babel-core/register mocha server --recursive ./server/**/*spec.js",
     "coverage": "npm run coverage-back && npm run coverage-front",
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"
+    "test-back": "npm run linter-back && npm run mocha-back",
+    "linter-back": "jshint --reporter=node_modules/jshint-stylish --config server/.jshintrc server",
+    "mocha-back": "mocha --compilers js:babel-core/register -r mocha.conf.js -t 5000 \"server/**/*.spec.js\"",
+    "coverage-back": "nyc report --require babel-core/register --require mocha.conf.js --timeout 5000 mocha \"server/**/*.spec.js\"",
   },
   "private": true
 }
