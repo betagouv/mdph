@@ -14,17 +14,6 @@ module.exports = {
     files: ['client/{app,components}/**/*.css'],
     tasks: ['injector:css']
   },
-  mochaTest: {
-    files: ['server/**/*.spec.js'],
-    options: {
-      spawn: false
-    },
-    tasks: ['env:test', 'mochaTest']
-  },
-  jsTest: {
-    files: ['client/{app,components}/**/*.{spec,mock}.js'],
-    tasks: ['newer:jshint:all', 'wiredep:test', 'karma']
-  },
   injectSass: {
     files: [
       'client/{app,components}/**/*.{scss,sass}'],
