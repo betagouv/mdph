@@ -62,8 +62,8 @@
     "grunt-contrib-concat": "~1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^1.0.1",
-    "grunt-contrib-imagemin": "1.0.0",
     "grunt-contrib-htmlmin": "^2.1.0",
+    "grunt-contrib-imagemin": "1.0.0",
     "grunt-contrib-jshint": "~1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "~2.0.0",
@@ -71,7 +71,6 @@
     "grunt-env": "~0.4.1",
     "grunt-express-server": "^0.5.1",
     "grunt-injector": "^1.1.0",
-    "grunt-jscs": "^3.0.0",
     "grunt-karma": "^0.12.1",
     "grunt-newer": "~1.2.0",
     "grunt-ng-annotate": "^3.0.0",
@@ -84,6 +83,7 @@
     "istanbul": "^0.4.5",
     "jasmine-core": "^2.4.1",
     "jit-grunt": "^0.10.0",
+    "jshint": "^2.9.4",
     "jshint-stylish": "^2.1.0",
     "karma": "0.13.22",
     "karma-babel-preprocessor": "^6.0.1",
@@ -121,16 +121,24 @@
     "dev": "grunt",
     "build": "grunt build",
     "start": "NODE_ENV=production node dist/server/app.js",
-    "test-front": "grunt test:client",
-    "protractor": "grunt test:e2e",
-    "test": "grunt test",
-    "coverage-front": "grunt test:coverage",
+    "test": "npm run test-front && npm run test-back",
     "coverage": "npm run coverage-back && npm run coverage-front",
-    "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"
-    "test-back": "npm run linter-back && npm run mocha-back",
-    "linter-back": "jshint --reporter=node_modules/jshint-stylish --config server/.jshintrc server",
+    "lint": "npm run lint-back && npm run lint-front",
+
+    "test-front": "npm run lint-back && npm run karma-front",
+    "lint-front": "npm run jshint-front && npm run jscs-front",
+    "jshint-front": "jshint --reporter=node_modules/jshint-stylish --config client/.jshintrc client/app client/components",
+    "jscs-front": "jscs --config .jscsrc client/app client/components",
+    "karma-front": "grunt test:client",
+    "coverage-front": "grunt test:coverage",
+
+    "test-back": "npm run lint-back && npm run mocha-back",
+    "lint-back": "jshint --reporter=node_modules/jshint-stylish --config server/.jshintrc server",
     "mocha-back": "mocha --compilers js:babel-core/register -r mocha.conf.js -t 5000 \"server/**/*.spec.js\"",
     "coverage-back": "nyc report --require babel-core/register --require mocha.conf.js --timeout 5000 mocha \"server/**/*.spec.js\"",
+
+    "test-e2e": "grunt test:e2e",
+    "test-e2e-update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true
 }
