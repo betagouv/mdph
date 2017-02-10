@@ -11,12 +11,7 @@
             S'inscrire
           </a>
         </li>
-        <li class="mdph-choice" ng-if="isLoggedIn() && getCurrentUser().isMultiProfiles">
-          <a class="hero-button" ui-sref="mon_compte">
-            Voir mes profils
-          </a>
-        </li>
-        <li class="mdph-choice" ng-if="isLoggedIn() && !getCurrentUser().isMultiProfiles">
+        <li class="mdph-choice" ng-if="isLoggedIn()">
           <a class="hero-button" ui-sref="profil({profileId: 'me'})">
             Voir mon profil
           </a>
@@ -98,10 +93,7 @@
     <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">
       S'inscrire
     </a>
-    <a class="hero-button" ui-sref="mon_compte" ng-if="isLoggedIn() && currentUser.isMultiProfiles">
-      Voir mes profils
-    </a>
-    <a class="hero-button" ui-sref="profil({profileId: 'me'})" ng-if="isLoggedIn() && !currentUser.isMultiProfiles">
+    <a class="hero-button" ui-sref="profil({profileId: 'me'})" ng-if="isLoggedIn()">
       Voir mon profil
     </a>
   </div>
