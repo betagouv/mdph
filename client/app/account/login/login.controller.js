@@ -21,15 +21,13 @@ angular.module('impactApp')
           }
 
           // When the user is logged, move to profile if only one is set.
-          ProfileResource.query({userId: user._id}).$promise.then(function(profiles){
-            if(profiles && (profiles.length === 1)){
+          ProfileResource.query({userId: user._id}).$promise.then(function(profiles) {
+            if (profiles && (profiles.length === 1)) {
               return $state.go('profil', {profileId: profiles[0]._id});
             }
-            else{
-              console.log('LoginCtrl multicomptes');
-              return $state.go('mon_compte', {}, {reload: true});
-            }
-          })
+
+            return $state.go('mon_compte', {}, {reload: true});
+          });
 
         })
         .catch(function(err) {
