@@ -142,10 +142,14 @@ describe('LoginCtrl', function() {
       });
     });
 
-    describe('user multi profiles', function() {
+    describe('user with only one profile', function() {
       let fakeUser = {
         _id: '1',
       };
+
+      let profile = [{ _id: 'fakeProfil1'}];
+
+      let $httpBackend;
 
       let Auth = {
         login() {
@@ -157,23 +161,95 @@ describe('LoginCtrl', function() {
         }
       };
 
-      beforeEach(function() {
+      let ProfileResource = {
+        query() {
+          return {
+            $promise: {
+              then(callback) {
+                callback(profile)
+              }
+            }
+          };
+        }
+      }
+
+      beforeEach(inject(function($injector) {
           $controller('LoginCtrl', {
             $rootScope: {},
             $scope,
             Auth,
             $location: {},
             $state,
-            currentMdph
+            currentMdph,
+            ProfileResource
           });
-        });
+
+          $httpBackend = $injector.get('$httpBackend');
+          $httpBackend.when('GET', '/api/users/1/profiles')
+            .respond([]);
+      }));
 
       it('should go to the account settings of the user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
         expect($state.go.calls.argsFor(0)[0]).toEqual('profil');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({_id: '1'});
+        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: 'fakeProfil1'});
+      });
+    });
+
+    describe('user with multiple profiles', function() {
+      let fakeUser = {
+        _id: '1',
+      };
+
+      let profiles = [{ _id: 'fakeProfil1'}, { _id: 'fakeProfil2'}];
+
+      let $httpBackend;
+
+      let Auth = {
+        login() {
+          return $q.resolve(fakeUser);
+        },
+
+        hasRole() {
+          return false;
+        }
+      };
+
+      let ProfileResource = {
+        query() {
+          return {
+            $promise: {
+              then(callback) {
+                callback(profiles)
+              }
+            }
+          };
+        }
+      }
+
+      beforeEach(inject(function($injector) {
+          $controller('LoginCtrl', {
+            $rootScope: {},
+            $scope,
+            Auth,
+            $location: {},
+            $state,
+            currentMdph,
+            ProfileResource
+          });
+
+          $httpBackend = $injector.get('$httpBackend');
+          $httpBackend.when('GET', '/api/users/1/profiles')
+            .respond([]);
+      }));
+
+      it('should go to the account settings of the user', function() {
+        $scope.login(fakeForm);
+        $scope.$apply();
+        expect($state.go).toHaveBeenCalled();
+        expect($state.go.calls.argsFor(0)[0]).toEqual('mon_compte');
       });
     });
   });
