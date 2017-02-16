@@ -149,8 +149,6 @@ describe('LoginCtrl', function() {
 
       let profile = [{ _id: 'fakeProfil1'}];
 
-      let $httpBackend;
-
       let Auth = {
         login() {
           return $q.resolve(fakeUser);
@@ -166,28 +164,24 @@ describe('LoginCtrl', function() {
           return {
             $promise: {
               then(callback) {
-                callback(profile)
+                callback(profile);
               }
             }
           };
         }
-      }
+      };
 
-      beforeEach(inject(function($injector) {
-          $controller('LoginCtrl', {
-            $rootScope: {},
-            $scope,
-            Auth,
-            $location: {},
-            $state,
-            currentMdph,
-            ProfileResource
-          });
-
-          $httpBackend = $injector.get('$httpBackend');
-          $httpBackend.when('GET', '/api/users/1/profiles')
-            .respond([]);
-      }));
+      beforeEach(function() {
+        $controller('LoginCtrl', {
+          $rootScope: {},
+          $scope,
+          Auth,
+          $location: {},
+          $state,
+          currentMdph,
+          ProfileResource
+        });
+      });
 
       it('should go to the account settings of the user', function() {
         $scope.login(fakeForm);
@@ -205,8 +199,6 @@ describe('LoginCtrl', function() {
 
       let profiles = [{ _id: 'fakeProfil1'}, { _id: 'fakeProfil2'}];
 
-      let $httpBackend;
-
       let Auth = {
         login() {
           return $q.resolve(fakeUser);
@@ -222,28 +214,24 @@ describe('LoginCtrl', function() {
           return {
             $promise: {
               then(callback) {
-                callback(profiles)
+                callback(profiles);
               }
             }
           };
         }
-      }
+      };
 
-      beforeEach(inject(function($injector) {
-          $controller('LoginCtrl', {
-            $rootScope: {},
-            $scope,
-            Auth,
-            $location: {},
-            $state,
-            currentMdph,
-            ProfileResource
-          });
-
-          $httpBackend = $injector.get('$httpBackend');
-          $httpBackend.when('GET', '/api/users/1/profiles')
-            .respond([]);
-      }));
+      beforeEach(function() {
+        $controller('LoginCtrl', {
+          $rootScope: {},
+          $scope,
+          Auth,
+          $location: {},
+          $state,
+          currentMdph,
+          ProfileResource
+        });
+      });
 
       it('should go to the account settings of the user', function() {
         $scope.login(fakeForm);
