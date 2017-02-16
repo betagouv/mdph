@@ -4,6 +4,14 @@ angular.module('impactApp')
   .factory('ProfileResource', function($resource) {
     var Profile = $resource('/api/users/:userId/profiles/:id', {
       id: '@_id'
+    },
+    {
+      count: {
+        method: 'GET',
+        params: {
+          id: 'count'
+        }
+      }
     });
 
     Profile.prototype.getTitle = function() {

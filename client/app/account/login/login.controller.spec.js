@@ -147,8 +147,6 @@ describe('LoginCtrl', function() {
         _id: '1',
       };
 
-      let profile = [{ _id: 'fakeProfil1'}];
-
       let Auth = {
         login() {
           return $q.resolve(fakeUser);
@@ -159,12 +157,13 @@ describe('LoginCtrl', function() {
         }
       };
 
+      // Mock ressource call to send back a count of 1
       let ProfileResource = {
-        query() {
+        count() {
           return {
             $promise: {
               then(callback) {
-                callback(profile);
+                callback(1);
               }
             }
           };
@@ -188,7 +187,7 @@ describe('LoginCtrl', function() {
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
         expect($state.go.calls.argsFor(0)[0]).toEqual('profil');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: 'fakeProfil1'});
+        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: 'me'});
       });
     });
 
@@ -196,8 +195,6 @@ describe('LoginCtrl', function() {
       let fakeUser = {
         _id: '1',
       };
-
-      let profiles = [{ _id: 'fakeProfil1'}, { _id: 'fakeProfil2'}];
 
       let Auth = {
         login() {
@@ -209,12 +206,13 @@ describe('LoginCtrl', function() {
         }
       };
 
+      // Mock ressource call to send back a count of 2
       let ProfileResource = {
-        query() {
+        count() {
           return {
             $promise: {
               then(callback) {
-                callback(profiles);
+                callback(2);
               }
             }
           };
