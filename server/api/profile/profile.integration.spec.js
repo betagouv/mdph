@@ -43,7 +43,7 @@ describe('Profile Integration', () => {
               return done(err);
             }
 
-            res.body.should.be.exactly(0);
+            res.body.count.should.be.exactly(0);
             done();
           });
       });
@@ -70,7 +70,7 @@ describe('Profile Integration', () => {
               return done(err);
             }
 
-            res.body.should.be.exactly({count:1});
+            res.body.count.should.be.exactly(1);
             done();
           });
       });
@@ -99,7 +99,7 @@ describe('Profile Integration', () => {
               return done(err);
             }
 
-            res.body.should.be.exactly({count:2});
+            res.body.count.should.be.exactly(2);
             done();
           });
       });

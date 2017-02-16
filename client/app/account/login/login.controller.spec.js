@@ -163,7 +163,7 @@ describe('LoginCtrl', function() {
           return {
             $promise: {
               then(callback) {
-                callback(1);
+                callback({count: 1});
               }
             }
           };
@@ -212,7 +212,7 @@ describe('LoginCtrl', function() {
           return {
             $promise: {
               then(callback) {
-                callback(2);
+                callback({count: 2});
               }
             }
           };
