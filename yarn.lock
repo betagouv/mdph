@@ -851,10 +851,6 @@ bower-config@^1.3.0:
     osenv "^0.1.3"
     untildify "^2.1.0"
 
-bower@^1.7.9:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/bower/-/bower-1.8.0.tgz#55dbebef0ad9155382d9e9d3e497c1372345b44a"
-
 brace-expansion@^1.0.0:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.6.tgz#7197d7eaa9b87e648390ea61fc66c84427420df9"
@@ -2761,21 +2757,6 @@ grunt-injector@^1.1.0:
     lodash "~4.15.0"
     wiredep "~4.0.0"
 
-grunt-jscs@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/grunt-jscs/-/grunt-jscs-3.0.1.tgz#1fae50e3e955df9e3a9d9425aec22accae008092"
-  dependencies:
-    hooker "~0.2.3"
-    jscs "~3.0.5"
-    lodash "~4.6.1"
-    vow "~0.4.1"
-
-grunt-karma@^0.12.1:
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/grunt-karma/-/grunt-karma-0.12.2.tgz#d52676ab94779e4b20052b5f3519eb32653dc566"
-  dependencies:
-    lodash "^3.10.1"
-
 grunt-known-options@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/grunt-known-options/-/grunt-known-options-1.1.0.tgz#a4274eeb32fa765da5a7a3b1712617ce3b144149"
@@ -3633,7 +3614,7 @@ jscs-preset-wikimedia@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/jscs-preset-wikimedia/-/jscs-preset-wikimedia-1.0.0.tgz#fff563342038fc2e8826b7bb7309c3ae3406fc7e"
 
-jscs@^3.0.7, jscs@~3.0.5:
+jscs@^3.0.7:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/jscs/-/jscs-3.0.7.tgz#7141b4dff5b86e32d0e99d764b836767c30d201a"
   dependencies:
@@ -4153,10 +4134,6 @@ lodash@~4.16.4:
 lodash@~4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.3.0.tgz#efd9c4a6ec53f3b05412429915c3e4824e4d25a4"
-
-lodash@~4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.6.1.tgz#df00c1164ad236b183cfc3887a5e8d38cc63cbbc"
 
 log-symbols@^1.0.0:
   version "1.0.2"
@@ -5961,6 +5938,10 @@ statuses@1, "statuses@>= 1.3.1 < 2", statuses@~1.3.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
 
+stream-blackhole@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/stream-blackhole/-/stream-blackhole-1.0.3.tgz#6fc2e2c2e9d9fde6be8c68d3db88de09802e4d63"
+
 stream-combiner2@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stream-combiner2/-/stream-combiner2-1.1.1.tgz#fb4d8a1420ea362764e21ad4780397bebcb41cbe"
@@ -6581,7 +6562,7 @@ vow-queue@^0.4.1:
   dependencies:
     vow "~0.4.0"
 
-vow@^0.4.7, vow@~0.4.0, vow@~0.4.1, vow@~0.4.8:
+vow@^0.4.7, vow@~0.4.0, vow@~0.4.8:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/vow/-/vow-0.4.13.tgz#e7c14f1bd9c8be0e7359a4597fe2d1ef6d1a7e88"
 

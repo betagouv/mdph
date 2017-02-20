@@ -18,8 +18,18 @@ import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import bunyan from 'bunyan';
+import blackhole from 'stream-blackhole';
 
 var MongoStore = connectMongo(session);
+
+var testLogger = function(req, res, next) {
+  req.log = {
+    info: blackhole,
+    error: blackhole
+  };
+
+  next();
+};
 
 var fakeLogger = function(req, res, next) {
   req.log = {
@@ -92,11 +102,18 @@ export default function(app) {
   }
 
   if (env === 'development' || env === 'test') {
+    app.use(express.static(path.join(config.root, '.tmp')));
+    app.use(express.static(app.get('appPath')));
+  }
+
+  if (env === 'development') {
     let morgan = require('morgan');
     app.use(morgan('dev'));
     app.use(fakeLogger);
-    app.use(express.static(path.join(config.root, '.tmp')));
-    app.use(express.static(app.get('appPath')));
     app.use(errorHandler()); // Error handler - has to be last
+  }
+
+  if (env === 'test') {
+    app.use(testLogger);
   }
 }

@@ -24,12 +24,12 @@ if (!mongoose.connection.readyState) {
   //This callback will be triggered once the connection is successfully established to MongoDB
   mongoose.connection.on('connected', function () {
     console.log('Mongoose default connection open to ' + config.mongo.uri);
-  })
+  });
 
   //This callback will be triggered after getting disconnected
   mongoose.connection.on('disconnected', function () {
     console.log('Mongoose disconnected from ' + config.mongo.uri);
-  })
+  });
 
   mongoose.connection.on('error', function(err) {
     // Ignore 'connection is already open' for test
