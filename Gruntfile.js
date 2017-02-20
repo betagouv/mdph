@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     }, 1500);
   });
 
-  grunt.registerTask('serve', function(target) {
+  grunt.registerTask('serve', function() {
     grunt.task.run([
       'clean:server',
       'env:all',
@@ -47,7 +47,6 @@ module.exports = function(grunt) {
       'newer:babel:client',
       'sass',
       'injector',
-      'wiredep:client',
       'postcss',
       'express:dev',
       'wait',
@@ -56,7 +55,7 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('test', function(target) {
+  grunt.registerTask('test', function() {
     return grunt.task.run([
       'clean:server',
       'env:all',
@@ -65,7 +64,6 @@ module.exports = function(grunt) {
       'newer:babel:client',
       'sass',
       'injector',
-      'wiredep:client',
       'postcss',
       'express:dev',
       'protractor'
@@ -79,7 +77,6 @@ module.exports = function(grunt) {
     'sass',
     'imagemin',
     'injector',
-    'wiredep:client',
     'useminPrepare',
     'postcss',
     'ngtemplates',
