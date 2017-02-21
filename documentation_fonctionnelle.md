@@ -1,4 +1,4 @@
-# Spécifications fonctionnelles générales IMPACT / mdph.beta.gouv.fr
+# Documentation fonctionnelles générales MDPH en ligne
 
 ## Table des matières
 <!-- MarkdownTOC -->
@@ -30,52 +30,37 @@ Soumis à une forte charge - entre 600 et 800 dossiers par an et par ETP - les M
 IMPACT est un outil numérique destiné à limiter ces problèmes en fiabilisant le flux entrant et en améliorant le dialogue au sein de l’écosystème : usager, médecins, MDPH, établissements partenaires, équipe pluridisciplinaire d’évaluation (EPE),... Il se fonde sur un partage plus effectif des données personnelles de santé, compatible avec les exigences de sécurité renforcées.
 
 
-L’outil avait pour vocation initiale d'offrir à toute personne aidant ou en situation de handicap :
+#### Usagers finaux :
 
 - Un questionnaire dynamique aligné sur la structure Vie Personnelle, Vie Professionnelle, Vie Scolaire
-- Un quitus des droits profilé selon la situation, et selon qu’il s’agit d’une nouvelle demande ou d’un renouvellement :
-	* Carte d’invalidité (CIN),
-	* Carte de Priorité Personne Handicapée (CPPH),
-	* Carte de Stationnement (CS),
-	* Allocation Adulte Handicapé (AAH),
-	* Prestation de Compensation du Handicap (PCH),
-	* Allocation Personnelle Autonomie (APA),
-	* Majoration pour la Vie Autonome (MVA),
-	* Allocation Compensatrice Tierce Personne (ACTP),
-	* Allocation Compensatrice Frais Professionnels (ACFP),
-	* Allocation Éducation Enfant Handicapé (AEEH),
-	* Allocation de Présence Parentale (APP),
-	* Allocation Personnalisée d’Autonomie (APA),
-	* Allocation Supplémentaire d’Invalidité (ASI),
-	* Reconnaissance de la Qualité de Travailleur Handicapé (RQTH),
-	* avec identification des pièces obligatoires et complémentaires à fournir
 - Un espace personnel permettant de sauvegarder ses données, de suivre son dossier et de faciliter le renouvellement des droits
+
+Une fonctionnalité expérimentale donne :
 - La possibilité pour un membre de l’écosystème de contribuer simplement à un dossier, en remplissant un formulaire (ex. Certificat Médical) ou en téléchargeant une pièce, avec inscription en ligne et certification du compte a posteriori par la MDPH.
 
-Parallèlement, aux personnels de la MDPH, l'outil devait permettre :
+#### Agents des MDPH :
 
-- La gestion des comptes membres de l’écosystème : chargement massif de comptes, certification de compte a posteriori, blocage de compte
 - La visualisation des demandes en cours, selon leur statut (instruction, évaluation, décision)
-- La création et le dispatching automatique de tâches dont la complétude détermine les transitions de phases : 
-	 * Phase réception : collecte & vérification des pièces obligatoires,
-	 * Phase instruction : collecte & vérification de pièces complémentaires (création manuelle et automatique de tâches “solliciter un contributeur”), orientation vers l’équipe d’évaluation compétente,
-	 * Phase évaluation : analyse de la situation selon un l’Outil d’Aide à l’Évaluation (déclinaison du GEVA), construction de la réponse et traçabilité renforçant la robustesse des décisions
-	 * Phase décision : synthèse des recommandations, enregistrement de la décision la CDAPH, communication client.
-- L’ajout de pièces jointes (numérisation de courriers, comme un compte-rendu de prise en charge) ou la saisie de formulaires associés aux dossiers, avec choix de l’attribut “visible (ou pas) de l’utilisateur”
-- Une communication client semi-automatique : messages pré-formatés permettant des relances sur PJ, des réponses types en cas de refus...
+- La validation des pièces jointes fournies par l'utilisateur en fonction de sa demande
+- La demande de pièces jointes complémentaires
+- Le dispatching automatique des demandes par agents (en fonction des secteurs et du type des demandes - adultes/enfants)
+
+Une fonctionnalité expérimentale permet :
+- La gestion des comptes membres de l’écosystème : chargement massif de comptes, certification de compte a posteriori, blocage de compte
+- L'outil de soutien à l'évaluation en lien avec le GEVA
 
 ### Le programme SI MDPH et l'harmonisation des processus SI et métier
 
-La Caisse nationale de solidarité pour l'autonomie (CNSA) a défini un tronc commun du métier des MDPH. Ce document pose un cadre qui définit les points structurants du métier des MDPH dans une logique d’harmonisation des pratiques. Il est le résultat d’un travail de co-conception avec une quarantaine de MDPH et d’une concertation plus large auprès de l’ensemble des MDPH.
+_La Caisse nationale de solidarité pour l'autonomie (CNSA) a défini un tronc commun du métier des MDPH. Ce document pose un cadre qui définit les points structurants du métier des MDPH dans une logique d’harmonisation des pratiques. Il est le résultat d’un travail de co-conception avec une quarantaine de MDPH et d’une concertation plus large auprès de l’ensemble des MDPH._
 
-IMPACT est un outil numérique expérimental permettant de proposer une première solution technique aux macro-processus suivants :
+_IMPACT est un outil numérique expérimental permettant de proposer une première solution technique aux macro-processus suivants :
 
 - Évaluer et aiguiller les dossiers
-- Évaluer, élaborer des réponses et des plans personnalisés de compensation (PPC).
+- Évaluer, élaborer des réponses et des plans personnalisés de compensation (PPC)._
 
 ## Présentation générale
 
-Développé par le secrétariat général pour la modernisation de l’action publique (SGMAP), IMPACT est le produit d'un développement AGILE en étroite collaboration avec les MDPH pilotes de l'expérimentation : 
+Développé par le secrétariat général pour la modernisation de l’action publique (SGMAP), MDPH en ligne est le produit d'une étroite collaboration avec les MDPH pilotes de l'expérimentation : 
 
 - 14 - Calvados
 - 17 - Charente-Maritime
@@ -193,63 +178,20 @@ Développé par le secrétariat général pour la modernisation de l’action pu
 
 #### Le médecin généraliste
 
-Le médecin généraliste de la personne effectuant une demande en ligne est également sollicitée :
+_**Expériemental**_ Le médecin généraliste pourait directement fournir un certificat médical en appui de la demande. 
 
-[Dépôt du certificat leur interaction dans le processus ici]
+#### Les fournisseurs
 
-#### Les partenaires
+_**Expériemental**_ Les fournisseurs (garagistes...) pourraient directement fournir un devis en appui de la demande.
 
-Les partenaires associatifs / médicaux sociaux (assistante sociale / aide-ménagère ?) peuvent aussi être sollicités :
+#### Les administrateurs du produit
 
-[Décrire brièvement leur interaction dans le processus ici]
-
-#### Les développeurs du produit
-
-Le SGMAP, Octo, la CNSA ont joué un rôle dans le développement du produit et celui-ci doit leur rendre des services :
-
-[Rôle de chacun et ses ambitions :
-
-- SGMAP et Octo : mettre en place rapidement une solution viable de téléservice pour le dépôt des demandes en MDPH
-- CNSA : proposer un prototype pour des MDPH pilotes afin de faire émerger une solution mature de téléservice]
-
+L'administrateur du produit :
+- ouvre de (nouvelles MDPH)[https://github.com/sgmap/mdph/wiki/Comment-ouvrir-une-nouvelle-MDPH] 
+- pilote le service sur la base des métriques d'usage.
 
 ## Principales fonctionnalités
-
-### Pour la MDPH
-
-#### La possibilité de construire un espace personnalisé par MDPH
-
-[Présenter l'arborescence de mdph.beta.gouv.fr et la possibilité de créer un espace pour chaque MDPH]
-
-#### La possibilité de traiter la réception des demandes de droits
-
-[Traitement des demandes :
-
-- workflow de traitement
-- approbation / refus de PJ
-- ...]
-
-#### Accompagner les MDPH dans l'évaluation du handicap (soutien à l'évaluation)
-
-[Mécanisme mis en place pour l'aide à la prise de décision ?]
-
-#### La possibilité de gérer les utilisateurs
-
-[Gestion des utilisateurs :
-
-- utilisateurs internes
-- utilisateurs externes
--...]
-
-#### Autres fonctionnalités
-
-[Décrire ici les autres fonctionnalités
-
-- Gestion des secteurs
-- Dispatch des demandes
-- Classement des documents]
-
-### Pour une personne demandant une compensation du handicap
+### Pour un usager final 
 
 #### Inscription au site pour suivre sa demande
 
@@ -285,6 +227,53 @@ Le SGMAP, Octo, la CNSA ont joué un rôle dans le développement du produit et 
 	* ...
 - ...]
 
-### Autres fonctionnalités de mdph.beta.gouv
+### La MDPH 
+#### Traite les demandes reçues
+##### En gérant un flux de demandes reçues 
 
-[Statistiques de fréquentation, nombre de traitement des dossiers...]
+- L'agent assigné au secteur reçoit une alerte mail à chaque nouvelle demande reçue. Cette alerte contient le pdf en pj et un lien vers la demande.
+- Le lien vers la demande permet d'accéder (après identification) au détail de la demande reprenant les réponses de l'usager final.
+
+> La demande peut-être transférée à un autre agent d'un autre secteur.
+
+- L'agent prépare l'accusé de réception, en vérifiant la validité et la lisibilité des pj fournies par l'utilisateur final.
+
+> L'agent peut, à cette étape, demander des pièces justificatives complémentaires. La demande est alors "mise en attente".
+
+- L'agent génère un accusé de réception et l'envoie automatiquement par mail.
+
+> L'usager reçoit un mail envoyé par l'adresse impact@sgmap.fr _**à modifier**_. Le ReplyTo de cet email est une adresse générique de la MDPH concernée par la demande _**à vérifier**_. 
+
+- La demande est "enregistrée".
+- L'agent peut télécharger les demandes reçues. 
+- L'agent peut archiver les demandes reçues.
+
+##### En préparant l'évaluation des demandes 
+
+- L'agent peut répondre aux questions de l'outil de soutien (réparties entre 20 catégories et 1500 réponses possibles) pour préparer le GEVA et le CDAPH.
+
+#### Paramètre son compte 
+##### En créant des comptes à ses agents instructeurs
+
+- _**à Sylvain**_
+
+##### En gérant ses secteurs et le dispatch de ses demandes
+
+- La MDPH associe les codes postaux des communes qu'elle couvre à des secteurs. 
+- La MDPH répartie ses agents instructeurs par secteur.
+
+> Les agents instructeurs sont répartis par pôle Adultes / Enfants. Cette répartition peut être faite par des mailing list génériques ou des en affectant chaque agent à un secteur et un pôle. 
+
+- Les demandes sont ensuite automatiquement dispatchées par secteur (en fonction du code postal) et par pôle (en fonction de l'âge du demandeur).
+
+#### En gérant le classement des documents dans la GED
+
+- **_à Sylvain_**
+
+
+### Pour l'administrateur
+
+- L'administrateur peut suivre les statistiques de demandes sur mdph.beta.gouv.fr/stats
+
+**_Expérimental_** 
+- L'administrateur peut créer une nouvelle MDPH.
