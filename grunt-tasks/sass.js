@@ -2,7 +2,7 @@ module.exports = {
   server: {
     options: {
       loadPath: [
-        'client/bower_components',
+        'client/lib',
         'client/app',
         'client/components'
       ],

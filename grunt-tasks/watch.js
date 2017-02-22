@@ -44,9 +44,5 @@ module.exports = {
       livereload: true,
       spawn: false //Without this option specified express won't be reloaded
     }
-  },
-  bower: {
-    files: ['bower.json'],
-    tasks: ['wiredep']
   }
 };
