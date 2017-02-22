@@ -16,8 +16,6 @@ RUN npm install
 
 ADD ./ /srv/apps
 
-RUN node_modules/.bin/bower install --allow-root
-
 RUN npm run build
 
 CMD npm start

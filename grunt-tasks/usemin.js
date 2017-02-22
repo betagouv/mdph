@@ -1,7 +1,7 @@
 module.exports = {
-  html: ['dist/client/!(bower_components){,*/}*.html'],
-  css: ['dist/client/!(bower_components){,*/}*.css'],
-  js: ['dist/client/!(bower_components){,*/}*.js'],
+  html: ['dist/client/!(lib){,*/}*.html'],
+  css: ['dist/client/!(lib){,*/}*.css'],
+  js: ['dist/client/!(lib){,*/}*.js'],
   options: {
     assetsDirs: [
       'dist/client',
