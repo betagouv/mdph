@@ -3,7 +3,7 @@ angular.module('impactApp').component('mesProfils', {
   controller: 'MesProfilsCtrl',
   controllerAs: 'mesprofilsctrl',
   bindings: {
-    hideNew: '=',
+    details: '=',
     user: '='
   }
 });
