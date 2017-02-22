@@ -1,4 +1,7 @@
-'use strict';
+process.env.NODE_ENV = 'test';
 
-// Register the Babel require hook
-require('babel-register');
+var mongoose = require('mongoose');
+var config = require('./server/config/environment');
+
+mongoose.Promise = require('bluebird');
+mongoose.connect(config.mongo.uri, config.mongo.options)
