@@ -1,18 +1,17 @@
 'use strict';
 
-angular.module('impactApp').controller('MesProfilsCtrl', function($scope, $state, $modal, ProfileResource, toastr, currentUser) {
-  $scope.profiles = ProfileResource.query({userId: currentUser._id});
-  $scope.currentUser = currentUser;
+angular.module('impactApp').controller('MesProfilsCtrl', function($state, $modal, ProfileResource, toastr) {
+  this.profiles = ProfileResource.query({userId: this.user._id});
 
-  $scope.addProfile = function() {
+  this.addProfile = function() {
     var newProfile = new ProfileResource();
-    newProfile.$save({userId: currentUser._id}, function(result) {
+    newProfile.$save({userId: this.user._id}, function(result) {
       $state.go('profil', {profileId: result._id});
-      $scope.profiles.push(result);
+      this.profiles.push(result);
     });
   };
 
-  $scope.delete = function(profile, idx) {
+  this.delete = function(profile, idx) {
     var modalInstance = $modal.open({
       templateUrl: 'app/mon_compte/mes_profils/delete_confirmation.html',
       controller: 'ModalDeleteProfileCtrl',
@@ -22,11 +21,11 @@ angular.module('impactApp').controller('MesProfilsCtrl', function($scope, $state
         },
 
         currentUser: function() {
-          return $scope.currentUser;
+          return this.user;
         },
 
         requests: function($http) {
-          return $http.get('/api/users/' + currentUser._id + '/profiles/' + profile._id + '/requests').then(function(result) {
+          return $http.get('/api/users/' + this.user._id + '/profiles/' + profile._id + '/requests').then(function(result) {
             return _.filter(result.data, function(request) {
               return request.status !== 'en_cours';
             });
@@ -37,9 +36,9 @@ angular.module('impactApp').controller('MesProfilsCtrl', function($scope, $state
 
     modalInstance.result.then(function(result) {
       if (result) {
-        profile.$delete({userId: currentUser._id}, function() {
+        profile.$delete({userId: this.user._id}, function() {
           toastr.success('Le profil "' + profile.getTitle() + '" a bien été suprrimé.', 'Succès');
-          $scope.profiles.splice(idx, 1);
+          this.profiles.splice(idx, 1);
         },
 
         function() {

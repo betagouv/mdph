@@ -1,5 +1,5 @@
 <ul class="profile-card-row">
-  <li class="profile-card-row-item" ng-repeat="(idx, profile) in profiles">
+  <li class="profile-card-row-item" ng-repeat="(idx, profile) in mesprofilsctrl.profiles">
     <div class="profile-card">
       <div class="profile-card-header">
         <button ng-click="delete(profile, idx)" class="trash btn btn-link" title="Supprimer ce profil"><i class="fa fa-times"></i></button>
@@ -11,7 +11,7 @@
       </div>
     </div>
   </li>
-  <li class="profile-card-row-item">
+  <li class="profile-card-row-item" ng-if="!mesprofilsctrl.hideNew">
     <div class="profile-card profile-card-new">
       <div class="profile-card-header">
         <div class="profile-card-avatar">
