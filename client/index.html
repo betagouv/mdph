@@ -9,12 +9,10 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
-      <!-- bower:css -->
-      <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
-      <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
-      <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
-      <link rel="stylesheet" href="bower_components/mapbox.js/mapbox.css" />
-      <!-- endbower -->
+    <link rel="stylesheet" href="lib/angular-chart.js/angular-chart.min.css" />
+    <link rel="stylesheet" href="lib/angular-toastr/angular-toastr.min.css" />
+    <link rel="stylesheet" href="lib/angular-ui-tree/angular-ui-tree.min.css" />
+    <link rel="stylesheet" href="lib/mapbox.js/mapbox.css" />
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
     <link rel="stylesheet" href="app/app.css">
@@ -56,39 +54,29 @@
     </script>
     <noscript><p><img src="//stats.data.gouv.fr/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-
     <!-- build:js({client,node_modules}) app/vendor.js -->
-      <!-- bower:js -->
-      <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-aria/angular-aria.js"></script>
-      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-      <script src="bower_components/Chart.js/Chart.js"></script>
-      <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
-      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/angular-messages/angular-messages.js"></script>
-      <script src="bower_components/angular-resource/angular-resource.js"></script>
-      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-      <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-      <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
-      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
-      <script src="bower_components/jquery/dist/jquery.js"></script>
-      <script src="bower_components/lodash/lodash.js"></script>
-      <script src="bower_components/mapbox.js/mapbox.js"></script>
-      <script src="bower_components/moment/moment.js"></script>
-      <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-      <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
-      <script src="bower_components/ngstorage/ngStorage.js"></script>
-      <!-- endbower -->
-
-      <script src="bower_components/angular-i18n/angular-locale_fr-fr.js"></script>
-      <script src="bower_components/moment/locale/fr.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-locale_fr-fr.js"></script>
+    <script src="lib/angular/angular-aria.min.js"></script>
+    <script src="lib/angular/angular-cookies.min.js"></script>
+    <script src="lib/angular/angular-messages.min.js"></script>
+    <script src="lib/angular/angular-resource.min.js"></script>
+    <script src="lib/angular/angular-sanitize.min.js"></script>
+    <script src="lib/angular-chart.js/Chart.min.js"></script>
+    <script src="lib/angular-chart.js/angular-chart.min.js"></script>
+    <script src="lib/angular-toastr/angular-toastr.tpls.min.js"></script>
+    <script src="lib/angular-ui-mask/mask.min.js"></script>
+    <script src="lib/angular-ui-router/angular-ui-router.min.js"></script>
+    <script src="lib/angular-ui-tree/angular-ui-tree.min.js"></script>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/lodash/lodash.min.js"></script>
+    <script src="lib/mapbox.js/mapbox.js"></script>
+    <script src="lib/moment/moment.min.js"></script>
+    <script src="lib/moment/fr.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload-all.min.js"></script>
+    <script src="lib/ngstorage/ngStorage.min.js"></script>
+    <script src="lib/ui-bootstrap/ui-bootstrap-custom-tpls-0.13.3.min.js"></script>
     <!-- endbuild -->
-
 
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
@@ -232,8 +220,5 @@
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
 </body>
 </html>

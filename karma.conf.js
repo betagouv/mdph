@@ -13,28 +13,29 @@ module.exports = function(config) {
     files: [
 
       // bower:js
-      'client/bower_components/angular/angular.js',
-      'client/bower_components/angular-aria/angular-aria.js',
-      'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'client/bower_components/Chart.js/Chart.js',
-      'client/bower_components/angular-chart.js/dist/angular-chart.js',
-      'client/bower_components/angular-cookies/angular-cookies.js',
-      'client/bower_components/angular-messages/angular-messages.js',
-      'client/bower_components/angular-resource/angular-resource.js',
-      'client/bower_components/angular-sanitize/angular-sanitize.js',
-      'client/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
-      'client/bower_components/angular-ui-mask/dist/mask.js',
-      'client/bower_components/angular-ui-router/release/angular-ui-router.js',
-      'client/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
-      'client/bower_components/jquery/dist/jquery.js',
-      'client/bower_components/lodash/lodash.js',
-      'client/bower_components/mapbox.js/mapbox.js',
-      'client/bower_components/moment/moment.js',
-      'client/bower_components/ng-file-upload/ng-file-upload.js',
-      'client/bower_components/ng-file-upload-shim/ng-file-upload-shim.js',
-      'client/bower_components/ngstorage/ngStorage.js',
-      'client/bower_components/angular-mocks/angular-mocks.js',
-      'client/bower_components/angular-scenario/angular-scenario.js',
+      'client/lib/angular/angular.min.js',
+      'client/lib/angular/angular-locale_fr-fr.js',
+      'client/lib/angular/angular-aria.min.js',
+      'client/lib/angular/angular-cookies.min.js',
+      'client/lib/angular/angular-messages.min.js',
+      'client/lib/angular/angular-resource.min.js',
+      'client/lib/angular/angular-sanitize.min.js',
+      'client/lib/angular-chart.js/Chart.min.js',
+      'client/lib/angular-chart.js/angular-chart.min.js',
+      'client/lib/angular-toastr/angular-toastr.tpls.min.js',
+      'client/lib/angular-ui-mask/mask.min.js',
+      'client/lib/angular-ui-router/angular-ui-router.min.js',
+      'client/lib/angular-ui-tree/angular-ui-tree.min.js',
+      'client/lib/jquery/jquery.min.js',
+      'client/lib/lodash/lodash.min.js',
+      'client/lib/mapbox.js/mapbox.js',
+      'client/lib/moment/moment.min.js',
+      'client/lib/moment/fr.js',
+      'client/lib/ng-file-upload/ng-file-upload-all.min.js',
+      'client/lib/ngstorage/ngStorage.min.js',
+      'client/lib/ui-bootstrap/ui-bootstrap-custom-tpls-0.13.3.min.js',
+      'client/lib/angular/angular-mocks.js',
+      'client/lib/angular/angular-scenario.js',
       // endbower
       'client/app/app.js',
       'client/{app,components}/**/*.module.js',
@@ -45,7 +46,9 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.html': 'ng-html2js',
       'client/{app,components}/**/*.js': ['babel'],
+      'client/{app,components}/**/!(*spec).js': ['coverage'],
     },
+
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'client/'
@@ -62,6 +65,13 @@ module.exports = function(config) {
       sourceFileName: function(file) {
         return file.originalPath;
       }
+    },
+
+    // coverage reporter generates the coverage
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type : 'text-summary'
     },
 
     // list of files / patterns to exclude

@@ -8,7 +8,6 @@ module.exports = function(grunt) {
     express: 'grunt-express-server',
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    protractor: 'grunt-protractor-runner',
     injector: 'grunt-injector',
     sass: 'grunt-sass'
   });
@@ -40,7 +39,7 @@ module.exports = function(grunt) {
     }, 1500);
   });
 
-  grunt.registerTask('serve', function(target) {
+  grunt.registerTask('serve', function() {
     grunt.task.run([
       'clean:server',
       'env:all',
@@ -48,7 +47,6 @@ module.exports = function(grunt) {
       'newer:babel:client',
       'sass',
       'injector',
-      'wiredep:client',
       'postcss',
       'express:dev',
       'wait',
@@ -57,65 +55,19 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('test', function(target) {
-    if (target === 'server') {
-      return grunt.task.run([
-        'env:all',
-        'env:test',
-        'mochaTest'
-      ]);
-    } else if (target === 'client') {
-      return grunt.task.run([
-        'clean:server',
-        'env:all',
-        'injector:sass',
-        'newer:babel:client',
-        'sass',
-        'injector',
-        'postcss',
-        'wiredep:test',
-        'karma:unit'
-      ]);
-    } else if (target === 'e2e') {
-      return grunt.task.run([
-        'clean:server',
-        'env:all',
-        'env:test',
-        'injector:sass',
-        'newer:babel:client',
-        'sass',
-        'injector',
-        'wiredep:client',
-        'postcss',
-        'express:dev',
-        'protractor'
-      ]);
-    } else if (target === 'coverage') {
-      return grunt.task.run([
-        'clean:server',
-        'env:all',
-        'env:test',
-        'injector:sass',
-        'newer:babel:client',
-        'sass',
-        'injector',
-        'postcss',
-        'wiredep:test',
-        'karma:coverage'
-      ]);
-    } else if (target === 'watch') {
-      return grunt.task.run([
-        'test:server',
-        'watch:mochaTest'
-      ]);
-    } else {
-      grunt.task.run([
-        'jshint',
-        'jscs',
-        'test:server',
-        'test:client'
-      ]);
-    }
+  grunt.registerTask('test', function() {
+    return grunt.task.run([
+      'clean:server',
+      'env:all',
+      'env:test',
+      'injector:sass',
+      'newer:babel:client',
+      'sass',
+      'injector',
+      'postcss',
+      'express:dev',
+      'protractor'
+    ]);
   });
 
   grunt.registerTask('build', [
@@ -125,7 +77,6 @@ module.exports = function(grunt) {
     'sass',
     'imagemin',
     'injector',
-    'wiredep:client',
     'useminPrepare',
     'postcss',
     'ngtemplates',
