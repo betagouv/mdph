@@ -11,11 +11,13 @@
             S'inscrire
           </a>
         </li>
+
         <li class="mdph-choice" ng-if="isLoggedIn()">
-          <a class="hero-button" ui-sref="profil({profileId: 'me'})">
-            Voir mon profil
-          </a>
+          <div class="profile-card-content">
+            <div ui-view="mes_profils"></div>
+          </div>
         </li>
+
         <li class="mdph-choice" ng-if="getCurrentUser() && isAdminMdph(getCurrentUser(), currentMdph)">
           <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
             Tableau de bord
@@ -89,12 +91,9 @@
     </div>
   </div>
 
-  <div class="section-blue section-padding">
-    <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">
+  <div class="section-blue section-padding" ng-if="!isLoggedIn()">
+    <a class="hero-button" ui-sref="signup">
       S'inscrire
-    </a>
-    <a class="hero-button" ui-sref="profil({profileId: 'me'})" ng-if="isLoggedIn()">
-      Voir mon profil
     </a>
   </div>
 

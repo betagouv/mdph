@@ -6,7 +6,21 @@ angular.module('impactApp')
       .state('departement', {
         parent: 'layout',
         url: '',
-        templateUrl: 'app/departement/departement.html',
-        controller: 'DepartementCtrl'
+        resolve: {
+          currentUser: function(Auth) {
+            return Auth.getCurrentUser().$promise;
+          }
+        },
+        views: {
+          '': {
+            templateUrl: 'app/departement/departement.html',
+            controller: 'DepartementCtrl',
+          },
+
+          'mes_profils@departement': {
+            templateUrl: 'app/mon_compte/mes_profils/mes_profils.html',
+            controller: 'MesProfilsCtrl',
+          }
+        }
       });
   });
