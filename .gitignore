@@ -5,7 +5,6 @@ public
 .idea
 ecosystem.json
 npm-debug.log
-client/bower_components
 dist
 server/config/local.env.js
 server/config/seed/*

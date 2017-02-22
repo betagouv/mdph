@@ -22,10 +22,13 @@ var all = {
   // Upload directory
   uploadDir: process.env.UPLOAD_DIR || path.normalize(__dirname + '/../../uploads/'),
 
-  // Mailjet config
-  mailjet: {
-    apiKey: process.env.API_KEY || 'mailjet_api_key',
-    secretKey: process.env.SECRET_KEY || 'mailjet_secret_key',
+  // Mail Sender config
+  mailSender: {
+    smtpUser: process.env.SMTP_USER || 'mailjet_api_key',
+    smtpPass: process.env.SMTP_PASS || 'mailjet_secret_key',
+    smtpHost: process.env.SMTP_HOST || 'in.mailjet.com',
+    smtpPort: process.env.SMTP_PORT || '465',
+    mailFrom: process.env.MAIL_FROM || 'contact@mdph.beta.gouv.fr',
   },
 
   // Server port

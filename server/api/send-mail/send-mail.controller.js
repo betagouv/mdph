@@ -1,9 +1,9 @@
 'use strict';
 
-import Mailjet from '../../mailjet/mailjet';
+import MailSender from '../../components/mailsender/mail-sender';
 import config from '../../config/environment';
 
-const mailjet = new Mailjet(config.mailjet.apiKey, config.mailjet.secretKey);
+const mailSender = new MailSender(config.mailSender);
 
 export function sendMail(mail, title, body, attachements) {
   if (process.env.NODE_ENV === 'dev') {
@@ -12,7 +12,7 @@ export function sendMail(mail, title, body, attachements) {
     console.log('Body:\t' + body);
     console.log('Attachements:\t' + attachements);
   } else {
-    return mailjet.sendContent(
+    return mailSender.sendContent(
         mail,
         'Votre Mdph en ligne - ' + title,
         body,
