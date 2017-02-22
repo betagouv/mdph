@@ -1,9 +1,7 @@
 'use strict';
 
-import should from 'should';
 import {startServer} from '../../test/utils/server';
 import {populate} from '../../test/utils/seed';
-import * as controller from './user.controller';
 import User from '../user/user.model';
 
 describe('User Integration', function() {

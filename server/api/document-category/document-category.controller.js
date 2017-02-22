@@ -1,9 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
-import path from 'path';
 import stream from 'stream';
-import mongoose from 'mongoose';
 import Promise from 'bluebird';
 import async from 'async';
 import DocumentCategory from './document-category.model';

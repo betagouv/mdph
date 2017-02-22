@@ -2,8 +2,6 @@
 
 import should from 'should';
 import Request from '../request/request.model';
-import * as controller from '../request/request.controller';
-import User from '../user/user.model';
 import * as path from 'path';
 import * as fs from 'fs';
 import config from '../../config/environment';

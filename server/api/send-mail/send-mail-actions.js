@@ -1,6 +1,5 @@
 'use strict';
 
-import _ from 'lodash';
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import path from 'path';

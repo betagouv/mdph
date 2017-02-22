@@ -1,6 +1,5 @@
 'use strict';
 
-import should from 'should';
 import Request from './request.model';
 import User from '../user/user.model';
 

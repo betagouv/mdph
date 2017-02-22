@@ -1,13 +1,8 @@
 'use strict';
 
 import _ from 'lodash';
-import path from 'path';
-import async from 'async';
-import fs from 'fs';
-import config from '../../config/environment';
 
 import gridfs from '../gridfs';
-import auth from '../../auth/auth.service';
 import Mdph from '../../api/mdph/mdph.model';
 import * as DocumentCategoryCtrl from '../../api/document-category/document-category.controller';
 

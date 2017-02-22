@@ -1,20 +1,14 @@
 'use strict';
 
 import _ from 'lodash';
-import async from 'async';
-import shortid from 'shortid';
 import path from 'path';
 import fs from 'fs';
 
 import config from '../../config/environment';
-import Request from '../request/request.model';
 
-import User from '../user/user.model';
-import Partenaire from '../partenaire/partenaire.model';
 import Auth from '../../auth/auth.service';
 import resizeAndMove from '../../components/resize-image';
 import {actions as Actions} from '../../components/actions';
-import * as MailActions from '../send-mail/send-mail-actions';
 
 function handleError(req, res) {
   return function(statusCode, err) {

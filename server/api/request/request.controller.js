@@ -5,25 +5,19 @@ import { populateAndSortDocumentTypes } from '../document-type/document-type.con
 import mongoose from 'mongoose';
 
 import _ from 'lodash';
-import path from 'path';
 import pdf from 'html-pdf';
 import moment from 'moment';
 import fs from 'fs';
 import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
-import * as Auth from '../../auth/auth.service';
-import config from '../../config/environment';
 import Recapitulatif from '../../components/recapitulatif';
 import SynthesePDF from '../../components/synthese';
 import pdfMaker from '../../components/pdf-maker';
 
-import Prestation from '../prestation/prestation.controller';
 import Request from './request.model';
 import Profile from '../profile/profile.model';
-import User from '../user/user.model';
 import Partenaire from '../partenaire/partenaire.model';
-import Mdph from '../mdph/mdph.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 import Synthese from '../synthese/synthese.model';
 

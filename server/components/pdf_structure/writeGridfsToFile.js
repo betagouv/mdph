@@ -1,6 +1,5 @@
 'use strict';
 
-import _ from 'lodash';
 import {createWriteStream} from 'fs';
 import tmp from 'tmp';
 import Promise from 'bluebird';

@@ -1,6 +1,5 @@
 'use strict';
 
-import should from 'should';
 import Mdph from './mdph.model';
 
 import {startServer} from '../../test/utils/server';

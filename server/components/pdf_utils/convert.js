@@ -2,10 +2,7 @@
 
 'use strict';
 
-import fs from 'fs';
-import _ from 'lodash';
 import path from 'path';
-import async from 'async';
 import Promise from 'bluebird';
 import {spawn} from 'child_process';
 import {uploadDir} from '../../config/environment';

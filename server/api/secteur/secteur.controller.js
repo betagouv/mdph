@@ -1,9 +1,6 @@
 'use strict';
 
-import _ from 'lodash';
 import Secteur from './secteur.model';
-import Request from '../request/request.model';
-import Mdph from '../mdph/mdph.model';
 
 export function index(req, res) {
   const mdph = req.query.mdph ? req.query.mdph : req.user.mdph;

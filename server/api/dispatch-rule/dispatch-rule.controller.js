@@ -1,8 +1,6 @@
 'use strict';
 
-import _ from 'lodash';
 import DispatchRule from './dispatch-rule.model';
-import path from 'path';
 
 // Get list of DispatchRule
 export function index(req, res) {

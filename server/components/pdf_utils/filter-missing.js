@@ -2,8 +2,6 @@
 
 'use strict';
 
-import tmp from 'tmp';
-import {spawn} from 'child_process';
 import path from 'path';
 import Promise from 'bluebird';
 import fs from 'fs';

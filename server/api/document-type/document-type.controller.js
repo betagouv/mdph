@@ -1,7 +1,6 @@
 'use strict';
 
 import _ from 'lodash';
-import path from 'path';
 import DocumentTypes from './documentTypes.json';
 
 function addToDocumentGroups(documentGroups, document, documentType) {
