@@ -223,9 +223,7 @@ describe('User Integration', function() {
       beforeEach(done => {
         testUser.newPasswordToken = pwdToken;
         testUser.save(function(err) {
-          if (err) console.log(err);
-
-          done();
+          done(err);
         });
       });
 
@@ -258,8 +256,7 @@ describe('User Integration', function() {
         testUser.newMailToken = emailToken;
         testUser.unconfirmed = true;
         testUser.save(function(err) {
-          if (err) console.log(err);
-          done();
+          done(err);
         });
       });
 
@@ -328,13 +325,13 @@ describe('User Integration', function() {
       });
 
       fakeUser.save(function(err) {
-        if (err) console.log(err);
+        if (err) return done(err);
 
         User
           .findOne({email: 'delete@test.com'})
           .exec(function(err, user) {
             idUserToDelete = user._id;
-            done();
+            done(err);
           });
       });
     });

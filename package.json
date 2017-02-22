@@ -109,6 +109,7 @@
     "should": "~8.3",
     "sinon": "^1.17.3",
     "sinon-as-promised": "^4.0.0",
+    "stream-blackhole": "^1.0.3",
     "supertest": "^1.0.1",
     "time-grunt": "^1.2.1"
   },
