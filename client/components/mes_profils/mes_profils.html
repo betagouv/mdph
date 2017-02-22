@@ -1,26 +1,11 @@
-<ul class="profile-card-row">
-  <li class="profile-card-row-item" ng-repeat="(idx, profile) in mesprofilsctrl.profiles">
-    <div class="profile-card">
-      <div class="profile-card-header">
-        <button ng-click="delete(profile, idx)" class="trash btn btn-link" title="Supprimer ce profil"><i class="fa fa-times"></i></button>
-        <div class="profile-card-header-text">
-          <a ui-sref="profil({profileId: profile._id})" title='Accéder au profil "{{ ::profile.getTitle() }}"'></a>
-          <h2 class="profile-card-header-text-title"><a ui-sref="profil({profileId: profile._id})">{{ ::profile.getTitle() }}</a></h2>
-          <p class="profile-card-header-text-subhead">Dernière modification le {{ profile.updatedAt | date:'short' }}</p>
-        </div>
-      </div>
-    </div>
+<ul class="mes-profiles-card-row">
+  <li ng-repeat="(idx, profile) in mesprofilsctrl.profiles">
+    <a ui-sref="profil({profileId: profile._id})">{{ ::profile.getTitle() }}</a>
+    <!-- TODO: Le mettre dans le profil -->
+    <!-- <button ng-if="mesprofilsctrl.details" ng-click="mesprofilsctrl.delete(profile, idx)" class="btn btn-link">Supprimer</button> -->
   </li>
-  <li class="profile-card-row-item" ng-if="!mesprofilsctrl.hideNew">
-    <div class="profile-card profile-card-new">
-      <div class="profile-card-header">
-        <div class="profile-card-avatar">
-          <div class="profile-card-icon" ng-click="addProfile()" title='Ajouter un profil'><i class="fa fa-plus"></i></div>
-        </div>
-        <div class="profile-card-header-text">
-          <h2 class="profile-card-header-text-title"><div ng-click="addProfile()">Nouveau profil</div></h2>
-        </div>
-      </div>
-    </div>
+
+  <li class="new" ng-if="mesprofilsctrl.details">
+    <button class="btn btn-link" ng-click="addProfile()">Nouveau profil</button>
   </li>
 </ul>

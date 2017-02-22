@@ -11,21 +11,17 @@ angular.module('impactApp').controller('MesProfilsCtrl', function($state, $modal
     });
   };
 
-  this.delete = function(profile, idx) {
+  this.delete = function(profile, user, idx) {
     var modalInstance = $modal.open({
-      templateUrl: 'app/mon_compte/mes_profils/delete_confirmation.html',
+      templateUrl: 'components/mes_profils/delete_confirmation.html',
       controller: 'ModalDeleteProfileCtrl',
       resolve: {
         profile: function() {
           return profile;
         },
 
-        currentUser: function() {
-          return this.user;
-        },
-
         requests: function($http) {
-          return $http.get('/api/users/' + this.user._id + '/profiles/' + profile._id + '/requests').then(function(result) {
+          return $http.get('/api/users/' + user._id + '/profiles/' + profile._id + '/requests').then(function(result) {
             return _.filter(result.data, function(request) {
               return request.status !== 'en_cours';
             });
@@ -34,14 +30,14 @@ angular.module('impactApp').controller('MesProfilsCtrl', function($state, $modal
       }
     });
 
-    modalInstance.result.then(function(result) {
+    modalInstance.result.then((result) => {
       if (result) {
-        profile.$delete({userId: this.user._id}, function() {
-          toastr.success('Le profil "' + profile.getTitle() + '" a bien été suprrimé.', 'Succès');
+        profile.$delete({userId: this.user._id}, () => {
+          toastr.success('Le profil "' + profile.getTitle() + '" a bien été supprimé.', 'Succès');
           this.profiles.splice(idx, 1);
         },
 
-        function() {
+        () => {
           toastr.error('Impossible de supprimer le profil "' + profile.getTitle() + '"', 'Erreur');
         });
       }
