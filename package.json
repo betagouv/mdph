@@ -120,7 +120,7 @@
     "dev": "grunt",
     "build": "grunt build",
     "start": "NODE_ENV=production node dist/server/app.js",
-    "test": "npm run test-front && npm run test-back && npm run test-e2e",
+    "test": "npm run test-front && npm run test-back && npm run test-e2e-update-webdriver && npm run test-e2e",
     "coverage": "npm run coverage-back && npm run coverage-front",
     "lint": "npm run lint-back && npm run lint-front",
     "test-front": "npm run lint-front && npm run karma-front",
