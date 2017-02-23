@@ -133,7 +133,7 @@
     "mocha-back": "mocha --compilers js:babel-core/register -r mocha.conf.js -t 5000 \"server/**/*.spec.js\"",
     "coverage-back": "nyc report --require babel-core/register --require mocha.conf.js --timeout 5000 mocha \"server/**/*.spec.js\"",
     "test-e2e": "grunt test:e2e",
-    "test-e2e-update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"
+    "test-e2e-update-webdriver": "node ./node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true
 }
