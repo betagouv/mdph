@@ -238,7 +238,7 @@ function computeEnregistrementOptions(request, host) {
     options.enregistree = true;
   }
 
-  options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
+  options.url = `http://${host}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
 
   return options;
 }
