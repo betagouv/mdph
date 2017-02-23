@@ -15,7 +15,8 @@ angular.module('impactApp', [
     'ngResource',
     'ngSanitize',
     'chart.js',
-    'toastr'
+    'toastr',
+    'zxcvbn'
   ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig, treeConfig) {
     moment.locale('fr');

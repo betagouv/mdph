@@ -5,6 +5,10 @@ angular.module('impactApp')
     $scope.user = {};
     $scope.inputType = 'password';
 
+    $scope.passwordStrength = function(form) {
+      zxcvbn(form.password.$modelValue);
+    }
+
     $scope.toggleType = function() {
       if ($scope.inputType === 'password') {
         $scope.inputType = 'text';

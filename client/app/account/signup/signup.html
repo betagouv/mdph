@@ -21,7 +21,8 @@
     <div class="form-group required" ng-class="{ 'has-error': form.password.$invalid && form.$submitted }">
       <label for="password" class="control-label">Créez votre mot de passe</label>
       <input id="password" type="{{inputType}}" name="password"
-        class="form-control" ng-model="user.password" ng-minlength="8" required mongoose-error>
+        class="form-control" ng-model="user.password" ng-minlength="8" required mongoose-error zxcvbn="passwordStrength">
+      <p>Robustesse de votre mot de passe : <meter min="0" max="4" value="{{passwordStrength.score}}"></meter> {{passwordStrength.score}}/4 </p>
 
       <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
       <label for="checkbox">Afficher le mot de passe</label>
