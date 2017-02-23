@@ -2,7 +2,7 @@
   <section>
     <div class="content">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe src="{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
+        <iframe ng-src="http://{{'/api/requests/' + request.shortId + '/recapitulatif?access_token=' + token}}" class="embed-responsive-item"></iframe>
       </div>
     </div>
   </section>
