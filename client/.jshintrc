@@ -28,6 +28,9 @@
     // Moment
     "moment": true,
 
+    // zxcvbn
+    "zxcvbn": true,
+
     // Angular
     "angular": false,
 
