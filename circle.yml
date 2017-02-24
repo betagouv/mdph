@@ -28,5 +28,4 @@ dependencies:
     - ~/.cache/yarn
 test:
   override:
-    - yarn lint
     - yarn test
