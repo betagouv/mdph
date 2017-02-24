@@ -19,7 +19,10 @@ export default function(fileList, directory) {
 
       pdftk.stderr.on('data', function(data) {
         // TODO log and return error in pdf
-        console.log('pdftk encountered an error:\n', String(data));
+        if (process.env.NODE_ENV !== 'test') {
+          console.log('pdftk encountered an error:\n', String(data));
+        }
+
         return resolve(path.join(__dirname, 'pdf-sample.pdf'));
       });
 

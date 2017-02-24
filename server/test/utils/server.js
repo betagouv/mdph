@@ -7,9 +7,7 @@ import {app, server} from '../../app';
 export function startServer(done) {
   var {app, server} = require('../../app');
 
-  server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-  });
+  server.listen(config.port, config.ip);
 
   done({
     api: supertest.agent(`http://localhost:${config.port}`),

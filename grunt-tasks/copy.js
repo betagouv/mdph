@@ -8,7 +8,7 @@ module.exports = {
       src: [
         '*.{ico,png,txt}',
         '.htaccess',
-        'bower_components/**/*',
+        'lib/**/*',
         'assets/documents/**/*',
         'assets/images/{,*/}*.{webp}',
         'assets/fonts/**/*',
