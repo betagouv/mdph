@@ -14,14 +14,14 @@
 
         <li class="mdph-choice" ng-if="departementctrl.isLoggedIn()">
           <div class="profile-card-content">
-            <mes-profils user="departementctrl.currentUser" />
+            <mes-profils user="departementctrl.getCurrentUser()" />
           </div>
         </li>
 
         <li class="mdph-choice" ng-if="departementctrl.showDashboard()">
           <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: departementctrl.currentMdph.zipcode})" title="Tableau de bord agent">
             Tableau de bord
-          </a>is
+          </a>
         </li>
       </ul>
 
