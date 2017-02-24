@@ -10,7 +10,6 @@ angular.module('impactApp')
       $scope.sections = SectionBackConstants;
       $scope.state = $state;
       $scope.isLoggedIn = Auth.isLoggedIn;
-      $scope.getCurrentUser = Auth.getCurrentUser;
       $scope.mdph = this.mdph;
 
       const refreshBanettes = () => {
