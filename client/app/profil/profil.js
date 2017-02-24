@@ -6,6 +6,7 @@ angular.module('impactApp').config(function($stateProvider) {
     parent: 'departement',
     templateUrl: 'app/profil/profil.html',
     controller: 'ProfilCtrl',
+    controllerAs: 'profilCtrl',
     authenticate: true,
     data: {
       title: 'Détail du profil'
