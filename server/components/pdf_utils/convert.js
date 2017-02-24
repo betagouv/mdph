@@ -9,7 +9,7 @@ import {uploadDir} from '../../config/environment';
 
 function convertSingle(outputDir) {
   return function(file) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (!file) {
         throw new Error('File not found.');
       }
@@ -38,7 +38,7 @@ function convertSingle(outputDir) {
         '-units', 'PixelsPerInch', '-density', '150x150', outputPath];
       var convert = spawn('convert', args);
 
-      convert.on('exit', function(code) {
+      convert.on('exit', function() {
         file.path = outputPath;
         resolve(file);
       });

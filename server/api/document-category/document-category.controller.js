@@ -6,7 +6,6 @@ import Promise from 'bluebird';
 import async from 'async';
 import DocumentCategory from './document-category.model';
 import {allDocumentTypes} from '../document-type/document-type.controller';
-import * as Auth from '../../auth/auth.service';
 import gridfs from '../../components/gridfs';
 
 function handleError(req, res) {
@@ -19,30 +18,6 @@ function handleError(req, res) {
     } else {
       res.sendStatus(statusCode);
     }
-  };
-}
-
-function handleEntityNotFound(res) {
-  return function(request) {
-    if (!request) {
-      throw(404);
-    }
-
-    return request;
-  };
-}
-
-function handleUserNotAuthorized(req, res) {
-  return function(entity) {
-    if (Auth.meetsRequirements(req.user.role, 'admin')) {
-      return entity;
-    }
-
-    if (Auth.meetsRequirements(req.user.role, 'adminMdph') && req.mdph._id.equals(req.user.mdph)) {
-      return entity;
-    }
-
-    throw(403);
   };
 }
 
@@ -172,7 +147,7 @@ export function saveDocumentCategoryFile(req, res) {
 
       category
         .set('barcode', file._id)
-        .save(function(err, updated) {
+        .save(function(err) {
           if (err) {
             req.log.error(err);
             return res.status(500).send(err);
@@ -309,7 +284,7 @@ function populateSingle(category) {
 }
 
 function populateList(list) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     Promise.map(list, populateSingle).then(function() {
       // Sort by position in the tree
       list.sort(comparePosition);
@@ -335,7 +310,7 @@ function createPdfCategoryIfNecessary(mdph) {
 
         var requiredCategory = new DocumentCategory({mdph: mdph._id, required: true, label: 'Document de la demande'});
 
-        requiredCategory.save((err, saved) => {
+        requiredCategory.save((err) => {
           if (err) return reject(err);
 
           DocumentCategory

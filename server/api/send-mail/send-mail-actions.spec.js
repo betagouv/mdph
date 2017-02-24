@@ -1,12 +1,9 @@
 'use strict';
 
-var should = require('should');
-var sinon = require('sinon');
+import sinon from 'sinon';
 import proxyquire from 'proxyquire';
 
 require('sinon-as-promised');
-
-const Mailer = require('./send-mail.controller');
 
 describe('Send Mail Actions', function() {
   describe('sendMailNotificationAgent', function() {
@@ -196,7 +193,6 @@ describe('Send Mail Actions', function() {
         name: 'toto tata'
       }
     };
-    let fakeUrl = `https://mdph.beta.gouv.fr/mdph/14/medecin?shortId=${fakeRequest.shortId}&email=${fakeEmail}`;
 
     it('should send the email to the correct adress with correct content', function(done) {
       SendMailAction

@@ -135,13 +135,7 @@ describe('Profile Integration', () => {
         api
           .get(`/api/users/${testUser._id}/profiles/${fakeProfile._id}/requests/current?access_token=${token}`)
           .expect(204)
-          .end((err) => {
-            if (err) {
-              return done(err);
-            }
-
-            done();
-          });
+          .end(done);
       });
     });
 

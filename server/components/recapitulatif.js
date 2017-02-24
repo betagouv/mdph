@@ -1,9 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
-var async = require('async');
-var moment = require('moment');
-var Handlebars = require('handlebars');
+import _ from 'lodash';
+import async from 'async';
+import moment from 'moment';
 
 import {recapitulatif} from './templates';
 import { populateAndSortPrestations } from '../api/prestation/prestation.controller';

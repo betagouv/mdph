@@ -40,7 +40,7 @@ function handleError(req, res) {
 }
 
 function unlinkRequestDocuments(req) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     if (req.request.documents && Array.isArray(req.request.documents)) {
       req.request.documents.forEach(function(requestDoc) {
         if (requestDoc.path) {
@@ -200,7 +200,7 @@ function dispatchSecteur(req) {
           return saved;
         });
       })
-      .catch(err => {
+      .catch(() => {
         // Ignore no sector found
         return request;
       });
@@ -306,7 +306,7 @@ function dispatchAction(req) {
   }
 }
 
-export function saveAction(req, res, next) {
+export function saveAction(req, res) {
   dispatchAction(req)
     .then(populateAndRespond(res))
     .catch(handleError(req, res));
@@ -379,12 +379,6 @@ export function getHistory(req, res) {
   findActionHistory(req)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
-}
-
-function respondWithFile(res) {
-  return function(pdfPath) {
-    res.sendFile(pdfPath);
-  };
 }
 
 export function getRecapitulatif(req, res) {
@@ -481,7 +475,7 @@ export function saveFilePartenaire(req, res) {
       _request.saveActionLog(actions.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
       callback();
     }
-  ], function(err, result) {
+  ], function(err) {
     if (err) {
       return handleError(req, res);
     }

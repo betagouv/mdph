@@ -1,13 +1,6 @@
 'use strict';
 
-import Mdph from './mdph.model';
-
 import {startServer} from '../../test/utils/server';
-
-var mdph = new Mdph({
-  name: 'FakeMDPH',
-  zipcode: '00000'
-});
 
 describe('Mdph Model', function() {
   var api;

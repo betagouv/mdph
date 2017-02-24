@@ -100,8 +100,6 @@ describe('Synthese Integration', function() {
   describe('Get a single Synthese with a regular user', function() {
     describe('Get a single Synthese with a regular user', function() {
       it('should return 401', done => {
-        var gettedSynthese;
-
         api
           .get(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${token}`)
           .expect(401, done);

@@ -1,9 +1,7 @@
 'use strict';
 
-var Handlebars = require('handlebars');
-var fs = require('fs');
-var path = require('path');
-var moment = require('moment');
+import Handlebars from 'handlebars';
+import moment from 'moment';
 
 import {readTemplateSync} from './templates';
 import {allDocumentTypesById} from '../api/document-type/document-type.controller';

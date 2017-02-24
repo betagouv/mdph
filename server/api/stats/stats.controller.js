@@ -76,7 +76,7 @@ export function mdph(req, res) {
         countRequests(dataByZipcode, mdphs, cb);
       }
 
-    ], function(err) {
+    ], function() {
       res.json(data);
     });
   });

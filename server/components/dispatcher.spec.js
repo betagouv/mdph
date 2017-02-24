@@ -142,7 +142,7 @@ describe('Dispatcher', function() {
         ruleCaen.save(callback);
       }
 
-    ], function(err, results) {
+    ], function(err) {
       done(err);
     });
   });

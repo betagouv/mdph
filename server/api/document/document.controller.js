@@ -23,31 +23,7 @@ function handleError(req, res) {
   };
 }
 
-function handleEntityNotFound(res) {
-  return function(request) {
-    if (!request) {
-      throw(404);
-    }
-
-    return request;
-  };
-}
-
-function handleUserNotAuthorized(user, res) {
-  return function(request) {
-    if (Auth.meetsRequirements(user.role, 'adminMdph')) {
-      return request;
-    }
-
-    if (user._id.equals(request.user._id)) {
-      return request;
-    }
-
-    throw(403);
-  };
-}
-
-function handleStatusError(req, res) {
+function handleStatusError(req) {
   return new Promise(function(resolve, reject) {
     if (Auth.meetsRequirements(req.user.role, 'adminMdph')) {
       return resolve();
@@ -97,7 +73,7 @@ function handleDeleteFile(req) {
 
   return removeFileFromFS(file.path)
     .then(() => {
-      return file.remove({}, updated => {
+      return file.remove({}, () => {
         req.request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
         return req.request.save();
       });
@@ -124,7 +100,7 @@ function processDocument(file, fileData, done) {
   });
 }
 
-export function saveFile(req, res, next) {
+export function saveFile(req, res) {
   processDocument(req.file, req.body, function(err, document) {
     if (err) {
       return res.sendStatus(err.status);

@@ -77,7 +77,7 @@ function createRequestPdf({role, request, host, tempDirPath}) {
 
       let recapitulatifPdfPath = path.join(tempDirPath, `${request.shortId}.pdf`);
 
-      htmlToPdf.create(recapitulatifHtml, pdfOptions).toFile(recapitulatifPdfPath, (err, file) => {
+      htmlToPdf.create(recapitulatifHtml, pdfOptions).toFile(recapitulatifPdfPath, (err) => {
         if (err) {
           return reject(err);
         }
