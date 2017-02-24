@@ -82,7 +82,10 @@ export function sendConfirmationMail(emailDest, confirmationUrl) {
 export function generateReceptionMail(request, options, title) {
   options.title = title;
   options.content = receptionContentCompiled({request, options});
-  options.footer = urlFooterCompiled({url: options.url});
+
+  if (options.url) {
+    options.footer = urlFooterCompiled({url: options.url});
+  }
 
   return generateEmailBodyWithTemplate(options);
 }
