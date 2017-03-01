@@ -238,7 +238,9 @@ function computeEnregistrementOptions(request, host) {
     options.enregistree = true;
   }
 
-  options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
+  if (host) {
+    options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
+  }
 
   return options;
 }
@@ -322,8 +324,11 @@ export function update(req, res) {
     .catch(handleError(req, res));
 }
 
+/**
+ * Generates an html mail body to use as a preview
+ */
 export function generateReceptionMail(req, res) {
-  const options = computeEnregistrementOptions(req.request, req.headers.host);
+  const options = computeEnregistrementOptions(req.request);
 
   MailActions.generateReceptionMail(req.request, options)
     .then(html => res.send(html))
