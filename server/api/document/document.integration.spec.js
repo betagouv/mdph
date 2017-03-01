@@ -27,10 +27,11 @@ describe('Document Integration', function() {
   before(function(done) {
     startServer((result) => {
       api = result.api;
-
+      console.log("je vais populer");
       populate((result) => {
         token = result.token;
         testUser = result.fakeUser;
+        console.log("je n'arrive jamais jusque ici");
         done();
       });
     });

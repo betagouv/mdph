@@ -54,14 +54,11 @@
           <div>
             <div class="input-group margin-bottom-sm">
               <input id="newPassword" type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
-                     ng-minlength="3"
-                     required/>
+                     zxcvbn="passwordStrength" zx-min-score="1"/>
               <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
             </div>
-            <p class="help-block"
-               ng-show="(passwordForm.$error.minlength || passwordForm.$error.required) && (passwordForm.$dirty || passwordSubmitted)">
-              La longueur minimale du mot de passe est de 3 caractères.
-            </p>
+            <password-strength-bar password="passwordForm.newPassword.$viewValue"></password-strength-bar>
+            <p class="help-block" ng-messages="passwordForm.newPassword.$error" ng-if="passwordForm.$submitted">Le mot de passe doit avoir une robustesse plus elevé</p>
           </div>
         </div>
 

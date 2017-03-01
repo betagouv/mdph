@@ -36,6 +36,9 @@ module.exports = function(config) {
       'client/lib/ui-bootstrap/ui-bootstrap-custom-tpls-0.13.3.min.js',
       'client/lib/angular/angular-mocks.js',
       'client/lib/angular/angular-scenario.js',
+      'client/lib/zxcvbn/zxcvbn.js',
+      'client/lib/zxcvbn/angular-zxcvbn.min.js',
+
       // endbower
       'client/app/app.js',
       'client/{app,components}/**/*.module.js',

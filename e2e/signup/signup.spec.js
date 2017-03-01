@@ -14,7 +14,7 @@ describe('Signup View', function() {
 
   var testUser = {
     email: 'test@example.com',
-    password: 'test1234'
+    password: 'P@ssw0rd2048*'
   };
 
   var incorrectUser = {
@@ -64,10 +64,10 @@ describe('Signup View', function() {
       page.signup(incorrectUser);
 
       expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/signup');
-      expect(page.form.password.getAttribute('class')).toContain('ng-invalid-minlength');
+      expect(page.form.password.getAttribute('class')).toContain('ng-invalid-password-strength');
 
-      var helpBlock = page.form.element(by.css('.help-block'));
-      expect(helpBlock.getText()).toBe('Le mot de passe doit être au moins de 8 caractères.');
+      var helpBlock = page.form.element(by.id('error-message'));
+      expect(helpBlock.getText()).toBe('Le mot de passe doit avoir une robustesse plus elevé');
     });
 
   });
