@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LoginCtrl', function($rootScope, $scope, Auth, $location, $state, currentMdph) {
+  .controller('LoginCtrl', function($rootScope, $scope, Auth, $location, $state, currentMdph, ProfileResource) {
     $scope.user = {};
     $scope.error = null;
 
@@ -20,11 +20,16 @@ angular.module('impactApp')
             return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 
-          if (user.isMultiProfiles) {
-            return $state.go('mon_compte', {}, {reload: true});
-          } else {
-            return $state.go('profil', {profileId: 'me'}, {reload: true});
-          }
+          // When the user is logged, move to profile if only one is set.
+          ProfileResource.query({userId: user._id}).$promise.then(function(profiles){
+            if(profiles && (profiles.length === 1)){
+              return $state.go('profil', {profileId: profiles[0]._id});
+            }
+            else{
+              console.log('LoginCtrl multicomptes');
+              return $state.go('mon_compte', {}, {reload: true});
+            }
+          })
 
         })
         .catch(function(err) {

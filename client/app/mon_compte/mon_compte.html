@@ -81,23 +81,7 @@
       </div>
     </div>
     <div class="profile-card-content">
-      <div ng-if="!user.isMultiProfiles">
-        <p>
-          Vous gérez actuellement un unique profil bénéficiaire. <br>
-          Si vous le souhaitez, vous pouvez activer la gestion de plusieurs profils pour effectuer des demandes au nom de plusieurs bénéficiaires.
-        </p>
-
-        <button type="button" class="btn btn-primary" ng-click="activateMultiProfiles()">
-          Activer
-        </button>
-      </div>
-      <div ng-if="user.isMultiProfiles">
         <div ui-view="mes_profils"></div>
-
-        <button type="button" class="btn btn-primary" ng-click="desactivateMultiProfiles()">
-          Désactiver la gestion de plusieurs profil
-        </button>
-      </div>
     </div>
   </div>
 </div>

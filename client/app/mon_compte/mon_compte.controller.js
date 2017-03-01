@@ -20,14 +20,5 @@ angular.module('impactApp')
           });
       }
     };
-
-    $scope.activateMultiProfiles = function() {
-      $scope.user.isMultiProfiles = true;
-      $scope.user.$changeInfo();
-    };
-
-    $scope.desactivateMultiProfiles = function() {
-      $scope.user.isMultiProfiles = false;
-      $scope.user.$changeInfo();
-    };
+    
   });
