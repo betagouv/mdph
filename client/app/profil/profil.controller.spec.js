@@ -4,7 +4,6 @@
 
 describe('ProfilCtrl', function() {
   let $controller;
-  let $scope = {};
 
   let toastr = {
     error() {}
@@ -42,9 +41,10 @@ describe('ProfilCtrl', function() {
           }
         };
 
+        let controller;
+
         beforeEach(function() {
-          $controller('ProfilCtrl', {
-            $scope,
+          controller = $controller('ProfilCtrl', {
             $state: {},
             $modal: {},
             $http: {},
@@ -61,7 +61,7 @@ describe('ProfilCtrl', function() {
         });
 
         it('should create a Request with the correct parameters', function() {
-          $scope.nouvelleDemande();
+          controller.nouvelleDemande();
           expect(spyRequestRessource).toHaveBeenCalled();
           expect(spyRequestRessource.calls.first().args[0].profile).toEqual('1234');
           expect(spyRequestRessource.calls.first().args[0].user).toEqual('5678');
@@ -85,9 +85,10 @@ describe('ProfilCtrl', function() {
           }
         };
 
+        let controller;
+
         beforeEach(function() {
-          $controller('ProfilCtrl', {
-            $scope,
+          controller = $controller('ProfilCtrl', {
             $state: {},
             $modal: {},
             $http: {},
@@ -106,7 +107,7 @@ describe('ProfilCtrl', function() {
         });
 
         it('should create a Request with the correct parameters', function() {
-          $scope.nouvelleDemande();
+          controller.nouvelleDemande();
           expect(spyRequestRessource).toHaveBeenCalled();
           expect(spyRequestRessource.calls.first().args[0].profile).toEqual('1234');
           expect(spyRequestRessource.calls.first().args[0].user).toEqual('5678');
@@ -133,9 +134,10 @@ describe('ProfilCtrl', function() {
         error() {}
       };
 
+      let controller;
+
       beforeEach(function() {
-        $controller('ProfilCtrl', {
-          $scope,
+        controller = $controller('ProfilCtrl', {
           $state: {},
           $modal: {},
           $http: {},
@@ -152,10 +154,10 @@ describe('ProfilCtrl', function() {
       });
 
       it('should set the anchor to the missing section and notify the error with toastr', function() {
-        $scope.nouvelleDemande();
+        controller.nouvelleDemande();
         expect($anchorScroll).toHaveBeenCalled();
         expect($anchorScroll.calls.first().args[0]).toEqual('beneficiaire');
-        expect($scope.options.beneficiaire.error).toEqual(true);
+        expect(controller.options.beneficiaire.error).toEqual(true);
       });
 
     });
