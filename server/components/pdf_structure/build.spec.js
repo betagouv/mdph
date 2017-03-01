@@ -13,7 +13,6 @@ const pdfBuild = proxyquire('./build', {
   '../gridfs': function() {
     return {
       createReadStream() {
-        console.log('CALLED');
         return new Readable();
       }
     };

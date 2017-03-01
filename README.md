@@ -43,3 +43,12 @@ The docker application is bundled with an empty database.
 ## Production
 
 Use `yarn start` to build the application and run it in production mode.
+
+## Libraries
+
+To build the UI bootstrap library (v0.13.3), create a custom build with these dependencies:
+  - Button
+  - Dropdown
+  - Modal
+  - Tooltip
+  - Typeahead
