@@ -1,0 +1,9 @@
+<ul class="mes-profiles-card-row">
+  <li ng-repeat="(idx, profile) in mesprofilsctrl.profiles">
+    <a ui-sref="profil({profileId: profile._id})">{{ ::profile.getTitle() }}</a>
+  </li>
+
+  <li class="new" ng-if="mesprofilsctrl.details">
+    <button class="btn btn-link" ng-click="mesprofilsctrl.addProfile()">Nouveau profil</button>
+  </li>
+</ul>

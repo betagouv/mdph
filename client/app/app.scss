@@ -194,7 +194,6 @@ fieldset {
 @import 'layout/layout.scss';
 @import 'main/main.scss';
 @import 'medecin/medecin.scss';
-@import 'mon_compte/mes_profils/mes_profils.scss';
 @import 'mon_compte/mon_compte.scss';
 @import 'partenaire/partenaire.scss';
 @import 'partenaire/pj/pj.scss';
@@ -208,8 +207,10 @@ fieldset {
 @import '../components/display-file/display-file.scss';
 @import '../components/history-synthese/history-synthese.scss';
 @import '../components/menu-dashboard/menu-dashboard.scss';
+@import '../components/mes_profils/mes_profils.scss';
 @import '../components/nav-section/nav-section.scss';
 @import '../components/nav-steps/nav-steps.scss';
+@import '../components/profile/profile-card.scss';
 @import '../components/profile/profile-category.scss';
 @import '../components/qtitle/qtitle.scss';
 @import '../components/question/cv.scss';

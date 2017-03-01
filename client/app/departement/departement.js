@@ -11,16 +11,8 @@ angular.module('impactApp')
             return Auth.getCurrentUser().$promise;
           }
         },
-        views: {
-          '': {
-            templateUrl: 'app/departement/departement.html',
-            controller: 'DepartementCtrl',
-          },
-
-          'mes_profils@departement': {
-            templateUrl: 'app/mon_compte/mes_profils/mes_profils.html',
-            controller: 'MesProfilsCtrl',
-          }
-        }
+        templateUrl: 'app/departement/departement.html',
+        controller: 'DepartementCtrl',
+        controllerAs: 'departementctrl',
       });
   });
