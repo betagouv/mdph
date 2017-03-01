@@ -142,45 +142,8 @@ describe('LoginCtrl', function() {
       });
     });
 
-    describe('user single profile', function() {
-      let fakeUser = {
-        isMultiProfiles: false
-      };
-
-      let Auth = {
-        login() {
-          return $q.resolve(fakeUser);
-        },
-
-        hasRole() {
-          return false;
-        }
-      };
-
-      beforeEach(function() {
-          $controller('LoginCtrl', {
-            $rootScope: {},
-            $scope,
-            Auth,
-            $location: {},
-            $state,
-            currentMdph
-          });
-        });
-
-      it('should go to the only profile for this user', function() {
-        $scope.login(fakeForm);
-        $scope.$apply();
-
-        expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('profil');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: 'me'});
-      });
-    });
-
     describe('user multi profiles', function() {
       let fakeUser = {
-        isMultiProfiles: true
       };
 
       let Auth = {

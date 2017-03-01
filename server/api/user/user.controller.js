@@ -144,7 +144,6 @@ exports.changeInfo = function(req, res) {
 
     user
       .set('name', req.body.name)
-      .set('isMultiProfiles', req.body.isMultiProfiles)
       .save(function(err, result) {
         if (err) return validationError(res, err);
 
