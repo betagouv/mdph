@@ -55,20 +55,6 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('test', function() {
-    return grunt.task.run([
-      'clean:server',
-      'env:all',
-      'env:test',
-      'injector:sass',
-      'newer:babel:client',
-      'sass',
-      'injector',
-      'postcss',
-      'express:dev',
-    ]);
-  });
-
   grunt.registerTask('build', [
     'clean:dist',
     'injector:sass',

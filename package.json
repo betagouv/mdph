@@ -132,7 +132,7 @@
     "lint-back": "jshint --reporter=node_modules/jshint-stylish --config server/.jshintrc server",
     "mocha-back": "mocha --compilers js:babel-core/register -r mocha.conf.js -t 5000 \"server/**/*.spec.js\"",
     "coverage-back": "nyc report --require babel-core/register --require mocha.conf.js --timeout 5000 mocha \"server/**/*.spec.js\"",
-    "test-e2e": "protractor protractor.conf.js",
+    "test-e2e": "yarn dev && protractor protractor.conf.js",
     "test-e2e-update-webdriver": "webdriver-manager update"
   },
   "private": true
