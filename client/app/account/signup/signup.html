@@ -27,7 +27,7 @@
       <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
       <label for="checkbox">Afficher le mot de passe</label>
 
-      <p ng-messages="form.password.$error" ng-if="form.$submitted" class="help-block">Le mot de passe doit avoir une robustesse plus elevé</p>
+      <p id="error-message" ng-messages="form.password.$error" ng-if="form.$submitted" class="help-block">Le mot de passe doit avoir une robustesse plus elevé</p>
 
     </div>
 
