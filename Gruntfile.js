@@ -66,7 +66,6 @@ module.exports = function(grunt) {
       'injector',
       'postcss',
       'express:dev',
-      'protractor'
     ]);
   });
 
