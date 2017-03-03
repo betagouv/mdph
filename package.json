@@ -131,7 +131,7 @@
     "test": "npm-run-all lint:* test:*",
     "test:front": "karma start karma.conf.js --single-run",
     "test:back": "mocha --compilers js:babel-core/register -r mocha.conf.js -t 5000 \"server/**/*.spec.js\"",
-    "test:e2e": "npm-run-all webdriver-update build --parallel silent-start protractor",
+    "test:e2e": "npm-run-all build webdriver-update --parallel silent-start protractor",
     "silent-start": "npm start &>/dev/null",
     "protractor": "protractor protractor.conf.js",
     "webdriver-update": "webdriver-manager update"
