@@ -14,7 +14,6 @@ dependencies:
           echo "The correct version of Yarn is already installed."
         fi
     - npm install -g grunt-cli
-    - gem install sass
     - google-chrome --version
     - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
     - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
