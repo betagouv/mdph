@@ -1,14 +1,15 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $modal, $http, User, ProfileService, RequestResource, currentUser, profile, currentRequest, hasRequest, toastr, $anchorScroll) {
-  $scope.profile = profile;
-  $scope.estAdulte = ProfileService.estAdulte(profile);
-  $scope.currentRequest = currentRequest;
-  $scope.hasRequest = hasRequest;
+angular.module('impactApp').controller('ProfilCtrl', function($state, $modal, $http, User, ProfileService, RequestResource, currentUser, profile, currentRequest, hasRequest, toastr, $anchorScroll) {
+  this.profile = profile;
+  this.estAdulte = ProfileService.estAdulte(profile);
+  this.currentRequest = currentRequest;
+  this.currentUser = currentUser;
+  this.hasRequest = hasRequest;
 
   var hasSubmitted = false;
 
-  $scope.nouvelleDemande = function() {
+  this.nouvelleDemande = () => {
     hasSubmitted = false;
     var missingSections = ProfileService.getMissingSection(profile);
     if (missingSections.length > 0) {
@@ -18,8 +19,8 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
       $anchorScroll.yOffset = oldOffSet;
       toastr.error('Vous n\'avez pas fini de remplir les parties obligatoires de ce profil.', 'Erreur de la création de la demande');
       hasSubmitted = true;
-      missingSections.forEach(function(sectionId) {
-        $scope.options[sectionId].error = true;
+      missingSections.forEach((sectionId) => {
+        this.options[sectionId].error = true;
       });
     } else {
 
@@ -34,7 +35,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
     }
   };
 
-  $scope.options = {
+  this.options = {
     beneficiaire: {
       title: 'Bénéficiaire',
       content: 'Identité de la personne concernée par la demande.',
@@ -51,7 +52,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
       content: 'Autorité parentale ou délégation d\'autorité.',
       icon: 'fa-users',
       model: 'identites.autorite',
-      mandatory: !$scope.estAdulte,
+      mandatory: !this.estAdulte,
       action: {
         sref: 'profil.autorite'
       }
@@ -115,7 +116,40 @@ angular.module('impactApp').controller('ProfilCtrl', function($scope, $state, $m
     }
   };
 
-  $scope.openRequestHistory = function() {
+  this.delete = () => {
+    var modalInstance = $modal.open({
+      templateUrl: 'components/mes_profils/delete_confirmation.html',
+      controller: 'ModalDeleteProfileCtrl',
+      resolve: {
+        profile: () => {
+          return this.profile;
+        },
+
+        requests: ($http) => {
+          return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + this.profile._id + '/requests').then(function(result) {
+            return _.filter(result.data, function(request) {
+              return request.status !== 'en_cours';
+            });
+          });
+        }
+      }
+    });
+
+    modalInstance.result.then((result) => {
+      if (result) {
+        profile.$delete({userId: this.currentUser._id}, () => {
+          toastr.success('Le profil "' + profile.getTitle() + '" a bien été supprimé.', 'Succès');
+          $state.go('departement');
+        },
+
+        () => {
+          toastr.error('Impossible de supprimer le profil "' + profile.getTitle() + '"', 'Erreur');
+        });
+      }
+    });
+  };
+
+  this.openRequestHistory = function() {
     $modal.open({
       templateUrl: 'app/profil/history.modal.html',
       controllerAs: 'modalHistory',

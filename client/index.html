@@ -55,6 +55,7 @@
     <noscript><p><img src="//stats.data.gouv.fr/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
 
     <!-- build:js({client,node_modules}) app/vendor.js -->
+    <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-locale_fr-fr.js"></script>
     <script src="lib/angular/angular-aria.min.js"></script>
@@ -68,7 +69,6 @@
     <script src="lib/angular-ui-mask/mask.min.js"></script>
     <script src="lib/angular-ui-router/angular-ui-router.min.js"></script>
     <script src="lib/angular-ui-tree/angular-ui-tree.min.js"></script>
-    <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/lodash/lodash.min.js"></script>
     <script src="lib/mapbox.js/mapbox.js"></script>
     <script src="lib/moment/moment.min.js"></script>
@@ -83,7 +83,7 @@
       <!-- injector:js -->
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/profil/projet_de_vie/vie_au_travail/vie_au_travail.js"></script>
+      <script src="app/profil/projet_de_vie/vie_quotidienne/vie_quotidienne.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/resend_confirmation/resend_confirmation.controller.js"></script>
       <script src="app/account/reset_password/resest_password.controller.js"></script>
@@ -122,7 +122,6 @@
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/medecin/medecin.js"></script>
-      <script src="app/mon_compte/mes_profils/mes_profils.controller.js"></script>
       <script src="app/mon_compte/mon_compte.controller.js"></script>
       <script src="app/mon_compte/mon_compte.js"></script>
       <script src="app/partenaire/partenaire.controller.js"></script>
@@ -149,9 +148,9 @@
       <script src="app/profil/projet_de_vie/vie_au_travail/situation_professionnelle.js"></script>
       <script src="app/profil/projet_de_vie/vie_au_travail/situation_professionnelle/emploi.js"></script>
       <script src="app/profil/projet_de_vie/vie_au_travail/situation_professionnelle/sans_emploi.js"></script>
-      <script src="app/account/confirmer_mail/confirmer_mail.controller.js"></script>
+      <script src="app/profil/projet_de_vie/vie_au_travail/vie_au_travail.js"></script>
       <script src="app/profil/projet_de_vie/vie_quotidienne/situation.js"></script>
-      <script src="app/profil/projet_de_vie/vie_quotidienne/vie_quotidienne.js"></script>
+      <script src="app/account/confirmer_mail/confirmer_mail.controller.js"></script>
       <script src="app/profil/projet_de_vie/vie_quotidienne/vosattentes.js"></script>
       <script src="app/profil/projet_de_vie/vie_quotidienne/vosbesoins.js"></script>
       <script src="app/profil/projet_de_vie/vie_scolaire/situation.js"></script>
@@ -182,6 +181,8 @@
       <script src="components/mdph/mdph.filter.js"></script>
       <script src="components/mdph/mdph.service.js"></script>
       <script src="components/menu-dashboard/menu-dashboard.component.js"></script>
+      <script src="components/mes_profils/mes_profils.controller.js"></script>
+      <script src="components/mes_profils/mes-profils.component.js"></script>
       <script src="components/nav-section/nav-section-back.constants.js"></script>
       <script src="components/nav-section/nav-section.directive.js"></script>
       <script src="components/nav-steps/nav-steps.directive.js"></script>

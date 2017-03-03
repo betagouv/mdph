@@ -42,16 +42,6 @@ describe('fill a Request following a signup', function() {
       .then(done);
   });
 
-  afterAll(function() {
-    browser
-      .manage()
-      .logs()
-      .get('browser')
-      .then(function(browserLog) {
-        console.log('LOG', browserLog);
-      });
-  });
-
   it('should fill the identity form', function() {
     expect(browser.getCurrentUrl()).toContain('identite-beneficiaire');
     require('./pages/beneficiaire.po').submit();

@@ -1,8 +1,6 @@
 'use strict';
 
-import _ from 'lodash';
 import Profile from './profile.model';
-import User from '../user/user.model';
 import Request from '../request/request.model';
 
 export function index(req, res) {
@@ -91,6 +89,15 @@ export function count(req, res) {
     .exec()
     .then(count => {
       return res.json(count);
+    });
+}
+
+export function profileCount(req, res) {
+  Profile
+    .count({user: req.params.userId})
+    .exec()
+    .then(count => {
+      return res.json({count});
     });
 }
 

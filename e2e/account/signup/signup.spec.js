@@ -50,7 +50,7 @@ describe('Signup View', function() {
       var menu = require('./menuloggedin.po');
 
       expect(browser.getCurrentUrl()).toContain('identite-beneficiaire');
-      expect(menu.user.getText()).toBe(testUser.email);
+      expect(menu.user.getText()).toBe('Mon compte');
     });
 
     it('should indicate duplicate email', function() {

@@ -5,7 +5,7 @@
     <ul class="answers">
       <div class="answer" ng-repeat="answer in question.answers">
         <li
-          ng-if="(!answer.onlyAdult || (answer.onlyAdult && estAdulte)) && (!answer.onlyChild || (answer.onlyChild && !estAdulte))">
+          ng-if="(!answer.onlyAdult || (answer.onlyAdult && profilCtrl.estAdulte)) && (!answer.onlyChild || (answer.onlyChild && !profilCtrl.estAdulte))">
           <label for="{{question.model}}-{{answer.model}}" class="btn-answer"
             ng-class="{'active': sectionModel[question.model][answer.model]}">
             <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"

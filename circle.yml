@@ -21,6 +21,7 @@ dependencies:
     - sudo apt-get update
     - sudo apt-get --only-upgrade install google-chrome-stable
     - google-chrome --version
+    - sudo apt-get install pdftk imagemagick qpdf
   override:
     - yarn install
   cache_directories:
@@ -28,4 +29,5 @@ dependencies:
     - ~/.cache/yarn
 test:
   override:
-    - yarn test
+    - case $CIRCLE_NODE_INDEX in 0) yarn test ;; 1) ./circle-e2e.sh ;; esac:
+        parallel: true

@@ -12,6 +12,7 @@ var router = new Router({mergeParams: true});
 router.get('/', canAccessProfile(), controller.index);
 router.post('/', canAccessProfile(), controller.create);
 router.get('/me', canAccessProfile(), controller.showMe);
+router.get('/count', canAccessProfile(), controller.profileCount);
 router.get('/:profileId', isAuthorized(), controller.show);
 
 router.post('/:profileId', isAuthorized(), controller.update);

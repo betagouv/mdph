@@ -41,7 +41,7 @@
 
 .profile-card.profile-card-new {
   background-color: $flat-ui-blue;
-  min-height: 173px;
+  min-height: 145px;
   justify-content: center;
 
   > .profile-card-header {
@@ -143,6 +143,10 @@
       font-size: 1.1em;
       font-weight: 300;
       line-height: 24px;
+
+      .btn-link {
+        padding: 0;
+      }
     }
   }
 }

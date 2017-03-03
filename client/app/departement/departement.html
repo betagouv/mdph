@@ -1,34 +1,31 @@
 <div ui-view>
-  <header class="banner bg" ng-class="'bg-' + currentMdph.zipcode">
+  <header class="banner bg" ng-class="'bg-' + departementctrl.currentMdph.zipcode">
     <div class="hero-unit">
-      <h1 ng-if="currentMdph">Votre MDPH {{currentMdph.name}}</h1>
+      <h1 ng-if="departementctrl.currentMdph">Votre MDPH {{departementctrl.currentMdph.name}}</h1>
 
       <p>Gérez vos demandes en ligne</p>
 
       <ul class="mdph-choices">
-        <li class="mdph-choice" ng-if="!isLoggedIn()">
+        <li class="mdph-choice" ng-if="!departementctrl.isLoggedIn()">
           <a class="hero-button" ui-sref="signup">
             S'inscrire
           </a>
         </li>
-        <li class="mdph-choice" ng-if="isLoggedIn() && getCurrentUser().isMultiProfiles">
-          <a class="hero-button" ui-sref="mon_compte">
-            Voir mes profils
-          </a>
+
+        <li class="mdph-choice" ng-if="departementctrl.isLoggedIn()">
+          <div class="profile-card-content">
+            <mes-profils user="departementctrl.getCurrentUser()" />
+          </div>
         </li>
-        <li class="mdph-choice" ng-if="isLoggedIn() && !getCurrentUser().isMultiProfiles">
-          <a class="hero-button" ui-sref="profil({profileId: 'me'})">
-            Voir mon profil
-          </a>
-        </li>
-        <li class="mdph-choice" ng-if="getCurrentUser() && isAdminMdph(getCurrentUser(), currentMdph)">
-          <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: currentMdph.zipcode})" title="Tableau de bord agent">
+
+        <li class="mdph-choice" ng-if="departementctrl.showDashboard()">
+          <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: departementctrl.currentMdph.zipcode})" title="Tableau de bord agent">
             Tableau de bord
           </a>
         </li>
       </ul>
 
-      <a class="btn btn-link" ng-if="!isLoggedIn()" ui-sref="login">
+      <a class="btn btn-link" ng-if="!departementctrl.isLoggedIn()" ui-sref="login">
         J'ai déjà un compte
       </a>
     </div>
@@ -94,15 +91,9 @@
     </div>
   </div>
 
-  <div class="section-blue section-padding">
-    <a class="hero-button" ui-sref="signup" ng-if="!isLoggedIn()">
+  <div class="section-blue section-padding" ng-if="!departementctrl.isLoggedIn()">
+    <a class="hero-button" ui-sref="signup">
       S'inscrire
-    </a>
-    <a class="hero-button" ui-sref="mon_compte" ng-if="isLoggedIn() && currentUser.isMultiProfiles">
-      Voir mes profils
-    </a>
-    <a class="hero-button" ui-sref="profil({profileId: 'me'})" ng-if="isLoggedIn() && !currentUser.isMultiProfiles">
-      Voir mon profil
     </a>
   </div>
 

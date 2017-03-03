@@ -142,9 +142,9 @@ describe('LoginCtrl', function() {
       });
     });
 
-    describe('user single profile', function() {
+    describe('user with only one profile', function() {
       let fakeUser = {
-        isMultiProfiles: false
+        _id: '1',
       };
 
       let Auth = {
@@ -157,30 +157,43 @@ describe('LoginCtrl', function() {
         }
       };
 
-      beforeEach(function() {
-          $controller('LoginCtrl', {
-            $rootScope: {},
-            $scope,
-            Auth,
-            $location: {},
-            $state,
-            currentMdph
-          });
-        });
+      // Mock ressource call to send back a count of 1
+      let ProfileResource = {
+        count() {
+          return {
+            $promise: {
+              then(callback) {
+                callback({count: 1});
+              }
+            }
+          };
+        }
+      };
 
-      it('should go to the only profile for this user', function() {
+      beforeEach(function() {
+        $controller('LoginCtrl', {
+          $rootScope: {},
+          $scope,
+          Auth,
+          $location: {},
+          $state,
+          currentMdph,
+          ProfileResource
+        });
+      });
+
+      it('should go to the account settings of the user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
-
         expect($state.go).toHaveBeenCalled();
         expect($state.go.calls.argsFor(0)[0]).toEqual('profil');
         expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: 'me'});
       });
     });
 
-    describe('user multi profiles', function() {
+    describe('user with multiple profiles', function() {
       let fakeUser = {
-        isMultiProfiles: true
+        _id: '1',
       };
 
       let Auth = {
@@ -193,21 +206,34 @@ describe('LoginCtrl', function() {
         }
       };
 
+      // Mock ressource call to send back a count of 2
+      let ProfileResource = {
+        count() {
+          return {
+            $promise: {
+              then(callback) {
+                callback({count: 2});
+              }
+            }
+          };
+        }
+      };
+
       beforeEach(function() {
-          $controller('LoginCtrl', {
-            $rootScope: {},
-            $scope,
-            Auth,
-            $location: {},
-            $state,
-            currentMdph
-          });
+        $controller('LoginCtrl', {
+          $rootScope: {},
+          $scope,
+          Auth,
+          $location: {},
+          $state,
+          currentMdph,
+          ProfileResource
         });
+      });
 
       it('should go to the account settings of the user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
-
         expect($state.go).toHaveBeenCalled();
         expect($state.go.calls.argsFor(0)[0]).toEqual('mon_compte');
       });

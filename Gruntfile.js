@@ -7,9 +7,7 @@ module.exports = function(grunt) {
   require('jit-grunt')(grunt, {
     express: 'grunt-express-server',
     useminPrepare: 'grunt-usemin',
-    ngtemplates: 'grunt-angular-templates',
-    injector: 'grunt-injector',
-    sass: 'grunt-sass'
+    ngtemplates: 'grunt-angular-templates'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -52,21 +50,6 @@ module.exports = function(grunt) {
       'wait',
       'open',
       'watch'
-    ]);
-  });
-
-  grunt.registerTask('test', function() {
-    return grunt.task.run([
-      'clean:server',
-      'env:all',
-      'env:test',
-      'injector:sass',
-      'newer:babel:client',
-      'sass',
-      'injector',
-      'postcss',
-      'express:dev',
-      'protractor'
     ]);
   });
 

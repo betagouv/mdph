@@ -7,10 +7,5 @@ module.exports = {
       script: 'server',
       debug: true
     }
-  },
-  prod: {
-    options: {
-      script: 'dist/server'
-    }
   }
 };

@@ -13,7 +13,7 @@
         <a class="icon login" ui-sref="login({codeDepartement: mdph.zipcode})" title="Connexion">Connexion</a>
       </li>
       <li ng-if="isLoggedIn()">
-        <a class="icon user" ui-sref-active="active" ui-sref="mon_compte" title="Gérer mon compte">{{ getCurrentUser().email }}</a>
+        <a class="icon user" ui-sref-active="active" ui-sref="mon_compte" title="Gérer mon compte">Mon compte</a>
       </li>
       <li ng-if="isLoggedIn()">
         <a class="icon sign-out" ui-sref="logout">Se déconnecter</a>

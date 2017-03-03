@@ -28,13 +28,6 @@ describe('Logout View', function() {
     }, 5000).then(done);
   });
 
-  afterEach(function() {
-    browser.manage().logs().get('browser')
-      .then(function(browserLog) {
-        console.log('LOG', browserLog);
-      });
-  });
-
   describe('with local auth', function() {
 
     it('should logout a user and redirecting to "/"', function() {
