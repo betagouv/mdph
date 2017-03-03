@@ -27,5 +27,11 @@ dependencies:
     - ~/.yarn
     - ~/.cache/yarn
 test:
+  post:
+    - yarn build
+    - yarn silent-start:
+        background: true
+    - sleep 5
+    - yarn e2e
   override:
     - yarn test
