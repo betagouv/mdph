@@ -28,8 +28,5 @@ dependencies:
     - ~/.cache/yarn
 test:
   override:
-    - yarn test
-    - yarn build
-    - yarn start-test-server:
-        background: true
-    - yarn e2e
+    - case $CIRCLE_NODE_INDEX in 0) yarn test ;; 1) ./circle-e2e.sh ;; esac:
+        parallel: true
