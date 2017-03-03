@@ -41,13 +41,6 @@ describe('Login View', function() {
 
   describe('with local auth', function() {
 
-    afterEach(function() {
-      browser.manage().logs().get('browser')
-        .then(function(browserLog) {
-          console.log('LOG', browserLog);
-        });
-    });
-
     it('should login a user and redirecting to "/"', function() {
       page.login(testUser);
       expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/profil/me');
