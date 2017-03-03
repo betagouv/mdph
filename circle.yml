@@ -27,11 +27,9 @@ dependencies:
     - ~/.yarn
     - ~/.cache/yarn
 test:
-  post:
+  override:
+    - yarn test
     - yarn build
     - yarn start-test-server:
         background: true
-    - sleep 5
     - yarn e2e
-  override:
-    - yarn test
