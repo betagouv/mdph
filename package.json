@@ -75,6 +75,7 @@
     "grunt-open": "~0.2.3",
     "grunt-postcss": "^0.8.0",
     "grunt-rev": "~0.1.0",
+    "grunt-sass": "^2.0.0",
     "grunt-usemin": "^3.1.1",
     "grunt-wiredep": "^3.0.0",
     "istanbul": "^0.4.5",
