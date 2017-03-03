@@ -1,7 +1,6 @@
 'use strict';
 
 import _ from 'lodash';
-import mongoose from 'mongoose';
 import async from 'async';
 import path from 'path';
 import Mdph from './mdph.model';

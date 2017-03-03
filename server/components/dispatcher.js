@@ -1,7 +1,6 @@
 'use strict';
 
 import Bluebird from 'bluebird';
-import async from 'async';
 import DispatchRuleModel from '../api/dispatch-rule/dispatch-rule.model';
 import SecteurModel from '../api/secteur/secteur.model';
 import MdphModel from '../api/mdph/mdph.model';

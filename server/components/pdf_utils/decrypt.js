@@ -2,16 +2,13 @@
 
 'use strict';
 
-import fs from 'fs';
-import _ from 'lodash';
 import path from 'path';
-import async from 'async';
 import Promise from 'bluebird';
 import {spawn} from 'child_process';
 
 function decryptSingle(outputDir) {
   return function(file) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (!file) {
         throw new Error('File not found.');
       }
@@ -43,7 +40,7 @@ function decryptSingle(outputDir) {
         errorMessage += String(data);
       });
 
-      decrypt.on('exit', function(code) {
+      decrypt.on('exit', function() {
         if (!error) {
           file.path = outputPath;
         } else {

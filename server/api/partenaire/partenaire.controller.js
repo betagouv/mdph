@@ -4,7 +4,6 @@ import _ from 'lodash';
 import Partenaire from './partenaire.model';
 import Request from '../request/request.model';
 import Mdph from '../mdph/mdph.model';
-import path from 'path';
 import shortid from 'shortid';
 
 export function show(req, res) {

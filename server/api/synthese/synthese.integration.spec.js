@@ -1,11 +1,8 @@
 'use strict';
 
-import should from 'should';
 import Synthese from './synthese.model';
-import User from '../user/user.model';
 import Profile from '../profile/profile.model';
 import Request from '../request/request.model';
-import * as controller from './synthese.controller';
 
 import {startServer} from '../../test/utils/server';
 import {populate} from '../../test/utils/seed';
@@ -103,8 +100,6 @@ describe('Synthese Integration', function() {
   describe('Get a single Synthese with a regular user', function() {
     describe('Get a single Synthese with a regular user', function() {
       it('should return 401', done => {
-        var gettedSynthese;
-
         api
           .get(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${token}`)
           .expect(401, done);

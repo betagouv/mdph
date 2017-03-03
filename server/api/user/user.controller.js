@@ -2,15 +2,12 @@
 
 import _ from 'lodash';
 import User from './user.model';
-import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
 import * as MailActions from '../send-mail/send-mail-actions';
 
 import Profile from '../profile/profile.model';
-
-import Promise from 'bluebird';
 
 var validationError = function(res, err) {
   return res.status(422).json(err);

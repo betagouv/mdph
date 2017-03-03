@@ -2,7 +2,6 @@
 
 import {Router} from 'express';
 import * as controller from './user.controller';
-import config from '../../config/environment';
 import auth from '../../auth/auth.service';
 import {showUserRequests} from '../request/request.controller';
 import profilesRouter from '../profile';

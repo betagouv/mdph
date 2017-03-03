@@ -2,7 +2,6 @@
 
 import sinon from 'sinon';
 import should from 'should';
-import mongoose from 'mongoose';
 import proxyquire from 'proxyquire';
 import Promise from 'bluebird';
 

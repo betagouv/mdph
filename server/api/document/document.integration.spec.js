@@ -2,8 +2,6 @@
 
 import should from 'should';
 import Request from '../request/request.model';
-import * as controller from '../request/request.controller';
-import User from '../user/user.model';
 import * as path from 'path';
 import * as fs from 'fs';
 import config from '../../config/environment';
@@ -57,7 +55,7 @@ describe('Document Integration', function() {
         user: testUser._id
       });
 
-      newRequest.save((err, res) => {
+      newRequest.save(() => {
         done();
       });
     });
@@ -110,7 +108,7 @@ describe('Document Integration', function() {
         user: testUser._id
       });
 
-      newRequest.save((err, res) => {
+      newRequest.save(() => {
         api
           .post(`/api/requests/1234/document/?access_token=${token}`)
           .send({
@@ -187,46 +185,6 @@ describe('Document Integration', function() {
   });
 
   describe('Delete Document', function() {
-
-    // Disabled because fails on jenkins but not on my computer, no time to investigate
-    // describe(`When the request is 'en cours'`, function() {
-    //   var savedDocument;
-    //
-    //   beforeEach(function(done) {
-    //     var newRequest = new Request({
-    //       shortId: '1234',
-    //       prestations: ['AAH'],
-    //       renouvellements: ['PCH'],
-    //       documents: [{
-    //         type: 'carteIdentite',
-    //         originalname: 'carte-identite.jpg',
-    //         filename: 'hashed-carte-identite',
-    //         mimetype: 'image/jpeg'
-    //       }],
-    //       user: testUser._id,
-    //       status: 'en_cours'
-    //     });
-    //
-    //     newRequest.save((err, res) => {
-    //       savedDocument = res.documents[0];
-    //       done();
-    //     });
-    //   });
-    //
-    //   it('should respond 204 and delete document', function(done) {
-    //     api
-    //       .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
-    //       .expect(204)
-    //       .end(function(err, res) {
-    //
-    //         Request.findOne({shortId: 1234}).exec().then(request => {
-    //           request.documents.length.should.eql(0);
-    //           return done();
-    //         }).catch(done);
-    //       });
-    //   });
-    // });
-
     describe(`When the request is 'en_attente_usager'`, function() {
       var savedDocument;
 
@@ -255,7 +213,7 @@ describe('Document Integration', function() {
         api
           .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
           .expect(204)
-          .end(function(err, res) {
+          .end(function(err) {
             return done(err);
           });
       });
@@ -289,7 +247,7 @@ describe('Document Integration', function() {
         api
           .delete(`/api/requests/1234/document/${savedDocument._id}?access_token=${token}`)
           .expect(403)
-          .end(function(err, res) {
+          .end(function(err) {
             done(err);
           });
       });

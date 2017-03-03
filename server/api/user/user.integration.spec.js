@@ -1,9 +1,7 @@
 'use strict';
 
-import should from 'should';
 import {startServer} from '../../test/utils/server';
 import {populate} from '../../test/utils/seed';
-import * as controller from './user.controller';
 import User from '../user/user.model';
 
 describe('User Integration', function() {
@@ -194,8 +192,6 @@ describe('User Integration', function() {
 
     describe('Generate a token to reset a password', function() {
       it('should respond 200 and generate a token for the user', done => {
-        let result;
-
         api
           .post('/api/users/generate_token/')
           .send({
@@ -203,7 +199,7 @@ describe('User Integration', function() {
             mdph: 'test'
           })
           .expect(200)
-          .end(function(err, res) {
+          .end(() => {
             User
               .findById(testUser._id)
               .select('newPasswordToken')
@@ -217,7 +213,6 @@ describe('User Integration', function() {
     });
 
     describe('Reset the password of the specified user', function() {
-      let result;
       let pwdToken = '1234';
 
       beforeEach(done => {
@@ -235,7 +230,7 @@ describe('User Integration', function() {
             newPassword: 'hashedPassword'
           })
           .expect(200)
-          .end(function(err, res) {
+          .end(() => {
             User
               .findById(testUser._id)
               .select('newPasswordToken')
@@ -249,7 +244,6 @@ describe('User Integration', function() {
     });
 
     describe('Confirm email for the specified user', function() {
-      let result;
       let emailToken = '1234';
 
       beforeEach(done => {
@@ -264,7 +258,7 @@ describe('User Integration', function() {
         api
           .post(`/api/users/${testUser._id}/confirmer_mail/${emailToken}/`)
           .expect(200)
-          .end(function(err, res) {
+          .end(() => {
             User
               .findById(testUser._id)
               .exec(function(err, user) {
@@ -291,7 +285,7 @@ describe('User Integration', function() {
     describe('Change the password of the specified user', function() {
       before(done => {
         testUser.password = '1234';
-        testUser.save(err => {
+        testUser.save(() => {
           done();
         });
       });

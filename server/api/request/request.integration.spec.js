@@ -1,9 +1,6 @@
 'use strict';
 
-import should from 'should';
 import Request from './request.model';
-import * as controller from './request.controller';
-import User from '../user/user.model';
 import Profile from '../profile/profile.model';
 
 import {startServer} from '../../test/utils/server';

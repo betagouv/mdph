@@ -54,9 +54,6 @@ describe('Synthese controller', function() {
     });
 
     describe('when there is no working synthese', function() {
-
-      const anotherFakeRequestId = new mongoose.Types.ObjectId();
-
       const fakeCreatedSynthese = {
         toObject() {
           return this;

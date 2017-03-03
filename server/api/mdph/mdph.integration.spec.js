@@ -1,10 +1,7 @@
 'use strict';
 
-import should from 'should';
-import * as controller from './mdph.controller';
 import {startServer} from '../../test/utils/server';
 import {populate} from '../../test/utils/seed';
-import User from '../user/user.model';
 import Mdph from '../mdph/mdph.model';
 
 describe('Mdph Integration', function() {
@@ -50,7 +47,7 @@ describe('Mdph Integration', function() {
       api
         .get(`/api/mdphs/${wrongMdph.zipcode}/categories/document-types?access_token=${tokenAdminMdph}`)
         .expect(403)
-        .end(function(err) {
+        .end(function() {
           done();
         });
     });
@@ -59,7 +56,7 @@ describe('Mdph Integration', function() {
       api
         .get(`/api/mdphs/${testMdph.zipcode}/categories/document-types?access_token=${tokenAdminMdph}`)
         .expect(200)
-        .end(function(err) {
+        .end(function() {
           done();
         });
     });
@@ -68,7 +65,7 @@ describe('Mdph Integration', function() {
       api
         .get(`/api/mdphs/${testMdph.zipcode}/categories/document-types?access_token=${token}`)
         .expect(403)
-        .end(function(err) {
+        .end(function() {
           done();
         });
     });

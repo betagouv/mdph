@@ -1,7 +1,6 @@
 'use strict';
 
 import proxyquire from 'proxyquire';
-import should from 'should';
 import sinon from 'sinon';
 
 const testConfig = {

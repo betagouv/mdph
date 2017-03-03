@@ -12,6 +12,7 @@
   "smarttabs": true,
   "asi": true,
   "debug": true,
+  "unused": true,
   "globals": {
     "jasmine": true,
     "describe": true,

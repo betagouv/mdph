@@ -17,7 +17,6 @@ import passport from 'passport';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
-import bunyan from 'bunyan';
 import blackhole from 'stream-blackhole';
 
 var MongoStore = connectMongo(session);

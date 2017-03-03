@@ -21,7 +21,7 @@ describe('User Model', function() {
         password: 'password'
       });
       userDup.save()
-        .then(savedUser => {
+        .then(() => {
           done('Should never have come here');
         })
         .catch((err) => {
@@ -34,7 +34,7 @@ describe('User Model', function() {
   it('should fail when saving without an email', function(done) {
     user.email = '';
     user.save()
-      .then(savedUser => {
+      .then(() => {
         done('Should never have come here');
       })
       .catch((err) => {

@@ -1,7 +1,7 @@
 import passport from 'passport';
 import {Strategy} from 'passport-local';
 
-export function setup(User, config) {
+export function setup(User) {
   passport.use(new Strategy({
       usernameField: 'email',
       passwordField: 'password' // this is the virtual field on the model

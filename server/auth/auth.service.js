@@ -1,12 +1,10 @@
 'use strict';
 
-import passport from 'passport';
 import config from '../config/environment';
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 import compose from 'composable-middleware';
 
-import mongoose from 'mongoose';
 import User from '../api/user/user.model';
 import Request from '../api/request/request.model';
 import Profile from '../api/profile/profile.model';

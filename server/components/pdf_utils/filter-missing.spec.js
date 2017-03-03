@@ -2,7 +2,6 @@
 
 import filterMissing from './filter-missing';
 import path from 'path';
-import should from 'should';
 
 const existingFile = path.join(__dirname, 'pdf-sample.pdf');
 const missingFile = path.join(__dirname, 'missing-file.pdf');
