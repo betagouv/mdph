@@ -126,7 +126,7 @@
     "coverage": "npm-run-all coverage:*",
     "coverage:back": "nyc report --require babel-core/register --require mocha.conf.js --timeout 5000 mocha \"server/**/*.spec.js\"",
     "dev": "grunt",
-    "build": "grunt build",
+    "build": "grunt build && cd dist && yarn install --production",
     "start": "NODE_ENV=production node dist/server/app.js",
     "test": "npm-run-all lint:* test:*",
     "test:front": "karma start karma.conf.js --single-run",
