@@ -23,7 +23,8 @@ module.exports = {
       expand: true,
       dest: 'dist',
       src: [
-        'node_modules/**/*',
+        'package.json',
+        'yarn.lock',
         'server/**/*',
         '!server/config/local.env.sample.js'
       ]
