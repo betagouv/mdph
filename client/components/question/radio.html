@@ -7,7 +7,7 @@
         <li
           class="btn-answer" ng-class="{'active': sectionModel[question.model] === answer.model}"
           ng-click="sectionModel[question.model] = answer.model"
-          ng-if="estAdulte || !answer.onlyAdult">
+          ng-if="profilCtrl.estAdulte || !answer.onlyAdult">
           <input type="radio" class="radio-answers" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
             ng-model="sectionModel[question.model]" ng-value="answer.model"
             ng-required="!sectionModel[question.model]"/>
