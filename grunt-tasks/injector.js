@@ -28,7 +28,7 @@ module.exports = {
       'client/index.html': [
            [
              'client/{app,components}/**/!(*.spec|*.mock).js',
-             '!{.tmp,client}/app/app.{js,ts}'
+             '!{.tmp,client}/app/app.js'
            ]
         ]
     }

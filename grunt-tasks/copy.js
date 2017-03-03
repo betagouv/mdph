@@ -26,14 +26,7 @@ module.exports = {
         'package.json',
         'yarn.lock',
         'server/**/*',
-        '!server/config/local.env.sample.js'
       ]
     }]
-  },
-  styles: {
-    expand: true,
-    cwd: 'client',
-    dest: '.tmp/',
-    src: ['{app,components}/**/*.css']
   }
 };

@@ -1,15 +1,19 @@
 module.exports = {
-  server: {
-    options: {
-      loadPath: [
-        'client/lib',
-        'client/app',
-        'client/components'
-      ],
-      compass: false
-    },
-    files: {
-      '.tmp/app/app.css': 'client/app/app.scss'
-    }
+  options: {
+    sourceMap: true,
+    includePaths: [
+      'client/lib',
+      'client/app',
+      'client/components'
+    ]
+  },
+  dist: {
+    files: [{
+      expand: true,
+      cwd: 'client',
+      src: 'app/app.scss',
+      dest: '.tmp/',
+      ext: '.css'
+    }]
   }
 };
