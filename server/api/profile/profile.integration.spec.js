@@ -52,7 +52,7 @@ describe('Profile Integration', () => {
     describe('for 1 profile', () => {
 
       before(done => {
-        Profile.create({user: testUser._id}).then((res) => {
+        Profile.create({user: testUser._id}).then(() => {
           done();
         });
       });
@@ -79,8 +79,8 @@ describe('Profile Integration', () => {
     describe('for 2 profiles', () => {
 
       before(done => {
-        Profile.create({user: testUser._id}).then((res) => {
-          Profile.create({user: testUser._id}).then((res) => {
+        Profile.create({user: testUser._id}).then(() => {
+          Profile.create({user: testUser._id}).then(() => {
             done();
           });
         });
