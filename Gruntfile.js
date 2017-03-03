@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     }, 1500);
   });
 
-  grunt.registerTask('serve', function() {
+  grunt.registerTask('prepare', function() {
     grunt.task.run([
       'clean:server',
       'env:all',
@@ -45,7 +45,13 @@ module.exports = function(grunt) {
       'newer:babel:client',
       'sass',
       'injector',
-      'postcss',
+      'postcss'
+    ]);
+  });
+
+  grunt.registerTask('serve', function() {
+    grunt.task.run([
+      'prepare',
       'express:dev',
       'wait',
       'open',
