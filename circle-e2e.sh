@@ -1,3 +1,3 @@
 yarn build
-yarn start-test-server &
+yarn prod-test &
 yarn e2e
