@@ -3,7 +3,7 @@
 angular.module('impactApp').config(function($stateProvider) {
   $stateProvider.state('profil', {
     url: '/profil/:profileId',
-    parent: 'departement',
+    parent: 'layout',
     templateUrl: 'app/profil/profil.html',
     controller: 'ProfilCtrl',
     controllerAs: 'profilCtrl',

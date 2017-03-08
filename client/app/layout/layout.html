@@ -1,7 +1,44 @@
-<div class="flex-container">
-  <menu-dashboard mdph="currentMdph"></menu-dashboard>
+<nav role="navigation">
+  <a ng-show="layoutctrl.currentMdph" ui-sref="departement({codeDepartement: layoutctrl.currentMdph.zipcode})">
+    <img ng-src="assets/images/{{layoutctrl.currentMdph.logo}}" alt="Accueil">
+  </a>
+  <a ng-hide="layoutctrl.currentMdph" ui-sref="main">
+    <img src="assets/images/logo_marianne.png" alt="Accueil">
+  </a>
 
-  <div class="flex-main-container">
+  <ul ng-if="!layoutctrl.isLoggedIn()">
+    <li>
+      <a class="icon login" ui-sref="login({codeDepartement: layoutctrl.currentMdph.zipcode})" title="Connexion">Connexion</a>
+    </li>
+  </ul>
+
+  <ul ng-if="layoutctrl.isLoggedIn()">
+    <li>
+      Connecté en tant que {{ layoutctrl.getCurrentUser().email }} <br>
+      <a ui-sref-active="active" ui-sref="mon_compte">Gérer mon compte</a>
+    </li>
+    <li>
+      <a ui-sref="logout">Déconnexion <img src="assets/images/deconnexion.svg" alt="Déconnexion"></a>
+    </li>
+  </ul>
+</nav>
+
+<div class="main-content">
+  <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" mdph="layoutctrl.currentMdph" />
+
+  <main>
     <div ui-view></div>
-  </div>
+  </main>
 </div>
+
+<footer ng-show="layoutctrl.currentMdph">
+  <h4>Contactez votre MDPH</h4>
+  <address>
+    {{layoutctrl.currentMdph.address}}
+  </address>
+  <div ng-bind="layoutctrl.currentMdph.phone"></div>
+  <div ng-if="layoutctrl.currentMdph.email">
+    <a href="mailto:{{layoutctrl.currentMdph.email}}" title="Contactez votre MDPH par mail">{{layoutctrl.currentMdph.email}}</a>
+  </div>
+  <div class="schedule" ng-bind="layoutctrl.currentMdph.schedule"></div>
+</footer>

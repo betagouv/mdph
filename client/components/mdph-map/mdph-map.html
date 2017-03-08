@@ -1,0 +1,26 @@
+<div id="map"></div>
+<div class="card-contact">
+  <div class="card-img">
+    <img ng-src="assets/images/{{mdphmapctrl.mdph.photo}}">
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td class="cell-icon"><i class="fa fa-home"></i></td>
+        <td><span ng-bind="mdphmapctrl.mdph.address"></span></td>
+      </tr>
+      <tr>
+        <td class="cell-icon"><i class="fa fa-phone"></i></td>
+        <td><span ng-bind="mdphmapctrl.mdph.phone"></span></td>
+      </tr>
+      <tr ng-if="mdphmapctrl.mdph.email">
+        <td class="cell-icon"><i class="fa fa-envelope"></i></td>
+        <td><a href="mailto:{{mdphmapctrl.mdph.email}}" title="Envoyer un mail de contact">{{mdphmapctrl.mdph.email}}</a></td>
+      </tr>
+      <tr>
+        <td class="cell-icon"><i class="fa fa-clock-o"></i></td>
+        <td><span ng-bind="mdphmapctrl.mdph.schedule"></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('mon_compte', {
         url: '/mon_compte',
-        parent: 'departement',
+        parent: 'layout',
         authenticate: true,
         data: {
           title: 'Mon compte'

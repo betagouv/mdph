@@ -206,20 +206,6 @@
   }
 }
 
-.footer {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 192px;
-  background-color: $light-blue;
-
-  a {
-    color: #eee;
-    margin: 0 25px;
-  }
-}
-
 .card {
   background-color: white;
   border: 1px solid #E8E8E8;

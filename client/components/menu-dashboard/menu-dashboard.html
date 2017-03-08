@@ -1,27 +1,5 @@
-<div class="menu-dashboard">
-  <div class="shared-menu">
-    <a ng-show="mdph" ui-sref="departement({codeDepartement: mdph.zipcode})"><img ng-src="assets/images/{{mdph.logo}}" alt="Accueil"></a>
-    <a ng-hide="mdph" ui-sref="main"><img src="assets/images/logo_marianne.png" alt="Accueil"></a>
-  </div>
-
-  <div class="menu-general">
-    <ul>
-      <li ng-if="!isLoggedIn()">
-        <a class="icon signup" ui-sref="signup({codeDepartement: mdph.zipcode})" title="Inscription">Inscription</a>
-      </li>
-      <li ng-if="!isLoggedIn()">
-        <a class="icon login" ui-sref="login({codeDepartement: mdph.zipcode})" title="Connexion">Connexion</a>
-      </li>
-      <li ng-if="isLoggedIn()">
-        <a class="icon user" ui-sref-active="active" ui-sref="mon_compte" title="Gérer mon compte">Mon compte</a>
-      </li>
-      <li ng-if="isLoggedIn()">
-        <a class="icon sign-out" ui-sref="logout">Se déconnecter</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="menu-slider" ng-if="state.includes('dashboard')" ng-class="state.includes('dashboard.workflow.detail') ? 'show-detail' : 'show-general'">
+<aside class="menu-dashboard">
+  <div class="menu-slider" ng-class="getMenuSliderClass()">
     <div class="menu-general">
       <ul>
         <li>
@@ -105,33 +83,4 @@
       </div>
     </div>
   </div>
-
-  <div class="menu-dashboard-footer" ng-show="mdph">
-    <table>
-      <tbody>
-        <tr>
-          <th></th>
-          <th>
-            Contactez votre MDPH
-          </th>
-        </tr>
-        <tr>
-          <td class="cell-icon"><i class="fa fa-home"></i></td>
-          <td><span ng-bind="mdph.address"></span></td>
-        </tr>
-        <tr>
-          <td class="cell-icon"><i class="fa fa-phone"></i></td>
-          <td><span ng-bind="mdph.phone"></span></td>
-        </tr>
-        <tr ng-if="mdph.email">
-          <td class="cell-icon"><i class="fa fa-envelope"></i></td>
-          <td><a href="mailto:{{mdph.email}}" title="Envoyer un mail de contact">{{mdph.email}}</a></td>
-        </tr>
-        <tr>
-          <td class="cell-icon"><i class="fa fa-clock-o"></i></td>
-          <td><span ng-bind="mdph.schedule"></span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+</aside>

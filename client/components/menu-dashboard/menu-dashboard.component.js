@@ -6,30 +6,24 @@ angular.module('impactApp')
       mdph: '<'
     },
     templateUrl: 'components/menu-dashboard/menu-dashboard.html',
-    controller($scope, $rootScope, SectionBackConstants, BanettesConstant, MdphResource, Auth, $state) {
+    controller($scope, $state, SectionBackConstants, MdphResource, BanettesConstant, Auth) {
       $scope.sections = SectionBackConstants;
-      $scope.state = $state;
       $scope.isLoggedIn = Auth.isLoggedIn;
       $scope.mdph = this.mdph;
 
-      const refreshBanettes = () => {
-        if ($scope.mdph && $state.includes('dashboard')) {
-          MdphResource.queryTotalRequestsCount({zipcode: $scope.mdph.zipcode}).$promise.then((result) => {
-            var requestCountByStatus = _.indexBy(result, '_id');
-            BanettesConstant.forEach((banette) => {
-              if (requestCountByStatus[banette.id]) {
-                banette.count = requestCountByStatus[banette.id].count;
-              } else {
-                banette.count = 0;
-              }
-            });
+      $scope.getMenuSliderClass = () => $state.includes('dashboard.workflow.detail') ? 'show-detail' : 'show-general';
 
-            $scope.banettes = BanettesConstant;
-          });
-        }
-      };
+      MdphResource.queryTotalRequestsCount({zipcode: this.mdph.zipcode}).$promise.then((result) => {
+        var requestCountByStatus = _.indexBy(result, '_id');
+        BanettesConstant.forEach((banette) => {
+          if (requestCountByStatus[banette.id]) {
+            banette.count = requestCountByStatus[banette.id].count;
+          } else {
+            banette.count = 0;
+          }
+        });
 
-      $rootScope.$on('refreshMenu', refreshBanettes);
-      refreshBanettes();
+        $scope.banettes = BanettesConstant;
+      });
     }
   });
