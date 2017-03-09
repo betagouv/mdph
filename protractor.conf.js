@@ -60,6 +60,7 @@ var config = {
   },
 
   onPrepare: function() {
+    require('babel-core/register');
     var SpecReporter = require('jasmine-spec-reporter');
 
     // add jasmine spec reporter
