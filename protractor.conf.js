@@ -65,6 +65,12 @@ var config = {
 
     // add jasmine spec reporter
     jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
+
+    var serverConfig = config.params.serverConfig;
+
+    // Setup mongo for tests
+    var mongoose = require('mongoose');
+    mongoose.connect(serverConfig.mongo.uri, serverConfig.mongo.options); // Connect to database
   }
 };
 
