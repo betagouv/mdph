@@ -48,8 +48,8 @@
     "babel-plugin-transform-runtime": "^6.6.0",
     "babel-polyfill": "^6.7.2",
     "babel-preset-es2015": "^6.6.0",
-    "babel-runtime": "^6.6.1",
     "babel-register": "^6.7.2",
+    "babel-runtime": "^6.6.1",
     "connect-livereload": "~0.5.4",
     "grunt": "~1.0.0",
     "grunt-angular-templates": "^1.1.0",
@@ -136,7 +136,8 @@
     "dev-test": "grunt prepare && NODE_ENV=test node server/index.js",
     "prod-test": "NODE_ENV=test node dist/server/app.js",
     "protractor": "protractor protractor.conf.js",
-    "webdriver-update": "webdriver-manager update --versions.standalone=3.2.0"
+    "webdriver-update": "webdriver-manager update --versions.standalone=3.2.0",
+    "webdriver-clean": "webdriver-manager clean"
   },
   "private": true
 }
