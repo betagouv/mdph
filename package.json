@@ -136,7 +136,7 @@
     "dev-test": "grunt prepare && NODE_ENV=test node server/index.js",
     "prod-test": "NODE_ENV=test node dist/server/app.js",
     "protractor": "protractor protractor.conf.js",
-    "webdriver-update": "webdriver-manager update"
+    "webdriver-update": "webdriver-manager update --versions.standalone=3.2.0"
   },
   "private": true
 }
