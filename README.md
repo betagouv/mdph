@@ -38,6 +38,19 @@ Projet de simplification des demandes à la MDPH
 
 3. Run `yarn dev` to start the development server. It should automatically open the client in your browser when ready.
 
+### Testing
+
+#### Unit tests
+
+- `yarn test` will run the tests with karma and mocha.
+  - You can also add `:front` or `:back` to run either front or back tests.
+
+#### End to end tests
+
+1. Run `yarn local-server` to start a server on a testing environment
+
+2. Run `yarn local-e2e` to install a selenium webdriver and run protractor on it
+
 ### Running the app in production
 
 1. Run `yarn build` to install server dependencies
