@@ -2,28 +2,26 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 5px 20px;
 
   a img {
-    height: 90px;
+    height: 60px;
     width: auto;
     mix-blend-mode: multiply;
   }
 
   ul {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
     list-style-type: none;
-    height: 90px;
+    height: 60px;
     text-align: right;
     margin: 0;
     padding: 0;
   }
 
-  li img {
-    width: 18pt;
-    height: 18pt;
+  li+li {
+    margin-left: 20px;
   }
 }
 

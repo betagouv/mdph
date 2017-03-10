@@ -14,11 +14,10 @@
 
   <ul ng-if="layoutctrl.isLoggedIn()">
     <li>
-      Connecté en tant que {{ layoutctrl.getCurrentUser().email }} <br>
-      <a ui-sref-active="active" ui-sref="mon_compte">Gérer mon compte</a>
+      <a ui-sref-active="active" ui-sref="mon_compte">Mon compte</a>
     </li>
     <li>
-      <a ui-sref="logout">Déconnexion <img src="assets/images/deconnexion.svg" alt="Déconnexion"></a>
+      <a ui-sref="logout">Déconnexion</a>
     </li>
   </ul>
 </nav>
