@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mdphbeta/node-mdph:1.0.2
+      - image: mongo:3.4.2
+      - image: selenium/standalone-chrome:3.1.0
+    working_directory: /home/ubuntu/mdph
+    steps:
+      - checkout
+
+      - run:
+          name: Install Dependencies
+          command: yarn install
+
+      - run:
+          name: Run unit tests
+          command: yarn test
+
+      - run:
+          name: Build package
+          command: yarn build
+
+      - run:
+          name: Run test server
+          command: yarn circle-server
+          background: true
+
+      - run:
+          name: Run e2e tests
+          command: yarn circle-e2e

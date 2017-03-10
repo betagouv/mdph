@@ -39,6 +39,8 @@ var config = {
     // build: process.env.TRAVIS_BUILD_NUMBER
   },
 
+  // seleniumAddress: 'http://localhost:4444/wd/hub',
+
   // ----- The test framework -----
   //
   // Jasmine and Cucumber are fully supported as a test and assertion framework.
