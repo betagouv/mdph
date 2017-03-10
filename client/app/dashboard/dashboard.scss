@@ -1,9 +1,4 @@
-.container-dashboard {
-  background-color: whitesmoke;
-  min-height: 700px;
-}
-
-.main-dashboard {
-  background-color: white;
-  border: 1px solid $lighter-grey;
+.dashboard-container {
+  border: 2px solid $bg-blue;
+  border-left: 0;
 }

@@ -1,12 +1,12 @@
 .menu-dashboard {
-  background-color: $bg-blue;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   z-index: 1;
+  padding-top: 2px;
+  background-color: $bg-blue;
 
   ul {
-    margin: 5px 0px;
     padding: 0;
   }
 

@@ -6,7 +6,7 @@ angular.module('impactApp')
       .state('dashboard', {
         url: '/dashboard',
         parent: 'layout',
-        template: '<div ui-view></div>',
+        template: '<div class="dashboard-container"><ui-view /></div>',
         authenticate: true,
         redirectTo: 'dashboard.workflow',
         resolve: {
