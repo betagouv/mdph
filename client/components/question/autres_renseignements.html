@@ -5,5 +5,10 @@
     placeholder="{{placeholder}}"
     ng-model="sectionModel['autresRenseignements']"></textarea>
 
-  <nav-steps ng-hide="hideSteps"></nav-steps>
+  <nav-steps
+    ng-hide="hideSteps"
+    profile="profilCtrl.profile"
+    next-step="nextStep"
+    question-form="questionForm"
+    is-last-question="isLastQuestion" />
 </form>

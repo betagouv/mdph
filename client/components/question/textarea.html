@@ -7,5 +7,11 @@
     <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
   </div>
 
-  <nav-steps ng-hide="hideSteps"></nav-steps>
+  <nav-steps
+    ng-hide="hideSteps"
+    profile="profilCtrl.profile"
+    next-step="nextStep"
+    question-form="questionForm"
+    is-last-question="isLastQuestion" />
+
 </form>

@@ -107,6 +107,12 @@
       <button class="btn btn-success btn-lg" ng-click="ajouterExperience()">Ajouter une expérience</button>
     </div>
   </div>
-  <nav-steps ng-if="!ajoutEnCours" ng-hide="hideSteps"></nav-steps>
 
+  <nav-steps
+    ng-if="!ajoutEnCours"
+    ng-hide="hideSteps"
+    profile="profilCtrl.profile"
+    next-step="nextStep"
+    question-form="questionForm"
+    is-last-question="isLastQuestion" />
 </form>

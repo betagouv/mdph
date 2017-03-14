@@ -3,5 +3,10 @@
 
   <show-prestations form-answers="formAnswers" prestations="prestations" editable="true" width="4" end-date="true"></show-prestations>
 
-  <nav-steps ng-hide="hideSteps"></nav-steps>
+  <nav-steps
+    ng-hide="hideSteps"
+    profile="profilCtrl.profile"
+    next-step="nextStep"
+    question-form="questionForm"
+    is-last-question="isLastQuestion" />
 </form>
