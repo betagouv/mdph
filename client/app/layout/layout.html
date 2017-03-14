@@ -8,7 +8,7 @@
 
   <ul ng-if="!layoutctrl.isLoggedIn()">
     <li>
-      <a class="icon login" ui-sref="login({codeDepartement: layoutctrl.currentMdph.zipcode})" title="Connexion">Connexion</a>
+      <a class="icon login" id="login" ui-sref="login({codeDepartement: layoutctrl.currentMdph.zipcode})" title="Connexion">Connexion</a>
     </li>
   </ul>
 
@@ -17,7 +17,7 @@
       <a ui-sref-active="active" ui-sref="mon_compte">Mon compte</a>
     </li>
     <li>
-      <a ui-sref="logout">Déconnexion</a>
+      <a ui-sref="logout" id="logout">Déconnexion</a>
     </li>
   </ul>
 </nav>

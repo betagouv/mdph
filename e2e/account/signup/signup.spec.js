@@ -47,10 +47,7 @@ describe('Signup View', function() {
     it('should signup a new user, log them in, and redirecting to "/"', function() {
       page.signup(testUser);
 
-      var menu = require('./menuloggedin.po');
-
       expect(browser.getCurrentUrl()).toContain('identite-beneficiaire');
-      expect(menu.user.getText()).toBe('Mon compte');
     });
 
     it('should indicate duplicate email', function() {
