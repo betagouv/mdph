@@ -35,11 +35,10 @@ describe('Logout View', function() {
 
       browser.get(config.baseUrl + '/logout');
 
-      var menu = require('./menulogout.po');
+      var LoggedOut = require('./loggedout.po');
 
       expect(browser.getCurrentUrl()).toBe(config.baseUrl);
-      expect(menu.login.isDisplayed()).toBe(true);
-      expect(menu.signup.isDisplayed()).toBe(true);
+      expect(LoggedOut.login.isDisplayed()).toBe(true);
     });
 
   });

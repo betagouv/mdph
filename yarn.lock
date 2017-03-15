@@ -74,6 +74,17 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-simple-logger@~0.1.4:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/angular-simple-logger/-/angular-simple-logger-0.1.7.tgz#4ae48e5eac0973f577845918e56d4933cf66f041"
+  dependencies:
+    angular "^1.2"
+    debug "^2.2.0"
+
+angular@1.x, angular@^1.2:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.3.tgz#5d34b799234e8fa17c6a3a14e0258733935f43e7"
+
 ansi-regex@^1.0.0, ansi-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-1.1.1.tgz#41c847194646375e6a1a5d10c3ca054ef9fc980d"
@@ -4034,6 +4045,10 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+leaflet@0.7.x:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-0.7.7.tgz#1e352ba54e63d076451fa363c900890cb2cf75ee"
+
 levn@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
@@ -6633,6 +6648,14 @@ uglify-js@~2.7.0:
 uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
+
+ui-leaflet@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ui-leaflet/-/ui-leaflet-1.0.3.tgz#bea43c6ac0eb8c468483cf72c5cefc34c7a37cf3"
+  dependencies:
+    angular "1.x"
+    angular-simple-logger "~0.1.4"
+    leaflet "0.7.x"
 
 uid-number@~0.0.6:
   version "0.0.6"

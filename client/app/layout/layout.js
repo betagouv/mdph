@@ -12,10 +12,15 @@ angular.module('impactApp')
             } else {
               return null;
             }
+          },
+
+          currentUser: function(Auth) {
+            return Auth.getCurrentUser().$promise;
           }
         },
         templateUrl: 'app/layout/layout.html',
         controller: 'LayoutCtrl',
+        controllerAs: 'layoutctrl',
         abstract: true
       });
   });

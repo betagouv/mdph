@@ -24,7 +24,7 @@ angular.module('impactApp')
               $scope.type = type;
               $scope.ok = function() {
                 $modalInstance.close();
-                $state.go('departement', {codeDepartement: currentMdph.zipcode});
+                $state.go('layout', {codeDepartement: currentMdph.zipcode});
               };
             },
 

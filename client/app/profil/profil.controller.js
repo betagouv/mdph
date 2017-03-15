@@ -139,7 +139,7 @@ angular.module('impactApp').controller('ProfilCtrl', function($state, $modal, $h
       if (result) {
         profile.$delete({userId: this.currentUser._id}, () => {
           toastr.success('Le profil "' + profile.getTitle() + '" a bien été supprimé.', 'Succès');
-          $state.go('departement');
+          $state.go('layout');
         },
 
         () => {

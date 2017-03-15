@@ -1,45 +1,20 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($scope, $rootScope, Auth, $localStorage, $interval, currentMdph) {
-    $scope.currentMdph = currentMdph;
+  .controller('LayoutCtrl', function($scope, $state, Auth, currentMdph) {
+    this.currentMdph = currentMdph;
 
-    $scope.getCurrentUser = Auth.getCurrentUser;
-    $scope.isLoggedIn = Auth.isLoggedIn;
-    $scope.logout = Auth.logout;
+    this.getCurrentUser = Auth.getCurrentUser;
+    this.isLoggedIn = Auth.isLoggedIn;
+    this.logout = Auth.logout;
 
-    function setInitial() {
-      $scope.mdphName = 'Choix de votre département';
-      $scope.logo = 'assets/images/logo_marianne.png';
-      $scope.currentMdph = null;
-      $scope.showChoice = false;
+    this.shouldShowDashboard = () => $state.includes('dashboard');
+
+    if (currentMdph) {
+      this.mdphName = 'Mdph ' + currentMdph.name;
+      this.logo = 'assets/images/' + currentMdph.logo;
+    } else {
+      this.mdphName = 'Choix de votre département';
+      this.logo = 'assets/images/logo_marianne.png';
     }
-
-    angular.element(document).ready(function() {
-      $interval(function() {
-        $scope.showIntro = !$localStorage.hideIntro;
-      }, 500, 1);
-    });
-
-    $scope.hideIntro = function() {
-      $scope.showIntro = false;
-      $localStorage.hideIntro = true;
-    };
-
-    $scope.toggleChoice = function() {
-      $scope.showChoice = !$scope.showChoice;
-    };
-
-    $scope.$on('event:mdph-changed', function(event, currentMdph) {
-      $scope.currentMdph = currentMdph;
-      $scope.mdphName = 'Mdph ' + currentMdph.name;
-      $scope.logo = 'assets/images/' + currentMdph.logo;
-      $scope.showChoice = false;
-    });
-
-    $scope.$on('event:mdph-none', function() {
-      setInitial();
-    });
-
-    setInitial();
   });

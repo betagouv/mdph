@@ -1,12 +1,12 @@
 .menu-dashboard {
-  background-color: $bg-blue;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   z-index: 1;
+  padding-top: 2px;
+  background-color: $bg-blue;
 
   ul {
-    margin: 5px 0px;
     padding: 0;
   }
 
@@ -91,23 +91,6 @@
   }
 }
 
-.shared-menu {
-  background-color: white;
-  padding: 10px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 120px;
-  overflow: hidden;
-  text-align: center;
-
-  a {
-    max-width: 70%;
-    height: auto;
-    vertical-align: middle;
-  }
-}
-
 @media (max-width: $screen-xs-max) {
   $menu-width: 100%;
   $slider-width: 200%;
@@ -143,10 +126,6 @@
     }
   }
 
-  .menu-dashboard-footer {
-    display: none;
-  }
-
   .btn-menu-link {
     display: none;
   }
@@ -157,27 +136,10 @@
   $slider-width: 480px;
 
   .menu-dashboard {
-    position: fixed;
-    top: 0;
     width: $menu-width;
     min-height: 600px;
     height: 100%;
     transition: width 500ms;
-
-    .menu-dashboard-footer {
-      display: block;
-      margin-top: auto;
-      width: $menu-width;
-      min-height: 192px;
-      padding: 20px 10px;
-      background-color: $light-blue;
-      color: white;
-
-      .cell-icon {
-        width: 30px;
-        text-align: center;
-      }
-    }
 
     .menu-general {
       width: $menu-width;

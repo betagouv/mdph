@@ -4,7 +4,7 @@ angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('login', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/login',
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginCtrl',
@@ -13,20 +13,16 @@ angular.module('impactApp')
         }
       })
       .state('logout', {
-        parent: 'departement',
-        url: '/logout?referrer',
-        referrer: '^',
+        parent: 'layout',
+        url: '/logout',
         template: '',
         controller: function($state, Auth) {
-          var referrer = $state.params.referrer ||
-                          $state.current.referrer ||
-                          'main';
+          $state.go('departement');
           Auth.logout();
-          $state.go(referrer);
         }
       })
       .state('signup', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl',
@@ -35,7 +31,7 @@ angular.module('impactApp')
         }
       })
       .state('forgotten_password', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/mot_de_passe_oublie',
         templateUrl: 'app/account/forgotten_password/forgotten_password.html',
         controller: 'ForgottenPasswordCtrl',
@@ -44,7 +40,7 @@ angular.module('impactApp')
         }
       })
       .state('envoi_confirmation', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/envoi_confirmation',
         templateUrl: 'app/account/confirmer_mail/confirmation.html',
         data: {
@@ -52,7 +48,7 @@ angular.module('impactApp')
         }
       })
       .state('confirmer_mail', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/confirmer_mail/:userId/:newMailToken',
         templateUrl: 'app/account/confirmer_mail/confirmer_mail.html',
         controller: 'ConfirmerMailCtrl',
@@ -61,7 +57,7 @@ angular.module('impactApp')
         }
       })
       .state('forgotten_password.confirmation', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/confirmation',
         templateUrl: 'app/account/forgotten_password/confirmation.html',
         data: {
@@ -69,7 +65,7 @@ angular.module('impactApp')
         }
       })
       .state('reset_password', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/nouveau_mot_de_passe/:userId/:newPasswordToken',
         templateUrl: 'app/account/reset_password/reset_password.html',
         controller: 'ResetPasswordCtrl',
@@ -78,7 +74,7 @@ angular.module('impactApp')
         }
       })
       .state('resend_confirmation', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/renvoyer_confirmation/:userId',
         templateUrl: 'app/account/resend_confirmation/resend_confirmation.html',
         controller: 'ResendConfirmationCtrl',
@@ -87,13 +83,13 @@ angular.module('impactApp')
         }
       })
       .state('resend_confirmation_ok', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/renvoyer_confirmation_ok',
         templateUrl: 'app/account/resend_confirmation/ok.html',
         controller: function() {}
       })
       .state('resend_confirmation_error', {
-        parent: 'departement',
+        parent: 'layout',
         url: '/renvoyer_confirmation_erreur',
         templateUrl: 'app/account/resend_confirmation/error.html',
         controller: function() {}

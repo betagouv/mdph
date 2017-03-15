@@ -1,23 +1,4 @@
-.flex-main-container {
-  width: 100%;
-}
-
-.container-dashboard {
-  background-color: whitesmoke;
-  min-height: 700px;
-}
-
-.main-dashboard {
-  background-color: white;
-  border: 1px solid $lighter-grey;
-}
-
-@media (min-width: $screen-sm-min) {
-  .flex-container {
-    display: flex;
-  }
-
-  .flex-main-container {
-    margin-left: 240px;
-  }
+.dashboard-container {
+  border: 2px solid $bg-blue;
+  border-left: 0;
 }
