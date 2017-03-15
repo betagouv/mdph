@@ -46,5 +46,5 @@ jobs:
            command: |
                       if [ "${CIRCLE_BRANCH}" == "circle_2_deploy" ]; then
                         yarn build
-                        scp -r ${HOME}/${CIRCLE_PROJECT_REPONAME}/dist/. ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_DIR}/.
+                        scp -oStrictHostKeyChecking=no -r ${HOME}/${CIRCLE_PROJECT_REPONAME}/dist/. ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_DIR}/.
                       fi
