@@ -12,7 +12,7 @@ Projet de simplification des demandes à la MDPH
 - [yarn](https://yarnpkg.com/) ^0.19
 - [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod` ^3.0
 - [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit) pdftk_server-2.02
-- [imageMagic](https://www.imagemagick.org/script/download.php) ImageMagic ^7.0.4.6
+- [imagemagick](https://www.imagemagick.org/script/download.php) imagemagick ^7.0.4.6
 - [qpdf](https://sourceforge.net/projects/qpdf/files/?SetFreedomCookie) qpdf ^5.1.2
 
 ### Developing
@@ -23,25 +23,27 @@ Projet de simplification des demandes à la MDPH
 
 3. Run `yarn dev` to start the development server. It should automatically open the client in your browser when ready.
 
-## Testing
+### Testing
+
+#### Unit tests
 
 - `yarn test` will run the tests with karma and mocha.
-  - You can also add `-front` or `-back` to run either front or back tests.
+  - You can also add `:front` or `:back` to run either front or back tests.
 
-- `yarn protractor` will run the integration tests.
+#### End to end tests
 
-- `yarn coverage` will run the test coverage and generate a report in html in the `coverage` directory
-  - `lcov-report` is the directory for server coverage, just open the `index.html` to browse the results
-  - `PhantomJS` is the directory for client coverage, just open the `index.html` to browse the results
+1. Run `yarn local-server` to start a server on a testing environment
+
+2. Run `yarn local-e2e` to install a selenium webdriver and run protractor on it
+
+### Production
+
+Use `yarn start` to build the application and run it in production mode.
 
 ## Docker
 
 Use `docker-compose up` to start the application within a docker container.
 The docker application is bundled with an empty database.
-
-## Production
-
-Use `yarn start` to build the application and run it in production mode.
 
 ## Libraries
 
