@@ -9,6 +9,11 @@ var QuestionRadio = function() {
   var form = this.form = element(by.name('questionForm'));
   form.firstAnswer = element.all(by.css('.radio-answers')).first();
   form.next = form.element(by.id('btn-next'));
+  form.returnToProfileButton = form.element(by.buttonText('Retour au profil'));
+
+  this.returnToProfile = function() {
+    return form.returnToProfileButton.click();
+  };
 
   this.answer = function() {
     form.firstAnswer.click();

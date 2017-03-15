@@ -1,14 +1,14 @@
 <div class="nav-steps">
-  <button type="button" class="btn btn-default" ui-sref="profil({profileId: profile._id})">
+  <button type="button" class="btn btn-default" ui-sref="profil({profileId: navstepsctrl.profile._id})">
     Retour au profil
   </button>
 
-  <button id="btn-next" class="btn" type="submit" ng-click="check(questionForm)"
+  <button id="btn-next" class="btn" type="submit" ng-click="navstepsctrl.check(navstepsctrl.questionForm)"
     ng-class="{
-      'btn-success': questionForm.$valid && !isLastQuestion,
-      'btn-invalid': !questionForm.$valid,
-      'btn-primary': questionForm.$valid && isLastQuestion
+      'btn-success': navstepsctrl.questionForm.$valid && !navstepsctrl.isLastQuestion,
+      'btn-invalid': !navstepsctrl.questionForm.$valid,
+      'btn-primary': navstepsctrl.questionForm.$valid && navstepsctrl.isLastQuestion
     }">
-    {{isLastQuestion ? 'Valider' : 'Question suivante'}}
+    {{navstepsctrl.isLastQuestion ? 'Valider' : 'Question suivante'}}
   </button>
 </div>

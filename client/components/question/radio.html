@@ -27,5 +27,11 @@
     </ul>
   </div>
 
-  <nav-steps transclude ng-hide="hideSteps" hide-back="hideBack"></nav-steps>
+  <nav-steps
+    ng-hide="hideSteps"
+    profile="profilCtrl.profile"
+    next-step="nextStep"
+    question-form="questionForm"
+    is-last-question="isLastQuestion" />
+
 </form>
