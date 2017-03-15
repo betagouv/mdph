@@ -38,6 +38,10 @@ jobs:
           name: Run e2e tests
           command: yarn circle-e2e
 
+      - add-ssh-keys:
+          fingerprints:
+            - "01:c8:ab:b5:3f:8f:77:f5:4f:b8:8d:ef:3f:f4:28:9a"
+
       - deploy:
            command: |
                       if [ "${CIRCLE_BRANCH}" == "circle_2_deploy" ]; then
