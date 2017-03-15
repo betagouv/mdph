@@ -75,6 +75,18 @@ describe('fill a Request following after a login', function() {
     expect(browser.getCurrentUrl()).toContain('/profil/');
   });
 
+  it('should return to profile when user clicks on the button', function() {
+    expect(browser.getCurrentUrl()).toContain('/profil/');
+
+    require('./pages/profile.po').modifyVieQuotidienne();
+
+    expect(browser.getCurrentUrl()).toContain('vie_quotidienne');
+
+    require('./pages/radio.po').returnToProfile();
+
+    expect(browser.getCurrentUrl()).toContain('/profil/');
+  });
+
   it('should return to the profile page and create the request', function() {
     expect(browser.getCurrentUrl()).toContain('/profil/');
     var profilePage = require('./pages/profile.po');
