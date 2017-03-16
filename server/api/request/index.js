@@ -4,34 +4,33 @@ import {Router} from 'express';
 import multer from 'multer';
 import documentsRouter from '../document';
 import * as controller from './request.controller';
-import * as Auth from '../../auth/auth.service';
+import { isAgentOrOwner, isAuthenticated } from '../../auth/auth.service';
 import Request from './request.model';
-import compose from 'composable-middleware';
 import config from '../../config/environment';
 
 var router = new Router();
 const upload = multer({ dest: config.uploadDir });
 
-router.post('/', Auth.isAuthenticated(), controller.create);
+router.post('/', isAuthenticated(), controller.create);
 
-router.get('/:shortId', isAuthorized(), controller.show);
+router.get('/:shortId', isAgentOrOwner(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
 
-router.post('/:shortId', isAuthorized(), controller.update);
-router.put('/:shortId', isAuthorized(), controller.update);
+router.post('/:shortId', isAgentOrOwner(), controller.update);
+router.put('/:shortId', isAgentOrOwner(), controller.update);
 
-router.delete('/:shortId', isAuthorized(), controller.destroy);
+router.delete('/:shortId', isAgentOrOwner(), controller.destroy);
 
-router.get('/:shortId/generate-reception-mail', isAuthorized(), controller.generateReceptionMail);
-router.post('/:shortId/generate-medic-mail', isAuthorized(), controller.generateMedicMail);
-router.post('/:shortId/action', isAuthorized(), controller.saveAction);
-router.get('/:shortId/history', isAuthorized(), controller.getHistory);
-router.get('/:shortId/recapitulatif', isAuthorized(), controller.getRecapitulatif);
+router.get('/:shortId/generate-reception-mail', isAgentOrOwner(), controller.generateReceptionMail);
+router.post('/:shortId/generate-medic-mail', isAgentOrOwner(), controller.generateMedicMail);
+router.post('/:shortId/action', isAgentOrOwner(), controller.saveAction);
+router.get('/:shortId/history', isAgentOrOwner(), controller.getHistory);
+router.get('/:shortId/recapitulatif', isAgentOrOwner(), controller.getRecapitulatif);
 
-router.get('/:shortId/pdf/:fileName', isAuthorized(), controller.getPdf);
+router.get('/:shortId/pdf/:fileName', isAgentOrOwner(), controller.getPdf);
 
 router.post('/:shortId/document/partenaire', upload.single('file'), controller.saveFilePartenaire);
-router.use('/:shortId/document', isAuthorized(), documentsRouter);
+router.use('/:shortId/document', isAgentOrOwner(), documentsRouter);
 
 router.param('shortId', function(req, res, next, shortId) {
   Request
@@ -46,25 +45,5 @@ router.param('shortId', function(req, res, next, shortId) {
     next();
   });
 });
-
-function isAuthorized() {
-  return compose()
-    .use(Auth.isAuthenticated())
-    .use(function(req, res, next) {
-      if (Auth.meetsRequirements(req.user.role, 'admin')) {
-        return next();
-      }
-
-      if (Auth.meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph.zipcode === req.request.mdph) {
-        return next();
-      }
-
-      if (req.user._id.equals(req.request.user._id)) {
-        return next();
-      }
-
-      return res.sendStatus(401);
-    });
-}
 
 module.exports = router;

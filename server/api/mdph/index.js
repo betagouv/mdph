@@ -2,9 +2,8 @@
 
 import {Router} from 'express';
 import * as controller from './mdph.controller';
-import {hasRole, isAuthenticated, meetsRequirements} from '../../auth/auth.service';
+import {hasRole, isAgent} from '../../auth/auth.service';
 import categoriesRouter from '../document-category';
-import compose from 'composable-middleware';
 import Mdph from './mdph.model';
 
 var router = new Router();
@@ -13,23 +12,23 @@ router.get('/', controller.index);
 router.get('/list', controller.list);
 router.get('/:id', controller.show);
 router.post('/', hasRole('admin'), controller.create);
-router.put('/:id', isAuthorized(), controller.update);
-router.patch('/:id', isAuthorized(), controller.update);
+router.put('/:id', isAgent(), controller.update);
+router.patch('/:id', isAgent(), controller.update);
 router.delete('/:id', hasRole('admin'), controller.destroy);
 
-router.get('/:id/requests', isAuthorized(), controller.showRequests);
-router.get('/:id/requests/byStatus', isAuthorized(), controller.showRequestsByStatus);
+router.get('/:id/requests', isAgent(), controller.showRequests);
+router.get('/:id/requests/byStatus', isAgent(), controller.showRequestsByStatus);
 
-router.get('/:id/users', isAuthorized(), controller.showUsers);
+router.get('/:id/users', isAgent(), controller.showUsers);
 
-router.get('/:id/partenaires', isAuthorized(), controller.showPartenaires);
+router.get('/:id/partenaires', isAgent(), controller.showPartenaires);
 
-router.get('/:id/secteurs', isAuthorized(), controller.populateAndShowSecteurs);
-router.get('/:id/secteurs/list', isAuthorized(), controller.listSecteurs);
-router.get('/:id/secteurs/:secteurId', isAuthorized(), controller.getSecteur);
-router.get('/:id/secteurs/:secteurId/requests', isAuthorized(), controller.showRequestsForSecteur);
+router.get('/:id/secteurs', isAgent(), controller.populateAndShowSecteurs);
+router.get('/:id/secteurs/list', isAgent(), controller.listSecteurs);
+router.get('/:id/secteurs/:secteurId', isAgent(), controller.getSecteur);
+router.get('/:id/secteurs/:secteurId/requests', isAgent(), controller.showRequestsForSecteur);
 
-router.use('/:id/categories', isAuthorized(), categoriesRouter);
+router.use('/:id/categories', isAgent(), categoriesRouter);
 
 router.param('id', function(req, res, next, id) {
   Mdph.findOne({zipcode: id}, function(err, mdph) {
@@ -40,21 +39,5 @@ router.param('id', function(req, res, next, id) {
     next();
   });
 });
-
-function isAuthorized() {
-  return compose()
-    .use(isAuthenticated())
-    .use(function(req, res, next) {
-      if (meetsRequirements(req.user.role, 'admin')) {
-        return next();
-      }
-
-      if (meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph._id.equals(req.mdph._id)) {
-        return next();
-      }
-
-      return res.sendStatus(401);
-    });
-}
 
 module.exports = router;
