@@ -6,8 +6,6 @@ import expressJwt from 'express-jwt';
 import compose from 'composable-middleware';
 
 import User from '../api/user/user.model';
-import Request from '../api/request/request.model';
-import Profile from '../api/profile/profile.model';
 
 var validateJwt = expressJwt({ secret: config.secrets.session });
 
@@ -48,17 +46,11 @@ function isAuthenticated() {
     });
 }
 
-/**
- * Attaches the user object to the request if authenticated
- * Otherwise returns 401
- */
-function isAuthorized() {
+function canAccessProfileList() {
   return compose()
     .use(isAuthenticated())
-    .use(attachProfile)
-    .use(attachRequest)
     .use(function(req, res, next) {
-      if (canAccessResource(req.user, req.profile) || canAccessResource(req.user, req.request)) {
+      if (req.user._id.equals(req.params.userId)) {
         next();
       } else {
         res.sendStatus(403);
@@ -66,16 +58,11 @@ function isAuthorized() {
     });
 }
 
-/**
- * Verifies that the user is trying to create/list profiles for himself,
- * Attaches the user object to the request if authenticated
- * Otherwise returns 401
- */
 function canAccessProfile() {
   return compose()
     .use(isAuthenticated())
     .use(function(req, res, next) {
-      if (meetsRequirements(req.user.role, 'adminMdph') || req.user._id.equals(req.params.userId)) {
+      if (req.user && req.profile && req.user._id.equals(req.profile.user)) {
         next();
       } else {
         res.sendStatus(403);
@@ -83,68 +70,40 @@ function canAccessProfile() {
     });
 }
 
-function canAccessResource(user, resource) {
-  if (!resource || !user) {
-    return false;
-  }
+function isAgent() {
+  return compose()
+    .use(isAuthenticated())
+    .use(function(req, res, next) {
+      if (meetsRequirements(req.user.role, 'admin')) {
+        return next();
+      }
 
-  if (meetsRequirements(user.role, 'adminMdph')) {
-    return true;
-  }
+      if (meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph._id.equals(req.mdph._id)) {
+        return next();
+      }
 
-  if (!resource.user._id) {
-    return String(user._id) === String(resource.user);
-  } else {
-    return user._id.equals(resource.user._id);
-  }
+      return res.sendStatus(401);
+    });
 }
 
-function attachProfile(req, res, next) {
-  if (req.params.profileId) {
-    Profile
-      .findById(req.params.profileId)
-      .populate('user')
-      .exec(function(err, profile) {
-        if (!profile) {
-          return res.sendStatus(404);
-        }
+function isAgentOrOwner() {
+  return compose()
+    .use(isAuthenticated())
+    .use(function(req, res, next) {
+      if (meetsRequirements(req.user.role, 'admin')) {
+        return next();
+      }
 
-        if (err) {
-          req.log.error(err);
-          return res.status(500).send(err);
-        }
+      if (meetsRequirements(req.user.role, 'adminMdph') && req.user.mdph.zipcode === req.request.mdph) {
+        return next();
+      }
 
-        req.profile = profile;
-        next();
-      });
-  } else {
-    next();
-  }
-}
+      if (req.user._id.equals(req.request.user._id)) {
+        return next();
+      }
 
-function attachRequest(req, res, next) {
-  if (req.params.shortId) {
-    Request
-      .findOne({
-        shortId: req.params.shortId
-      })
-      .populate('user evaluator')
-      .exec(function(err, request) {
-        if (!request) {
-          return res.sendStatus(404);
-        }
-
-        if (err) {
-          req.log.error(err);
-          return res.status(500).send(err);
-        }
-
-        req.request = request;
-        next();
-      });
-  } else {
-    next();
-  }
+      return res.sendStatus(401);
+    });
 }
 
 function meetsRequirements(role, roleRequired) {
@@ -188,10 +147,11 @@ function setTokenCookie(req, res) {
   res.redirect('/');
 }
 
+exports.canAccessProfileList = canAccessProfileList;
 exports.canAccessProfile = canAccessProfile;
-exports.canAccessResource = canAccessResource;
+exports.isAgent = isAgent;
+exports.isAgentOrOwner = isAgentOrOwner;
 exports.isAuthenticated = isAuthenticated;
-exports.isAuthorized = isAuthorized;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;

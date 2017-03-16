@@ -1,26 +1,26 @@
 'use strict';
 
-import {canAccessProfile, isAuthorized} from '../../auth/auth.service';
 import {Router} from 'express';
 import * as controller from './profile.controller';
 import Profile from './profile.model';
+import { canAccessProfileList, canAccessProfile } from '../../auth/auth.service';
 
 import synthesesRouter from '../synthese';
 
 var router = new Router({mergeParams: true});
 
-router.get('/', canAccessProfile(), controller.index);
-router.post('/', canAccessProfile(), controller.create);
-router.get('/me', canAccessProfile(), controller.showMe);
-router.get('/count', canAccessProfile(), controller.profileCount);
-router.get('/:profileId', isAuthorized(), controller.show);
+router.get('/', canAccessProfileList(), controller.index);
+router.post('/', canAccessProfileList(), controller.create);
+router.get('/me', canAccessProfileList(), controller.showMe);
+router.get('/count', canAccessProfileList(), controller.profileCount);
+router.get('/:profileId', canAccessProfile(), controller.show);
 
-router.post('/:profileId', isAuthorized(), controller.update);
-router.delete('/:profileId', isAuthorized(), controller.destroy);
+router.post('/:profileId', canAccessProfile(), controller.update);
+router.delete('/:profileId', canAccessProfile(), controller.destroy);
 
-router.get('/:profileId/requests', isAuthorized(), controller.indexRequests);
-router.get('/:profileId/requests/current', isAuthorized(), controller.showCurrentRequest);
-router.get('/:profileId/requests/count', isAuthorized(), controller.count);
+router.get('/:profileId/requests', canAccessProfile(), controller.indexRequests);
+router.get('/:profileId/requests/current', canAccessProfile(), controller.showCurrentRequest);
+router.get('/:profileId/requests/count', canAccessProfile(), controller.count);
 
 router.use('/:profileId/syntheses', synthesesRouter);
 
