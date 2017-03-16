@@ -17,5 +17,20 @@
         "UPLOAD_DIR": "/path/to/upload/dir"
       }
     }
-  ]
+  ],
+
+  "deploy" : {
+    "vagrant" : {
+      "user" : "deploy",
+      "host" : "192.168.56.25",
+      "port": "2200",
+      "ref"  : "origin/master",
+      "repo" : "https://github.com/sgmap/mdph.git",
+      "path" : "/home/deploy/www",
+      "post-deploy" : "yarn install && yarn build && pm2 startOrRestart /home/deploy/pm2.json",
+      "env": {
+        "UPLOAD_DIR": "/home/deploy/uploads"
+      }
+    }
+  }
 }
