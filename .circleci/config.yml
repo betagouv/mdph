@@ -38,7 +38,7 @@ jobs:
           name: Run e2e tests
           command: yarn circle-e2e
 
-      - add-ssh-keys
+      - add_ssh_keys
 
       - deploy:
           command: |
