@@ -4,25 +4,21 @@
 
     <p>Gérez vos demandes en ligne</p>
 
-    <ul class="mdph-choices">
-      <li class="mdph-choice" ng-if="!departementctrl.isLoggedIn()">
-        <a class="hero-button" ui-sref="signup">
-          S'inscrire
-        </a>
-      </li>
+    <div ng-if="!departementctrl.isLoggedIn()">
+      <a class="hero-button" ui-sref="signup">
+        S'inscrire
+      </a>
+    </div>
 
-      <li class="mdph-choice" ng-if="departementctrl.isLoggedIn()">
-        <div class="profile-card-content">
-          <mes-profils user="departementctrl.getCurrentUser()" />
-        </div>
-      </li>
+    <div ng-if="departementctrl.isLoggedIn()" class="profile-card-content">
+      <mes-profils user="departementctrl.getCurrentUser()" />
+    </div>
 
-      <li class="mdph-choice" ng-if="departementctrl.showDashboard()">
-        <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: departementctrl.currentMdph.zipcode})" title="Tableau de bord agent">
-          Tableau de bord
-        </a>
-      </li>
-    </ul>
+    <div ng-if="departementctrl.showDashboard()">
+      <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: departementctrl.currentMdph.zipcode})" title="Tableau de bord agent">
+        Tableau de bord
+      </a>
+    </div>
 
     <a class="btn btn-link" ng-if="!departementctrl.isLoggedIn()" ui-sref="login">
       J'ai déjà un compte

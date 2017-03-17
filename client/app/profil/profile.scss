@@ -25,6 +25,12 @@
     padding: 40px 60px;
     flex-grow: 1;
   }
+
+  @media (max-width: $screen-sm-max) {
+    .profile-card-content {
+      padding: 0;
+    }
+  }
 }
 
 .button-container {
