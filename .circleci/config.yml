@@ -41,6 +41,7 @@ jobs:
       - add_ssh_keys
 
       - deploy:
+          name: Deploy for branch master only
           command: |
             if [ "${CIRCLE_BRANCH}" == "circle_2_deploy" ]; then
               # Waiting for circle CI support to repply, then we could remove the '-oStrictHostKeyChecking=no'
