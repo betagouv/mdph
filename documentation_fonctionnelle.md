@@ -44,7 +44,7 @@ Soumis à une forte charge - entre 600 et 800 dossiers par an et par ETP - les M
 - Une mauvaise communication client : notification de refus peu ou pas accompagnée, décision dissociée de la réalité de l’offre départementale
 
 
-IMPACT est un outil numérique destiné à limiter ces problèmes en fiabilisant le flux entrant et en améliorant le dialogue au sein de l’écosystème : usager, médecins, MDPH, établissements partenaires, équipe pluridisciplinaire d’évaluation (EPE),... Il se fonde sur un partage plus effectif des données personnelles de santé, compatible avec les exigences de sécurité renforcées.
+MDPH en ligne est le service numérique sur lequel s'est appuyée l'expérimentation IMPACT. Le service vise à réduire les frictions dans le dépôt et l'instruction des demandes gérées par les MDPH en fiabilisant le flux entrant et en améliorant le dialogue au sein de l’écosystème : usager, médecins, MDPH, établissements partenaires, équipe pluridisciplinaire d’évaluation (EPE),... Il se fonde sur un partage plus effectif des données personnelles de santé, compatible avec les exigences de sécurité renforcées.
 
 
 #### Usagers finaux
