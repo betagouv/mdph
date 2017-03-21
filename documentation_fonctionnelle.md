@@ -28,8 +28,8 @@
 		- Paramètre les comptes
 		- Paramètre les éléments propres à son mode de fonctionnement
 	- L'administrateur \(SGMAP / CNSA\)
-    - Ouvre de nouvelles MDPH 
-    - Héberger, maintient et améliore le produit
+    - Ouvre de nouvelles MDPH (voir [https://github.com/sgmap/mdph/wiki/Comment-ouvrir-une-nouvelle-MDPH])
+    - Héberger, maintient et améliore le produit sur la base des métriques d'usage
 
 <!-- /MarkdownTOC -->
 
@@ -71,7 +71,7 @@ _**Expérimentale**_ :
 
 _La Caisse nationale de solidarité pour l'autonomie (CNSA) a défini un tronc commun du métier des MDPH. Ce document pose un cadre qui définit les points structurants du métier des MDPH dans une logique d’harmonisation des pratiques. Il est le résultat d’un travail de co-conception avec une quarantaine de MDPH et d’une concertation plus large auprès de l’ensemble des MDPH._
 
-_MDPH en ligne est un outil numérique expérimental permettant de proposer une première solution technique aux macro-processus suivants :_
+_MDPH en ligne est un service numérique qui remplit ou contribue à remplir les macro-processus suivants :_
 
 - _Évaluer et aiguiller les dossiers_
 - _Évaluer, élaborer des réponses et des plans personnalisés de compensation (PPC)._
@@ -207,7 +207,7 @@ _**Expérimental**_ Les fournisseurs (garagistes...) pourraient directement four
 L'administrateur du produit :
 
 - ouvre de nouvelles MDPH (voir [https://github.com/sgmap/mdph/wiki/Comment-ouvrir-une-nouvelle-MDPH]),
-- pilote le service sur la base des métriques d'usage.
+- Héberge, maintient et améliore le service sur la base des métriques d'usage.
 
 ## Principales fonctionnalités
 ### L'usager final
@@ -316,4 +316,4 @@ Ainsi, chaque MDPH peut utiliser ce module pour associer à chaque pièce justif
 ### L'administrateur (SGMAP / CNSA)
 
 - L'administrateur peut suivre les statistiques de demandes sur mdph.beta.gouv.fr/stats,
-- **_Expérimental_** L'administrateur peut créer une nouvelle MDPH.
+- L'administrateur peut créer une nouvelle MDPH.
