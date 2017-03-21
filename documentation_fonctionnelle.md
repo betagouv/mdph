@@ -28,6 +28,8 @@
 		- Paramètre les comptes
 		- Paramètre les éléments propres à son mode de fonctionnement
 	- L'administrateur \(SGMAP / CNSA\)
+    - Ouvre de nouvelles MDPH 
+    - Héberger, maintient et améliore le produit
 
 <!-- /MarkdownTOC -->
 
