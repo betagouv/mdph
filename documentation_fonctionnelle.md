@@ -71,7 +71,7 @@ _**Expérimentale**_ :
 
 _La Caisse nationale de solidarité pour l'autonomie (CNSA) a défini un tronc commun du métier des MDPH. Ce document pose un cadre qui définit les points structurants du métier des MDPH dans une logique d’harmonisation des pratiques. Il est le résultat d’un travail de co-conception avec une quarantaine de MDPH et d’une concertation plus large auprès de l’ensemble des MDPH._
 
-_IMPACT est un outil numérique expérimental permettant de proposer une première solution technique aux macro-processus suivants :_
+_MDPH en ligne est un outil numérique expérimental permettant de proposer une première solution technique aux macro-processus suivants :_
 
 - _Évaluer et aiguiller les dossiers_
 - _Évaluer, élaborer des réponses et des plans personnalisés de compensation (PPC)._
