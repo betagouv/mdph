@@ -62,7 +62,7 @@ Une fonctionnalité expérimentale donne :
 - La demande de pièces jointes complémentaires
 - Le dispatching automatique des demandes par agents (en fonction des secteurs et du type des demandes - adultes/enfants)
 
-Une fonctionnalité expérimentale permet :
+_**Expérimentale**_ :
 
 - La gestion des comptes membres de l’écosystème : chargement massif de comptes, certification de compte a posteriori, blocage de compte
 - L'outil de soutien à l'évaluation en lien avec le GEVA
@@ -292,7 +292,7 @@ La MDPH peut gérer les comptes des agents instructeurs et des bénéficiaires :
 
 > BUGS Identifiés :
 >
-> 	- la gestion des comptes bénéficiaires n'est pas segmentée par MDPH
+> - la gestion des comptes bénéficiaires n'est pas segmentée par MDPH
 >	- lors du clic sur un compte bénéficiaire, le titre de la page est "Édition d'un agent" et on peut renseigner le nom
 
 #### Paramètre les éléments propres à son mode de fonctionnement
