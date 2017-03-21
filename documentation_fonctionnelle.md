@@ -52,8 +52,8 @@ IMPACT est un outil numérique destiné à limiter ces problèmes en fiabilisant
 - Un questionnaire dynamique aligné sur la structure Vie Personnelle, Vie Professionnelle, Vie Scolaire
 - Un espace personnel permettant de sauvegarder ses données, de suivre son dossier et de faciliter le renouvellement des droits
 
-Une fonctionnalité expérimentale donne :
-- La possibilité pour un membre de l’écosystème de contribuer simplement à un dossier, en remplissant un formulaire (ex. Certificat Médical) ou en téléchargeant une pièce, avec inscription en ligne et certification du compte a posteriori par la MDPH.
+_**Expérimentale**_ :
+- Un membre de l’écosystème peut contribuer simplement à un dossier, en remplissant un formulaire (ex. Certificat Médical) ou en téléchargeant une pièce, avec inscription en ligne et certification du compte a posteriori par la MDPH.
 
 #### Agents des MDPH
 
