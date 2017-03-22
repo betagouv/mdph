@@ -1,11 +1,6 @@
 <form id="profile-identites" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
   <h2>Identité du bénéficiaire</h2>
 
-  <!-- <div class="identity-form-actions">
-    <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
-    <button type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
-  </div> -->
-
   <section class="identite-section">
     <div class="section-row">
       <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
@@ -36,10 +31,10 @@
       <div class="form-group required" ng-class="{'has-error': !identite.sexe && infoForm.$submitted}">
         <fieldset>
           <legend class="control-label">Sexe</legend>
-          <input type="radio" name="sexe" id="sexe-m" ng-model="identite.sexe" ng-required="!identite.sexe" value="masculin">
-          <label class="radio-inline" for="sexe-m">Masculin</label>
-          <input type="radio" name="sexe" id="sexe-f" ng-model="identite.sexe" ng-required="!identite.sexe" value="feminin">
-          <label class="radio-inline" for="sexe-f">Féminin</label>
+          <input type="radio" name="sexe" id="sexe-m" ng-model="identite.sexe" ng-required="!identite.sexe" value="homme">
+          <label class="radio-inline" for="sexe-m">Homme</label>
+          <input type="radio" name="sexe" id="sexe-f" ng-model="identite.sexe" ng-required="!identite.sexe" value="femme">
+          <label class="radio-inline" for="sexe-f">Femme</label>
         </fieldset>
         <div ng-if="!identite.sexe && infoForm.$submitted">
           <p class="help-block">Ce champ est obligatoire.</p>

@@ -53,9 +53,9 @@ angular.module('impactApp')
     };
 
     return {
-      estMasculin: function(profile) {
+      estHomme: function(profile) {
         if (profile.identites && profile.identites.beneficiaire) {
-          return profile.identites.beneficiaire.sexe === 'masculin';
+          return profile.identites.beneficiaire.sexe === 'homme';
         } else {
           return false;
         }

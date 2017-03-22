@@ -7,7 +7,7 @@ import {readTemplateSync} from './templates';
 import {allDocumentTypesById} from '../api/document-type/document-type.controller';
 
 function isMale(sex) {
-  return !sex || sex === 'masculin';
+  return !sex || sex === 'homme';
 }
 
 Handlebars.registerPartial({
