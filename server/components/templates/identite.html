@@ -22,7 +22,10 @@
 
 {{#if dateNaissance}}
 <p>
-  Date de naissance : <strong>{{moment dateNaissance}}</strong> {{#if lieu_naissance}}à {{lieu_naissance}}{{/if}} {{#if lieu_naissance_cp}}<small>({{lieu_naissance_cp}})</small>{{/if}}
+  Date de naissance : <strong>{{moment dateNaissance}}</strong> <br>
+  {{#if commune_naissance}}Commune : {{commune_naissance}} <br> {{/if}}
+  {{#if departement_naissance}}Département : {{departement_naissance}} <br> {{/if}}
+  {{#if pays_naissance}}Pays : {{pays_naissance}}{{/if}}
 </p>
 {{/if}}
 
@@ -101,5 +104,11 @@
 {{#if numero_secu}}
 <p>
   Numéro de sécurité sociale : <strong>{{numero_secu}}</strong>
+</p>
+{{/if}}
+
+{{#if numero_secu_enfant}}
+<p>
+  Numéro de sécurité sociale de l'enfant : <strong>{{numero_secu_enfant}}</strong>
 </p>
 {{/if}}
