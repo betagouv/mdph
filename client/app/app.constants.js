@@ -3,6 +3,10 @@
 
   angular
     .module('impactApp.constants', [])
-    .constant('appConfig', {userRoles:['user', 'adminMdph', 'admin']});
+    .constant('appConfig',
+      { userRoles:['user', 'adminMdph', 'admin'],
+        banUrl : 'https://api-adresse.data.gouv.fr/search/'
+      }
+    );
 
 })(angular);
