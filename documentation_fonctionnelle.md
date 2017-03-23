@@ -43,9 +43,7 @@ Soumis à une forte charge - entre 600 et 800 dossiers par an et par ETP - les M
 - Une difficulté à compléter le dossier : nombreuses itérations pour compléter le dossier, temps de transfert des informations complémentaires, temps de vérification de la qualité des données,
 - Une mauvaise communication client : notification de refus peu ou pas accompagnée, décision dissociée de la réalité de l’offre départementale
 
-
 MDPH en ligne est le service numérique sur lequel s'est appuyée l'expérimentation IMPACT. Le service vise à réduire les frictions dans le dépôt et l'instruction des demandes gérées par les MDPH en fiabilisant le flux entrant et en améliorant le dialogue au sein de l’écosystème : usager, médecins, MDPH, établissements partenaires, équipe pluridisciplinaire d’évaluation (EPE),... Il se fonde sur un partage plus effectif des données personnelles de santé, compatible avec les exigences de sécurité renforcées.
-
 
 #### Usagers finaux
 
@@ -53,6 +51,7 @@ MDPH en ligne est le service numérique sur lequel s'est appuyée l'expérimenta
 - Un espace personnel permettant de sauvegarder ses données, de suivre son dossier et de faciliter le renouvellement des droits
 
 _**Expérimentale**_ :
+
 - Un membre de l’écosystème peut contribuer simplement à un dossier, en remplissant un formulaire (ex. Certificat Médical) ou en téléchargeant une pièce, avec inscription en ligne et certification du compte a posteriori par la MDPH.
 
 #### Agents des MDPH
@@ -75,6 +74,12 @@ _MDPH en ligne est un service numérique qui remplit ou contribue à remplir les
 
 - _Évaluer et aiguiller les dossiers_
 - _Évaluer, élaborer des réponses et des plans personnalisés de compensation (PPC)._
+
+_IMPACT est un outil numérique expérimental permettant de proposer une première solution technique aux macro-processus suivants :
+
+- Évaluer et aiguiller les dossiers
+- Évaluer, élaborer des réponses et des plans personnalisés de compensation (PPC)._
+
 
 ## Présentation générale
 
@@ -280,22 +285,23 @@ Cette dernière option est utilisée par les associations ayant délégation pou
 
 - L'agent peut répondre aux questions de l'outil de soutien (réparties entre 20 catégories et 1500 réponses possibles) pour préparer le GEVA et le CDAPH.
 
-#### Paramètre les comptes
+#### Paramètre les éléments propres à son mode de fonctionnement
 
-La MDPH peut gérer les comptes des agents instructeurs et des bénéficiaires :
+##### En créant les comptes de ses agents instructeurs
+
+La MDPH peut gérer les comptes des agents instructeurs et des bénéficiaires 
 
 - Les agents peuvent créer des comptes pour les autres agents MDPH en renseignant nom / prénom / mot de passe
 
 - Les agents peuvent valider des comptes les bénéficiaires :
 	* en recherchant via un formulaire de recherche
 	* en confirmant l'email de l'utilisateur
-
+  
 > BUGS Identifiés :
 >
 > - la gestion des comptes bénéficiaires n'est pas segmentée par MDPH
 >	- lors du clic sur un compte bénéficiaire, le titre de la page est "Édition d'un agent" et on peut renseigner le nom
 
-#### Paramètre les éléments propres à son mode de fonctionnement
 ##### En gérant ses secteurs et le dispatch de ses demandes
 
 - La MDPH associe les codes postaux des communes qu'elle couvre à des secteurs. 
@@ -313,7 +319,11 @@ Les MDPH possèdent chacune une gestion électronique des documents (GED) qui :
 
 Ainsi, chaque MDPH peut utiliser ce module pour associer à chaque pièce justificative potentiellement demandée dans le formulaire, un lieu de stockage dans sa propre GED. Cela permet de mettre en place l'association Pièce justificative / Lieu de stockage dans la GED / Code-barres.
 
-### L'administrateur (SGMAP / CNSA)
+## Les administrateurs du produit
 
-- L'administrateur peut suivre les statistiques de demandes sur mdph.beta.gouv.fr/stats,
-- L'administrateur peut créer une nouvelle MDPH.
+L'administrateur du produit 
+
+- L'administrateur peut suivre les statistiques de demandes sur mdph.beta.gouv.fr/stats et piloter l'amélioration continue du service sur cette base.
+
+**_Expérimental_** 
+- L'administrateur peut créer une (nouvelle MDPH)[https://github.com/sgmap/mdph/wiki/Comment-ouvrir-une-nouvelle-MDPH] .
