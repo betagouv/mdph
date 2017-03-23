@@ -28,6 +28,8 @@ router.get('/:id/secteurs/list', isAgent(), controller.listSecteurs);
 router.get('/:id/secteurs/:secteurId', isAgent(), controller.getSecteur);
 router.get('/:id/secteurs/:secteurId/requests', isAgent(), controller.showRequestsForSecteur);
 
+router.post('/:id/like', controller.saveLike);
+
 router.use('/:id/categories', isAgent(), categoriesRouter);
 
 router.param('id', function(req, res, next, id) {

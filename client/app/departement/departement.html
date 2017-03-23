@@ -1,5 +1,5 @@
 <header class="banner bg" ng-class="'bg-' + departementctrl.currentMdph.zipcode">
-  <div class="hero-unit">
+  <div class="hero-unit" ng-if="departementctrl.isOpened()">
     <h1 ng-if="departementctrl.currentMdph">Votre MDPH {{departementctrl.currentMdph.name}}</h1>
 
     <p>Gérez vos demandes en ligne</p>
@@ -24,9 +24,32 @@
       J'ai déjà un compte
     </a>
   </div>
+
+  <div class="hero-unit" ng-if="departementctrl.isClosed()">
+    <h1 ng-if="departementctrl.currentMdph">MDPH {{departementctrl.currentMdph.name}}</h1>
+
+    <p>Votre MDPH n'accepte pas les demandes en ligne</p>
+
+    <a class="btn btn-lg btn-link" href="https://www.service-public.fr/particuliers/vosdroits/N12230">
+      Continuer sur service-public.fr
+    </a>
+  </div>
 </header>
 
-<div class="section-main section-flow">
+<div class="section-main section-flow" ng-if="departementctrl.isClosed()">
+  <form id="form-login" class="form" name="form" ng-submit="departementctrl.submit()">
+    <label for="email" class="title">Être prévenu·e de l'ouverture du service</label>
+    <div class="input-container">
+      <input required type="email" id="email" ng-model="departementctrl.subscribeEmail" placeholder="votre@email.fr">
+      <input id="subscribe" type="submit" value="Envoyer" ng-if="!departementctrl.loading">
+      <span class="loading" ng-if="departementctrl.loading"><i class="fa fa-spinner fa-spin"></i></span>
+    </div>
+    <div class="thankyou" ng-if="!departementctrl.thankyou">&nbsp;</div>
+    <div class="thankyou" ng-if="departementctrl.thankyou">Merci !</div>
+  </form>
+</div>
+
+<div class="section-main section-flow" ng-if="departementctrl.isOpened()">
   <div class="flow">
     <div>
       <img src="/assets/images/MDPH_Step1.png" alt="Je complète mon profil">
@@ -51,7 +74,7 @@
   <mdph-map mdph="departementctrl.currentMdph"/>
 </div>
 
-<div class="section-main section-text" id="en-savoir-plus">
+<div class="section-main section-text" id="en-savoir-plus" ng-if="departementctrl.isOpened()">
   <h2>Un suivi en ligne de votre dossier</h2>
   <div>
     <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
@@ -61,7 +84,7 @@
   </div>
 </div>
 
-<div class="section-blue section-padding" ng-if="!departementctrl.isLoggedIn()">
+<div class="section-blue section-padding" ng-if="!departementctrl.isLoggedIn() && departementctrl.isOpened()">
   <a class="hero-button" ui-sref="signup">
     S'inscrire
   </a>
@@ -134,7 +157,7 @@
   </div>
 </div>
 
-<div class="section-blue section-blue-row">
+<div class="section-blue section-blue-row" ng-if="departementctrl.isOpened()">
   <div class="row">
     <div class="col-sm-6">
       <div class="card">
