@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('AdressService', function($http) {
+  .factory('AdressService', function($http, appConfig) {
     return {
       getAdress: function(val, lat, long) {
         return $http({
           method: 'GET',
-          url: 'https://api-adresse.data.gouv.fr/search/',
+          url: appConfig.banUrl,
           params: {
             q: val,
             lat: lat,
