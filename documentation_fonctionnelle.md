@@ -1,4 +1,4 @@
-# Documentation fonctionnelles générales MDPH en ligne
+# Documentation fonctionnelle générale MDPH en ligne
 
 ## Table des matières
 <!-- MarkdownTOC -->
@@ -22,7 +22,7 @@
 	- L'usager final
 		- S'inscrit
 		- Instruit sa demande à l'aide des différents formulaires
-		- Modifie les paramètre de son compte
+		- Modifie les paramètres de son compte
 	- La MDPH
 		- Traite les demandes reçues
 		- Paramètre les comptes
@@ -247,13 +247,13 @@ L'utilisateur peut également solliciter son médecin ou d'autres partenaires po
 - Demande de pièces justificatives à des partenaires des MDPH (ex : garagiste)
 	* même workflow que ci-dessus.
 
-#### Modifie les paramètre de son compte
+#### Modifie les paramètres de son compte
 La page "mon compte" (accès via clic sur l'utilisateur dans la barre latérale gauche), permet de :
 
 - gérer le mot de passe de l'utilisateur
 - d'activer le mode multi profil 
 
-Cette dernière option est utilisée par les association ayant délégation pour déposer des demandes pour le compte de personnes en situation de handicap. L'outil ne gère pas la trace du don de délégation par le receveur d'aide.
+Cette dernière option est utilisée par les associations ayant délégation pour déposer des demandes pour le compte de personnes en situation de handicap. L'outil ne gère pas la trace du don de délégation par le receveur d'aide.
 
 ### La MDPH 
 #### Traite les demandes reçues
@@ -264,7 +264,7 @@ Cette dernière option est utilisée par les association ayant délégation pour
 
 > La demande peut être transférée à un autre agent d'un autre secteur.
 
-- L'agent prépare l'accusé de réception, en vérifiant la validité et la lisibilité des pj fournies par l'utilisateur final.
+- L'agent prépare l'accusé de réception, en vérifiant la validité et la lisibilité des PJ fournies par l'utilisateur final.
 
 > L'agent peut, à cette étape, demander des pièces justificatives complémentaires. La demande est alors "mise en attente".
 
