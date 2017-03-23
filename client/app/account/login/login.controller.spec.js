@@ -231,11 +231,11 @@ describe('LoginCtrl', function() {
         });
       });
 
-      it('should go to the account settings of the user', function() {
+      it('should go to the mdph\'s home page of the user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('mon_compte');
+        expect($state.go.calls.argsFor(0)[0]).toEqual('departement');
       });
     });
   });
