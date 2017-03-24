@@ -5,7 +5,17 @@
       "label": "Certificat médical",
       "canDelegate": true,
       "mandatory": true,
-      "desc": "Un certificat médical de moins de 6 mois"
+      "desc": "Un certificat médical de moins de 6 mois",
+      "expected": [
+        {
+          "label": "Certificat Médical",
+          "file": "/assets/documents/cerfa_13878-01.pdf"
+        },
+        {
+          "label": "Nouveau certificat Médical",
+          "file": "/assets/documents/CM.pdf"
+        }
+      ]
     },
     {
       "id": "justificatifDomicile",
