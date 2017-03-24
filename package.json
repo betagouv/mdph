@@ -133,7 +133,7 @@
     "test:front": "karma start karma.conf.js --single-run",
     "test:back": "mocha --compilers js:babel-core/register -r mocha.conf.js -t 5000 \"server/**/*.spec.js\"",
     "local-server": "grunt prepare && NODE_ENV=test node server/index.js",
-    "local-e2e": "npm-run-all webdriver-update circle-protractor",
+    "local-e2e": "npm-run-all webdriver-update local-protractor",
     "local-protractor": "protractor protractor.conf.js",
     "circle-server": "NODE_ENV=test node dist/server/app.js",
     "circle-e2e": "protractor protractor.conf.js --seleniumAddress http://localhost:4444/wd/hub",
