@@ -43,6 +43,6 @@ jobs:
       - deploy:
           name: Deploy for branch master only
           command: |
-            if [ "${CIRCLE_BRANCH}" == "circle_2_deploy" ]; then
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
               pm2 deploy pm2.json production
             fi
