@@ -44,6 +44,5 @@ jobs:
           name: Deploy for branch master only
           command: |
             if [ "${CIRCLE_BRANCH}" == "circle_2_deploy" ]; then
-              # Waiting for circle CI support to repply, then we could remove the '-oStrictHostKeyChecking=no'
-              scp -oStrictHostKeyChecking=no -r /home/ubuntu/mdph/dist/. ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_DIR}/.
+              pm2 deploy pm2.json production
             fi
