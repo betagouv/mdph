@@ -291,6 +291,21 @@ export function destroy(req, res) {
   });
 }
 
+export function saveLike(req, res) {
+  Mdph.findOne({
+    zipcode: req.params.id
+  }, function(err, mdph) {
+    if (err) { return handleError(req, res, err); }
+
+    if (!mdph) { return res.sendStatus(404); }
+
+    mdph.likes.push(req.body.email);
+    mdph.save(() => {
+      return res.sendStatus(200);
+    });
+  });
+}
+
 export function list(req, res) {
   res.status(200).sendFile(path.join(__dirname, '/', 'mdph.json'));
 }

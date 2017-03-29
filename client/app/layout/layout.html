@@ -6,13 +6,13 @@
     <img src="assets/images/logo_marianne.png" alt="Accueil">
   </a>
 
-  <ul ng-if="!layoutctrl.isLoggedIn()">
+  <ul ng-if="!layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()">
     <li>
       <a class="icon login" id="login" ui-sref="login({codeDepartement: layoutctrl.currentMdph.zipcode})" title="Connexion">Connexion</a>
     </li>
   </ul>
 
-  <ul ng-if="layoutctrl.isLoggedIn()">
+  <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()">
     <li>
       <a ui-sref-active="active" ui-sref="mon_compte">Mon compte</a>
     </li>
