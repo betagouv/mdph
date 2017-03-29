@@ -10,6 +10,8 @@ angular.module('impactApp')
 
     this.shouldShowDashboard = () => $state.includes('dashboard');
 
+    this.shouldShowLogin = () => this.currentMdph.opened;
+
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
       this.logo = 'assets/images/' + currentMdph.logo;

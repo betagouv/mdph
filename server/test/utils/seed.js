@@ -8,7 +8,7 @@ import config from '../../config/environment';
 
 function saveMdph(mdph) {
   return function() {
-    var test = new Mdph({zipcode: 'test'});
+    var test = new Mdph({zipcode: 'test', opened: true});
     test.save((err, savedMdph) => {
       mdph = savedMdph;
     });
