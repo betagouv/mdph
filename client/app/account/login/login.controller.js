@@ -26,7 +26,7 @@ angular.module('impactApp')
               return $state.go('profil', {profileId: 'me'});
             }
 
-            return $state.go('mon_compte', {}, {reload: true});
+            return $state.go('departement', {}, {reload: true});
           });
 
         })
