@@ -70,6 +70,35 @@
   </div>
 </div>
 
+<div class="section-blue section-blue-row">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <h2><i class="fa fa-user-md"></i> Vous êtes médecin</h2>
+        <hr>
+        <p>Facilitez la vie des demandeurs en attachant simplement un certificat médical.</p>
+        <div class="list-actions">
+          <a ui-sref="medecin">
+            Ajouter un certificat
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
+        <hr>
+        <p>N'envoyez plus vos pièces justificatives par courrier, déposez-les simplement dans le dossier de l'usager.</p>
+        <div class="list-actions">
+          <a ui-sref="partenaire">
+            Fournir des pièces complémentaires
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="map-container">
   <mdph-map mdph="departementctrl.currentMdph"/>
 </div>
@@ -151,35 +180,6 @@
         <div class="elem-body">
           <i class="fa fa-circle"></i>
            Affiliation gratuite à l'assurance vieillesse des parents au foyer (<abbr title="Affiliation gratuite à l'assurance vieillesse des parents au foyer">AVPF</abbr>)
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="section-blue section-blue-row" ng-if="departementctrl.isOpened()">
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="card">
-        <h2><i class="fa fa-user-md"></i> Vous êtes médecin</h2>
-        <hr>
-        <p>Facilitez la vie des demandeurs en attachant simplement un certificat médical.</p>
-        <div class="list-actions">
-          <a ui-sref="medecin">
-            Ajouter un certificat
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
-        <hr>
-        <p>N'envoyez plus vos pièces justificatives par courrier, déposez-les simplement dans le dossier de l'usager.</p>
-        <div class="list-actions">
-          <a ui-sref="partenaire">
-            Fournir des pièces complémentaires
-          </a>
         </div>
       </div>
     </div>
