@@ -5,7 +5,7 @@
     .module('impactApp.constants', [])
     .constant('appConfig',
       { userRoles:['user', 'adminMdph', 'admin'],
-        banUrl : 'https://api-adresse.data.gouv.fr/search/'
+        banUrl: 'https://api-adresse.data.gouv.fr/search/'
       }
     );
 
