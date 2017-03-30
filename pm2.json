@@ -1,8 +1,8 @@
 {
   "apps" : [
     {
-      "name"      : "MDPH en ligne",
-      "script"    : "server/app.js",
+      "name"      : "Mdph",
+      "script"    : "/home/deploy/www/current/dist/server/app.js",
       "instances"  : 2,
       "exec_mode"  : "cluster_mode",
       "env": {
@@ -20,6 +20,16 @@
   ],
 
   "deploy" : {
+    "production" : {
+      "user" : "deploy",
+      "host" : "mdph.infra.beta.gouv.fr",
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:sgmap/mdph.git",
+      "path" : "/home/deploy/www",
+      "ssh_options": "StrictHostKeyChecking=no",
+      "post-deploy" : "yarn install && yarn build && pm2 startOrRestart /home/deploy/pm2.json"
+    },
+
     "vagrant" : {
       "user" : "deploy",
       "host" : "192.168.56.25",

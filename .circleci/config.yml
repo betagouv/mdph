@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: mdphbeta/node-mdph:1.0.2
+      - image: mdphbeta/node-mdph:1.0.3
       - image: mongo:3.4.2
       - image: selenium/standalone-chrome:3.1.0
     working_directory: /home/ubuntu/mdph
@@ -37,3 +37,12 @@ jobs:
       - run:
           name: Run e2e tests
           command: yarn circle-e2e
+
+      - add_ssh_keys
+
+      - deploy:
+          name: Deploy for branch master only
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              pm2 deploy pm2.json production
+            fi
