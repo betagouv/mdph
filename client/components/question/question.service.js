@@ -5,10 +5,10 @@ angular.module('impactApp')
 
     var loadAshCompile = function(str, profile) {
 
-      var estMasculin = ProfileService.estMasculin(profile);
-      var pronoun = estMasculin ? 'il' : 'elle';
-      var pronounTonic = estMasculin ? 'lui' : 'elle';
-      var fem = estMasculin ? '' : 'e';
+      var estHomme = ProfileService.estHomme(profile);
+      var pronoun = estHomme ? 'il' : 'elle';
+      var pronounTonic = estHomme ? 'lui' : 'elle';
+      var fem = estHomme ? '' : 'e';
       var name = ProfileService.getPrenom(profile);
 
       var compiled = _.template(str);
@@ -26,7 +26,7 @@ angular.module('impactApp')
           return loadAshCompile(answer.labelRep, profile);
         }
 
-        if (ProfileService.estMasculin(profile) && answer.labelRepMasc) {
+        if (ProfileService.estHomme(profile) && answer.labelRepMasc) {
           return loadAshCompile(answer.labelRepMasc, profile);
         } else if (answer.labelRepFem) {
           return loadAshCompile(answer.labelRepFem, profile);

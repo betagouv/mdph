@@ -7,7 +7,7 @@ import {readTemplateSync} from './templates';
 import {allDocumentTypesById} from '../api/document-type/document-type.controller';
 
 function isMale(sex) {
-  return !sex || sex === 'masculin';
+  return !sex || sex === 'homme';
 }
 
 Handlebars.registerPartial({
@@ -59,15 +59,29 @@ Handlebars.registerHelper('ntobr', function(str) {
   return str && str.replace(/\n/g, '<br>');
 });
 
-Handlebars.registerHelper('documentType', function(item) {
-  return allDocumentTypesById[item].label;
-});
+Handlebars.registerHelper('documentType', printDocumentType);
 
-Handlebars.registerHelper('documentTypeList', function(items, options) {
+function printDocumentType(id) {
+  const documentType = allDocumentTypesById[id];
+
+  if (documentType.expected) {
+    let expectedFiles = '<ul>';
+    documentType.expected.forEach((expected) => {
+      expectedFiles += `<li><a href="${expected.file}">Exemple de ${expected.label}</a></li>`
+    });
+    expectedFiles += '</ul>';
+
+    return `${documentType.label} ${expectedFiles}`;
+  } else {
+    return documentType.label;
+  }
+}
+
+Handlebars.registerHelper('documentTypeList', function(items) {
   var out = '<ul>';
 
   for (let i = 0, l = items.length; i < l; i++) {
-    out = out + '<li>' + options.fn(items[i]) + '</li>';
+    out = out + '<li>' + printDocumentType(items[i]) + '</li>';
   }
 
   return out + '</ul>';
