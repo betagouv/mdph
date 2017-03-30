@@ -23,7 +23,6 @@ angular.module('impactApp')
         map.fitBounds(bounds);
       }
 
-
       // Disable drag and zoom handlers.
       map.scrollWheelZoom.disable();
 
@@ -33,13 +32,12 @@ angular.module('impactApp')
       }
 
       L.Map = L.Map.extend({
-          openPopup: function(popup) {
-              this._popup = popup;
-
-              return this.addLayer(popup).fire('popupopen', {
-                  popup: this._popup
-              });
-          }
+        openPopup: function(popup) {
+          this._popup = popup;
+          return this.addLayer(popup).fire('popupopen', {
+            popup: this._popup
+          });
+        }
       });
 
       let first = true;
