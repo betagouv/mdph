@@ -32,12 +32,17 @@
 
 <footer ng-show="layoutctrl.currentMdph">
   <h4>Contactez votre MDPH</h4>
-  <address>
-    {{layoutctrl.currentMdph.address}}
-  </address>
-  <div ng-bind="layoutctrl.currentMdph.phone"></div>
-  <div ng-if="layoutctrl.currentMdph.email">
-    <a href="mailto:{{layoutctrl.currentMdph.email}}" title="Contactez votre MDPH par mail">{{layoutctrl.currentMdph.email}}</a>
+  <div class="location-container">
+    <div class="location" ng-repeat="location in layoutctrl.currentMdph.locations">
+      <h5>{{ location.name }}</h5>
+      <address>
+        {{location.address}}
+      </address>
+      <div ng-bind="location.phone"></div>
+      <div ng-if="location.email">
+        <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
+      </div>
+      <div class="schedule" ng-bind="location.schedule"></div>
+    </div>
   </div>
-  <div class="schedule" ng-bind="layoutctrl.currentMdph.schedule"></div>
 </footer>

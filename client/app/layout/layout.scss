@@ -32,11 +32,12 @@ main {
 }
 
 footer {
-  display: block;
   padding: 20px 10px;
   background-color: $light-blue;
   color: white;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
   address {
     margin: 0;
@@ -44,6 +45,21 @@ footer {
 
   .schedule {
     word-break: break-word;
+  }
+
+  .location-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .location {
+    text-align: center;
+    margin: 10px;
+    min-width: 190px;
+    padding: 10px;
+    border-radius: 2px;
+    background: $lighter-blue;
   }
 }
 
