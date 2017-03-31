@@ -105,4 +105,106 @@ angular.module('impactApp')
         }
       }
     };
+
+    $scope.openMedicModal = () => {
+      $modal.open({
+        templateUrl: 'app/profil/demande/medic-modal.html',
+        controllerAs: 'medicModalCtrl',
+        size: 'md',
+        controller($modalInstance) {
+          this.emailMedic = '';
+
+          this.ok = function(form) {
+            if (form.$invalid) {
+              form.showError = true;
+            } else {
+              RequestService.generateMedicMail(request, this.emailMedic);
+              $modalInstance.close();
+            }
+          };
+
+          this.cancel = function() {
+            $modalInstance.close();
+          };
+        }
+      });
+    };
+
+    $scope.prestations = [];
+
+    $scope.cartestationnement = {
+      'id': 'cartestationnement',
+    };
+    $scope.prestations.push($scope.cartestationnement);
+
+    $scope.carteinvalidite = {
+      'id': "carteinvalidite"
+    };
+    $scope.prestations.push($scope.carteinvalidite);
+
+    $scope.aeeh = {
+      'id': "aeeh"
+    };
+    $scope.prestations.push($scope.aeeh);
+
+    $scope.aah = {
+      'id': "aah"
+    };
+    $scope.prestations.push($scope.aah);
+
+    $scope.complement = {
+      'id': "complement"
+    };
+    $scope.prestations.push($scope.complement);
+
+    $scope.pch = {
+      'id': "pch"
+    };
+    $scope.prestations.push($scope.pch);
+
+    $scope.rqth = {
+      'id': "rqth"
+    };
+    $scope.prestations.push($scope.rqth);
+
+    $scope.av = {
+      'id': "av"
+    };
+    $scope.prestations.push($scope.av);
+
+    $scope.ems = {
+      'id': "ems"
+    };
+    $scope.prestations.push($scope.ems);
+
+    $scope.pps = {
+      'id': "pps"
+    };
+    $scope.prestations.push($scope.pps);
+
+    $scope.orp = {
+      'id': "orp"
+    };
+    $scope.prestations.push($scope.orp);
+
+    $scope.formation = {
+      'id': "formation"
+    };
+    $scope.prestations.push($scope.formation);
+
+    $scope.sms = {
+      'id': "sms"
+    };
+    $scope.prestations.push($scope.sms);
+
+    $scope.sms_enfant = {
+      'id': "sms_enfant"
+    };
+    $scope.prestations.push($scope.sms_enfant);
+
+    $scope.ac = {
+      'id': "ac"
+    };
+    $scope.prestations.push($scope.ac);
+
   });
