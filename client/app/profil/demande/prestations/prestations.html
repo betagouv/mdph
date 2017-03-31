@@ -3,38 +3,6 @@
   <ul class="list-prestations">
     DEV
 
-    prestations {{prestations}}
-
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="cartestationnement.choice" name="cartestationnement" id="cartestationnement" />
-      </div>
-      <div class="detail">
-        <label for="cartestationnement">Carte de stationnement</label>&nbsp;&nbsp;<a target="_blank" href="_____LINK_____">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="cartestationnement.choice">
-            <input ng-disabled="!cartestationnement.choice" type="checkbox" ng-model="cartestationnement.renouvellement" name="cartestationnement-renouvellement" id="cartestationnement-renouvellement" />
-            <label for="cartestationnement-renouvellement">Je perçois déjà cette prestation</label>
-          </div>
-        </div>
-      </div>
-    </li>
-
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="carteinvalidite.choice" name="carteinvalidite" id="carteinvalidite" />
-      </div>
-      <div class="detail">
-        <label for="carteinvalidite">Carte d'invalidité ou de priorité</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2446.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="carteinvalidite.choice">
-            <input ng-disabled="!carteinvalidite.choice" type="checkbox" ng-model="carteinvalidite.renouvellement" name="carteinvalidite-renouvellement" id="carteinvalidite-renouvellement" />
-            <label for="carteinvalidite-renouvellement">Je perçois déjà cette prestation</label>
-          </div>
-        </div>
-      </div>
-    </li>
-
     <li>
       <div class="input">
         <input type="checkbox" ng-model="aeeh.choice" name="aeeh" id="aeeh" />
@@ -49,6 +17,70 @@
         </div>
       </div>
     </li>
+
+    <li>
+      <div class="input">
+        <input type="checkbox" ng-model="sms.choice" name="sms" id="sms" />
+      </div>
+      <div class="detail">
+        <label for="sms">Orientation en Etablissements et Services médico-sociaux</label>&nbsp;&nbsp;<a target="_blank" href="http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <div class="text-justify">
+          <div ng-if="sms.choice">
+            <input ng-disabled="!sms.choice" type="checkbox" ng-model="sms.renouvellement" name="sms-renouvellement" id="sms-renouvellement" />
+            <label for="sms-renouvellement">Je perçois déjà cette prestation</label>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="input">
+        <input type="checkbox" ng-model="ems.choice" name="ems" id="ems" />
+      </div>
+      <div class="detail">
+        <label for="ems">Accompagnement par un service ou établissement médico-social</label>&nbsp;&nbsp;<a target="_blank" href="http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <div class="text-justify">
+          <div ng-if="ems.choice">
+            <input ng-disabled="!ems.choice" type="checkbox" ng-model="ems.renouvellement" name="ems-renouvellement" id="ems-renouvellement" />
+            <label for="ems-renouvellement">Je perçois déjà cette prestation</label>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="input">
+        <input type="checkbox" ng-model="pch.choice" name="pch" id="pch" />
+      </div>
+      <div class="detail">
+        <label for="pch">Prestation de compensation du handicap</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/N14201.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <div class="text-justify">
+          <div ng-if="pch.choice">
+            <input ng-disabled="!pch.choice" type="checkbox" ng-model="pch.renouvellement" name="pch-renouvellement" id="pch-renouvellement" />
+            <label for="pch-renouvellement">Je perçois déjà cette prestation</label>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="input">
+        <input type="checkbox" ng-model="ac.choice" name="ac" id="ac" />
+      </div>
+      <div class="detail">
+        <label for="ac">Allocation compensatrice</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2475.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <div class="text-justify">
+          <div ng-if="ac.choice">
+            <input ng-disabled="!ac.choice" type="checkbox" ng-model="ac.renouvellement" name="ac-renouvellement" id="ac-renouvellement" />
+            <label for="ac-renouvellement">Je perçois déjà cette prestation</label>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    ACTP <br/>
+
+    ACFP <br/>
 
     <li>
       <div class="input">
@@ -82,18 +114,51 @@
 
     <li>
       <div class="input">
-        <input type="checkbox" ng-model="pch.choice" name="pch" id="pch" />
+        <input type="checkbox" ng-model="carteinvalidite.choice" name="carteinvalidite" id="carteinvalidite" />
       </div>
       <div class="detail">
-        <label for="pch">Prestation de compensation du handicap</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/N14201.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <label for="carteinvalidite">Carte d'invalidité ou de priorité</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2446.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
         <div class="text-justify">
-          <div ng-if="pch.choice">
-            <input ng-disabled="!pch.choice" type="checkbox" ng-model="pch.renouvellement" name="pch-renouvellement" id="pch-renouvellement" />
-            <label for="pch-renouvellement">Je perçois déjà cette prestation</label>
+          <div ng-if="carteinvalidite.choice">
+            <input ng-disabled="!carteinvalidite.choice" type="checkbox" ng-model="carteinvalidite.renouvellement" name="carteinvalidite-renouvellement" id="carteinvalidite-renouvellement" />
+            <label for="carteinvalidite-renouvellement">Je perçois déjà cette prestation</label>
           </div>
         </div>
       </div>
     </li>
+
+    <li>
+      <div class="input">
+        <input type="checkbox" ng-model="cartestationnement.choice" name="cartestationnement" id="cartestationnement" />
+      </div>
+      <div class="detail">
+        <label for="cartestationnement">Carte de stationnement</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2891.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <div class="text-justify">
+          <div ng-if="cartestationnement.choice">
+            <input ng-disabled="!cartestationnement.choice" type="checkbox" ng-model="cartestationnement.renouvellement" name="cartestationnement-renouvellement" id="cartestationnement-renouvellement" />
+            <label for="cartestationnement-renouvellement">Je perçois déjà cette prestation</label>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="input">
+        <input type="checkbox" ng-model="av.choice" name="av" id="av" />
+      </div>
+      <div class="detail">
+        <label for="av">Affiliation gratuite à l'assurance vieillesse (AVPF)</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2574.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+        <div class="text-justify">
+          <div ng-if="av.choice">
+            <input ng-disabled="!av.choice" type="checkbox" ng-model="av.renouvellement" name="av-renouvellement" id="av-renouvellement" />
+            <label for="av-renouvellement">Je perçois déjà cette prestation</label>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    prestations {{prestations}}
+
 
     <li>
       <div class="input">
@@ -110,35 +175,9 @@
       </div>
     </li>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="av.choice" name="av" id="av" />
-      </div>
-      <div class="detail">
-        <label for="av">Affiliation gratuite à l'assurance vieillesse</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2574.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="av.choice">
-            <input ng-disabled="!av.choice" type="checkbox" ng-model="av.renouvellement" name="av-renouvellement" id="av-renouvellement" />
-            <label for="av-renouvellement">Je perçois déjà cette prestation</label>
-          </div>
-        </div>
-      </div>
-    </li>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="ems.choice" name="ems" id="ems" />
-      </div>
-      <div class="detail">
-        <label for="ems">Accompagnement par un service ou établissement médico-social</label>&nbsp;&nbsp;<a target="_blank" href="http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="ems.choice">
-            <input ng-disabled="!ems.choice" type="checkbox" ng-model="ems.renouvellement" name="ems-renouvellement" id="ems-renouvellement" />
-            <label for="ems-renouvellement">Je perçois déjà cette prestation</label>
-          </div>
-        </div>
-      </div>
-    </li>
+
+
 
     <li>
       <div class="input">
@@ -185,20 +224,7 @@
       </div>
     </li>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="sms.choice" name="sms" id="sms" />
-      </div>
-      <div class="detail">
-        <label for="sms">Orientation en Etablissements et Services médico-sociaux</label>&nbsp;&nbsp;<a target="_blank" href="http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="sms.choice">
-            <input ng-disabled="!sms.choice" type="checkbox" ng-model="sms.renouvellement" name="sms-renouvellement" id="sms-renouvellement" />
-            <label for="sms-renouvellement">Je perçois déjà cette prestation</label>
-          </div>
-        </div>
-      </div>
-    </li>
+
 
     <li>
       <div class="input">
@@ -215,20 +241,7 @@
       </div>
     </li>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="ac.choice" name="ac" id="ac" />
-      </div>
-      <div class="detail">
-        <label for="ac">Allocation compensatrice</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2475.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="ac.choice">
-            <input ng-disabled="!ac.choice" type="checkbox" ng-model="ac.renouvellement" name="ac-renouvellement" id="ac-renouvellement" />
-            <label for="ac-renouvellement">Je perçois déjà cette prestation</label>
-          </div>
-        </div>
-      </div>
-    </li>
+
 
     FIN DEV
 

@@ -10,7 +10,7 @@ angular.module('impactApp')
     };
 
     function getSelectedPrestationIdList(filter) {
-      return _.chain(prestations)
+      return _.chain($scope.prestations)
        .filter(filter)
        .pluck('id')
        .value();
