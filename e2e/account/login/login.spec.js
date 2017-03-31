@@ -1,6 +1,7 @@
 'use strict';
 
 import {populate} from '../../../server/test/utils/seed';
+import {populate} from '../../../test/utils/seed';
 
 var config = browser.params;
 
