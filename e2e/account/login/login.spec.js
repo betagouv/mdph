@@ -1,7 +1,8 @@
 'use strict';
 
-import {populate} from '../../../server/test/utils/seed';
+import should from 'should';
 import {populate} from '../../../test/utils/seed';
+import pa11yRunner from '../../../test/utils/pa11y';
 
 var config = browser.params;
 
@@ -29,6 +30,15 @@ describe('Login View', function() {
     browser.wait(function() {
         return browser.executeScript('return !!window.angular');
     }, 5000).then(done);
+  });
+
+  it('should run pa11y', (done) => {
+    browser.getCurrentUrl().then(url => {
+      pa11yRunner({url, onlyErrors: true}, (err) => {
+        err.should.be.empty();
+        done();
+      });
+    });
   });
 
   it('should include login form with correct inputs and submit button', function() {
