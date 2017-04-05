@@ -6,26 +6,31 @@
   padding-top: 2px;
   background-color: $bg-blue;
 
-  ul {
-    padding: 0;
+  h2 {
+    color: white;
+    font-size: 1.2em;
+    margin-top: 15px;
+    padding: 0 5px;
   }
 
-  li {
-    display: block;
+  ul {
+    padding-left: 10px;
+    list-style-type: none;
   }
 
   ul > li > a {
-    padding: 4px;
+    padding: 5px;
     display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
     color: white;
 
-    &.active, &:focus, &:hover {
+    &:hover {
       text-decoration: none;
       background-color: $disabled-blue;
     }
 
+    &.active,
+    &.active:hover {
+      background-color: $flat-ui-blue;
     }
   }
 }

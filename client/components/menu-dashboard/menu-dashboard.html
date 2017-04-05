@@ -1,51 +1,41 @@
 <aside class="menu-dashboard">
   <div class="menu-slider" ng-class="getMenuSliderClass()">
     <div class="menu-general">
+      <h2>Flux de demandes</h2>
       <ul>
-        <li>
-          <a class="icon inbox" href ui-sref="dashboard.workflow" ui-sref-active="active">
-            Flux de demandes
+        <li ng-repeat="banette in banettes">
+          <a ui-sref-active="active" ui-sref="dashboard.workflow.list({status: banette.id})">
+            {{banette.label}}
+            <span
+              ng-class="{
+                'label-danger': banette.count >= 30,
+                'label-warning': banette.count >= 10 && banette.count < 30,
+                'label-success': banette.count < 10 && banette.count > 0,
+                'label-default': banette.count == 0}"
+              class="label pull-right">
+              {{banette.count}}
+            </span>
           </a>
-          <ul>
-            <li ng-repeat="banette in banettes">
-              <a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.list({status: banette.id})">
-                {{banette.label}}
-                <span
-                  ng-class="{
-                    'label-danger': banette.count >= 30,
-                    'label-warning': banette.count >= 10 && banette.count < 30,
-                    'label-success': banette.count < 10 && banette.count > 0,
-                    'label-default': banette.count == 0}"
-                  class="label pull-right">
-                  {{banette.count}}
-                </span>
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
+
+      <h2>Gestion de ma MDPH</h2>
       <ul>
         <li>
           <a ui-sref="dashboard.users.agents" ui-sref-active="active">
             Gestion des comptes agents
           </a>
         </li>
-      </ul>
-      <ul>
         <li>
           <a ui-sref="dashboard.dispatch.secteurs" ui-sref-active="active">
             Gestion des secteurs
           </a>
         </li>
-      </ul>
-      <ul>
         <li>
           <a ui-sref-active="active" ui-sref="dashboard.dispatch.regles">
             Distribution des demandes
           </a>
         </li>
-      </ul>
-      <ul>
         <li>
           <a ui-sref-active="active" ui-sref="dashboard.documents">
             Paramétrer l'export PDF
