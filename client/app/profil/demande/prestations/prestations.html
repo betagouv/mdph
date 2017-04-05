@@ -66,7 +66,9 @@
         </div>
       </li>
 
-      AC <br/>
+
+
+      <h6>Allocation Compensatrice (AC)</h6>
 
       <li>
         <div class="input">
@@ -83,7 +85,20 @@
         </div>
       </li>
 
-      ACFP <br/>
+      <li>
+        <div class="input">
+          <input type="checkbox" ng-model="ac.choice" name="ac" id="ac" />
+        </div>
+        <div class="detail">
+          <label for="ac">Allocation Compensatrice pour Frais Professionnels (ACFP)</label>&nbsp;&nbsp;<a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F1657">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <div class="text-justify">
+            <div ng-if="acfp.choice">
+              <input ng-disabled="!acfp.choice" type="checkbox" ng-model="acfp.renouvellement" name="acfp-renouvellement" id="acfp-renouvellement" />
+              <label for="acfp-renouvellement">Je perçois déjà cette prestation</label>
+            </div>
+          </div>
+        </div>
+      </li>
 
       <li>
         <div class="input">
@@ -116,7 +131,10 @@
         </div>
       </li>
 
-      Carte mobilité inclusion :
+
+
+      <h6>Carte mobilité inclusion</h6>
+
       <li>
         <div class="input">
           <input type="checkbox" ng-model="carteinvalidite.choice" name="carteinvalidite" id="carteinvalidite" />
@@ -169,86 +187,86 @@
 
     <h3>Demandes relatives à la vie scolaire</h3>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="sms_enfant.choice" name="sms_enfant" id="sms_enfant" />
-      </div>
-      <div class="detail">
-        <label for="sms_enfant">Parcours de scolarisation et/ou de formation avec ou sans accompagnement par un établissement ou service médico-social.</label>&nbsp;&nbsp;<a target="_blank" href="http://eduscol.education.fr/cid53162/les-etablissements-medico-sociaux.html">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="sms_enfant.choice">
-            <input ng-disabled="!sms_enfant.choice" type="checkbox" ng-model="sms_enfant.renouvellement" name="sms_enfant-renouvellement" id="sms_enfant-renouvellement" />
-            <label for="sms_enfant-renouvellement">Je perçois déjà cette prestation</label>
+      <li>
+        <div class="input">
+          <input type="checkbox" ng-model="sms_enfant.choice" name="sms_enfant" id="sms_enfant" />
+        </div>
+        <div class="detail">
+          <label for="sms_enfant">Parcours de scolarisation et/ou de formation avec ou sans accompagnement par un établissement ou service médico-social.</label>&nbsp;&nbsp;<a target="_blank" href="http://eduscol.education.fr/cid53162/les-etablissements-medico-sociaux.html">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <div class="text-justify">
+            <div ng-if="sms_enfant.choice">
+              <input ng-disabled="!sms_enfant.choice" type="checkbox" ng-model="sms_enfant.renouvellement" name="sms_enfant-renouvellement" id="sms_enfant-renouvellement" />
+              <label for="sms_enfant-renouvellement">Je perçois déjà cette prestation</label>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="pps.choice" name="pps" id="pps" />
-      </div>
-      <div class="detail">
-        <label for="pps">Plan personnalisé de scolarisation</label>&nbsp;&nbsp;<a target="_blank" href="http://www.education.gouv.fr/pid25535/bulletin_officiel.html&cid_bo=86108">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="pps.choice">
-            <input ng-disabled="!pps.choice" type="checkbox" ng-model="pps.renouvellement" name="pps-renouvellement" id="pps-renouvellement" />
-            <label for="pps-renouvellement">Je perçois déjà cette prestation</label>
+      <li>
+        <div class="input">
+          <input type="checkbox" ng-model="pps.choice" name="pps" id="pps" />
+        </div>
+        <div class="detail">
+          <label for="pps">Plan personnalisé de scolarisation</label>&nbsp;&nbsp;<a target="_blank" href="http://www.education.gouv.fr/pid25535/bulletin_officiel.html&cid_bo=86108">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <div class="text-justify">
+            <div ng-if="pps.choice">
+              <input ng-disabled="!pps.choice" type="checkbox" ng-model="pps.renouvellement" name="pps-renouvellement" id="pps-renouvellement" />
+              <label for="pps-renouvellement">Je perçois déjà cette prestation</label>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
 
     </div>
 
     <div class="well">
 
-    <h3>Demandes relatives au travail, à l’emploi et à la formation professionnelle</h3>
+      <h3>Demandes relatives au travail, à l’emploi et à la formation professionnelle</h3>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="rqth.choice" name="rqth" id="rqth" />
-      </div>
-      <div class="detail">
-        <label for="rqth">Reconnaissance de la Qualité de Travailleur Handicapé (RQTH)</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F1650.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="rqth.choice">
-            <input ng-disabled="!rqth.choice" type="checkbox" ng-model="rqth.renouvellement" name="rqth-renouvellement" id="rqth-renouvellement" />
-            <label for="rqth-renouvellement">Je perçois déjà cette prestation</label>
+      <li>
+        <div class="input">
+          <input type="checkbox" ng-model="rqth.choice" name="rqth" id="rqth" />
+        </div>
+        <div class="detail">
+          <label for="rqth">Reconnaissance de la Qualité de Travailleur Handicapé (RQTH)</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F1650.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <div class="text-justify">
+            <div ng-if="rqth.choice">
+              <input ng-disabled="!rqth.choice" type="checkbox" ng-model="rqth.renouvellement" name="rqth-renouvellement" id="rqth-renouvellement" />
+              <label for="rqth-renouvellement">Je perçois déjà cette prestation</label>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="orp.choice" name="orp" id="orp" />
-      </div>
-      <div class="detail">
-        <label for="orp">Orientation professionnelle</label>&nbsp;&nbsp;<a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F211">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="orp.choice">
-            <input ng-disabled="!orp.choice" type="checkbox" ng-model="orp.renouvellement" name="orp-renouvellement" id="orp-renouvellement" />
-            <label for="orp-renouvellement">Je perçois déjà cette prestation</label>
+      <li>
+        <div class="input">
+          <input type="checkbox" ng-model="orp.choice" name="orp" id="orp" />
+        </div>
+        <div class="detail">
+          <label for="orp">Orientation professionnelle</label>&nbsp;&nbsp;<a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F211">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <div class="text-justify">
+            <div ng-if="orp.choice">
+              <input ng-disabled="!orp.choice" type="checkbox" ng-model="orp.renouvellement" name="orp-renouvellement" id="orp-renouvellement" />
+              <label for="orp-renouvellement">Je perçois déjà cette prestation</label>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    <li>
-      <div class="input">
-        <input type="checkbox" ng-model="formation.choice" name="formation" id="formation" />
-      </div>
-      <div class="detail">
-        <label for="formation">Formation professionnelle</label>&nbsp;&nbsp;<a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/N198">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-        <div class="text-justify">
-          <div ng-if="formation.choice">
-            <input ng-disabled="!formation.choice" type="checkbox" ng-model="formation.renouvellement" name="formation-renouvellement" id="formation-renouvellement" />
-            <label for="formation-renouvellement">Je perçois déjà cette prestation</label>
+      <li>
+        <div class="input">
+          <input type="checkbox" ng-model="formation.choice" name="formation" id="formation" />
+        </div>
+        <div class="detail">
+          <label for="formation">Formation professionnelle</label>&nbsp;&nbsp;<a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/N198">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <div class="text-justify">
+            <div ng-if="formation.choice">
+              <input ng-disabled="!formation.choice" type="checkbox" ng-model="formation.renouvellement" name="formation-renouvellement" id="formation-renouvellement" />
+              <label for="formation-renouvellement">Je perçois déjà cette prestation</label>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
 
     </div>
 
