@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.users', {
         url: '/utilisateurs',
-        templateUrl: 'app/dashboard/users/users.html',
+        template: '<div ui-view></div>',
         controller: function($scope, pending, nonValid) {
           $scope.pending = pending;
           $scope.nonValid = nonValid;
