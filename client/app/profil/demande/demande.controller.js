@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations) {
+  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request) {
     $scope.request = request;
     $scope.currentUser = currentUser;
 
@@ -133,82 +133,82 @@ angular.module('impactApp')
     $scope.prestations = [];
 
     $scope.cartestationnement = {
-      'id': 'cartestationnement',
+      id: 'cartestationnement'
     };
     $scope.prestations.push($scope.cartestationnement);
 
     $scope.carteinvalidite = {
-      'id': "carteinvalidite"
+      id: 'carteinvalidite'
     };
     $scope.prestations.push($scope.carteinvalidite);
 
     $scope.aeeh = {
-      'id': "aeeh"
+      id: 'aeeh'
     };
     $scope.prestations.push($scope.aeeh);
 
     $scope.aah = {
-      'id': "aah"
+      id: 'aah'
     };
     $scope.prestations.push($scope.aah);
 
     $scope.complement = {
-      'id': "complement"
+      id: 'complement'
     };
     $scope.prestations.push($scope.complement);
 
     $scope.pch = {
-      'id': "pch"
+      id: 'pch'
     };
     $scope.prestations.push($scope.pch);
 
     $scope.rqth = {
-      'id': "rqth"
+      id: 'rqth'
     };
     $scope.prestations.push($scope.rqth);
 
     $scope.av = {
-      'id': "av"
+      id: 'av'
     };
     $scope.prestations.push($scope.av);
 
     $scope.ems = {
-      'id': "ems"
+      id: 'ems'
     };
     $scope.prestations.push($scope.ems);
 
     $scope.pps = {
-      'id': "pps"
+      id: 'pps'
     };
     $scope.prestations.push($scope.pps);
 
     $scope.orp = {
-      'id': "orp"
+      id: 'orp'
     };
     $scope.prestations.push($scope.orp);
 
     $scope.formation = {
-      'id': "formation"
+      id: 'formation'
     };
     $scope.prestations.push($scope.formation);
 
     $scope.sms = {
-      'id': "sms"
+      id: 'sms'
     };
     $scope.prestations.push($scope.sms);
 
     $scope.sms_enfant = {
-      'id': "sms_enfant"
+      id: 'sms_enfant'
     };
     $scope.prestations.push($scope.sms_enfant);
 
     $scope.ac = {
-      'id': "ac"
+      id: 'ac'
     };
     $scope.prestations.push($scope.ac);
 
     $scope.acfp = {
-      'id': "acfp"
+      id: 'acfp'
     };
     $scope.prestations.push($scope.acfp);
 
