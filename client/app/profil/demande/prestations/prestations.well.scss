@@ -1,4 +1,12 @@
 .well-detail-darker {
-  @extend .well-detail;
   background-color: $medium-heavy-grey;
+  position: relative;
+  -webkit-border-radius: 5px 5px 5px 5px ;
+  -moz-border-radius: 5px 5px 5px 5px ;
+  border-radius: 5px 5px 5px 5px ;
+  margin: 0 15px;
+
+  .row {
+    margin-bottom: 4px;
+  }
 }
