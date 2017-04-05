@@ -16,7 +16,6 @@ function compileContent(contentFile) {
 
 const receptionContentCompiled = compileContent('reception-request-content.html');
 const confirmationContentCompiled = compileContent('confirm-content.html');
-const medicContentCompiled = compileContent('medic-content.html');
 const urlFooterCompiled = compileContent('url-footer.html');
 
 const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
@@ -108,18 +107,5 @@ export function sendMailRenewPassword(emailDest, confirmationUrl) {
   return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
       Mailer.sendMail(emailDest, options.title, htmlContent);
-    });
-}
-
-export function sendMailMedic(request, email) {
-  let url = `https://mdph.beta.gouv.fr/mdph/14/medecin?shortId=${request.shortId}&email=${email}`;
-  let options = {};
-  options.title = 'Demande de certificat médical';
-  options.content = medicContentCompiled({request, url});
-  options.footer = urlFooterCompiled({url});
-
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(email, options.title, htmlContent);
     });
 }

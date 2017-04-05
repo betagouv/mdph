@@ -151,10 +151,6 @@ angular.module('impactApp')
 
       generateReceptionMail(request) {
         return $http.get(`api/requests/${request.shortId}/generate-reception-mail`);
-      },
-
-      generateMedicMail(request, emailMedic) {
-        return $http.post(`api/requests/${request.shortId}/generate-medic-mail`, {emailMedic});
       }
     };
   });

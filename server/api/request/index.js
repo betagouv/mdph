@@ -22,7 +22,6 @@ router.put('/:shortId', isAgentOrOwner(), controller.update);
 router.delete('/:shortId', isAgentOrOwner(), controller.destroy);
 
 router.get('/:shortId/generate-reception-mail', isAgentOrOwner(), controller.generateReceptionMail);
-router.post('/:shortId/generate-medic-mail', isAgentOrOwner(), controller.generateMedicMail);
 router.post('/:shortId/action', isAgentOrOwner(), controller.saveAction);
 router.get('/:shortId/history', isAgentOrOwner(), controller.getHistory);
 router.get('/:shortId/recapitulatif', isAgentOrOwner(), controller.getRecapitulatif);
