@@ -37,39 +37,6 @@ angular.module('impactApp')
         },
         authenticate: true
       })
-      .state('dashboard.users.beneficiaires.edit', {
-        url: '/:id',
-        templateUrl: 'app/dashboard/users/beneficiaires/edit.html',
-        controller: 'BeneficiairesEditCtrl',
-        resolve: {
-          user: function(User, $stateParams) {
-            return User.get({id: $stateParams.id}).$promise;
-          }
-        },
-        authenticate: true
-      })
-      .state('dashboard.users.beneficiaires', {
-        url: '/beneficiaires',
-        templateUrl: 'app/dashboard/users/beneficiaires/beneficiaires.html',
-        controller: 'BeneficiairesCtrl',
-        authenticate: true
-      })
-      .state('dashboard.users.agents.edit', {
-        url: '/:id',
-        templateUrl: 'app/dashboard/users/agents/edit.html',
-        controller: 'AgentsEditCtrl',
-        resolve: {
-          user: function(User, $stateParams) {
-            var id = $stateParams.id;
-            if (id && id !== 'nouvel_agent') {
-              return User.get({id: $stateParams.id}).$promise;
-            } else {
-              return new User();
-            }
-          }
-        },
-        authenticate: true
-      })
       .state('dashboard.users.partenaires', {
         url: '/:status',
         templateUrl: 'app/dashboard/users/partenaires/partenaires.html',

@@ -166,38 +166,6 @@ exports.me = function(req, res, next) {
   });
 };
 
-import lunr from 'lunr';
-
-/**
- * Search by email
- */
-exports.search = function(req, res, next) {
-  var searchQuery = req.query.search;
-
-  var idx = lunr(function() {
-    this.field('email', {boost: 10});
-    this.field('name');
-    this.ref('_id');
-  });
-
-  User
-    .find() // don't ever give out the password or salt)
-    .exec((err, users) => {
-      if (err) return next(err);
-      if (!users) return res.sendStatus(404);
-
-      users.forEach(user => {
-        idx.add(user);
-      });
-
-      var results = idx.search(searchQuery).map(function(result) {
-        return users.filter(function(u) { return u._id === result.ref; })[0];
-      });
-
-      res.json(results);
-    });
-};
-
 /**
  * Authentication callback
  */
@@ -253,20 +221,6 @@ exports.confirmMail = function(req, res) {
     user.save(function(err) {
       if (err) return validationError(res, err);
       return res.sendStatus(200);
-    });
-  });
-};
-
-exports.confirm = function(req, res) {
-  User.findById(req.params.id, function(err, user) {
-    if (err) return handleError(req, res, err);
-    if (!user) return res.sendStatus(404);
-    if (user.unconfirmed === false) return res.sendStatus(304);
-
-    user.unconfirmed = false;
-    user.save(function(err, saved) {
-      if (err) return validationError(res, err);
-      return res.json(saved);
     });
   });
 };
