@@ -207,4 +207,9 @@ angular.module('impactApp')
     };
     $scope.prestations.push($scope.ac);
 
+    $scope.acfp = {
+      'id': "acfp"
+    };
+    $scope.prestations.push($scope.acfp);
+
   });
