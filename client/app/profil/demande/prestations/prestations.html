@@ -70,35 +70,39 @@
 
       <h6>Allocation Compensatrice (AC)</h6>
 
-      <li>
-        <div class="input">
-          <input type="checkbox" ng-model="ac.choice" name="ac" id="ac" />
-        </div>
-        <div class="detail">
-          <label for="ac">Allocation Compensatrice pour Tierce Personne (ACTP)</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2475.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-          <div class="text-justify">
-            <div ng-if="ac.choice">
-              <input ng-disabled="!ac.choice" type="checkbox" ng-model="ac.renouvellement" name="ac-renouvellement" id="ac-renouvellement" />
-              <label for="ac-renouvellement">Je perçois déjà cette prestation</label>
-            </div>
-          </div>
-        </div>
-      </li>
+      <div class="well-detail">
 
-      <li>
-        <div class="input">
-          <input type="checkbox" ng-model="ac.choice" name="ac" id="ac" />
-        </div>
-        <div class="detail">
-          <label for="ac">Allocation Compensatrice pour Frais Professionnels (ACFP)</label>&nbsp;&nbsp;<a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F1657">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-          <div class="text-justify">
-            <div ng-if="acfp.choice">
-              <input ng-disabled="!acfp.choice" type="checkbox" ng-model="acfp.renouvellement" name="acfp-renouvellement" id="acfp-renouvellement" />
-              <label for="acfp-renouvellement">Je perçois déjà cette prestation</label>
+        <li>
+          <div class="input">
+            <input type="checkbox" ng-model="ac.choice" name="ac" id="ac" />
+          </div>
+          <div class="detail">
+            <label for="ac">Allocation Compensatrice pour Tierce Personne (ACTP)</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2475.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <div class="text-justify">
+              <div ng-if="ac.choice">
+                <input ng-disabled="!ac.choice" type="checkbox" ng-model="ac.renouvellement" name="ac-renouvellement" id="ac-renouvellement" />
+                <label for="ac-renouvellement">Je perçois déjà cette prestation</label>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+
+        <li>
+          <div class="input">
+            <input type="checkbox" ng-model="acfp.choice" name="acfp" id="acfp" />
+          </div>
+          <div class="detail">
+            <label for="acfp">Allocation Compensatrice pour Frais Professionnels (ACFP)</label>&nbsp;&nbsp;<a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F1657">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <div class="text-justify">
+              <div ng-if="acfp.choice">
+                <input ng-disabled="!acfp.choice" type="checkbox" ng-model="acfp.renouvellement" name="acfp-renouvellement" id="acfp-renouvellement" />
+                <label for="acfp-renouvellement">Je perçois déjà cette prestation</label>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </div>
 
       <li>
         <div class="input">
@@ -106,7 +110,6 @@
         </div>
         <div class="detail">
           <label for="aah">Allocation aux Adultes Handicapés (AAH)</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/N12230.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-          « La loi prévoit que la MDPH est obligée d’évaluer le droit à la reconnaissance de la qualité de travailleur handicapé (RQTH) et à l’orientation professionnelle lorsqu’une demande d’AAH est formulée »
           <div class="text-justify">
             <div ng-if="aah.choice">
               <input ng-disabled="!aah.choice" type="checkbox" ng-model="aah.renouvellement" name="aah-renouvellement" id="aah-renouvellement" />
@@ -135,36 +138,39 @@
 
       <h6>Carte mobilité inclusion</h6>
 
-      <li>
-        <div class="input">
-          <input type="checkbox" ng-model="carteinvalidite.choice" name="carteinvalidite" id="carteinvalidite" />
-        </div>
-        <div class="detail">
-          <label for="carteinvalidite">Mention invalidité ou priorité</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2446.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-          (le cas échéant avec mention besoin d’accompagnement ou besoin d’accompagnement cécité)
-          <div class="text-justify">
-            <div ng-if="carteinvalidite.choice">
-              <input ng-disabled="!carteinvalidite.choice" type="checkbox" ng-model="carteinvalidite.renouvellement" name="carteinvalidite-renouvellement" id="carteinvalidite-renouvellement" />
-              <label for="carteinvalidite-renouvellement">Je perçois déjà cette prestation</label>
-            </div>
-          </div>
-        </div>
-      </li>
+      <div class="well-detail">
 
-      <li>
-        <div class="input">
-          <input type="checkbox" ng-model="cartestationnement.choice" name="cartestationnement" id="cartestationnement" />
-        </div>
-        <div class="detail">
-          <label for="cartestationnement">Stationnement</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2891.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-          <div class="text-justify">
-            <div ng-if="cartestationnement.choice">
-              <input ng-disabled="!cartestationnement.choice" type="checkbox" ng-model="cartestationnement.renouvellement" name="cartestationnement-renouvellement" id="cartestationnement-renouvellement" />
-              <label for="cartestationnement-renouvellement">Je perçois déjà cette prestation</label>
+        <li>
+          <div class="input">
+            <input type="checkbox" ng-model="carteinvalidite.choice" name="carteinvalidite" id="carteinvalidite" />
+          </div>
+          <div class="detail">
+            <label for="carteinvalidite">Mention invalidité ou priorité</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2446.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <div class="text-justify">
+              <div ng-if="carteinvalidite.choice">
+                <input ng-disabled="!carteinvalidite.choice" type="checkbox" ng-model="carteinvalidite.renouvellement" name="carteinvalidite-renouvellement" id="carteinvalidite-renouvellement" />
+                <label for="carteinvalidite-renouvellement">Je perçois déjà cette prestation</label>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+
+        <li>
+          <div class="input">
+            <input type="checkbox" ng-model="cartestationnement.choice" name="cartestationnement" id="cartestationnement" />
+          </div>
+          <div class="detail">
+            <label for="cartestationnement">Stationnement</label>&nbsp;&nbsp;<a target="_blank" href="http://vosdroits.service-public.fr/particuliers/F2891.xhtml">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <div class="text-justify">
+              <div ng-if="cartestationnement.choice">
+                <input ng-disabled="!cartestationnement.choice" type="checkbox" ng-model="cartestationnement.renouvellement" name="cartestationnement-renouvellement" id="cartestationnement-renouvellement" />
+                <label for="cartestationnement-renouvellement">Je perçois déjà cette prestation</label>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </div>
 
       <li>
         <div class="input">
@@ -269,8 +275,6 @@
       </li>
 
     </div>
-
-    <br/>prestations {{prestations}}<br/>
 
   </ul>
 
