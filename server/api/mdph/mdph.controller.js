@@ -195,10 +195,6 @@ export function showBeneficiaires(req, res) {
         .map('profile')
         .uniq('_id')
         .map((profile) => {
-          if (!profile) {
-            return profile;
-          }
-
           profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
           profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
           return profile;
