@@ -105,28 +105,4 @@ angular.module('impactApp')
         }
       }
     };
-
-    $scope.openMedicModal = () => {
-      $modal.open({
-        templateUrl: 'app/profil/demande/medic-modal.html',
-        controllerAs: 'medicModalCtrl',
-        size: 'md',
-        controller($modalInstance) {
-          this.emailMedic = '';
-
-          this.ok = function(form) {
-            if (form.$invalid) {
-              form.showError = true;
-            } else {
-              RequestService.generateMedicMail(request, this.emailMedic);
-              $modalInstance.close();
-            }
-          };
-
-          this.cancel = function() {
-            $modalInstance.close();
-          };
-        }
-      });
-    };
   });
