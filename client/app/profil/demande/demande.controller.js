@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function($scope, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations) {
+  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations) {
     $scope.request = request;
     $scope.currentUser = currentUser;
 
@@ -16,13 +16,35 @@ angular.module('impactApp')
        .value();
     }
 
-    let openConfirmModal = () => {
+    const openErrorModal = ({message, focusFunction, label = 'Retourner au profil'}) => {
       $modal.open({
-        templateUrl: 'app/profil/demande/modal.html',
-        controllerAs: 'requestModalCtrl',
+        templateUrl: 'components/generic-modal/generic-modal.html',
+        controllerAs: 'ctrl',
         size: 'md',
         controller($modalInstance) {
-          this.ok = function() {
+          this.title = 'Erreur lors de la tentative d\'envoi de la demande';
+          this.body = message;
+          this.successLabel = label;
+
+          this.success = function() {
+            $modalInstance.close();
+            focusFunction();
+          };
+        }
+      });
+    };
+
+    const openConfirmModal = () => {
+      $modal.open({
+        templateUrl: 'components/generic-modal/generic-modal.html',
+        controllerAs: 'ctrl',
+        size: 'md',
+        controller($modalInstance) {
+          this.title = 'Confirmation d\'envoi de votre demande';
+          this.body = 'Votre demande a bien été transmise !';
+          this.successLabel = 'Retourner au profil';
+
+          this.success = function() {
             $modalInstance.close();
           };
         }
@@ -41,11 +63,32 @@ angular.module('impactApp')
         }
 
         if (!RequestService.getCompletion(request)) {
-          toastr.error('Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.', 'Erreur lors de la tentative d\'envoi');
+          openErrorModal({
+            label: 'Accéder à la section des documents obligatoires',
+            message: 'Vous n\'avez pas fourni l\'ensemble des documents obligatoires pour la complétude de votre demande.',
+            focusFunction: () => {
+              $location.hash('section-documents');
+              $anchorScroll();
+            }
+          });
         } else if (currentUser.unconfirmed) {
-          toastr.error('Vous n\'avez pas confirmé votre compte ' + currentUser.email, 'Erreur lors de la tentative d\'envoi');
+          openErrorModal({
+            label: 'Accéder à votre compte',
+            message: `<p>Vous n'avez pas encore confirmé votre compte <em>${currentUser.email}</em>.</p>
+            <p>Nous vous avons envoyé un mail contenant un lien à suivre pour finaliser l'ouverture de votre compte. Si vous ne retrouvez pas cet email, vous pouvez accéder à <a href="/mdph/${$scope.request.mdph}/mon_compte">votre compte</a> pour envoyer un nouveau email de confirmation.</p>`,
+            focusFunction: () => {
+              $state.go('mon_compte');
+            }
+          });
         } else if (request.prestations.length < 1 && request.renouvellements.length < 1) {
-          toastr.error('Vous n\'avez pas demandé de prestation', 'Erreur lors de la tentative d\'envoi');
+          openErrorModal({
+            label: 'Accéder à la section de sélection des prestations',
+            message: `Vous devez sélectionner au moins une prestation.`,
+            focusFunction: () => {
+              $location.hash('section-prestations');
+              $anchorScroll();
+            }
+          });
         } else {
           return RequestService.postAction(request, {
             id: 'submit',
