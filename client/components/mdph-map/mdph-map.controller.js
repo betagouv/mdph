@@ -86,7 +86,13 @@ angular.module('impactApp')
           }
         };
 
-        const popup = L.mapbox.featureLayer(featureLayer).addTo(map);
+        const options = {
+          popupOptions: {
+            minWidth: 350,
+          },
+        };
+
+        const popup = L.mapbox.featureLayer(featureLayer, options).addTo(map);
         if (first) {
           popup.openPopup();
           first = false;
