@@ -118,5 +118,13 @@
     "title": "Allocation compensatrice",
     "link": "http://vosdroits.service-public.fr/particuliers/F2475.xhtml",
     "description": "Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du handicap. Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver."
+  },
+  {
+    "id": "acfp",
+    "type": "compensation",
+    "label": "ACFP",
+    "title": "Allocation Compensatrice pour Frais Professionnels (ACFP)",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F1657",
+    "description": "Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du handicap. Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver."
   }
 ]
