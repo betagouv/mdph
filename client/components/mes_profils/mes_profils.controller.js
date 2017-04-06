@@ -7,7 +7,6 @@ angular.module('impactApp').controller('MesProfilsCtrl', function($state, $modal
     var newProfile = new ProfileResource();
     newProfile.$save({userId: this.user._id}, function(result) {
       $state.go('profil', {profileId: result._id});
-      this.profiles.push(result);
     });
   };
 })
