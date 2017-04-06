@@ -55,6 +55,14 @@ angular.module('impactApp')
         }
       },
 
+      queryBeneficiaires: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller:'beneficiaires'
+        }
+      },
+
       queryRequests: {
         method: 'GET',
         isArray: true,

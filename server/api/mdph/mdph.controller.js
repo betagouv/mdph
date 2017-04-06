@@ -179,6 +179,33 @@ export function showRequests(req, res) {
     });
 }
 
+export function showBeneficiaires(req, res) {
+  Request.find({ mdph: req.mdph.zipcode, status: {$ne: 'en_cours'} })
+    .populate('profile')
+    .exec(function(err, requests) {
+      if (err) return handleError(req, res, err);
+
+      function capitalize(input) {
+        return input.replace(/\w\S*/g, function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      }
+
+      const profiles = _(requests)
+        .map('profile')
+        .uniq('_id')
+        .map((profile) => {
+          profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
+          profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
+          return profile;
+        })
+        .sortBy('identites.beneficiaire.nom')
+        .value();
+
+      return res.send(profiles);
+    });
+}
+
 export function showRequestsByStatus(req, res) {
   Request
     .aggregate([

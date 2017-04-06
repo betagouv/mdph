@@ -2,10 +2,9 @@
 
 import Synthese from './synthese.model';
 import Profile from '../profile/profile.model';
-import Request from '../request/request.model';
 
-import {startServer} from '../../test/utils/server';
-import {populate} from '../../test/utils/seed';
+import { startServer } from '../../test/utils/server';
+import { populate } from '../../test/utils/seed';
 
 describe('Synthese Integration', function() {
   let api;
@@ -14,8 +13,6 @@ describe('Synthese Integration', function() {
   let tokenAdminMdph;
   let testUser;
   let server;
-  let newRequest;
-  let newSynthese;
   let newProfile;
 
   before(done => {
@@ -35,29 +32,6 @@ describe('Synthese Integration', function() {
           })
           .then(created => {
             newProfile = created;
-            return newProfile;
-          })
-          .then(profile => {
-            return Request.create({
-              user: profile.user,
-              profile: profile._id,
-              shortId: '1234'
-            });
-          })
-          .then(created => {
-            newRequest = created;
-            return newRequest;
-          })
-          .then(request => {
-            return Synthese.create({
-              user: request.user,
-              profile: request.profile,
-              request: request._id,
-              geva: 'fakeGeva'
-            });
-          })
-          .then(created => {
-            newSynthese = created;
             done();
           });
       });
@@ -67,51 +41,23 @@ describe('Synthese Integration', function() {
   after(done => {
     Synthese.remove().exec();
     Profile.remove().exec();
-    Request.remove().exec();
     server.close();
     done();
   });
 
-  describe('Create Synthese', function() {
-    it('should respond 201', done => {
-      var updatedSynthese;
-
-      api
-        .post(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/?access_token=${tokenAdmin}`)
-        .send({
-          user: testUser._id,
-          profile: newProfile._id,
-          geva: 'fakeGeva'
-        })
-        .expect(201)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-
-          updatedSynthese = res.body;
-          updatedSynthese.geva.should.equal('fakeGeva');
-          done();
-        });
-    });
-  });
-
-  describe('Get a single Synthese with a regular user', function() {
-    describe('Get a single Synthese with a regular user', function() {
-      it('should return 403', done => {
+  describe('Get a single Synthese', function() {
+    describe('as a regular user', function() {
+      it('should be forbidden', done => {
         api
-          .get(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${token}`)
+          .get(`/api/mdphs/test/syntheses/${newProfile._id}/syntheses?access_token=${token}`)
           .expect(403, done);
       });
     });
 
-    describe('Get a single Synthese with an admin MDPH', function() {
-      it('should return the specified synthese', done => {
-        var gettedSynthese;
-
+    describe('as an admin', function() {
+      it('should return a new synthese if none exist', done => {
         api
-          .get(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${tokenAdminMdph}`)
+          .get(`/api/mdphs/test/syntheses/${newProfile._id}?access_token=${tokenAdminMdph}`)
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function(err, res) {
@@ -119,24 +65,36 @@ describe('Synthese Integration', function() {
               return done(err);
             }
 
-            gettedSynthese = res.body;
-            gettedSynthese.should.have.property('user');
-            gettedSynthese.should.have.property('profile');
+            res.body.length.should.be.exactly(1);
+            res.body[0].current.should.be.exactly(true);
             done();
           });
+      });
+
+      it('should return two syntheses if one aleady exists', done => {
+        Synthese.create({ profile: newProfile._id}).then(() => {
+          api
+            .get(`/api/mdphs/test/syntheses/${newProfile._id}?access_token=${tokenAdminMdph}`)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .end(function(err, res) {
+              if (err) {
+                return done(err);
+              }
+
+              res.body.length.should.be.exactly(2);
+              res.body[1].current.should.be.exactly(true);
+              done();
+            });
+        });
       });
     });
   });
 
   describe('Update Synthese', function() {
     it('should respond with the updated synthese', done => {
-      var updatedSynthese;
-
       api
-        .put(`/api/users/${testUser._id}/profiles/${newProfile._id}/syntheses/${newSynthese._id}?access_token=${tokenAdmin}`)
-        .send({
-          geva: 'updatedGeva'
-        })
+        .get(`/api/mdphs/test/syntheses/${newProfile._id}?access_token=${tokenAdminMdph}`)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
@@ -144,9 +102,23 @@ describe('Synthese Integration', function() {
             return done(err);
           }
 
-          updatedSynthese = res.body;
-          updatedSynthese.geva.should.equal('updatedGeva');
-          done();
+          const currentSynthese = res.body[0];
+
+          api
+            .put(`/api/mdphs/test/syntheses/${newProfile._id}/syntheses/${currentSynthese._id}?access_token=${tokenAdmin}`)
+            .send({
+              geva: 'updatedGeva'
+            })
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .end(function(err, res) {
+              if (err) {
+                return done(err);
+              }
+
+              res.body.geva.should.equal('updatedGeva');
+              done();
+            });
         });
     });
   });

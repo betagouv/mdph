@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestSectionCtrl', function($scope, $stateParams, $state, section, sectionId, questionId, GevaService, request, currentSynthese) {
+  .controller('DetailEvaluationCtrl', function($scope, $modal, $cookies, $state, $stateParams, currentMdph, sections, section, sectionId, model, GevaService, listSyntheses, currentSynthese) {
+    $scope.model = model;
+    $scope.sections = sections;
+    $scope.token = $cookies.get('token');
+    $scope.listSyntheses = listSyntheses;
+
     $scope.sectionId = sectionId;
-    $scope.currentQuestionId = questionId;
 
     if (!currentSynthese.geva) {
       currentSynthese.geva = {};
@@ -33,7 +37,7 @@ angular.module('impactApp')
       }
     }
 
-    (function applyModelToSection(request, section) {
+    (function applyModelToSection(section) {
       var model = currentSynthese.geva[section.id];
       _.forEach(section.trajectoires, function(trajectoire) {
         _.forEach(model, function(id) {
@@ -44,7 +48,7 @@ angular.module('impactApp')
         });
       });
 
-    })(request, section);
+    })(section);
 
     function answersToIdArray(root, level) {
       return _.reduce(root, function(result, question) {
@@ -79,7 +83,7 @@ angular.module('impactApp')
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
 
-      currentSynthese.$update({userId: currentSynthese.user._id, profileId: currentSynthese.profile, syntheseId: currentSynthese._id}, function() {
+      currentSynthese.$update({zipcode: currentMdph.zipcode, profileId: currentSynthese.profile, controllerId: currentSynthese._id}, function() {
         $state.go('.', {}, {reload: true});
       });
     };

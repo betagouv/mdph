@@ -1,11 +1,11 @@
-<div class="section-detail">
-  <a ui-sref="^"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Retour au menu de la synthèse</a>
+<div id="section-detail">
+  <a ui-sref="^"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Retour à la liste des bénéficiaires</a>
 
   <div class="panel with-nav-tabs panel-default">
     <div class="panel-heading">
       <ul class="nav nav-tabs nav-justified">
         <li ui-sref-active="active" ng-repeat="section in sections" role="presentation">
-          <a ui-sref="sectionEvaluation({sectionId: section.id})">{{section.label}}</a>
+          <a ui-sref="dashboard.evaluation.detail({sectionId: section.id})">{{section.label}}</a>
         </li>
       </ul>
     </div>
@@ -28,6 +28,7 @@
       </div>
     </div>
   </div>
-</div>
 
-<history-synthese list-syntheses="listSyntheses" current-synthese="currentSynthese" section-id="sectionId"></history-synthese>
+  <history-synthese list-syntheses="listSyntheses" current-synthese="currentSynthese"></history-synthese>
+
+</div>
