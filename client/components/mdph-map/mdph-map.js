@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp').component('mdphMap', {
-  templateUrl: 'components/mdph-map/mdph-map.html',
+  template: '<div id="map"></div>',
   controller: 'MdphMapCtrl',
   controllerAs: 'mdphmapctrl',
   bindings: {

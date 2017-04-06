@@ -30,8 +30,12 @@
 
     <p>Votre MDPH n'accepte pas les demandes en ligne</p>
 
-    <a class="btn btn-lg btn-link" href="https://www.service-public.fr/particuliers/vosdroits/N12230">
+    <a ng-if="!departementctrl.currentMdph.outsideLink" class="btn btn-lg btn-link" href="https://www.service-public.fr/particuliers/vosdroits/N12230">
       Continuer sur service-public.fr
+    </a>
+
+    <a ng-if="departementctrl.currentMdph.outsideLink" class="btn btn-lg btn-link" ng-href="{{ departementctrl.currentMdph.outsideLink.href }}">
+      Continuer sur {{ departementctrl.currentMdph.outsideLink.label }}
     </a>
   </div>
 </header>
