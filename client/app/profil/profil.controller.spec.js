@@ -9,12 +9,6 @@ describe('ProfilCtrl', function() {
     error() {}
   };
 
-  var spyRequestRessource = jasmine.createSpy('spy');
-  function RequestResource(par) {
-    spyRequestRessource(par);
-    this.$save = function() {};
-  }
-
   beforeEach(function() {
     module('impactApp');
   });
@@ -26,6 +20,12 @@ describe('ProfilCtrl', function() {
   describe('nouvelleDemande', function() {
 
     describe('without missing section', function() {
+      var spyRequestRessource = jasmine.createSpy('spy');
+      function RequestResource(par) {
+        spyRequestRessource(par);
+        this.$save = function() {};
+      }
+
       describe('with a need for CV', function() {
         let ProfileService = {
           estAdulte() {
