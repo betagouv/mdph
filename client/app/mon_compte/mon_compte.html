@@ -57,8 +57,12 @@
                      zxcvbn="passwordStrength" zx-min-score="1"/>
               <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
             </div>
+
+            <div ng-messages="form.password.$error" ng-if="form.$submitted">
+              <p id="error-message" ng-message="passwordStrength" class="help-block">Votre mot de passe est d'une robustesse trop faible</p>
+            </div>
+
             <password-strength-bar password="passwordForm.newPassword.$viewValue"></password-strength-bar>
-            <p class="help-block" ng-messages="passwordForm.newPassword.$error" ng-if="passwordForm.$submitted">Le mot de passe doit avoir une robustesse plus elevé</p>
           </div>
         </div>
 
