@@ -4,17 +4,21 @@
 
 describe('ProfilCtrl', function() {
   let $controller;
+  let $modal;
 
   let toastr = {
-    error() {}
+    error() {},
+
+    success() {}
   };
 
   beforeEach(function() {
     module('impactApp');
   });
 
-  beforeEach(inject(function(_$controller_) {
+  beforeEach(inject(function(_$controller_, _$modal_) {
     $controller = _$controller_;
+    $modal = _$modal_;
   }));
 
   describe('nouvelleDemande', function() {
@@ -161,5 +165,104 @@ describe('ProfilCtrl', function() {
       });
 
     });
+  });
+
+  describe('should delete profile and go back to departement page', function() {
+    let $state = {
+      go() {}
+    };
+
+    beforeEach(function() {
+      spyOn($state, 'go');
+    });
+
+    var spyRequestRessource = jasmine.createSpy('spy');
+    function RequestResource(par) {
+      spyRequestRessource(par);
+      this.$delete = function() {};
+    }
+
+    let ProfileService = {
+      estAdulte() {
+        return true;
+      },
+
+      getMissingSection() {
+        return [];
+      },
+
+      needUploadCV() {
+        return true;
+      }
+    };
+
+    let profile = {
+      $delete(args, callback) {
+        return callback();
+      },
+
+      getTitle() {
+        return null;
+      }
+    };
+
+    // http://stackoverflow.com/questions/21214868/mocking-modal-in-angularjs-unit-tests
+    let fakeModal = {
+      result: {
+        then: function(confirmCallback, cancelCallback) {
+          //Store the callbacks for later when the user clicks on the OK or Cancel button of the dialog
+
+          this.confirmCallBack = confirmCallback;
+          this.cancelCallback = cancelCallback;
+          return confirmCallback(true);
+        }
+      },
+
+      close: function(item) {
+        //The user clicked OK on the modal dialog, call the stored confirm callback with the selected item
+
+        this.result.confirmCallBack(item);
+
+      },
+
+      dismiss: function(type) {
+        //The user clicked cancel on the modal dialog, call the stored cancel callback
+
+        this.result.cancelCallback(type);
+
+      }
+    };
+
+    let controller;
+
+    beforeEach(function() {
+      controller = $controller('ProfilCtrl', {
+        $state,
+        $modal,
+        $http: {},
+        User: {},
+        ProfileService,
+        RequestResource,
+        currentUser: {_id: '5678'},
+        profile,
+        currentRequest: {},
+        hasRequest: 0,
+        toastr,
+        $anchorScroll: {}
+      });
+    });
+
+    beforeEach(inject(function($modal) {
+      spyOn($modal, 'open').and.returnValue(fakeModal);
+    }));
+
+    it('should go back to departement', function() {
+      controller.delete();
+
+      expect($modal.open).toHaveBeenCalled();
+      expect($state.go).toHaveBeenCalled();
+      expect($state.go.calls.argsFor(0)[0]).toEqual('departement');
+    });
+
   });
 });
