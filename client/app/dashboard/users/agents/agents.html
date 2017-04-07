@@ -1,8 +1,6 @@
 <div ui-view>
   <div class="list-header">
-    <h2 class="padding-title">Liste des agents</h2>
-
-    <form class="form-group">
+    <form class="pull-right">
       <div class="input-group search">
         <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
         <div class="input-group-btn">
@@ -13,9 +11,11 @@
       </div>
     </form>
 
+    <h2 class="padding-title">Gestion des comptes agents</h2>
+
     <div class="tools">
       <a class="btn btn-sm btn-primary" ui-sref="dashboard.users.agents.edit({id: 'nouvel_agent'})">
-        <i class="fa fa-plus"></i> Ajouter un agent
+        Ajouter un compte
       </a>
     </div>
   </div>

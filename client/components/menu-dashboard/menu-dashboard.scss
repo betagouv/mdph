@@ -6,87 +6,31 @@
   padding-top: 2px;
   background-color: $bg-blue;
 
-  ul {
-    padding: 0;
+  h2 {
+    color: white;
+    font-size: 1.2em;
+    margin-top: 15px;
+    padding: 0 5px;
   }
 
-  li {
-    display: block;
+  ul {
+    padding-left: 10px;
+    list-style-type: none;
   }
 
   ul > li > a {
-    padding: 4px;
+    padding: 5px;
     display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
     color: white;
 
-    &.active, &:focus, &:hover {
+    &:hover {
       text-decoration: none;
       background-color: $disabled-blue;
     }
 
-    &.icon:before {
-      content: ' ';
-      font-family: 'FontAwesome';
-      color: lighten($flat-ui-blue, 10%);
-      font-size: 12px;
-      width: 20px;
-      display: inline-block;
-      text-align: center;
-    }
-
-    &.home:before {
-      content: '\f015';
-    }
-
-    &.sign-out:before {
-      content: '\f08b';
-    }
-
-    &.globe:before {
-      content: '\f0ac';
-    }
-
-    &.user:before {
-      content: '\f007';
-    }
-
-    &.users:before {
-      content: '\f0c0';
-    }
-
-    &.code-fork:before {
-      content: '\f126';
-    }
-
-    &.inbox:before {
-      content: '\f01c';
-    }
-
-    &.book:before {
-      content: '\f02d';
-    }
-
-    &.arrow-left:before {
-      content: '\f060';
-    }
-  }
-
-  .dashboard-sub-menu {
-    a {
-      padding: 5px 10px 5px 40px;
-      position: relative;
-
-      &:before {
-        font-family: 'FontAwesome';
-        content: '\f0da';
-        color: lighten($flat-ui-blue, 10%);
-        position: absolute;
-        font-size: 11px;
-        left: 28px;
-        top: 7px;
-      }
+    &.active,
+    &.active:hover {
+      background-color: $flat-ui-blue;
     }
   }
 }

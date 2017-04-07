@@ -21,19 +21,6 @@ angular.module('impactApp')
       changeInfo: {
         method: 'PUT'
       },
-      search: {
-        method: 'GET',
-        isArray: true,
-        params: {
-          id: 'search'
-        }
-      },
-      confirm: {
-        method: 'POST',
-        params: {
-          controller: 'confirm'
-        }
-      },
       get: {
         method: 'GET',
         params: {
