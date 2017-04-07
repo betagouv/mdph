@@ -67,7 +67,7 @@ describe('Signup View', function() {
       expect(page.form.password.getAttribute('class')).toContain('ng-invalid-password-strength');
 
       var helpBlock = page.form.element(by.id('error-message'));
-      expect(helpBlock.getText()).toBe('Le mot de passe doit avoir une robustesse plus elevé');
+      expect(helpBlock.getText()).toBe('Votre mot de passe est d\'une robustesse trop faible');
     });
 
   });
