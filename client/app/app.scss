@@ -6,6 +6,7 @@ $light-blue: #333E54;
 $lighter-blue: #3C4963;
 $flat-ui-blue:  #3498DB;
 
+$yellow: #FFC107;
 $orange: #e87500;
 $lighter-red: #FF636C;
 $light-red: #D05158;
@@ -223,6 +224,7 @@ fieldset {
 @import '../components/menu-dashboard/menu-dashboard.scss';
 @import '../components/mes_profils/mes_profils.scss';
 @import '../components/nav-steps/nav-steps.scss';
+@import '../components/password-strength-bar/password-strength-bar.scss';
 @import '../components/profile/profile-card.scss';
 @import '../components/profile/profile-category.scss';
 @import '../components/qtitle/qtitle.scss';
