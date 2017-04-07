@@ -3,21 +3,20 @@ import _ from 'lodash';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
-  return function(synthese) {
-    res.status(statusCode).json(synthese);
+  return function(body) {
+    res.status(statusCode).json(body);
     return null;
   };
 }
 
 function handleError(req, res) {
-  return function(statusCode, err) {
-    statusCode = statusCode || 500;
-
+  return function(err) {
     if (err) {
       req.log.error(err);
-      res.status(statusCode).send(err);
+      console.log(err);
+      res.status(500).send(err);
     } else {
-      res.status(statusCode).send('Server error');
+      res.status(500).send('Server error');
     }
 
     return null;
@@ -26,7 +25,7 @@ function handleError(req, res) {
 
 function saveUpdates(req) {
   return new Promise(function(resolve, reject) {
-    let filteredUpdates = _.pick(req.body, 'geva');
+    const filteredUpdates = _.pick(req.body, 'geva');
 
     req.synthese.set(filteredUpdates).save(function(err, updated) {
       if (err) {
@@ -38,57 +37,11 @@ function saveUpdates(req) {
   });
 }
 
-export function findOrCreateRequestSynthese(options) {
-  let {syntheses, req} = options;
-
-  return new Promise((resolve) => {
-    let foundCurrent = _.find(syntheses, (synthese) => {
-      //search synthese without request => current working synthese
-      return !synthese.request;
-    });
-
-    if (foundCurrent) {
-      foundCurrent.current = true;
-      return resolve(syntheses);
-    }
-
-    Synthese
-      .create({
-        user:           req.user._id,
-        profile:        req.profile._id
-      })
-      .then(created => {
-        let createdObj = created.toObject();
-        createdObj.current = true;
-        syntheses.push(createdObj);
-        resolve(syntheses);
-      });
-  });
-}
-
-export function create(req, res) {
-  Synthese.create(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(req, res));
-}
-
-export function show(req, res) {
-  respondWithResult(res)(req.synthese);
-}
-
 function sortSyntheseByDate(syntheses) {
   return new Promise((resolve) => {
     syntheses.sort(function(a, b) {
       if (!a) {
         return 1;
-      }
-
-      if (a.request === null) {
-        return 1;
-      }
-
-      if (b.request === null) {
-        return -1;
       }
 
       return a.createdAt - b.createdAt;
@@ -98,19 +51,43 @@ function sortSyntheseByDate(syntheses) {
   });
 }
 
+function createSyntheseIfNoneFound(req) {
+  return (syntheses) => {
+    return new Promise((resolve) => {
+      if (syntheses && syntheses.length > 0) {
+        return resolve(syntheses);
+      } else {
+        Synthese
+          .create({
+            profile: req.profile._id
+          })
+          .then(created => {
+            let createdObj = created.toObject();
+            syntheses.push(createdObj);
+            resolve(syntheses);
+          });
+      }
+    });
+  };
+}
+
+function tagCurrentSynthese(syntheses) {
+  syntheses[syntheses.length - 1].current = true;
+  return syntheses;
+}
+
+export function show(req, res) {
+  respondWithResult(res)(req.synthese);
+}
+
 export function showAllByProfile(req, res) {
-  let options = {req, res, Synthese};
   Synthese
     .find({profile: req.profile})
-    .populate('request', 'shortId')
     .lean()
     .exec()
-    .then(syntheses => {
-      options.syntheses = syntheses;
-      return options;
-    })
-    .then(findOrCreateRequestSynthese)
+    .then(createSyntheseIfNoneFound(req))
     .then(sortSyntheseByDate)
+    .then(tagCurrentSynthese)
     .then(respondWithResult(res, 200))
     .catch(handleError(req, res));
 }

@@ -181,12 +181,12 @@ fieldset {
 @import 'apropos/apropos.scss';
 @import 'dashboard/dashboard.scss';
 @import 'dashboard/documents/documents.scss';
+@import 'dashboard/evaluation/detail/detail.scss';
+@import 'dashboard/evaluation/evaluation.scss';
 @import 'dashboard/list.scss';
 @import 'dashboard/users/partenaires/edit.scss';
 @import 'dashboard/workflow/detail/detail.scss';
 @import 'dashboard/workflow/detail/documents/documents.scss';
-@import 'dashboard/workflow/detail/evaluation/evaluation.scss';
-@import 'dashboard/workflow/detail/evaluation/section/section.scss';
 @import 'dashboard/workflow/detail/history/history.scss';
 @import 'dashboard/workflow/detail/pre_evaluation/pre_evaluation.scss';
 @import 'dashboard/workflow/workflow.scss';
@@ -210,7 +210,6 @@ fieldset {
 @import '../components/mdph-map/mdph-map.scss';
 @import '../components/menu-dashboard/menu-dashboard.scss';
 @import '../components/mes_profils/mes_profils.scss';
-@import '../components/nav-section/nav-section.scss';
 @import '../components/nav-steps/nav-steps.scss';
 @import '../components/profile/profile-card.scss';
 @import '../components/profile/profile-category.scss';

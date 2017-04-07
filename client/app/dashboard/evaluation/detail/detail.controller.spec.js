@@ -1,6 +1,6 @@
 'use strict';
 
-describe('RequestSectionCtrl', function() {
+describe('DetailEvaluationCtrl', function() {
   var $controller;
   var scope;
   var controller;
@@ -62,7 +62,18 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, currentSynthese: {}, sectionId: {}, questionId: {}});
+        controller = $controller('DetailEvaluationCtrl',
+          {
+            $scope: scope,
+            currentMdph: {zipcode: 'test'}, listSyntheses: [],
+            model: {},
+            sections: {},
+            section: fakeSection,
+            request: {},
+            currentSynthese: {},
+            sectionId: {}
+          }
+        );
       });
 
       it('should be true', function() {
@@ -121,7 +132,7 @@ describe('RequestSectionCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, currentSynthese: {}, sectionId: {}, questionId: {}});
+        controller = $controller('DetailEvaluationCtrl', {$scope: scope, currentMdph: {zipcode: 'test'}, listSyntheses: [], model: {}, sections: {}, section: fakeSection, request: {}, currentSynthese: {}, sectionId: {}});
       });
 
       it('should be false', function() {
@@ -197,7 +208,7 @@ describe('RequestSectionCtrl', function() {
       beforeEach(function() {
         spyOn(fakeSynthese, '$update');
         scope = {};
-        controller = $controller('RequestSectionCtrl', {$scope: scope, section: fakeSection, request: {}, currentSynthese: fakeSynthese, sectionId: {}, questionId: {}});
+        controller = $controller('DetailEvaluationCtrl', {$scope: scope, currentMdph: {zipcode: 'test'}, listSyntheses: [], model: {}, sections: {}, section: fakeSection, request: {}, currentSynthese: fakeSynthese, sectionId: {}});
       });
 
       it('should save the answer in the request', function() {

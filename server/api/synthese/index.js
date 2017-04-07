@@ -2,21 +2,33 @@
 
 import {Router} from 'express';
 import * as controller from './synthese.controller';
-import { hasRole } from '../../auth/auth.service';
 import Synthese from './synthese.model';
+import Profile from '../profile/profile.model';
 
 var router = new Router();
 
-router.post('/', hasRole('adminMdph'), controller.create);
-router.get('/', hasRole('adminMdph'), controller.showAllByProfile);
-router.get('/:syntheseId', hasRole('adminMdph'), controller.show);
-router.put('/:syntheseId', hasRole('adminMdph'), controller.update);
+router.get('/:profileId', controller.showAllByProfile);
+router.get('/:profileId/syntheses/:syntheseId', controller.show);
+router.put('/:profileId/syntheses/:syntheseId', controller.update);
+
+router.param('profileId', function(req, res, next, profileId) {
+  Profile
+    .findById(profileId)
+    .exec(function(err, profile) {
+      if (err) {
+        return next(err);
+      }
+
+      if (!profile) return res.sendStatus(404);
+
+      req.profile = profile;
+      next();
+    });
+});
 
 router.param('syntheseId', function(req, res, next, syntheseId) {
   Synthese
     .findById(syntheseId)
-    .populate('user')
-    .populate('request', 'shortId')
     .exec(function(err, synthese) {
       if (err) {
         return next(err);

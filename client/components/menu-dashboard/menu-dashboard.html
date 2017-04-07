@@ -1,9 +1,9 @@
 <aside class="menu-dashboard">
-  <div class="menu-slider" ng-class="getMenuSliderClass()">
+  <div class="menu-slider" ng-class="menudashboardctrl.getMenuSliderClass()">
     <div class="menu-general">
       <h2>Flux de demandes</h2>
       <ul>
-        <li ng-repeat="banette in banettes">
+        <li ng-repeat="banette in menudashboardctrl.banettes">
           <a ui-sref-active="active" ui-sref="dashboard.workflow.list({status: banette.id})">
             {{banette.label}}
             <span
@@ -42,6 +42,17 @@
           </a>
         </li>
       </ul>
+
+      <div class="experimental">
+        <h2>Expérimental</h2>
+        <ul>
+          <li>
+            <a ui-sref="dashboard.evaluation" ui-sref-active="active">
+              Outil de soutien à l'évaluation
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="menu-detail">
@@ -56,7 +67,6 @@
         <ul>
           <li><a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.detail.pre_evaluation">Récapitulatif</a></li>
           <li><a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.detail.documents">Documents associés</a></li>
-          <li><a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.detail.evaluation">Synthèse de l'évaluation</a></li>
           <li><a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.detail.history">Vie de la demande</a></li>
           <li><a class="icon" ui-sref-active="active" ui-sref="dashboard.workflow.detail.comments">Commentaires</a></li>
         </ul>

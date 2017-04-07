@@ -5,6 +5,7 @@ import * as controller from './mdph.controller';
 import {hasRole, isAgent} from '../../auth/auth.service';
 import categoriesRouter from '../document-category';
 import Mdph from './mdph.model';
+import synthesesRouter from '../synthese';
 
 var router = new Router();
 
@@ -19,6 +20,8 @@ router.delete('/:id', hasRole('admin'), controller.destroy);
 router.get('/:id/requests', isAgent(), controller.showRequests);
 router.get('/:id/requests/byStatus', isAgent(), controller.showRequestsByStatus);
 
+router.get('/:id/beneficiaires', isAgent(), controller.showBeneficiaires);
+
 router.get('/:id/users', isAgent(), controller.showUsers);
 
 router.get('/:id/partenaires', isAgent(), controller.showPartenaires);
@@ -31,6 +34,8 @@ router.get('/:id/secteurs/:secteurId/requests', isAgent(), controller.showReques
 router.post('/:id/like', controller.saveLike);
 
 router.use('/:id/categories', isAgent(), categoriesRouter);
+router.use('/:id/syntheses',  isAgent(), synthesesRouter);
+
 
 router.param('id', function(req, res, next, id) {
   Mdph.findOne({zipcode: id}, function(err, mdph) {

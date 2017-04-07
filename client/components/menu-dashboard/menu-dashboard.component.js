@@ -6,12 +6,9 @@ angular.module('impactApp')
       mdph: '<'
     },
     templateUrl: 'components/menu-dashboard/menu-dashboard.html',
-    controller($scope, $state, SectionBackConstants, MdphResource, BanettesConstant, Auth) {
-      $scope.sections = SectionBackConstants;
-      $scope.isLoggedIn = Auth.isLoggedIn;
-      $scope.mdph = this.mdph;
-
-      $scope.getMenuSliderClass = () => $state.includes('dashboard.workflow.detail') ? 'show-detail' : 'show-general';
+    controllerAs: 'menudashboardctrl',
+    controller($state, MdphResource, BanettesConstant) {
+      this.getMenuSliderClass = () => $state.includes('dashboard.workflow.detail') ? 'show-detail' : 'show-general';
 
       MdphResource.queryTotalRequestsCount({zipcode: this.mdph.zipcode}).$promise.then((result) => {
         var requestCountByStatus = _.indexBy(result, '_id');
@@ -23,7 +20,7 @@ angular.module('impactApp')
           }
         });
 
-        $scope.banettes = BanettesConstant;
+        this.banettes = BanettesConstant;
       });
     }
   });
