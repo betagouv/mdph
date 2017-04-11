@@ -4,8 +4,7 @@ angular.module('impactApp').controller('MesProfilsCtrl', function($state, $modal
   this.profiles = ProfileResource.query({userId: this.user._id});
 
   this.addProfile = function() {
-    var newProfile = new ProfileResource();
-    newProfile.$save({userId: this.user._id}, function(result) {
+    new ProfileResource().$save({userId: this.user._id}, function(result) {
       $state.go('profil', {profileId: result._id});
     });
   };
