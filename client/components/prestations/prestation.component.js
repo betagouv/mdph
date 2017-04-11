@@ -11,6 +11,5 @@ angular.module('impactApp')
     },
     controllerAs: 'prestationctrl',
     controller: function() {
-      console.log('this.prestation, this.id, this.label, this.url', this.prestation, this.id, this.label, this.url, this);
     }
   });
