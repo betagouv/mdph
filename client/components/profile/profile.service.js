@@ -2,30 +2,30 @@
 
 angular.module('impactApp')
   .factory('ProfileService', function ProfileService(estAdulte, estMineur) {
-    var estMineurProfile = function(profile) {
+    function _estMineur(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
       } else {
         return false;
       }
-    };
+    }
 
-    var estAdulteProfile = function(profile) {
+    function _estAdulte(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estAdulte(profile.identites.beneficiaire.dateNaissance);
       } else {
         return true;
       }
-    };
+    }
 
-    var getMissingSection = function(profile) {
-      var missingSections = [];
+    function getMissingSection(profile) {
+      const missingSections = [];
 
       if (!profile.identites || !profile.identites.beneficiaire) {
         missingSections.push('beneficiaire');
       }
 
-      if (estMineurProfile(profile) && (!profile.identites || !profile.identites.autorite)) {
+      if (_estMineur(profile) && (!profile.identites || !profile.identites.autorite)) {
         missingSections.push('autorite');
       }
 
@@ -33,15 +33,15 @@ angular.module('impactApp')
         missingSections.push('vieQuotidienne');
       }
 
-      return missingSections;
-    };
+      return missingSections.length > 0 ? missingSections : null;
+    }
 
-    var getCompletion = function(profile) {
+    function getCompletion(profile) {
       if (!profile.identites || !profile.identites.beneficiaire) {
         return false;
       }
 
-      if (estMineurProfile(profile) && !profile.identites.autorite) {
+      if (_estMineur(profile) && !profile.identites.autorite) {
         return false;
       }
 
@@ -50,7 +50,21 @@ angular.module('impactApp')
       }
 
       return true;
-    };
+    }
+
+    function needUploadCV(profile) {
+      return profile.vie_au_travail && profile.vie_au_travail.needUploadCV;
+    }
+
+    function getAskedDocumentTypes(profile) {
+      const askedDocumentTypes = [];
+
+      if (needUploadCV(profile)) {
+        askedDocumentTypes.push(['cv']);
+      }
+
+      return askedDocumentTypes;
+    }
 
     return {
       estHomme: function(profile) {
@@ -69,13 +83,11 @@ angular.module('impactApp')
         }
       },
 
-      needUploadCV: function(profile) {
-        return profile.vie_au_travail && profile.vie_au_travail.needUploadCV;
-      },
-
-      estAdulte: estAdulteProfile,
-      estMineur: estMineurProfile,
-      getCompletion: getCompletion,
-      getMissingSection: getMissingSection
+      estAdulte: _estAdulte,
+      estMineur: _estMineur,
+      getCompletion,
+      getMissingSection,
+      needUploadCV,
+      getAskedDocumentTypes
     };
   });

@@ -19,22 +19,34 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "jQuery": true,
-    "angular": true,
-    "console": true,
-    "$": true,
+    // Loadash
     "_": true,
+
+    // Leaflet
     "L": true,
+
+    // Moment
     "moment": true,
-    "describe": true,
-    "beforeEach": true,
-    "spyOn": true,
-    "module": true,
-    "inject": true,
-    "it": true,
-    "expect": true,
-    "browser": true,
-    "element": true,
-    "by": true
+
+    // Angular
+    "angular": false,
+
+    // Angular mocks
+    "module": false,
+    "inject": false,
+
+    // Jasmine
+    "jasmine": false,
+    "describe": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "it": false,
+    "expect": false,
+    "spyOn": false,
+
+    // Protractor
+    "browser": false,
+    "element": false,
+    "by": false
   }
 }

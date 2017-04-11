@@ -77,7 +77,7 @@ angular.module('impactApp')
     function findAskedTypes(request, documentTypes) {
       return _(documentTypes)
         .filter(function(documentType) {
-          return !documentType.mandatory && request.askedDocumentTypes.indexOf(documentType.id) > -1;
+          return !documentType.mandatory && request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) > -1;
         })
         .map(function(documentType) {
           documentType.asked = true;
@@ -109,41 +109,42 @@ angular.module('impactApp')
       return selectedDocumentTypes;
     }
 
+    function groupByAge(requests) {
+      if (typeof requests === 'undefined' || requests.length === 0) {
+        return null;
+      }
+
+      var currentMoment = moment();
+      var groupedByAge = {
+        new: [],
+        standard: [],
+        old: []
+      };
+
+      _.reduce(requests, function(result, request) {
+        var submissionMoment = moment(request.submittedAt);
+        var deltaMonths = currentMoment.diff(submissionMoment, 'months');
+
+        if (deltaMonths <= 1) {
+          result.new.push(request);
+        } else if (deltaMonths > 1 && deltaMonths < 3) {
+          result.standard.push(request);
+        } else {
+          result.old.push(request);
+        }
+
+        return result;
+      }, groupedByAge);
+
+      return groupedByAge;
+    }
+
     return {
       findRefusedDocuments,
       getAskedDocumentTypes,
       getCompletion,
       computeSelectedDocumentTypes,
-
-      groupByAge(requests) {
-        if (typeof requests === 'undefined' || requests.length === 0) {
-          return null;
-        }
-
-        var currentMoment = moment();
-        var groupedByAge = {
-          new: [],
-          standard: [],
-          old: []
-        };
-
-        _.reduce(requests, function(result, request) {
-          var submissionMoment = moment(request.submittedAt);
-          var deltaMonths = currentMoment.diff(submissionMoment, 'months');
-
-          if (deltaMonths <= 1) {
-            result.new.push(request);
-          } else if (deltaMonths > 1 && deltaMonths < 3) {
-            result.standard.push(request);
-          } else {
-            result.old.push(request);
-          }
-
-          return result;
-        }, groupedByAge);
-
-        return groupedByAge;
-      },
+      groupByAge,
 
       postAction(request, action) {
         return $http.post(`api/requests/${request.shortId}/action`, action);
