@@ -7,7 +7,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($state, $modal, $h
   this.currentUser = currentUser;
   this.hasRequest = hasRequest;
 
-  var hasSubmitted = false;
 
   this.nouvelleDemande = () => {
     hasSubmitted = false;
@@ -18,7 +17,6 @@ angular.module('impactApp').controller('ProfilCtrl', function($state, $modal, $h
       $anchorScroll(missingSections[0]);
       $anchorScroll.yOffset = oldOffSet;
       toastr.error('Vous n\'avez pas fini de remplir les parties obligatoires de ce profil.', 'Erreur de la création de la demande');
-      hasSubmitted = true;
       missingSections.forEach((sectionId) => {
         this.options[sectionId].error = true;
       });
