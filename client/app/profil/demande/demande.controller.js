@@ -10,7 +10,7 @@ angular.module('impactApp')
     };
 
     function getSelectedPrestationIdList(filter) {
-      return _.chain($scope.prestations)
+      return _.chain(this.prestations)
        .filter(filter)
        .pluck('id')
        .value();
@@ -130,86 +130,86 @@ angular.module('impactApp')
       });
     };
 
-    $scope.prestations = [];
+    this.prestations = [];
 
-    $scope.cartestationnement = {
+    this.cartestationnement = {
       id: 'cartestationnement'
     };
-    $scope.prestations.push($scope.cartestationnement);
+    this.prestations.push($scope.cartestationnement);
 
-    $scope.carteinvalidite = {
+    this.carteinvalidite = {
       id: 'carteinvalidite'
     };
-    $scope.prestations.push($scope.carteinvalidite);
+    this.prestations.push($scope.carteinvalidite);
 
-    $scope.aeeh = {
+    this.aeeh = {
       id: 'aeeh'
     };
-    $scope.prestations.push($scope.aeeh);
+    this.prestations.push($scope.aeeh);
 
-    $scope.aah = {
+    this.aah = {
       id: 'aah'
     };
-    $scope.prestations.push($scope.aah);
+    this.prestations.push($scope.aah);
 
-    $scope.complement = {
+    this.complement = {
       id: 'complement'
     };
-    $scope.prestations.push($scope.complement);
+    this.prestations.push($scope.complement);
 
-    $scope.pch = {
+    this.pch = {
       id: 'pch'
     };
-    $scope.prestations.push($scope.pch);
+    this.prestations.push($scope.pch);
 
-    $scope.rqth = {
+    this.rqth = {
       id: 'rqth'
     };
-    $scope.prestations.push($scope.rqth);
+    this.prestations.push($scope.rqth);
 
-    $scope.av = {
+    this.av = {
       id: 'av'
     };
-    $scope.prestations.push($scope.av);
+    this.prestations.push($scope.av);
 
     $scope.ems = {
       id: 'ems'
     };
-    $scope.prestations.push($scope.ems);
+    this.prestations.push($scope.ems);
 
     $scope.pps = {
       id: 'pps'
     };
-    $scope.prestations.push($scope.pps);
+    this.prestations.push($scope.pps);
 
     $scope.orp = {
       id: 'orp'
     };
-    $scope.prestations.push($scope.orp);
+    this.prestations.push($scope.orp);
 
     $scope.formation = {
       id: 'formation'
     };
-    $scope.prestations.push($scope.formation);
+    this.prestations.push($scope.formation);
 
     $scope.sms = {
       id: 'sms'
     };
-    $scope.prestations.push($scope.sms);
+    this.prestations.push($scope.sms);
 
     $scope.sms_enfant = {
       id: 'sms_enfant'
     };
-    $scope.prestations.push($scope.sms_enfant);
+    this.prestations.push($scope.sms_enfant);
 
     $scope.ac = {
       id: 'ac'
     };
-    $scope.prestations.push($scope.ac);
+    this.prestations.push($scope.ac);
 
     $scope.acfp = {
       id: 'acfp'
     };
-    $scope.prestations.push($scope.acfp);
+    this.prestations.push($scope.acfp);
 
   });
