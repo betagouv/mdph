@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: mdphbeta/node-mdph:1.0.3
-      - image: mongo:3.4.2
+      - image: circleci/mongo:3.4.2
       - image: selenium/standalone-chrome:3.1.0
     working_directory: /home/ubuntu/mdph
     steps:
