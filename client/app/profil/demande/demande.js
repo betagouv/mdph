@@ -27,7 +27,8 @@ angular.module('impactApp').config(function($stateProvider) {
     views: {
       '': {
         templateUrl: 'app/profil/demande/demande.html',
-        controller: 'DemandeCtrl'
+        controller: 'DemandeCtrl',
+        controllerAs: 'demandectrl'
       },
       'choix_mdph@profil.demande': {
         templateUrl: 'app/profil/demande/choix_mdph/choix_mdph.html',

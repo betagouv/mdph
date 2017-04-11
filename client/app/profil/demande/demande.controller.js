@@ -9,12 +9,12 @@ angular.module('impactApp')
       return (request.status === 'en_cours' || request.status === 'en_attente_usager');
     };
 
-    function getSelectedPrestationIdList(filter) {
-      return _.chain($scope.prestations)
+    const getSelectedPrestationIdList = (filter, prestations) => {
+      return _.chain(prestations)
        .filter(filter)
        .pluck('id')
        .value();
-    }
+    };
 
     const openErrorModal = ({message, focusFunction, label = 'Retourner au profil'}) => {
       $modal.open({
@@ -51,15 +51,15 @@ angular.module('impactApp')
       });
     };
 
-    $scope.submit = function(form) {
+    $scope.submit = form => {
       if (!form.$valid) {
         toastr.error('Vous n\'avez pas spécifié de MDPH destinataire de votre demande.', 'Erreur lors de la tentative d\'envoi');
       } else {
         if (request.status === 'en_cours') {
-          request.renouvellements = getSelectedPrestationIdList({choice: true, renouvellement: true});
+          request.renouvellements = getSelectedPrestationIdList({choice: true, renouvellement: true}, this.prestations);
           request.prestations = getSelectedPrestationIdList(function(current) {
             return current.choice && !current.renouvellement;
-          });
+          }, this.prestations);
         }
 
         if (!RequestService.getCompletion(request)) {
@@ -132,9 +132,6 @@ angular.module('impactApp')
 
     this.prestations = [];
 
-    // This is to make prestations available to getSelectedPrestationIdList & $scope.submit
-    $scope.prestations = this.prestations;
-
     this.cartestationnement = {
       id: 'cartestationnement'
     };
@@ -175,7 +172,7 @@ angular.module('impactApp')
     };
     this.prestations.push(this.av);
 
-    $scope.ems = {
+    this.ems = {
       id: 'ems'
     };
     this.prestations.push(this.ems);
