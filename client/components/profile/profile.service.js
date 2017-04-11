@@ -19,7 +19,7 @@ angular.module('impactApp')
     }
 
     function getMissingSection(profile) {
-      var missingSections = [];
+      const missingSections = [];
 
       if (!profile.identites || !profile.identites.beneficiaire) {
         missingSections.push('beneficiaire');
@@ -57,11 +57,13 @@ angular.module('impactApp')
     }
 
     function getAskedDocumentTypes(profile) {
+      const askedDocumentTypes = [];
+
       if (needUploadCV(profile)) {
-        return ['cv'];
+        askedDocumentTypes.push(['cv']);
       }
 
-      return null;
+      return askedDocumentTypes;
     }
 
     return {
