@@ -1,36 +1,46 @@
 'use strict';
 
-angular.module('impactApp').controller('ProfilCtrl', function($state, $modal, $http, User, ProfileService, RequestResource, currentUser, profile, currentRequest, hasRequest, toastr, $anchorScroll) {
+angular.module('impactApp').controller('ProfilCtrl', function(
+  $state, $modal, $http, toastr, $anchorScroll,
+  User, RequestResource,
+  ProfileService, RequestService,
+  currentUser, profile, currentRequest, hasRequest) {
+
   this.profile = profile;
-  this.estAdulte = ProfileService.estAdulte(profile);
   this.currentRequest = currentRequest;
   this.currentUser = currentUser;
   this.hasRequest = hasRequest;
+  this.RequestResource = RequestResource;
+  this.ProfileService = ProfileService;
+  this.$state = $state;
+  this.$modal = $modal;
+  this.$anchorScroll = $anchorScroll;
 
+  this.estAdulte = ProfileService.estAdulteProfile(profile);
 
   this.nouvelleDemande = () => {
-    hasSubmitted = false;
-    var missingSections = ProfileService.getMissingSection(profile);
-    if (missingSections.length > 0) {
-      var oldOffSet = $anchorScroll.yOffset;
-      $anchorScroll.yOffset = 20;
+    const missingSections = ProfileService.getMissingSection(profile);
+
+    if (missingSections) {
       $anchorScroll(missingSections[0]);
-      $anchorScroll.yOffset = oldOffSet;
       toastr.error('Vous n\'avez pas fini de remplir les parties obligatoires de ce profil.', 'Erreur de la création de la demande');
       missingSections.forEach((sectionId) => {
         this.options[sectionId].error = true;
       });
-    } else {
 
-      let askedDocumentTypes = [];
-      if (ProfileService.needUploadCV(profile)) {
-        askedDocumentTypes.push('cv');
-      }
-
-      new RequestResource({profile: profile._id, user: currentUser._id, askedDocumentTypes: askedDocumentTypes}).$save(function(saved) {
-        $state.go('.demande', {shortId: saved.shortId});
-      });
+      return;
     }
+
+    this.RequestResource.save(
+      {
+        profile: profile._id,
+        user: currentUser._id,
+        askedDocumentTypes: ProfileService.getAskedDocumentTypes(profile)
+      },
+      function success({ shortId }) {
+        $state.go('.demande', { shortId });
+      }
+    );
   };
 
   this.options = {
