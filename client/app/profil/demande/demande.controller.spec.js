@@ -1,7 +1,9 @@
 'use strict';
 
 describe('Controller: demande', function() {
-  let RequestService = {
+  let $controller;
+
+  const RequestService = {
     getCompletion() {
       return true;
     },
@@ -15,8 +17,12 @@ describe('Controller: demande', function() {
     }
   };
 
-  let toastr = {
+  const toastr = {
     error() {}
+  };
+
+  const $state = {
+    go() {}
   };
 
   let request = {
@@ -26,22 +32,24 @@ describe('Controller: demande', function() {
     $update() {}
   };
 
-  let currentUser = {};
+  const currentUser = {};
 
   // load the service's module
   beforeEach(module('impactApp'));
 
-  it('should have 16 prestations', function() {
+  beforeEach(inject(function(_$controller_) {
+    $controller = _$controller_;
+  }));
+
+  describe('prestations list', () => {
+    let controller;
+
     //given
-    var $scope = {};
+    let $scope = {};
 
-    //when
-    inject(function($controller) {
-      $controller('DemandeCtrl', {
-        $state: {
-          go() {}
-        },
-
+    beforeEach(function() {
+      controller = $controller('DemandeCtrl', {
+        $state,
         $scope,
         currentUser,
         request,
@@ -50,20 +58,20 @@ describe('Controller: demande', function() {
       });
     });
 
-    expect($scope.prestations.length, 16);
+    it('should have 16 prestations', function() {
+      expect(controller.prestations.length, 16);
+    });
   });
 
-  it('should select the right prestations', function() {
+  describe('prestations request', () => {
+    let controller;
+
     //given
-    var $scope = {};
+    let $scope = {};
 
-    //when
-    inject(function($controller) {
-      $controller('DemandeCtrl', {
-        $state: {
-          go() {}
-        },
-
+    beforeEach(function() {
+      controller = $controller('DemandeCtrl', {
+        $state,
         $scope,
         currentUser,
         request,
@@ -72,14 +80,17 @@ describe('Controller: demande', function() {
       });
     });
 
-    $scope.cartestationnement.choice = true;
-    $scope.carteinvalidite.choice = true;
-    $scope.carteinvalidite.renouvellement = true;
-    $scope.submit({$valid: true});
+    it('should select the right prestations', function() {
+      //given
+      controller.cartestationnement = _.assign(controller.cartestationnement, {choice: true});
+      controller.carteinvalidite = _.assign(controller.carteinvalidite, {choice: true, renouvellement: true});
 
-    //then
-    expect($scope.request.renouvellements[0]).toEqual('carteinvalidite');
-    expect($scope.request.prestations[0]).toEqual('cartestationnement');
+      $scope.submit({$valid: true});
+
+      //then
+      expect($scope.request.renouvellements[0]).toEqual('carteinvalidite');
+      expect($scope.request.prestations[0]).toEqual('cartestationnement');
+    });
 
   });
 
