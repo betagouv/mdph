@@ -2,23 +2,23 @@
 
 angular.module('impactApp')
   .factory('ProfileService', function ProfileService(estAdulte, estMineur) {
-    var estMineurProfile = function(profile) {
+    function estMineurProfile(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
       } else {
         return false;
       }
-    };
+    }
 
-    var estAdulteProfile = function(profile) {
+    function estAdulteProfile(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estAdulte(profile.identites.beneficiaire.dateNaissance);
       } else {
         return true;
       }
-    };
+    }
 
-    var getMissingSection = function(profile) {
+    function getMissingSection(profile) {
       var missingSections = [];
 
       if (!profile.identites || !profile.identites.beneficiaire) {
@@ -34,9 +34,9 @@ angular.module('impactApp')
       }
 
       return missingSections;
-    };
+    }
 
-    var getCompletion = function(profile) {
+    function getCompletion(profile) {
       if (!profile.identites || !profile.identites.beneficiaire) {
         return false;
       }
@@ -50,7 +50,19 @@ angular.module('impactApp')
       }
 
       return true;
-    };
+    }
+
+    function needUploadCV(profile) {
+      return profile.vie_au_travail && profile.vie_au_travail.needUploadCV;
+    }
+
+    function getAskedDocumentTypes(profile) {
+      if (needUploadCV(profile)) {
+        return ['cv'];
+      }
+
+      return null;
+    }
 
     return {
       estHomme: function(profile) {
@@ -69,13 +81,11 @@ angular.module('impactApp')
         }
       },
 
-      needUploadCV: function(profile) {
-        return profile.vie_au_travail && profile.vie_au_travail.needUploadCV;
-      },
-
-      estAdulte: estAdulteProfile,
-      estMineur: estMineurProfile,
-      getCompletion: getCompletion,
-      getMissingSection: getMissingSection
+      estAdulteProfile,
+      estMineurProfile,
+      getCompletion,
+      getMissingSection,
+      needUploadCV,
+      getAskedDocumentTypes
     };
   });

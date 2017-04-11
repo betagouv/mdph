@@ -1,9 +1,9 @@
 'use strict';
 
 describe('Service: request', function() {
-  var RequestService;
+  let RequestService;
 
-  var sampleRequest = {
+  const sampleRequest = {
     _id: '56b8672b93bb29c9ee1d3e9d',
     user: {
       _id: '559e28fde23468dc21ee5b6c',
@@ -120,7 +120,7 @@ describe('Service: request', function() {
     //sampleRequest
 
     //when
-    var refusedDocuments = RequestService.findRefusedDocuments(sampleRequest);
+    const refusedDocuments = RequestService.findRefusedDocuments(sampleRequest);
 
     //then
     expect(refusedDocuments.obligatoires.length + refusedDocuments.complementaires.length).toEqual(2);
@@ -131,10 +131,9 @@ describe('Service: request', function() {
     //sampleRequest
 
     //when
-    var askedDocumentTypes = RequestService.getAskedDocumentTypes(sampleRequest);
+    const askedDocumentTypes = RequestService.getAskedDocumentTypes(sampleRequest);
 
     //then
     expect(askedDocumentTypes[0].id).toEqual('rib_iban');
   });
-
 });
