@@ -77,7 +77,7 @@ angular.module('impactApp')
     function findAskedTypes(request, documentTypes) {
       return _(documentTypes)
         .filter(function(documentType) {
-          return !documentType.mandatory && request.askedDocumentTypes.indexOf(documentType.id) > -1;
+          return !documentType.mandatory && request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) > -1;
         })
         .map(function(documentType) {
           documentType.asked = true;
