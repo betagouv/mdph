@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .factory('ProfileService', function ProfileService(estAdulte, estMineur) {
-    function estMineurProfile(profile) {
+    function _estMineur(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
       } else {
@@ -10,7 +10,7 @@ angular.module('impactApp')
       }
     }
 
-    function estAdulteProfile(profile) {
+    function _estAdulte(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estAdulte(profile.identites.beneficiaire.dateNaissance);
       } else {
@@ -25,7 +25,7 @@ angular.module('impactApp')
         missingSections.push('beneficiaire');
       }
 
-      if (estMineurProfile(profile) && (!profile.identites || !profile.identites.autorite)) {
+      if (_estMineur(profile) && (!profile.identites || !profile.identites.autorite)) {
         missingSections.push('autorite');
       }
 
@@ -41,7 +41,7 @@ angular.module('impactApp')
         return false;
       }
 
-      if (estMineurProfile(profile) && !profile.identites.autorite) {
+      if (_estMineur(profile) && !profile.identites.autorite) {
         return false;
       }
 
@@ -81,8 +81,8 @@ angular.module('impactApp')
         }
       },
 
-      estAdulteProfile,
-      estMineurProfile,
+      estAdulte: _estAdulte,
+      estMineur: _estMineur,
       getCompletion,
       getMissingSection,
       needUploadCV,

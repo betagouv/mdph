@@ -16,7 +16,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.$modal = $modal;
   this.$anchorScroll = $anchorScroll;
 
-  this.estAdulte = ProfileService.estAdulteProfile(profile);
+  this.estAdulte = ProfileService.estAdulte(profile);
 
   this.nouvelleDemande = () => {
     const missingSections = ProfileService.getMissingSection(profile);
