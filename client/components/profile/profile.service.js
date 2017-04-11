@@ -33,7 +33,7 @@ angular.module('impactApp')
         missingSections.push('vieQuotidienne');
       }
 
-      return missingSections;
+      return missingSections.length > 0 ? missingSections : null;
     }
 
     function getCompletion(profile) {
