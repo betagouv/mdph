@@ -135,12 +135,12 @@ angular.module('impactApp').controller('ProfilCtrl', function($state, $modal, $h
 
     modalInstance.result.then((result) => {
       if (result) {
-        profile.$delete({userId: this.currentUser._id}, () => {
+        profile.$delete({userId: this.currentUser._id}, function success() {
           toastr.success('Le profil "' + profile.getTitle() + '" a bien été supprimé.', 'Succès');
           $state.go('departement');
         },
 
-        () => {
+        function error() {
           toastr.error('Impossible de supprimer le profil "' + profile.getTitle() + '"', 'Erreur');
         });
       }
