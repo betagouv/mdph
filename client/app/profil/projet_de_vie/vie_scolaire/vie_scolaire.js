@@ -39,7 +39,25 @@ angular.module('impactApp')
                 $state.go('profil', {}, {reload: true});
               });
             };
+          },
+
+          saveCurrentState: function($state) {
+            return function() {
+              $state.current.data.history.push($state.current.name);
+            };
+          },
+
+          prevStep: function($state) {
+            return function() {
+              if ($state.current.data.history.length) {
+                const toState = $state.current.data.history.pop();
+                $state.go(toState);
+              }
+            };
           }
+        },
+        data: {
+          history: []
         }
       });
   });
