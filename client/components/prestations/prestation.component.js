@@ -5,7 +5,6 @@ angular.module('impactApp')
     templateUrl: 'components/prestations/prestation.html',
     bindings: {
       prestation: '=ngModel',
-      id: '@',
       titre: '@',
       link: '@'
     },
