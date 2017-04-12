@@ -162,7 +162,6 @@
   }
 
   i {
-    color: $lighter-blue;
     margin-right: 3px;
   }
 
@@ -173,7 +172,8 @@
 
     .elem-body {
       padding: 10px;
-      background-color: rgba(126, 142, 175, 0.09);
+      background-color: $lighter-blue;
+      color: white;
       border-radius: 8px;
     }
   }

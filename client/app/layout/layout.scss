@@ -54,12 +54,21 @@ footer {
   }
 
   .location {
-    text-align: center;
+
     margin: 10px;
     min-width: 190px;
     padding: 10px;
     border-radius: 2px;
     background: $lighter-blue;
+
+    .email {
+      margin: 10px 0;
+
+      a {
+        color: white;
+        font-weight: bold;
+      }
+    }
   }
 }
 
