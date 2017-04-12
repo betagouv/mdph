@@ -1,8 +1,8 @@
 'use strict';
 
 import should from 'should';
-import {populate} from '../../../test/utils/seed';
-import pa11yRunner from '../../../test/utils/pa11y';
+import {populate} from '../../test/utils/seed';
+import pa11yRunner from '../../test/utils/pa11y';
 
 var config = browser.params;
 
@@ -32,10 +32,11 @@ describe('Login View', function() {
     }, 5000).then(done);
   });
 
-  it('should run pa11y', (done) => {
+  it('should run pa11y on the login screen', (done) => {
+    expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/login');
     browser.getCurrentUrl().then(url => {
-      pa11yRunner({url, onlyErrors: true}, (err) => {
-        err.should.be.empty();
+      pa11yRunner({url, onlyErrors: true}, (pa11yErrors) => {
+        pa11yErrors.should.have.length(0);
         done();
       });
     });

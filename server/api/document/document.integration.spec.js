@@ -22,7 +22,7 @@ describe('Document Integration', function() {
   var token;
   var testUser;
 
-  let testFile = path.join(config.root + '/server/test/server/uploads/', 'test.jpg');
+  let testFile = path.join(config.root, '/server/test/assets/', 'test.jpg');
 
   before(function(done) {
     startServer((result) => {
