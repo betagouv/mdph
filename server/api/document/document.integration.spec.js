@@ -8,8 +8,8 @@ import config from '../../config/environment';
 
 import crypto from 'crypto';
 
-import {startServer} from '../../test/utils/server';
-import {populate} from '../../test/utils/seed';
+import {startServer} from '../../../test/utils/server';
+import {populate} from '../../../test/utils/seed';
 
 function fileToSha(file) {
   const hash = crypto.createHash('sha256');
@@ -22,7 +22,7 @@ describe('Document Integration', function() {
   var token;
   var testUser;
 
-  let testFile = path.join(config.root, '/server/test/assets/', 'test.jpg');
+  let testFile = path.join(config.root, '/test/assets/', 'test.jpg');
 
   before(function(done) {
     startServer((result) => {

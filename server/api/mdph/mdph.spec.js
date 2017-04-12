@@ -1,6 +1,6 @@
 'use strict';
 
-import {startServer} from '../../test/utils/server';
+import {startServer} from '../../../test/utils/server';
 
 describe('Mdph Model', function() {
   var api;
