@@ -2,8 +2,9 @@
 
 angular.module('impactApp')
   .factory('initQuestionScope', function() {
-    return function(scope, question, nextStep, data, previousModel, sectionModel) {
+    return function(scope, question, prevStep, nextStep, data, previousModel, sectionModel) {
       scope.question = question;
+      scope.prevStep = prevStep;
       scope.nextStep = nextStep;
       scope.hideBack = data && data.hideBack;
       scope.isLastQuestion = data && data.isLastQuestion;
@@ -20,11 +21,11 @@ angular.module('impactApp')
       }
     };
   })
-  .controller('QuestionCtrl', function($scope, $state, question, previousModel, sectionModel, nextStep, initQuestionScope) {
-    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
+  .controller('QuestionCtrl', function($scope, $state, question, previousModel, sectionModel, nextStep, initQuestionScope, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
   })
-  .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope, previousModel, sectionModel) {
-    initQuestionScope($scope, question, nextStep, null, previousModel, sectionModel);
+  .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, null, previousModel, sectionModel);
     $scope.ajoutEnCours = false;
     var modification = false;
     var index = -1;
@@ -47,7 +48,6 @@ angular.module('impactApp')
       modification = true;
       $scope.ajoutEnCours = true;
       index = $scope.experiences.indexOf(experience);
-
     };
 
     $scope.validerExperience = function(form) {
@@ -88,8 +88,8 @@ angular.module('impactApp')
       }
     };
   })
-  .controller('RenseignementsQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel) {
-    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
+  .controller('RenseignementsQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
 
     $scope.placeholder = 'Autres renseignements';
 
@@ -97,8 +97,8 @@ angular.module('impactApp')
       $scope.sectionModel.autresRenseignements = '';
     }
   })
-  .controller('ListQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName, previousModel, sectionModel) {
-    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
+  .controller('ListQuestionCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName, previousModel, sectionModel, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
 
     if (angular.isUndefined($scope.sectionModel[question.model])) {
       $scope.sectionModel[question.model] = {};
@@ -121,8 +121,8 @@ angular.module('impactApp')
       $scope.model[listName].pop();
     };
   })
-  .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel) {
-    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
+  .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
 
     $scope.jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
     $scope.currentModel = question.model;
@@ -143,7 +143,7 @@ angular.module('impactApp')
 
     $scope.model = $scope.sectionModel[$scope.currentModel];
   })
-  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep, initQuestionScope, previousModel) {
-    initQuestionScope($scope, question, nextStep, $state.current.data, previousModel, sectionModel);
+  .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep, initQuestionScope, previousModel, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
     $scope.sectionModel = sectionModel;
   });
