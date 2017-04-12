@@ -6,6 +6,7 @@ angular.module('impactApp')
     bindings: {
       profile: '=',
       nextStep: '=',
+      prevStep: '=',
       questionForm: '=',
       isLastQuestion: '='
     },
