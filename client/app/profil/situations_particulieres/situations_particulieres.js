@@ -46,6 +46,7 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         data: {
+          isFirstQuestion: true,
           isLastQuestion: true
         },
         resolve: {
