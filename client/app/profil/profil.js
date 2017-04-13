@@ -45,6 +45,21 @@ angular.module('impactApp').config(function($stateProvider) {
         return $http.get(`/api/users/${currentUser._id}/profiles/${profile._id}/requests/count`).then(function(result) {
           return result.data !== 0;
         });
+      },
+
+      saveCurrentState: function($state) {
+        return function() {
+          $state.current.data.history.push($state.current.name);
+        };
+      },
+
+      prevStep: function($state) {
+        return function() {
+          if ($state.current.data.history.length) {
+            const toState = $state.current.data.history.pop();
+            $state.go(toState);
+          }
+        };
       }
     }
   });
