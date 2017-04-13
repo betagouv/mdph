@@ -19,4 +19,8 @@ angular.module('impactApp')
       this.mdphName = 'Choix de votre département';
       this.logo = 'assets/images/logo_marianne.png';
     }
+
+    this.showDashboard = () => {
+      return currentMdph && Auth.getCurrentUser() && Auth.isAdminMdph(Auth.getCurrentUser(), currentMdph);
+    };
   });

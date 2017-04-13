@@ -13,8 +13,11 @@
   </ul>
 
   <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()">
+    <li ng-if="layoutctrl.showDashboard()">
+      <a ui-sref="dashboard.workflow({zipcode: layoutctrl.currentMdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
+    </li>
     <li>
-      <a ui-sref-active="active" ui-sref="mon_compte">Mon compte</a>
+      <a ui-sref="mon_compte">Mon compte</a>
     </li>
     <li>
       <a ui-sref="logout" id="logout">Déconnexion</a>

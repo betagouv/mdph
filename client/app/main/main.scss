@@ -80,11 +80,6 @@
   width: 100%;
   max-width: 1170px;
   margin: auto;
-
-  h2 {
-    margin-top: 15px;
-    margin-right: 15px;
-  }
 }
 
 .section-main.section-flow > .flow {
@@ -137,7 +132,6 @@
   }
 }
 
-
 .liste-prestations {
   font-size: 14px;
   line-height: 1.5;
@@ -172,7 +166,7 @@
 
     .elem-body {
       padding: 10px;
-      background-color: $lighter-blue;
+      background-color: $bg-blue;
       color: white;
       border-radius: 8px;
     }

@@ -10,16 +10,6 @@
       </a>
     </div>
 
-    <div ng-if="departementctrl.isLoggedIn()" class="profile-card-content">
-      <mes-profils user="departementctrl.getCurrentUser()" />
-    </div>
-
-    <div ng-if="departementctrl.showDashboard()">
-      <a class="hero-button inverted" ui-sref="dashboard.workflow({zipcode: departementctrl.currentMdph.zipcode})" title="Tableau de bord agent">
-        Tableau de bord
-      </a>
-    </div>
-
     <a class="btn btn-link" ng-if="!departementctrl.isLoggedIn()" ui-sref="login">
       J'ai déjà un compte
     </a>
@@ -40,7 +30,16 @@
   </div>
 </header>
 
-<div class="section-main section-flow" ng-if="departementctrl.isClosed()">
+<section class="section-blue" ng-if="departementctrl.isLoggedIn()">
+  <div class="row">
+    <h2>Vos profils</h2>
+    <div class="profile-card-content">
+      <mes-profils user="departementctrl.getCurrentUser()" />
+    </div>
+  </div>
+</section>
+
+<section class="section-main section-flow" ng-if="departementctrl.isClosed()">
   <form id="form-subscribe" class="form" name="form" ng-submit="departementctrl.submit()">
     <label for="email" class="title">Être prévenu·e de l'ouverture du service</label>
     <div class="input-container">
@@ -51,9 +50,9 @@
     <div class="thankyou" ng-if="!departementctrl.thankyou">&nbsp;</div>
     <div class="thankyou" ng-if="departementctrl.thankyou">Merci !</div>
   </form>
-</div>
+</section>
 
-<div class="section-main section-flow" ng-if="departementctrl.isOpened()">
+<section class="section-main section-flow" ng-if="departementctrl.isOpened()">
   <div class="flow">
     <div>
       <img src="/assets/images/MDPH_Step1.png" alt="Je complète mon profil">
@@ -68,9 +67,9 @@
       <p><span>3</span>&nbsp;Je consulte le suivi de mon dossier</p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section-blue section-blue-row">
+<section class="section-blue section-blue-row">
   <div class="row">
     <div class="col-sm-6">
       <div class="card">
@@ -97,13 +96,13 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="map-container">
+<section class="map-container">
   <mdph-map mdph="departementctrl.currentMdph"/>
-</div>
+</section>
 
-<div class="section-main section-text" id="en-savoir-plus" ng-if="departementctrl.isOpened()">
+<section class="section-main section-text" id="en-savoir-plus" ng-if="departementctrl.isOpened()">
   <h2>Un suivi en ligne de votre dossier</h2>
   <div>
     <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
@@ -111,15 +110,15 @@
     <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise votre dossier.</p>
     <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
   </div>
-</div>
+</section>
 
-<div class="section-blue section-padding" ng-if="!departementctrl.isLoggedIn() && departementctrl.isOpened()">
+<section class="section-blue section-padding" ng-if="!departementctrl.isLoggedIn() && departementctrl.isOpened()">
   <a class="hero-button" ui-sref="signup">
     S'inscrire
   </a>
-</div>
+</section>
 
-<div class="section-main">
+<section class="section-main">
   <h2>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h2>
   <div class="liste-prestations">
     <div class="row">
@@ -184,4 +183,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>
