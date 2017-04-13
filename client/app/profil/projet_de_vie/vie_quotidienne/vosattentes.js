@@ -16,8 +16,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'attentesTypeAide', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.structure');
           };
         }
@@ -35,8 +36,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'structures', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.autres_renseignements');
           };
         }
