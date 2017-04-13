@@ -1,9 +1,9 @@
 <nav role="navigation">
   <a ng-show="layoutctrl.currentMdph" ui-sref="departement({codeDepartement: layoutctrl.currentMdph.zipcode})">
-    <img ng-src="assets/images/{{layoutctrl.currentMdph.logo}}" alt="Accueil">
+    <img ng-src="assets/images/{{layoutctrl.currentMdph.logo}}" alt="Retourner à l'accueil" />
   </a>
   <a ng-hide="layoutctrl.currentMdph" ui-sref="main">
-    <img src="assets/images/logo_marianne.png" alt="Accueil">
+    <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
   </a>
 
   <ul ng-if="!layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()">
@@ -30,19 +30,4 @@
   </main>
 </div>
 
-<footer ng-show="layoutctrl.currentMdph">
-  <h4>Contactez votre MDPH</h4>
-  <div class="location-container">
-    <div class="location" ng-repeat="location in layoutctrl.currentMdph.locations">
-      <h5>{{ location.name }}</h5>
-      <address>
-        {{location.address}}
-      </address>
-      <div class="schedule" ng-bind="location.schedule"></div>
-      <div ng-bind="location.phone"></div>
-      <div ng-if="location.email" class="email">
-        <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
-      </div>
-    </div>
-  </div>
-</footer>
+<mdph-footer mdph="layoutctrl.currentMdph" />

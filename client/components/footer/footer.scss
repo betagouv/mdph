@@ -1,0 +1,50 @@
+footer {
+  background-color: $light-blue;
+  color: white;
+
+  .contact-mdph {
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    address {
+      margin: 0;
+    }
+
+    .schedule {
+      white-space: pre-wrap;
+    }
+
+    .location-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .location {
+      margin: 10px;
+      min-width: 190px;
+      padding: 10px;
+      border-radius: 2px;
+      background: $lighter-blue;
+
+      .email {
+        margin: 10px 0;
+
+        a {
+          color: white;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .links {
+    padding: 20px 10px;
+
+    a {
+      color: white;
+    }
+  }
+}

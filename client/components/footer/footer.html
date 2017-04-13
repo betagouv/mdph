@@ -1,0 +1,22 @@
+<footer>
+  <div ng-show="footer.mdph" class="contact-mdph">
+    <h4>Contactez votre MDPH</h4>
+    <div class="location-container">
+      <div class="location" ng-repeat="location in footer.mdph.locations">
+        <h5>{{ location.name }}</h5>
+        <address>
+          {{location.address}}
+        </address>
+        <div class="schedule" ng-bind="location.schedule"></div>
+        <div ng-bind="location.phone"></div>
+        <div ng-if="location.email" class="email">
+          <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="links">
+    <a ui-sref="suivi">Suivi d’audience et vie privée</a>
+  </div>
+</footer>
