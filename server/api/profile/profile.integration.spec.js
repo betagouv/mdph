@@ -3,8 +3,8 @@
 import Request from '../request/request.model';
 import Profile from './profile.model';
 
-import {startServer} from '../../test/utils/server';
-import {populate} from '../../test/utils/seed';
+import {startServer} from '../../../test/utils/server';
+import {populate} from '../../../test/utils/seed';
 
 describe('Profile Integration', () => {
 

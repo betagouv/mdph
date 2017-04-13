@@ -5,6 +5,8 @@
 
 'use strict';
 
+var config = browser.params;
+
 var RequestPage = function() {
   var path = require('path');
 
@@ -13,14 +15,14 @@ var RequestPage = function() {
   this.sendBtn = element(by.buttonText('Envoyer'));
 
   this.sendRequest = function() {
-    var fileToUpload = '../../../../server/test/server/uploads/test.jpg';
-    var absolutePath = path.resolve(__dirname, fileToUpload);
+    const absolutePath = path.join(config.serverConfig.root, '/test/assets/', 'test.jpg');
 
     this.listUploads.each(function(currentInput) {
       currentInput.sendKeys(absolutePath);
     });
 
     this.cartestationnement.click();
+
     this.sendBtn.click();
   };
 };

@@ -2,7 +2,7 @@
 //
 // var should = require('should');
 // var controller = require('./document-category.controller');
-// var startServer = require('../../test/utils/server');
+// var startServer = require('../../../test/utils/server');
 // var User = require('../user/user.model');
 // var Mdph = require('../mdph/mdph.model');
 // var DocumentCategory = require('./document-category.model');

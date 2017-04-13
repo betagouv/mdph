@@ -6,7 +6,7 @@ $light-blue: #333E54;
 $lighter-blue: #3C4963;
 $flat-ui-blue:  #3498DB;
 
-$orange: #FF8100;
+$orange: #e87500;
 $lighter-red: #FF636C;
 $light-red: #D05158;
 $medium-red: #BA484F;
@@ -30,6 +30,8 @@ $brand-success: $green;
 $brand-warning: $lighter-red;
 $brand-error: $lighter-red;
 
+$link-color: $light-blue;
+
 
 @import 'bootstrap-sass/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
@@ -42,7 +44,7 @@ $brand-error: $lighter-red;
 }
 
 a {
-  color: $flat-ui-blue;
+  color: $light-blue;
 
   &:hover, &:focus {
     color: $bg-blue;

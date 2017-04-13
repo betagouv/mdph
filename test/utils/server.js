@@ -1,8 +1,7 @@
 import supertest from 'supertest';
 
-import config from '../../config/environment';
-
-import {server} from '../../app';
+import config from '../../server/config/environment';
+import { server } from '../../server/app';
 
 export function startServer(done) {
   server.listen(config.port, config.ip);

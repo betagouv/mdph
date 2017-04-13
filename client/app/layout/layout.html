@@ -38,11 +38,11 @@
       <address>
         {{location.address}}
       </address>
+      <div class="schedule" ng-bind="location.schedule"></div>
       <div ng-bind="location.phone"></div>
-      <div ng-if="location.email">
+      <div ng-if="location.email" class="email">
         <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
       </div>
-      <div class="schedule" ng-bind="location.schedule"></div>
     </div>
   </div>
 </footer>

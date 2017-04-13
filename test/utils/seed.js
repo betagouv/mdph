@@ -1,10 +1,10 @@
-import User from '../../api/user/user.model';
-import Profile from '../../api/profile/profile.model';
-import Request from '../../api/request/request.model';
-import Mdph from '../../api/mdph/mdph.model';
-
 import jwt from 'jsonwebtoken';
-import config from '../../config/environment';
+
+import User from '../../server/api/user/user.model';
+import Profile from '../../server/api/profile/profile.model';
+import Request from '../../server/api/request/request.model';
+import Mdph from '../../server/api/mdph/mdph.model';
+import config from '../../server/config/environment';
 
 function saveMdph(mdph) {
   return function() {

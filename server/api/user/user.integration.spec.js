@@ -1,7 +1,7 @@
 'use strict';
 
-import {startServer} from '../../test/utils/server';
-import {populate} from '../../test/utils/seed';
+import {startServer} from '../../../test/utils/server';
+import {populate} from '../../../test/utils/seed';
 import User from '../user/user.model';
 
 describe('User Integration', function() {

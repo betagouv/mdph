@@ -1,9 +1,9 @@
 'use strict';
 
-import {populate} from '../../../server/test/utils/seed';
+import {populate} from '../../test/utils/seed';
 var config = browser.params;
 
-describe('fill a Request following after a login', function() {
+describe('fill a Request following a signup', function() {
   beforeAll(done => {
     populate(() => {
       done();
@@ -11,13 +11,13 @@ describe('fill a Request following after a login', function() {
   });
 
   var testUser = {
-    email: 'user@test.com',
+    email: 'new@user.com',
     password: 'hashedPassword'
   };
 
-  var login = function(user) {
-    browser.get(config.baseUrl + '/login');
-    require('../login/login.po').login(user);
+  var signup = function(user) {
+    browser.get(config.baseUrl + '/signup');
+    require('../signup/signup.po').signup(user);
   };
 
   var answerRadio = function() {
@@ -34,7 +34,7 @@ describe('fill a Request following after a login', function() {
 
   beforeAll(function(done) {
     browser.manage().deleteAllCookies();
-    login(testUser);
+    signup(testUser);
     browser
       .wait(function() {
           return browser.executeScript('return !!window.angular');
@@ -43,16 +43,11 @@ describe('fill a Request following after a login', function() {
   });
 
   it('should fill the identity form', function() {
-    expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/profil/me');
-    var pageProfile = require('./pages/emptyprofile.po');
-    pageProfile.benefBtn.click();
-
     expect(browser.getCurrentUrl()).toContain('identite-beneficiaire');
     require('./pages/beneficiaire.po').submit();
   });
 
   it('should fill the \'vie_quotidienne\' form', function() {
-
     expect(browser.getCurrentUrl()).toContain('vie_quotidienne');
 
     // situation
@@ -75,18 +70,6 @@ describe('fill a Request following after a login', function() {
     expect(browser.getCurrentUrl()).toContain('/profil/');
   });
 
-  it('should return to profile when user clicks on the button', function() {
-    expect(browser.getCurrentUrl()).toContain('/profil/');
-
-    require('./pages/profile.po').modifyVieQuotidienne();
-
-    expect(browser.getCurrentUrl()).toContain('vie_quotidienne');
-
-    require('./pages/radio.po').returnToProfile();
-
-    expect(browser.getCurrentUrl()).toContain('/profil/');
-  });
-
   it('should return to the profile page and create the request', function() {
     expect(browser.getCurrentUrl()).toContain('/profil/');
     var profilePage = require('./pages/profile.po');
@@ -95,23 +78,6 @@ describe('fill a Request following after a login', function() {
     expect(profilePage.completedList.count()).toEqual(2);
 
     profilePage.createRequest.click();
-  });
-
-  it('should finalize the request', function() {
     expect(browser.getCurrentUrl()).toContain('/demande/');
-    require('./pages/request.po').sendRequest();
-
-    expect(browser.getCurrentUrl()).toContain('/profil/');
   });
-
-  it('should be back to the profile with correct request status', function() {
-    expect(browser.getCurrentUrl()).toContain('/profil/');
-    var profilePopup = require('./pages/popup.po');
-    profilePopup.popupBtn.click();
-
-    var statusPage = require('./pages/statusprofile.po');
-    expect(statusPage.doneList.count()).toEqual(2);
-    expect(statusPage.activeList.count()).toEqual(1);
-  });
-
 });

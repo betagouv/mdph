@@ -1,7 +1,7 @@
 'use strict';
 
-import {startServer} from '../../test/utils/server';
-import {populate} from '../../test/utils/seed';
+import {startServer} from '../../../test/utils/server';
+import {populate} from '../../../test/utils/seed';
 import Mdph from '../mdph/mdph.model';
 
 describe('Mdph Integration', function() {

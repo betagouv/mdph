@@ -1,8 +1,8 @@
 'use strict';
 
 import DocumentCategory from '../../api/document-category/document-category.model';
-import {startServer} from '../../test/utils/server';
-import {populate} from '../../test/utils/seed';
+import {startServer} from '../../../test/utils/server';
+import {populate} from '../../../test/utils/seed';
 import proxyquire from 'proxyquire';
 import {Readable} from 'stream';
 
