@@ -3,7 +3,9 @@
     Retour au profil
   </button>
 
-  <button type="button" class="btn btn-default" ng-click="navstepsctrl.prevStep()">
+  <button type="button" class="btn btn-default"
+          ng-click="navstepsctrl.prevStep()"
+          ng-if="!navstepsctrl.isFirstQuestion">
     Question précédente
   </button>
 

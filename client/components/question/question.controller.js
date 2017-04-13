@@ -7,6 +7,7 @@ angular.module('impactApp')
       scope.prevStep = prevStep;
       scope.nextStep = nextStep;
       scope.hideBack = data && data.hideBack;
+      scope.isFirstQuestion = data && data.isFirstQuestion;
       scope.isLastQuestion = data && data.isLastQuestion;
 
       // Si pas encore de réponse, on reprend la dernière

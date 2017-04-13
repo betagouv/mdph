@@ -14,6 +14,9 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      data: {
+        isFirstQuestion: true
+      },
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'condition', profile);
