@@ -14,13 +14,17 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      data: {
+        isFirstQuestion: true
+      },
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'conditionTravail', profile);
         },
 
-        nextStep: function($state, sectionModel) {
+        nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             if (sectionModel.conditionTravail) {
               $state.go('^.milieu');
             } else {
@@ -39,8 +43,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'milieuTravail', profile);
         },
 
-        nextStep: function($state, sectionModel) {
+        nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             if (sectionModel.milieuTravail === 'etablissement') {
               $state.go('^.emploi.nom_poste');
             } else {
@@ -59,8 +64,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'typeTravail', profile);
         },
 
-        nextStep: function($state, sectionModel) {
+        nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             if (sectionModel.typeTravail === 'independant') {
               $state.go('^.emploi.nom_poste');
             } else {
@@ -92,8 +98,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'employeur', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.emploi.nom_poste');
           };
         }
@@ -108,8 +115,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'prestations', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.rqth');
           };
         }
@@ -124,8 +132,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'rqth', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.^.parcours_professionnel.uploadCV');
           };
         }
