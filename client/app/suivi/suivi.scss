@@ -1,0 +1,10 @@
+#suivi-container {
+  padding-bottom: 2em;
+
+  iframe {
+    @extend .well;
+    height: auto;
+    width: 100%;
+    border: 0;
+  }
+}
