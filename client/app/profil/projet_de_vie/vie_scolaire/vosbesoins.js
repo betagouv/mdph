@@ -23,8 +23,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsScolarite', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.communication');
           };
         }
@@ -38,8 +39,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsCommunication', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.entretien');
           };
         }
@@ -53,8 +55,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsEntretien', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('^.deplacement');
           };
         }
@@ -68,8 +71,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsDeplacement', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState($state);
             $state.go('profil.vie_scolaire.vos_attentes.scolarite');
           };
         }
