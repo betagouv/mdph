@@ -8,8 +8,8 @@ angular.module('impactApp')
       nextStep: '=',
       prevStep: '=',
       questionForm: '=',
-      isFirstQuestion: '=',
-      isLastQuestion: '='
+      isFirstQuestion: '<',
+      isLastQuestion: '<'
     },
     controllerAs: 'navstepsctrl',
     controller: function() {
