@@ -18,7 +18,7 @@ angular.module('impactApp')
       if (this._id && this.identites && this.identites.beneficiaire && this.identites.beneficiaire.prenom) {
         return this.identites.beneficiaire.prenom + ' ' + this.identites.beneficiaire.nom;
       } else {
-        return 'Nouveau profil';
+        return 'Profil en cours de saisie';
       }
     };
 
