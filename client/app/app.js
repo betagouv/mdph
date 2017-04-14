@@ -29,8 +29,8 @@ angular.module('impactApp', [
     });
     treeConfig.dragClass = 'angular-ui-tree-drag';
   })
-  .run(function($rootScope, $window, $location) {
-    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+  .run(function($rootScope, $window, $location, $state) {
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {
       $window.scrollTo(0, 0);
 
       if (toState.data && toState.data.title) {
@@ -40,7 +40,14 @@ angular.module('impactApp', [
       }
 
       if ($window._paq) {
-        const withoutParamsUrl = `${$location.host()}${toState.url}`;
+        const anonymousParams = _(toStateParams)
+          .keys()
+          .reduce((acc, key) => {
+            acc[key] = `_${key}_`;
+            return acc;
+          }, {});
+
+        const withoutParamsUrl = $state.href(toState.name, anonymousParams, {absolute: true, inherit: false});
 
         $window._paq.push(['setCustomUrl', withoutParamsUrl]);
         $window._paq.push(['trackPageView']);
