@@ -40,7 +40,9 @@ angular.module('impactApp', [
       }
 
       if ($window._paq) {
-        $window._paq.push(['setCustomUrl', $location.path()]);
+        const withoutParamsUrl = `${$location.host()}${toState.url}`;
+
+        $window._paq.push(['setCustomUrl', withoutParamsUrl]);
         $window._paq.push(['trackPageView']);
       }
     });

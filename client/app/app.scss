@@ -178,6 +178,14 @@ fieldset {
   background-color: whitesmoke;
 }
 
+.text-container {
+  @extend .container;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  max-width: 700px;
+  line-height: 1.5;
+  font-size: 1.2em;
+}
+
 // injector
 @import 'account/account.scss';
 @import 'apropos/apropos.scss';
@@ -207,7 +215,9 @@ fieldset {
 @import 'profil/liste_demandes.scss';
 @import 'profil/profile.scss';
 @import 'stats/stats.scss';
+@import 'suivi/suivi.scss';
 @import '../components/display-file/display-file.scss';
+@import '../components/footer/footer.scss';
 @import '../components/history-synthese/history-synthese.scss';
 @import '../components/mdph-map/mdph-map.scss';
 @import '../components/menu-dashboard/menu-dashboard.scss';
