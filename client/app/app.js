@@ -43,7 +43,13 @@ angular.module('impactApp', [
         const anonymousParams = _(toStateParams)
           .keys()
           .reduce((acc, key) => {
-            acc[key] = `_${key}_`;
+            // White-list
+            if (key === 'codeDepartement') {
+              acc[key] = toStateParams[key];
+            } else {
+              acc[key] = `_${key}_`;
+            }
+
             return acc;
           }, {});
 
