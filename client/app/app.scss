@@ -80,13 +80,13 @@ a {
 }
 
 .btn-blue {
-  color: darkcyan;
-  border: 1px solid darkcyan;
+  color: $flat-ui-blue;
+  border: 1px solid $flat-ui-blue;
   background-color: white;
 
   &:hover, &:focus {
     color: white;
-    background-color: darkcyan;
+    background-color: $flat-ui-blue;
   }
 }
 
