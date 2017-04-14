@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: mdphbeta/node-mdph:1.0.3
       - image: circleci/mongo:3.4.2
-      - image: selenium/standalone-chrome:3.1.0
+      - image: selenium/standalone-chrome:latest
     working_directory: /home/ubuntu/mdph
     steps:
       - checkout
