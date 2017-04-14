@@ -3,7 +3,6 @@ angular.module('impactApp').component('mesProfils', {
   controller: 'MesProfilsCtrl',
   controllerAs: 'mesprofilsctrl',
   bindings: {
-    details: '=',
-    user: '='
+    user: '<'
   }
 });

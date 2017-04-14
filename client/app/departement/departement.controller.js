@@ -29,8 +29,4 @@ angular.module('impactApp')
         this.thankyou = true;
       }, 1000);
     };
-
-    this.showDashboard = () => {
-      return Auth.getCurrentUser() && Auth.isAdminMdph(Auth.getCurrentUser(), currentMdph);
-    };
   });

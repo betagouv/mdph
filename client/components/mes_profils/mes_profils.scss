@@ -1,6 +1,5 @@
-.mes-profiles-card-row {
+.mes-profiles-row {
   display: flex;
-  justify-content: center;
   margin: 0;
   padding: 0;
   flex-wrap: wrap;
@@ -11,25 +10,42 @@
 
   li {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100px;
-    height: 100px;
     margin: 0;
-    border: 1px solid #dedede;
-    color: $flat-ui-blue;
     background: #fff;
-    border-radius: 50%;
+    color: $flat-ui-blue;
+    border-radius: 2px;
     box-shadow: 0 1.5px 3px 0 rgba(0,0,0,.15), 0 1.5px 3px 0 rgba(0,0,0,.15);
+
+    a {
+      padding: 30px 45px;
+      font-size: 1.2em;
+
+      &:before {
+        content: "\f007";
+        font-family: 'FontAwesome';
+        display: inline-block;
+        color: $flat-ui-blue;
+        width: 1.2em;
+        margin-right: 4px;
+      }
+    }
   }
 
   li.new {
     background-color: $flat-ui-blue;
-    border-color: #fff;
 
     button {
+      padding: 30px 45px;
+      font-size: 1.2em;
       color: #fff;
+
+      &:before {
+        content: "\f055";
+        font-family: 'FontAwesome';
+        display: inline-block;
+        width: 1.2em;
+        margin-right: 4px;
+      }
     }
   }
 }

@@ -1,27 +1,35 @@
 .section-blue {
-  font-size: 16px;
-  line-height: 1.5;
-  text-align: center;
-
-  color: #444;
+  @extend .section-main;
   background-color: $lighter-blue;
+  max-width: 100% !important;
 
   .row {
-    padding: 60px 0;
     max-width: 1170px;
     margin: auto;
   }
 
-  .p {
-    color: #6b6b6b;
-  }
-
-  .fa {
-    color: #8b8b8b;
-  }
-
   h2 {
-    font-weight: 700;
+    color: white;
+    margin-top: 0;
+  }
+
+  .card {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+
+    .p {
+      color: #6b6b6b;
+    }
+
+    .fa {
+      color: #8b8b8b;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: #444;
+    }
   }
 }
 
