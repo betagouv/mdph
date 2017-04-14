@@ -3,14 +3,11 @@
   margin: 0;
   padding: 0;
   flex-wrap: wrap;
-
-  li+li {
-    margin-left: 30px;
-  }
+  justify-content: space-around;
 
   li {
     display: flex;
-    margin: 0;
+    margin: 5px;
     background: #fff;
     color: $flat-ui-blue;
     border-radius: 2px;
