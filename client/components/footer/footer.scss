@@ -2,10 +2,13 @@ footer {
   background-color: $light-blue;
   color: white;
 
+  h4 {
+    margin-left: 10px;
+  }
+
   .contact-mdph {
     padding: 20px 10px;
     display: flex;
-    align-items: center;
     flex-direction: column;
 
     address {
@@ -18,7 +21,6 @@ footer {
 
     .location-container {
       display: flex;
-      justify-content: space-around;
       flex-wrap: wrap;
     }
 
@@ -41,7 +43,7 @@ footer {
   }
 
   .links {
-    padding: 20px 10px;
+    padding: 0 20px 20px;
 
     a {
       color: white;

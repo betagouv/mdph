@@ -7,6 +7,5 @@ angular.module('impactApp')
         url: '/suivi',
         parent: 'layout',
         templateUrl: 'app/suivi/suivi.html',
-        controller: function () {}
       });
   });
