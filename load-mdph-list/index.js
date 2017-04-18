@@ -13,23 +13,23 @@ var url = 'https://api.opendata.onisep.fr/downloads/57e13aa4a3cee/57e13aa4a3cee.
 var tmp_file = 'tmp_download.json';
 
 // Wont load that list of zipcodes
-var zipCodeBlacklist = ['03'];
+var zipCodeBlacklist = ['14', '17', '54'];
 
 // [Extract] : Download the reference file of MDPH list
-var extract = function(uri, filename, callback) {
+function extract(uri, filename, callback) {
   request(uri, function(error, response, body) {
     console.log('content-type:', response.headers['content-type']);
     if (error) {
       console.error(error);
     } else {
       var json = JSON.parse(body);
-      callback(json);
+      callback(json, load);
     }
   });
 };
 
 // [Transform] : Format the list for the mongoDb
-var transform = function(json) {
+function transform(json, callback) {
 
   var result = _.chain(json)
     .groupBy('departement')
@@ -74,9 +74,25 @@ var transform = function(json) {
 
       return _.object(_.zip(currentMdphLabels, currentMdph));
     })
+    .reject(function(mdph) {
+      var reject = false;
+      _.map(zipCodeBlacklist, function(zipcode) {
+        if (mdph.zipcode === zipcode) {
+          console.log('mdph.zipcode', zipcode);
+          reject = true;
+        }
+      });
+
+      return reject;
+    })
     .value();
 
-  console.log(result);
+  callback(result);
 };
+
+// [Load] :
+function load(json) {
+  console.log(json);
+}
 
 extract(url, tmp_file, transform);
