@@ -2,6 +2,7 @@
 
 var request = require('request');
 var _ = require('lodash');
+var fs = require('fs');
 
 /*
  * ETL that load the reference file of MDPH list
@@ -10,20 +11,23 @@ var _ = require('lodash');
  * ressource : http://www.data.gouv.fr/fr/datasets/maisons-departementales-de-personnes-handicapees-mdph-1/
  * */
 var url = 'https://api.opendata.onisep.fr/downloads/57e13aa4a3cee/57e13aa4a3cee.json';
-var tmp_file = 'tmp_download.json';
+var tmp_file = __dirname + '/tmp_mdphs.json';
 
 // Wont load that list of zipcodes
 var zipCodeBlacklist = ['14', '17', '54'];
 
 // [Extract] : Download the reference file of MDPH list
-function extract(uri, filename, callback) {
+function extract(uri, callback) {
   request(uri, function(error, response, body) {
+    console.log('Strart downloading reference json file');
     console.log('content-type:', response.headers['content-type']);
-    if (error) {
+    if (response.headers['content-type'] !== 'application/json') {
+      console.error('url file is not a json file');
+    } else if (error) {
       console.error(error);
     } else {
-      var json = JSON.parse(body);
-      callback(json, load);
+      console.log('file downloaded');
+      callback(JSON.parse(body), load);
     }
   });
 };
@@ -52,7 +56,7 @@ function transform(json, callback) {
       var logo = 'logotest.jpg';
       var photo = 'photo14.jpg';
       var enabled = true;
-      var opened = true;
+      var opened = false;
       var likes = [];
 
       var locations = _.map(departement[1], function(loc) {
@@ -60,7 +64,10 @@ function transform(json, callback) {
           name: loc.nom,
           email: '',
           address: loc.adresse + ', ' + formatCP(loc.cp) + ', ' + loc.commune,
-          coordinates: {coordx: loc.longitude_x, coordy: loc.longitude_y},
+          coordinates: {
+            coordx: loc.longitude_x,
+            coordy: loc.latitude_y
+          },
           phone: '',
           schedule:''
         };
@@ -91,7 +98,10 @@ function transform(json, callback) {
 
 // [Load] :
 function load(json) {
-  console.log(json[0]);
+  fs.writeFile(tmp_file, JSON.stringify(json), function() {
+    console.log('You may load the mdphs list with :');
+    console.log('mongoimport --db impact --collection mdphs --jsonArray --file tmp_mdphs.json');
+  });
 }
 
-extract(url, tmp_file, transform);
+extract(url, transform);
