@@ -155,7 +155,17 @@
     {
       "id": "gevasco",
       "label": "GEVASCO",
-      "desc": "Documents à remplir avec l'enseignant référent et l'équipe de suivi de la scolarisation de votre enfant. Vous pouvez demander au directeur de l'école le contact de votre enseignant référent."
+      "desc": "Documents à remplir avec l'enseignant référent et l'équipe de suivi de la scolarisation de votre enfant. Vous pouvez demander au directeur de l'école le contact de votre enseignant référent.",
+      "expected": [
+        {
+          "label": "Première demande",
+          "file": "/assets/documents/gevasco_1redemande.pdf"
+        },
+        {
+          "label": "Réexamen",
+          "file": "/assets/documents/gevasco_reexamen.pdf"
+        }
+      ]
     },
     {
       "id": "bilan_ess",
