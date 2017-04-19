@@ -36,22 +36,19 @@ function transform(json, callback) {
     .pairs()
     .map(function(departement) {
 
-      var names = _.map(departement[1], function(loc) {
-        return loc.nom;
-      });
-
-      function shortest(names) {
-        var name = names[0];
-        names.forEach(function(n) {
-          name = n.length > name.length ? name : n;
-        });
-
-        return name;
+      // CP are provided as int, removing the starting 0
+      function formatCP(cp) {
+        var result = cp + '';
+        return result.length === 5 ? result : '0' + result;
       }
 
-      var name = shortest(names);
-      var zipcode = departement[0].split(' ')[0];
+      // Exctract zipcode from departement
+      var name = departement[0].split(' - ')[1];
 
+      // Exctract departemeent name from departement
+      var zipcode = departement[0].split(' - ')[0];
+
+      // Default values
       var logo = 'logotest.jpg';
       var photo = 'photo14.jpg';
       var enabled = true;
@@ -60,8 +57,9 @@ function transform(json, callback) {
 
       var locations = _.map(departement[1], function(loc) {
         var location = {
+          name: loc.nom,
           email: '',
-          address: loc.adresse + ', ' + loc.cp + ', ' + loc.commune,
+          address: loc.adresse + ', ' + formatCP(loc.cp) + ', ' + loc.commune,
           coordinates: {coordx: loc.longitude_x, coordy: loc.longitude_y},
           phone: '',
           schedule:''
@@ -72,13 +70,14 @@ function transform(json, callback) {
       var currentMdphLabels = ['name', 'zipcode', 'logo', 'photo', 'enabled', 'opened', 'locations', 'likes'];
       var currentMdph = [name, zipcode, logo, photo, enabled, opened, locations, likes];
 
+      // Make the departement to load
       return _.object(_.zip(currentMdphLabels, currentMdph));
     })
     .reject(function(mdph) {
+      // Reject already loaded departements
       var reject = false;
       _.map(zipCodeBlacklist, function(zipcode) {
         if (mdph.zipcode === zipcode) {
-          console.log('mdph.zipcode', zipcode);
           reject = true;
         }
       });
@@ -92,7 +91,7 @@ function transform(json, callback) {
 
 // [Load] :
 function load(json) {
-  console.log(json);
+  console.log(json[0]);
 }
 
 extract(url, tmp_file, transform);
