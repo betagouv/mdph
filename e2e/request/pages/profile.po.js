@@ -6,8 +6,8 @@
 'use strict';
 
 var ProfilePage = function() {
-  this.beneficiaire = element(by.css('#beneficiaire > .profile-category'));
-  this.vieQuotidienne = element(by.css('#vieQuotidienne > .profile-category'));
+  this.beneficiaire = element(by.css('#beneficiaire .profile-category'));
+  this.vieQuotidienne = element(by.css('#vieQuotidienne .profile-category'));
   this.modifyVieQuotidienneButton = this.vieQuotidienne.element(by.buttonText('Modifier'));
   this.completedList = element.all(by.css('.profile-category.complete'));
 
