@@ -14,7 +14,7 @@ var url = 'https://api.opendata.onisep.fr/downloads/57e13aa4a3cee/57e13aa4a3cee.
 var tmp_file = __dirname + '/tmp_mdphs.json';
 
 // Wont load that list of zipcodes
-var zipCodeBlacklist = ['14', '17', '54'];
+var zipCodeBlacklist = ['59', '14', '93', '06', '54', '17', '75', '56', '76'];
 
 // [Extract] : Download the reference file of MDPH list
 function extract(uri, callback) {
