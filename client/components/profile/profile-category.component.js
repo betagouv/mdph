@@ -49,7 +49,13 @@ const profileCategoryComponent = {
         return 'half';
       }
     }
-  }
+
+    static get $inject() {
+      return [
+        '$state'
+      ];
+    }
+	}
 };
 
 angular.module('impactApp')
