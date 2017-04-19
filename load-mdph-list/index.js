@@ -54,8 +54,7 @@ function transform(json, callback) {
 
       // Default values
       var logo = 'logotest.jpg';
-      var photo = 'photo14.jpg';
-      var enabled = true;
+      var enabled = false;
       var opened = false;
       var likes = [];
 
@@ -74,8 +73,8 @@ function transform(json, callback) {
         return location;
       });
 
-      var currentMdphLabels = ['name', 'zipcode', 'logo', 'photo', 'enabled', 'opened', 'locations', 'likes'];
-      var currentMdph = [name, zipcode, logo, photo, enabled, opened, locations, likes];
+      var currentMdphLabels = ['name', 'zipcode', 'logo', 'enabled', 'opened', 'locations', 'likes'];
+      var currentMdph = [name, zipcode, logo, enabled, opened, locations, likes];
 
       // Make the departement to load
       return _.object(_.zip(currentMdphLabels, currentMdph));
