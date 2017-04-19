@@ -55,7 +55,7 @@ const profileCategoryComponent = {
         '$state'
       ];
     }
-	}
+  }
 };
 
 angular.module('impactApp')
