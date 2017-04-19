@@ -7,7 +7,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Allier site de Vichy",
+        "name": "Allier site de Vichy",
         "email": "",
         "address": "71 allée des ailes, 03204, Vichy",
         "coordinates": {
@@ -18,7 +18,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Allier",
+        "name": "Allier",
         "email": "",
         "address": "Chateau de Bellevue, 03016, Moulins",
         "coordinates": {
@@ -29,7 +29,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Allier site de Montluçon",
+        "name": "Allier site de Montluçon",
         "email": "",
         "address": "11 rue Desaix, 03105, Montluçon",
         "coordinates": {
@@ -50,7 +50,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Isère",
+        "name": "Isère",
         "email": "",
         "address": "15 avenue Doyen Louis Weil, 38010, Grenoble",
         "coordinates": {
@@ -71,7 +71,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Savoie",
+        "name": "Savoie",
         "email": "",
         "address": "110 rue Sainte-Rose, 73000, Chambéry",
         "coordinates": {
@@ -92,7 +92,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Savoie site de Ville-La-Grand",
+        "name": "Haute-Savoie site de Ville-La-Grand",
         "email": "",
         "address": "7 bis place du porte bonheur, 74100, Ville-la-Grand",
         "coordinates": {
@@ -103,7 +103,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Savoie",
+        "name": "Haute-Savoie",
         "email": "",
         "address": "26 avenue de Chevêne, 74003, Annecy",
         "coordinates": {
@@ -114,7 +114,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Savoie site de Marignier",
+        "name": "Haute-Savoie site de Marignier",
         "email": "",
         "address": "187 rue du quai, 74970, Marignier",
         "coordinates": {
@@ -125,7 +125,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Savoie site de Thonon-les-bains",
+        "name": "Haute-Savoie site de Thonon-les-bains",
         "email": "",
         "address": "1 rue Casimir Capitan, 74200, Thonon-les-Bains",
         "coordinates": {
@@ -146,7 +146,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Saône",
+        "name": "Haute-Saône",
         "email": "",
         "address": "1 Rue Jean-Bernard Derosne, 70000, Vesoul",
         "coordinates": {
@@ -167,7 +167,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Côtes d'Armor",
+        "name": "Côtes d'Armor",
         "email": "",
         "address": "3 rue Villiers de l'Isle Adam, 22194, Plérin",
         "coordinates": {
@@ -188,7 +188,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées d'Eure et Loir",
+        "name": "Eure et Loir",
         "email": "",
         "address": "27 bis rue du Docteur Maunoury, 28000, Chartres",
         "coordinates": {
@@ -209,7 +209,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Joué-les-Tours",
+        "name": "Indre et Loire site de Joué-les-Tours",
         "email": "",
         "address": "18 rue de la Rotière, 37300, Joué-les-Tours",
         "coordinates": {
@@ -220,7 +220,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Tours Dublineau",
+        "name": "Indre et Loire site de Tours Dublineau",
         "email": "",
         "address": "24-26 rue Dublineau, 37000, Tours",
         "coordinates": {
@@ -231,7 +231,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire",
+        "name": "Indre et Loire",
         "email": "",
         "address": "38 rue Edouard-Vaillant, 37042, Tours",
         "coordinates": {
@@ -242,7 +242,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Loches",
+        "name": "Indre et Loire site de Loches",
         "email": "",
         "address": "9 rue du Docteur Martinais, 37600, Loches",
         "coordinates": {
@@ -253,7 +253,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Tours Mame",
+        "name": "Indre et Loire site de Tours Mame",
         "email": "",
         "address": "47 bis boulevard Preuilly, 37000, Tours",
         "coordinates": {
@@ -264,7 +264,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site d'Amboise",
+        "name": "Indre et Loire site d'Amboise",
         "email": "",
         "address": "9 rue Grégoire de Tours, 37400, Amboise",
         "coordinates": {
@@ -275,7 +275,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Neuillé-Pont-Pierre",
+        "name": "Indre et Loire site de Neuillé-Pont-Pierre",
         "email": "",
         "address": "Les Nongrières, 37360, Neuille-Pont-Pierre",
         "coordinates": {
@@ -286,7 +286,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Tours Maginot",
+        "name": "Indre et Loire site de Tours Maginot",
         "email": "",
         "address": "104 avenue Maginot, 37100, Tours",
         "coordinates": {
@@ -297,7 +297,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Chinon",
+        "name": "Indre et Loire site de Chinon",
         "email": "",
         "address": "6 rue des Courances, 37500, Chinon",
         "coordinates": {
@@ -308,7 +308,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre et Loire site de Saint-Pierre-des-corps",
+        "name": "Indre et Loire site de Saint-Pierre-des-corps",
         "email": "",
         "address": "8-10 rue de la rabaterie, 37700, Saint-Pierre-des-Corps",
         "coordinates": {
@@ -329,7 +329,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Loiret",
+        "name": "Loiret",
         "email": "",
         "address": "15 rue Claude Lewy, 45100, Orléans",
         "coordinates": {
@@ -350,7 +350,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Aube",
+        "name": "Aube",
         "email": "",
         "address": "Cité administrative des Vassaules, 10026, Troyes",
         "coordinates": {
@@ -371,7 +371,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site de Reims",
+        "name": "Marne site de Reims",
         "email": "",
         "address": "18 rue Carnot, 51100, Reims",
         "coordinates": {
@@ -382,7 +382,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site de Vitry-le-françois",
+        "name": "Marne site de Vitry-le-françois",
         "email": "",
         "address": "39 avenue du Colonel Moll, 51300, Vitry-le-François",
         "coordinates": {
@@ -393,7 +393,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne",
+        "name": "Marne",
         "email": "",
         "address": "50 avenue Patton, 51009, Châlons-en-Champagne",
         "coordinates": {
@@ -404,7 +404,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site d'Epernay",
+        "name": "Marne site d'Epernay",
         "email": "",
         "address": "22 rue Léger Bertin, 51200, Epernay",
         "coordinates": {
@@ -415,7 +415,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site de Sainte-Menehould",
+        "name": "Marne site de Sainte-Menehould",
         "email": "",
         "address": "14 place d'Austerlitz, 51800, Sainte-Menehould",
         "coordinates": {
@@ -426,7 +426,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site de Fismes",
+        "name": "Marne site de Fismes",
         "email": "",
         "address": "15 Faubourg de Soissons, 51170, Fismes",
         "coordinates": {
@@ -437,7 +437,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site de Sézanne",
+        "name": "Marne site de Sézanne",
         "email": "",
         "address": "135 route de Paris, 51120, Sézanne",
         "coordinates": {
@@ -448,7 +448,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site de Reims",
+        "name": "Marne site de Reims",
         "email": "",
         "address": "26 rue Jean-Louis Debar, 51100, Reims",
         "coordinates": {
@@ -459,7 +459,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Marne site de Suippes",
+        "name": "Marne site de Suippes",
         "email": "",
         "address": "9 rue Saint-Cloud, 51600, Suippes",
         "coordinates": {
@@ -480,7 +480,7 @@
     "opened": true,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle site de Lunéville",
+        "name": "Meurthe-et-Moselle site de Lunéville",
         "email": "",
         "address": "28 rue de la République, 54300, Lunéville",
         "coordinates": {
@@ -491,7 +491,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle site de Toul",
+        "name": "Meurthe-et-Moselle site de Toul",
         "email": "",
         "address": "5 avenue Hugo, 54200, Toul",
         "coordinates": {
@@ -502,7 +502,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle site de Maidières",
+        "name": "Meurthe-et-Moselle site de Maidières",
         "email": "",
         "address": "9200 route de Blénot, 54700, Maidières",
         "coordinates": {
@@ -513,7 +513,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle site d'Homecourt",
+        "name": "Meurthe-et-Moselle site d'Homecourt",
         "email": "",
         "address": "3 place de l'Hôtel des ouvriers, 54310, Homecourt",
         "coordinates": {
@@ -524,7 +524,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle",
+        "name": "Meurthe-et-Moselle",
         "email": "",
         "address": "123 rue Ernest Albert, 54521, Laxou",
         "coordinates": {
@@ -535,7 +535,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle site de Nancy",
+        "name": "Meurthe-et-Moselle site de Nancy",
         "email": "",
         "address": "13/15 boulevard Joffre, 54000, Nancy",
         "coordinates": {
@@ -546,7 +546,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle site de Longwy",
+        "name": "Meurthe-et-Moselle site de Longwy",
         "email": "",
         "address": "16 avenue du Maréchal de Lattre de Tassigny, 54400, Longwy",
         "coordinates": {
@@ -557,7 +557,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Meurthe-et-Moselle site de Saint-Nicolas-de-Port",
+        "name": "Meurthe-et-Moselle site de Saint-Nicolas-de-Port",
         "email": "",
         "address": "2 bis Ruelle Brudchoux, 54210, Saint-Nicolas-de-Port",
         "coordinates": {
@@ -578,7 +578,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Forbach",
+        "name": "Moselle site de Forbach",
         "email": "",
         "address": "18 avenue de Spicheren, 57600, Forbach",
         "coordinates": {
@@ -589,7 +589,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Sarreguemines",
+        "name": "Moselle site de Sarreguemines",
         "email": "",
         "address": "51 rue du Bac, 57200, Sarreguemines",
         "coordinates": {
@@ -600,7 +600,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle",
+        "name": "Moselle",
         "email": "",
         "address": "1 rue Claude Chappe, 57076, Metz",
         "coordinates": {
@@ -611,7 +611,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Yutz",
+        "name": "Moselle site de Yutz",
         "email": "",
         "address": "1 avenue Gabriel Lippmann, 57970, Yutz",
         "coordinates": {
@@ -622,7 +622,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Boulay",
+        "name": "Moselle site de Boulay",
         "email": "",
         "address": "6 rue Robert Schuman, 57220, Boulay-Moselle",
         "coordinates": {
@@ -633,7 +633,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Saint Avold",
+        "name": "Moselle site de Saint Avold",
         "email": "",
         "address": "16 rue du Lac, 57500, Saint-Avold",
         "coordinates": {
@@ -644,7 +644,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Château-Salins",
+        "name": "Moselle site de Château-Salins",
         "email": "",
         "address": "rue de la Tuilerie, 57170, Château-Salins",
         "coordinates": {
@@ -655,7 +655,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Faulquemont",
+        "name": "Moselle site de Faulquemont",
         "email": "",
         "address": "3 allée Réné Cassin, 57380, Faulquemont",
         "coordinates": {
@@ -666,7 +666,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Moselle site de Sarrebourg",
+        "name": "Moselle site de Sarrebourg",
         "email": "",
         "address": "47 avenue Raymond Poincaré, 57400, Sarrebourg",
         "coordinates": {
@@ -687,7 +687,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Haut-Rhin site de Mulhouse",
+        "name": "Haut-Rhin site de Mulhouse",
         "email": "",
         "address": "51A rue d'Agen, 68100, Mulhouse",
         "coordinates": {
@@ -698,7 +698,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Haut-Rhin",
+        "name": "Haut-Rhin",
         "email": "",
         "address": "48 avenue de la République, 68006, Colmar",
         "coordinates": {
@@ -719,7 +719,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Vosges",
+        "name": "Vosges",
         "email": "",
         "address": "1 allée des Chênes, 88026, Épinal",
         "coordinates": {
@@ -740,7 +740,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Aisne site de Guise",
+        "name": "Aisne site de Guise",
         "email": "",
         "address": "161 Place d'Armes, 02120, Guise",
         "coordinates": {
@@ -751,7 +751,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Aisne site de Saint-Quentin",
+        "name": "Aisne site de Saint-Quentin",
         "email": "",
         "address": "44 rue d'Isle, 02100, Saint-Quentin",
         "coordinates": {
@@ -762,7 +762,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Aisne site d'Hirson",
+        "name": "Aisne site d'Hirson",
         "email": "",
         "address": "55 rue de Lorraine, 02500, Hirson",
         "coordinates": {
@@ -773,7 +773,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Aisne site de Soissons",
+        "name": "Aisne site de Soissons",
         "email": "",
         "address": "31 rue Anne Morgan, 02200, Soissons",
         "coordinates": {
@@ -784,7 +784,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Aisne site de la Fère",
+        "name": "Aisne site de la Fère",
         "email": "",
         "address": "place de l'europe, 02800, La Fère",
         "coordinates": {
@@ -795,7 +795,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Aisne site de Château-Thierry",
+        "name": "Aisne site de Château-Thierry",
         "email": "",
         "address": "1 rue Robert Lecart, 02400, Château-Thierry",
         "coordinates": {
@@ -806,7 +806,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de l'Aisne",
+        "name": "Aisne",
         "email": "",
         "address": "Route de Besny, 02000, Laon",
         "coordinates": {
@@ -827,7 +827,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Oise",
+        "name": "Oise",
         "email": "",
         "address": "1 rue des Filatures, 60000, Beauvais",
         "coordinates": {
@@ -848,7 +848,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Calais",
+        "name": "Pas-de-Calais site de Calais",
         "email": "",
         "address": "44 rue Gaillard, 62106, Calais",
         "coordinates": {
@@ -859,7 +859,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Saint-Nicolas",
+        "name": "Pas-de-Calais site de Saint-Nicolas",
         "email": "",
         "address": "87 Place Chanteclair, 62223, Saint-Nicolas",
         "coordinates": {
@@ -870,7 +870,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais",
+        "name": "Pas-de-Calais",
         "email": "",
         "address": "9 rue Willy Brandt, 62005, Arras",
         "coordinates": {
@@ -881,7 +881,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Carvin",
+        "name": "Pas-de-Calais site de Carvin",
         "email": "",
         "address": "64 rue Jean Moulin, 62220, Carvin",
         "coordinates": {
@@ -892,7 +892,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Leforest",
+        "name": "Pas-de-Calais site de Leforest",
         "email": "",
         "address": "27 rue de Pressence, 62790, Leforest",
         "coordinates": {
@@ -903,7 +903,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Saint-Omer",
+        "name": "Pas-de-Calais site de Saint-Omer",
         "email": "",
         "address": "16 rue Saint Sépulcre, 62500, Saint-Omer",
         "coordinates": {
@@ -914,7 +914,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Béthune",
+        "name": "Pas-de-Calais site de Béthune",
         "email": "",
         "address": "rue de l'université, 62400, Béthune",
         "coordinates": {
@@ -925,7 +925,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site d'Hénin-Beaumont",
+        "name": "Pas-de-Calais site d'Hénin-Beaumont",
         "email": "",
         "address": "183 avenue des fusilles, 62252, Hénin-Beaumont",
         "coordinates": {
@@ -936,7 +936,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Lens",
+        "name": "Pas-de-Calais site de Lens",
         "email": "",
         "address": "33 rue de la Perche, 62300, Lens",
         "coordinates": {
@@ -947,7 +947,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Saint-Pol-sur-Ternoise",
+        "name": "Pas-de-Calais site de Saint-Pol-sur-Ternoise",
         "email": "",
         "address": "31 rue des Procureurs, 62130, Saint-Pol-sur-Ternoise",
         "coordinates": {
@@ -958,7 +958,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Boulogne-sur-mer",
+        "name": "Pas-de-Calais site de Boulogne-sur-mer",
         "email": "",
         "address": "153 rue de Bréquerecque, 62321, Boulogne-sur-Mer",
         "coordinates": {
@@ -969,7 +969,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Pas-de-Calais site de Montreuil",
+        "name": "Pas-de-Calais site de Montreuil",
         "email": "",
         "address": "Place Saint Walloy, 62170, Montreuil",
         "coordinates": {
@@ -990,7 +990,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Paris",
+        "name": "Paris",
         "email": "",
         "address": "69 rue de la Victoire, 75009, Paris",
         "coordinates": {
@@ -1011,7 +1011,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Seine-Saint-Denis",
+        "name": "Seine-Saint-Denis",
         "email": "",
         "address": "7/11 rue Erik Satie, 93000, Bobigny",
         "coordinates": {
@@ -1032,7 +1032,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Réunion site de Saint-Pierre",
+        "name": "Réunion site de Saint-Pierre",
         "email": "",
         "address": "13 rue Augustin Archambaud, 97410, Saint-Pierre",
         "coordinates": {
@@ -1043,7 +1043,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Réunion",
+        "name": "Réunion",
         "email": "",
         "address": "13 rue Fénelon, 97464, Saint-Denis",
         "coordinates": {
@@ -1064,7 +1064,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Martinique site de Saint-Pierre",
+        "name": "Martinique site de Saint-Pierre",
         "email": "",
         "address": "Mairie de Saint-Pierre, 97250, Saint-Pierre",
         "coordinates": {
@@ -1075,7 +1075,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Martinique",
+        "name": "Martinique",
         "email": "",
         "address": "1 rue Eugène Eucharis, 97200, Fort-de-France",
         "coordinates": {
@@ -1086,7 +1086,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Martinique site de Trinité",
+        "name": "Martinique site de Trinité",
         "email": "",
         "address": "Sous Préfecture de Trinité, 97220, La Trinité",
         "coordinates": {
@@ -1097,7 +1097,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Martinique site du Marin",
+        "name": "Martinique site du Marin",
         "email": "",
         "address": "Sous Préfecture du Marin, 97290, Le Marin",
         "coordinates": {
@@ -1108,7 +1108,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Martinique site de Rivière-Salée",
+        "name": "Martinique site de Rivière-Salée",
         "email": "",
         "address": "CCAS de Rivière-Salée, 97215, Rivière-Salée",
         "coordinates": {
@@ -1129,7 +1129,7 @@
     "opened": true,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Calvados site d'Evrecy",
+        "name": "Calvados site d'Evrecy",
         "email": "",
         "address": "rue de la cabottière, 14210, Evrecy",
         "coordinates": {
@@ -1140,7 +1140,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Calvados site de Vire",
+        "name": "Calvados site de Vire",
         "email": "",
         "address": "1 rue Général de Gaulle, 14500, Vire Normandie",
         "coordinates": {
@@ -1151,7 +1151,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Calvados site de Bayeux",
+        "name": "Calvados site de Bayeux",
         "email": "",
         "address": "3 rue François Coulet, 14400, Bayeux",
         "coordinates": {
@@ -1162,7 +1162,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Calvados site de Falaise",
+        "name": "Calvados site de Falaise",
         "email": "",
         "address": "4 rue de la Résistance, 14700, Falaise",
         "coordinates": {
@@ -1173,7 +1173,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Calvados",
+        "name": "Calvados",
         "email": "",
         "address": "17 rue du 11 novembre, 14000, Caen",
         "coordinates": {
@@ -1184,7 +1184,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Calvados site de Lisieux",
+        "name": "Calvados site de Lisieux",
         "email": "",
         "address": "Cour Matignon, 14100, Lisieux",
         "coordinates": {
@@ -1195,7 +1195,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Calvados site de Douvres-la-Délivrande",
+        "name": "Calvados site de Douvres-la-Délivrande",
         "email": "",
         "address": "4 rue de l'Eglise, 14440, Douvres-la-Delivrande",
         "coordinates": {
@@ -1206,7 +1206,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Calvados site de Pont-l'évêque",
+        "name": "Calvados site de Pont-l'évêque",
         "email": "",
         "address": "14 rue de la Chaussée Nival, 14130, Pont-l'Eveque",
         "coordinates": {
@@ -1227,7 +1227,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Eure",
+        "name": "Eure",
         "email": "",
         "address": "11 rue Jean de la Bruyère, 27000, Evreux",
         "coordinates": {
@@ -1248,7 +1248,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Charente",
+        "name": "Charente",
         "email": "",
         "address": "15 boulevard Jean Moulin, 16000, Angoulême",
         "coordinates": {
@@ -1269,7 +1269,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Creuse site d'Auzances",
+        "name": "Creuse site d'Auzances",
         "email": "",
         "address": "Route de Montluçon, 23700, Auzances",
         "coordinates": {
@@ -1280,7 +1280,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Creuse site de la Souterraine",
+        "name": "Creuse site de la Souterraine",
         "email": "",
         "address": "14 Boulevard Mestadier, 23300, La Souterraine",
         "coordinates": {
@@ -1291,7 +1291,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Creuse site de Bourganeuf",
+        "name": "Creuse site de Bourganeuf",
         "email": "",
         "address": "rue Joliot Curie, 23400, Bourganeuf",
         "coordinates": {
@@ -1302,7 +1302,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Creuse site de Boussac",
+        "name": "Creuse site de Boussac",
         "email": "",
         "address": "quartier Pasteur, 23600, Boussac",
         "coordinates": {
@@ -1313,7 +1313,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Creuse",
+        "name": "Creuse",
         "email": "",
         "address": "2 bis avenue de la République, 23011, Guéret",
         "coordinates": {
@@ -1324,7 +1324,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Creuse site de Aubusson",
+        "name": "Creuse site de Aubusson",
         "email": "",
         "address": "1 Allée Jean Marie Couturier, 23200, Aubusson",
         "coordinates": {
@@ -1335,7 +1335,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Creuse site de Guéret",
+        "name": "Creuse site de Guéret",
         "email": "",
         "address": "12 rue Sylvain Grateyrolles, 23000, Guéret",
         "coordinates": {
@@ -1356,7 +1356,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Landes",
+        "name": "Landes",
         "email": "",
         "address": "836 avenue Eloi Ducom, 40025, Mont-de-Marsan",
         "coordinates": {
@@ -1367,7 +1367,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées des Landes site de Parentis-en-Born",
+        "name": "Landes site de Parentis-en-Born",
         "email": "",
         "address": "place du 14 Juillet, 40160, Parentis-en-Born",
         "coordinates": {
@@ -1378,7 +1378,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées des landes site de Pissos",
+        "name": "landes site de Pissos",
         "email": "",
         "address": "51 route Daugnagne, 40410, Pissos",
         "coordinates": {
@@ -1389,7 +1389,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées des Landes site de Saint-Paul-lès-Dax",
+        "name": "Landes site de Saint-Paul-lès-Dax",
         "email": "",
         "address": "242 boulevard Saint Vincent de Paul, 40990, Saint-Paul-lès-Dax",
         "coordinates": {
@@ -1400,7 +1400,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées des Landes site de Cauneille",
+        "name": "Landes site de Cauneille",
         "email": "",
         "address": "400 route Peyrehorade, 40300, Cauneille",
         "coordinates": {
@@ -1411,7 +1411,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées des Landes site de Tarnos",
+        "name": "Landes site de Tarnos",
         "email": "",
         "address": "1 Avenue Joseph Ponsolle, 40220, Tarnos",
         "coordinates": {
@@ -1432,7 +1432,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Lot-et-Garonne",
+        "name": "Lot-et-Garonne",
         "email": "",
         "address": "1 633 avenue du Maréchal Leclerc, 47916, Agen",
         "coordinates": {
@@ -1453,7 +1453,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Vienne",
+        "name": "Haute-Vienne",
         "email": "",
         "address": "8 place des Carmes, 87031, Limoges",
         "coordinates": {
@@ -1474,7 +1474,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Gard",
+        "name": "Gard",
         "email": "",
         "address": "115/116 allée Norbert Wiener, 30000, Nîmes",
         "coordinates": {
@@ -1495,7 +1495,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Gers site d'Auch",
+        "name": "Gers site d'Auch",
         "email": "",
         "address": "rue pasteur, 32000, Auch",
         "coordinates": {
@@ -1506,7 +1506,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Gers site de Nogaro",
+        "name": "Gers site de Nogaro",
         "email": "",
         "address": "8 avenue Cassou de Herre, 32110, Nogaro",
         "coordinates": {
@@ -1517,7 +1517,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Gers site de Fleurance",
+        "name": "Gers site de Fleurance",
         "email": "",
         "address": "62 rue Alphonse Cadéot, 32500, Fleurance",
         "coordinates": {
@@ -1528,7 +1528,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Gers site de Gimont",
+        "name": "Gers site de Gimont",
         "email": "",
         "address": "19 rue de la 1ère armée française, 32200, Gimont",
         "coordinates": {
@@ -1539,7 +1539,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Gers",
+        "name": "Gers",
         "email": "",
         "address": "12 rue Pelletier d'Oisy, 32000, Auch",
         "coordinates": {
@@ -1550,7 +1550,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Gers site de Mirande",
+        "name": "Gers site de Mirande",
         "email": "",
         "address": "8 avenue Chanzy, 32300, Mirande",
         "coordinates": {
@@ -1571,7 +1571,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Hérault",
+        "name": "Hérault",
         "email": "",
         "address": "59 avenue de Fès, 34086, Montpellier",
         "coordinates": {
@@ -1592,7 +1592,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Pyrénées-Orientales",
+        "name": "Pyrénées-Orientales",
         "email": "",
         "address": "30 rue Pierre Bretonneau, 66100, Perpignan",
         "coordinates": {
@@ -1613,7 +1613,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Caussade",
+        "name": "Tarn-et-Garonne site de Caussade",
         "email": "",
         "address": "33 rue de l'Abreuvoir, 82300, Caussade",
         "coordinates": {
@@ -1624,7 +1624,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Lauzerte",
+        "name": "Tarn-et-Garonne site de Lauzerte",
         "email": "",
         "address": "6 cité des Nauzes, 82110, Lauzerte",
         "coordinates": {
@@ -1635,7 +1635,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Montaigu-de-Quercy",
+        "name": "Tarn-et-Garonne site de Montaigu-de-Quercy",
         "email": "",
         "address": "4 place Mercadiel, 82150, Montaigu-de-Quercy",
         "coordinates": {
@@ -1646,7 +1646,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Montauban",
+        "name": "Tarn-et-Garonne site de Montauban",
         "email": "",
         "address": "13 rue du docteur Labat, 82000, Montauban",
         "coordinates": {
@@ -1657,7 +1657,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de  Saint-Nicolas-de-la-Greve",
+        "name": "Tarn-et-Garonne site de  Saint-Nicolas-de-la-Greve",
         "email": "",
         "address": "Au château, 82210, Saint-Nicolas-de-la-Grave",
         "coordinates": {
@@ -1668,7 +1668,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Grisolles",
+        "name": "Tarn-et-Garonne site de Grisolles",
         "email": "",
         "address": "2 rue Alphonse Daudet, 82170, Grisolles",
         "coordinates": {
@@ -1679,7 +1679,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de la-ville-Dieu-du-Temple",
+        "name": "Tarn-et-Garonne site de la-ville-Dieu-du-Temple",
         "email": "",
         "address": "Place de l'Eglise, 82290, La Ville-Dieu-du-Temple",
         "coordinates": {
@@ -1690,7 +1690,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de  Lavit",
+        "name": "Tarn-et-Garonne site de  Lavit",
         "email": "",
         "address": "57 rue de la République, 82120, Lavit",
         "coordinates": {
@@ -1701,7 +1701,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne",
+        "name": "Tarn-et-Garonne",
         "email": "",
         "address": "28 rue de la Banque, 82013, Montauban",
         "coordinates": {
@@ -1712,7 +1712,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de de Montech",
+        "name": "Tarn-et-Garonne site de de Montech",
         "email": "",
         "address": "3 rue des Ecoles, 82700, Montech",
         "coordinates": {
@@ -1723,7 +1723,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Septfonds",
+        "name": "Tarn-et-Garonne site de Septfonds",
         "email": "",
         "address": "Place de la foire, 82240, Septfonds",
         "coordinates": {
@@ -1734,7 +1734,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Beaumont de Lomagne",
+        "name": "Tarn-et-Garonne site de Beaumont de Lomagne",
         "email": "",
         "address": "12 rue de Toureilh, 82500, Beaumont-de-Lomagne",
         "coordinates": {
@@ -1745,7 +1745,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de  Labastide-Saint-Pierre",
+        "name": "Tarn-et-Garonne site de  Labastide-Saint-Pierre",
         "email": "",
         "address": "1 rue Pierre Curry, 82370, Labastide-Saint-Pierre",
         "coordinates": {
@@ -1756,7 +1756,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Moissac",
+        "name": "Tarn-et-Garonne site de Moissac",
         "email": "",
         "address": "8 place des Récollets, 82200, Moissac",
         "coordinates": {
@@ -1767,7 +1767,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Montauban",
+        "name": "Tarn-et-Garonne site de Montauban",
         "email": "",
         "address": "rue Lenôtre, 82000, Montauban",
         "coordinates": {
@@ -1778,7 +1778,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Montauban",
+        "name": "Tarn-et-Garonne site de Montauban",
         "email": "",
         "address": "Avenue Marcel Unal, 82000, Montauban",
         "coordinates": {
@@ -1789,7 +1789,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Nègrepelisse",
+        "name": "Tarn-et-Garonne site de Nègrepelisse",
         "email": "",
         "address": "rue de la Piscine, 82800, Nègrepelisse",
         "coordinates": {
@@ -1800,7 +1800,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Valence d'Agen",
+        "name": "Tarn-et-Garonne site de Valence d'Agen",
         "email": "",
         "address": "54 boulevard Victor Guilhem, 82400, Valence d'Agen",
         "coordinates": {
@@ -1811,7 +1811,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Villebrumier",
+        "name": "Tarn-et-Garonne site de Villebrumier",
         "email": "",
         "address": "rue Gambetta, 82370, Villebrumier",
         "coordinates": {
@@ -1822,7 +1822,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Castelsarrasin",
+        "name": "Tarn-et-Garonne site de Castelsarrasin",
         "email": "",
         "address": "22 rue de la Mouline, 82100, Castelsarrasin",
         "coordinates": {
@@ -1833,7 +1833,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Lafrançaise",
+        "name": "Tarn-et-Garonne site de Lafrançaise",
         "email": "",
         "address": "21 rue Léon Cladel, 82130, Lafrancaise",
         "coordinates": {
@@ -1844,7 +1844,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Monclar de Quercy",
+        "name": "Tarn-et-Garonne site de Monclar de Quercy",
         "email": "",
         "address": "Mairie, 82230, Monclar-de-Quercy",
         "coordinates": {
@@ -1855,7 +1855,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Montauban",
+        "name": "Tarn-et-Garonne site de Montauban",
         "email": "",
         "address": "7 allée Mortarieu, 82000, Montauban",
         "coordinates": {
@@ -1866,7 +1866,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Saint Antonin-Noble-Val",
+        "name": "Tarn-et-Garonne site de Saint Antonin-Noble-Val",
         "email": "",
         "address": "Route des fours à chaux, 82140, Saint-Antonin-Noble-Val",
         "coordinates": {
@@ -1877,7 +1877,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Tarn-et-Garonne site de Verdun sur Garonne",
+        "name": "Tarn-et-Garonne site de Verdun sur Garonne",
         "email": "",
         "address": "1 cité de Najats, 82600, Verdun-sur-Garonne",
         "coordinates": {
@@ -1898,7 +1898,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Loire-Atlantique site de Saint-Nazaire",
+        "name": "Loire-Atlantique site de Saint-Nazaire",
         "email": "",
         "address": "12 place Pierre Sémard, 44600, Saint-Nazaire",
         "coordinates": {
@@ -1909,7 +1909,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Loire Atlantique",
+        "name": "Loire Atlantique",
         "email": "",
         "address": "300 route de Vannes, 44701, Orvault",
         "coordinates": {
@@ -1930,7 +1930,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site du Ballon",
+        "name": "Sarthe site du Ballon",
         "email": "",
         "address": "Place de la République, 72290, Ballon Saint-Mars",
         "coordinates": {
@@ -1941,7 +1941,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Fresnay-sur-sarthe",
+        "name": "Sarthe site de Fresnay-sur-sarthe",
         "email": "",
         "address": "2 rue Abbé Lelièvre, 72130, Fresnay-sur-Sarthe",
         "coordinates": {
@@ -1952,7 +1952,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe",
+        "name": "Sarthe",
         "email": "",
         "address": "11 rue du Pied Sec, 72019, Le Mans",
         "coordinates": {
@@ -1963,7 +1963,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Pontvallain",
+        "name": "Sarthe site de Pontvallain",
         "email": "",
         "address": "Place du Chanoine Tarot, 72510, Pontvallain",
         "coordinates": {
@@ -1974,7 +1974,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Sablé-sur-Sarthe",
+        "name": "Sarthe site de Sablé-sur-Sarthe",
         "email": "",
         "address": "5 rue Saint Martin, 72300, Sablé-sur-Sarthe",
         "coordinates": {
@@ -1985,7 +1985,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Bonnetable",
+        "name": "Sarthe site de Bonnetable",
         "email": "",
         "address": "8 rue Mazagran, 72110, Bonnetable",
         "coordinates": {
@@ -1996,7 +1996,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de la Ferté-Bernard",
+        "name": "Sarthe site de la Ferté-Bernard",
         "email": "",
         "address": "9 rue Viet, 72400, La Ferté-Bernard",
         "coordinates": {
@@ -2007,7 +2007,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site du Mans",
+        "name": "Sarthe site du Mans",
         "email": "",
         "address": "38 avenue bollée, 72000, Le Mans",
         "coordinates": {
@@ -2018,7 +2018,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Saint-Calais",
+        "name": "Sarthe site de Saint-Calais",
         "email": "",
         "address": "9 rue des Halles, 72120, Saint-Calais",
         "coordinates": {
@@ -2029,7 +2029,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Château-du-Loir",
+        "name": "Sarthe site de Château-du-Loir",
         "email": "",
         "address": "5 allée Saint Martin, 72500, Château-du-Loir",
         "coordinates": {
@@ -2040,7 +2040,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de la Flèche",
+        "name": "Sarthe site de la Flèche",
         "email": "",
         "address": "22 rue du Maréchal Foch, 72200, La Flèche",
         "coordinates": {
@@ -2051,7 +2051,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarte site de Mamers",
+        "name": "Sarte site de Mamers",
         "email": "",
         "address": "1 place de la République, 72600, Mamers",
         "coordinates": {
@@ -2062,7 +2062,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site d'Allonnes",
+        "name": "Sarthe site d'Allonnes",
         "email": "",
         "address": "11 avenue François Cevert, 72700, Allonnes",
         "coordinates": {
@@ -2073,7 +2073,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Conlie",
+        "name": "Sarthe site de Conlie",
         "email": "",
         "address": "25 place des Halles, 72240, Conlie",
         "coordinates": {
@@ -2084,7 +2084,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Coulaines",
+        "name": "Sarthe site de Coulaines",
         "email": "",
         "address": "24 rue de la paix, 72190, Coulaines",
         "coordinates": {
@@ -2095,7 +2095,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site du Grand-Luce",
+        "name": "Sarthe site du Grand-Luce",
         "email": "",
         "address": "1 rue Georges Coulon, 72150, Le Grand-Luce",
         "coordinates": {
@@ -2106,7 +2106,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de la Sarthe site de Montfort-le-Gesnois",
+        "name": "Sarthe site de Montfort-le-Gesnois",
         "email": "",
         "address": "1 place Jacques Moreau, 72450, Montfort-le-Gesnois",
         "coordinates": {
@@ -2127,7 +2127,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Hautes Alpes",
+        "name": "Hautes Alpes",
         "email": "",
         "address": "29 bis avenue du Commandant Dumont, 05000, Gap",
         "coordinates": {
@@ -2148,7 +2148,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Var site de Cuers",
+        "name": "Var site de Cuers",
         "email": "",
         "address": "8 Boulevard Gambetta, 83390, Cuers",
         "coordinates": {
@@ -2159,7 +2159,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Var site de Saint-Maximin",
+        "name": "Var site de Saint-Maximin",
         "email": "",
         "address": "45 chemin des Fontaines, 83470, Saint-Maximin-la-Sainte-Baume",
         "coordinates": {
@@ -2170,7 +2170,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Var site de Draguignan",
+        "name": "Var site de Draguignan",
         "email": "",
         "address": "1 Boulevard Foch, 83300, Draguignan",
         "coordinates": {
@@ -2181,7 +2181,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Var site de Frejus",
+        "name": "Var site de Frejus",
         "email": "",
         "address": "82 rue Martine Bidouré, 83600, Fréjus",
         "coordinates": {
@@ -2192,7 +2192,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Var site de Le Luc",
+        "name": "Var site de Le Luc",
         "email": "",
         "address": "38 rue Jean Jaurès, 83340, Le Luc",
         "coordinates": {
@@ -2203,7 +2203,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Var site de Brignoles",
+        "name": "Var site de Brignoles",
         "email": "",
         "address": "Rue du Docteur Barberoux, 83170, Brignoles",
         "coordinates": {
@@ -2214,7 +2214,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Var",
+        "name": "Var",
         "email": "",
         "address": "293 Route de la Seyne, 83192, Ollioules",
         "coordinates": {
@@ -2235,7 +2235,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Mayotte",
+        "name": "Mayotte",
         "email": "",
         "address": "-, 97600, Mamoudzou",
         "coordinates": {
@@ -2256,7 +2256,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Drôme",
+        "name": "Drôme",
         "email": "",
         "address": "42 C avenue des Langories, 26905, Valence",
         "coordinates": {
@@ -2277,7 +2277,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Loire",
+        "name": "Haute-Loire",
         "email": "",
         "address": "9 Rue des Moulins, 43009, Le Puy-en-Velay",
         "coordinates": {
@@ -2298,7 +2298,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Côte-d'Or",
+        "name": "Côte-d'Or",
         "email": "",
         "address": "1 rue Joseph Tissot, 21035, Dijon",
         "coordinates": {
@@ -2319,7 +2319,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Saône-et-Loire",
+        "name": "Saône-et-Loire",
         "email": "",
         "address": "18 rue de Flacé, 71026, Mâcon",
         "coordinates": {
@@ -2340,7 +2340,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Finistère",
+        "name": "Finistère",
         "email": "",
         "address": "1C rue Félix Le Dantec, 29018, Quimper",
         "coordinates": {
@@ -2361,7 +2361,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Indre",
+        "name": "Indre",
         "email": "",
         "address": "4 rue Eugène Rolland, 36020, Châteauroux",
         "coordinates": {
@@ -2382,7 +2382,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Corse du Sud",
+        "name": "Corse du Sud",
         "email": "",
         "address": "Avenue Napoléon III, 20000, Ajaccio",
         "coordinates": {
@@ -2403,7 +2403,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Marne",
+        "name": "Haute-Marne",
         "email": "",
         "address": "centre départemental administratif, 52901, Chaumont",
         "coordinates": {
@@ -2424,7 +2424,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Meuse",
+        "name": "Meuse",
         "email": "",
         "address": "5 espace Theuriet, 55000, Bar-le-Duc",
         "coordinates": {
@@ -2445,7 +2445,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Guadeloupe",
+        "name": "Guadeloupe",
         "email": "",
         "address": "Rue du Docteur Hélène, 97190, Le Gosier",
         "coordinates": {
@@ -2466,7 +2466,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Nord site de Dunkerque",
+        "name": "Nord site de Dunkerque",
         "email": "",
         "address": "30 rue de l'Hermite, 59377, Dunkerque",
         "coordinates": {
@@ -2477,7 +2477,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Nord site de Valenciennes",
+        "name": "Nord site de Valenciennes",
         "email": "",
         "address": "160 boulevard Harpignies, 59304, Valenciennes",
         "coordinates": {
@@ -2488,7 +2488,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Nord",
+        "name": "Nord",
         "email": "",
         "address": "21 rue de la Toison d'Or, 59666, Villeneuve-d'Ascq",
         "coordinates": {
@@ -2509,7 +2509,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Seine-et-Marne",
+        "name": "Seine-et-Marne",
         "email": "",
         "address": "16 rue de l'Aluminium, 77543, Savigny-le-Temple",
         "coordinates": {
@@ -2530,7 +2530,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Val-de-Marne",
+        "name": "Val-de-Marne",
         "email": "",
         "address": "7-9 voie Félix Eboué, 94046, Créteil",
         "coordinates": {
@@ -2551,7 +2551,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Manche",
+        "name": "Manche",
         "email": "",
         "address": "586 rue de l'exode, 50000, Saint-Lô",
         "coordinates": {
@@ -2572,7 +2572,7 @@
     "opened": true,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Charente Maritime",
+        "name": "Charente Maritime",
         "email": "",
         "address": "61 rue de Jéricho, 17005, La Rochelle",
         "coordinates": {
@@ -2593,7 +2593,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Dordogne",
+        "name": "Dordogne",
         "email": "",
         "address": "Rue du 26e régiment d'infanterie, 24016, Périgueux",
         "coordinates": {
@@ -2614,7 +2614,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Pyrénées-Atlantiques",
+        "name": "Pyrénées-Atlantiques",
         "email": "",
         "address": "Rue Pierre Bonnard, 64000, Pau",
         "coordinates": {
@@ -2635,7 +2635,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Ariège",
+        "name": "Ariège",
         "email": "",
         "address": "5 rue du Cap de la ville, 09000, Foix",
         "coordinates": {
@@ -2667,7 +2667,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Haute Garonne site de Saint-Gaudens",
+        "name": "Haute Garonne site de Saint-Gaudens",
         "email": "",
         "address": "1 place Pégot, 31800, Saint-Gaudens",
         "coordinates": {
@@ -2678,7 +2678,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées de Haute Garonne",
+        "name": "Haute Garonne",
         "email": "",
         "address": "10 place Alphonse Jourdain, 31000, Toulouse",
         "coordinates": {
@@ -2699,7 +2699,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Lot",
+        "name": "Lot",
         "email": "",
         "address": "304 rue Victor Hugo, 46000, Cahors",
         "coordinates": {
@@ -2720,7 +2720,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Tarn",
+        "name": "Tarn",
         "email": "",
         "address": "221 avenue Albert Thomas, 81027, Albi",
         "coordinates": {
@@ -2762,7 +2762,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Alpes Maritimes",
+        "name": "Alpes Maritimes",
         "email": "",
         "address": "27 boulevard Paul Montel, 06000, Nice",
         "coordinates": {
@@ -2783,7 +2783,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Vaucluse",
+        "name": "Vaucluse",
         "email": "",
         "address": "22 boulevard Saint-Michel, 84096, Avignon",
         "coordinates": {
@@ -2794,7 +2794,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Vaucluse site de Cadenet",
+        "name": "Vaucluse site de Cadenet",
         "email": "",
         "address": "avenue Philippe de Girard, 84160, Cadenet",
         "coordinates": {
@@ -2805,7 +2805,7 @@
         "schedule": ""
       },
       {
-        "name": "Maison départementale des personnes handicapées du Vaucluse site de Vaison-la-Romaine",
+        "name": "Vaucluse site de Vaison-la-Romaine",
         "email": "",
         "address": "8 place Théodore Aubanel, 84110, Vaison-la-Romaine",
         "coordinates": {
@@ -2826,7 +2826,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Cantal",
+        "name": "Cantal",
         "email": "",
         "address": "3 rue Alexandre Pinard, 15015, Aurillac",
         "coordinates": {
@@ -2847,7 +2847,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Puy de Dome",
+        "name": "Puy de Dome",
         "email": "",
         "address": "11 rue Vaucanson, 63100, Clermont-Ferrand",
         "coordinates": {
@@ -2868,7 +2868,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Doubs",
+        "name": "Doubs",
         "email": "",
         "address": "13-15 rue de la Préfecture, 25043, Besançon",
         "coordinates": {
@@ -2889,7 +2889,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Jura",
+        "name": "Jura",
         "email": "",
         "address": "355 boulevard Jules Ferry, 39002, Lons-le-Saunier",
         "coordinates": {
@@ -2910,7 +2910,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Yonne",
+        "name": "Yonne",
         "email": "",
         "address": "10 route de Saint-Georges, 89000, Perrigny",
         "coordinates": {
@@ -2931,7 +2931,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées d'Ille et Vilaine",
+        "name": "Ille et Vilaine",
         "email": "",
         "address": "13 avenue de Cucillé, 35031, Rennes",
         "coordinates": {
@@ -2952,7 +2952,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Haute-Corse",
+        "name": "Haute-Corse",
         "email": "",
         "address": "2 bis chemin de l'annonciade, 20405, Bastia",
         "coordinates": {
@@ -2973,7 +2973,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Bas-Rhin",
+        "name": "Bas-Rhin",
         "email": "",
         "address": "6A rue du Verdon, 67000, Strasbourg",
         "coordinates": {
@@ -2994,7 +2994,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Guyane",
+        "name": "Guyane",
         "email": "",
         "address": "Rue des Galaxies, 97305, Cayenne",
         "coordinates": {
@@ -3015,7 +3015,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Yvelines",
+        "name": "Yvelines",
         "email": "",
         "address": "21-23 rue du Refuge, 78000, Versailles",
         "coordinates": {
@@ -3036,7 +3036,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Essonne",
+        "name": "Essonne",
         "email": "",
         "address": "93 rue Henri Rochefort, 91000, Evry",
         "coordinates": {
@@ -3057,7 +3057,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Val-d'Oise",
+        "name": "Val-d'Oise",
         "email": "",
         "address": "2 avenue du Parc, 95032, Cergy",
         "coordinates": {
@@ -3078,7 +3078,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Orne",
+        "name": "Orne",
         "email": "",
         "address": "13 rue du Marchand Saillant, 61005, Alençon",
         "coordinates": {
@@ -3099,7 +3099,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Corrèze",
+        "name": "Corrèze",
         "email": "",
         "address": "2 rue du Docteur Ramon, 19000, Tulle",
         "coordinates": {
@@ -3120,7 +3120,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Gironde",
+        "name": "Gironde",
         "email": "",
         "address": "264 boulevard Godard, 33300, Bordeaux",
         "coordinates": {
@@ -3141,7 +3141,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Deux-Sèvres",
+        "name": "Deux-Sèvres",
         "email": "",
         "address": "68 rue Alsace Lorraine, 79000, Niort",
         "coordinates": {
@@ -3162,7 +3162,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Lozère",
+        "name": "Lozère",
         "email": "",
         "address": "6 avenue du Père Coudrin, 48000, Mende",
         "coordinates": {
@@ -3183,7 +3183,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Mayenne",
+        "name": "Mayenne",
         "email": "",
         "address": "16 rue Albert Einstein, 53006, Laval",
         "coordinates": {
@@ -3204,7 +3204,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Vendée",
+        "name": "Vendée",
         "email": "",
         "address": "185 boulevard Leclerc, 85000, La Roche-sur-Yon",
         "coordinates": {
@@ -3225,7 +3225,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Bouches du Rhône",
+        "name": "Bouches du Rhône",
         "email": "",
         "address": "4 quai d'Arenc, 13304, Marseille",
         "coordinates": {
@@ -3246,7 +3246,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Ain",
+        "name": "Ain",
         "email": "",
         "address": "13 avenue de la Victoire, 01000, Bourg-en-Bresse",
         "coordinates": {
@@ -3267,7 +3267,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Ardèche",
+        "name": "Ardèche",
         "email": "",
         "address": "Pôle Astier Froment, 07007, Privas",
         "coordinates": {
@@ -3288,7 +3288,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Loire",
+        "name": "Loire",
         "email": "",
         "address": "23 rue d'Arcole, 42000, Saint-Etienne",
         "coordinates": {
@@ -3309,7 +3309,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Rhône",
+        "name": "Rhône",
         "email": "",
         "address": "8 rue Jonas Salk, 69007, Lyon",
         "coordinates": {
@@ -3330,7 +3330,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Nièvre",
+        "name": "Nièvre",
         "email": "",
         "address": "11 bis rue Emile Combes, 58028, Nevers",
         "coordinates": {
@@ -3351,7 +3351,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Territoire de Belfort",
+        "name": "Territoire de Belfort",
         "email": "",
         "address": "Rue de l'As de Carreau, 90000, Belfort",
         "coordinates": {
@@ -3393,7 +3393,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Cher",
+        "name": "Cher",
         "email": "",
         "address": "Route de Guerry, 18021, Bourges",
         "coordinates": {
@@ -3414,7 +3414,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées du Loir et Cher",
+        "name": "Loir et Cher",
         "email": "",
         "address": "34 avenue Maunoury, 41000, Blois",
         "coordinates": {
@@ -3435,7 +3435,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Ardennes",
+        "name": "Ardennes",
         "email": "",
         "address": "55 avenue du Général de Gaulle, 08000, Charleville-Mézières",
         "coordinates": {
@@ -3456,7 +3456,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Somme",
+        "name": "Somme",
         "email": "",
         "address": "1 boulevard du Port, 80037, Amiens",
         "coordinates": {
@@ -3477,7 +3477,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Hauts-de-Seine",
+        "name": "Hauts-de-Seine",
         "email": "",
         "address": "2 rue Rigault, 92000, Nanterre",
         "coordinates": {
@@ -3498,7 +3498,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Seine-Maritime",
+        "name": "Seine-Maritime",
         "email": "",
         "address": "13 rue Poret de Blosseville, 76100, Rouen",
         "coordinates": {
@@ -3519,7 +3519,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de la Vienne",
+        "name": "Vienne",
         "email": "",
         "address": "39 rue de Beaulieu, 86000, Poitiers",
         "coordinates": {
@@ -3540,7 +3540,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Aude",
+        "name": "Aude",
         "email": "",
         "address": "18 rue du Moulin de la Seigne, 11855, Carcassonne",
         "coordinates": {
@@ -3561,7 +3561,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de l'Aveyron",
+        "name": "Aveyron",
         "email": "",
         "address": "8 rue François Mazenq, 12000, Rodez",
         "coordinates": {
@@ -3582,7 +3582,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées de Hautes-Pyrénées",
+        "name": "Hautes-Pyrénées",
         "email": "",
         "address": "place Ferré, 65000, Tarbes",
         "coordinates": {
@@ -3603,7 +3603,7 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale des personnes handicapées des Alpes de Haute Provence",
+        "name": "Alpes de Haute Provence",
         "email": "",
         "address": "4 rue de la Grave, 04005, Digne-les-Bains",
         "coordinates": {

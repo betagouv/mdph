@@ -46,6 +46,12 @@ function transform(json, callback) {
         return result.length === 5 ? result : '0' + result;
       }
 
+      function formatName(name) {
+        const TO_CUT = ' site de ';
+        var newName = name.split(TO_CUT)[1];
+        return newName ? 'Site de '  + newName : 'Siège';
+      }
+
       // Exctract zipcode from departement
       var name = departement[0].split(' - ')[1];
 
@@ -60,7 +66,7 @@ function transform(json, callback) {
 
       var locations = _.map(departement[1], function(loc) {
         var location = {
-          name: loc.nom,
+          name: formatName(loc.nom),
           email: '',
           address: loc.adresse + ', ' + formatCP(loc.cp) + ', ' + loc.commune,
           coordinates: {
