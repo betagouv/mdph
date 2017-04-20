@@ -61,9 +61,17 @@ function transform(json, callback) {
       }
 
       function formatName(name) {
-        const TO_CUT = ' site de ';
-        var newName = name.split(TO_CUT)[1];
-        return newName ? 'Site de '  + newName : 'Siège';
+        const TO_CUT = [' site de ', 'site d\''];
+
+        if (name.split(TO_CUT[0])[1]) {
+          return 'Site de ' + name.split(TO_CUT[0])[1];
+        }
+
+        if (name.split(TO_CUT[1])[1]) {
+          return 'Site d\'' + name.split(TO_CUT[1])[1];
+        }
+
+        return 'Siège';
       }
 
       function isTrue(list, zipcode) {
@@ -94,7 +102,7 @@ function transform(json, callback) {
         var location = {
           name: formatName(loc.nom),
           email: '',
-          address: loc.adresse + ', ' + formatCP(loc.cp) + ', ' + loc.commune,
+          address: loc.adresse + ', ' + formatCP(loc.cp) + ' ' + loc.commune,
           coordinates: {
             coordx: loc.longitude_x,
             coordy: loc.latitude_y
