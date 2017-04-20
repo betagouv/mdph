@@ -7,20 +7,20 @@
     "opened": false,
     "locations": [
       {
-        "name": "Allier site de Vichy",
+        "name": "Site de Montluçon",
         "email": "",
-        "address": "71 allée des ailes, 03204, Vichy",
+        "address": "11 rue Desaix, 03105 Montluçon",
         "coordinates": {
-          "coordx": 3.4150367,
-          "coordy": 46.1433413
+          "coordx": 2.6047393,
+          "coordy": 46.3438845
         },
         "phone": "",
         "schedule": ""
       },
       {
-        "name": "Allier",
+        "name": "Siège",
         "email": "",
-        "address": "Chateau de Bellevue, 03016, Moulins",
+        "address": "Chateau de Bellevue, 03016 Moulins",
         "coordinates": {
           "coordx": 3.354775,
           "coordy": 46.566314
@@ -29,2788 +29,12 @@
         "schedule": ""
       },
       {
-        "name": "Allier site de Montluçon",
+        "name": "Site de Vichy",
         "email": "",
-        "address": "11 rue Desaix, 03105, Montluçon",
+        "address": "71 allée des ailes, 03204 Vichy",
         "coordinates": {
-          "coordx": 2.6047393,
-          "coordy": 46.3438845
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Isère",
-    "zipcode": "38",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Isère",
-        "email": "",
-        "address": "15 avenue Doyen Louis Weil, 38010, Grenoble",
-        "coordinates": {
-          "coordx": 5.7123421,
-          "coordy": 45.1923473
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Savoie",
-    "zipcode": "73",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Savoie",
-        "email": "",
-        "address": "110 rue Sainte-Rose, 73000, Chambéry",
-        "coordinates": {
-          "coordx": 5.9236698150635,
-          "coordy": 45.566898345947
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Haute-Savoie",
-    "zipcode": "74",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Haute-Savoie site de Ville-La-Grand",
-        "email": "",
-        "address": "7 bis place du porte bonheur, 74100, Ville-la-Grand",
-        "coordinates": {
-          "coordx": 6.2507175000001,
-          "coordy": 46.2015272
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Haute-Savoie",
-        "email": "",
-        "address": "26 avenue de Chevêne, 74003, Annecy",
-        "coordinates": {
-          "coordx": 6.1162867,
-          "coordy": 45.9007972
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Haute-Savoie site de Marignier",
-        "email": "",
-        "address": "187 rue du quai, 74970, Marignier",
-        "coordinates": {
-          "coordx": 6.5103986,
-          "coordy": 46.089002
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Haute-Savoie site de Thonon-les-bains",
-        "email": "",
-        "address": "1 rue Casimir Capitan, 74200, Thonon-les-Bains",
-        "coordinates": {
-          "coordx": 6.4746058000001,
-          "coordy": 46.3583224
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Haute-Saône",
-    "zipcode": "70",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Haute-Saône",
-        "email": "",
-        "address": "1 Rue Jean-Bernard Derosne, 70000, Vesoul",
-        "coordinates": {
-          "coordx": 6.1497138,
-          "coordy": 47.6211222
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Côtes-d'Armor",
-    "zipcode": "22",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Côtes d'Armor",
-        "email": "",
-        "address": "3 rue Villiers de l'Isle Adam, 22194, Plérin",
-        "coordinates": {
-          "coordx": -2.7602452,
-          "coordy": 48.5180562
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Eure-et-Loir",
-    "zipcode": "28",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Eure et Loir",
-        "email": "",
-        "address": "27 bis rue du Docteur Maunoury, 28000, Chartres",
-        "coordinates": {
-          "coordx": 1.4897899627686,
-          "coordy": 48.443138122559
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Indre-et-Loire",
-    "zipcode": "37",
-    "logo": "logotest.jpg",
-    "enabled": true,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Indre et Loire site de Joué-les-Tours",
-        "email": "",
-        "address": "18 rue de la Rotière, 37300, Joué-les-Tours",
-        "coordinates": {
-          "coordx": 0.66311689999998,
-          "coordy": 47.3477998
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site de Tours Dublineau",
-        "email": "",
-        "address": "24-26 rue Dublineau, 37000, Tours",
-        "coordinates": {
-          "coordx": 0.698398,
-          "coordy": 47.3897871
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire",
-        "email": "",
-        "address": "38 rue Edouard-Vaillant, 37042, Tours",
-        "coordinates": {
-          "coordx": 0.69702529999995,
-          "coordy": 47.3885967
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site de Loches",
-        "email": "",
-        "address": "9 rue du Docteur Martinais, 37600, Loches",
-        "coordinates": {
-          "coordx": 1.0053354,
-          "coordy": 47.129098
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site de Tours Mame",
-        "email": "",
-        "address": "47 bis boulevard Preuilly, 37000, Tours",
-        "coordinates": {
-          "coordx": 0.67123140000001,
-          "coordy": 47.3931899
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site d'Amboise",
-        "email": "",
-        "address": "9 rue Grégoire de Tours, 37400, Amboise",
-        "coordinates": {
-          "coordx": 0.98843910000005,
-          "coordy": 47.4075959
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site de Neuillé-Pont-Pierre",
-        "email": "",
-        "address": "Les Nongrières, 37360, Neuille-Pont-Pierre",
-        "coordinates": {
-          "coordx": 0.53460319999999,
-          "coordy": 47.5452304
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site de Tours Maginot",
-        "email": "",
-        "address": "104 avenue Maginot, 37100, Tours",
-        "coordinates": {
-          "coordx": 0.68723639999996,
-          "coordy": 47.4149864
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site de Chinon",
-        "email": "",
-        "address": "6 rue des Courances, 37500, Chinon",
-        "coordinates": {
-          "coordx": 0.24889989999997,
-          "coordy": 47.1653544
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Indre et Loire site de Saint-Pierre-des-corps",
-        "email": "",
-        "address": "8-10 rue de la rabaterie, 37700, Saint-Pierre-des-Corps",
-        "coordinates": {
-          "coordx": 0.7187682,
-          "coordy": 47.3923282
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Loiret",
-    "zipcode": "45",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Loiret",
-        "email": "",
-        "address": "15 rue Claude Lewy, 45100, Orléans",
-        "coordinates": {
-          "coordx": 1.9042999744415,
-          "coordy": 47.902111053467
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Aube",
-    "zipcode": "10",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Aube",
-        "email": "",
-        "address": "Cité administrative des Vassaules, 10026, Troyes",
-        "coordinates": {
-          "coordx": 4.0744009,
-          "coordy": 48.2973451
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Marne",
-    "zipcode": "51",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Marne site de Reims",
-        "email": "",
-        "address": "18 rue Carnot, 51100, Reims",
-        "coordinates": {
-          "coordx": 4.032101,
-          "coordy": 49.2551809
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne site de Vitry-le-françois",
-        "email": "",
-        "address": "39 avenue du Colonel Moll, 51300, Vitry-le-François",
-        "coordinates": {
-          "coordx": 4.58471,
-          "coordy": 48.7203305
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne",
-        "email": "",
-        "address": "50 avenue Patton, 51009, Châlons-en-Champagne",
-        "coordinates": {
-          "coordx": 4.3489762,
-          "coordy": 48.9630891
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne site d'Epernay",
-        "email": "",
-        "address": "22 rue Léger Bertin, 51200, Epernay",
-        "coordinates": {
-          "coordx": 3.9503302000001,
-          "coordy": 49.0425043
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne site de Sainte-Menehould",
-        "email": "",
-        "address": "14 place d'Austerlitz, 51800, Sainte-Menehould",
-        "coordinates": {
-          "coordx": 4.8932389,
-          "coordy": 49.0909795
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne site de Fismes",
-        "email": "",
-        "address": "15 Faubourg de Soissons, 51170, Fismes",
-        "coordinates": {
-          "coordx": 3.6755466,
-          "coordy": 49.3075571
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne site de Sézanne",
-        "email": "",
-        "address": "135 route de Paris, 51120, Sézanne",
-        "coordinates": {
-          "coordx": 3.7136382,
-          "coordy": 48.7253382
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne site de Reims",
-        "email": "",
-        "address": "26 rue Jean-Louis Debar, 51100, Reims",
-        "coordinates": {
-          "coordx": 4.0121690999999,
-          "coordy": 49.2275441
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Marne site de Suippes",
-        "email": "",
-        "address": "9 rue Saint-Cloud, 51600, Suippes",
-        "coordinates": {
-          "coordx": 4.532647,
-          "coordy": 49.1324919
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Meurthe-et-Moselle",
-    "zipcode": "54",
-    "logo": "logo54.jpg",
-    "enabled": true,
-    "opened": true,
-    "locations": [
-      {
-        "name": "Meurthe-et-Moselle site de Lunéville",
-        "email": "",
-        "address": "28 rue de la République, 54300, Lunéville",
-        "coordinates": {
-          "coordx": 6.4907596,
-          "coordy": 48.5925643
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Meurthe-et-Moselle site de Toul",
-        "email": "",
-        "address": "5 avenue Hugo, 54200, Toul",
-        "coordinates": {
-          "coordx": 5.8839352,
-          "coordy": 48.6755145
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Meurthe-et-Moselle site de Maidières",
-        "email": "",
-        "address": "9200 route de Blénot, 54700, Maidières",
-        "coordinates": {
-          "coordx": 6.0743778999999,
-          "coordy": 48.862115
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Meurthe-et-Moselle site d'Homecourt",
-        "email": "",
-        "address": "3 place de l'Hôtel des ouvriers, 54310, Homecourt",
-        "coordinates": {
-          "coordx": 6.0034501,
-          "coordy": 49.2180423
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Meurthe-et-Moselle",
-        "email": "",
-        "address": "123 rue Ernest Albert, 54521, Laxou",
-        "coordinates": {
-          "coordx": 6.1544449,
-          "coordy": 48.686989
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Meurthe-et-Moselle site de Nancy",
-        "email": "",
-        "address": "13/15 boulevard Joffre, 54000, Nancy",
-        "coordinates": {
-          "coordx": 6.1784075,
-          "coordy": 48.6880208
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Meurthe-et-Moselle site de Longwy",
-        "email": "",
-        "address": "16 avenue du Maréchal de Lattre de Tassigny, 54400, Longwy",
-        "coordinates": {
-          "coordx": 5.7715367000001,
-          "coordy": 49.5147061
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Meurthe-et-Moselle site de Saint-Nicolas-de-Port",
-        "email": "",
-        "address": "2 bis Ruelle Brudchoux, 54210, Saint-Nicolas-de-Port",
-        "coordinates": {
-          "coordx": 6.3065498,
-          "coordy": 48.6301783
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Moselle",
-    "zipcode": "57",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Moselle site de Forbach",
-        "email": "",
-        "address": "18 avenue de Spicheren, 57600, Forbach",
-        "coordinates": {
-          "coordx": 6.9032125,
-          "coordy": 49.1866759
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle site de Sarreguemines",
-        "email": "",
-        "address": "51 rue du Bac, 57200, Sarreguemines",
-        "coordinates": {
-          "coordx": 7.0626139999999,
-          "coordy": 49.1117302
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle",
-        "email": "",
-        "address": "1 rue Claude Chappe, 57076, Metz",
-        "coordinates": {
-          "coordx": 6.2230419,
-          "coordy": 49.1051681
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle site de Yutz",
-        "email": "",
-        "address": "1 avenue Gabriel Lippmann, 57970, Yutz",
-        "coordinates": {
-          "coordx": 6.1711079,
-          "coordy": 49.3496164
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle site de Boulay",
-        "email": "",
-        "address": "6 rue Robert Schuman, 57220, Boulay-Moselle",
-        "coordinates": {
-          "coordx": 6.4930042,
-          "coordy": 49.1845811
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle site de Saint Avold",
-        "email": "",
-        "address": "16 rue du Lac, 57500, Saint-Avold",
-        "coordinates": {
-          "coordx": 6.7037181000001,
-          "coordy": 49.1110029
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle site de Château-Salins",
-        "email": "",
-        "address": "rue de la Tuilerie, 57170, Château-Salins",
-        "coordinates": {
-          "coordx": 6.535329,
-          "coordy": 48.776539
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle site de Faulquemont",
-        "email": "",
-        "address": "3 allée Réné Cassin, 57380, Faulquemont",
-        "coordinates": {
-          "coordx": 6.6046729,
-          "coordy": 49.0545565
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Moselle site de Sarrebourg",
-        "email": "",
-        "address": "47 avenue Raymond Poincaré, 57400, Sarrebourg",
-        "coordinates": {
-          "coordx": 7.052587,
-          "coordy": 48.732663
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Haut-Rhin",
-    "zipcode": "68",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Haut-Rhin site de Mulhouse",
-        "email": "",
-        "address": "51A rue d'Agen, 68100, Mulhouse",
-        "coordinates": {
-          "coordx": 7.3355068,
-          "coordy": 47.760829
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Haut-Rhin",
-        "email": "",
-        "address": "48 avenue de la République, 68006, Colmar",
-        "coordinates": {
-          "coordx": 7.3543000221252,
-          "coordy": 48.082019805908
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Vosges",
-    "zipcode": "88",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Vosges",
-        "email": "",
-        "address": "1 allée des Chênes, 88026, Épinal",
-        "coordinates": {
-          "coordx": 6.45548,
-          "coordy": 48.2014789
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Aisne",
-    "zipcode": "02",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Aisne site de Guise",
-        "email": "",
-        "address": "161 Place d'Armes, 02120, Guise",
-        "coordinates": {
-          "coordx": 3.6268192,
-          "coordy": 49.9009225
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Aisne site de Saint-Quentin",
-        "email": "",
-        "address": "44 rue d'Isle, 02100, Saint-Quentin",
-        "coordinates": {
-          "coordx": 3.29102,
-          "coordy": 49.8439033
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Aisne site d'Hirson",
-        "email": "",
-        "address": "55 rue de Lorraine, 02500, Hirson",
-        "coordinates": {
-          "coordx": 4.0917581,
-          "coordy": 49.9171913
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Aisne site de Soissons",
-        "email": "",
-        "address": "31 rue Anne Morgan, 02200, Soissons",
-        "coordinates": {
-          "coordx": 3.3208669000001,
-          "coordy": 49.3725307
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Aisne site de la Fère",
-        "email": "",
-        "address": "place de l'europe, 02800, La Fère",
-        "coordinates": {
-          "coordx": 3.367175,
-          "coordy": 49.661256
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Aisne site de Château-Thierry",
-        "email": "",
-        "address": "1 rue Robert Lecart, 02400, Château-Thierry",
-        "coordinates": {
-          "coordx": 3.3897306,
-          "coordy": 49.0489943
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Aisne",
-        "email": "",
-        "address": "Route de Besny, 02000, Laon",
-        "coordinates": {
-          "coordx": 3.6470799446106,
-          "coordy": 49.56856918335
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Oise",
-    "zipcode": "60",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Oise",
-        "email": "",
-        "address": "1 rue des Filatures, 60000, Beauvais",
-        "coordinates": {
-          "coordx": 2.0837099552155,
-          "coordy": 49.4294090271
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Pas-de-Calais",
-    "zipcode": "62",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Pas-de-Calais site de Calais",
-        "email": "",
-        "address": "44 rue Gaillard, 62106, Calais",
-        "coordinates": {
-          "coordx": 1.8590472,
-          "coordy": 50.9417874
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Saint-Nicolas",
-        "email": "",
-        "address": "87 Place Chanteclair, 62223, Saint-Nicolas",
-        "coordinates": {
-          "coordx": 2.776778,
-          "coordy": 50.302132
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais",
-        "email": "",
-        "address": "9 rue Willy Brandt, 62005, Arras",
-        "coordinates": {
-          "coordx": 2.7817826,
-          "coordy": 50.2930094
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Carvin",
-        "email": "",
-        "address": "64 rue Jean Moulin, 62220, Carvin",
-        "coordinates": {
-          "coordx": 2.9626681,
-          "coordy": 50.4924791
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Leforest",
-        "email": "",
-        "address": "27 rue de Pressence, 62790, Leforest",
-        "coordinates": {
-          "coordx": 3.0612699000001,
-          "coordy": 50.4397717
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Saint-Omer",
-        "email": "",
-        "address": "16 rue Saint Sépulcre, 62500, Saint-Omer",
-        "coordinates": {
-          "coordx": 2.2540559,
-          "coordy": 50.7521305
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Béthune",
-        "email": "",
-        "address": "rue de l'université, 62400, Béthune",
-        "coordinates": {
-          "coordx": 2.6532171,
-          "coordy": 50.5213285
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site d'Hénin-Beaumont",
-        "email": "",
-        "address": "183 avenue des fusilles, 62252, Hénin-Beaumont",
-        "coordinates": {
-          "coordx": 2.9582061999999,
-          "coordy": 50.4211805
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Lens",
-        "email": "",
-        "address": "33 rue de la Perche, 62300, Lens",
-        "coordinates": {
-          "coordx": 2.8266631,
-          "coordy": 50.4343226
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Saint-Pol-sur-Ternoise",
-        "email": "",
-        "address": "31 rue des Procureurs, 62130, Saint-Pol-sur-Ternoise",
-        "coordinates": {
-          "coordx": 2.3349015,
-          "coordy": 50.3829427
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Boulogne-sur-mer",
-        "email": "",
-        "address": "153 rue de Bréquerecque, 62321, Boulogne-sur-Mer",
-        "coordinates": {
-          "coordx": 1.6144053,
-          "coordy": 50.7153672
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Pas-de-Calais site de Montreuil",
-        "email": "",
-        "address": "Place Saint Walloy, 62170, Montreuil",
-        "coordinates": {
-          "coordx": 1.7635562,
-          "coordy": 50.463148
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Paris",
-    "zipcode": "75",
-    "logo": "logo75.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Paris",
-        "email": "",
-        "address": "69 rue de la Victoire, 75009, Paris",
-        "coordinates": {
-          "coordx": 2.340399980545,
-          "coordy": 48.880100250244
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Seine-Saint-Denis",
-    "zipcode": "93",
-    "logo": "logo93.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Seine-Saint-Denis",
-        "email": "",
-        "address": "7/11 rue Erik Satie, 93000, Bobigny",
-        "coordinates": {
-          "coordx": 2.4501899,
-          "coordy": 48.9066406
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "La Réunion",
-    "zipcode": "974",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Réunion site de Saint-Pierre",
-        "email": "",
-        "address": "13 rue Augustin Archambaud, 97410, Saint-Pierre",
-        "coordinates": {
-          "coordx": 55.4780894,
-          "coordy": -21.3394537
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Réunion",
-        "email": "",
-        "address": "13 rue Fénelon, 97464, Saint-Denis",
-        "coordinates": {
-          "coordx": 55.448957,
-          "coordy": -20.8847443
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Martinique",
-    "zipcode": "972",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Martinique site de Saint-Pierre",
-        "email": "",
-        "address": "Mairie de Saint-Pierre, 97250, Saint-Pierre",
-        "coordinates": {
-          "coordx": -61.16389,
-          "coordy": 14.675
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Martinique",
-        "email": "",
-        "address": "1 rue Eugène Eucharis, 97200, Fort-de-France",
-        "coordinates": {
-          "coordx": -61.07256,
-          "coordy": 14.609371
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Martinique site de Trinité",
-        "email": "",
-        "address": "Sous Préfecture de Trinité, 97220, La Trinité",
-        "coordinates": {
-          "coordx": -61.0238481,
-          "coordy": 14.7480857
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Martinique site du Marin",
-        "email": "",
-        "address": "Sous Préfecture du Marin, 97290, Le Marin",
-        "coordinates": {
-          "coordx": -60.9307341,
-          "coordy": 14.525228
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Martinique site de Rivière-Salée",
-        "email": "",
-        "address": "CCAS de Rivière-Salée, 97215, Rivière-Salée",
-        "coordinates": {
-          "coordx": -60.9656452,
-          "coordy": 14.5194358
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Calvados",
-    "zipcode": "14",
-    "logo": "logo14.jpg",
-    "enabled": true,
-    "opened": true,
-    "locations": [
-      {
-        "name": "Calvados site d'Evrecy",
-        "email": "",
-        "address": "rue de la cabottière, 14210, Evrecy",
-        "coordinates": {
-          "coordx": -0.50407700000005,
-          "coordy": 49.100677
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Calvados site de Vire",
-        "email": "",
-        "address": "1 rue Général de Gaulle, 14500, Vire Normandie",
-        "coordinates": {
-          "coordx": -0.89055580000002,
-          "coordy": 48.8412906
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Calvados site de Bayeux",
-        "email": "",
-        "address": "3 rue François Coulet, 14400, Bayeux",
-        "coordinates": {
-          "coordx": -0.72145239999998,
-          "coordy": 49.281809
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Calvados site de Falaise",
-        "email": "",
-        "address": "4 rue de la Résistance, 14700, Falaise",
-        "coordinates": {
-          "coordx": -0.18705299999999,
-          "coordy": 48.8956513
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Calvados",
-        "email": "",
-        "address": "17 rue du 11 novembre, 14000, Caen",
-        "coordinates": {
-          "coordx": -0.35805879999998,
-          "coordy": 49.1779108
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Calvados site de Lisieux",
-        "email": "",
-        "address": "Cour Matignon, 14100, Lisieux",
-        "coordinates": {
-          "coordx": 0.22784899999999,
-          "coordy": 49.145922
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Calvados site de Douvres-la-Délivrande",
-        "email": "",
-        "address": "4 rue de l'Eglise, 14440, Douvres-la-Delivrande",
-        "coordinates": {
-          "coordx": -0.37633989999995,
-          "coordy": 49.2953246
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Calvados site de Pont-l'évêque",
-        "email": "",
-        "address": "14 rue de la Chaussée Nival, 14130, Pont-l'Eveque",
-        "coordinates": {
-          "coordx": 0.18926179999994,
-          "coordy": 49.2898227
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Eure",
-    "zipcode": "27",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Eure",
-        "email": "",
-        "address": "11 rue Jean de la Bruyère, 27000, Evreux",
-        "coordinates": {
-          "coordx": 1.137099981308,
-          "coordy": 49.022258758545
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Charente",
-    "zipcode": "16",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Charente",
-        "email": "",
-        "address": "15 boulevard Jean Moulin, 16000, Angoulême",
-        "coordinates": {
-          "coordx": 0.1448500007391,
-          "coordy": 45.652599334717
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Creuse",
-    "zipcode": "23",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Creuse site d'Auzances",
-        "email": "",
-        "address": "Route de Montluçon, 23700, Auzances",
-        "coordinates": {
-          "coordx": 2.500044,
-          "coordy": 46.033383
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Creuse site de la Souterraine",
-        "email": "",
-        "address": "14 Boulevard Mestadier, 23300, La Souterraine",
-        "coordinates": {
-          "coordx": 1.4862541,
-          "coordy": 46.2392823
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Creuse site de Bourganeuf",
-        "email": "",
-        "address": "rue Joliot Curie, 23400, Bourganeuf",
-        "coordinates": {
-          "coordx": 1.750171,
-          "coordy": 45.954831
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Creuse site de Boussac",
-        "email": "",
-        "address": "quartier Pasteur, 23600, Boussac",
-        "coordinates": {
-          "coordx": 2.2167039999999,
-          "coordy": 46.350194
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Creuse",
-        "email": "",
-        "address": "2 bis avenue de la République, 23011, Guéret",
-        "coordinates": {
-          "coordx": 1.8696899414062,
-          "coordy": 46.171501159668
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Creuse site de Aubusson",
-        "email": "",
-        "address": "1 Allée Jean Marie Couturier, 23200, Aubusson",
-        "coordinates": {
-          "coordx": 2.1689378999999,
-          "coordy": 45.95409
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Creuse site de Guéret",
-        "email": "",
-        "address": "12 rue Sylvain Grateyrolles, 23000, Guéret",
-        "coordinates": {
-          "coordx": 1.8664906,
-          "coordy": 46.1717089
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Landes",
-    "zipcode": "40",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Landes",
-        "email": "",
-        "address": "836 avenue Eloi Ducom, 40025, Mont-de-Marsan",
-        "coordinates": {
-          "coordx": -0.50357002019882,
-          "coordy": 43.89038848877
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Landes site de Parentis-en-Born",
-        "email": "",
-        "address": "place du 14 Juillet, 40160, Parentis-en-Born",
-        "coordinates": {
-          "coordx": -1.0695706,
-          "coordy": 44.3485288
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "landes site de Pissos",
-        "email": "",
-        "address": "51 route Daugnagne, 40410, Pissos",
-        "coordinates": {
-          "coordx": -0.77904390000003,
-          "coordy": 44.3072395
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Landes site de Saint-Paul-lès-Dax",
-        "email": "",
-        "address": "242 boulevard Saint Vincent de Paul, 40990, Saint-Paul-lès-Dax",
-        "coordinates": {
-          "coordx": -1.0484372999999,
-          "coordy": 43.7250079
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Landes site de Cauneille",
-        "email": "",
-        "address": "400 route Peyrehorade, 40300, Cauneille",
-        "coordinates": {
-          "coordx": -1.1111594,
-          "coordy": 43.5420802
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Landes site de Tarnos",
-        "email": "",
-        "address": "1 Avenue Joseph Ponsolle, 40220, Tarnos",
-        "coordinates": {
-          "coordx": -1.461038,
-          "coordy": 43.5408
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Lot-et-Garonne",
-    "zipcode": "47",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Lot-et-Garonne",
-        "email": "",
-        "address": "1 633 avenue du Maréchal Leclerc, 47916, Agen",
-        "coordinates": {
-          "coordx": 0.62518000602722,
-          "coordy": 44.201240539551
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Haute-Vienne",
-    "zipcode": "87",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Haute-Vienne",
-        "email": "",
-        "address": "8 place des Carmes, 87031, Limoges",
-        "coordinates": {
-          "coordx": 1.2332999706268,
-          "coordy": 45.843601226807
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Gard",
-    "zipcode": "30",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Gard",
-        "email": "",
-        "address": "115/116 allée Norbert Wiener, 30000, Nîmes",
-        "coordinates": {
-          "coordx": 4.3604001998901,
-          "coordy": 43.834190368652
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Gers",
-    "zipcode": "32",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Gers site d'Auch",
-        "email": "",
-        "address": "rue pasteur, 32000, Auch",
-        "coordinates": {
-          "coordx": 0.58964030000004,
-          "coordy": 43.6448578
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Gers site de Nogaro",
-        "email": "",
-        "address": "8 avenue Cassou de Herre, 32110, Nogaro",
-        "coordinates": {
-          "coordx": -0.037361499999975,
-          "coordy": 43.7578621
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Gers site de Fleurance",
-        "email": "",
-        "address": "62 rue Alphonse Cadéot, 32500, Fleurance",
-        "coordinates": {
-          "coordx": 0.66184920000001,
-          "coordy": 43.8502995
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Gers site de Gimont",
-        "email": "",
-        "address": "19 rue de la 1ère armée française, 32200, Gimont",
-        "coordinates": {
-          "coordx": 0.87676799999997,
-          "coordy": 43.626348
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Gers",
-        "email": "",
-        "address": "12 rue Pelletier d'Oisy, 32000, Auch",
-        "coordinates": {
-          "coordx": 0.59898699999997,
-          "coordy": 43.6421341
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Gers site de Mirande",
-        "email": "",
-        "address": "8 avenue Chanzy, 32300, Mirande",
-        "coordinates": {
-          "coordx": 0.40294449999999,
-          "coordy": 43.5101946
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Hérault",
-    "zipcode": "34",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Hérault",
-        "email": "",
-        "address": "59 avenue de Fès, 34086, Montpellier",
-        "coordinates": {
-          "coordx": 3.829400062561,
-          "coordy": 43.612098693848
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Pyrénées-Orientales",
-    "zipcode": "66",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Pyrénées-Orientales",
-        "email": "",
-        "address": "30 rue Pierre Bretonneau, 66100, Perpignan",
-        "coordinates": {
-          "coordx": 2.891979932785,
-          "coordy": 42.69847869873
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Tarn-et-Garonne",
-    "zipcode": "82",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Tarn-et-Garonne site de Caussade",
-        "email": "",
-        "address": "33 rue de l'Abreuvoir, 82300, Caussade",
-        "coordinates": {
-          "coordx": 1.538958,
-          "coordy": 44.1646732
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Lauzerte",
-        "email": "",
-        "address": "6 cité des Nauzes, 82110, Lauzerte",
-        "coordinates": {
-          "coordx": 1.1378560000001,
-          "coordy": 44.255565
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Montaigu-de-Quercy",
-        "email": "",
-        "address": "4 place Mercadiel, 82150, Montaigu-de-Quercy",
-        "coordinates": {
-          "coordx": 1.018235,
-          "coordy": 44.3390611
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Montauban",
-        "email": "",
-        "address": "13 rue du docteur Labat, 82000, Montauban",
-        "coordinates": {
-          "coordx": 1.3482903,
-          "coordy": 44.0234846
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de  Saint-Nicolas-de-la-Greve",
-        "email": "",
-        "address": "Au château, 82210, Saint-Nicolas-de-la-Grave",
-        "coordinates": {
-          "coordx": 1.0617717,
-          "coordy": 44.0929881
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Grisolles",
-        "email": "",
-        "address": "2 rue Alphonse Daudet, 82170, Grisolles",
-        "coordinates": {
-          "coordx": 1.2967744,
-          "coordy": 43.8231025
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de la-ville-Dieu-du-Temple",
-        "email": "",
-        "address": "Place de l'Eglise, 82290, La Ville-Dieu-du-Temple",
-        "coordinates": {
-          "coordx": 1.1775823,
-          "coordy": 44.0042924
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de  Lavit",
-        "email": "",
-        "address": "57 rue de la République, 82120, Lavit",
-        "coordinates": {
-          "coordx": 0.92076810000003,
-          "coordy": 43.9579212
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne",
-        "email": "",
-        "address": "28 rue de la Banque, 82013, Montauban",
-        "coordinates": {
-          "coordx": 1.3575421,
-          "coordy": 44.0134048
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de de Montech",
-        "email": "",
-        "address": "3 rue des Ecoles, 82700, Montech",
-        "coordinates": {
-          "coordx": 1.2329816,
-          "coordy": 43.9560784
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Septfonds",
-        "email": "",
-        "address": "Place de la foire, 82240, Septfonds",
-        "coordinates": {
-          "coordx": 1.61945,
-          "coordy": 44.1806552
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Beaumont de Lomagne",
-        "email": "",
-        "address": "12 rue de Toureilh, 82500, Beaumont-de-Lomagne",
-        "coordinates": {
-          "coordx": 0.98851100000002,
-          "coordy": 43.88331
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de  Labastide-Saint-Pierre",
-        "email": "",
-        "address": "1 rue Pierre Curry, 82370, Labastide-Saint-Pierre",
-        "coordinates": {
-          "coordx": 1.3670162999999,
-          "coordy": 43.9174206
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Moissac",
-        "email": "",
-        "address": "8 place des Récollets, 82200, Moissac",
-        "coordinates": {
-          "coordx": 1.0850596,
-          "coordy": 44.1031823
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Montauban",
-        "email": "",
-        "address": "rue Lenôtre, 82000, Montauban",
-        "coordinates": {
-          "coordx": 1.372943,
-          "coordy": 44.022522
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Montauban",
-        "email": "",
-        "address": "Avenue Marcel Unal, 82000, Montauban",
-        "coordinates": {
-          "coordx": 1.3793108,
-          "coordy": 44.0076498
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Nègrepelisse",
-        "email": "",
-        "address": "rue de la Piscine, 82800, Nègrepelisse",
-        "coordinates": {
-          "coordx": 1.5198705,
-          "coordy": 44.0729426
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Valence d'Agen",
-        "email": "",
-        "address": "54 boulevard Victor Guilhem, 82400, Valence d'Agen",
-        "coordinates": {
-          "coordx": 0.88696159999995,
-          "coordy": 44.1101047
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Villebrumier",
-        "email": "",
-        "address": "rue Gambetta, 82370, Villebrumier",
-        "coordinates": {
-          "coordx": 1.4534301,
-          "coordy": 43.9069197
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Castelsarrasin",
-        "email": "",
-        "address": "22 rue de la Mouline, 82100, Castelsarrasin",
-        "coordinates": {
-          "coordx": 1.1129243,
-          "coordy": 44.0358426
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Lafrançaise",
-        "email": "",
-        "address": "21 rue Léon Cladel, 82130, Lafrancaise",
-        "coordinates": {
-          "coordx": 1.2396732,
-          "coordy": 44.1269096
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Monclar de Quercy",
-        "email": "",
-        "address": "Mairie, 82230, Monclar-de-Quercy",
-        "coordinates": {
-          "coordx": 1.5866426,
-          "coordy": 43.9670212
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Montauban",
-        "email": "",
-        "address": "7 allée Mortarieu, 82000, Montauban",
-        "coordinates": {
-          "coordx": 1.3562558,
-          "coordy": 44.0141511
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Saint Antonin-Noble-Val",
-        "email": "",
-        "address": "Route des fours à chaux, 82140, Saint-Antonin-Noble-Val",
-        "coordinates": {
-          "coordx": 1.7561439999999,
-          "coordy": 44.151119
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Tarn-et-Garonne site de Verdun sur Garonne",
-        "email": "",
-        "address": "1 cité de Najats, 82600, Verdun-sur-Garonne",
-        "coordinates": {
-          "coordx": 1.2303910000001,
-          "coordy": 43.8594859
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Loire-Atlantique",
-    "zipcode": "44",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Loire-Atlantique site de Saint-Nazaire",
-        "email": "",
-        "address": "12 place Pierre Sémard, 44600, Saint-Nazaire",
-        "coordinates": {
-          "coordx": -2.2107843,
-          "coordy": 47.2854139
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Loire Atlantique",
-        "email": "",
-        "address": "300 route de Vannes, 44701, Orvault",
-        "coordinates": {
-          "coordx": -1.6197349,
-          "coordy": 47.2514507
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Sarthe",
-    "zipcode": "72",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Sarthe site du Ballon",
-        "email": "",
-        "address": "Place de la République, 72290, Ballon Saint-Mars",
-        "coordinates": {
-          "coordx": 0.2340289,
-          "coordy": 48.1751326
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Fresnay-sur-sarthe",
-        "email": "",
-        "address": "2 rue Abbé Lelièvre, 72130, Fresnay-sur-Sarthe",
-        "coordinates": {
-          "coordx": 0.024722999999994,
-          "coordy": 48.2846161
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe",
-        "email": "",
-        "address": "11 rue du Pied Sec, 72019, Le Mans",
-        "coordinates": {
-          "coordx": 0.20200000703335,
-          "coordy": 47.982299804688
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Pontvallain",
-        "email": "",
-        "address": "Place du Chanoine Tarot, 72510, Pontvallain",
-        "coordinates": {
-          "coordx": 0.19245699999999,
-          "coordy": 47.749624
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Sablé-sur-Sarthe",
-        "email": "",
-        "address": "5 rue Saint Martin, 72300, Sablé-sur-Sarthe",
-        "coordinates": {
-          "coordx": -0.33471269999995,
-          "coordy": 47.8400623
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Bonnetable",
-        "email": "",
-        "address": "8 rue Mazagran, 72110, Bonnetable",
-        "coordinates": {
-          "coordx": 0.4280033,
-          "coordy": 48.1740259
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de la Ferté-Bernard",
-        "email": "",
-        "address": "9 rue Viet, 72400, La Ferté-Bernard",
-        "coordinates": {
-          "coordx": 0.65586800000005,
-          "coordy": 48.1862847
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site du Mans",
-        "email": "",
-        "address": "38 avenue bollée, 72000, Le Mans",
-        "coordinates": {
-          "coordx": 0.20606729999997,
-          "coordy": 48.0023667
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Saint-Calais",
-        "email": "",
-        "address": "9 rue des Halles, 72120, Saint-Calais",
-        "coordinates": {
-          "coordx": 0.74360569999999,
-          "coordy": 47.9205941
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Château-du-Loir",
-        "email": "",
-        "address": "5 allée Saint Martin, 72500, Château-du-Loir",
-        "coordinates": {
-          "coordx": 0.41997170000002,
-          "coordy": 47.6913339
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de la Flèche",
-        "email": "",
-        "address": "22 rue du Maréchal Foch, 72200, La Flèche",
-        "coordinates": {
-          "coordx": -0.0760358,
-          "coordy": 47.6979542
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarte site de Mamers",
-        "email": "",
-        "address": "1 place de la République, 72600, Mamers",
-        "coordinates": {
-          "coordx": 0.36874820000003,
-          "coordy": 48.3487902
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site d'Allonnes",
-        "email": "",
-        "address": "11 avenue François Cevert, 72700, Allonnes",
-        "coordinates": {
-          "coordx": 0.15680789999999,
-          "coordy": 47.9640161
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Conlie",
-        "email": "",
-        "address": "25 place des Halles, 72240, Conlie",
-        "coordinates": {
-          "coordx": -0.017046800000003,
-          "coordy": 48.1216611
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Coulaines",
-        "email": "",
-        "address": "24 rue de la paix, 72190, Coulaines",
-        "coordinates": {
-          "coordx": 0.20410939999999,
-          "coordy": 48.0240978
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site du Grand-Luce",
-        "email": "",
-        "address": "1 rue Georges Coulon, 72150, Le Grand-Luce",
-        "coordinates": {
-          "coordx": 0.46306600000003,
-          "coordy": 47.864115
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Sarthe site de Montfort-le-Gesnois",
-        "email": "",
-        "address": "1 place Jacques Moreau, 72450, Montfort-le-Gesnois",
-        "coordinates": {
-          "coordx": 0.41995199999997,
-          "coordy": 48.0482299
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Hautes-Alpes",
-    "zipcode": "05",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Hautes Alpes",
-        "email": "",
-        "address": "29 bis avenue du Commandant Dumont, 05000, Gap",
-        "coordinates": {
-          "coordx": 6.0833196,
-          "coordy": 44.5647596
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Var",
-    "zipcode": "83",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Var site de Cuers",
-        "email": "",
-        "address": "8 Boulevard Gambetta, 83390, Cuers",
-        "coordinates": {
-          "coordx": 6.0761036,
-          "coordy": 43.239027
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Var site de Saint-Maximin",
-        "email": "",
-        "address": "45 chemin des Fontaines, 83470, Saint-Maximin-la-Sainte-Baume",
-        "coordinates": {
-          "coordx": 5.857998,
-          "coordy": 43.4533555
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Var site de Draguignan",
-        "email": "",
-        "address": "1 Boulevard Foch, 83300, Draguignan",
-        "coordinates": {
-          "coordx": 6.4619156,
-          "coordy": 43.5384406
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Var site de Frejus",
-        "email": "",
-        "address": "82 rue Martine Bidouré, 83600, Fréjus",
-        "coordinates": {
-          "coordx": 6.7344869,
-          "coordy": 43.431598
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Var site de Le Luc",
-        "email": "",
-        "address": "38 rue Jean Jaurès, 83340, Le Luc",
-        "coordinates": {
-          "coordx": 1.4735267999999,
-          "coordy": 48.4232551
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Var site de Brignoles",
-        "email": "",
-        "address": "Rue du Docteur Barberoux, 83170, Brignoles",
-        "coordinates": {
-          "coordx": 6.0636892,
-          "coordy": 43.4077567
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Var",
-        "email": "",
-        "address": "293 Route de la Seyne, 83192, Ollioules",
-        "coordinates": {
-          "coordx": 5.8479245,
-          "coordy": 43.139757
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Mayotte",
-    "zipcode": "976",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Mayotte",
-        "email": "",
-        "address": "-, 97600, Mamoudzou",
-        "coordinates": {
-          "coordx": 45.2278,
-          "coordy": -12.7806
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Drôme",
-    "zipcode": "26",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Drôme",
-        "email": "",
-        "address": "42 C avenue des Langories, 26905, Valence",
-        "coordinates": {
-          "coordx": 4.8905601501465,
-          "coordy": 44.931751251221
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Haute-Loire",
-    "zipcode": "43",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Haute-Loire",
-        "email": "",
-        "address": "9 Rue des Moulins, 43009, Le Puy-en-Velay",
-        "coordinates": {
-          "coordx": 3.8854227,
-          "coordy": 45.0386064
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Côte-d'Or",
-    "zipcode": "21",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Côte-d'Or",
-        "email": "",
-        "address": "1 rue Joseph Tissot, 21035, Dijon",
-        "coordinates": {
-          "coordx": 5.038959980011,
-          "coordy": 47.322151184082
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Saône-et-Loire",
-    "zipcode": "71",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Saône-et-Loire",
-        "email": "",
-        "address": "18 rue de Flacé, 71026, Mâcon",
-        "coordinates": {
-          "coordx": 4.8291987,
-          "coordy": 46.313588
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Finistère",
-    "zipcode": "29",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Finistère",
-        "email": "",
-        "address": "1C rue Félix Le Dantec, 29018, Quimper",
-        "coordinates": {
-          "coordx": -4.0999999046326,
-          "coordy": 47.995399475098
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Indre",
-    "zipcode": "36",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Indre",
-        "email": "",
-        "address": "4 rue Eugène Rolland, 36020, Châteauroux",
-        "coordinates": {
-          "coordx": 1.6976900100708,
-          "coordy": 46.805500030518
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Corse-du-Sud",
-    "zipcode": "2A",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Corse du Sud",
-        "email": "",
-        "address": "Avenue Napoléon III, 20000, Ajaccio",
-        "coordinates": {
-          "coordx": 8.7343592,
-          "coordy": 41.924925
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Haute-Marne",
-    "zipcode": "52",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Haute-Marne",
-        "email": "",
-        "address": "centre départemental administratif, 52901, Chaumont",
-        "coordinates": {
-          "coordx": 5.1417497,
-          "coordy": 48.1142518
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Meuse",
-    "zipcode": "55",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Meuse",
-        "email": "",
-        "address": "5 espace Theuriet, 55000, Bar-le-Duc",
-        "coordinates": {
-          "coordx": 5.1605745,
-          "coordy": 48.7737192
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Guadeloupe",
-    "zipcode": "971",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Guadeloupe",
-        "email": "",
-        "address": "Rue du Docteur Hélène, 97190, Le Gosier",
-        "coordinates": {
-          "coordx": -61.590296,
-          "coordy": 16.260117
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Nord",
-    "zipcode": "59",
-    "logo": "logo59.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Nord site de Dunkerque",
-        "email": "",
-        "address": "30 rue de l'Hermite, 59377, Dunkerque",
-        "coordinates": {
-          "coordx": 2.3767763,
-          "coordy": 51.0343684
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Nord site de Valenciennes",
-        "email": "",
-        "address": "160 boulevard Harpignies, 59304, Valenciennes",
-        "coordinates": {
-          "coordx": 3.5271576,
-          "coordy": 50.3642624
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Nord",
-        "email": "",
-        "address": "21 rue de la Toison d'Or, 59666, Villeneuve-d'Ascq",
-        "coordinates": {
-          "coordx": 3.1600999832153,
-          "coordy": 50.614700317383
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Seine-et-Marne",
-    "zipcode": "77",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Seine-et-Marne",
-        "email": "",
-        "address": "16 rue de l'Aluminium, 77543, Savigny-le-Temple",
-        "coordinates": {
-          "coordx": 2.5821199417114,
-          "coordy": 48.572040557861
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Val-de-Marne",
-    "zipcode": "94",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Val-de-Marne",
-        "email": "",
-        "address": "7-9 voie Félix Eboué, 94046, Créteil",
-        "coordinates": {
-          "coordx": 2.4702200889587,
-          "coordy": 48.778888702393
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Manche",
-    "zipcode": "50",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Manche",
-        "email": "",
-        "address": "586 rue de l'exode, 50000, Saint-Lô",
-        "coordinates": {
-          "coordx": -1.0887205,
-          "coordy": 49.1059532
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Charente-Maritime",
-    "zipcode": "17",
-    "logo": "logo17.jpg",
-    "enabled": true,
-    "opened": true,
-    "locations": [
-      {
-        "name": "Charente Maritime",
-        "email": "",
-        "address": "61 rue de Jéricho, 17005, La Rochelle",
-        "coordinates": {
-          "coordx": -1.1645972,
-          "coordy": 46.1669346
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Dordogne",
-    "zipcode": "24",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Dordogne",
-        "email": "",
-        "address": "Rue du 26e régiment d'infanterie, 24016, Périgueux",
-        "coordinates": {
-          "coordx": 0.71183529999996,
-          "coordy": 45.180399
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Pyrénées-Atlantiques",
-    "zipcode": "64",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Pyrénées-Atlantiques",
-        "email": "",
-        "address": "Rue Pierre Bonnard, 64000, Pau",
-        "coordinates": {
-          "coordx": -0.36849901080131,
-          "coordy": 43.296211242676
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Ariège",
-    "zipcode": "09",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Ariège",
-        "email": "",
-        "address": "5 rue du Cap de la ville, 09000, Foix",
-        "coordinates": {
-          "coordx": 1.5994006999999,
-          "coordy": 42.9611084
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Maison départementale des personnes en situation de handicap de l'Ariège",
-        "email": "",
-        "address": "5-7 rue du Cap de la Ville, 09000, Foix",
-        "coordinates": {
-          "coordx": 1.5994006999999,
-          "coordy": 42.9611082
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Haute-Garonne",
-    "zipcode": "31",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Haute Garonne site de Saint-Gaudens",
-        "email": "",
-        "address": "1 place Pégot, 31800, Saint-Gaudens",
-        "coordinates": {
-          "coordx": 0.72809770000003,
-          "coordy": 43.1096829
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Haute Garonne",
-        "email": "",
-        "address": "10 place Alphonse Jourdain, 31000, Toulouse",
-        "coordinates": {
-          "coordx": 1.4297596,
-          "coordy": 43.6113656
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Lot",
-    "zipcode": "46",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Lot",
-        "email": "",
-        "address": "304 rue Victor Hugo, 46000, Cahors",
-        "coordinates": {
-          "coordx": 1.4380628,
-          "coordy": 44.4432912
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Tarn",
-    "zipcode": "81",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Tarn",
-        "email": "",
-        "address": "221 avenue Albert Thomas, 81027, Albi",
-        "coordinates": {
-          "coordx": 2.1526224,
-          "coordy": 43.9482732
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Maine-et-Loire",
-    "zipcode": "49",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Maison départementale de l'autonomie du Maine-et-Loire",
-        "email": "",
-        "address": "6 rue Jean Lecuit, 49941, Angers",
-        "coordinates": {
-          "coordx": -0.56388449999997,
-          "coordy": 47.4898551
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Alpes-Maritimes",
-    "zipcode": "06",
-    "logo": "logo06.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Alpes Maritimes",
-        "email": "",
-        "address": "27 boulevard Paul Montel, 06000, Nice",
-        "coordinates": {
-          "coordx": 7.2092589,
-          "coordy": 43.6723728
-        },
-        "phone": "",
-        "schedule": ""
-      }
-    ],
-    "likes": []
-  },
-  {
-    "name": "Vaucluse",
-    "zipcode": "84",
-    "logo": "logotest.jpg",
-    "enabled": false,
-    "opened": false,
-    "locations": [
-      {
-        "name": "Vaucluse",
-        "email": "",
-        "address": "22 boulevard Saint-Michel, 84096, Avignon",
-        "coordinates": {
-          "coordx": 4.8117869,
-          "coordy": 43.9425812
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Vaucluse site de Cadenet",
-        "email": "",
-        "address": "avenue Philippe de Girard, 84160, Cadenet",
-        "coordinates": {
-          "coordx": 5.374173,
-          "coordy": 43.7309067
-        },
-        "phone": "",
-        "schedule": ""
-      },
-      {
-        "name": "Vaucluse site de Vaison-la-Romaine",
-        "email": "",
-        "address": "8 place Théodore Aubanel, 84110, Vaison-la-Romaine",
-        "coordinates": {
-          "coordx": 5.075198,
-          "coordy": 44.240968
+          "coordx": 3.4150367,
+          "coordy": 46.1433413
         },
         "phone": "",
         "schedule": ""
@@ -2826,9 +50,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Cantal",
+        "name": "Siège",
         "email": "",
-        "address": "3 rue Alexandre Pinard, 15015, Aurillac",
+        "address": "3 rue Alexandre Pinard, 15015 Aurillac",
         "coordinates": {
           "coordx": 2.4445302,
           "coordy": 44.9271839
@@ -2847,12 +71,66 @@
     "opened": false,
     "locations": [
       {
-        "name": "Puy de Dome",
+        "name": "Siège",
         "email": "",
-        "address": "11 rue Vaucanson, 63100, Clermont-Ferrand",
+        "address": "11 rue Vaucanson, 63100 Clermont-Ferrand",
         "coordinates": {
           "coordx": 3.1076288,
           "coordy": 45.7864945
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Haute-Savoie",
+    "zipcode": "74",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Marignier",
+        "email": "",
+        "address": "187 rue du quai, 74970 Marignier",
+        "coordinates": {
+          "coordx": 6.5103986,
+          "coordy": 46.089002
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "26 avenue de Chevêne, 74003 Annecy",
+        "coordinates": {
+          "coordx": 6.1162867,
+          "coordy": 45.9007972
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Ville-La-Grand",
+        "email": "",
+        "address": "7 bis place du porte bonheur, 74100 Ville-la-Grand",
+        "coordinates": {
+          "coordx": 6.2507175000001,
+          "coordy": 46.2015272
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Thonon-les-bains",
+        "email": "",
+        "address": "1 rue Casimir Capitan, 74200 Thonon-les-Bains",
+        "coordinates": {
+          "coordx": 6.4746058000001,
+          "coordy": 46.3583224
         },
         "phone": "",
         "schedule": ""
@@ -2868,9 +146,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Doubs",
+        "name": "Siège",
         "email": "",
-        "address": "13-15 rue de la Préfecture, 25043, Besançon",
+        "address": "13-15 rue de la Préfecture, 25043 Besançon",
         "coordinates": {
           "coordx": 6.0245383,
           "coordy": 47.2345946
@@ -2889,9 +167,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Jura",
+        "name": "Siège",
         "email": "",
-        "address": "355 boulevard Jules Ferry, 39002, Lons-le-Saunier",
+        "address": "355 boulevard Jules Ferry, 39002 Lons-le-Saunier",
         "coordinates": {
           "coordx": 5.548620223999,
           "coordy": 46.674991607666
@@ -2910,9 +188,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Yonne",
+        "name": "Siège",
         "email": "",
-        "address": "10 route de Saint-Georges, 89000, Perrigny",
+        "address": "10 route de Saint-Georges, 89000 Perrigny",
         "coordinates": {
           "coordx": 3.5366499423981,
           "coordy": 47.819259643555
@@ -2931,12 +209,132 @@
     "opened": false,
     "locations": [
       {
-        "name": "Ille et Vilaine",
+        "name": "Siège",
         "email": "",
-        "address": "13 avenue de Cucillé, 35031, Rennes",
+        "address": "13 avenue de Cucillé, 35031 Rennes",
         "coordinates": {
           "coordx": -1.6994882,
           "coordy": 48.1263767
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Indre-et-Loire",
+    "zipcode": "37",
+    "logo": "logotest.jpg",
+    "enabled": true,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site d'Amboise",
+        "email": "",
+        "address": "9 rue Grégoire de Tours, 37400 Amboise",
+        "coordinates": {
+          "coordx": 0.98843910000005,
+          "coordy": 47.4075959
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Neuillé-Pont-Pierre",
+        "email": "",
+        "address": "Les Nongrières, 37360 Neuille-Pont-Pierre",
+        "coordinates": {
+          "coordx": 0.53460319999999,
+          "coordy": 47.5452304
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Tours Mame",
+        "email": "",
+        "address": "47 bis boulevard Preuilly, 37000 Tours",
+        "coordinates": {
+          "coordx": 0.67123140000001,
+          "coordy": 47.3931899
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Loches",
+        "email": "",
+        "address": "9 rue du Docteur Martinais, 37600 Loches",
+        "coordinates": {
+          "coordx": 1.0053354,
+          "coordy": 47.129098
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Tours Maginot",
+        "email": "",
+        "address": "104 avenue Maginot, 37100 Tours",
+        "coordinates": {
+          "coordx": 0.68723639999996,
+          "coordy": 47.4149864
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Joué-les-Tours",
+        "email": "",
+        "address": "18 rue de la Rotière, 37300 Joué-les-Tours",
+        "coordinates": {
+          "coordx": 0.66311689999998,
+          "coordy": 47.3477998
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Tours Dublineau",
+        "email": "",
+        "address": "24-26 rue Dublineau, 37000 Tours",
+        "coordinates": {
+          "coordx": 0.698398,
+          "coordy": 47.3897871
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "38 rue Edouard-Vaillant, 37042 Tours",
+        "coordinates": {
+          "coordx": 0.69702529999995,
+          "coordy": 47.3885967
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Chinon",
+        "email": "",
+        "address": "6 rue des Courances, 37500 Chinon",
+        "coordinates": {
+          "coordx": 0.24889989999997,
+          "coordy": 47.1653544
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Pierre-des-corps",
+        "email": "",
+        "address": "8-10 rue de la rabaterie, 37700 Saint-Pierre-des-Corps",
+        "coordinates": {
+          "coordx": 0.7187682,
+          "coordy": 47.3923282
         },
         "phone": "",
         "schedule": ""
@@ -2952,12 +350,328 @@
     "opened": false,
     "locations": [
       {
-        "name": "Haute-Corse",
+        "name": "Siège",
         "email": "",
-        "address": "2 bis chemin de l'annonciade, 20405, Bastia",
+        "address": "2 bis chemin de l'annonciade, 20405 Bastia",
         "coordinates": {
           "coordx": 9.4495362,
           "coordy": 42.7035503
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Marne",
+    "zipcode": "51",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Fismes",
+        "email": "",
+        "address": "15 Faubourg de Soissons, 51170 Fismes",
+        "coordinates": {
+          "coordx": 3.6755466,
+          "coordy": 49.3075571
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Sézanne",
+        "email": "",
+        "address": "135 route de Paris, 51120 Sézanne",
+        "coordinates": {
+          "coordx": 3.7136382,
+          "coordy": 48.7253382
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "50 avenue Patton, 51009 Châlons-en-Champagne",
+        "coordinates": {
+          "coordx": 4.3489762,
+          "coordy": 48.9630891
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site d'Epernay",
+        "email": "",
+        "address": "22 rue Léger Bertin, 51200 Epernay",
+        "coordinates": {
+          "coordx": 3.9503302000001,
+          "coordy": 49.0425043
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Sainte-Menehould",
+        "email": "",
+        "address": "14 place d'Austerlitz, 51800 Sainte-Menehould",
+        "coordinates": {
+          "coordx": 4.8932389,
+          "coordy": 49.0909795
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Reims",
+        "email": "",
+        "address": "26 rue Jean-Louis Debar, 51100 Reims",
+        "coordinates": {
+          "coordx": 4.0121690999999,
+          "coordy": 49.2275441
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Vitry-le-françois",
+        "email": "",
+        "address": "39 avenue du Colonel Moll, 51300 Vitry-le-François",
+        "coordinates": {
+          "coordx": 4.58471,
+          "coordy": 48.7203305
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Reims",
+        "email": "",
+        "address": "18 rue Carnot, 51100 Reims",
+        "coordinates": {
+          "coordx": 4.032101,
+          "coordy": 49.2551809
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Suippes",
+        "email": "",
+        "address": "9 rue Saint-Cloud, 51600 Suippes",
+        "coordinates": {
+          "coordx": 4.532647,
+          "coordy": 49.1324919
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Meurthe-et-Moselle",
+    "zipcode": "54",
+    "logo": "logo54.jpg",
+    "enabled": true,
+    "opened": true,
+    "locations": [
+      {
+        "name": "Site d'Homecourt",
+        "email": "",
+        "address": "3 place de l'Hôtel des ouvriers, 54310 Homecourt",
+        "coordinates": {
+          "coordx": 6.0034501,
+          "coordy": 49.2180423
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "123 rue Ernest Albert, 54521 Laxou",
+        "coordinates": {
+          "coordx": 6.1544449,
+          "coordy": 48.686989
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Nancy",
+        "email": "",
+        "address": "13/15 boulevard Joffre, 54000 Nancy",
+        "coordinates": {
+          "coordx": 6.1784075,
+          "coordy": 48.6880208
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Maidières",
+        "email": "",
+        "address": "9200 route de Blénot, 54700 Maidières",
+        "coordinates": {
+          "coordx": 6.0743778999999,
+          "coordy": 48.862115
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Lunéville",
+        "email": "",
+        "address": "28 rue de la République, 54300 Lunéville",
+        "coordinates": {
+          "coordx": 6.4907596,
+          "coordy": 48.5925643
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Toul",
+        "email": "",
+        "address": "5 avenue Hugo, 54200 Toul",
+        "coordinates": {
+          "coordx": 5.8839352,
+          "coordy": 48.6755145
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Longwy",
+        "email": "",
+        "address": "16 avenue du Maréchal de Lattre de Tassigny, 54400 Longwy",
+        "coordinates": {
+          "coordx": 5.7715367000001,
+          "coordy": 49.5147061
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Nicolas-de-Port",
+        "email": "",
+        "address": "2 bis Ruelle Brudchoux, 54210 Saint-Nicolas-de-Port",
+        "coordinates": {
+          "coordx": 6.3065498,
+          "coordy": 48.6301783
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Moselle",
+    "zipcode": "57",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Boulay",
+        "email": "",
+        "address": "6 rue Robert Schuman, 57220 Boulay-Moselle",
+        "coordinates": {
+          "coordx": 6.4930042,
+          "coordy": 49.1845811
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint Avold",
+        "email": "",
+        "address": "16 rue du Lac, 57500 Saint-Avold",
+        "coordinates": {
+          "coordx": 6.7037181000001,
+          "coordy": 49.1110029
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 rue Claude Chappe, 57076 Metz",
+        "coordinates": {
+          "coordx": 6.2230419,
+          "coordy": 49.1051681
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Yutz",
+        "email": "",
+        "address": "1 avenue Gabriel Lippmann, 57970 Yutz",
+        "coordinates": {
+          "coordx": 6.1711079,
+          "coordy": 49.3496164
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Forbach",
+        "email": "",
+        "address": "18 avenue de Spicheren, 57600 Forbach",
+        "coordinates": {
+          "coordx": 6.9032125,
+          "coordy": 49.1866759
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Sarreguemines",
+        "email": "",
+        "address": "51 rue du Bac, 57200 Sarreguemines",
+        "coordinates": {
+          "coordx": 7.0626139999999,
+          "coordy": 49.1117302
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Château-Salins",
+        "email": "",
+        "address": "rue de la Tuilerie, 57170 Château-Salins",
+        "coordinates": {
+          "coordx": 6.535329,
+          "coordy": 48.776539
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Faulquemont",
+        "email": "",
+        "address": "3 allée Réné Cassin, 57380 Faulquemont",
+        "coordinates": {
+          "coordx": 6.6046729,
+          "coordy": 49.0545565
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Sarrebourg",
+        "email": "",
+        "address": "47 avenue Raymond Poincaré, 57400 Sarrebourg",
+        "coordinates": {
+          "coordx": 7.052587,
+          "coordy": 48.732663
         },
         "phone": "",
         "schedule": ""
@@ -2973,9 +687,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Bas-Rhin",
+        "name": "Siège",
         "email": "",
-        "address": "6A rue du Verdon, 67000, Strasbourg",
+        "address": "6A rue du Verdon, 67000 Strasbourg",
         "coordinates": {
           "coordx": 7.766900062561,
           "coordy": 48.558700561523
@@ -2994,12 +708,284 @@
     "opened": false,
     "locations": [
       {
-        "name": "Guyane",
+        "name": "Siège",
         "email": "",
-        "address": "Rue des Galaxies, 97305, Cayenne",
+        "address": "Rue des Galaxies, 97305 Cayenne",
         "coordinates": {
           "coordx": -52.3269,
           "coordy": 4.9227
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Aisne",
+    "zipcode": "02",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de la Fère",
+        "email": "",
+        "address": "place de l'europe, 02800 La Fère",
+        "coordinates": {
+          "coordx": 3.367175,
+          "coordy": 49.661256
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site d'Hirson",
+        "email": "",
+        "address": "55 rue de Lorraine, 02500 Hirson",
+        "coordinates": {
+          "coordx": 4.0917581,
+          "coordy": 49.9171913
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Soissons",
+        "email": "",
+        "address": "31 rue Anne Morgan, 02200 Soissons",
+        "coordinates": {
+          "coordx": 3.3208669000001,
+          "coordy": 49.3725307
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Guise",
+        "email": "",
+        "address": "161 Place d'Armes, 02120 Guise",
+        "coordinates": {
+          "coordx": 3.6268192,
+          "coordy": 49.9009225
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Quentin",
+        "email": "",
+        "address": "44 rue d'Isle, 02100 Saint-Quentin",
+        "coordinates": {
+          "coordx": 3.29102,
+          "coordy": 49.8439033
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Château-Thierry",
+        "email": "",
+        "address": "1 rue Robert Lecart, 02400 Château-Thierry",
+        "coordinates": {
+          "coordx": 3.3897306,
+          "coordy": 49.0489943
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Route de Besny, 02000 Laon",
+        "coordinates": {
+          "coordx": 3.6470799446106,
+          "coordy": 49.56856918335
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Nord",
+    "zipcode": "59",
+    "logo": "logo59.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Valenciennes",
+        "email": "",
+        "address": "160 boulevard Harpignies, 59304 Valenciennes",
+        "coordinates": {
+          "coordx": 3.5271576,
+          "coordy": 50.3642624
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Dunkerque",
+        "email": "",
+        "address": "30 rue de l'Hermite, 59377 Dunkerque",
+        "coordinates": {
+          "coordx": 2.3767763,
+          "coordy": 51.0343684
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "21 rue de la Toison d'Or, 59666 Villeneuve-d'Ascq",
+        "coordinates": {
+          "coordx": 3.1600999832153,
+          "coordy": 50.614700317383
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Pas-de-Calais",
+    "zipcode": "62",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Béthune",
+        "email": "",
+        "address": "rue de l'université, 62400 Béthune",
+        "coordinates": {
+          "coordx": 2.6532171,
+          "coordy": 50.5213285
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site d'Hénin-Beaumont",
+        "email": "",
+        "address": "183 avenue des fusilles, 62252 Hénin-Beaumont",
+        "coordinates": {
+          "coordx": 2.9582061999999,
+          "coordy": 50.4211805
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Lens",
+        "email": "",
+        "address": "33 rue de la Perche, 62300 Lens",
+        "coordinates": {
+          "coordx": 2.8266631,
+          "coordy": 50.4343226
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Pol-sur-Ternoise",
+        "email": "",
+        "address": "31 rue des Procureurs, 62130 Saint-Pol-sur-Ternoise",
+        "coordinates": {
+          "coordx": 2.3349015,
+          "coordy": 50.3829427
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "9 rue Willy Brandt, 62005 Arras",
+        "coordinates": {
+          "coordx": 2.7817826,
+          "coordy": 50.2930094
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Carvin",
+        "email": "",
+        "address": "64 rue Jean Moulin, 62220 Carvin",
+        "coordinates": {
+          "coordx": 2.9626681,
+          "coordy": 50.4924791
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Leforest",
+        "email": "",
+        "address": "27 rue de Pressence, 62790 Leforest",
+        "coordinates": {
+          "coordx": 3.0612699000001,
+          "coordy": 50.4397717
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Omer",
+        "email": "",
+        "address": "16 rue Saint Sépulcre, 62500 Saint-Omer",
+        "coordinates": {
+          "coordx": 2.2540559,
+          "coordy": 50.7521305
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Calais",
+        "email": "",
+        "address": "44 rue Gaillard, 62106 Calais",
+        "coordinates": {
+          "coordx": 1.8590472,
+          "coordy": 50.9417874
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Nicolas",
+        "email": "",
+        "address": "87 Place Chanteclair, 62223 Saint-Nicolas",
+        "coordinates": {
+          "coordx": 2.776778,
+          "coordy": 50.302132
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Boulogne-sur-mer",
+        "email": "",
+        "address": "153 rue de Bréquerecque, 62321 Boulogne-sur-Mer",
+        "coordinates": {
+          "coordx": 1.6144053,
+          "coordy": 50.7153672
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Montreuil",
+        "email": "",
+        "address": "Place Saint Walloy, 62170 Montreuil",
+        "coordinates": {
+          "coordx": 1.7635562,
+          "coordy": 50.463148
         },
         "phone": "",
         "schedule": ""
@@ -3015,9 +1001,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Yvelines",
+        "name": "Siège",
         "email": "",
-        "address": "21-23 rue du Refuge, 78000, Versailles",
+        "address": "21-23 rue du Refuge, 78000 Versailles",
         "coordinates": {
           "coordx": 2.1305599212647,
           "coordy": 48.80207824707
@@ -3036,9 +1022,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Essonne",
+        "name": "Siège",
         "email": "",
-        "address": "93 rue Henri Rochefort, 91000, Evry",
+        "address": "93 rue Henri Rochefort, 91000 Evry",
         "coordinates": {
           "coordx": 2.4360417,
           "coordy": 48.6244789
@@ -3057,12 +1043,175 @@
     "opened": false,
     "locations": [
       {
-        "name": "Val-d'Oise",
+        "name": "Siège",
         "email": "",
-        "address": "2 avenue du Parc, 95032, Cergy",
+        "address": "2 avenue du Parc, 95032 Cergy",
         "coordinates": {
           "coordx": 2.0525000095367,
           "coordy": 49.045600891113
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Martinique",
+    "zipcode": "972",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Trinité",
+        "email": "",
+        "address": "Sous Préfecture de Trinité, 97220 La Trinité",
+        "coordinates": {
+          "coordx": -61.0238481,
+          "coordy": 14.7480857
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 rue Eugène Eucharis, 97200 Fort-de-France",
+        "coordinates": {
+          "coordx": -61.07256,
+          "coordy": 14.609371
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Pierre",
+        "email": "",
+        "address": "Mairie de Saint-Pierre, 97250 Saint-Pierre",
+        "coordinates": {
+          "coordx": -61.16389,
+          "coordy": 14.675
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Sous Préfecture du Marin, 97290 Le Marin",
+        "coordinates": {
+          "coordx": -60.9307341,
+          "coordy": 14.525228
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Rivière-Salée",
+        "email": "",
+        "address": "CCAS de Rivière-Salée, 97215 Rivière-Salée",
+        "coordinates": {
+          "coordx": -60.9656452,
+          "coordy": 14.5194358
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Calvados",
+    "zipcode": "14",
+    "logo": "logo14.jpg",
+    "enabled": true,
+    "opened": true,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "17 rue du 11 novembre, 14000 Caen",
+        "coordinates": {
+          "coordx": -0.35805879999998,
+          "coordy": 49.1779108
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Lisieux",
+        "email": "",
+        "address": "Cour Matignon, 14100 Lisieux",
+        "coordinates": {
+          "coordx": 0.22784899999999,
+          "coordy": 49.145922
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Bayeux",
+        "email": "",
+        "address": "3 rue François Coulet, 14400 Bayeux",
+        "coordinates": {
+          "coordx": -0.72145239999998,
+          "coordy": 49.281809
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Falaise",
+        "email": "",
+        "address": "4 rue de la Résistance, 14700 Falaise",
+        "coordinates": {
+          "coordx": -0.18705299999999,
+          "coordy": 48.8956513
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site d'Evrecy",
+        "email": "",
+        "address": "rue de la cabottière, 14210 Evrecy",
+        "coordinates": {
+          "coordx": -0.50407700000005,
+          "coordy": 49.100677
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Vire",
+        "email": "",
+        "address": "1 rue Général de Gaulle, 14500 Vire Normandie",
+        "coordinates": {
+          "coordx": -0.89055580000002,
+          "coordy": 48.8412906
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Douvres-la-Délivrande",
+        "email": "",
+        "address": "4 rue de l'Eglise, 14440 Douvres-la-Delivrande",
+        "coordinates": {
+          "coordx": -0.37633989999995,
+          "coordy": 49.2953246
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Pont-l'évêque",
+        "email": "",
+        "address": "14 rue de la Chaussée Nival, 14130 Pont-l'Eveque",
+        "coordinates": {
+          "coordx": 0.18926179999994,
+          "coordy": 49.2898227
         },
         "phone": "",
         "schedule": ""
@@ -3078,9 +1227,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Orne",
+        "name": "Siège",
         "email": "",
-        "address": "13 rue du Marchand Saillant, 61005, Alençon",
+        "address": "13 rue du Marchand Saillant, 61005 Alençon",
         "coordinates": {
           "coordx": 0.11122720000003,
           "coordy": 48.4351668
@@ -3099,12 +1248,99 @@
     "opened": false,
     "locations": [
       {
-        "name": "Corrèze",
+        "name": "Siège",
         "email": "",
-        "address": "2 rue du Docteur Ramon, 19000, Tulle",
+        "address": "2 rue du Docteur Ramon, 19000 Tulle",
         "coordinates": {
           "coordx": 1.7607899904251,
           "coordy": 45.256549835205
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Creuse",
+    "zipcode": "23",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Guéret",
+        "email": "",
+        "address": "12 rue Sylvain Grateyrolles, 23000 Guéret",
+        "coordinates": {
+          "coordx": 1.8664906,
+          "coordy": 46.1717089
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Bourganeuf",
+        "email": "",
+        "address": "rue Joliot Curie, 23400 Bourganeuf",
+        "coordinates": {
+          "coordx": 1.750171,
+          "coordy": 45.954831
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Boussac",
+        "email": "",
+        "address": "quartier Pasteur, 23600 Boussac",
+        "coordinates": {
+          "coordx": 2.2167039999999,
+          "coordy": 46.350194
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site d'Auzances",
+        "email": "",
+        "address": "Route de Montluçon, 23700 Auzances",
+        "coordinates": {
+          "coordx": 2.500044,
+          "coordy": 46.033383
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de la Souterraine",
+        "email": "",
+        "address": "14 Boulevard Mestadier, 23300 La Souterraine",
+        "coordinates": {
+          "coordx": 1.4862541,
+          "coordy": 46.2392823
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Aubusson",
+        "email": "",
+        "address": "1 Allée Jean Marie Couturier, 23200 Aubusson",
+        "coordinates": {
+          "coordx": 2.1689378999999,
+          "coordy": 45.95409
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "2 bis avenue de la République, 23011 Guéret",
+        "coordinates": {
+          "coordx": 1.8696899414062,
+          "coordy": 46.171501159668
         },
         "phone": "",
         "schedule": ""
@@ -3120,12 +1356,88 @@
     "opened": false,
     "locations": [
       {
-        "name": "Gironde",
+        "name": "Siège",
         "email": "",
-        "address": "264 boulevard Godard, 33300, Bordeaux",
+        "address": "264 boulevard Godard, 33300 Bordeaux",
         "coordinates": {
           "coordx": -0.55829900503159,
           "coordy": 44.777801513672
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Landes",
+    "zipcode": "40",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Pissos",
+        "email": "",
+        "address": "51 route Daugnagne, 40410 Pissos",
+        "coordinates": {
+          "coordx": -0.77904390000003,
+          "coordy": 44.3072395
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Paul-lès-Dax",
+        "email": "",
+        "address": "242 boulevard Saint Vincent de Paul, 40990 Saint-Paul-lès-Dax",
+        "coordinates": {
+          "coordx": -1.0484372999999,
+          "coordy": 43.7250079
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Parentis-en-Born",
+        "email": "",
+        "address": "place du 14 Juillet, 40160 Parentis-en-Born",
+        "coordinates": {
+          "coordx": -1.0695706,
+          "coordy": 44.3485288
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "836 avenue Eloi Ducom, 40025 Mont-de-Marsan",
+        "coordinates": {
+          "coordx": -0.50357002019882,
+          "coordy": 43.89038848877
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Cauneille",
+        "email": "",
+        "address": "400 route Peyrehorade, 40300 Cauneille",
+        "coordinates": {
+          "coordx": -1.1111594,
+          "coordy": 43.5420802
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Tarnos",
+        "email": "",
+        "address": "1 Avenue Joseph Ponsolle, 40220 Tarnos",
+        "coordinates": {
+          "coordx": -1.461038,
+          "coordy": 43.5408
         },
         "phone": "",
         "schedule": ""
@@ -3141,12 +1453,152 @@
     "opened": false,
     "locations": [
       {
-        "name": "Deux-Sèvres",
+        "name": "Siège",
         "email": "",
-        "address": "68 rue Alsace Lorraine, 79000, Niort",
+        "address": "68 rue Alsace Lorraine, 79000 Niort",
         "coordinates": {
           "coordx": -0.45775179999998,
           "coordy": 46.3281002
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Ariège",
+    "zipcode": "09",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "5 rue du Cap de la ville, 09000 Foix",
+        "coordinates": {
+          "coordx": 1.5994006999999,
+          "coordy": 42.9611084
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "5-7 rue du Cap de la Ville, 09000 Foix",
+        "coordinates": {
+          "coordx": 1.5994006999999,
+          "coordy": 42.9611082
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Haute-Garonne",
+    "zipcode": "31",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "10 place Alphonse Jourdain, 31000 Toulouse",
+        "coordinates": {
+          "coordx": 1.4297596,
+          "coordy": 43.6113656
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Gaudens",
+        "email": "",
+        "address": "1 place Pégot, 31800 Saint-Gaudens",
+        "coordinates": {
+          "coordx": 0.72809770000003,
+          "coordy": 43.1096829
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Gers",
+    "zipcode": "32",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Gimont",
+        "email": "",
+        "address": "19 rue de la 1ère armée française, 32200 Gimont",
+        "coordinates": {
+          "coordx": 0.87676799999997,
+          "coordy": 43.626348
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Fleurance",
+        "email": "",
+        "address": "62 rue Alphonse Cadéot, 32500 Fleurance",
+        "coordinates": {
+          "coordx": 0.66184920000001,
+          "coordy": 43.8502995
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "12 rue Pelletier d'Oisy, 32000 Auch",
+        "coordinates": {
+          "coordx": 0.59898699999997,
+          "coordy": 43.6421341
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Nogaro",
+        "email": "",
+        "address": "8 avenue Cassou de Herre, 32110 Nogaro",
+        "coordinates": {
+          "coordx": -0.037361499999975,
+          "coordy": 43.7578621
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site d'Auch",
+        "email": "",
+        "address": "rue pasteur, 32000 Auch",
+        "coordinates": {
+          "coordx": 0.58964030000004,
+          "coordy": 43.6448578
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Mirande",
+        "email": "",
+        "address": "8 avenue Chanzy, 32300 Mirande",
+        "coordinates": {
+          "coordx": 0.40294449999999,
+          "coordy": 43.5101946
         },
         "phone": "",
         "schedule": ""
@@ -3162,12 +1614,297 @@
     "opened": false,
     "locations": [
       {
-        "name": "Lozère",
+        "name": "Siège",
         "email": "",
-        "address": "6 avenue du Père Coudrin, 48000, Mende",
+        "address": "6 avenue du Père Coudrin, 48000 Mende",
         "coordinates": {
           "coordx": 3.4962298870087,
           "coordy": 44.517761230469
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Tarn-et-Garonne",
+    "zipcode": "82",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Beaumont de Lomagne",
+        "email": "",
+        "address": "12 rue de Toureilh, 82500 Beaumont-de-Lomagne",
+        "coordinates": {
+          "coordx": 0.98851100000002,
+          "coordy": 43.88331
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de  Labastide-Saint-Pierre",
+        "email": "",
+        "address": "1 rue Pierre Curry, 82370 Labastide-Saint-Pierre",
+        "coordinates": {
+          "coordx": 1.3670162999999,
+          "coordy": 43.9174206
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Moissac",
+        "email": "",
+        "address": "8 place des Récollets, 82200 Moissac",
+        "coordinates": {
+          "coordx": 1.0850596,
+          "coordy": 44.1031823
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Montauban",
+        "email": "",
+        "address": "7 allée Mortarieu, 82000 Montauban",
+        "coordinates": {
+          "coordx": 1.3562558,
+          "coordy": 44.0141511
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Montauban",
+        "email": "",
+        "address": "Avenue Marcel Unal, 82000 Montauban",
+        "coordinates": {
+          "coordx": 1.3793108,
+          "coordy": 44.0076498
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Nègrepelisse",
+        "email": "",
+        "address": "rue de la Piscine, 82800 Nègrepelisse",
+        "coordinates": {
+          "coordx": 1.5198705,
+          "coordy": 44.0729426
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Valence d'Agen",
+        "email": "",
+        "address": "54 boulevard Victor Guilhem, 82400 Valence d'Agen",
+        "coordinates": {
+          "coordx": 0.88696159999995,
+          "coordy": 44.1101047
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Villebrumier",
+        "email": "",
+        "address": "rue Gambetta, 82370 Villebrumier",
+        "coordinates": {
+          "coordx": 1.4534301,
+          "coordy": 43.9069197
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Grisolles",
+        "email": "",
+        "address": "2 rue Alphonse Daudet, 82170 Grisolles",
+        "coordinates": {
+          "coordx": 1.2967744,
+          "coordy": 43.8231025
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de la-ville-Dieu-du-Temple",
+        "email": "",
+        "address": "Place de l'Eglise, 82290 La Ville-Dieu-du-Temple",
+        "coordinates": {
+          "coordx": 1.1775823,
+          "coordy": 44.0042924
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de  Lavit",
+        "email": "",
+        "address": "57 rue de la République, 82120 Lavit",
+        "coordinates": {
+          "coordx": 0.92076810000003,
+          "coordy": 43.9579212
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Montauban",
+        "email": "",
+        "address": "rue Lenôtre, 82000 Montauban",
+        "coordinates": {
+          "coordx": 1.372943,
+          "coordy": 44.022522
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de de Montech",
+        "email": "",
+        "address": "3 rue des Ecoles, 82700 Montech",
+        "coordinates": {
+          "coordx": 1.2329816,
+          "coordy": 43.9560784
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Septfonds",
+        "email": "",
+        "address": "Place de la foire, 82240 Septfonds",
+        "coordinates": {
+          "coordx": 1.61945,
+          "coordy": 44.1806552
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Caussade",
+        "email": "",
+        "address": "33 rue de l'Abreuvoir, 82300 Caussade",
+        "coordinates": {
+          "coordx": 1.538958,
+          "coordy": 44.1646732
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Lauzerte",
+        "email": "",
+        "address": "6 cité des Nauzes, 82110 Lauzerte",
+        "coordinates": {
+          "coordx": 1.1378560000001,
+          "coordy": 44.255565
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Montaigu-de-Quercy",
+        "email": "",
+        "address": "4 place Mercadiel, 82150 Montaigu-de-Quercy",
+        "coordinates": {
+          "coordx": 1.018235,
+          "coordy": 44.3390611
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "28 rue de la Banque, 82013 Montauban",
+        "coordinates": {
+          "coordx": 1.3575421,
+          "coordy": 44.0134048
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de  Saint-Nicolas-de-la-Greve",
+        "email": "",
+        "address": "Au château, 82210 Saint-Nicolas-de-la-Grave",
+        "coordinates": {
+          "coordx": 1.0617717,
+          "coordy": 44.0929881
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Castelsarrasin",
+        "email": "",
+        "address": "22 rue de la Mouline, 82100 Castelsarrasin",
+        "coordinates": {
+          "coordx": 1.1129243,
+          "coordy": 44.0358426
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Lafrançaise",
+        "email": "",
+        "address": "21 rue Léon Cladel, 82130 Lafrancaise",
+        "coordinates": {
+          "coordx": 1.2396732,
+          "coordy": 44.1269096
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Monclar de Quercy",
+        "email": "",
+        "address": "Mairie, 82230 Monclar-de-Quercy",
+        "coordinates": {
+          "coordx": 1.5866426,
+          "coordy": 43.9670212
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Montauban",
+        "email": "",
+        "address": "13 rue du docteur Labat, 82000 Montauban",
+        "coordinates": {
+          "coordx": 1.3482903,
+          "coordy": 44.0234846
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint Antonin-Noble-Val",
+        "email": "",
+        "address": "Route des fours à chaux, 82140 Saint-Antonin-Noble-Val",
+        "coordinates": {
+          "coordx": 1.7561439999999,
+          "coordy": 44.151119
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Verdun sur Garonne",
+        "email": "",
+        "address": "1 cité de Najats, 82600 Verdun-sur-Garonne",
+        "coordinates": {
+          "coordx": 1.2303910000001,
+          "coordy": 43.8594859
         },
         "phone": "",
         "schedule": ""
@@ -3183,12 +1920,209 @@
     "opened": false,
     "locations": [
       {
-        "name": "Mayenne",
+        "name": "Siège",
         "email": "",
-        "address": "16 rue Albert Einstein, 53006, Laval",
+        "address": "16 rue Albert Einstein, 53006 Laval",
         "coordinates": {
           "coordx": -0.7435901,
           "coordy": 48.0549536
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Sarthe",
+    "zipcode": "72",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Château-du-Loir",
+        "email": "",
+        "address": "5 allée Saint Martin, 72500 Château-du-Loir",
+        "coordinates": {
+          "coordx": 0.41997170000002,
+          "coordy": 47.6913339
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de la Flèche",
+        "email": "",
+        "address": "22 rue du Maréchal Foch, 72200 La Flèche",
+        "coordinates": {
+          "coordx": -0.0760358,
+          "coordy": 47.6979542
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Mamers",
+        "email": "",
+        "address": "1 place de la République, 72600 Mamers",
+        "coordinates": {
+          "coordx": 0.36874820000003,
+          "coordy": 48.3487902
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Bonnetable",
+        "email": "",
+        "address": "8 rue Mazagran, 72110 Bonnetable",
+        "coordinates": {
+          "coordx": 0.4280033,
+          "coordy": 48.1740259
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de la Ferté-Bernard",
+        "email": "",
+        "address": "9 rue Viet, 72400 La Ferté-Bernard",
+        "coordinates": {
+          "coordx": 0.65586800000005,
+          "coordy": 48.1862847
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "38 avenue bollée, 72000 Le Mans",
+        "coordinates": {
+          "coordx": 0.20606729999997,
+          "coordy": 48.0023667
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Calais",
+        "email": "",
+        "address": "9 rue des Halles, 72120 Saint-Calais",
+        "coordinates": {
+          "coordx": 0.74360569999999,
+          "coordy": 47.9205941
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Place de la République, 72290 Ballon Saint-Mars",
+        "coordinates": {
+          "coordx": 0.2340289,
+          "coordy": 48.1751326
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Fresnay-sur-sarthe",
+        "email": "",
+        "address": "2 rue Abbé Lelièvre, 72130 Fresnay-sur-Sarthe",
+        "coordinates": {
+          "coordx": 0.024722999999994,
+          "coordy": 48.2846161
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "11 rue du Pied Sec, 72019 Le Mans",
+        "coordinates": {
+          "coordx": 0.20200000703335,
+          "coordy": 47.982299804688
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Pontvallain",
+        "email": "",
+        "address": "Place du Chanoine Tarot, 72510 Pontvallain",
+        "coordinates": {
+          "coordx": 0.19245699999999,
+          "coordy": 47.749624
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Sablé-sur-Sarthe",
+        "email": "",
+        "address": "5 rue Saint Martin, 72300 Sablé-sur-Sarthe",
+        "coordinates": {
+          "coordx": -0.33471269999995,
+          "coordy": 47.8400623
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site d'Allonnes",
+        "email": "",
+        "address": "11 avenue François Cevert, 72700 Allonnes",
+        "coordinates": {
+          "coordx": 0.15680789999999,
+          "coordy": 47.9640161
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Conlie",
+        "email": "",
+        "address": "25 place des Halles, 72240 Conlie",
+        "coordinates": {
+          "coordx": -0.017046800000003,
+          "coordy": 48.1216611
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Coulaines",
+        "email": "",
+        "address": "24 rue de la paix, 72190 Coulaines",
+        "coordinates": {
+          "coordx": 0.20410939999999,
+          "coordy": 48.0240978
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 rue Georges Coulon, 72150 Le Grand-Luce",
+        "coordinates": {
+          "coordx": 0.46306600000003,
+          "coordy": 47.864115
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Montfort-le-Gesnois",
+        "email": "",
+        "address": "1 place Jacques Moreau, 72450 Montfort-le-Gesnois",
+        "coordinates": {
+          "coordx": 0.41995199999997,
+          "coordy": 48.0482299
         },
         "phone": "",
         "schedule": ""
@@ -3204,9 +2138,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Vendée",
+        "name": "Siège",
         "email": "",
-        "address": "185 boulevard Leclerc, 85000, La Roche-sur-Yon",
+        "address": "185 boulevard Leclerc, 85000 La Roche-sur-Yon",
         "coordinates": {
           "coordx": -1.4295090436935,
           "coordy": 46.675930023193
@@ -3225,12 +2159,1078 @@
     "opened": false,
     "locations": [
       {
-        "name": "Bouches du Rhône",
+        "name": "Siège",
         "email": "",
-        "address": "4 quai d'Arenc, 13304, Marseille",
+        "address": "4 quai d'Arenc, 13304 Marseille",
         "coordinates": {
           "coordx": 5.3657793,
           "coordy": 43.3145577
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Var",
+    "zipcode": "83",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Le Luc",
+        "email": "",
+        "address": "38 rue Jean Jaurès, 83340 Le Luc",
+        "coordinates": {
+          "coordx": 1.4735267999999,
+          "coordy": 48.4232551
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Draguignan",
+        "email": "",
+        "address": "1 Boulevard Foch, 83300 Draguignan",
+        "coordinates": {
+          "coordx": 6.4619156,
+          "coordy": 43.5384406
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Frejus",
+        "email": "",
+        "address": "82 rue Martine Bidouré, 83600 Fréjus",
+        "coordinates": {
+          "coordx": 6.7344869,
+          "coordy": 43.431598
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Cuers",
+        "email": "",
+        "address": "8 Boulevard Gambetta, 83390 Cuers",
+        "coordinates": {
+          "coordx": 6.0761036,
+          "coordy": 43.239027
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Saint-Maximin",
+        "email": "",
+        "address": "45 chemin des Fontaines, 83470 Saint-Maximin-la-Sainte-Baume",
+        "coordinates": {
+          "coordx": 5.857998,
+          "coordy": 43.4533555
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Brignoles",
+        "email": "",
+        "address": "Rue du Docteur Barberoux, 83170 Brignoles",
+        "coordinates": {
+          "coordx": 6.0636892,
+          "coordy": 43.4077567
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "293 Route de la Seyne, 83192 Ollioules",
+        "coordinates": {
+          "coordx": 5.8479245,
+          "coordy": 43.139757
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Vaucluse",
+    "zipcode": "84",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Cadenet",
+        "email": "",
+        "address": "avenue Philippe de Girard, 84160 Cadenet",
+        "coordinates": {
+          "coordx": 5.374173,
+          "coordy": 43.7309067
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "22 boulevard Saint-Michel, 84096 Avignon",
+        "coordinates": {
+          "coordx": 4.8117869,
+          "coordy": 43.9425812
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Site de Vaison-la-Romaine",
+        "email": "",
+        "address": "8 place Théodore Aubanel, 84110 Vaison-la-Romaine",
+        "coordinates": {
+          "coordx": 5.075198,
+          "coordy": 44.240968
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Drôme",
+    "zipcode": "26",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "42 C avenue des Langories, 26905 Valence",
+        "coordinates": {
+          "coordx": 4.8905601501465,
+          "coordy": 44.931751251221
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Haute-Loire",
+    "zipcode": "43",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "9 Rue des Moulins, 43009 Le Puy-en-Velay",
+        "coordinates": {
+          "coordx": 3.8854227,
+          "coordy": 45.0386064
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Côte-d'Or",
+    "zipcode": "21",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 rue Joseph Tissot, 21035 Dijon",
+        "coordinates": {
+          "coordx": 5.038959980011,
+          "coordy": 47.322151184082
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Saône-et-Loire",
+    "zipcode": "71",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "18 rue de Flacé, 71026 Mâcon",
+        "coordinates": {
+          "coordx": 4.8291987,
+          "coordy": 46.313588
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Finistère",
+    "zipcode": "29",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1C rue Félix Le Dantec, 29018 Quimper",
+        "coordinates": {
+          "coordx": -4.0999999046326,
+          "coordy": 47.995399475098
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Indre",
+    "zipcode": "36",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "4 rue Eugène Rolland, 36020 Châteauroux",
+        "coordinates": {
+          "coordx": 1.6976900100708,
+          "coordy": 46.805500030518
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Corse-du-Sud",
+    "zipcode": "2A",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Avenue Napoléon III, 20000 Ajaccio",
+        "coordinates": {
+          "coordx": 8.7343592,
+          "coordy": 41.924925
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Haute-Marne",
+    "zipcode": "52",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "centre départemental administratif, 52901 Chaumont",
+        "coordinates": {
+          "coordx": 5.1417497,
+          "coordy": 48.1142518
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Meuse",
+    "zipcode": "55",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "5 espace Theuriet, 55000 Bar-le-Duc",
+        "coordinates": {
+          "coordx": 5.1605745,
+          "coordy": 48.7737192
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Guadeloupe",
+    "zipcode": "971",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Rue du Docteur Hélène, 97190 Le Gosier",
+        "coordinates": {
+          "coordx": -61.590296,
+          "coordy": 16.260117
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Seine-et-Marne",
+    "zipcode": "77",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "16 rue de l'Aluminium, 77543 Savigny-le-Temple",
+        "coordinates": {
+          "coordx": 2.5821199417114,
+          "coordy": 48.572040557861
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Val-de-Marne",
+    "zipcode": "94",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "7-9 voie Félix Eboué, 94046 Créteil",
+        "coordinates": {
+          "coordx": 2.4702200889587,
+          "coordy": 48.778888702393
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Manche",
+    "zipcode": "50",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "586 rue de l'exode, 50000 Saint-Lô",
+        "coordinates": {
+          "coordx": -1.0887205,
+          "coordy": 49.1059532
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Charente-Maritime",
+    "zipcode": "17",
+    "logo": "logo17.jpg",
+    "enabled": true,
+    "opened": true,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "61 rue de Jéricho, 17005 La Rochelle",
+        "coordinates": {
+          "coordx": -1.1645972,
+          "coordy": 46.1669346
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Dordogne",
+    "zipcode": "24",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Rue du 26e régiment d'infanterie, 24016 Périgueux",
+        "coordinates": {
+          "coordx": 0.71183529999996,
+          "coordy": 45.180399
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Pyrénées-Atlantiques",
+    "zipcode": "64",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Rue Pierre Bonnard, 64000 Pau",
+        "coordinates": {
+          "coordx": -0.36849901080131,
+          "coordy": 43.296211242676
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Lot",
+    "zipcode": "46",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "304 rue Victor Hugo, 46000 Cahors",
+        "coordinates": {
+          "coordx": 1.4380628,
+          "coordy": 44.4432912
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Tarn",
+    "zipcode": "81",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "221 avenue Albert Thomas, 81027 Albi",
+        "coordinates": {
+          "coordx": 2.1526224,
+          "coordy": 43.9482732
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Maine-et-Loire",
+    "zipcode": "49",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "6 rue Jean Lecuit, 49941 Angers",
+        "coordinates": {
+          "coordx": -0.56388449999997,
+          "coordy": 47.4898551
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Alpes-Maritimes",
+    "zipcode": "06",
+    "logo": "logo06.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "27 boulevard Paul Montel, 06000 Nice",
+        "coordinates": {
+          "coordx": 7.2092589,
+          "coordy": 43.6723728
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Isère",
+    "zipcode": "38",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "15 avenue Doyen Louis Weil, 38010 Grenoble",
+        "coordinates": {
+          "coordx": 5.7123421,
+          "coordy": 45.1923473
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Savoie",
+    "zipcode": "73",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "110 rue Sainte-Rose, 73000 Chambéry",
+        "coordinates": {
+          "coordx": 5.9236698150635,
+          "coordy": 45.566898345947
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Haute-Saône",
+    "zipcode": "70",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 Rue Jean-Bernard Derosne, 70000 Vesoul",
+        "coordinates": {
+          "coordx": 6.1497138,
+          "coordy": 47.6211222
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Côtes-d'Armor",
+    "zipcode": "22",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "3 rue Villiers de l'Isle Adam, 22194 Plérin",
+        "coordinates": {
+          "coordx": -2.7602452,
+          "coordy": 48.5180562
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Eure-et-Loir",
+    "zipcode": "28",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "27 bis rue du Docteur Maunoury, 28000 Chartres",
+        "coordinates": {
+          "coordx": 1.4897899627686,
+          "coordy": 48.443138122559
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Loiret",
+    "zipcode": "45",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "15 rue Claude Lewy, 45100 Orléans",
+        "coordinates": {
+          "coordx": 1.9042999744415,
+          "coordy": 47.902111053467
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Aube",
+    "zipcode": "10",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "Cité administrative des Vassaules, 10026 Troyes",
+        "coordinates": {
+          "coordx": 4.0744009,
+          "coordy": 48.2973451
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Haut-Rhin",
+    "zipcode": "68",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Mulhouse",
+        "email": "",
+        "address": "51A rue d'Agen, 68100 Mulhouse",
+        "coordinates": {
+          "coordx": 7.3355068,
+          "coordy": 47.760829
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "48 avenue de la République, 68006 Colmar",
+        "coordinates": {
+          "coordx": 7.3543000221252,
+          "coordy": 48.082019805908
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Vosges",
+    "zipcode": "88",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 allée des Chênes, 88026 Épinal",
+        "coordinates": {
+          "coordx": 6.45548,
+          "coordy": 48.2014789
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Oise",
+    "zipcode": "60",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 rue des Filatures, 60000 Beauvais",
+        "coordinates": {
+          "coordx": 2.0837099552155,
+          "coordy": 49.4294090271
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Paris",
+    "zipcode": "75",
+    "logo": "logo75.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "69 rue de la Victoire, 75009 Paris",
+        "coordinates": {
+          "coordx": 2.340399980545,
+          "coordy": 48.880100250244
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Seine-Saint-Denis",
+    "zipcode": "93",
+    "logo": "logo93.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "7/11 rue Erik Satie, 93000 Bobigny",
+        "coordinates": {
+          "coordx": 2.4501899,
+          "coordy": 48.9066406
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "La Réunion",
+    "zipcode": "974",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Saint-Pierre",
+        "email": "",
+        "address": "13 rue Augustin Archambaud, 97410 Saint-Pierre",
+        "coordinates": {
+          "coordx": 55.4780894,
+          "coordy": -21.3394537
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "13 rue Fénelon, 97464 Saint-Denis",
+        "coordinates": {
+          "coordx": 55.448957,
+          "coordy": -20.8847443
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Eure",
+    "zipcode": "27",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "11 rue Jean de la Bruyère, 27000 Evreux",
+        "coordinates": {
+          "coordx": 1.137099981308,
+          "coordy": 49.022258758545
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Charente",
+    "zipcode": "16",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "15 boulevard Jean Moulin, 16000 Angoulême",
+        "coordinates": {
+          "coordx": 0.1448500007391,
+          "coordy": 45.652599334717
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Lot-et-Garonne",
+    "zipcode": "47",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "1 633 avenue du Maréchal Leclerc, 47916 Agen",
+        "coordinates": {
+          "coordx": 0.62518000602722,
+          "coordy": 44.201240539551
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Haute-Vienne",
+    "zipcode": "87",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "8 place des Carmes, 87031 Limoges",
+        "coordinates": {
+          "coordx": 1.2332999706268,
+          "coordy": 45.843601226807
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Gard",
+    "zipcode": "30",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "115/116 allée Norbert Wiener, 30000 Nîmes",
+        "coordinates": {
+          "coordx": 4.3604001998901,
+          "coordy": 43.834190368652
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Hérault",
+    "zipcode": "34",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "59 avenue de Fès, 34086 Montpellier",
+        "coordinates": {
+          "coordx": 3.829400062561,
+          "coordy": 43.612098693848
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Pyrénées-Orientales",
+    "zipcode": "66",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "30 rue Pierre Bretonneau, 66100 Perpignan",
+        "coordinates": {
+          "coordx": 2.891979932785,
+          "coordy": 42.69847869873
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Loire-Atlantique",
+    "zipcode": "44",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Site de Saint-Nazaire",
+        "email": "",
+        "address": "12 place Pierre Sémard, 44600 Saint-Nazaire",
+        "coordinates": {
+          "coordx": -2.2107843,
+          "coordy": 47.2854139
+        },
+        "phone": "",
+        "schedule": ""
+      },
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "300 route de Vannes, 44701 Orvault",
+        "coordinates": {
+          "coordx": -1.6197349,
+          "coordy": 47.2514507
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Hautes-Alpes",
+    "zipcode": "05",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "29 bis avenue du Commandant Dumont, 05000 Gap",
+        "coordinates": {
+          "coordx": 6.0833196,
+          "coordy": 44.5647596
+        },
+        "phone": "",
+        "schedule": ""
+      }
+    ],
+    "likes": []
+  },
+  {
+    "name": "Mayotte",
+    "zipcode": "976",
+    "logo": "logotest.jpg",
+    "enabled": false,
+    "opened": false,
+    "locations": [
+      {
+        "name": "Siège",
+        "email": "",
+        "address": "-, 97600 Mamoudzou",
+        "coordinates": {
+          "coordx": 45.2278,
+          "coordy": -12.7806
         },
         "phone": "",
         "schedule": ""
@@ -3246,9 +3246,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Ain",
+        "name": "Siège",
         "email": "",
-        "address": "13 avenue de la Victoire, 01000, Bourg-en-Bresse",
+        "address": "13 avenue de la Victoire, 01000 Bourg-en-Bresse",
         "coordinates": {
           "coordx": 5.2174416,
           "coordy": 46.2024726
@@ -3267,9 +3267,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Ardèche",
+        "name": "Siège",
         "email": "",
-        "address": "Pôle Astier Froment, 07007, Privas",
+        "address": "Pôle Astier Froment, 07007 Privas",
         "coordinates": {
           "coordx": 4.5985898971558,
           "coordy": 44.734481811523
@@ -3288,9 +3288,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Loire",
+        "name": "Siège",
         "email": "",
-        "address": "23 rue d'Arcole, 42000, Saint-Etienne",
+        "address": "23 rue d'Arcole, 42000 Saint-Etienne",
         "coordinates": {
           "coordx": 4.3817379,
           "coordy": 45.4395708
@@ -3309,9 +3309,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Rhône",
+        "name": "Siège",
         "email": "",
-        "address": "8 rue Jonas Salk, 69007, Lyon",
+        "address": "8 rue Jonas Salk, 69007 Lyon",
         "coordinates": {
           "coordx": 4.8442998,
           "coordy": 45.7588979
@@ -3330,9 +3330,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Nièvre",
+        "name": "Siège",
         "email": "",
-        "address": "11 bis rue Emile Combes, 58028, Nevers",
+        "address": "11 bis rue Emile Combes, 58028 Nevers",
         "coordinates": {
           "coordx": 3.1604599952698,
           "coordy": 46.992839813232
@@ -3351,9 +3351,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Territoire de Belfort",
+        "name": "Siège",
         "email": "",
-        "address": "Rue de l'As de Carreau, 90000, Belfort",
+        "address": "Rue de l'As de Carreau, 90000 Belfort",
         "coordinates": {
           "coordx": 6.863849,
           "coordy": 47.639674
@@ -3372,9 +3372,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Maison départementale de l'autonomie du Morbihan",
+        "name": "Siège",
         "email": "",
-        "address": "16 rue Ella Maillart, 56009, Vannes",
+        "address": "16 rue Ella Maillart, 56009 Vannes",
         "coordinates": {
           "coordx": -2.7798283,
           "coordy": 47.6686587
@@ -3393,9 +3393,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Cher",
+        "name": "Siège",
         "email": "",
-        "address": "Route de Guerry, 18021, Bourges",
+        "address": "Route de Guerry, 18021 Bourges",
         "coordinates": {
           "coordx": 2.398020029068,
           "coordy": 47.087100982666
@@ -3414,9 +3414,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Loir et Cher",
+        "name": "Siège",
         "email": "",
-        "address": "34 avenue Maunoury, 41000, Blois",
+        "address": "34 avenue Maunoury, 41000 Blois",
         "coordinates": {
           "coordx": 1.330549955368,
           "coordy": 47.590759277344
@@ -3435,9 +3435,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Ardennes",
+        "name": "Siège",
         "email": "",
-        "address": "55 avenue du Général de Gaulle, 08000, Charleville-Mézières",
+        "address": "55 avenue du Général de Gaulle, 08000 Charleville-Mézières",
         "coordinates": {
           "coordx": 4.7122402191162,
           "coordy": 49.771739959717
@@ -3456,9 +3456,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Somme",
+        "name": "Siège",
         "email": "",
-        "address": "1 boulevard du Port, 80037, Amiens",
+        "address": "1 boulevard du Port, 80037 Amiens",
         "coordinates": {
           "coordx": 2.2898779,
           "coordy": 49.8985194
@@ -3477,9 +3477,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Hauts-de-Seine",
+        "name": "Siège",
         "email": "",
-        "address": "2 rue Rigault, 92000, Nanterre",
+        "address": "2 rue Rigault, 92000 Nanterre",
         "coordinates": {
           "coordx": 2.2057600021362,
           "coordy": 48.892261505127
@@ -3498,9 +3498,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Seine-Maritime",
+        "name": "Siège",
         "email": "",
-        "address": "13 rue Poret de Blosseville, 76100, Rouen",
+        "address": "13 rue Poret de Blosseville, 76100 Rouen",
         "coordinates": {
           "coordx": 1.0626000165939,
           "coordy": 49.413299560547
@@ -3519,9 +3519,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Vienne",
+        "name": "Siège",
         "email": "",
-        "address": "39 rue de Beaulieu, 86000, Poitiers",
+        "address": "39 rue de Beaulieu, 86000 Poitiers",
         "coordinates": {
           "coordx": 0.33008998632431,
           "coordy": 46.582981109619
@@ -3540,9 +3540,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Aude",
+        "name": "Siège",
         "email": "",
-        "address": "18 rue du Moulin de la Seigne, 11855, Carcassonne",
+        "address": "18 rue du Moulin de la Seigne, 11855 Carcassonne",
         "coordinates": {
           "coordx": 2.3602900505066,
           "coordy": 43.211380004883
@@ -3561,9 +3561,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Aveyron",
+        "name": "Siège",
         "email": "",
-        "address": "8 rue François Mazenq, 12000, Rodez",
+        "address": "8 rue François Mazenq, 12000 Rodez",
         "coordinates": {
           "coordx": 2.5683965000001,
           "coordy": 44.3504077
@@ -3582,9 +3582,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Hautes-Pyrénées",
+        "name": "Siège",
         "email": "",
-        "address": "place Ferré, 65000, Tarbes",
+        "address": "place Ferré, 65000 Tarbes",
         "coordinates": {
           "coordx": 0.075503600000047,
           "coordy": 43.2283237
@@ -3603,9 +3603,9 @@
     "opened": false,
     "locations": [
       {
-        "name": "Alpes de Haute Provence",
+        "name": "Siège",
         "email": "",
-        "address": "4 rue de la Grave, 04005, Digne-les-Bains",
+        "address": "4 rue de la Grave, 04005 Digne-les-Bains",
         "coordinates": {
           "coordx": 6.2333498001099,
           "coordy": 44.092041015625
