@@ -1,11 +1,11 @@
-<div class="profile-category {{completion}}" ng-class="{
-    'mandatory': options.mandatory,
-    'error': options.error
+<div class="profile-category {{profileCategoryCtrl.completion}}" ng-class="{
+    'mandatory': profileCategoryCtrl.options.mandatory,
+    'error': profileCategoryCtrl.options.error
   }">
   <div class="profile-category-icon">
-    <i class="icon fa" ng-class="icon"></i>
+    <i class="icon fa" ng-class="profileCategoryCtrl.icon"></i>
 
-    <div class="progress-desc" ng-if="options.mandatory || completion === 'complete'" ng-switch="completion">
+    <div class="progress-desc" ng-if="profileCategoryCtrl.options.mandatory || profileCategoryCtrl.completion === 'complete'" ng-switch="profileCategoryCtrl.completion">
       <span ng-switch-default>À renseigner</span>
       <span ng-switch-when="complete"><i class="fa fa-check-circle"></i>&nbsp;Complet</span>
     </div>
@@ -14,15 +14,15 @@
   <div class="profile-category-content">
     <div class="profile-category-header">
       <span class="profile-category-header-text">
-        <h2 class="profile-category-header-text-title">{{ ::title }}</h2>
+        <h2 class="profile-category-header-text-title">{{ ::profileCategoryCtrl.title }}</h2>
       </span>
     </div>
     <div class="profile-category-content-text">
-      {{ ::content }}
+      {{ ::profileCategoryCtrl.content }}
     </div>
     <div class="profile-category-actions">
-      <button ng-click="go()" class="btn btn-blue">{{ ::action.label }}</button>
+      <button ng-click="profileCategoryCtrl.go()" class="btn btn-blue">{{ ::profileCategoryCtrl.getActionLabel() }}</button>
     </div>
   </div>
 </div>
-<div ng-if="options.error"> Compléter cette section avant de transmettre la demande</div>
+<div ng-if="profileCategoryCtrl.options.error"> Compléter cette section avant de transmettre la demande</div>

@@ -25,9 +25,9 @@
         <section class="profile-section">
           <p class="section-subhead">&nbsp;</p>
           <ul class="profile-card-row">
-            <li id="beneficiaire" class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.beneficiaire"></li>
-            <li id="autorite" class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.autorite" ng-if="!profilCtrl.estAdulte"></li>
-            <li id="vieQuotidienne" class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieQuotidienne"></li>
+            <li id="beneficiaire" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.beneficiaire" /></li>
+            <li id="autorite" class="profile-card-row-item" ng-if="!profilCtrl.estAdulte"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.autorite" /></li>
+            <li id="vieQuotidienne" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieQuotidienne" /></li>
           </ul>
         </section>
 
@@ -35,11 +35,11 @@
           <h2>Informations complémentaires</h2>
           <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
           <ul class="profile-card-row">
-            <li class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieScolaire"></li>
-            <li class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieTravail"></li>
-            <li class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.aidant"></li>
-            <li class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.autre"></li>
-            <li class="profile-card-row-item" profile-category profile="profilCtrl.profile" options="profilCtrl.options.particulieres"></li>
+            <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieScolaire" /></li>
+            <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieTravail" /></li>
+            <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.aidant" /></li>
+            <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.autre" /></li>
+            <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.particulieres" /></li>
           </ul>
         </section>
 

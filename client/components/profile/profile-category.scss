@@ -13,11 +13,11 @@
   }
 
   &.complete > .profile-category-icon {
-    background-color: $flat-ui-blue;
+    background-color: $green;
     color: white;
 
     .progress-desc {
-      border-bottom: 1px solid darken($flat-ui-blue, 3%);
+      border-bottom: 1px solid darken($green, 3%);
     }
   }
 
