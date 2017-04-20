@@ -14,7 +14,7 @@ var url = 'https://api.opendata.onisep.fr/tmp/9b/8b/8e3e05812a7ac985176074003eff
 var tmp_file = __dirname + '/tmp_mdphs.json';
 
 // Wont load that list of zipcodes
-var zipCodeBlacklist = ['59', '14', '93', '06', '54', '17', '75', '56', '76'];
+var zipCodeBlacklist = ['51', '17', '47', '93', '11', '06', '59', '14', '54', '75', '56', '76'];
 
 // By default will generate production json, so will take 'zipCodeBlacklist' in account
 var PRODUCTION = true;
