@@ -21,15 +21,17 @@
     <div class="form-group required" ng-class="{ 'has-error': form.password.$invalid && form.$submitted }">
       <label for="password" class="control-label">Créez votre mot de passe</label>
       <input id="password" type="{{inputType}}" name="password"
-        class="form-control" ng-model="user.password" ng-minlength="8" required mongoose-error>
+        class="form-control" ng-model="user.password" required mongoose-error zxcvbn="passwordStrength" zx-min-score="2">
+
+      <div ng-messages="form.password.$error" ng-if="form.$submitted">
+        <p id="error-message" ng-message="passwordStrength" class="help-block">Votre mot de passe est d'une robustesse trop faible</p>
+      </div>
+
+      <password-strength-bar password="form.password.$viewValue"></password-strength-bar>
 
       <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
       <label for="checkbox">Afficher le mot de passe</label>
 
-      <div ng-messages="form.password.$error" ng-if="form.$submitted">
-        <p class="help-block" ng-message='minlength'>Le mot de passe doit être au moins de 8 caractères.</p>
-        <p class="help-block" ng-message='required'>Le mot de passe doit être au moins de 8 caractères.</p>
-      </div>
     </div>
 
     <div class="text-center">
