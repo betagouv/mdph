@@ -9,7 +9,7 @@ const profileCategoryComponent = {
   },
   templateUrl: 'components/profile/profile-category.html',
   controllerAs: 'profileCategoryCtrl',
-  controller: class demoController {
+  controller: class profileCategoryController {
     constructor($state) {
       const { title, subhead, content, icon, model, action } = this.options;
 
