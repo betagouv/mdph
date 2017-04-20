@@ -19,7 +19,7 @@ var zipCodeBlacklist = ['59', '14', '93', '06', '54', '17', '75', '56', '76'];
 // By default will generate production json, so will take 'zipCodeBlacklist' in account
 var PRODUCTION = true;
 
-var isEnabledList = ['14', '17', '54', '37'];
+var isEnabledList = ['14', '17', '54'];
 var isOpenedList = ['14', '17', '54'];
 var hasLogoList = ['59', '14', '93', '06', '54', '17', '75', '56', '76'];
 
