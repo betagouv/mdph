@@ -16,6 +16,20 @@ var tmp_file = __dirname + '/tmp_mdphs.json';
 // Wont load that list of zipcodes
 var zipCodeBlacklist = ['59', '14', '93', '06', '54', '17', '75', '56', '76'];
 
+// By default will generate production json, so will take 'zipCodeBlacklist' in account
+var PRODUCTION = true;
+
+var isEnabledList = ['14', '17', '54', '37'];
+var isOpenedList = ['14', '17', '54'];
+var hasLogoList = ['59', '14', '93', '06', '54', '17', '75', '56', '76'];
+
+process.argv.forEach(function(arg) {
+  if (arg === '--dev') {
+    console.warn('DEVELOPMENT json to be generated, do not deploy this in production!');
+    PRODUCTION = false;
+  }
+});
+
 // [Extract] : Download the reference file of MDPH list
 function extract(uri, callback) {
   request(uri, function(error, response, body) {
@@ -52,6 +66,18 @@ function transform(json, callback) {
         return newName ? 'Site de '  + newName : 'Siège';
       }
 
+      function isTrue(list, zipcode) {
+        return _.indexOf(list, zipcode) >= 0;
+      }
+
+      function getLogo(list, zipcode) {
+        if (_.indexOf(list, zipcode) >= 0) {
+          return 'logo' + zipcode + '.jpg';
+        }
+
+        return 'logotest.jpg';
+      }
+
       // Exctract zipcode from departement
       var name = departement[0].split(' - ')[1];
 
@@ -59,9 +85,9 @@ function transform(json, callback) {
       var zipcode = departement[0].split(' - ')[0];
 
       // Default values
-      var logo = 'logotest.jpg';
-      var enabled = false;
-      var opened = false;
+      var logo = getLogo(hasLogoList, zipcode);
+      var enabled = isTrue(isEnabledList, zipcode);
+      var opened = isTrue(isOpenedList, zipcode);
       var likes = [];
 
       var locations = _.map(departement[1], function(loc) {
@@ -94,7 +120,8 @@ function transform(json, callback) {
         }
       });
 
-      return reject;
+      // Only reject in production mode
+      return reject && PRODUCTION;
     })
     .value();
 
