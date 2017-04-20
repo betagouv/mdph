@@ -1,18 +1,18 @@
 Loading MDPH list
 ================================================
 
-## Run Extranct & Transform script
+## Run Extract & Transform script
 
 `node .`
 
-## Load the list
+## Load the result json
 
 `mongoimport --db impact --collection mdphs --jsonArray --file tmp_mdphs.json`
 
-## Add a MDP to blacklist
+## Add a MDPH to blacklist
 
 Edit value of `zipCodeBlacklist` in index.js
 
-## Update the url of the sorce json
+## Update the url of the source json
 
 Edit value of `url` in index.js
