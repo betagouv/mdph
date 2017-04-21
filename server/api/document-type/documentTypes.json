@@ -15,7 +15,8 @@
           "label": "Nouveau certificat Médical",
           "file": "/assets/documents/CM.pdf"
         }
-      ]
+      ],
+      "rejectionReason": "Le certificat medical ne doit pas être manuscrit, utiliser un des modèles fournis dans la section de chargement des pièces jointes"
     },
     {
       "id": "justificatifDomicile",
