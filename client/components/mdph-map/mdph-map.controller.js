@@ -14,13 +14,10 @@ angular.module('impactApp')
       const map = L.mapbox.map('map', 'mapbox.streets');
 
       if (this.locations.length === 1) {
-        this.location = this.locations[0];
-        map.setView([this.location.coordinates.coordy, this.location.coordinates.coordx], 14);
+        map.setView([this.locations[0].coordinates.coordy, this.locations[0].coordinates.coordx], 14);
       } else {
-        const bounds = this.locations.map(location => {
-          return [location.coordinates.coordy, location.coordinates.coordx];
-        });
-        map.fitBounds(bounds);
+        const bounds = this.locations.map(location => [location.coordinates.coordy, location.coordinates.coordx]);
+        map.fitBounds(bounds, { padding: [20, 30] });
       }
 
       // Disable drag and zoom handlers.
