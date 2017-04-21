@@ -37,7 +37,6 @@ angular.module('impactApp')
         }
       });
 
-      let first = true;
       this.locations.forEach(location => {
         const addressRow = location.address &&
           `<tr>
@@ -83,7 +82,7 @@ angular.module('impactApp')
             title: location.name,
             description,
             'marker-size': 'large',
-            'marker-color': '#333E54',
+            'marker-color': location.headquarters ? '#333E54' : '#FFFFFF',
             'marker-symbol': 'building'
           }
         };
@@ -95,9 +94,9 @@ angular.module('impactApp')
         };
 
         const popup = L.mapbox.featureLayer(featureLayer, options).addTo(map);
-        if (first) {
+
+        if (location.headquarters) {
           popup.openPopup();
-          first = false;
         }
       });
     })();
