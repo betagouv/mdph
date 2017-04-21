@@ -2,14 +2,14 @@
   <div ng-show="footer.mdph" class="contact-mdph">
     <h4>Contactez votre MDPH</h4>
     <div class="location-container">
-      <div class="location" ng-repeat="location in footer.mdph.locations">
+      <div class="location" ng-class="{'headquarters': location.headquarters}" ng-repeat="location in footer.sortedLocations">
         <h5>{{ location.name }}</h5>
-        <address>
+        <address class="location-row">
           {{location.address}}
         </address>
-        <div class="schedule" ng-bind="location.schedule"></div>
-        <div ng-bind="location.phone"></div>
-        <div ng-if="location.email" class="email">
+        <div ng-bind="location.schedule" class="schedule location-row"></div>
+        <div ng-bind="location.phone" class="phone location-row"></div>
+        <div ng-if="location.email" class="email location-row">
           <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
         </div>
       </div>
