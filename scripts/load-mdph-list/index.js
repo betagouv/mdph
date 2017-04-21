@@ -76,6 +76,11 @@ function transform(json, callback) {
         return 'Siège';
       }
 
+      function isHeadquarter(name) {
+        const TO_CUT = [' site de ', 'site d\''];
+        return !(name.split(TO_CUT[0])[1] || name.split(TO_CUT[1])[1]);
+      }
+
       function isTrue(list, zipcode) {
         return _.indexOf(list, zipcode) >= 0;
       }
@@ -103,6 +108,7 @@ function transform(json, callback) {
       var locations = _.map(departement[1], function(loc) {
         var location = {
           name: formatName(loc.nom),
+          headquarter: isHeadquarter(loc.nom),
           email: '',
           address: loc.adresse + ', ' + formatCP(loc.cp) + ' ' + loc.commune,
           coordinates: {
