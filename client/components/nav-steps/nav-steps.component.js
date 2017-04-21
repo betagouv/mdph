@@ -4,10 +4,10 @@ angular.module('impactApp')
   .component('navSteps', {
     templateUrl: 'components/nav-steps/nav-steps.html',
     bindings: {
-      profile: '=',
-      nextStep: '=',
-      prevStep: '=',
-      questionForm: '=',
+      profile: '<',
+      nextStep: '<',
+      prevStep: '<',
+      questionForm: '<',
       isFirstQuestion: '<',
       isLastQuestion: '<'
     },
