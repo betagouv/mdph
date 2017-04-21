@@ -23,7 +23,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.logement');
             };
           }
@@ -40,7 +40,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.aides');
             };
           }
@@ -57,7 +57,7 @@ angular.module('impactApp')
 
           nextStep: function($state, sectionModel, question, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               var answer = sectionModel[question.model];
               if (!answer) {
                 $state.go('^.fraisHandicap');
@@ -85,7 +85,7 @@ angular.module('impactApp')
 
           nextStep: function(ProfileService, profile, $state, sectionModel, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               if (ProfileService.estAdulte(profile)) {
                 $state.go('^.aideFinancierePasse');
               } else {
@@ -113,7 +113,7 @@ angular.module('impactApp')
 
           nextStep: function($state, sectionModel, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               var answerAideActuelle = sectionModel.aideActuelle;
               if (answerAideActuelle.technique) {
                 $state.go('^.aideTechnique');
@@ -137,7 +137,7 @@ angular.module('impactApp')
 
           nextStep: function($state, sectionModel, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               var answerAideActuelle = sectionModel.aideActuelle;
               if (answerAideActuelle.personne) {
                 $state.go('^.aidePersonne');
@@ -159,7 +159,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.pensionInvalidite');
             };
           }
@@ -176,7 +176,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.ipp');
             };
           }
@@ -193,7 +193,7 @@ angular.module('impactApp')
 
           nextStep: function(ProfileService, profile, $state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
               } else {
@@ -214,7 +214,7 @@ angular.module('impactApp')
 
           nextStep: function($state, sectionModel, question, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               if (sectionModel[question.model]) {
                 $state.go('^.aidesRetraite');
               } else {
@@ -235,7 +235,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.fraisHandicap');
             };
           }
@@ -256,7 +256,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.^.vos_besoins.quotidien');
             };
           }

@@ -21,7 +21,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.temps');
             };
           }
@@ -38,7 +38,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.adapte');
             };
           }
@@ -55,7 +55,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.difficultes');
             };
           }
@@ -72,7 +72,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.conservation');
             };
           }
@@ -89,7 +89,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.amenagement');
             };
           }
@@ -106,7 +106,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.arret_de_travail');
             };
           }
@@ -123,7 +123,7 @@ angular.module('impactApp')
 
           nextStep: function($state, sectionModel, question, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               if (sectionModel[question.model]) {
                 $state.go('^.raison_arret_de_travail');
               } else {
@@ -144,7 +144,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.professionnel_social');
             };
           }
@@ -161,7 +161,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.medecin_travail');
             };
           }
@@ -178,7 +178,7 @@ angular.module('impactApp')
 
           nextStep: function($state, saveCurrentState) {
             return function() {
-              saveCurrentState($state);
+              saveCurrentState();
               $state.go('^.^.^.situation_professionnelle.prestations');
             };
           }

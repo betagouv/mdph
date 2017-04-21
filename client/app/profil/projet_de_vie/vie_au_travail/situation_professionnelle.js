@@ -24,7 +24,7 @@ angular.module('impactApp')
 
         nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             if (sectionModel.conditionTravail) {
               $state.go('^.milieu');
             } else {
@@ -45,7 +45,7 @@ angular.module('impactApp')
 
         nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             if (sectionModel.milieuTravail === 'etablissement') {
               $state.go('^.emploi.nom_poste');
             } else {
@@ -66,7 +66,7 @@ angular.module('impactApp')
 
         nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             if (sectionModel.typeTravail === 'independant') {
               $state.go('^.emploi.nom_poste');
             } else {
@@ -100,7 +100,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.emploi.nom_poste');
           };
         }
@@ -117,7 +117,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.rqth');
           };
         }
@@ -134,7 +134,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.^.parcours_professionnel.uploadCV');
           };
         }

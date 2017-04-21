@@ -24,7 +24,7 @@ angular.module('impactApp')
 
         nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             if (sectionModel.condition) {
               $state.go('^.type_scolaire');
             } else {
@@ -46,7 +46,7 @@ angular.module('impactApp')
         nextStep: function($state, sectionModel, question, saveCurrentState) {
           return function() {
             var model = sectionModel[question.model];
-            saveCurrentState($state);
+            saveCurrentState();
 
             switch (model) {
               case 'domicile':
@@ -75,7 +75,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.accompagnement');
           };
         }
@@ -92,7 +92,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.etablissement');
           };
         }
@@ -109,7 +109,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.diplomes_passes');
           };
         }
@@ -126,7 +126,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.diplome_present');
           };
         }
@@ -143,7 +143,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.diplome_etablissement');
           };
         }
@@ -164,7 +164,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.parcours');
           };
         }
@@ -181,7 +181,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.accompagnement');
           };
         }
@@ -198,7 +198,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.adaptation');
           };
         }
@@ -215,7 +215,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.emploi_du_temps');
           };
         }
@@ -232,7 +232,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('profil.vie_scolaire.vos_besoins.scolarite');
           };
         }
@@ -249,7 +249,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('profil.vie_scolaire.vos_besoins.scolarite');
           };
         }

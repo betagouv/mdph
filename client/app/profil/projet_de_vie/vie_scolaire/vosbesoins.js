@@ -25,7 +25,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.communication');
           };
         }
@@ -41,7 +41,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.entretien');
           };
         }
@@ -57,7 +57,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.deplacement');
           };
         }
@@ -73,7 +73,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('profil.vie_scolaire.vos_attentes.scolarite');
           };
         }

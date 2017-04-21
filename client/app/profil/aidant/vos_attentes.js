@@ -21,7 +21,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.structure');
           };
         }
@@ -42,7 +42,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.renseignements');
           };
         }
@@ -59,7 +59,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.autres_renseignements');
           };
         }

@@ -24,7 +24,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.date_naissance_aidant');
           };
         }
@@ -41,7 +41,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.lien');
           };
         }
@@ -58,7 +58,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.vie');
           };
         }
@@ -75,7 +75,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.emploi');
           };
         }
@@ -92,7 +92,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.nature_aide');
           };
         }
@@ -109,7 +109,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.dedommagement');
           };
         }
@@ -126,7 +126,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.accompagnement');
           };
         }
@@ -143,7 +143,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.soutien');
           };
         }
@@ -160,7 +160,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.empechement');
           };
         }
@@ -177,7 +177,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.situation_future');
           };
         }
@@ -194,7 +194,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('profil.aidant.vos_attentes.type_attente');
           };
         }

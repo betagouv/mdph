@@ -20,7 +20,7 @@ angular.module('impactApp')
 
         nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             if (sectionModel.needUploadCV) {
               $state.go('^.qualification');
             } else {
@@ -41,7 +41,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.qualification');
           };
         }
@@ -58,7 +58,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.derniereClasse');
           };
         }
@@ -75,7 +75,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.formations');
           };
         }
@@ -92,7 +92,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.diplomes');
           };
         }
@@ -113,7 +113,7 @@ angular.module('impactApp')
 
         nextStep: function($state, saveCurrentState) {
           return function() {
-            saveCurrentState($state);
+            saveCurrentState();
             $state.go('^.^.projet_professionnel.description');
           };
         }
