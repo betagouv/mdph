@@ -42,6 +42,32 @@ angular.module('impactApp')
 
       let first = true;
       this.locations.forEach(location => {
+        const addressRow = location.address &&
+          `<tr>
+            <td class="cell-icon"><i class="fa fa-home"></i></td>
+            <td><span>${location.address}</span></td>
+          </tr>`;
+
+        const phoneRow = location.phone &&
+          `<tr>
+            <td class="cell-icon"><i class="fa fa-phone"></i></td>
+            <td><span>${location.phone}</span></td>
+          </tr>`;
+
+        const emailRow = location.email &&
+          `<tr>
+            <td class="cell-icon"><i class="fa fa-envelope"></i></td>
+            <td><a href="mailto:${location.email}" title="Envoyer un mail de contact">${location.email}</a></td>
+          </tr>`;
+
+        const scheduleRow = location.schedule &&
+          `<tr>
+            <td class="cell-icon"><i class="fa fa-clock-o"></i></td>
+            <td><span>${location.schedule}</span></td>
+          </tr>`;
+
+        const description = `<table><tbody>${addressRow}${phoneRow}${emailRow}${scheduleRow}</tbody></table>`;
+
         const featureLayer = {
           // this feature is in the GeoJSON format: see geojson.org
           // for the full specification
@@ -58,28 +84,7 @@ angular.module('impactApp')
           },
           properties: {
             title: location.name,
-            description: `
-              <table>
-                <tbody>
-                  <tr>
-                    <td class="cell-icon"><i class="fa fa-home"></i></td>
-                    <td><span>${location.address}</span></td>
-                  </tr>
-                  <tr>
-                    <td class="cell-icon"><i class="fa fa-phone"></i></td>
-                    <td><span>${location.phone}</span></td>
-                  </tr>
-                  <tr>
-                    <td class="cell-icon"><i class="fa fa-envelope"></i></td>
-                    <td><a href="mailto:${location.email}" title="Envoyer un mail de contact">${location.email}</a></td>
-                  </tr>
-                  <tr>
-                    <td class="cell-icon"><i class="fa fa-clock-o"></i></td>
-                    <td><span>${location.schedule}</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            `,
+            description,
             'marker-size': 'large',
             'marker-color': '#333E54',
             'marker-symbol': 'building'
