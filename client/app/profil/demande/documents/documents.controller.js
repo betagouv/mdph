@@ -9,38 +9,51 @@ angular.module('impactApp')
       this.request = request;
       this.user = currentUser;
       this.documentTypes = documentTypes;
+      this.UploadService = UploadService;
       this.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(request, documentTypes);
-      this.upload = (file, documentType) => UploadService.upload(request, file, documentType);
 
-      $scope.$on('file-upload-error', function() {
-        toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document');
-      });
+      $scope.$on('file-upload-error', () => toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document'));
     }
 
-    getText(documentType) {
-      if (documentType.mandatory || documentType.asked) {
-        return 'Obligatoire';
-      }
-
-      return null;
+    upload(file, documentType) {
+      this.UploadService.upload(this.request, file, documentType);
     }
 
-    getClass(documentType) {
-      if (documentType.mandatory || documentType.asked) {
-        return 'mandatory';
+    isMandatory(documentType) {
+      return (documentType.mandatory || documentType.asked) ? 'mandatory' : '';
+    }
+
+    isEmpty(documentType) {
+      const documents = this.getDocuments(documentType);
+
+      return documents.length === 0;
+    }
+
+    isComplete(documentType) {
+      return !this.isEmpty(documentType) && !this.isInvalid(documentType);
+    }
+
+    isInvalid(documentType) {
+      const documents = this.getDocuments(documentType);
+
+      if (documents.length === 0) {
+        return false;
       }
 
-      return '';
+      const rejectedDocuments = _.find(documents, 'isInvalid');
+      return typeof rejectedDocuments !== 'undefined';
     }
 
     getDocuments(currentDoc) {
-      var documents = this.request.documents;
+      var {obligatoires, complementaires} = this.request.documents;
       var documentId = currentDoc.id;
 
-      if (documents.obligatoires[documentId]) {
-        return documents.obligatoires[documentId].documentList;
-      } else if (documents.complementaires[documentId]) {
-        return documents.complementaires[documentId].documentList;
+      if (obligatoires[documentId]) {
+        return obligatoires[documentId].documentList;
+      } else if (complementaires[documentId]) {
+        return complementaires[documentId].documentList;
+      } else {
+        return [];
       }
     }
 
@@ -49,14 +62,8 @@ angular.module('impactApp')
         templateUrl: 'app/profil/demande/documents/modal_type.html',
         controller: ($scope, $modalInstance, filteredDocumentTypes) => {
           $scope.filteredDocumentTypes = filteredDocumentTypes;
-
-          $scope.select = function(selected) {
-            $modalInstance.close(selected);
-          };
-
-          $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-          };
+          $scope.select = (selected) => $modalInstance.close(selected);
+          $scope.cancel = () => $modalInstance.dismiss('cancel');
         },
         resolve: {
           filteredDocumentTypes: () => {
