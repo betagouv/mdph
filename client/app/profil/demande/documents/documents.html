@@ -1,14 +1,14 @@
 <div class="file-legend">Types de documents acceptés : images (jpg, png) et pdf.</div>
-<div ng-repeat="documentType in selectedDocumentTypes">
+<div ng-repeat="documentType in documentsCtrl.selectedDocumentTypes">
 
-  <div class="row-document-type" ng-class="getClass(documentType)">
+  <div class="row-document-type" ng-class="documentsCtrl.getClass(documentType)">
     <div class="header-document-type">
-      <div class="document-desc title-card" ng-class="getClass(documentType)">
+      <div class="document-desc title-card" ng-class="documentsCtrl.getClass(documentType)">
         <h4>{{documentType.label}}</h4>
-        <p>{{documentType.desc}}</p>
-        <div ng-if="getText(documentType)">
+
+        <div ng-if="documentsCtrl.getText(documentType)">
           <hr>
-          <p ng-bind="getText(documentType)"></p>
+          <p ng-bind="documentsCtrl.getText(documentType)"></p>
         </div>
       </div>
       <div ng-if="documentType.expected" class="document-expected" ng-include="documentType.expected"/>
@@ -17,8 +17,8 @@
     <div class="body-document-type">
 
       <ul class="col-documents">
-        <li class="file-card" ng-repeat="file in getDocuments(documentType)">
-          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+        <li class="file-card" ng-repeat="file in documentsCtrl.getDocuments(documentType)">
+          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="documentsCtrl.request" user="documentsCtrl.user"></display-file>
 
           <div ng-if="file.progress">
             {{file.name}} - en cours...
@@ -31,7 +31,7 @@
         </li>
 
         <li class="file-card file-card-add">
-          <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+          <button type="button" class="btn btn-default" ngf-select ngf-change="documentsCtrl.upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
             Ajouter un fichier
           </button>
         </li>
@@ -41,6 +41,6 @@
   </div>
 </div>
 
-<button class="btn btn-lg btn-primary" ng-click="chooseType()" type="button">
+<button class="btn btn-lg btn-primary" ng-click="documentsCtrl.chooseType()" type="button">
   <i class="fa fa-plus-circle"></i> Ajouter un type de document
 </button>

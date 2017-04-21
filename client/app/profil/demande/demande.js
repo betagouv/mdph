@@ -64,6 +64,7 @@ angular.module('impactApp').config(function($stateProvider) {
       'documents@profil.demande': {
         templateUrl: 'app/profil/demande/documents/documents.html',
         controller: 'DocumentsCtrl',
+        controllerAs: 'documentsCtrl',
         resolve: {
           documentTypes: function(DocumentTypeResource) {
             return DocumentTypeResource.query().$promise;
