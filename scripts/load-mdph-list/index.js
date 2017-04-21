@@ -8,7 +8,9 @@ var fs = require('fs');
  * ETL that load the reference file of MDPH list
  * (Extract Transform Load)
  *
- * ressource : http://www.data.gouv.fr/fr/datasets/maisons-departementales-de-personnes-handicapees-mdph-1/
+ * ressources :
+ *        http://www.data.gouv.fr/fr/datasets/maisons-departementales-de-personnes-handicapees-mdph-1/
+ *        http://opendata.onisep.fr/data/57e13aa4a3cee/2-maisons-departementales-de-personnes-handicapees-mdph-.htm?tab=download
  * */
 var url = 'https://api.opendata.onisep.fr/tmp/9b/8b/8e3e05812a7ac985176074003eff/maisons_departementales_de_personnes_handicapees_mdph.json';
 var tmp_file = __dirname + '/tmp_mdphs.json';
