@@ -63,18 +63,7 @@ Handlebars.registerHelper('documentType', printDocumentType);
 
 function printDocumentType(id) {
   const documentType = allDocumentTypesById[id];
-
-  if (documentType.expected) {
-    let expectedFiles = '<ul>';
-    documentType.expected.forEach((expected) => {
-      expectedFiles += `<li><a href="${expected.file}">Exemple de ${expected.label}</a></li>`
-    });
-    expectedFiles += '</ul>';
-
-    return `${documentType.label} ${expectedFiles}`;
-  } else {
-    return documentType.label;
-  }
+  return documentType.rejectionReason ? documentType.rejectionReason : documentType.label;
 }
 
 Handlebars.registerHelper('documentTypeList', function(items) {
