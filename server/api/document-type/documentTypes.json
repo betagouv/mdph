@@ -6,17 +6,8 @@
       "canDelegate": true,
       "mandatory": true,
       "desc": "Un certificat médical de moins de 6 mois",
-      "expected": [
-        {
-          "label": "Certificat Médical",
-          "file": "/assets/documents/cerfa_13878-01.pdf"
-        },
-        {
-          "label": "Nouveau certificat Médical",
-          "file": "/assets/documents/CM.pdf"
-        }
-      ],
-      "rejectionReason": "Votre certificat médical n'est pas valide, veuillez utiliser un des modèles fournis."
+      "rejectionReason": "Votre certificat médical n'est pas valide, veuillez utiliser un des modèles fournis.",
+      "expected" : "/assets/html/certificatMedical.expected.html"
     },
     {
       "id": "justificatifDomicile",
@@ -157,16 +148,7 @@
       "id": "gevasco",
       "label": "GEVASCO",
       "desc": "Documents à remplir avec l'enseignant référent et l'équipe de suivi de la scolarisation de votre enfant. Vous pouvez demander au directeur de l'école le contact de votre enseignant référent.",
-      "expected": [
-        {
-          "label": "Première demande",
-          "file": "/assets/documents/gevasco_1redemande.pdf"
-        },
-        {
-          "label": "Réexamen",
-          "file": "/assets/documents/gevasco_reexamen.pdf"
-        }
-      ]
+      "expected" : "/assets/html/gevasco.expected.html"
     },
     {
       "id": "bilan_ess",

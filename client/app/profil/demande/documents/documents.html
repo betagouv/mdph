@@ -2,8 +2,8 @@
 <div ng-repeat="documentType in selectedDocumentTypes">
 
   <div class="row-document-type" ng-class="getClass(documentType)">
-    <div class="col-document-type">
-      <div class="title-card" ng-class="getClass(documentType)">
+    <div class="header-document-type">
+      <div class="document-desc title-card" ng-class="getClass(documentType)">
         <h4>{{documentType.label}}</h4>
         <p>{{documentType.desc}}</p>
         <div ng-if="getText(documentType)">
@@ -11,40 +11,33 @@
           <p ng-bind="getText(documentType)"></p>
         </div>
       </div>
+      <div ng-if="documentType.expected" class="document-expected" ng-include="documentType.expected"/>
     </div>
 
-    <ul class="col-documents">
-      <li class="file-card" ng-repeat="file in getDocuments(documentType)">
-        <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+    <div class="body-document-type">
 
-        <div ng-if="file.progress">
-          {{file.name}} - en cours...
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
-              {{file.progress}}%
+      <ul class="col-documents">
+        <li class="file-card" ng-repeat="file in getDocuments(documentType)">
+          <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+
+          <div ng-if="file.progress">
+            {{file.name}} - en cours...
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%;">
+                {{file.progress}}%
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-      <li class="file-card file-card-add">
-        <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
-          Ajouter un fichier
-        </button>
+        <li class="file-card file-card-add">
+          <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+            Ajouter un fichier
+          </button>
+        </li>
 
-        <div ng-if="documentType.expected" class="document-expected">
-          <h5>Types de documents attendus:</h5>
-          <ul class="list-unstyled list-inline">
-            <li ng-repeat="expectedDocument in documentType.expected">
-              <a target="_blank" download ng-href="{{expectedDocument.file}}">
-                {{expectedDocument.label}}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-
-    </ul>
+      </ul>
+    </div>
   </div>
 </div>
 
