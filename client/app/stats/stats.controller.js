@@ -47,4 +47,11 @@ angular.module('impactApp')
       $scope.historyData = [_.pluck(result.data, 'count')];
       $scope.historySeries = ['Nombre de demandes'];
     });
+
+    $http.get('/api/stats/likes').then(function(result) {
+      $scope.likes = result.data;
+      $scope.likesLabels = _.pluck(result.data, 'mdph');
+      $scope.likesData = [_.pluck(result.data, 'count')];
+      $scope.likesSeries = ['Nombre de likes'];
+    });
   });

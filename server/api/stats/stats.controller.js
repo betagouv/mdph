@@ -128,6 +128,33 @@ export function history(req, res) {
   });
 }
 
+export function likes(req, res) {
+
+  Mdph.find({
+    likes: { $exists: true, $ne: [] }
+  }).exec(function(err, mdphs) {
+    if (err) { return handleError(req, res, err); }
+
+    if (!mdphs) {
+      return res.json({});
+    }
+
+    var data = [];
+    mdphs.forEach(function(element) {
+      data.push({
+        mdph: element.name,
+        count: element.likes.length
+      });
+    });
+
+    data.sort(function (first, second) {
+      return second.count - first.count;
+    });
+
+    res.json(data);
+  });
+}
+
 export function certificats(req, res) {
   Request.find({mdph: {$in: officialMdphs}}).exec(function(err, requests) {
     if (err) { return handleError(req, res, err); }
