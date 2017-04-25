@@ -147,6 +147,10 @@ export function likes(req, res) {
       });
     });
 
+    data.sort(function (first, second) {
+      return second.count - first.count;
+    });
+
     res.json(data);
   });
 }
