@@ -4,9 +4,7 @@ angular.module('impactApp')
   .component('prestation', {
     templateUrl: 'components/prestations/prestation.html',
     bindings: {
-      prestation: '=ngModel',
-      titre: '@',
-      link: '@'
+      prestation: '=ngModel'
     },
     controllerAs: 'prestationctrl',
     controller: function() {

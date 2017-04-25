@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request) {
+  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations) {
     $scope.request = request;
     $scope.currentUser = currentUser;
 
@@ -132,84 +132,52 @@ angular.module('impactApp')
 
     this.prestations = [];
 
-    this.cartestationnement = {
-      id: 'cartestationnement'
-    };
+    this.cartestationnement = prestations.cartestationnement;
     this.prestations.push(this.cartestationnement);
 
-    this.carteinvalidite = {
-      id: 'carteinvalidite'
-    };
+    this.carteinvalidite = prestations.carteinvalidite;
     this.prestations.push(this.carteinvalidite);
 
-    this.aeeh = {
-      id: 'aeeh'
-    };
+    this.aeeh = prestations.aeeh;
     this.prestations.push(this.aeeh);
 
-    this.aah = {
-      id: 'aah'
-    };
+    this.aah = prestations.aah;
     this.prestations.push(this.aah);
 
-    this.complement = {
-      id: 'complement'
-    };
+    this.complement = prestations.complement;
     this.prestations.push(this.complement);
 
-    this.pch = {
-      id: 'pch'
-    };
+    this.pch = prestations.pch;
     this.prestations.push(this.pch);
 
-    this.rqth = {
-      id: 'rqth'
-    };
+    this.rqth = prestations.rqth;
     this.prestations.push(this.rqth);
 
-    this.av = {
-      id: 'av'
-    };
+    this.av = prestations.av;
     this.prestations.push(this.av);
 
-    this.ems = {
-      id: 'ems'
-    };
+    this.ems = prestations.ems;
     this.prestations.push(this.ems);
 
-    this.pps = {
-      id: 'pps'
-    };
+    this.pps = prestations.pps;
     this.prestations.push(this.pps);
 
-    this.orp = {
-      id: 'orp'
-    };
+    this.orp = prestations.orp;
     this.prestations.push(this.orp);
 
-    this.formation = {
-      id: 'formation'
-    };
+    this.formation = prestations.formation;
     this.prestations.push(this.formation);
 
-    this.sms = {
-      id: 'sms'
-    };
+    this.sms = prestations.sms;
     this.prestations.push(this.sms);
 
-    this.sms_enfant = {
-      id: 'sms_enfant'
-    };
+    this.sms_enfant = prestations.sms_enfant;
     this.prestations.push(this.sms_enfant);
 
-    this.ac = {
-      id: 'ac'
-    };
+    this.ac = prestations.ac;
     this.prestations.push(this.ac);
 
-    this.acfp = {
-      id: 'acfp'
-    };
+    this.acfp = prestations.acfp;
     this.prestations.push(this.acfp);
 
   });
