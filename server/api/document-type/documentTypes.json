@@ -5,22 +5,21 @@
       "label": "Certificat médical",
       "canDelegate": true,
       "mandatory": true,
-      "desc": "Un certificat médical de moins de 6 mois",
       "rejectionReason": "Votre certificat médical n'est pas valide, veuillez utiliser un des modèles fournis.",
-      "expected" : "/assets/html/certificatMedical.expected.html"
+      "desc": "Un certificat médical de moins de 6 mois prévu pour les demandes MDPH.",
       "expected" : "/components/document-information/expected-templates/certificatMedical.expected.html"
     },
     {
       "id": "justificatifDomicile",
       "label": "Justificatif de domicile",
       "mandatory": true,
-      "desc": "Un justificatif de domicile de moins de 3 mois"
+      "desc": "Une photocopie d’un justificatif de domicile de moins de 3 mois (Pour les enfants, joindre le justificatif de domicile du représentant légal ; pour les personnes hébergées par un tiers : justificatif de domicile et attestation sur l’honneur de l’hébergeant)."
     },
     {
       "id": "carteIdentite",
       "label": "Pièce d'identité",
       "mandatory": true,
-      "desc": "Une photocopie recto/verso"
+      "desc": "Une photocopie recto verso d’un justificatif d’identité de la personne handicapée et, le cas échéant, de son représentant légal (Pièce d’identité en vigueur ou titre de séjour en cours de validité ou tout autre document d’autorisation de séjour en France)."
     }
   ],
 
@@ -147,8 +146,8 @@
     },
     {
       "id": "gevasco",
-      "label": "GEVASCO",
-      "desc": "Documents à remplir avec l'enseignant référent et l'équipe de suivi de la scolarisation de votre enfant. Vous pouvez demander au directeur de l'école le contact de votre enseignant référent.",
+      "label": "GEVASco",
+      "desc": "Pour les enfants scolarisés, les attentes sont précisées dans un document appelé le GEVASco. Le GEVASco, c’est un guide de recueil de données que vous remplissez avec le directeur d’établissement (première demande) ou l’enseignant référent (reexamen). <br/> Vous pouvez demander au directeur de l’école les coordonnées de votre enseignant référent.",
       "expected" : "/components/document-information/expected-templates/gevasco.expected.html"
     },
     {
