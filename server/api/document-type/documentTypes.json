@@ -16,7 +16,7 @@
           "file": "/assets/documents/CM.pdf"
         }
       ],
-      "rejectionReason": "Le certificat medical ne doit pas être manuscrit, utiliser un des modèles fournis dans la section de chargement des pièces jointes"
+      "rejectionReason": "Votre certificat médical n'est pas valide, veuillez utiliser un des modèles fournis."
     },
     {
       "id": "justificatifDomicile",

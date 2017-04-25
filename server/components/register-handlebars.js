@@ -63,7 +63,14 @@ Handlebars.registerHelper('documentType', printDocumentType);
 
 function printDocumentType(id) {
   const documentType = allDocumentTypesById[id];
-  return documentType.rejectionReason ? documentType.rejectionReason : documentType.label;
+
+  if (documentType.rejectionReason) {
+    var rejectionReason = documentType.rejectionReason;
+
+    return `${documentType.label} : ${rejectionReason}`;
+  }
+
+  return documentType.label;
 }
 
 Handlebars.registerHelper('documentTypeList', function(items) {
