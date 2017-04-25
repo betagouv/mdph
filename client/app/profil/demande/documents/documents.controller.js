@@ -3,10 +3,11 @@
 const DOCUMENT_CONTROLLER_NAME = 'DocumentsCtrl';
 
 class documentController {
-  constructor($scope, $modal, toastr, UploadService, RequestService, request, documentTypes, currentUser) {
+  constructor($scope, $modal, toastr, UploadService, RequestService, request, documentTypes, currentUser, currentMdph) {
     this.$modal = $modal;
     this.request = request;
     this.user = currentUser;
+    this.mdph = currentMdph;
     this.documentTypes = documentTypes;
     this.UploadService = UploadService;
     this.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(request, documentTypes);
@@ -89,7 +90,8 @@ class documentController {
       'RequestService',
       'request',
       'documentTypes',
-      'currentUser'
+      'currentUser',
+      'currentMdph'
     ];
   }
 }

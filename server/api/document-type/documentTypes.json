@@ -8,6 +8,7 @@
       "desc": "Un certificat médical de moins de 6 mois",
       "rejectionReason": "Votre certificat médical n'est pas valide, veuillez utiliser un des modèles fournis.",
       "expected" : "/assets/html/certificatMedical.expected.html"
+      "expected" : "/components/document-information/expected-templates/certificatMedical.expected.html"
     },
     {
       "id": "justificatifDomicile",
@@ -148,7 +149,7 @@
       "id": "gevasco",
       "label": "GEVASCO",
       "desc": "Documents à remplir avec l'enseignant référent et l'équipe de suivi de la scolarisation de votre enfant. Vous pouvez demander au directeur de l'école le contact de votre enseignant référent.",
-      "expected" : "/assets/html/gevasco.expected.html"
+      "expected" : "/components/document-information/expected-templates/gevasco.expected.html"
     },
     {
       "id": "bilan_ess",

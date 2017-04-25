@@ -22,26 +22,10 @@
   }
 }
 
-.header-document-type {
-
-}
-
-.document-expected {
+.document-information {
   padding: 10px;
   background-color: whitesmoke;
   color: #000;
-
-  h5 {
-    margin: 0;
-  }
-
-  li:after {
-    content: " |";
-  }
-
-  li:last-child:after {
-    content: "";
-  }
 }
 
 .body-document-type {

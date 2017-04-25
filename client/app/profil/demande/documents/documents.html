@@ -16,7 +16,11 @@
         <div class="mandatory" ng-if="documentType.mandatory || documentType.asked">Document obligatoire</div>
       </div>
     </div>
-    <div ng-if="documentType.expected" class="document-expected" ng-include="documentType.expected"></div>
+
+    <div class="document-information">
+      <p ng-bind-html="documentType.desc"></p>
+      <document-information ng-if="documentType.expected" type="documentType" mdph="documentsCtrl.mdph" />
+    </div>
   </div>
 
   <div class="body-document-type">
