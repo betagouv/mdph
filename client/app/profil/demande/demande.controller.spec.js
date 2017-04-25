@@ -34,6 +34,57 @@ describe('Controller: demande', function() {
 
   const currentUser = {};
 
+  const samplePrestations = {
+      cartestationnement: {
+        id: 'cartestationnement'
+      },
+      carteinvalidite: {
+        id: 'carteinvalidite',
+      },
+      aeeh: {
+        id: 'aeeh',
+      },
+      aah: {
+        id: 'aah',
+      },
+      complement: {
+        id: 'complement',
+      },
+      pch: {
+        id: 'pch',
+      },
+      rqth: {
+        id: 'rqth',
+      },
+      av: {
+        id: 'av',
+      },
+      ems: {
+        id: 'ems',
+      },
+      pps: {
+        id: 'pps',
+      },
+      orp: {
+        id: 'orp',
+      },
+      formation: {
+        id: 'formation',
+      },
+      sms: {
+        id: 'sms',
+      },
+      sms_enfant: {
+        id: 'sms_enfant',
+      },
+      ac: {
+        id: 'ac',
+      },
+      acfp: {
+        id: 'acfp',
+      }
+    };
+
   // load the service's module
   beforeEach(module('impactApp'));
 
@@ -54,7 +105,8 @@ describe('Controller: demande', function() {
         currentUser,
         request,
         RequestService,
-        toastr
+        toastr,
+        prestations: samplePrestations
       });
     });
 
@@ -76,7 +128,8 @@ describe('Controller: demande', function() {
         currentUser,
         request,
         RequestService,
-        toastr
+        toastr,
+        prestations: samplePrestations
       });
     });
 
