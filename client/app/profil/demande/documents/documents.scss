@@ -1,36 +1,43 @@
 .row-document-type {
   display: flex;
+  flex-direction: column;
   border: 1px solid $medium-heavy-grey;
-  background-color: $medium-heavy-grey;
   margin-bottom: 20px;
-  flex-flow: column wrap;
 
-  &.mandatory {
-    border: 1px solid $bg-blue;
-    background-color: $bg-blue;
+  &.invalid {
+    border: 1px solid $lighter-red;
+    background-color: $lighter-red;
+    color: #FFF;
   }
 
   &.complete {
-    border: 1px solid $flat-ui-blue;
-    background-color: $flat-ui-blue;
+    border: 1px solid $green;
+    background-color: $green;
+    color: #FFF;
+
+
+    .title-card .mandatory:before {
+      color: #FFF;
+    }
   }
 }
 
-.col-document-type {
-  text-align: center;
-  padding: 0;
+.document-information {
+  padding: 10px;
+  background-color: whitesmoke;
+  color: #000;
+}
 
-  hr {
-    width: 80%;
-    border-color: $light-blue;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+.body-document-type {
+  display: flex;
+  width: 100%;
+  background-color: whitesmoke;
+  margin: 0;
 }
 
 .col-documents {
   display: flex;
-  background-color: whitesmoke;
+
   padding: 5px;
   flex-wrap: wrap;
   list-style: none;
@@ -39,7 +46,7 @@
 
 .file-card {
   display: flex;
-  width: 200px;
+  width: 100%;
   height: 150px;
   justify-content: center;
   flex-direction: column;
@@ -59,47 +66,59 @@
     font-weight: 400;
     color: $flat-ui-blue;
   }
-
-  .document-expected {
-    background: whitesmoke;
-    padding: 10px;
-
-    h5 {
-      margin: 0;
-    }
-  }
 }
 
 .file-legend {
-  font-size: 0.8em;
+  font-size: 0.7em;
   margin-bottom: 5px;
 }
 
 .title-card {
-  color: white;
-  padding: 10px;
-  margin: 0;
-  background-color: $medium-heavy-grey;
+  padding: 20px;
 
-  &.mandatory {
-    background-color: $bg-blue;
+  hr {
+    width: 80%;
+    border-color: $light-blue;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
   h4 {
     font-weight: normal;
+    margin: 0;
+  }
+
+  .mandatory:before {
+    color: $light-red;
+    font-family: 'FontAwesome';
+    content: '\f071';
+    padding-right: 5px;
+  }
+
+  .complete .mandatory:before {
+    content: '';
+  }
+
+  .complete:before {
+    font-family: 'FontAwesome';
+    content: '\f058';
+    padding-right: 5px;
   }
 }
 
 @media (min-width: $screen-md-min) {
-  .row-document-type {
-    flex-flow: row wrap;
+  .title-card {
+    position: relative;
   }
 
-  .col-document-type {
-    width: 20%;
+  .status {
+    position: absolute;
+    text-align: right;
+    top: 10px;
+    right: 10px;
   }
 
-  .col-documents {
-    width: 80%;
+  .file-card {
+    width: 200px;
   }
 }

@@ -1,21 +1,32 @@
-<div class="file-legend">Types de documents acceptés : images (jpg, png) et pdf.</div>
-<div ng-repeat="documentType in selectedDocumentTypes">
+<div
+  ng-repeat="documentType in documentsCtrl.selectedDocumentTypes"
+  class="row-document-type"
+  ng-class="{
+    'invalid': documentsCtrl.isInvalid(documentType),
+    'complete': documentsCtrl.isComplete(documentType),
+    'incomplete': documentsCtrl.isEmpty(documentType)}">
+  <div class="header-document-type">
+    <div class="title-card">
+      <h4>{{documentType.label}}</h4>
+      <div class="status" class="status">
+        <span ng-if="documentsCtrl.isEmpty(documentType)">À renseigner</span>
+        <span ng-if="documentsCtrl.isComplete(documentType)">Complet</span>
+        <span ng-if="documentsCtrl.isInvalid(documentType)">Invalide</span>
 
-  <div class="row-document-type" ng-class="getClass(documentType)">
-    <div class="col-document-type">
-      <div class="title-card" ng-class="getClass(documentType)">
-        <h4>{{documentType.label}}</h4>
-        <p>{{documentType.desc}}</p>
-        <div ng-if="getText(documentType)">
-          <hr>
-          <p ng-bind="getText(documentType)"></p>
-        </div>
+        <div class="mandatory" ng-if="documentType.mandatory || documentType.asked">Document obligatoire</div>
       </div>
     </div>
 
+    <div class="document-information">
+      <p ng-bind-html="documentType.desc"></p>
+      <document-information ng-if="documentType.expected" type="documentType" mdph="documentsCtrl.mdph" />
+    </div>
+  </div>
+
+  <div class="body-document-type">
     <ul class="col-documents">
-      <li class="file-card" ng-repeat="file in getDocuments(documentType)">
-        <display-file ng-if="!file.progress" hide-actions="true" file="file" request="request" user="user"></display-file>
+      <li class="file-card" ng-repeat="file in documentsCtrl.getDocuments(documentType)">
+        <display-file ng-if="!file.progress" hide-actions="true" file="file" request="documentsCtrl.request" user="documentsCtrl.user"></display-file>
 
         <div ng-if="file.progress">
           {{file.name}} - en cours...
@@ -28,26 +39,16 @@
       </li>
 
       <li class="file-card file-card-add">
-        <button type="button" class="btn btn-default" ngf-select ngf-change="upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
+        <button type="button" class="btn btn-default" ngf-select ngf-change="documentsCtrl.upload($file, documentType)" accept=".jpg,.png,.pdf" ngf-multiple="false">
           Ajouter un fichier
+          <div class="file-legend">Types de documents acceptés : images (jpg, png) et pdf.</div>
         </button>
-
-        <div ng-if="documentType.expected" class="document-expected">
-          <h5>Types de documents attendus:</h5>
-          <ul class="list-unstyled list-inline">
-            <li ng-repeat="expectedDocument in documentType.expected">
-              <a target="_blank" download ng-href="{{expectedDocument.file}}">
-                {{expectedDocument.label}}
-              </a>
-            </li>
-          </ul>
-        </div>
       </li>
 
     </ul>
   </div>
 </div>
 
-<button class="btn btn-lg btn-primary" ng-click="chooseType()" type="button">
+<button class="btn btn-lg btn-primary" ng-click="documentsCtrl.chooseType()" type="button">
   <i class="fa fa-plus-circle"></i> Ajouter un type de document
 </button>

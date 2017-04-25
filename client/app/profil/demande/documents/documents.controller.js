@@ -1,74 +1,100 @@
 'use strict';
 
-angular.module('impactApp')
-  .controller('DocumentsCtrl', function($scope, $modal, toastr, UploadService, RequestService, request, documentTypes, currentUser) {
-    $scope.request = request;
-    $scope.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(request, documentTypes);
-    $scope.user = currentUser;
+const DOCUMENT_CONTROLLER_NAME = 'DocumentsCtrl';
 
-    $scope.$on('file-upload-error', function() {
-      toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document');
-    });
+class documentController {
+  constructor($scope, $modal, toastr, UploadService, RequestService, request, documentTypes, currentUser, currentMdph) {
+    this.$modal = $modal;
+    this.request = request;
+    this.user = currentUser;
+    this.mdph = currentMdph;
+    this.documentTypes = documentTypes;
+    this.UploadService = UploadService;
+    this.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(request, documentTypes);
 
-    $scope.getText = function(documentType) {
-      if (documentType.mandatory || documentType.asked) {
-        return 'Obligatoire';
-      }
+    $scope.$on('file-upload-error', () => toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document'));
+  }
 
-      return null;
-    };
+  upload(file, documentType) {
+    this.UploadService.upload(this.request, file, documentType);
+  }
 
-    $scope.getClass = function(documentType) {
-      if (documentType.mandatory || documentType.asked) {
-        return 'mandatory';
-      }
+  isMandatory(documentType) {
+    return (documentType.mandatory || documentType.asked) ? 'mandatory' : '';
+  }
 
-      return '';
-    };
+  isEmpty(documentType) {
+    const documents = this.getDocuments(documentType);
 
-    $scope.getDocuments = function(currentDoc) {
-      var documents = $scope.request.documents;
-      var documentId = currentDoc.id;
+    return documents.length === 0;
+  }
 
-      if (documents.obligatoires[documentId]) {
-        return documents.obligatoires[documentId].documentList;
-      } else if (documents.complementaires[documentId]) {
-        return documents.complementaires[documentId].documentList;
-      }
-    };
+  isComplete(documentType) {
+    return !this.isEmpty(documentType) && !this.isInvalid(documentType);
+  }
 
-    $scope.upload = function(file, documentType) {
-      UploadService.upload(request, file, documentType);
-    };
+  isInvalid(documentType) {
+    const documents = this.getDocuments(documentType);
 
-    $scope.chooseType = function() {
-      var modalInstance = $modal.open({
-        templateUrl: 'app/profil/demande/documents/modal_type.html',
-        controller: 'ChooseTypeModalInstanceCtrl',
-        resolve: {
-          filteredDocumentTypes: function() {
-            var filtered = _.filter(documentTypes, function(type) {
-              return typeof _.find($scope.selectedDocumentTypes, {id: type.id}) === 'undefined';
-            });
+    if (documents.length === 0) {
+      return false;
+    }
 
-            return filtered;
-          }
+    const rejectedDocuments = _.find(documents, 'isInvalid');
+    return typeof rejectedDocuments !== 'undefined';
+  }
+
+  getDocuments(currentDoc) {
+    var {obligatoires, complementaires} = this.request.documents;
+    var documentId = currentDoc.id;
+
+    if (obligatoires[documentId]) {
+      return obligatoires[documentId].documentList;
+    } else if (complementaires[documentId]) {
+      return complementaires[documentId].documentList;
+    } else {
+      return [];
+    }
+  }
+
+  createModalComponent() {
+    return {
+      templateUrl: 'app/profil/demande/documents/modal_type.html',
+      controller: ($scope, $modalInstance, filteredDocumentTypes) => {
+        $scope.filteredDocumentTypes = filteredDocumentTypes;
+        $scope.select = (selected) => $modalInstance.close(selected);
+        $scope.cancel = () => $modalInstance.dismiss('cancel');
+      },
+
+      resolve: {
+        filteredDocumentTypes: () => {
+          return _.filter(this.documentTypes, (type) => typeof _.find(this.selectedDocumentTypes, {id: type.id}) === 'undefined');
         }
-      });
-
-      modalInstance.result.then(function(selected) {
-        $scope.selectedDocumentTypes.push(selected);
-      });
+      }
     };
-  })
-  .controller('ChooseTypeModalInstanceCtrl', function($scope, $modalInstance, filteredDocumentTypes) {
-    $scope.filteredDocumentTypes = filteredDocumentTypes;
+  }
 
-    $scope.select = function(selected) {
-      $modalInstance.close(selected);
-    };
+  chooseType() {
+    const modalComponent = this.createModalComponent();
+    const modalInstance = this.$modal.open(modalComponent);
 
-    $scope.cancel = function() {
-      $modalInstance.dismiss('cancel');
-    };
-  });
+    modalInstance.result.then((selected) => this.selectedDocumentTypes.push(selected));
+  }
+
+  static get $inject() {
+    return [
+      '$scope',
+      '$modal',
+      'toastr',
+      'UploadService',
+      'RequestService',
+      'request',
+      'documentTypes',
+      'currentUser',
+      'currentMdph'
+    ];
+  }
+}
+
+angular.module('impactApp')
+  .controller(DOCUMENT_CONTROLLER_NAME, documentController);
