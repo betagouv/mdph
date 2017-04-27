@@ -9,6 +9,7 @@ module.exports = {
         '*.{ico,png,txt}',
         '.htaccess',
         'lib/**/*',
+        'assets/expected-templates/*',
         'assets/documents/**/*',
         'assets/images/{,*/}*.{webp}',
         'assets/fonts/**/*',

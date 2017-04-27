@@ -7,7 +7,7 @@
       "mandatory": true,
       "rejectionReason": "Votre certificat médical n'est pas valide, veuillez utiliser un des modèles fournis.",
       "desc": "Un certificat médical de moins de 6 mois prévu pour les demandes MDPH.",
-      "expected" : "/components/document-information/expected-templates/certificatMedical.expected.html"
+      "expected" : "/assets/expected-templates/certificatMedical.expected.html"
     },
     {
       "id": "justificatifDomicile",
@@ -148,7 +148,7 @@
       "id": "gevasco",
       "label": "GEVASco",
       "desc": "Pour les enfants scolarisés, les attentes sont précisées dans un document appelé le GEVASco. Le GEVASco, c’est un guide de recueil de données que vous remplissez avec le directeur d’établissement (première demande) ou l’enseignant référent (reexamen). <br/> Vous pouvez demander au directeur de l’école les coordonnées de votre enseignant référent.",
-      "expected" : "/components/document-information/expected-templates/gevasco.expected.html"
+      "expected" : "/assets/expected-templates/gevasco.expected.html"
     },
     {
       "id": "bilan_ess",
