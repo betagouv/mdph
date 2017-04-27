@@ -209,7 +209,7 @@ function dispatchSecteur(req) {
 function computeEnregistrementOptions(request, host) {
   const options = {};
 
-  const invalidDocumentTypes = request.getInvalidDocumentTypes();
+  const invalidDocuments = request.getInvalidDocuments();
   const nonPresentAskedDocumentTypes = request.getNonPresentAskedDocumentTypes();
 
   if (!request.receivedAt) {
@@ -218,10 +218,10 @@ function computeEnregistrementOptions(request, host) {
     options.receivedAt = request.receivedAt;
   }
 
-  if (invalidDocumentTypes.length > 0) {
+  if (invalidDocuments.length > 0) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;
-    options.invalidDocumentTypes = invalidDocumentTypes;
+    options.invalidDocuments = invalidDocuments;
   } else if (nonPresentAskedDocumentTypes.length > 0) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;

@@ -59,6 +59,29 @@ Handlebars.registerHelper('ntobr', function(str) {
   return str && str.replace(/\n/g, '<br>');
 });
 
+Handlebars.registerHelper('invalidDocument', printInvalidDocument);
+
+function printInvalidDocument(item) {
+
+  const documentType = allDocumentTypesById[item.type];
+
+  if (item.invalidReason) {
+    return `${documentType.label} : ${item.invalidReason}`;
+  }
+
+  return documentType.label;
+}
+
+Handlebars.registerHelper('invalidDocumentList', function(items) {
+  var out = '<ul>';
+
+  for (let i = 0, l = items.length; i < l; i++) {
+    out = out + '<li>' + printInvalidDocument(items[i]) + '</li>';
+  }
+
+  return out + '</ul>';
+});
+
 Handlebars.registerHelper('documentType', printDocumentType);
 
 function printDocumentType(id) {
