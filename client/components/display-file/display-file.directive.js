@@ -33,6 +33,17 @@ angular.module('impactApp')
           });
         };
 
+        $scope.setInvalidReason = function() {
+
+          if ($scope.file.invalidReason.length === 0) {
+            return;
+          }
+
+          $http.put('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {isInvalid: true, invalidReason: $scope.file.invalidReason}).then(function(result) {
+            $scope.file = result.data;
+          });
+        };
+
         // Retro-compat
         $scope.getFilename = function(file) {
           if (file.filename) {
