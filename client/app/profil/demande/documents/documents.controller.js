@@ -58,19 +58,15 @@ class documentController {
   }
 
   createModalComponent() {
+    const filteredDocumentTypes = _.filter(this.documentTypes, (type) => typeof _.find(this.selectedDocumentTypes, {id: type.id}) === 'undefined');
+
     return {
       templateUrl: 'app/profil/demande/documents/modal_type.html',
-      controller: ($scope, $modalInstance, filteredDocumentTypes) => {
+      controller: ['$scope', '$modalInstance', ($scope, $modalInstance) => {
         $scope.filteredDocumentTypes = filteredDocumentTypes;
         $scope.select = (selected) => $modalInstance.close(selected);
         $scope.cancel = () => $modalInstance.dismiss('cancel');
-      },
-
-      resolve: {
-        filteredDocumentTypes: () => {
-          return _.filter(this.documentTypes, (type) => typeof _.find(this.selectedDocumentTypes, {id: type.id}) === 'undefined');
-        }
-      }
+      }]
     };
   }
 
