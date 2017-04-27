@@ -108,16 +108,6 @@ RequestSchema.methods = {
     return _.filter(this.documents, 'isInvalid');
   },
 
-  getInvalidDocumentTypes() {
-    return _.reduce(this.getInvalidDocuments(), function(types, currentDocument) {
-      if (types.indexOf(currentDocument.type) < 0) {
-        types.push(currentDocument.type);
-      }
-
-      return types;
-    }, []);
-  },
-
   getNonPresentAskedDocumentTypes() {
     if (!this.askedDocumentTypes || this.askedDocumentTypes.length === 0) {
       return [];
