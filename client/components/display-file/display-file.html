@@ -41,6 +41,15 @@
     </div>
   </div>
 
+  <div ng-if="file.isInvalid">
+    <div>
+      <label>
+          Raison du refus :
+          <input type="text" name="invalidReason" ng-model="file.invalidReason" size="124" ng-blur="setInvalidReason()"/>
+      </label>
+    </div>
+  </div>
+
   <div ng-if="hideActions">
     <div class="text-validation text-invalid" ng-if="file.isInvalid === true">document non conforme</div>
     <div class="text-validation text-valid" ng-if="file.isInvalid === false">document validé</div>

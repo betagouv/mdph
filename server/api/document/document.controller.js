@@ -146,6 +146,7 @@ export function updateFile(req, res) {
   var request = req.request;
   var file = request.documents.id(req.params.fileId);
   var isInvalid = req.body.isInvalid;
+  var invalidReason = req.body.invalidReason;
 
   if (!file) {
     return res.sendStatus(404);
@@ -156,6 +157,7 @@ export function updateFile(req, res) {
   }
 
   file.set('isInvalid', isInvalid);
+  file.set('invalidReason', invalidReason);
 
   request.save(function(err) {
     if (err) return handleError(err);
