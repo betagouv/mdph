@@ -10,13 +10,13 @@ angular.module('impactApp')
     // Load departments borders map.
     L.geoJson(this.depsgeo, { style: L.mapbox.simplestyle.style }).addTo(map);
 
-    this.mdphs.forEach(mdph => {
+    this.mdphs.map(mdph => {
       const options = {
         title: mdph.name,
         alt: '/mdph/' + mdph.zipcode
       };
 
-      mdph.locations.forEach(location => {
+      mdph.locations.map(location => {
         // Only pin headquarters.
         if (location.headquarters) {
           L.marker([location.coordinates.coordy, location.coordinates.coordx], options)
