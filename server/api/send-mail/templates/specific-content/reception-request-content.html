@@ -7,13 +7,13 @@
 
 <p>La Mdph {{request.mdph}} a accusé réception de votre dossier le {{moment options.receivedAt}}.</p>
 
-{{#if options.invalidDocuments}}
+{{#if options.invalidDocumentTypes}}
   <h2>Documents invalides</h2>
   <p>Les documents suivants ont été indiqués comme non valides :</p>
 
-  {{#invalidDocumentList options.invalidDocuments}}
-    {{invalidDocument this}}
-  {{/invalidDocumentList}}
+  {{#documentTypeList options.invalidDocumentTypes options.invalidDocuments}}
+      {{documentType this}}
+  {{/documentTypeList}}
 {{/if}}
 
 {{#if options.nonPresentAskedDocumentTypes}}
