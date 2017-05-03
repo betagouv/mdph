@@ -59,48 +59,31 @@ Handlebars.registerHelper('ntobr', function(str) {
   return str && str.replace(/\n/g, '<br>');
 });
 
-Handlebars.registerHelper('invalidDocument', printInvalidDocument);
-
-function printInvalidDocument(item) {
-
-  const documentType = allDocumentTypesById[item.type];
-
-  if (item.invalidReason) {
-    return `${documentType.label} : ${item.invalidReason}`;
-  }
-
-  return documentType.label;
-}
-
-Handlebars.registerHelper('invalidDocumentList', function(items) {
-  var out = '<ul>';
-
-  for (let i = 0, l = items.length; i < l; i++) {
-    out = out + '<li>' + printInvalidDocument(items[i]) + '</li>';
-  }
-
-  return out + '</ul>';
-});
-
 Handlebars.registerHelper('documentType', printDocumentType);
 
-function printDocumentType(id) {
+function printDocumentType(id, invalidDocuments) {
   const documentType = allDocumentTypesById[id];
 
-  if (documentType.rejectionReason) {
-    var rejectionReason = documentType.rejectionReason;
+  var out = documentType.rejectionReason ?  `${documentType.label} : ${documentType.rejectionReason}` : `${documentType.label}`;
 
-    return `${documentType.label} : ${rejectionReason}`;
+  if(invalidDocuments.length > 0){
+    out = out + "<ul>"
+    invalidDocuments.forEach(function(invalidDocument) {
+       if(invalidDocument.type === id){
+         out = out + "<li style=\"text-indent: 15px;\"> Le fichier " + invalidDocument.originalname + " est invalide pour la raison suivante : " + invalidDocument.invalidReason + "</li>";
+       }
+    });
+    out = out + "</ul>"
   }
 
-  return documentType.label;
+  return new Handlebars.SafeString(out);
 }
 
-Handlebars.registerHelper('documentTypeList', function(items) {
+Handlebars.registerHelper('documentTypeList', function(items, invalidDocuments) {
   var out = '<ul>';
 
   for (let i = 0, l = items.length; i < l; i++) {
-    out = out + '<li>' + printDocumentType(items[i]) + '</li>';
+    out = out + '<li>' + printDocumentType(items[i], invalidDocuments) + '</li>';
   }
 
   return out + '</ul>';
