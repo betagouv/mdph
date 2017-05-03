@@ -14,7 +14,6 @@ angular.module('impactApp')
             $scope.passwordMessage = 'Votre mot de passe a été modifié.';
           })
           .catch(function() {
-            form.password.$setValidity('mongoose', false);
             $scope.errors.password = 'Mot de passe incorrect';
             $scope.passwordMessage = '';
           });
