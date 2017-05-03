@@ -20,9 +20,7 @@ angular.module('impactApp')
         // Only pin headquarters.
         if (location.headquarters) {
           L.marker([location.coordinates.coordy, location.coordinates.coordx], options)
-            .on('click', function() {
-              window.location = '/mdph/' + mdph.zipcode;
-            })
+            .on('click', () => window.location = '/mdph/' + mdph.zipcode)
             .addTo(map);
         }
       });
