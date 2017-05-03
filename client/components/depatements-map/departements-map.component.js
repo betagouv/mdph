@@ -5,6 +5,7 @@ angular.module('impactApp').component('depsMap', {
   controller: 'DepsMapCtrl',
   controllerAs: 'depsmapctrl',
   bindings: {
-    depsgeo: '<'
+    depsgeo: '<',
+    mdphs: '<'
   }
 });
