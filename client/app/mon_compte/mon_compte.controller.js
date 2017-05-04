@@ -14,7 +14,7 @@ angular.module('impactApp')
             $scope.errors.password = '';
             $scope.passwordMessage = 'Votre mot de passe a été modifié.';
           })
-          .catch(function(e) {
+          .catch(function() {
             $scope.errors.password = 'Mot de passe incorrect';
             $scope.passwordMessage = '';
             $scope.user.oldPassword = '';
