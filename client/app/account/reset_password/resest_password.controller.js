@@ -16,7 +16,7 @@ angular.module('impactApp')
         })
         .catch(function() {
           form.password.$setValidity('mongoose', false);
-          $scope.errors.password = 'Ce jeton de modification à déjà été utilisé.';
+          $scope.errors.password = 'Ce jeton de modification à déjà été utilisé pour réinitialiser votre mot de passe. Veillez refaire une demande de réinitialisation';
           $scope.passwordMessage = '';
         });
       }
