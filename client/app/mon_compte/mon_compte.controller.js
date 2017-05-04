@@ -11,11 +11,13 @@ angular.module('impactApp')
         Auth
           .changePassword($scope.user.oldPassword, $scope.user.newPassword)
           .then(function() {
+            $scope.errors.password = '';
             $scope.passwordMessage = 'Votre mot de passe a été modifié.';
           })
-          .catch(function() {
+          .catch(function(e) {
             $scope.errors.password = 'Mot de passe incorrect';
             $scope.passwordMessage = '';
+            $scope.user.oldPassword = '';
           });
       }
     };
