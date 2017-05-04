@@ -19,7 +19,36 @@ angular.module('impactApp')
       mdph.locations.map(location => {
         // Only pin headquarters.
         if (location.headquarters) {
-          L.marker([location.coordinates.coordy, location.coordinates.coordx], options)
+          const link = mdph.zipcode &&
+            `<tr>
+            <td class="cell-icon"><i class="fa fa-envelope"></i></td>
+            <td><a href="/mdph/${mdph.zipcode}" title="Contacter la mdph">${mdph.name} ${mdph.zipcode}</a></td>
+          </tr>`;
+          const description = `<table><tbody>${link}</tbody></table>`;
+          console.log('description', description);
+          const featureLayer = {
+            // this feature is in the GeoJSON format: see geojson.org
+            // for the full specification
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+
+              // coordinates here are in longitude, latitude order because
+              // x, y is the standard for GeoJSON and many formats
+              coordinates: [
+                location.coordinates.coordx,
+                location.coordinates.coordy
+              ]
+            },
+            properties: {
+              title: mdph.name,
+              description,
+              'marker-size': 'large',
+              'marker-color': '#333E54',
+              'marker-symbol': 'building'
+            }
+          };
+          L.mapbox.featureLayer(featureLayer, options)
             .on('click', () => window.location = '/mdph/' + mdph.zipcode)
             .addTo(map);
         }
