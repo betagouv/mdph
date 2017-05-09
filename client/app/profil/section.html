@@ -1,6 +1,9 @@
 <div class="section-body">
   <div class="section-body-head">
-    <h2>{{section.label}}</h2>
+    <h2>
+      <a ui-sref="profil({profileId: profilCtrl.profile._id})">Profil</a>
+      / {{section.label}}
+    </h2>
     <subsection sections="section.subSections"></subsection>
   </div>
 
