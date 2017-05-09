@@ -65,6 +65,22 @@ angular.module('impactApp')
         },
         authenticate: true
       })
+      .state('dashboard.users.agents.edit', {
+        url: '/:id',
+        templateUrl: 'app/dashboard/users/agents/edit.html',
+        controller: 'AgentsEditCtrl',
+        resolve: {
+          user: function(User, $stateParams) {
+            var id = $stateParams.id;
+            if (id && id !== 'nouvel_agent') {
+              return User.get({id: $stateParams.id}).$promise;
+            } else {
+              return new User();
+            }
+          }
+        },
+        authenticate: true
+      })
       .state('dashboard.users.partenaires.edit', {
         url: '/:id',
         templateUrl: 'app/dashboard/users/partenaires/edit.html',
