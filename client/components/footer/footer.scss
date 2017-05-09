@@ -13,10 +13,56 @@ footer {
 
     address {
       margin: 0;
+      display: flex;
+
+      &:before {
+        content: '\f015';
+        font-family: 'FontAwesome';
+        align-self: center;
+        width: 1.2em;
+        padding-right: 25px;
+      }
     }
 
     .schedule {
       white-space: pre-wrap;
+      display: flex;
+
+      &:before {
+        content: '\f017';
+        font-family: 'FontAwesome';
+        align-self: center;
+        width: 1.2em;
+        padding-right: 25px;
+      }
+    }
+
+    .phone {
+      display: flex;
+
+      &:before {
+        content: '\f095';
+        font-family: 'FontAwesome';
+        align-self: center;
+        width: 1.2em;
+        padding-right: 25px;
+      }
+    }
+
+    .email {
+      display: flex;
+
+      a {
+        color: #FFF;
+      }
+
+      &:before {
+        content: '\f0e0';
+        font-family: 'FontAwesome';
+        align-self: center;
+        width: 1.2em;
+        padding-right: 25px;
+      }
     }
 
     .location-container {
@@ -27,17 +73,23 @@ footer {
     .location {
       margin: 10px;
       min-width: 190px;
+      width: calc(25% - 5px * 4);
       padding: 10px;
       border-radius: 2px;
       background: $lighter-blue;
+    }
 
-      .email {
-        margin: 10px 0;
+    .location-row {
+      margin: 10px 0;
+      line-height: 1em;
+    }
 
-        a {
-          color: white;
-          font-weight: bold;
-        }
+    .location.headquarters {
+      background: #FFF;
+      color: $lighter-blue;
+
+      .email a {
+        color: $lighter-blue;
       }
     }
   }

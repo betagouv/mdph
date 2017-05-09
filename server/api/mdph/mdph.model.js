@@ -23,6 +23,7 @@ var MdphSchema = new Schema({
       phone:        { type: String },
       email:        { type: String },
       schedule:     { type: String },
+      headquarters: { type: Boolean },
     }
   ],
 });
