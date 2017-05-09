@@ -1,0 +1,5 @@
+<div>
+  <select id="depsselect" ng-model="depsselectpctrl.mdph" ng-change="depsselectpctrl.goToMdph()">
+    <option ng-repeat="mdph in depsselectpctrl.mdphs" value="{{mdph.zipcode}}">{{mdph.zipcode}} {{mdph.name}}</option>
+  </select>
+</div>
