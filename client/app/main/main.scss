@@ -20,6 +20,11 @@
       color: $brand-primary;
     }
   }
+
+  &.centered {
+    display: table;
+    margin: auto;
+  }
 }
 
 .hero-unit {
