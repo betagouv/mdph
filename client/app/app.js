@@ -13,6 +13,7 @@ angular.module('impactApp', [
     'ngMessages',
     'ngCookies',
     'ngResource',
+    'ui.select',
     'ngSanitize',
     'chart.js',
     'toastr',
