@@ -7,8 +7,8 @@
         <address class="location-row">
           {{location.address}}
         </address>
-        <div ng-bind="location.schedule" class="schedule location-row"></div>
-        <div ng-bind="location.phone" class="phone location-row"></div>
+        <div ng-if="location.schedule" ng-bind="location.schedule" class="schedule location-row"></div>
+        <div ng-if="location.phone" ng-bind="location.phone" class="phone location-row"></div>
         <div ng-if="location.email" class="email location-row">
           <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
         </div>
