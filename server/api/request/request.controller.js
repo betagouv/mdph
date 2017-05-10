@@ -102,8 +102,8 @@ export function showPartenaire(req, res) {
     .findOne({
       shortId: req.params.shortId
     })
-    .populate('user', 'name')
-    .select('shortId user name mdph createdAt')
+    .populate('user', 'email')
+    .select('shortId user mdph createdAt formAnswers.identites.beneficiaire')
     .exec()
     .then(respondWithResult(res))
     .catch(handleError(req, res));
