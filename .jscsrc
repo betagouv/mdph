@@ -65,6 +65,7 @@
     "requirePaddingNewLinesAfterBlocks": true,
     "requireSemicolons": true,
     "safeContextKeyword": "_this",
+    "validateLineBreaks": "LF",
     "validateQuoteMarks": "'",
     "validateIndentation": 2,
     "requireSpacesInsideObjectBrackets": false,
