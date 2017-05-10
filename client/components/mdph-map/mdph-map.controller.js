@@ -14,13 +14,10 @@ angular.module('impactApp')
       const map = L.mapbox.map('map', 'mapbox.streets');
 
       if (this.locations.length === 1) {
-        this.location = this.locations[0];
-        map.setView([this.location.coordinates.coordy, this.location.coordinates.coordx], 14);
+        map.setView([this.locations[0].coordinates.coordy, this.locations[0].coordinates.coordx], 14);
       } else {
-        const bounds = this.locations.map(location => {
-          return [location.coordinates.coordy, location.coordinates.coordx];
-        });
-        map.fitBounds(bounds);
+        const bounds = this.locations.map(location => [location.coordinates.coordy, location.coordinates.coordx]);
+        map.fitBounds(bounds, { padding: [20, 30] });
       }
 
       // Disable drag and zoom handlers.
@@ -40,7 +37,6 @@ angular.module('impactApp')
         }
       });
 
-      let first = true;
       this.locations.forEach(location => {
         const addressRow = location.address &&
           `<tr>
@@ -86,7 +82,7 @@ angular.module('impactApp')
             title: location.name,
             description,
             'marker-size': 'large',
-            'marker-color': '#333E54',
+            'marker-color': location.headquarters ? '#333E54' : '#FFFFFF',
             'marker-symbol': 'building'
           }
         };
@@ -98,9 +94,9 @@ angular.module('impactApp')
         };
 
         const popup = L.mapbox.featureLayer(featureLayer, options).addTo(map);
-        if (first) {
+
+        if (location.headquarters) {
           popup.openPopup();
-          first = false;
         }
       });
     })();
