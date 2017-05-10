@@ -1,5 +1,14 @@
 <div>
-  <select id="depsselect" ng-model="depsselectpctrl.mdph" ng-change="depsselectpctrl.goToMdph()">
-    <option ng-repeat="mdph in depsselectpctrl.mdphs" value="{{mdph.zipcode}}">{{mdph.zipcode}} {{mdph.name}}</option>
-  </select>
+  <ui-select ng-model="depsselectpctrl.mdph">
+
+    <ui-select-match>
+      <span ng-bind="$select.selected.name"></span>
+    </ui-select-match>
+
+    <ui-select-choices repeat="item in (depsselectpctrl.mdphs | filter: $select.search) track by item._id">
+      <span ng-bind="item.name"></span>
+    </ui-select-choices>
+
+  </ui-select>
+
 </div>
