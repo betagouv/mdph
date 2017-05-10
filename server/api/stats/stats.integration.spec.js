@@ -32,7 +32,7 @@ describe('Stats Integration', function() {
     done();
   });
 
-  describe.only('When get likes stats', function() {
+  describe('When get likes stats', function() {
     var mdph = new Mdph({name: 'test1', likes : ['user1@mail.com', 'user2@mail.com', 'user3@mail.com']});
 
     before(function(done) {
