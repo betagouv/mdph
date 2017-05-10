@@ -8,9 +8,14 @@ angular.module('impactApp')
       }
 
       let result = [];
+      const fields = ['name', 'zipcode'];
 
-      let lookupByName = $filter('filter')(list, {name: search});
-      result = result.concat(lookupByName);
+      fields.map(field => {
+        const _search = {};
+        _search[field] = search;
+        let lookupByName = $filter('filter')(list, _search);
+        result = result.concat(lookupByName);
+      });
 
       return result;
     };
