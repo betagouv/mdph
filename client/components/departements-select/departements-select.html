@@ -6,7 +6,7 @@
     </ui-select-match>
 
     <ui-select-choices repeat="item in (depsselectpctrl.mdphs | filter: $select.search) track by item._id">
-      <span ng-bind="item.name"></span>
+      <span ng-bind-html="item.name | highlight: $select.search"></span>
     </ui-select-choices>
 
   </ui-select>
