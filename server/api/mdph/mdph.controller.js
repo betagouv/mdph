@@ -256,7 +256,7 @@ export function showPartenaires(req, res) {
 
 // Get list of mdphs
 export function index(req, res) {
-  Mdph.find(req.query).sort('zipcode').exec(function(err, mdphs) {
+  Mdph.find(req.query, '-likes').sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(mdphs);
@@ -265,7 +265,7 @@ export function index(req, res) {
 
 // Get a single mdph by zipcode
 export function show(req, res) {
-  Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+  Mdph.findOne({zipcode: req.params.id}, '-likes', function(err, mdph) {
     if (err) { return handleError(req, res, err); }
 
     return res.json(mdph);
