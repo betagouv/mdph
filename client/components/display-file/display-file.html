@@ -1,19 +1,18 @@
 <div class="display-file">
-  <div class="description">
-    <div class="text">
-      <div class="name">
-        <div ng-if="file.sending">
-          <i class="fa fa-spin fa-circle-o-notch"></i> Envoi en cours...
-        </div>
-        <i class="fa" ng-class="{
+  <div class="display-file-card">
+    <div class="description">
+      <i class="fa logo" ng-class="{
         'fa-file-pdf-o': file.mimetype === 'application/pdf',
         'fa-file-image-o': file.mimetype.indexOf('image') >= 0,
-        'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf'}">
-        </i>
+        'fa-file-text-o': file.mimetype.indexOf('image') < 0 && file.mimetype !== 'application/pdf',
+        'fa-spin fa-circle-o-notch': file.sending
+      }"></i>
 
+      <div class="name">
+        <span ng-if="file.sending">Envoi en cours...</span>
         <a
-          target="_self"
           ng-if="!file.sending"
+          target="_self"
           download="{{file.originalname}}"
           href="api/requests/{{request.shortId}}/document/{{getFilename(file)}}?access_token={{token}}">
           {{file.originalname}}
@@ -26,33 +25,31 @@
         </div>
         <div ng-if="partenaireObj">  Ajouté par {{partenaireObj.email}}</div>
       </div>
-
     </div>
-  </div>
 
-  <div class="file-actions" ng-if="!hideActions && fileEditable">
-    <div class="validation-actions">
-      <button type="button" class="fab invert-refuse" ng-click="setInvalid(true)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === false}">
-        <i class="fa fa-thumbs-down"></i>
-      </button>
-      <button type="button" class="fab invert-valid" ng-click="setInvalid(false)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === true}">
-        <i class="fa fa-thumbs-up"></i>
-      </button>
+    <div class="file-actions" ng-if="!hideActions">
+      <div class="validation-actions" ng-if="fileEditable">
+        <button type="button" class="fab invert-refuse" ng-click="setInvalid(true)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === false}">
+          <i class="fa fa-thumbs-down"></i>
+        </button>
+        <button type="button" class="fab invert-valid" ng-click="setInvalid(false)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === true}">
+          <i class="fa fa-thumbs-up"></i>
+        </button>
+      </div>
+
+      <div ng-if="fileEditable && file.isInvalid" class="invalid-file">
+        <label for="invalid-reason">Raison du refus :</label>
+        <textarea name="invalid-reason" ng-model="file.invalidReason" rows="4" ng-blur="setInvalidReason()" />
+      </div>
     </div>
-  </div>
 
-  <div ng-if="file.isInvalid">
-    <div>
-      <label>
-          Raison du refus :
-          <input type="text" name="invalidReason" ng-model="file.invalidReason" size="124" ng-blur="setInvalidReason()"/>
-      </label>
+    <div class="file-actions" ng-if="hideActions && file.isInvalid !== undefined">
+      <div class="text-validation text-validation-invalid" ng-if="file.isInvalid">
+        Document non conforme
+        <span ng-if="file.invalidReason">: <br> <em ng-bind-html=file.invalidReason></em></span>
+      </div>
+      <div class="text-validation text-validation-valid" ng-if="!file.isInvalid">Document conforme</div>
     </div>
-  </div>
-
-  <div ng-if="hideActions">
-    <div class="text-validation text-invalid" ng-if="file.isInvalid === true">document non conforme</div>
-    <div class="text-validation text-valid" ng-if="file.isInvalid === false">document validé</div>
   </div>
 
   <button type="button" class="trash btn btn-link" ng-click="delete()" ng-if="fileEditable">
