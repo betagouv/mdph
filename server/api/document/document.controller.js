@@ -165,7 +165,7 @@ export function updateFile(req, res) {
     var action = isInvalid ? Actions.DOCUMENT_REFUSED : Actions.DOCUMENT_VALIDATED;
     var reason = isInvalid ? invalidReason : '';
 
-    request.saveActionLog(action, req.user, req.log, {document: file, reason : reason});
+    request.saveActionLog(action, req.user, req.log, {document: file, reason});
     return res.json(file);
   });
 }
