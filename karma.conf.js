@@ -38,6 +38,7 @@ module.exports = function(config) {
       'client/lib/angular/angular-scenario.js',
       'client/lib/zxcvbn/zxcvbn.js',
       'client/lib/zxcvbn/angular-zxcvbn.min.js',
+      'client/lib/ui-select/select.min.js',
 
       // endbower
       'client/app/app.js',
