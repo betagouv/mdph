@@ -1,5 +1,5 @@
 <div>
-  <ui-select ng-model="depsselectpctrl.mdph">
+  <ui-select ng-model="depsselectpctrl.mdph" on-select="depsselectpctrl.goToMdph($item)">
 
     <ui-select-match placeholder="Département...">
       <span ng-bind-html="$select.selected.zipcode && $select.selected.zipcode + '. ' + $select.selected.name"></span>
