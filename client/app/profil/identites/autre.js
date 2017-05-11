@@ -22,21 +22,11 @@ angular.module('impactApp')
             return profile.identites.autre;
           }
         },
-        controller: function($scope, $state, profile, currentUser, identite, $window, AdressService) {
+        controller: function($scope, $state, profile, currentUser, currentMdph, identite, $window, AdressService) {
           $scope.identite = identite;
-
-          $window.navigator.geolocation.getCurrentPosition(function(position) {
-            $scope.lat = position.coords.latitude;
-            $scope.long = position.coords.longitude;
-          });
-
+          $scope.currentMdph = currentMdph;
           $scope.getAdress = AdressService.getAdress;
-
-          $scope.fillAdressOnSelect = function(result) {
-            $scope.identite.nomVoie = result.properties.name;
-            $scope.identite.code_postal = result.properties.postcode;
-            $scope.identite.localite = result.properties.city;
-          };
+          $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
 
           $scope.submit = function(form) {
             if (form.$invalid) {
