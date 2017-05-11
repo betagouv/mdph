@@ -20,8 +20,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsVie', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.deplacement');
           };
         }
@@ -35,8 +36,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsDeplacement', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.transport');
           };
         }
@@ -50,8 +52,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsTransports', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.social');
           };
         }
@@ -65,8 +68,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinsSocial', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.^.vos_attentes.type_aide');
           };
         }

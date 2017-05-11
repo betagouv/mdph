@@ -9,6 +9,7 @@
   font-size: 1.7em;
   font-weight: 500;
   border-radius: 2px;
+  text-decoration: none;
 
   &.inverted {
     color: $brand-primary;
@@ -213,11 +214,10 @@
 
   a {
     font-size: 1.3em;
+    text-decoration: none;
     color: $lighter-blue;
 
     &:focus, &:hover {
-      text-decoration: none;
-
       &:before {
         color: $lighter-blue;
       }

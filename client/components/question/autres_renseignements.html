@@ -1,5 +1,6 @@
 <form name="questionForm" novalidate>
   <label class="question-legend" for="autresrenseignements">{{question.title}}</label>
+
   <textarea class="form-control" rows="20"
     name="autresrenseignements" id="autresrenseignements"
     placeholder="{{placeholder}}"
@@ -7,8 +8,9 @@
 
   <nav-steps
     ng-hide="hideSteps"
-    profile="profilCtrl.profile"
+    prev-step="prevStep"
     next-step="nextStep"
     question-form="questionForm"
+    is-first-question="isFirstQuestion"
     is-last-question="isLastQuestion" />
 </form>

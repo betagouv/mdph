@@ -18,8 +18,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'passe', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.pole_emploi');
             };
           }
@@ -34,8 +35,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'situationSansEmploi', profile);
           },
 
-          nextStep: function($state, sectionModel) {
+          nextStep: function($state, sectionModel, saveCurrentState) {
             return function() {
+              saveCurrentState();
               if (sectionModel.situationSansEmploi && sectionModel.situationSansEmploi.stagiaire) {
                 $state.go('^.stage');
               } else {
@@ -54,8 +56,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'situationStage', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.accompagnement');
             };
           }
@@ -70,8 +73,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'situationAccompagnement', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.^.^.situation_professionnelle.prestations');
             };
           }

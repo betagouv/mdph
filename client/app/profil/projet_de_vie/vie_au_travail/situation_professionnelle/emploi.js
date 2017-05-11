@@ -19,8 +19,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'nomPoste', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.temps');
             };
           }
@@ -35,8 +36,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'temps', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.adapte');
             };
           }
@@ -51,8 +53,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'adapte', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.difficultes');
             };
           }
@@ -67,8 +70,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'difficultes', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.conservation');
             };
           }
@@ -83,8 +87,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'conservation', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.amenagement');
             };
           }
@@ -99,8 +104,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'amenagement', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.arret_de_travail');
             };
           }
@@ -115,8 +121,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'arretDeTravail', profile);
           },
 
-          nextStep: function($state, sectionModel, question) {
+          nextStep: function($state, sectionModel, question, saveCurrentState) {
             return function() {
+              saveCurrentState();
               if (sectionModel[question.model]) {
                 $state.go('^.raison_arret_de_travail');
               } else {
@@ -135,8 +142,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'arretDeTravailRaison', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.professionnel_social');
             };
           }
@@ -151,8 +159,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'profesionnelSocial', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.medecin_travail');
             };
           }
@@ -167,8 +176,9 @@ angular.module('impactApp')
             return QuestionService.get(section, 'medecinTravail', profile);
           },
 
-          nextStep: function($state) {
+          nextStep: function($state, saveCurrentState) {
             return function() {
+              saveCurrentState();
               $state.go('^.^.^.situation_professionnelle.prestations');
             };
           }

@@ -19,8 +19,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'typeAttente', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.structure');
           };
         }
@@ -39,8 +40,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'structures', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.renseignements');
           };
         }
@@ -55,8 +57,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'demandesAides', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.autres_renseignements');
           };
         }

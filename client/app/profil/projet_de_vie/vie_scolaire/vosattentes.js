@@ -19,8 +19,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'attentesVieScolaire', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.structure');
           };
         }
@@ -39,8 +40,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'structure', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.referent');
           };
         }
@@ -55,8 +57,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'referent', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.autres_renseignements');
           };
         }

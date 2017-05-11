@@ -1,5 +1,6 @@
 <form id="frais-handicap" name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
+
   <em>{{question.placeholder}}</em>
 
   <table aria-label="Liste des frais liés au handicap" class="table my-table-striped">
@@ -50,9 +51,10 @@
 
   <nav-steps
     ng-hide="hideSteps"
-    profile="profilCtrl.profile"
+    prev-step="prevStep"
     next-step="nextStep"
     question-form="questionForm"
+    is-first-question="isFirstQuestion"
     is-last-question="isLastQuestion" />
 
 </form>

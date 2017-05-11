@@ -45,10 +45,11 @@ $link-color: $light-blue;
 }
 
 a {
-  color: $light-blue;
+  color: $bg-blue;
+  text-decoration: underline;
 
   &:hover, &:focus {
-    color: $bg-blue;
+    color: $light-blue;
   }
 }
 

@@ -18,8 +18,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'description', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.besoin_soutien');
           };
         }
@@ -34,8 +35,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'besoinSoutien', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.structure');
           };
         }
@@ -54,8 +56,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'structures', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.autres_renseignements');
           };
         }

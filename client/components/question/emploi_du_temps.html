@@ -1,5 +1,6 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
+
   <table aria-label="Emploi du temps" class="table my-table-striped">
     <thead>
       <th></th>
@@ -25,9 +26,10 @@
 
   <nav-steps
     ng-hide="hideSteps"
-    profile="profilCtrl.profile"
+    prev-step="prevStep"
     next-step="nextStep"
     question-form="questionForm"
+    is-first-question="isFirstQuestion"
     is-last-question="isLastQuestion" />
 
 </form>

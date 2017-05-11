@@ -1,9 +1,14 @@
 .nav-steps {
   margin-top: 44px;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
-}
 
-.btn-invalid {
-  color: white;
+  .btn-invalid {
+    color: white;
+  }
+
+  #btn-next {
+    align-self: flex-end;
+  }
 }

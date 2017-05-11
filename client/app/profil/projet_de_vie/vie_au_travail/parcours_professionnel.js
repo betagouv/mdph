@@ -18,8 +18,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'uploadCV', profile);
         },
 
-        nextStep: function($state, sectionModel) {
+        nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
+            saveCurrentState();
             if (sectionModel.needUploadCV) {
               $state.go('^.qualification');
             } else {
@@ -38,8 +39,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'cv', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.qualification');
           };
         }
@@ -54,8 +56,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'qualification', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.derniereClasse');
           };
         }
@@ -70,8 +73,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'derniereClasse', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.formations');
           };
         }
@@ -86,8 +90,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'formations', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.diplomes');
           };
         }
@@ -106,8 +111,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'diplomes', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.^.projet_professionnel.description');
           };
         }

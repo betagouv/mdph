@@ -40,6 +40,9 @@ angular.module('impactApp')
               });
             };
           }
+        },
+        data: {
+          history: []
         }
       });
   });

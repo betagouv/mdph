@@ -1,5 +1,6 @@
 <form name="questionForm" novalidate>
   <qtitle ng-hide="hideTitle"></qtitle>
+
   <div class="row">
     <div class="list-group col-sm-offset-1 col-sm-10 cv" ng-if="experiences.length > 0">
       <div ng-repeat="experience in experiences | orderBy:'-debut'" class="list-group-item row">
@@ -111,8 +112,9 @@
   <nav-steps
     ng-if="!ajoutEnCours"
     ng-hide="hideSteps"
-    profile="profilCtrl.profile"
+    prev-step="prevStep"
     next-step="nextStep"
     question-form="questionForm"
+    is-first-question="isFirstQuestion"
     is-last-question="isLastQuestion" />
 </form>

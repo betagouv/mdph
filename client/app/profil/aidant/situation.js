@@ -14,13 +14,17 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textinput.html',
       controller: 'QuestionCtrl',
+      data: {
+        isFirstQuestion: true
+      },
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'nomAidant', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.date_naissance_aidant');
           };
         }
@@ -35,8 +39,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'dateNaissanceAidant', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.lien');
           };
         }
@@ -51,8 +56,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'lien', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.vie');
           };
         }
@@ -67,8 +73,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'vie', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.emploi');
           };
         }
@@ -83,8 +90,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'emploi', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.nature_aide');
           };
         }
@@ -99,8 +107,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'natureAide', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.dedommagement');
           };
         }
@@ -115,8 +124,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'dedommagement', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.accompagnement');
           };
         }
@@ -131,8 +141,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'accompagnementAidant', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.soutien');
           };
         }
@@ -147,8 +158,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'soutien', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.empechement');
           };
         }
@@ -163,8 +175,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'empechement', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.situation_future');
           };
         }
@@ -179,8 +192,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'situationFuture', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('profil.aidant.vos_attentes.type_attente');
           };
         }

@@ -14,13 +14,17 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      data: {
+        isFirstQuestion: true
+      },
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'condition', profile);
         },
 
-        nextStep: function($state, sectionModel) {
+        nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
+            saveCurrentState();
             if (sectionModel.condition) {
               $state.go('^.type_scolaire');
             } else {
@@ -39,9 +43,10 @@ angular.module('impactApp')
           return QuestionService.get(section, 'vieScolaireType', profile);
         },
 
-        nextStep: function($state, sectionModel, question) {
+        nextStep: function($state, sectionModel, question, saveCurrentState) {
           return function() {
             var model = sectionModel[question.model];
+            saveCurrentState();
 
             switch (model) {
               case 'domicile':
@@ -68,8 +73,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'etablissement', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.accompagnement');
           };
         }
@@ -84,8 +90,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'internat', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.etablissement');
           };
         }
@@ -100,8 +107,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'typeEtudes', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.diplomes_passes');
           };
         }
@@ -116,8 +124,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'diplomePasse', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.diplome_present');
           };
         }
@@ -132,8 +141,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'diplomePresent', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.diplome_etablissement');
           };
         }
@@ -152,8 +162,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'diplomeEtablissement', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.parcours');
           };
         }
@@ -168,8 +179,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'parcoursEtudes', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.accompagnement');
           };
         }
@@ -184,8 +196,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'accompagnement', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.adaptation');
           };
         }
@@ -200,8 +213,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'adaptation', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('^.emploi_du_temps');
           };
         }
@@ -216,8 +230,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'emploiDuTemps', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('profil.vie_scolaire.vos_besoins.scolarite');
           };
         }
@@ -232,8 +247,9 @@ angular.module('impactApp')
           return QuestionService.get(section, 'raisonNonScolaire', profile);
         },
 
-        nextStep: function($state) {
+        nextStep: function($state, saveCurrentState) {
           return function() {
+            saveCurrentState();
             $state.go('profil.vie_scolaire.vos_besoins.scolarite');
           };
         }
