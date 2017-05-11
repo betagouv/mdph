@@ -1,38 +1,31 @@
 <a class="btn btn-lg btn-link" ui-sref="^">Retour au profil</a>
 
 <div id="demande" class="demande-container">
-  <div ng-if="request.status === 'en_cours'">
-    <h1>Nouvelle demande</h1>
+  <div class="header">
+    <h1>Finalisation de votre demande</h1>
+    <p>Identifiant <br> <span class="request-identifier">{{ request.shortId }}</span></p>
   </div>
 
-  <div ng-if="request.status !== 'en_cours'">
-    <h1>Détail de la demande</h1>
-    <p>
-      Envoyée le {{ request.submittedAt | moment }} à la MDPH {{ request.mdph | fullMdphName }}
-      <br>
-      Identifiant de la demande : <strong>{{ request.shortId }}</strong>
-    </p>
-  </div>
+  <p ng-if="request.status !== 'en_cours'">
+    Envoyée le {{ request.submittedAt | moment }} à la MDPH {{ request.mdph | fullMdphName }}
+  </p>
 
   <div ui-view>
     <form id="profil-demande" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
-      <section ng-if="request.status === 'en_cours'">
-        <div ui-view="choix_mdph"></div>
-      </section>
-
-      <hr>
-
       <section id="section-documents">
+        <h2>Documents à joindre à votre demande</h2>
         <div ui-view="documents"></div>
-      </section>
-
-      <section>
-        <div ui-view="complementaires"></div>
         <div ui-view="suggestions"></div>
       </section>
-      <hr>
+
       <section id="section-prestations">
+        <h2>Expression des demandes de droits et prestations</h2>
         <div ui-view="prestations"></div>
+      </section>
+
+      <section ng-if="request.status === 'en_cours'">
+        <h2>Vous avez déjà un dossier à la MDPH ?</h2>
+        <div ui-view="choix_mdph"></div>
       </section>
 
       <div class="text-center" ng-if="isEditable()">

@@ -1,6 +1,6 @@
 <div class="form-group" ng-if="request.mdph">
   <fieldset>
-    <legend class="control-label">Avez-vous déjà un dossier dans une MDPH ?</legend>
+    <legend class="control-label sr-only">Vous avez déjà un dossier à la MDPH ?</legend>
     <input type="radio" name="typeDossier" id="renouvellement" ng-model="request.estRenouvellement" ng-value="true">
     <label class="radio-inline" for="renouvellement">Oui</label>
     <input type="radio" name="typeDossier" id="nouvelle_demande" ng-model="request.estRenouvellement" ng-value="false" ng-change="resetOldMdph()">
