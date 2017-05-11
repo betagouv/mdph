@@ -1,10 +1,4 @@
 <div class="nav-steps">
-  <button type="button" class="btn btn-default"
-          ng-click="navstepsctrl.prevStep()"
-          ng-if="!navstepsctrl.isFirstQuestion">
-    Question précédente
-  </button>
-
   <button id="btn-next" class="btn" type="submit" ng-click="navstepsctrl.check(navstepsctrl.questionForm)"
     ng-class="{
       'btn-success': navstepsctrl.questionForm.$valid && !navstepsctrl.isLastQuestion,
@@ -12,5 +6,11 @@
       'btn-primary': navstepsctrl.questionForm.$valid && navstepsctrl.isLastQuestion
     }">
     {{navstepsctrl.isLastQuestion ? 'Valider' : 'Question suivante'}}
+  </button>
+
+  <button type="button" class="btn btn-default"
+          ng-click="navstepsctrl.prevStep()"
+          ng-if="!navstepsctrl.isFirstQuestion">
+    Question précédente
   </button>
 </div>
