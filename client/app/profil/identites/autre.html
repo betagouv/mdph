@@ -1,11 +1,6 @@
 <form id="profile-identites" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
   <h2>Identité de la personne</h2>
 
-  <!-- <div class="identity-form-actions">
-    <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
-    <button type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
-  </div> -->
-
   <section class="identite-section">
     <div class="form-group required" ng-class="{'has-error': !identite.type && infoForm.$submitted}">
       <fieldset>
@@ -42,9 +37,9 @@
       <label for="nomVoie" class="control-label">Adresse</label>
       <div class="input-group">
         <input type="search"
-          typeahead="result as result.properties.label for result in getAdress($viewValue, lat, long)"
+          typeahead="result as result.properties.label for result in getAdress($viewValue, currentMdph)"
           typeahead-min-length='3'
-          typeahead-on-select='fillAdressOnSelect($item)'
+          typeahead-on-select='fillAdressOnSelect($item, identite)'
           typeahead-wait-ms="100"
           typeahead-loading="loadingLocations"
           typeahead-no-results="noResults"
