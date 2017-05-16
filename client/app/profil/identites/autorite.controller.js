@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AutoriteCtrl', function($state, $scope, identite, AdressService, $window, id) {
+  .controller('AutoriteCtrl', function($state, $scope, identite, AdressService, $window, id, required) {
       $scope.identite = identite;
       $scope.id = id;
+      $scope.required = required;
 
       $scope.forms = $state.current.data.forms;
 
@@ -15,7 +16,7 @@ angular.module('impactApp')
       $scope.getAdress = AdressService.getAdress;
 
       $scope.hasError = function(name) {
-        return $scope.forms.infoForm['' + name + id].$invalid;
+        return $scope.required ? $scope.forms.infoForm['' + name + id].$invalid : false;
       };
 
       $scope.getError = function(name) {

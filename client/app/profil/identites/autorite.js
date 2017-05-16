@@ -62,6 +62,10 @@ angular.module('impactApp')
 
               id: function() {
                 return '1';
+              },
+
+              required: function() {
+                return true;
               }
             }
           },
@@ -76,6 +80,10 @@ angular.module('impactApp')
 
               id: function() {
                 return '2';
+              },
+
+              required: function() {
+                return false;
               }
             }
           }
