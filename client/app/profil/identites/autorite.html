@@ -7,7 +7,6 @@
       <input id="nom{{id}}" type="text" name="nom{{id}}" class="form-control" ng-model="identite.nom" ng-required="{{required}}">
       <div ng-messages="getError('nom')" ng-if="forms.infoForm.$submitted">
         <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-        <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
       </div>
     </div>
 
@@ -17,7 +16,6 @@
       <input id="prenom{{id}}" type="text" name="prenom{{id}}" class="form-control" ng-model="identite.prenom" ng-required="{{required}}">
       <div ng-messages="getError('prenom')" ng-if="forms.infoForm.$submitted">
         <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-        <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
       </div>
     </div>
   </div>
