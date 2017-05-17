@@ -46,7 +46,7 @@ mongoose.connection.once('open', function() {
 require('./config/express').default(app);
 require('./routes').default(app);
 require('./components/register-handlebars');
-require('./cron/register');
+require('./cron/cron-register');
 
 moment.locale('fr');
 
