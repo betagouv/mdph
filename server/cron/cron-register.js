@@ -7,9 +7,9 @@ import * as MailActions from '../api/send-mail/send-mail-actions';
 
 const cron = require('node-cron');
 
-const checkDocumentValidityTask = cron.schedule('0 0 * * *', checkDocumentValidity, true);
+cron.schedule('0 0 * * *', checkRequestValidity, true);
 
-function checkDocumentValidity() {
+export function checkRequestValidity() {
 
 
   console.info('####################################################################################');
@@ -31,7 +31,7 @@ function checkDocumentValidity() {
     .exec()
     .then(
       function(datas) {
-        console.info( datas.length == 0 ? 'Aucune demande expirée' : datas.length+' demandes expirées');
+        console.info( datas.length === 0 ? 'Aucune demande expirée' : datas.length+' demandes expirées');
         datas.forEach(function(data){
           console.info('suppression de la demande ' + data.shortId );
           Request.remove({ shortId : data.shortId }, function (err) {
@@ -42,8 +42,8 @@ function checkDocumentValidity() {
           });
           //FIXME - Supprimer aussi les actions ou ajouter une action "suppression" ?
         });
-      }
-      ,function(err) {
+      },
+      function(err) {
          if (err) { throw err; }
     });
 

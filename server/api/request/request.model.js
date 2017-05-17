@@ -139,10 +139,6 @@ RequestSchema.methods = {
     }, []);
   },
 
-  isExpired() {
-    return false;
-  }
-
 };
 
 export default mongoose.model('Request', RequestSchema);
