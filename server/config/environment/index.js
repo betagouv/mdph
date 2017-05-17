@@ -41,6 +41,10 @@ var all = {
         safe: true
       }
     }
+  },
+
+  cron:{
+    enabled : process.env.CRON_ENABLED || true
   }
 };
 
