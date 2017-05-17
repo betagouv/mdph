@@ -1,16 +1,15 @@
 'use strict';
 
 import moment from 'moment';
-
+import config from '../config/environment';
 import Request from '../api/request/request.model';
 import * as MailActions from '../api/send-mail/send-mail-actions';
 
 const cron = require('node-cron');
 
-cron.schedule('0 0 * * *', checkRequestValidity, true);
+const checkRequestValidityTask = cron.schedule('0 0 * * *', checkRequestValidity, true);
 
 export function checkRequestValidity() {
-
 
   console.info('####################################################################################');
   console.info(moment().format('YYYY-MM-DD HH:mm') +' - Lancement de la tache de verification de la validite des documents');
@@ -38,7 +37,6 @@ export function checkRequestValidity() {
             if (err) { throw err; }
             console.info('envoie du mail a l\'utilisateur ' + data.user.email);
             MailActions.sendMailExpired(data);
-
           });
           //FIXME - Supprimer aussi les actions ou ajouter une action "suppression" ?
         });
@@ -46,6 +44,8 @@ export function checkRequestValidity() {
       function(err) {
          if (err) { throw err; }
     });
+}
 
-    console.info('####################################################################################');
+if(config.cron.enabled){
+  checkRequestValidityTask.start();
 }
