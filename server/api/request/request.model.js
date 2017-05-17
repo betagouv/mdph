@@ -137,7 +137,12 @@ RequestSchema.methods = {
 
       return types;
     }, []);
+  },
+
+  isExpired() {
+    return false;
   }
+
 };
 
 export default mongoose.model('Request', RequestSchema);

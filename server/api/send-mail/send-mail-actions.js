@@ -109,3 +109,14 @@ export function sendMailRenewPassword(emailDest, confirmationUrl) {
       Mailer.sendMail(emailDest, options.title, htmlContent);
     });
 }
+
+export function sendMailExpired(request) {
+  let options = {};
+  options.title = 'Demande supprimé';
+  options.content = 'Votre demande datant de 5 ans a ete supprimée';
+
+  return generateEmailBodyWithTemplate(options)
+    .then(htmlContent => {
+      Mailer.sendMail(request.user.email, options.title, htmlContent);
+    });
+}
