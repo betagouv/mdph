@@ -23,6 +23,9 @@ var all = {
     mailFrom: process.env.MAIL_FROM || 'contact@mdph.beta.gouv.fr',
   },
 
+  // Base URL
+  baseUrl: process.env.BASE_URL || 'localhost:9000',
+
   // Server port
   port: process.env.PORT || 9000,
 

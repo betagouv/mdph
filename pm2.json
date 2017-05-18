@@ -5,6 +5,7 @@
       "script"    : "/home/deploy/www/current/dist/server/app.js",
       "env": {
         "NODE_ENV": "production",
+        "BASE_URL": "https://mdph.beta.gouv.fr",
         "PORT": 9000,
         "SESSION_SECRET": "session_secret",
         "SMTP_USER": "mailjet_api_key",
@@ -21,6 +22,7 @@
       "script"    : "/home/deploy/www/current/dist/server/app.js",
       "env": {
         "NODE_ENV": "production",
+        "BASE_URL": "https://mdph.beta.gouv.fr",
         "PORT": 9000,
         "SESSION_SECRET": "session_secret",
         "SMTP_USER": "mailjet_api_key",

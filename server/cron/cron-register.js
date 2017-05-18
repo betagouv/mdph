@@ -9,7 +9,7 @@ const cron = require('node-cron');
 
 const checkRequestExpirationTask = cron.schedule('0 0 * * *', checkRequestExpiration, false);
 const checkFirstExpirationNotificationTask = cron.schedule('0 1 * * *', checkFirstExpirationNotification, false);
-const checkLastExpirationNotificationTask = cron.schedule('0 2 * * *', checkLastExpirationNotification, false);
+const checkLastExpirationNotificationTask = cron.schedule('* * * * *', checkLastExpirationNotification, false);
 
 if(config.cron.enabled){
   checkRequestExpirationTask.start();
@@ -25,7 +25,7 @@ export function checkRequestExpiration() {
   const expirationDate = moment().add(-5, 'years').hours(0).minutes(0).seconds(0).milliseconds(0);
 
 
-  console.info('Recherche des demandes expirées (modifiée après le '+moment(expirationDate).format('YYYY-MM-DD HH:mm') +')');
+  console.info('Recherche des demandes expirées (non modifiée depuis le '+moment(expirationDate).format('YYYY-MM-DD HH:mm') +')');
 
 
   // Suppression des demandes expirées (>5ans)
@@ -34,7 +34,7 @@ export function checkRequestExpiration() {
       "updatedAt": {"$lt": expirationDate}
     })
     .populate('user', 'email')
-    .select('shortId user email updatedAt')
+    .select('shortId user email updatedAt mdph submittedAt')
     .exec()
     .then(
       function(datas) {
@@ -61,17 +61,17 @@ export function checkFirstExpirationNotification() {
 
   const firstExpirationNotificationDate = moment().add(-54, 'months').hours(0).minutes(0).seconds(0).milliseconds(0);
 
-  console.info('Recherche des demandes eligible a la premiere notification (modifiée après le '+moment(firstExpirationNotificationDate).format('YYYY-MM-DD HH:mm') +')');
+  console.info('Recherche des demandes eligible a la premiere notification (non modifiée depuis le '+moment(firstExpirationNotificationDate).format('YYYY-MM-DD HH:mm') +')');
 
 
   // recherche des demandes modifie il y a plus de 54 mois
   Request
     .find({
       "updatedAt": {"$lt": firstExpirationNotificationDate},
-      "hasFirstExpirationNotification": false
+      "$or": [{"hasFirstExpirationNotification": {"$exists": false}},{"hasFirstExpirationNotification": false}]
     })
     .populate('user', 'email')
-    .select('shortId user email updatedAt')
+    .select('shortId profile user email updatedAt mdph submittedAt')
     .exec()
     .then(
       function(datas) {
@@ -86,8 +86,6 @@ export function checkFirstExpirationNotification() {
           });
 
           //FIXME - Ajouter une action "premiere relance" ?
-
-          );
         });
       },
       function(err) {
@@ -103,17 +101,17 @@ export function checkLastExpirationNotification() {
   const lastExpirationNotificationDate = moment().add(-59, 'months').hours(0).minutes(0).seconds(0).milliseconds(0);
 
 
-  console.info('Recherche des demandes eligible a la derniere notification (modifiée après le '+moment(lastExpirationNotificationDate).format('YYYY-MM-DD HH:mm') +')');
+  console.info('Recherche des demandes eligible a la derniere notification (non modifiée depuis le '+moment(lastExpirationNotificationDate).format('YYYY-MM-DD HH:mm') +')');
 
 
   // recherche des demandes modifie il y a plus de 59 mois
   Request
     .find({
       "updatedAt": {"$lt": lastExpirationNotificationDate},
-      "hasLastExpirationNotification": false
+      "$or": [{"hasLastExpirationNotification": {"$exists": false}},{"hasLastExpirationNotification": false}]
     })
     .populate('user', 'email')
-    .select('shortId user email updatedAt')
+    .select('shortId profile user email updatedAt mdph submittedAt')
     .exec()
     .then(
       function(datas) {
