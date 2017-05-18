@@ -17,6 +17,7 @@ function compileContent(contentFile) {
 const receptionContentCompiled = compileContent('reception-request-content.html');
 const confirmationContentCompiled = compileContent('confirm-content.html');
 const urlFooterCompiled = compileContent('url-footer.html');
+const expirationContentCompiled = compileContent('expiration-content.html');
 
 const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
 
@@ -110,13 +111,37 @@ export function sendMailRenewPassword(emailDest, confirmationUrl) {
     });
 }
 
-export function sendMailExpired(request) {
+export function sendMailExpiration(request) {
   let options = {};
-  options.title = 'Demande supprimé';
-  options.content = 'Votre demande datant de 5 ans a ete supprimée';
+  options.title = 'Votre Mdph en ligne';
+  options.content = expirationContentCompiled({request});
 
   return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
       Mailer.sendMail(request.user.email, options.title, htmlContent);
     });
 }
+
+export function sendMailFirstExpirationNotification(request) {
+  let options = {};
+  options.title = 'Votre Mdph en ligne';
+  options.content = firstExpirationNotificationContentCompiled({request});
+
+  return generateEmailBodyWithTemplate(options)
+    .then(htmlContent => {
+      Mailer.sendMail(request.user.email, options.title, htmlContent);
+    });
+}
+
+export function sendMailLastExpirationNotification(request) {
+  let options = {};
+  options.title = 'Votre Mdph en ligne';
+  options.content = lastExpirationNotificationContentCompiled({request});
+
+  return generateEmailBodyWithTemplate(options)
+    .then(htmlContent => {
+      Mailer.sendMail(request.user.email, options.title, htmlContent);
+    });
+}
+
+
