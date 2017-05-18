@@ -1,5 +1,6 @@
 'use strict';
 
+import moment from 'moment';
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import path from 'path';
@@ -8,6 +9,7 @@ import * as Mailer from './send-mail.controller';
 const EmailTemplate = require('email-templates').EmailTemplate;
 
 import pdfMaker from '../../components/pdf-maker';
+import config from '../../config/environment';
 
 function compileContent(contentFile) {
   const contentTemplate =  String(fs.readFileSync(path.join(__dirname, 'templates', 'specific-content', contentFile)));
@@ -18,6 +20,8 @@ const receptionContentCompiled = compileContent('reception-request-content.html'
 const confirmationContentCompiled = compileContent('confirm-content.html');
 const urlFooterCompiled = compileContent('url-footer.html');
 const expirationContentCompiled = compileContent('expiration-content.html');
+const firstExpirationNotificationContentCompiled  = compileContent('firstExpirationNotification-content.html');
+const lastExpirationNotificationContentCompiled  = compileContent('lastExpirationNotification-content.html');
 
 const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
 
@@ -113,7 +117,7 @@ export function sendMailRenewPassword(emailDest, confirmationUrl) {
 
 export function sendMailExpiration(request) {
   let options = {};
-  options.title = 'Votre Mdph en ligne';
+  options.title = 'Votre dossier MDPH a été supprimé';
   options.content = expirationContentCompiled({request});
 
   return generateEmailBodyWithTemplate(options)
@@ -124,8 +128,10 @@ export function sendMailExpiration(request) {
 
 export function sendMailFirstExpirationNotification(request) {
   let options = {};
-  options.title = 'Votre Mdph en ligne';
-  options.content = firstExpirationNotificationContentCompiled({request});
+  options.title = 'Votre dossier MDPH sera supprimé dans six mois';
+    options.expirationDate  = moment().add(6, 'months');
+  options.url = `${config.baseUrl}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
+  options.content = firstExpirationNotificationContentCompiled({request, options});
 
   return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
@@ -135,13 +141,13 @@ export function sendMailFirstExpirationNotification(request) {
 
 export function sendMailLastExpirationNotification(request) {
   let options = {};
-  options.title = 'Votre Mdph en ligne';
-  options.content = lastExpirationNotificationContentCompiled({request});
+  options.title = 'Votre dossier MDPH sera supprimé dans un mois';
+  options.expirationDate  = moment().add(1, 'months');
+  options.url = `${config.baseUrl}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
+  options.content = lastExpirationNotificationContentCompiled({request, options});
 
   return generateEmailBodyWithTemplate(options)
     .then(htmlContent => {
       Mailer.sendMail(request.user.email, options.title, htmlContent);
     });
 }
-
-
