@@ -1,13 +1,13 @@
 'use strict';
-
-/* import moment from 'moment';
-import checkRequestValidity from './cron-register';
+/*
+import moment from 'moment';
+import {checkRequestExpiration} from './cron-register';
 import Request from '../api/request/request.model';
 import User from '../api/user/user.model';
 
 describe('Test cron method', function() {
 
-  const expiredDate = moment().add(-5, 'years').hours(0).minutes(0).seconds(0).milliseconds(0);
+  const expirationDate = moment().add(-5, 'years').hours(0).minutes(0).seconds(0).milliseconds(0);
 
   before(function() {
 
@@ -16,21 +16,22 @@ describe('Test cron method', function() {
     email: 'test@mail.com'
   });
 
-  var expiredRequest = new Request({
+  var expirateRequest = new Request({
       shortId: '1234',
-      updatedAt: moment(expiredDate).add(-1, 'day'),
+      updatedAt: moment(expirationDate).add(-1, 'day'),
       user: testUser._id
     });
 
-    expiredRequest.save();
+    expirateRequest.save();
 
   });
 
- describe('check expired demand', function() {
-    checkRequestValidity();
+ it('check expired demand', function() {
+   console.log('debut du test');
+   checkRequestExpiration();
 
     Request.count({
-      "updatedAt": {"$lt": expiredDate}
+      "updatedAt": {"$lt": expirationDate}
     })
     .exec()
     .then(function(count) {
@@ -38,4 +39,5 @@ describe('Test cron method', function() {
     });
   });
 
-});*/
+});
+*/

@@ -42,7 +42,9 @@ var RequestSchema = new Schema({
   renouvellements:[{ type: String, lowercase: true }],
   certificat:     Schema.Types.Mixed,
   synthese:       Schema.Types.Mixed,
-  comments:       { type: String }
+  comments:       { type: String },
+  hasFirstExpirationNotification: { type: Boolean, default: false },
+  hasLastExpirationNotification: { type: Boolean, default: false }
 });
 
 // RequestSchema.set('toObject', { virtuals: false });
