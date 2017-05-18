@@ -50,42 +50,6 @@ angular.module('impactApp')
                 return profile.identites.autorite;
               }
             }
-          },
-          'parent1@profil.autorite': {
-            templateUrl: 'components/autorite-form/autorite.html',
-            controller: 'AutoriteCtrl',
-
-            resolve: {
-              identite: function(profile) {
-                return profile.identites.autorite.parent1;
-              },
-
-              id: function() {
-                return '1';
-              },
-
-              required: function() {
-                return true;
-              }
-            }
-          },
-          'parent2@profil.autorite': {
-            templateUrl: 'components/autorite-form/autorite.html',
-            controller: 'AutoriteCtrl',
-
-            resolve: {
-              identite: function(profile) {
-                return profile.identites.autorite.parent2;
-              },
-
-              id: function() {
-                return '2';
-              },
-
-              required: function() {
-                return false;
-              }
-            }
           }
         }
       });
