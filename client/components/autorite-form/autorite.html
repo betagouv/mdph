@@ -1,21 +1,21 @@
 <h3>Parent {{id}}</h3>
 <section class="identite-section">
   <div class="section-row">
-    <div class="form-group required" ng-class="{'has-error': hasError('nom') && forms.infoForm.$submitted}">
+    <div class="form-group"
+         ng-class="{'has-error': hasError('nom') && forms.infoForm.$submitted, 'required': required}">
       <label for="nom{{id}}" class="control-label">Nom</label>
-      <input id="nom{{id}}" type="text" name="nom{{id}}" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
+      <input id="nom{{id}}" type="text" name="nom{{id}}" class="form-control" ng-model="identite.nom" ng-required="{{required}}">
       <div ng-messages="getError('nom')" ng-if="forms.infoForm.$submitted">
         <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-        <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
       </div>
     </div>
 
-    <div class="form-group required" ng-class="{'has-error': hasError('prenom') && forms.infoForm.$submitted}">
+    <div class="form-group"
+         ng-class="{'has-error': hasError('prenom') && forms.infoForm.$submitted, 'required': required}">
       <label for="prenom{{id}}" class="control-label">Prénom</label>
-      <input id="prenom{{id}}" type="text" name="prenom{{id}}" class="form-control" ng-model="identite.prenom" ng-minlength="1" required>
+      <input id="prenom{{id}}" type="text" name="prenom{{id}}" class="form-control" ng-model="identite.prenom" ng-required="{{required}}">
       <div ng-messages="getError('prenom')" ng-if="forms.infoForm.$submitted">
         <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-        <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
       </div>
     </div>
   </div>
@@ -82,10 +82,11 @@
 </section>
 
 <section class="identite-section">
-  <div class="form-group required" ng-class="{'has-error': hasError('email') && forms.infoForm.$submitted}">
+  <div class="form-group"
+       ng-class="{'has-error': hasError('email') && forms.infoForm.$submitted, 'required': required}">
     <label for="email{{id}}" class="control-label">Email</label>
     <div class="input-group margin-bottom-sm">
-      <input id="email{{id}}" type="email" name="email{{id}}" class="form-control" ng-model="identite.email" required>
+      <input id="email{{id}}" type="email" name="email{{id}}" class="form-control" ng-model="identite.email" ng-required="{{required}}">
       <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
     </div>
     <div ng-messages="getError('email')" ng-if="forms.infoForm.$submitted">
