@@ -52,7 +52,7 @@ angular.module('impactApp')
             }
           },
           'parent1@profil.autorite': {
-            templateUrl: 'app/profil/identites/autorite.html',
+            templateUrl: 'components/autorite-form/autorite.html',
             controller: 'AutoriteCtrl',
 
             resolve: {
@@ -70,7 +70,7 @@ angular.module('impactApp')
             }
           },
           'parent2@profil.autorite': {
-            templateUrl: 'app/profil/identites/autorite.html',
+            templateUrl: 'components/autorite-form/autorite.html',
             controller: 'AutoriteCtrl',
 
             resolve: {
