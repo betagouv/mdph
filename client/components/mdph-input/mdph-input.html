@@ -1,17 +1,18 @@
 <form name="zipcode">
-  <div class="form-group">
 
-    <label for="mdphinput" class="control-label">Code de votre département</label>
-    
+  <div class="form-inline">
+    <label for="mdphinput" class="control-label">Numéro de votre département</label>
+
     <input class="form-control" type="text"
            id="mdphinput" name="mdphinput"
            ng-model="mdphinputctrl.zipcode">
 
     <button class="btn btn-success" type="submit"
             name="submit" alt="Valider"
-            ng-if="mdphinputctrl.isOk()"
+            ng-disabled="!mdphinputctrl.isOk()"
             ng-click="mdphinputctrl.go()">
       Valider
     </button>
   </div>
+
 </form>
