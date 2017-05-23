@@ -277,11 +277,12 @@ L'administrateur du produit :
 
 **_Expérimental_** 
 - L'administrateur peut créer une nouvelle MDPH.
-  *pres-requis : le logo, l'image de fond, le telephone, l'adresse mail, la liste des sites (nom, adresse, telephone, email, horaire et coordonnées geographiques)
-  *Ajouter les images dans client/asset/images (logo*.jpg et *_bg.jpg)
-  *Ajouter un document avec le format
+  * pres-requis : le logo, l'image de fond, le telephone, l'adresse mail, la liste des sites (nom, adresse, telephone, email, horaire et coordonnées geographiques)
+  * Ajouter les images dans client/asset/images (logo*.jpg et *_bg.jpg)
+  * Ajouter un document avec le format
+  
+  ''' json
   {
-    "_id" : ObjectId(""),
     "name" : "",
     "zipcode" : "",
     "logo" : "",
@@ -303,4 +304,6 @@ L'administrateur du produit :
     ],
     "likes" : []
   }
-  *Creer un compte administrateur pour la MPDH en utilisant le lien https://mdph.beta.gouv.fr/mdph/62/dashboard/utilisateurs/agents
+  '''
+
+  * Creer un compte administrateur pour la MPDH en utilisant le lien https://mdph.beta.gouv.fr/mdph/62/dashboard/utilisateurs/agents
