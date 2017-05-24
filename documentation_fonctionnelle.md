@@ -306,4 +306,4 @@ L'administrateur du produit :
   }
   '''
 
-  * Creer un compte administrateur pour la MPDH en utilisant le lien https://mdph.beta.gouv.fr/mdph/62/dashboard/utilisateurs/agents
+  * Creer un compte administrateur pour la MPDH en utilisant le lien https://mdph.beta.gouv.fr/mdph/<mdph>/dashboard/utilisateurs/agents
