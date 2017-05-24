@@ -15,7 +15,7 @@ angular.module('impactApp')
       });
   });
 
-  angular.module('impactApp')
+angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('cgu', {
