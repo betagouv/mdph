@@ -47,7 +47,7 @@ var all = {
   },
 
   cron:{
-    enabled : process.env.CRON_ENABLED || true
+    enabled : process.env.CRON_ENABLED || false
   }
 };
 
