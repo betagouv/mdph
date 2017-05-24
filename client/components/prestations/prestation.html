@@ -1,17 +1,19 @@
-<div class="input">
-  <input type="checkbox" ng-model="prestationctrl.prestation.choice" name="prestationctrl.id" id="{{prestationctrl.id}}"/>
-</div>
-<div class="detail">
-  <label for="{{prestationctrl.id}}">{{prestationctrl.titre}}</label>&nbsp;&nbsp;
-  <a target="_blank"
-     href="{{prestationctrl.link}}">
-    En savoir plus
-    <i class="fa fa-external-link" aria-hidden="true"></i></a>
-  <div class="text-justify">
-    <div ng-if="prestationctrl.prestation.choice">
-      <input ng-disabled="!prestationctrl.prestation.choice" type="checkbox" ng-model="prestationctrl.prestation.renouvellement"
-             name="{{prestationctrl.id + '-renouvellement'}}" id="{{prestationctrl.id + '-renouvellement'}}"/>
-      <label for="{{prestationctrl.id + '-renouvellement'}}">Je perçois déjà cette prestation</label>
+<div class="prestation">
+  <div class="input">
+    <input type="checkbox" ng-model="prestationctrl.prestation.choice" name="prestationctrl.id" id="{{prestationctrl.id}}"/>
+  </div>
+  <div class="detail">
+    <label for="{{prestationctrl.id}}">{{prestationctrl.titre}}</label>&nbsp;&nbsp;
+    <a target="_blank"
+       href="{{prestationctrl.link}}">
+      En savoir plus
+      <i class="fa fa-external-link" aria-hidden="true"></i></a>
+    <div class="text-justify">
+      <div ng-if="prestationctrl.prestation.choice">
+        <input ng-disabled="!prestationctrl.prestation.choice" type="checkbox" ng-model="prestationctrl.prestation.renouvellement"
+               name="{{prestationctrl.id + '-renouvellement'}}" id="{{prestationctrl.id + '-renouvellement'}}"/>
+        <label for="{{prestationctrl.id + '-renouvellement'}}">Je perçois déjà cette prestation</label>
+      </div>
     </div>
   </div>
 </div>
