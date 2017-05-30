@@ -42,9 +42,7 @@
               <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword"/>
               <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
             </div>
-            <p class="help-block text-dark-red" ng-show="passwordForm.password.$error" ng-if="passwordForm.$submitted">
-              Le mot de passe actuel n'est pas correct
-            </p>
+            <p class="help-block text-dark-red">{{ errors.password }}</p>
           </div>
         </div>
 
