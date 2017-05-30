@@ -2,12 +2,54 @@
 
   <ul class="list-prestations">
 
-    <div class="well">
+    Les droits et les prestations délivrés par la commission des droits et de l’autonomie des personnes
+    handicapées sont soumis à certaines conditions, notamment liées à l’âge :
 
+    <div class="well">
       <h3>Demandes relatives à la vie quotidienne</h3>
+      <h3>Vous avez moins de 20 ans :</h3>
 
       <li>
         <prestation ng-model="demandectrl.aeeh"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.pch"></prestation>
+      </li>
+
+      <div class="well-detail-darker">
+
+        <h6>Carte mobilité inclusion</h6>
+
+        <ul class="list-prestations">
+
+          <li>
+            <prestation ng-model="demandectrl.carteinvalidite"></prestation>
+          </li>
+
+          <li>
+            <prestation ng-model="demandectrl.cartestationnement"></prestation>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <li>
+        <prestation ng-model="demandectrl.av"></prestation>
+      </li>
+
+    </div>
+
+    <div class="well">
+      <h3>Demandes relatives à la vie quotidienne</h3>
+      <h3>Vous avez plus de 20 ans :</h3>
+      <li>
+        <prestation ng-model="demandectrl.aah"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.complement"></prestation>
       </li>
 
       <li>
@@ -16,10 +58,6 @@
 
       <li>
         <prestation ng-model="demandectrl.ems"></prestation>
-      </li>
-
-      <li>
-        <prestation ng-model="demandectrl.pch"></prestation>
       </li>
 
 
@@ -43,39 +81,37 @@
       </li>
 
       <li>
-        <prestation ng-model="demandectrl.aah"></prestation>
+        <prestation ng-model="demandectrl.pch"></prestation>
       </li>
 
-      <li>
-        <prestation ng-model="demandectrl.complement"></prestation>
-      </li>
+      <div class="well-detail-darker">
 
+        <h6>Carte mobilité inclusion</h6>
 
-      <li>
-        <div class="well-detail-darker">
+        <ul class="list-prestations">
 
-          <h6>Carte mobilité inclusion</h6>
+          <li>
+            <prestation ng-model="demandectrl.carteinvalidite"></prestation>
+          </li>
 
-          <ul class="list-prestations">
+          <li>
+            <prestation ng-model="demandectrl.cartestationnement"></prestation>
+          </li>
 
-            <li>
-              <prestation ng-model="demandectrl.carteinvalidite"></prestation>
-            </li>
+        </ul>
 
-            <li>
-              <prestation ng-model="demandectrl.cartestationnement"></prestation>
-            </li>
-
-          </ul>
-
-        </div>
-      </li>
+      </div>
 
       <li>
         <prestation ng-model="demandectrl.av"></prestation>
       </li>
 
+
     </div>
+
+  </ul>
+
+  <ul class="list-prestations">
 
     <div class="well">
 
@@ -110,21 +146,22 @@
     </div>
 
   </ul>
+</div>
 
-  <div ng-if="request.status !== 'en_cours'">
-    <h4 ng-show="request.detailPrestations">Nouvelles prestations</h4>
-    <div ng-repeat="prestation in request.detailPrestations">
-      <dl class="demande-prestations">
-        <dt>{{prestation.title}}</dt>
-        <dd>{{prestation.description}}</dd>
-      </dl>
-    </div>
-
-    <h4 ng-show="request.detailRenouvellements">Renouvellements de prestations</h4>
-    <div ng-repeat="prestation in request.detailRenouvellements">
-      <dl class="demande-prestations">
-        <dt>{{prestation.title}}</dt>
-        <dd>{{prestation.description}}</dd>
-      </dl>
-    </div>
+<div ng-if="request.status !== 'en_cours'">
+  <h4 ng-show="request.detailPrestations">Nouvelles prestations</h4>
+  <div ng-repeat="prestation in request.detailPrestations">
+    <dl class="demande-prestations">
+      <dt>{{prestation.title}}</dt>
+      <dd>{{prestation.description}}</dd>
+    </dl>
   </div>
+
+  <h4 ng-show="request.detailRenouvellements">Renouvellements de prestations</h4>
+  <div ng-repeat="prestation in request.detailRenouvellements">
+    <dl class="demande-prestations">
+      <dt>{{prestation.title}}</dt>
+      <dd>{{prestation.description}}</dd>
+    </dl>
+  </div>
+</div>
