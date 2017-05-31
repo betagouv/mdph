@@ -1,0 +1,28 @@
+.deps-map-container {
+  #map {
+    height: 70rem;
+    width:100%;
+  }
+
+  .marker-description {
+    table {
+      margin: 0;
+    }
+
+    td.cell-icon {
+      text-align: center;
+    }
+
+    td {
+      padding: 5px;
+
+      i {
+        color: $light-blue;
+      }
+
+      span {
+        white-space: pre-wrap;
+      }
+    }
+  }
+}
