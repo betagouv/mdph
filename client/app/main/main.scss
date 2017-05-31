@@ -130,6 +130,13 @@
   margin-top: 20px;
 }
 
+.section-main.section-search {
+  > mdph-input {
+      @extend .col-md-6;
+      @extend .col-md-offset-3;
+  }
+}
+
 .section-main.section-text > div {
   @extend .row;
   > p {
