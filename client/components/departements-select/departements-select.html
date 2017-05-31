@@ -1,0 +1,14 @@
+<div>
+  <ui-select ng-model="depsselectpctrl.mdph" on-select="depsselectpctrl.goToMdph($item.zipcode)">
+
+    <ui-select-match placeholder="Département...">
+      <span ng-bind-html="$select.selected.zipcode && $select.selected.zipcode + '. ' + $select.selected.name"></span>
+    </ui-select-match>
+
+    <ui-select-choices repeat="item in (depsselectpctrl.mdphs | filterDepartements:$select.search) track by item._id">
+      <span ng-bind-html="item.zipcode + '. ' + item.name | highlight: $select.search"></span>
+    </ui-select-choices>
+
+  </ui-select>
+
+</div>
