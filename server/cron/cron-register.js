@@ -9,7 +9,7 @@ const cron = require('node-cron');
 
 const checkRequestExpirationTask = cron.schedule('0 0 * * *', checkRequestExpiration, false);
 const checkFirstExpirationNotificationTask = cron.schedule('0 1 * * *', checkFirstExpirationNotification, false);
-const checkLastExpirationNotificationTask = cron.schedule('* * * * *', checkLastExpirationNotification, false);
+const checkLastExpirationNotificationTask = cron.schedule('0 2 * * *', checkLastExpirationNotification, false);
 
 if(config.cron.enabled){
   checkRequestExpirationTask.start();
