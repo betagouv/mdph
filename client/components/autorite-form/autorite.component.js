@@ -7,6 +7,7 @@ angular.module('impactApp').component('autoriteForm', {
   bindings: {
     identite: '=',
     id: '<',
-    required: '<'
+    required: '<',
+    currentMdph: '<',
   }
 });

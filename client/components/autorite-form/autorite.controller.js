@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AutoriteCtrl', function($state, $scope, identite, AdressService, $window, id, currentMdph) {
-      $scope.identite = identite;
-      $scope.id = id;
-      $scope.currentMdph = currentMdph;
+  .controller('AutoriteCtrl', function($state, $scope, AdressService, $window) {
+      $scope.identite = this.identite;
+      $scope.id = this.id;
+      $scope.required = this.required;
+      $scope.currentMdph = this.currentMdph;
       $scope.getAdress = AdressService.getAdress;
       $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
 
