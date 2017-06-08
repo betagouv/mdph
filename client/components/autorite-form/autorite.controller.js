@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AutoriteCtrl', function($state, $scope, AdressService, $window) {
+  .controller('AutoriteCtrl', function($state, $scope, AdressService) {
       $scope.identite = this.identite;
       $scope.id = this.id;
       $scope.required = this.required;
