@@ -1,5 +1,5 @@
 .banner.banner-blue {
-  background: linear-gradient(45deg, $light-blue, $bg-blue);
+  background-image: linear-gradient(45deg, $light-blue, $bg-blue);
 }
 
 .hero-button {
@@ -28,6 +28,7 @@
 }
 
 .hero-unit {
+  padding: 5em;
   color: $light-white;
   display: flex;
   flex-direction: column;
@@ -35,7 +36,6 @@
   align-items: center;
   text-align: center;
   min-height: 330px;
-  background-color: $lighter-blue;
   background: linear-gradient(to left, rgba(51, 62, 84, 0.50) , rgba(79, 96, 131, 0.50));
 
   h1 {
@@ -78,6 +78,10 @@
   .btn-link {
     color: white;
     padding-top: 0;
+  }
+
+  > mdph-input {
+    margin-top: 2em;
   }
 }
 
@@ -128,13 +132,6 @@
 .section-main.section-flow > .more {
   text-align: center;
   margin-top: 20px;
-}
-
-.section-main.section-search {
-  > mdph-input {
-      @extend .col-md-6;
-      @extend .col-md-offset-3;
-  }
 }
 
 .section-main.section-text > div {

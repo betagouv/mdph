@@ -1,10 +1,10 @@
 <form name="zipcode" ng-submit="mdphinputctrl.go()">
+  <label for="mdphinput">Autre département, indiquez votre numéro <br><small>(&nbsp;par exemple 01 ou 75&nbsp;)</small></label>
 
   <div class="form-inline">
-    <label for="mdphinput">Numéro de votre département</label>
-
     <input class="form-control" type="text"
            id="mdphinput" name="mdphinput"
+           maxlength="3"
            ng-model="mdphinputctrl.zipcode">
 
     <input id="btn-login" class="btn btn-success"
