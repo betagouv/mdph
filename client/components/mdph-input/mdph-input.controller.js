@@ -11,7 +11,8 @@ angular.module('impactApp')
     };
 
     this.go = () => {
-      $state.go('departement', {codeDepartement: this.zipcode});
+      const codeDepartement = this.zipcode.toUpperCase();
+      $state.go('departement', {codeDepartement});
     };
 
   });
