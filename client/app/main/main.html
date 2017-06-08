@@ -1,6 +1,6 @@
 <div ui-view>
   <header class="banner banner-blue">
-    <div class="hero-unit container">
+    <div class="hero-unit">
       <h1>Trouvez le service en ligne de votre MDPH</h1>
 
       <ul class="mdph-choices">
@@ -10,12 +10,10 @@
             <strong>{{mdph.zipcode}}</strong>. {{mdph.name}}</a>
         </li>
       </ul>
+
+      <mdph-input></mdph-input>
     </div>
   </header>
-
-  <div class="section-main section-search">
-    <mdph-input></mdph-input>
-  </div>
 
   <div class="section-main section-flow">
     <div class="flow">
