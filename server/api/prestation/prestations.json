@@ -55,6 +55,22 @@
     "description": "Un travailleur handicapé est une personne dont les possibilités d'obtenir ou de conserver un emploi sont réduites à cause de son handicap. Il peut s'agir de l'altération d'une ou plusieurs fonctions physique, sensorielle, mentale ou psychique.",
     "link": "http://vosdroits.service-public.fr/particuliers/F1650.xhtml"
   },
+  "crp_cpo_ueros": {
+    "id": "crp_cpo_ueros",
+    "type": "travail",
+    "label": "CRP_CPO_UEROS",
+    "title": "Centre de rééducation professionnelle (CRP), Centre de pré-orientation (CPO) ou Unité d’évaluation, de réentraînement et d’orientation sociale et socioprofessionnelle pour personnes cérébro-lésées (UEROS)",
+    "description": "Centre de rééducation professionnelle (CRP), Centre de pré-orientation (CPO) ou Unité d’évaluation, de réentraînement et d’orientation sociale et socioprofessionnelle pour personnes cérébro-lésées (UEROS)",
+    "link": "http://www.mdph33.fr/l_orientation_professionnelle_orp.html"
+  },
+  "esat": {
+    "id": "esat",
+    "type": "travail",
+    "label": "ESAT",
+    "title": "Établissement et service d’aide par le travail (ESAT)",
+    "description": "Établissement et service d’aide par le travail (ESAT)",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F1654"
+  },
   "av": {
     "id": "av",
     "type": "aidant",
