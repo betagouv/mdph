@@ -153,6 +153,12 @@ angular.module('impactApp')
     this.rqth = prestations.rqth;
     this.prestations.push(this.rqth);
 
+    this.crp_cpo_ueros = prestations.crp_cpo_ueros;
+    this.prestations.push(this.crp_cpo_ueros);
+
+    this.esat = prestations.esat;
+    this.prestations.push(this.esat);
+
     this.av = prestations.av;
     this.prestations.push(this.av);
 
