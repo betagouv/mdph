@@ -102,8 +102,7 @@ export function showPartenaire(req, res) {
     .findOne({
       shortId: req.params.shortId
     })
-    .populate('user', 'name')
-    .select('shortId user name mdph createdAt')
+    .select('shortId mdph createdAt formAnswers.identites.beneficiaire.nom formAnswers.identites.beneficiaire.prenom')
     .exec()
     .then(respondWithResult(res))
     .catch(handleError(req, res));
@@ -211,6 +210,7 @@ function computeEnregistrementOptions(request, host) {
   const options = {};
 
   const invalidDocumentTypes = request.getInvalidDocumentTypes();
+  const invalidDocuments = request.getInvalidDocuments();
   const nonPresentAskedDocumentTypes = request.getNonPresentAskedDocumentTypes();
 
   if (!request.receivedAt) {
@@ -223,6 +223,8 @@ function computeEnregistrementOptions(request, host) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;
     options.invalidDocumentTypes = invalidDocumentTypes;
+    options.invalidDocuments = invalidDocuments;
+
   } else if (nonPresentAskedDocumentTypes.length > 0) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;

@@ -2,7 +2,7 @@
   <h1>Demande {{request.shortId}}</h1>
   <div class="alert alert-info">
     <p>
-      <strong>Demandeur :</strong> {{request.user.name}} <br>
+      <strong>Bénéficiaire :</strong> {{request.formAnswers.identites.beneficiaire.nom}} {{request.formAnswers.identites.beneficiaire.prenom}} <br>
       <strong>Demande faite le :</strong> {{request.createdAt | date : format : timezone}}  <br>
     </p>
   </div>

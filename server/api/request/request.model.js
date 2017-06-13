@@ -11,6 +11,7 @@ var DocumentSchema = new Schema({
   partenaire:     { type: Schema.Types.ObjectId, ref: 'Partenaire' },
   type:           String,
   isInvalid:      Boolean,
+  invalidReason:  String,
   isAsked:        Boolean,
   originalname:   String,
   filename:       String,

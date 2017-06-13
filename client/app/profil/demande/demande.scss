@@ -1,4 +1,4 @@
-#profil-demande {
+form#profil-demande {
   .demande-section {
     background: #fff;
     margin-bottom: 20px;
@@ -118,4 +118,21 @@
   border: 1px solid rgba(34,36,38,.15);
   border-top: 0;
   padding: 30px;
+
+
+  .header {
+   display: flex;
+   justify-content: space-between;
+  }
+}
+
+.request-identifier {
+  border-radius: 2px;
+  background-color: $flat-ui-blue;
+  color: white;
+  padding: 4px 20px;
+  display: inline-block;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
 }

@@ -15,7 +15,8 @@ server/uploads/temp/*
 !server/uploads/temp/.gitkeep
 !server/uploads/run_compress.js
 coverage
-.nyc_output
+.nyc_output/*
+!.nyc_output/.gitkeep
 
 #OSX
 .DS_Store

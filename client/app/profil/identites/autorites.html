@@ -1,17 +1,12 @@
 <form id="profile-identites" aria-labelledby="infoPerso" name="forms.infoForm" ng-submit="submit(forms.infoForm)" novalidate>
   <h2>Identité de l'autorité parentale</h2>
 
-  <!-- <div class="identity-form-actions">
-    <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
-    <button type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
-  </div> -->
-
   <div class="row">
     <div class="col-sm-6">
-      <div ui-view="parent1"></div>
+      <autorite-form identite="identite.parent1" id="1" current-mdph="currentMdph" required="true"></autorite-form>
     </div>
     <div class="col-sm-6">
-      <div ui-view="parent2"></div>
+      <autorite-form identite="identite.parent2" id="2" current-mdph="currentMdph" required="false"></autorite-form>
     </div>
   </div>
 

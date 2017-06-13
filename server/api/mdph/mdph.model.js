@@ -15,6 +15,7 @@ var MdphSchema = new Schema({
   },
   locations: [
     {
+      name:         { type: String },
       address:      { type: String },
       coordinates: {
         coordx:     { type: String },
