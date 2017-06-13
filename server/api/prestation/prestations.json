@@ -71,6 +71,22 @@
     "description": "Établissement et service d’aide par le travail (ESAT)",
     "link": "https://www.service-public.fr/particuliers/vosdroits/F1654"
   },
+  "marche_travail": {
+    "id": "marche_travail",
+    "type": "travail",
+    "label": "MARCHE_TRAVAIL",
+    "title": "Marché du travail",
+    "description": "L'entreprise adaptée permet à une personne en situation de handicap d'exercer une activité professionnelle dans des conditions adaptées à ses possibilités.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F1653"
+  },
+  "marche_travail_acc": {
+    "id": "marche_travail_acc",
+    "type": "travail",
+    "label": "MARCHE_TRAVAIL_ACC",
+    "title": "Avec accompagnement par le dispositif Emploi accompagné",
+    "description": "Avec accompagnement par le dispositif Emploi accompagné",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F1653"
+  },
   "av": {
     "id": "av",
     "type": "aidant",

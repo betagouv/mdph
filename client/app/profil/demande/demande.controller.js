@@ -159,6 +159,12 @@ angular.module('impactApp')
     this.esat = prestations.esat;
     this.prestations.push(this.esat);
 
+    this.marche_travail = prestations.marche_travail;
+    this.prestations.push(this.marche_travail);
+
+    this.marche_travail_acc = prestations.marche_travail_acc;
+    this.prestations.push(this.marche_travail_acc);
+
     this.av = prestations.av;
     this.prestations.push(this.av);
 
