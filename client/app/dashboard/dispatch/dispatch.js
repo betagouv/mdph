@@ -13,7 +13,7 @@ angular.module('impactApp')
         url: '/regles',
         templateUrl: 'app/dashboard/dispatch/regles/regles.html',
         controller: function($scope, DispatchRuleResource, currentMdph) {
-          $scope.dispatchRules = DispatchRuleResource.query({mdph: currentMdph._id});
+          $scope.dispatchRules = DispatchRuleResource.query({mdph: currentMdph.zipcode});
         },
 
         authenticate: true
@@ -23,16 +23,16 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/dispatch/regles/edit/edit.html',
         controller: 'DispatchRuleEditCtrl',
         resolve: {
-          dispatchRule: function(DispatchRuleResource, $stateParams) {
+          dispatchRule: function(DispatchRuleResource, $stateParams, currentMdph) {
             if ($stateParams.id) {
-              return DispatchRuleResource.get({id: $stateParams.id}).$promise;
+              return DispatchRuleResource.get({mdph: currentMdph.zipcode, id: $stateParams.id}).$promise;
             } else {
               return new DispatchRuleResource();
             }
           },
 
           secteurs: function(SecteurResource, currentMdph) {
-            return SecteurResource.query({mdph: currentMdph._id}).$promise;
+            return SecteurResource.query({mdph: currentMdph.zipcode}).$promise;
           },
 
           zipcodes: function() {
@@ -45,11 +45,11 @@ angular.module('impactApp')
       .state('dashboard.dispatch.secteurs', {
         url: '/secteurs',
         templateUrl: 'app/dashboard/dispatch/secteurs/secteurs.html',
-        controller: function($scope, secteurs) {
+        controller: function($scope, secteurs, currentMdph) {
           $scope.secteurs = secteurs;
 
           $scope.delete = function(secteur, idx) {
-            secteur.$delete(function() {
+            secteur.$delete({mdph: currentMdph.zipcode}, function() {
               $scope.secteurs.splice(idx, 1);
             });
           };
@@ -57,7 +57,7 @@ angular.module('impactApp')
 
         resolve: {
           secteurs: function(SecteurResource, currentMdph) {
-            return SecteurResource.query({mdph: currentMdph._id}).$promise;
+            return SecteurResource.query({mdph: currentMdph.zipcode}).$promise;
           }
         },
         authenticate: true
@@ -67,9 +67,9 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/dispatch/secteurs/edit/edit.html',
         controller: 'SecteurEditCtrl',
         resolve: {
-          secteur: function(SecteurResource, $stateParams) {
+          secteur: function(SecteurResource, $stateParams, currentMdph) {
             if ($stateParams.id) {
-              return SecteurResource.get({id: $stateParams.id}).$promise;
+              return SecteurResource.get({mdph: currentMdph.zipcode, id: $stateParams.id}).$promise;
             } else {
               return new SecteurResource();
             }
