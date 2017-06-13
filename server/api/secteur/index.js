@@ -1,6 +1,5 @@
 'use strict';
 
-import {hasRole} from '../../auth/auth.service';
 import {Router} from 'express';
 import * as controller from './secteur.controller';
 

@@ -1,7 +1,6 @@
 'use strict';
 
 import {Router} from 'express';
-import {hasRole} from '../../auth/auth.service';
 import * as controller from './dispatch-rule.controller';
 
 var router = new Router();
