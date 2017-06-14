@@ -121,6 +121,13 @@
         <prestation ng-model="demandectrl.pps"></prestation>
       </li>
 
+      <li ng-if="demandectrl.pps.choice && demandectrl.pps.renouvellement">
+        <p>Préciser éventuellement votre demande :</p>
+        <textarea type="text" class="form-control"
+                  rows="4" ng-model="demandectrl.pps_comment">
+        </textarea>
+      </li>
+
     </div>
 
     <div class="well">
