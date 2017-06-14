@@ -56,6 +56,18 @@ describe('Controller: demande', function() {
       rqth: {
         id: 'rqth',
       },
+      crp_cpo_ueros: {
+        id: 'crp_cpo_ueros',
+      },
+      esat: {
+        id: 'esat',
+      },
+      marche_travail: {
+        id: 'marche_travail',
+      },
+      marche_travail_acc: {
+        id: 'marche_travail_acc',
+      },
       av: {
         id: 'av',
       },
@@ -137,6 +149,8 @@ describe('Controller: demande', function() {
       //given
       controller.cartestationnement = _.assign(controller.cartestationnement, {choice: true});
       controller.carteinvalidite = _.assign(controller.carteinvalidite, {choice: true, renouvellement: true});
+
+      console.log('$scope', $scope);
 
       $scope.submit({$valid: true});
 
