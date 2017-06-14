@@ -63,3 +63,16 @@
 .td-item {
   margin-right: 5px;
 }
+
+.btn-refresh {
+  margin-left: 20px;
+
+  &.refreshing {
+    &:before {
+      content: "\f021";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+    }
+  }
+}
