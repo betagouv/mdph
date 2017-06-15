@@ -68,8 +68,8 @@ describe('Build pdf structure', function() {
         /*jshint -W030 */
         structure.should.be.an.Array;
         structure.length.should.be.eql(4);
-        structure[0].should.be.eql('/fake/path/to/request.pdf');
-        structure[1].should.be.eql('/path/to/carte-identite');
+        structure[0].path.should.be.eql('/fake/path/to/request.pdf');
+        structure[1].path.should.be.eql('/path/to/carte-identite');
         done();
       });
     });
@@ -97,8 +97,8 @@ describe('Build pdf structure', function() {
         /*jshint -W030 */
         structure.should.be.an.Array;
         structure.length.should.be.eql(4);
-        structure[0].should.be.eql('/fake/path/to/request.pdf');
-        structure[1].should.be.eql('/path/to/certificat-medical');
+        structure[0].path.should.be.eql('/fake/path/to/request.pdf');
+        structure[1].path.should.be.eql('/path/to/certificat-medical');
         done();
       });
     });
