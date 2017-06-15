@@ -27,6 +27,7 @@ var MdphSchema = new Schema({
       headquarters: { type: Boolean },
     }
   ],
+  separateFilesInPdfStructure: { type: Boolean },
 });
 
 export default mongoose.model('Mdph', MdphSchema);

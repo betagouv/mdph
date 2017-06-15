@@ -4,6 +4,7 @@ import path from 'path';
 import htmlToPdf from 'html-pdf';
 import pdfConvert from './pdf_utils/convert';
 import pdfJoin from './pdf_utils/join';
+import pdfArchive from './pdf_utils/archive';
 import pdfBuild from './pdf_structure/build';
 import pdfDecrypt from './pdf_utils/decrypt';
 import pdfFilterMissing from './pdf_utils/filter-missing';
@@ -59,16 +60,28 @@ function joinPdfStructureInOneFile(tempDirPath) {
   };
 }
 
-function createStructuredRequestPdf({tempDirPath, recapitulatifPdfPath, request}) {
+function createRequestArchive(tempDirPath) {
+  return function(pdfStructure) {
+    return pdfArchive(pdfStructure, tempDirPath);
+  };
+}
+
+function createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, separateFilesInPdfStructure}) {
   return transformImagesToPdf(tempDirPath, request)
     .then(() => pdfDecrypt(tempDirPath, request.documents))
     .then(() => pdfFilterMissing(request.documents))
     .then(buildStructure(request, recapitulatifPdfPath))
     .then(writeCategoriesSeparatorsToFile(tempDirPath))
-    .then(joinPdfStructureInOneFile(tempDirPath));
+    .then((pdfStructure) => {
+      if (separateFilesInPdfStructure) {
+        return Promise.resolve(createRequestArchive(tempDirPath)(pdfStructure));
+      } else {
+        return Promise.resolve(joinPdfStructureInOneFile(tempDirPath)(pdfStructure));
+      }
+  });
 }
 
-function createRequestPdf({role, request, host, tempDirPath}) {
+function createRequestPdf({role, request, host, tempDirPath, separateFilesInPdfStructure}) {
   return new Promise(function(resolve, reject) {
     Recapitulatif.answersToHtml({request, host}, (err, recapitulatifHtml) => {
       if (err) {
@@ -83,8 +96,8 @@ function createRequestPdf({role, request, host, tempDirPath}) {
         }
 
         if (role !== 'user') {
-          return createStructuredRequestPdf({tempDirPath, recapitulatifPdfPath, request}).then(pdfPath => {
-            return resolve(pdfPath);
+          return createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, separateFilesInPdfStructure}).then(stream => {
+            return resolve(stream);
           });
         }
 
@@ -94,9 +107,9 @@ function createRequestPdf({role, request, host, tempDirPath}) {
   });
 }
 
-export default function({request, host, role}) {
+export default function({request, host, role, separateFilesInPdfStructure}) {
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
-    return createRequestPdf({tempDirPath, request, host, role});
+    return createRequestPdf({tempDirPath, request, host, role, separateFilesInPdfStructure});
   });
 }

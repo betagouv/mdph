@@ -289,21 +289,11 @@ export function create(req, res) {
 
 // Updates an existing mdph in the DB.
 export function update(req, res) {
-  if (req.body._id) { delete req.body._id; }
-
-  Mdph.findOne({
-    id: req.params.id
-  }, function(err, mdph) {
+  req.mdph.separateFilesInPdfStructure = req.body.separateFilesInPdfStructure;
+  req.mdph.save(function(err, saved) {
     if (err) { return handleError(req, res, err); }
 
-    if (!mdph) { return res.sendStatus(404); }
-
-    var updated = _.merge(mdph, req.body);
-    updated.save(function(err) {
-      if (err) { return handleError(req, res, err); }
-
-      return res.status(200).json(mdph);
-    });
+    return res.status(200).json(saved);
   });
 }
 

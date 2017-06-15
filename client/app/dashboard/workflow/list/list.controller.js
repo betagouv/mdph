@@ -92,7 +92,8 @@ angular.module('impactApp')
         const beneficiaire = request.formAnswers.identites.beneficiaire;
         const pdfName = beneficiaire.nom.toLowerCase() +
                         '_' + beneficiaire.prenom.toLowerCase() +
-                        '_' + request.shortId + '.pdf';
+                        '_' + request.shortId;
+
         $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + this.token);
       };
 

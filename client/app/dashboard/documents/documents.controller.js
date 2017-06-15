@@ -41,6 +41,10 @@ angular.module('impactApp')
       return typeof node._id === 'undefined';
     }
 
+    $scope.saveConcatPdf = () => {
+      currentMdph.$update();
+    };
+
     $scope.treeOptions = {
       accept: function(sourceNodeScope, destNodesScope) {
         if (isDocumentType(sourceNodeScope.$modelValue)) {

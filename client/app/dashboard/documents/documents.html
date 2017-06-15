@@ -1,5 +1,10 @@
 <div class="plan-classement">
   <div class="wrapper">
+    <div>
+      <input type="checkbox" id="checkbox-concat-pdf" ng-model="currentMdph.separateFilesInPdfStructure" ng-change="saveConcatPdf()">
+      <label for="checkbox-concat-pdf" class="control-label">Télécharger les demandes en plusieurs fichiers</label>
+    </div>
+
     <div class="trees">
       <div class="tree-wrapper">
         <div class="tree-title">

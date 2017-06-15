@@ -2,9 +2,11 @@
 
 'use strict';
 
+import _ from 'lodash';
 import tmp from 'tmp';
-import {spawn} from 'child_process';
+import { spawn } from 'child_process';
 import path from 'path';
+import { createReadStream } from 'fs';
 
 export default function(fileList, directory) {
   return new Promise((resolve, reject) => {
@@ -13,7 +15,9 @@ export default function(fileList, directory) {
         return reject(err);
       }
 
-      const args = fileList.concat(['cat', 'output', tempFilePath]);
+      const fileListPaths = _.pluck(fileList, 'path');
+
+      const args = fileListPaths.concat(['cat', 'output', tempFilePath]);
       const pdftk = spawn('pdftk', args);
 
       pdftk.stderr.on('data', function(data) {
@@ -26,7 +30,8 @@ export default function(fileList, directory) {
       });
 
       pdftk.on('exit', function() {
-        return resolve(tempFilePath);
+        var readStream = createReadStream(tempFilePath);
+        return resolve(readStream);
       });
     });
   });

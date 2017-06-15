@@ -26,23 +26,25 @@ module.exports = function(zipcode, requestTempPdfPath, documentList) {
 
             // Main request document
             if (category.required) {
-              pdfStructure.unshift(requestTempPdfPath);
+              pdfStructure.unshift({name: 'Demande.pdf', path: requestTempPdfPath});
               if (category.barcode) {
-                pdfStructure.unshift(gfs.createReadStream({_id: category.barcode._id}));
+                pdfStructure.unshift({name: 'separateur_demande.pdf', path: gfs.createReadStream({_id: category.barcode._id})});
               }
 
               documentFoundForThisCategory = true;
             }
 
             _.forEach(category.documentTypes, function(documentType) {
+              var index = 0;
               _.forEach(documentList, function(currentDocument) {
                 if (currentDocument.type === documentType.id) {
+                  index += 1;
                   if (!documentFoundForThisCategory && category.barcode) {
-                    pdfStructure.push(gfs.createReadStream({_id: category.barcode._id}));
+                    pdfStructure.push({name: `separateur_${documentType.id}.pdf`, path: gfs.createReadStream({_id: category.barcode._id})});
                     documentFoundForThisCategory = true;
                   }
 
-                  pdfStructure.push(currentDocument.path);
+                  pdfStructure.push({name: `${documentType.label}_${index}.pdf`, path:currentDocument.path});
                   currentDocument.___classified = true;
                 }
               });
@@ -55,11 +57,13 @@ module.exports = function(zipcode, requestTempPdfPath, documentList) {
           });
 
           if (unclassifiedCategory.barcode && unclassifiedDocuments.length > 0) {
-            pdfStructure.push(gfs.createReadStream({_id: unclassifiedCategory.barcode._id}));
+            pdfStructure.push({name: 'separateur_autre.pdf', path: gfs.createReadStream({_id: unclassifiedCategory.barcode._id})});
           }
 
+          var index = 0;
           _.forEach(unclassifiedDocuments, function(currentDocument) {
-            pdfStructure.push(currentDocument.path);
+            index += 1;
+            pdfStructure.push({name: `Non-classifié_${index}.pdf`, path: currentDocument.path});
           });
 
           return pdfStructure;
