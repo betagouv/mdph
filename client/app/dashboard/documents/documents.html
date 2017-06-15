@@ -1,55 +1,63 @@
 <div class="plan-classement">
   <div class="wrapper">
+    <h2>Format de téléchargement des demandes</h2>
     <div>
       <input type="checkbox" id="checkbox-concat-pdf" ng-model="currentMdph.separateFilesInPdfStructure" ng-change="saveConcatPdf()">
-      <label for="checkbox-concat-pdf" class="control-label">Télécharger les demandes en plusieurs fichiers</label>
+      <label for="checkbox-concat-pdf" class="control-label">Télécharger les demandes au format .zip (archive contenant les différents documents)</label>
     </div>
 
+    <h2>Classification des documents</h2>
     <div class="trees">
       <div class="tree-wrapper">
-        <div class="tree-title">
-          <h3>Catégories</h3>
-          <a class="btn btn-success" data-nodrag ng-click="newCategory(this)" style="margin-right: 8px;">
-            Nouvelle catégorie <i class="fa fa-plus"></i>
-          </a>
-        </div>
+        <h3>Documents catégorisés</h3>
+
+        <a class="btn btn-success" data-nodrag ng-click="newCategory(this)">
+          Nouvelle catégorie <i class="fa fa-plus"></i>
+        </a>
 
         <div ui-tree="treeOptions" id="tree-categories">
           <ol ui-tree-nodes="" ng-model="categories">
-            <li ng-repeat="category in categories" ui-tree-node>
+            <li class="category-list" ng-repeat="category in categories" ui-tree-node>
               <div ui-tree-handle>
                 <div class="ui-tree-document-category ui-tree-category-content">
                   <div class="detail" data-nodrag>
                     <h3 ng-if="!category.required" class="category-type">Catégorie personnalisée</h3>
                     <h3 ng-if="category.required" class="category-type">Catégorie obligatoire</h3>
-                    <input class="input-category-label" data-nodrag type="text"
+
+                    <input class="input-category-label"
+                      id="input-category-label-{{category._id}}"
+                      data-nodrag type="text"
                       ng-change="save(category)"
                       ng-keydown="saving = 'waiting'"
                       ng-model-options="{ debounce: 1000 }"
                       ng-model="category.label">
-                  </div>
-                  <div class="actions">
+
                     <a class="text-danger-lite" ng-if="!category.required" data-nodrag ng-click="removeCategory(this, category)">
                       <span>Supprimer</span><i class="fa fa-times"></i>
                     </a>
+                  </div>
+                  <div class="actions">
+                    <h4>Séparateur</h4>
                     <div class="files" data-nodrag>
                       <a
+                        class="btn btn-default btn-sm"
                         ng-if="category.barcode"
-                        style="margin-right: 16px;"
                         target="_self"
-                        download="{{category.barcode.filename}}"
+                        download="{{category.barcode.filename || 'separateur.pdf'}}"
                         href="api/mdphs/{{currentMdph.zipcode}}/categories/{{category._id}}/file?access_token={{token}}">
-                        {{category.barcode.filename}}
+                        <i class="fa fa-download"></i> Télécharger
                       </a>
-                      <em
-                        class="text-muted"
-                        ng-if="!category.barcode"
-                        style="margin-right: 16px;">
-                        Aucun séparateur associé
-                      </em>
 
-                      <button ngf-select ngf-change="upload($file, category)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
-                        <i class="fa fa-upload"></i> Modifier</span>
+                      <button ng-if="!category.barcode" ngf-select ngf-change="upload($file, category)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
+                        <i class="fa fa-upload"></i> Ajouter
+                      </button>
+
+                      <button ng-if="category.barcode" ngf-select ngf-change="upload($file, category)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
+                        <i class="fa fa-upload"></i> Modifier
+                      </button>
+
+                      <button ng-if="category.barcode" class="btn btn-danger btn-sm" ng-click="deleteSeparator(category)">
+                        <i class="fa fa-times"></i> Supprimer
                       </button>
                     </div>
                   </div>
@@ -77,7 +85,7 @@
       </div>
 
       <div class="tree-wrapper">
-        <h3>Non-catégorisés</h3>
+        <h3>Documents non-catégorisés</h3>
         <div ui-tree="treeOptions" data-nodrop-enabled="true">
           <ol ui-tree-nodes="" ng-model="noCategories">
             <li class="angular-ui-tree-handle angular-ui-tree-node-no-drag">
@@ -86,25 +94,30 @@
                   <h3 class="category-type">Catégorie obligatoire</h3>
                   <p>{{unclassifiedCategory.label}}</p>
                 </div>
-                <div class="files" data-nodrag>
-                  <a
-                    ng-if="unclassifiedCategory.barcode"
-                    style="margin-right: 16px;"
-                    target="_self"
-                    download="{{unclassifiedCategory.barcode.filename}}"
-                    href="api/mdphs/{{currentMdph.zipcode}}/categories/{{unclassifiedCategory._id}}/file?access_token={{token}}">
-                    {{unclassifiedCategory.barcode.filename}}
-                  </a>
-                  <em
-                    class="text-muted"
-                    ng-if="!unclassifiedCategory.barcode"
-                    style="margin-right: 16px;">
-                    Aucun séparateur associé
-                  </em>
+                <div class="actions">
+                  <div class="files" data-nodrag>
 
-                  <button ngf-select ngf-change="upload($file, unclassifiedCategory)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
-                    <i class="fa fa-upload"></i> Modifier</span>
-                  </button>
+                    <button ng-if="!unclassifiedCategory.barcode" ngf-select ngf-change="upload($file, category)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
+                      <i class="fa fa-upload"></i> Ajouter</span>
+                    </button>
+
+                    <a
+                      ng-if="unclassifiedCategory.barcode"
+                      class="btn btn-default btn-sm"
+                      target="_self"
+                      download="{{unclassifiedCategory.barcode.filename}}"
+                      href="api/mdphs/{{currentMdph.zipcode}}/categories/{{unclassifiedCategory._id}}/file?access_token={{token}}">
+                      Télécharger
+                    </a>
+
+                    <button ng-if="unclassifiedCategory.barcode" ngf-select ngf-change="upload($file, unclassifiedCategory)" accept=".pdf" ngf-multiple="false" class="btn btn-default btn-sm">
+                      <i class="fa fa-upload"></i> Modifier
+                    </button>
+
+                    <button ng-if="unclassifiedCategory.barcode" class="btn btn-danger btn-sm" ng-click="deleteSeparator(unclassifiedCategory)">
+                      <i class="fa fa-times"></i> Supprimer
+                    </button>
+                  </div>
                 </div>
               </div>
               <ol ui-tree-nodes="" ng-model="documentTypes">

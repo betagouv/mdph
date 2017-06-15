@@ -17,7 +17,7 @@ angular.module('impactApp')
     }
 
     function updateDocumentType(documentType, oldCategoryId, newCategoryId, callback) {
-      $http.post('api/mdphs/' + currentMdph.zipcode + '/categories/document-types', {
+      $http.post(`api/mdphs/${currentMdph.zipcode}/categories/document-types`, {
         documentType: documentType.id,
         oldCategoryId: oldCategoryId,
         newCategoryId: newCategoryId
@@ -72,7 +72,7 @@ angular.module('impactApp')
     };
 
     $scope.newCategory = function() {
-      $http.post('api/mdphs/' + currentMdph.zipcode + '/categories', {position: $scope.categories.length}).then(function(result) {
+      $http.post(`api/mdphs/${currentMdph.zipcode}/categories`, {position: $scope.categories.length}).then(function(result) {
         $scope.categories.push(result.data);
         showAlert();
       },
@@ -117,9 +117,15 @@ angular.module('impactApp')
       });
     };
 
+    $scope.deleteSeparator = function(category) {
+      $http.delete(`api/mdphs/${currentMdph.zipcode}/categories/${category._id}/file/barcode`).then(() => {
+        category.barcode = null;
+      });
+    }
+
     $scope.upload = function(file, current) {
       Upload.upload({
-        url: 'api/mdphs/' + currentMdph.zipcode + '/categories/' + current._id + '/file',
+        url: `api/mdphs/${currentMdph.zipcode}/categories/${current._id}/file`,
         method: 'POST',
         file: file
       })

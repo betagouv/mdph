@@ -1,11 +1,17 @@
+#tree-categories {
+  margin-top: 15px;
+}
+
 .plan-classement {
   padding: 0 30px;
 
   .trees {
     display: flex;
     justify-content: space-between;
+  }
 
-
+  li.category-list+li.category-list {
+    margin-top: 20px;
   }
 
   .tree-wrapper {
@@ -31,15 +37,6 @@
       width: 50%;
     }
   }
-
-  .tree-title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-
 }
 
 .angular-ui-tree {
@@ -52,20 +49,9 @@
   .ui-tree-document-category {
     background-color: lighten($lighter-blue, 20%);
     color: white;
-    border-color: $lighter-blue;
-
-    .ui-tree-category-content {
-      border-bottom: 1px solid $lighter-blue;
-    }
 
     h3.category-type {
       color: whitesmoke;
-    }
-
-    .files {
-      a, em {
-        color: whitesmoke;
-      }
     }
   }
 
@@ -86,7 +72,7 @@
   }
 
   .input-category-label {
-    background-color: lighten($lighter-blue, 30%);
+    background-color: $disabled-blue;
     border: none;
     border-radius: 0;
     outline: none;
@@ -118,8 +104,7 @@
 
 .ui-tree-category-content {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   border-bottom: 1px solid whitesmoke;
 
   h3.category-type {
@@ -132,23 +117,35 @@
     display: flex;
     flex-direction: column;
     padding: 3px 10px;
-    width: 40%;
+    width: 100%;
   }
 
   .files {
     padding: 4px;
     display: flex;
     align-items: center;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .actions {
     display: flex;
-    align-items: flex-end;
-    flex-direction: column;
+    flex-direction: row;
+    padding: 3px 10px;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    color: black;
+
+    h4 {
+      font-size: 1em;
+    }
   }
 
   .text-danger-lite {
     margin-right: 5px;
+    align-self: flex-end;
 
     &:focus, &:hover {
       span {
