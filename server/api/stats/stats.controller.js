@@ -3,33 +3,18 @@
 import _ from 'lodash';
 import async from 'async';
 import Mdph from '../mdph/mdph.model';
-import User from '../user/user.model';
+import Profile from '../profile/profile.model';
 import Request from '../request/request.model';
 import moment from 'moment';
 
 const officialMdphs =  ['14', '17', '54'];
 
-function countAgents(data, mdphs, done) {
-  async.eachSeries(mdphs, function(mdph, callback) {
-    User.find({
-      mdph: mdph._id
-    },
-    function(err, list) {
-      data[mdph.zipcode].agents = err || !list ? 0 : list.length;
-      callback();
-    });
-  },
-
-  function(err) {
-    if (err) { throw err; }
-
-    return done();
-  });
-}
-
 function countRequests(data, mdphs, done) {
   async.eachSeries(mdphs, function(mdph, callback) {
     Request.find({
+      createdAt: {
+        $gte: getOneMonthAgo()
+      },
       mdph: mdph.zipcode,
       status: {$ne: 'en_cours'}
     }, function(err, list) {
@@ -67,31 +52,32 @@ export function mdph(req, res) {
 
     var dataByZipcode = _.indexBy(data, 'zipcode');
 
-    async.parallel([
-      function(cb) {
-        countAgents(dataByZipcode, mdphs, cb);
-      },
-
-      function(cb) {
-        countRequests(dataByZipcode, mdphs, cb);
-      }
-
-    ], function() {
-      res.json(data);
-    });
+    countRequests(dataByZipcode, mdphs, () => res.json(data));
   });
 }
 
 export function site(req, res) {
-  User.find().exec(function(err, users) {
-    if (err) { return handleError(req, res, err); }
+  Profile
+    .find({
+      createdAt: {
+        $gte: getOneMonthAgo()
+      }
+    })
+    .exec(function(err, profile) {
+      if (err) { return handleError(req, res, err); }
 
-    var data = {
-      count: users.length
-    };
+      var data = {
+        count: profile.length
+      };
 
-    res.json(data);
-  });
+      res.json(data);
+    });
+}
+
+function getOneMonthAgo() {
+  var oneMonthAgo = new Date();
+  oneMonthAgo.setDate(oneMonthAgo.getDate() - 30);
+  return oneMonthAgo;
 }
 
 function getOneWeekAgo() {
@@ -149,29 +135,6 @@ export function likes(req, res) {
 
     data.sort(function (first, second) {
       return second.count - first.count;
-    });
-
-    res.json(data);
-  });
-}
-
-export function certificats(req, res) {
-  Request.find({mdph: {$in: officialMdphs}}).exec(function(err, requests) {
-    if (err) { return handleError(req, res, err); }
-
-    if (!requests) {
-      return res.json({});
-    }
-
-    var data = 0;
-    requests.forEach(function(request) {
-      if (request.documents && request.documents.length > 0) {
-        request.documents.forEach(function(doc) {
-          if (doc.type === 'certificatMedical') {
-            data += 1;
-          }
-        });
-      }
     });
 
     res.json(data);
