@@ -121,7 +121,7 @@ angular.module('impactApp')
       $http.delete(`api/mdphs/${currentMdph.zipcode}/categories/${category._id}/file/barcode`).then(() => {
         category.barcode = null;
       });
-    }
+    };
 
     $scope.upload = function(file, current) {
       Upload.upload({
