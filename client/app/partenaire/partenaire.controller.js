@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('PartenaireCtrl', function($scope, $location, toastr, Partenaire, RequestResource, $state, type) {
+  .controller('PartenaireCtrl', function($scope, $location, toastr, Partenaire, RequestResource, $state, type, currentMdph) {
     $scope.partenaire = new Partenaire();
 
     let queryParams = $location.search();
@@ -18,7 +18,7 @@ angular.module('impactApp')
       if (form.$valid) {
         var shortId = form.shortId.$modelValue;
 
-        $scope.partenaire.$save({shortId: shortId}, function(data) {
+        $scope.partenaire.$save({shortId: shortId, mdph: currentMdph.zipcode}, function(data) {
           $state.go('partenaire.pj', {shortId: shortId, partenaireId: data._id, type: type});
         },
 
