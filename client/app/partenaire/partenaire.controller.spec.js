@@ -13,7 +13,10 @@ describe('Controller: partenaire', function() {
     inject(function($controller) {
       $controller('PartenaireCtrl', {
         $scope: scope,
-        type: 'complementaires'
+        type: 'complementaires',
+        currentMdph: {
+          zipcode: '14'
+        }
       });
     });
 
