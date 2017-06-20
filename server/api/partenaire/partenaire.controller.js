@@ -34,7 +34,7 @@ export function save(req, res) {
 
         if (!request) { return res.sendStatus(404); }
 
-        Mdph.findOne({zipcode: request.mdph}, function(err, mdph) {
+        Mdph.findOne({zipcode: req.query.mdph}, function(err, mdph) {
           if (err) { return handleError(req, res, err); }
 
           if (!mdph) { return res.sendStatus(404); }
