@@ -9,6 +9,7 @@ angular.module('impactApp')
         authenticate: true,
         abstract: true
       })
+<<<<<<< HEAD
       .state('dashboard.dispatch.regles', {
         url: '/regles',
         templateUrl: 'app/dashboard/dispatch/regles/regles.html',
@@ -42,6 +43,8 @@ angular.module('impactApp')
         },
         authenticate: true
       })
+=======
+>>>>>>> Suppression de dispatch-rule
       .state('dashboard.dispatch.secteurs', {
         url: '/secteurs',
         templateUrl: 'app/dashboard/dispatch/secteurs/secteurs.html',
