@@ -12,10 +12,16 @@ var UserSchema = new Schema({
   salt:  { type: String, select: false },
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
-  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
   newPasswordToken: { type: String, select: false },
   newMailToken: { type: String, select: false },
+
+  // For agents
+  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
   secteurs: [{ type: Schema.Types.ObjectId, ref: 'Secteur' }],
+  specialisation: {
+    enfant: { type: Boolean, default: true },
+    adulte: { type: Boolean, default: true },
+  }
 });
 
 /**

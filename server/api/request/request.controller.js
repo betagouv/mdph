@@ -170,7 +170,7 @@ function resolveSubmit(req) {
     .then(fillRequestOnSubmit(req.request, req.body))
     .then(saveRequestOnSubmit(req))
     .then(sendMailReceivedTransmission(req))
-    .then(dispatchSecteur(req));
+    .then(Dispatcher.dispatch);
 }
 
 function sendMailReceivedTransmission(req) {
@@ -184,22 +184,6 @@ function sendMailReceivedTransmission(req) {
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
     return request;
-  };
-}
-
-function dispatchSecteur(req) {
-  return function(request) {
-    return Dispatcher.dispatch(request)
-      .then(secteur => { // Service disatches to agents
-        return request.set('secteur', secteur).save().then(saved => {
-          saved.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-          return saved;
-        });
-      })
-      .catch(() => {
-        // Ignore no sector found
-        return request;
-      });
   };
 }
 
