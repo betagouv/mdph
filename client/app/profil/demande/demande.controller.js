@@ -19,7 +19,7 @@ angular.module('impactApp')
     };
 
     const getPpsComment = (request, renouvellements = [], pps_comment = '') => {
-      if (renouvellements.includes('pps') && pps_comment) {
+      if ((renouvellements.indexOf('pps') > -1) && pps_comment) {
         request.pps_comment = pps_comment;
       }
 
