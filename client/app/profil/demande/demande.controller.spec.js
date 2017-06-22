@@ -150,8 +150,6 @@ describe('Controller: demande', function() {
       controller.cartestationnement = _.assign(controller.cartestationnement, {choice: true});
       controller.carteinvalidite = _.assign(controller.carteinvalidite, {choice: true, renouvellement: true});
 
-      console.log('$scope', $scope);
-
       $scope.submit({$valid: true});
 
       //then
