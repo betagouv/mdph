@@ -148,6 +148,7 @@ function fillRequestOnSubmit(request, submitForm) {
       .set('mdph', submitForm.mdph)
       .set('prestations', submitForm.prestations)
       .set('renouvellements', submitForm.renouvellements)
+      .set('pps_comment', submitForm.pps_comment)
       .set('estRenouvellement', submitForm.estRenouvellement)
       .set('old_mdph', submitForm.old_mdph)
       .set('numeroDossier', submitForm.numeroDossier)

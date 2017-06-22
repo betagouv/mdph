@@ -105,6 +105,7 @@ angular.module('impactApp')
             id: 'submit',
             prestations: request.prestations,
             renouvellements: request.renouvellements,
+            pps_comment: request.pps_comment,
             mdph: request.mdph,
             renouvellement: request.estRenouvellement,
             old_mdph: request.old_mdph,
