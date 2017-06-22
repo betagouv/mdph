@@ -5,6 +5,7 @@ angular.module('impactApp')
     $scope.request = request;
     $scope.currentUser = currentUser;
     this.estAdulte = ProfileService.estAdulte(profile);
+    this.pps_comment = '';
 
     $scope.isEditable = function() {
       return (request.status === 'en_cours' || request.status === 'en_attente_usager');
@@ -15,6 +16,14 @@ angular.module('impactApp')
        .filter(filter)
        .pluck('id')
        .value();
+    };
+
+    const getPpsComment = (request, renouvellements = [], pps_comment = '') => {
+      if (renouvellements.includes('pps') && pps_comment) {
+        request.pps_comment = pps_comment;
+      }
+
+      return request;
     };
 
     const openErrorModal = ({message, focusFunction, label = 'Retourner au profil'}) => {
@@ -61,6 +70,7 @@ angular.module('impactApp')
           request.prestations = getSelectedPrestationIdList(function(current) {
             return current.choice && !current.renouvellement;
           }, this.prestations);
+          request = getPpsComment(request, request.renouvellements, this.pps_comment);
         }
 
         if (!RequestService.getCompletion(request)) {
