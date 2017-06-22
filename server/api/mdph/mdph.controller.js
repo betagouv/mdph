@@ -164,7 +164,11 @@ export function showRequests(req, res) {
   };
 
   if (req.query) {
-    search.status = req.query.status;
+    if (req.query.status !== 'me') {
+      search.status = req.query.status;
+    } else {
+      search.evaluators = req.user._id;
+    }
   }
 
   Request.find(search)
@@ -220,7 +224,13 @@ export function showRequestsByStatus(req, res) {
     .exec(function(err, requestsGroups) {
       if (err) return handleError(req, res, err);
 
-      return res.send(requestsGroups);
+      Request.count({evaluators: req.user._id}, function(err, count) {
+        if (err) return handleError(req, res, err);
+
+        requestsGroups.push({_id: 'me', count});
+
+        return res.send(requestsGroups);
+      });
     });
 }
 

@@ -2,6 +2,10 @@
 
 angular.module('impactApp').constant('BanettesConstant', [
   {
+    id: 'me',
+    label: 'Mes demandes'
+  },
+  {
     id: 'emise',
     label: 'Émise'
   },
