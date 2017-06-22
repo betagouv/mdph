@@ -17,6 +17,12 @@ describe('Controller: demande', function() {
     }
   };
 
+  const ProfileService = {
+    estAdulte() {
+      return true;
+    }
+  };
+
   const toastr = {
     error() {}
   };
@@ -118,12 +124,14 @@ describe('Controller: demande', function() {
         request,
         RequestService,
         toastr,
-        prestations: samplePrestations
+        prestations: samplePrestations,
+        ProfileService,
+        profile:{}
       });
     });
 
     it('should have 16 prestations', function() {
-      expect(controller.prestations.length, 16);
+      expect(controller.prestations.length).toEqual(20);
     });
   });
 
@@ -141,7 +149,9 @@ describe('Controller: demande', function() {
         request,
         RequestService,
         toastr,
-        prestations: samplePrestations
+        prestations: samplePrestations,
+        ProfileService,
+        profile:{}
       });
     });
 
