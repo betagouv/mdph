@@ -6,7 +6,6 @@ import {hasRole, isAgent} from '../../auth/auth.service';
 import categoriesRouter from '../document-category';
 import Mdph from './mdph.model';
 import synthesesRouter from '../synthese';
-import dispatchRuleRouter from '../dispatch-rule';
 import secteurRouter from '../secteur';
 
 var router = new Router();
@@ -37,7 +36,6 @@ router.post('/:id/like', controller.saveLike);
 
 router.use('/:id/categories', isAgent(), categoriesRouter);
 router.use('/:id/syntheses',  isAgent(), synthesesRouter);
-router.use('/:id/dispatch-rules',  isAgent(), dispatchRuleRouter);
 router.use('/:id/secteurs',  isAgent(), secteurRouter);
 
 

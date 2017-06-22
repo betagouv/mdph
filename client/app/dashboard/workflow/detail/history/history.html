@@ -22,6 +22,7 @@
           {{action.params.old | requestStatus}} <i class="fa fa-arrow-right"></i> {{action.params.new | requestStatus}}
         </div>
         <div ng-if="action.action === 'assign_sector'">Nouveau secteur: {{action.params.secteur}}</div>
+        <div ng-if="action.action === 'assign_evaluators'">Assignée pour instruction</div>
       </div>
     </div>
   </div>

@@ -5,7 +5,6 @@ angular.module('impactApp')
     $cookies, $window, $modal, $q, $state,
     RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph) {
 
-    this.token = $cookies.get('token');
     this.status = status;
     this.requests = requests;
     this.groupedByAge = groupedByAge;
@@ -24,6 +23,20 @@ angular.module('impactApp')
       }
     ];
 
+    const token = $cookies.get('token');
+
+    this.selectAll = () => {
+      const action = !this.allSelected();
+
+      this.requests.forEach(function(request) {
+        request.isSelected = action;
+      });
+    };
+
+    this.allSelected = function() {
+      return _.every(requests, 'isSelected');
+    };
+
     function actionOnSelectedRequests(requests, action, success) {
       const selectedRequests = _.filter(requests, 'isSelected');
       const actionPromises = _.map(selectedRequests, action);
@@ -31,18 +44,54 @@ angular.module('impactApp')
       $q.all(actionPromises).then(success);
     }
 
-    function transfer(requests, selectedSecteur) {
-      const transfer = function(request) {
-        request.secteur = selectedSecteur._id;
-        return RequestResource.update(request).$promise;
-      };
+    function transfer(request, evaluators) {
+      const evaluatorsId = evaluators.map(evaluator => evaluator._id);
 
-      const afterTransfer = function() {
-        $state.go('.', {}, {reload: true});
-      };
-
-      actionOnSelectedRequests(requests, transfer, afterTransfer);
+      return RequestResource
+        .updateLinkedEvaluators({shortId: request.shortId}, evaluatorsId)
+        .$promise
+        .then(res => {
+          request.evaluators = evaluators;
+        });
     }
+
+    this.openTransferModal = (request) => {
+      const modalInstance = $modal.open({
+        animation: false,
+        templateUrl: 'app/dashboard/workflow/list/modalAssign.html',
+        controller: 'ModalAssignCtrl',
+        resolve: {
+          evaluators: function(MdphResource) {
+            return MdphResource.queryUsers({zipcode: currentMdph.zipcode}).$promise.then(result => {
+              result.forEach(evaluator => {
+                request.evaluators.forEach(assignedEvaluator => {
+                  if (assignedEvaluator._id == evaluator._id) {
+                    evaluator.isSelected = true;
+                  }
+                });
+
+              });
+              return result;
+            });
+          }
+        }
+      });
+
+      modalInstance.result.then(evaluators => transfer(request, evaluators));
+    };
+
+    this.download = function() {
+      const download = function(request) {
+        const beneficiaire = request.formAnswers.identites.beneficiaire;
+        const pdfName = beneficiaire.nom.toLowerCase() +
+                        '_' + beneficiaire.prenom.toLowerCase() +
+                        '_' + request.shortId;
+
+        $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + this.token);
+      };
+
+      actionOnSelectedRequests(requests, download);
+    };
 
     function archiveRequests(requests) {
       const archive = function(request) {
@@ -57,50 +106,7 @@ angular.module('impactApp')
       actionOnSelectedRequests(requests, archive, afterTransfer);
     }
 
-    this.selectAll = () => {
-      const action = !this.allSelected();
-
-      this.requests.forEach(function(request) {
-        request.isSelected = action;
-      });
-    };
-
-    this.allSelected = () => {
-      return _.every(requests, 'isSelected');
-    };
-
-    this.openTransferModal = () => {
-      if (_.find(this.requests, 'isSelected')) {
-
-        const modalInstance = $modal.open({
-          animation: false,
-          templateUrl: 'app/dashboard/workflow/list/modalSecteurs.html',
-          controller: 'ModalSecteursCtrl',
-          resolve: {
-            secteurs: function(MdphResource) {
-              return MdphResource.querySecteursList({zipcode: currentMdph.zipcode}).$promise;
-            }
-          }
-        });
-
-        modalInstance.result.then((selectedItem) => transfer(this.requests, selectedItem));
-      }
-    };
-
-    this.download = () => {
-      const download = (request) => {
-        const beneficiaire = request.formAnswers.identites.beneficiaire;
-        const pdfName = beneficiaire.nom.toLowerCase() +
-                        '_' + beneficiaire.prenom.toLowerCase() +
-                        '_' + request.shortId;
-
-        $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + this.token);
-      };
-
-      actionOnSelectedRequests(requests, download);
-    };
-
-    this.openArchiveModal = function() {
+    this.openArchiveModal = () => {
       if (_.find(this.requests, 'isSelected')) {
         const modalInstance = $modal.open({
           animation: false,
@@ -121,12 +127,12 @@ angular.module('impactApp')
       });
     };
   })
-  .controller('ModalSecteursCtrl', function($scope, $modalInstance, secteurs) {
-    $scope.secteurs = secteurs;
-    $scope.secteurId = '';
+  .controller('ModalAssignCtrl', function($scope, $modalInstance, evaluators) {
+    $scope.evaluators = evaluators;
 
-    $scope.transfer = function() {
-      $modalInstance.close($scope.secteurId);
+    $scope.ok = function() {
+      const selectedEvaluators = evaluators.filter(evaluator => evaluator.isSelected);
+      $modalInstance.close(selectedEvaluators);
     };
 
     $scope.cancel = function() {

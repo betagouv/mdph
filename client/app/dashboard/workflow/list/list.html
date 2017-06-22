@@ -1,6 +1,6 @@
 <div ui-view>
   <div class="list-header">
-    <h2 class="padding-title">{{workflowlistctrl.status | requestStatus}}</h2>
+    <h2 class="padding-title">{{workflowListCtrl.status | requestStatus}}</h2>
 
     <form class="form-group">
       <div class="input-group search">
@@ -15,8 +15,8 @@
 
     <div class="tools">
       <div class="btn-group" dropdown>
-        <button type="button" class="btn btn-primary" class="check-request" ng-click="workflowlistctrl.selectAll()">
-          <i class="fa" ng-class="{'fa-square': !workflowlistctrl.allSelected(), 'fa-check-square': workflowlistctrl.allSelected()}"></i>
+        <button type="button" class="btn btn-primary" class="check-request" ng-click="workflowListCtrl.selectAll()">
+          <i class="fa" ng-class="{'fa-square': !workflowListCtrl.allSelected(), 'fa-check-square': workflowListCtrl.allSelected()}"></i>
         </button>
 
         <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle>
@@ -24,13 +24,10 @@
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
           <li role="menuitem">
-            <a href="#" ng-click="workflowlistctrl.download()"><i class="fa fa-download"></i> Télécharger les demandes</a>
+            <a href="#" ng-click="workflowListCtrl.download()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
           <li role="menuitem" ng-if="status !== 'archive'">
-            <a href="#" ng-click="workflowlistctrl.openTransferModal()"><i class="fa fa-share"></i> Transférer vers un autre secteur</a>
-          </li>
-          <li role="menuitem" ng-if="status !== 'archive'">
-            <a href="#" ng-click="workflowlistctrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
+            <a href="#" ng-click="workflowListCtrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
           </li>
         </ul>
 
@@ -39,12 +36,69 @@
         </button>
       </div>
     </div>
-
   </div>
 
   <div class="list-main">
     <table>
-      <tbody ng-repeat="group in workflowlistctrl.groups" request-table-body query="query" group-title="group.title" request-group="workflowlistctrl.groupedByAge[group.id]"></tbody>
+      <tbody ng-repeat="group in workflowListCtrl.groups">
+        <tr>
+          <td class="lead" colspan="6">
+            {{::group.title}}
+          </td>
+        </tr>
+        <tr ng-hide="filteredRequests.length">
+          <td colspan="6">
+            Pas de demandes
+          </td>
+        </tr>
+        <tr
+          ng-repeat="request in filteredRequests = (workflowListCtrl.groupedByAge[group.id] | filter:query)">
+          <td class="check-request" ng-click="request.isSelected = !request.isSelected">
+            <i class="fa" ng-class="{'fa-square': !request.isSelected, 'fa-check-square': request.isSelected}"></i>
+          </td>
+          <td>
+            <span class="user">
+              <a ui-sref="dashboard.workflow.detail.pre_evaluation({shortId: request.shortId})">
+                <span ng-if="request.formAnswers.identites.beneficiaire">
+                  {{::request.formAnswers.identites.beneficiaire.nom | uppercase}}, {{::request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                </span>
+                <span ng-if="!request.formAnswers.identites.beneficiaire">
+                  Demande incomplète, bénéficiaire non remplis
+                </span>
+              </a>
+            </span>
+          </td>
+          <td>
+            <span>
+              {{::request.user.email}}
+            </span>
+          </td>
+          <td>
+            <span class="user">
+              <a ui-sref="dashboard.workflow.detail.pre_evaluation({shortId: request.shortId})">
+                {{::request.shortId}}
+              </a>
+            </span>
+          </td>
+          <td>
+            <table>
+              <tr>
+                <td>
+                  <ul>
+                    <li ng-repeat="evaluator in request.evaluators">{{::evaluator.name}}</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="fa fa-plus-circle"></i><button class="btn btn-link" ng-click="workflowListCtrl.openTransferModal(request)">Assigner</button>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>{{::request.submittedAt | date}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

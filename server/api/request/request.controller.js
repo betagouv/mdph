@@ -152,6 +152,18 @@ function fillRequestOnSubmit(request, submitForm) {
   };
 }
 
+export function saveEvaluateurs(req, res) {
+  const evaluators = req.body;
+
+  req.request
+    .set({evaluators})
+    .save()
+    .then(saved => {
+      saved.saveActionLog(actions.ASSIGN_EVALUATORS, req.user, req.log);
+      return res.send(saved);
+    });
+};
+
 function saveRequestOnSubmit(req) {
   return function(request) {
     return request

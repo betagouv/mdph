@@ -20,6 +20,9 @@ angular.module('impactApp')
     assign_sector: {
       fa: 'bullseye'
     },
+    assign_evaluators: {
+      fa: 'bullseye'
+    },
     change_status: {
       fa: 'folder'
     },

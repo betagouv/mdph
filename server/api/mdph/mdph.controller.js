@@ -169,8 +169,7 @@ export function showRequests(req, res) {
 
   Request.find(search)
     .populate('user', 'name email')
-    .populate('evaluator', 'name')
-    .populate('secteur', 'name')
+    .populate('evaluators', 'name')
     .sort('-submittedAt')
     .exec(function(err, requests) {
       if (err) return handleError(req, res, err);
