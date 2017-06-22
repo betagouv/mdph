@@ -5,9 +5,9 @@
     Les droits et les prestations délivrés par la commission des droits et de l’autonomie des personnes
     handicapées sont soumis à certaines conditions, notamment liées à l’âge :
 
-    <div class="well">
+    <div class="well" ng-if="!demandectrl.estAdulte">
       <h3>Demandes relatives à la vie quotidienne</h3>
-      <h3>Vous avez moins de 20 ans :</h3>
+      <!--Vous avez moins de 20 ans : -->
 
       <li>
         <prestation ng-model="demandectrl.aeeh"></prestation>
@@ -41,9 +41,9 @@
 
     </div>
 
-    <div class="well">
+    <div class="well" ng-if="demandectrl.estAdulte">
       <h3>Demandes relatives à la vie quotidienne</h3>
-      <h3>Vous avez plus de 20 ans :</h3>
+      <!--Vous avez plus de 20 ans :-->
       <li>
         <prestation ng-model="demandectrl.aah"></prestation>
       </li>

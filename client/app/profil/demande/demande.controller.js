@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations) {
+  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations, ProfileService, profile) {
     $scope.request = request;
     $scope.currentUser = currentUser;
+    this.estAdulte = ProfileService.estAdulte(profile);
 
     $scope.isEditable = function() {
       return (request.status === 'en_cours' || request.status === 'en_attente_usager');
