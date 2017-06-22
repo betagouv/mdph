@@ -41,6 +41,7 @@ var RequestSchema = new Schema({
   formAnswers:    Schema.Types.Mixed,
   prestations:    [{ type: String, lowercase: true }],
   renouvellements:[{ type: String, lowercase: true }],
+  pps_comment:    String,
   certificat:     Schema.Types.Mixed,
   synthese:       Schema.Types.Mixed,
   comments:       { type: String },
