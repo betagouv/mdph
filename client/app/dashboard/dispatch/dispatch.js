@@ -33,6 +33,7 @@ angular.module('impactApp')
         url: '/edit/:id',
         templateUrl: 'app/dashboard/dispatch/secteurs/edit/edit.html',
         controller: 'SecteurEditCtrl',
+        controllerAs: 'secteurEditCtrl',
         resolve: {
           secteur: function(SecteurResource, $stateParams, currentMdph) {
             if ($stateParams.id) {

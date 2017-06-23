@@ -23,8 +23,7 @@
       <thead>
         <tr>
           <th>Nom</th>
-          <th>Agents - Adultes</th>
-          <th>Agents - Enfance</th>
+          <th>Communes</th>
           <th>Créé le</th>
           <th class="text-right">Supprimer</th>
         </tr>
@@ -37,14 +36,10 @@
             </a>
           </td>
           <td>
-            <a ui-sref="dashboard.dispatch.secteurs.edit({id: secteur._id})">
-              <span class="td-item" ng-repeat="evaluator in secteur.evaluators.adulte">{{evaluator.name}}</span>
-            </a>
-          </td>
-          <td>
-            <a ui-sref="dashboard.dispatch.secteurs.edit({id: secteur._id})">
-              <span class="td-item" ng-repeat="evaluator in secteur.evaluators.enfant">{{evaluator.name}}</span>
-            </a>
+            <span ng-if="secteur.communes.length <= 0">Aucune commune associée</span>
+            <ul ng-if="secteur.communes.length > 0">
+              <li ng-repeat="commune in secteur.communes">{{commune}}</li>
+            </ul>
           </td>
           <td>{{secteur.createdAt | date}}</td>
           <td class="text-right"><button ng-click="delete(secteur, idx)" class="btn btn-danger"><i class="fa fa-remove"></i></button></td>
