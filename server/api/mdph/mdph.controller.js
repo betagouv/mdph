@@ -186,6 +186,10 @@ export function showBeneficiaires(req, res) {
       if (err) return handleError(req, res, err);
 
       function capitalize(input) {
+        if (!input) {
+          return input;
+        }
+
         return input.replace(/\w\S*/g, function(txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
@@ -195,8 +199,10 @@ export function showBeneficiaires(req, res) {
         .map('profile')
         .uniq('_id')
         .map((profile) => {
-          profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
-          profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
+          if (profile && profile.identites && profile.identites.beneficiaire) {
+            profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
+            profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
+          }
           return profile;
         })
         .sortBy('identites.beneficiaire.nom')
