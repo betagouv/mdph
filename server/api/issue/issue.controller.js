@@ -15,3 +15,20 @@ export function create(req, res) {
     .then(created => res.json(created))
     .catch(err => res.status(500).send(err.toString()));
 }
+
+export function toggle(req, res) {
+  return Issue
+    .findById(req.params.id)
+    .then(found => {
+      if (!found) {
+        return res.status(404).send();
+      }
+
+      found.closed = !found.closed;
+      return found.save().then(saved => {
+        console.log(saved.closed);
+        return res.json(saved);
+      });
+    })
+    .catch(err => res.status(500).send(err.toString()));
+}

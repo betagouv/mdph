@@ -7,5 +7,6 @@ var router = new Router();
 
 router.get('/:section', hasRole('adminMdph'), controller.show);
 router.post('/', hasRole('adminMdph'), controller.create);
+router.put('/:id', hasRole('adminMdph'), controller.toggle);
 
 module.exports = router;

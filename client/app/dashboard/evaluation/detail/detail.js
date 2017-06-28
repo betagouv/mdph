@@ -63,6 +63,14 @@ angular.module('impactApp')
             controllerAs: 'issuesCtrl',
             controller: function($http, $stateParams) {
               this.loading = true;
+              this.toggle = (issue) => {
+                $http
+                  .put(`api/issues/${issue._id}`)
+                  .then(result => {
+                    issue.closed = result.data.closed;
+                  });
+              };
+
               $http
                 .get(`api/issues/${$stateParams.sectionId}`)
                 .then(result => {
