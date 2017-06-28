@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h1 class="modal-title">Ajouter un commentaire</h1>
+</div>
+<form class="form" name="form" novalidate ng-submit="modalIssueCtrl.create()">
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="control-label" for="issue-title">Question associée à votre commentaire</label>
+      <ul>
+        <li>
+          {{modalIssueCtrl.sectionLabel}}
+          <ul ng-if="modalIssueCtrl.parent">
+            <li>
+              {{modalIssueCtrl.parent.Question}}
+              <ul>
+                <li>{{modalIssueCtrl.question.Libelle}}</li>
+              </ul>
+            </li>
+          </ul>
+          <ul ng-if="!modalIssueCtrl.parent">
+            <li>
+              {{modalIssueCtrl.question.Question}}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="issue-content">Commentaire</label>
+      <textarea class="form-control" name="issue-content" rows="8" cols="80" ng-model="modalIssueCtrl.issue.message"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="modalIssueCtrl.cancel()">Annuler</button>
+    <button type="submit" class="btn btn-success">Envoyer</button>
+  </div>
+</form>

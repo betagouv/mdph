@@ -1,0 +1,16 @@
+<div class="issue-wrapper">
+  <h2>Commentaires</h2>
+  <div ng-if="!issuesCtrl.loading">
+    <div ng-repeat="issue in issuesCtrl.issues" class="issue">
+      <h3>{{issue.title}} - <span class="text-muted">{{issue.questionId}}</span></h3>
+      <div class="small">{{issue.user.name}} - le {{issue.createdAt | moment}}</div>
+      <p>{{issue.message}}</p>
+    </div>
+    <div ng-if="!issuesCtrl.issues || issuesCtrl.issues.length == 0">
+      <p>Aucun commentaire.</p>
+    </div>
+  </div>
+  <div ng-if="issuesCtrl.loading">
+    <i class="fa fa-spin fa-spinner"></i>&nbsp;Chargement
+  </div>
+</div>

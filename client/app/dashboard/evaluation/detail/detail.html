@@ -5,7 +5,7 @@
     <div class="panel-heading">
       <ul class="nav nav-tabs nav-justified">
         <li ui-sref-active="active" ng-repeat="section in sections" role="presentation">
-          <a ui-sref="dashboard.evaluation.detail({sectionId: section.id})">{{section.label}}</a>
+          <a ui-sref="dashboard.detailEvaluation({sectionId: section.id})">{{section.label}}</a>
         </li>
       </ul>
     </div>
@@ -14,8 +14,7 @@
 
       <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
         <h4 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h4>
-
-        <trajectoire questions="questions" current-question-id="currentQuestionId" read-only="currentSynthese.request"></trajectoire>
+        <trajectoire questions="questions" current-question-id="currentQuestionId" new-issue="newIssue" read-only="currentSynthese.request"></trajectoire>
       </div>
 
       <div class="container-btn">
@@ -32,3 +31,5 @@
   <history-synthese list-syntheses="listSyntheses" current-synthese="currentSynthese"></history-synthese>
 
 </div>
+
+<div ui-view="issues"></div>
