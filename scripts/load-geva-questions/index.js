@@ -22,32 +22,102 @@ var fileName = process.argv[2] ? process.argv[2] : __dirname + '/Outil éval - n
 function extract(xlsxFileName, callback) {
   console.log('Loading file', xlsxFileName);
   var workbook = XLSX.readFile(xlsxFileName);
-  callback(workbook);
+  var first_sheet_name = workbook.SheetNames[0];
+  var worksheet = workbook.Sheets[first_sheet_name];
+  callback(worksheet, load);
 };
 
 // [Transform] : Format the list for the mongoDb
-function transform(workbook, callback) {
+function transform(worksheet, callback) {
 
-  var first_sheet_name = workbook.SheetNames[0];
-  var address_of_cell = 'A3';
+  // Output questions json
+  var questions = [];
 
-  /* Get worksheet */
-  var worksheet = workbook.Sheets[first_sheet_name];
+  // id of the next question input
+  var id = 0;
 
-  /* Find desired cell */
-  var desired_cell = worksheet[address_of_cell];
+  // Start row number
+  var START_ROW = 3;
 
-  /* Get the value */
-  var desired_value = (desired_cell ? desired_cell.v : undefined);
+  // Clomumns in XLSX file
+  var SECTION = 'B';
+  var LIBELLE = 'D';
+  var TRAJECTOIRE = 'E';
+  var QUESTION = 'F';
+  var TYPE = 'G';
 
-  console.log('workbook', workbook.SheetNames);
+  var REPONSE_LIBELLE = 'J';
+  var REPONSE_CODE_VALEUR = 'I';
 
-  console.log('desired_value', desired_value);
+  var SUBREPONSE_LIBELLE = 'K';
 
+  // Current section and reponse working on
+  var section = {};
+  var reponse = {};
 
-  //console.log('workbook', workbook.Sheets[workbook.SheetNames[0]]);
+  // Process until current row is empty
+  for (var row = START_ROW ; worksheet['I' + row] !== undefined ; row++) {
 
-  //callback('');
+    if (worksheet[SECTION + row]) {
+      // If current row as a section (not empty), make new section
+
+      // Save the current section in questions
+      if (row > START_ROW) {
+        questions.push(section);
+        id++;
+      }
+
+      // Create a new section
+      section = {
+          id: id,
+          Section: worksheet[SECTION + row].v,
+          Libelle: worksheet[LIBELLE + row].v,
+          Trajectoire: worksheet[TRAJECTOIRE + row].v,
+          Question: worksheet[QUESTION + row].v,
+          Type: worksheet[TYPE + row].v,
+          Reponses: []
+        };
+
+      // Create a new reponse
+      reponse = {
+        id: 0,
+        CodeValeur: '',
+        Libelle: worksheet[REPONSE_LIBELLE + row].v,
+        Reponses: []
+      };
+    } else {
+      // Is not a Section but is ether a Reponse or SubReponse
+      if (worksheet[REPONSE_LIBELLE + row]) {
+        // This row is a Reponse
+
+        if (row > START_ROW) {
+          section.Reponses.push(reponse);
+        }
+
+        reponse = {
+          id: 0,
+          CodeValeur: '',
+          Libelle: worksheet[REPONSE_LIBELLE + row].v,
+          Reponses: []
+        };
+      } else if (worksheet[SUBREPONSE_LIBELLE + row]) {
+        // This row is a sub reponse
+        var subReponse = {
+          id: worksheet[REPONSE_CODE_VALEUR + row].v,
+          CodeValeur: worksheet[REPONSE_CODE_VALEUR + row].v,
+          Libelle: worksheet[SUBREPONSE_LIBELLE + row].v
+        };
+        reponse.Reponses.push(subReponse);
+      }
+
+    }
+  }
+
+  console.log('questions', JSON.stringify(questions[0]));
+  console.log('questions', JSON.stringify(questions[1]));
+  console.log('number of rows processed', id);
+
+  callback(questions);
 };
 
 // [Load] :
