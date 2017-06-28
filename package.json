@@ -107,7 +107,8 @@
     "sinon": "^1.17.3",
     "sinon-as-promised": "^4.0.0",
     "supertest": "^1.0.1",
-    "time-grunt": "^1.2.1"
+    "time-grunt": "^1.2.1",
+    "xlsx": "^0.10.6"
   },
   "engines": {
     "node": ">=6.9.4"
