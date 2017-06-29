@@ -27,7 +27,7 @@ function extract(xlsxFileName, callback) {
   callback(worksheet, load);
 };
 
-// [Transform] : Format the list for the mongoDb
+// [Transform] : Format the list for JSON
 function transform(worksheet, callback) {
 
   // Output questions json
@@ -63,26 +63,35 @@ function transform(worksheet, callback) {
     Reponses: []
   });
 
+  const LEVEL0 = 0;
+  const LEVEL1 = 1;
+  const LEVEL2 = 2;
+  const LEVEL3 = 3;
+  const LEVEL4 = 4;
+  const LEVEL5 = 5;
+
   const isResponseLevel = (row, level) => !!worksheet[REPONSE_LIBELLE[level] + row];
 
-  const makeReponse = (worksheet, row, level, Reponses) => ({
-    id: worksheet[REPONSE_CODE_VALEUR + row].v,
+  const getId = id => id.replace(/\./g, '_');
+
+  const makeReponse = (worksheet, row, level, Reponses = undefined) => ({
+    id: getId(worksheet[REPONSE_CODE_VALEUR + row].v),
     CodeValeur: worksheet[REPONSE_CODE_VALEUR + row].v,
     Libelle: worksheet[REPONSE_LIBELLE[level] + row].v,
     Reponses
   });
 
+  const processResponseLevel = (row, level, SubReponses = undefined) => {
+    reponses[level] = makeReponse(worksheet, row, level, SubReponses);
+    reponses[level - 1].Reponses.push(reponses[level]);
+  };
+
   // Current section and reponse working on
   var section = {};
-  var reponse = {};
+  var reponses = [];
 
   // Process until current row is empty
   for (var row = START_ROW ; isValidRow(row) ; row++) {
-
-    // TODO : remove this when the algo is ok
-    if (row === 10) {
-      break;
-    }
 
     if (isSection(row)) {
       // If current row as a section (not empty), make new section
@@ -90,6 +99,7 @@ function transform(worksheet, callback) {
       // Save the current section in questions
       if (row > START_ROW) {
         questions.push(section);
+        reponses = [];
         id++;
       }
 
@@ -97,37 +107,36 @@ function transform(worksheet, callback) {
       section = makeSection(row, id);
 
       // Create a new reponse
-      reponse = makeReponse(worksheet, row, 0, []);
-      console.log('section', section, 'reponse', reponse);
+      reponses[0] = makeReponse(worksheet, row, 0, []);
+      section.Reponses.push(reponses[0]);
     } else {
       // Is not a Section but is ether a Reponse or SubReponse
 
-      if (isResponseLevel(row, 0)) {
+      if (isResponseLevel(row, LEVEL0)) {
+        // This row is a Reponse level 0
+        reponses[LEVEL0] = makeReponse(worksheet, row, LEVEL0, []);
+        section.Reponses.push(reponses[0]);
+      } else if (isResponseLevel(row, LEVEL1)) {
         // This row is a Reponse level 1
-        console.log('reponse 0 - row - level', row, 0, isResponseLevel(row, 0), worksheet[REPONSE_LIBELLE[0] + row]);
-      }
-
-      if (isResponseLevel(row, 1)) {
+        processResponseLevel(row, LEVEL1, []);
+      } else if (isResponseLevel(row, LEVEL2)) {
         // This row is a Reponse level 2
-
-        if (row > START_ROW) {
-          section.Reponses.push(reponse);
-        }
-
-        //reponse = makeReponse(worksheet, row, 1, []);
-        console.log('reponse 1 - row - level', row, 1, isResponseLevel(row, 1), worksheet[REPONSE_LIBELLE[1] + row]);
-        //console.log('reponse 1', reponse);
-      } else if (isResponseLevel(row, 2)) {
-        //var resp = makeReponse(worksheet, row, 2, []);
-        //reponse.Reponses.push(resp);
+        processResponseLevel(row, LEVEL2, []);
+      } else if (isResponseLevel(row, LEVEL3)) {
+        // This row is a Reponse level 3
+        processResponseLevel(row, LEVEL3, []);
+      } else if (isResponseLevel(row, LEVEL4)) {
+        // This row is a Reponse level 4
+        processResponseLevel(row, LEVEL4, []);
+      } else if (isResponseLevel(row, LEVEL5)) {
+        // This row is a Reponse level 5
+        processResponseLevel(row, LEVEL5);
       }
 
     }
   }
 
-  //console.log('questions 0', JSON.stringify(questions[0]));
-  //console.log('questions 1', JSON.stringify(questions[1]));
-  console.log('number of ids processed', id);
+  questions.push(section);
 
   callback(questions);
 };
