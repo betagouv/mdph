@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AgentsEditCtrl', function($scope, $state, user, currentMdph) {
+  .controller('AgentsEditCtrl', function($scope, $state, user, currentMdph, secteurs) {
     $scope.user = user;
+    $scope.secteurs = secteurs;
 
     $scope.update = function(form) {
       if ($scope.user._id) {

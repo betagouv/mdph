@@ -26,13 +26,24 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-1">
-        <a class="btn btn-default" ui-sref="^">Annuler</a>
+      <label for="secteur" class="col-sm-2 control-label">Secteurs associés</label>
+      <div class="col-sm-10">
+        <div ng-repeat="secteur in secteurs">
+          <label>
+            <input type="checkbox" name="secteur" ng-model="secteur.isSelected">
+            {{secteur.name}}
+          </label>
+        </div>
       </div>
-      <div class="col-sm-11 text-right">
+    </div>
+    <div class="form-group">
+      <div class="col-sm-10">
         <button class="btn btn-danger" ng-if="user._id" type="button" ng-click="delete()">
           <i class="fa fa-remove"></i> Supprimer
         </button>
+        <a class="btn btn-default" ui-sref="^">Annuler</a>
+      </div>
+      <div class="col-sm-2 text-right">
         <button class="btn btn-primary" type="submit">
           <i class="fa fa-save"></i> Sauver
         </button>
