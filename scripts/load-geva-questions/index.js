@@ -13,7 +13,7 @@ var XLSX = require('xlsx');
  * "Outil éval - nomenclature de ref V15.xlsx"
  * */
 
-var tmp_file = __dirname + '/tmp.json';
+var output_file = __dirname + '/../../server/api/geva/questions.json';
 
 // Take the first argument as filename
 var fileName = process.argv[2] ? process.argv[2] : __dirname + '/Outil éval - nomenclature de ref V15.xlsx';
@@ -144,8 +144,8 @@ function transform(worksheet, callback) {
 // [Load] :
 function load(json) {
   // stringify: parameter '2' is for pretty output
-  fs.writeFile(tmp_file, JSON.stringify(json, null, 2), function() {
-    console.log('JSON created.');
+  fs.writeFile(output_file, JSON.stringify(json, null, 2), function() {
+    console.log('JSON created at ', output_file);
   });
 }
 
