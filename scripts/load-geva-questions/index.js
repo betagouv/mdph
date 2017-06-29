@@ -49,13 +49,9 @@ function transform(worksheet, callback) {
   var REPONSE_LIBELLE = ['J','K','L','M','N','O'];
   var REPONSE_CODE_VALEUR = 'I';
 
-  // Current section and reponse working on
-  var section = {};
-  var reponse = {};
-
   const isValidRow = row => worksheet['I' + row] !== undefined;
 
-  const isSection = row => worksheet[SECTION + row];
+  const isSection = row => !!worksheet[SECTION + row];
 
   const makeSection = (row, id) => ({
     id: id,
@@ -67,7 +63,7 @@ function transform(worksheet, callback) {
     Reponses: []
   });
 
-  const isResponseLevel = (row, level) => worksheet[REPONSE_LIBELLE[level] + row];
+  const isResponseLevel = (row, level) => !!worksheet[REPONSE_LIBELLE[level] + row];
 
   const makeReponse = (worksheet, row, level, Reponses) => ({
     id: worksheet[REPONSE_CODE_VALEUR + row].v,
@@ -76,8 +72,17 @@ function transform(worksheet, callback) {
     Reponses
   });
 
+  // Current section and reponse working on
+  var section = {};
+  var reponse = {};
+
   // Process until current row is empty
   for (var row = START_ROW ; isValidRow(row) ; row++) {
+
+    // TODO : remove this when the algo is ok
+    if (row === 10) {
+      break;
+    }
 
     if (isSection(row)) {
       // If current row as a section (not empty), make new section
@@ -93,8 +98,14 @@ function transform(worksheet, callback) {
 
       // Create a new reponse
       reponse = makeReponse(worksheet, row, 0, []);
+      console.log('section', section, 'reponse', reponse);
     } else {
       // Is not a Section but is ether a Reponse or SubReponse
+
+      if (isResponseLevel(row, 0)) {
+        // This row is a Reponse level 1
+        console.log('reponse 0 - row - level', row, 0, isResponseLevel(row, 0), worksheet[REPONSE_LIBELLE[0] + row]);
+      }
 
       if (isResponseLevel(row, 1)) {
         // This row is a Reponse level 2
@@ -103,18 +114,20 @@ function transform(worksheet, callback) {
           section.Reponses.push(reponse);
         }
 
-        reponse = makeReponse(worksheet, row, 1, []);
+        //reponse = makeReponse(worksheet, row, 1, []);
+        console.log('reponse 1 - row - level', row, 1, isResponseLevel(row, 1), worksheet[REPONSE_LIBELLE[1] + row]);
+        //console.log('reponse 1', reponse);
       } else if (isResponseLevel(row, 2)) {
-        var resp = makeReponse(worksheet, row, 2, []);
-        reponse.Reponses.push(resp);
+        //var resp = makeReponse(worksheet, row, 2, []);
+        //reponse.Reponses.push(resp);
       }
 
     }
   }
 
-  console.log('questions', JSON.stringify(questions[0]));
-  console.log('questions', JSON.stringify(questions[1]));
-  console.log('number of rows processed', id);
+  //console.log('questions 0', JSON.stringify(questions[0]));
+  //console.log('questions 1', JSON.stringify(questions[1]));
+  console.log('number of ids processed', id);
 
   callback(questions);
 };
@@ -123,8 +136,7 @@ function transform(worksheet, callback) {
 function load(json) {
   // stringify: parameter '2' is for pretty output
   fs.writeFile(tmp_file, JSON.stringify(json, null, 2), function() {
-    console.log('You may load the mdphs .list with :');
-    console.log('mongoimport --db impact --collection mdphs --jsonArray --file tmp_mdphs.json');
+    console.log('JSON created.');
   });
 }
 
