@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailEvaluationCtrl', function($scope, $modal, $cookies, $http, $state, $stateParams, currentMdph, sections, section, sectionId, model, GevaService, listSyntheses, currentSynthese, currentUser) {
+  .controller('DetailEvaluationCtrl', function(
+    $scope, $modal, $cookies, $http, $state, $stateParams,
+    currentMdph, sections, section, sectionId, model, GevaService, listSyntheses,
+    currentSynthese, currentUser) {
+
     $scope.model = model;
     $scope.sections = sections;
     $scope.token = $cookies.get('token');
@@ -125,5 +129,5 @@ angular.module('impactApp')
           };
         }
       });
-    }
+    };
   });

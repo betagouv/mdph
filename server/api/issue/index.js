@@ -1,6 +1,5 @@
 import {Router} from 'express';
 import * as controller from './issue.controller';
-import Issue from './issue.model';
 import {hasRole} from '../../auth/auth.service';
 
 var router = new Router();
