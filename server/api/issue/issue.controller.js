@@ -26,7 +26,6 @@ export function toggle(req, res) {
 
       found.closed = !found.closed;
       return found.save().then(saved => {
-        console.log(saved.closed);
         return res.json(saved);
       });
     })
