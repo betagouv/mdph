@@ -2,7 +2,6 @@
 
 import should from 'should';
 import Issue from './issue.model';
-import config from '../../config/environment';
 
 import {startServer} from '../../../test/utils/server';
 import {populate} from '../../../test/utils/seed';
