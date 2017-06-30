@@ -20,6 +20,7 @@ export default function(app) {
   app.use('/api/secteurs', require('./api/secteur'));
   app.use('/api/stats', require('./api/stats'));
   app.use('/api/document-types', require('./api/document-type'));
+  app.use('/api/issues', require('./api/issue'));
 
   app.use('/auth', require('./auth'));
 

@@ -23,7 +23,7 @@ describe('TrajectoireController', function() {
       var question = {
         isSelected: true
       };
-      scope.toggleSelected(question);
+      controller.toggleSelected(question);
       expect(question.isSelected).toBe(false);
     });
   });
@@ -38,11 +38,11 @@ describe('TrajectoireController', function() {
         id: '1234',
         isSelected: false
       };
-      scope.toggleCollapse(question);
-      expect(scope.currentQuestionId).toBe('1234');
+      controller.toggleCollapse(question);
+      expect(controller.currentQuestionId).toBe('1234');
 
-      scope.toggleCollapse(question);
-      expect(scope.currentQuestionId).toBe(null);
+      controller.toggleCollapse(question);
+      expect(controller.currentQuestionId).toBe(null);
     });
   });
 
