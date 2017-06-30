@@ -3,7 +3,7 @@
   <div ng-if="!issuesCtrl.loading">
     <div ng-repeat="issue in issuesCtrl.issues" class="issue" ng-class="{closed: issue.closed}">
       <h3>{{issue.title}} - <span class="text-muted">{{issue.questionId}}</span></h3>
-      <div class="small">{{issue.user.name}} - le {{issue.createdAt | moment}}</div>
+      <div class="small">{{issue.user.name}}, MDPH {{issue.user.mdph.zipcode}}- le {{issue.createdAt | moment}}</div>
       <p>{{issue.message}}</p>
 
       <button type="button" class="btn btn-default" ng-click="issuesCtrl.toggle(issue)" ng-if="issue.closed">Ré-ouvrir ce commentaire</button>
