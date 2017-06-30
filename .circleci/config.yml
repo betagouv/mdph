@@ -25,14 +25,30 @@ jobs:
           root: .
           paths:
             - .
-  test-front-back:
+  test-lint:
     <<: *defaults
     steps:
       - attach_workspace:
           at: /home/ubuntu/mdph
       - run:
-          name: Run unit tests
-          command: yarn test
+          name: Run linter
+          command: yarn lint
+  test-front:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/ubuntu/mdph
+      - run:
+          name: Run client-side unit tests
+          command: yarn test:front
+  test-back:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/ubuntu/mdph
+      - run:
+          name: Run server-side unit tests
+          command: yarn test:back
   test-end-to-end:
     <<: *defaults
     steps:
@@ -65,7 +81,13 @@ workflows:
   build_accept_deploy:
     jobs:
       - build
-      - test-front-back:
+      - test-lint:
+          requires:
+            - build
+      - test-front:
+          requires:
+            - build
+      - test-back:
           requires:
             - build
       - test-end-to-end:
@@ -73,5 +95,7 @@ workflows:
             - build
       - deploy:
           requires:
-            - test-front-back
+            - test-lint
+            - test-front
+            - test-back
             - test-end-to-end
