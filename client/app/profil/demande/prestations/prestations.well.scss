@@ -1,10 +1,15 @@
 .well-detail-darker {
-  background-color: #CCC;
-  width: 100%;
-  border-radius: 5px ;
-  margin: 0 15px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 15px;
+  padding: 10px;
 
   .row {
     margin-bottom: 4px;
+  }
+
+  h6 {
+    margin-top: 0;
   }
 }

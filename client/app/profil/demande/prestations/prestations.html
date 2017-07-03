@@ -2,9 +2,6 @@
 
   <ul class="list-prestations">
 
-    Les droits et les prestations délivrés par la commission des droits et de l’autonomie des personnes
-    handicapées sont soumis à certaines conditions, notamment liées à l’âge :
-
     <div class="well" ng-if="!demandectrl.estAdulte">
       <h3>Demandes relatives à la vie quotidienne</h3>
       <!--Vous avez moins de 20 ans : -->
@@ -17,27 +14,21 @@
         <prestation ng-model="demandectrl.pch"></prestation>
       </li>
 
-      <div class="well-detail-darker">
-
-        <h6>Carte mobilité inclusion</h6>
-
-        <ul class="list-prestations">
-
-          <li>
-            <prestation ng-model="demandectrl.carteinvalidite"></prestation>
-          </li>
-
-          <li>
-            <prestation ng-model="demandectrl.cartestationnement"></prestation>
-          </li>
-
-        </ul>
-
-      </div>
-
       <li>
         <prestation ng-model="demandectrl.av"></prestation>
       </li>
+
+      <div class="well-detail-darker">
+        <h6>Carte mobilité inclusion</h6>
+        <ul class="list-prestations">
+          <li>
+            <prestation ng-model="demandectrl.carteinvalidite"></prestation>
+          </li>
+          <li>
+            <prestation ng-model="demandectrl.cartestationnement"></prestation>
+          </li>
+        </ul>
+      </div>
 
     </div>
 
@@ -60,6 +51,13 @@
         <prestation ng-model="demandectrl.ems"></prestation>
       </li>
 
+      <li>
+        <prestation ng-model="demandectrl.pch"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.av"></prestation>
+      </li>
 
       <li>
         <div class="well-detail-darker">
@@ -80,10 +78,6 @@
         </div>
       </li>
 
-      <li>
-        <prestation ng-model="demandectrl.pch"></prestation>
-      </li>
-
       <div class="well-detail-darker">
 
         <h6>Carte mobilité inclusion</h6>
@@ -101,11 +95,6 @@
         </ul>
 
       </div>
-
-      <li>
-        <prestation ng-model="demandectrl.av"></prestation>
-      </li>
-
 
     </div>
 
@@ -159,8 +148,8 @@
 
         </ul>
 
-        <div>
-          « Le dispositif emploi accompagné propose un accompagnement médico-social et un soutien à l’insertion professionnelle du travailleur handicapé et à son employeur. Peuvent être bénéficiaires de ce dispositif les travailleurs handicapés :
+        <div class="alert alert-warning">
+          <p>« Le dispositif emploi accompagné propose un accompagnement médico-social et un soutien à l’insertion professionnelle du travailleur handicapé et à son employeur. Peuvent être bénéficiaires de ce dispositif les travailleurs handicapés :</p>
           <ul>
             <li>ayant un projet d’insertion en milieu ordinaire de travail,</li>
             <li>accueillis dans un établissement ou service d’aide par le travail ayant un projet d’insertion en milieu ordinaire de travail,</li>
