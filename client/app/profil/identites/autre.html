@@ -1,5 +1,10 @@
 <form id="profile-identites" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
-  <h2>Identité de la personne</h2>
+  <div class="section-body-head">
+    <h2>
+      <a id="backtoprofile" ui-sref="profil({profileId: profilCtrl.profile._id})">Profil</a>
+      / Identité de la personne vous aidant dans cette démarche
+    </h2>
+  </div>
 
   <section class="identite-section">
     <div class="form-group required" ng-class="{'has-error': !identite.type && infoForm.$submitted}">

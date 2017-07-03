@@ -5,13 +5,14 @@ const PROFILE_CATEGORY_COMPONENT_NAME = 'profileCategory';
 const profileCategoryComponent = {
   bindings: {
     options: '<',
-    profile: '<'
+    profile: '<',
+    completion: '<',
   },
   templateUrl: 'components/profile/profile-category.html',
   controllerAs: 'profileCategoryCtrl',
   controller: class profileCategoryController {
     constructor($state) {
-      const { title, subhead, content, icon, model, action } = this.options;
+      const { title, subhead, content, icon, model, action, completion } = this.options;
 
       this.$state = $state;
       this.title = title;
@@ -22,31 +23,18 @@ const profileCategoryComponent = {
 
       this.section = _.property(model)(this.profile);
       this.updatedAt = this.section && this.section.updatedAt;
-      this.completion = this.computeCompletion();
+      this.completion = this.completion || this.computeCompletion();
     }
 
     go() {
       this.$state.go(this.action.sref);
     }
 
-    getActionLabel() {
-      switch (this.completion) {
-        case 'empty':
-          return 'Commencer';
-        case 'complete':
-          return 'Modifier';
-        case 'half':
-          return 'Reprendre';
-      }
-    }
-
     computeCompletion() {
-      if (!this.section) {
-        return 'empty';
-      } else if (this.section.__completion) {
+      if (this.section && this.section.__completion) {
         return 'complete';
-      } else {
-        return 'half';
+      } else if (this.options.mandatory) {
+        return 'error';
       }
     }
 

@@ -1,5 +1,10 @@
 <form id="profile-identites" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
-  <h2>Identité du bénéficiaire</h2>
+  <div class="section-body-head">
+    <h2>
+      <a id="backtoprofile" ui-sref="profil({profileId: profilCtrl.profile._id})">Profil</a>
+      / Identité du bénéficiaire
+    </h2>
+  </div>
 
   <section class="identite-section">
     <div class="section-row">

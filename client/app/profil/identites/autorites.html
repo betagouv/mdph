@@ -1,5 +1,10 @@
 <form id="profile-identites" aria-labelledby="infoPerso" name="forms.infoForm" ng-submit="submit(forms.infoForm)" novalidate>
-  <h2>Identité de l'autorité parentale</h2>
+  <div class="section-body-head">
+    <h2>
+      <a id="backtoprofile" ui-sref="profil({profileId: profilCtrl.profile._id})">Profil</a>
+      / Identité de l'autorité parentale
+    </h2>
+  </div>
 
   <div class="row">
     <div class="col-sm-6">

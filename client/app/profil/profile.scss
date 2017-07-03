@@ -87,3 +87,19 @@ section.profile-section {
     min-width: 100%;
   }
 }
+
+.section-body-content-text {
+  max-width: 640px;
+  margin: 2em auto;
+}
+
+.request-identifier {
+  border-radius: 2px;
+  background-color: $flat-ui-blue;
+  color: white;
+  padding: 4px 20px;
+  display: inline-block;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}

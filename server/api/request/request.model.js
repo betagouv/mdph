@@ -29,9 +29,13 @@ var RequestSchema = new Schema({
   user:           { type: Schema.Types.ObjectId, ref: 'User', required: true },
   profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
   mdph:           String,
+
+  //TODO Remove
   estRenouvellement: Boolean,
   old_mdph:       String,
   numeroDossier:  String,
+
+
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
   secteur:        { type: Schema.Types.ObjectId, ref: 'Secteur' },
   createdAt:      Date,

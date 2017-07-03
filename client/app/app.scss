@@ -202,7 +202,6 @@ fieldset {
 @import 'dashboard/workflow/detail/documents/documents.scss';
 @import 'dashboard/workflow/detail/history/history.scss';
 @import 'dashboard/workflow/detail/pre_evaluation/pre_evaluation.scss';
-@import 'dashboard/workflow/workflow.scss';
 @import 'departement/departement.scss';
 @import 'layout/layout.scss';
 @import 'main/main.scss';
@@ -210,13 +209,10 @@ fieldset {
 @import 'mon_compte/mon_compte.scss';
 @import 'partenaire/partenaire.scss';
 @import 'partenaire/pj/pj.scss';
-@import 'profil/demande/demande.scss';
-@import 'profil/demande/documents/documents.scss';
-@import 'profil/demande/prestations/prestations.scss';
-@import 'profil/demande/prestations/prestations.well.scss';
-@import 'profil/demande/recapitulatif/recapitulatif.scss';
+@import 'profil/documents/documents.scss';
 @import 'profil/identites/identites.scss';
 @import 'profil/liste_demandes.scss';
+@import 'profil/prestations/prestations.scss';
 @import 'profil/profile.scss';
 @import 'stats/stats.scss';
 @import 'suivi/suivi.scss';

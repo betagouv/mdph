@@ -4,8 +4,8 @@
   list-style-type: none;
 
   .profile-card-row-item {
-    @extend .col-md-6;
-    @extend .col-lg-4;
+    @extend .col-md-4;
+    @extend .col-lg-3;
   }
 }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('ProfileService', function ProfileService(estAdulte, estMineur) {
+  .factory('ProfileService', function ProfileService(estAdulte, estMineur, RequestService) {
     function _estMineur(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
@@ -18,8 +18,12 @@ angular.module('impactApp')
       }
     }
 
-    function getMissingSection(profile) {
+    function getMissingSection(profile, request, user) {
       const missingSections = [];
+
+      if (user.unconfirmed) {
+        missingSections.push('unconfirmed');
+      }
 
       if (!profile.identites || !profile.identites.beneficiaire) {
         missingSections.push('beneficiaire');
@@ -31,6 +35,10 @@ angular.module('impactApp')
 
       if (!profile.vie_quotidienne || !profile.vie_quotidienne.__completion) {
         missingSections.push('vieQuotidienne');
+      }
+
+      if (!RequestService.getCompletion(request)) {
+        missingSections.push('documents');
       }
 
       return missingSections.length > 0 ? missingSections : null;
