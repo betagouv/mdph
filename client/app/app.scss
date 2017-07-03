@@ -213,6 +213,7 @@ fieldset {
 @import 'profil/demande/demande.scss';
 @import 'profil/demande/documents/documents.scss';
 @import 'profil/demande/prestations/prestations.scss';
+@import 'profil/demande/prestations/prestations.well.scss';
 @import 'profil/demande/recapitulatif/recapitulatif.scss';
 @import 'profil/identites/identites.scss';
 @import 'profil/liste_demandes.scss';
@@ -227,6 +228,7 @@ fieldset {
 @import '../components/mes_profils/mes_profils.scss';
 @import '../components/nav-steps/nav-steps.scss';
 @import '../components/password-strength-bar/password-strength-bar.scss';
+@import '../components/prestations/prestation.scss';
 @import '../components/profile/profile-card.scss';
 @import '../components/profile/profile-category.scss';
 @import '../components/qtitle/qtitle.scss';

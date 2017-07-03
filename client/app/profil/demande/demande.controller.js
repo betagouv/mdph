@@ -1,20 +1,21 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations) {
+  .controller('DemandeCtrl', function($scope, $location, $anchorScroll, $state, $filter, $modal, toastr, RequestService, currentUser, request, prestations, ProfileService, profile) {
     $scope.request = request;
     $scope.currentUser = currentUser;
+    this.estAdulte = ProfileService.estAdulte(profile);
 
     $scope.isEditable = function() {
       return (request.status === 'en_cours' || request.status === 'en_attente_usager');
     };
 
-    function getSelectedPrestationIdList(filter) {
+    const getSelectedPrestationIdList = (filter, prestations) => {
       return _.chain(prestations)
        .filter(filter)
        .pluck('id')
        .value();
-    }
+    };
 
     const openErrorModal = ({message, focusFunction, label = 'Retourner au profil'}) => {
       $modal.open({
@@ -51,15 +52,15 @@ angular.module('impactApp')
       });
     };
 
-    $scope.submit = function(form) {
+    $scope.submit = form => {
       if (!form.$valid) {
         toastr.error('Vous n\'avez pas spécifié de MDPH destinataire de votre demande.', 'Erreur lors de la tentative d\'envoi');
       } else {
         if (request.status === 'en_cours') {
-          request.renouvellements = getSelectedPrestationIdList({choice: true, renouvellement: true});
+          request.renouvellements = getSelectedPrestationIdList({choice: true, renouvellement: true}, this.prestations);
           request.prestations = getSelectedPrestationIdList(function(current) {
             return current.choice && !current.renouvellement;
-          });
+          }, this.prestations);
         }
 
         if (!RequestService.getCompletion(request)) {
@@ -105,4 +106,91 @@ angular.module('impactApp')
         }
       }
     };
+
+    $scope.openMedicModal = () => {
+      $modal.open({
+        templateUrl: 'app/profil/demande/medic-modal.html',
+        controllerAs: 'medicModalCtrl',
+        size: 'md',
+        controller($modalInstance) {
+          this.emailMedic = '';
+
+          this.ok = function(form) {
+            if (form.$invalid) {
+              form.showError = true;
+            } else {
+              RequestService.generateMedicMail(request, this.emailMedic);
+              $modalInstance.close();
+            }
+          };
+
+          this.cancel = function() {
+            $modalInstance.close();
+          };
+        }
+      });
+    };
+
+    this.prestations = [];
+
+    this.cartestationnement = prestations.cartestationnement;
+    this.prestations.push(this.cartestationnement);
+
+    this.carteinvalidite = prestations.carteinvalidite;
+    this.prestations.push(this.carteinvalidite);
+
+    this.aeeh = prestations.aeeh;
+    this.prestations.push(this.aeeh);
+
+    this.aah = prestations.aah;
+    this.prestations.push(this.aah);
+
+    this.complement = prestations.complement;
+    this.prestations.push(this.complement);
+
+    this.pch = prestations.pch;
+    this.prestations.push(this.pch);
+
+    this.rqth = prestations.rqth;
+    this.prestations.push(this.rqth);
+
+    this.crp_cpo_ueros = prestations.crp_cpo_ueros;
+    this.prestations.push(this.crp_cpo_ueros);
+
+    this.esat = prestations.esat;
+    this.prestations.push(this.esat);
+
+    this.marche_travail = prestations.marche_travail;
+    this.prestations.push(this.marche_travail);
+
+    this.marche_travail_acc = prestations.marche_travail_acc;
+    this.prestations.push(this.marche_travail_acc);
+
+    this.av = prestations.av;
+    this.prestations.push(this.av);
+
+    this.ems = prestations.ems;
+    this.prestations.push(this.ems);
+
+    this.pps = prestations.pps;
+    this.prestations.push(this.pps);
+
+    this.orp = prestations.orp;
+    this.prestations.push(this.orp);
+
+    this.formation = prestations.formation;
+    this.prestations.push(this.formation);
+
+    this.sms = prestations.sms;
+    this.prestations.push(this.sms);
+
+    this.sms_enfant = prestations.sms_enfant;
+    this.prestations.push(this.sms_enfant);
+
+    this.ac = prestations.ac;
+    this.prestations.push(this.ac);
+
+    this.acfp = prestations.acfp;
+    this.prestations.push(this.acfp);
+
   });

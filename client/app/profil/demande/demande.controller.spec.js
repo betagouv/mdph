@@ -1,7 +1,9 @@
 'use strict';
 
 describe('Controller: demande', function() {
-  let RequestService = {
+  let $controller;
+
+  const RequestService = {
     getCompletion() {
       return true;
     },
@@ -15,8 +17,18 @@ describe('Controller: demande', function() {
     }
   };
 
-  let toastr = {
+  const ProfileService = {
+    estAdulte() {
+      return true;
+    }
+  };
+
+  const toastr = {
     error() {}
+  };
+
+  const $state = {
+    go() {}
   };
 
   let request = {
@@ -26,58 +38,134 @@ describe('Controller: demande', function() {
     $update() {}
   };
 
-  let currentUser = {};
+  const currentUser = {};
 
-  let prestations = [
-    {
-      id: 'cartestationnement',
-      type: 'carte',
-      label: 'Carte stationnement',
-      title: 'Carte de stationnement',
-      description: 'La carte européenne de stationnement permet à son titulaire ou à la personne qui l\'accompagne de stationner sur les places réservées aux personnes handicapées.',
-      link: 'http://vosdroits.service-public.fr/particuliers/F2891.xhtml'
-    },
-    {
-      id: 'carteinvalidite',
-      type: 'carte',
-      label: 'Carte d\'invalidité ou de priorité',
-      title: 'Carte d\'invalidité ou de priorité',
-      description: 'La carte d\'invalidité civile a pour but d\'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports. La carte de priorité permet d\'obtenir un droit de priorité pour l\'accès aux bureaux et guichets des administrations et services publics et aux transports publics.',
-      link: 'http://vosdroits.service-public.fr/particuliers/F2446.xhtml'
-    },
-  ];
+  const samplePrestations = {
+      cartestationnement: {
+        id: 'cartestationnement'
+      },
+      carteinvalidite: {
+        id: 'carteinvalidite',
+      },
+      aeeh: {
+        id: 'aeeh',
+      },
+      aah: {
+        id: 'aah',
+      },
+      complement: {
+        id: 'complement',
+      },
+      pch: {
+        id: 'pch',
+      },
+      rqth: {
+        id: 'rqth',
+      },
+      crp_cpo_ueros: {
+        id: 'crp_cpo_ueros',
+      },
+      esat: {
+        id: 'esat',
+      },
+      marche_travail: {
+        id: 'marche_travail',
+      },
+      marche_travail_acc: {
+        id: 'marche_travail_acc',
+      },
+      av: {
+        id: 'av',
+      },
+      ems: {
+        id: 'ems',
+      },
+      pps: {
+        id: 'pps',
+      },
+      orp: {
+        id: 'orp',
+      },
+      formation: {
+        id: 'formation',
+      },
+      sms: {
+        id: 'sms',
+      },
+      sms_enfant: {
+        id: 'sms_enfant',
+      },
+      ac: {
+        id: 'ac',
+      },
+      acfp: {
+        id: 'acfp',
+      }
+    };
 
   // load the service's module
   beforeEach(module('impactApp'));
 
-  it('should select the right prestations', function() {
+  beforeEach(inject(function(_$controller_) {
+    $controller = _$controller_;
+  }));
+
+  describe('prestations list', () => {
+    let controller;
+
     //given
-    var $scope = {};
+    let $scope = {};
 
-    //when
-    inject(function($controller) {
-      $controller('DemandeCtrl', {
-        $state: {
-          go() {}
-        },
-
+    beforeEach(function() {
+      controller = $controller('DemandeCtrl', {
+        $state,
         $scope,
         currentUser,
-        prestations,
         request,
         RequestService,
-        toastr
+        toastr,
+        prestations: samplePrestations,
+        ProfileService,
+        profile:{}
       });
     });
 
-    prestations[0].choice = true;
-    prestations[1].choice = true;
-    prestations[1].renouvellement = true;
-    $scope.submit({$valid: true});
+    it('should have 16 prestations', function() {
+      expect(controller.prestations.length).toEqual(20);
+    });
+  });
 
-    //then
-    expect($scope.request.renouvellements[0]).toEqual('carteinvalidite');
-    expect($scope.request.prestations[0]).toEqual('cartestationnement');
+  describe('prestations request', () => {
+    let controller;
+
+    //given
+    let $scope = {};
+
+    beforeEach(function() {
+      controller = $controller('DemandeCtrl', {
+        $state,
+        $scope,
+        currentUser,
+        request,
+        RequestService,
+        toastr,
+        prestations: samplePrestations,
+        ProfileService,
+        profile:{}
+      });
+    });
+
+    it('should select the right prestations', function() {
+      //given
+      controller.cartestationnement = _.assign(controller.cartestationnement, {choice: true});
+      controller.carteinvalidite = _.assign(controller.carteinvalidite, {choice: true, renouvellement: true});
+
+      $scope.submit({$valid: true});
+
+      //then
+      expect($scope.request.renouvellements[0]).toEqual('carteinvalidite');
+      expect($scope.request.prestations[0]).toEqual('cartestationnement');
+    });
 
   });
 

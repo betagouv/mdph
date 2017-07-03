@@ -1,25 +1,167 @@
 <div ng-if="request.status === 'en_cours'">
-  <div ng-repeat="(type, prestations) in types">
-    <h4>{{type | prestationType}}</h4>
 
-    <ul class="list-prestations">
-      <li ng-repeat="prestation in prestations">
-        <div class="input">
-          <input type="checkbox" ng-model="prestation.choice" name="{{prestation.id}}" id="{{prestation.id}}" />
-        </div>
+  <ul class="list-prestations">
 
-        <div class="detail">
-          <label for="{{prestation.id}}">{{prestation.title}}</label>&nbsp;&nbsp;<a target="_blank" href="{{prestation.link}}">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
-          <div class="text-justify">
-            <div ng-if="prestation.choice">
-              <input ng-disabled="!prestation.choice" type="checkbox" ng-model="prestation.renouvellement" name="{{prestation.id}}-renouvellement" id="{{prestation.id}}-renouvellement" />
-              <label for="{{prestation.id}}-renouvellement">Je perçois déjà cette prestation</label>
-            </div>
-          </div>
+    <div class="well" ng-if="!demandectrl.estAdulte">
+      <h3>Demandes relatives à la vie quotidienne</h3>
+      <!--Vous avez moins de 20 ans : -->
+
+      <li>
+        <prestation ng-model="demandectrl.aeeh"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.pch"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.av"></prestation>
+      </li>
+
+      <div class="well-detail-darker">
+        <h6>Carte mobilité inclusion</h6>
+        <ul class="list-prestations">
+          <li>
+            <prestation ng-model="demandectrl.carteinvalidite"></prestation>
+          </li>
+          <li>
+            <prestation ng-model="demandectrl.cartestationnement"></prestation>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="well" ng-if="demandectrl.estAdulte">
+      <h3>Demandes relatives à la vie quotidienne</h3>
+      <!--Vous avez plus de 20 ans :-->
+      <li>
+        <prestation ng-model="demandectrl.aah"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.complement"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.sms"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.ems"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.pch"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.av"></prestation>
+      </li>
+
+      <li>
+        <div class="well-detail-darker">
+
+          <h6>Allocation Compensatrice (AC)</h6>
+
+          <ul class="list-prestations">
+            <li>
+              <prestation ng-model="demandectrl.ac"></prestation>
+            </li>
+
+            <li>
+              <prestation ng-model="demandectrl.acfp"></prestation>
+            </li>
+
+          </ul>
+
         </div>
       </li>
-    </ul>
-  </div>
+
+      <div class="well-detail-darker">
+
+        <h6>Carte mobilité inclusion</h6>
+
+        <ul class="list-prestations">
+
+          <li>
+            <prestation ng-model="demandectrl.carteinvalidite"></prestation>
+          </li>
+
+          <li>
+            <prestation ng-model="demandectrl.cartestationnement"></prestation>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </ul>
+
+  <ul class="list-prestations">
+
+    <div class="well">
+
+      <h3>Demandes relatives à la vie scolaire</h3>
+
+      <li>
+        <prestation ng-model="demandectrl.pps"></prestation>
+      </li>
+
+    </div>
+
+    <div class="well">
+
+      <h3>Demandes relatives au travail, à l’emploi et à la formation professionnelle</h3>
+
+      <li>
+        <prestation ng-model="demandectrl.rqth"></prestation>
+      </li>
+
+      <li>
+        <prestation ng-model="demandectrl.orp"></prestation>
+      </li>
+
+      <div class="well-detail-darker">
+
+        <h6>Orientation professionnelle</h6>
+
+        <ul class="list-prestations">
+
+          <li>
+            <prestation ng-model="demandectrl.crp_cpo_ueros"></prestation>
+          </li>
+
+          <li>
+            <prestation ng-model="demandectrl.esat"></prestation>
+          </li>
+
+          <li>
+            <prestation ng-model="demandectrl.marche_travail"></prestation>
+          </li>
+
+          <li>
+            <prestation ng-model="demandectrl.marche_travail_acc"></prestation>
+          </li>
+
+        </ul>
+
+        <div class="alert alert-warning">
+          <p>« Le dispositif emploi accompagné propose un accompagnement médico-social et un soutien à l’insertion professionnelle du travailleur handicapé et à son employeur. Peuvent être bénéficiaires de ce dispositif les travailleurs handicapés :</p>
+          <ul>
+            <li>ayant un projet d’insertion en milieu ordinaire de travail,</li>
+            <li>accueillis dans un établissement ou service d’aide par le travail ayant un projet d’insertion en milieu ordinaire de travail,</li>
+            <li>déjà en emploi en milieu ordinaire de travail, rencontrant des difficultés particulières pour sécuriser leur insertion professionnelle.»</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ul>
 </div>
 
 <div ng-if="request.status !== 'en_cours'">
