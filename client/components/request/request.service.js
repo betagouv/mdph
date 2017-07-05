@@ -1,169 +1,166 @@
-'use strict';
+const REQUEST_SERVICE_NAME = 'RequestService';
 
-angular.module('impactApp')
-  .factory('RequestService', function RequestService($http) {
-    function allMandatoryFilesPresent(request) {
-      return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
-    }
+class RequestService {
+  constructor($http) {
+    this.$http = $http;
+  }
 
-    function allAskedFilesPresent(request) {
-      var allAskedFilesComplete = true;
+  allMandatoryFilesPresent(request) {
+    // TODO Object.keys(request.documents.obligatoires).length === 3 doesn't seem strict enough
+    return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
+  }
 
-      _.forEach(request.askedDocumentTypes, function(askedType) {
-        let askedDocs = _.get(request.documents, ['complementaires', askedType, 'documentList']);
-        if (typeof askedDocs === 'undefined' || askedDocs.length === 0) {
-          allAskedFilesComplete = false;
-        }
-      });
+  allAskedFilesPresent(request) {
+    let allAskedFilesComplete = true;
 
-      return allAskedFilesComplete;
-    }
-
-    function getCompletion(request) {
-      if (!request.documents) {
-        return false;
+    _.forEach(request.askedDocumentTypes, (askedType) => {
+      let askedDocs = _.get(request.documents, ['complementaires', askedType, 'documentList']);
+      if (typeof askedDocs === 'undefined' || askedDocs.length === 0) {
+        allAskedFilesComplete = false;
       }
+    });
 
-      return allMandatoryFilesPresent(request) && allAskedFilesPresent(request) && !hasRefusedDocuments(request);
-    }
+    return allAskedFilesComplete;
+  }
 
-    function findInvalid(categories) {
-      var invalidDocuments = [];
-
-      _.forEach(categories, function(category) {
-        _.forEach(category.documentList, function(document) {
-          if (document.isInvalid) {
-            invalidDocuments.push(document);
-          }
-        });
-      });
-
-      return invalidDocuments;
-    }
-
-    function hasRefusedDocuments(request) {
-      if (findInvalid(request.documents.obligatoires).length > 0) {
-        return true;
-      }
-
-      if (findInvalid(request.documents.complementaires).length > 0) {
-        return true;
-      }
-
+  getCompletion(request) {
+    if (!request.documents) {
       return false;
     }
 
-    function findRefusedDocuments(request) {
-      if (!request.documents) {
-        return {
-          obligatoires: [],
-          complementaires: []
-        };
-      }
+    return this.allMandatoryFilesPresent(request) &&
+      this.allAskedFilesPresent(request) &&
+      this.hasRefusedDocuments(request) == false;
+  }
 
-      var obligatoires = findInvalid(request.documents.obligatoires);
-      var complementaires = findInvalid(request.documents.complementaires);
+  findInvalid(categories) {
+    var invalidDocuments = [];
 
-      return {
-        obligatoires: obligatoires,
-        complementaires: complementaires
-      };
+    _.forEach(categories, category => {
+      _.forEach(category.documentList, document => {
+        if (document.isInvalid) {
+          invalidDocuments.push(document);
+        }
+      });
+    });
+
+    return invalidDocuments;
+  }
+
+  hasRefusedDocuments(request) {
+    if (this.findInvalid(request.documents.obligatoires).length > 0) {
+      return true;
     }
 
-    function getAskedDocumentTypes(request) {
-      if (!request.askedDocumentTypes) {
-        return [];
-      }
-
-      return request.askedDocumentTypes;
+    if (this.findInvalid(request.documents.complementaires).length > 0) {
+      return true;
     }
 
-    function getMandatoryTypes(documentTypes) {
-      return _.filter(documentTypes, {mandatory: true});
-    }
+    return false;
+  }
 
-    function findExistingTypes(request) {
-      return _.pluck(request.documents.complementaires, 'documentType');
-    }
+  findRefusedDocuments(request) {
+   if (!request.documents) {
+     return { obligatoires: [], complementaires: [] };
+   }
 
-    function findAskedTypes(request, documentTypes) {
-      return _(documentTypes)
-        .filter(function(documentType) {
-          return !documentType.mandatory && request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) > -1;
-        })
-        .map(function(documentType) {
-          documentType.asked = true;
-          return documentType;
-        })
-        .value();
-    }
+   return {
+     obligatoires: this.findInvalid(request.documents.obligatoires),
+     complementaires: this.findInvalid(request.documents.complementaires)
+   };
+ }
 
-    function concatTypes(accumulator, type) {
-      if (_.find(accumulator, {id: type.id})) {
-        return accumulator;
-      }
+  getAskedDocumentTypes(request) {
+    return request.askedDocumentTypes || [];
+  }
 
-      accumulator.push(type);
+  getMandatoryTypes(documentTypes) {
+    return _.filter(documentTypes, {mandatory: true});
+  }
+
+  findExistingTypes(request) {
+    return _.pluck(request.documents.complementaires, 'documentType');
+  }
+
+  findAskedTypes(request, documentTypes) {
+    return _(documentTypes)
+      .filter(function(documentType) {
+        return !documentType.mandatory && request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) > -1;
+      })
+      .map(function(documentType) {
+        documentType.asked = true;
+        return documentType;
+      })
+      .value();
+  }
+
+  concatTypes(accumulator, type) {
+    if (_.find(accumulator, {id: type.id})) {
       return accumulator;
     }
 
-    function computeSelectedDocumentTypes(request, documentTypes) {
-      var selectedDocumentTypes = [];
+    accumulator.push(type);
+    return accumulator;
+  }
 
-      var mandatoryTypes = getMandatoryTypes(documentTypes);
-      var existingTypes = findExistingTypes(request, documentTypes);
-      var askedTypes = findAskedTypes(request, documentTypes);
+  computeSelectedDocumentTypes(request, documentTypes) {
+    const selectedDocumentTypes = [];
 
-      _.reduce(mandatoryTypes, concatTypes, selectedDocumentTypes);
-      _.reduce(existingTypes, concatTypes, selectedDocumentTypes);
-      _.reduce(askedTypes, concatTypes, selectedDocumentTypes);
+    const mandatoryTypes = this.getMandatoryTypes(documentTypes);
+    const existingTypes = this.findExistingTypes(request, documentTypes);
+    const askedTypes = this.findAskedTypes(request, documentTypes);
 
-      return selectedDocumentTypes;
+    _.reduce(mandatoryTypes, this.concatTypes, selectedDocumentTypes);
+    _.reduce(existingTypes, this.concatTypes, selectedDocumentTypes);
+    _.reduce(askedTypes, this.concatTypes, selectedDocumentTypes);
+
+    return selectedDocumentTypes;
+  }
+
+  groupByAge(requests) {
+    if (typeof requests === 'undefined' || requests.length === 0) {
+      return null;
     }
 
-    function groupByAge(requests) {
-      if (typeof requests === 'undefined' || requests.length === 0) {
-        return null;
-      }
-
-      var currentMoment = moment();
-      var groupedByAge = {
-        new: [],
-        standard: [],
-        old: []
-      };
-
-      _.reduce(requests, function(result, request) {
-        var submissionMoment = moment(request.submittedAt);
-        var deltaMonths = currentMoment.diff(submissionMoment, 'months');
-
-        if (deltaMonths <= 1) {
-          result.new.push(request);
-        } else if (deltaMonths > 1 && deltaMonths < 3) {
-          result.standard.push(request);
-        } else {
-          result.old.push(request);
-        }
-
-        return result;
-      }, groupedByAge);
-
-      return groupedByAge;
-    }
-
-    return {
-      findRefusedDocuments,
-      getAskedDocumentTypes,
-      getCompletion,
-      computeSelectedDocumentTypes,
-      groupByAge,
-
-      postAction(request, action) {
-        return $http.post(`api/requests/${request.shortId}/action`, action);
-      },
-
-      generateReceptionMail(request) {
-        return $http.get(`api/requests/${request.shortId}/generate-reception-mail`);
-      }
+    var currentMoment = moment();
+    var groupedByAge = {
+      new: [],
+      standard: [],
+      old: []
     };
-  });
+
+    _.reduce(requests, function(result, request) {
+      var submissionMoment = moment(request.submittedAt);
+      var deltaMonths = currentMoment.diff(submissionMoment, 'months');
+
+      if (deltaMonths <= 1) {
+        result.new.push(request);
+      } else if (deltaMonths > 1 && deltaMonths < 3) {
+        result.standard.push(request);
+      } else {
+        result.old.push(request);
+      }
+
+      return result;
+    }, groupedByAge);
+
+    return groupedByAge;
+  }
+
+  postAction(request, action) {
+    return this.$http.post(`api/requests/${request.shortId}/action`, action);
+  }
+
+  generateReceptionMail(request) {
+    return this.$http.get(`api/requests/${request.shortId}/generate-reception-mail`);
+  }
+
+  static get $inject() {
+    return [
+      '$http'
+    ];
+  }
+}
+
+angular.module('impactApp')
+  .service(REQUEST_SERVICE_NAME, RequestService);

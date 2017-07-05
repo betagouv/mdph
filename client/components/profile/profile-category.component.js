@@ -12,7 +12,7 @@ const profileCategoryComponent = {
   controllerAs: 'profileCategoryCtrl',
   controller: class profileCategoryController {
     constructor($state) {
-      const { title, subhead, content, icon, model, action, completion } = this.options;
+      const { title, subhead, content, icon, model, action } = this.options;
 
       this.$state = $state;
       this.title = title;
