@@ -72,7 +72,7 @@ export function indexRequests(req, res) {
 
 export function showCurrentRequest(req, res) {
   Request
-    .findOne({ profile: req.profile._id, status: { $ne: 'archive' } }, {}, { sort: { createdAt: -1 } })
+    .findOne({ profile: req.profile._id, status: { $nin: ['archive', 'enregistree'] } }, {}, { sort: { createdAt: -1 } })
     .exec()
     .then(request => {
       if (!request) {

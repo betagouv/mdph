@@ -11,6 +11,31 @@
       </div>
     </div>
 
+    <div class="profile-card-content" ng-if="profilCtrl.currentRequest.status === 'en_attente_usager'">
+      <div ui-view class="container-fluid">
+        <h2>Votre MDPH vous demande de corriger les documents associés à votre demande</h2>
+
+        <ul class="profile-card-row">
+          <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion" options="profilCtrl.options.documents" /></li>
+        </ul>
+
+        <h3>Récapitulatif de votre demande</h3>
+        <div class="request-identifier">{{profilCtrl.currentRequest.shortId}}</div>
+
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe ng-src="{{'/api/requests/' + profilCtrl.currentRequest.shortId + '/recapitulatif?access_token=' + profilCtrl.token}}" class="embed-responsive-item"></iframe>
+        </div>
+        <br>
+        <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{profilCtrl.currentRequest.shortId}}/pdf/{{profilCtrl.pdfName}}?access_token={{profilCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
+
+        <div class="button-container">
+          <button type="button" ng-click="profilCtrl.sendRequest()" class="btn hero-button btn-primary">
+            Envoyer la demande
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="profile-card-content" ng-if="profilCtrl.currentRequest.status === 'emise'">
       <div ui-view class="container-fluid">
         <h2>Votre demande est en cours de validation par votre MDPH</h2>
@@ -18,14 +43,14 @@
         <div class="request-identifier">{{profilCtrl.currentRequest.shortId}}</div>
 
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe src="{{'/api/requests/' + profilCtrl.currentRequest.shortId + '/recapitulatif?access_token=' + profilCtrl.token}}" class="embed-responsive-item"></iframe>
+          <iframe ng-src="{{'/api/requests/' + profilCtrl.currentRequest.shortId + '/recapitulatif?access_token=' + profilCtrl.token}}" class="embed-responsive-item"></iframe>
         </div>
         <br>
         <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{profilCtrl.currentRequest.shortId}}/pdf/{{profilCtrl.pdfName}}?access_token={{profilCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
       </div>
     </div>
 
-    <div class="profile-card-content" ng-if="profilCtrl.currentRequest.status !== 'emise'">
+    <div class="profile-card-content" ng-if="profilCtrl.currentRequest.status === 'en_cours'">
       <div ui-view class="container-fluid">
         <section class="profile-section">
           <h2>Informations obligatoires</h2>
@@ -51,7 +76,7 @@
           </ul>
         </section>
 
-        <div class="button-container" ng-if="!profilCtrl.lastCreatedRequest || profilCtrl.lastCreatedRequest.status === 'enregistree'">
+        <div class="button-container">
           <button type="button" ng-click="profilCtrl.sendRequest()" class="btn hero-button btn-primary">
             Envoyer la demande
           </button>

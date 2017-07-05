@@ -40,7 +40,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
        id: 'submit',
        mdph: currentMdph.zipcode,
      }).then(() => {
-       $state.go('.', {}, {reload: true});
+       $state.go('profil', {}, {reload: true});
      });
   };
 

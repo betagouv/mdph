@@ -42,12 +42,11 @@ angular.module('impactApp')
     }
 
     function hasRefusedDocuments(request) {
-
-      if (findInvalid(request.documents.obligatoires)) {
+      if (findInvalid(request.documents.obligatoires).length > 0) {
         return true;
       }
 
-      if (findInvalid(request.documents.complementaires)) {
+      if (findInvalid(request.documents.complementaires).length > 0) {
         return true;
       }
 

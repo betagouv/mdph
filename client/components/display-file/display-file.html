@@ -45,7 +45,10 @@
 
     <div class="file-actions" ng-if="hideActions && file.isInvalid !== undefined">
       <div class="text-validation text-validation-invalid" ng-if="file.isInvalid">
-        Document non conforme
+        Document non conforme, <br>
+        <button type="button" class="btn btn-danger" ng-click="delete()" ng-if="fileEditable">
+          Supprimez
+        </button> le pour renvoyer votre demande
         <span ng-if="file.invalidReason">: <br> <em ng-bind-html=file.invalidReason></em></span>
       </div>
       <div class="text-validation text-validation-valid" ng-if="!file.isInvalid">Document conforme</div>
