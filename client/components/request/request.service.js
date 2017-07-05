@@ -30,7 +30,7 @@ class RequestService {
 
     return this.allMandatoryFilesPresent(request) &&
       this.allAskedFilesPresent(request) &&
-      this.hasRefusedDocuments(request) == false;
+      this.hasRefusedDocuments(request) !== true;
   }
 
   findInvalid(categories) {
@@ -60,15 +60,15 @@ class RequestService {
   }
 
   findRefusedDocuments(request) {
-   if (!request.documents) {
-     return { obligatoires: [], complementaires: [] };
-   }
+    if (!request.documents) {
+      return { obligatoires: [], complementaires: [] };
+    }
 
-   return {
-     obligatoires: this.findInvalid(request.documents.obligatoires),
-     complementaires: this.findInvalid(request.documents.complementaires)
-   };
- }
+    return {
+      obligatoires: this.findInvalid(request.documents.obligatoires),
+      complementaires: this.findInvalid(request.documents.complementaires)
+    };
+  }
 
   getAskedDocumentTypes(request) {
     return request.askedDocumentTypes || [];

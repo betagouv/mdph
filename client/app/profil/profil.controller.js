@@ -36,12 +36,14 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       return;
     }
 
-     return RequestService.postAction(currentRequest, {
-       id: 'submit',
-       mdph: currentMdph.zipcode,
-     }).then(() => {
-       $state.go('profil', {}, {reload: true});
-     });
+    return RequestService
+      .postAction(currentRequest, {
+        id: 'submit',
+        mdph: currentMdph.zipcode,
+      })
+      .then(() => {
+        $state.go('profil', {}, {reload: true});
+      });
   };
 
   this.options = {
