@@ -24,7 +24,7 @@ angular.module('impactApp')
         return false;
       }
 
-      return allMandatoryFilesPresent(request) && allAskedFilesPresent(request);
+      return allMandatoryFilesPresent(request) && allAskedFilesPresent(request) && !hasRefusedDocuments(request);
     }
 
     function findInvalid(categories) {
@@ -39,6 +39,19 @@ angular.module('impactApp')
       });
 
       return invalidDocuments;
+    }
+
+    function hasRefusedDocuments(request) {
+
+      if (findInvalid(request.documents.obligatoires)) {
+        return true;
+      }
+
+      if (findInvalid(request.documents.complementaires)) {
+        return true;
+      }
+
+      return false;
     }
 
     function findRefusedDocuments(request) {
