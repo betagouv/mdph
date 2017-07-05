@@ -67,13 +67,16 @@ function printDocumentType(id, invalidDocuments) {
   var out = documentType.rejectionReason ?  `${documentType.label} : ${documentType.rejectionReason}` : `${documentType.label}`;
 
   if(invalidDocuments.length > 0){
-    out = out + "<ul>"
+    out += "<ul>";
     invalidDocuments.forEach(function(invalidDocument) {
        if(invalidDocument.type === id){
-         out = out + "<li style=\"text-indent: 15px;\"> Le fichier " + invalidDocument.originalname + " est invalide pour la raison suivante : " + invalidDocument.invalidReason + "</li>";
+         out += "<li style=\"text-indent: 15px;\"> Le fichier " + invalidDocument.originalname + " est invalide";
+         if (invalidDocument.invalidReason) {
+           out += " pour la raison suivante : " + invalidDocument.invalidReason + "</li>";
+         }
        }
     });
-    out = out + "</ul>"
+    out += "</ul>";
   }
 
   return new Handlebars.SafeString(out);
