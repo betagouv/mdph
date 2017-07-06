@@ -1,48 +1,101 @@
 version: 2
+
+defaults: &defaults
+  working_directory: /home/ubuntu/mdph
+  docker:
+    - image: mdphbeta/node-mdph:1.0.4
+    - image: circleci/mongo:3.4.2
+    - image: selenium/standalone-chrome:latest
+
 jobs:
   build:
-    docker:
-      - image: mdphbeta/node-mdph:1.0.4
-      - image: circleci/mongo:3.4.2
-      - image: selenium/standalone-chrome:latest
-    working_directory: /home/ubuntu/mdph
+    <<: *defaults
     steps:
       - checkout
-
       - restore_cache:
           key: mdph-{{ .Branch }}-{{ checksum "yarn.lock" }}
-
       - run:
           name: Install Dependencies
           command: yarn install
-
       - save_cache:
           key: mdph-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - "/root/.cache/yarn"
-
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test-lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/ubuntu/mdph
       - run:
-          name: Run unit tests
-          command: yarn test
-
+          name: Run linter
+          command: yarn lint
+  test-front:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/ubuntu/mdph
+      - run:
+          name: Run client-side unit tests
+          command: yarn test:front
+  test-back:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/ubuntu/mdph
+      - run:
+          name: Run server-side unit tests
+          command: yarn test:back
+  test-end-to-end:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/ubuntu/mdph
       - run:
           name: Build package
           command: yarn build
-
       - run:
           name: Run test server
           command: yarn circle-server
           background: true
-
       - run:
           name: Run e2e tests
           command: yarn circle-e2e
-
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/ubuntu/mdph
       - add_ssh_keys
-
       - deploy:
           name: Deploy for branch master only
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               pm2 deploy pm2.json production
             fi
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - build
+      - test-lint:
+          requires:
+            - build
+      - test-front:
+          requires:
+            - build
+      - test-back:
+          requires:
+            - build
+      - test-end-to-end:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test-lint
+            - test-front
+            - test-back
+            - test-end-to-end
