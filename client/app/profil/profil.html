@@ -43,7 +43,7 @@
           </ul>
         </section>
 
-        <div class="button-container" ng-if="!profilCtrl.lastCreatedRequest || profilCtrl.lastCreatedRequest.status === 'enregistree'">
+        <div class="button-container" ng-if="!profilCtrl.currentRequest || profilCtrl.currentRequest.status === 'enregistree'">
           <button type="button" ng-click="profilCtrl.nouvelleDemande()" class="btn hero-button btn-primary">
             Finaliser la demande
           </button>
