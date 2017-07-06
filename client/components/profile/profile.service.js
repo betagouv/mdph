@@ -37,7 +37,7 @@ angular.module('impactApp')
         missingSections.push('vieQuotidienne');
       }
 
-      if (!RequestService.getCompletion(request)) {
+      if (!RequestService.getDocumentCompletion(request)) {
         missingSections.push('documents');
       }
 

@@ -10,7 +10,7 @@ describe('ProfilCtrl', function() {
 
   // Inject angular services
   beforeEach(inject((_$controller_, _$modal_, _$q_, _$state_, RequestService, RequestResource, ProfileService) => {
-    spyOn(RequestResource, 'save').and.callThrough();
+    spyOn(RequestService, 'postAction').and.callThrough();
     spyOn(_$state_, 'go');
     spyOn(_$modal_, 'open').and.returnValue({
       // http://stackoverflow.com/questions/21214868/mocking-modal-in-angularjs-unit-tests
@@ -42,7 +42,11 @@ describe('ProfilCtrl', function() {
 
         getTitle() {}
       },
-      currentRequest: {},
+      currentMdph: {},
+      currentRequest: {
+        prestations: [],
+        formAnswers: {}
+      },
       hasRequest: 0,
       ProfileService,
       RequestService,
@@ -56,46 +60,26 @@ describe('ProfilCtrl', function() {
     });
   }));
 
-  describe('nouvelleDemande', function() {
+  describe('sendRequest', function() {
 
     beforeEach(() => {
-      controller.RequestResource.save.calls.reset();
+      controller.RequestService.postAction.calls.reset();
     });
 
-    describe('with a need for CV', function() {
-      it('should create a Request with the correct parameters', function() {
+    describe('with a complete request', function() {
+      it('should submit a Request', function() {
         // given
         spyOn(controller.ProfileService, 'getMissingSection').and.returnValue(null);
-        spyOn(controller.ProfileService, 'getAskedDocumentTypes').and.returnValue(['cv']);
 
         // when
-        controller.nouvelleDemande();
+        controller.sendRequest();
 
         // then
-        expect(controller.RequestResource.save).toHaveBeenCalled();
-        expect(controller.RequestResource.save.calls.mostRecent().args[0].profile).toEqual('1234');
-        expect(controller.RequestResource.save.calls.mostRecent().args[0].user).toEqual('5678');
-        expect(controller.RequestResource.save.calls.mostRecent().args[0].askedDocumentTypes[0]).toEqual('cv');
+        expect(controller.RequestService.postAction).toHaveBeenCalled();
+        expect(controller.RequestService.postAction.calls.mostRecent().args[1].id).toEqual('submit');
       });
 
     });
-
-    describe('without a need for CV', function() {
-        it('should create a Request with the correct parameters', function() {
-          // given
-          spyOn(controller.ProfileService, 'getMissingSection').and.returnValue(null);
-          spyOn(controller.ProfileService, 'getAskedDocumentTypes').and.returnValue(null);
-
-          // when
-          controller.nouvelleDemande();
-
-          // then
-          expect(controller.RequestResource.save).toHaveBeenCalled();
-          expect(controller.RequestResource.save.calls.mostRecent().args[0].profile).toEqual('1234');
-          expect(controller.RequestResource.save.calls.mostRecent().args[0].user).toEqual('5678');
-          expect(controller.RequestResource.save.calls.mostRecent().args[0].askedDocumentTypes).toBeNull();
-        });
-      });
 
     describe('with a missing section', function() {
 
@@ -109,7 +93,7 @@ describe('ProfilCtrl', function() {
         spyOn(controller.ProfileService, 'getAskedDocumentTypes').and.returnValue(null);
 
         // when
-        controller.nouvelleDemande();
+        controller.sendRequest();
 
         // then
         expect(controller.$anchorScroll).toHaveBeenCalled();

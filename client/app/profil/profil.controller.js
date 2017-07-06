@@ -10,18 +10,20 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.currentRequest = currentRequest;
   this.currentUser = currentUser;
   this.hasRequest = hasRequest;
+
+  // Needed for tests
   this.RequestResource = RequestResource;
   this.ProfileService = ProfileService;
+  this.RequestService = RequestService;
+
   this.$state = $state;
   this.$modal = $modal;
   this.token = $cookies.get('token');
   this.$anchorScroll = $anchorScroll;
-  this.prestationsCompletion = this.currentRequest.prestations.length > 0 ? 'complete' : null;
-  this.documentCompletion = RequestService.getCompletion(currentRequest) ? 'complete' : 'error';
+  this.prestationsCompletion = RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
+  this.documentCompletion = RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
+  this.pdfName = RequestService.getPdfName(currentRequest);
   this.estAdulte = ProfileService.estAdulte(profile);
-  this.pdfName = (currentRequest.formAnswers.identites.beneficiaire.nom).toLowerCase() +
-    '_' + (currentRequest.formAnswers.identites.beneficiaire.prenom).toLowerCase() +
-    '_' + currentRequest.shortId + '.pdf';
 
   this.sendRequest = () => {
     const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);
