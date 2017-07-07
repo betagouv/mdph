@@ -131,10 +131,10 @@ describe('Profile Integration', () => {
         Request.remove().then(() => done());
       });
 
-      it('should return 204', done => {
+      it('should return 200', done => {
         api
           .get(`/api/users/${testUser._id}/profiles/${fakeProfile._id}/requests/current?access_token=${token}`)
-          .expect(204)
+          .expect(200)
           .end(done);
       });
     });

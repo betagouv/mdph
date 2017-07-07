@@ -24,7 +24,7 @@ class RequestService {
   }
 
   getPrestationCompletion(request) {
-    return Array.isArray(request.prestations) && request.prestations.length > 0
+    return Array.isArray(request.prestations) && request.prestations.length > 0;
   }
 
   getPdfName(request) {

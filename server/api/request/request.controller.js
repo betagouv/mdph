@@ -28,6 +28,7 @@ import resizeAndMove from '../../components/resize-image';
 
 function handleError(req, res) {
   return function(statusCode, err) {
+    console.log(statusCode);
     statusCode = statusCode || 500;
 
     if (err) {
@@ -332,8 +333,8 @@ export function generateReceptionMail(req, res) {
 export function create(req, res) {
   Request
     .create({
-      profile: req.body.profile,
-      user: req.body.user,
+      profile: req.profile,
+      user: req.user,
       askedDocumentTypes: req.body.askedDocumentTypes
     })
     .then(request => {
