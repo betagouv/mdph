@@ -27,7 +27,7 @@ var MdphSchema = new Schema({
       headquarters: { type: Boolean },
     }
   ],
-  separateFilesInPdfStructure: { type: Boolean },
+  requestExportFormat: { type: String, enum: ['pdf', 'zip'], default: 'pdf' }
 });
 
 export default mongoose.model('Mdph', MdphSchema);

@@ -5,6 +5,15 @@
 .plan-classement {
   padding: 0 30px;
 
+  .radio-choice-group {
+    @extend .well;
+    margin-bottom: 0;
+
+    .form-group+.form-group {
+      margin-bottom: 0;
+    }
+  }
+
   .trees {
     display: flex;
     justify-content: space-between;

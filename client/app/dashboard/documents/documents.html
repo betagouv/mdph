@@ -1,9 +1,15 @@
 <div class="plan-classement">
   <div class="wrapper">
     <h2>Format de téléchargement des demandes</h2>
-    <div>
-      <input type="checkbox" id="checkbox-concat-pdf" ng-model="currentMdph.separateFilesInPdfStructure" ng-change="saveConcatPdf()">
-      <label for="checkbox-concat-pdf" class="control-label">Télécharger les demandes au format .zip (archive contenant les différents documents)</label>
+    <div class="radio-choice-group">
+      <div class="form-group">
+        <input type="radio" name="radio-choice" id="radio-zip" ng-model="currentMdph.requestExportFormat" value="zip" ng-change="updateMdph()">
+        <label for="radio-zip" class="control-label">Télécharger les demandes au format ZIP (archive contenant les différents documents)</label>
+      </div>
+      <div class="form-group">
+        <input type="radio" name="radio-choice" id="radio-pdf" ng-model="currentMdph.requestExportFormat" value="pdf" ng-change="updateMdph()">
+        <label for="radio-pdf" class="control-label">Télécharger les demandes au format PDF</label>
+      </div>
     </div>
 
     <h2>Classification des documents</h2>

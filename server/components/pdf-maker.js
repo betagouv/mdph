@@ -66,14 +66,15 @@ function createRequestArchive(tempDirPath) {
   };
 }
 
-function createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, separateFilesInPdfStructure}) {
+function createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, requestExportFormat}) {
   return transformImagesToPdf(tempDirPath, request)
     .then(() => pdfDecrypt(tempDirPath, request.documents))
     .then(() => pdfFilterMissing(request.documents))
     .then(buildStructure(request, recapitulatifPdfPath))
     .then(writeCategoriesSeparatorsToFile(tempDirPath))
     .then((pdfStructure) => {
-      if (separateFilesInPdfStructure) {
+      console.log(requestExportFormat);
+      if (requestExportFormat === 'zip') {
         return Promise.resolve(createRequestArchive(tempDirPath)(pdfStructure));
       } else {
         return Promise.resolve(joinPdfStructureInOneFile(tempDirPath)(pdfStructure));
@@ -81,7 +82,7 @@ function createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, sep
   });
 }
 
-function createRequestPdf({role, request, host, tempDirPath, separateFilesInPdfStructure}) {
+function createRequestExport({role, request, host, tempDirPath, requestExportFormat}) {
   return new Promise(function(resolve, reject) {
     Recapitulatif.answersToHtml({request, host}, (err, recapitulatifHtml) => {
       if (err) {
@@ -96,7 +97,7 @@ function createRequestPdf({role, request, host, tempDirPath, separateFilesInPdfS
         }
 
         if (role !== 'user') {
-          return createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, separateFilesInPdfStructure}).then(stream => {
+          return createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, requestExportFormat}).then(stream => {
             return resolve(stream);
           });
         }
@@ -107,9 +108,9 @@ function createRequestPdf({role, request, host, tempDirPath, separateFilesInPdfS
   });
 }
 
-export default function({request, host, role, separateFilesInPdfStructure}) {
+export default function({request, host, role, requestExportFormat}) {
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
-    return createRequestPdf({tempDirPath, request, host, role, separateFilesInPdfStructure});
+    return createRequestExport({tempDirPath, request, host, role, requestExportFormat});
   });
 }

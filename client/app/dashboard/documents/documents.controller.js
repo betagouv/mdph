@@ -41,7 +41,7 @@ angular.module('impactApp')
       return typeof node._id === 'undefined';
     }
 
-    $scope.saveConcatPdf = () => {
+    $scope.updateMdph = () => {
       currentMdph.$update();
     };
 

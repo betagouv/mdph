@@ -405,13 +405,13 @@ export function getPdf(req, res) {
         host: req.headers.host,
         user: req.user,
         role: req.user.role,
-        separateFilesInPdfStructure: mdph.separateFilesInPdfStructure
+        requestExportFormat: mdph.requestExportFormat
       });
     })
     .then(readStream => {
       const beneficiaire = req.request.formAnswers.identites.beneficiaire;
+      const extension = currentMdph.requestExportFormat;
 
-      const extension = currentMdph.separateFilesInPdfStructure ? 'zip' : 'pdf';
       const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
 
       res.header('Content-Disposition', `attachment; filename="${filename}"`);

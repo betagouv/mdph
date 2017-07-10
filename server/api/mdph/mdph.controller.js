@@ -289,7 +289,7 @@ export function create(req, res) {
 
 // Updates an existing mdph in the DB.
 export function update(req, res) {
-  req.mdph.separateFilesInPdfStructure = req.body.separateFilesInPdfStructure;
+  req.mdph.requestExportFormat = req.body.requestExportFormat;
   req.mdph.save(function(err, saved) {
     if (err) { return handleError(req, res, err); }
 
