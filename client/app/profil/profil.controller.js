@@ -20,8 +20,8 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.$modal = $modal;
   this.token = $cookies.get('token');
   this.$anchorScroll = $anchorScroll;
-  this.prestationsCompletion = RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
-  this.documentCompletion = RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
+  this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
+  this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.pdfName = RequestService.getPdfName(currentRequest);
   this.estAdulte = ProfileService.estAdulte(profile);
 

@@ -16,7 +16,7 @@
         <h2>Votre MDPH vous demande de corriger les documents associés à votre demande</h2>
 
         <ul class="profile-card-row">
-          <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion" options="profilCtrl.options.documents" /></li>
+          <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion()" options="profilCtrl.options.documents" /></li>
         </ul>
 
         <h3>Récapitulatif de votre demande</h3>
@@ -58,7 +58,7 @@
             <li id="beneficiaire" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.beneficiaire" /></li>
             <li id="autorite" class="profile-card-row-item" ng-if="!profilCtrl.estAdulte"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.autorite" /></li>
             <li id="vieQuotidienne" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieQuotidienne" /></li>
-            <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion" options="profilCtrl.options.documents" /></li>
+            <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion()" options="profilCtrl.options.documents" /></li>
             <li id="unconfirmed" ng-if="profilCtrl.currentUser.unconfirmed" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.unconfirmed" /></li>
           </ul>
         </section>
@@ -71,7 +71,7 @@
             <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieTravail" /></li>
             <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.aidant" /></li>
             <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.autre" /></li>
-            <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.prestationsCompletion" options="profilCtrl.options.prestations" /></li>
+            <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.prestationsCompletion()" options="profilCtrl.options.prestations" /></li>
             <li class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.particulieres" /></li>
           </ul>
         </section>

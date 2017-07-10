@@ -64,6 +64,6 @@
     <button type="button" ng-if="profilCtrl.currentRequest.status === 'en_attente_usager'" ng-click="profilCtrl.sendRequest()" class="btn hero-button btn-primary">
       Envoyer la demande
     </button>
-    <a ui-sref="^" ng-if="profilCtrl.currentRequest.status !== 'en_attente_usager'" ui-sref-opts="{reload:true}" class="btn btn-lg btn-primary" role="button">Retourner au profil</a>
+    <a ui-sref="^" id="backtoprofile" ng-if="profilCtrl.currentRequest.status !== 'en_attente_usager'" ui-sref-opts="{reload:true}" class="btn btn-lg btn-primary" role="button">Retourner au profil</a>
   </div>
 </div>

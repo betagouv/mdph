@@ -7,24 +7,19 @@
 
 var config = browser.params;
 
-var RequestPage = function() {
+var DocumentsPage = function() {
   var path = require('path');
 
   this.listUploads = element.all(by.css('input[type="file"]'));
-  this.cartestationnement = element(by.id('cartestationnement'));
-  this.sendBtn = element(by.buttonText('Envoyer'));
 
-  this.sendRequest = function() {
+  this.returnToProfile = () => element(by.id('backtoprofile')).click();
+
+  this.addDocuments = () => {
     const absolutePath = path.join(config.serverConfig.root, '/test/assets/', 'test.jpg');
-
     this.listUploads.each(function(currentInput) {
       currentInput.sendKeys(absolutePath);
     });
-
-    this.cartestationnement.click();
-
-    this.sendBtn.click();
   };
 };
 
-module.exports = new RequestPage();
+module.exports = new DocumentsPage();

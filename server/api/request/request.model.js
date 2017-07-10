@@ -42,7 +42,7 @@ var RequestSchema = new Schema({
   submittedAt:    Date,
   updatedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
-  formAnswers:    Schema.Types.Mixed,
+  formAnswers:    { type: Schema.Types.Mixed, default: {} }, // Need minimize: false in order to not be deleted http://mongoosejs.com/docs/guide.html#minimize
   prestations:    [{ type: String, lowercase: true }],
   renouvellements:[{ type: String, lowercase: true }],
   certificat:     Schema.Types.Mixed,
@@ -50,7 +50,7 @@ var RequestSchema = new Schema({
   comments:       { type: String },
   hasFirstExpirationNotification: { type: Boolean, default: false },
   hasLastExpirationNotification: { type: Boolean, default: false }
-});
+}, { minimize: false });
 
 // RequestSchema.set('toObject', { virtuals: false });
 
