@@ -1,0 +1,23 @@
+<div class="section-body">
+  <div class="section-body-head">
+    <h2>
+      <a id="backtoprofile" ui-sref="profil({profileId: profilCtrl.profile._id})">Profil</a>
+      / Confirmer votre compte mail
+    </h2>
+  </div>
+
+  <div class="section-body-content">
+    <div class="section-body-content-text">
+      <p>Vous n'avez pas encore confirmé votre compte. Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail.</p>
+      <p>En cas de difficultés vous pouvez nous contacter à l'adresse <a href="mailto:contact@mdph.beta.gouv.fr">contact@mdph.beta.gouv.fr</a></p>
+
+      <div class="text-center">
+        <a target="_blank" class="btn btn-lg btn-primary" ui-sref="resend_confirmation({userId: profilCtrl.currentUser._id})">Cliquez ici pour renvoyer un mail de confirmation</a>
+      </div>
+    </div>
+
+    <div class="text-right">
+      <a ui-sref="^" class="btn btn-link" role="button">Retourner au profil</a>
+    </div>
+  </div>
+</div>

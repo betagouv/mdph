@@ -17,12 +17,10 @@
         <h2 class="profile-category-header-text-title">{{ ::profileCategoryCtrl.title }}</h2>
       </span>
     </div>
-    <div class="profile-category-content-text">
-      {{ ::profileCategoryCtrl.content }}
-    </div>
+
     <div class="profile-category-actions">
-      <button ng-click="profileCategoryCtrl.go()" class="btn btn-blue">{{ ::profileCategoryCtrl.getActionLabel() }}</button>
+      <button ng-click="profileCategoryCtrl.go()" class="btn btn-blue">Modifier</button>
     </div>
   </div>
 </div>
-<div ng-if="profileCategoryCtrl.options.error"> Compléter cette section avant de transmettre la demande</div>
+<div ng-if="profileCategoryCtrl.options.error"> Complétez cette section avant de transmettre la demande</div>

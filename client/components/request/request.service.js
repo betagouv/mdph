@@ -1,157 +1,181 @@
-'use strict';
+const REQUEST_SERVICE_NAME = 'RequestService';
 
-angular.module('impactApp')
-  .factory('RequestService', function RequestService($http) {
-    function allMandatoryFilesPresent(request) {
-      return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
+class RequestService {
+  constructor($http) {
+    this.$http = $http;
+  }
+
+  allMandatoryFilesPresent(request) {
+    // TODO Object.keys(request.documents.obligatoires).length === 3 doesn't seem strict enough
+    return request.documents && request.documents.obligatoires && Object.keys(request.documents.obligatoires).length === 3;
+  }
+
+  allAskedFilesPresent(request) {
+    let allAskedFilesComplete = true;
+
+    _.forEach(request.askedDocumentTypes, (askedType) => {
+      let askedDocs = _.get(request.documents, ['complementaires', askedType, 'documentList']);
+      if (typeof askedDocs === 'undefined' || askedDocs.length === 0) {
+        allAskedFilesComplete = false;
+      }
+    });
+
+    return allAskedFilesComplete;
+  }
+
+  getPrestationCompletion(request) {
+    return Array.isArray(request.prestations) && request.prestations.length > 0;
+  }
+
+  getPdfName(request) {
+    const identites = request.formAnswers.identites;
+    const beneficiaire = identites && identites.beneficiaire;
+
+    if (!identites || !beneficiaire || !beneficiaire.nom || !beneficiaire.prenom) {
+      return `${request.shortId}.pdf`;
     }
 
-    function allAskedFilesPresent(request) {
-      var allAskedFilesComplete = true;
+    return `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${request.shortId}.pdf`;
+  }
 
-      _.forEach(request.askedDocumentTypes, function(askedType) {
-        let askedDocs = _.get(request.documents, ['complementaires', askedType, 'documentList']);
-        if (typeof askedDocs === 'undefined' || askedDocs.length === 0) {
-          allAskedFilesComplete = false;
+  getDocumentCompletion(request) {
+    if (!request.documents) {
+      return false;
+    }
+
+    return this.allMandatoryFilesPresent(request) &&
+      this.allAskedFilesPresent(request) &&
+      this.hasRefusedDocuments(request) !== true;
+  }
+
+  findInvalid(categories) {
+    var invalidDocuments = [];
+
+    _.forEach(categories, category => {
+      _.forEach(category.documentList, document => {
+        if (document.isInvalid) {
+          invalidDocuments.push(document);
         }
       });
+    });
 
-      return allAskedFilesComplete;
+    return invalidDocuments;
+  }
+
+  hasRefusedDocuments(request) {
+    if (this.findInvalid(request.documents.obligatoires).length > 0) {
+      return true;
     }
 
-    function getCompletion(request) {
-      if (!request.documents) {
-        return false;
-      }
-
-      return allMandatoryFilesPresent(request) && allAskedFilesPresent(request);
+    if (this.findInvalid(request.documents.complementaires).length > 0) {
+      return true;
     }
 
-    function findInvalid(categories) {
-      var invalidDocuments = [];
+    return false;
+  }
 
-      _.forEach(categories, function(category) {
-        _.forEach(category.documentList, function(document) {
-          if (document.isInvalid) {
-            invalidDocuments.push(document);
-          }
-        });
-      });
-
-      return invalidDocuments;
-    }
-
-    function findRefusedDocuments(request) {
-      if (!request.documents) {
-        return {
-          obligatoires: [],
-          complementaires: []
-        };
-      }
-
-      var obligatoires = findInvalid(request.documents.obligatoires);
-      var complementaires = findInvalid(request.documents.complementaires);
-
-      return {
-        obligatoires: obligatoires,
-        complementaires: complementaires
-      };
-    }
-
-    function getAskedDocumentTypes(request) {
-      if (!request.askedDocumentTypes) {
-        return [];
-      }
-
-      return request.askedDocumentTypes;
-    }
-
-    function getMandatoryTypes(documentTypes) {
-      return _.filter(documentTypes, {mandatory: true});
-    }
-
-    function findExistingTypes(request) {
-      return _.pluck(request.documents.complementaires, 'documentType');
-    }
-
-    function findAskedTypes(request, documentTypes) {
-      return _(documentTypes)
-        .filter(function(documentType) {
-          return !documentType.mandatory && request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) > -1;
-        })
-        .map(function(documentType) {
-          documentType.asked = true;
-          return documentType;
-        })
-        .value();
-    }
-
-    function concatTypes(accumulator, type) {
-      if (_.find(accumulator, {id: type.id})) {
-        return accumulator;
-      }
-
-      accumulator.push(type);
-      return accumulator;
-    }
-
-    function computeSelectedDocumentTypes(request, documentTypes) {
-      var selectedDocumentTypes = [];
-
-      var mandatoryTypes = getMandatoryTypes(documentTypes);
-      var existingTypes = findExistingTypes(request, documentTypes);
-      var askedTypes = findAskedTypes(request, documentTypes);
-
-      _.reduce(mandatoryTypes, concatTypes, selectedDocumentTypes);
-      _.reduce(existingTypes, concatTypes, selectedDocumentTypes);
-      _.reduce(askedTypes, concatTypes, selectedDocumentTypes);
-
-      return selectedDocumentTypes;
-    }
-
-    function groupByAge(requests) {
-      if (typeof requests === 'undefined' || requests.length === 0) {
-        return null;
-      }
-
-      var currentMoment = moment();
-      var groupedByAge = {
-        new: [],
-        standard: [],
-        old: []
-      };
-
-      _.reduce(requests, function(result, request) {
-        var submissionMoment = moment(request.submittedAt);
-        var deltaMonths = currentMoment.diff(submissionMoment, 'months');
-
-        if (deltaMonths <= 1) {
-          result.new.push(request);
-        } else if (deltaMonths > 1 && deltaMonths < 3) {
-          result.standard.push(request);
-        } else {
-          result.old.push(request);
-        }
-
-        return result;
-      }, groupedByAge);
-
-      return groupedByAge;
+  findRefusedDocuments(request) {
+    if (!request.documents) {
+      return { obligatoires: [], complementaires: [] };
     }
 
     return {
-      findRefusedDocuments,
-      getAskedDocumentTypes,
-      getCompletion,
-      computeSelectedDocumentTypes,
-      groupByAge,
-
-      postAction(request, action) {
-        return $http.post(`api/requests/${request.shortId}/action`, action);
-      },
-
-      generateReceptionMail(request) {
-        return $http.get(`api/requests/${request.shortId}/generate-reception-mail`);
-      }
+      obligatoires: this.findInvalid(request.documents.obligatoires),
+      complementaires: this.findInvalid(request.documents.complementaires)
     };
-  });
+  }
+
+  getAskedDocumentTypes(request) {
+    return request.askedDocumentTypes || [];
+  }
+
+  getMandatoryTypes(documentTypes) {
+    return _.filter(documentTypes, {mandatory: true});
+  }
+
+  findExistingTypes(request) {
+    return _.pluck(request.documents.complementaires, 'documentType');
+  }
+
+  findAskedTypes(request, documentTypes) {
+    return _(documentTypes)
+      .filter(function(documentType) {
+        return !documentType.mandatory && request.askedDocumentTypes && request.askedDocumentTypes.indexOf(documentType.id) > -1;
+      })
+      .map(function(documentType) {
+        documentType.asked = true;
+        return documentType;
+      })
+      .value();
+  }
+
+  concatTypes(accumulator, type) {
+    if (_.find(accumulator, {id: type.id})) {
+      return accumulator;
+    }
+
+    accumulator.push(type);
+    return accumulator;
+  }
+
+  computeSelectedDocumentTypes(request, documentTypes) {
+    const selectedDocumentTypes = [];
+
+    const mandatoryTypes = this.getMandatoryTypes(documentTypes);
+    const existingTypes = this.findExistingTypes(request, documentTypes);
+    const askedTypes = this.findAskedTypes(request, documentTypes);
+
+    _.reduce(mandatoryTypes, this.concatTypes, selectedDocumentTypes);
+    _.reduce(existingTypes, this.concatTypes, selectedDocumentTypes);
+    _.reduce(askedTypes, this.concatTypes, selectedDocumentTypes);
+
+    return selectedDocumentTypes;
+  }
+
+  groupByAge(requests) {
+    if (typeof requests === 'undefined' || requests.length === 0) {
+      return null;
+    }
+
+    var currentMoment = moment();
+    var groupedByAge = {
+      new: [],
+      standard: [],
+      old: []
+    };
+
+    _.reduce(requests, function(result, request) {
+      var submissionMoment = moment(request.submittedAt);
+      var deltaMonths = currentMoment.diff(submissionMoment, 'months');
+
+      if (deltaMonths <= 1) {
+        result.new.push(request);
+      } else if (deltaMonths > 1 && deltaMonths < 3) {
+        result.standard.push(request);
+      } else {
+        result.old.push(request);
+      }
+
+      return result;
+    }, groupedByAge);
+
+    return groupedByAge;
+  }
+
+  postAction(request, action) {
+    return this.$http.post(`api/requests/${request.shortId}/action`, action);
+  }
+
+  generateReceptionMail(request) {
+    return this.$http.get(`api/requests/${request.shortId}/generate-reception-mail`);
+  }
+
+  static get $inject() {
+    return [
+      '$http'
+    ];
+  }
+}
+
+angular.module('impactApp')
+  .service(REQUEST_SERVICE_NAME, RequestService);

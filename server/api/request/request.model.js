@@ -29,16 +29,20 @@ var RequestSchema = new Schema({
   user:           { type: Schema.Types.ObjectId, ref: 'User', required: true },
   profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
   mdph:           String,
+
+  //TODO Remove
   estRenouvellement: Boolean,
   old_mdph:       String,
   numeroDossier:  String,
+
+
   evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
   secteur:        { type: Schema.Types.ObjectId, ref: 'Secteur' },
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
-  formAnswers:    Schema.Types.Mixed,
+  formAnswers:    { type: Schema.Types.Mixed, default: {} }, // Need minimize: false in order to not be deleted http://mongoosejs.com/docs/guide.html#minimize
   prestations:    [{ type: String, lowercase: true }],
   renouvellements:[{ type: String, lowercase: true }],
   certificat:     Schema.Types.Mixed,
@@ -46,7 +50,7 @@ var RequestSchema = new Schema({
   comments:       { type: String },
   hasFirstExpirationNotification: { type: Boolean, default: false },
   hasLastExpirationNotification: { type: Boolean, default: false }
-});
+}, { minimize: false });
 
 // RequestSchema.set('toObject', { virtuals: false });
 

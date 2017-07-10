@@ -102,7 +102,7 @@ describe('fill a Request following after a login', function() {
   it('should return to profile when user clicks on the button', function() {
     expect(browser.getCurrentUrl()).toContain('/profil/');
 
-    require('./pages/profile.po').modifyVieQuotidienne();
+    require('./pages/profile.po').modifyVieQuotidienne.click();
 
     expect(browser.getCurrentUrl()).toContain('vie_quotidienne');
 
@@ -117,25 +117,30 @@ describe('fill a Request following after a login', function() {
     expect(profilePage.beneficiaire.getAttribute('class')).toMatch('complete');
     expect(profilePage.vieQuotidienne.getAttribute('class')).toMatch('complete');
     expect(profilePage.completedList.count()).toEqual(2);
-
-    profilePage.createRequest.click();
   });
 
-  it('should finalize the request', function() {
-    expect(browser.getCurrentUrl()).toContain('/demande/');
-    require('./pages/request.po').sendRequest();
+  it('should add sample documents to the request', function() {
+    expect(browser.getCurrentUrl()).toContain('/profil/');
+
+    var profilePage = require('./pages/profile.po');
+    expect(profilePage.documents.getAttribute('class')).toMatch('error');
+
+    require('./pages/profile.po').modifyDocuments.click();
+    require('./pages/documents.po').addDocuments();
+    require('./pages/documents.po').returnToProfile();
 
     expect(browser.getCurrentUrl()).toContain('/profil/');
+    expect(profilePage.documents.getAttribute('class')).toMatch('complete');
   });
 
-  it('should be back to the profile with correct request status', function() {
+  it('should send the request', function() {
     expect(browser.getCurrentUrl()).toContain('/profil/');
-    var profilePopup = require('./pages/popup.po');
-    profilePopup.popupBtn.click();
+    require('./pages/profile.po').sendRequest.click();
+  });
 
-    var statusPage = require('./pages/statusprofile.po');
-    expect(statusPage.doneList.count()).toEqual(2);
-    expect(statusPage.activeList.count()).toEqual(1);
+  it('should have the correct request status', function() {
+    expect(browser.getCurrentUrl()).toContain('/profil/');
+    expect(require('./pages/profile.po').statusTitle.getText()).toEqual("Votre demande est en cours de validation par votre MDPH");
   });
 
 });

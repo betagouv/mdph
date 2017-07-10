@@ -7,6 +7,5 @@ angular.module('impactApp')
       prestation: '=ngModel'
     },
     controllerAs: 'prestationctrl',
-    controller: function() {
-    }
+    controller: function() {}
   });

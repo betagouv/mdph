@@ -28,6 +28,7 @@ import resizeAndMove from '../../components/resize-image';
 
 function handleError(req, res) {
   return function(statusCode, err) {
+    console.log(statusCode);
     statusCode = statusCode || 500;
 
     if (err) {
@@ -146,11 +147,6 @@ function fillRequestOnSubmit(request, submitForm) {
       .set('status', 'emise')
       .set('formAnswers', formAnswers)
       .set('mdph', submitForm.mdph)
-      .set('prestations', submitForm.prestations)
-      .set('renouvellements', submitForm.renouvellements)
-      .set('estRenouvellement', submitForm.estRenouvellement)
-      .set('old_mdph', submitForm.old_mdph)
-      .set('numeroDossier', submitForm.numeroDossier)
       .set('submittedAt', Date.now());
   };
 }
@@ -337,15 +333,15 @@ export function generateReceptionMail(req, res) {
 export function create(req, res) {
   Request
     .create({
-      profile: req.body.profile,
-      user: req.body.user,
+      profile: req.profile,
+      user: req.user,
       askedDocumentTypes: req.body.askedDocumentTypes
     })
     .then(request => {
       request.saveActionLog(actions.CREATION, req.user, req.log);
       return request;
     })
-    .then(respondWithResult(res, 201))
+    .then(populateAndRespond(res))
     .catch(handleError(req, res));
 }
 

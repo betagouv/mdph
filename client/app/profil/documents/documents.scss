@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   border: 1px solid $medium-heavy-grey;
-  margin-bottom: 20px;
+  background-color: white;
+  margin: 40px 0;
 
   &.invalid {
     border: 1px solid $lighter-red;
@@ -17,6 +18,10 @@
 
 
     .title-card .mandatory:before {
+      color: #FFF;
+    }
+
+    .title-card a {
       color: #FFF;
     }
   }
@@ -60,7 +65,13 @@
     height: 100%;
     font-size: 1.3em;
     font-weight: 400;
-    color: $flat-ui-blue;
+    background-color: $flat-ui-blue;
+    color: white;
+
+    &:hover {
+      color: $flat-ui-blue;
+      background-color: white;
+    }
   }
 }
 
@@ -80,19 +91,16 @@
   }
 
   h4 {
-    font-weight: normal;
-    margin: 0;
+    margin: 0 0 10px 0;
+
+    span {
+      margin-left: 10px;
+      float: right;
+    }
   }
 
-  .mandatory:before {
-    color: $light-red;
-    font-family: 'FontAwesome';
-    content: '\f071';
-    padding-right: 5px;
-  }
-
-  .complete .mandatory:before {
-    content: '';
+  p {
+    max-width: 860px;
   }
 
   .complete:before {
@@ -105,12 +113,5 @@
 @media (min-width: $screen-md-min) {
   .title-card {
     position: relative;
-  }
-
-  .status {
-    position: absolute;
-    text-align: right;
-    top: 10px;
-    right: 10px;
   }
 }

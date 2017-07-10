@@ -31,11 +31,16 @@
 
   .file-actions {
     display: flex;
-    background-color: whitesmoke;
+    background-color: #fff;
     width: 100%;
     padding: 10px;
     justify-content: space-around;
     align-items: center;
+  }
+
+  .btn-danger {
+    margin: 0;
+    padding: 0 2px;
   }
 
   .partenaire {

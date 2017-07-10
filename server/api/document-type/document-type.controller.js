@@ -36,6 +36,8 @@ export function populateAndSortDocumentTypes(request) {
     }, {obligatoires: {}, complementaires: {}});
 
     request.documents = groupedDocuments;
+  } else {
+    request.documents = {obligatoires: {}, complementaires: {}};
   }
 
   return request;

@@ -2,6 +2,7 @@
 
 import Profile from './profile.model';
 import Request from '../request/request.model';
+import * as RequestController from '../request/request.controller';
 
 export function index(req, res) {
   Profile
@@ -71,15 +72,15 @@ export function indexRequests(req, res) {
 
 export function showCurrentRequest(req, res) {
   Request
-    .findOne({ profile: req.profile._id, status: { $ne: 'archive' } }, {}, { sort: { createdAt: -1 } })
-    .select('shortId user _id profile status mdph submittedAt createdAt')
+    .findOne({ profile: req.profile._id, status: { $nin: ['archive', 'enregistree'] } }, {}, { sort: { createdAt: -1 } })
     .exec()
     .then(request => {
       if (!request) {
-        return res.sendStatus(204);
+        return RequestController.create(req, res);
       }
 
-      return res.json(request);
+      req.request = request;
+      return RequestController.show(req, res);
     });
 }
 

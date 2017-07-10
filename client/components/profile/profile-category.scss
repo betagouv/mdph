@@ -48,7 +48,7 @@
   overflow: hidden;
 
   .icon {
-    font-size: 7rem;
+    font-size: 5rem;
   }
 
   .progress-desc {
@@ -66,11 +66,12 @@
   background-color: white;
   padding: 10px;
   color: #333;
-  height: 190px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   width: 70%;
 }
 

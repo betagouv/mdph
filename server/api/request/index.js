@@ -4,14 +4,12 @@ import {Router} from 'express';
 import multer from 'multer';
 import documentsRouter from '../document';
 import * as controller from './request.controller';
-import { isAgentOrOwner, isAuthenticated } from '../../auth/auth.service';
+import { isAgentOrOwner } from '../../auth/auth.service';
 import Request from './request.model';
 import config from '../../config/environment';
 
 var router = new Router();
 const upload = multer({ dest: config.uploadDir });
-
-router.post('/', isAuthenticated(), controller.create);
 
 router.get('/:shortId', isAgentOrOwner(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);

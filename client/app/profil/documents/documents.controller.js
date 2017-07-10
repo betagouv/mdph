@@ -3,14 +3,15 @@
 const DOCUMENT_CONTROLLER_NAME = 'DocumentsCtrl';
 
 class documentController {
-  constructor($scope, $modal, toastr, UploadService, RequestService, request, documentTypes, currentUser, currentMdph) {
+  constructor($scope, $modal, toastr, UploadService, RequestService, profile, documentTypes, currentUser, currentMdph, currentRequest) {
     this.$modal = $modal;
-    this.request = request;
     this.user = currentUser;
+    this.request = currentRequest;
     this.mdph = currentMdph;
     this.documentTypes = documentTypes;
+    this.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(this.request, documentTypes);
+
     this.UploadService = UploadService;
-    this.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(request, documentTypes);
 
     $scope.$on('file-upload-error', () => toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document'));
   }
@@ -45,8 +46,8 @@ class documentController {
   }
 
   getDocuments(currentDoc) {
-    var {obligatoires, complementaires} = this.request.documents;
-    var documentId = currentDoc.id;
+    const {obligatoires, complementaires} = this.request.documents;
+    const documentId = currentDoc.id;
 
     if (obligatoires[documentId]) {
       return obligatoires[documentId].documentList;
@@ -61,7 +62,7 @@ class documentController {
     const filteredDocumentTypes = _.filter(this.documentTypes, (type) => typeof _.find(this.selectedDocumentTypes, {id: type.id}) === 'undefined');
 
     return {
-      templateUrl: 'app/profil/demande/documents/modal_type.html',
+      templateUrl: 'app/profil/documents/modal_type.html',
       controller: ['$scope', '$modalInstance', ($scope, $modalInstance) => {
         $scope.filteredDocumentTypes = filteredDocumentTypes;
         $scope.select = (selected) => $modalInstance.close(selected);
@@ -84,10 +85,11 @@ class documentController {
       'toastr',
       'UploadService',
       'RequestService',
-      'request',
+      'profile',
       'documentTypes',
       'currentUser',
-      'currentMdph'
+      'currentMdph',
+      'currentRequest'
     ];
   }
 }
