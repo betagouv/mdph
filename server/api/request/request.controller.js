@@ -17,6 +17,7 @@ import pdfMaker from '../../components/pdf-maker';
 
 import Request from './request.model';
 import Profile from '../profile/profile.model';
+import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 import Synthese from '../synthese/synthese.model';
@@ -393,14 +394,28 @@ export function getRecapitulatif(req, res) {
 }
 
 export function getPdf(req, res) {
-  pdfMaker({
-      request: req.request,
-      host: req.headers.host,
-      user: req.user,
-      role: req.user.role
+  var currentMdph = null;
+  Mdph
+    .findOne({zipcode: req.request.mdph})
+    .exec()
+    .then(mdph => {
+      currentMdph = mdph;
+      return pdfMaker({
+        request: req.request,
+        host: req.headers.host,
+        user: req.user,
+        role: req.user.role,
+        requestExportFormat: mdph.requestExportFormat
+      });
     })
-    .then(pdfPath => {
-      res.sendFile(pdfPath);
+    .then(readStream => {
+      const beneficiaire = req.request.formAnswers.identites.beneficiaire;
+      const extension = currentMdph.requestExportFormat;
+
+      const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
+
+      res.header('Content-Disposition', `attachment; filename="${filename}"`);
+      readStream.pipe(res);
       return null;
     })
     .catch(handleError(req, res));

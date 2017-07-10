@@ -108,6 +108,24 @@ export function getUnclassifiedCategory(req, res) {
     .catch(handleError(req, res));
 }
 
+export function removeDocumentCategoryFile(req, res) {
+  DocumentCategory.findById(req.params.categoryId, function(err, category) {
+    if (category.barcode) {
+      // remove existing file
+      var gfs = gridfs();
+      gfs.remove({_id: category.barcode}, function(err) {
+        if (err) {
+          req.log.error(err);
+        }
+
+        req.log.info('Removed gfs file "' + category.barcode + '" for category "' + category._id + '"', category);
+        category.barcode = null;
+        res.status(200).send(category);
+      });
+    }
+  });
+}
+
 export function saveDocumentCategoryFile(req, res) {
   var gfs = gridfs();
   var file = req.file;

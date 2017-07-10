@@ -7,26 +7,28 @@ import {Readable} from 'stream';
 
 export default function(pdfStructure, directory) {
   return Promise.map(pdfStructure, function(currentFile) {
-    return new Promise((resolve, reject) => {
-      if (currentFile instanceof Readable) {
+    const currentFilePath = currentFile.path;
 
-        // currentFile is a GridReadStream
+    return new Promise((resolve, reject) => {
+      if (currentFilePath instanceof Readable) {
+
+        // currentFilePath is a GridReadStream
         tmp.file({dir: directory, keep: true}, (err, tempFilePath) => {
           if (err) {
             return reject(err);
           }
 
           let writeStream = createWriteStream(tempFilePath);
-          currentFile.pipe(writeStream);
+          currentFilePath.pipe(writeStream);
 
           writeStream.on('finish', function() {
-            return resolve(tempFilePath);
+            return resolve({name: currentFile.name, path: tempFilePath});
           });
 
           writeStream.on('error', reject);
         });
       } else {
-        return resolve(currentFile);
+        return resolve({name: currentFile.name, path: currentFilePath});
       }
     });
   });
