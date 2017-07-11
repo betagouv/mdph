@@ -5,6 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('cgu', {
         url: '/cgu',
+        parent: 'layout',
         templateUrl: 'app/cgu/cgu.html'
       });
   });
