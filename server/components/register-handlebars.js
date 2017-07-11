@@ -61,23 +61,32 @@ Handlebars.registerHelper('ntobr', function(str) {
 
 Handlebars.registerHelper('documentType', printDocumentType);
 
-function printDocumentType(id) {
+function printDocumentType(id, invalidDocuments) {
   const documentType = allDocumentTypesById[id];
 
-  if (documentType.rejectionReason) {
-    var rejectionReason = documentType.rejectionReason;
+  var out = documentType.rejectionReason ?  `${documentType.label} : ${documentType.rejectionReason}` : `${documentType.label}`;
 
-    return `${documentType.label} : ${rejectionReason}`;
+  if(invalidDocuments.length > 0){
+    out += "<ul>";
+    invalidDocuments.forEach(function(invalidDocument) {
+       if(invalidDocument.type === id){
+         out += "<li style=\"text-indent: 15px;\"> Le fichier " + invalidDocument.originalname + " est invalide";
+         if (invalidDocument.invalidReason) {
+           out += " pour la raison suivante : " + invalidDocument.invalidReason + "</li>";
+         }
+       }
+    });
+    out += "</ul>";
   }
 
-  return documentType.label;
+  return new Handlebars.SafeString(out);
 }
 
-Handlebars.registerHelper('documentTypeList', function(items) {
+Handlebars.registerHelper('documentTypeList', function(items, invalidDocuments) {
   var out = '<ul>';
 
   for (let i = 0, l = items.length; i < l; i++) {
-    out = out + '<li>' + printDocumentType(items[i]) + '</li>';
+    out = out + '<li>' + printDocumentType(items[i], invalidDocuments) + '</li>';
   }
 
   return out + '</ul>';

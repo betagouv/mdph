@@ -12,8 +12,9 @@ angular.module('impactApp')
         views: {
           '': {
             templateUrl: 'app/profil/identites/autorites.html',
-            controller: function($scope, $state, profile, currentUser, identite) {
+            controller: function($scope, $state, profile, currentUser, currentMdph, identite) {
               $scope.identite = identite;
+              $scope.currentMdph = currentMdph;
 
               $scope.forms = $state.current.data.forms;
 

@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('DetailEvaluationCtrl', function($scope, $modal, $cookies, $state, $stateParams, currentMdph, sections, section, sectionId, model, GevaService, listSyntheses, currentSynthese) {
+  .controller('DetailEvaluationCtrl', function(
+    $scope, $modal, $cookies, $http, $state, $stateParams,
+    currentMdph, sections, section, sectionId, model, GevaService, listSyntheses,
+    currentSynthese, currentUser) {
+
     $scope.model = model;
     $scope.sections = sections;
     $scope.token = $cookies.get('token');
@@ -90,5 +94,40 @@ angular.module('impactApp')
 
     $scope.cancel = function() {
       $state.go('.', {}, {reload: true});
+    };
+
+    $scope.newIssue = function(parent, question) {
+      $modal.open({
+        templateUrl: 'app/dashboard/evaluation/detail/issues/new_issue.html',
+        controllerAs: 'modalIssueCtrl',
+        size: 'lg',
+        controller($modalInstance) {
+          this.sectionLabel = section.label;
+          this.parent = parent;
+          this.question = question;
+
+          this.issue = {
+            section: section.id,
+            parentId: parent ? parent.id : question.id,
+            questionId: question.id,
+            title: parent ? question.Libelle : question.Question,
+            user: currentUser._id,
+            message: ''
+          };
+
+          this.create = function() {
+            $http
+              .post('api/issues/', this.issue)
+              .then(() => {
+                $modalInstance.dismiss();
+                $state.go('.', {}, {reload: true});
+              });
+          };
+
+          this.cancel = function() {
+            $modalInstance.dismiss();
+          };
+        }
+      });
     };
   });

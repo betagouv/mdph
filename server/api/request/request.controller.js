@@ -17,6 +17,7 @@ import pdfMaker from '../../components/pdf-maker';
 
 import Request from './request.model';
 import Profile from '../profile/profile.model';
+import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 import Synthese from '../synthese/synthese.model';
@@ -28,6 +29,7 @@ import resizeAndMove from '../../components/resize-image';
 
 function handleError(req, res) {
   return function(statusCode, err) {
+    console.log(statusCode);
     statusCode = statusCode || 500;
 
     if (err) {
@@ -146,11 +148,6 @@ function fillRequestOnSubmit(request, submitForm) {
       .set('status', 'emise')
       .set('formAnswers', formAnswers)
       .set('mdph', submitForm.mdph)
-      .set('prestations', submitForm.prestations)
-      .set('renouvellements', submitForm.renouvellements)
-      .set('estRenouvellement', submitForm.estRenouvellement)
-      .set('old_mdph', submitForm.old_mdph)
-      .set('numeroDossier', submitForm.numeroDossier)
       .set('submittedAt', Date.now());
   };
 }
@@ -210,6 +207,7 @@ function computeEnregistrementOptions(request, host) {
   const options = {};
 
   const invalidDocumentTypes = request.getInvalidDocumentTypes();
+  const invalidDocuments = request.getInvalidDocuments();
   const nonPresentAskedDocumentTypes = request.getNonPresentAskedDocumentTypes();
 
   if (!request.receivedAt) {
@@ -222,6 +220,8 @@ function computeEnregistrementOptions(request, host) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;
     options.invalidDocumentTypes = invalidDocumentTypes;
+    options.invalidDocuments = invalidDocuments;
+
   } else if (nonPresentAskedDocumentTypes.length > 0) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;
@@ -334,15 +334,15 @@ export function generateReceptionMail(req, res) {
 export function create(req, res) {
   Request
     .create({
-      profile: req.body.profile,
-      user: req.body.user,
+      profile: req.profile,
+      user: req.user,
       askedDocumentTypes: req.body.askedDocumentTypes
     })
     .then(request => {
       request.saveActionLog(actions.CREATION, req.user, req.log);
       return request;
     })
-    .then(respondWithResult(res, 201))
+    .then(populateAndRespond(res))
     .catch(handleError(req, res));
 }
 
@@ -394,14 +394,28 @@ export function getRecapitulatif(req, res) {
 }
 
 export function getPdf(req, res) {
-  pdfMaker({
-      request: req.request,
-      host: req.headers.host,
-      user: req.user,
-      role: req.user.role
+  var currentMdph = null;
+  Mdph
+    .findOne({zipcode: req.request.mdph})
+    .exec()
+    .then(mdph => {
+      currentMdph = mdph;
+      return pdfMaker({
+        request: req.request,
+        host: req.headers.host,
+        user: req.user,
+        role: req.user.role,
+        requestExportFormat: mdph.requestExportFormat
+      });
     })
-    .then(pdfPath => {
-      res.sendFile(pdfPath);
+    .then(readStream => {
+      const beneficiaire = req.request.formAnswers.identites.beneficiaire;
+      const extension = currentMdph.requestExportFormat;
+
+      const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
+
+      res.header('Content-Disposition', `attachment; filename="${filename}"`);
+      readStream.pipe(res);
       return null;
     })
     .catch(handleError(req, res));

@@ -6,6 +6,10 @@ angular.module('impactApp')
       zipcode: '@zipcode'
     },
     {
+      update: {
+        method: 'PUT'
+      },
+
       queryUsers: {
         method: 'GET',
         isArray: true,

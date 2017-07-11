@@ -71,7 +71,8 @@ describe('DetailEvaluationCtrl', function() {
             section: fakeSection,
             request: {},
             currentSynthese: {},
-            sectionId: {}
+            sectionId: {},
+            currentUser: {}
           }
         );
       });
@@ -132,7 +133,18 @@ describe('DetailEvaluationCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('DetailEvaluationCtrl', {$scope: scope, currentMdph: {zipcode: 'test'}, listSyntheses: [], model: {}, sections: {}, section: fakeSection, request: {}, currentSynthese: {}, sectionId: {}});
+        controller = $controller('DetailEvaluationCtrl', {
+          $scope: scope,
+          currentMdph: {zipcode: 'test'},
+          listSyntheses: [],
+          model: {},
+          sections: {},
+          section: fakeSection,
+          request: {},
+          currentSynthese: {},
+          sectionId: {},
+          currentUser: {}
+        });
       });
 
       it('should be false', function() {
@@ -208,7 +220,18 @@ describe('DetailEvaluationCtrl', function() {
       beforeEach(function() {
         spyOn(fakeSynthese, '$update');
         scope = {};
-        controller = $controller('DetailEvaluationCtrl', {$scope: scope, currentMdph: {zipcode: 'test'}, listSyntheses: [], model: {}, sections: {}, section: fakeSection, request: {}, currentSynthese: fakeSynthese, sectionId: {}});
+        controller = $controller('DetailEvaluationCtrl', {
+          $scope: scope,
+          currentMdph: {zipcode: 'test'},
+          listSyntheses: [],
+          model: {},
+          sections: {},
+          section: fakeSection,
+          request: {},
+          currentSynthese: fakeSynthese,
+          sectionId: {},
+          currentUser: {}
+        });
       });
 
       it('should save the answer in the request', function() {

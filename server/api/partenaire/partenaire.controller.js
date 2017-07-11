@@ -32,12 +32,12 @@ export function save(req, res) {
       Request.findOne({shortId: req.query.shortId}, function(err, request) {
         if (err) { return handleError(req, res, err); }
 
-        if (!request) {
-          return res.sendStatus(404);
-        }
+        if (!request) { return res.sendStatus(404); }
 
-        Mdph.findOne({zipcode: request.mdph}, function(err, mdph) {
+        Mdph.findOne({zipcode: req.query.mdph}, function(err, mdph) {
           if (err) { return handleError(req, res, err); }
+
+          if (!mdph) { return res.sendStatus(404); }
 
           req.body.mdph = mdph._id;
 

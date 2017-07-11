@@ -16,7 +16,7 @@ angular.module('impactApp')
         enfant: $scope.secteurEnfant,
       };
       dispatchRule.mdph = currentMdph._id;
-      dispatchRule.$save(function() {
+      dispatchRule.$save({mdph: currentMdph.zipcode}, function() {
         $state.go('^', {}, {reload: true});
       });
     };
@@ -26,7 +26,7 @@ angular.module('impactApp')
     };
 
     $scope.delete = function() {
-      dispatchRule.$delete(function() {
+      dispatchRule.$delete({mdph: currentMdph.zipcode}, function() {
         $state.go('^', {}, {reload: true});
       });
     };

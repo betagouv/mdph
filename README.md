@@ -9,7 +9,7 @@ Projet de simplification des demandes à la MDPH
 ### Prerequisites
 
 - [Node.js and npm](https://nodejs.org/) Node ^6.5.9, npm ^3.*
-- [yarn](https://yarnpkg.com/) ^0.19
+- [yarn](https://yarnpkg.com/) ^0.24
 - [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod` ^3.0
 - [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit) pdftk_server-2.02
 - [imagemagick](https://www.imagemagick.org/script/download.php) imagemagick ^7.0.4.6

@@ -7,10 +7,13 @@ module.exports = {
   ip:       process.env.IP ||
             undefined,
 
-  // Server port
+  // Base URL
+  baseURL:  process.env.BASE_URL ||
+            'https://mdph.beta.gouv.fr',
+
+  // Server hist and port
   port:     process.env.PORT ||
             9000,
-
   // MongoDB connection options
   mongo: {
     uri:    process.env.MONGODB_URL ||

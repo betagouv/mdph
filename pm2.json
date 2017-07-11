@@ -1,12 +1,28 @@
 {
   "apps" : [
     {
-      "name"      : "Mdph",
+      "name"      : "Mdph-1",
       "script"    : "/home/deploy/www/current/dist/server/app.js",
-      "instances"  : 2,
-      "exec_mode"  : "cluster_mode",
       "env": {
         "NODE_ENV": "production",
+        "BASE_URL": "https://mdph.beta.gouv.fr",
+        "PORT": 9000,
+        "SESSION_SECRET": "session_secret",
+        "SMTP_USER": "mailjet_api_key",
+        "SMTP_PASS": "mailjet_secret_key",
+        "SMTP_HOST": "in.mailjet.com",
+        "SMTP_PORT": "465",
+        "MAIL_FROM": "contact@mdph.beta.gouv.fr",
+        "UPLOAD_DIR": "/path/to/upload/dir",
+        "CRON_ENABLED": true
+      }
+    },
+    {
+      "name"      : "Mdph-2",
+      "script"    : "/home/deploy/www/current/dist/server/app.js",
+      "env": {
+        "NODE_ENV": "production",
+        "BASE_URL": "https://mdph.beta.gouv.fr",
         "PORT": 9000,
         "SESSION_SECRET": "session_secret",
         "SMTP_USER": "mailjet_api_key",

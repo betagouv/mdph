@@ -29,7 +29,7 @@ angular.module('impactApp')
       secteur.name = $scope.name;
       secteur.default = $scope.default;
       secteur.mdph = currentMdph._id;
-      secteur.$save(function() {
+      secteur.$save({mdph: currentMdph.zipcode}, function() {
         $state.go('^', {}, {reload: true});
       });
     };

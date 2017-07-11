@@ -15,11 +15,10 @@ export default function(app) {
   app.use('/api/prestations', require('./api/prestation'));
   app.use('/api/partenaires', require('./api/partenaire'));
   app.use('/api/geva', require('./api/geva'));
-  app.use('/api/dispatch-rules', require('./api/dispatch-rule'));
   app.use('/api/sections', require('./api/sections'));
-  app.use('/api/secteurs', require('./api/secteur'));
   app.use('/api/stats', require('./api/stats'));
   app.use('/api/document-types', require('./api/document-type'));
+  app.use('/api/issues', require('./api/issue'));
 
   app.use('/auth', require('./auth'));
 

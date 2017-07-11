@@ -7,9 +7,11 @@
   border-bottom: 2px solid $light-grey;
   text-align: left;
 
-  &.active {
-    border-bottom: 2px solid $brand-primary;
-    background-color: white;
+  &.active,
+  &.active:hover {
+    background-color: $green;
+    color: white;
+    border-color: #00753c;
   }
 
   input[type=radio] {
@@ -25,6 +27,7 @@
   label {
     font-weight: 400;
     cursor: pointer;
+    margin: 2px 0;
   }
 
   span.extra {

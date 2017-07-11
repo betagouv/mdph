@@ -1,6 +1,6 @@
 <div ui-view>
   <header class="banner banner-blue">
-    <div class="hero-unit container">
+    <div class="hero-unit">
       <h1>Trouvez le service en ligne de votre MDPH</h1>
 
       <ul class="mdph-choices">
@@ -10,6 +10,8 @@
             <strong>{{mdph.zipcode}}</strong>. {{mdph.name}}</a>
         </li>
       </ul>
+
+      <mdph-input></mdph-input>
     </div>
   </header>
 
@@ -17,15 +19,15 @@
     <div class="flow">
       <div>
         <img src="/assets/images/MDPH_Step1.png" alt="Je complète mon profil">
-        <p><span>1</span>&nbsp;Je complète mon profil</p>
+        <p><span>1</span>&nbsp;Je remplis mon profil</p>
       </div>
       <div>
-        <img src="/assets/images/MDPH_Step2.png" alt="Je transmets ma demande">
-        <p><span>2</span>&nbsp;Je transmets ma demande</p>
+        <img src="/assets/images/MDPH_Step3.png" alt="Je transmets ma demande">
+        <p><span>2</span>&nbsp;Je joins mes pièces justificatives</p>
       </div>
       <div>
-        <img src="/assets/images/MDPH_Step3.png" alt="Je consulte le suivi de mon dossier">
-        <p><span>3</span>&nbsp;Je consulte le suivi de mon dossier</p>
+        <img src="/assets/images/MDPH_Step2.png" alt="Je consulte le suivi de mon dossier">
+        <p><span>3</span>&nbsp;Je transmets ma demande</p>
       </div>
     </div>
   </div>

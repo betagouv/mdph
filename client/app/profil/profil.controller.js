@@ -1,25 +1,32 @@
 'use strict';
 
 angular.module('impactApp').controller('ProfilCtrl', function(
-  $state, $modal, $http, toastr, $anchorScroll,
+  $state, $modal, $http, toastr, $anchorScroll, $cookies,
   User, RequestResource,
   ProfileService, RequestService,
-  currentUser, profile, currentRequest, hasRequest) {
+  currentUser, profile, currentRequest, hasRequest, currentMdph) {
 
   this.profile = profile;
   this.currentRequest = currentRequest;
   this.currentUser = currentUser;
   this.hasRequest = hasRequest;
+
+  // Needed for tests
   this.RequestResource = RequestResource;
   this.ProfileService = ProfileService;
+  this.RequestService = RequestService;
+
   this.$state = $state;
   this.$modal = $modal;
+  this.token = $cookies.get('token');
   this.$anchorScroll = $anchorScroll;
-
+  this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
+  this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
+  this.pdfName = RequestService.getPdfName(currentRequest);
   this.estAdulte = ProfileService.estAdulte(profile);
 
-  this.nouvelleDemande = () => {
-    const missingSections = ProfileService.getMissingSection(profile);
+  this.sendRequest = () => {
+    const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);
 
     if (missingSections) {
       $anchorScroll(missingSections[0]);
@@ -31,22 +38,19 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       return;
     }
 
-    this.RequestResource.save(
-      {
-        profile: profile._id,
-        user: currentUser._id,
-        askedDocumentTypes: ProfileService.getAskedDocumentTypes(profile)
-      },
-      function success({ shortId }) {
-        $state.go('.demande', { shortId });
-      }
-    );
+    return RequestService
+      .postAction(currentRequest, {
+        id: 'submit',
+        mdph: currentMdph.zipcode,
+      })
+      .then(() => {
+        $state.go('profil', {}, {reload: true});
+      });
   };
 
   this.options = {
     beneficiaire: {
       title: 'Bénéficiaire',
-      content: 'Identité de la personne concernée par la demande.',
       icon: 'fa-user',
       model: 'identites.beneficiaire',
       mandatory: true,
@@ -57,7 +61,6 @@ angular.module('impactApp').controller('ProfilCtrl', function(
 
     autorite: {
       title: 'Autorité parentale',
-      content: 'Autorité parentale ou délégation d\'autorité.',
       icon: 'fa-users',
       model: 'identites.autorite',
       mandatory: !this.estAdulte,
@@ -85,10 +88,28 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       }
     },
 
+    documents: {
+      title: 'Documents',
+      model: 'documents',
+      icon: 'fa-file',
+      mandatory: true,
+      action: {
+        sref: 'profil.documents'
+      }
+    },
+
+    prestations: {
+      title: 'Expression des demandes de droits et prestations',
+      model: 'prestations',
+      icon: 'fa-list',
+      action: {
+        sref: 'profil.prestations'
+      }
+    },
+
     vieScolaire: {
       title: 'Vie scolaire',
       model: 'vie_scolaire',
-      content: 'Concerne les personnes en cours de scolarisation ou désirant reprendre un cursus scolaire',
       icon: 'fa-university',
       action: {
         sref: 'profil.vie_scolaire'
@@ -98,7 +119,6 @@ angular.module('impactApp').controller('ProfilCtrl', function(
     vieTravail: {
       title: 'Vie au travail',
       model: 'vie_au_travail',
-      content: 'Concerne les personnes en âge de travailler',
       icon: 'fa-industry',
       action: {
         sref: 'profil.vie_au_travail'
@@ -113,15 +133,25 @@ angular.module('impactApp').controller('ProfilCtrl', function(
         sref: 'profil.aidant.situation.nom_aidant'
       }
     },
+
     particulieres: {
       title: 'Situations particulières',
-      content: 'Concerne les situations nécessitant une attention particulière.',
       model: 'situations_particulieres',
       icon: 'fa-warning',
       action: {
         sref: 'profil.situations_particulieres'
       }
-    }
+    },
+
+    unconfirmed: {
+      title: 'Confirmer votre compte mail',
+      model: 'mail',
+      icon: 'fa-envelope',
+      mandatory: true,
+      action: {
+        sref: 'profil.unconfirmed'
+      }
+    },
   };
 
   this.delete = () => {
@@ -157,25 +187,4 @@ angular.module('impactApp').controller('ProfilCtrl', function(
     });
   };
 
-  this.openRequestHistory = function() {
-    $modal.open({
-      templateUrl: 'app/profil/history.modal.html',
-      controllerAs: 'modalHistory',
-      size: 'lg',
-      resolve: {
-        requests: function($http) {
-          return $http.get(`/api/users/${currentUser._id}/profiles/${profile._id}/requests`).then(function(result) {
-            return result.data;
-          });
-        }
-      },
-      controller($modalInstance, $state, requests) {
-        this.requests = requests;
-
-        this.ok = function() {
-          $modalInstance.close();
-        };
-      }
-    });
-  };
 });

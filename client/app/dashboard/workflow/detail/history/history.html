@@ -15,6 +15,9 @@
         <div ng-if="action.action.indexOf('document_') === 0">
           {{action.params.document.originalname}} - {{action.params.document.type}}
         </div>
+        <div ng-if="action.action.reason != ''">
+          {{action.params.reason}}
+        </div>
         <div ng-if="action.action === 'change_status'">
           {{action.params.old | requestStatus}} <i class="fa fa-arrow-right"></i> {{action.params.new | requestStatus}}
         </div>

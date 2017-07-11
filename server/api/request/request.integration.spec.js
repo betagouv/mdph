@@ -1,7 +1,6 @@
 'use strict';
 
 import Request from './request.model';
-import Profile from '../profile/profile.model';
 
 import {startServer} from '../../../test/utils/server';
 import {populate} from '../../../test/utils/seed';
@@ -139,73 +138,6 @@ describe('Request Integration', function() {
             .expect(401, done);
         });
       });
-    });
-  });
-
-  describe('Request worflow', function() {
-    let profile;
-    let request;
-
-    before(done => {
-      Request.remove().then(() => done());
-    });
-
-    before(done => {
-      Profile.create({user: testUser._id, vie_quotidienne: 'content_vie_quotidienne', identites: 'content_identites'}).then(created => {
-        profile = created;
-        done();
-      });
-    });
-
-    it('should create a valid request', done => {
-      api
-        .post(`/api/requests?access_token=${token}`)
-        .send({ profile: profile._id, user: testUser._id })
-        .expect(201)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-
-          request = res.body;
-          request.profile.should.equal(profile.id);
-          request.user.should.equal(testUser.id);
-
-          done();
-        });
-    });
-
-    it('should submit that same request', done => {
-      let action = {
-        id: 'submit',
-        prestations: ['aah', 'pch'],
-        renouvellements: ['aeeh'],
-        mdph: ['14'],
-        renouvellement: true,
-        old_mdph: ['54'],
-        numeroDossier: 'legacy_id'
-      };
-
-      api
-        .post(`/api/requests/${request.shortId}/action?access_token=${token}`)
-        .send(action)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-
-          request = res.body;
-          request.profile.should.equal(profile.id);
-          request.user._id.should.equal(testUser.id);
-
-          request.formAnswers.vie_quotidienne.should.equal('content_vie_quotidienne');
-          request.formAnswers.identites.should.equal('content_identites');
-
-          done();
-        });
     });
   });
 });

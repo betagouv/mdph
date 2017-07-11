@@ -186,6 +186,10 @@ export function showBeneficiaires(req, res) {
       if (err) return handleError(req, res, err);
 
       function capitalize(input) {
+        if (!input) {
+          return input;
+        }
+
         return input.replace(/\w\S*/g, function(txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
@@ -195,8 +199,10 @@ export function showBeneficiaires(req, res) {
         .map('profile')
         .uniq('_id')
         .map((profile) => {
-          profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
-          profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
+          if (profile && profile.identites && profile.identites.beneficiaire) {
+            profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
+            profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
+          }
           return profile;
         })
         .sortBy('identites.beneficiaire.nom')
@@ -283,21 +289,11 @@ export function create(req, res) {
 
 // Updates an existing mdph in the DB.
 export function update(req, res) {
-  if (req.body._id) { delete req.body._id; }
-
-  Mdph.findOne({
-    id: req.params.id
-  }, function(err, mdph) {
+  req.mdph.requestExportFormat = req.body.requestExportFormat;
+  req.mdph.save(function(err, saved) {
     if (err) { return handleError(req, res, err); }
 
-    if (!mdph) { return res.sendStatus(404); }
-
-    var updated = _.merge(mdph, req.body);
-    updated.save(function(err) {
-      if (err) { return handleError(req, res, err); }
-
-      return res.status(200).json(mdph);
-    });
+    return res.status(200).json(saved);
   });
 }
 

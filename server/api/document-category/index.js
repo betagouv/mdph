@@ -16,6 +16,7 @@ router.get('/document-types', controller.showUncategorizedDocumentTypes);
 
 router.post('/:categoryId/file', upload.single('file'), controller.saveDocumentCategoryFile);
 router.get('/:categoryId/file', controller.getDocumentCategoryFile);
+router.delete('/:categoryId/file/:fileId', controller.removeDocumentCategoryFile);
 
 router.delete('/:categoryId', controller.removeDocumentCategory);
 router.post('/:categoryId', controller.updateDocumentCategory);

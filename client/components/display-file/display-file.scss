@@ -1,64 +1,75 @@
 .display-file {
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  text-overflow: ellipsis;
-  height: 100%;
 
-  * {
-    max-width: 100%;
+  .display-file-card {
+    display: flex;
+    border: 1px solid $medium-heavy-grey;
+    margin: 5px;
   }
 
-  .text {
-    i {
-      font-size: 20px;
-      color: $bg-grey;
-      width: 20px;
-    }
-    .name {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
+  i.fa.logo {
+    color: $flat-ui-blue;
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .name {
+    text-align: center;
   }
 
   .description {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    justify-content: center;
+    background-color: white;
+    width: 200px;
+    height: 150px;
+    padding: 0 5px;
   }
 
   .file-actions {
     display: flex;
-    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .btn-danger {
+    margin: 0;
+    padding: 0 2px;
+  }
+
+  .partenaire {
+    color: $light-red;
   }
 
   .text-validation {
-    text-align: center;
+    color: white;
 
-    &.text-invalid {
+    &.text-validation-invalid {
       color: $light-red;
     }
 
-    &.text-valid {
+    &.text-validation-valid {
       color: $green;
+    }
+
+    em {
+      white-space: pre-line;
     }
   }
 
   .validation-actions {
-    display: flex;
-    justify-content: space-around;
 
     .fab {
       padding: 0 6px 0 6px;
       margin: 6px 8px 6px 8px;
       font-size: 19px;
       text-align: center;
-      text-transform: uppercase;
-      text-decoration:none;
       border: none;
       outline: none;
       min-width: 0;
@@ -94,8 +105,21 @@
     }
   }
 
+  .invalid-file {
+    flex-grow: 1;
+    margin-left: 10px;
+
+    label {
+      display: block;
+    }
+
+    textarea {
+      width: 100%;
+    }
+  }
+
   .trash {
-    align-self: flex-end;
-    color: $medium-heavy-grey;
+    align-self: center;
+    color: $light-red;
   }
 }

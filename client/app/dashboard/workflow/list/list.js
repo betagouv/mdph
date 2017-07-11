@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/:status',
         templateUrl: 'app/dashboard/workflow/list/list.html',
         controller: 'WorkflowListCtrl',
+        controllerAs: 'workflowlistctrl',
         resolve: {
           status: function($stateParams) {
             return $stateParams.status;

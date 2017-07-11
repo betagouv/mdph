@@ -11,8 +11,8 @@
   <h2>Documents invalides</h2>
   <p>Les documents suivants ont été indiqués comme non valides :</p>
 
-  {{#documentTypeList options.invalidDocumentTypes}}
-    {{documentType this}}
+  {{#documentTypeList options.invalidDocumentTypes options.invalidDocuments}}
+      {{documentType this}}
   {{/documentTypeList}}
 {{/if}}
 

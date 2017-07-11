@@ -70,6 +70,11 @@ section.profile-section {
   padding: 10px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 
+  form {
+    max-width: 800px;
+    margin: auto;
+  }
+
   .question-legend {
     text-align: center;
     font-weight: 500;
@@ -81,4 +86,20 @@ section.profile-section {
     border-bottom: 1px solid #eeeeee;
     min-width: 100%;
   }
+}
+
+.section-body-content-text {
+  max-width: 640px;
+  margin: 2em auto;
+}
+
+.request-identifier {
+  border-radius: 2px;
+  background-color: $flat-ui-blue;
+  color: white;
+  padding: 4px 20px;
+  display: inline-block;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
 }

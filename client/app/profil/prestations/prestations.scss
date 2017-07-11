@@ -1,0 +1,22 @@
+ul.list-prestations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.prestation-group {
+  margin: 15px;
+  padding: 10px;
+  background-color: whitesmoke;
+  border: 1px solid #ccc;
+}
+
+.prestation-form-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  * {
+    margin: 15px 10px;
+  }
+}

@@ -11,12 +11,6 @@ module.exports = {
     }]
   },
   server: {
-    options: {
-      plugins: [
-        'transform-class-properties',
-        'transform-runtime'
-      ]
-    },
     files: [{
       expand: true,
       cwd: 'server',
