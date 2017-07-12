@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('evaluation.dashboard', {
         url: '/evaluation/dashboard',
-        parent : 'evaluation',
+        parent: 'evaluation',
         authenticate: true,
         templateUrl: 'app/evaluation/dashboard/evaluation.dashboard.html',
         controller: 'EvaluationDashboardCtrl',
