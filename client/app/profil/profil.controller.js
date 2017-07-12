@@ -108,7 +108,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
     },
 
     vieScolaire: {
-      title: 'Vie scolaire',
+      title: 'Vie scolaire ou étudiante',
       model: 'vie_scolaire',
       icon: 'fa-university',
       action: {
