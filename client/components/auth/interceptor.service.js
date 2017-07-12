@@ -22,6 +22,8 @@
           var path = $window.location.pathname.split('/');
           if (path[1] === 'mdph') {
             (state || (state = $injector.get('$state'))).go('login', {codeDepartement: path[2]});
+          } else if (path[1] === 'soutien') {
+            (state || (state = $injector.get('$state'))).go('evaluation.login', {codeDepartement: path[2]});
           } else {
             (state || (state = $injector.get('$state'))).go('main');
           }
