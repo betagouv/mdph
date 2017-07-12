@@ -1,0 +1,18 @@
+<div class="list-header">
+  <h2 class="padding-title">Outil de soutien à l'évaluation</h2>
+</div>
+
+<div class="list-main" ui-view>
+  <table>
+    <tbody>
+      <th>Bénéficiaires ayant fait au moins une demande</th>
+      <tr ng-repeat="profile in evaluationDashboardCtrl.profiles">
+        <td>
+          <a ui-sref="evaluation.detail({profileId: profile._id, syntheseId: 'current', sectionId: 'environnement'})">
+            {{ evaluationDashboardCtrl.getProfileTitle(profile) }}
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

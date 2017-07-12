@@ -1,0 +1,35 @@
+<div id="section-detail">
+  <a ui-sref="evaluation.dashboard"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Retour à la liste des bénéficiaires</a>
+
+  <div class="panel with-nav-tabs panel-default">
+    <div class="panel-heading">
+      <ul class="nav nav-tabs nav-justified">
+        <li ui-sref-active="active" ng-repeat="section in sections" role="presentation">
+          <a ui-sref="evaluation.detail({sectionId: section.id})">{{section.label}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
+        <h4 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h4>
+        <trajectoire questions="questions" current-question-id="currentQuestionId" new-issue="newIssue" read-only="currentSynthese.request"></trajectoire>
+      </div>
+
+      <div class="container-btn">
+        <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!noAnswer && !(currentSynthese.request)">
+          Annuler <i class="fa fa-undo" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn-section btn btn-md btn-success" ng-click="validate()" ng-if="!(currentSynthese.request)">
+          Sauvegarder <i class="fa fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <history-synthese list-syntheses="listSyntheses" current-synthese="currentSynthese"></history-synthese>
+
+</div>
+
+<div ui-view="issues"></div>

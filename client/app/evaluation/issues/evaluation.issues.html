@@ -1,0 +1,19 @@
+<div class="issue-wrapper">
+  <h2>Commentaires</h2>
+  <div ng-if="!issuesCtrl.loading">
+    <div ng-repeat="issue in evaluationIssuesCtrl.issues" class="issue" ng-class="{closed: issue.closed}">
+      <h3>{{issue.title}} - <span class="text-muted">{{issue.questionId}}</span></h3>
+      <div class="small">{{issue.user.name}}, MDPH {{issue.user.mdph.zipcode}}- le {{issue.createdAt | moment}}</div>
+      <p>{{issue.message}}</p>
+
+      <button type="button" class="btn btn-default" ng-click="evaluationIssuesCtrl.toggle(issue)" ng-if="issue.closed">Ré-ouvrir ce commentaire</button>
+      <button type="button" class="btn btn-default" ng-click="evaluationIssuesCtrl.toggle(issue)" ng-if="!issue.closed">Fermer ce commentaire</button>
+    </div>
+    <div ng-if="!evaluationIssuesCtrl.issues || evaluationIssuesCtrl.issues.length == 0">
+      <p>Aucun commentaire.</p>
+    </div>
+  </div>
+  <div ng-if="evaluationIssuesCtrl.loading">
+    <i class="fa fa-spin fa-spinner"></i>&nbsp;Chargement
+  </div>
+</div>

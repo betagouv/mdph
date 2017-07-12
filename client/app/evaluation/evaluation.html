@@ -1,0 +1,38 @@
+<nav role="navigation">
+  <a ng-show="evaluationCtrl.currentMdph" ui-sref="departement({codeDepartement: evaluationCtrl.currentMdph.zipcode})">
+    <img ng-src="assets/images/{{evaluationCtrl.currentMdph.logo}}" alt="Retourner à l'accueil" />
+  </a>
+  <a ng-hide="evaluationCtrl.currentMdph" ui-sref="main">
+    <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
+  </a>
+
+  <ul ng-if="!evaluationCtrl.isLoggedIn() && evaluationCtrl.shouldShowLogin()">
+    <li>
+      <a class="icon login" id="login" ui-sref="evaluation.login({codeDepartement: evaluationCtrl.currentMdph.zipcode})" title="Connexion">Connexion</a>
+    </li>
+  </ul>
+
+  <ul ng-if="evaluationCtrl.isLoggedIn() && evaluationCtrl.shouldShowLogin()">
+    <li ng-if="evaluationCtrl.showDashboard()">
+      <a ui-sref="evaluation.dashboard({zipcode: evaluationCtrl.currentMdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
+    </li>
+    <li>
+      <a ui-sref="mon_compte">Mon compte</a>
+    </li>
+    <li>
+      <a ui-sref="evaluation.logout" id="logout">Déconnexion</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="main-content">
+  <main>
+    <div ui-view></div>
+  </main>
+</div>
+
+<footer>
+  <div class="links">
+    <a ui-sref="suivi">Suivi d’audience et vie privée</a>
+  </div>
+</footer>

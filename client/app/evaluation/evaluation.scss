@@ -1,0 +1,50 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+
+  a img {
+    height: 60px;
+    width: auto;
+    mix-blend-mode: multiply;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 60px;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+  }
+
+  li+li {
+    margin-left: 20px;
+  }
+}
+
+main {
+  background: white;
+  min-height: 70vh;
+  flex-grow: 1;
+}
+
+.main-content {
+  display: flex;
+}
+
+
+footer {
+  background-color: $light-blue;
+  color: white;
+
+  .links {
+    padding: 20px;
+
+    a {
+      color: white;
+    }
+  }
+}
