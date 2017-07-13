@@ -41,6 +41,27 @@
           });
       },
 
+      loginAgent({email, password}, callback) {
+        return $http.post('/auth/local', {
+          email: email,
+          password: password
+        })
+          .then(res => {
+            $cookies.put('token', res.data.token);
+            currentUser = User.get();
+            return currentUser.$promise;
+          })
+          .then(user => {
+            safeCb(callback)(null, user);
+            return user;
+          })
+          .catch(err => {
+            Auth.logout();
+            safeCb(callback)(err.data);
+            return $q.reject(err.data);
+          });
+      },
+
       /**
        * Delete access token and user info
        */
