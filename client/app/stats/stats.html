@@ -16,11 +16,34 @@
     </div>
     <div class="col-sm-4">
       <div class="section">
-        <h1>Nombre de MDPH pilotes</h1>
+        <h1>Taux de conversion (30j)</h1>
         <hr>
-        <div class="bigup">{{mdphs.length}}</div>
+        <div class="bigup">{{conversion() | number : 2}} %</div>
       </div>
     </div>
+
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Utilisateurs non confirmés</h1>
+        <hr>
+        <div class="bigup">{{unconfirmed}}</div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Total utilisateurs</h1>
+        <hr>
+        <div class="bigup">{{usersTotal}}</div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Ratio utilisateurs non confirmés</h1>
+        <hr>
+        <div class="bigup">{{usersRatio | number : 2}} %</div>
+      </div>
+    </div>
+
     <div class="col-sm-6">
       <div class="section">
         <h1>Demandes émises par MDPH (30j)</h1>
@@ -38,7 +61,7 @@
     </div>
     <div class="col-sm-12">
       <div class="section">
-        <h1>Historique des demandes (7j)</h1>
+        <h1>Nombre de demandes (12 mois)</h1>
         <hr>
         <canvas id="line" class="chart chart-line" data="historyData" labels="historyLabels" series="historySeries" legend="true"></canvas>
       </div>

@@ -5,8 +5,18 @@ import async from 'async';
 import Mdph from '../mdph/mdph.model';
 import Profile from '../profile/profile.model';
 import Request from '../request/request.model';
+import User from '../user/user.model';
 import moment from 'moment';
 
+function substract(days) {
+  var date = new Date();
+  date.setDate(date.getDate() - days);
+  return date;
+}
+
+const getOneWeekAgo = () => substract(7);
+const getOneMonthAgo = () => substract(30);
+const getOneYearAgo = () => substract(365);
 const officialMdphs =  ['14', '17', '54'];
 
 function countRequests(data, mdphs, done) {
@@ -56,6 +66,19 @@ export function mdph(req, res) {
   });
 }
 
+export function users(req, res) {
+  User
+    .aggregate([
+      {$match: {role: 'user'}},
+      {$group: {_id: '$unconfirmed', count: {$sum: 1} }}
+    ])
+    .exec(function(err, userGroups) {
+      if (err) return handleError(req, res, err);
+
+      return res.send(userGroups);
+    });
+}
+
 export function site(req, res) {
   Profile
     .find({
@@ -74,22 +97,11 @@ export function site(req, res) {
     });
 }
 
-function getOneMonthAgo() {
-  var oneMonthAgo = new Date();
-  oneMonthAgo.setDate(oneMonthAgo.getDate() - 30);
-  return oneMonthAgo;
-}
-
-function getOneWeekAgo() {
-  var oneWeekAgo = new Date();
-  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-  return oneWeekAgo;
-}
-
 export function history(req, res) {
   Request.find({
-    createdAt: {$gte: getOneWeekAgo()},
-    mdph: {$in: officialMdphs}
+    createdAt: {$gte: getOneYearAgo()},
+    mdph: {$in: officialMdphs},
+    status: {$ne: 'en_cours'}
   }).sort('createdAt').exec(function(err, requests) {
     if (err) { return handleError(req, res, err); }
 
@@ -98,10 +110,10 @@ export function history(req, res) {
     }
 
     requests.forEach(function(request) {
-      request.createdAtByDay = moment(request.createdAt).format('DD/MM/YYYY');
+      request.createdAtByMonth = moment(request.createdAt).format('MMMM YYYY');
     });
 
-    var groupByDate = _.groupBy(requests, 'createdAtByDay');
+    var groupByDate = _.groupBy(requests, 'createdAtByMonth');
     var data = [];
     _.forEach(groupByDate, function(requests, date) {
       data.push({

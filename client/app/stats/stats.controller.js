@@ -2,6 +2,10 @@
 
 angular.module('impactApp')
   .controller('StatsCtrl', function($scope, $http) {
+    $scope.unconfirmed = 0;
+    $scope.usersTotal = 0;
+    $scope.usersRatio = 0;
+
     $scope.sumRequests = function(mdphs) {
       var count = 0;
       if (mdphs) {
@@ -11,6 +15,14 @@ angular.module('impactApp')
       }
 
       return count;
+    };
+
+    $scope.conversion = function() {
+      if (!$scope.site || !$scope.mdphs) {
+        return 0;
+      }
+
+      return $scope.sumRequests($scope.mdphs) / $scope.site.count * 100;
     };
 
     function sumByType(mdphs) {
@@ -27,6 +39,16 @@ angular.module('impactApp')
 
       return series;
     }
+
+    $http.get('/api/stats/users').then(function(result) {
+      const data = result.data;
+      const unconfirmed = _.find(data, {'_id': true}).count;
+      const confirmed = _.find(data, {'_id': false}).count;
+
+      $scope.unconfirmed = unconfirmed;
+      $scope.usersTotal = unconfirmed + confirmed;
+      $scope.usersRatio = $scope.unconfirmed / $scope.usersTotal * 100;
+    });
 
     $http.get('/api/stats/mdph').then(function(result) {
       $scope.mdphs = result.data;
