@@ -42,8 +42,8 @@ angular.module('impactApp')
 
     $http.get('/api/stats/users').then(function(result) {
       const data = result.data;
-      const unconfirmed = _.find(data, {'_id': true}).count;
-      const confirmed = _.find(data, {'_id': false}).count;
+      const unconfirmed = _.find(data, {_id: true}).count;
+      const confirmed = _.find(data, {_id: false}).count;
 
       $scope.unconfirmed = unconfirmed;
       $scope.usersTotal = unconfirmed + confirmed;

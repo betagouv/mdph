@@ -14,7 +14,7 @@ function substract(days) {
   return date;
 }
 
-const getOneWeekAgo = () => substract(7);
+// const getOneWeekAgo = () => substract(7);
 const getOneMonthAgo = () => substract(30);
 const getOneYearAgo = () => substract(365);
 const officialMdphs =  ['14', '17', '54'];
@@ -151,7 +151,6 @@ export function time(req, res) {
   }).then(groupByDate => {
     var data = [];
 
-    let counter =  0;
     _.forEach(groupByDate, (requests, date) => {
       data.push({
         date: date,
