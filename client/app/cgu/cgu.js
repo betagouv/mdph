@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
@@ -8,4 +8,4 @@ angular.module('impactApp')
         parent: 'layout',
         templateUrl: 'app/cgu/cgu.html'
       });
-  });
+  });*/
