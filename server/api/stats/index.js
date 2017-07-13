@@ -10,5 +10,6 @@ router.get('/site', controller.site);
 router.get('/history', controller.history);
 router.get('/users', controller.users);
 router.get('/likes', controller.likes);
+router.get('/time', controller.time);
 
 module.exports = router;

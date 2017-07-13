@@ -63,11 +63,51 @@ angular.module('impactApp')
       $scope.site = result.data;
     });
 
+    $scope.historyLabels = [];
+    $scope.historyData = [[]];
+    $scope.historySeries = [[]];
+
+    $scope.historyTimeLabels = [];
+    $scope.historyTimeData = [[], [], []];
+    $scope.historyTimeSeries = [[], [], []];
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+    $scope.options = {
+      scales: {
+        yAxes: [
+          {
+            id: 'y-axis-1',
+            type: 'linear',
+            display: true,
+            position: 'left'
+          },
+          {
+            id: 'y-axis-2',
+            type: 'linear',
+            display: true,
+            position: 'right'
+          }
+        ]
+      }
+    };
+
+    $http.get('/api/stats/time').then(function(result) {
+      const data = result.data;
+
+      $scope.historyTimeLabels = _.pluck(data, 'date');
+
+      $scope.historyTimeData[0] = _.pluck(data, 'median');
+      $scope.historyTimeSeries[0] = 'Temps médian de completion (jours)';
+
+      $scope.historyTimeData[1] = _.pluck(data, 'average');
+      $scope.historyTimeSeries[1] = 'Temps moyen de completion (jours)';
+    });
+
     $http.get('/api/stats/history').then(function(result) {
-      $scope.history = result.data;
-      $scope.historyLabels = _.pluck(result.data, 'date');
-      $scope.historyData = [_.pluck(result.data, 'count')];
-      $scope.historySeries = ['Nombre de demandes'];
+      const data = result.data;
+
+      $scope.historyLabels = _.pluck(data, 'date');
+      $scope.historyData[0] = _.pluck(data, 'count');
+      $scope.historySeries[0] = 'Nombre de demandes';
     });
 
     $http.get('/api/stats/likes').then(function(result) {

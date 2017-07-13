@@ -19,6 +19,25 @@ const getOneMonthAgo = () => substract(30);
 const getOneYearAgo = () => substract(365);
 const officialMdphs =  ['14', '17', '54'];
 
+function groupRequestByMonth(options) {
+  return new Promise((resolve, reject) => {
+    Request
+      .find(options)
+      .sort('submittedAt')
+      .exec((err, requests) => {
+        if (err) reject(err);
+
+        requests.forEach(function(request) {
+          request.submittedAtByMonth = moment(request.submittedAt).format('MMMM YYYY');
+        });
+
+        const groupByDate= _.groupBy(requests, 'submittedAtByMonth');
+
+        resolve(groupByDate);
+      });
+    });
+}
+
 function countRequests(data, mdphs, done) {
   async.eachSeries(mdphs, function(mdph, callback) {
     Request.find({
@@ -79,6 +98,74 @@ export function users(req, res) {
     });
 }
 
+function computeTime(request) {
+  const start = new Date(request.createdAt).getTime();
+  const end = new Date(request.submittedAt).getTime();
+
+  const timeSpent = end - start;
+
+  if (isNaN(timeSpent)) {
+    return null;
+  }
+
+  return timeSpent;
+}
+
+function computeMedian(values) {
+  values.sort((a, b) => a - b);
+  const lowMiddle = Math.floor((values.length - 1) / 2);
+  const highMiddle = Math.ceil((values.length - 1) / 2);
+  return (values[lowMiddle] + values[highMiddle]) / 2;
+}
+
+function computeMedianTimes(requests) {
+  const values = requests
+    .map(computeTime)
+    .filter(function(current) {
+      return current !== null;
+    });
+
+  const median = computeMedian(values);
+  const asDays = moment.duration(median).asDays()
+  return Math.round(asDays * 100) / 100;
+}
+
+function computeAverageTimes(requests) {
+  const values = requests
+    .map(computeTime)
+    .filter(function(current) {
+      return current !== null;
+    });
+
+  const sum = values.reduce((previous, current) => current += previous);
+  const average = sum / values.length;
+  const asDays = moment.duration(average).asDays()
+  return Math.round(asDays * 100) / 100;
+}
+
+export function time(req, res) {
+  groupRequestByMonth({
+    createdAt: {$gte: getOneYearAgo()},
+    status: {$ne: 'en_cours'},
+    submittedAt: {$exists: true }
+  }).then(groupByDate => {
+    var data = [];
+
+    let counter =  0;
+    _.forEach(groupByDate, (requests, date) => {
+      data.push({
+        date: date,
+        average: computeAverageTimes(requests),
+        median: computeMedianTimes(requests),
+      });
+    });
+
+    res.json(data);
+  }).catch(err => {
+    return handleError(req, res, err);
+  });
+}
+
 export function site(req, res) {
   Profile
     .find({
@@ -98,24 +185,14 @@ export function site(req, res) {
 }
 
 export function history(req, res) {
-  Request.find({
+  groupRequestByMonth({
     createdAt: {$gte: getOneYearAgo()},
     mdph: {$in: officialMdphs},
     status: {$ne: 'en_cours'}
-  }).sort('createdAt').exec(function(err, requests) {
-    if (err) { return handleError(req, res, err); }
-
-    if (!requests) {
-      return res.json({});
-    }
-
-    requests.forEach(function(request) {
-      request.createdAtByMonth = moment(request.createdAt).format('MMMM YYYY');
-    });
-
-    var groupByDate = _.groupBy(requests, 'createdAtByMonth');
+  }).then(groupByDate => {
     var data = [];
-    _.forEach(groupByDate, function(requests, date) {
+
+    _.forEach(groupByDate, (requests, date) => {
       data.push({
         date: date,
         count: requests.length
@@ -123,6 +200,8 @@ export function history(req, res) {
     });
 
     res.json(data);
+  }).catch(err => {
+    return handleError(req, res, err);
   });
 }
 

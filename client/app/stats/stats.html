@@ -48,29 +48,39 @@
       <div class="section">
         <h1>Demandes émises par MDPH (30j)</h1>
         <hr>
-        <canvas id="pie" class="chart chart-pie" data="dataTotal" labels="labels"
-          legend="true"></canvas>
+        <canvas id="pie" class="chart chart-pie" chart-data="dataTotal" chart-labels="labels" chart-legend="true"></canvas>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="section">
         <h1>Détail des demandes (30j)</h1>
         <hr>
-        <canvas id="bar" class="chart chart-bar" data="data" labels="labels" series="series" legend="true"></canvas>
+        <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-legend="true"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="section">
+        <h1>Analyse des demandes (12 mois)</h1>
+        <hr>
+        <canvas id="line" class="chart chart-line"
+          chart-data="historyTimeData" chart-labels="historyTimeLabels" chart-series="historyTimeSeries"
+          chart-legend="true"></canvas>
       </div>
     </div>
     <div class="col-sm-12">
       <div class="section">
         <h1>Nombre de demandes (12 mois)</h1>
         <hr>
-        <canvas id="line" class="chart chart-line" data="historyData" labels="historyLabels" series="historySeries" legend="true"></canvas>
+        <canvas id="line" class="chart chart-line"
+          chart-data="historyData" chart-labels="historyLabels" chart-series="historySeries"
+          chart-legend="true"></canvas>
       </div>
     </div>
     <div class="col-sm-12">
       <div class="section">
         <h1>Nombre de like par MDPH</h1>
         <hr>
-         <canvas id="likesBar" class="chart chart-bar" data="likesData" labels="likesLabels" series="likesSeries" legend="true"></canvas>
+         <canvas id="likesBar" class="chart chart-bar" chart-data="likesData" chart-labels="likesLabels" chart-series="likesSeries" chart-legend="true"></canvas>
       </div>
     </div>
   </div>
