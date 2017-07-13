@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
@@ -7,4 +7,4 @@ angular.module('impactApp')
         url: '/a_propos',
         templateUrl: 'app/apropos/apropos.html'
       });
-  });
+  });*/
