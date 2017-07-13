@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('EvaluationLoginCtrl', function($rootScope, $scope, Auth, $location, currentMdph, $state) {
+  .controller('EvaluationLoginCtrl', function($rootScope, $scope, Auth, $location, $state) {
     $scope.user = {};
     $scope.error = null;
 
@@ -12,12 +12,8 @@ angular.module('impactApp')
           password: form.password.$modelValue
         })
         .then(function(user) {
-          if (Auth.hasRole(user, 'admin')) {
-            return $state.go('evaluation.dashboard', {codeDepartement: currentMdph.zipcode}, {reload: true});
-          }
-
-          if (Auth.hasRole(user, 'adminMdph')) {
-            return $state.go('evaluation.dashboard', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
+          if (Auth.hasRole(user, 'admin') || Auth.hasRole(user, 'adminMdph')) {
+            return $state.go('evaluation.dashboard', {currentUser: user}, {reload: true});
           }
 
           return $state.go('evaluation.login');

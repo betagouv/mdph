@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('EvaluationDetailCtrl', function(
     $scope, $modal, $cookies, $http, $state, $stateParams,
-    currentMdph, sections, section, sectionId, model, GevaService, listSyntheses,
+    sections, section, sectionId, model, GevaService, listSyntheses,
     currentSynthese, currentUser) {
 
     $scope.model = model;
@@ -87,7 +87,7 @@ angular.module('impactApp')
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
 
-      currentSynthese.$update({zipcode: currentMdph.zipcode, profileId: currentSynthese.profile, controllerId: currentSynthese._id}, function() {
+      currentSynthese.$update({zipcode: currentUser.mdph.zipcode, profileId: currentSynthese.profile, controllerId: currentSynthese._id}, function() {
         $state.go('.', {}, {reload: true});
       });
     };

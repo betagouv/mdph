@@ -4,6 +4,11 @@ describe('EvaluationDetailCtrl', function() {
   var $controller;
   var scope;
   var controller;
+  let fakeUser = {
+    mdph: {
+      zipcode: 'test'
+    }
+  };
 
   beforeEach(function() {
     module('impactApp');
@@ -62,17 +67,17 @@ describe('EvaluationDetailCtrl', function() {
 
       beforeEach(function() {
         scope = {};
-        controller = $controller('DetailEvaluationCtrl',
+        controller = $controller('EvaluationDetailCtrl',
           {
             $scope: scope,
-            currentMdph: {zipcode: 'test'}, listSyntheses: [],
+            listSyntheses: [],
             model: {},
             sections: {},
             section: fakeSection,
             request: {},
             currentSynthese: {},
             sectionId: {},
-            currentUser: {}
+            currentUser: fakeUser
           }
         );
       });
@@ -135,7 +140,6 @@ describe('EvaluationDetailCtrl', function() {
         scope = {};
         controller = $controller('EvaluationDetailCtrl', {
           $scope: scope,
-          currentMdph: {zipcode: 'test'},
           listSyntheses: [],
           model: {},
           sections: {},
@@ -143,7 +147,7 @@ describe('EvaluationDetailCtrl', function() {
           request: {},
           currentSynthese: {},
           sectionId: {},
-          currentUser: {}
+          currentUser: fakeUser
         });
       });
 
@@ -222,7 +226,6 @@ describe('EvaluationDetailCtrl', function() {
         scope = {};
         controller = $controller('EvaluationDetailCtrl', {
           $scope: scope,
-          currentMdph: {zipcode: 'test'},
           listSyntheses: [],
           model: {},
           sections: {},
@@ -230,7 +233,7 @@ describe('EvaluationDetailCtrl', function() {
           request: {},
           currentSynthese: fakeSynthese,
           sectionId: {},
-          currentUser: {}
+          currentUser: fakeUser
         });
       });
 
@@ -243,3 +246,4 @@ describe('EvaluationDetailCtrl', function() {
   });
 
 });
+

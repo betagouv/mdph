@@ -28,15 +28,15 @@ angular.module('impactApp')
                 return $stateParams.profileId;
               },
 
-              listSyntheses: function(SyntheseResource, currentMdph, profileId) {
-                return SyntheseResource.query({zipcode: currentMdph.zipcode, profileId: profileId}).$promise;
+              listSyntheses: function(SyntheseResource, currentUser, profileId) {
+                return SyntheseResource.query({zipcode: currentUser.mdph.zipcode, profileId: profileId}).$promise;
               },
 
               sectionId: function($stateParams) {
                 return $stateParams.sectionId;
               },
 
-              currentSynthese: function(SyntheseResource, currentMdph, profileId, listSyntheses, syntheseId) {
+              currentSynthese: function(SyntheseResource, currentUser, profileId, listSyntheses, syntheseId) {
                 let currentSynthese;
 
                 if (syntheseId === 'current') {
@@ -45,7 +45,7 @@ angular.module('impactApp')
                   currentSynthese = _.find(listSyntheses, {_id: syntheseId});
                 }
 
-                return SyntheseResource.get({zipcode: currentMdph.zipcode, profileId: profileId, controller: 'syntheses', controllerId: currentSynthese._id}).$promise;
+                return SyntheseResource.get({zipcode: currentUser.mdph.zipcode, profileId: profileId, controller: 'syntheses', controllerId: currentSynthese._id}).$promise;
               },
 
               section: function($stateParams, sections, model, sectionId) {

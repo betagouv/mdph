@@ -1,20 +1,18 @@
-<nav role="navigation">
-  <a ng-show="evaluationCtrl.currentMdph" ui-sref="departement({codeDepartement: evaluationCtrl.currentMdph.zipcode})">
-    <img ng-src="assets/images/{{evaluationCtrl.currentMdph.logo}}" alt="Retourner à l'accueil" />
-  </a>
-  <a ng-hide="evaluationCtrl.currentMdph" ui-sref="main">
+<div id="evaluation">
+  <nav role="navigation">
+  <a ui-sref="evaluation.dashboard">
     <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
   </a>
 
-  <ul ng-if="!evaluationCtrl.isLoggedIn() && evaluationCtrl.shouldShowLogin()">
+  <ul ng-if="!evaluationCtrl.isLoggedIn()">
     <li>
-      <a class="icon login" id="login" ui-sref="evaluation.login({codeDepartement: evaluationCtrl.currentMdph.zipcode})" title="Connexion">Connexion</a>
+      <a class="icon login" id="login" ui-sref="evaluation.login" title="Connexion">Connexion</a>
     </li>
   </ul>
 
-  <ul ng-if="evaluationCtrl.isLoggedIn() && evaluationCtrl.shouldShowLogin()">
-    <li ng-if="evaluationCtrl.showDashboard()">
-      <a ui-sref="evaluation.dashboard({zipcode: evaluationCtrl.currentMdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
+  <ul ng-if="evaluationCtrl.isLoggedIn()">
+    <li>
+      <a ui-sref="evaluation.dashboard" title="Tableau de bord">Tableau de bord</a>
     </li>
     <li>
       <a ui-sref="mon_compte">Mon compte</a>
@@ -36,3 +34,4 @@
     <a ui-sref="suivi">Suivi d’audience et vie privée</a>
   </div>
 </footer>
+</div>

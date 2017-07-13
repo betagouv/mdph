@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('evaluation.login', {
         parent: 'evaluation',
-        url: '/signup',
+        url: '/login',
         templateUrl: 'app/evaluation/login/evaluation.login.html',
         controller: 'EvaluationLoginCtrl',
         controllerAs: 'evaluationLoginCtrl',
