@@ -952,8 +952,8 @@
       },
       "besoinsEntretien": {
         "model": "besoinsEntretien",
-        "titleDefault": "Vous avez des besoin pour l'entretien personnel :",
-        "titleRep": "<%= name %> a des besoin pour l'entretien personnel :",
+        "titleDefault": "Vous avez des besoins pour l'entretien personnel :",
+        "titleRep": "<%= name %> a des besoins pour l'entretien personnel :",
         "type": "checkbox",
         "answers": [
           {
@@ -1001,7 +1001,7 @@
           {
             "label": "Autre besoin",
             "model": "autre",
-            "detailModel": "besoinsEntretienAutre",
+            "detailModel": "besoinsDeplacementAutre",
             "detailUrl": "components/detail/precisez.html"
           }
         ]
@@ -1043,7 +1043,7 @@
           {
             "label": "Autre besoin",
             "model": "autre",
-            "detailModel": "besoinsEntretienAutre",
+            "detailModel": "attenteVieScolaireAutre",
             "detailUrl": "components/detail/precisez.html"
           }
         ]
