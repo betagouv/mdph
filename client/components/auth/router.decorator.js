@@ -31,7 +31,7 @@
             event.preventDefault();
 
             var path = $window.location.pathname.split('/');
-            if (path[1] === 'soutien') {
+            if (path[1] === 'evaluation') {
               $state.go('evaluation.login', nextParams);
             } else {
               $state.go('login', nextParams);

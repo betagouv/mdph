@@ -4,8 +4,10 @@ describe('EvaluationLoginCtrl', function() {
   let $controller;
   let $q;
   let $scope;
-  let currentMdph = {
-    zipcode: 14
+  let fakeUser = {
+    mdph: {
+      zipcode: 14
+    }
   };
   let fakeForm = {
     $valid: true,
@@ -51,7 +53,7 @@ describe('EvaluationLoginCtrl', function() {
             Auth,
             $location: {},
             $state,
-            currentMdph
+            currentUser: {mdph: {zipcode: 14}}
           });
         });
 
@@ -67,7 +69,7 @@ describe('EvaluationLoginCtrl', function() {
     describe('admin', function() {
       let Auth = {
         login() {
-          return $q.resolve({});
+          return $q.resolve(fakeUser);
         },
 
         hasRole(user, role) {
@@ -86,27 +88,21 @@ describe('EvaluationLoginCtrl', function() {
             Auth,
             $location: {},
             $state,
-            currentMdph
+            currentUser: fakeUser
           });
         });
 
-      it('should go to the back office of the current mdph', function() {
+      it('should go to the back office of the current user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
 
         expect($state.go).toHaveBeenCalled();
         expect($state.go.calls.argsFor(0)[0]).toEqual('evaluation.dashboard');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({codeDepartement: currentMdph.zipcode});
+        expect($state.go.calls.argsFor(0)[1]).toEqual({currentUser: fakeUser});
       });
     });
 
     describe('adminMdph', function() {
-      let fakeUser = {
-        mdph: {
-          zipcode: 54
-        }
-      };
-
       let Auth = {
         login() {
           return $q.resolve(fakeUser);
@@ -128,17 +124,17 @@ describe('EvaluationLoginCtrl', function() {
             Auth,
             $location: {},
             $state,
-            currentMdph
+            currentUser: fakeUser
           });
         });
 
-      it('should go to the back office of the mdph of the current user', function() {
+      it('should go to the back office of the current user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
 
         expect($state.go).toHaveBeenCalled();
         expect($state.go.calls.argsFor(0)[0]).toEqual('evaluation.dashboard');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({codeDepartement: fakeUser.mdph.zipcode});
+        expect($state.go.calls.argsFor(0)[1]).toEqual({currentUser: fakeUser});
       });
     });
   });
