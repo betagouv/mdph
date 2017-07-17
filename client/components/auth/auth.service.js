@@ -25,20 +25,58 @@
           email: email,
           password: password
         })
-          .then(res => {
-            $cookies.put('token', res.data.token);
-            currentUser = User.get();
-            return currentUser.$promise;
-          })
-          .then(user => {
-            safeCb(callback)(null, user);
+        .then(res => {
+          $cookies.put('token', res.data.token);
+          currentUser = User.get();
+          return currentUser.$promise;
+        })
+        .then(user => {
+          safeCb(callback)(null, user);
+          return user;
+        })
+        .catch(err => {
+          Auth.logout();
+          safeCb(callback)(err.data);
+          return $q.reject(err.data);
+        });
+      },
+
+            /**
+       * Authenticate only Agent and save token
+       *
+       * @param  {Object}   user     - login agent info
+       * @param  {Function} callback - optional, function(error, user)
+       * @return {Promise}
+       */
+      loginAgent({email, password}, callback) {
+        return $http.post('/auth/local', {
+          email: email,
+          password: password
+        })
+        .then(res => {
+          $cookies.put('token', res.data.token);
+          currentUser = User.get();
+          return currentUser.$promise;
+        })
+        .then(user => {
+          safeCb(callback)(null, user);
+          return user;
+        })
+        .then( user => {
+          if (Auth.hasRole(user, 'admin') || Auth.hasRole(user, 'adminMdph')) {
             return user;
-          })
-          .catch(err => {
+          }else{
             Auth.logout();
-            safeCb(callback)(err.data);
-            return $q.reject(err.data);
-          });
+            var message = {"message" : "Vous n'avez pas les droits nécessaires pour vous connecter"};
+            safeCb(callback)(message);
+            return $q.reject(message);
+          }
+        })
+        .catch(err => {
+          Auth.logout();
+          safeCb(callback)(err.data);
+          return $q.reject(err.data);
+        });
       },
 
       /**
