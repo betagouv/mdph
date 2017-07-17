@@ -13,15 +13,14 @@ angular.module('impactApp')
         })
         .then(function(user) {
           if (!user.mdph) {
-            user.mdph={zipcode: 'test'};
+            user.mdph = {zipcode: 'test'};
           }
+
           return $state.go('evaluation.dashboard', {currentUser: user}, {reload: true});
         })
         .catch(function(err) {
-          if(err){
-            $scope.error = err.message;
-            return $state.go('evaluation.login');
-          }
+          $scope.error = err.message;
+          return $state.go('evaluation.login');
         });
       }
     };
