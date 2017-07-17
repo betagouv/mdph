@@ -29,7 +29,6 @@ import resizeAndMove from '../../components/resize-image';
 
 function handleError(req, res) {
   return function(statusCode, err) {
-    console.log(statusCode);
     statusCode = statusCode || 500;
 
     if (err) {

@@ -51,7 +51,6 @@ angular.module('impactApp')
         },
 
         function(resp) {
-          console.log('Error status: ' + resp.status);
           $rootScope.$broadcast('file-upload-error', documentType.id);
           model[documentType.id].documentList.pop(uploadedFile);
         },

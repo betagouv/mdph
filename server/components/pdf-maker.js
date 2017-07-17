@@ -73,7 +73,6 @@ function createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, req
     .then(buildStructure(request, recapitulatifPdfPath))
     .then(writeCategoriesSeparatorsToFile(tempDirPath))
     .then((pdfStructure) => {
-      console.log(requestExportFormat);
       if (requestExportFormat === 'zip') {
         return Promise.resolve(createRequestArchive(tempDirPath)(pdfStructure));
       } else {
