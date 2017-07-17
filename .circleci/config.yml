@@ -8,52 +8,43 @@ defaults: &defaults
     - image: selenium/standalone-chrome:latest
 
 jobs:
-  build:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          key: mdph-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install
-      - save_cache:
-          key: mdph-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - "/root/.cache/yarn"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
   test-lint:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /home/ubuntu/mdph
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
       - run:
           name: Run linter
           command: yarn lint
   test-front:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /home/ubuntu/mdph
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
       - run:
           name: Run client-side unit tests
           command: yarn test:front
   test-back:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /home/ubuntu/mdph
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
       - run:
           name: Run server-side unit tests
           command: yarn test:back
   test-end-to-end:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /home/ubuntu/mdph
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
       - run:
           name: Build package
           command: yarn build
@@ -67,8 +58,7 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /home/ubuntu/mdph
+      - checkout
       - add_ssh_keys
       - deploy:
           name: Deploy for branch master only
@@ -80,19 +70,10 @@ workflows:
   version: 2
   build_accept_deploy:
     jobs:
-      - build
-      - test-lint:
-          requires:
-            - build
-      - test-front:
-          requires:
-            - build
-      - test-back:
-          requires:
-            - build
-      - test-end-to-end:
-          requires:
-            - build
+      - test-lint
+      - test-front
+      - test-back
+      - test-end-to-end
       - deploy:
           requires:
             - test-lint
