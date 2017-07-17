@@ -25,9 +25,9 @@ describe('Send Mail Actions', function() {
         .sendMailNotificationAgent(fakeRequest, fakeEmail)
         .then(function() {
           sendMailSpy.calledOnce.should.equal(true);
-          sendMailSpy.args[0][0].should.equal(fakeEmail);
-          sendMailSpy.args[0][1].should.equal('Vous avez reçu une nouvelle demande');
-          sendMailSpy.args[0][2].should.containEql('Référence de la demande: 1234');
+          sendMailSpy.args[0][0].email.should.equal(fakeEmail);
+          sendMailSpy.args[0][0].title.should.equal('Vous avez reçu une nouvelle demande');
+          sendMailSpy.args[0][0].body.should.containEql('Référence de la demande: 1234');
           done();
         })
         .catch(function(e) {
@@ -55,20 +55,22 @@ describe('Send Mail Actions', function() {
 
     let fakeOptions = {
       request: {
-        shortId: '1234'
+        shortId: '1234',
       },
-      email: 'toto@toto.com'
+      replyto: 'test@mdph.fr',
+      email: 'toto@toto.com',
     };
 
     it('should send the correct email to the correct adress', function(done) {
       SendMailAction.sendMailReceivedTransmission(fakeOptions)
         .then(function() {
           sendMailSpy.calledOnce.should.equal(true);
-          sendMailSpy.args[0][0].should.equal(fakeOptions.email);
-          sendMailSpy.args[0][1].should.equal('Votre demande a bien été transmise');
-          sendMailSpy.args[0][2].should.containEql('Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.');
-          sendMailSpy.args[0][3][0].filename.should.containEql(fakeOptions.request.shortId);
-          sendMailSpy.args[0][3][0].path.should.equal(fakePath);
+          sendMailSpy.args[0][0].email.should.equal(fakeOptions.email);
+          sendMailSpy.args[0][0].title.should.equal('Votre demande a bien été transmise');
+          sendMailSpy.args[0][0].body.should.containEql('Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.');
+          sendMailSpy.args[0][0].replyto.should.containEql('test@mdph.fr');
+          sendMailSpy.args[0][0].attachments[0].filename.should.containEql(fakeOptions.request.shortId);
+          sendMailSpy.args[0][0].attachments[0].path.should.equal(fakePath);
           done();
         })
         .catch(function(e) {
@@ -95,9 +97,9 @@ describe('Send Mail Actions', function() {
       SendMailAction.sendConfirmationMail(fakeEmail, fakeURL)
         .then(function() {
           sendMailSpy.calledOnce.should.equal(true);
-          sendMailSpy.args[0][0].should.equal(fakeEmail);
-          sendMailSpy.args[0][1].should.equal('Veuillez confirmer votre adresse e-mail');
-          sendMailSpy.args[0][2].should.containEql(fakeURL);
+          sendMailSpy.args[0][0].email.should.equal(fakeEmail);
+          sendMailSpy.args[0][0].title.should.equal('Veuillez confirmer votre adresse e-mail');
+          sendMailSpy.args[0][0].body.should.containEql(fakeURL);
           done();
         })
         .catch(function(e) {
@@ -131,12 +133,12 @@ describe('Send Mail Actions', function() {
 
     it('should send the correct email to the correct adress', function(done) {
       SendMailAction.sendMailCompletude(fakeRequest, fakeOptions)
-          .then(function() {
+        .then(function() {
           sendMailSpy.calledOnce.should.equal(true);
-          sendMailSpy.args[0][0].should.equal(fakeRequest.user.email);
-          sendMailSpy.args[0][1].should.equal('Accusé de réception de votre MDPH');
-          sendMailSpy.args[0][2].should.containEql(fakeRequest.mdph);
-          sendMailSpy.args[0][2].should.containEql(fakeOptions.url);
+          sendMailSpy.args[0][0].email.should.equal(fakeRequest.user.email);
+          sendMailSpy.args[0][0].title.should.equal('Accusé de réception de votre MDPH');
+          sendMailSpy.args[0][0].body.should.containEql(fakeRequest.mdph);
+          sendMailSpy.args[0][0].body.should.containEql(fakeOptions.url);
           done();
         })
         .catch(function(e) {
@@ -164,9 +166,9 @@ describe('Send Mail Actions', function() {
         .sendMailRenewPassword(fakeEmail, fakeURL)
         .then(function() {
           sendMailSpy.calledOnce.should.equal(true);
-          sendMailSpy.args[0][0].should.equal(fakeEmail);
-          sendMailSpy.args[0][1].should.equal('Nouveau mot de passe');
-          sendMailSpy.args[0][2].should.containEql(fakeURL);
+          sendMailSpy.args[0][0].email.should.equal(fakeEmail);
+          sendMailSpy.args[0][0].title.should.equal('Nouveau mot de passe');
+          sendMailSpy.args[0][0].body.should.containEql(fakeURL);
           done();
         })
         .catch(function(e) {

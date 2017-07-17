@@ -22,13 +22,17 @@ class MailSender {
     );
   }
 
-  sendContent(to, subject, body, attachments, cb) {
+  sendContent({email, title, body, replyto, attachments}, cb) {
     const mailOptions = {
       from: this._mailFrom,
-      to: to,
-      subject: subject,
+      to: email,
+      subject: title,
       html: body
     };
+
+    if (replyto) {
+      mailOptions.replyto = replyto;
+    }
 
     if (attachments) {
       mailOptions.attachments = attachments;

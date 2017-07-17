@@ -172,13 +172,22 @@ function resolveSubmit(req) {
     .then(dispatchSecteur(req));
 }
 
+function getRequestMdphEmail(request) {
+  const mainLocation = _.find(request.fullMdph.locations, {headquarters: true}) || request.fullMdph.locations[0];
+
+  return mainLocation.email;
+}
+
 function sendMailReceivedTransmission(req) {
   return function(request) {
+
+
     let options = {
       request: request,
       host: req.headers.host,
       user: req.user,
-      email: req.user.email
+      email: req.user.email,
+      replyto: getRequestMdphEmail(request)
     };
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
@@ -203,7 +212,9 @@ function dispatchSecteur(req) {
 }
 
 function computeEnregistrementOptions(request, host) {
-  const options = {};
+  const options = {
+    replyto: getRequestMdphEmail(request),
+  };
 
   const invalidDocumentTypes = request.getInvalidDocumentTypes();
   const invalidDocuments = request.getInvalidDocuments();

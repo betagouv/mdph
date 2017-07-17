@@ -50,7 +50,7 @@ angular.module('impactApp')
           model[documentType.id].documentList.push(resp.data);
         },
 
-        function(resp) {
+        function() {
           $rootScope.$broadcast('file-upload-error', documentType.id);
           model[documentType.id].documentList.pop(uploadedFile);
         },
