@@ -41,7 +41,7 @@ describe('EvaluationLoginCtrl', function() {
   describe('login', function() {
     describe('with an error', function() {
       let Auth = {
-        login() {
+        loginAgent() {
           return $q.reject({message:'error message'});
         }
       };
@@ -68,7 +68,7 @@ describe('EvaluationLoginCtrl', function() {
 
     describe('admin', function() {
       let Auth = {
-        login() {
+        loginAgent() {
           return $q.resolve(fakeUser);
         },
 
@@ -104,7 +104,7 @@ describe('EvaluationLoginCtrl', function() {
 
     describe('adminMdph', function() {
       let Auth = {
-        login() {
+        loginAgent() {
           return $q.resolve(fakeUser);
         },
 

@@ -41,7 +41,7 @@
         });
       },
 
-            /**
+      /**
        * Authenticate only Agent and save token
        *
        * @param  {Object}   user     - login agent info
@@ -62,14 +62,13 @@
           safeCb(callback)(null, user);
           return user;
         })
-        .then( user => {
+        .then(user => {
+
           if (Auth.hasRole(user, 'admin') || Auth.hasRole(user, 'adminMdph')) {
             return user;
-          }else{
+          } else {
             Auth.logout();
-            var message = {"message" : "Vous n'avez pas les droits nécessaires pour vous connecter"};
-            safeCb(callback)(message);
-            return $q.reject(message);
+            return $q.reject({data: {message: 'Vous n\'avez pas les droits nécessaires pour vous connecter'}});
           }
         })
         .catch(err => {
