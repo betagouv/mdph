@@ -7,19 +7,21 @@ angular.module('impactApp')
 
     $scope.login = function(form) {
       if (form.$valid) {
-        Auth.login({
+        Auth.loginAgent({
           email: form.email.$modelValue,
           password: form.password.$modelValue
         })
         .then(function(user) {
-          if (Auth.hasRole(user, 'admin') || Auth.hasRole(user, 'adminMdph')) {
-            return $state.go('evaluation.dashboard', {currentUser: user}, {reload: true});
+          if (!user.mdph) {
+            user.mdph={zipcode: 'test'};
           }
-
-          return $state.go('evaluation.login');
+          return $state.go('evaluation.dashboard', {currentUser: user}, {reload: true});
         })
         .catch(function(err) {
-          $scope.error = err.message;
+          if(err){
+            $scope.error = err.message;
+            return $state.go('evaluation.login');
+          }
         });
       }
     };
