@@ -3,8 +3,9 @@
 angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
-      .state('a_propos', {
-        url: '/a_propos',
-        templateUrl: 'app/apropos/apropos.html'
+      .state('cgu', {
+        url: '/cgu',
+        parent: 'layout',
+        templateUrl: 'app/cgu/cgu.html'
       });
   });*/
