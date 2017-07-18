@@ -34,10 +34,15 @@ angular.module('impactApp', [
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {
       $window.scrollTo(0, 0);
 
-      if (toState.data && toState.data.title) {
-        $window.document.title = toState.data.title + ' - Votre MDPH en ligne';
+      var path = $window.location.pathname.split('/');
+      if (path[1] === 'evaluation') {
+        $window.document.title = 'Outil de soutien';
       } else {
-        $window.document.title = 'Votre MDPH en ligne';
+        if (toState.data && toState.data.title) {
+          $window.document.title = toState.data.title + ' - Votre MDPH en ligne';
+        } else {
+          $window.document.title = 'Votre MDPH en ligne';
+        }
       }
 
       if ($window._paq) {

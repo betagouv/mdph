@@ -13,7 +13,7 @@ angular.module('impactApp')
           title: 'Connexion'
         }
       })
-  .state('evaluation.logout', {
+      .state('evaluation.logout', {
         parent: 'evaluation',
         url: '/logout',
         template: '',

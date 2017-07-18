@@ -25,6 +25,15 @@
         if (next.authenticate) {
           Auth.isLoggedIn(_.noop).then(is => {
             if (is) {
+              const path = $window.location.pathname.split('/');
+              if (path[1] === 'evaluation') {
+                const user = Auth.getCurrentUser();
+                if (!Auth.hasRole(user, 'admin') && !Auth.hasRole(user, 'adminMdph')) {
+                  Auth.logout();
+                  $state.go('evaluation.login', nextParams);
+                }
+              }
+
               return;
             }
 
