@@ -85,6 +85,16 @@ export function sendConfirmationMail(email, confirmationUrl) {
   return generateAndSend(options);
 }
 
+export function generateReceptionMail(request, options) {
+  options.content = receptionContentCompiled({request, options});
+
+  if (options.url) {
+    options.footer = urlFooterCompiled({url: options.url});
+  }
+
+ return generateEmailBodyWithTemplate(options);
+}
+
 export function sendMailCompletude(request, contentOptions) {
   const options = {
     email: request.user.email,

@@ -223,9 +223,7 @@ function dispatchSecteur(req) {
 }
 
 function computeEnregistrementOptions(request, host) {
-  const options = {
-    replyto: getRequestMdphEmail(request),
-  };
+  const options = {};
 
   const invalidDocumentTypes = request.getInvalidDocumentTypes();
   const invalidDocuments = request.getInvalidDocuments();
@@ -237,16 +235,18 @@ function computeEnregistrementOptions(request, host) {
     options.receivedAt = request.receivedAt;
   }
 
-  if (invalidDocumentTypes.length > 0) {
+  if (invalidDocumentTypes.length > 0 || nonPresentAskedDocumentTypes.length > 0) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;
-    options.invalidDocumentTypes = invalidDocumentTypes;
-    options.invalidDocuments = invalidDocuments;
 
-  } else if (nonPresentAskedDocumentTypes.length > 0) {
-    options.status = 'en_attente_usager';
-    options.en_attente_usager = true;
-    options.nonPresentAskedDocumentTypes = nonPresentAskedDocumentTypes;
+    if (invalidDocumentTypes.length > 0) {
+      options.invalidDocumentTypes = invalidDocumentTypes;
+      options.invalidDocuments = invalidDocuments;
+    }
+
+    if (nonPresentAskedDocumentTypes.length > 0) {
+      options.nonPresentAskedDocumentTypes = nonPresentAskedDocumentTypes;
+    }
   } else {
     options.status = 'enregistree';
     options.enregistree = true;
@@ -306,6 +306,10 @@ function resolveEnregistrement(req) {
     .save()
     .then(snapshotSynthese)
     .then(fillRequestMdph)
+    .then(request => {
+      options.replyto = getRequestMdphEmail(request);
+      return request;
+    })
     .then(request => {
       MailActions.sendMailCompletude(request, options);
       return request;
