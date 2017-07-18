@@ -1,78 +1,89 @@
 <div id="stats-container" class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="section">
-        <h1>Demandes émises (30j)</h1>
-        <hr>
-        <div class="bigup">{{sumRequests(mdphs)}}</div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="section">
-        <h1>Nouveaux profils (30j)</h1>
-        <hr>
-        <div class="bigup">{{site.count}}</div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="section">
-        <h1>Taux de conversion (30j)</h1>
-        <hr>
-        <div class="bigup">{{conversion() | number : 2}} %</div>
-      </div>
-    </div>
 
-    <div class="col-sm-4">
-      <div class="section">
+  <div class="section">
+    <ul class="select-period">
+      <li><button class="btn btn-link" ng-class="{active: conversionPeriod === 'week'}" ng-click="conversionPeriod = 'week'">7j</button></li>
+      <li><button class="btn btn-link" ng-class="{active: conversionPeriod === 'month'}" ng-click="conversionPeriod = 'month'">30j</button></li>
+      <li><button class="btn btn-link" ng-class="{active: conversionPeriod === 'year'}" ng-click="conversionPeriod = 'year'">365j</button></li>
+      <li><button class="btn btn-link" ng-class="{active: conversionPeriod === 'beginning'}" ng-click="conversionPeriod = 'beginning'">N/A</button></li>
+    </ul>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>Demandes émises</h1>
+        <hr>
+        <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
+        <div class="bigup" ng-if="!timeLoading">{{requestCount}}</div>
+      </div>
+      <div class="col-sm-4">
+        <h1>Nouveaux profils</h1>
+        <hr>
+        <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
+        <div class="bigup" ng-if="!timeLoading">{{profileCount}}</div>
+      </div>
+      <div class="col-sm-4">
+        <h1>Taux de conversion</h1>
+        <hr>
+        <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
+        <div class="bigup" ng-if="!timeLoading">{{conversion() | number : 2}} %</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="row">
+      <div class="col-sm-4">
         <h1>Utilisateurs non confirmés</h1>
         <hr>
         <div class="bigup">{{unconfirmed}}</div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="section">
+      <div class="col-sm-4">
         <h1>Total utilisateurs</h1>
         <hr>
         <div class="bigup">{{usersTotal}}</div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="section">
+      <div class="col-sm-4">
         <h1>Ratio utilisateurs non confirmés</h1>
         <hr>
         <div class="bigup">{{usersRatio | number : 2}} %</div>
       </div>
     </div>
+  </div>
 
-    <div class="col-sm-6">
-      <div class="section">
-        <h1>Demandes émises par MDPH (30j)</h1>
-        <hr>
-        <canvas id="pie" class="chart chart-pie" chart-data="dataTotal" chart-labels="labels" chart-legend="true"></canvas>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="section">
-        <h1>Détail des demandes (30j)</h1>
-        <hr>
-        <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-legend="true"></canvas>
-      </div>
-    </div>
+  <div class="row">
     <div class="col-sm-12">
       <div class="section">
-        <h1>Analyse des demandes (12 mois)</h1>
+        <ul class="select-period">
+          <li><button class="btn btn-link" ng-class="{active: requestAnalysisPeriod === 'week'}" ng-click="requestAnalysisPeriod = 'week'">7j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestAnalysisPeriod === 'month'}" ng-click="requestAnalysisPeriod = 'month'">30j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestAnalysisPeriod === 'year'}" ng-click="requestAnalysisPeriod = 'year'">365j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestAnalysisPeriod === 'beginning'}" ng-click="requestAnalysisPeriod = 'beginning'">N/A</button></li>
+        </ul>
+
+        <h1>Analyse des demandes</h1>
         <hr>
         <canvas id="line" class="chart chart-line"
-          chart-data="historyTimeData" chart-labels="historyTimeLabels" chart-series="historyTimeSeries"
+          chart-data="requestAnalysisData"
+          chart-labels="requestAnalysisLabels"
+          chart-series="requestAnalysisSeries"
           chart-legend="true"></canvas>
       </div>
     </div>
     <div class="col-sm-12">
       <div class="section">
+        <ul class="select-period">
+          <li><button class="btn btn-link" ng-class="{active: requestCountHistoryPeriod === 'week'}" ng-click="requestCountHistoryPeriod = 'week'">7j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestCountHistoryPeriod === 'month'}" ng-click="requestCountHistoryPeriod = 'month'">30j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestCountHistoryPeriod === 'year'}" ng-click="requestCountHistoryPeriod = 'year'">365j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestCountHistoryPeriod === 'beginning'}" ng-click="requestCountHistoryPeriod = 'beginning'">N/A</button></li>
+        </ul>
+
         <h1>Nombre de demandes (12 mois)</h1>
         <hr>
         <canvas id="line" class="chart chart-line"
-          chart-data="historyData" chart-labels="historyLabels" chart-series="historySeries"
+          chart-data="requestCountHistoryData"
+          chart-labels="requestCountHistoryLabels"
+          chart-series="requestCountHistorySeries"
           chart-legend="true"></canvas>
       </div>
     </div>
@@ -81,6 +92,28 @@
         <h1>Nombre de like par MDPH</h1>
         <hr>
          <canvas id="likesBar" class="chart chart-bar" chart-data="likesData" chart-labels="likesLabels" chart-series="likesSeries" chart-legend="true"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="section">
+        <ul class="select-period">
+          <li><button class="btn btn-link" ng-class="{active: requestCountByMdphPeriod === 'week'}" ng-click="requestCountByMdphPeriod = 'week'">7j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestCountByMdphPeriod === 'month'}" ng-click="requestCountByMdphPeriod = 'month'">30j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestCountByMdphPeriod === 'year'}" ng-click="requestCountByMdphPeriod = 'year'">365j</button></li>
+          <li><button class="btn btn-link" ng-class="{active: requestCountByMdphPeriod === 'beginning'}" ng-click="requestCountByMdphPeriod = 'beginning'">N/A</button></li>
+        </ul>
+
+        <h1>Demandes émises par MDPH</h1>
+        <hr>
+        <canvas id="pie" class="chart chart-pie" chart-data="requestByMdphPieData" chart-labels="mdphLabels" chart-legend="true"></canvas>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="section">
+        <h1>Nombre de MDPH actives</h1>
+        <hr>
+        <div class="bigup">{{ enabledMdph }}</div>
       </div>
     </div>
   </div>
