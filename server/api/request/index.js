@@ -39,18 +39,6 @@ router.param('shortId', function(req, res, next, shortId) {
       if (!request) return res.sendStatus(404);
 
       req.request = request;
-      return request;
-    })
-    .then(request => {
-      return request.getFullMdph().then(mdph => {
-        if (mdph) {
-          request.fullMdph = mdph;
-        }
-
-        return request;
-      });
-    })
-    .then(() => {
       next();
     });
 });

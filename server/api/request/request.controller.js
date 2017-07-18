@@ -131,7 +131,7 @@ export function showUserRequests(req, res) {
   .catch(handleError(req, res));
 }
 
-function fillRequestOnSubmit(request, submitForm) {
+function fillRequestOnSubmit(request, body) {
   return function(profile) {
     let formAnswers = _.pick(
       profile,
@@ -146,7 +146,7 @@ function fillRequestOnSubmit(request, submitForm) {
     return request
       .set('status', 'emise')
       .set('formAnswers', formAnswers)
-      .set('mdph', submitForm.mdph)
+      .set('mdph', body.mdph)
       .set('submittedAt', Date.now());
   };
 }
@@ -162,12 +162,23 @@ function saveRequestOnSubmit(req) {
   };
 }
 
+function fillRequestMdph(request) {
+  return request.getFullMdph().then(mdph => {
+    if (mdph) {
+      request.fullMdph = mdph;
+    }
+
+    return request;
+  });
+}
+
 function resolveSubmit(req) {
   return Profile
     .findById(req.request.profile)
     .exec()
     .then(fillRequestOnSubmit(req.request, req.body))
     .then(saveRequestOnSubmit(req))
+    .then(fillRequestMdph)
     .then(sendMailReceivedTransmission(req))
     .then(dispatchSecteur(req));
 }
@@ -294,6 +305,7 @@ function resolveEnregistrement(req) {
     .set('status', options.status)
     .save()
     .then(snapshotSynthese)
+    .then(fillRequestMdph)
     .then(request => {
       MailActions.sendMailCompletude(request, options);
       return request;
