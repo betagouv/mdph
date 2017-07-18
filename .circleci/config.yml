@@ -1,20 +1,36 @@
 version: 2
 
 defaults: &defaults
-  working_directory: /home/ubuntu/mdph
+  working_directory: /home/circleci/mdph
   docker:
     - image: mdphbeta/node-mdph:1.0.4
     - image: circleci/mongo:3.4.2
     - image: selenium/standalone-chrome:latest
 
+restore_cache: &restore_cache
+  restore_cache:
+    name: Restoring node_modules
+    key: v1-node_modules-{{ checksum "yarn.lock" }}
+
 jobs:
+  setup:
+    <<: *defaults
+    steps:
+      - checkout
+      - *restore_cache
+      - run:
+          name: Install Dependencies
+          command: yarn install
+      - save_cache:
+          name: Caching node_modules
+          key: v1-node_modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
   test-lint:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: yarn install
+      - *restore_cache
       - run:
           name: Run linter
           command: yarn lint
@@ -22,9 +38,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: yarn install
+      - *restore_cache
       - run:
           name: Run client-side unit tests
           command: yarn test:front
@@ -32,9 +46,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: yarn install
+      - *restore_cache
       - run:
           name: Run server-side unit tests
           command: yarn test:back
@@ -42,9 +54,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: yarn install
+      - *restore_cache
       - run:
           name: Build package
           command: yarn build
@@ -70,10 +80,19 @@ workflows:
   version: 2
   build_accept_deploy:
     jobs:
-      - test-lint
-      - test-front
-      - test-back
-      - test-end-to-end
+      - setup
+      - test-lint:
+          requires:
+            - setup
+      - test-front:
+          requires:
+            - setup
+      - test-back:
+          requires:
+            - setup
+      - test-end-to-end:
+          requires:
+            - setup
       - deploy:
           requires:
             - test-lint
