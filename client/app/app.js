@@ -34,16 +34,12 @@ angular.module('impactApp', [
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {
       $window.scrollTo(0, 0);
 
-      var path = $window.location.pathname.split('/');
-      if (path[1] === 'evaluation') {
-        $window.document.title = 'Outil de soutien';
+      if (toState.data && toState.data.title) {
+        $window.document.title = toState.data.title + ' | mdph.beta.gouv.fr';
       } else {
-        if (toState.data && toState.data.title) {
-          $window.document.title = toState.data.title + ' - Votre MDPH en ligne';
-        } else {
-          $window.document.title = 'Votre MDPH en ligne';
-        }
+        $window.document.title = 'mdph.beta.gouv.fr';
       }
+
 
       if ($window._paq) {
         const anonymousParams = _(toStateParams)

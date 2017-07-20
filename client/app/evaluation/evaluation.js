@@ -13,6 +13,9 @@ angular.module('impactApp')
         templateUrl: 'app/evaluation/evaluation.html',
         controller: 'EvaluationCtrl',
         controllerAs: 'evaluationCtrl',
-        abstract: true
+        abstract: true,
+        data: {
+          title: 'Outil de soutien'
+        }
       });
   });

@@ -21,6 +21,9 @@ angular.module('impactApp')
         templateUrl: 'app/layout/layout.html',
         controller: 'LayoutCtrl',
         controllerAs: 'layoutctrl',
-        abstract: true
+        abstract: true,
+        data: {
+          title: 'Votre MDPH en ligne'
+        }
       });
   });
