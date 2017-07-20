@@ -40,7 +40,6 @@ angular.module('impactApp', [
         $window.document.title = 'mdph.beta.gouv.fr';
       }
 
-
       if ($window._paq) {
         const anonymousParams = _(toStateParams)
           .keys()
