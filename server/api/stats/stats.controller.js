@@ -7,7 +7,7 @@ import Request from '../request/request.model';
 import User from '../user/user.model';
 import moment from 'moment';
 import Promise from 'bluebird';
-import { computeMedianTimes, computeAverageTimes, getStartDate, getMomentFormat } from './utils';
+import { computeDuration, computeHumanMedianTime, computeMedianTimes, computeAverageTimes, getStartDate, getMomentFormat } from './utils';
 
 const officialMdphs =  ['14', '17', '54'];
 
@@ -30,16 +30,28 @@ function groupRequestByPeriod(options, period) {
     });
 }
 
-export function requestCount(req, res) {
+export function createdRequestCount(req, res) {
   Request
     .find({
-      mdph: { $in: officialMdphs },
+      createdAt: {
+        $gte: getStartDate(req.query.period)
+      },
+      status: 'en_cours',
+    })
+    .count()
+    .exec()
+    .then(result => res.json(result));
+}
+
+export function submittedRequestCount(req, res) {
+  Request
+    .find({
       createdAt: {
         $gte: getStartDate(req.query.period)
       },
       status: {
         $in: ['emise', 'enregistree', 'en_attente_usager', 'archive']
-      }
+      },
     })
     .count()
     .exec()
@@ -50,18 +62,6 @@ export function mdphs(req, res) {
   Mdph
     .find({
       enabled: true
-    })
-    .count()
-    .exec()
-    .then(result => res.json(result));
-}
-
-export function profileCount(req, res) {
-  Profile
-    .find({
-      createdAt: {
-        $gte: getStartDate(req.query.period)
-      }
     })
     .count()
     .exec()
@@ -93,6 +93,16 @@ export function requestCountByMdph(req, res) {
   .exec((err, result) => res.json(result));
 }
 
+export function requestMedianTime(req, res) {
+  Request
+    .find({
+      status: {$ne: 'en_cours'},
+      submittedAt: {$gte: getStartDate(req.query.period)},
+    })
+    .then(computeHumanMedianTime)
+    .then(result => res.json(result));
+}
+
 export function users(req, res) {
   User
     .aggregate([
@@ -106,13 +116,26 @@ export function users(req, res) {
     });
 }
 
+export function requestRawData(req, res) {
+  const period = req.query.period;
+
+  Request
+    .find({
+      mdph: { $in: officialMdphs },
+      status: {$ne: 'en_cours'},
+      submittedAt: {$gte: getStartDate(req.query.period)},
+    })
+    .then(requests => {
+      const data = requests.map(request => ({shortId: request.shortId, submittedAt: moment(request.submittedAt).format('LLLL'), duration: moment.duration(computeDuration(request)).humanize()}));
+      res.json(data);
+    });
+}
+
 export function requestAnalysis(req, res) {
   const period = req.query.period;
 
   groupRequestByPeriod({
-    createdAt: {$gte: getStartDate(period)},
-    status: {$ne: 'en_cours'},
-    submittedAt: {$exists: true }
+    submittedAt: {$gte: getStartDate(period)},
   }, period).then(groupByDate => {
     var data = [];
 

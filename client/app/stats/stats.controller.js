@@ -3,12 +3,12 @@
 angular.module('impactApp')
   .controller('StatsCtrl', function($scope, $http) {
     // Api calls
-    function getRequestCount(period) {
-      return $http.get('/api/stats/request-count', {params: {period}}).then(result => $scope.requestCount = result.data);
+    function getSubmittedRequestCount(period) {
+      return $http.get('/api/stats/submitted-request-count', {params: {period}}).then(result => $scope.submittedRequestCount = result.data);
     }
 
-    function getProfileCount(period) {
-      return $http.get('/api/stats/profile-count', {params: {period}}).then(result => $scope.profileCount = result.data);
+    function getCreatedRequestCount(period) {
+      return $http.get('/api/stats/created-request-count', {params: {period}}).then(result => $scope.createdRequestCount = result.data);
     }
 
     function getRequestCountByMdph(period) {
@@ -37,9 +37,16 @@ angular.module('impactApp')
       });
     }
 
+    function getRequestCompletionMedian(period) {
+      return $http.get('/api/stats/request-median-time', {params: {period}}).then(result => {
+        $scope.median = result.data;
+      });
+    }
+
     // Setup watches
-    $scope.$watch('conversionPeriod', getRequestCount);
-    $scope.$watch('conversionPeriod', getProfileCount);
+    $scope.$watch('conversionPeriod', getCreatedRequestCount);
+    $scope.$watch('conversionPeriod', getSubmittedRequestCount);
+    $scope.$watch('conversionPeriod', getRequestCompletionMedian);
     $scope.$watch('requestCountByMdphPeriod', getRequestCountByMdph);
     $scope.$watch('requestAnalysisPeriod', getRequestAnalysis);
     $scope.$watch('requestCountHistoryPeriod', getRequestCountHistory);
@@ -65,11 +72,11 @@ angular.module('impactApp')
 
     // Utils
     $scope.conversion = function() {
-      if (!$scope.requestCount || !$scope.profileCount) {
+      if (!$scope.createdRequestCount || !$scope.submittedRequestCount) {
         return 0;
       }
 
-      return $scope.requestCount / $scope.profileCount * 100;
+      return $scope.submittedRequestCount / $scope.createdRequestCount * 100;
     };
 
     // Get data only once

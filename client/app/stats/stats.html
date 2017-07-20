@@ -9,23 +9,29 @@
     </ul>
 
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
+        <h1>Demandes en cours</h1>
+        <hr>
+        <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
+        <div class="bigup" ng-if="!timeLoading">{{createdRequestCount}}</div>
+      </div>
+      <div class="col-sm-3">
         <h1>Demandes émises</h1>
         <hr>
         <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
-        <div class="bigup" ng-if="!timeLoading">{{requestCount}}</div>
+        <div class="bigup" ng-if="!timeLoading">{{submittedRequestCount}}</div>
       </div>
-      <div class="col-sm-4">
-        <h1>Nouveaux profils</h1>
-        <hr>
-        <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
-        <div class="bigup" ng-if="!timeLoading">{{profileCount}}</div>
-      </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <h1>Taux de conversion</h1>
         <hr>
         <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
         <div class="bigup" ng-if="!timeLoading">{{conversion() | number : 2}} %</div>
+      </div>
+      <div class="col-sm-3">
+        <h1>Temps médian</h1>
+        <hr>
+        <div class="bigup" ng-if="timeLoading"><i class="fa fa-spin fa-spinner"></i></div>
+        <div class="bigup" ng-if="!timeLoading">{{ median }}</div>
       </div>
     </div>
   </div>

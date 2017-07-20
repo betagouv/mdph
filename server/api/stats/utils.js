@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-function computeTime(request) {
+function computeDuration(request) {
   const start = new Date(request.createdAt).getTime();
   const end = new Date(request.submittedAt).getTime();
 
@@ -22,19 +22,30 @@ function computeMedian(values) {
 
 function computeMedianTimes(requests) {
   const values = requests
-    .map(computeTime)
+    .map(computeDuration)
     .filter(function(current) {
       return current !== null;
     });
 
   const median = computeMedian(values);
-  const asDays = moment.duration(median).asDays()
+  const asDays = moment.duration(median).asDays();
   return Math.round(asDays * 100) / 100;
+}
+
+function computeHumanMedianTime(requests) {
+  const values = requests
+    .map(computeDuration)
+    .filter(function(current) {
+      return current !== null;
+    });
+
+  const median = computeMedian(values);
+  return moment.duration(median).humanize();
 }
 
 function computeAverageTimes(requests) {
   const values = requests
-    .map(computeTime)
+    .map(computeDuration)
     .filter(function(current) {
       return current !== null;
     });
@@ -78,8 +89,10 @@ function getMomentFormat(period) {
 }
 
 module.exports = {
+  computeDuration,
   computeMedianTimes,
   computeAverageTimes,
   getStartDate,
   getMomentFormat,
+  computeHumanMedianTime,
 };
