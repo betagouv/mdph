@@ -118,16 +118,29 @@ export function users(req, res) {
 
 export function requestRawData(req, res) {
   const period = req.query.period;
+  const filter = req.query.filter || 60;
 
   Request
     .find({
       mdph: { $in: officialMdphs },
       status: {$ne: 'en_cours'},
-      submittedAt: {$gte: getStartDate(req.query.period)},
+      submittedAt: {$gte: getStartDate(period)},
     })
     .then(requests => {
-      const data = requests.map(request => ({shortId: request.shortId, submittedAt: moment(request.submittedAt).format('LLLL'), duration: moment.duration(computeDuration(request)).humanize()}));
-      res.json(data);
+      const withDurations = requests.map(request => ({submittedAt: request.submittedAt, duration: moment.duration(computeDuration(request)).asMinutes()}));
+      const sortedByDuration = withDurations.sort((a, b) => a.duration - b.duration);
+      const filteredByDuration = sortedByDuration.splice(0, Math.round(sortedByDuration.length * filter / 100));
+
+      let total = 0;
+      const reduced = filteredByDuration.reduce((acc, request) => {
+        return acc.concat({
+          x: request.duration,
+          y: ++total / filteredByDuration.length * 100,
+          r: 5,
+        });
+      }, []);
+
+      res.json(reduced);
     });
 }
 

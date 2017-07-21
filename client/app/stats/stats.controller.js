@@ -43,6 +43,14 @@ angular.module('impactApp')
       });
     }
 
+    function getRequestRawData() {
+      return $http.get('/api/stats/request-raw-data', {params: {period: $scope.requestRawDataPeriod, filter: $scope.requestRawDataFilter}}).then(result => {
+        const data = result.data;
+
+        $scope.requestRawData = data;
+      });
+    }
+
     // Setup watches
     $scope.$watch('conversionPeriod', getCreatedRequestCount);
     $scope.$watch('conversionPeriod', getSubmittedRequestCount);
@@ -50,12 +58,16 @@ angular.module('impactApp')
     $scope.$watch('requestCountByMdphPeriod', getRequestCountByMdph);
     $scope.$watch('requestAnalysisPeriod', getRequestAnalysis);
     $scope.$watch('requestCountHistoryPeriod', getRequestCountHistory);
+    $scope.$watch('requestRawDataPeriod', getRequestRawData);
+    $scope.$watch('requestRawDataFilter', getRequestRawData);
 
     // Init period
     $scope.requestAnalysisPeriod = 'year';
     $scope.conversionPeriod = 'month';
     $scope.requestCountByMdphPeriod = 'month';
     $scope.requestCountHistoryPeriod = 'year';
+    $scope.requestRawDataPeriod = 'month';
+    $scope.requestRawDataFilter = '60';
 
     // Init data
     $scope.unconfirmed = 0;
@@ -69,6 +81,9 @@ angular.module('impactApp')
     $scope.requestCountHistoryLabels = [];
     $scope.requestCountHistoryData = [[]];
     $scope.requestCountHistorySeries = ['Nombre de demandes'];
+    $scope.disableAnimationOptions = {
+      animation: false
+    };
 
     // Utils
     $scope.conversion = function() {
