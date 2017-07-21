@@ -57,7 +57,7 @@ describe('Send Mail Actions', function() {
       request: {
         shortId: '1234',
       },
-      replyto: 'test@mdph.fr',
+      replyTo: 'test@mdph.fr',
       email: 'toto@toto.com',
     };
 
@@ -68,7 +68,7 @@ describe('Send Mail Actions', function() {
           sendMailSpy.args[0][0].email.should.equal(fakeOptions.email);
           sendMailSpy.args[0][0].title.should.equal('Votre demande a bien été transmise');
           sendMailSpy.args[0][0].body.should.containEql('Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.');
-          sendMailSpy.args[0][0].replyto.should.containEql('test@mdph.fr');
+          sendMailSpy.args[0][0].replyTo.should.containEql('test@mdph.fr');
           sendMailSpy.args[0][0].attachments[0].filename.should.containEql(fakeOptions.request.shortId);
           sendMailSpy.args[0][0].attachments[0].path.should.equal(fakePath);
           done();

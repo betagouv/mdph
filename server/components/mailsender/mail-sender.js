@@ -22,7 +22,7 @@ class MailSender {
     );
   }
 
-  sendContent({email, title, body, replyto, attachments}, cb) {
+  sendContent({email, title, body, replyTo, attachments}, cb) {
     const mailOptions = {
       from: this._mailFrom,
       to: email,
@@ -30,8 +30,9 @@ class MailSender {
       html: body
     };
 
-    if (replyto) {
-      mailOptions.replyto = replyto;
+    if (replyTo) {
+      mailOptions.replyTo = replyTo;
+      mailOptions.bcc = this._mailFrom;
     }
 
     if (attachments) {

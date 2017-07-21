@@ -191,14 +191,12 @@ function getRequestMdphEmail(request) {
 
 function sendMailReceivedTransmission(req) {
   return function(request) {
-
-
-    let options = {
+    const options = {
       request: request,
       host: req.headers.host,
       user: req.user,
       email: req.user.email,
-      replyto: getRequestMdphEmail(request)
+      replyTo: getRequestMdphEmail(request)
     };
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
@@ -307,14 +305,8 @@ function resolveEnregistrement(req) {
     .then(snapshotSynthese)
     .then(fillRequestMdph)
     .then(request => {
-      options.replyto = getRequestMdphEmail(request);
-      return request;
-    })
-    .then(request => {
+      options.replyTo = getRequestMdphEmail(request);
       MailActions.sendMailCompletude(request, options);
-      return request;
-    })
-    .then(request => {
       request.saveActionLog(actions.ENREGISTREMENT, req.user, req.log);
       return request;
     });

@@ -56,10 +56,10 @@ export function sendMailReceivedTransmission(options) {
   const attachments = [];
 
   return pdfMaker(options)
-    .then(pdfPath => {
+    .then(pdfStream => {
       options.title = 'Votre demande a bien été transmise';
       options.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
-      attachments.push({filename: options.request.shortId + '.pdf', path: pdfPath});
+      attachments.push({filename: options.request.shortId + '.pdf', path: pdfStream.path});
       return options;
     })
     .then(generateEmailBodyWithTemplate)
@@ -67,7 +67,7 @@ export function sendMailReceivedTransmission(options) {
       Mailer.sendMail({
         email: options.email,
         title: options.title,
-        replyto: options.replyto,
+        replyTo: options.replyTo,
         body,
         attachments
       });
@@ -99,7 +99,8 @@ export function sendMailCompletude(request, contentOptions) {
   const options = {
     email: request.user.email,
     title: 'Accusé de réception de votre MDPH',
-    content: receptionContentCompiled({request, contentOptions})
+    content: receptionContentCompiled({request, options: contentOptions}),
+    replyTo: contentOptions.replyTo
   };
 
   if (contentOptions.url) options.footer = urlFooterCompiled({url: contentOptions.url});
