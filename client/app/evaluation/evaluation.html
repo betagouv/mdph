@@ -1,0 +1,34 @@
+<div id="evaluation">
+  <nav role="navigation">
+  <a ui-sref="evaluation.dashboard">
+    <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
+  </a>
+
+  <ul ng-if="!evaluationCtrl.isLoggedIn()">
+    <li>
+      <a class="icon login" id="login" ui-sref="evaluation.login" title="Connexion">Connexion</a>
+    </li>
+  </ul>
+
+  <ul ng-if="evaluationCtrl.isLoggedIn()">
+    <li>
+      <a ui-sref="evaluation.dashboard" title="Tableau de bord">outil de soutien</a>
+    </li>
+    <li>
+      <a ui-sref="evaluation.logout" id="logout">Déconnexion</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="main-content">
+  <main>
+    <div ui-view></div>
+  </main>
+</div>
+
+<footer>
+  <div class="links">
+    <a ui-sref="suivi">Suivi d’audience et vie privée</a>
+  </div>
+</footer>
+</div>
