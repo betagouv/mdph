@@ -42,7 +42,7 @@ describe('Send Mail Actions', function() {
     let sendMailSpy = sinon.spy();
 
     let fakePath = 'toto/lol/';
-    const PdfMakerStub = sinon.stub().resolves(fakePath);
+    const PdfMakerStub = sinon.stub().resolves({ path: fakePath });
 
     const SendMailAction = proxyquire('./send-mail-actions', {
       './send-mail.controller': {
