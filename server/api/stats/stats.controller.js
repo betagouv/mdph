@@ -2,7 +2,6 @@
 
 import _ from 'lodash';
 import Mdph from '../mdph/mdph.model';
-import Profile from '../profile/profile.model';
 import Request from '../request/request.model';
 import User from '../user/user.model';
 import moment from 'moment';
