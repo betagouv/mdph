@@ -5,6 +5,7 @@ angular.module('impactApp')
     $cookies, $window, $modal, $q, $state,
     RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph) {
 
+    this.token = $cookies.get('token');
     this.status = status;
     this.requests = requests;
     this.groupedByAge = groupedByAge;
@@ -22,8 +23,6 @@ angular.module('impactApp')
         title: 'Envoyées il y a plus de trois mois'
       }
     ];
-
-    const token = $cookies.get('token');
 
     this.selectAll = () => {
       const action = !this.allSelected();
@@ -50,9 +49,7 @@ angular.module('impactApp')
       return RequestResource
         .updateLinkedEvaluators({shortId: request.shortId}, evaluatorsId)
         .$promise
-        .then(res => {
-          request.evaluators = evaluators;
-        });
+        .then(() => request.evaluators = evaluators);
     }
 
     this.openTransferModal = (request) => {
@@ -65,7 +62,7 @@ angular.module('impactApp')
             return MdphResource.queryUsers({zipcode: currentMdph.zipcode}).$promise.then(result => {
               result.forEach(evaluator => {
                 request.evaluators.forEach(assignedEvaluator => {
-                  if (assignedEvaluator._id == evaluator._id) {
+                  if (assignedEvaluator._id === evaluator._id) {
                     evaluator.isSelected = true;
                   }
                 });

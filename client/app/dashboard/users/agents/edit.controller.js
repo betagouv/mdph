@@ -13,7 +13,7 @@ angular.module('impactApp')
       } else {
         user.secteurs.push(secteur._id);
       }
-    }
+    };
 
     $scope.update = function(form) {
       if ($scope.user._id) {

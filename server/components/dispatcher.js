@@ -1,7 +1,5 @@
 'use strict';
 
-import {pluck} from 'lodash';
-import Bluebird from 'bluebird';
 import SecteurModel from '../api/secteur/secteur.model';
 import MdphModel from '../api/mdph/mdph.model';
 import UserModel from '../api/user/user.model';

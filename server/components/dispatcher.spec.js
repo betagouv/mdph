@@ -1,7 +1,6 @@
 'use strict';
 
 import should from 'should';
-import async from 'async';
 
 import Dispatcher from './dispatcher';
 

@@ -162,7 +162,7 @@ export function saveEvaluateurs(req, res) {
       saved.saveActionLog(actions.ASSIGN_EVALUATORS, req.user, req.log);
       return res.send(saved);
     });
-};
+}
 
 function saveRequestOnSubmit(req) {
   return function(request) {
