@@ -1,8 +1,15 @@
 'use strict';
 
 import should from 'should';
+import { spy } from 'sinon';
+import proxyquire from 'proxyquire';
 
-import Dispatcher from './dispatcher';
+const sendMailNotificationAgentSpy = spy();
+const Dispatcher = proxyquire('./dispatcher', {
+  '../api/send-mail/send-mail-actions': {
+    sendMailNotificationAgent: sendMailNotificationAgentSpy
+  }
+});
 
 import Secteur from '../api/secteur/secteur.model';
 import Mdph from '../api/mdph/mdph.model';
@@ -27,7 +34,7 @@ const secteurHerouville = new Secteur({
   communes: ['14100']
 });
 
-describe.only('Dispatcher', function() {
+describe('Dispatcher', function() {
   before(done => {
     // Clean mongo
     Secteur.remove()
@@ -154,7 +161,7 @@ describe.only('Dispatcher', function() {
     });
   });
 
-  it('should correctly dispatch the request', function(done) {
+  it.only('should correctly dispatch the request', function(done) {
     const user = new User();
     const request = new Request({
       mdph: '14',
@@ -173,6 +180,8 @@ describe.only('Dispatcher', function() {
       should.exist(request);
       request.evaluators.length.should.be.exactly(1);
       request.evaluators[0].name.should.be.exactly('Evaluator enfant');
+      sendMailNotificationAgentSpy.callCount.should.be.exactly(1);
+      sendMailNotificationAgentSpy.lastCall.args[1].should.be.exactly('test@tata.com');
       done();
     });
   });

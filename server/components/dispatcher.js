@@ -5,10 +5,9 @@ import MdphModel from '../api/mdph/mdph.model';
 import UserModel from '../api/user/user.model';
 import * as MailActions from '../api/send-mail/send-mail-actions';
 
-function sendMailToEvaluators(request, evaluators) {
-  evaluators.forEach((evaluator) => MailActions.sendMailNotificationAgent(request, evaluator.email));
-
-  return secteur;
+// TODO
+function sendMailToEvaluators(request) {
+  request.evaluators.forEach((evaluator) => MailActions.sendMailNotificationAgent(request, evaluator.email));
 }
 
 function findRequestMdph(request) {
@@ -48,9 +47,10 @@ function findEvaluators(options) {
 function linkRequestToEvaluators(options) {
   const {request, evaluators} = options;
 
-  request.evaluators = evaluators;
-
-  return request.save().then(() => options);
+  return request.set('evaluators', evaluators)
+    .save()
+    .then(sendMailToEvaluators)
+    .then(() => options);
 }
 
 function findSecteur({request, mdph}) {
