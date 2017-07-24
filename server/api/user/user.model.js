@@ -50,6 +50,7 @@ UserSchema
         email: this.email,
         mdph: this.mdph,
         unconfirmed: this.unconfirmed,
+        secteurs: this.secteurs,
       };
     }
 

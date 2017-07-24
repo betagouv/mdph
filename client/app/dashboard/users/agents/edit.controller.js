@@ -5,6 +5,16 @@ angular.module('impactApp')
     $scope.user = user;
     $scope.secteurs = secteurs;
 
+    $scope.toggleSelection = function(secteur) {
+      const idx = user.secteurs.indexOf(secteur._id);
+
+      if (idx > -1) {
+        user.secteurs.splice(idx, 1);
+      } else {
+        user.secteurs.push(secteur._id);
+      }
+    }
+
     $scope.update = function(form) {
       if ($scope.user._id) {
         $scope.user.$changeInfo(function() {

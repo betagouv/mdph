@@ -36,7 +36,7 @@ angular.module('impactApp')
           },
 
           secteurs: function(SecteurResource, currentMdph) {
-            return SecteurResource.query({mdph: currentMdph._id}).$promise;
+            return SecteurResource.query({mdph: currentMdph.zipcode}).$promise;
           }
         },
         authenticate: true
