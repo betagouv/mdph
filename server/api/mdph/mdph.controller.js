@@ -119,9 +119,6 @@ export function populateAndShowSecteurs(req, res) {
     .exec(function(err, secteurs) {
       if (err) { return handleError(req, res, err); }
 
-      // Push default secteur
-      secteurs.push({_id: 'autres', name: 'Sans secteur'});
-
       async.map(
         secteurs,
 
@@ -129,7 +126,7 @@ export function populateAndShowSecteurs(req, res) {
           var search = {
             status: 'emise',
             mdph: req.mdph.zipcode,
-            secteur: (secteur._id !== 'autres') ? secteur._id : {$eq: null}
+            secteur: secteur._id
           };
 
           Request
