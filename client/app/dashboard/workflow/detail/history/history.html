@@ -5,7 +5,7 @@
     </div>
 
     <div class="timeline-content">
-      <h1>{{action.label}}</h1>
+      <h1>{{action | actionTypeLabelFilter}}</h1>
       <p>{{action.date | date:'medium'}}
         <span ng-if="action.user">par {{action.user.name}} - {{action.user.email}}</span>
         <span ng-if="!action.user">par un partenaire: {{action.params.partenaire.email}}</span>
