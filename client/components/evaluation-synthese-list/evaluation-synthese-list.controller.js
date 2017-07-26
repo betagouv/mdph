@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('impactApp').controller('EvaluationSyntheseListCtrl', function(SyntheseResource, Auth) {
+angular.module('impactApp').controller('EvaluationSyntheseListCtrl', function(SyntheseResource) {
 
-  this.syntheses = SyntheseResource.query({mdphId: Auth.getCurrentUser().mdph._id});
+  this.syntheses = SyntheseResource.query({mdphId: this.mdph._id});
 
   this.getSyntheseTitle = (synthese) => {
     return `${synthese.firstname} ${synthese.lastname}`;

@@ -7,6 +7,8 @@ angular.module('impactApp')
         url: '',
         parent: 'evaluation',
         authenticate: true,
-        templateUrl: 'app/evaluation/dashboard/evaluation.dashboard.html'
+        templateUrl: 'app/evaluation/dashboard/evaluation.dashboard.html',
+        controller: 'EvaluationDashboardCtrl',
+        controllerAs: 'evaluationDashboardCtrl',
       });
   });
