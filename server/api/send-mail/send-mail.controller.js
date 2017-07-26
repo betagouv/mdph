@@ -5,19 +5,21 @@ import config from '../../config/environment';
 
 const mailSender = new MailSender(config.mailSender);
 
-export function sendMail(mail, title, body, attachements) {
+export function sendMail({ email, title, body, attachments, replyTo }) {
   if (process.env.NODE_ENV === 'development') {
-    console.log('Mail:\t' + mail);
+    console.log('Email:\t' + email);
     console.log('Title:\t' + 'Votre Mdph en ligne - ' + title);
     console.log('Body:\t' + body);
-    console.log('Attachements:\t' + attachements);
+    console.log('Attachements:\t' + attachments);
+    console.log('ReplyTo:\t' + replyTo);
   } else {
-    return mailSender.sendContent(
-        mail,
-        'Votre Mdph en ligne - ' + title,
-        body,
-        attachements
-      );
+    return mailSender.sendContent({
+      email,
+      title: 'Votre Mdph en ligne - ' + title,
+      body,
+      attachments,
+      replyTo
+    });
   }
 }
 

@@ -35,11 +35,11 @@ describe('MailSender', () => {
     it('calls the sendMail function on the transporter when we call sendContent', (done) => {
       const to = 'test@test.com';
 
-      mailSender.sendContent(
-        to,
-        'Mail title',
-        'Mail body'
-      );
+      mailSender.sendContent({
+        email: to,
+        title: 'Mail title',
+        body: 'Mail body'
+      });
 
       sendMailSpy.calledOnce.should.equal(true);
       sendMailSpy.args[0][0].from.should.equal(testConfig.mailFrom);

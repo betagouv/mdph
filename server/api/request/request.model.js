@@ -4,6 +4,7 @@ import mongoose, {Schema} from 'mongoose';
 import _ from 'lodash';
 import moment from 'moment';
 import shortId from 'shortid';
+import Mdph from '../mdph/mdph.model';
 import ActionModel from './action.model';
 import DateUtils from '../../components/dateUtils';
 
@@ -79,6 +80,10 @@ RequestSchema.methods = {
 
       log.info(action._doc);
     });
+  },
+
+  getFullMdph() {
+    return Mdph.findOne({zipcode: this.mdph}).exec();
   },
 
   getDateNaissance() {

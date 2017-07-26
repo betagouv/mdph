@@ -35,12 +35,12 @@ router.param('shortId', function(req, res, next, shortId) {
     .populate('user')
     .populate('evaluator')
     .exec(function(err, request) {
-    if (err) return next(err);
-    if (!request) return res.sendStatus(404);
+      if (err) return next(err);
+      if (!request) return res.sendStatus(404);
 
-    req.request = request;
-    next();
-  });
+      req.request = request;
+      next();
+    });
 });
 
 module.exports = router;

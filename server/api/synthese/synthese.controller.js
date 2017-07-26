@@ -13,7 +13,6 @@ function handleError(req, res) {
   return function(err) {
     if (err) {
       req.log.error(err);
-      console.log(err);
       res.status(500).send(err);
     } else {
       res.status(500).send('Server error');
