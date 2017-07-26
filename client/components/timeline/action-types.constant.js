@@ -41,5 +41,17 @@ angular.module('impactApp')
     enregistrement: {
       label: 'Enregistrement',
       fa: 'save',
-    }
+    },
+    user_creation: {
+      label: 'Création de compte',
+      fa: 'plus',
+    },
+    user_deletion: {
+      label: 'Suppression de compte',
+      fa: 'trash',
+    },
+    user_edition: {
+      label: 'Modification de compte',
+      fa: 'edit',
+    },
   });

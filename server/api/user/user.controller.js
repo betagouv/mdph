@@ -6,7 +6,6 @@ import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
 import { ACTIONS, saveActionLog } from './actions';
-import UserActionModel from './action.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 
 import Profile from '../profile/profile.model';
@@ -75,9 +74,10 @@ exports.createAgent = function(req, res) {
   return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
     .then(created => {
       return saveActionLog({
-        action: ACTIONS.CREATE,
+        action: ACTIONS.USER_CREATION,
         user: req.user._id,
         log: req.log,
+        mdph: req.user.mdph,
         params: {
           email: newUser.email,
           name: newUser.name,
@@ -114,9 +114,10 @@ exports.destroy = function(req, res) {
 
     return user.remove()
       .then(() => saveActionLog({
-        action: ACTIONS.DELETE,
+        action: ACTIONS.USER_DELETION,
         user: req.user._id,
         log: req.log,
+        mdph: req.user.mdph,
         params: {
           email: user.email,
           name: user.name,
@@ -157,7 +158,20 @@ exports.changePassword = function(req, res) {
 exports.changeInfo = function(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (req.user.role === 'admin' || req.user.role === 'adminMdph') {
+      const oldEmail = user.email;
+      const newEmail = req.body.email;
+
       user.set('email', req.body.email);
+      saveActionLog({
+        action: ACTIONS.USER_EDITION,
+        user: req.user._id,
+        log: req.log,
+        mdph: req.user.mdph,
+        params: {
+          oldEmail,
+          newEmail,
+        }
+      });
     }
 
     user
@@ -263,17 +277,6 @@ exports.resendConfirmation = function(req, res) {
     res.sendStatus(200);
   });
 };
-
-exports.history = function(req, res) {
-  return UserActionModel
-    .find({ mdph: req.user.mdph })
-    .populate('creator')
-    .populate('created')
-    .sort('-date')
-    .exec()
-    .then(result => res.json(result))
-    .catch(err => handleError(req, res, err));
-}
 
 function handleError(req, res, err) {
   req.log.error(err);

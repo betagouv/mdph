@@ -5,6 +5,7 @@ import async from 'async';
 import path from 'path';
 import Mdph from './mdph.model';
 import User from '../user/user.model';
+import UserActionModel from '../user/action.model';
 import Secteur from '../secteur/secteur.model';
 import Request from '../request/request.model';
 import Partenaire from '../partenaire/partenaire.model';
@@ -21,6 +22,16 @@ export function showUsers(req, res) {
 
     return res.json(list);
   });
+}
+
+export function showUsersHistory(req, res) {
+  return UserActionModel
+    .find({ mdph: req.mdph._id })
+    .populate('user')
+    .sort('-date')
+    .exec()
+    .then(result => res.json(result))
+    .catch(err => handleError(req, res, err));
 }
 
 export function showDocumentCategories(req, res) {

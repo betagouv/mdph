@@ -1,11 +1,15 @@
 <div class="timeline">
-  <div ng-repeat="action in history track by action._id" class="timeline-block" ng-class="{user: action.user.role === 'user', agent: action.user.role !== 'user'}">
+  <div class="timeline-block"
+    ng-repeat="action in historyCtrl.actions track by action._id"
+    ng-class="{user: action.user.role === 'user', agent: action.user.role !== 'user'}">
+
     <div class="timeline-img {{action | actionTypeIconFilter}}">
       <i class="fa fa-{{action | actionTypeIconFilter}}"></i>
     </div>
 
     <div class="timeline-content">
       <h1>{{action | actionTypeLabelFilter}}</h1>
+
       <p>{{action.date | date:'medium'}}
         <span ng-if="action.user">par {{action.user.name}} - {{action.user.email}}</span>
         <span ng-if="!action.user">par un partenaire: {{action.params.partenaire.email}}</span>
@@ -22,6 +26,12 @@
           {{action.params.old | requestStatus}} <i class="fa fa-arrow-right"></i> {{action.params.new | requestStatus}}
         </div>
         <div ng-if="action.action === 'assign_sector'">Nouveau secteur: {{action.params.secteur}}</div>
+        <div ng-if="action.action === 'user_creation' || action.action === 'user_deletion'">
+          {{action.params.email}} {{action.params.name}}
+        </div>
+        <div ng-if="action.action === 'user_edition'">
+          {{action.params.oldEmail}} <i class="fa fa-arrow-right"></i> {{action.params.newEmail}}
+        </div>
       </div>
     </div>
   </div>

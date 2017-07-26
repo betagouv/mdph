@@ -12,7 +12,6 @@ router.use('/:userId/profiles', profilesRouter);
 
 router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.get('/me', auth.isAuthenticated(), controller.me);
-router.get('/history', auth.hasRole('adminMdph'), controller.history);
 
 router.get('/me/requests', auth.isAuthenticated(), showUserRequests);
 

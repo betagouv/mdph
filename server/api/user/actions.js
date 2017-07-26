@@ -4,9 +4,9 @@ import { values } from 'lodash';
 import UserActionModel from './action.model';
 
 const ACTIONS = {
-  CREATE: 'create',
-  DELETE: 'delete',
-  CHANGE_INFO: 'change_info',
+  USER_CREATION: 'user_creation',
+  USER_DELETION: 'user_deletion',
+  USER_EDITION: 'user_edition',
 };
 
 const ACTIONS_ENUM = values(ACTIONS);
@@ -14,11 +14,12 @@ const ACTIONS_ENUM = values(ACTIONS);
 module.exports = {
   ACTIONS,
   ACTIONS_ENUM,
-  saveActionLog({ action, user, log, params }) {
+  saveActionLog({ action, user, log, params, mdph }) {
     return UserActionModel.create({
       action,
       params,
       user,
+      mdph,
       date: Date.now()
     }, (err, action) => {
       if (err) {
