@@ -82,7 +82,9 @@ exports.createAgent = function(req, res) {
           email: newUser.email,
           name: newUser.name,
         }
-      }).then(() => created);
+      }).then(() => {
+        return created
+      });
     });
 };
 
