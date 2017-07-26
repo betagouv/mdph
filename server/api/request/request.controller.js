@@ -23,8 +23,8 @@ import * as MailActions from '../send-mail/send-mail-actions';
 import Synthese from '../synthese/synthese.model';
 
 import Dispatcher from '../../components/dispatcher';
-import ActionModel from './action.model';
-import {actions, actionsById} from '../../components/actions';
+import RequestActionModel from './action.model';
+import ACTIONS from './actions';
 import resizeAndMove from '../../components/resize-image';
 
 function handleError(req, res) {
@@ -70,7 +70,7 @@ function saveUpdates(req) {
         return reject(err);
       }
 
-      updated.saveActionLog(actions.UPDATE_ANSWERS, req.user, req.log);
+      updated.saveActionLog(ACTIONS.UPDATE_ANSWERS, req.user, req.log);
       return resolve(updated);
     });
   });
@@ -157,7 +157,7 @@ function saveRequestOnSubmit(req) {
     return request
       .save()
       .then(saved => {
-        saved.saveActionLog(actions.SUBMIT, req.user, req.log);
+        saved.saveActionLog(ACTIONS.SUBMIT, req.user, req.log);
         return saved;
       });
   };
@@ -192,7 +192,7 @@ function dispatchSecteur(req) {
     return Dispatcher.dispatch(request)
       .then(secteur => { // Service disatches to agents
         return request.set('secteur', secteur).save().then(saved => {
-          saved.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
+          saved.saveActionLog(ACTIONS.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
           return saved;
         });
       })
@@ -289,16 +289,16 @@ function resolveEnregistrement(req) {
       return request;
     })
     .then(request => {
-      request.saveActionLog(actions.ENREGISTREMENT, req.user, req.log);
+      request.saveActionLog(ACTIONS.ENREGISTREMENT, req.user, req.log);
       return request;
     });
 }
 
 function dispatchAction(req) {
   switch (req.body.id) {
-    case actions.ENREGISTREMENT.id:
+    case ACTIONS.ENREGISTREMENT.id:
       return resolveEnregistrement(req);
-    case actions.SUBMIT.id:
+    case ACTIONS.SUBMIT.id:
       return resolveSubmit(req);
     default:
       return Promise.reject('Action not found');
@@ -339,7 +339,7 @@ export function create(req, res) {
       askedDocumentTypes: req.body.askedDocumentTypes
     })
     .then(request => {
-      request.saveActionLog(actions.CREATION, req.user, req.log);
+      request.saveActionLog(ACTIONS.CREATION, req.user, req.log);
       return request;
     })
     .then(populateAndRespond(res))
@@ -347,31 +347,13 @@ export function create(req, res) {
 }
 
 function findActionHistory(req) {
-  return ActionModel
+  return RequestActionModel
     .find({
       request: req.request._id
     })
     .populate('user')
     .sort('-date')
-    .lean()
-    .exec()
-    .then(populateActionLabels);
-}
-
-function populateActionLabels(actions) {
-  return new Promise(function(resolve) {
-    actions.forEach(function(action) {
-      let fullAction = actionsById[action.action];
-
-      if (fullAction) {
-        action.label = fullAction.label;
-      } else {
-        action.label = action.action;
-      }
-    });
-
-    return resolve(actions);
-  });
+    .exec();
 }
 
 export function getHistory(req, res) {
@@ -485,7 +467,7 @@ export function saveFilePartenaire(req, res) {
       const confirmationUrl = `${req.headers.host}/api/partenaires/${_partenaire._id}/${_partenaire.secret}`;
       MailActions.sendConfirmationMail(_partenaire.email, confirmationUrl);
 
-      _request.saveActionLog(actions.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
+      _request.saveActionLog(ACTIONS.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
       callback();
     }
   ], function(err) {
