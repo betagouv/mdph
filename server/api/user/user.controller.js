@@ -5,6 +5,8 @@ import User from './user.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
+import { ACTIONS, saveActionLog } from './actions';
+import UserActionModel from './action.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 
 import Profile from '../profile/profile.model';
@@ -64,13 +66,23 @@ exports.create = function(req, res) {
  * Creates a new adminMdph
  */
 exports.createAgent = function(req, res) {
-  var newUser = new User(req.body);
+  const newUser = new User(req.body);
+
   newUser.role = 'adminMdph';
   newUser.provider = 'local';
   newUser.unconfirmed = false;
+
   return saveUserAndSendConfirmation(req, res, newUser, req.body.mdph)
-    .then(result => {
-      return result;
+    .then(created => {
+      return saveActionLog({
+        action: ACTIONS.CREATE,
+        user: req.user._id,
+        log: req.log,
+        params: {
+          email: newUser.email,
+          name: newUser.name,
+        }
+      }).then(() => created);
     });
 };
 
@@ -96,13 +108,22 @@ exports.show = function(req, res, next) {
  * restriction: 'admin'
  */
 exports.destroy = function(req, res) {
-  User.findById(req.params.id, function(err, user) {
+  return User.findById(req.params.id, function(err, user) {
     if (err) return handleError(req, res, err);
-    if (user) {
-      user.remove();
-    }
+    if (!user) return res.sendStatus(404);
 
-    return res.sendStatus(204);
+    return user.remove()
+      .then(() => saveActionLog({
+        action: ACTIONS.DELETE,
+        user: req.user._id,
+        log: req.log,
+        params: {
+          email: user.email,
+          name: user.name,
+        }
+      }))
+      .then(() => res.sendStatus(204));
+
   });
 };
 
@@ -242,6 +263,17 @@ exports.resendConfirmation = function(req, res) {
     res.sendStatus(200);
   });
 };
+
+exports.history = function(req, res) {
+  return UserActionModel
+    .find({ mdph: req.user.mdph })
+    .populate('creator')
+    .populate('created')
+    .sort('-date')
+    .exec()
+    .then(result => res.json(result))
+    .catch(err => handleError(req, res, err));
+}
 
 function handleError(req, res, err) {
   req.log.error(err);
