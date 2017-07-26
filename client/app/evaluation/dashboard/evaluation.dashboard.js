@@ -7,13 +7,6 @@ angular.module('impactApp')
         url: '',
         parent: 'evaluation',
         authenticate: true,
-        templateUrl: 'app/evaluation/dashboard/evaluation.dashboard.html',
-        controller: 'EvaluationDashboardCtrl',
-        controllerAs: 'evaluationDashboardCtrl',
-        resolve: {
-          profiles: (MdphResource, currentUser) => {
-            return MdphResource.queryBeneficiaires({zipcode: currentUser.mdph.zipcode}).$promise;
-          }
-        }
+        templateUrl: 'app/evaluation/dashboard/evaluation.dashboard.html'
       });
   });

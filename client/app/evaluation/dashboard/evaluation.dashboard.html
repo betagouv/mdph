@@ -3,16 +3,11 @@
 </div>
 
 <div class="list-main" ui-view>
-  <table>
-    <tbody>
-      <th>Bénéficiaires ayant fait au moins une demande</th>
-      <tr ng-repeat="profile in evaluationDashboardCtrl.profiles">
-        <td>
-          <a ui-sref="evaluation.detail({profileId: profile._id, syntheseId: 'current', sectionId: 'environnement'})">
-            {{ evaluationDashboardCtrl.getProfileTitle(profile) }}
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <evaluation-synthese-list/>
 </div>
+
+<div class="list-main" ui-view>
+  <evaluation-profile-list/>
+</div>
+
+
