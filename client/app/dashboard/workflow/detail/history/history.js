@@ -8,6 +8,7 @@ angular.module('impactApp')
         controller: function(actions) {
           this.actions = actions;
         },
+
         controllerAs: 'workflowDetailHistoryCtrl',
         template: '<history actions="workflowDetailHistoryCtrl.actions" />',
         resolve: {
