@@ -3,36 +3,43 @@
 angular.module('impactApp')
   .constant('actionTypes', {
     creation: {
-      fa: 'plus'
+      label: 'Création',
+      fa: 'plus',
     },
     submit: {
-      fa: 'send'
+      label: 'Transmission de la demande',
+      fa: 'send',
     },
     document_added: {
-      fa: 'upload'
+      label: 'Ajout de document',
+      fa: 'upload',
     },
     document_removed: {
-      fa: 'trash'
-    },
-    update_answers: {
-      fa: 'edit'
-    },
-    assign_sector: {
-      fa: 'bullseye'
-    },
-    change_status: {
-      fa: 'folder'
+      label: 'Supression de document',
+      fa: 'trash',
     },
     document_validated: {
-      fa: 'thumbs-up'
+      label: 'Validation de document',
+      fa: 'thumbs-up',
     },
     document_refused: {
-      fa: 'thumbs-down'
+      label: 'Refus de document',
+      fa: 'thumbs-down',
     },
-    succes_enregistrement: {
-      fa: 'save'
+    update_answers: {
+      label: 'Mise à jour des réponses',
+      fa: 'edit',
     },
-    erreur_enregistrement: {
-      fa: 'refresh'
+    assign_sector: {
+      label: 'Assignation à un secteur',
+      fa: 'bullseye',
+    },
+    change_status: {
+      label: 'Changement de banette',
+      fa: 'folder',
+    },
+    enregistrement: {
+      label: 'Enregistrement',
+      fa: 'save',
     }
   });
