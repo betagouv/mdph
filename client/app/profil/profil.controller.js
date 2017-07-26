@@ -11,11 +11,6 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.currentUser = currentUser;
   this.hasRequest = hasRequest;
 
-  // Needed for tests
-  this.RequestResource = RequestResource;
-  this.ProfileService = ProfileService;
-  this.RequestService = RequestService;
-
   this.$state = $state;
   this.$modal = $modal;
   this.token = $cookies.get('token');
@@ -187,4 +182,8 @@ angular.module('impactApp').controller('ProfilCtrl', function(
     });
   };
 
+  // Needed for tests
+  this.RequestResource = RequestResource;
+  this.ProfileService = ProfileService;
+  this.RequestService = RequestService;
 });

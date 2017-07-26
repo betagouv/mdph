@@ -2,45 +2,102 @@
 
 angular.module('impactApp')
   .controller('StatsCtrl', function($scope, $http) {
+    // Api calls
+    function getSubmittedRequestCount(period) {
+      return $http.get('/api/stats/submitted-request-count', {params: {period}}).then(result => $scope.submittedRequestCount = result.data);
+    }
+
+    function getCreatedRequestCount(period) {
+      return $http.get('/api/stats/created-request-count', {params: {period}}).then(result => $scope.createdRequestCount = result.data);
+    }
+
+    function getRequestCountByMdph(period) {
+      return $http.get('/api/stats/request-count-by-mdph', {params: {period}}).then(result => {
+        $scope.mdphLabels = _.pluck(result.data, '_id');
+        $scope.requestByMdphPieData = _.pluck(result.data, 'count');
+      });
+    }
+
+    function getRequestAnalysis(period) {
+      return $http.get('/api/stats/request-analysis', {params: {period}}).then(result => {
+        const data = result.data;
+
+        $scope.requestAnalysisLabels = _.pluck(data, 'date');
+        $scope.requestAnalysisData[0] = _.pluck(data, 'median');
+        $scope.requestAnalysisData[1] = _.pluck(data, 'average');
+      });
+    }
+
+    function getRequestCountHistory(period) {
+      return $http.get('/api/stats/request-count-history', {params: {period}}).then(result => {
+        const data = result.data;
+
+        $scope.requestCountHistoryLabels = _.pluck(data, 'date');
+        $scope.requestCountHistoryData[0] = _.pluck(data, 'count');
+      });
+    }
+
+    function getRequestCompletionMedian(period) {
+      return $http.get('/api/stats/request-median-time', {params: {period}}).then(result => {
+        $scope.median = result.data;
+      });
+    }
+
+    function getRequestRawData() {
+      return $http.get('/api/stats/request-raw-data', {params: {period: $scope.requestRawDataPeriod, filter: $scope.requestRawDataFilter}}).then(result => {
+        const data = result.data;
+
+        $scope.requestRawData = data;
+      });
+    }
+
+    // Setup watches
+    $scope.$watch('conversionPeriod', getCreatedRequestCount);
+    $scope.$watch('conversionPeriod', getSubmittedRequestCount);
+    $scope.$watch('conversionPeriod', getRequestCompletionMedian);
+    $scope.$watch('requestCountByMdphPeriod', getRequestCountByMdph);
+    $scope.$watch('requestAnalysisPeriod', getRequestAnalysis);
+    $scope.$watch('requestCountHistoryPeriod', getRequestCountHistory);
+    $scope.$watch('requestRawDataPeriod', getRequestRawData);
+    $scope.$watch('requestRawDataFilter', getRequestRawData);
+
+    // Init period
+    $scope.requestAnalysisPeriod = 'year';
+    $scope.conversionPeriod = 'month';
+    $scope.requestCountByMdphPeriod = 'month';
+    $scope.requestCountHistoryPeriod = 'year';
+    $scope.requestRawDataPeriod = 'month';
+    $scope.requestRawDataFilter = '60';
+
+    // Init data
     $scope.unconfirmed = 0;
     $scope.usersTotal = 0;
     $scope.usersRatio = 0;
 
-    $scope.sumRequests = function(mdphs) {
-      var count = 0;
-      if (mdphs) {
-        mdphs.forEach(function(mdph) {
-          count += mdph.requests.total;
-        });
-      }
+    $scope.requestAnalysisLabels = [];
+    $scope.requestAnalysisData = [[], []];
+    $scope.requestAnalysisSeries = ['Temps médian de completion (jours)', 'Temps moyen de completion (jours)'];
 
-      return count;
+    $scope.requestCountHistoryLabels = [];
+    $scope.requestCountHistoryData = [[]];
+    $scope.requestCountHistorySeries = ['Nombre de demandes'];
+    $scope.disableAnimationOptions = {
+      animation: false
     };
 
+    // Utils
     $scope.conversion = function() {
-      if (!$scope.site || !$scope.mdphs) {
+      if (!$scope.createdRequestCount || !$scope.submittedRequestCount) {
         return 0;
       }
 
-      return $scope.sumRequests($scope.mdphs) / $scope.site.count * 100;
+      return $scope.submittedRequestCount / $scope.createdRequestCount * 100;
     };
 
-    function sumByType(mdphs) {
-      var series = [];
-      var types = ['emise', 'enregistree', 'en_attente_usager', 'archive'];
-      types.forEach(function(type) {
-        var data = [];
-        mdphs.forEach(function(mdph) {
-          data.push(mdph.requests[type]);
-        });
+    // Get data only once
+    $http.get('/api/stats/mdphs').then((result) => $scope.enabledMdph = result.data);
 
-        series.push(data);
-      });
-
-      return series;
-    }
-
-    $http.get('/api/stats/users').then(function(result) {
+    $http.get('/api/stats/users').then((result) => {
       const data = result.data;
       const unconfirmed = _.find(data, {_id: true}).count;
       const confirmed = _.find(data, {_id: false}).count;
@@ -48,66 +105,6 @@ angular.module('impactApp')
       $scope.unconfirmed = unconfirmed;
       $scope.usersTotal = unconfirmed + confirmed;
       $scope.usersRatio = $scope.unconfirmed / $scope.usersTotal * 100;
-    });
-
-    $http.get('/api/stats/mdph').then(function(result) {
-      $scope.mdphs = result.data;
-      $scope.labels = _.pluck(result.data, 'name');
-      $scope.dataTotal = _.pluck(result.data, 'requests.total');
-
-      $scope.series = ['Émise', 'Enregistrée', 'En attente usager', 'Archivée'];
-      $scope.data = sumByType(result.data);
-    });
-
-    $http.get('/api/stats/site').then(function(result) {
-      $scope.site = result.data;
-    });
-
-    $scope.historyLabels = [];
-    $scope.historyData = [[]];
-    $scope.historySeries = [[]];
-
-    $scope.historyTimeLabels = [];
-    $scope.historyTimeData = [[], [], []];
-    $scope.historyTimeSeries = [[], [], []];
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
-    $scope.options = {
-      scales: {
-        yAxes: [
-          {
-            id: 'y-axis-1',
-            type: 'linear',
-            display: true,
-            position: 'left'
-          },
-          {
-            id: 'y-axis-2',
-            type: 'linear',
-            display: true,
-            position: 'right'
-          }
-        ]
-      }
-    };
-
-    $http.get('/api/stats/time').then(function(result) {
-      const data = result.data;
-
-      $scope.historyTimeLabels = _.pluck(data, 'date');
-
-      $scope.historyTimeData[0] = _.pluck(data, 'median');
-      $scope.historyTimeSeries[0] = 'Temps médian de completion (jours)';
-
-      $scope.historyTimeData[1] = _.pluck(data, 'average');
-      $scope.historyTimeSeries[1] = 'Temps moyen de completion (jours)';
-    });
-
-    $http.get('/api/stats/history').then(function(result) {
-      const data = result.data;
-
-      $scope.historyLabels = _.pluck(data, 'date');
-      $scope.historyData[0] = _.pluck(data, 'count');
-      $scope.historySeries[0] = 'Nombre de demandes';
     });
 
     $http.get('/api/stats/likes').then(function(result) {
