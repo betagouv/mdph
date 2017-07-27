@@ -5,8 +5,6 @@ angular.module('impactApp')
     $scope, $modal, $cookies, $http, $state, $stateParams,
     sections, section, sectionId, model, GevaService, currentSynthese, currentUser) {
 
-    $scope.lastname = currentSynthese.lastname;
-    $scope.firstname = currentSynthese.firstname;
     $scope.model = model;
     $scope.sections = sections;
     $scope.token = $cookies.get('token');
