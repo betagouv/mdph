@@ -24,7 +24,7 @@ import Synthese from '../synthese/synthese.model';
 
 import Dispatcher from '../../components/dispatcher';
 import RequestActionModel from './action.model';
-import ACTIONS from './actions';
+import { ACTIONS } from './actions';
 import resizeAndMove from '../../components/resize-image';
 
 function handleError(req, res) {
@@ -296,9 +296,9 @@ function resolveEnregistrement(req) {
 
 function dispatchAction(req) {
   switch (req.body.id) {
-    case ACTIONS.ENREGISTREMENT.id:
+    case ACTIONS.ENREGISTREMENT:
       return resolveEnregistrement(req);
-    case ACTIONS.SUBMIT.id:
+    case ACTIONS.SUBMIT:
       return resolveSubmit(req);
     default:
       return Promise.reject('Action not found');
