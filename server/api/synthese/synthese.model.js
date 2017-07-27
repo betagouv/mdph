@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var SyntheseSchema = new Schema({
   firstname:      String,
   lastname:       String,
+  birthdate:      String,
   mdph:           String,
   geva:           Schema.Types.Mixed,
   createdAt:      Date,

@@ -7,6 +7,7 @@ import Synthese from './synthese.model';
 
 var router = new Router();
 
+router.post('/', controller.create);
 router.get('/', controller.showAllByMdph);
 router.get('/:syntheseId', controller.show);
 router.put('/:syntheseId', controller.update);

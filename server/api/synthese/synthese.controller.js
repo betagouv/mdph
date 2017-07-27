@@ -65,6 +65,13 @@ export function showAllByMdph(req, res) {
     .catch(handleError(req, res));
 }
 
+export function create(req, res) {
+  Synthese
+    .create(req.body)
+    .then(respondWithResult(res, 201))
+    .catch(handleError(req, res));
+}
+
 export function update(req, res) {
   saveUpdates(req)
     .then(respondWithResult(res))
