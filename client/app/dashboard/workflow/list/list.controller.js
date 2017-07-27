@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .controller('WorkflowListCtrl', function(
-    $cookies, $window, $modal, $q, $state,
+    $cookies, $window, $modal, $q, $state, $rootScope,
     RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph) {
 
     this.token = $cookies.get('token');
@@ -74,7 +74,10 @@ angular.module('impactApp')
         }
       });
 
-      modalInstance.result.then(evaluators => transfer(request, evaluators));
+      modalInstance.result.then(evaluators => transfer(request, evaluators)).then(() => {
+        this.refresh();
+        $rootScope.$emit('event:updateRequestCount');
+      });
     };
 
     this.download = function() {
