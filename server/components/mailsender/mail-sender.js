@@ -32,7 +32,6 @@ class MailSender {
 
     if (replyTo) {
       mailOptions.replyTo = replyTo;
-      mailOptions.bcc = this._mailFrom;
     }
 
     if (attachments) {
