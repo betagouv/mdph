@@ -2,22 +2,26 @@
   <div class="menu-slider" ng-class="menudashboardctrl.getMenuSliderClass()">
     <div class="menu-general">
       <h2>Flux de demandes</h2>
-      <ul>
-        <li ng-repeat="banette in menudashboardctrl.banettes">
-          <a ui-sref-active="active" ui-sref="dashboard.workflow.list({status: banette.id})">
-            {{banette.label}}
-            <span
-              ng-class="{
-                'label-danger': banette.count >= 30,
-                'label-warning': banette.count >= 10 && banette.count < 30,
-                'label-success': banette.count < 10 && banette.count > 0,
-                'label-default': banette.count == 0}"
-              class="label pull-right">
-              {{banette.count}}
-            </span>
-          </a>
-        </li>
-      </ul>
+
+      <div ng-repeat="result in menudashboardctrl.totalRequestsCount" ng-if="result.groups.length > 0">
+        <ul>
+          <li class="bannette-agent">
+            {{result.user.name}}
+            <ul>
+              <li ng-repeat="banette in menudashboardctrl.banettes" ng-if="result.groupsById[banette.id].count > 0">
+                <a ui-sref-active="active" ng-if="result.user._id == menudashboardctrl.currentUser._id" ui-sref="dashboard.workflow.list({userId: 'me', status: banette.id})">
+                  {{banette.label}}
+                  <display-banette-count count="result.groupsById[banette.id].count" />
+                </a>
+                <a ui-sref-active="active" ng-if="result.user._id != menudashboardctrl.currentUser._id" ui-sref="dashboard.workflow.list({userId: result.user._id, status: banette.id})">
+                  {{banette.label}}
+                  <display-banette-count count="result.groupsById[banette.id].count" />
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
 
       <h2>Gestion de ma MDPH</h2>
       <ul>

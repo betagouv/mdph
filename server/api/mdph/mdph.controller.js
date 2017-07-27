@@ -160,12 +160,16 @@ export function showRequests(req, res) {
     mdph: req.mdph.zipcode
   };
 
+  if (req.params.userId === 'me') {
+    search.evaluators = req.user._id;
+  } else if (req.params.userId === 'unassigned') {
+    search.evaluators = { $exists: false };
+  } else if (req.params.userId !== 'toutes') {
+    search.evaluators = req.params.userId;
+  }
+
   if (req.query) {
-    if (req.query.status !== 'me') {
-      search.status = req.query.status;
-    } else {
-      search.evaluators = req.user._id;
-    }
+    search.status = req.query.status;
   }
 
   Request.find(search)
@@ -213,21 +217,46 @@ export function showBeneficiaires(req, res) {
 }
 
 export function showRequestsByStatus(req, res) {
-  Request
+  User
     .aggregate([
-      {$match: {mdph: req.mdph.zipcode}},
-      {$group: {_id: '$status', count: {$sum: 1} }}
+      {$match: {mdph: req.mdph._id, role: 'adminMdph' }},
+      { "$project": {
+         "name": 1,
+         "insensitive": { "$toLower": "$name" }
+      }},
+      { "$sort": { "insensitive": 1 } }
     ])
-    .exec(function(err, requestsGroups) {
-      if (err) return handleError(req, res, err);
-
-      Request.count({evaluators: req.user._id}, function(err, count) {
-        if (err) return handleError(req, res, err);
-
-        requestsGroups.push({_id: 'me', count});
-
-        return res.send(requestsGroups);
+    .then(users => {
+      const promises = users.map(user => {
+        return Request
+          .aggregate([
+            {$match: {mdph: req.mdph.zipcode, evaluators: user._id }},
+            {$group: {_id: '$status', count: {$sum: 1} }}
+          ])
+          .exec()
+          .then(groups => ({ user, groups }));
       });
+
+      const unnassignedRequests = Request
+        .aggregate([
+          {$match: {mdph: req.mdph.zipcode, evaluators: { $exists: false }}},
+          {$group: {_id: '$status', count: {$sum: 1} }}
+        ])
+        .exec()
+        .then(groups => ({ user: { _id: 'unassigned', name: 'Non assignées' }, groups }));
+
+      const allRequests = Request
+        .aggregate([
+          {$match: {mdph: req.mdph.zipcode}},
+          {$group: {_id: '$status', count: {$sum: 1} }}
+        ])
+        .exec()
+        .then(groups => ({ user: { _id: 'toutes', name: 'Toutes' }, groups }));
+
+      promises.push(unnassignedRequests);
+      promises.push(allRequests);
+
+      Promise.all(promises).then(data => res.json(data));
     });
 }
 

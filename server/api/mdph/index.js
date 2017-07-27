@@ -18,8 +18,8 @@ router.put('/:id', isAgent(), controller.update);
 router.patch('/:id', isAgent(), controller.update);
 router.delete('/:id', hasRole('admin'), controller.destroy);
 
-router.get('/:id/requests', isAgent(), controller.showRequests);
 router.get('/:id/requests/byStatus', isAgent(), controller.showRequestsByStatus);
+router.get('/:id/requests/:userId', isAgent(), controller.showRequests);
 
 router.get('/:id/beneficiaires', isAgent(), controller.showBeneficiaires);
 
