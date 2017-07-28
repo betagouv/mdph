@@ -83,11 +83,12 @@ angular.module('impactApp')
 
     $scope.save = function(form) {
       if (form.$invalid) {
-          form.showError = true;
+        form.showError = true;
+
       } else {
         currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
         $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
-        SyntheseResource.update(currentSynthese, function(synthese) {
+        SyntheseResource.update(currentSynthese, function() {
           $state.go('.', {}, {reload: true});
         });
       }
