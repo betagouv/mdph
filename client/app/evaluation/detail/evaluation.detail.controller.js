@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('EvaluationDetailCtrl', function(
     $scope, $modal, $cookies, $http, $state, $stateParams,
-    sections, section, sectionId, model, GevaService, currentSynthese, currentUser) {
+    sections, section, sectionId, model, GevaService, currentSynthese, currentUser, SyntheseResource) {
 
     $scope.model = model;
     $scope.sections = sections;
@@ -81,13 +81,16 @@ angular.module('impactApp')
 
     $scope.noAnswer = (trajectoiresToIdArray($scope.section.trajectoires).length === 0);
 
-    $scope.validate = function() {
-      currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
-      $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
-
-      currentSynthese.$update({controllerId: currentSynthese._id}, function() {
-        $state.go('.', {}, {reload: true});
-      });
+    $scope.save = function(form) {
+      if (form.$invalid) {
+          form.showError = true;
+      } else {
+        currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+        $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
+        SyntheseResource.update(currentSynthese, function(synthese) {
+          $state.go('.', {}, {reload: true});
+        });
+      }
     };
 
     $scope.cancel = function() {

@@ -8,7 +8,7 @@ angular.module('impactApp').controller('EvaluationSyntheseAddEmptyCtrl', functio
     newSynthese.mdph = this.mdph._id;
 
     SyntheseResource.save(newSynthese, function(synthese) {
-      $state.go('evaluation.detail', {syntheseId: synthese._id, sectionId: 'environnement'});
+      $state.go('evaluation.detail', {syntheseId: synthese._id, sectionId: 'profil'});
     });
   };
 });

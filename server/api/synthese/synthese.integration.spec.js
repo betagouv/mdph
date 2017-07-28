@@ -194,7 +194,7 @@ describe('Synthese Integration', function() {
         var updatedSynthese;
         api
           .put(`/api/syntheses/5965d1cfa631dd020ce132a4?access_token=${tokenAdminMdph}`)
-          .send({geva: 'Fl1cFl@c'})
+          .send({geva: 'Fl1cFl@c', lastname: 'nouveau_nom'})
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function(err, res) {
@@ -204,11 +204,11 @@ describe('Synthese Integration', function() {
 
             updatedSynthese = res.body;
             updatedSynthese.geva.should.equal('Fl1cFl@c');
+            updatedSynthese.lastname.should.equal('nouveau_nom');
 
             done();
           });
       });
-
     });
 });
 

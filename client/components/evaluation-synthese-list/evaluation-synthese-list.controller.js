@@ -5,6 +5,9 @@ angular.module('impactApp').controller('EvaluationSyntheseListCtrl', function(Sy
   this.syntheses = SyntheseResource.query({mdphId: this.mdph._id});
 
   this.getSyntheseTitle = (synthese) => {
-    return `${synthese.firstname} ${synthese.lastname}`;
+    if(typeof synthese.firstname === 'undefined' && typeof synthese.lastname === 'undefined'){
+      return 'Inconnu';
+    }
+    return `${typeof synthese.firstname === 'undefined' ? '' : synthese.firstname} ${ typeof synthese.lastname === 'undefined' ? '' : synthese.lastname}`;
   };
 });
