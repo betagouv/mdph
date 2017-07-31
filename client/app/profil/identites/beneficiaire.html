@@ -210,18 +210,21 @@
       <hr>
     </div>
 
-    <div class="form-group">
+    <div class="form-group required" ng-class="{'has-error': infoForm.assurance.$invalid && infoForm.$submitted}">
       <fieldset>
         <legend class="control-label">Organisme d'assurance maladie</legend>
-        <input type="radio" name="assurance" id="assurance_cpam" ng-model="identite.assurance" value="cpam">
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_cpam" ng-model="identite.assurance" value="cpam">
         <label class="radio-inline" for="assurance_cpam">CPAM</label>
-        <input type="radio" name="assurance" id="assurance_msa" ng-model="identite.assurance" value="msa">
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_msa" ng-model="identite.assurance" value="msa">
         <label class="radio-inline" for="assurance_msa">MSA</label>
-        <input type="radio" name="assurance" id="assurance_rsi" ng-model="identite.assurance" value="rsi">
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_rsi" ng-model="identite.assurance" value="rsi">
         <label class="radio-inline" for="assurance_rsi">RSI</label>
-        <input type="radio" name="assurance" id="assurance_autre" ng-model="identite.assurance" value="autre">
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_autre" ng-model="identite.assurance" value="autre">
         <label class="radio-inline" for="assurance_autre">Autre</label>
       </fieldset>
+      <div ng-messages="infoForm.assurance.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      </div>
     </div>
 
     <div class="form-group" ng-if="identite.assurance === 'autre'">
@@ -229,21 +232,28 @@
       <input id="assurance_precisez" type="text" name="assurance_precisez" class="form-control" ng-model="identite.assurance_precisez">
     </div>
 
-    <div class="form-group">
+    <div class="form-group required" ng-class="{'has-error': infoForm.numero_secu.$invalid && !infoForm.numero_secu.$pristine && infoForm.$submitted}">
       <label for="numero_secu" class="control-label">Votre numéro de Sécurité Sociale</label>
-      <input id="numero_secu" type="text" name="numero_secu" class="form-control" ng-model="identite.numero_secu"
-      pattern="^([1-37-8])([0-9]{2})(0[0-9]|[2-35-9][0-9]|[14][0-2])((0[1-9]|[1-8][0-9]|9[0-69]|2[abAB])(00[1-9]|0[1-9][0-9]|[1-8][0-9]{2}|9[0-8][0-9]|990)|(9[78][0-9])(0[1-9]|[1-8][0-9]|90))([0-9]{3})?([0-8][0-9]|9[0-7])$">
-      <div ng-messages="infoForm.numero_secu.$error">
-        <p class="help-block" ng-message='pattern'>Ce numéro de sécurité sociale est invalide.</p>
+      <input id="numero_secu" type="text" name="numero_secu" required class="form-control"
+        ng-model="identite.numero_secu" ui-options="maskOptions" ui-mask="* ** ** ** *** *** **" numero-secu>
+      <div ng-messages="infoForm.numero_secu.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='numero-secu'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='minlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='maxlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <p class="help-block" ng-message='mask'>Ce champ est incomplet.</p>
       </div>
     </div>
 
     <div class="form-group">
       <label for="numero_secu_enfant" class="control-label">Si c’est votre enfant qui est concerné par la demande, indiquer son numéro de sécurité sociale</label>
-      <input id="numero_secu_enfant" type="text" name="numero_secu_enfant" class="form-control" ng-model="identite.numero_secu_enfant"
-      pattern="^([1-37-8])([0-9]{2})(0[0-9]|[2-35-9][0-9]|[14][0-2])((0[1-9]|[1-8][0-9]|9[0-69]|2[abAB])(00[1-9]|0[1-9][0-9]|[1-8][0-9]{2}|9[0-8][0-9]|990)|(9[78][0-9])(0[1-9]|[1-8][0-9]|90))([0-9]{3})?([0-8][0-9]|9[0-7])$">
-      <div ng-messages="infoForm.numero_secu_enfant.$error">
-        <p class="help-block" ng-message='pattern'>Ce numéro de sécurité sociale est invalide.</p>
+      <input id="numero_secu_enfant" type="text" name="numero_secu_enfant" class="form-control"
+        ng-model="identite.numero_secu_enfant" ui-options="maskOptions" ui-mask="* ** ** ** *** *** **" numero-secu>
+      <div ng-messages="infoForm.numero_secu_enfant.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='minlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='maxlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='numero-secu'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='mask'>Ce champ est incomplet.</p>
       </div>
     </div>
 
