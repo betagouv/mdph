@@ -43,6 +43,11 @@ var actions = {
     label: 'Assignation à un secteur',
     fa: 'assign'
   },
+  ASSIGN_EVALUATORS: {
+    id: 'assign_evaluators',
+    label: 'Assignation à un évaluateur',
+    fa: 'assign'
+  },
   CHANGE_STATUS: {
     id: 'change_status',
     label: 'Changement de banette',

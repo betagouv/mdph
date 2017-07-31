@@ -1,0 +1,12 @@
+<div class="modal-body">
+  <div class="radio" ng-repeat="evaluator in evaluators">
+    <label>
+      <input type="checkbox" name="evaluator" ng-model="evaluator.isSelected">
+      {{evaluator.name}}
+    </label>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="cancel()">Annuler</button>
+  <button class="btn btn-success" ng-click="ok()">Valider</button>
+</div>

@@ -137,6 +137,7 @@ exports.changeInfo = function(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (req.user.role === 'admin' || req.user.role === 'adminMdph') {
       user.set('email', req.body.email);
+      user.set('secteurs', req.body.secteurs);
     }
 
     user

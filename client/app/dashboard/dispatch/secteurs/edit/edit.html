@@ -1,62 +1,50 @@
 <div class="edit-partenaire">
   <div class="list-header">
-    <h2 class="padding-title" ng-if="secteur._id">
+    <h2 class="padding-title" ng-if="secteurEditCtrl.secteur._id">
       Modification d'un secteur
     </h2>
-    <h2 class="padding-title" ng-if="!secteur._id">
+    <h2 class="padding-title" ng-if="!secteurEditCtrl.secteur._id">
       Création d'un secteur
     </h2>
   </div>
 
-  <form name="secteurForm" ng-submit="save(secteurForm)" novalidate>
-
-    <div class="form-group">
-      <label for="inputName" class="control-label">Nom</label>
-      <input class="form-control" type="text" ng-model="name" />
-    </div>
-    <div class="form-group">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="default"> Secteur par défaut
-        </label>
+  <div class="wrapper">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputName" class="control-label">Nom</label>
+          <input class="form-control" type="text" ng-model="secteurEditCtrl.name" />
+        </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <fieldset class="light">
-        <legend>Agents adultes</legend>
-        <ul class="list-unstyled">
-          <li ng-repeat="evaluator in evaluators">
-            <label for="check-adulte-{{evaluator._id}}">
-              <input type="checkbox" id="check-adulte-{{evaluator._id}}" ng-checked="selectedEvaluatorsAdultes.indexOf(evaluator._id) > -1" ng-click="toggleSelection(selectedEvaluatorsAdultes, evaluator._id)" ng-value="evaluator._id" />
-              <span>{{evaluator.name}}</span>
-            </label>
-          </li>
-        </ul>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <fieldset class="light">
-        <legend>Agents enfance</legend>
-        <ul class="list-unstyled">
-          <li ng-repeat="evaluator in evaluators">
-            <label for="check-enfance-{{evaluator._id}}">
-              <input type="checkbox" id="check-enfance-{{evaluator._id}}" ng-checked="selectedEvaluatorsEnfants.indexOf(evaluator._id) > -1" ng-click="toggleSelection(selectedEvaluatorsEnfants, evaluator._id)" ng-value="evaluator._id" />
-              <span>{{evaluator.name}}</span>
-            </label>
-          </li>
-        </ul>
-      </fieldset>
+    <div class="row">
+      <div class="col-sm-4">
+        <form name="codePostalForm" ng-submit="secteurEditCtrl.add(codePostalForm)">
+          <table class="table table-striped">
+            <tr ng-if="secteurEditCtrl.communes.length < 1">
+              <td colspan="2">Aucune commune associée</td>
+            </tr>
+            <tr ng-repeat="(idx, commune) in secteurEditCtrl.communes">
+              <td><span class="btn btn-link">{{commune}}</span></td>
+              <td><button type="button" class="btn btn-link" ng-click="secteurEditCtrl.remove(idx)"><i class="fa fa-trash"></i>&nbsp;Supprimer</button></td>
+            </tr>
+            <tr>
+              <td><input class="form-control" type="text" required minlength="5" maxlength="5" ng-model="secteurEditCtrl.codePostal" /></td>
+              <td><button class="btn btn-link" type="submit"><i class="fa fa-plus"></i>&nbsp;Ajouter</button></td>
+            </tr>
+          </table>
+        </form>
+      </div>
     </div>
 
     <div class="text-right">
-      <button class="btn btn-link" type="button" ng-click="cancel()">
+      <button class="btn btn-link" type="button" ng-click="secteurEditCtrl.cancel()">
         Annuler
       </button>
-      <button class="btn btn-success" type="submit">
+      <button class="btn btn-success" type="button" ng-click="secteurEditCtrl.save()">
         <i class="fa fa-save"></i> Sauver
       </button>
     </div>
-  </form>
+  </div>
 </div>

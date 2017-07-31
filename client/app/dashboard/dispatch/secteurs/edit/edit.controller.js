@@ -1,40 +1,33 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SecteurEditCtrl', function($scope, $state, secteur, evaluators, currentMdph) {
-    $scope.secteur = secteur;
-    $scope.name = secteur.name;
-    $scope.evaluators = evaluators;
-    $scope.default = secteur.default;
+  .controller('SecteurEditCtrl', function($state, secteur, evaluators, currentMdph) {
+    this.name =  secteur.name;
+    this.communes = secteur.communes;
 
-    $scope.selectedEvaluatorsAdultes = secteur.evaluators && secteur.evaluators.adulte ? secteur.evaluators.adulte : [];
-    $scope.selectedEvaluatorsEnfants = secteur.evaluators && secteur.evaluators.enfant ? secteur.evaluators.enfant : [];
-
-    $scope.toggleSelection = function(selection, evaluatorId) {
-      var idx = selection.indexOf(evaluatorId);
-
-      if (idx > -1) {
-        selection.splice(idx, 1);
-      } else {
-        selection.push(evaluatorId);
+    this.add = (form) => {
+      if (!form.$valid) {
+        return;
       }
+
+      this.communes.push(this.codePostal);
+      this.codePostal = '';
     };
 
-    $scope.save = function() {
-      secteur.evaluators = {
-        adulte: $scope.selectedEvaluatorsAdultes,
-        enfant: $scope.selectedEvaluatorsEnfants
-      };
+    this.remove = (idx) => {
+      this.communes.splice(idx, 1);
+    };
 
-      secteur.name = $scope.name;
-      secteur.default = $scope.default;
+    this.save = () => {
+      secteur.name = this.name;
+      secteur.communes = this.communes;
       secteur.mdph = currentMdph._id;
       secteur.$save({mdph: currentMdph.zipcode}, function() {
         $state.go('^', {}, {reload: true});
       });
     };
 
-    $scope.cancel = function() {
+    this.cancel = function() {
       $state.go('^', {}, {reload: true});
     };
   });

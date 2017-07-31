@@ -119,9 +119,6 @@ export function populateAndShowSecteurs(req, res) {
     .exec(function(err, secteurs) {
       if (err) { return handleError(req, res, err); }
 
-      // Push default secteur
-      secteurs.push({_id: 'autres', name: 'Sans secteur'});
-
       async.map(
         secteurs,
 
@@ -129,7 +126,7 @@ export function populateAndShowSecteurs(req, res) {
           var search = {
             status: 'emise',
             mdph: req.mdph.zipcode,
-            secteur: (secteur._id !== 'autres') ? secteur._id : {$eq: null}
+            secteur: secteur._id
           };
 
           Request
@@ -163,14 +160,21 @@ export function showRequests(req, res) {
     mdph: req.mdph.zipcode
   };
 
+  if (req.params.userId === 'me') {
+    search.evaluators = req.user._id;
+  } else if (req.params.userId === 'unassigned') {
+    search.evaluators = { $exists: false };
+  } else if (req.params.userId !== 'toutes') {
+    search.evaluators = req.params.userId;
+  }
+
   if (req.query) {
     search.status = req.query.status;
   }
 
   Request.find(search)
     .populate('user', 'name email')
-    .populate('evaluator', 'name')
-    .populate('secteur', 'name')
+    .populate('evaluators', 'name')
     .sort('-submittedAt')
     .exec(function(err, requests) {
       if (err) return handleError(req, res, err);
@@ -213,15 +217,46 @@ export function showBeneficiaires(req, res) {
 }
 
 export function showRequestsByStatus(req, res) {
-  Request
+  User
     .aggregate([
-      {$match: {mdph: req.mdph.zipcode}},
-      {$group: {_id: '$status', count: {$sum: 1} }}
+      {$match: {mdph: req.mdph._id, role: 'adminMdph' }},
+      { "$project": {
+         "name": 1,
+         "insensitive": { "$toLower": "$name" }
+      }},
+      { "$sort": { "insensitive": 1 } }
     ])
-    .exec(function(err, requestsGroups) {
-      if (err) return handleError(req, res, err);
+    .then(users => {
+      const promises = users.map(user => {
+        return Request
+          .aggregate([
+            {$match: {mdph: req.mdph.zipcode, evaluators: user._id }},
+            {$group: {_id: '$status', count: {$sum: 1} }}
+          ])
+          .exec()
+          .then(groups => ({ user, groups }));
+      });
 
-      return res.send(requestsGroups);
+      const unnassignedRequests = Request
+        .aggregate([
+          {$match: {mdph: req.mdph.zipcode, evaluators: { $exists: false }}},
+          {$group: {_id: '$status', count: {$sum: 1} }}
+        ])
+        .exec()
+        .then(groups => ({ user: { _id: 'unassigned', name: 'Non assignées' }, groups }));
+
+      const allRequests = Request
+        .aggregate([
+          {$match: {mdph: req.mdph.zipcode}},
+          {$group: {_id: '$status', count: {$sum: 1} }}
+        ])
+        .exec()
+        .then(groups => ({ user: { _id: 'toutes', name: 'Toutes les demandes' }, groups }));
+
+      promises.push(unnassignedRequests);
+      promises.push(allRequests);
+
+      Promise.all(promises).then(data => res.json(data));
     });
 }
 

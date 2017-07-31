@@ -26,6 +26,12 @@ angular.module('impactApp')
         params: {
           controller: 'partenaire'
         }
+      },
+      updateLinkedEvaluators: {
+        method: 'POST',
+        params: {
+          controller: 'evaluateurs'
+        }
       }
     });
   });

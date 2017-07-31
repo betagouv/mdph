@@ -35,10 +35,7 @@ var RequestSchema = new Schema({
   estRenouvellement: Boolean,
   old_mdph:       String,
   numeroDossier:  String,
-
-
-  evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
-  secteur:        { type: Schema.Types.ObjectId, ref: 'Secteur' },
+  evaluators:     [{ type: Schema.Types.ObjectId, ref: 'User' }],
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,

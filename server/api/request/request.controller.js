@@ -151,6 +151,18 @@ function fillRequestOnSubmit(request, body) {
   };
 }
 
+export function saveEvaluateurs(req, res) {
+  const evaluators = req.body;
+
+  req.request
+    .set({evaluators})
+    .save()
+    .then(saved => {
+      saved.saveActionLog(actions.ASSIGN_EVALUATORS, req.user, req.log);
+      return res.send(saved);
+    });
+}
+
 function saveRequestOnSubmit(req) {
   return function(request) {
     return request
@@ -180,7 +192,7 @@ function resolveSubmit(req) {
     .then(saveRequestOnSubmit(req))
     .then(fillRequestMdph)
     .then(sendMailReceivedTransmission(req))
-    .then(dispatchSecteur(req));
+    .then(Dispatcher.dispatch);
 }
 
 function getRequestMdphEmail(request) {
@@ -201,22 +213,6 @@ function sendMailReceivedTransmission(req) {
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
     return request;
-  };
-}
-
-function dispatchSecteur(req) {
-  return function(request) {
-    return Dispatcher.dispatch(request)
-      .then(secteur => { // Service disatches to agents
-        return request.set('secteur', secteur).save().then(saved => {
-          saved.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-          return saved;
-        });
-      })
-      .catch(() => {
-        // Ignore no sector found
-        return request;
-      });
   };
 }
 

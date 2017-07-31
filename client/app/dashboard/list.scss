@@ -17,6 +17,17 @@
     width: 100%;
     max-width: 100%;
 
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .btn-link {
+      padding: 0;
+      margin-left: 2px;
+    }
+
     tr {
       border-top: 1px solid #e7eaec;
       border-bottom: 1px solid #e7eaec;
@@ -45,6 +56,17 @@
         color: #FFA100;
       }
 
+      table tr {
+        border: none;
+      }
+
+      table tr td {
+        padding: 0;
+
+        i {
+          vertical-align: middle;
+        }
+      }
     }
   }
 
@@ -57,22 +79,5 @@
   .align-right {
     text-align: right;
     padding-right: 20px;
-  }
-}
-
-.td-item {
-  margin-right: 5px;
-}
-
-.btn-refresh {
-  margin-left: 20px;
-
-  &.refreshing {
-    &:before {
-      content: "\f021";
-      font-family: 'FontAwesome';
-      display: inline-block;
-      width: 1.2em;
-    }
   }
 }

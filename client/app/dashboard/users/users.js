@@ -33,6 +33,10 @@ angular.module('impactApp')
         resolve: {
           users: function(MdphResource, currentMdph) {
             return MdphResource.queryUsers({zipcode: currentMdph.zipcode}).$promise;
+          },
+
+          secteurs: function(SecteurResource, currentMdph) {
+            return SecteurResource.query({mdph: currentMdph.zipcode}).$promise;
           }
         },
         authenticate: true
