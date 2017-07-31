@@ -10,13 +10,24 @@
 
       <div class="name">
         <span ng-if="file.sending">Envoi en cours...</span>
-        <a
-          ng-if="!file.sending"
-          target="_self"
-          download="{{file.originalname}}"
-          href="api/requests/{{request.shortId}}/document/{{getFilename(file)}}?access_token={{token}}">
-          {{file.originalname}}
-        </a>
+        <span ng-if="!file.sending" class="text-muted">{{file.originalname}}</span>
+
+        <div ng-if="!file.sending" class="file-actions">
+          <button class="btn btn-primary" ng-click="openPreview(file)"><i class="fa fa-search"></i>&nbsp;Visualiser</button>
+
+          <a
+            class="btn btn-link"
+            ng-if="!file.sending"
+            target="_self"
+            download="{{file.originalname}}"
+            href="api/requests/{{request.shortId}}/document/{{getFilename(file)}}?access_token={{token}}">
+            <i class="fa fa-download"></i>&nbsp;Télécharger
+          </a>
+
+          <button type="button" class="trash btn btn-link" ng-click="delete()" ng-if="fileEditable">
+            <i class="fa fa-trash"></i>&nbsp;Supprimer
+          </button>
+        </div>
       </div>
 
       <div class="partenaire" ng-if="file.partenaire">
@@ -54,9 +65,4 @@
       <div class="text-validation text-validation-valid" ng-if="!file.isInvalid">Document conforme</div>
     </div>
   </div>
-
-  <button type="button" class="trash btn btn-link" ng-click="delete()" ng-if="fileEditable">
-    <i class="fa fa-trash"></i>&nbsp;Supprimer
-  </button>
-
 </div>
