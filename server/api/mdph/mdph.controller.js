@@ -251,7 +251,7 @@ export function showRequestsByStatus(req, res) {
           {$group: {_id: '$status', count: {$sum: 1} }}
         ])
         .exec()
-        .then(groups => ({ user: { _id: 'toutes', name: 'Toutes' }, groups }));
+        .then(groups => ({ user: { _id: 'toutes', name: 'Toutes les demandes' }, groups }));
 
       promises.push(unnassignedRequests);
       promises.push(allRequests);

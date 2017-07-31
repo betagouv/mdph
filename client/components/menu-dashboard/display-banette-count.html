@@ -3,7 +3,7 @@
     'label-danger': displayBanetteCountCtrl.count >= 30,
     'label-warning': displayBanetteCountCtrl.count >= 10 && displayBanetteCountCtrl.count < 30,
     'label-success': displayBanetteCountCtrl.count < 10 && displayBanetteCountCtrl.count > 0,
-    'label-default': displayBanetteCountCtrl.count == 0}"
+    'label-default': displayBanetteCountCtrl.count == 0 || !displayBanetteCountCtrl.count}"
   class="label pull-right">
-  {{ displayBanetteCountCtrl.count }}
+  {{ displayBanetteCountCtrl.count || 0}}
 </span>

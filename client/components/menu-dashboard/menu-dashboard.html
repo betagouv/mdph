@@ -3,12 +3,12 @@
     <div class="menu-general">
       <h2>Flux de demandes</h2>
 
-      <div ng-repeat="result in menudashboardctrl.totalRequestsCount" ng-if="result.groups.length > 0">
+      <div ng-repeat="result in menudashboardctrl.totalRequestsCount">
         <ul>
           <li class="bannette-agent">
-            {{result.user.name}}
+            {{result.user._id === menudashboardctrl.currentUser._id ? 'Mes demandes' : result.user.name}}
             <ul>
-              <li ng-repeat="banette in menudashboardctrl.banettes" ng-if="result.groupsById[banette.id].count > 0">
+              <li ng-repeat="banette in menudashboardctrl.banettes">
                 <a ui-sref-active="active" ng-if="result.user._id == menudashboardctrl.currentUser._id" ui-sref="dashboard.workflow.list({userId: 'me', status: banette.id})">
                   {{banette.label}}
                   <display-banette-count count="result.groupsById[banette.id].count" />

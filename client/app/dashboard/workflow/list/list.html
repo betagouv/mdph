@@ -1,6 +1,6 @@
 <div ui-view>
   <div class="list-header">
-    <h2 class="padding-title">{{workflowListCtrl.status | requestStatus}}</h2>
+    <h2 class="padding-title">{{ workflowListCtrl.banetteUser.name }} - Demandes {{workflowListCtrl.status | requestStatus}}</h2>
 
     <form class="form-group">
       <div class="input-group search">
@@ -85,7 +85,11 @@
               <tr>
                 <td>
                   <ul>
-                    <li ng-repeat="evaluator in request.evaluators">{{::evaluator.name}}</li>
+                    <li ng-repeat="evaluator in request.evaluators">
+                      <a ui-sref="dashboard.workflow.list({userId: evaluator._id, status: workflowListCtrl.status})">
+                        {{::evaluator.name}}
+                      </a>
+                    </li>
                   </ul>
                 </td>
               </tr>
