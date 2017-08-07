@@ -56,8 +56,8 @@ angular.module('impactApp')
                 $modalInstance.dismiss();
               };
             }
-          })
-        }
+          });
+        };
 
         // Retro-compat
         $scope.getFilename = function(file) {
