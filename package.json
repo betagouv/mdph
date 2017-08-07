@@ -135,6 +135,5 @@
     "circle-e2e": "protractor protractor.conf.js --seleniumAddress http://localhost:4444/wd/hub",
     "webdriver-update": "webdriver-manager update",
     "webdriver-clean": "webdriver-manager clean"
-  },
-  "private": true
+  }
 }
