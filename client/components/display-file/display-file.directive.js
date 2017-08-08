@@ -20,8 +20,8 @@ angular.module('impactApp')
           });
         }
 
-        $scope.fileEditable = ($scope.request.status === 'en_cours' || $scope.request.status === 'en_attente_usager') ||
-                              ($scope.user.role !== 'user' && $scope.request.status === 'emise');
+        $scope.canValidateFile = $scope.user.role !== 'user' && $scope.request.status === 'emise';
+        $scope.canDelete = ($scope.request.status === 'en_cours' || $scope.request.status === 'en_attente_usager') && $scope.user.role === 'user';
 
         $scope.setInvalid = function(isInvalid) {
           if ($scope.file.isInvalid === isInvalid) {

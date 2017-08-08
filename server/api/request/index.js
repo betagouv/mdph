@@ -28,7 +28,7 @@ router.post('/:shortId/evaluateurs', hasRole('adminMdph'), controller.saveEvalua
 router.get('/:shortId/pdf/:fileName', isAgentOrOwner(), controller.getPdf);
 
 router.post('/:shortId/document/partenaire', upload.single('file'), controller.saveFilePartenaire);
-router.use('/:shortId/document', isAgentOrOwner(), documentsRouter);
+router.use('/:shortId/document', documentsRouter);
 
 router.param('shortId', function(req, res, next, shortId) {
   Request
