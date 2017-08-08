@@ -86,6 +86,22 @@ function isAgent() {
     });
 }
 
+function isOwner() {
+  return compose()
+    .use(isAuthenticated())
+    .use(function(req, res, next) {
+      if (meetsRequirements(req.user.role, 'admin')) {
+        return next();
+      }
+
+      if (req.user._id.equals(req.request.user._id)) {
+        return next();
+      }
+
+      return res.sendStatus(403);
+    });
+}
+
 function isAgentOrOwner() {
   return compose()
     .use(isAuthenticated())
@@ -156,3 +172,4 @@ exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
 exports.meetsRequirements = meetsRequirements;
+exports.isOwner = isOwner;
