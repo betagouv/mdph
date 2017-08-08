@@ -164,6 +164,8 @@ exports.changeInfo = function(req, res) {
       const newEmail = req.body.email;
 
       user.set('email', req.body.email);
+      user.set('secteurs', req.body.secteurs);
+
       saveActionLog({
         action: ACTIONS.USER_EDITION,
         user: req.user._id,

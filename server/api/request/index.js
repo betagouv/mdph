@@ -4,7 +4,7 @@ import {Router} from 'express';
 import multer from 'multer';
 import documentsRouter from '../document';
 import * as controller from './request.controller';
-import { isAgentOrOwner } from '../../auth/auth.service';
+import { isAgentOrOwner, hasRole } from '../../auth/auth.service';
 import Request from './request.model';
 import config from '../../config/environment';
 
@@ -23,6 +23,7 @@ router.get('/:shortId/generate-reception-mail', isAgentOrOwner(), controller.gen
 router.post('/:shortId/action', isAgentOrOwner(), controller.saveAction);
 router.get('/:shortId/history', isAgentOrOwner(), controller.getHistory);
 router.get('/:shortId/recapitulatif', isAgentOrOwner(), controller.getRecapitulatif);
+router.post('/:shortId/evaluateurs', hasRole('adminMdph'), controller.saveEvaluateurs);
 
 router.get('/:shortId/pdf/:fileName', isAgentOrOwner(), controller.getPdf);
 
@@ -35,12 +36,12 @@ router.param('shortId', function(req, res, next, shortId) {
     .populate('user')
     .populate('evaluator')
     .exec(function(err, request) {
-    if (err) return next(err);
-    if (!request) return res.sendStatus(404);
+      if (err) return next(err);
+      if (!request) return res.sendStatus(404);
 
-    req.request = request;
-    next();
-  });
+      req.request = request;
+      next();
+    });
 });
 
 module.exports = router;

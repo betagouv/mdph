@@ -8,7 +8,6 @@ export function index(req, res) {
   Secteur
     .find({mdph: mdph})
     .sort('name')
-    .populate('evaluators.enfant evaluators.adulte')
     .exec(function(err, secteurs) {
       if (err) { return handleError(req, res, err); }
 
@@ -36,13 +35,12 @@ export function update(req, res) {
 
     secteur
       .set('name', req.body.name)
-      .set('evaluators', req.body.evaluators)
-      .set('default', req.body.default)
+      .set('communes', req.body.communes)
       .set('updatedAt', Date.now())
       .save(function(err) {
         if (err) { return handleError(req, res, err); }
 
-        return res.status(200).json(secteur);
+        return res.json(secteur);
       });
   });
 }

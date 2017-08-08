@@ -34,6 +34,10 @@ angular.module('impactApp')
       label: 'Assignation à un secteur',
       fa: 'bullseye',
     },
+    assign_evaluators: {
+      label: 'Assignation à un évaluateur',
+      fa: 'bullseye'
+    },
     change_status: {
       label: 'Changement de banette',
       fa: 'folder',

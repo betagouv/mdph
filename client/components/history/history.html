@@ -25,13 +25,13 @@
         <div ng-if="action.action === 'change_status'">
           {{action.params.old | requestStatus}} <i class="fa fa-arrow-right"></i> {{action.params.new | requestStatus}}
         </div>
-        <div ng-if="action.action === 'assign_sector'">Nouveau secteur: {{action.params.secteur}}</div>
         <div ng-if="action.action === 'user_creation' || action.action === 'user_deletion'">
           {{action.params.email}} {{action.params.name}}
         </div>
         <div ng-if="action.action === 'user_edition'">
           {{action.params.oldEmail}} <i class="fa fa-arrow-right"></i> {{action.params.newEmail}}
         </div>
+        <div ng-if="action.action === 'assign_evaluators'">Assignée pour instruction</div>
       </div>
     </div>
   </div>

@@ -34,13 +34,28 @@ angular.module('impactApp')
         };
 
         $scope.setInvalidReason = function() {
-
           if ($scope.file.invalidReason.length === 0) {
             return;
           }
 
           $http.put('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id, {isInvalid: true, invalidReason: $scope.file.invalidReason}).then(function(result) {
             $scope.file = result.data;
+          });
+        };
+
+        $scope.openPreview = function(file) {
+          $modal.open({
+            templateUrl: 'components/display-file/display-file-modal.html',
+            controllerAs: 'modalFileCtrl',
+            size: 'lg',
+            controller($modalInstance) {
+              this.name = $scope.getFilename(file);
+              this.fileUrl = `api/requests/${$scope.request.shortId}/document/${this.name}?access_token=${$scope.token}`;
+
+              this.cancel = function() {
+                $modalInstance.dismiss();
+              };
+            }
           });
         };
 

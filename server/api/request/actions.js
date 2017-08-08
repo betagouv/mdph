@@ -10,7 +10,7 @@ const ACTIONS = {
   DOCUMENT_VALIDATED: 'document_validated',
   DOCUMENT_REFUSED: 'document_refused',
   UPDATE_ANSWERS: 'update_answers',
-  ASSIGN_SECTOR: 'assign_sector',
+  ASSIGN_EVALUATORS: 'assign_evaluators',
   CHANGE_STATUS: 'change_status',
   ENREGISTREMENT: 'enregistrement',
 };

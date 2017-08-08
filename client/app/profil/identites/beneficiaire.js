@@ -28,6 +28,7 @@ angular.module('impactApp')
           $scope.currentMdph = currentMdph;
           $scope.getAdress = AdressService.getAdress;
           $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
+          $scope.maskOptions = {clearOnBlur: false, allowInvalidValue: true};
 
           if (!identite.email) {
             identite.email = currentUser.email;

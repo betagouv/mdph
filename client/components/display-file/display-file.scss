@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    width: 200px;
+    min-width: 200px;
     height: 150px;
     padding: 0 5px;
   }
@@ -32,7 +32,6 @@
   .file-actions {
     display: flex;
     background-color: #fff;
-    width: 100%;
     padding: 10px;
     justify-content: space-around;
     align-items: center;
@@ -122,4 +121,9 @@
     align-self: center;
     color: $light-red;
   }
+}
+
+.display-file-modal-iframe {
+  width: 100%;
+  min-height: 500px;
 }

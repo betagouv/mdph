@@ -38,6 +38,10 @@ angular.module('impactApp')
 
           actions: function(MdphResource, currentMdph) {
             return MdphResource.queryUsersHistory({zipcode: currentMdph.zipcode}).$promise;
+          },
+
+          secteurs: function(SecteurResource, currentMdph) {
+            return SecteurResource.query({mdph: currentMdph.zipcode}).$promise;
           }
         },
         authenticate: true

@@ -15,6 +15,8 @@ var Beneficiaire = function() {
   form.address = form.element(by.id('address'));
   form.code_postal = form.element(by.id('code_postal'));
   form.localite = form.element(by.id('localite'));
+  form.cpam = form.element(by.id('assurance_cpam'));
+  form.numeroSecu = form.element(by.id('numero_secu'));
   form.submit = form.element(by.id('submit-benef'));
 
   this.submit = function() {
@@ -24,7 +26,9 @@ var Beneficiaire = function() {
     form.address.sendKeys('1, rue du test');
     form.code_postal.sendKeys('75001');
     form.localite.sendKeys('Paris');
+    form.numeroSecu.sendKeys('168089200203980');
 
+    form.cpam.click();
     form.radio_sexe.click();
     form.radio_nat.click();
 
