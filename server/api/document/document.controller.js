@@ -8,7 +8,7 @@ import config from '../../config/environment';
 
 import Auth from '../../auth/auth.service';
 import resizeAndMove from '../../components/resize-image';
-import {actions as Actions} from '../../components/actions';
+import { ACTIONS } from '../request/actions';
 
 function handleError(req, res) {
   return function(statusCode, err) {
@@ -74,7 +74,7 @@ function handleDeleteFile(req) {
   return removeFileFromFS(file.path)
     .then(() => {
       return file.remove({}, () => {
-        req.request.saveActionLog(Actions.DOCUMENT_REMOVED, req.user, req.log, {document: file});
+        req.request.saveActionLog(ACTIONS.DOCUMENT_REMOVED, req.user, req.log, {document: file});
         return req.request.save();
       });
     });
@@ -112,7 +112,7 @@ export function saveFile(req, res) {
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
 
-      request.saveActionLog(Actions.DOCUMENT_ADDED, req.user, req.log, {document: document});
+      request.saveActionLog(ACTIONS.DOCUMENT_ADDED, req.user, req.log, {document: document});
 
       var savedDocument = _.find(saved.documents, {filename: document.filename});
       return res
@@ -162,7 +162,7 @@ export function updateFile(req, res) {
   request.save(function(err) {
     if (err) return handleError(err);
 
-    var action = isInvalid ? Actions.DOCUMENT_REFUSED : Actions.DOCUMENT_VALIDATED;
+    var action = isInvalid ? ACTIONS.DOCUMENT_REFUSED : ACTIONS.DOCUMENT_VALIDATED;
     var reason = isInvalid ? invalidReason : '';
 
     request.saveActionLog(action, req.user, req.log, {document: file, reason});

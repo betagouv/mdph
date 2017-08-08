@@ -67,7 +67,7 @@ RequestSchema.pre('save', function(next) {
 RequestSchema.methods = {
   saveActionLog(action, user, log, params) {
     return ActionModel.create({
-      action: action.id,
+      action: action,
       request: this._id,
       user: user._id,
       date: Date.now(),

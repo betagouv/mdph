@@ -26,13 +26,18 @@ angular.module('impactApp')
       .state('dashboard.users.agents', {
         url: '/agents',
         templateUrl: 'app/dashboard/users/agents/agents.html',
-        controller: function($scope, users) {
+        controller: function($scope, users, actions) {
           $scope.users = users;
+          $scope.actions = actions;
         },
 
         resolve: {
           users: function(MdphResource, currentMdph) {
             return MdphResource.queryUsers({zipcode: currentMdph.zipcode}).$promise;
+          },
+
+          actions: function(MdphResource, currentMdph) {
+            return MdphResource.queryUsersHistory({zipcode: currentMdph.zipcode}).$promise;
           },
 
           secteurs: function(SecteurResource, currentMdph) {

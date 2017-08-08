@@ -18,6 +18,15 @@ angular.module('impactApp')
         }
       },
 
+      queryUsersHistory: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller:'users',
+          controllerid: 'history'
+        }
+      },
+
       queryPartenaires: {
         method: 'GET',
         isArray: true,

@@ -144,7 +144,7 @@ UserSchema.methods = {
    * @return {Boolean}
    * @api public
    */
-  authenticate: function(plainText) {
+  authenticate(plainText) {
     return this.encryptPassword(plainText) === this.hashedPassword;
   },
 
@@ -154,7 +154,7 @@ UserSchema.methods = {
    * @return {String}
    * @api public
    */
-  makeSalt: function() {
+  makeSalt() {
     return crypto.randomBytes(16).toString('base64');
   },
 
@@ -165,7 +165,7 @@ UserSchema.methods = {
    * @return {String}
    * @api public
    */
-  encryptPassword: function(password) {
+  encryptPassword(password) {
     if (!password || !this.salt) return '';
     var salt = new Buffer(this.salt, 'base64');
     return crypto.pbkdf2Sync(password, salt, 10000, 64, 'SHA1').toString('base64');

@@ -24,6 +24,7 @@ router.get('/:id/requests/:userId', isAgent(), controller.showRequests);
 router.get('/:id/beneficiaires', isAgent(), controller.showBeneficiaires);
 
 router.get('/:id/users', isAgent(), controller.showUsers);
+router.get('/:id/users/history', isAgent(), controller.showUsersHistory);
 
 router.get('/:id/partenaires', isAgent(), controller.showPartenaires);
 
