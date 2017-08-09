@@ -13,4 +13,4 @@ var options = {
 
 mongoose.connect('mongodb://localhost/impact', options);
 
-require('./default_profiles.js');
+require('./mdph_headquarters.js');
