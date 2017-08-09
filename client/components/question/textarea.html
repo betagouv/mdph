@@ -1,5 +1,5 @@
 <form name="questionForm" novalidate>
-  <div class="question-legend" for="inputid">{{question.title}}</div>
+  <div class="question-legend" for="inputid" ng-bind-html="question.title"></div>
 
   <textarea type="text" name="inputname" id="inputid" class="form-control"
     rows="4" ng-model="sectionModel[question.model]" placeholder="{{question.placeholder}}" required></textarea>

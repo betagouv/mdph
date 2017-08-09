@@ -1,6 +1,6 @@
 <form name="questionForm" novalidate>
   <fieldset>
-    <legend ng-hide="hideTitle" class="question-legend">{{question.title}}</legend>
+    <legend ng-hide="hideTitle" class="question-legend" ng-bind-html="question.title"></legend>
 
     <ul class="answers">
       <li

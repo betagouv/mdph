@@ -1,5 +1,5 @@
 <form name="questionForm" novalidate>
-  <label class="question-legend" for="autresrenseignements">{{question.title}}</label>
+  <label class="question-legend" for="autresrenseignements" ng-bind-html="question.title"></label>
 
   <textarea class="form-control" rows="20"
     name="autresrenseignements" id="autresrenseignements"

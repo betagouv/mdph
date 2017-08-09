@@ -1,5 +1,5 @@
 <form name="questionForm" novalidate>
-  <label class="question-legend">{{question.title}}</label>
+  <label class="question-legend" ng-bind-html="question.title"></label>
 
   <show-prestations form-answers="formAnswers" prestations="prestations" editable="true" width="4" end-date="true"></show-prestations>
 
