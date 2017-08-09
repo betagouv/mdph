@@ -196,7 +196,7 @@ function resolveSubmit(req) {
 }
 
 function getRequestMdphEmail(request) {
-  return mdph.headquarters.email;
+  return request.fullMdph.headquarters.email;
 }
 
 function sendMailReceivedTransmission(req) {
