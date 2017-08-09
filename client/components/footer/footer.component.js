@@ -6,9 +6,5 @@ angular.module('impactApp').component('mdphFooter', {
   bindings: {
     mdph: '<'
   },
-  controller: function() {
-    if (this.mdph) {
-      this.sortedLocations = _.sortBy(this.mdph.locations, 'headquarters');
-    }
-  },
+  controller: function() {},
 });
