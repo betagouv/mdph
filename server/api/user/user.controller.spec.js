@@ -109,7 +109,7 @@ describe('user.controller', function() {
     });
 
     describe('createAgent', function() {
-      it.only('should return an access token and the id of the created agent', function(done) {
+      it('should return an access token and the id of the created agent', function(done) {
         UserController
           .createAgent(fakeReq, fakeRes)
           .then(result => {

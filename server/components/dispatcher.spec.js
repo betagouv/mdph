@@ -161,7 +161,7 @@ describe('Dispatcher', function() {
     });
   });
 
-  it.only('should correctly dispatch the request', function(done) {
+  it('should correctly dispatch the request', function(done) {
     const user = new User();
     const request = new Request({
       mdph: '14',
