@@ -1,6 +1,6 @@
 <form name="questionForm" ng-submit="check(questionForm)" novalidate>
   <fieldset>
-    <legend ng-hide="hideTitle" class="question-legend">{{question.title}}</legend>
+    <legend ng-hide="hideTitle" class="question-legend" ng-bind-html="question.title"></legend>
 
     <ul class="answers">
       <div class="answer" ng-repeat="answer in question.answers">
@@ -10,7 +10,7 @@
             ng-class="{'active': sectionModel[question.model][answer.model]}">
             <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
             ng-model="sectionModel[question.model][answer.model]" ng-value="answer.label" />
-            <span>{{answer.label}}</span>
+            <span ng-bind-html="answer.label"></span>
           </label>
         </li>
 
