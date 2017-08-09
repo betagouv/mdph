@@ -14,6 +14,7 @@ function saveMdph(mdph) {
         name: 'QG',
         email: 'contact@mdph.test',
         headquarters: true,
+        address: 'Test address',
         coordinates: {
           coordx: 'x',
           coordy: 'y'
@@ -23,6 +24,7 @@ function saveMdph(mdph) {
     });
 
     test.save((err, savedMdph) => {
+      console.log(err);
       mdph = savedMdph;
     });
 

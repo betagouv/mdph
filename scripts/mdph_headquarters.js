@@ -20,8 +20,6 @@ import Mdph from '../server/api/mdph/mdph.model';
           mdph.set('headquarters', headquarters);
           mdph.set('subsidiairies', subsidiairies);
 
-          mdph.locations = undefined;
-
           return mdph.save(function(err, saved) {
             resolve();
           });
