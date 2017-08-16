@@ -27,8 +27,6 @@ function saveUpdates(req) {
   return new Promise(function(resolve, reject) {
     const filteredUpdates = _.omit(req.body, '_id', 'mdph', '__v', 'createdAt');
 
-   console.log('filteredUpdates : ' + JSON.stringify(filteredUpdates));
-
     req.synthese.set(filteredUpdates).save(function(err, updated) {
       if (err) {
         return reject(err);

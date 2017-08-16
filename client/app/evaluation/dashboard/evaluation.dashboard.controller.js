@@ -2,5 +2,5 @@
 
 angular.module('impactApp')
   .controller('EvaluationDashboardCtrl', function($scope, $state, currentUser) {
-    $scope.mdph = currentUser.mdph;
+    this.mdph  = currentUser.mdph;
   });
