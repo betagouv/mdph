@@ -4,10 +4,8 @@ import moment from 'moment';
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import path from 'path';
+import { EmailTemplate } from 'email-templates';
 import * as Mailer from './send-mail.controller';
-
-const EmailTemplate = require('email-templates').EmailTemplate;
-
 import pdfMaker from '../../components/pdf-maker';
 import config from '../../config/environment';
 
@@ -25,129 +23,135 @@ const lastExpirationNotificationContentCompiled  = compileContent('lastExpiratio
 
 const genericTemplate = path.join(__dirname, 'templates', 'generic-email');
 
-function generateEmailBodyWithTemplate(options) {
-  let {title, content, footer} = options;
-  let template = new EmailTemplate(genericTemplate);
+function generateAndSend(options) {
+  return generateEmailBodyWithTemplate(options).then(body => {
+    options.body = body;
 
-  let locals = {};
-  locals.title = new Handlebars.SafeString(title);
-  locals.content = new Handlebars.SafeString(content);
+    return Mailer.sendMail(options);
+  });
+}
 
-  if (footer) {
-    locals.footer = new Handlebars.SafeString(footer);
-  }
+function generateEmailBodyWithTemplate({ title, content, footer }) {
+  const locals = {
+    title: new Handlebars.SafeString(title),
+    content: new Handlebars.SafeString(content),
+  };
 
-  return template
-    .render(locals)
-    .then(function(result) {
-      return result.html;
-    });
+  if (footer) locals.footer = new Handlebars.SafeString(footer);
+
+  return new EmailTemplate(genericTemplate).render(locals).then(result => result.html);
 }
 
 export function sendMailNotificationAgent(request, email) {
-  let options = {};
-  options.title = 'Vous avez reçu une nouvelle demande';
-  options.content = '<p>Référence de la demande: ' + request.shortId + '</p>';
+  const options = {
+    email,
+    title: 'Vous avez reçu une nouvelle demande',
+    content: '<p>Référence de la demande: ' + request.shortId + '</p>',
+  };
 
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(email, options.title, htmlContent);
-    });
+  return generateAndSend(options);
 }
 
 export function sendMailReceivedTransmission(options) {
-  let attachements;
+  const attachments = [];
+
   return pdfMaker(options)
-    .then(pdfPath => {
+    .then(pdfStream => {
       options.title = 'Votre demande a bien été transmise';
       options.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
-      attachements = [{filename: options.request.shortId + '.pdf', path: pdfPath}];
+      attachments.push({filename: options.request.shortId + '.pdf', path: pdfStream.path});
       return options;
     })
     .then(generateEmailBodyWithTemplate)
-    .then(htmlContent => {
-      Mailer.sendMail(options.email, options.title, htmlContent, attachements);
+    .then(body => {
+      Mailer.sendMail({
+        email: options.email,
+        title: options.title,
+        replyTo: options.replyTo,
+        body,
+        attachments
+      });
     });
 }
 
-export function sendConfirmationMail(emailDest, confirmationUrl) {
-  let options = {};
-  options.title = 'Veuillez confirmer votre adresse e-mail';
-  options.content = confirmationContentCompiled({confirmationUrl: confirmationUrl});
-  options.footer = urlFooterCompiled({url: confirmationUrl});
+export function sendConfirmationMail(email, confirmationUrl) {
+  const options = {
+    email,
+    title: 'Veuillez confirmer votre adresse e-mail',
+    content: confirmationContentCompiled({confirmationUrl: confirmationUrl}),
+    footer: urlFooterCompiled({url: confirmationUrl}),
+  };
 
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(emailDest, options.title, htmlContent);
-    });
+  return generateAndSend(options);
 }
 
-export function generateReceptionMail(request, options, title) {
-  options.title = title;
+export function generateReceptionMail(request, options) {
   options.content = receptionContentCompiled({request, options});
 
   if (options.url) {
     options.footer = urlFooterCompiled({url: options.url});
   }
 
-  return generateEmailBodyWithTemplate(options);
+ return generateEmailBodyWithTemplate(options);
 }
 
-export function sendMailCompletude(request, options) {
-  let title = 'Accusé de réception de votre MDPH';
+export function sendMailCompletude(request, contentOptions) {
+  const options = {
+    email: request.user.email,
+    title: 'Accusé de réception de votre MDPH',
+    content: receptionContentCompiled({request, options: contentOptions}),
+    replyTo: contentOptions.replyTo
+  };
 
-  return generateReceptionMail(request, options, title)
-    .then(html => {
-      Mailer.sendMail(request.user.email, title, html);
+  if (contentOptions.url) options.footer = urlFooterCompiled({url: contentOptions.url});
 
-      return html;
-    });
+  return generateAndSend(options);
 }
 
-export function sendMailRenewPassword(emailDest, confirmationUrl) {
-  let options = {};
-  options.title = 'Nouveau mot de passe';
-  options.content = 'Veuillez cliquer ici pour continuer votre changement de mot de passe :<br>' + confirmationUrl;
+export function sendMailRenewPassword(email, confirmationUrl) {
+  const options = {
+    email,
+    title: 'Nouveau mot de passe',
+    content: 'Veuillez cliquer ici pour continuer votre changement de mot de passe :<br>' + confirmationUrl,
+  };
 
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(emailDest, options.title, htmlContent);
-    });
+  return generateAndSend(options);
 }
 
 export function sendMailExpiration(request) {
-  let options = {};
-  options.title = 'Votre dossier MDPH a été supprimé';
-  options.content = expirationContentCompiled({request});
+  const options = {
+    email: request.user.email,
+    title: 'Votre dossier MDPH a été supprimé',
+    content: expirationContentCompiled({request}),
+  };
 
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(request.user.email, options.title, htmlContent);
-    });
+  return generateAndSend(options);
 }
 
 export function sendMailFirstExpirationNotification(request) {
-  let options = {};
-  options.title = 'Votre dossier MDPH sera supprimé dans six mois';
-    options.expirationDate  = moment().add(6, 'months');
-  options.url = `${config.baseUrl}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
-  options.content = firstExpirationNotificationContentCompiled({request, options});
+  const options = {
+    email: request.user.email,
+    title: 'Votre dossier MDPH sera supprimé dans six mois',
+    expirationDate: moment().add(6, 'months'),
+    url: `${config.baseUrl}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`,
+  }
 
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(request.user.email, options.title, htmlContent);
-    });
+  const content = firstExpirationNotificationContentCompiled({request, options});
+  options.content = content;
+
+  return generateAndSend(options);
 }
 
 export function sendMailLastExpirationNotification(request) {
-  let options = {};
-  options.title = 'Votre dossier MDPH sera supprimé dans un mois';
-  options.expirationDate  = moment().add(1, 'months');
-  options.url = `${config.baseUrl}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
-  options.content = lastExpirationNotificationContentCompiled({request, options});
+  const options = {
+    email: request.user.email,
+    title: 'Votre dossier MDPH sera supprimé dans un mois',
+    expirationDate: moment().add(1, 'months'),
+    url: `${config.baseUrl}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`,
+  };
 
-  return generateEmailBodyWithTemplate(options)
-    .then(htmlContent => {
-      Mailer.sendMail(request.user.email, options.title, htmlContent);
-    });
+  const content = lastExpirationNotificationContentCompiled({request, options});
+  options.content = content;
+
+  return generateAndSend(options);
 }

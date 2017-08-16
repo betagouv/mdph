@@ -5,6 +5,20 @@
     margin: 15px 0;
   }
 
+  ul.select-period {
+    display: flex;
+    list-style-type: none;
+  }
+
+  .btn-link {
+    background-color: white;
+  }
+
+  .btn-link.active {
+    background-color: $green;
+    color: white;
+  }
+
   .col-sm-4 {
     text-align: center;
   }

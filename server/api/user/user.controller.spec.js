@@ -4,6 +4,8 @@ import sinon from 'sinon';
 import should from 'should';
 import proxyquire from 'proxyquire';
 import Promise from 'bluebird';
+import mongoose from 'mongoose';
+import blackhole from 'stream-blackhole';
 
 describe('user.controller', function() {
   describe('create', function() {
@@ -16,6 +18,13 @@ describe('user.controller', function() {
       },
       headers: {
         host: 'fakeHost'
+      },
+      user: {
+        _id: mongoose.Types.ObjectId()
+      },
+      log: {
+        error: blackhole,
+        info: blackhole
       }
     };
 

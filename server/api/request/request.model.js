@@ -4,6 +4,7 @@ import mongoose, {Schema} from 'mongoose';
 import _ from 'lodash';
 import moment from 'moment';
 import shortId from 'shortid';
+import Mdph from '../mdph/mdph.model';
 import ActionModel from './action.model';
 import DateUtils from '../../components/dateUtils';
 
@@ -34,10 +35,7 @@ var RequestSchema = new Schema({
   estRenouvellement: Boolean,
   old_mdph:       String,
   numeroDossier:  String,
-
-
-  evaluator:      { type: Schema.Types.ObjectId, ref: 'User' },
-  secteur:        { type: Schema.Types.ObjectId, ref: 'Secteur' },
+  evaluators:     [{ type: Schema.Types.ObjectId, ref: 'User' }],
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,
@@ -69,7 +67,7 @@ RequestSchema.pre('save', function(next) {
 RequestSchema.methods = {
   saveActionLog(action, user, log, params) {
     return ActionModel.create({
-      action: action.id,
+      action: action,
       request: this._id,
       user: user._id,
       date: Date.now(),
@@ -79,6 +77,10 @@ RequestSchema.methods = {
 
       log.info(action._doc);
     });
+  },
+
+  getFullMdph() {
+    return Mdph.findOne({zipcode: this.mdph}).exec();
   },
 
   getDateNaissance() {

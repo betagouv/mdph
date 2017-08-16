@@ -9,8 +9,9 @@ describe('action-type filter', function() {
     };
 
     it('should return the corresponding font awesome class',
-        inject(function(actionTypeIconFilterFilter) {
-      expect(actionTypeIconFilterFilter(input)).toBe('plus');
-    }));
+      inject(function(actionTypeIconFilterFilter) {
+        expect(actionTypeIconFilterFilter(input)).toBe('plus');
+      }
+    ));
   });
 });

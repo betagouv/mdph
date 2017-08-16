@@ -10,13 +10,24 @@
 
       <div class="name">
         <span ng-if="file.sending">Envoi en cours...</span>
-        <a
-          ng-if="!file.sending"
-          target="_self"
-          download="{{file.originalname}}"
-          href="api/requests/{{request.shortId}}/document/{{getFilename(file)}}?access_token={{token}}">
-          {{file.originalname}}
-        </a>
+        <span ng-if="!file.sending" class="text-muted">{{file.originalname}}</span>
+
+        <div ng-if="!file.sending" class="file-actions">
+          <button class="btn btn-primary" ng-click="openPreview(file)"><i class="fa fa-search"></i>&nbsp;Visualiser</button>
+
+          <a
+            class="btn btn-link"
+            ng-if="!file.sending"
+            target="_self"
+            download="{{file.originalname}}"
+            href="api/requests/{{request.shortId}}/document/{{getFilename(file)}}?access_token={{token}}">
+            <i class="fa fa-download"></i>&nbsp;Télécharger
+          </a>
+
+          <button type="button" class="trash btn btn-link" ng-click="delete()" ng-if="canDelete">
+            <i class="fa fa-trash"></i>&nbsp;Supprimer
+          </button>
+        </div>
       </div>
 
       <div class="partenaire" ng-if="file.partenaire">
@@ -28,7 +39,7 @@
     </div>
 
     <div class="file-actions" ng-if="!hideActions">
-      <div class="validation-actions" ng-if="fileEditable">
+      <div class="validation-actions" ng-if="canValidateFile">
         <button type="button" class="fab invert-refuse" ng-click="setInvalid(true)" ng-class="{muted: (file.isInvalid === undefined) || file.isInvalid === false}">
           <i class="fa fa-thumbs-down"></i>
         </button>
@@ -37,16 +48,16 @@
         </button>
       </div>
 
-      <div ng-if="fileEditable && file.isInvalid" class="invalid-file">
+      <div ng-if="canValidateFile && file.isInvalid" class="invalid-file">
         <label for="invalid-reason">Raison du refus :</label>
         <textarea name="invalid-reason" ng-model="file.invalidReason" rows="4" ng-blur="setInvalidReason()" />
       </div>
     </div>
 
     <div class="file-actions" ng-if="hideActions && file.isInvalid !== undefined">
-      <div class="text-validation text-validation-invalid" ng-if="file.isInvalid">
+      <div class="text-validation text-validation-invalid" ng-if="file.isInvalid && canDelete">
         Document non conforme, <br>
-        <button type="button" class="btn btn-danger" ng-click="delete()" ng-if="fileEditable">
+        <button type="button" class="btn btn-danger" ng-click="delete()">
           Supprimez
         </button> le pour renvoyer votre demande
         <span ng-if="file.invalidReason">: <br> <em ng-bind-html=file.invalidReason></em></span>
@@ -54,9 +65,4 @@
       <div class="text-validation text-validation-valid" ng-if="!file.isInvalid">Document conforme</div>
     </div>
   </div>
-
-  <button type="button" class="trash btn btn-link" ng-click="delete()" ng-if="fileEditable">
-    <i class="fa fa-trash"></i>&nbsp;Supprimer
-  </button>
-
 </div>

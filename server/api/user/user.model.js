@@ -12,10 +12,16 @@ var UserSchema = new Schema({
   salt:  { type: String, select: false },
   role: { type: String, default: 'user' },
   email: { type: String, lowercase: true, unique: true, required: true },
-  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
   newPasswordToken: { type: String, select: false },
   newMailToken: { type: String, select: false },
+
+  // For agents
+  mdph: { type: Schema.Types.ObjectId, ref: 'Mdph' },
   secteurs: [{ type: Schema.Types.ObjectId, ref: 'Secteur' }],
+  specialisation: {
+    enfant: { type: Boolean, default: true },
+    adulte: { type: Boolean, default: true },
+  }
 });
 
 /**
@@ -44,6 +50,7 @@ UserSchema
         email: this.email,
         mdph: this.mdph,
         unconfirmed: this.unconfirmed,
+        secteurs: this.secteurs,
       };
     }
 
@@ -137,7 +144,7 @@ UserSchema.methods = {
    * @return {Boolean}
    * @api public
    */
-  authenticate: function(plainText) {
+  authenticate(plainText) {
     return this.encryptPassword(plainText) === this.hashedPassword;
   },
 
@@ -147,7 +154,7 @@ UserSchema.methods = {
    * @return {String}
    * @api public
    */
-  makeSalt: function() {
+  makeSalt() {
     return crypto.randomBytes(16).toString('base64');
   },
 
@@ -158,7 +165,7 @@ UserSchema.methods = {
    * @return {String}
    * @api public
    */
-  encryptPassword: function(password) {
+  encryptPassword(password) {
     if (!password || !this.salt) return '';
     var salt = new Buffer(this.salt, 'base64');
     return crypto.pbkdf2Sync(password, salt, 10000, 64, 'SHA1').toString('base64');

@@ -5,8 +5,17 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.workflow.detail.history', {
         url: '/vie_de_la_demande',
-        templateUrl: 'app/dashboard/workflow/detail/history/history.html',
-        controller: 'RequestHistoryCtrl',
+        controller: function(actions) {
+          this.actions = actions;
+        },
+
+        controllerAs: 'workflowDetailHistoryCtrl',
+        template: '<history actions="workflowDetailHistoryCtrl.actions" />',
+        resolve: {
+          actions: function($http, request) {
+            return $http.get(`/api/requests/${ request.shortId }/history`).then(result => result.data);
+          }
+        },
         authenticate: true
       });
   });

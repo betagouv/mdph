@@ -31,11 +31,13 @@ export function populateAndSortPrestations(request) {
       return resolve(null);
     }
 
-    let requestObj = request.toObject();
+    if (request.constructor.name === 'model') {
+      request = request.toObject();
+    }
 
-    requestObj.detailPrestations = reducer(request.prestations);
-    requestObj.detailRenouvellements = reducer(request.renouvellements);
+    request.detailPrestations = reducer(request.prestations);
+    request.detailRenouvellements = reducer(request.renouvellements);
 
-    resolve(requestObj);
+    resolve(request);
   });
 }

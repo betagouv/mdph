@@ -23,13 +23,12 @@ import * as MailActions from '../send-mail/send-mail-actions';
 import Synthese from '../synthese/synthese.model';
 
 import Dispatcher from '../../components/dispatcher';
-import ActionModel from './action.model';
-import {actions, actionsById} from '../../components/actions';
+import RequestActionModel from './action.model';
+import { ACTIONS } from './actions';
 import resizeAndMove from '../../components/resize-image';
 
 function handleError(req, res) {
   return function(statusCode, err) {
-    console.log(statusCode);
     statusCode = statusCode || 500;
 
     if (err) {
@@ -70,7 +69,7 @@ function saveUpdates(req) {
         return reject(err);
       }
 
-      updated.saveActionLog(actions.UPDATE_ANSWERS, req.user, req.log);
+      updated.saveActionLog(ACTIONS.UPDATE_ANSWERS, req.user, req.log);
       return resolve(updated);
     });
   });
@@ -132,7 +131,7 @@ export function showUserRequests(req, res) {
   .catch(handleError(req, res));
 }
 
-function fillRequestOnSubmit(request, submitForm) {
+function fillRequestOnSubmit(request, body) {
   return function(profile) {
     let formAnswers = _.pick(
       profile,
@@ -147,9 +146,21 @@ function fillRequestOnSubmit(request, submitForm) {
     return request
       .set('status', 'emise')
       .set('formAnswers', formAnswers)
-      .set('mdph', submitForm.mdph)
+      .set('mdph', body.mdph)
       .set('submittedAt', Date.now());
   };
+}
+
+export function saveEvaluateurs(req, res) {
+  const evaluators = req.body;
+
+  req.request
+    .set({evaluators})
+    .save()
+    .then(saved => {
+      saved.saveActionLog(ACTIONS.ASSIGN_EVALUATORS, req.user, req.log);
+      return res.send(saved);
+    });
 }
 
 function saveRequestOnSubmit(req) {
@@ -157,10 +168,20 @@ function saveRequestOnSubmit(req) {
     return request
       .save()
       .then(saved => {
-        saved.saveActionLog(actions.SUBMIT, req.user, req.log);
+        saved.saveActionLog(ACTIONS.SUBMIT, req.user, req.log);
         return saved;
       });
   };
+}
+
+function fillRequestMdph(request) {
+  return request.getFullMdph().then(mdph => {
+    if (mdph) {
+      request.fullMdph = mdph;
+    }
+
+    return request;
+  });
 }
 
 function resolveSubmit(req) {
@@ -169,37 +190,29 @@ function resolveSubmit(req) {
     .exec()
     .then(fillRequestOnSubmit(req.request, req.body))
     .then(saveRequestOnSubmit(req))
+    .then(fillRequestMdph)
     .then(sendMailReceivedTransmission(req))
-    .then(dispatchSecteur(req));
+    .then(Dispatcher.dispatch);
+}
+
+function getRequestMdphEmail(request) {
+  const mainLocation = _.find(request.fullMdph.locations, {headquarters: true}) || request.fullMdph.locations[0];
+
+  return mainLocation.email;
 }
 
 function sendMailReceivedTransmission(req) {
   return function(request) {
-    let options = {
+    const options = {
       request: request,
       host: req.headers.host,
       user: req.user,
-      email: req.user.email
+      email: req.user.email,
+      replyTo: getRequestMdphEmail(request)
     };
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
     return request;
-  };
-}
-
-function dispatchSecteur(req) {
-  return function(request) {
-    return Dispatcher.dispatch(request)
-      .then(secteur => { // Service disatches to agents
-        return request.set('secteur', secteur).save().then(saved => {
-          saved.saveActionLog(actions.ASSIGN_SECTOR, req.user, req.log, {secteur: secteur.name});
-          return saved;
-        });
-      })
-      .catch(() => {
-        // Ignore no sector found
-        return request;
-      });
   };
 }
 
@@ -216,16 +229,18 @@ function computeEnregistrementOptions(request, host) {
     options.receivedAt = request.receivedAt;
   }
 
-  if (invalidDocumentTypes.length > 0) {
+  if (invalidDocumentTypes.length > 0 || nonPresentAskedDocumentTypes.length > 0) {
     options.status = 'en_attente_usager';
     options.en_attente_usager = true;
-    options.invalidDocumentTypes = invalidDocumentTypes;
-    options.invalidDocuments = invalidDocuments;
 
-  } else if (nonPresentAskedDocumentTypes.length > 0) {
-    options.status = 'en_attente_usager';
-    options.en_attente_usager = true;
-    options.nonPresentAskedDocumentTypes = nonPresentAskedDocumentTypes;
+    if (invalidDocumentTypes.length > 0) {
+      options.invalidDocumentTypes = invalidDocumentTypes;
+      options.invalidDocuments = invalidDocuments;
+    }
+
+    if (nonPresentAskedDocumentTypes.length > 0) {
+      options.nonPresentAskedDocumentTypes = nonPresentAskedDocumentTypes;
+    }
   } else {
     options.status = 'enregistree';
     options.enregistree = true;
@@ -284,21 +299,20 @@ function resolveEnregistrement(req) {
     .set('status', options.status)
     .save()
     .then(snapshotSynthese)
+    .then(fillRequestMdph)
     .then(request => {
+      options.replyTo = getRequestMdphEmail(request);
       MailActions.sendMailCompletude(request, options);
-      return request;
-    })
-    .then(request => {
-      request.saveActionLog(actions.ENREGISTREMENT, req.user, req.log);
+      request.saveActionLog(ACTIONS.ENREGISTREMENT, req.user, req.log);
       return request;
     });
 }
 
 function dispatchAction(req) {
   switch (req.body.id) {
-    case actions.ENREGISTREMENT.id:
+    case ACTIONS.ENREGISTREMENT:
       return resolveEnregistrement(req);
-    case actions.SUBMIT.id:
+    case ACTIONS.SUBMIT:
       return resolveSubmit(req);
     default:
       return Promise.reject('Action not found');
@@ -339,7 +353,7 @@ export function create(req, res) {
       askedDocumentTypes: req.body.askedDocumentTypes
     })
     .then(request => {
-      request.saveActionLog(actions.CREATION, req.user, req.log);
+      request.saveActionLog(ACTIONS.CREATION, req.user, req.log);
       return request;
     })
     .then(populateAndRespond(res))
@@ -347,31 +361,13 @@ export function create(req, res) {
 }
 
 function findActionHistory(req) {
-  return ActionModel
+  return RequestActionModel
     .find({
       request: req.request._id
     })
     .populate('user')
     .sort('-date')
-    .lean()
-    .exec()
-    .then(populateActionLabels);
-}
-
-function populateActionLabels(actions) {
-  return new Promise(function(resolve) {
-    actions.forEach(function(action) {
-      let fullAction = actionsById[action.action];
-
-      if (fullAction) {
-        action.label = fullAction.label;
-      } else {
-        action.label = action.action;
-      }
-    });
-
-    return resolve(actions);
-  });
+    .exec();
 }
 
 export function getHistory(req, res) {
@@ -485,7 +481,7 @@ export function saveFilePartenaire(req, res) {
       const confirmationUrl = `${req.headers.host}/api/partenaires/${_partenaire._id}/${_partenaire.secret}`;
       MailActions.sendConfirmationMail(_partenaire.email, confirmationUrl);
 
-      _request.saveActionLog(actions.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
+      _request.saveActionLog(ACTIONS.DOCUMENT_ADDED, _partenaire, req.log, {document: _document, partenaire: _partenaire});
       callback();
     }
   ], function(err) {

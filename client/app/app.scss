@@ -201,7 +201,6 @@ fieldset {
 @import 'dashboard/users/partenaires/edit.scss';
 @import 'dashboard/workflow/detail/detail.scss';
 @import 'dashboard/workflow/detail/documents/documents.scss';
-@import 'dashboard/workflow/detail/history/history.scss';
 @import 'dashboard/workflow/detail/pre_evaluation/pre_evaluation.scss';
 @import 'departement/departement.scss';
 @import 'evaluation/detail/evaluation.detail.scss';
@@ -224,6 +223,7 @@ fieldset {
 @import '../components/evaluation-synthese-add-empty/evaluation-synthese-add-empty.scss';
 @import '../components/footer/footer.scss';
 @import '../components/history-synthese/history-synthese.scss';
+@import '../components/history/history.scss';
 @import '../components/mdph-map/mdph-map.scss';
 @import '../components/menu-dashboard/menu-dashboard.scss';
 @import '../components/mes_profils/mes_profils.scss';

@@ -1,8 +1,19 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AgentsEditCtrl', function($scope, $state, user, currentMdph) {
+  .controller('AgentsEditCtrl', function($scope, $state, user, currentMdph, secteurs) {
     $scope.user = user;
+    $scope.secteurs = secteurs;
+
+    $scope.toggleSelection = function(secteur) {
+      const idx = user.secteurs.indexOf(secteur._id);
+
+      if (idx > -1) {
+        user.secteurs.splice(idx, 1);
+      } else {
+        user.secteurs.push(secteur._id);
+      }
+    };
 
     $scope.update = function(form) {
       if ($scope.user._id) {

@@ -1,25 +1,16 @@
 'use strict';
 
 import _ from 'lodash';
-import async from 'async';
 import Mdph from '../mdph/mdph.model';
-import Profile from '../profile/profile.model';
 import Request from '../request/request.model';
 import User from '../user/user.model';
 import moment from 'moment';
+import Promise from 'bluebird';
+import { computeDuration, computeHumanMedianTime, computeMedianTimes, computeAverageTimes, getStartDate, getMomentFormat } from './utils';
 
-function substract(days) {
-  var date = new Date();
-  date.setDate(date.getDate() - days);
-  return date;
-}
-
-// const getOneWeekAgo = () => substract(7);
-const getOneMonthAgo = () => substract(30);
-const getOneYearAgo = () => substract(365);
 const officialMdphs =  ['14', '17', '54'];
 
-function groupRequestByMonth(options) {
+function groupRequestByPeriod(options, period) {
   return new Promise((resolve, reject) => {
     Request
       .find(options)
@@ -28,61 +19,87 @@ function groupRequestByMonth(options) {
         if (err) reject(err);
 
         requests.forEach(function(request) {
-          request.submittedAtByMonth = moment(request.submittedAt).format('MMMM YYYY');
+          request.submittedAtByPeriod = moment(request.submittedAt).format(getMomentFormat(period));
         });
 
-        const groupByDate= _.groupBy(requests, 'submittedAtByMonth');
+        const groupByDate= _.groupBy(requests, 'submittedAtByPeriod');
 
         resolve(groupByDate);
       });
     });
 }
 
-function countRequests(data, mdphs, done) {
-  async.eachSeries(mdphs, function(mdph, callback) {
-    Request.find({
+export function createdRequestCount(req, res) {
+  Request
+    .find({
       createdAt: {
-        $gte: getOneMonthAgo()
+        $gte: getStartDate(req.query.period)
       },
-      mdph: mdph.zipcode,
-      status: {$ne: 'en_cours'}
-    }, function(err, list) {
-      data[mdph.zipcode].requests = {};
-      data[mdph.zipcode].requests.total = err || !list ? 0 : list.length;
-
-      var requestByStatus = _.groupBy(list, 'status');
-      _.forEach(['emise', 'enregistree', 'en_attente_usager', 'archive'], function(status) {
-        var requestsForStatus = requestByStatus[status] ? requestByStatus[status].length : 0;
-        data[mdph.zipcode].requests[status] = requestsForStatus;
-      });
-
-      callback();
-    });
-  },
-
-  function(err) {
-    if (err) { throw err; }
-
-    return done();
-  });
+      status: 'en_cours',
+    })
+    .count()
+    .exec()
+    .then(result => res.json(result));
 }
 
-export function mdph(req, res) {
-  Mdph.find({zipcode: {$in: officialMdphs}}).sort('zipcode').exec(function(err, mdphs) {
-    if (err) { return handleError(req, res, err); }
+export function submittedRequestCount(req, res) {
+  Request
+    .find({
+      createdAt: {
+        $gte: getStartDate(req.query.period)
+      },
+      status: {
+        $in: ['emise', 'enregistree', 'en_attente_usager', 'archive']
+      },
+    })
+    .count()
+    .exec()
+    .then(result => res.json(result));
+}
 
-    var data = [];
-    mdphs.forEach(function(mdph) {
-      data.push({
-        name: mdph.name,
-        zipcode: mdph.zipcode
-      });
-    });
+export function mdphs(req, res) {
+  Mdph
+    .find({
+      enabled: true
+    })
+    .count()
+    .exec()
+    .then(result => res.json(result));
+}
 
-    var dataByZipcode = _.indexBy(data, 'zipcode');
+export function requestCountByMdph(req, res) {
+  return Request.aggregate([
+    {
+      $match: {
+        createdAt: {
+          $gte: getStartDate(req.query.period)
+        },
+        mdph: { $in: officialMdphs },
+        status: {
+          $in: ['emise', 'enregistree', 'en_attente_usager', 'archive']
+        }
+      }
+    },
+    {
+      $group: {
+        _id: '$mdph',
+        count: {
+          $sum: 1
+        }
+      }
+    }
+  ])
+  .exec((err, result) => res.json(result));
+}
 
-    countRequests(dataByZipcode, mdphs, () => res.json(data));
-  });
+export function requestMedianTime(req, res) {
+  Request
+    .find({
+      status: {$ne: 'en_cours'},
+      submittedAt: {$gte: getStartDate(req.query.period)},
+    })
+    .then(computeHumanMedianTime)
+    .then(result => res.json(result));
 }
 
 export function users(req, res) {
@@ -98,57 +115,40 @@ export function users(req, res) {
     });
 }
 
-function computeTime(request) {
-  const start = new Date(request.createdAt).getTime();
-  const end = new Date(request.submittedAt).getTime();
+export function requestRawData(req, res) {
+  const period = req.query.period;
+  const filter = req.query.filter || 60;
 
-  const timeSpent = end - start;
+  Request
+    .find({
+      mdph: { $in: officialMdphs },
+      status: {$ne: 'en_cours'},
+      submittedAt: {$gte: getStartDate(period)},
+    })
+    .then(requests => {
+      const withDurations = requests.map(request => ({submittedAt: request.submittedAt, duration: moment.duration(computeDuration(request)).asMinutes()}));
+      const sortedByDuration = withDurations.sort((a, b) => a.duration - b.duration);
+      const filteredByDuration = sortedByDuration.splice(0, Math.round(sortedByDuration.length * filter / 100));
 
-  if (isNaN(timeSpent)) {
-    return null;
-  }
+      let total = 0;
+      const reduced = filteredByDuration.reduce((acc, request) => {
+        return acc.concat({
+          x: request.duration,
+          y: ++total / filteredByDuration.length * 100,
+          r: 5,
+        });
+      }, []);
 
-  return timeSpent;
-}
-
-function computeMedian(values) {
-  values.sort((a, b) => a - b);
-  const lowMiddle = Math.floor((values.length - 1) / 2);
-  const highMiddle = Math.ceil((values.length - 1) / 2);
-  return (values[lowMiddle] + values[highMiddle]) / 2;
-}
-
-function computeMedianTimes(requests) {
-  const values = requests
-    .map(computeTime)
-    .filter(function(current) {
-      return current !== null;
+      res.json(reduced);
     });
-
-  const median = computeMedian(values);
-  const asDays = moment.duration(median).asDays()
-  return Math.round(asDays * 100) / 100;
 }
 
-function computeAverageTimes(requests) {
-  const values = requests
-    .map(computeTime)
-    .filter(function(current) {
-      return current !== null;
-    });
+export function requestAnalysis(req, res) {
+  const period = req.query.period;
 
-  const sum = values.reduce((previous, current) => current += previous);
-  const average = sum / values.length;
-  const asDays = moment.duration(average).asDays()
-  return Math.round(asDays * 100) / 100;
-}
-
-export function time(req, res) {
-  groupRequestByMonth({
-    createdAt: {$gte: getOneYearAgo()},
-    status: {$ne: 'en_cours'},
-    submittedAt: {$exists: true }
-  }).then(groupByDate => {
+  groupRequestByPeriod({
+    submittedAt: {$gte: getStartDate(period)},
+  }, period).then(groupByDate => {
     var data = [];
 
     _.forEach(groupByDate, (requests, date) => {
@@ -160,35 +160,17 @@ export function time(req, res) {
     });
 
     res.json(data);
-  }).catch(err => {
-    return handleError(req, res, err);
   });
 }
 
-export function site(req, res) {
-  Profile
-    .find({
-      createdAt: {
-        $gte: getOneMonthAgo()
-      }
-    })
-    .exec(function(err, profile) {
-      if (err) { return handleError(req, res, err); }
+export function requestCountHistory(req, res) {
+  const period = req.query.period;
 
-      var data = {
-        count: profile.length
-      };
-
-      res.json(data);
-    });
-}
-
-export function history(req, res) {
-  groupRequestByMonth({
-    createdAt: {$gte: getOneYearAgo()},
+  groupRequestByPeriod({
+    createdAt: {$gte: getStartDate(period)},
     mdph: {$in: officialMdphs},
     status: {$ne: 'en_cours'}
-  }).then(groupByDate => {
+  }, period).then(groupByDate => {
     var data = [];
 
     _.forEach(groupByDate, (requests, date) => {
@@ -199,13 +181,10 @@ export function history(req, res) {
     });
 
     res.json(data);
-  }).catch(err => {
-    return handleError(req, res, err);
   });
 }
 
 export function likes(req, res) {
-
   Mdph.find({
     likes: { $exists: true, $ne: [] }
   }).exec(function(err, mdphs) {

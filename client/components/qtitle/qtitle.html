@@ -1,5 +1,5 @@
 <div class="question-legend" ng-if="question.title">
-  {{question.title}}
+  <span ng-bind-html="question.title"></span>
   <div class="pull-right">
     <button class="btn btn-default" ng-show="helpTemplate" ng-click="showHelp()">
       <i class="fa fa-question-circle"></i> Aide

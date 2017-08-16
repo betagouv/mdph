@@ -9,7 +9,8 @@ angular.module('impactApp')
         redirectTo: {
           url: 'dashboard.workflow.list',
           params: {
-            status: 'emise'
+            status: 'emise',
+            userId: 'me'
           }
         },
         authenticate: true
