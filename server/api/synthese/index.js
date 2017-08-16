@@ -3,14 +3,14 @@
 import {Router} from 'express';
 import * as controller from './synthese.controller';
 import Synthese from './synthese.model';
-//import { isAgent } from '../../auth/auth.service';
+import { isEvaluateur } from '../../auth/auth.service';
 
 var router = new Router();
 
-router.post('/', controller.create);
-router.get('/', controller.showAllByMdph);
-router.get('/:syntheseId', controller.show);
-router.put('/:syntheseId', controller.update);
+router.post('/', isEvaluateur(), controller.create);
+router.get('/', isEvaluateur(), controller.showAllByMdph);
+router.get('/:syntheseId', isEvaluateur(), controller.show);
+router.put('/:syntheseId', isEvaluateur(), controller.update);
 
 router.param('syntheseId', function(req, res, next, syntheseId) {
   Synthese
