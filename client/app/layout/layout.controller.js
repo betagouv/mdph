@@ -14,8 +14,6 @@ angular.module('impactApp')
 
     this.shouldShowLogin = () => this.currentMdph.opened;
 
-
-
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
       this.logo = 'assets/images/' + currentMdph.logo;
