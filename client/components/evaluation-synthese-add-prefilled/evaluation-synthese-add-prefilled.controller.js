@@ -34,11 +34,12 @@ angular.module('impactApp').controller('EvaluationSyntheseAddPrefilledCtrl', fun
           $modalInstance.dismiss();
         };
       },
+
       resolve: {
-        currentMdph: function () {
+        currentMdph: function() {
           return currentMdph;
         }
       }
-      });
-    };
+    });
+  };
 });
