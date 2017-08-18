@@ -1,3 +1,7 @@
+<div class="text-container" ng-if="profilCtrl.currentMdph.opened == false">
+  <div class="alert alert-danger text-center">La MDPH {{profilCtrl.currentMdph.name}} n'accepte pas les demandes de ce téléservice, il n'est donc pas possible de lui transmettre de demande par l'intermediaire de ce téléservice.</div>
+</div>
+
 <div id="profile" class="profile-container">
   <div class="profile-card profile-card-vertical">
     <div class="profile-card-header">
@@ -76,7 +80,7 @@
           </ul>
         </section>
 
-        <div class="button-container">
+        <div class="button-container" ng-if="profilCtrl.currentMdph.opened">
           <button type="button" ng-click="profilCtrl.sendRequest()" class="btn hero-button btn-primary">
             Envoyer la demande
           </button>
