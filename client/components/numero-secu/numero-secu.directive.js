@@ -20,7 +20,7 @@ angular.module('impactApp').directive('numeroSecu', function() {
       ngModel.$parsers.unshift((value) => {
         const valid = isValid(value);
         ngModel.$setValidity('numero-secu', valid);
-        return valid;
+        return value;
       });
 
       //For model -> DOM validation
