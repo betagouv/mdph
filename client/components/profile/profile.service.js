@@ -25,20 +25,7 @@ angular.module('impactApp')
         missingSections.push('unconfirmed');
       }
 
-       if (!profile.identites
-        || !profile.identites.beneficiaire
-        || !profile.identites.beneficiaire.localite
-        || !profile.identites.beneficiaire.code_postal
-        || !profile.identites.beneficiaire.nomVoie
-        || !profile.identites.beneficiaire.pays_naissance
-        || !profile.identites.beneficiaire.departement_naissance
-        || !profile.identites.beneficiaire.commune_naissance
-        || !profile.identites.beneficiaire.dateNaissance
-        || !profile.identites.beneficiaire.nationalite
-        || !profile.identites.beneficiaire.sexe
-        || !profile.identites.beneficiaire.prenom
-        || !profile.identites.beneficiaire.nom
-        || !profile.identites.beneficiaire.email) {
+      if (!profile.identites || !profile.identites.beneficiaire || !profile.identites.beneficiaire.localite || !profile.identites.beneficiaire.code_postal || !profile.identites.beneficiaire.nomVoie || !profile.identites.beneficiaire.pays_naissance || !profile.identites.beneficiaire.departement_naissance || !profile.identites.beneficiaire.commune_naissance || !profile.identites.beneficiaire.dateNaissance || !profile.identites.beneficiaire.nationalite || !profile.identites.beneficiaire.sexe || !profile.identites.beneficiaire.prenom || !profile.identites.beneficiaire.nom || !profile.identites.beneficiaire.email) {
         missingSections.push('beneficiaire');
       }
 
