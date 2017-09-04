@@ -14,7 +14,7 @@
     <div class="profile-card-content" ng-if="profilCtrl.currentRequest.status === 'en_attente_usager'">
       <div ui-view class="container-fluid">
         <h2>Votre MDPH vous demande de corriger les documents associés à votre demande</h2>
-        <div><p>Pour tout autre modification, veuillez contacter directement votre MDPH (vous trouverez les informations de contact en bas de page)</p></div>
+        <p>Pour tout autre modification, veuillez contacter directement votre MDPH (vous trouverez les informations de contact en bas de page)</p>
         <ul class="profile-card-row">
           <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion()" options="profilCtrl.options.documents" /></li>
         </ul>
