@@ -12,7 +12,7 @@
         "SMTP_PASS": "mailjet_secret_key",
         "SMTP_HOST": "in.mailjet.com",
         "SMTP_PORT": "465",
-        "MAIL_FROM": "contact@mdph.beta.gouv.fr",
+        "MAIL_FROM": "contact.mdphenligne@cnsa.fr",
         "UPLOAD_DIR": "/path/to/upload/dir",
         "CRON_ENABLED": true
       }
@@ -29,7 +29,7 @@
         "SMTP_PASS": "mailjet_secret_key",
         "SMTP_HOST": "in.mailjet.com",
         "SMTP_PORT": "465",
-        "MAIL_FROM": "contact@mdph.beta.gouv.fr",
+        "MAIL_FROM": "contact.mdphenligne@cnsa.fr",
         "UPLOAD_DIR": "/path/to/upload/dir"
       }
     }
