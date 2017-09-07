@@ -18,8 +18,9 @@ angular.module('impactApp', [
     'toastr',
     'zxcvbn'
   ])
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig, treeConfig) {
+  .config(function($compileProvider, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $urlMatcherFactoryProvider, $modalProvider, toastrConfig, treeConfig) {
     moment.locale('fr');
+    $compileProvider.preAssignBindingsEnabled(true);
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $urlMatcherFactoryProvider.strictMode(false);
