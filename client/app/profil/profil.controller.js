@@ -9,6 +9,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.profile = profile;
   this.currentRequest = currentRequest;
   this.currentUser = currentUser;
+  this.currentMdph = currentMdph;
   this.hasRequest = hasRequest;
 
   this.$state = $state;
