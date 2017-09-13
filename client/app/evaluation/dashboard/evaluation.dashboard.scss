@@ -1,4 +1,4 @@
-.synthese-add-empty-row {
+.synthese-buttons-row {
   display: flex;
   margin: 0;
   padding: 0;
@@ -28,7 +28,7 @@
     }
   }
 
-  li.new {
+  li.button {
     background-color: $flat-ui-blue;
 
     button {

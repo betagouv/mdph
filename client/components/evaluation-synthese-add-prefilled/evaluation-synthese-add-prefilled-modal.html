@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h1 class="modal-title">Selectionner la demande</h1>
+</div>
+<div class="modal-body">
+  <table>
+    <tbody>
+      <th>Bénéficiaires ayant fait au moins une demande</th>
+      <tr ng-repeat="profile in evaluationSyntheseAddPrefilledModalCtrl.profiles">
+        <td>
+          <a ng-click="evaluationSyntheseAddPrefilledModalCtrl.addNewSynthese(profile)">
+            {{ evaluationSyntheseAddPrefilledModalCtrl.getProfileTitle(profile) }}
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="evaluationSyntheseAddPrefilledModalCtrl.cancel()">Annuler</button>
+</div>
