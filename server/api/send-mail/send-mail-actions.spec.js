@@ -98,7 +98,7 @@ describe('Send Mail Actions', function() {
         .then(function() {
           sendMailSpy.calledOnce.should.equal(true);
           sendMailSpy.args[0][0].email.should.equal(fakeEmail);
-          sendMailSpy.args[0][0].title.should.equal('Veuillez confirmer votre adresse e-mail');
+          sendMailSpy.args[0][0].title.should.equal('Validation de votre compte');
           sendMailSpy.args[0][0].body.should.containEql(fakeURL);
           done();
         })
