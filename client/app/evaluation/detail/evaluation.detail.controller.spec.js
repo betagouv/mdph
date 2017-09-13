@@ -158,7 +158,7 @@ describe('EvaluationDetailCtrl', function() {
     });
   });
 
-  describe('validate', function() {
+  describe('save', function() {
     describe('When there is some answers', function() {
       var fakeSection = {
         id:'environnement',
@@ -217,12 +217,10 @@ describe('EvaluationDetailCtrl', function() {
         user: {
           _id: '1234'
         },
-        profile: '1234',
-        $update() {}
+        profile: '1234'
       };
 
       beforeEach(function() {
-        spyOn(fakeSynthese, '$update');
         scope = {};
         controller = $controller('EvaluationDetailCtrl', {
           $scope: scope,
@@ -238,9 +236,8 @@ describe('EvaluationDetailCtrl', function() {
       });
 
       it('should save the answer in the request', function() {
-        scope.validate();
+        scope.save({$valid: true});
         expect(fakeSynthese.geva.environnement).toEqual(['II_1 bis_1', 0]);
-        expect(fakeSynthese.$update).toHaveBeenCalled();
       });
     });
   });

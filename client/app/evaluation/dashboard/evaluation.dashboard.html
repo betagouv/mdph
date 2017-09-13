@@ -2,17 +2,17 @@
   <h2 class="padding-title">Outil de soutien à l'évaluation</h2>
 </div>
 
+<div>
+  <ul class="synthese-buttons-row">
+    <li class="button">
+      <evaluation-synthese-add-empty mdph="evaluationDashboardCtrl.mdph"/>
+    </li>
+    <li class="button">
+      <evaluation-synthese-add-prefilled mdph="evaluationDashboardCtrl.mdph"/>
+    </li>
+  </ul>
+</div>
+
 <div class="list-main" ui-view>
-  <table>
-    <tbody>
-      <th>Bénéficiaires ayant fait au moins une demande</th>
-      <tr ng-repeat="profile in evaluationDashboardCtrl.profiles">
-        <td>
-          <a ui-sref="evaluation.detail({profileId: profile._id, syntheseId: 'current', sectionId: 'environnement'})">
-            {{ evaluationDashboardCtrl.getProfileTitle(profile) }}
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <evaluation-synthese-list mdph="evaluationDashboardCtrl.mdph"/>
 </div>

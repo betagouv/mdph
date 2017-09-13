@@ -11,8 +11,11 @@
   </ul>
 
   <ul ng-if="evaluationCtrl.isLoggedIn()">
+    <li ng-if="evaluationCtrl.shouldShowDashboardLink()">
+      <a ui-sref="dashboard.workflow({codeDepartement: evaluationCtrl.getCurrentMdphZipcode(), zipcode: evaluationCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>
+    </li>
     <li>
-      <a ui-sref="evaluation.dashboard" title="Tableau de bord">outil de soutien</a>
+      <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
     </li>
     <li>
       <a ui-sref="evaluation.logout" id="logout">Déconnexion</a>

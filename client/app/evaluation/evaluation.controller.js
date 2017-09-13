@@ -5,5 +5,8 @@ angular.module('impactApp')
     this.getCurrentUser = Auth.getCurrentUser;
     this.isLoggedIn = Auth.isLoggedIn;
     this.logout = Auth.logout;
+
+    this.shouldShowDashboardLink =  () => this.getCurrentUser().mdph.enabled;
+    this.getCurrentMdphZipcode =  () => this.getCurrentUser().mdph.zipcode;
   });
 

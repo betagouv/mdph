@@ -1,3 +1,7 @@
+<div class="text-container" ng-if="profilCtrl.currentMdph.opened == false">
+  <div class="alert alert-danger text-center">La MDPH {{profilCtrl.currentMdph.name}} n'accepte pas les demandes de ce téléservice, il n'est donc pas possible de lui transmettre de demande par l'intermediaire de ce téléservice.</div>
+</div>
+
 <div id="profile" class="profile-container">
   <div class="profile-card profile-card-vertical">
     <div class="profile-card-header">
@@ -14,7 +18,7 @@
     <div class="profile-card-content" ng-if="profilCtrl.currentRequest.status === 'en_attente_usager'">
       <div ui-view class="container-fluid">
         <h2>Votre MDPH vous demande de corriger les documents associés à votre demande</h2>
-
+        <p>Pour tout autre modification, veuillez contacter directement votre MDPH (vous trouverez les informations de contact en bas de page)</p>
         <ul class="profile-card-row">
           <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion()" options="profilCtrl.options.documents" /></li>
         </ul>
@@ -76,7 +80,7 @@
           </ul>
         </section>
 
-        <div class="button-container">
+        <div class="button-container" ng-if="profilCtrl.currentMdph.opened">
           <button type="button" ng-click="profilCtrl.sendRequest()" class="btn hero-button btn-primary">
             Envoyer la demande
           </button>

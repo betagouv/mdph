@@ -8,6 +8,7 @@ var MdphSchema = new Schema({
   logo:         { type: String },
   enabled:      { type: Boolean },
   opened:       { type: Boolean },
+  evaluate:     { type: Boolean },
   likes:        [{ type: String }],
   outsideLink: {
     href:       { type: String },

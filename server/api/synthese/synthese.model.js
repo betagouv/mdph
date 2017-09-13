@@ -5,7 +5,10 @@ import mongoose from 'mongoose';
 var Schema = mongoose.Schema;
 
 var SyntheseSchema = new Schema({
-  profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
+  firstname:      String,
+  lastname:       String,
+  birthdate:      String,
+  mdph:           String,
   geva:           Schema.Types.Mixed,
   createdAt:      Date,
   updatedAt:      Date
