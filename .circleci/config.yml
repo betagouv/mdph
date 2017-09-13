@@ -5,7 +5,7 @@ defaults: &defaults
   docker:
     - image: mdphbeta/node-mdph:1.0.4
     - image: circleci/mongo:3.4.2
-    - image: selenium/standalone-chrome:latest
+    - image: selenium/standalone-chrome:3.4.0
 
 restore_cache: &restore_cache
   restore_cache:
