@@ -194,15 +194,13 @@ fieldset {
 @import 'cgu/cgu.scss';
 @import 'dashboard/dashboard.scss';
 @import 'dashboard/documents/documents.scss';
-@import 'dashboard/evaluation/detail/detail.scss';
-@import 'dashboard/evaluation/detail/issues/issue.scss';
-@import 'dashboard/evaluation/evaluation.scss';
 @import 'dashboard/list.scss';
 @import 'dashboard/users/partenaires/edit.scss';
 @import 'dashboard/workflow/detail/detail.scss';
 @import 'dashboard/workflow/detail/documents/documents.scss';
 @import 'dashboard/workflow/detail/pre_evaluation/pre_evaluation.scss';
 @import 'departement/departement.scss';
+@import 'evaluation/dashboard/evaluation.dashboard.scss';
 @import 'evaluation/detail/evaluation.detail.scss';
 @import 'evaluation/evaluation.scss';
 @import 'evaluation/issues/evaluation.issues.scss';
