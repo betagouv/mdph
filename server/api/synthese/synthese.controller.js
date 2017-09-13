@@ -24,7 +24,7 @@ function handleError(req, res) {
 
 function saveUpdates(req) {
   return new Promise(function(resolve, reject) {
-    const filteredUpdates = _.pick(req.body, 'geva');
+    const filteredUpdates = _.omit(req.body, '_id', 'mdph', '__v', 'createdAt');
 
     req.synthese.set(filteredUpdates).save(function(err, updated) {
       if (err) {
@@ -50,44 +50,24 @@ function sortSyntheseByDate(syntheses) {
   });
 }
 
-function createSyntheseIfNoneFound(req) {
-  return (syntheses) => {
-    return new Promise((resolve) => {
-      if (syntheses && syntheses.length > 0) {
-        return resolve(syntheses);
-      } else {
-        Synthese
-          .create({
-            profile: req.profile._id
-          })
-          .then(created => {
-            let createdObj = created.toObject();
-            syntheses.push(createdObj);
-            resolve(syntheses);
-          });
-      }
-    });
-  };
-}
-
-function tagCurrentSynthese(syntheses) {
-  syntheses[syntheses.length - 1].current = true;
-  return syntheses;
-}
-
 export function show(req, res) {
   respondWithResult(res)(req.synthese);
 }
 
-export function showAllByProfile(req, res) {
+export function showAllByMdph(req, res) {
   Synthese
-    .find({profile: req.profile})
+    .find({mdph: req.query.mdphId})
     .lean()
     .exec()
-    .then(createSyntheseIfNoneFound(req))
     .then(sortSyntheseByDate)
-    .then(tagCurrentSynthese)
     .then(respondWithResult(res, 200))
+    .catch(handleError(req, res));
+}
+
+export function create(req, res) {
+  Synthese
+    .create(req.body)
+    .then(respondWithResult(res, 201))
     .catch(handleError(req, res));
 }
 

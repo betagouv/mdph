@@ -1,0 +1,48 @@
+.synthese-add-empty-row {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  li {
+    display: flex;
+    margin: 5px;
+    background: #fff;
+    color: $flat-ui-blue;
+    border-radius: 2px;
+    box-shadow: 0 1.5px 3px 0 rgba(0,0,0,.15), 0 1.5px 3px 0 rgba(0,0,0,.15);
+
+    a {
+      padding: 10px 15px;
+      font-size: 1.2em;
+
+      &:before {
+        content: "\f007";
+        font-family: 'FontAwesome';
+        display: inline-block;
+        color: $flat-ui-blue;
+        width: 1.2em;
+        margin-right: 4px;
+      }
+    }
+  }
+
+  li.new {
+    background-color: $flat-ui-blue;
+
+    button {
+      padding: 10px 15px;
+      font-size: 1.2em;
+      color: #fff;
+
+      &:before {
+        content: "\f055";
+        font-family: 'FontAwesome';
+        display: inline-block;
+        width: 1.2em;
+        margin-right: 4px;
+      }
+    }
+  }
+}
