@@ -70,6 +70,22 @@ function canAccessProfile() {
     });
 }
 
+function isEvaluateur() {
+  return compose()
+    .use(isAuthenticated())
+    .use(function(req, res, next) {
+      if (meetsRequirements(req.user.role, 'admin')) {
+        return next();
+      }
+
+      if (meetsRequirements(req.user.role, 'adminMdph')) {
+        return next();
+      }
+
+      return res.sendStatus(403);
+    });
+}
+
 function isAgent() {
   return compose()
     .use(isAuthenticated())
@@ -165,6 +181,7 @@ function setTokenCookie(req, res) {
 
 exports.canAccessProfileList = canAccessProfileList;
 exports.canAccessProfile = canAccessProfile;
+exports.isEvaluateur = isEvaluateur;
 exports.isAgent = isAgent;
 exports.isAgentOrOwner = isAgentOrOwner;
 exports.isAuthenticated = isAuthenticated;

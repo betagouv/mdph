@@ -10,6 +10,8 @@ angular.module('impactApp')
 
     this.shouldShowDashboard = () => $state.includes('dashboard');
 
+    this.showEvaluationDashboard = () => this.currentMdph.evaluate;
+
     this.shouldShowLogin = () => this.currentMdph.opened;
 
     if (currentMdph) {

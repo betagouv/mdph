@@ -4,7 +4,7 @@ angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('evaluation.detail', {
-        url: '/:profileId/:syntheseId/:sectionId',
+        url: '/:syntheseId/:sectionId',
         authenticate: true,
         views: {
           '': {
@@ -24,28 +24,12 @@ angular.module('impactApp')
                 return $stateParams.syntheseId;
               },
 
-              profileId: function($stateParams) {
-                return $stateParams.profileId;
-              },
-
-              listSyntheses: function(SyntheseResource, currentUser, profileId) {
-                return SyntheseResource.query({zipcode: currentUser.mdph.zipcode, profileId: profileId}).$promise;
-              },
-
               sectionId: function($stateParams) {
                 return $stateParams.sectionId;
               },
 
-              currentSynthese: function(SyntheseResource, currentUser, profileId, listSyntheses, syntheseId) {
-                let currentSynthese;
-
-                if (syntheseId === 'current') {
-                  currentSynthese = _.find(listSyntheses, {current: true});
-                } else {
-                  currentSynthese = _.find(listSyntheses, {_id: syntheseId});
-                }
-
-                return SyntheseResource.get({zipcode: currentUser.mdph.zipcode, profileId: profileId, controller: 'syntheses', controllerId: currentSynthese._id}).$promise;
+              currentSynthese: function(SyntheseResource, syntheseId) {
+                return SyntheseResource.get({id: syntheseId}).$promise;
               },
 
               section: function($stateParams, sections, model, sectionId) {
