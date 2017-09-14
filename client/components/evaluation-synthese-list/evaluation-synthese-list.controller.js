@@ -7,7 +7,7 @@ angular.module('impactApp').controller('EvaluationSyntheseListCtrl', function(Sy
   this.getSyntheseTitle = (synthese) => {
     if (typeof synthese.firstname === 'undefined' && typeof synthese.lastname === 'undefined') {
 
-      return 'Inconnu';
+      return `Synthese N° ${synthese._id}`;
     }
 
     return `${typeof synthese.firstname === 'undefined' ? '' : synthese.firstname} ${ typeof synthese.lastname === 'undefined' ? '' : synthese.lastname}`;
