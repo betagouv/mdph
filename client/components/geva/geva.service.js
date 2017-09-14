@@ -5,6 +5,11 @@ angular.module('impactApp')
     return {
       getSections: function() {
         return [{
+          id: 'profil',
+          label: 'Éléments du profil',
+          libelle: 'éléments du profil'
+        },
+        {
           id: 'environnement',
           label: 'Éléments environnementaux',
           libelle: 'éléments environnementaux'
