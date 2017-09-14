@@ -35,9 +35,9 @@ angular.module('impactApp', [
       $window.scrollTo(0, 0);
 
       if (toState.data && toState.data.title) {
-        $window.document.title = toState.data.title + ' | mdph.beta.gouv.fr';
+        $window.document.title = toState.data.title + ' | MDPH en ligne';
       } else {
-        $window.document.title = 'mdph.beta.gouv.fr';
+        $window.document.title = 'MDPH en ligne';
       }
 
       if ($window._paq) {

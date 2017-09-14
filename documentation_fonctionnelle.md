@@ -273,7 +273,7 @@ L'administrateur du produit :
 
 ### Pour l'administrateur
 
-- L'administrateur peut suivre les statistiques de demandes sur mdph.beta.gouv.fr/stats
+- L'administrateur peut suivre les statistiques de demandes sur https://mdphenligne.cnsa.fr/stats
 
 **_Expérimental_** 
 - L'administrateur peut créer une nouvelle MDPH.
