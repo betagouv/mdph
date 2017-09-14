@@ -9,7 +9,7 @@ module.exports = {
 
   // Base URL
   baseURL:  process.env.BASE_URL ||
-            'https://mdph.beta.gouv.fr',
+            'https://mdphenligne.cnsa.fr/',
 
   // Server hist and port
   port:     process.env.PORT ||
