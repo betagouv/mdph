@@ -22,7 +22,7 @@
   "deploy" : {
     "production" : {
       "user" : "deploy",
-      "host" : "mdph.infra.beta.gouv.fr",
+      "host" : "51.255.196.250",
       "ref"  : "origin/master",
       "repo" : "git@github.com:sgmap/mdph.git",
       "path" : "/home/deploy/www",
