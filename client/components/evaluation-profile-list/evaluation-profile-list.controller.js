@@ -5,6 +5,11 @@ angular.module('impactApp').controller('EvaluationProfileListCtrl', function(Mdp
   this.profiles = MdphResource.queryBeneficiaires({zipcode: this.mdph.zipcode});
 
   this.getProfileTitle = (profile) => {
-    return `${profile.identites.beneficiaire.prenom} ${profile.identites.beneficiaire.nom}`;
+    if (profile && profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.prenom && profile.identites.beneficiaire.nom) {
+      return `${profile.identites.beneficiaire.prenom} ${profile.identites.beneficiaire.nom}`;
+
+    }
+
+    return `Profile N° ${profile._id}`;
   };
 });
