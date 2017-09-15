@@ -12,9 +12,6 @@ var Beneficiaire = function() {
   form.radio_sexe = form.element(by.id('sexe-m'));
   form.radio_nat = form.element(by.id('nationalite_francaise'));
   form.birthday = form.element(by.id('date-de-naissance'));
-  form.birthTown = form.element(by.id('commune_naissance'));
-  form.birthDepartment = form.element(by.id('departement_naissance'));
-  form.birthCountry = form.element(by.id('pays_naissance'));
   form.address = form.element(by.id('address'));
   form.code_postal = form.element(by.id('code_postal'));
   form.localite = form.element(by.id('localite'));
@@ -27,19 +24,16 @@ var Beneficiaire = function() {
   this.submit = function() {
     form.name.sendKeys('test');
     form.surname.sendKeys('test');
-     form.email.sendKeys('test@mail.com');
-    form.bday.sendKeys('01011900');
-    form.birthTown.sendKeys('007');
-    form.birthDepartment.sendKeys('75');
-    form.birthCountry.sendKeys('FRANCE');
+    form.radio_sexe.click();
+    form.radio_nat.click();
+    form.birthday.sendKeys('01011900');
     form.address.sendKeys('1, rue du test');
     form.code_postal.sendKeys('75001');
     form.localite.sendKeys('Paris');
-    form.numeroSecu.sendKeys('168089200203980');
-
+    form.email.sendKeys('test@mail.com');
     form.cpam.click();
-    form.radio_sexe.click();
-    form.radio_nat.click();
+    form.numeroSecu.sendKeys('');
+    form.numeroSecu.sendKeys('168089200203980');
 
     return form.submit.click();
   };
