@@ -4,18 +4,18 @@
     <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
   </a>
 
-  <ul ng-if="!evaluationCtrl.isLoggedIn()">
+  <ul ng-if="!adminCtrl.isLoggedIn()">
     <li>
-      <a class="icon login" id="login" ui-sref="evaluation.login" title="Connexion">Connexion</a>
+      <a class="icon login" id="login" ui-sref="admin.login" title="Connexion">Connexion</a>
     </li>
   </ul>
 
-  <ul ng-if="evaluationCtrl.isLoggedIn()">
-    <li ng-if="evaluationCtrl.showAdminLink()">
+  <ul ng-if="adminCtrl.isLoggedIn()">
+    <li>
       <a ui-sref="admin.dashboard" title="Admin">Admin</a>
     </li>
-    <li ng-if="evaluationCtrl.showDashboardLink()">
-      <a ui-sref="dashboard.workflow({codeDepartement: evaluationCtrl.getCurrentMdphZipcode(), zipcode: evaluationCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>
+    <li>
+      <a ui-sref="dashboard.workflow({codeDepartement: adminCtrl.getCurrentMdphZipcode(), zipcode: adminCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>
     </li>
     <li>
       <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
