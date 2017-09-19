@@ -1,40 +1,47 @@
-<div id="evaluation">
+<div id="admin">
   <nav role="navigation">
-  <a ui-sref="evaluation.dashboard">
-    <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
-  </a>
+    <a ui-sref="admin.main">
+      <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
+    </a>
 
-  <ul ng-if="!adminCtrl.isLoggedIn()">
-    <li>
-      <a class="icon login" id="login" ui-sref="admin.login" title="Connexion">Connexion</a>
-    </li>
-  </ul>
+    <ul ng-if="!adminCtrl.isLoggedIn()">
+      <li>
+        <a class="icon login" id="login" ui-sref="admin.login" title="Connexion">Connexion</a>
+      </li>
+    </ul>
 
-  <ul ng-if="adminCtrl.isLoggedIn()">
-    <li>
-      <a ui-sref="admin.dashboard" title="Admin">Admin</a>
-    </li>
-    <li>
-      <a ui-sref="dashboard.workflow({codeDepartement: adminCtrl.getCurrentMdphZipcode(), zipcode: adminCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>
-    </li>
-    <li>
-      <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
-    </li>
-    <li>
-      <a ui-sref="evaluation.logout" id="logout">Déconnexion</a>
-    </li>
-  </ul>
-</nav>
+    <ul ng-if="adminCtrl.isLoggedIn()">
+      <li>
+        <a ui-sref="admin.dashboard" title="Admin">Admin</a>
+      </li>
+      <li>
+        <a ui-sref="dashboard.workflow({codeDepartement: adminCtrl.getCurrentMdphZipcode(), zipcode: adminCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>
+      </li>
+      <li>
+        <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
+      </li>
+      <li>
+        <a ui-sref="evaluation.logout" id="logout">Déconnexion</a>
+      </li>
+    </ul>
+  </nav>
 
-<div class="main-content">
-  <main>
-    <div ui-view></div>
-  </main>
-</div>
-
-<footer>
-  <div class="links">
-    <a ui-sref="suivi">Suivi d’audience et vie privée</a>
+  <div class="main-menu">
+    <ul>
+      <li><a class="icon" ui-sref-active="active" ui-sref="admin.mdph">Administer une MDPH</a></li>
+      <li><a class="icon" ui-sref-active="active" ui-sref="admin.activation">Activer un compte</a></li>
+    </ul>
   </div>
-</footer>
+
+  <div class="main-content">
+    <main>
+      <div ui-view></div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="links">
+      <a ui-sref="suivi">Suivi d’audience et vie privée</a>
+    </div>
+  </footer>
 </div>

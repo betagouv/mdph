@@ -18,4 +18,14 @@ angular.module('impactApp')
           title: 'Admin'
         }
       });
+  })
+  .config(function($stateProvider) {
+    $stateProvider
+      .state('admin.main', {
+        url: '',
+        parent: 'admin',
+        authenticate: true,
+        template: '<div><ui-view /></div>',
+        redirectTo: 'admin.mdph'
+      });
   });

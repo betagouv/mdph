@@ -1,0 +1,106 @@
+<div class="list-mdph">
+  <table class="table table-striped table-condensed table-hover">
+    <thead>
+        <tr>
+            <th class="zipcode">Code département &nbsp;<a ng-click="sort_by('zipcode')"><i class="icon-sort"></i></a></th>
+            <th class="name">Dénomination &nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+            <th class="enabled">Est en activité &nbsp;<a ng-click="sort_by('enabled')"><i class="icon-sort"></i></a></th>
+            <th class="opened">Est ouverte &nbsp;<a ng-click="sort_by('opened')"><i class="icon-sort"></i></a></th>
+            <th class="evaluate">Utilise l'outil de soutien &nbsp;<a ng-click="sort_by('evaluate')"><i class="icon-sort"></i></a></th>
+        </tr>
+    </thead>
+    <tfoot align="center">
+      <tr ng-if="adminMdphCtrl.itemsPerPage <= adminMdphCtrl.totalItems">
+        <td colspan="5">
+          <pagination total-items="adminMdphCtrl.totalItems"
+            ng-model="adminMdphCtrl.currentPage"
+            ng-change="adminMdphCtrl.pageChanged()"
+            class="pagination-sm"
+            items-per-page="adminMdphCtrl.itemsPerPage">
+          </pagination>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody>
+        <tr ng-repeat="mdph in adminMdphCtrl.mdphs.slice(((adminMdphCtrl.currentPage-1)*adminMdphCtrl.itemsPerPage), ((adminMdphCtrl.currentPage)*adminMdphCtrl.itemsPerPage))"
+          ng-click="adminMdphCtrl.selectItem(mdph)">
+          <td>{{mdph.zipcode}}</td>
+          <td>{{mdph.name}}</td>
+          <td><img src="assets/images/yes.png" ng-if="mdph.enabled"/><img src="assets/images/no.png" ng-if="!mdph.enabled"/></td>
+          <td><img src="assets/images/yes.png" ng-if="mdph.opened"/><img src="assets/images/no.png" ng-if="!mdph.opened"/></td>
+          <td><img src="assets/images/yes.png" ng-if="mdph.evaluate"/><img src="assets/images/no.png" ng-if="!mdph.evaluate"/></td>
+        </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+<hr/>
+
+<div class="detail-mdph">
+  <form id="mdphDetailFormId" aria-labelledby="mdphDetail" name="mdphDetailForm" ng-submit="adminMdphCtrl.submit(mdphDetailForm)" novalidate>
+
+    <input id="_id" type="hidden" name="_id" class="form-control" ng-model="mdphDetail._id" required/>
+
+    <div class="form-group required" ng-class="{'has-error': mdphDetailForm.zipcode.$invalid && mdphDetailForm.$submitted}">
+      <label for="zipcode" class="control-label">Code département</label>
+      <input id="zipcode" type="text" name="zipcode" class="form-control" ng-model="mdphDetail.zipcode" ng-minlength="1" required/>
+      <div ng-messages="mdphDetailForm.zipcode.$error" ng-if="mdphDetailForm.$submitted">
+        <p class="help-block" ng-message='required'>Le code departementest obligatoire.</p>
+        <p class="help-block" ng-message='minlength'>La longueur du code departement est 2 ou 3.</p>
+      </div>
+    </div>
+
+    <div class="form-group required" ng-class="{'has-error': mdphDetailForm.name.$invalid && mdphDetailForm.$submitted}">
+      <label for="name" class="control-label">Dénomination</label>
+      <input id="name" type="text" name="name" class="form-control" ng-model="mdphDetail.name" ng-minlength="3" required/>
+      <div ng-messages="mdphDetailForm.zipcode.$error" ng-if="mdphDetailForm.$submitted">
+        <p class="help-block" ng-message='required'>Le nom de la MDPH est obligatoire.</p>
+        <p class="help-block" ng-message='minlength'>La longueur minimal du nom est 3.</p>
+      </div>
+    </div>
+
+    <div class="form-group required" ng-class="{'has-error': mdphDetailForm.logo.$invalid && mdphDetailForm.$submitted}">
+      <label for="logo" class="control-label">Logo</label>
+      <input id="logo" type="file" name="logo" class="form-control-file" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" required/>
+      <img ng-show="mdphDetailForm.logo.$valid" ngf-thumbnail="mdphDetail.logo || 'assets/images/logo_marianne.png'" class="thumb" width="150" height="90"/>
+      <div ng-messages="mdphDetailForm.logo.$error" ng-if="mdphDetailForm.$submitted">
+        <p class="help-block" ng-message='required'>Le logo est obligatoire.</p>
+        <p class="help-block" ng-message='maxSize'>Le logo est trop volumineux</p>
+      </div>
+    </div>
+
+    <div class="form-group required" ng-class="{'has-error': mdphDetailForm.photo.$invalid && mdphDetailForm.$submitted}">
+      <label for="photo" class="control-label">Photo d'accueil</label>
+      <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" required/>
+      <img ng-show="mdphDetailForm.photo.$valid" ngf-thumbnail="mdphDetail.photo" class="thumb" width="1200" height="400"/>
+      <div ng-messages="mdphDetailForm.photo.$error" ng-if="mdphDetailForm.$submitted">
+        <p class="help-block" ng-message='required'>La photo est obligatoire.</p>
+        <p class="help-block" ng-message='maxSize'>La photo est trop volumineuse</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" ng-model="mdphDetail.enabled"/> En activité
+        </label>
+      </div>
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" ng-model="mdphDetail.opened"/> Ouverte
+        </label>
+      </div>
+      <div class="checkbox">
+        <label class="control-label">
+          <input type="checkbox" ng-model="mdphDetail.evaluate"/> Utilise l'outil de soutien
+        </label>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button id="submitId" type="submit" name="save" alt="Enregistrer" class="btn btn-success">Enregistrer</button>
+    </div>
+  </form>
+</div>
