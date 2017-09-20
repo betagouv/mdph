@@ -6,8 +6,22 @@ angular.module('impactApp')
       zipcode: '@zipcode'
     },
     {
+      save: {
+        method: 'POST',
+        params: {
+          zipcode:undefined
+        }
+      },
+
       update: {
         method: 'PUT'
+      },
+
+      updateRequestExportFormat: {
+        method: 'PUT',
+        params: {
+          controller:'requestExportFormat'
+        }
       },
 
       queryUsers: {

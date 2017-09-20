@@ -5,7 +5,7 @@ import mongoose, {Schema} from 'mongoose';
 var MdphSchema = new Schema({
   zipcode:      { type: String, unique: true },
   name:         { type: String },
-  logo:         { type: String },
+  logo:         { type: Schema.Types.ObjectId},
   enabled:      { type: Boolean },
   opened:       { type: Boolean },
   evaluate:     { type: Boolean },

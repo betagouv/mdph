@@ -1,6 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
+import stream from 'stream';
 import async from 'async';
 import path from 'path';
 import Mdph from './mdph.model';
@@ -10,6 +11,7 @@ import Secteur from '../secteur/secteur.model';
 import Request from '../request/request.model';
 import Partenaire from '../partenaire/partenaire.model';
 import DocumentCategoryCtrl from '../document-category/document-category.controller';
+import gridfs from '../../components/gridfs';
 
 // Get all users linked to a single mdph
 export function showUsers(req, res) {
@@ -311,6 +313,19 @@ export function index(req, res) {
   Mdph.find(req.query, '-likes').sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
+    mdphs.forEach(function(mdph) {
+      let gfs = gridfs();
+      gfs.findOne({_id: mdph.logo}, function(err, file) {
+        if (err) {
+          return reject(err);
+        }
+
+        mdph.logo = file;
+
+        return mdph;
+      });
+    });
+
     return res.json(mdphs);
   });
 }
@@ -320,7 +335,16 @@ export function show(req, res) {
   Mdph.findOne({zipcode: req.params.id}, '-likes', function(err, mdph) {
     if (err) { return handleError(req, res, err); }
 
-    return res.json(mdph);
+    let gfs = gridfs();
+    gfs.findOne({_id: mdph.logo}, function(err, file) {
+      if (err) {
+        return reject(err);
+      }
+
+      mdph.logo = file;
+
+      return res.json(mdph);
+    });
   });
 }
 
@@ -335,11 +359,26 @@ export function create(req, res) {
 
 // Updates an existing mdph in the DB.
 export function update(req, res) {
-  req.mdph.requestExportFormat = req.body.requestExportFormat;
-  req.mdph.save(function(err, saved) {
+    Mdph.findOne({ zipcode: req.body.zipcode }, function(err, mdph) {
     if (err) { return handleError(req, res, err); }
 
-    return res.status(200).json(saved);
+    if (!mdph) { return res.sendStatus(404); }
+
+    mdph
+      .set('name', req.body.name)
+      .set('logo', req.body.logo)
+      .set('enabled', req.body.enabled)
+      .set('opened', req.body.opened)
+      .set('evaluate', req.body.evaluate)
+      .set('likes', req.body.likes)
+      .set('outsideLink', req.body.outsideLink)
+      .set('locations', req.body.locations)
+      .set('requestExportFormat', req.body.requestExportFormat)
+      .save(function(err) {
+        if (err) { return handleError(req, res, err); }
+
+        return res.status(200).json(mdph);
+      });
   });
 }
 
@@ -357,6 +396,15 @@ export function destroy(req, res) {
 
       return res.sendStatus(204);
     });
+  });
+}
+
+export function updateRequestExportFormat(req, res) {
+  req.mdph.requestExportFormat = req.body.requestExportFormat;
+  req.mdph.save(function(err, saved) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.status(200).json(saved);
   });
 }
 
@@ -382,4 +430,63 @@ export function list(req, res) {
 function handleError(req, res, err) {
   req.log.error(err);
   return res.status(500).send(err);
+}
+
+export function addLogo(req, res) {
+
+  console.log("update logo of mdph " + req.params.id);
+
+  var gfs = gridfs();
+  var file = req.file;
+  var logger = req.log;
+
+  var writeStream = gfs.createWriteStream({
+    filename: file.originalname,
+    mimetype: file.mimetype
+  });
+
+  var bufferStream = new stream.PassThrough();
+  bufferStream.end(file.buffer);
+  bufferStream.pipe(writeStream);
+
+  writeStream.on('close', function(file) {
+    Mdph.findOne({
+      zipcode: req.params.id
+    }, function(err, mdph) {
+      if (err) {
+        req.log.error(err);
+        return res.status(500).send(err);
+      }
+
+      if (!mdph) {
+        return res.sendStatus(404);
+      }
+
+      if (mdph.logo) {
+        // remove existing file, only one allowed
+        gfs.remove({_id: mdph.logo}, function(err) {
+          if (err) {
+            req.log.error(err);
+          }
+
+          logger.info('Removed gfs file "' + mdph.logo + '" for mdph "' + mdph._id + '"', mdph);
+        });
+      }
+
+      console.log("saved file :" + JSON.stringify(file));
+
+      mdph
+        .set('logo', file._id)
+        .save(function(err) {
+          if (err) {
+            req.log.error(err);
+            return res.status(500).send(err);
+          }
+
+          return res.json(file);
+        });
+
+      console.log("saved mdph :" + JSON.stringify(mdph));
+    });
+  });
 }

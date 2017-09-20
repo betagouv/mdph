@@ -41,8 +41,6 @@
 <div class="detail-mdph">
   <form id="mdphDetailFormId" aria-labelledby="mdphDetail" name="mdphDetailForm" ng-submit="adminMdphCtrl.submit(mdphDetailForm)" novalidate>
 
-    <input id="_id" type="hidden" name="_id" class="form-control" ng-model="mdphDetail._id" required/>
-
     <div class="form-group required" ng-class="{'has-error': mdphDetailForm.zipcode.$invalid && mdphDetailForm.$submitted}">
       <label for="zipcode" class="control-label">Code département</label>
       <input id="zipcode" type="text" name="zipcode" class="form-control" ng-model="mdphDetail.zipcode" ng-minlength="1" required/>

@@ -42,7 +42,7 @@ angular.module('impactApp')
     }
 
     $scope.updateMdph = () => {
-      currentMdph.$update();
+      currentMdph.$updateRequestExportFormat();
     };
 
     $scope.treeOptions = {
