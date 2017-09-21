@@ -317,7 +317,7 @@ export function index(req, res) {
       let gfs = gridfs();
       gfs.findOne({_id: mdph.logo}, function(err, file) {
         if (err) {
-          return reject(err);
+          return handleError(req, res, err);
         }
 
         mdph.logo = file;
@@ -338,7 +338,7 @@ export function show(req, res) {
     let gfs = gridfs();
     gfs.findOne({_id: mdph.logo}, function(err, file) {
       if (err) {
-        return reject(err);
+        return handleError(req, res, err);
       }
 
       mdph.logo = file;

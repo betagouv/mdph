@@ -7,7 +7,7 @@ angular.module('impactApp')
     this.logout = Auth.logout;
 
     this.getCurrentMdphZipcode =  function() {
-      if(this.getCurrentUser().mdph){
+      if (this.getCurrentUser().mdph) {
         return this.getCurrentUser().mdph.zipcode;
       }
     };
