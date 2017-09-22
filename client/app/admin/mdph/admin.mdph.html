@@ -59,22 +59,22 @@
       </div>
     </div>
 
-    <div class="form-group required" ng-class="{'has-error': mdphDetailForm.logo.$invalid && mdphDetailForm.$submitted}">
+    <div class="form-group" ng-class="{'has-error': mdphDetailForm.logo.$invalid && mdphDetailForm.$submitted}">
       <label for="logo" class="control-label">Logo</label>
-      <input id="logo" type="file" name="logo" class="form-control-file" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" required/>
-      <img ng-show="mdphDetailForm.logo.$valid" ngf-thumbnail="mdphDetail.logo || 'assets/images/logo_marianne.png'" class="thumb" width="150" height="90"/>
+      <img ng-show="mdphDetail.logo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/logo" class="thumb" width="150" height="90"/>
+      <img ng-show="mdphDetailForm.logo.$valid" ngf-src="mdphDetail.logo" class="thumb" width="150" height="90"/>
+      <input id="logo" type="file" name="logo" class="form-control-file" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB"/>
       <div ng-messages="mdphDetailForm.logo.$error" ng-if="mdphDetailForm.$submitted">
-        <p class="help-block" ng-message='required'>Le logo est obligatoire.</p>
         <p class="help-block" ng-message='maxSize'>Le logo est trop volumineux</p>
       </div>
     </div>
 
-    <div class="form-group required" ng-class="{'has-error': mdphDetailForm.photo.$invalid && mdphDetailForm.$submitted}">
+    <div class="form-group" ng-class="{'has-error': mdphDetailForm.photo.$invalid && mdphDetailForm.$submitted}">
       <label for="photo" class="control-label">Photo d'accueil</label>
-      <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" required/>
+      <img ng-show="mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="1200" height="400"/>
       <img ng-show="mdphDetailForm.photo.$valid" ngf-thumbnail="mdphDetail.photo" class="thumb" width="1200" height="400"/>
+      <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB"/>
       <div ng-messages="mdphDetailForm.photo.$error" ng-if="mdphDetailForm.$submitted">
-        <p class="help-block" ng-message='required'>La photo est obligatoire.</p>
         <p class="help-block" ng-message='maxSize'>La photo est trop volumineuse</p>
       </div>
     </div>

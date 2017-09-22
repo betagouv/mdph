@@ -313,19 +313,6 @@ export function index(req, res) {
   Mdph.find(req.query, '-likes').sort('zipcode').exec(function(err, mdphs) {
     if (err) { return handleError(req, res, err); }
 
-    mdphs.forEach(function(mdph) {
-      let gfs = gridfs();
-      gfs.findOne({_id: mdph.logo}, function(err, file) {
-        if (err) {
-          return handleError(req, res, err);
-        }
-
-        mdph.logo = file;
-
-        return mdph;
-      });
-    });
-
     return res.json(mdphs);
   });
 }
@@ -335,16 +322,7 @@ export function show(req, res) {
   Mdph.findOne({zipcode: req.params.id}, '-likes', function(err, mdph) {
     if (err) { return handleError(req, res, err); }
 
-    let gfs = gridfs();
-    gfs.findOne({_id: mdph.logo}, function(err, file) {
-      if (err) {
-        return handleError(req, res, err);
-      }
-
-      mdph.logo = file;
-
-      return res.json(mdph);
-    });
+    return res.json(mdph);
   });
 }
 
@@ -434,8 +412,6 @@ function handleError(req, res, err) {
 
 export function addLogo(req, res) {
 
-  console.log("update logo of mdph " + req.params.id);
-
   var gfs = gridfs();
   var file = req.file;
   var logger = req.log;
@@ -468,12 +444,8 @@ export function addLogo(req, res) {
           if (err) {
             req.log.error(err);
           }
-
-          logger.info('Removed gfs file "' + mdph.logo + '" for mdph "' + mdph._id + '"', mdph);
         });
       }
-
-      console.log("saved file :" + JSON.stringify(file));
 
       mdph
         .set('logo', file._id)
@@ -485,8 +457,23 @@ export function addLogo(req, res) {
 
           return res.json(file);
         });
-
-      console.log("saved mdph :" + JSON.stringify(mdph));
     });
+  });
+}
+
+export function getLogo(req, res) {
+  Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+    if (err) { return handleError(req, res, err); }
+
+    if (!mdph) { return res.sendStatus(404); }
+
+    if (mdph.logo) {
+      var gfs = gridfs();
+      var readStream = gfs.createReadStream({_id: mdph.logo});
+
+      return readStream.pipe(res);
+    } else {
+      return res.sendStatus(404);
+    }
   });
 }

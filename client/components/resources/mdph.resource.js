@@ -121,6 +121,22 @@ angular.module('impactApp')
           controller:'categories',
           controllerid: 'unclassifiedCategory'
         }
+      },
+
+      getLogo: {
+        method: 'GET',
+        params: {
+          controller:'logo'
+        },
+        headers: {
+          accept: 'image/jpeg'
+        },
+        responseType: 'arraybuffer',
+        cache: false,
+        transformResponse: function(data, headersGetter) {
+          console.log('data :' + JSON.stringify(data));
+          return { data: data };
+        }
       }
     });
   });

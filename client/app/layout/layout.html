@@ -1,6 +1,7 @@
 <nav role="navigation">
   <a ng-show="layoutctrl.currentMdph" ui-sref="departement({codeDepartement: layoutctrl.currentMdph.zipcode})">
-    <img ng-src="assets/images/{{layoutctrl.currentMdph.logo}} || assets/images/logo_defaut.jpg" alt="Retourner à l'accueil" />
+    <img ng-show="layoutctrl.currentMdph.logo" ng-src="/api/mdphs/{{layoutctrl.currentMdph.zipcode}}/logo/" alt="Retourner à l'accueil" />
+    <img ng-hide="layoutctrl.currentMdph.logo" ng-src="assets/images/logo_defaut.jpg" alt="Retourner à l'accueil" />
   </a>
   <a ng-hide="layoutctrl.currentMdph" ui-sref="main">
     <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />

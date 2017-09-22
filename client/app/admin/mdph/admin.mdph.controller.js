@@ -17,9 +17,6 @@ angular.module('impactApp')
     };
 
     this.selectItem = function(item) {
-
-      console.log('item : ' + JSON.stringify(item));
-
       $scope.mdphDetail = item;
     };
 
@@ -27,8 +24,6 @@ angular.module('impactApp')
       if (form.$invalid) {
         form.showError = true;
       } else {
-
-        console.log('mdphDetail : ' + JSON.stringify($scope.mdphDetail));
 
         MdphResource.get({zipcode: $scope.mdphDetail.zipcode}).$promise.then(function(mdph) {
 

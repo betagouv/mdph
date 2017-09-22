@@ -39,7 +39,7 @@
 
 
   footer {
-    background-color: $light-blue;
+    background-color: $light-grey;
     color: white;
 
     .links {
@@ -57,7 +57,7 @@
     flex-direction: column;
     z-index: 1;
     padding-top: 2px;
-    background-color: $bg-blue;
+    background-color: $bg-grey;
 
     a {
       text-decoration: none;
@@ -71,18 +71,18 @@
     ul > li > a {
       padding: 5px;
       display: block;
-      color: white;
+      color: black;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
 
       &:hover {
         text-decoration: none;
-        background-color: $disabled-blue;
+        background-color: $lighter-grey;
       }
 
       &.active,
       &.active:hover {
-        background-color: $flat-ui-blue;
+        background-color: $medium-heavy-grey;
       }
     }
   }
