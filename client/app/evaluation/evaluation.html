@@ -12,7 +12,7 @@
 
   <ul ng-if="evaluationCtrl.isLoggedIn()">
     <li ng-if="evaluationCtrl.showAdminLink()">
-      <a ui-sref="admin.dashboard" title="Admin">Admin</a>
+      <a ui-sref="admin.main" title="Admin">Admin</a>
     </li>
     <li ng-if="evaluationCtrl.showDashboardLink()">
       <a ui-sref="dashboard.workflow({codeDepartement: evaluationCtrl.getCurrentMdphZipcode(), zipcode: evaluationCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AdminMdphCtrl', function($scope, $state, Upload, mdphs, MdphResource) {
+  .controller('AdminMdphCtrl', function($scope, $state, $location, $anchorScroll, Upload, mdphs, MdphResource) {
     this.mdphs = mdphs;
     this.totalItems = this.mdphs.length;
     this.itemsPerPage = 10;
@@ -18,6 +18,8 @@ angular.module('impactApp')
 
     this.selectItem = function(item) {
       $scope.mdphDetail = item;
+      $location.hash('detail-mdph');
+      $anchorScroll();
     };
 
     this.submit = function(form) {

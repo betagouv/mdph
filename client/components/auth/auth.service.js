@@ -79,6 +79,43 @@
       },
 
       /**
+       * Authenticate only Admin and save token
+       *
+       * @param  {Object}   user     - login admin info
+       * @param  {Function} callback - optional, function(error, user)
+       * @return {Promise}
+       */
+      loginAdmin({email, password}, callback) {
+        return $http.post('/auth/local', {
+          email: email,
+          password: password
+        })
+        .then(res => {
+          $cookies.put('token', res.data.token);
+          currentUser = User.get();
+          return currentUser.$promise;
+        })
+        .then(user => {
+          safeCb(callback)(null, user);
+          return user;
+        })
+        .then(user => {
+
+          if (Auth.hasRole(user, 'admin')) {
+            return user;
+          } else {
+            Auth.logout();
+            return $q.reject({data: {message: 'Vous n\'avez pas les droits nécessaires pour vous connecter'}});
+          }
+        })
+        .catch(err => {
+          Auth.logout();
+          safeCb(callback)(err.data);
+          return $q.reject(err.data);
+        });
+      },
+
+      /**
        * Delete access token and user info
        */
       logout() {

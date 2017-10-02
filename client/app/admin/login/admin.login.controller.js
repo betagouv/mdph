@@ -7,14 +7,15 @@ angular.module('impactApp')
 
     $scope.login = function(form) {
       if (form.$valid) {
-        Auth.loginAgent({
+        Auth.loginAdmin({
           email: form.email.$modelValue,
           password: form.password.$modelValue
         })
         .then(function(user) {
-          return $state.go('admin.main', {currentUser: user}, {reload: true});
+          return $state.go('admin.mdph', {currentUser: user}, {reload: true});
         })
         .catch(function(err) {
+          console.log("err: " + JSON.stringify(err));
           $scope.error = err.message;
           return $state.go('admin.login');
         });

@@ -15,7 +15,7 @@
 
   <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()">
     <li ng-if="layoutctrl.showAdminLink()">
-      <a ui-sref="admin.dashboard" title="Admin">Admin</a>
+      <a ui-sref="admin.main" title="Admin">Admin</a>
     </li>
     <li ng-if="layoutctrl.showDashboard()">
       <a ui-sref="dashboard.workflow({zipcode: layoutctrl.currentMdph.zipcode})" title="Tableau de bord">Tableau de bord</a>

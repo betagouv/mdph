@@ -12,7 +12,7 @@
 
     <ul ng-if="adminCtrl.isLoggedIn()">
       <li>
-        <a ui-sref="admin.dashboard" title="Admin">Admin</a>
+        <a ui-sref="admin.main" title="Admin">Admin</a>
       </li>
       <li>
         <a ui-sref="dashboard.workflow({codeDepartement: adminCtrl.getCurrentMdphZipcode(), zipcode: adminCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>
@@ -21,7 +21,7 @@
         <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
       </li>
       <li>
-        <a ui-sref="evaluation.logout" id="logout">Déconnexion</a>
+        <a ui-sref="admin.logout" id="logout">Déconnexion</a>
       </li>
     </ul>
   </nav>

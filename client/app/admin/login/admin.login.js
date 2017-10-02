@@ -6,7 +6,7 @@ angular.module('impactApp')
       .state('admin.login', {
         parent: 'admin',
         url: '/login',
-        templateUrl: 'app/admin/login/evaluation.login.html',
+        templateUrl: 'app/admin/login/admin.login.html',
         controller: 'AdminLoginCtrl',
         controllerAs: 'adminLoginCtrl',
         data: {
