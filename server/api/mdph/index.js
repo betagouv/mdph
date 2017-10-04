@@ -45,6 +45,8 @@ router.use('/:id/secteurs',  isAgent(), secteurRouter);
 
 router.post('/:id/logo', upload.single('file'), controller.addLogo);
 router.get('/:id/logo', controller.getLogo);
+router.post('/:id/photo', upload.single('file'), controller.addPhoto);
+router.get('/:id/photo', controller.getPhoto);
 
 router.param('id', function(req, res, next, id) {
   Mdph.findOne({zipcode: id}, function(err, mdph) {

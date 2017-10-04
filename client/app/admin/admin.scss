@@ -28,15 +28,14 @@
   }
 
   main {
+    display: flex;
+  }
+
+  .main-content {
     background: white;
     min-height: 70vh;
     flex-grow: 1;
   }
-
-  .main-content {
-    display: flex;
-  }
-
 
   footer {
     background-color: $light-grey;

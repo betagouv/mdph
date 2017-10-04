@@ -41,6 +41,8 @@
 <div id="detail-mdph" class="detail-mdph">
   <form id="mdphDetailFormId" aria-labelledby="mdphDetail" name="mdphDetailForm" ng-submit="adminMdphCtrl.submit(mdphDetailForm)" novalidate>
 
+  <fieldset>
+    <legend>Identification</legend>
     <div class="form-group required" ng-class="{'has-error': mdphDetailForm.zipcode.$invalid && mdphDetailForm.$submitted}">
       <label for="zipcode" class="control-label">Code département</label>
       <input id="zipcode" type="text" name="zipcode" class="form-control" ng-model="mdphDetail.zipcode" ng-minlength="1" required/>
@@ -53,7 +55,7 @@
     <div class="form-group required" ng-class="{'has-error': mdphDetailForm.name.$invalid && mdphDetailForm.$submitted}">
       <label for="name" class="control-label">Dénomination</label>
       <input id="name" type="text" name="name" class="form-control" ng-model="mdphDetail.name" ng-minlength="3" required/>
-      <div ng-messages="mdphDetailForm.zipcode.$error" ng-if="mdphDetailForm.$submitted">
+      <div ng-messages="mdphDetailForm.name.$error" ng-if="mdphDetailForm.$submitted">
         <p class="help-block" ng-message='required'>Le nom de la MDPH est obligatoire.</p>
         <p class="help-block" ng-message='minlength'>La longueur minimal du nom est 3.</p>
       </div>
@@ -61,9 +63,11 @@
 
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.logo.$invalid && mdphDetailForm.$submitted}">
       <label for="logo" class="control-label">Logo</label>
-      <!--<img ng-show="mdphDetail.logo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/logo" class="thumb" width="150" height="90"/>
-      <img ng-show="mdphDetailForm.logo.$valid" ngf-src="mdphDetail.logo" class="thumb" width="150" height="90"/>-->
-      <input id="logo" type="file" name="logo" class="form-control-file" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB"/>
+      <input id="logo" type="file" name="logo" class="form-control-file" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" ng-Change="adminMdphCtrl.setLogoChanged()"/>
+      <div>
+        <img ng-if="!logoChanged && mdphDetail.logo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/logo" class="thumb" width="150" height="90" alt="logo"/>
+        <img ng-if="logoChanged" ngf-src="mdphDetail.logo" class="thumb" width="150" height="90"/>
+      </div>
       <div ng-messages="mdphDetailForm.logo.$error" ng-if="mdphDetailForm.$submitted">
         <p class="help-block" ng-message='maxSize'>Le logo est trop volumineux</p>
       </div>
@@ -71,14 +75,19 @@
 
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.photo.$invalid && mdphDetailForm.$submitted}">
       <label for="photo" class="control-label">Photo d'accueil</label>
-      <!--<img ng-show="mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="1200" height="400"/>
-      <img ng-show="mdphDetailForm.photo.$valid" ngf-thumbnail="mdphDetail.photo" class="thumb" width="1200" height="400"/>-->
-      <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB"/>
+      <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" ng-Change="adminMdphCtrl.setPhotoChanged()"/>
+      <div>
+        <img ng-if="!photoChanged && mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="1200" height="400" alt="photo"/>
+        <img ng-if="photoChanged" ngf-src="mdphDetail.photo" class="thumb" width="1200" height="400"/>
+      </div>
       <div ng-messages="mdphDetailForm.photo.$error" ng-if="mdphDetailForm.$submitted">
         <p class="help-block" ng-message='maxSize'>La photo est trop volumineuse</p>
       </div>
     </div>
+  </fieldset>
 
+  <fieldset>
+    <legend>Etat</legend>
     <div class="form-group">
       <div class="checkbox">
         <label class="control-label">
@@ -96,6 +105,59 @@
         </label>
       </div>
     </div>
+  </fieldset>
+
+ <!-- <fieldset>
+    <legend>Sites</legend>
+    <div ng-repeat="location in mdphDetail.locations">
+        <div class="form-group required" ng-class="{'has-error': mdphDetailForm.email.$invalid && mdphDetailForm.$submitted}">
+            <label for="location-name" class="control-label">Nom du site</label>
+            <input id="location-name" type="text" name="location-name" class="form-control" ng-model="location.name" required/>
+            <div ng-messages="mdphDetailForm.email.$error" ng-if="mdphDetailForm.$submitted">
+              <p class="help-block" ng-message='required'>L'email de la MDPH est obligatoire.</p>
+            </div>
+          </div>
+
+          <div class="form-group required" ng-class="{'has-error': mdphDetailForm.email.$invalid && mdphDetailForm.$submitted}">
+            <label for="email" class="control-label">Adresse mail de contact</label>
+            <input id="email" type="text" name="email" class="form-control" ng-model="mdphDetail.email" required/>
+            <div ng-messages="mdphDetailForm.email.$error" ng-if="mdphDetailForm.$submitted">
+              <p class="help-block" ng-message='required'>L'email de la MDPH est obligatoire.</p>
+            </div>
+          </div>
+
+          <div class="form-group required" ng-class="{'has-error': mdphDetailForm.phone.$invalid && mdphDetailForm.$submitted}">
+            <label for="phone" class="control-label">Téléphone de contact</label>
+            <input id="phone" type="text" name="phone" class="form-control" ng-model="mdphDetail.phone" required/>
+            <div ng-messages="mdphDetailForm.phone.$error" ng-if="mdphDetailForm.$submitted">
+              <p class="help-block" ng-message='required'>Le telephone de la MDPH est obligatoire.</p>
+            </div>
+          </div>
+
+          <div class="form-group required" ng-class="{'has-error': mdphDetailForm.address.$invalid && mdphDetailForm.$submitted}">
+            <label for="address" class="control-label">Adresse de contact</label>
+            <input id="address" type="text" name="address" class="form-control" ng-model="mdphDetail.address" required/>
+            <div ng-messages="mdphDetailForm.address.$error" ng-if="mdphDetailForm.$submitted">
+              <p class="help-block" ng-message='required'>L'adresse de la MDPH est obligatoire.</p>
+            </div>
+          </div>
+
+          <div class="form-group required" ng-class="{'has-error': (mdphDetailForm.coordx.$invalid || mdphDetailForm.coordy.$invalid) && mdphDetailForm.$submitted}">
+            <label class="control-label">Coordonnées Géographique</label>
+            <label for="coordx" >X :</label>
+            <input id="coordx" type="text" name="coordx" class="form-control" ng-model="mdphDetail.coordinates.coordx" required/>
+            <label for="coordy" >Y :</label>
+            <input id="coordy" type="text" name="coordy" class="form-control" ng-model="mdphDetail.coordinates.coordy" required/>
+            <div ng-messages="mdphDetailForm.coordx.$error || mdphDetailForm.coordy.$error" ng-if="mdphDetailForm.$submitted">
+              <p class="help-block" ng-message='required'>L'adresse de la MDPH est obligatoire.</p>
+            </div>
+          </div>
+      <hr/>
+    </div>
+
+
+  </fieldset>-->
+
 
     <div class="form-actions">
       <button id="submitId" type="submit" name="save" alt="Enregistrer" class="btn btn-success">Enregistrer</button>

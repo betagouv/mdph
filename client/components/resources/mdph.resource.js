@@ -133,8 +133,7 @@ angular.module('impactApp')
         },
         responseType: 'arraybuffer',
         cache: false,
-        transformResponse: function(data, headersGetter) {
-          console.log('data :' + JSON.stringify(data));
+        transformResponse: function(data) {
           return { data: data };
         }
       }

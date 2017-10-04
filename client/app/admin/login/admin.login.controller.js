@@ -15,7 +15,6 @@ angular.module('impactApp')
           return $state.go('admin.mdph', {currentUser: user}, {reload: true});
         })
         .catch(function(err) {
-          console.log("err: " + JSON.stringify(err));
           $scope.error = err.message;
           return $state.go('admin.login');
         });

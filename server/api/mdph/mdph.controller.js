@@ -414,7 +414,6 @@ export function addLogo(req, res) {
 
   var gfs = gridfs();
   var file = req.file;
-  var logger = req.log;
 
   var writeStream = gfs.createWriteStream({
     filename: file.originalname,
@@ -439,7 +438,6 @@ export function addLogo(req, res) {
       }
 
       if (mdph.logo) {
-        // remove existing file, only one allowed
         gfs.remove({_id: mdph.logo}, function(err) {
           if (err) {
             req.log.error(err);
@@ -477,3 +475,69 @@ export function getLogo(req, res) {
     }
   });
 }
+
+export function addPhoto(req, res) {
+
+    var gfs = gridfs();
+    var file = req.file;
+
+    var writeStream = gfs.createWriteStream({
+      filename: file.originalname,
+      mimetype: file.mimetype
+    });
+
+    var bufferStream = new stream.PassThrough();
+    bufferStream.end(file.buffer);
+    bufferStream.pipe(writeStream);
+
+    writeStream.on('close', function(file) {
+      Mdph.findOne({
+        zipcode: req.params.id
+      }, function(err, mdph) {
+        if (err) {
+          req.log.error(err);
+          return res.status(500).send(err);
+        }
+
+        if (!mdph) {
+          return res.sendStatus(404);
+        }
+
+        if (mdph.photo) {
+          gfs.remove({_id: mdph.photo}, function(err) {
+            if (err) {
+              req.log.error(err);
+            }
+          });
+        }
+
+        mdph
+          .set('photo', file._id)
+          .save(function(err) {
+            if (err) {
+              req.log.error(err);
+              return res.status(500).send(err);
+            }
+
+            return res.json(file);
+          });
+      });
+    });
+  }
+
+  export function getPhoto(req, res) {
+    Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+      if (err) { return handleError(req, res, err); }
+
+      if (!mdph) { return res.sendStatus(404); }
+
+      if (mdph.photo) {
+        var gfs = gridfs();
+        var readStream = gfs.createReadStream({_id: mdph.photo});
+
+        return readStream.pipe(res);
+      } else {
+        return res.sendStatus(404);
+      }
+    });
+  }

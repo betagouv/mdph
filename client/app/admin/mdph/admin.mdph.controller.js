@@ -6,6 +6,8 @@ angular.module('impactApp')
     this.totalItems = this.mdphs.length;
     this.itemsPerPage = 10;
     this.currentPage = 1;
+    $scope.logoChanged = false;
+    $scope.photoChanged = false;
 
     this.setPage = function(pageNo) {
       this.currentPage = pageNo;
@@ -17,9 +19,19 @@ angular.module('impactApp')
     };
 
     this.selectItem = function(item) {
+      $scope.logoChanged = false;
+      $scope.photoChanged = false;
       $scope.mdphDetail = item;
       $location.hash('detail-mdph');
       $anchorScroll();
+    };
+
+    this.setLogoChanged = function() {
+      $scope.logoChanged = true;
+    };
+
+    this.setPhotoChanged = function() {
+      $scope.photoChanged = true;
     };
 
     this.submit = function(form) {
@@ -46,19 +58,22 @@ angular.module('impactApp')
             MdphResource.save(mdph);
 
           }).then(function() {
-            console.log('Ajout du logo');
 
-            Upload.upload({
-                url: '/api/mdphs/' + $scope.mdphDetail.zipcode + '/logo',
-                data: {file: $scope.mdphDetail.logo}
-                /*}).then(function(resp) {
-                  console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-                }, function(resp) {
-                  console.log('Error status: ' + resp.status);
-                }, function(evt) {
-                  var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                  console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);*/
-              });
+            if ($scope.logoChanged) {
+
+              Upload.upload({
+                  url: '/api/mdphs/' + $scope.mdphDetail.zipcode + '/logo',
+                  data: {file: $scope.mdphDetail.logo}
+                });
+            }
+
+            if ($scope.photoChanged) {
+
+              Upload.upload({
+                  url: '/api/mdphs/' + $scope.mdphDetail.zipcode + '/photo',
+                  data: {file: $scope.mdphDetail.photo}
+                });
+            }
 
             return $state.go('admin.mdph', {}, {reload: true});
           });
