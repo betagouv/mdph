@@ -34,11 +34,11 @@ angular.module('impactApp')
       $scope.photoChanged = true;
     };
 
-    this.removeLocation = function(index){
+    this.removeLocation = function(index) {
       $scope.mdphDetail.locations.splice(index, 1);
     };
 
-    this.addLocation = function(){
+    this.addLocation = function() {
       $scope.mdphDetail.locations.push({});
     };
 
@@ -47,18 +47,14 @@ angular.module('impactApp')
         form.showError = true;
       } else {
 
-        console.log('mdphDetail :', JSON.stringify($scope.mdphDetail));
-
         MdphResource.get({zipcode: $scope.mdphDetail.zipcode}).$promise.then(function(mdph) {
 
             mdph.name = $scope.mdphDetail.name;
             mdph.enabled = $scope.mdphDetail.enabled;
             mdph.opened = $scope.mdphDetail.opened;
             mdph.evaluate = $scope.mdphDetail.evaluate;
-            mdph.locations=[];
+            mdph.locations = [];
             angular.forEach($scope.mdphDetail.locations, function(value) {
-
-              console.log('location  :', JSON.stringify(value));
 
               var location = {};
               location.name = value.name;
@@ -75,8 +71,6 @@ angular.module('impactApp')
 
             });
 
-            console.log('update mdph  :', JSON.stringify(mdph));
-
             MdphResource.update(mdph);
 
           }, function() {
@@ -87,10 +81,8 @@ angular.module('impactApp')
             mdph.enabled = $scope.mdphDetail.enabled;
             mdph.opened = $scope.mdphDetail.opened;
             mdph.evaluate = $scope.mdphDetail.evaluate;
-            mdph.locations=[];
+            mdph.locations = [];
             angular.forEach($scope.mdphDetail.locations, function(value) {
-
-              console.log('location  :', JSON.stringify(value));
 
               var location = {};
               location.name = value.name;
