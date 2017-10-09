@@ -344,7 +344,6 @@ export function update(req, res) {
 
     mdph
       .set('name', req.body.name)
-      .set('logo', req.body.logo)
       .set('enabled', req.body.enabled)
       .set('opened', req.body.opened)
       .set('evaluate', req.body.evaluate)

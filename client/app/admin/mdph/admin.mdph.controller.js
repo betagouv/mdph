@@ -34,10 +34,20 @@ angular.module('impactApp')
       $scope.photoChanged = true;
     };
 
+    this.removeLocation = function(index){
+      $scope.mdphDetail.locations.splice(index, 1);
+    };
+
+    this.addLocation = function(){
+      $scope.mdphDetail.locations.push({});
+    };
+
     this.submit = function(form) {
       if (form.$invalid) {
         form.showError = true;
       } else {
+
+        console.log('mdphDetail :', JSON.stringify($scope.mdphDetail));
 
         MdphResource.get({zipcode: $scope.mdphDetail.zipcode}).$promise.then(function(mdph) {
 
@@ -45,6 +55,28 @@ angular.module('impactApp')
             mdph.enabled = $scope.mdphDetail.enabled;
             mdph.opened = $scope.mdphDetail.opened;
             mdph.evaluate = $scope.mdphDetail.evaluate;
+            mdph.locations=[];
+            angular.forEach($scope.mdphDetail.locations, function(value) {
+
+              console.log('location  :', JSON.stringify(value));
+
+              var location = {};
+              location.name = value.name;
+              location.address = value.address;
+              location.coordinates = {};
+              location.coordinates.coordx = value.coordinates.coordx;
+              location.coordinates.coordy = value.coordinates.coordy;
+              location.phone = value.phone;
+              location.email = value.email;
+              location.schedule = value.schedule;
+              location.headquarters = value.headquarters;
+
+              mdph.locations.push(location);
+
+            });
+
+            console.log('update mdph  :', JSON.stringify(mdph));
+
             MdphResource.update(mdph);
 
           }, function() {
@@ -55,6 +87,28 @@ angular.module('impactApp')
             mdph.enabled = $scope.mdphDetail.enabled;
             mdph.opened = $scope.mdphDetail.opened;
             mdph.evaluate = $scope.mdphDetail.evaluate;
+            mdph.locations=[];
+            angular.forEach($scope.mdphDetail.locations, function(value) {
+
+              console.log('location  :', JSON.stringify(value));
+
+              var location = {};
+              location.name = value.name;
+              location.address = value.address;
+              location.coordinates = {};
+              location.coordinates.coordx = value.coordinates.coordx;
+              location.coordinates.coordy = value.coordinates.coordy;
+              location.phone = value.phone;
+              location.email = value.email;
+              location.schedule = value.schedule;
+              location.headquarters = value.headquarters;
+
+              mdph.locations.push(location);
+
+            });
+
+            console.log('save mdph  :', JSON.stringify(mdph));
+
             MdphResource.save(mdph);
 
           }).then(function() {
