@@ -12,9 +12,7 @@ router.use('/:userId/profiles', profilesRouter);
 
 router.get('/', auth.hasRole('adminMdph'), controller.index);
 router.get('/me', auth.isAuthenticated(), controller.me);
-
 router.get('/me/requests', auth.isAuthenticated(), showUserRequests);
-
 router.get('/:id', auth.isAuthenticated(), controller.show);
 
 router.post('/', controller.create);
@@ -26,6 +24,7 @@ router.post('/:id/resend_confirmation', controller.resendConfirmation);
 
 router.put('/:id', auth.isAuthenticated(), controller.changeInfo);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+router.put('/activate/:email', auth.hasRole('admin'), controller.activate);
 
 router.delete('/:id', auth.hasRole('adminMdph'), controller.destroy);
 
