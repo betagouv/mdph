@@ -43,9 +43,9 @@ router.use('/:id/categories', isAgent(), categoriesRouter);
 router.use('/:id/syntheses',  isAgent(), synthesesRouter);
 router.use('/:id/secteurs',  isAgent(), secteurRouter);
 
-router.post('/:id/logo', upload.single('file'), controller.addLogo);
+router.post('/:id/logo', hasRole('admin') && upload.single('file'), controller.addLogo);
 router.get('/:id/logo', controller.getLogo);
-router.post('/:id/photo', upload.single('file'), controller.addPhoto);
+router.post('/:id/photo', hasRole('admin') && upload.single('file'), controller.addPhoto);
 router.get('/:id/photo', controller.getPhoto);
 
 router.param('id', function(req, res, next, id) {
