@@ -40,9 +40,10 @@ angular.module('impactApp')
     };
 
     this.addLocation = function() {
-      if($scope.mdphDetail.locations === undefined) {
+      if ($scope.mdphDetail.locations === undefined) {
         $scope.mdphDetail.locations = [];
       }
+
       $scope.mdphDetail.locations.push({});
     };
 
