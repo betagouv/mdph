@@ -144,7 +144,7 @@
           </div>
         </div>
         <div class="form-group required" ng-class="{'has-error': (mdphDetailForm.coordx.$invalid || mdphDetailForm.location-coordy.$invalid) && mdphDetailForm.$submitted}">
-          <label class="control-label">Coordonnées Géographique</label>
+          <label class="control-label">Coordonnées Géographique</label><br/>
           <label for="location-coordx" >X :</label>
           <input id="location-coordx" type="text" name="location-coordx" class="form-control" ng-model="location.coordinates.coordx" required/>
           <label for="location-coordy" >Y :</label>
@@ -160,12 +160,16 @@
             <p class="help-block" ng-message='required'>Les horaires d'ouverture de la MDPH sont obligatoires.</p>
           </div>
         </div>
-        <a ng-click="adminMdphCtrl.removeLocation($index)" title="supprimer le site"><i class="glyphicon glyphicon-minus"></i></span></a>
+        <button type="button" ng-click="adminMdphCtrl.removeLocation($index)" class="btn btn-default btn-xs" aria-label="Supprimer le site">
+          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Supprimer
+        </button>
         <hr/>
       </div>
-      <a ng-click="adminMdphCtrl.addLocation()" title="ajouter un nouveau site"><i class="glyphicon glyphicon-plus"></i></span></a>
+      <button type="button" ng-click="adminMdphCtrl.addLocation($index)" class="btn btn-default btn-xs" aria-label="Ajouter un nouveau site">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Ajouter
+      </button>
     </fieldset>
-
+    <br/>
     <div class="form-actions">
       <button id="submitId" type="submit" name="save" alt="Enregistrer" class="btn btn-success">Enregistrer</button>
     </div>

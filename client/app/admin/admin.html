@@ -15,10 +15,10 @@
         <li>
           <a ui-sref="admin.main" title="Admin">Admin</a>
         </li>
-        <li>
-          <a ui-sref="dashboard.workflow({codeDepartement: adminCtrl.getCurrentMdphZipcode(), zipcode: adminCtrl.getCurrentMdphZipcode()})" title="Tableau de bord">Tableau de bord</a>
+        <li ng-if="adminCtrl.getCurrentUser().mdph">
+          <a ui-sref="dashboard.workflow({codeDepartement: adminCtrlgetCurrentUser().mdph.zipcode, zipcode: adminCtrlgetCurrentUser().mdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
         </li>
-        <li>
+        <li ng-if="adminCtrl.getCurrentUser().mdph">
           <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
         </li>
         <li>

@@ -6,6 +6,7 @@ angular.module('impactApp')
     this.totalItems = this.mdphs.length;
     this.itemsPerPage = 10;
     this.currentPage = 1;
+    $scope.mdphDetail = {};
     $scope.logoChanged = false;
     $scope.photoChanged = false;
 
@@ -39,6 +40,9 @@ angular.module('impactApp')
     };
 
     this.addLocation = function() {
+      if($scope.mdphDetail.locations === undefined) {
+        $scope.mdphDetail.locations = [];
+      }
       $scope.mdphDetail.locations.push({});
     };
 
@@ -99,8 +103,6 @@ angular.module('impactApp')
 
             });
 
-            console.log('save mdph  :', JSON.stringify(mdph));
-
             MdphResource.save(mdph);
 
           }).then(function() {
@@ -121,7 +123,7 @@ angular.module('impactApp')
                 });
             }
 
-            return $state.go('admin.mdph', {}, {reload: true});
+            return $state.go('admin.mdph', {mdphs: MdphResource.query().$promise}, {reload: true});
           });
       }
     };
