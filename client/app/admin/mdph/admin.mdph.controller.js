@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AdminMdphCtrl', function($scope, $state, $location, $anchorScroll, Upload, mdphs, MdphResource) {
+  .controller('AdminMdphCtrl', function($scope, $state, $stateParams, $location, $anchorScroll, Upload, mdphs, MdphResource) {
     this.mdphs = mdphs;
     this.totalItems = this.mdphs.length;
     this.itemsPerPage = 10;
@@ -20,11 +20,13 @@ angular.module('impactApp')
     };
 
     this.selectItem = function(item) {
-      $scope.logoChanged = false;
-      $scope.photoChanged = false;
-      $scope.mdphDetail = item;
-      $location.hash('detail-mdph');
-      $anchorScroll();
+      MdphResource.get({zipcode: item.zipcode}).$promise.then(function(mdph) {
+        mdph.logoChanged = false;
+        mdph.photoChanged = false;
+        $scope.mdphDetail = mdph;
+        $location.hash('detail-mdph');
+        $anchorScroll();
+      });
     };
 
     this.setLogoChanged = function() {
