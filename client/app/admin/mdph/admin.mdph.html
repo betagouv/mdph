@@ -110,10 +110,10 @@
   <fieldset>
     <legend>Sites</legend>
     <div ng-repeat="location in mdphDetail.locations">
-        <div class="form-group required" ng-class="{'has-error': mdphDetailForm.location-name.$invalid && mdphDetailForm.$submitted}">
+        <div class="form-group required" ng-class="{'has-error': mdphDetailForm['location-name'+$index].$invalid && mdphDetailForm.$submitted}">
           <label for="location-name" class="control-label">Nom du site</label>
-          <input id="location-name" type="text" name="location-name" class="form-control" ng-model="location.name" required/>
-          <div ng-messages="mdphDetailForm.location-name.$error" ng-if="mdphDetailForm.$submitted">
+          <input id="location-name" type="text" name="location-name{{$index}}" class="form-control" ng-model="location.name" required/>
+          <div ng-messages="mdphDetailForm['location-name'+$index].$error" ng-if="mdphDetailForm.$submitted">
             <p class="help-block" ng-message='required'>Le nom du site est obligatoire.</p>
           </div>
         </div>
@@ -122,41 +122,41 @@
             <input type="checkbox" ng-model="location.headquarters"/> Site du siège
           </label>
         </div>
-        <div class="form-group required" ng-class="{'has-error': mdphDetailForm.location-email.$invalid && mdphDetailForm.$submitted}">
+        <div class="form-group required" ng-class="{'has-error': mdphDetailForm['location-email'+$index].$invalid && mdphDetailForm.$submitted}">
           <label for="location-email" class="control-label">Email de contact</label>
-          <input id="location-email" type="text" name="location-email" class="form-control" ng-model="location.email" required/>
-          <div ng-messages="mdphDetailForm.location-email.$error" ng-if="mdphDetailForm.$submitted">
+          <input id="location-email" type="text" name="location-email{{$index}}" class="form-control" ng-model="location.email" required/>
+          <div ng-messages="mdphDetailForm['location-email'+$index].$error" ng-if="mdphDetailForm.$submitted">
             <p class="help-block" ng-message='required'>L'email de la MDPH est obligatoire.</p>
           </div>
         </div>
-        <div class="form-group required" ng-class="{'has-error': mdphDetailForm.location-phone.$invalid && mdphDetailForm.$submitted}">
+        <div class="form-group required" ng-class="{'has-error': mdphDetailForm['location-phone'+$index].$invalid && mdphDetailForm.$submitted}">
           <label for="location-phone" class="control-label">Téléphone de contact</label>
-          <input id="location-phone" type="text" name="location-phone" class="form-control" ng-model="location.phone" required/>
-          <div ng-messages="mdphDetailForm.location-phone.$error" ng-if="mdphDetailForm.$submitted">
+          <input id="location-phone" type="text" name="location-phone{{$index}}" class="form-control" ng-model="location.phone" required/>
+          <div ng-messages="mdphDetailForm['location-phone'+$index].$error" ng-if="mdphDetailForm.$submitted">
             <p class="help-block" ng-message='required'>Le telephone de la MDPH est obligatoire.</p>
           </div>
         </div>
-        <div class="form-group required" ng-class="{'has-error': mdphDetailForm.location-address.$invalid && mdphDetailForm.$submitted}">
+        <div class="form-group required" ng-class="{'has-error': mdphDetailForm['location-address'+$index].$invalid && mdphDetailForm.$submitted}">
           <label for="location-address" class="control-label">Adresse de contact</label>
-          <input id="location-address" type="text" name="location-address" class="form-control" ng-model="location.address" required/>
-          <div ng-messages="mdphDetailForm.location-address.$error" ng-if="mdphDetailForm.$submitted">
+          <input id="location-address" type="text" name="location-address{{$index}}" class="form-control" ng-model="location.address" required/>
+          <div ng-messages="mdphDetailForm['location-address'+$index].$error" ng-if="mdphDetailForm.$submitted">
             <p class="help-block" ng-message='required'>L'adresse de la MDPH est obligatoire.</p>
           </div>
         </div>
-        <div class="form-group required" ng-class="{'has-error': (mdphDetailForm.coordx.$invalid || mdphDetailForm.location-coordy.$invalid) && mdphDetailForm.$submitted}">
+        <div class="form-group required" ng-class="{'has-error': (mdphDetailForm['location-coordx'+$index].$invalid || mdphDetailForm['location-coordy'+$index].$invalid) && mdphDetailForm.$submitted}">
           <label class="control-label">Coordonnées Géographique</label><br/>
           <label for="location-coordx" >X :</label>
-          <input id="location-coordx" type="text" name="location-coordx" class="form-control" ng-model="location.coordinates.coordx" required/>
+          <input id="location-coordx" type="text" name="location-coordx{{$index}}" class="form-control" ng-model="location.coordinates.coordx" required/>
           <label for="location-coordy" >Y :</label>
-          <input id="location-coordy" type="text" name="location-coordy" class="form-control" ng-model="location.coordinates.coordy" required/>
-          <div ng-messages="mdphDetailForm.location-coordx.$error || mdphDetailForm.location-coordy.$error" ng-if="mdphDetailForm.$submitted">
+          <input id="location-coordy" type="text" name="location-coordy{{$index}}" class="form-control" ng-model="location.coordinates.coordy" required/>
+          <div ng-messages="mdphDetailForm.['location-coordx'+$index].$error || mdphDetailForm['location-coordy'+$index].$error" ng-if="mdphDetailForm.$submitted">
             <p class="help-block" ng-message='required'>Les coordonnées géographiques de la MDPH est obligatoire.</p>
           </div>
         </div>
-        <div class="form-group required" ng-class="{'has-error': mdphDetailForm.location-schedule.$invalid && mdphDetailForm.$submitted}">
+        <div class="form-group required" ng-class="{'has-error': mdphDetailForm['location-schedule'+$index].$invalid && mdphDetailForm.$submitted}">
           <label for="location-schedule" class="control-label">Horaires d'ouverture</label>
-          <input id="location-schedule" type="text" name="location-schedule" class="form-control" ng-model="location.schedule" required/>
-          <div ng-messages="mdphDetailForm.location-schedule.$error" ng-if="mdphDetailForm.$submitted">
+          <input id="location-schedule" type="text" name="location-schedule{{$index}}" class="form-control" ng-model="location.schedule" required/>
+          <div ng-messages="mdphDetailForm['location-schedule'+$index].$error" ng-if="mdphDetailForm.$submitted">
             <p class="help-block" ng-message='required'>Les horaires d'ouverture de la MDPH sont obligatoires.</p>
           </div>
         </div>
