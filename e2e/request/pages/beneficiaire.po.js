@@ -30,7 +30,6 @@ var Beneficiaire = function() {
     form.address.sendKeys('1, rue du test');
     form.code_postal.sendKeys('75001');
     form.localite.sendKeys('Paris');
-    form.email.sendKeys('test@mail.com');
     form.cpam.click();
     form.numeroSecu.sendKeys('');
     form.numeroSecu.sendKeys('168089200203980');
