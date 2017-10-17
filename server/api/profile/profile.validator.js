@@ -23,19 +23,17 @@ export function check() {
     .use(function(req, res, next) {
 
       if(req.body.identites.beneficiaire) {
-        Joi.validate(req.body.identites.beneficiaire, beneficiaireSchema, {allowUnknown: true}, (err, value) => {
-
-          var error = err.details.reduce(function(prev, curr) {
-            return [...prev, curr.message];
-          }, []);
-
-          if(err != null){
-             res.status(406).json(error);
-          }else{
+        Joi.validate(req.body.identites.beneficiaire, beneficiaireSchema, {allowUnknown: true}, (err) => {
+          if(err !== null) {
+            var error = err.details.reduce(function(prev, curr) {
+              return [...prev, curr.message];
+            }, []);
+            res.status(406).json(error);
+          } else {
             next();
           }
         });
-      }else{
+      } else {
         next();
       }
 
