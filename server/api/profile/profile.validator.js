@@ -3,6 +3,7 @@
 import compose from 'composable-middleware';
 import Joi from 'joi';
 
+import User from '../user/user.model';
 
 const beneficiaireSchema = Joi.object().keys({
   localite: Joi.string().required(),
@@ -22,6 +23,24 @@ export function check() {
   return compose()
     .use(function(req, res, next) {
 
+      User
+      .findById(req.profile.user)
+      .populate('mdph')
+      .exec(function(err, user) {
+        if (err) {
+          return next(err);
+        }
+
+        if (user.mdph && !user.mdph.opened) {
+          return res.status(406).json('MDPH fermé');
+        }
+
+        next();
+      });
+
+    })
+    .use(function(req, res, next) {
+
       if(req.body.identites.beneficiaire) {
         Joi.validate(req.body.identites.beneficiaire, beneficiaireSchema, {allowUnknown: true}, (err) => {
           if(err !== null) {
@@ -36,7 +55,5 @@ export function check() {
       } else {
         next();
       }
-
-
     });
 }
