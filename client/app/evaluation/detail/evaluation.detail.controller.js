@@ -73,6 +73,12 @@ angular.module('impactApp')
       }, []);
     }
 
+    function trajectoiresToIdArray(trajectoires) {
+      return _.reduce(trajectoires, function(result, trajectoire) {
+        return result.concat(answersToIdArray(trajectoire, 0));
+      }, []);
+    }
+
     $scope.noAnswer = (trajectoiresToIdArray($scope.section.trajectoires).length === 0);
 
     $scope.newIssue = function(parent, question) {
@@ -140,9 +146,4 @@ angular.module('impactApp')
       $state.go('.', {}, {reload: true});
     };
 
-    function trajectoiresToIdArray(trajectoires) {
-      return _.reduce(trajectoires, function(result, trajectoire) {
-        return result.concat(answersToIdArray(trajectoire, 0));
-      }, []);
-    }
   });
