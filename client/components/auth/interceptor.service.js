@@ -24,6 +24,8 @@
             (state || (state = $injector.get('$state'))).go('login', {codeDepartement: path[2]});
           } else if (path[1] === 'evaluation') {
             (state || (state = $injector.get('$state'))).go('evaluation.login');
+          } else if (path[1] === 'admin') {
+            (state || (state = $injector.get('$state'))).go('admin.login');
           } else {
             (state || (state = $injector.get('$state'))).go('main');
           }

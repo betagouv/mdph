@@ -33,7 +33,7 @@ module.exports = function(config) {
       'client/lib/moment/fr.js',
       'client/lib/ng-file-upload/ng-file-upload-all.min.js',
       'client/lib/ngstorage/ngStorage.min.js',
-      'client/lib/ui-bootstrap/ui-bootstrap-custom-tpls-0.13.3.min.js',
+      'client/lib/ui-bootstrap/ui-bootstrap-tpls-0.13.3.min.js',
       'client/lib/angular/angular-mocks.js',
       'client/lib/angular/angular-scenario.js',
       'client/lib/zxcvbn/zxcvbn.js',

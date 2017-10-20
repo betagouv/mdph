@@ -1,0 +1,13 @@
+<div>
+  <form id="activationSerachFormId" name="activationSerachForm" ng-submit="adminActivationCtrl.searchAndActive()">
+      <label for="mail">Indiquez l'adresse mail du compte à activer</label>
+
+      <div class="form-inline">
+        <input id="mail" type="text" name="mail" class="form-control" ng-model="mail" ng-minlength="1"/>
+        <button id="activateButtonId" type="submit" name="activateButton" alt="Activer" class="btn btn-default">Activer</button>
+      </div>
+      <br/>
+      <span ng-if="message" class="alert alert-info">{{message}}</span>
+
+  </form>
+</div>
