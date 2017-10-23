@@ -35,24 +35,25 @@
 
     <div ui-view=""></div>
 
+    <!-- Piwik -->
     <script type="text/javascript">
       var _paq = _paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
-        var u = '//stats.data.gouv.fr/';
-        _paq.push(['setTrackerUrl', u + 'piwik.php']);
-        _paq.push(['setSiteId', 14]);
-        var d = document;
-        var g = d.createElement('script');
-        var s = d.getElementsByTagName('script')[0];
-        g.type = 'text/javascript';
-        g.async = true;
-        g.defer = true;
-        g.src = u + 'piwik.js';
-        s.parentNode.insertBefore(g, s);
+        var u="http://piwik.mdphenligne.cnsa.fr/piwik/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
       })();
     </script>
-    <noscript><p><img src="//stats.data.gouv.fr/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+
+    <!-- Piwik Image Tracker-->
+    <img src="http://piwik.mdphenligne.cnsa.fr/piwik/piwik.php?idsite=1&rec=1" style="border:0" alt="" />
+    <!-- End Piwik -->
 
     <!-- build:js({client,node_modules}) app/vendor.js -->
     <script src="lib/jquery/jquery.min.js"></script>
@@ -75,7 +76,7 @@
     <script src="lib/moment/fr.js"></script>
     <script src="lib/ng-file-upload/ng-file-upload-all.min.js"></script>
     <script src="lib/ngstorage/ngStorage.min.js"></script>
-    <script src="lib/ui-bootstrap/ui-bootstrap-custom-tpls-0.13.3.min.js"></script>
+    <script src="lib/ui-bootstrap/ui-bootstrap-tpls-0.13.3.min.js"></script>
     <script src="lib/zxcvbn/zxcvbn.js"></script>
     <script src="lib/zxcvbn/angular-zxcvbn.min.js"></script>
     <!-- endbuild -->
@@ -85,11 +86,19 @@
       <!-- injector:js -->
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/stats/stats.js"></script>
+      <script src="app/profil/section.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/resend_confirmation/resend_confirmation.controller.js"></script>
       <script src="app/account/reset_password/resest_password.controller.js"></script>
       <script src="app/account/signup/signup.controller.js"></script>
+      <script src="app/admin/activation/admin.activation.controller.js"></script>
+      <script src="app/admin/activation/admin.activation.js"></script>
+      <script src="app/admin/admin.controller.js"></script>
+      <script src="app/admin/admin.js"></script>
+      <script src="app/admin/login/admin.login.controller.js"></script>
+      <script src="app/admin/login/admin.login.js"></script>
+      <script src="app/admin/mdph/admin.mdph.controller.js"></script>
+      <script src="app/admin/mdph/admin.mdph.js"></script>
       <script src="app/app.constants.js"></script>
       <script src="app/apropos/apropos.js"></script>
       <script src="app/cgu/cgu.js"></script>
@@ -156,11 +165,11 @@
       <script src="app/profil/projet_de_vie/vie_scolaire/vie_scolaire.js"></script>
       <script src="app/profil/projet_de_vie/vie_scolaire/vosattentes.js"></script>
       <script src="app/profil/projet_de_vie/vie_scolaire/vosbesoins.js"></script>
-      <script src="app/profil/section.controller.js"></script>
+      <script src="app/account/confirmer_mail/confirmer_mail.controller.js"></script>
       <script src="app/profil/situations_particulieres/situations_particulieres.js"></script>
       <script src="app/profil/unconfirmed/unconfirmed.js"></script>
       <script src="app/stats/stats.controller.js"></script>
-      <script src="app/account/confirmer_mail/confirmer_mail.controller.js"></script>
+      <script src="app/stats/stats.js"></script>
       <script src="app/suivi/suivi.js"></script>
       <script src="components/adresse.data.gouv/adresse.data.gouv.js"></script>
       <script src="app/account/account.js"></script>

@@ -6,7 +6,8 @@
       <ul class="mdph-choices">
         <li ng-repeat="mdph in mdphs" class="mdph-choice">
           <a class="btn btn-default" ui-sref="departement({codeDepartement: mdph.zipcode})">
-            <img ng-src="assets/images/{{mdph.logo}}" alt="Accueil"><br>
+            <img ng-show="mdph.logo" ng-src="/api/mdphs/{{mdph.zipcode}}/logo/" alt="Accueil" /><br>
+            <img ng-hide="mdph.logo" ng-src="assets/images/logo_defaut.jpg" alt="Accueil" /><br>
             <strong>{{mdph.zipcode}}</strong>. {{mdph.name}}</a>
         </li>
       </ul>
