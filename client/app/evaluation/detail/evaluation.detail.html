@@ -9,12 +9,12 @@
       <div class="panel-heading">
         <ul class="nav nav-tabs nav-justified">
           <li ui-sref-active="active" ng-repeat="section in sections" role="presentation">
-            <a ui-sref="evaluation.detail({sectionId: section.id})">{{section.label}}</a>
+            <a ng-click="evaluationDetailCtrl.save(profilForm, section.id)">{{section.label}}</a>
           </li>
         </ul>
       </div>
 
-      <form id="profilFormId" name="profilForm" ng-submit="save(profilForm)" novalidate>
+      <form id="profilFormId" name="profilForm" ng-submit="saveAndQuit(profilForm)" novalidate>
 
         <div class="panel-body" ng-if="section.id == 'profil'">
 
@@ -54,7 +54,7 @@
           </div>
 
           <div class="container-btn">
-            <button type="button" class="btn-section btn btn-md btn-link" ng-click="cancel()" ng-if="!noAnswer && !(currentSynthese.request)">
+            <button type="button" class="btn-section btn btn-md btn-link" ng-click="evaluationDetailCtrl.cancel()" ng-if="!noAnswer && !(currentSynthese.request)">
               Annuler <i class="fa fa-undo" aria-hidden="true"></i>
             </button>
             <button type="submit" class="btn-section btn btn-md btn-success" ng-if="!(currentSynthese.request)">

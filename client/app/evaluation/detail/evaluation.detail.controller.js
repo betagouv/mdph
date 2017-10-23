@@ -81,23 +81,6 @@ angular.module('impactApp')
 
     $scope.noAnswer = (trajectoiresToIdArray($scope.section.trajectoires).length === 0);
 
-    $scope.save = function(form) {
-      if (form.$invalid) {
-        form.showError = true;
-
-      } else {
-        currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
-        $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
-        SyntheseResource.update(currentSynthese, function() {
-          $state.go('.', {}, {reload: true});
-        });
-      }
-    };
-
-    $scope.cancel = function() {
-      $state.go('.', {}, {reload: true});
-    };
-
     $scope.newIssue = function(parent, question) {
       $modal.open({
         templateUrl: 'app/evaluation/issues/evaluation.new_issue.html',
@@ -132,4 +115,35 @@ angular.module('impactApp')
         }
       });
     };
+
+    this.saveAndQuit = function(form) {
+      if (form.$invalid) {
+        form.showError = true;
+
+      } else {
+        currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+        $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
+        SyntheseResource.update(currentSynthese, function() {
+          $state.go('evaluation.dashboard', {}, {reload: true});
+        });
+      }
+    };
+
+    this.save = function(form, sectionId) {
+      if (form.$invalid) {
+        form.showError = true;
+
+      } else {
+        currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+        $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
+        SyntheseResource.update(currentSynthese, function() {
+          $state.go('evaluation.detail', {sectionId: sectionId}, {reload: true});
+        });
+      }
+    };
+
+    this.cancel = function() {
+      $state.go('.', {}, {reload: true});
+    };
+
   });
