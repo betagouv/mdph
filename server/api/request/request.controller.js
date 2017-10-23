@@ -400,7 +400,6 @@ export function getPdf(req, res) {
         request: req.request,
         host: req.headers.host,
         user: req.user,
-        role: req.user.role,
         requestExportFormat: mdph.requestExportFormat
       });
     })
