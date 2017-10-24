@@ -208,7 +208,8 @@ function sendMailReceivedTransmission(req) {
       host: req.headers.host,
       user: req.user,
       email: req.user.email,
-      replyTo: getRequestMdphEmail(request)
+      replyTo: getRequestMdphEmail(request),
+      role: req.user.role
     };
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
