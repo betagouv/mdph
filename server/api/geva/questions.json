@@ -1579,7 +1579,7 @@
   },
   {
     "id": 12,
-    "Section": "élément personnels",
+    "Section": "éléments personnels",
     "Libelle": "Pathologie principale (CIM)",
     "Trajectoire": "Toutes",
     "Question": "Quelle est la pathologie principale de la personne?",
@@ -8402,7 +8402,7 @@
   },
   {
     "id": 14,
-    "Section": "élément personnels",
+    "Section": "éléments personnels",
     "Libelle": "Déficiences (NATDEF) ",
     "Trajectoire": "Toutes",
     "Question": "Quelles sont les types de déficiences présentées par la personne?",
@@ -9031,7 +9031,7 @@
   },
   {
     "id": 16,
-    "Section": "élément personnels",
+    "Section": "éléments personnels",
     "Libelle": "type de charge (TYPCHARG) + types de contraintes médicales (CONDESC)",
     "Trajectoire": "Toutes",
     "Question": "Quelles sont les prises en charges et aides dont bénéficie la personne et les contraintes rencontrées dans la vie quotidienne?",
@@ -9752,7 +9752,7 @@
   },
   {
     "id": 17,
-    "Section": "élément personnels",
+    "Section": "éléments personnels",
     "Libelle": "Activités (CAPTYP)",
     "Trajectoire": "Toutes",
     "Question": "Pour quelles activités la personne rencontre-t-elle des difficultés?",
