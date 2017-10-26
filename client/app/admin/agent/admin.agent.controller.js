@@ -1,15 +1,18 @@
+'use strict';
+
 angular.module('impactApp')
 .controller('AdminAgentCtrl', function($scope, $state, mdphs, User) {
   this.mdphs = mdphs;
   $scope.agent = {};
 
   function randomPassword(length) {
-    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
-    var password = "";
+    var chars = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890';
+    var password = '';
     for (var x = 0; x < length; x++) {
-        var i = Math.floor(Math.random() * chars.length);
-        password += chars.charAt(i);
+      var i = Math.floor(Math.random() * chars.length);
+      password += chars.charAt(i);
     }
+
     return password;
   }
 
@@ -22,7 +25,7 @@ angular.module('impactApp')
       var user = new User();
       user.name = $scope.agent.name;
       user.email = $scope.agent.email;
-      user.password = $scope.agent.password
+      user.password = $scope.agent.password;
       user.role = 'adminMdph';
       user.mdph = $scope.agent.mdph._id;
 
