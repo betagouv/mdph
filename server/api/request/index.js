@@ -4,12 +4,14 @@ import {Router} from 'express';
 import multer from 'multer';
 import documentsRouter from '../document';
 import * as controller from './request.controller';
-import { isAgentOrOwner, hasRole } from '../../auth/auth.service';
+import { isAgentOrOwner, isAgent, hasRole } from '../../auth/auth.service';
 import Request from './request.model';
 import config from '../../config/environment';
 
 var router = new Router();
 const upload = multer({ dest: config.uploadDir });
+
+router.get('/download', controller.getDownload);
 
 router.get('/:shortId', isAgentOrOwner(), controller.show);
 router.get('/:shortId/partenaire', controller.showPartenaire);
@@ -26,6 +28,7 @@ router.get('/:shortId/recapitulatif', isAgentOrOwner(), controller.getRecapitula
 router.post('/:shortId/evaluateurs', hasRole('adminMdph'), controller.saveEvaluateurs);
 
 router.get('/:shortId/pdf/:fileName', isAgentOrOwner(), controller.getPdf);
+router.get('/download', controller.getDownload);
 
 router.post('/:shortId/document/partenaire', upload.single('file'), controller.saveFilePartenaire);
 router.use('/:shortId/document', documentsRouter);

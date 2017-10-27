@@ -417,6 +417,21 @@ export function getPdf(req, res) {
     .catch(handleError(req, res));
 }
 
+export function getDownload(req, res) {
+
+  if(!req.query.ids || req.query.ids.length === 0 ){
+    return res.sendStatus(404);
+  }
+
+  var ids = JSON.parse(req.query.ids);
+
+  console.log('ids : ' + ids);
+
+  //@TODO
+
+  return res.sendStatus(200);
+}
+
 export function getSynthesePdf(req, res) {
   SynthesePDF.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
     if (err) { throw(500, err); }
