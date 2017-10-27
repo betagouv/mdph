@@ -79,7 +79,7 @@ angular.module('impactApp')
               this.ok = function() {
                 $http
                   .delete('/api/requests/' + $scope.request.shortId + '/document/' + $scope.file._id)
-                  .success(function() {
+                  .then(function(reponse) {
                     $modalInstance.close();
                     $state.go($state.current, {}, {reload: true});
                   });
