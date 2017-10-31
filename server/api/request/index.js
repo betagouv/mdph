@@ -28,7 +28,7 @@ router.get('/:shortId/recapitulatif', isAgentOrOwner(), controller.getRecapitula
 router.post('/:shortId/evaluateurs', hasRole('adminMdph'), controller.saveEvaluateurs);
 
 router.get('/:shortId/pdf/:fileName', isAgentOrOwner(), controller.getPdf);
-router.get('/download', controller.getDownload);
+router.get('/download', isAgent(), controller.getDownload);
 
 router.post('/:shortId/document/partenaire', upload.single('file'), controller.saveFilePartenaire);
 router.use('/:shortId/document', documentsRouter);

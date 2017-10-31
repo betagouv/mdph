@@ -11,6 +11,7 @@ import fs from 'fs';
 import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
+import archiver from 'archiver';
 import Recapitulatif from '../../components/recapitulatif';
 import SynthesePDF from '../../components/synthese';
 import pdfMaker from '../../components/pdf-maker';
@@ -419,17 +420,52 @@ export function getPdf(req, res) {
 
 export function getDownload(req, res) {
 
-  if(!req.query.ids || req.query.ids.length === 0 ){
+  if(!req.query.short_ids || req.query.short_ids.length === 0 ){
     return res.sendStatus(404);
   }
 
-  var ids = JSON.parse(req.query.ids);
+  const demandeShortIds = JSON.parse(req.query.short_ids);
 
-  console.log('ids : ' + ids);
+  var archive = archiver.create('zip', {});
 
-  //@TODO
+  async.each(demandeShortIds,
 
-  return res.sendStatus(200);
+    function(demandeShortId, callback){
+      var currentDemande = null;
+
+      Request.findOne({shortId: demandeShortId})
+      .exec()
+      .then(fillRequestMdph)
+      .then(demande => {
+        currentDemande = demande;
+        return pdfMaker({
+          request: currentDemande,
+          host: req.headers.host,
+          user: req.user,
+          role: 'adminMdph',
+          requestExportFormat: currentDemande.fullMdph.requestExportFormat
+        });
+      })
+      .then(readStream => {
+
+        const beneficiaire = currentDemande.formAnswers.identites.beneficiaire;
+        const extension = currentDemande.fullMdph.requestExportFormat;
+
+        const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${currentDemande.shortId}.${extension}`;
+
+        archive.append(readStream, { name: filename });
+
+        callback();
+      });
+    },
+    function(){
+      archive.finalize();
+
+      res.header('Content-Disposition', `attachment; filename="download.zip"`);
+      archive.pipe(res);
+      return null;
+    }
+  );
 }
 
 export function getSynthesePdf(req, res) {

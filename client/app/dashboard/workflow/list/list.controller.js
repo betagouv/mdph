@@ -85,31 +85,31 @@ angular.module('impactApp')
 
       var selectedRequests = _.reduce(this.requests, function(selectedRequests, request) {
           if (request.isSelected) {
-            selectedRequests.push(request._id);
+            selectedRequests.push(request.shortId);
           }
 
           return selectedRequests;
         }, []);
 
-        if(selectedRequests.length === 1) {
-          var request = _.find(this.requests, 'isSelected');
+      if (selectedRequests.length === 1) {
+        var request = _.find(this.requests, 'isSelected');
 
-          console.log('une demande : ' + JSON.stringify(request));
+        console.log('une demande : ' + JSON.stringify(request));
 
-          const pdfName = request.formAnswers.identites.beneficiaire.nom.toLowerCase() +
-          '_' + request.formAnswers.identites.beneficiaire.prenom.toLowerCase() +
-          '_' + request.shortId;
+        const pdfName = request.formAnswers.identites.beneficiaire.nom.toLowerCase() +
+        '_' + request.formAnswers.identites.beneficiaire.prenom.toLowerCase() +
+        '_' + request.shortId;
 
-          $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + this.token);
+        $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + this.token);
 
+      } else {
+        if (selectedRequests.length > 1) {
+          console.log(selectedRequests.length + ' demandes');
+          $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + this.token);
         } else {
-          if(selectedRequests.length > 1) {
-            console.log(selectedRequests.length + ' demandes');
-            $window.open('api/requests/download?access_token=' + this.token + '&ids=' + JSON.stringify(selectedRequests));
-          } else {
-            console.log('aucune demande');
-          }
+          console.log('aucune demande');
         }
+      }
     };
 
     function archiveRequests(requests) {
