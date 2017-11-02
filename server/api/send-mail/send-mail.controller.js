@@ -10,7 +10,7 @@ export function sendMail({ email, title, body, attachments, replyTo }) {
     console.log('Email:\t' + email);
     console.log('Title:\t' + 'Votre Mdph en ligne - ' + title);
     console.log('Body:\t' + body);
-    console.log('Attachements:\t' + attachments);
+    console.log('Attachements:\t' + JSON.stringify(attachments));
     console.log('ReplyTo:\t' + replyTo);
   } else {
     return mailSender.sendContent({
