@@ -233,14 +233,14 @@ exports.authCallback = function(req, res) {
  * Post to check if email exists
  */
 exports.generateTokenForPassword = function(req, res, next) {
-  let email = req.body.email;
+  let email = req.body.email.toLowerCase();
   let mdph = req.body.mdph;
 
   User.findOne({
     email: email
   }, function(err, user) {
     if (err) return next(err);
-    if (!user) return res.sendStatus(200);
+    if (!user) return res.sendStatus(404);
     user.newPasswordToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);
