@@ -62,11 +62,8 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.logo.$invalid && mdphDetailForm.$submitted}">
-      <label for="logo" class="control-label">Logo</label><br/>
-      <label for="logo" class="btn btn-default btn-sm">
-        <input id="logo" type="file" name="logo" style="display:none;" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" ng-Change="adminMdphCtrl.setLogoChanged()"/>
-        <i class="fa fa-upload"></i> {{ !logoChanged && !mdphDetail.logo ? 'Ajouter un logo' : 'Modifier le logo'}}
-      </label>
+      <label for="logo" class="control-label">Logo</label>
+      <input id="logo" type="file" name="logo" class="form-control-file" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" ng-Change="adminMdphCtrl.setLogoChanged()"/>
       <div>
         <img ng-if="!logoChanged && mdphDetail.logo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/logo" class="thumb" width="150" height="90" alt="logo"/>
         <img ng-if="logoChanged" ngf-src="mdphDetail.logo" class="thumb" width="150" height="90"/>
@@ -77,11 +74,8 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.photo.$invalid && mdphDetailForm.$submitted}">
-      <label for="photo" class="control-label">Photo d'accueil</label><br/>
-      <label for="photo" class="btn btn-default btn-sm" >
-        <input id="photo" type="file" name="photo" style="display:none;" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" ng-Change="adminMdphCtrl.setPhotoChanged()"/>
-        <i class="fa fa-upload"></i> {{ !photoChanged && !mdphDetail.photo ? 'Ajouter une photo' : 'Modifier la photo'}}
-      </label>
+      <label for="photo" class="control-label">Photo d'accueil</label>
+      <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" ng-Change="adminMdphCtrl.setPhotoChanged()"/>
       <div>
         <img ng-if="!photoChanged && mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="1200" height="400" alt="photo"/>
         <img ng-if="photoChanged" ngf-src="mdphDetail.photo" class="thumb" width="1200" height="400"/>
