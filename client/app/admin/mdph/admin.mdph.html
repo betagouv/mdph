@@ -64,6 +64,7 @@
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.logo.$invalid && mdphDetailForm.$submitted}">
       <label for="logo" class="control-label">Logo</label>
       <input id="logo" type="file" name="logo" class="form-control-file" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" ng-Change="adminMdphCtrl.setLogoChanged()"/>
+      <span class="font-italic">La taille du logo est 150x90 (LxH) et au format .jpg</span>
       <div>
         <img ng-if="!logoChanged && mdphDetail.logo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/logo" class="thumb" width="150" height="90" alt="logo"/>
         <img ng-if="logoChanged" ngf-src="mdphDetail.logo" class="thumb" width="150" height="90"/>
@@ -76,6 +77,7 @@
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.photo.$invalid && mdphDetailForm.$submitted}">
       <label for="photo" class="control-label">Photo d'accueil</label>
       <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" ng-Change="adminMdphCtrl.setPhotoChanged()"/>
+      <span class="font-italic">La taille de la photo est 2000x500 (LxH) et au format .jpg</span>
       <div>
         <img ng-if="!photoChanged && mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="1200" height="400" alt="photo"/>
         <img ng-if="photoChanged" ngf-src="mdphDetail.photo" class="thumb" width="1200" height="400"/>
