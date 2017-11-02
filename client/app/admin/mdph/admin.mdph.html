@@ -77,8 +77,8 @@
       <label for="photo" class="control-label">Photo d'accueil</label>
       <input id="photo" type="file" name="photo" class="form-control-file" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" ng-Change="adminMdphCtrl.setPhotoChanged()"/>
       <div>
-        <img ng-if="!photoChanged && mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="1200" height="400" alt="photo"/>
-        <img ng-if="photoChanged" ngf-src="mdphDetail.photo" class="thumb" width="1200" height="400"/>
+        <img ng-if="!photoChanged && mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="100%" alt="photo"/>
+        <img ng-if="photoChanged" ngf-src="mdphDetail.photo" class="thumb" width="100%" alt="photo"/>
       </div>
       <div ng-messages="mdphDetailForm.photo.$error" ng-if="mdphDetailForm.$submitted">
         <p class="help-block" ng-message='maxSize'>La photo est trop volumineuse</p>
