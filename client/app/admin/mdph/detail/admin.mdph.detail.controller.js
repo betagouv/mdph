@@ -1,33 +1,10 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('AdminMdphCtrl', function($scope, $state, $stateParams, $location, $anchorScroll, Upload, mdphs, MdphResource) {
-    this.mdphs = mdphs;
-    this.totalItems = this.mdphs.length;
-    this.itemsPerPage = 10;
-    this.currentPage = 1;
-    $scope.mdphDetail = {};
+  .controller('AdminMdphDetailCtrl', function($scope, $state, mdph, Upload, MdphResource) {
+    $scope.mdphDetail = mdph;
     $scope.logoChanged = false;
     $scope.photoChanged = false;
-
-    this.setPage = function(pageNo) {
-      this.currentPage = pageNo;
-    };
-
-    this.setItemsPerPage = function(num) {
-      this.itemsPerPage = num;
-      this.currentPage = 1;
-    };
-
-    this.selectItem = function(item) {
-      MdphResource.get({zipcode: item.zipcode}).$promise.then(function(mdph) {
-        mdph.logoChanged = false;
-        mdph.photoChanged = false;
-        $scope.mdphDetail = mdph;
-        $location.hash('detail-mdph');
-        $anchorScroll();
-      });
-    };
 
     this.setLogoChanged = function() {
       $scope.logoChanged = true;
@@ -126,9 +103,13 @@ angular.module('impactApp')
                 });
             }
 
-            return $state.go('admin.mdph', {mdphs: MdphResource.query().$promise}, {reload: true});
+            return $state.go('admin.mdph', {}, {reload: true});
           });
       }
     };
+
+    this.cancel = function() {
+      return $state.go('admin.mdph', {}, {reload: true});
+    }
 
   });
