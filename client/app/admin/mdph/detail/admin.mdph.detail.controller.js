@@ -110,6 +110,6 @@ angular.module('impactApp')
 
     this.cancel = function() {
       return $state.go('admin.mdph', {}, {reload: true});
-    }
+    };
 
   });

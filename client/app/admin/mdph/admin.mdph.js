@@ -5,7 +5,7 @@ angular.module('impactApp')
     $stateProvider
       .state('admin.mdph', {
         url: '/mdph',
-         authenticate: true,
+        authenticate: true,
         templateUrl: '<div ui-view></div>',
         redirectTo: {
           url: 'admin.mdph.list',

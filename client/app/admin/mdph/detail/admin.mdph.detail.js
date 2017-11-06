@@ -5,6 +5,9 @@ angular.module('impactApp')
     $stateProvider
       .state('admin.mdph.detail', {
         url: '/mdph/detail',
+        params: {
+          zipcode: null,
+        },
         parent: 'admin',
         authenticate: true,
         templateUrl: 'app/admin/mdph/detail/admin.mdph.detail.html',
@@ -14,7 +17,7 @@ angular.module('impactApp')
           mdph: function(MdphResource, $stateParams) {
             var zipcode = $stateParams.zipcode;
             if (zipcode) {
-                return MdphResource.get({zipcode: zipcode}).$promise;
+              return MdphResource.get({zipcode: zipcode}).$promise;
             } else {
               return {};
             }
