@@ -17,7 +17,7 @@ angular.module('impactApp')
     };
 
     this.selectItem = function(item) {
-      return $state.go('admin.mdph.detail', {'zipcode': item.zipcode}, {reload: true});
+      return $state.go('admin.mdph.detail', {zipcode: item.zipcode}, {reload: true});
     };
 
     this.newItem = function() {
