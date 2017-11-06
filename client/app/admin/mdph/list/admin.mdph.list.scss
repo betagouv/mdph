@@ -1,0 +1,18 @@
+.list-mdph {
+  padding: 10px;
+}
+
+.btn-new {
+  background-color: $light-grey;
+  padding: 10px 15px;
+  font-size: 1.2em;
+  color: #000;
+
+  &:before {
+    content: "\f055";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    width: 1.2em;
+    margin-right: 4px;
+  }
+}
