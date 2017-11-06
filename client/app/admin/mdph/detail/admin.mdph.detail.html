@@ -28,6 +28,7 @@
         <input id="logo" type="file" name="logo" style="display:none;" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" ng-Change="AdminMdphDetailCtrl.setLogoChanged()"/>
         <i class="fa fa-upload"></i> {{ !logoChanged && !mdphDetail.logo ? 'Ajouter un logo' : 'Modifier le logo'}}
       </label>
+      <span class="font-italic">La taille du logo est 150x90 (LxH) et au format .jpg</span>
       <div>
         <img ng-if="!logoChanged && mdphDetail.logo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/logo" class="thumb" width="150" height="90" alt="logo"/>
         <img ng-if="logoChanged" ngf-src="mdphDetail.logo" class="thumb" width="150" height="90"/>
@@ -43,6 +44,8 @@
         <input id="photo" type="file" name="photo" style="display:none;" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" ng-Change="AdminMdphDetailCtrl.setPhotoChanged()"/>
         <i class="fa fa-upload"></i> {{ !photoChanged && !mdphDetail.photo ? 'Ajouter une photo' : 'Modifier la photo'}}
       </label>
+      <span class="font-italic">La taille de la photo est 2000x500 (LxH) et au format .jpg</span>
+
       <div>
         <img ng-if="!photoChanged && mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="100%" alt="photo"/>
         <img ng-if="photoChanged" ngf-src="mdphDetail.photo" class="thumb" width="100%" alt="photo"/>
