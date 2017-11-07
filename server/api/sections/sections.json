@@ -700,8 +700,7 @@
             "labelRep": "<%= pronoun %> est trop jeune",
             "model": "tropJeune",
             "detailModel": "raisonNonScolaireTropJeune",
-            "placeholderDefault": "A partir de quand serez-vous scolarisé·e ?",
-            "placeholder": "A partir de quand sera-t-<%= pronoun %> scolarisé<%= fem %> ?",
+            "detailLabel": "A partir de quand serez-vous scolarisé·e ?",
             "detailUrl": "components/detail/precisez.html"
           },
           {
