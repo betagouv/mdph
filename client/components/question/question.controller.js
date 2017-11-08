@@ -125,7 +125,7 @@ angular.module('impactApp')
   .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep) {
     initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
 
-    $scope.jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    $scope.jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
     $scope.currentModel = question.model;
 
     if (angular.isUndefined($scope.sectionModel[$scope.currentModel])) {
@@ -137,7 +137,8 @@ angular.module('impactApp')
           jour: jour,
           matin: '',
           midi: '',
-          aprem: ''
+          aprem: '',
+          soir: ''
         });
       });
     }
