@@ -216,6 +216,23 @@ angular.module('impactApp')
         nextStep: function($state, saveCurrentState) {
           return function() {
             saveCurrentState();
+            $state.go('^.aide_eleve');
+          };
+        }
+      }
+    })
+    .state(index + '.situation.aide_eleve', {
+      url: '',
+      templateUrl: 'components/question/radio.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'aideEleve', profile);
+        },
+
+        nextStep: function($state, saveCurrentState) {
+          return function() {
+            saveCurrentState();
             $state.go('^.emploi_du_temps');
           };
         }
