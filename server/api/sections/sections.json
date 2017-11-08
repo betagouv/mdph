@@ -1881,6 +1881,10 @@
             "model": "repos"
           },
           {
+            "label": "Pouvoir se faire remplacer en cas de besoin",
+            "model": "besoin"
+          },
+          {
             "label": "Pouvoir se faire remplacer en cas d’imprévu",
             "model": "imprevu"
           },
