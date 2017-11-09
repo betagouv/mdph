@@ -75,6 +75,16 @@
             "onlyAdult": true
           },
           {
+            "label": "Vous venez de trouver un emploi",
+            "labelRep": "<%= pronoun %> a trouvé un emploi",
+            "detailModel": "emploiDetail",
+            "detailUrl": "components/detail/precisez_date_et_detail.html",
+            "detailTextLabel": "Précisez",
+            "detailDateLabel": "Date d'entrée prévue",
+            "model": "emploi",
+            "onlyAdult": true
+          },
+          {
             "label": "Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
             "labelRep": "<%= pronoun %> arrive dans moins de 2 mois à la fin de ses droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
             "model": "finDroit",
