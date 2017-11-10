@@ -35,27 +35,30 @@
       </div>
 
       <form aria-labelledby="changePassword" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': passwordForm.password.$invalid && passwordForm.$submitted }">
           <label for="oldPassword" class="control-label">Mot de passe actuel</label>
           <div>
             <div class="input-group margin-bottom-sm">
-              <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword"/>
+              <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword" required mongoose-error/>
               <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
             </div>
-            <p class="help-block text-dark-red">{{ errors.password }}</p>
+            <div ng-messages="passwordForm.password.$error" ng-if="passwordForm.$submitted">
+              <p class="help-block" ng-message='required'>Veuillez entrer votre mot de passe précédent</p>
+              <p class="help-block" ng-message="mongoose">{{ errors.password }}</p>
+              </div>
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group required" ng-class="{ 'has-error': passwordForm.newPassword.$invalid && passwordForm.$submitted}">
           <label for="newPassword" class="control-label">Nouveau mot de passe</label>
           <div>
             <div class="input-group margin-bottom-sm">
-              <input id="newPassword" type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+              <input id="newPassword" type="password" name="newPassword" class="form-control" ng-model="user.newPassword" required mongoose-error
                      zxcvbn="passwordStrength" zx-min-score="2"/>
               <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
             </div>
 
-            <div ng-messages="form.password.$error" ng-if="form.$submitted">
+            <div ng-messages="passwordForm.newPassword.$error" ng-if="passwordForm.$submitted">
               <p id="error-message" ng-message="passwordStrength" class="help-block">Votre mot de passe est d'une robustesse trop faible</p>
             </div>
 
