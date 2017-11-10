@@ -13,7 +13,7 @@ angular.module('impactApp')
         }
 
         if (res.status === 404) {
-          $scope.message = 'Compte inconu';
+          $scope.message = 'Compte inconnu';
         }
       });
     };
