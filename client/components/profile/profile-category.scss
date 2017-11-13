@@ -98,8 +98,7 @@
     display: flex;
     flex: 1;
     margin-top: 5px;
-    overflow: hidden;
-
+    overflow: inherit;
 
     .profile-category-header-text-title {
       font-size: 1.2em;
