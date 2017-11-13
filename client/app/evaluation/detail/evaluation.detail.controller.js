@@ -144,5 +144,4 @@ angular.module('impactApp')
       }
     };
 
-
   });
