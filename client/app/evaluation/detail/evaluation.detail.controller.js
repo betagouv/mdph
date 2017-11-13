@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .controller('EvaluationDetailCtrl', function(
-    $scope, $modal, $cookies, $http, $state, $stateParams,
+    $scope, $modal, toastr, $cookies, $http, $state, $stateParams,
     sections, section, sectionId, model, GevaService, currentSynthese, currentUser, SyntheseResource) {
 
     $scope.model = model;
@@ -124,6 +124,7 @@ angular.module('impactApp')
         currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
         $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
         SyntheseResource.update(currentSynthese, function() {
+          toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
           $state.go('evaluation.dashboard', {}, {reload: true});
         });
       }
@@ -137,13 +138,11 @@ angular.module('impactApp')
         currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
         $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
         SyntheseResource.update(currentSynthese, function() {
+          toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
           $state.go('evaluation.detail', {sectionId: sectionId}, {reload: true});
         });
       }
     };
 
-    this.cancel = function() {
-      $state.go('.', {}, {reload: true});
-    };
 
   });
