@@ -72,7 +72,7 @@ export function sendMailReceivedTransmission(options) {
         replyTo: options.replyTo,
         body,
         attachments
-      }).then(trace => {});
+      });
     });
 }
 
