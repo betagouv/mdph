@@ -100,7 +100,6 @@ function createRequestExport({role, request, host, tempDirPath, requestExportFor
             return resolve(stream);
           });
         }
-
         return resolve(recapitulatifPdfPath);
       });
     });
