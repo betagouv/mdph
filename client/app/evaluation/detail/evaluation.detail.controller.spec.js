@@ -65,8 +65,8 @@ describe('EvaluationDetailCtrl', function() {
         }
       };
 
-      beforeEach(function() {
-        scope = {};
+      beforeEach(inject(function($rootScope) {
+        scope = $rootScope.$new();
         controller = $controller('EvaluationDetailCtrl',
           {
             $scope: scope,
@@ -80,7 +80,7 @@ describe('EvaluationDetailCtrl', function() {
             currentUser: fakeUser
           }
         );
-      });
+      }));
 
       it('should be true', function() {
         var result = scope.noAnswer;
@@ -136,8 +136,8 @@ describe('EvaluationDetailCtrl', function() {
         }
       };
 
-      beforeEach(function() {
-        scope = {};
+      beforeEach(inject(function($rootScope) {
+        scope = $rootScope.$new();
         controller = $controller('EvaluationDetailCtrl', {
           $scope: scope,
           listSyntheses: [],
@@ -149,7 +149,7 @@ describe('EvaluationDetailCtrl', function() {
           sectionId: {},
           currentUser: fakeUser
         });
-      });
+      }));
 
       it('should be false', function() {
         var result = scope.noAnswer;
@@ -220,8 +220,8 @@ describe('EvaluationDetailCtrl', function() {
         profile: '1234'
       };
 
-      beforeEach(function() {
-        scope = {};
+      beforeEach(inject(function($rootScope) {
+        scope = $rootScope.$new();
         controller = $controller('EvaluationDetailCtrl', {
           $scope: scope,
           listSyntheses: [],
@@ -233,10 +233,10 @@ describe('EvaluationDetailCtrl', function() {
           sectionId: {},
           currentUser: fakeUser
         });
-      });
+      }));
 
       it('should save the answer in the request', function() {
-        controller.save({$valid: true}, 'éléments environnementaux');
+        controller.save();
         expect(fakeSynthese.geva.environnement).toEqual(['II_1 bis_1', 0]);
       });
     });
