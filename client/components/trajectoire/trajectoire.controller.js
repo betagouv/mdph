@@ -34,7 +34,7 @@ angular.module('impactApp')
         this.root.isSelected = true;
       }
 
-      if(this.sublevel){
+      if (this.sublevel) {
         // Emetre en evenement pour la sauvegarde
         $scope.$emit('saveEvaluationDetailEvent');
       }
