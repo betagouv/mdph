@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('TrajectoireController', function() {
+  .controller('TrajectoireController', function($scope) {
 
     this.getRootQuestion = (question) => {
       if (this.sublevel) {
@@ -33,6 +33,12 @@ angular.module('impactApp')
       if (question.isSelected && this.sublevel) {
         this.root.isSelected = true;
       }
+
+      if (this.sublevel) {
+        // Emetre en evenement pour la sauvegarde
+        $scope.$emit('saveEvaluationDetailEvent');
+      }
+
     };
 
     this.toggleCollapse = (question) => {
