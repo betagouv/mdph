@@ -5,13 +5,13 @@
   <div id="section-detail">
     <form id="profilFormId" name="profilForm" novalidate>
 
-      <a ng-click="evaluationDetailCtrl.saveAndQuit(profilForm)"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Retour à la liste des fiches de synthèse</a>
+      <a ui-sref="evaluation.dashboard"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Retour à la liste des fiches de synthèse</a>
 
       <div class="panel with-nav-tabs panel-default">
         <div class="panel-heading">
           <ul class="nav nav-tabs nav-justified">
             <li ui-sref-active="active" ng-repeat="section in sections" role="presentation">
-              <a ng-click="evaluationDetailCtrl.save(profilForm, section.id)">{{section.label}}</a>
+              <a ui-sref="evaluation.detail({sectionId: section.id})">{{section.label}}</a>
             </li>
           </ul>
         </div>
@@ -20,7 +20,7 @@
 
           <div class="form-group required" ng-class="{'has-error': profilForm.lastname.$invalid && profilForm.$submitted}">
             <label for="lastname" class="control-label">Nom de naissance</label>
-            <input id="lastname" type="text" name="lastname" value="{{currentSynthese.lastname}}" class="form-control" ng-model="currentSynthese.lastname" ng-minlength="1" required>
+            <input id="lastname" type="text" name="lastname" value="{{currentSynthese.lastname}}" class="form-control" ng-model="currentSynthese.lastname" ng-minlength="1" required ng-change="evaluationDetailCtrl.change()" ng-model-options="{updateOn: 'blur'}">
             <div ng-messages="profilForm.lastname.$error" ng-if="profilForm.$submitted">
               <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
               <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
@@ -29,7 +29,7 @@
 
           <div class="form-group required" ng-class="{'has-error': profilForm.firstname.$invalid && profilForm.$submitted}">
             <label for="firstname" class="control-label">Prénoms</label>
-            <input id="firstname" type="text" name="firstname" value="{{currentSynthese.firstname}}" class="form-control" ng-model="currentSynthese.firstname" ng-minlength="1" required>
+            <input id="firstname" type="text" name="firstname" value="{{currentSynthese.firstname}}" class="form-control" ng-model="currentSynthese.firstname" ng-minlength="1" required ng-change="evaluationDetailCtrl.change()" ng-model-options="{updateOn: 'blur'}">
             <div ng-messages="profilForm.firstname.$error" ng-if="profilForm.$submitted">
               <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
               <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
@@ -38,7 +38,7 @@
 
           <div class="form-group required" ng-class="{'has-error': profilForm.birthdate.$invalid && profilForm.$submitted}">
             <label for="birthdate" class="control-label">Date de naissance</label>
-            <input id="birthdate" type="text" name="birthdate" value="{{currentSynthese.birthdate}}" class="form-control" ng-model="currentSynthese.birthdate" ng-minlength="1"  placeholder="JJ/MM/AAAA" input-date date-autocomplete required>
+            <input id="birthdate" type="text" name="birthdate" value="{{currentSynthese.birthdate}}" class="form-control" ng-model="currentSynthese.birthdate" ng-minlength="1"  placeholder="JJ/MM/AAAA" input-date date-autocomplete required ng-change="evaluationDetailCtrl.change()" ng-model-options="{updateOn: 'blur'}">
             <div ng-messages="profilForm.birthdate.$error" ng-if="profilForm.$submitted">
               <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
               <p class="help-block" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
