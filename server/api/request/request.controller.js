@@ -8,6 +8,7 @@ import _ from 'lodash';
 import pdf from 'html-pdf';
 import moment from 'moment';
 import fs from 'fs';
+import stream  from 'stream';
 import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
@@ -406,14 +407,19 @@ export function getPdf(req, res) {
         requestExportFormat: mdph.requestExportFormat
       });
     })
-    .then(filepath => {
+    .then(readStream => {
       const beneficiaire = req.request.formAnswers.identites.beneficiaire;
-      const extension = currentMdph.requestExportFormat;
+      const extension = req.user.role !== 'user' ? currentMdph.requestExportFormat : 'pdf';
 
       const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
 
       res.header('Content-Disposition', `attachment; filename="${filename}"`);
-      fs.createReadStream(filepath).pipe(res);
+
+      if (extension !== 'pdf') {
+        readStream.pipe(res);
+      } else {
+        fs.createReadStream(readStream).pipe(res);
+      }
       return null;
     })
     .catch(handleError(req, res));
@@ -454,7 +460,12 @@ export function getDownload(req, res) {
 
         const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${currentDemande.shortId}.${extension}`;
 
-        archive.append(readStream, { name: filename });
+
+        if (extension !== 'pdf') {
+          archive.append(readStream, { name: filename });
+        } else {
+          archive.append(fs.createReadStream(readStream), { name: filename });
+        }
 
         callback();
       });
@@ -473,8 +484,8 @@ export function getSynthesePdf(req, res) {
   SynthesePDF.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
     if (err) { throw(500, err); }
 
-    pdf.create(html).toStream(function(err, stream) {
-      stream.pipe(res);
+    pdf.create(html).toStream(function(err, readStream) {
+      readStream.pipe(res);
     });
   });
 }

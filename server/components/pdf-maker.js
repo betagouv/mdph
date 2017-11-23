@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import tmp from 'tmp';
+import fs from 'fs';
 import path from 'path';
 import htmlToPdf from 'html-pdf';
 import pdfConvert from './pdf_utils/convert';
@@ -97,7 +98,10 @@ function createRequestExport({role, request, host, tempDirPath, requestExportFor
 
         if (role !== 'user') {
           return createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, requestExportFormat}).then(stream => {
-            return resolve(stream.path);
+            if (requestExportFormat === 'pdf') {
+              return resolve(stream.path);
+            }
+            return resolve(stream);
           });
         }
         return resolve(recapitulatifPdfPath);
