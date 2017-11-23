@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import tmp from 'tmp';
+import fs from 'fs';
 import path from 'path';
 import htmlToPdf from 'html-pdf';
 import pdfConvert from './pdf_utils/convert';

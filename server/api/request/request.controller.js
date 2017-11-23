@@ -8,6 +8,7 @@ import _ from 'lodash';
 import pdf from 'html-pdf';
 import moment from 'moment';
 import fs from 'fs';
+import stream  from 'stream';
 import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
