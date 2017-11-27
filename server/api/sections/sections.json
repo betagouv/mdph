@@ -1382,12 +1382,6 @@
           {
             "label": "Aides du fonds pour l'insertion des personnes handicapées dans la fonction publique (FIPHFP)",
             "model": "fiphfp"
-          },
-          {
-            "label": "Autre",
-            "model": "autre",
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "prestationsDetail"
           }
         ]
       },
