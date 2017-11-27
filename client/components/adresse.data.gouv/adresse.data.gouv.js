@@ -4,15 +4,13 @@ angular.module('impactApp')
   .factory('AdressService', function($http, appConfig) {
     return {
       getAdress(val, mdph) {
-        const mainLocation = _.find(mdph.locations, {headquarters: true}) || mdph.locations[0];
-
         return $http({
           method: 'GET',
           url: appConfig.banUrl,
           params: {
             q: val,
-            lat: mainLocation.coordinates.coordy,
-            lon: mainLocation.coordinates.coordx,
+            lat: mdph.headquarters.coordinates.coordy,
+            lon: mdph.headquarters.coordinates.coordx,
             limit: 8
           }
         })
