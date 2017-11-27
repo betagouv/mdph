@@ -79,7 +79,7 @@ angular.module('impactApp')
     .state(index + '.situation_professionnelle.employeur', {
       url: '',
       templateUrl: 'components/question/employeur.html',
-      controller: function($scope, question, nextStep) {
+      controller: function($scope, question, prevStep, nextStep) {
         if (angular.isUndefined($scope.sectionModel.employeur)) {
           $scope.sectionModel.employeur = {
             nom: {label: 'Nom', value: ''},
@@ -90,6 +90,7 @@ angular.module('impactApp')
 
         $scope.question = question;
         $scope.nextStep = nextStep;
+        $scope.prevStep = prevStep;
         $scope.model = $scope.sectionModel.employeur;
       },
 

@@ -6,8 +6,22 @@ angular.module('impactApp')
       zipcode: '@zipcode'
     },
     {
+      save: {
+        method: 'POST',
+        params: {
+          zipcode:undefined
+        }
+      },
+
       update: {
         method: 'PUT'
+      },
+
+      updateRequestExportFormat: {
+        method: 'PUT',
+        params: {
+          controller:'requestExportFormat'
+        }
       },
 
       queryUsers: {
@@ -106,6 +120,21 @@ angular.module('impactApp')
         params: {
           controller:'categories',
           controllerid: 'unclassifiedCategory'
+        }
+      },
+
+      getLogo: {
+        method: 'GET',
+        params: {
+          controller:'logo'
+        },
+        headers: {
+          accept: 'image/jpeg'
+        },
+        responseType: 'arraybuffer',
+        cache: false,
+        transformResponse: function(data) {
+          return { data: data };
         }
       }
     });

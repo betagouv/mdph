@@ -1,4 +1,4 @@
-<header class="banner bg" ng-class="'bg-' + departementctrl.currentMdph.zipcode">
+<header class="banner bg" mdph-photo="{{departementctrl.currentMdph.zipcode}}">
   <div class="hero-unit" ng-if="departementctrl.isOpened()">
     <h1 ng-if="departementctrl.currentMdph">Votre MDPH {{departementctrl.currentMdph.name}}</h1>
 

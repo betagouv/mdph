@@ -190,6 +190,9 @@ fieldset {
 
 // injector
 @import 'account/account.scss';
+@import 'admin/admin.scss';
+@import 'admin/mdph/detail/admin.mdph.detail.scss';
+@import 'admin/mdph/list/admin.mdph.list.scss';
 @import 'apropos/apropos.scss';
 @import 'cgu/cgu.scss';
 @import 'dashboard/dashboard.scss';

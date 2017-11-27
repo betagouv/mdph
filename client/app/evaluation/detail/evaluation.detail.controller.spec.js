@@ -236,7 +236,7 @@ describe('EvaluationDetailCtrl', function() {
       });
 
       it('should save the answer in the request', function() {
-        scope.save({$valid: true});
+        controller.save({$valid: true}, 'éléments environnementaux');
         expect(fakeSynthese.geva.environnement).toEqual(['II_1 bis_1', 0]);
       });
     });

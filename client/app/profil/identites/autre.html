@@ -38,6 +38,13 @@
   </section>
 
   <section class="identite-section">
+  <div class="address-input">
+      <div class="form-group">
+        <label for="complementAdresse{{id}}" class="control-label">Complément d'adresse</label>
+        <input id="complementAdresse{{id}}" type="text" name="complementAdresse{{id}}" class="form-control" ng-model="identite.complementAdresse">
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="nomVoie" class="control-label">Adresse</label>
       <div class="input-group">
@@ -82,7 +89,7 @@
     <div class="form-group">
       <label for="email" class="control-label">Email</label>
       <div class="input-group margin-bottom-sm">
-        <input id="email" type="email" name="email" class="form-control" ng-model="identite.email">
+        <input id="email" type="text" name="email" class="form-control" ng-model="identite.email">
         <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
       </div>
     </div>

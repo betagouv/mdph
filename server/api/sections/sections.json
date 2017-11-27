@@ -24,7 +24,7 @@
             "model": "domicile",
             "detail": true,
             "detailModel": "domicileDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
@@ -32,7 +32,7 @@
             "labelRep": "Son école ne peut plus l'accueillir",
             "detail": true,
             "detailModel": "ecoleDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
             "model": "ecole"
           },
@@ -42,7 +42,7 @@
             "model": "etablissement",
             "detail": true,
             "detailModel": "etablissementDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
@@ -50,7 +50,7 @@
             "labelRep": "<%= pronoun %> risque de perdre son travail",
             "detail": true,
             "detailModel": "travailDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
             "model": "travail",
             "onlyAdult": true
@@ -61,16 +61,27 @@
             "model": "hospitalisation",
             "detail": true,
             "detailModel": "hospitalisationDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
             "label": "Vous commencez bientôt une nouvelle formation",
             "labelRep": "<%= pronoun %> commence bientôt une nouvelle formation",
             "detailModel": "formationDetail",
-            "detailUrl": "components/detail/precisez_date.html",
-            "detailLabel": "Date d'entrée prévue",
+            "detailUrl": "components/detail/precisez_date_et_detail.html",
+            "detailTextLabel": "Précisez",
+            "detailDateLabel": "Date d'entrée prévue",
             "model": "formation",
+            "onlyAdult": true
+          },
+          {
+            "label": "Vous venez de trouver un emploi",
+            "labelRep": "<%= pronoun %> a trouvé un emploi",
+            "detailModel": "emploiDetail",
+            "detailUrl": "components/detail/precisez_date_et_detail.html",
+            "detailTextLabel": "Précisez",
+            "detailDateLabel": "Date d'entrée prévue",
+            "model": "emploi",
             "onlyAdult": true
           },
           {
@@ -700,8 +711,7 @@
             "labelRep": "<%= pronoun %> est trop jeune",
             "model": "tropJeune",
             "detailModel": "raisonNonScolaireTropJeune",
-            "placeholderDefault": "A partir de quand serez-vous scolarisé·e ?",
-            "placeholder": "A partir de quand sera-t-<%= pronoun %> scolarisé<%= fem %> ?",
+            "detailLabel": "A partir de quand serez-vous scolarisé·e ?",
             "detailUrl": "components/detail/precisez.html"
           },
           {
@@ -752,7 +762,7 @@
             "model": "serviceSoinPartiel"
           },
           {
-            "label": "En formation supérieure",
+            "label": "En formation supérieure ou en apprentissage",
             "model": "superieur"
           },
           {
@@ -877,6 +887,24 @@
             "model": "autre",
             "detailModel": "adaptationAutre",
             "detailUrl": "components/detail/precisez.html"
+          }
+        ]
+      },
+      "aideEleve": {
+        "model": "aideEleve",
+        "titleDefault": "Vous disposez actuellement d’une aide humaine aux élèves handicapés",
+        "titleRep": "<%= name %> dispose actuellement d’une aide humaine aux élèves handicapés",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailModel": "aideEleveDetail",
+            "detailUrl": "components/detail/precisez.html"
+          },
+          {
+            "label": "Non",
+            "model": false
           }
         ]
       },
@@ -1354,12 +1382,6 @@
           {
             "label": "Aides du fonds pour l'insertion des personnes handicapées dans la fonction publique (FIPHFP)",
             "model": "fiphfp"
-          },
-          {
-            "label": "Autre",
-            "model": "autre",
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "prestationsDetail"
           }
         ]
       },
@@ -1879,6 +1901,10 @@
           {
             "label": "Pouvoir se reposer au quotidien",
             "model": "repos"
+          },
+          {
+            "label": "Pouvoir se faire remplacer en cas de besoin",
+            "model": "besoin"
           },
           {
             "label": "Pouvoir se faire remplacer en cas d’imprévu",

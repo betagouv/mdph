@@ -34,6 +34,14 @@
                 }
               }
 
+              if (path[1] === 'admin') {
+                const user = Auth.getCurrentUser();
+                if (!Auth.hasRole(user, 'admin')) {
+                  Auth.logout();
+                  $state.go('admin.login', nextParams);
+                }
+              }
+
               return;
             }
 
@@ -43,9 +51,12 @@
             if (path[1] === 'evaluation') {
               $state.go('evaluation.login', nextParams);
             } else {
-              $state.go('login', nextParams);
+              if (path[1] === 'admin') {
+                $state.go('admin.login', nextParams);
+              } else {
+                $state.go('login', nextParams);
+              }
             }
-
           });
         }
       });

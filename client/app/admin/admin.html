@@ -1,0 +1,47 @@
+<div id="admin">
+  <header>
+    <nav role="navigation">
+      <a ui-sref="admin.main">
+        <img src="assets/images/logo_marianne.png" alt="Retourner à l'accueil" />
+      </a>
+
+      <ul ng-if="!adminCtrl.isLoggedIn()">
+        <li>
+          <a class="icon login" id="login" ui-sref="admin.login" title="Connexion">Connexion</a>
+        </li>
+      </ul>
+
+      <ul ng-if="adminCtrl.isLoggedIn()">
+        <li>
+          <a ui-sref="admin.main" title="Admin">Admin</a>
+        </li>
+        <li ng-if="adminCtrl.getCurrentUser().mdph">
+          <a ui-sref="dashboard.workflow({codeDepartement: adminCtrlgetCurrentUser().mdph.zipcode, zipcode: adminCtrlgetCurrentUser().mdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
+        </li>
+        <li ng-if="adminCtrl.getCurrentUser().mdph">
+          <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
+        </li>
+        <li>
+          <a ui-sref="admin.logout" id="logout">Déconnexion</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="main-menu">
+      <ul>
+        <li><a class="icon" ui-sref-active="active" ui-sref="admin.mdph">Administer une MDPH</a></li>
+        <li><a class="icon" ui-sref-active="active" ui-sref="admin.agent">Creer un compte agent</a></li>
+        <li><a class="icon" ui-sref-active="active" ui-sref="admin.activation">Activer un compte</a></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <div ui-view></div>
+    </div>
+  </main>
+  <footer>
+    <div class="links">
+      <a ui-sref="suivi">Suivi d’audience et vie privée</a>
+    </div>
+  </footer>
+</div>
