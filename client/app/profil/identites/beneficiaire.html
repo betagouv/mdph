@@ -236,9 +236,12 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="identite.assurance === 'autre'">
+    <div class="form-group required" ng-if="identite.assurance === 'autre'" ng-class="{'has-error': infoForm.assurance_precisez.$invalid && infoForm.$submitted}">
       <label for="assurance_precisez" class="control-label">Précisez</label>
-      <input id="assurance_precisez" type="text" name="assurance_precisez" class="form-control" ng-model="identite.assurance_precisez">
+      <input id="assurance_precisez" type="text" name="assurance_precisez" class="form-control" ng-model="identite.assurance_precisez" required>
+      <div ng-messages="infoForm.assurance_precisez.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
     </div>
 
     <div class="form-group required" ng-class="{'has-error': infoForm.numero_secu.$invalid && !infoForm.numero_secu.$pristine && infoForm.$submitted}">

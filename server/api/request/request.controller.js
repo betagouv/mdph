@@ -404,14 +404,14 @@ export function getPdf(req, res) {
         requestExportFormat: mdph.requestExportFormat
       });
     })
-    .then(readStream => {
+    .then(filepath => {
       const beneficiaire = req.request.formAnswers.identites.beneficiaire;
       const extension = currentMdph.requestExportFormat;
 
       const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
 
       res.header('Content-Disposition', `attachment; filename="${filename}"`);
-      readStream.pipe(res);
+      fs.createReadStream(filepath).pipe(res);
       return null;
     })
     .catch(handleError(req, res));

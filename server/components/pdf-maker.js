@@ -97,10 +97,9 @@ function createRequestExport({role, request, host, tempDirPath, requestExportFor
 
         if (role !== 'user') {
           return createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, requestExportFormat}).then(stream => {
-            return resolve(stream);
+            return resolve(stream.path);
           });
         }
-
         return resolve(recapitulatifPdfPath);
       });
     });

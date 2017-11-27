@@ -25,7 +25,7 @@ angular.module('impactApp')
         missingSections.push('unconfirmed');
       }
 
-      if (!profile.identites || !profile.identites.beneficiaire || !profile.identites.beneficiaire.localite || !profile.identites.beneficiaire.code_postal || !profile.identites.beneficiaire.nomVoie || !profile.identites.beneficiaire.dateNaissance || !profile.identites.beneficiaire.nationalite || !profile.identites.beneficiaire.sexe || !profile.identites.beneficiaire.prenom || !profile.identites.beneficiaire.nom || !profile.identites.beneficiaire.email || !profile.identites.beneficiaire.numero_secu || !profile.identites.beneficiaire.assurance) {
+      if (!profile.identites || !profile.identites.beneficiaire || !profile.identites.beneficiaire.localite || !profile.identites.beneficiaire.code_postal || !profile.identites.beneficiaire.nomVoie || !profile.identites.beneficiaire.dateNaissance || !profile.identites.beneficiaire.nationalite || !profile.identites.beneficiaire.sexe || !profile.identites.beneficiaire.prenom || !profile.identites.beneficiaire.nom || !profile.identites.beneficiaire.email || !profile.identites.beneficiaire.numero_secu || !profile.identites.beneficiaire.assurance || (profile.identites.beneficiaire.assurance === 'autre' && !profile.identites.beneficiaire.assurance_precisez)) {
         missingSections.push('beneficiaire');
       }
 
