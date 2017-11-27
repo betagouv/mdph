@@ -9,6 +9,8 @@ angular.module('impactApp').directive('numeroSecu', function() {
           return true;
         }
 
+        value = value.replace(/ /g, '');
+
         const valueKey = value.slice(-2);
         const valueRest = value.slice(0, -2);
         const computedKey = 97 - valueRest % 97;

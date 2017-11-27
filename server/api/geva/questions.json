@@ -179,6 +179,11 @@
       {
         "id": "III_1_10",
         "CodeValeur": "III.1.10",
+        "Libelle": "établissement pénitentiaire"
+      },
+      {
+        "id": "III_1_11",
+        "CodeValeur": "III.1.11",
         "Libelle": "Autre "
       }
     ]
@@ -1586,7 +1591,7 @@
     "Type": "CU tous niveaux (attention la colonne J ne permet que de s'orienter dans la nomenclature et pas d'enregistrer des données)  ",
     "Reponses": [
       {
-        "id": "271_id",
+        "id": "272_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Certaines maladies infectieuses et parasitaires",
         "Reponses": [
@@ -1894,7 +1899,7 @@
         ]
       },
       {
-        "id": "331_id",
+        "id": "332_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Tumeurs",
         "Reponses": [
@@ -2410,7 +2415,7 @@
         ]
       },
       {
-        "id": "433_id",
+        "id": "434_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies du sang et des organes hématopoïétiques et certains troubles du système immunitaire",
         "Reponses": [
@@ -2681,7 +2686,7 @@
         ]
       },
       {
-        "id": "486_id",
+        "id": "487_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies endocriniennes, nutritionnelles et métaboliques",
         "Reponses": [
@@ -3001,7 +3006,7 @@
         ]
       },
       {
-        "id": "548_id",
+        "id": "549_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Troubles mentaux et du comportement",
         "Reponses": [
@@ -3680,7 +3685,7 @@
         ]
       },
       {
-        "id": "679_id",
+        "id": "680_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies du système nerveux",
         "Reponses": [
@@ -4226,7 +4231,7 @@
         ]
       },
       {
-        "id": "785_id",
+        "id": "786_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'oeil et de ses annexes",
         "Reponses": [
@@ -4695,7 +4700,7 @@
         ]
       },
       {
-        "id": "878_id",
+        "id": "879_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'oreille et de l'apophyse mastoïde",
         "Reponses": [
@@ -4858,7 +4863,7 @@
         ]
       },
       {
-        "id": "909_id",
+        "id": "910_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil circulatoire",
         "Reponses": [
@@ -5218,7 +5223,7 @@
         ]
       },
       {
-        "id": "979_id",
+        "id": "980_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil respiratoire",
         "Reponses": [
@@ -5441,7 +5446,7 @@
         ]
       },
       {
-        "id": "1022_id",
+        "id": "1023_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil digestif",
         "Reponses": [
@@ -5652,7 +5657,7 @@
         ]
       },
       {
-        "id": "1063_id",
+        "id": "1064_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de la peau et du tissu cellulaire sous-cutané",
         "Reponses": [
@@ -6036,7 +6041,7 @@
         ]
       },
       {
-        "id": "1139_id",
+        "id": "1140_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies du système ostéo-articulaire, des muscles et du tissu conjonctif",
         "Reponses": [
@@ -6721,7 +6726,7 @@
         ]
       },
       {
-        "id": "1274_id",
+        "id": "1275_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil génito-urinaire",
         "Reponses": [
@@ -6897,7 +6902,7 @@
         ]
       },
       {
-        "id": "1308_id",
+        "id": "1309_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Grossesse, accouchement et puerpéralité",
         "Reponses": [
@@ -6926,7 +6931,7 @@
         ]
       },
       {
-        "id": "1313_id",
+        "id": "1314_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Certaines affections dont l'origine se situe dans la période périnatale",
         "Reponses": [
@@ -7100,7 +7105,7 @@
         ]
       },
       {
-        "id": "1347_id",
+        "id": "1348_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Malformations congénitales et anomalies chromosomiques",
         "Reponses": [
@@ -7721,7 +7726,7 @@
         ]
       },
       {
-        "id": "1470_id",
+        "id": "1471_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Symptômes, signes et résultats anormaux d'examens cliniques et de laboratoire, non classés ailleurs",
         "Reponses": [
@@ -8104,7 +8109,7 @@
         ]
       },
       {
-        "id": "1545_id",
+        "id": "1546_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Lésions traumatiques, empoisonnements et certaines autres conséquences de causes externes",
         "Reponses": [
@@ -8300,7 +8305,7 @@
         ]
       },
       {
-        "id": "1583_id",
+        "id": "1584_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Facteurs influant sur l'état de santé et motifs de recours aux services de santé",
         "Reponses": [
@@ -9766,7 +9771,7 @@
           {
             "id": "IX_1_a",
             "CodeValeur": "IX.1.a",
-            "Libelle": "gère sans difficulté les tâches et exigences générales, relation avec autrui",
+            "Libelle": "autonome pour les tâches et exigences générales, relation avec autrui",
             "Reponses": [
               {
                 "id": "IX_1_a_1",
@@ -10102,7 +10107,7 @@
           {
             "id": "IX_2_a",
             "CodeValeur": "IX.2.a",
-            "Libelle": "gère sans difficulté la mobilité, manipulation",
+            "Libelle": "autonome pour la mobilité, manipulation",
             "Reponses": [
               {
                 "id": "IX_2_a_1",
@@ -10519,7 +10524,7 @@
           {
             "id": "IX_3_a",
             "CodeValeur": "IX.3.a",
-            "Libelle": "gère sans difficulté l'entretien personnel",
+            "Libelle": "autonome pour l'entretien personnel",
             "Reponses": [
               {
                 "id": "IX_3_a_1",
@@ -10738,7 +10743,7 @@
           {
             "id": "IX_4_a",
             "CodeValeur": "IX.4.a",
-            "Libelle": "gère sans difficulté la communication",
+            "Libelle": "autonome pour la communication",
             "Reponses": [
               {
                 "id": "IX_4_a_1",
@@ -11014,7 +11019,7 @@
           {
             "id": "IX_5_a",
             "CodeValeur": "IX.5.a",
-            "Libelle": "gère sans difficulté la vie domestique et courante",
+            "Libelle": "autonome pour la vie domestique et courante",
             "Reponses": [
               {
                 "id": "IX_5_a_1",
@@ -11305,7 +11310,7 @@
           {
             "id": "IX_6_a",
             "CodeValeur": "IX.6.a",
-            "Libelle": "gère sans difficulté l'application des connaissances, l'apprentissage",
+            "Libelle": "autonome pour l'application des connaissances, l'apprentissage",
             "Reponses": [
               {
                 "id": "IX_6_a_1",
@@ -11413,7 +11418,7 @@
           {
             "id": "IX_7_a",
             "CodeValeur": "IX.7.a",
-            "Libelle": "gère  sans difficulté les tâches en lien avec la scolarité et la formation initiale ",
+            "Libelle": "autonome pour les tâches en lien avec la scolarité et la formation initiale ",
             "Reponses": [
               {
                 "id": "IX_7_a_1",
@@ -11782,7 +11787,7 @@
           {
             "id": "IX_8_a",
             "CodeValeur": "IX.8.a",
-            "Libelle": "gère  sans difficulté les tâches relatives au travail",
+            "Libelle": "autonome pour les tâches relatives au travail",
             "Reponses": [
               {
                 "id": "IX_8_a_1",
@@ -12402,58 +12407,17 @@
               {
                 "id": "XI_1_bis_1_c_2",
                 "CodeValeur": "XI.1.bis.1.c.2",
-                "Libelle": "besoins pour entretenir sa santé",
+                "Libelle": "besoins pour entretenir sa santé (se soigner, exprimer une demande de soins, utiliser les systèmes de santé)",
                 "Reponses": [
                   {
                     "id": "XI_1_bis_1_c_2_a",
                     "CodeValeur": "XI.1.bis.1.c.2.a",
-                    "Libelle": "besoins pour se soigner",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_1_c_2_a_1",
-                        "CodeValeur": "XI.1.bis.1.c.2.a.1",
-                        "Libelle": "besoin épisodique pour se soigner"
-                      },
-                      {
-                        "id": "XI_1_bis_1_c_2_a_2",
-                        "CodeValeur": "XI.1.bis.1.c.2.a.2",
-                        "Libelle": "besoin permanent pour se soigner"
-                      }
-                    ]
+                    "Libelle": "besoin épisodique pour entretenir sa santé"
                   },
                   {
                     "id": "XI_1_bis_1_c_2_b",
                     "CodeValeur": "XI.1.bis.1.c.2.b",
-                    "Libelle": "besoins pour exprimer une demande de soins",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_1_c_2_b_1",
-                        "CodeValeur": "XI.1.bis.1.c.2.b.1",
-                        "Libelle": "besoin épisodique pour exprimer une demande de soins"
-                      },
-                      {
-                        "id": "XI_1_bis_1_c_2_b_2",
-                        "CodeValeur": "XI.1.bis.1.c.2.b.2",
-                        "Libelle": "besoin permanent pour exprimer une demande de soins"
-                      }
-                    ]
-                  },
-                  {
-                    "id": "XI_1_bis_1_c_2_c",
-                    "CodeValeur": "XI.1.bis.1.c.2.c",
-                    "Libelle": "besoins pour utiliser les systèmes de santé",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_1_c_2_c_1",
-                        "CodeValeur": "XI.1.bis.1.c.2.c.1",
-                        "Libelle": "besoin épisodique pour utiliser les systèmes de santé"
-                      },
-                      {
-                        "id": "XI_1_bis_1_c_2_c_2",
-                        "CodeValeur": "XI.1.bis.1.c.2.c.2",
-                        "Libelle": "besoin permanent pour utiliser les systèmes de santé"
-                      }
-                    ]
+                    "Libelle": "besoin permanent pour entretenir sa santé"
                   }
                 ]
               }
@@ -12474,39 +12438,39 @@
               {
                 "id": "XI_1_bis_2_a_1",
                 "CodeValeur": "XI.1.bis.2.a.1",
-                "Libelle": "besoins en matière d'autonomie pour la toilette (se laver, se sécher)",
+                "Libelle": "besoins en matière d'autonomie pour se laver (se laver, se sécher)",
                 "Reponses": [
                   {
                     "id": "XI_1_bis_2_a_1_a",
                     "CodeValeur": "XI.1.bis.2.a.1.a",
-                    "Libelle": "besoin épisodique pour la toilette (se laver, se sécher)",
+                    "Libelle": "besoin épisodique pour se laver (se laver, se sécher)",
                     "Reponses": [
                       {
                         "id": "XI_1_bis_2_a_1_a_1",
                         "CodeValeur": "XI.1.bis.2.a.1.a.1",
-                        "Libelle": "besoin épisodique pour une partie de la toilette (se laver, se sécher)"
+                        "Libelle": "besoin épisodique pour une partie de se laver (se laver, se sécher)"
                       },
                       {
                         "id": "XI_1_bis_2_a_1_a_2",
                         "CodeValeur": "XI.1.bis.2.a.1.a.2",
-                        "Libelle": "besoin épisodique pour la totalité de la toilette (se laver, se sécher)"
+                        "Libelle": "besoin épisodique pour la totalité de se laver (se laver, se sécher)"
                       }
                     ]
                   },
                   {
                     "id": "XI_1_bis_2_a_1_b",
                     "CodeValeur": "XI.1.bis.2.a.1.b",
-                    "Libelle": "besoin permanent pour la toilette (se laver, se sécher)",
+                    "Libelle": "besoin permanent pour se laver (se laver, se sécher)",
                     "Reponses": [
                       {
                         "id": "XI_1_bis_2_a_1_b_1",
                         "CodeValeur": "XI.1.bis.2.a.1.b.1",
-                        "Libelle": "besoin permanent pour une partie de la toilette (se laver, se sécher)"
+                        "Libelle": "besoin permanent pour une partie de se laver (se laver, se sécher)"
                       },
                       {
                         "id": "XI_1_bis_2_a_1_b_2",
                         "CodeValeur": "XI.1.bis.2.a.1.b.2",
-                        "Libelle": "besoin permanent pour la totalité de la toilette (se laver, se sécher)"
+                        "Libelle": "besoin permanent pour la totalité de se laver (se laver, se sécher)"
                       }
                     ]
                   }
@@ -12805,36 +12769,12 @@
                       {
                         "id": "XI_1_bis_2_a_5_b_1",
                         "CodeValeur": "XI.1.bis.2.a.5.b.1",
-                        "Libelle": "besoin épisodique pour boire",
-                        "Reponses": [
-                          {
-                            "id": "XI_1_bis_2_a_5_b_1_a",
-                            "CodeValeur": "XI.1.bis.2.a.5.b.1.a",
-                            "Libelle": "besoin épisodique pour une partie de l'action boire"
-                          },
-                          {
-                            "id": "XI_1_bis_2_a_5_b_1_b",
-                            "CodeValeur": "XI.1.bis.2.a.5.b.1.b",
-                            "Libelle": "besoin épisodique pour la totalité de l'action boire"
-                          }
-                        ]
+                        "Libelle": "besoin épisodique pour boire"
                       },
                       {
                         "id": "XI_1_bis_2_a_5_b_2",
                         "CodeValeur": "XI.1.bis.2.a.5.b.2",
-                        "Libelle": "besoin permanent pour boire",
-                        "Reponses": [
-                          {
-                            "id": "XI_1_bis_2_a_5_b_2_a",
-                            "CodeValeur": "XI.1.bis.2.a.5.b.2.a",
-                            "Libelle": "besoin permanent pour une partie de l'action boire"
-                          },
-                          {
-                            "id": "XI_1_bis_2_a_5_b_2_b",
-                            "CodeValeur": "XI.1.bis.2.a.5.b.2.b",
-                            "Libelle": "besoin permanent pour la totalité de l'action boire"
-                          }
-                        ]
+                        "Libelle": "besoin permanent pour boire"
                       }
                     ]
                   }
@@ -12925,87 +12865,53 @@
                       {
                         "id": "XI_1_bis_2_b_2_a_1",
                         "CodeValeur": "XI.1.bis.2.b.2.a.1",
-                        "Libelle": "besoin épisodique pour avoir des relations avec autrui"
+                        "Libelle": "besoins en matière d'autonomie pour les relations extra-familiales",
+                        "Reponses": [
+                          {
+                            "id": "XI_1_bis_2_b_2_a_1_a",
+                            "CodeValeur": "XI.1.bis.2.b.2.a.1.a",
+                            "Libelle": "besoins épisodiques en matière d'autonomie pour les relations extra-familiales"
+                          },
+                          {
+                            "id": "XI_1_bis_2_b_2_a_1_b",
+                            "CodeValeur": "XI.1.bis.2.b.2.a.1.b",
+                            "Libelle": "besoins permanents en matière d'autonomie pour les relations extra-familiales"
+                          }
+                        ]
                       },
                       {
                         "id": "XI_1_bis_2_b_2_a_2",
                         "CodeValeur": "XI.1.bis.2.b.2.a.2",
-                        "Libelle": "besoin permanent pour avoir des relations avec autrui"
+                        "Libelle": "besoins en matière d'autonomie pour les relations familiales",
+                        "Reponses": [
+                          {
+                            "id": "XI_1_bis_2_b_2_a_2_a",
+                            "CodeValeur": "XI.1.bis.2.b.2.a.2.a",
+                            "Libelle": "besoins épisodiques en matière d'autonomie pour les relations familiales"
+                          },
+                          {
+                            "id": "XI_1_bis_2_b_2_a_2_b",
+                            "CodeValeur": "XI.1.bis.2.b.2.a.2.b",
+                            "Libelle": "besoins permanents en matière d'autonomie pour les relations familiales"
+                          }
+                        ]
                       }
                     ]
                   },
                   {
                     "id": "XI_1_bis_2_b_2_b",
                     "CodeValeur": "XI.1.bis.2.b.2.b",
-                    "Libelle": "besoins en matière d'autonomie pour maîtriser son comportement dans les relations avec autrui",
+                    "Libelle": "besoins en matière d'autonomie pour maîtriser son comportement avec autrui conformément aux règles ",
                     "Reponses": [
                       {
                         "id": "XI_1_bis_2_b_2_b_1",
                         "CodeValeur": "XI.1.bis.2.b.2.b.1",
-                        "Libelle": "besoin épisodique pour maîtriser son comportement avec autrui"
+                        "Libelle": "besoin épisodique pour maîtriser son comportement avec autrui conformément aux règles"
                       },
                       {
                         "id": "XI_1_bis_2_b_2_b_2",
                         "CodeValeur": "XI.1.bis.2.b.2.b.2",
-                        "Libelle": "besoin permanent pour maîtriser son comportement avec autrui"
-                      }
-                    ]
-                  },
-                  {
-                    "id": "XI_1_bis_2_b_2_c",
-                    "CodeValeur": "XI.1.bis.2.b.2.c",
-                    "Libelle": "besoins en matière d'autonomie pour avoir des relations avec autrui conformes aux règles sociales",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_2_b_2_c_1",
-                        "CodeValeur": "XI.1.bis.2.b.2.c.1",
-                        "Libelle": "besoin épisodique pour avoir des relations conformes aux règles sociales"
-                      },
-                      {
-                        "id": "XI_1_bis_2_b_2_c_2",
-                        "CodeValeur": "XI.1.bis.2.b.2.c.2",
-                        "Libelle": "besoin permanent pour avoir des relations conformes aux règles sociales"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "XI_1_bis_2_b_3",
-                "CodeValeur": "XI.1.bis.2.b.3",
-                "Libelle": "besoins en matière d'autonomie pour les relations avec autrui",
-                "Reponses": [
-                  {
-                    "id": "XI_1_bis_2_b_3_a",
-                    "CodeValeur": "XI.1.bis.2.b.3.a",
-                    "Libelle": "besoins en matière d'autonomie pour les relations extra-familiales",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_2_b_3_a_1",
-                        "CodeValeur": "XI.1.bis.2.b.3.a.1",
-                        "Libelle": "besoins épisodiques en matière d'autonomie pour les relations extra-familiales"
-                      },
-                      {
-                        "id": "XI_1_bis_2_b_3_a_2",
-                        "CodeValeur": "XI.1.bis.2.b.3.a.2",
-                        "Libelle": "besoins permanents en matière d'autonomie pour les relations extra-familiales"
-                      }
-                    ]
-                  },
-                  {
-                    "id": "XI_1_bis_2_b_3_b",
-                    "CodeValeur": "XI.1.bis.2.b.3.b",
-                    "Libelle": "besoins en matière d'autonomie pour les relations familiales",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_2_b_3_b_1",
-                        "CodeValeur": "XI.1.bis.2.b.3.b.1",
-                        "Libelle": "besoins épisodiques en matière d'autonomie pour les relations familiales"
-                      },
-                      {
-                        "id": "XI_1_bis_2_b_3_b_2",
-                        "CodeValeur": "XI.1.bis.2.b.3.b.2",
-                        "Libelle": "besoins permanents en matière d'autonomie pour les relations familiales"
+                        "Libelle": "besoin permanent pour maîtriser son comportement avec autrui conformément aux règles"
                       }
                     ]
                   }
@@ -13478,17 +13384,17 @@
                       {
                         "id": "XI_1_bis_2_d_3_b_2",
                         "CodeValeur": "XI.1.bis.2.d.3.b.2",
-                        "Libelle": "besoins en matière d'autonomie pour faire face à une crise",
+                        "Libelle": "besoins en matière d'autonomie pour faire face à une situation de crise",
                         "Reponses": [
                           {
                             "id": "XI_1_bis_2_d_3_b_2_a",
                             "CodeValeur": "XI.1.bis.2.d.3.b.2.a",
-                            "Libelle": "besoin épisodique pour faire face à une crise"
+                            "Libelle": "besoin épisodique pour faire face à une situation de crise"
                           },
                           {
                             "id": "XI_1_bis_2_d_3_b_2_b",
                             "CodeValeur": "XI.1.bis.2.d.3.b.2.b",
-                            "Libelle": "besoin permanent pour faire face à une crise"
+                            "Libelle": "besoin permanent pour faire face à une situation de crise"
                           }
                         ]
                       },
@@ -13777,7 +13683,7 @@
               {
                 "id": "XI_1_bis_3_c_3",
                 "CodeValeur": "XI.1.bis.3.c.3",
-                "Libelle": "besoins transversaux pour la participation sociale en matière d'apprentissages ",
+                "Libelle": "besoins pour la participation sociale en matière d'apprentissages ",
                 "Reponses": [
                   {
                     "id": "XI_1_bis_3_c_3_a",
@@ -13866,7 +13772,7 @@
           {
             "id": "XI_1_bis_3_d",
             "CodeValeur": "XI.1.bis.3.d",
-            "Libelle": "besoins pour participer à la  vie sociale, se déplacer avec un moyen de transport",
+            "Libelle": "besoins pour participer à la vie sociale et se déplacer avec un moyen de transport",
             "Reponses": [
               {
                 "id": "XI_1_bis_3_d_1",
@@ -13876,7 +13782,7 @@
                   {
                     "id": "XI_1_bis_3_d_1_a",
                     "CodeValeur": "XI.1.bis.3.d.1.a",
-                    "Libelle": "besoins pour la participation sociale pour les loisirs",
+                    "Libelle": "besoins pour participer à la vie sociale pour les loisirs",
                     "Reponses": [
                       {
                         "id": "XI_1_bis_3_d_1_a_1",
@@ -13893,7 +13799,7 @@
                   {
                     "id": "XI_1_bis_3_d_1_b",
                     "CodeValeur": "XI.1.bis.3.d.1.b",
-                    "Libelle": "besoins pour la participation sociale pour partir en congés",
+                    "Libelle": "besoins pour participer à la vie sociale pour partir en congés",
                     "Reponses": [
                       {
                         "id": "XI_1_bis_3_d_1_b_1",
