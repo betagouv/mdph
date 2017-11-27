@@ -83,8 +83,8 @@
     "id": "marche_travail_acc",
     "type": "travail",
     "label": "MARCHE_TRAVAIL_ACC",
-    "title": "Avec accompagnement par le dispositif Emploi accompagné",
-    "description": "Avec accompagnement par le dispositif Emploi accompagné",
+    "title": "Accompagnement par le dispositif Emploi accompagné",
+    "description": "Accompagnement par le dispositif Emploi accompagné",
     "link": "https://www.service-public.fr/particuliers/vosdroits/F1653"
   },
   "av": {
