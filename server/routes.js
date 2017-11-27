@@ -19,6 +19,7 @@ export default function(app) {
   app.use('/api/stats', require('./api/stats'));
   app.use('/api/document-types', require('./api/document-type'));
   app.use('/api/issues', require('./api/issue'));
+  app.use('/api/syntheses', require('./api/synthese'));
 
   app.use('/auth', require('./auth'));
 

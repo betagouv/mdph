@@ -9,6 +9,8 @@ angular.module('impactApp')
     this.logout = Auth.logout;
 
     this.shouldShowDashboard = () => $state.includes('dashboard');
+    this.showAdminLink =  () => Auth.hasRole(this.getCurrentUser(), 'admin');
+    this.showEvaluationLink = () => this.currentMdph.evaluate;
 
     this.shouldShowLogin = () => this.currentMdph.opened;
 

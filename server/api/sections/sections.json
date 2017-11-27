@@ -74,8 +74,8 @@
             "onlyAdult": true
           },
           {
-            "label": "Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, ...)",
-            "labelRep": "<%= pronoun %> arrive dans moins de 2 mois à la fin de ses droits (ex: AEEH, AAH, PCH, RQTH, ...)",
+            "label": "Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
+            "labelRep": "<%= pronoun %> arrive dans moins de 2 mois à la fin de ses droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
             "model": "finDroit",
             "detail": true,
             "detailModel": "finDroitDetail",
@@ -342,7 +342,7 @@
             "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "amenagementDetail",
-            "placeholder": "Pension des deux tiers, d'incapacité, ..."
+            "placeholder": "Pension des deux tiers, d'incapacité, etc."
           },
           {
             "label": "Une Majoration Tierce Personne",
@@ -424,12 +424,12 @@
         "type": "checkbox",
         "answers": [
           {
-            "label": "Pour régler les dépenses courantes (loyer, énergie, habillement, alimentation, ...)",
+            "label": "Pour régler les dépenses courantes (loyer, énergie, habillement, alimentation, etc.)",
             "model": "courant",
             "onlyAdult": true
           },
           {
-            "label": "Pour gérer votre budget et répondre à vos obligations (démarches administratives, assurances, impôts... )",
+            "label": "Pour gérer votre budget et répondre à vos obligations (démarches administratives, assurances, impôts, etc.)",
             "model": "budget",
             "onlyAdult": true
           },
@@ -438,8 +438,8 @@
             "model": "hygiene"
           },
           {
-            "label": "Pour vous habiller (mettre et ôter vos vêtements, les choisir ...)",
-            "labelRep": "Pour s'habiller (mettre et ôter ses vêtements, les choisir ...)",
+            "label": "Pour vous habiller (mettre et ôter vos vêtements, les choisir, etc.)",
+            "labelRep": "Pour s'habiller (mettre et ôter ses vêtements, les choisir, etc.)",
             "model": "habits"
           },
           {
@@ -462,8 +462,8 @@
             "onlyAdult": true
           },
           {
-            "label": "Pour prendre soin de votre santé (suivre un traitement, aller en consultation... )",
-            "labelRep": "Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )",
+            "label": "Pour prendre soin de votre santé (suivre un traitement, aller en consultation, etc.)",
+            "labelRep": "Pour prendre soin de sa santé (suivre un traitement, aller en consultation, etc.)",
             "model": "sante"
           },
           {
@@ -553,8 +553,8 @@
             "onlyAdult": true
           },
           {
-            "label": "Pour vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative ...)",
-            "labelRep": "Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative ...)",
+            "label": "Pour vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative, etc.)",
+            "labelRep": "Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative, etc.)",
             "model": "citoyen",
             "onlyAdult": true
           },
@@ -882,8 +882,8 @@
       },
       "emploiDuTemps": {
         "model": "emploiDuTemps",
-        "titleDefault": "Décrivez votre emploi du temps (école, cantine, soins...)",
-        "titleRep": "Décrivez son emploi du temps (école, cantine, soins...)",
+        "titleDefault": "Décrivez votre emploi du temps (école, cantine, soins, etc.)",
+        "titleRep": "Décrivez son emploi du temps (école, cantine, soins, etc.)",
         "type": "emploiDuTemps"
       },
       "besoinsScolarite": {
@@ -1820,15 +1820,15 @@
         "type": "checkbox",
         "answers": [
           {
-            "label": "Eloignement géographique (déménagement, ...)",
+            "label": "Eloignement géographique (déménagement, etc.)",
             "model": "eloignement"
           },
           {
-            "label": "Indisponibilité prolongée (séjour à l’étranger, hospitalisation, ...)",
+            "label": "Indisponibilité prolongée (séjour à l’étranger, hospitalisation, etc.)",
             "model": "indisponible"
           },
           {
-            "label": "Changement majeur dans la situation personnelle (séparation, décès du conjoint, départ en établissement de retraite ...)",
+            "label": "Changement majeur dans la situation personnelle (séparation, décès du conjoint, départ en établissement de retraite, etc.)",
             "model": "personnel"
           },
           {
@@ -1840,7 +1840,7 @@
             "model": "professionnelle"
           },
           {
-            "label": "Difficulté à assurer l'accompagnement actuel (épuisement, avancée en âge, ...)",
+            "label": "Difficulté à assurer l'accompagnement actuel (épuisement, avancée en âge, etc.)",
             "model": "difficulté"
           },
           {

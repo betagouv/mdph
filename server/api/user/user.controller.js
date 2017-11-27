@@ -105,6 +105,22 @@ exports.show = function(req, res, next) {
     });
 };
 
+exports.activate = function(req, res) {
+  if (!req.params.email) return res.sendStatus(422);
+  User.findOne({
+    email: req.params.email
+  }, '+newMailToken', function(err, user) {
+    if (err) return handleError(req, res, err);
+    if (!user) return res.sendStatus(404);
+    if (user.unconfirmed === false) return res.sendStatus(304);
+    user.unconfirmed = false;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      return res.sendStatus(200);
+    });
+  });
+};
+
 /**
  * Deletes a user
  * restriction: 'admin'
@@ -165,6 +181,7 @@ exports.changeInfo = function(req, res) {
 
       user.set('email', req.body.email);
       user.set('secteurs', req.body.secteurs);
+      user.set('unconfirmed', req.body.unconfirmed);
 
       saveActionLog({
         action: ACTIONS.USER_EDITION,
@@ -216,14 +233,14 @@ exports.authCallback = function(req, res) {
  * Post to check if email exists
  */
 exports.generateTokenForPassword = function(req, res, next) {
-  let email = req.body.email;
+  let email = req.body.email.toLowerCase();
   let mdph = req.body.mdph;
 
   User.findOne({
     email: email
   }, function(err, user) {
     if (err) return next(err);
-    if (!user) return res.sendStatus(200);
+    if (!user) return res.sendStatus(404);
     user.newPasswordToken = shortid.generate();
     user.save(function(err) {
       if (err) return validationError(res, err);

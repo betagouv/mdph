@@ -20,7 +20,7 @@ var all = {
     smtpPass: process.env.SMTP_PASS || 'mailjet_secret_key',
     smtpHost: process.env.SMTP_HOST || 'in.mailjet.com',
     smtpPort: process.env.SMTP_PORT || '465',
-    mailFrom: process.env.MAIL_FROM || 'contact@mdph.beta.gouv.fr',
+    mailFrom: process.env.MAIL_FROM || 'contact.mdphenligne@cnsa.fr',
   },
 
   // Base URL

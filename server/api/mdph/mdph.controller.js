@@ -1,6 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
+import stream from 'stream';
 import async from 'async';
 import path from 'path';
 import Mdph from './mdph.model';
@@ -10,6 +11,7 @@ import Secteur from '../secteur/secteur.model';
 import Request from '../request/request.model';
 import Partenaire from '../partenaire/partenaire.model';
 import DocumentCategoryCtrl from '../document-category/document-category.controller';
+import gridfs from '../../components/gridfs';
 
 // Get all users linked to a single mdph
 export function showUsers(req, res) {
@@ -335,11 +337,25 @@ export function create(req, res) {
 
 // Updates an existing mdph in the DB.
 export function update(req, res) {
-  req.mdph.requestExportFormat = req.body.requestExportFormat;
-  req.mdph.save(function(err, saved) {
+    Mdph.findOne({ zipcode: req.body.zipcode }, function(err, mdph) {
     if (err) { return handleError(req, res, err); }
 
-    return res.status(200).json(saved);
+    if (!mdph) { return res.sendStatus(404); }
+
+    mdph
+      .set('name', req.body.name)
+      .set('enabled', req.body.enabled)
+      .set('opened', req.body.opened)
+      .set('evaluate', req.body.evaluate)
+      .set('likes', req.body.likes)
+      .set('outsideLink', req.body.outsideLink)
+      .set('locations', req.body.locations)
+      .set('requestExportFormat', req.body.requestExportFormat)
+      .save(function(err) {
+        if (err) { return handleError(req, res, err); }
+
+        return res.status(200).json(mdph);
+      });
   });
 }
 
@@ -357,6 +373,15 @@ export function destroy(req, res) {
 
       return res.sendStatus(204);
     });
+  });
+}
+
+export function updateRequestExportFormat(req, res) {
+  req.mdph.requestExportFormat = req.body.requestExportFormat;
+  req.mdph.save(function(err, saved) {
+    if (err) { return handleError(req, res, err); }
+
+    return res.status(200).json(saved);
   });
 }
 
@@ -383,3 +408,135 @@ function handleError(req, res, err) {
   req.log.error(err);
   return res.status(500).send(err);
 }
+
+export function addLogo(req, res) {
+
+  var gfs = gridfs();
+  var file = req.file;
+
+  var writeStream = gfs.createWriteStream({
+    filename: file.originalname,
+    mimetype: file.mimetype
+  });
+
+  var bufferStream = new stream.PassThrough();
+  bufferStream.end(file.buffer);
+  bufferStream.pipe(writeStream);
+
+  writeStream.on('close', function(file) {
+    Mdph.findOne({
+      zipcode: req.params.id
+    }, function(err, mdph) {
+      if (err) {
+        req.log.error(err);
+        return res.status(500).send(err);
+      }
+
+      if (!mdph) {
+        return res.sendStatus(404);
+      }
+
+      if (mdph.logo) {
+        gfs.remove({_id: mdph.logo}, function(err) {
+          if (err) {
+            req.log.error(err);
+          }
+        });
+      }
+
+      mdph
+        .set('logo', file._id)
+        .save(function(err) {
+          if (err) {
+            req.log.error(err);
+            return res.status(500).send(err);
+          }
+
+          return res.json(file);
+        });
+    });
+  });
+}
+
+export function getLogo(req, res) {
+  Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+    if (err) { return handleError(req, res, err); }
+
+    if (!mdph) { return res.sendStatus(404); }
+
+    if (mdph.logo) {
+      var gfs = gridfs();
+      var readStream = gfs.createReadStream({_id: mdph.logo});
+
+      return readStream.pipe(res);
+    } else {
+      return res.sendStatus(404);
+    }
+  });
+}
+
+export function addPhoto(req, res) {
+
+    var gfs = gridfs();
+    var file = req.file;
+
+    var writeStream = gfs.createWriteStream({
+      filename: file.originalname,
+      mimetype: file.mimetype
+    });
+
+    var bufferStream = new stream.PassThrough();
+    bufferStream.end(file.buffer);
+    bufferStream.pipe(writeStream);
+
+    writeStream.on('close', function(file) {
+      Mdph.findOne({
+        zipcode: req.params.id
+      }, function(err, mdph) {
+        if (err) {
+          req.log.error(err);
+          return res.status(500).send(err);
+        }
+
+        if (!mdph) {
+          return res.sendStatus(404);
+        }
+
+        if (mdph.photo) {
+          gfs.remove({_id: mdph.photo}, function(err) {
+            if (err) {
+              req.log.error(err);
+            }
+          });
+        }
+
+        mdph
+          .set('photo', file._id)
+          .save(function(err) {
+            if (err) {
+              req.log.error(err);
+              return res.status(500).send(err);
+            }
+
+            return res.json(file);
+          });
+      });
+    });
+  }
+
+  export function getPhoto(req, res) {
+    Mdph.findOne({zipcode: req.params.id}, function(err, mdph) {
+      if (err) { return handleError(req, res, err); }
+
+      if (!mdph) { return res.sendStatus(404); }
+
+      if (mdph.photo) {
+        var gfs = gridfs();
+        var readStream = gfs.createReadStream({_id: mdph.photo});
+
+        return readStream.pipe(res);
+      } else {
+        return res.sendStatus(404);
+      }
+    });
+  }

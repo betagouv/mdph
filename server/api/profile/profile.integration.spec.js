@@ -166,6 +166,20 @@ describe('Profile Integration', () => {
             done();
           });
       });
+
+      it('should return the request with that status', done => {
+        api
+          .post(`/api/users/${testUser._id}/profiles/${fakeProfile._id}`)
+          .expect(406)
+          .send({'identites':{'beneficiaire':{'numero_secu':'178118400711516','updatedAt':1508161300543,'__completion':true,'assurance':'rsi','localite':'Ville','code_postal':'01234','nomVoie':'nom de la voie','nationalite':'francaise','sexe':'homme','prenom':'prenom','nom':'nom','email':'username@mail.fr','numero_secu_enfant':''}}})
+          .end((err) => {
+            if (err) {
+              return done(err);
+            }
+
+            done();
+          });
+      });
     });
   });
 });

@@ -1,0 +1,39 @@
+<div class="list-mdph">
+  <h1>Liste des MDPH</h1>
+  <button class="btn btn-new" ng-click="adminMdphListCtrl.newItem()">Créer une nouvelle MDPH</button>
+  <table class="table table-striped table-condensed table-hover">
+    <thead>
+        <tr>
+            <th class="zipcode">Code département &nbsp;<a ng-click="sort_by('zipcode')"><i class="icon-sort"></i></a></th>
+            <th class="name">Dénomination &nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+            <th class="enabled">Est en activité &nbsp;<a ng-click="sort_by('enabled')"><i class="icon-sort"></i></a></th>
+            <th class="opened">Est ouverte &nbsp;<a ng-click="sort_by('opened')"><i class="icon-sort"></i></a></th>
+            <th class="evaluate">Utilise l'outil de soutien &nbsp;<a ng-click="sort_by('evaluate')"><i class="icon-sort"></i></a></th>
+        </tr>
+    </thead>
+    <tfoot align="center">
+      <tr ng-if="adminMdphListCtrl.itemsPerPage <= adminMdphListCtrl.totalItems">
+        <td colspan="5">
+          <pagination total-items="adminMdphListCtrl.totalItems"
+            ng-model="adminMdphListCtrl.currentPage"
+            ng-change="adminMdphListCtrl.pageChanged()"
+            class="pagination-sm"
+            items-per-page="adminMdphListCtrl.itemsPerPage">
+          </pagination>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody>
+        <tr ng-repeat="mdph in adminMdphListCtrl.mdphs.slice(((adminMdphListCtrl.currentPage-1)*adminMdphListCtrl.itemsPerPage), ((adminMdphListCtrl.currentPage)*adminMdphListCtrl.itemsPerPage))"
+          ng-click="adminMdphListCtrl.selectItem(mdph)">
+          <td>{{mdph.zipcode}}</td>
+          <td>{{mdph.name}}</td>
+          <td><img src="assets/images/yes.png" ng-if="mdph.enabled"/><img src="assets/images/no.png" ng-if="!mdph.enabled"/></td>
+          <td><img src="assets/images/yes.png" ng-if="mdph.opened"/><img src="assets/images/no.png" ng-if="!mdph.opened"/></td>
+          <td><img src="assets/images/yes.png" ng-if="mdph.evaluate"/><img src="assets/images/no.png" ng-if="!mdph.evaluate"/></td>
+        </tr>
+    </tbody>
+
+  </table>
+
+</div>
