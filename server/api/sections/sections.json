@@ -68,9 +68,20 @@
             "label": "Vous commencez bientôt une nouvelle formation",
             "labelRep": "<%= pronoun %> commence bientôt une nouvelle formation",
             "detailModel": "formationDetail",
-            "detailUrl": "components/detail/precisez_date.html",
-            "detailLabel": "Date d'entrée prévue",
+            "detailUrl": "components/detail/precisez_date_et_detail.html",
+            "detailTextLabel": "Précisez",
+            "detailDateLabel": "Date d'entrée prévue",
             "model": "formation",
+            "onlyAdult": true
+          },
+          {
+            "label": "Vous venez de trouver un emploi",
+            "labelRep": "<%= pronoun %> a trouvé un emploi",
+            "detailModel": "emploiDetail",
+            "detailUrl": "components/detail/precisez_date_et_detail.html",
+            "detailTextLabel": "Précisez",
+            "detailDateLabel": "Date d'entrée prévue",
+            "model": "emploi",
             "onlyAdult": true
           },
           {
