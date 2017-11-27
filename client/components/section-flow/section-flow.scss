@@ -1,0 +1,47 @@
+.section-main.section-flow > .flow {
+  @extend .row;
+  margin-left: 0px;
+  margin-right: 0px;
+
+  p {
+    @extend .lead;
+  }
+
+  span {
+    background-color: $bg-blue;
+    color: white;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: inline-block;
+    width: 3rem;
+    font-weight: 500;
+    font-size: 1em;
+    height: 3rem;
+  }
+
+  img {
+    width: 12vw;
+    padding: 2em 0;
+  }
+
+  ol {
+    margin: none;
+    list-style: none;
+  }
+
+  ol li {
+    @extend .col-md-4;
+    text-align: center;
+  }
+}
+
+.section-main.section-flow > .more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: $screen-xs-max) {
+  .section-main.section-flow > .flow img {
+    width: 36vw;
+  }
+}
