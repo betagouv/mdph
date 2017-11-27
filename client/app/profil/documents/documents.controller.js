@@ -1,40 +1,45 @@
 'use strict';
 
-const DOCUMENT_CONTROLLER_NAME = 'DocumentsCtrl';
+angular.module('impactApp').controller('DocumentsCtrl', function(
+  $scope, $modal, toastr, UploadService, RequestService, profile, documentTypes, currentUser, currentMdph, currentRequest, FileSignatureService) {
 
-class documentController {
-  constructor($scope, $modal, toastr, UploadService, RequestService, profile, documentTypes, currentUser, currentMdph, currentRequest) {
-    this.$modal = $modal;
-    this.user = currentUser;
-    this.request = currentRequest;
-    this.mdph = currentMdph;
-    this.documentTypes = documentTypes;
-    this.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(this.request, documentTypes);
+  this.$modal = $modal;
+  this.user = currentUser;
+  this.request = currentRequest;
+  this.mdph = currentMdph;
+  this.documentTypes = documentTypes;
+  this.selectedDocumentTypes = RequestService.computeSelectedDocumentTypes(this.request, documentTypes);
 
-    this.UploadService = UploadService;
+  this.UploadService = UploadService;
 
-    $scope.$on('file-upload-error', () => toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document'));
-  }
+  $scope.$on('file-upload-error', () => toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document'));
 
-  upload(file, documentType) {
-    this.UploadService.upload(this.request, file, documentType);
-  }
+  this.upload = (file, documentType) => {
+    FileSignatureService.check(file, ['pdf', 'jpg', 'png'])
+      .then(function(result) {
+        if (result) {
+          UploadService.upload(currentRequest, file, documentType);
+        } else {
+          $scope.$emit('file-upload-error', documentType.id);
+        }
+      });
+  };
 
-  isMandatory(documentType) {
+  this.isMandatory = (documentType) => {
     return (documentType.mandatory || documentType.asked) ? 'mandatory' : '';
-  }
+  };
 
-  isEmpty(documentType) {
+  this.isEmpty = (documentType) => {
     const documents = this.getDocuments(documentType);
 
     return documents.length === 0;
-  }
+  };
 
-  isComplete(documentType) {
+  this.isComplete = (documentType) => {
     return !this.isEmpty(documentType) && !this.isInvalid(documentType);
-  }
+  };
 
-  isInvalid(documentType) {
+  this.isInvalid = (documentType) => {
     const documents = this.getDocuments(documentType);
 
     if (documents.length === 0) {
@@ -43,9 +48,9 @@ class documentController {
 
     const rejectedDocuments = _.find(documents, 'isInvalid');
     return typeof rejectedDocuments !== 'undefined';
-  }
+  };
 
-  getDocuments(currentDoc) {
+  this.getDocuments = (currentDoc) => {
     const {obligatoires, complementaires} = this.request.documents;
     const documentId = currentDoc.id;
 
@@ -56,9 +61,9 @@ class documentController {
     } else {
       return [];
     }
-  }
+  };
 
-  createModalComponent() {
+  this.createModalComponent = () => {
     const filteredDocumentTypes = _.filter(this.documentTypes, (type) => typeof _.find(this.selectedDocumentTypes, {id: type.id}) === 'undefined');
 
     return {
@@ -69,30 +74,13 @@ class documentController {
         $scope.cancel = () => $modalInstance.dismiss('cancel');
       }]
     };
-  }
+  };
 
-  chooseType() {
+  this.chooseType = () => {
     const modalComponent = this.createModalComponent();
     const modalInstance = this.$modal.open(modalComponent);
 
     modalInstance.result.then((selected) => this.selectedDocumentTypes.push(selected));
-  }
+  };
 
-  static get $inject() {
-    return [
-      '$scope',
-      '$modal',
-      'toastr',
-      'UploadService',
-      'RequestService',
-      'profile',
-      'documentTypes',
-      'currentUser',
-      'currentMdph',
-      'currentRequest'
-    ];
-  }
-}
-
-angular.module('impactApp')
-  .controller(DOCUMENT_CONTROLLER_NAME, documentController);
+});
