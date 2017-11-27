@@ -7,8 +7,6 @@ angular.module('impactApp')
     $scope.documentTypes = documentTypes;
     $scope.selectedType = documentTypes[0];
 
-    $scope.$on('file-upload-error', () => toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors de l\'envoi du document'));
-
     $scope.envoiConfirmation = function(form) {
       if (form.$valid) {
         FileSignatureService.check($scope.files[0], ['pdf', 'jpg', 'png'])
@@ -29,7 +27,7 @@ angular.module('impactApp')
                   $scope.type = type;
                   $scope.ok = function() {
                     $modalInstance.close();
-                    $state.go('layout', {codeDepartement: currentMdph.zipcode});
+                    $state.go('partenaire.pj', {}, {reload:true});
                   };
                 },
 
@@ -41,7 +39,7 @@ angular.module('impactApp')
               });
             });
           } else {
-            $scope.$emit('file-upload-error', $scope.selectedType.id);
+            toastr.error('Types de documents acceptés : images (jpg, png) et pdf', 'Erreur lors du chargement du document');
           }
         });
       }
