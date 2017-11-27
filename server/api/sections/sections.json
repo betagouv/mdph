@@ -762,7 +762,7 @@
             "model": "serviceSoinPartiel"
           },
           {
-            "label": "En formation supérieure",
+            "label": "En formation supérieure ou en apprentissage",
             "model": "superieur"
           },
           {
