@@ -1,36 +1,20 @@
 {
   "apps" : [
     {
-      "name"      : "Mdph-1",
+      "name"      : "Mdph",
       "script"    : "/home/deploy/www/current/dist/server/app.js",
       "env": {
         "NODE_ENV": "production",
-        "BASE_URL": "https://mdph.beta.gouv.fr",
+        "BASE_URL": "https://mdphenligne.cnsa.fr",
         "PORT": 9000,
         "SESSION_SECRET": "session_secret",
         "SMTP_USER": "mailjet_api_key",
         "SMTP_PASS": "mailjet_secret_key",
         "SMTP_HOST": "in.mailjet.com",
         "SMTP_PORT": "465",
-        "MAIL_FROM": "contact@mdph.beta.gouv.fr",
+        "MAIL_FROM": "contact.mdphenligne@cnsa.fr",
         "UPLOAD_DIR": "/path/to/upload/dir",
         "CRON_ENABLED": true
-      }
-    },
-    {
-      "name"      : "Mdph-2",
-      "script"    : "/home/deploy/www/current/dist/server/app.js",
-      "env": {
-        "NODE_ENV": "production",
-        "BASE_URL": "https://mdph.beta.gouv.fr",
-        "PORT": 9000,
-        "SESSION_SECRET": "session_secret",
-        "SMTP_USER": "mailjet_api_key",
-        "SMTP_PASS": "mailjet_secret_key",
-        "SMTP_HOST": "in.mailjet.com",
-        "SMTP_PORT": "465",
-        "MAIL_FROM": "contact@mdph.beta.gouv.fr",
-        "UPLOAD_DIR": "/path/to/upload/dir"
       }
     }
   ],
@@ -38,7 +22,7 @@
   "deploy" : {
     "production" : {
       "user" : "deploy",
-      "host" : "mdph.infra.beta.gouv.fr",
+      "host" : "51.255.196.250",
       "ref"  : "origin/master",
       "repo" : "git@github.com:sgmap/mdph.git",
       "path" : "/home/deploy/www",

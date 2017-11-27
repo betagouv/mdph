@@ -24,7 +24,7 @@
             "model": "domicile",
             "detail": true,
             "detailModel": "domicileDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
@@ -32,7 +32,7 @@
             "labelRep": "Son école ne peut plus l'accueillir",
             "detail": true,
             "detailModel": "ecoleDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
             "model": "ecole"
           },
@@ -42,7 +42,7 @@
             "model": "etablissement",
             "detail": true,
             "detailModel": "etablissementDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
@@ -50,7 +50,7 @@
             "labelRep": "<%= pronoun %> risque de perdre son travail",
             "detail": true,
             "detailModel": "travailDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
             "model": "travail",
             "onlyAdult": true
@@ -61,21 +61,32 @@
             "model": "hospitalisation",
             "detail": true,
             "detailModel": "hospitalisationDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
             "label": "Vous commencez bientôt une nouvelle formation",
             "labelRep": "<%= pronoun %> commence bientôt une nouvelle formation",
             "detailModel": "formationDetail",
-            "detailUrl": "components/detail/precisez_date.html",
-            "detailLabel": "Date d'entrée prévue",
+            "detailUrl": "components/detail/precisez_date_et_detail.html",
+            "detailTextLabel": "Précisez",
+            "detailDateLabel": "Date d'entrée prévue",
             "model": "formation",
             "onlyAdult": true
           },
           {
-            "label": "Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, ...)",
-            "labelRep": "<%= pronoun %> arrive dans moins de 2 mois à la fin de ses droits (ex: AEEH, AAH, PCH, RQTH, ...)",
+            "label": "Vous venez de trouver un emploi",
+            "labelRep": "<%= pronoun %> a trouvé un emploi",
+            "detailModel": "emploiDetail",
+            "detailUrl": "components/detail/precisez_date_et_detail.html",
+            "detailTextLabel": "Précisez",
+            "detailDateLabel": "Date d'entrée prévue",
+            "model": "emploi",
+            "onlyAdult": true
+          },
+          {
+            "label": "Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
+            "labelRep": "<%= pronoun %> arrive dans moins de 2 mois à la fin de ses droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
             "model": "finDroit",
             "detail": true,
             "detailModel": "finDroitDetail",
@@ -342,7 +353,7 @@
             "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "amenagementDetail",
-            "placeholder": "Pension des deux tiers, d'incapacité, ..."
+            "placeholder": "Pension des deux tiers, d'incapacité, etc."
           },
           {
             "label": "Une Majoration Tierce Personne",
@@ -424,12 +435,12 @@
         "type": "checkbox",
         "answers": [
           {
-            "label": "Pour régler les dépenses courantes (loyer, énergie, habillement, alimentation, ...)",
+            "label": "Pour régler les dépenses courantes (loyer, énergie, habillement, alimentation, etc.)",
             "model": "courant",
             "onlyAdult": true
           },
           {
-            "label": "Pour gérer votre budget et répondre à vos obligations (démarches administratives, assurances, impôts... )",
+            "label": "Pour gérer votre budget et répondre à vos obligations (démarches administratives, assurances, impôts, etc.)",
             "model": "budget",
             "onlyAdult": true
           },
@@ -438,8 +449,8 @@
             "model": "hygiene"
           },
           {
-            "label": "Pour vous habiller (mettre et ôter vos vêtements, les choisir ...)",
-            "labelRep": "Pour s'habiller (mettre et ôter ses vêtements, les choisir ...)",
+            "label": "Pour vous habiller (mettre et ôter vos vêtements, les choisir, etc.)",
+            "labelRep": "Pour s'habiller (mettre et ôter ses vêtements, les choisir, etc.)",
             "model": "habits"
           },
           {
@@ -462,8 +473,8 @@
             "onlyAdult": true
           },
           {
-            "label": "Pour prendre soin de votre santé (suivre un traitement, aller en consultation... )",
-            "labelRep": "Pour prendre soin de sa santé (suivre un traitement, aller en consultation... )",
+            "label": "Pour prendre soin de votre santé (suivre un traitement, aller en consultation, etc.)",
+            "labelRep": "Pour prendre soin de sa santé (suivre un traitement, aller en consultation, etc.)",
             "model": "sante"
           },
           {
@@ -553,8 +564,8 @@
             "onlyAdult": true
           },
           {
-            "label": "Pour vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative ...)",
-            "labelRep": "Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative ...)",
+            "label": "Pour vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative, etc.)",
+            "labelRep": "Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative, etc.)",
             "model": "citoyen",
             "onlyAdult": true
           },
@@ -700,8 +711,7 @@
             "labelRep": "<%= pronoun %> est trop jeune",
             "model": "tropJeune",
             "detailModel": "raisonNonScolaireTropJeune",
-            "placeholderDefault": "A partir de quand serez-vous scolarisé·e ?",
-            "placeholder": "A partir de quand sera-t-<%= pronoun %> scolarisé<%= fem %> ?",
+            "detailLabel": "A partir de quand serez-vous scolarisé·e ?",
             "detailUrl": "components/detail/precisez.html"
           },
           {
@@ -752,7 +762,7 @@
             "model": "serviceSoinPartiel"
           },
           {
-            "label": "En formation supérieure",
+            "label": "En formation supérieure ou en apprentissage",
             "model": "superieur"
           },
           {
@@ -880,10 +890,28 @@
           }
         ]
       },
+      "aideEleve": {
+        "model": "aideEleve",
+        "titleDefault": "Vous disposez actuellement d’une aide humaine aux élèves handicapés",
+        "titleRep": "<%= name %> dispose actuellement d’une aide humaine aux élèves handicapés",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailModel": "aideEleveDetail",
+            "detailUrl": "components/detail/precisez.html"
+          },
+          {
+            "label": "Non",
+            "model": false
+          }
+        ]
+      },
       "emploiDuTemps": {
         "model": "emploiDuTemps",
-        "titleDefault": "Décrivez votre emploi du temps (école, cantine, soins...)",
-        "titleRep": "Décrivez son emploi du temps (école, cantine, soins...)",
+        "titleDefault": "Décrivez votre emploi du temps (école, cantine, soins, etc.)",
+        "titleRep": "Décrivez son emploi du temps (école, cantine, soins, etc.)",
         "type": "emploiDuTemps"
       },
       "besoinsScolarite": {
@@ -1354,12 +1382,6 @@
           {
             "label": "Aides du fonds pour l'insertion des personnes handicapées dans la fonction publique (FIPHFP)",
             "model": "fiphfp"
-          },
-          {
-            "label": "Autre",
-            "model": "autre",
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "prestationsDetail"
           }
         ]
       },
@@ -1820,15 +1842,15 @@
         "type": "checkbox",
         "answers": [
           {
-            "label": "Eloignement géographique (déménagement, ...)",
+            "label": "Eloignement géographique (déménagement, etc.)",
             "model": "eloignement"
           },
           {
-            "label": "Indisponibilité prolongée (séjour à l’étranger, hospitalisation, ...)",
+            "label": "Indisponibilité prolongée (séjour à l’étranger, hospitalisation, etc.)",
             "model": "indisponible"
           },
           {
-            "label": "Changement majeur dans la situation personnelle (séparation, décès du conjoint, départ en établissement de retraite ...)",
+            "label": "Changement majeur dans la situation personnelle (séparation, décès du conjoint, départ en établissement de retraite, etc.)",
             "model": "personnel"
           },
           {
@@ -1840,7 +1862,7 @@
             "model": "professionnelle"
           },
           {
-            "label": "Difficulté à assurer l'accompagnement actuel (épuisement, avancée en âge, ...)",
+            "label": "Difficulté à assurer l'accompagnement actuel (épuisement, avancée en âge, etc.)",
             "model": "difficulté"
           },
           {
@@ -1879,6 +1901,10 @@
           {
             "label": "Pouvoir se reposer au quotidien",
             "model": "repos"
+          },
+          {
+            "label": "Pouvoir se faire remplacer en cas de besoin",
+            "model": "besoin"
           },
           {
             "label": "Pouvoir se faire remplacer en cas d’imprévu",

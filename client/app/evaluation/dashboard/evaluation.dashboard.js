@@ -10,10 +10,5 @@ angular.module('impactApp')
         templateUrl: 'app/evaluation/dashboard/evaluation.dashboard.html',
         controller: 'EvaluationDashboardCtrl',
         controllerAs: 'evaluationDashboardCtrl',
-        resolve: {
-          profiles: (MdphResource, currentUser) => {
-            return MdphResource.queryBeneficiaires({zipcode: currentUser.mdph.zipcode}).$promise;
-          }
-        }
       });
   });

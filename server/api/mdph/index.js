@@ -7,14 +7,18 @@ import categoriesRouter from '../document-category';
 import Mdph from './mdph.model';
 import synthesesRouter from '../synthese';
 import secteurRouter from '../secteur';
+import multer from 'multer';
 
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
 var router = new Router();
 
 router.get('/', controller.index);
 router.get('/list', controller.list);
 router.get('/:id', controller.show);
 router.post('/', hasRole('admin'), controller.create);
-router.put('/:id', isAgent(), controller.update);
+router.put('/:id', hasRole('admin'), controller.update);
+router.put('/:id/requestExportFormat', isAgent(), controller.updateRequestExportFormat);
 router.patch('/:id', isAgent(), controller.update);
 router.delete('/:id', hasRole('admin'), controller.destroy);
 
@@ -39,6 +43,10 @@ router.use('/:id/categories', isAgent(), categoriesRouter);
 router.use('/:id/syntheses',  isAgent(), synthesesRouter);
 router.use('/:id/secteurs',  isAgent(), secteurRouter);
 
+router.post('/:id/logo', hasRole('admin') && upload.single('file'), controller.addLogo);
+router.get('/:id/logo', controller.getLogo);
+router.post('/:id/photo', hasRole('admin') && upload.single('file'), controller.addPhoto);
+router.get('/:id/photo', controller.getPhoto);
 
 router.param('id', function(req, res, next, id) {
   Mdph.findOne({zipcode: id}, function(err, mdph) {

@@ -11,6 +11,7 @@ import fs from 'fs';
 import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
+import archiver from 'archiver';
 import Recapitulatif from '../../components/recapitulatif';
 import SynthesePDF from '../../components/synthese';
 import pdfMaker from '../../components/pdf-maker';
@@ -206,7 +207,8 @@ function sendMailReceivedTransmission(req) {
       host: req.headers.host,
       user: req.user,
       email: req.user.email,
-      replyTo: getRequestMdphEmail(request)
+      replyTo: getRequestMdphEmail(request),
+      role: req.user.role
     };
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
@@ -413,6 +415,56 @@ export function getPdf(req, res) {
       return null;
     })
     .catch(handleError(req, res));
+}
+
+export function getDownload(req, res) {
+
+  if(!req.query.short_ids || req.query.short_ids.length === 0 ){
+    return res.sendStatus(404);
+  }
+
+  const demandeShortIds = JSON.parse(req.query.short_ids);
+
+  var archive = archiver.create('zip', {});
+
+  async.each(demandeShortIds,
+
+    function(demandeShortId, callback){
+      var currentDemande = null;
+
+      Request.findOne({shortId: demandeShortId})
+      .exec()
+      .then(fillRequestMdph)
+      .then(demande => {
+        currentDemande = demande;
+        return pdfMaker({
+          request: currentDemande,
+          host: req.headers.host,
+          user: req.user,
+          role: 'adminMdph',
+          requestExportFormat: currentDemande.fullMdph.requestExportFormat
+        });
+      })
+      .then(readStream => {
+
+        const beneficiaire = currentDemande.formAnswers.identites.beneficiaire;
+        const extension = currentDemande.fullMdph.requestExportFormat;
+
+        const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${currentDemande.shortId}.${extension}`;
+
+        archive.append(readStream, { name: filename });
+
+        callback();
+      });
+    },
+    function(){
+      archive.finalize();
+
+      res.header('Content-Disposition', `attachment; filename="download.zip"`);
+      archive.pipe(res);
+      return null;
+    }
+  );
 }
 
 export function getSynthesePdf(req, res) {

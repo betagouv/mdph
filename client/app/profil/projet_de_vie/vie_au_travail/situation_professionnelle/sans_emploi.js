@@ -76,7 +76,7 @@ angular.module('impactApp')
           nextStep: function($state, saveCurrentState) {
             return function() {
               saveCurrentState();
-              $state.go('^.^.^.situation_professionnelle.prestations');
+              $state.go('^.^.^.situation_professionnelle.rqth');
             };
           }
         }

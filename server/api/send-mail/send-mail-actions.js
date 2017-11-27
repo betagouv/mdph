@@ -77,9 +77,8 @@ export function sendMailReceivedTransmission(options) {
 export function sendConfirmationMail(email, confirmationUrl) {
   const options = {
     email,
-    title: 'Veuillez confirmer votre adresse e-mail',
+    title: 'Validation de votre compte',
     content: confirmationContentCompiled({confirmationUrl: confirmationUrl}),
-    footer: urlFooterCompiled({url: confirmationUrl}),
   };
 
   return generateAndSend(options);

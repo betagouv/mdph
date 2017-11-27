@@ -40,6 +40,13 @@ angular.module('impactApp')
         params: {
           id: 'generate_token'
         }
+      },
+      activate: {
+        method: 'PUT',
+        params: {
+          id: 'activate',
+          controller: '@email'
+        }
       }
     });
   });

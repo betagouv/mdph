@@ -7,6 +7,7 @@
       <th>Matin</th>
       <th>Midi</th>
       <th>Après-midi</th>
+      <th>soirée/nuit</th>
     </thead>
     <tbody>
       <tr ng-repeat="(idx, jour) in jours">
@@ -20,6 +21,9 @@
         <td>
           <input aria-label="{{jour}} après-midi" name="aprem{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['aprem']">
         </td>
+        <td>
+            <input aria-label="{{jour}} soirée/nuit" name="soir{{idx}}" type="text" class="form-control" ng-model="model.jours[idx]['soir']">
+          </td>
       </tr>
     </tbody>
   </table>

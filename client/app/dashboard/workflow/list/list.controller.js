@@ -81,17 +81,35 @@ angular.module('impactApp')
       });
     };
 
-    this.download = function() {
-      const download = function(request) {
-        const beneficiaire = request.formAnswers.identites.beneficiaire;
-        const pdfName = beneficiaire.nom.toLowerCase() +
-                        '_' + beneficiaire.prenom.toLowerCase() +
-                        '_' + request.shortId;
+    this.downloadRequests = function() {
+
+      var selectedRequests = _.reduce(this.requests, function(selectedRequests, request) {
+          if (request.isSelected) {
+            selectedRequests.push(request.shortId);
+          }
+
+          return selectedRequests;
+        }, []);
+
+      if (selectedRequests.length === 1) {
+        var request = _.find(this.requests, 'isSelected');
+
+        console.log('une demande : ' + JSON.stringify(request));
+
+        const pdfName = request.formAnswers.identites.beneficiaire.nom.toLowerCase() +
+        '_' + request.formAnswers.identites.beneficiaire.prenom.toLowerCase() +
+        '_' + request.shortId;
 
         $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + this.token);
-      };
 
-      actionOnSelectedRequests(requests, download);
+      } else {
+        if (selectedRequests.length > 1) {
+          console.log(selectedRequests.length + ' demandes');
+          $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + this.token);
+        } else {
+          console.log('aucune demande');
+        }
+      }
     };
 
     function archiveRequests(requests) {

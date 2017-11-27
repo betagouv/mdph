@@ -29,15 +29,23 @@ angular.module('impactApp', [
       positionClass: 'toast-top-right'
     });
     treeConfig.dragClass = 'angular-ui-tree-drag';
+
+    // disable IE ajax request caching
+    $httpProvider.defaults.cache = false;
+    if (!$httpProvider.defaults.headers.get) {
+      $httpProvider.defaults.headers.get = {};
+    }
+
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
   })
   .run(function($rootScope, $window, $location, $state) {
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {
       $window.scrollTo(0, 0);
 
       if (toState.data && toState.data.title) {
-        $window.document.title = toState.data.title + ' | mdph.beta.gouv.fr';
+        $window.document.title = toState.data.title + ' | MDPH en ligne';
       } else {
-        $window.document.title = 'mdph.beta.gouv.fr';
+        $window.document.title = 'MDPH en ligne';
       }
 
       if ($window._paq) {
