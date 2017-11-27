@@ -24,7 +24,7 @@
             "model": "domicile",
             "detail": true,
             "detailModel": "domicileDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
@@ -32,7 +32,7 @@
             "labelRep": "Son école ne peut plus l'accueillir",
             "detail": true,
             "detailModel": "ecoleDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
             "model": "ecole"
           },
@@ -42,7 +42,7 @@
             "model": "etablissement",
             "detail": true,
             "detailModel": "etablissementDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
@@ -50,7 +50,7 @@
             "labelRep": "<%= pronoun %> risque de perdre son travail",
             "detail": true,
             "detailModel": "travailDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
             "model": "travail",
             "onlyAdult": true
@@ -61,7 +61,7 @@
             "model": "hospitalisation",
             "detail": true,
             "detailModel": "hospitalisationDetail",
-            "detailUrl": "components/detail/precisez.html",
+            "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté"
           },
           {
