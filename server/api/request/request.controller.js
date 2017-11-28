@@ -85,6 +85,7 @@ function respondWithResult(res, statusCode) {
 }
 
 function populateAndRespond(res) {
+  console.log('populateAndRespond');
   return function(request) {
     return populateAndSortPrestations(request)
       .then(populateAndSortDocumentTypes)
@@ -309,6 +310,7 @@ function resolveEnregistrement(req) {
 }
 
 function dispatchAction(req) {
+  console.log("ACTION : " + req.body.id);
   switch (req.body.id) {
     case ACTIONS.ENREGISTREMENT:
       return resolveEnregistrement(req);
