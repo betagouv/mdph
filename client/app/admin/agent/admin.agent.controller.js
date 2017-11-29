@@ -16,6 +16,10 @@ angular.module('impactApp')
     return password;
   }
 
+  this.resetMongooseError = function(form, field) {
+    form[field].$setValidity('mongoose', true);
+  };
+
   this.submit = function(form) {
 
     if (form.$valid) {
