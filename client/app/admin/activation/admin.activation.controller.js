@@ -9,7 +9,7 @@ angular.module('impactApp')
         })
         .catch(function(res) {
           if (res.status === 304) {
-            $scope.message = 'Compte deja actif';
+            $scope.message = 'Compte déjà actif';
           }
 
           if (res.status === 404) {

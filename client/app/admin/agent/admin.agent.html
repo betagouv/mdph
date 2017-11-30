@@ -6,7 +6,7 @@
 
       <div class="form-group required" ng-class="{ 'has-error': agentForm.name.$invalid && agentForm.$submitted }">
         <label for="name" class="control-label">Nom complet</label>
-        <input id="name" type="text" name="name" class="form-control" ng-model="agent.name" required ng-change="resetMongooseError(form, 'name')" mongoose-error/>
+        <input id="name" type="text" name="name" class="form-control" ng-model="agent.name" required mongoose-error/>
         <div ng-messages="agentForm.name.$error" ng-if="agentForm.$submitted">
         <p class="help-block" ng-message='required'>Veuillez entrer le nom complet de l'agent.</p>
         <p class="help-block" ng-message="mongoose">{{ errors.name }}</p>
@@ -14,7 +14,7 @@
       </div>
       <div class="form-group required" ng-class="{ 'has-error': agentForm.email.$invalid && agentForm.$submitted }">
         <label for="email" class="control-label">Adresse email</label>
-        <input id="email" type="email" name="email" class="form-control" ng-model="agent.email" required ng-change="resetMongooseError(form, 'email')" mongoose-error/>
+        <input id="email" type="email" name="email" class="form-control" ng-model="agent.email" required ng-change="adminAgentCtrl.resetMongooseError(agentForm, 'email')" mongoose-error/>
         <div ng-messages="agentForm.email.$error" ng-if="agentForm.$submitted">
         <p class="help-block" ng-message='required'>Veuillez entrer une adresse e-mail.</p>
         <p class="help-block" ng-message='email'> Cet email n'est pas valide.</p>
