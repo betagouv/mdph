@@ -10,7 +10,7 @@ defaults: &defaults
 restore_cache: &restore_cache
   restore_cache:
     name: Restoring node_modules
-    key: v1-node_modules-{{ checksum "yarn.lock" }}
+    key: v2-node_modules-{{ checksum "yarn.lock" }}
 
 jobs:
   setup:
@@ -23,7 +23,7 @@ jobs:
           command: yarn install
       - save_cache:
           name: Caching node_modules
-          key: v1-node_modules-{{ checksum "yarn.lock" }}
+          key: v2-node_modules-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
   test-lint:
