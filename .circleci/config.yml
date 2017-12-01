@@ -54,9 +54,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: yarn install
+      - *restore_cache
       - run:
           name: Build package
           command: yarn build
@@ -92,7 +90,9 @@ workflows:
       - test-back:
           requires:
             - setup
-      - test-end-to-end
+      - test-end-to-end:
+          requires:
+            - setup
       - deploy:
           requires:
             - test-lint
