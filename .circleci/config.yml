@@ -92,7 +92,7 @@ workflows:
       - test-back:
           requires:
             - setup
-      - test-end-to-end:
+      - test-end-to-end
       - deploy:
           requires:
             - test-lint
