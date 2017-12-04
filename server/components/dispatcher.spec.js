@@ -19,16 +19,7 @@ import User from '../api/user/user.model';
 const mdphCaen = new Mdph({
   name: 'Caen',
   zipcode: '14',
-  headquarters: {
-    name: 'QG',
-    email: 'caen@caen.com',
-    address: '14, rue de caen',
-    headquarters: true,
-    coordinates: {
-      coordx: 'x',
-      coordy: 'y'
-    }
-  }
+  email: 'caen@caen.com'
 });
 
 const secteurCaen = new Secteur({

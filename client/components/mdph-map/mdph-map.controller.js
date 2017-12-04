@@ -2,8 +2,7 @@
 
 angular.module('impactApp')
   .controller('MdphMapCtrl', function() {
-    this.mdph.headquarters.highlight = true;
-    this.locations = this.mdph && this.mdph.subsidiairies.concat(this.mdph.headquarters);
+    this.locations = this.mdph && this.mdph.locations;
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiaW1wYWN0LW1hcGJveCIsImEiOiJjaWt6bmpqYTUwMDcwd29tNDRpczM2N2pwIn0.Qh9eYg3TMD00z22WzmDXyQ';
 
@@ -83,7 +82,7 @@ angular.module('impactApp')
             title: location.name,
             description,
             'marker-size': 'large',
-            'marker-color': location.highlight ? '#333E54' : '#FFFFFF',
+            'marker-color': location.headquarters ? '#333E54' : '#FFFFFF',
             'marker-symbol': 'building'
           }
         };
@@ -96,7 +95,7 @@ angular.module('impactApp')
 
         const popup = L.mapbox.featureLayer(featureLayer, options).addTo(map);
 
-        if (location.highlight) {
+        if (location.headquarters) {
           popup.openPopup();
         }
       });

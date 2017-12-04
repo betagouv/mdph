@@ -1,33 +1,16 @@
 <footer>
   <div ng-show="footer.mdph" class="contact-mdph">
-    <h3>Contactez votre MDPH</h3>
+    <h4>Contactez votre MDPH</h4>
     <div class="location-container">
-      <div class="location headquarters">
-        <h4>MDPH du {{ footer.mdph.zipcode }}</h4>
+      <div class="location" ng-class="{'headquarters': location.headquarters}" ng-repeat="location in footer.sortedLocations">
+        <h5>{{ location.name }}</h5>
         <address class="location-row">
-          {{ footer.mdph.headquarters.address }}
+          {{location.address}}
         </address>
-        <div ng-if="footer.mdph.headquarters.schedule" ng-bind="footer.mdph.headquarters.schedule" class="schedule location-row"></div>
-        <div ng-if="footer.mdph.headquarters.phone" ng-bind="footer.mdph.headquarters.phone" class="phone location-row"></div>
-        <div ng-if="footer.mdph.headquarters.email" class="email location-row">
-          <a href="mailto:{{footer.mdph.headquarters.email}}" title="Contactez votre MDPH par mail">{{ footer.mdph.headquarters.email}}</a>
-        </div>
-      </div>
-    </div>
-
-    <div ng-if="footer.mdph.subsidiairies.length > 0">
-      <h3>Les relais de votre MDPH</h3>
-      <div class="location-container">
-        <div class="location" ng-repeat="location in footer.mdph.subsidiairies">
-          <h4>{{ location.name }}</h4>
-          <address class="location-row">
-            {{location.address}}
-          </address>
-          <div ng-if="location.schedule" ng-bind="location.schedule" class="schedule location-row"></div>
-          <div ng-if="location.phone" ng-bind="location.phone" class="phone location-row"></div>
-          <div ng-if="location.email" class="email location-row">
-            <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
-          </div>
+        <div ng-if="location.schedule" ng-bind="location.schedule" class="schedule location-row"></div>
+        <div ng-if="location.phone" ng-bind="location.phone" class="phone location-row"></div>
+        <div ng-if="location.email" class="email location-row">
+          <a href="mailto:{{location.email}}" title="Contactez votre MDPH par mail">{{location.email}}</a>
         </div>
       </div>
     </div>

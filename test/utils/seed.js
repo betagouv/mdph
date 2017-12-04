@@ -8,23 +8,8 @@ import config from '../../server/config/environment';
 
 function saveMdph(mdph) {
   return function() {
-    var test = new Mdph({
-      zipcode: 'test',
-      headquarters: {
-        name: 'QG',
-        email: 'contact@mdph.test',
-        headquarters: true,
-        address: 'Test address',
-        coordinates: {
-          coordx: 'x',
-          coordy: 'y'
-        }
-      },
-      opened: true
-    });
-
+    var test = new Mdph({zipcode: 'test', locations: [{name: 'QG', email: 'contact@mdph.test', headquarters: true}], opened: true});
     test.save((err, savedMdph) => {
-      console.log(err);
       mdph = savedMdph;
     });
 

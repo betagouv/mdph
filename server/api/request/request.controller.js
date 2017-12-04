@@ -197,7 +197,9 @@ function resolveSubmit(req) {
 }
 
 function getRequestMdphEmail(request) {
-  return request.fullMdph.headquarters.email;
+  const mainLocation = _.find(request.fullMdph.locations, {headquarters: true}) || request.fullMdph.locations[0];
+
+  return mainLocation.email;
 }
 
 function sendMailReceivedTransmission(req) {

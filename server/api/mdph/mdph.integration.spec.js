@@ -33,19 +33,7 @@ describe('Mdph Integration', function() {
   });
 
   describe('When asking requests for an MDPH', function() {
-    var wrongMdph = new Mdph({
-      zipcode: 'wrong',
-      headquarters: {
-        name: 'QG',
-        email: 'contact@mdph.test',
-        headquarters: true,
-        address: 'Test address',
-        coordinates: {
-          coordx: 'x',
-          coordy: 'y'
-        }
-      }
-    });
+    var wrongMdph = new Mdph({zipcode: 'wrong'});
 
     before(function(done) {
       wrongMdph.save(done);

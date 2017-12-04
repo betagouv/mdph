@@ -33,20 +33,7 @@ describe('Stats Integration', function() {
   });
 
   describe('When get likes stats', function() {
-    var mdph = new Mdph({
-      name: 'test1',
-      likes : ['user1@mail.com', 'user2@mail.com', 'user3@mail.com'],
-      headquarters: {
-        name: 'QG',
-        email: 'contact@mdph.test',
-        headquarters: true,
-        address: 'Test address',
-        coordinates: {
-          coordx: 'x',
-          coordy: 'y'
-        }
-      }
-    });
+    var mdph = new Mdph({name: 'test1', likes : ['user1@mail.com', 'user2@mail.com', 'user3@mail.com']});
 
     before(function(done) {
       mdph.save(done);
