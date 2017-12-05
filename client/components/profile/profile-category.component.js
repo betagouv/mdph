@@ -27,7 +27,7 @@ const profileCategoryComponent = {
     }
 
     go() {
-      this.$state.go(this.action.sref,{},{reload:true});
+      this.$state.go(this.action.sref, {}, {reload:true});
     }
 
     computeCompletion() {
