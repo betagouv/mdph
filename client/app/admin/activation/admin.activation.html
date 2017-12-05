@@ -7,7 +7,9 @@
         <button id="activateButtonId" type="submit" name="activateButton" alt="Activer" class="btn btn-default">Activer</button>
       </div>
       <br/>
-      <span ng-if="message" class="alert alert-info">{{message}}</span>
+      <div ng-if="message">
+        <p class="help-block">{{message}}</p>
+      </div>
 
   </form>
 </div>

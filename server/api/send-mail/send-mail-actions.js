@@ -59,7 +59,7 @@ export function sendMailReceivedTransmission(options) {
     .then(pdfStream => {
       options.title = 'Votre demande a bien été transmise';
       options.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';
-      attachments.push({filename: options.request.shortId + '.pdf', path: pdfStream.path});
+      attachments.push({filename: options.request.shortId + '.pdf', path: pdfStream});
       return options;
     })
     .then(generateEmailBodyWithTemplate)
@@ -71,7 +71,9 @@ export function sendMailReceivedTransmission(options) {
         body,
         attachments
       });
-    });
+    }).catch(function (err) {
+      console.error(err);
+  });
 }
 
 export function sendConfirmationMail(email, confirmationUrl) {

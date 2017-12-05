@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .controller('EvaluationDetailCtrl', function(
-    $scope, $modal, $cookies, $http, $state, $stateParams,
+    $scope, $modal, toastr, $cookies, $http, $state, $stateParams,
     sections, section, sectionId, model, GevaService, currentSynthese, currentUser, SyntheseResource) {
 
     $scope.model = model;
@@ -116,34 +116,16 @@ angular.module('impactApp')
       });
     };
 
-    this.saveAndQuit = function(form) {
-      if (form.$invalid) {
-        form.showError = true;
-
-      } else {
-        currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
-        $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
-        SyntheseResource.update(currentSynthese, function() {
-          $state.go('evaluation.dashboard', {}, {reload: true});
-        });
-      }
+    this.change = function() {
+      $scope.$emit('saveEvaluationDetailEvent');
     };
 
-    this.save = function(form, sectionId) {
-      if (form.$invalid) {
-        form.showError = true;
-
-      } else {
-        currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
-        $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
-        SyntheseResource.update(currentSynthese, function() {
-          $state.go('evaluation.detail', {sectionId: sectionId}, {reload: true});
-        });
-      }
-    };
-
-    this.cancel = function() {
-      $state.go('.', {}, {reload: true});
-    };
+    $scope.$on('saveEvaluationDetailEvent', function() {
+      currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+      $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
+      SyntheseResource.update(currentSynthese, function() {
+        toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
+      });
+    });
 
   });
