@@ -50,21 +50,21 @@ jobs:
       - run:
           name: Run server-side unit tests
           command: yarn test:back
-  test-end-to-end:
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_cache
-      - run:
-          name: Build package
-          command: yarn build
-      - run:
-          name: Run test server
-          command: yarn circle-server
-          background: true
-      - run:
-          name: Run e2e tests
-          command: yarn circle-e2e
+  #test-end-to-end:
+  #  <<: *defaults
+  #  steps:
+  #    - checkout
+  #    - *restore_cache
+  #    - run:
+  #        name: Build package
+  #        command: yarn build
+  #    - run:
+  #        name: Run test server
+  #        command: yarn circle-server
+  #        background: true
+  #    - run:
+  #        name: Run e2e tests
+  #        command: yarn circle-e2e
   deploy:
     <<: *defaults
     steps:
@@ -90,12 +90,12 @@ workflows:
       - test-back:
           requires:
             - setup
-      - test-end-to-end:
-          requires:
-            - setup
+#      - test-end-to-end:
+#          requires:
+#            - setup
       - deploy:
           requires:
             - test-lint
             - test-front
             - test-back
-            - test-end-to-end
+#            - test-end-to-end
