@@ -15,6 +15,7 @@ import archiver from 'archiver';
 import Recapitulatif from '../../components/recapitulatif';
 import SynthesePDF from '../../components/synthese';
 import pdfMaker from '../../components/pdf-maker';
+import DemandeBuilder from '../../components/DemandeBuilder';
 
 import Request from './request.model';
 import Profile from '../profile/profile.model';
@@ -379,7 +380,7 @@ export function getHistory(req, res) {
 }
 
 export function getRecapitulatif(req, res) {
-  Recapitulatif.answersToHtml({
+  Recapitulatif({
     request: req.request,
     host: req.headers.host
   }, function(err, html) {
@@ -398,12 +399,11 @@ export function getPdf(req, res) {
     .exec()
     .then(mdph => {
       currentMdph = mdph;
-      return pdfMaker({
+      return DemandeBuilder({
         request: req.request,
         host: req.headers.host,
-        user: req.user,
-        role: req.user.role,
-        requestExportFormat: mdph.requestExportFormat
+        withSeparator: req.user.role !== "user",
+        format: req.user.role !== 'user' ? currentMdph.requestExportFormat : 'pdf'
       });
     })
     .then(readStream => {
@@ -412,6 +412,7 @@ export function getPdf(req, res) {
 
       const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
 
+      res.header('Content-Type', `application/octet-stream`);
       res.header('Content-Disposition', `attachment; filename="${filename}"`);
 
       if (extension !== 'pdf') {
