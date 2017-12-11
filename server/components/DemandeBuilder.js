@@ -38,13 +38,13 @@ function dir(opts) {
   });
 }
 
-function buildStructure(request, recapitulatifPdfPath) {
+function buildStructure(request, recapitulatifPdfPath, withSeparator) {
   return function(convertedDocumentList) {
-    return pdfBuild(request.mdph, recapitulatifPdfPath, convertedDocumentList);
+    return pdfBuild(request.mdph, recapitulatifPdfPath, convertedDocumentList, withSeparator);
   };
 }
 
-function writeSeparatorsToFile(tempDirPath) {
+function buildFiles(tempDirPath) {
   return function(pdfStructure) {
     return writeGridfsToFile(pdfStructure, tempDirPath);
   };
@@ -66,12 +66,12 @@ function joinFilesInArchive(tempDirPath) {
   };
 }
 
-function joinFiles({tempDirPath, recapitulatifPdfPath, request, format}) {
+function joinFiles({tempDirPath, recapitulatifPdfPath, request, withSeparator, format}) {
   return imagesToPdf(tempDirPath, request)
     .then(() => decryptPdf(tempDirPath, request.documents))
     .then(() => filterMissingPdf(request.documents))
-    .then(buildStructure(request, recapitulatifPdfPath))
-    .then(writeSeparatorsToFile(tempDirPath))
+    .then(buildStructure(request, recapitulatifPdfPath, withSeparator))
+    .then(buildFiles(tempDirPath))
     .then((pdfStructure) => {
       switch (format) {
         case 'pdf':
@@ -98,11 +98,12 @@ function build({request, host, tempDirPath, withSeparator, format}) {
           return reject(err);
         }
 
-        return  joinFiles({tempDirPath, recapitulatifPdfPath, request, format}).then(stream => {
+        return  joinFiles({tempDirPath, recapitulatifPdfPath, request, withSeparator, format}).then(stream => {
+          console.log('path : ' + stream.path);
           if (format === 'pdf') {
             return resolve(stream.path);
           }
-          return resolve(stream);
+          return resolve(stream.path);
         });
 
       });
@@ -113,6 +114,7 @@ function build({request, host, tempDirPath, withSeparator, format}) {
 export default function({request, host, withSeparator, format}) {
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
+    withSeparator = false;
     return build({tempDirPath, request, host, withSeparator, format});
   });
 }
