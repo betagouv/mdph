@@ -249,7 +249,7 @@ function computeEnregistrementOptions(request, host) {
   }
 
   if (host) {
-    options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
+    options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}`;
   }
 
   return options;
