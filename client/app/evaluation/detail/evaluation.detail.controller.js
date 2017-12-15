@@ -116,6 +116,12 @@ angular.module('impactApp')
       });
     };
 
+    this.treatBirthDate = function() {
+      if(currentSynthese.birthdate){
+        this.change();
+      }
+    };
+
     this.change = function() {
       $scope.$emit('saveEvaluationDetailEvent');
     };
