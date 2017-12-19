@@ -38,7 +38,8 @@
 
           <div class="form-group required" ng-class="{'has-error': profilForm.birthdate.$invalid}">
             <label for="birthdate" class="control-label">Date de naissance</label>
-            <input id="birthdate" type="text" name="birthdate" value="{{currentSynthese.birthdate}}" class="form-control" ng-model="currentSynthese.birthdate" ng-minlength="1"  placeholder="JJ/MM/AAAA" input-date date-autocomplete required ng-change="evaluationDetailCtrl.change()" ng-model-options="{updateOn: 'blur'}">
+            <input id="birthdate" type="text" name="birthdate" value="{{currentSynthese.birthdate}}" class="form-control" ng-model="currentSynthese.birthdate" ng-minlength="1"  placeholder="JJ/MM/AAAA" input-date date-autocomplete required
+            ng-change="evaluationDetailCtrl.treatBirthDate()" >
             <div ng-messages="profilForm.birthdate.$error">
               <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
               <p class="help-block" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>

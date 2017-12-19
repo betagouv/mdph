@@ -4,11 +4,12 @@ angular.module('impactApp').controller('EvaluationSyntheseAddEmptyCtrl', functio
 
   this.addNewSynthese = () => {
 
-    var newSynthese = new SyntheseResource();
-    newSynthese.mdph = this.mdph._id;
+  // Désormais la création est fait lors de la saisie d'au moins un champ
+  //var newSynthese = new SyntheseResource();
+  //newSynthese.mdph = this.mdph._id;
 
-    SyntheseResource.save(newSynthese, function(synthese) {
-      $state.go('evaluation.detail', {syntheseId: synthese._id, sectionId: 'profil'});
-    });
+  //  SyntheseResource.save(newSynthese, function(synthese) {
+      $state.go('evaluation.detail', {sectionId: 'profil'});
+ //   });
   };
 });

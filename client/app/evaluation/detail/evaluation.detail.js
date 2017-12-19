@@ -29,7 +29,11 @@ angular.module('impactApp')
               },
 
               currentSynthese: function(SyntheseResource, syntheseId) {
+               if(syntheseId) {
                 return SyntheseResource.get({id: syntheseId}).$promise;
+               } else {
+                return {};
+               }
               },
 
               section: function($stateParams, sections, model, sectionId) {
