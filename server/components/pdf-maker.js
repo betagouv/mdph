@@ -83,7 +83,7 @@ function createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, req
 
 function createRequestExport({role, request, host, tempDirPath, requestExportFormat}) {
   return new Promise(function(resolve, reject) {
-    Recapitulatif.answersToHtml({request, host}, (err, recapitulatifHtml) => {
+    Recapitulatif({request, host}, (err, recapitulatifHtml) => {
       if (err) {
         return reject(err);
       }
