@@ -12,10 +12,9 @@ import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
 import archiver from 'archiver';
-import Recapitulatif from '../../components/recapitulatif';
+import recapitulatif from '../../components/recapitulatif';
 import SynthesePDF from '../../components/synthese';
-import pdfMaker from '../../components/pdf-maker';
-import DemandeBuilder from '../../components/DemandeBuilder';
+import demandeBuilder from '../../components/DemandeBuilder';
 
 import Request from './request.model';
 import Profile from '../profile/profile.model';
@@ -211,7 +210,9 @@ function sendMailReceivedTransmission(req) {
       user: req.user,
       email: req.user.email,
       replyTo: getRequestMdphEmail(request),
-      role: req.user.role
+      role: req.user.role,
+      withSeparator: false,
+      format: 'pdf'
     };
 
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
@@ -380,7 +381,7 @@ export function getHistory(req, res) {
 }
 
 export function getRecapitulatif(req, res) {
-  Recapitulatif({
+  recapitulatif({
     request: req.request,
     host: req.headers.host
   }, function(err, html) {
@@ -399,16 +400,16 @@ export function getPdf(req, res) {
     .exec()
     .then(mdph => {
       currentMdph = mdph;
-      return DemandeBuilder({
+      return demandeBuilder({
         request: req.request,
         host: req.headers.host,
-        withSeparator: req.user.role !== "user",
-        format: req.user.role !== 'user' ? currentMdph.requestExportFormat : 'pdf'
+        withSeparator: req.params.type !== "user",
+        format: req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf'
       });
     })
     .then(readStream => {
       const beneficiaire = req.request.formAnswers.identites.beneficiaire;
-      const extension = req.user.role !== 'user' ? currentMdph.requestExportFormat : 'pdf';
+      const extension = req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf';
 
       const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
 
@@ -445,12 +446,11 @@ export function getDownload(req, res) {
       .then(fillRequestMdph)
       .then(demande => {
         currentDemande = demande;
-        return pdfMaker({
-          request: currentDemande,
+        return demandeBuilder({
+          request: req.request,
           host: req.headers.host,
-          user: req.user,
-          role: 'adminMdph',
-          requestExportFormat: currentDemande.fullMdph.requestExportFormat
+          withSeparator: true,
+          format: currentDemande.fullMdph.requestExportFormat
         });
       })
       .then(readStream => {

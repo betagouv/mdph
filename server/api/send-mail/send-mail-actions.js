@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import { EmailTemplate } from 'email-templates';
 import * as Mailer from './send-mail.controller';
-import pdfMaker from '../../components/pdf-maker';
+import demandeBuilder from '../../components/DemandeBuilder';
 import config from '../../config/environment';
 
 function compileContent(contentFile) {
@@ -55,7 +55,7 @@ export function sendMailNotificationAgent(request, email) {
 export function sendMailReceivedTransmission(options) {
   const attachments = [];
 
-  return pdfMaker(options)
+  return demandeBuilder(options)
     .then(pdfStream => {
       options.title = 'Votre demande a bien été transmise';
       options.content = 'Merci d\'avoir passé votre demande avec notre service. <br> Votre demande à été transmise à votre MDPH. Vous pouvez trouver ci-joint un récapitulatif de votre demande au format PDF.';

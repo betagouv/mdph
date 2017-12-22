@@ -9,7 +9,7 @@ import pdfBuild from './pdf_structure/build';
 import decryptPdf from './pdf_utils/decrypt';
 import filterMissingPdf from './pdf_utils/filter-missing';
 import writeGridfsToFile from './pdf_structure/writeGridfsToFile';
-import Recapitulatif from './recapitulatif';
+import recapitulatif from './recapitulatif';
 
 const pdfOptions = {
   format: 'A4',
@@ -86,7 +86,7 @@ function joinFiles({tempDirPath, recapitulatifPdfPath, request, withSeparator, f
 
 function build({request, host, tempDirPath, withSeparator, format}) {
   return new Promise(function(resolve, reject) {
-    Recapitulatif({request, host}, (err, recapitulatifHtml) => {
+    recapitulatif({request, host}, (err, recapitulatifHtml) => {
       if (err) {
         return reject(err);
       }
@@ -103,7 +103,7 @@ function build({request, host, tempDirPath, withSeparator, format}) {
           if (format === 'pdf') {
             return resolve(stream.path);
           }
-          return resolve(stream.path);
+          return resolve(stream);
         });
 
       });

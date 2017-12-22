@@ -100,7 +100,7 @@ angular.module('impactApp')
         '_' + request.formAnswers.identites.beneficiaire.prenom.toLowerCase() +
         '_' + request.shortId;
 
-        $window.open('api/requests/' + request.shortId + '/pdf/' + pdfName + '?access_token=' + this.token);
+        $window.open('api/requests/' + request.shortId + '/pdf/agent/' + pdfName + '?access_token=' + this.token);
 
       } else {
         if (selectedRequests.length > 1) {

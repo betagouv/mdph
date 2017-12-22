@@ -209,4 +209,4 @@ export default function({request, host}, next) {
       next(null, '<html><body><p>Erreur lors de la génération du récapitulatif.</p><p>Détail de l\'erreur: ' + e + '</p></body></html>');
     }
   });
-};
+}
