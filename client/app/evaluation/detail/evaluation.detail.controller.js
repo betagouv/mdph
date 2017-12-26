@@ -61,8 +61,29 @@ angular.module('impactApp')
             reponses = answersToIdArray(question.Reponses, level + 1);
             result = result.concat(reponses);
           }
-
           if (level !== 0 || reponses.length > 0) {
+          //if (  /*level === 0 && */reponses.length > 0 ||  level !== 0 && (!question.Reponses || result.length > 0) ) {
+            result.push(question.id);
+          } else {
+            question.isSelected = false;
+          }
+        }
+
+        return result;
+      }, []);
+    }
+
+    function answersToIdArrayToSave(root, level) {
+      return _.reduce(root, function(result, question) {
+        if (question.isSelected) {
+          var reponses = [];
+
+          if (question.Reponses) {
+            reponses = answersToIdArrayToSave(question.Reponses, level + 1);
+            result = result.concat(reponses);
+          }
+          //if (level !== 0 || reponses.length > 0) {
+          if (  /*level === 0 && */reponses.length > 0 ||  level !== 0 && (!question.Reponses || result.length > 0) ) {
             result.push(question.id);
           } else {
             question.isSelected = false;
@@ -76,6 +97,12 @@ angular.module('impactApp')
     function trajectoiresToIdArray(trajectoires) {
       return _.reduce(trajectoires, function(result, trajectoire) {
         return result.concat(answersToIdArray(trajectoire, 0));
+      }, []);
+    }
+
+    function trajectoiresToIdArrayToSave(trajectoires) {
+      return _.reduce(trajectoires, function(result, trajectoire) {
+        return result.concat(answersToIdArrayToSave(trajectoire, 0));
       }, []);
     }
 
@@ -121,11 +148,12 @@ angular.module('impactApp')
     };
 
     $scope.$on('saveEvaluationDetailEvent', function() {
-      currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+      currentSynthese.geva[section.id] = trajectoiresToIdArrayToSave($scope.section.trajectoires);
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
       SyntheseResource.update(currentSynthese, function() {
         toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
       });
+      currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
     });
 
   });
