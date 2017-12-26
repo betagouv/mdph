@@ -117,7 +117,7 @@ angular.module('impactApp')
     };
 
     this.treatBirthDate = function() {
-      if(currentSynthese.birthdate){
+      if (currentSynthese.birthdate) {
         this.change();
       }
     };
