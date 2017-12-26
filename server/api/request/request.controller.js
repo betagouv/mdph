@@ -416,11 +416,7 @@ export function getPdf(req, res) {
       res.header('Content-Type', `application/octet-stream`);
       res.header('Content-Disposition', `attachment; filename="${filename}"`);
 
-      if (extension !== 'pdf') {
-        readStream.pipe(res);
-      } else {
-        fs.createReadStream(readStream).pipe(res);
-      }
+      readStream.pipe(res);
       return null;
     })
     .catch(handleError(req, res));

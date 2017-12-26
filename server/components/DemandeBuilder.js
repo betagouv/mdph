@@ -99,10 +99,6 @@ function build({request, host, tempDirPath, withSeparator, format}) {
         }
 
         return  joinFiles({tempDirPath, recapitulatifPdfPath, request, withSeparator, format}).then(stream => {
-          console.log('path : ' + stream.path);
-          if (format === 'pdf') {
-            return resolve(stream.path);
-          }
           return resolve(stream);
         });
 
