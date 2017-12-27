@@ -108,7 +108,7 @@ angular.module('impactApp')
     };
 
     $scope.save = function(category) {
-      if(category.label.length !== 0){
+      if (category.label.length !== 0) {
         category.$save({zipcode: currentMdph.zipcode}).then(function() {
           showAlert();
         },
