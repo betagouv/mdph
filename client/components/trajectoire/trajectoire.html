@@ -19,7 +19,7 @@ ng-class="{
   </div>
 
   <trajectoire
-    ng-if="((!trjctrCtrl.sublevel && trjctrCtrl.isCurrentQuestion(question) )  || trjctrCtrl.sublevel && trjctrCtrl.isCurrentSubQuestion(question) ) || question.isSelected "
+    ng-if="!trjctrCtrl.sublevel && trjctrCtrl.currentQuestionId === question.id || question.isSelected  || question.inProgress"
     model="question.id"
     questions="question.Reponses"
     sublevel="true"
