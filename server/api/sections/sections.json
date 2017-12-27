@@ -81,6 +81,7 @@
             "detailUrl": "components/detail/precisez_date_et_detail.html",
             "detailTextLabel": "Précisez",
             "detailDateLabel": "Date d'entrée prévue",
+            "detailType": "emploi",
             "model": "emploi",
             "onlyAdult": true
           },

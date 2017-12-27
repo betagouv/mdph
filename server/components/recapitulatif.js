@@ -44,7 +44,7 @@ function rebuildAnswersFromModel(question, questionAnswers) {
           });
         }
       });
-
+      
       return answers;
     case 'frais':
       if (questionAnswers.listeFrais && questionAnswers.listeFrais.length > 0 && questionAnswers.listeFrais[0].nom !== '') {
@@ -95,10 +95,17 @@ function computeAnswers(question, trajectoireAnswers) {
     if (answer.detailModel) {
       var detailType = answer.detailType;
       var detail = trajectoireAnswers[answer.detailModel];
-      if (detailType) {
-        answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
-      } else {
-        answer.detail = detail;
+      switch (detailType){
+        case 'date':
+          answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          break;
+        case 'emploi': 
+          answer.detail = 'Date d\'entrée prévue : ';
+          answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          answer.detail += ' ; ' + detail.text;
+          break;
+        default:
+          answer.detail = detail;
       }
     }
   });
