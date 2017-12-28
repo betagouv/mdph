@@ -9,6 +9,7 @@ var router = new Router();
 
 router.post('/', isEvaluateur(), controller.create);
 router.get('/', isEvaluateur(), controller.showAllByMdph);
+router.get('/:syntheseId/pdf', isEvaluateur(), controller.getPdf);
 router.get('/:syntheseId', isEvaluateur(), controller.show);
 router.put('/:syntheseId', isEvaluateur(), controller.update);
 

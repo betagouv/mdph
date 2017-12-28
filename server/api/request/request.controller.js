@@ -13,7 +13,6 @@ import async from 'async';
 import Promise from 'bluebird';
 import archiver from 'archiver';
 import Recapitulatif from '../../components/recapitulatif';
-import SynthesePDF from '../../components/synthese';
 import pdfMaker from '../../components/pdf-maker';
 
 import Request from './request.model';
@@ -21,7 +20,6 @@ import Profile from '../profile/profile.model';
 import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
-import Synthese from '../synthese/synthese.model';
 
 import Dispatcher from '../../components/dispatcher';
 import RequestActionModel from './action.model';
@@ -255,52 +253,12 @@ function computeEnregistrementOptions(request, host) {
   return options;
 }
 
-// create a snapshot of the current synthesis for a saved request
-function snapshotSynthese(request) {
-  Synthese
-    .find({profile: request.profile})
-    .exec(
-      function(err, profileSyntheses) {
-        if (err) return;
-
-        var snapshotSynthese;
-        var now = Date.now();
-
-        var existingRequestSynthese = _.find(profileSyntheses, function(synthese) {
-          return synthese.request === request._id;
-        });
-
-        var currentProfileSynthese = _.find(profileSyntheses, function(synthese) {
-          return synthese.request === null;
-        });
-
-        if (!currentProfileSynthese) return;
-
-        if (existingRequestSynthese) {
-          snapshotSynthese = existingRequestSynthese;
-          snapshotSynthese.geva = currentProfileSynthese.geva;
-        } else {
-          snapshotSynthese = new Synthese(currentProfileSynthese);
-          snapshotSynthese._id = mongoose.Types.ObjectId();
-          snapshotSynthese.request = request._id;
-          snapshotSynthese.createdAt = now;
-          snapshotSynthese.isNew = true;
-        }
-
-        snapshotSynthese.updatedAt = now;
-        snapshotSynthese.save();
-      }
-    );
-  return request;
-}
-
 function resolveEnregistrement(req) {
   const options = computeEnregistrementOptions(req.request, req.headers.host);
 
   return req.request
     .set('status', options.status)
     .save()
-    .then(snapshotSynthese)
     .then(fillRequestMdph)
     .then(request => {
       options.replyTo = getRequestMdphEmail(request);
@@ -477,16 +435,6 @@ export function getDownload(req, res) {
       return null;
     }
   );
-}
-
-export function getSynthesePdf(req, res) {
-  SynthesePDF.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
-    if (err) { throw(500, err); }
-
-    pdf.create(html).toStream(function(err, readStream) {
-      readStream.pipe(res);
-    });
-  });
 }
 
 function processDocument(file, fileData, done) {
