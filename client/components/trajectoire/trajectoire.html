@@ -14,7 +14,7 @@ ng-class="{
     <button type="button" class="btn btn-link"
       ng-click="!trjctrCtrl.sublevel ? trjctrCtrl.toggleCollapse(question) : trjctrCtrl.toggleCollapseSublevel(question)"
       ng-if="( !trjctrCtrl.sublevel || question.Reponses) && !trjctrCtrl.readOnly">
-      <i class="fa" ng-class="((!trjctrCtrl.sublevel && trjctrCtrl.isCurrentQuestion(question) )  || trjctrCtrl.sublevel && trjctrCtrl.isCurrentSubQuestion(question) ) ?  'fa-minus': 'fa-plus' "></i>
+      <i class="fa" ng-class="((!trjctrCtrl.sublevel && trjctrCtrl.isCurrentQuestion(question) )  || trjctrCtrl.sublevel && question.inProgress) ?  'fa-minus': 'fa-plus' "></i>
     </button>
   </div>
 

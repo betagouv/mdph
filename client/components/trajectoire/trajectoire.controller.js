@@ -28,21 +28,31 @@ angular.module('impactApp')
       }
     };
 
+    function hasChildInProgress(question) {
+      if (question.Reponses) {
+        for (let quest of question.Reponses) {
+          if (quest.parentInProgress) {
+            return true;
+          } else {
+            return hasChildInProgress(quest);
+          }
+        }
+      }
+
+      return false;
+    }
+
     this.filterQuestion = (question) => {
-      console.log('filter ' + question.id + ' ' + question.Libelle + ' ' + question.question + ' '+ ( ((!this.sublevel && !this.readOnly) || question.inProgress || this.isCurrentQuestion(question) || question.isSelected) ? "vrai" : "faux") );
+        if (!question.isSelected && hasChildInProgress(question)) {
+          question.isSelected = true;
+        }
 
-        return ((!this.sublevel && !this.readOnly) || question.inProgress || !this.sublevel && this.isCurrentQuestion(question) || !this.sublevel && this.isCurrentSubQuestion(question) || question.isSelected  );
-
-    };
+        return ((!this.sublevel && !this.readOnly) || question.inProgress || question.parentInProgress || !this.sublevel && this.isCurrentQuestion(question)  || question.isSelected);
+      };
 
     this.toggleSelected = (question) => {
       question.isSelected = !question.isSelected;
-      question.inProgress = true;
-
-      if(question.hasQuestionSelected){
-        this.currentQuestionId = (this.getRootQuestion(question)).id;
-        this.currentSubQuestionId = question.id;
-      }
+      question.inProgress = !question.isSelected ? false : !question.inProgress;
 
       if (question.isSelected && this.sublevel) {
         this.root.isSelected = true;
@@ -56,62 +66,66 @@ angular.module('impactApp')
     };
 
     this.toggleReduce = (question) => {
-
       this.currentTraitementQuestionId = question.id;
-        this.currentQuestionId = question.id;
-
-
-
-       // this.root.isSelected = true;
-
+      this.currentQuestionId = question.id;
     };
 
+    function initParentInProgress(question) {
+      question.parentInProgress = false;
+      if (question.Reponses) {
+        for (let quest of question.Reponses) {
+          initParentInProgress(quest);
+        }
+      }
+    }
+
+    function hasQuestionSelected(question) {
+      if (question.Reponses) {
+        for (let quest of question.Reponses) {
+          if (quest.isSelected) {
+            return true;
+          } else {
+            if (hasQuestionSelected(quest)) {
+              return true;
+            }
+          }
+        }
+      }
+
+      return false;
+    }
+
+    function updateInProgress(question) {
+      question.inProgress = !question.inProgress;
+      if (question.Reponses) {
+        for (let quest of question.Reponses) {
+          initParentInProgress(quest);
+          quest.parentInProgress = question.inProgress;
+        }
+      }
+
+      question.isSelected = hasQuestionSelected(question) ? true : !question.isSelected;
+    }
+
     this.toggleCollapse = (question) => {
-      if (this.sublevel || this.currentQuestionId !== (this.getRootQuestion(question)).id) {
+      updateInProgress(question);
+      if (this.currentQuestionId !== (this.getRootQuestion(question)).id) {
         this.currentQuestionId = (this.getRootQuestion(question)).id;
+        this.currentSubQuestionId = question.id;
       } else {
         this.currentQuestionId = null;
-        question.inProgress = false;
+        this.currentSubQuestionId = null;
       }
-      this.currentSubQuestionId = null;
 
-
-      if((!this.sublevel && !this.readOnly) || question.inProgress || this.isCurrentQuestion(question) || question.isSelected  && !question.Reponses){
-        console.log('toggleCollapse'+ question.id);
-      }
     };
 
     this.toggleCollapseSublevel = (question) => {
-      question.inProgress = !question.inProgress;
+      updateInProgress(question);
       if (this.currentSubQuestionId !== (question.id)) {
         this.currentSubQuestionId = question.id;
-
       } else {
         this.currentSubQuestionId = null;
       }
-      if(!this.sublevel && this.currentQuestionId === question.id || question.isSelected  && !question.Reponses || question.inProgress){
-        console.log('toto');
-      }
-
-      if((!this.sublevel && !this.readOnly) || question.inProgress || this.isCurrentQuestion(question) || question.isSelected  && !question.Reponses){
-        console.log('toggleCollapseSublevel'+ question.id);
-      }
-
-    };
-
-
-
-
-
-    function hasQuestionSelectedd(question) {
-      for (let quest in question.Reponses) {
-        if (hasQuestionSelectedd(quest)) return true;
-      }
-      return question.isSelected ;
-    }
-
-    this.hasQuestionSelected  = (question) => {
-      return hasQuestionSelectedd(question);
     };
 
   });

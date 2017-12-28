@@ -61,8 +61,8 @@ angular.module('impactApp')
             reponses = answersToIdArray(question.Reponses, level + 1);
             result = result.concat(reponses);
           }
+
           if (level !== 0 || reponses.length > 0) {
-          //if (  /*level === 0 && */reponses.length > 0 ||  level !== 0 && (!question.Reponses || result.length > 0) ) {
             result.push(question.id);
           } else {
             question.isSelected = false;
@@ -71,6 +71,18 @@ angular.module('impactApp')
 
         return result;
       }, []);
+    }
+
+    function hasChildToSave(question, result) {
+      if (result && result.length > 0) {
+        for (let quest of result) {
+          if (quest.includes(question.id)) {
+            return true;
+          }
+        }
+      }
+
+      return false;
     }
 
     function answersToIdArrayToSave(root, level) {
@@ -82,8 +94,9 @@ angular.module('impactApp')
             reponses = answersToIdArrayToSave(question.Reponses, level + 1);
             result = result.concat(reponses);
           }
-          //if (level !== 0 || reponses.length > 0) {
-          if (  /*level === 0 && */reponses.length > 0 ||  level !== 0 && (!question.Reponses || result.length > 0) ) {
+
+          // enregistrer seulement les réponses selectionnées et les questions intermédiaires correspondantes
+          if (level === 0 && reponses.length > 0 ||  level !== 0 && (!question.Reponses || hasChildToSave(question, result))) {
             result.push(question.id);
           } else {
             question.isSelected = false;
@@ -153,6 +166,7 @@ angular.module('impactApp')
       SyntheseResource.update(currentSynthese, function() {
         toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
       });
+
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
     });
 
