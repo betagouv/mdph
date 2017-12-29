@@ -184,13 +184,13 @@ exports.answersToHtml = function({request, host}, next) {
 
     colors: function(callback) {
       callback(null, [
-        { class: '.section-identite', color: 'rgb(96, 149, 195)' },
-        { class: '.section-vie_quotidienne', color: 'rgb(38, 151, 135)' },
-        { class: '.section-prestations', color: 'rgb(89, 135, 53)' },
-        { class: '.section-vie_au_travail', color: 'rgb(21, 79, 131)' },
-        { class: '.section-aidant', color: 'rgb(172, 35, 92)'  },
-        { class: '.section-vie_scolaire', color: 'rgb(74, 44, 97)'},
-        { class: '.section-situations_particulieres', color: 'rgb(234, 46, 73)' }
+        { class: '.section-identite', color: 'rgb(73, 82, 130)' },
+        { class: '.section-vie_quotidienne', color: 'rgb(90, 136, 175)' },
+        { class: '.section-prestations', color: 'rgb(255, 143, 27)' },
+        { class: '.section-vie_au_travail', color: '#815EA5' },
+        { class: '.section-aidant', color: '#815EA5' },
+        { class: '.section-vie_scolaire', color: '#58A0E6' },
+        { class: '.section-situations_particulieres', color: '#EA2E49' }
       ]);
     },
 
