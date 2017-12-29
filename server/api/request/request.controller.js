@@ -204,17 +204,23 @@ function getRequestMdphEmail(request) {
 
 function sendMailReceivedTransmission(req) {
   return function(request) {
-    const options = {
-      request: request,
-      host: req.headers.host,
-      user: req.user,
-      email: req.user.email,
-      replyTo: getRequestMdphEmail(request),
-      role: req.user.role
-    };
+    Mdph
+    .findOne({zipcode: req.request.mdph})
+    .exec()
+    .then(mdph => {
+      const options = {
+        request: request,
+        host: req.headers.host,
+        mdph: mdph,
+        user: req.user,
+        email: req.user.email,
+        replyTo: getRequestMdphEmail(request),
+        role: req.user.role
+      };
 
-    MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
-    return request;
+      MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
+      return request;
+    })
   };
 }
 
@@ -379,16 +385,22 @@ export function getHistory(req, res) {
 }
 
 export function getRecapitulatif(req, res) {
-  Recapitulatif.answersToHtml({
-    request: req.request,
-    host: req.headers.host
-  }, function(err, html) {
-    if (err) {
-      return handleError(req, res)(500, err);
-    }
+  Mdph
+    .findOne({zipcode: req.request.mdph})
+    .exec()
+    .then(mdph => {
+      Recapitulatif.answersToHtml({
+        request: req.request,
+        host: req.headers.host,
+        mdph: mdph
+      }, function(err, html) {
+        if (err) {
+          return handleError(req, res)(500, err);
+        }
 
-    return res.status(200).send(html);
-  });
+        return res.status(200).send(html);
+      });
+    })
 }
 
 export function getPdf(req, res) {
@@ -401,6 +413,7 @@ export function getPdf(req, res) {
       return pdfMaker({
         request: req.request,
         host: req.headers.host,
+        mdph: currentMdph,
         user: req.user,
         role: req.user.role,
         requestExportFormat: mdph.requestExportFormat

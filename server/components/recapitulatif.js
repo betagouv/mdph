@@ -149,7 +149,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-exports.answersToHtml = function({request, host}, next) {
+exports.answersToHtml = function({request, host, mdph}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
@@ -169,11 +169,11 @@ exports.answersToHtml = function({request, host}, next) {
     },
 
     mdph: function(callback) {
-      if (!request.mdph) {
+      if (!mdph) {
         return callback(null, []);
       }
 
-      callback(null, request.mdph);
+      callback(null, mdph);
     },
 
     request: function(callback) {
