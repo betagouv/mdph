@@ -101,4 +101,4 @@ export default function({synthese, mdph, host}, next) {
 
     next(null, html);
   });
-};
+}

@@ -3,7 +3,6 @@ import Promise from 'bluebird';
 import tmp from 'tmp';
 import path from 'path';
 import htmlToPdf from 'html-pdf';
-import Handlebars from 'handlebars';
 import syntheseHtml from './synthese';
 
 const options = {

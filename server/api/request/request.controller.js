@@ -2,10 +2,8 @@
 
 import { populateAndSortPrestations } from '../prestation/prestation.controller';
 import { populateAndSortDocumentTypes } from '../document-type/document-type.controller';
-import mongoose from 'mongoose';
 
 import _ from 'lodash';
-import pdf from 'html-pdf';
 import moment from 'moment';
 import fs from 'fs';
 import shortid from 'shortid';
