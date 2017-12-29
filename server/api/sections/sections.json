@@ -71,6 +71,7 @@
             "detailUrl": "components/detail/precisez_date_et_detail.html",
             "detailTextLabel": "Précisez",
             "detailDateLabel": "Date d'entrée prévue",
+            "detailType": "date&text",
             "model": "formation",
             "onlyAdult": true
           },
@@ -81,7 +82,7 @@
             "detailUrl": "components/detail/precisez_date_et_detail.html",
             "detailTextLabel": "Précisez",
             "detailDateLabel": "Date d'entrée prévue",
-            "detailType": "emploi",
+            "detailType": "date&text",
             "model": "emploi",
             "onlyAdult": true
           },

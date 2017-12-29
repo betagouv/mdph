@@ -44,7 +44,7 @@ function rebuildAnswersFromModel(question, questionAnswers) {
           });
         }
       });
-      
+
       return answers;
     case 'frais':
       if (questionAnswers.listeFrais && questionAnswers.listeFrais.length > 0 && questionAnswers.listeFrais[0].nom !== '') {
@@ -99,7 +99,7 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'date':
           answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           break;
-        case 'emploi': 
+        case 'date&text':
           answer.detail = 'Date d\'entrée prévue : ';
           answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           answer.detail += ' ; ' + detail.text;
