@@ -83,6 +83,7 @@ export function getPdf(req, res) {
   console.log("generation synthese : " + JSON.stringify(req.synthese));
   syntheseBuilder({
     synthese: req.synthese,
+    mdph: req.mdph,
     host: req.headers.host
   })
   .then(readStream => {

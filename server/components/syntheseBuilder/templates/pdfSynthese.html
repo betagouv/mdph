@@ -11,15 +11,11 @@
       h1 {
         text-align: center;
         font-size: 16px;
-        color: #4f6083;
+        color: #4f5F83;
       }
 
       p {
         font-size: 12px;
-      }
-
-      address {
-        font-size: 13px;
       }
 
       .emphasize {
@@ -58,7 +54,6 @@
         padding: 2px 10px;
         border-radius: 5px;
         margin: 15px 0px;
-        page-break-after: always;
       }
 
       .section:last-of-type {
@@ -79,20 +74,6 @@
         margin: 0 0 8px 0;
       }
 
-      .section .subsection h4 {
-        font-size: 12px;
-        padding: 0;
-        margin: 0;
-        margin-top: 18px;
-        color: black;
-      }
-
-      .section .subsection h4::after {
-        border-bottom: 1px solid #4F6083;
-        content: ' ';
-        display: block;
-      }
-
       .section .subsection {
         background-color: rgba(255, 255, 255, 0.78);
         color: black;
@@ -102,29 +83,11 @@
         margin-bottom: 10px;
       }
 
-      .question {
+      .subsection-content {
         background-color: white;
         padding: 2px 16px;
         border-radius: 6px;
         margin-bottom: 5px;
-      }
-
-      table {
-        width: 100%;
-        font-size: 12px;
-      }
-
-      table>thead>tr>th {
-        border-top: 0;
-        vertical-align: bottom;
-      }
-
-      table>tbody>tr>td {
-        padding: 8px;
-        line-height: 1.42857143;
-        text-align: center;
-        vertical-align: top;
-        border-top: 1px solid #ddd;
       }
 
       img {
@@ -134,12 +97,21 @@
   </head>
   <body>
     <div class="pull-left">
-      <img src="http://{{path}}/assets/images/logo{{mdph}}.jpg" width="88,9" height="48,9"></img>
+      {{#if mdph.logo}}
+        <img src="http://{{path}}/api/mdphs/{{mdph.zipcode}}/logo/" width="88,9" height="48,9"></img>
+      {{else}}
+        <img src="http://{{path}}/assets/images/logo_defaut.jpg" width="88,9" height="48,9"></img>
+      {{/if}}
     </div>
+
+    <div class="pull-right">
+        Évaluation en date du {{date}}
+    </div>
+
 
     <div class="clearfix"></div>
 
-    <h1>Fiche recapitulative de la demande</h1>
+    <h1>Fiche récapitulative de l'évaluation</h1>
 
     <div class="section section-identite">
       <div class="heading">
@@ -147,7 +119,7 @@
       </div>
       <div class="subsection">
         <h3>Bénéficiaire</h3>
-        <div class="question">
+        <div class="subsection-content">
             {{#if lastname}}
             <p>
                 Nom de naissance : <strong>{{lastname}}</strong>
@@ -165,6 +137,74 @@
             {{/if}}
 
         </div>
+      </div>
+    </div>
+
+    <div class="section section-environnement">
+        <div class="heading">
+          <h2>Éléments environnementaux</h2>
+        </div>
+        {{#each environnement}}
+        {{#if this.active}}
+        <div class="subsection">
+          <h3>{{this.Question}}</h3>
+          <div class="subsection-content">
+              {{> answers}}
+          </div>
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="section section-personnel">
+        <div class="heading">
+          <h2>Éléments personnels</h2>
+        </div>
+        {{#each personnel}}
+        {{#if this.active}}
+        <div class="subsection">
+          <h3>{{this.Question}}</h3>
+          <div class="subsection-content">
+              {{> answers}}
+          </div>
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="section section-scolaire_professionnel">
+        <div class="heading">
+          <h2>Éléments scolaires ou professionnels</h2>
+        </div>
+        {{#each scolaire_professionnel}}
+        {{#if this.active}}
+        <div class="subsection">
+          <h3>{{this.Question}}</h3>
+          <div class="subsection-content">
+              {{> answers}}
+          </div>
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="section section-evolution_besoins">
+        <div class="heading">
+          <h2>Évolution et besoins</h2>
+        </div>
+        {{#each evolution_besoins}}
+        {{#if this.active}}
+        <div class="subsection">
+          <h3>{{this.Question}}</h3>
+          <div class="subsection-content">
+              {{> answers}}
+          </div>
+        </div>
+        {{/if}}
+        {{/each}}
       </div>
     </div>
 

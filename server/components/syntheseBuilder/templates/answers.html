@@ -1,0 +1,9 @@
+{{#if Reponses}}
+<ul>
+  {{#each Reponses}}
+  {{#if this.active}}
+  <li>{{this.Libelle}} {{> answers}}</li>
+  {{/if}}
+  {{/each}}
+</ul>
+{{/if}}

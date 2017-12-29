@@ -33,9 +33,9 @@ function dir(opts) {
   });
 }
 
-function build({synthese, host, tempDirPath}) {
+function build({synthese, mdph, host, tempDirPath}) {
   return new Promise(function(resolve, reject) {
-    syntheseHtml({synthese, host}, (err, content) => {
+    syntheseHtml({synthese, mdph, host}, (err, content) => {
       if (err) {
         return reject(err);
       }
@@ -53,9 +53,9 @@ function build({synthese, host, tempDirPath}) {
   });
 }
 
-export default function({synthese, host}) {
+export default function({synthese, mdph, host}) {
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
-    return build({synthese, host, tempDirPath});
+    return build({synthese, mdph, host, tempDirPath});
   });
 }
