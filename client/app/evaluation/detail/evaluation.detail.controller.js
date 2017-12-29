@@ -54,11 +54,11 @@ angular.module('impactApp')
 
     function hasQuestionSelected(question) {
       if (question.Reponses) {
-        for (let quest of question.Reponses) {
-          if (quest.isSelected) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          if (question.Reponses[i].isSelected) {
             return true;
           } else {
-            if (hasQuestionSelected(quest)) {
+            if (hasQuestionSelected(question.Reponses[i])) {
               return true;
             }
           }

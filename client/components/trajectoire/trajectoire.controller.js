@@ -20,35 +20,42 @@ angular.module('impactApp')
     };
 
     this.filterQuestion = (question) => {
-        /*if (!question.isSelected && hasQuestionSelected(question)) {
-          question.isSelected = true;
-        }*/
-
-        return ((!this.sublevel && !this.readOnly) || question.inProgress || question.parentInProgress || /*!this.sublevel &&*/ this.isCurrentQuestion(question)  || question.isSelected || this.hasQuestionSelected(question));
+        return ((!this.sublevel && !this.readOnly) || question.isOpen || question.isParentOpen || !this.sublevel && this.isCurrentQuestion(question)  || question.isSelected || this.hasQuestionSelected(question));
       };
 
-    function initParentInProgress(question) {
-      question.parentInProgress = false;
+    function closeTree(question) {
       if (question.Reponses) {
-        for (let quest of question.Reponses) {
-          initParentInProgress(quest);
+        for (let i = 0; i < question.Reponses.length; i++) {
+          question.Reponses[i].isParentOpen = false;
+          question.Reponses[i].isOpen = false;
+          closeTree(question.Reponses[i]);
         }
       }
     }
 
-    function updateInProgress(question) {
-      question.inProgress = !question.inProgress;
-      if (question.Reponses) {
-        for (let quest of question.Reponses) {
-          initParentInProgress(quest);
-          quest.parentInProgress = question.inProgress;
+    function reverseIsOpen(question, questions) {
+      question.isOpen = !question.isOpen;
+      if (question.isOpen) {
+        if (question.Reponses) {
+          for (let quest of question.Reponses) {
+            quest.isParentOpen = true;
+          }
+        }
+      } else {
+        for (let i = 0; i < questions.length; i++) {
+          if (question.id === questions[i].id) {
+            closeTree(questions[i]);
+            break;
+          }
         }
       }
     }
 
-    this.toggleSelected = (question) => {
+    this.toggleSelected = (question, questions) => {
       question.isSelected = !question.isSelected;
-      question.inProgress = !question.isSelected ? false : !question.inProgress;
+      if ((question.isOpen ? true : false) !== question.isSelected) {
+        reverseIsOpen(question, questions);
+      }
 
       if (question.isSelected) {
         this.currentQuestionId = (this.getRootQuestion(question)).id;
@@ -58,11 +65,7 @@ angular.module('impactApp')
         this.root.isSelected = true;
       }
 
-      if (!this.sublevel) {
-        updateInProgress(question);
-      }
-
-      if (this.sublevel /*&& !question.Reponses*/) {
+      if (this.sublevel) {
         // Emetre en evenement pour la sauvegarde
         $scope.$emit('saveEvaluationDetailEvent');
       }
@@ -93,8 +96,8 @@ angular.module('impactApp')
       return false;
     };
 
-    this.toggleCollapse = (question) => {
-      updateInProgress(question);
+    this.toggleCollapse = (question, questions) => {
+      reverseIsOpen(question, questions);
       if (this.currentQuestionId !== (this.getRootQuestion(question)).id) {
         this.currentQuestionId = (this.getRootQuestion(question)).id;
         this.currentSubQuestionId = question.id;
@@ -105,8 +108,8 @@ angular.module('impactApp')
 
     };
 
-    this.toggleCollapseSublevel = (question) => {
-      updateInProgress(question);
+    this.toggleCollapseSublevel = (question, questions) => {
+      reverseIsOpen(question, questions);
       if (this.currentSubQuestionId !== (question.id)) {
         this.currentSubQuestionId = question.id;
       } else {

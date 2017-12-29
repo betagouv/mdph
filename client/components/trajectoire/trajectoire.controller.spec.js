@@ -38,10 +38,10 @@ describe('TrajectoireController', function() {
         id: '1234',
         isSelected: false
       };
-      controller.toggleCollapse(question);
+      controller.toggleCollapse(question, {});
       expect(controller.currentQuestionId).toBe('1234');
 
-      controller.toggleCollapse(question);
+      controller.toggleCollapse(question, {});
       expect(controller.currentQuestionId).toBe(null);
     });
   });
