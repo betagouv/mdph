@@ -100,21 +100,14 @@ angular.module('impactApp')
       reverseIsOpen(question, questions);
       if (this.currentQuestionId !== (this.getRootQuestion(question)).id) {
         this.currentQuestionId = (this.getRootQuestion(question)).id;
-        this.currentSubQuestionId = question.id;
       } else {
         this.currentQuestionId = null;
-        this.currentSubQuestionId = null;
       }
 
     };
 
     this.toggleCollapseSublevel = (question, questions) => {
       reverseIsOpen(question, questions);
-      if (this.currentSubQuestionId !== (question.id)) {
-        this.currentSubQuestionId = question.id;
-      } else {
-        this.currentSubQuestionId = null;
-      }
     };
 
   });
