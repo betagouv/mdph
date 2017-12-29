@@ -21,9 +21,8 @@ angular.module('impactApp')
 
       $scope.changeIsSameAddress = function() {
         if ($scope.identite.isSameAddress) {
-          $scope.complement_adresse = '';
           $scope.searchAdress = '';
-          $scope.identite.complementAdresse = '';
+          $scope.identite.complement_adresse = '';
           $scope.identite.nomVoie = '';
           $scope.identite.code_postal = '';
           $scope.identite.localite = '';
