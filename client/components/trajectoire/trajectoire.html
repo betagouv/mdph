@@ -5,7 +5,7 @@ ng-class="{
 <div ng-repeat="question in trjctrCtrl.questions" ng-if="trjctrCtrl.filterQuestion(question)">
   <div class="question" ng-class="{'question-active': question.isSelected}">
     <button type="button" class="btn btn-link" ng-click="trjctrCtrl.toggleSelected(question)" ng-disabled="trjctrCtrl.readOnly">
-      <i class="fa" ng-class="question.isSelected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true" ng-if="!question.Reponses && trjctrCtrl.sublevel"></i>
+      <i class="fa" ng-class="question.isSelected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true" ng-if="trjctrCtrl.sublevel"></i>
       {{question.Question ? (question.Question | capitalizeString) : (question.Libelle | capitalizeString)}}
     </button>
     <button type="button" class="btn btn-link showOnHover" ng-click="trjctrCtrl.newIssue(trjctrCtrl.root, question)">
@@ -14,12 +14,12 @@ ng-class="{
     <button type="button" class="btn btn-link"
       ng-click="!trjctrCtrl.sublevel ? trjctrCtrl.toggleCollapse(question) : trjctrCtrl.toggleCollapseSublevel(question)"
       ng-if="( !trjctrCtrl.sublevel || question.Reponses) && !trjctrCtrl.readOnly">
-      <i class="fa" ng-class="((!trjctrCtrl.sublevel && trjctrCtrl.isCurrentQuestion(question) )  || trjctrCtrl.sublevel && question.inProgress) ?  'fa-minus': 'fa-plus' "></i>
+      <i class="fa" ng-class="((!trjctrCtrl.sublevel && trjctrCtrl.isCurrentQuestion(question)) || trjctrCtrl.sublevel && question.inProgress) ? 'fa-minus': 'fa-plus' "></i>
     </button>
   </div>
 
   <trajectoire
-    ng-if="!trjctrCtrl.sublevel && trjctrCtrl.currentQuestionId === question.id || question.isSelected  || question.inProgress"
+    ng-if="!trjctrCtrl.sublevel && trjctrCtrl.currentQuestionId === question.id || question.isSelected  || question.inProgress || trjctrCtrl.hasQuestionSelected(question)"
     model="question.id"
     questions="question.Reponses"
     sublevel="true"
@@ -28,7 +28,5 @@ ng-class="{
     current-sub-question-id="trjctrCtrl.currentSubQuestionId"
     root="trjctrCtrl.getRootQuestion(question)"
     read-only="trjctrCtrl.readOnly" />
-
-
 </div>
 </div>

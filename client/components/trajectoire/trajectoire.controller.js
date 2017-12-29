@@ -19,56 +19,13 @@ angular.module('impactApp')
       }
     };
 
-    this.isCurrentSubQuestion = (question) => {
-
-      if (this.currentSubQuestionId !== null) {
-        return (this.currentSubQuestionId === question.id);
-      } else {
-        return false;
-      }
-    };
-
-    function hasChildInProgress(question) {
-      if (question.Reponses) {
-        for (let quest of question.Reponses) {
-          if (quest.parentInProgress) {
-            return true;
-          } else {
-            return hasChildInProgress(quest);
-          }
-        }
-      }
-
-      return false;
-    }
-
     this.filterQuestion = (question) => {
-        if (!question.isSelected && hasChildInProgress(question)) {
+        /*if (!question.isSelected && hasQuestionSelected(question)) {
           question.isSelected = true;
-        }
+        }*/
 
-        return ((!this.sublevel && !this.readOnly) || question.inProgress || question.parentInProgress || !this.sublevel && this.isCurrentQuestion(question)  || question.isSelected);
+        return ((!this.sublevel && !this.readOnly) || question.inProgress || question.parentInProgress || /*!this.sublevel &&*/ this.isCurrentQuestion(question)  || question.isSelected || this.hasQuestionSelected(question));
       };
-
-    this.toggleSelected = (question) => {
-      question.isSelected = !question.isSelected;
-      question.inProgress = !question.isSelected ? false : !question.inProgress;
-
-      if (question.isSelected && this.sublevel) {
-        this.root.isSelected = true;
-      }
-
-      if (this.sublevel && !question.Reponses) {
-        // Emetre en evenement pour la sauvegarde
-        $scope.$emit('saveEvaluationDetailEvent');
-      }
-
-    };
-
-    this.toggleReduce = (question) => {
-      this.currentTraitementQuestionId = question.id;
-      this.currentQuestionId = question.id;
-    };
 
     function initParentInProgress(question) {
       question.parentInProgress = false;
@@ -79,22 +36,6 @@ angular.module('impactApp')
       }
     }
 
-    function hasQuestionSelected(question) {
-      if (question.Reponses) {
-        for (let quest of question.Reponses) {
-          if (quest.isSelected) {
-            return true;
-          } else {
-            if (hasQuestionSelected(quest)) {
-              return true;
-            }
-          }
-        }
-      }
-
-      return false;
-    }
-
     function updateInProgress(question) {
       question.inProgress = !question.inProgress;
       if (question.Reponses) {
@@ -103,9 +44,54 @@ angular.module('impactApp')
           quest.parentInProgress = question.inProgress;
         }
       }
-
-      question.isSelected = hasQuestionSelected(question) ? true : !question.isSelected;
     }
+
+    this.toggleSelected = (question) => {
+      question.isSelected = !question.isSelected;
+      question.inProgress = !question.isSelected ? false : !question.inProgress;
+
+      if (question.isSelected) {
+        this.currentQuestionId = (this.getRootQuestion(question)).id;
+      }
+
+      if (question.isSelected && this.sublevel) {
+        this.root.isSelected = true;
+      }
+
+      if (!this.sublevel) {
+        updateInProgress(question);
+      }
+
+      if (this.sublevel /*&& !question.Reponses*/) {
+        // Emetre en evenement pour la sauvegarde
+        $scope.$emit('saveEvaluationDetailEvent');
+      }
+
+    };
+
+    this.isCurrentQuestion = (question) => {
+      if (this.currentQuestionId !== null) {
+        return (this.currentQuestionId === (this.getRootQuestion(question)).id);
+      } else {
+        return false;
+      }
+    };
+
+    this.hasQuestionSelected = (question) => {
+      if (question.Reponses) {
+        for (let quest of question.Reponses) {
+          if (quest.isSelected) {
+            return true;
+          } else {
+            if (this.hasQuestionSelected(quest)) {
+              return true;
+            }
+          }
+        }
+      }
+
+      return false;
+    };
 
     this.toggleCollapse = (question) => {
       updateInProgress(question);
