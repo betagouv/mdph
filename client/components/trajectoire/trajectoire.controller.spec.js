@@ -33,16 +33,15 @@ describe('TrajectoireController', function() {
       controller = $controller('TrajectoireController', { $scope: scope });
     });
 
-    it('should change the selected question', function() {
+    it('should open then close question', function() {
       var question = {
-        id: '1234',
-        isSelected: false
+        isOpen:false
       };
-      controller.toggleCollapse(question, {});
-      expect(controller.currentQuestionId).toBe('1234');
+      controller.toggleCollapse(question);
+      expect(question.isOpen).toBe(true);
 
-      controller.toggleCollapse(question, {});
-      expect(controller.currentQuestionId).toBe(null);
+      controller.toggleCollapse(question);
+      expect(question.isOpen).toBe(false);
     });
   });
 

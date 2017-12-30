@@ -19,12 +19,11 @@ ng-class="{
   </div>
 
   <trajectoire
-    ng-if="!trjctrCtrl.sublevel && trjctrCtrl.currentQuestionId === question.id || question.isSelected  || question.isOpen || trjctrCtrl.hasQuestionSelected(question)"
+    ng-if="question.isOpen || question.isSelected || trjctrCtrl.hasQuestionSelected(question)"
     model="question.id"
     questions="question.Reponses"
     sublevel="true"
     new-issue="trjctrCtrl.newIssue"
-    current-question-id="trjctrCtrl.currentQuestionId"
     root="trjctrCtrl.getRootQuestion(question)"
     read-only="trjctrCtrl.readOnly" />
 </div>

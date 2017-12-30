@@ -6,7 +6,6 @@ angular.module('impactApp').component('trajectoire', {
     sublevel: '=',
     questions: '=',
     request: '=',
-    currentQuestionId: '=',
     root: '=',
     readOnly: '=',
     newIssue: '='
