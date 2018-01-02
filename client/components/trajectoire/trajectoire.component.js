@@ -7,6 +7,7 @@ angular.module('impactApp').component('trajectoire', {
     questions: '=',
     request: '=',
     currentQuestionId: '=',
+    deficienceQuestionId: '=',
     root: '=',
     readOnly: '=',
     newIssue: '='

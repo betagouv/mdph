@@ -11,7 +11,8 @@ var SyntheseSchema = new Schema({
   mdph:           String,
   geva:           Schema.Types.Mixed,
   createdAt:      Date,
-  updatedAt:      Date
+  updatedAt:      Date,
+  deficienceQuestionId: String
 });
 
 SyntheseSchema.pre('save', function(next) {

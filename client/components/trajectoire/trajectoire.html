@@ -3,10 +3,14 @@
     'sub-level': trjctrCtrl.sublevel,
     'main-level': !trjctrCtrl.sublevel}">
   <div ng-repeat="question in trjctrCtrl.questions" ng-if="trjctrCtrl.filterQuestion(question)">
-    <div class="question" ng-class="{'question-active': question.isSelected}">
+    <div class="question" ng-class="{'question-deficience': trjctrCtrl.deficienceQuestionId === question.id, 'question-active': question.isSelected}">
       <button type="button" class="btn btn-link" ng-click="trjctrCtrl.toggleSelected(question)" ng-disabled="trjctrCtrl.readOnly">
         <i class="fa" ng-class="question.isSelected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true" ng-if="trjctrCtrl.sublevel"></i>
         {{question.Question ? (question.Question | capitalizeString) : (question.Libelle | capitalizeString)}}
+      </button>
+      <button type="button" ng-class=" {'btn btn-link show': trjctrCtrl.deficienceQuestionId === question.id, 'btn btn-link showOnHover': trjctrCtrl.deficienceQuestionId !== question.id}"
+              ng-click="trjctrCtrl.deficienceSelected(question)" ng-if="question.Libelle.includes('éficience') || question.Libelle.includes('DEFICIENCE')">
+        Déficienece principale
       </button>
       <button type="button" class="btn btn-link showOnHover" ng-click="trjctrCtrl.newIssue(trjctrCtrl.root, question)">
         Commenter
@@ -25,6 +29,7 @@
       sublevel="true"
       new-issue="trjctrCtrl.newIssue"
       current-question-id="trjctrCtrl.currentQuestionId"
+      deficience-question-id="trjctrCtrl.deficienceQuestionId"
       root="trjctrCtrl.getRootQuestion(question)"
       read-only="trjctrCtrl.readOnly" />
   </div>
