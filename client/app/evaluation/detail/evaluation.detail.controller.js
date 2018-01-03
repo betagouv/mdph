@@ -116,12 +116,6 @@ angular.module('impactApp')
       });
     };
 
-    this.treatBirthDate = function() {
-      if (currentSynthese.birthdate) {
-        this.change();
-      }
-    };
-
     this.change = function() {
       $scope.$emit('saveEvaluationDetailEvent');
     };
@@ -136,9 +130,8 @@ angular.module('impactApp')
         });
       } else {
         currentSynthese.mdph = currentUser.mdph;
-        SyntheseResource.save(currentSynthese, function(synthese) {
-          toastr.info('creation', 'Information');
-          $state.go('evaluation.detail', {syntheseId: synthese._id, sectionId: $scope.sectionId});
+        SyntheseResource.save(currentSynthese, function() {
+          toastr.info('création de la fiche de synthèse effectuée', 'Information');
         });
       }
     });
