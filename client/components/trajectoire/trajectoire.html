@@ -9,7 +9,7 @@
         {{question.Question ? (question.Question | capitalizeString) : (question.Libelle | capitalizeString)}}
       </button>
       <button type="button" ng-class=" {'btn btn-link show': trjctrCtrl.deficienceQuestionId === question.id, 'btn btn-link showOnHover': trjctrCtrl.deficienceQuestionId !== question.id}"
-              ng-click="trjctrCtrl.deficienceSelected(question)" ng-if="question.Libelle.includes('éficience') || question.Libelle.includes('DEFICIENCE')">
+              ng-click="trjctrCtrl.deficienceSelected(question)" ng-if="trjctrCtrl.sublevel && trjctrCtrl.getRootQuestion(question).id === 14">
         Déficienece principale
       </button>
       <button type="button" class="btn btn-link showOnHover" ng-click="trjctrCtrl.newIssue(trjctrCtrl.root, question)">

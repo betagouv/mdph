@@ -26,6 +26,10 @@ angular.module('impactApp')
     this.toggleSelected = (question) => {
       question.isSelected = !question.isSelected;
 
+      if (!question.isSelected && this.deficienceQuestionId) {
+        this.deficienceQuestionId =  null;
+      }
+
       if (question.isSelected) {
         this.currentQuestionId = (this.getRootQuestion(question)).id;
       }
@@ -36,7 +40,7 @@ angular.module('impactApp')
 
       if (this.sublevel) {
         // Emetre en evenement pour la sauvegarde
-        $scope.$emit('saveEvaluationDetailEvent');
+        $scope.$emit('saveEvaluationDetailEvent', this.deficienceQuestionId);
       }
 
     };
@@ -50,7 +54,7 @@ angular.module('impactApp')
     };
 
     this.deficienceSelected = (question) => {
-      this.deficienceQuestionId = this.deficienceQuestionId === question.id ? '' : question.id;
+      this.deficienceQuestionId = this.deficienceQuestionId === question.id ? null : question.id;
       if (this.sublevel) {
         // Emetre en evenement pour la sauvegarde
         $scope.$emit('saveEvaluationDetailEvent', this.deficienceQuestionId);
