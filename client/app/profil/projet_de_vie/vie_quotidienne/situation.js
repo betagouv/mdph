@@ -94,8 +94,12 @@ angular.module('impactApp')
                   $state.go('^.aideTechnique');
                 } else if (answerAideActuelle.personne) {
                   $state.go('^.aidePersonne');
-                } else {
+                } else if (sectionModel.aideActuelle.financiere) {
                   $state.go('^.pensionInvalidite');
+                } else if (ProfileService.estAdulte(profile)) {
+                  $state.go('^.retraite');
+                } else {
+                  $state.go('^.fraisHandicap');
                 }
               }
             };
@@ -111,7 +115,7 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aideFinancierePasse', profile);
           },
 
-          nextStep: function($state, sectionModel, saveCurrentState) {
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
               var answerAideActuelle = sectionModel.aideActuelle;
@@ -119,8 +123,12 @@ angular.module('impactApp')
                 $state.go('^.aideTechnique');
               } else if (answerAideActuelle.personne) {
                 $state.go('^.aidePersonne');
-              } else {
+              } else if (sectionModel.aideActuelle.financiere) {
                 $state.go('^.pensionInvalidite');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.fraisHandicap');
               }
             };
           }
@@ -135,14 +143,18 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aideTechnique', profile);
           },
 
-          nextStep: function($state, sectionModel, saveCurrentState) {
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
               var answerAideActuelle = sectionModel.aideActuelle;
               if (answerAideActuelle.personne) {
                 $state.go('^.aidePersonne');
-              } else {
+              } else if (sectionModel.aideActuelle.financiere) {
                 $state.go('^.pensionInvalidite');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.fraisHandicap');
               }
             };
           }
@@ -153,14 +165,20 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, profile) {
+          question: function(QuestionService, section, sectionModel, profile) {
             return QuestionService.get(section, 'aidePersonne', profile);
           },
 
-          nextStep: function($state, saveCurrentState) {
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
-              $state.go('^.pensionInvalidite');
+              if (sectionModel.aideActuelle.financiere) {
+                $state.go('^.pensionInvalidite');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.fraisHandicap');
+              }
             };
           }
         }
@@ -263,3 +281,4 @@ angular.module('impactApp')
         }
       });
   });
+
