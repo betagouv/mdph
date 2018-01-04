@@ -110,23 +110,6 @@ angular.module('impactApp')
         nextStep: function($state, saveCurrentState) {
           return function() {
             saveCurrentState();
-            $state.go('^.dedommagement');
-          };
-        }
-      }
-    })
-    .state(index + '.dedommagement', {
-      url: '',
-      templateUrl: 'components/question/radio.html',
-      controller: 'QuestionCtrl',
-      resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'dedommagement', profile);
-        },
-
-        nextStep: function($state, saveCurrentState) {
-          return function() {
-            saveCurrentState();
             $state.go('^.accompagnement');
           };
         }
