@@ -172,13 +172,13 @@ angular.module('impactApp')
           nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
-              if (sectionModel.aideActuelle.financiere) {
-                $state.go('^.pensionInvalidite');
-              } else if (ProfileService.estAdulte(profile)) {
-                $state.go('^.retraite');
-              } else {
-                $state.go('^.fraisHandicap');
-              }
+            if (sectionModel.aideActuelle.financiere) {
+              $state.go('^.pensionInvalidite');
+            } else if (ProfileService.estAdulte(profile)) {
+              $state.go('^.retraite');
+            } else {
+              $state.go('^.fraisHandicap');
+            }
             };
           }
         }
@@ -195,7 +195,7 @@ angular.module('impactApp')
           nextStep: function($state, saveCurrentState) {
             return function() {
               saveCurrentState();
-              $state.go('^.ipp');
+                $state.go('^.ipp');
             };
           }
         }
