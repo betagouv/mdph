@@ -11,23 +11,42 @@ angular.module('impactApp')
       }
     };
 
-    this.isCurrentQuestion = (question) => {
-      if (this.currentQuestionId !== null) {
-        return (this.currentQuestionId === (this.getRootQuestion(question)).id);
+    this.filterQuestion = (question) => {
+        return ((!this.sublevel && !this.readOnly) || question.isOpen || question.isParentOpen || question.isSelected || this.hasQuestionSelected(question));
+      };
+
+    function closeTree(question) {
+      if (question.Reponses) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          question.Reponses[i].isParentOpen = false;
+          question.Reponses[i].isOpen = false;
+          closeTree(question.Reponses[i]);
+        }
+      }
+    }
+
+    this.toggleCollapse = (question, questions) => {
+      question.isOpen = !question.isOpen;
+      if (question.isOpen && question.Reponses) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          question.Reponses[i].isParentOpen = true;
+        }
       } else {
-        return false;
+        if (questions) {
+          for (let i = 0; i < questions.length; i++) {
+            if (question.id === questions[i].id) {
+              closeTree(questions[i]);
+              break;
+            }
+          }
+        }
       }
     };
 
-    this.filterQuestion = (question) => {
-      return ((!this.sublevel && !this.readOnly) || this.isCurrentQuestion(question) || question.isSelected);
-    };
-
-    this.toggleSelected = (question) => {
+    this.toggleSelected = (question, questions) => {
       question.isSelected = !question.isSelected;
-
-      if (question.isSelected) {
-        this.currentQuestionId = (this.getRootQuestion(question)).id;
+      if ((question.isOpen ? true : false) !== question.isSelected) {
+        this.toggleCollapse(question, questions);
       }
 
       if (question.isSelected && this.sublevel) {
@@ -38,14 +57,21 @@ angular.module('impactApp')
         // Emetre en evenement pour la sauvegarde
         $scope.$emit('saveEvaluationDetailEvent');
       }
-
     };
 
-    this.toggleCollapse = (question) => {
-      if (this.currentQuestionId !== (this.getRootQuestion(question)).id) {
-        this.currentQuestionId = (this.getRootQuestion(question)).id;
-      } else {
-        this.currentQuestionId = null;
+    this.hasQuestionSelected = (question) => {
+      if (question.Reponses) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          if (question.Reponses[i].isSelected) {
+            return true;
+          } else {
+            if (this.hasQuestionSelected(question.Reponses[i])) {
+              return true;
+            }
+          }
+        }
       }
+
+      return false;
     };
   });
