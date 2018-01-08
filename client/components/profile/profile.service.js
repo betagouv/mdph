@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('ProfileService', function ProfileService(estAdulte, estMineur, RequestService) {
+  .factory('ProfileService', function ProfileService(estAdulte, estMineur, estAdulteStricte, estEnfant, RequestService) {
     function _estMineur(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
@@ -13,6 +13,22 @@ angular.module('impactApp')
     function _estAdulte(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estAdulte(profile.identites.beneficiaire.dateNaissance);
+      } else {
+        return true;
+      }
+    }
+
+    function _estEnfant(profile) {
+      if (profile && profile.identites && profile.identites.beneficiaire) {
+        return estEnfant(profile.identites.beneficiaire.dateNaissance);
+      } else {
+        return false;
+      }
+    }
+
+    function _estAdulteStricte(profile) {
+      if (profile && profile.identites && profile.identites.beneficiaire.dateNaissance) {
+        return estAdulteStricte(profile.identites.beneficiaire.dateNaissance);
       } else {
         return true;
       }
@@ -93,6 +109,8 @@ angular.module('impactApp')
 
       estAdulte: _estAdulte,
       estMineur: _estMineur,
+      estAdulteStricte: _estAdulteStricte,
+      estEnfant: _estEnfant,
       getCompletion,
       getMissingSection,
       needUploadCV,

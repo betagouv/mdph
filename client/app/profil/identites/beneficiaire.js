@@ -29,6 +29,13 @@ angular.module('impactApp')
           $scope.getAdress = AdressService.getAdress;
           $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
           $scope.maskOptions = {clearOnBlur: false, allowInvalidValue: true};
+          $scope.estAdulteStricte = ProfileService.estAdulteStricte(profile);
+          $scope.estEnfant = ProfileService.estEnfant(profile);
+
+          $scope.majAdulteEnfant = function() {
+            $scope.estAdulteStricte = ProfileService.estAdulteStricte(profile);
+            $scope.estEnfant = ProfileService.estEnfant(profile);
+          };
 
           if (!identite.email) {
             identite.email = currentUser.email;
@@ -57,3 +64,4 @@ angular.module('impactApp')
         }
       });
   });
+
