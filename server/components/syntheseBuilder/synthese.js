@@ -14,6 +14,7 @@ function readTemplateSync(template) {
 
 const template = Handlebars.compile(readTemplateSync('./templates/pdfSynthese.html'));
 Handlebars.registerPartial('answers', readTemplateSync('./templates/answers.html'));
+Handlebars.registerPartial('answers_unexpend', readTemplateSync('./templates/answers_unexpend.html'));
 
 function enhanceAnswers(answersGeva, answers) {
   if(answersGeva){

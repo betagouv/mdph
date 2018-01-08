@@ -1,5 +1,5 @@
 {{#if Reponses}}
-<ul>
+
   {{#each Reponses}}
   {{#if this.active}}
   <li>{{this.Libelle}} {{> answers}}</li>
@@ -7,5 +7,4 @@
     {{> answers_unexpend}}
   {{/if}}
   {{/each}}
-  </ul>
 {{/if}}
