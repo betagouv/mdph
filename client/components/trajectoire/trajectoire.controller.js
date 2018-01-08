@@ -27,11 +27,9 @@ angular.module('impactApp')
 
     this.toggleCollapse = (question, questions) => {
       question.isOpen = !question.isOpen;
-      if (question.isOpen) {
-        if (question.Reponses) {
-          for (let quest of question.Reponses) {
-            quest.isParentOpen = true;
-          }
+      if (question.isOpen && question.Reponses) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          question.Reponses[i].isParentOpen = true;
         }
       } else {
         if (questions) {
@@ -63,11 +61,11 @@ angular.module('impactApp')
 
     this.hasQuestionSelected = (question) => {
       if (question.Reponses) {
-        for (let quest of question.Reponses) {
-          if (quest.isSelected) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          if (question.Reponses[i].isSelected) {
             return true;
           } else {
-            if (this.hasQuestionSelected(quest)) {
+            if (this.hasQuestionSelected(question.Reponses[i])) {
               return true;
             }
           }
