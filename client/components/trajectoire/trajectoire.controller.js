@@ -55,9 +55,13 @@ angular.module('impactApp')
 
     this.deficienceSelected = (question) => {
       this.deficienceQuestionId = this.deficienceQuestionId === question.id ? null : question.id;
-      if (this.sublevel) {
-        // Emetre en evenement pour la sauvegarde
-        $scope.$emit('saveEvaluationDetailEvent', this.deficienceQuestionId);
+      if (this.deficienceQuestionId && !question.isSelected) {
+        this.toggleSelected(question);
+      } else {
+        if (this.sublevel) {
+          // Emetre en evenement pour la sauvegarde
+          $scope.$emit('saveEvaluationDetailEvent', this.deficienceQuestionId);
+        }
       }
     };
   });
