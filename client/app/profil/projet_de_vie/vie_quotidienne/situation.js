@@ -96,8 +96,6 @@ angular.module('impactApp')
                   $state.go('^.aidePersonne');
                 } else if (sectionModel.aideActuelle.financiere) {
                   $state.go('^.pensionInvalidite');
-                } else if (ProfileService.estAdulte(profile)) {
-                  $state.go('^.retraite');
                 } else {
                   $state.go('^.fraisHandicap');
                 }
@@ -165,7 +163,7 @@ angular.module('impactApp')
         templateUrl: 'components/question/checkbox.html',
         controller: 'QuestionCtrl',
         resolve: {
-          question: function(QuestionService, section, sectionModel, profile) {
+          question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'aidePersonne', profile);
           },
 
