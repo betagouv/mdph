@@ -2,7 +2,11 @@
 
   {{#each Reponses}}
   {{#if this.active}}
+  {{#if this.deficience_principale}}
+  <li class="deficience_principale">Déficience principale : {{this.Libelle}} {{> answers}}</li>
+  {{else}}
   <li>{{this.Libelle}} {{> answers}}</li>
+  {{/if}}
   {{else}}
     {{> answers_unexpend}}
   {{/if}}

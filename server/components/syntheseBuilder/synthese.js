@@ -16,23 +16,26 @@ const template = Handlebars.compile(readTemplateSync('./templates/pdfSynthese.ht
 Handlebars.registerPartial('answers', readTemplateSync('./templates/answers.html'));
 Handlebars.registerPartial('answers_unexpend', readTemplateSync('./templates/answers_unexpend.html'));
 
-function enhanceAnswers(answersGeva, answers) {
+function enhanceAnswers(answersGeva, answers, deficience_principale) {
   if(answersGeva){
     answersGeva.forEach(function(item) {
       if (_.indexOf(answers, item.id) !== -1) { // exist
         item.active = true;
+        if (item.id === deficience_principale) {
+          item.deficience_principale = true;
+        }
       }
-      enhanceAnswers(item.Reponses, answers);
+      enhanceAnswers(item.Reponses, answers, deficience_principale);
     });
   }
 }
 
-function enhance(sectionGeva, answers) {
+function enhance(sectionGeva, answers, deficience_principale) {
   sectionGeva.forEach(function(item) {
     if (_.indexOf(answers, item.id) !== -1) { // exist
       item.active = true;
     }
-    enhanceAnswers(item.Reponses, answers);
+    enhanceAnswers(item.Reponses, answers, deficience_principale);
   });
   return sectionGeva;
 }
@@ -54,22 +57,22 @@ export default function({synthese, mdph, host}, next) {
 
     environnement: function(callback) {
       var sectionGeva = _.filter(geva, {Section: 'éléments environnementaux'});
-      callback(null, enhance(sectionGeva, synthese.geva.environnement));
+      callback(null, enhance(sectionGeva, synthese.geva.environnement, null));
     },
 
     personnel: function(callback) {
       var sectionGeva = _.filter(geva, {Section: 'éléments personnels'});
-      callback(null, enhance(sectionGeva, synthese.geva.personnel));
+      callback(null, enhance(sectionGeva, synthese.geva.personnel, synthese.geva.deficience_principale));
     },
 
     scolaire_professionnel: function(callback) {
       var sectionGeva = _.filter(geva, {Section: 'éléments scolaires ou professionnels'});
-      callback(null, enhance(sectionGeva, synthese.geva.scolaire_professionnel));
+      callback(null, enhance(sectionGeva, synthese.geva.scolaire_professionnel, null));
     },
 
     evolution_besoins: function(callback) {
       var sectionGeva = _.filter(geva, {Section: 'évolution et besoins'});
-      callback(null, enhance(sectionGeva, synthese.geva.evolution_besoins));
+      callback(null, enhance(sectionGeva, synthese.geva.evolution_besoins, null));
     },
 
     date: function(callback) {
