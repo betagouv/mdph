@@ -1763,24 +1763,6 @@
           }
         ]
       },
-      "dedommagement": {
-        "titleDefault": "Est-il/elle dédommagé·e pour l’aide apportée&nbsp;?",
-        "model": "dedommagement",
-        "type": "radio",
-        "answers": [
-          {
-            "label": "Oui",
-            "model": true,
-            "detailUrl": "components/detail/precisez_montant.html",
-            "detailModel": "dedommagementDetail",
-            "placeholder": "Montant mensuel"
-          },
-          {
-            "label": "Non",
-            "model": false
-          }
-        ]
-      },
       "accompagnementAidant": {
         "titleDefault": "Qui participe avec lui/elle à l'accompagnement de la personne aidée&nbsp;?",
         "titleRep": "Qui participe avec lui/elle à l'accompagnement de <%= name %>&nbsp;?",
