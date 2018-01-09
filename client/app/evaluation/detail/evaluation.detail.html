@@ -51,9 +51,9 @@
           <div ng-repeat="(trajectoire, questions) in section.trajectoires" class="trajectoire-body">
             <h4 ng-if="trajectoire !== 'Toutes'">Trajectoires - {{trajectoire}}</h4>
             <trajectoire questions="questions"
+                         deficience-question-id="currentSynthese.geva.deficienceQuestionId"
                          new-issue="newIssue"
-                         read-only="currentSynthese.request">
-            </trajectoire>
+                         read-only="currentSynthese.request"/>
           </div>
         </div>
 
