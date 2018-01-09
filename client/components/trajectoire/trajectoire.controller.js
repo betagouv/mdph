@@ -45,6 +45,11 @@ angular.module('impactApp')
 
     this.toggleSelected = (question, questions) => {
       question.isSelected = !question.isSelected;
+
+      if (!question.isSelected && this.deficienceQuestionId) {
+        this.deficienceQuestionId =  null;
+      }
+
       if ((question.isOpen ? true : false) !== question.isSelected) {
         this.toggleCollapse(question, questions);
       }
@@ -55,7 +60,7 @@ angular.module('impactApp')
 
       if (this.sublevel) {
         // Emetre en evenement pour la sauvegarde
-        $scope.$emit('saveEvaluationDetailEvent');
+        $scope.$emit('saveEvaluationDetailEvent', this.deficienceQuestionId);
       }
     };
 
@@ -73,5 +78,17 @@ angular.module('impactApp')
       }
 
       return false;
+    };
+
+    this.deficienceSelected = (question) => {
+      this.deficienceQuestionId = this.deficienceQuestionId === question.id ? null : question.id;
+      if (this.deficienceQuestionId && !question.isSelected) {
+        this.toggleSelected(question);
+      } else {
+        if (this.sublevel) {
+          // Emetre en evenement pour la sauvegarde
+          $scope.$emit('saveEvaluationDetailEvent', this.deficienceQuestionId);
+        }
+      }
     };
   });

@@ -136,9 +136,9 @@ angular.module('impactApp')
       $scope.$emit('saveEvaluationDetailEvent');
     };
 
-    $scope.$on('saveEvaluationDetailEvent', function() {
+    $scope.$on('saveEvaluationDetailEvent', function(event, deficienceQuestionId) {
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
-
+      currentSynthese.geva.deficienceQuestionId = deficienceQuestionId;
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
       SyntheseResource.update(currentSynthese, function() {
         toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
