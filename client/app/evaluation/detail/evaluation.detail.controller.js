@@ -136,6 +136,10 @@ angular.module('impactApp')
       $scope.$emit('saveEvaluationDetailEvent');
     };
 
+    this.canDownload = function() {
+      return currentSynthese.firstname && currentSynthese.lastname && currentSynthese.birthdate;
+    };
+
     $scope.$on('saveEvaluationDetailEvent', function(event, deficienceQuestionId) {
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
       currentSynthese.geva.deficience_principale = deficienceQuestionId;

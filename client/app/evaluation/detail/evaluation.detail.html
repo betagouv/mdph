@@ -60,7 +60,7 @@
       </div>
 
       <div class="container-btn">
-        <a target="_blank" class="btn btn-lg btn-primary" href="api/syntheses/{{currentSynthese._id}}/pdf?access_token={{token}}" download>Télécharger une fiche récapitulative de l'évaluation&nbsp;<i class="fa fa-download"></i></a>
+        <a target="_blank" class="btn btn-lg btn-primary" href="api/syntheses/{{currentSynthese._id}}/pdf?access_token={{token}}" download ng-class="{disabled: !evaluationDetailCtrl.canDownload()}">Télécharger une fiche récapitulative de l'évaluation&nbsp;<i class="fa fa-download"></i></a>
       </div>
 
     </form>
