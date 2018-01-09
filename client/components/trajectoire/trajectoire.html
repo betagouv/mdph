@@ -4,7 +4,7 @@
     'main-level': !trjctrCtrl.sublevel}">
   <div ng-repeat="question in trjctrCtrl.questions" ng-if="trjctrCtrl.filterQuestion(question)">
     <div class="question" ng-class="{'question-deficience': trjctrCtrl.deficienceQuestionId === question.id, 'question-active': question.isSelected}">
-      <button type="button" class="btn btn-link" ng-click="trjctrCtrl.toggleSelected(question)" ng-disabled="trjctrCtrl.readOnly">
+      <button type="button" class="btn btn-link" ng-click="trjctrCtrl.toggleSelected(question, trjctrCtrl.questions)" ng-disabled="trjctrCtrl.readOnly">
         <i class="fa" ng-class="question.isSelected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true" ng-if="trjctrCtrl.sublevel"></i>
         {{question.Question ? (question.Question | capitalizeString) : (question.Libelle | capitalizeString)}}
       </button>
@@ -16,19 +16,18 @@
         Commenter
       </button>
       <button type="button" class="btn btn-link"
-        ng-click="trjctrCtrl.toggleCollapse(question)"
-        ng-if="!trjctrCtrl.sublevel && !trjctrCtrl.readOnly">
-        <i class="fa" ng-class="trjctrCtrl.isCurrentQuestion(question) ? 'fa-minus' : 'fa-plus'"></i>
+        ng-click="trjctrCtrl.toggleCollapse(question, trjctrCtrl.questions)"
+        ng-if="( !trjctrCtrl.sublevel || question.Reponses) && !trjctrCtrl.readOnly">
+        <i class="fa" ng-class="question.isOpen ? 'fa-minus': 'fa-plus'"></i>
       </button>
     </div>
 
     <trajectoire
-      ng-if="trjctrCtrl.currentQuestionId === question.id || question.isSelected"
+      ng-if="question.isOpen || question.isSelected || trjctrCtrl.hasQuestionSelected(question)"
       model="question.id"
       questions="question.Reponses"
       sublevel="true"
       new-issue="trjctrCtrl.newIssue"
-      current-question-id="trjctrCtrl.currentQuestionId"
       deficience-question-id="trjctrCtrl.deficienceQuestionId"
       root="trjctrCtrl.getRootQuestion(question)"
       read-only="trjctrCtrl.readOnly" />

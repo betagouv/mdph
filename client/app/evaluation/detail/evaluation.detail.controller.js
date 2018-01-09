@@ -52,9 +52,25 @@ angular.module('impactApp')
 
     })(section);
 
+    function hasQuestionSelected(question) {
+      if (question.Reponses) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          if (question.Reponses[i].isSelected) {
+            return true;
+          } else {
+            if (hasQuestionSelected(question.Reponses[i])) {
+              return true;
+            }
+          }
+        }
+      }
+
+      return false;
+    }
+
     function answersToIdArray(root, level) {
       return _.reduce(root, function(result, question) {
-        if (question.isSelected) {
+        if (question.isSelected || hasQuestionSelected(question)) {
           var reponses = [];
 
           if (question.Reponses) {
@@ -62,7 +78,7 @@ angular.module('impactApp')
             result = result.concat(reponses);
           }
 
-          if (level !== 0 || reponses.length > 0) {
+          if (level !== 0 &&  question.isSelected || level === 0 && hasQuestionSelected(question)) {
             result.push(question.id);
           } else {
             question.isSelected = false;
@@ -127,6 +143,7 @@ angular.module('impactApp')
       SyntheseResource.update(currentSynthese, function() {
         toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
       });
+
     });
 
   });
