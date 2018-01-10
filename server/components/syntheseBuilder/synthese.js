@@ -22,8 +22,10 @@ function enhanceAnswers(answersGeva, answers, deficience_principale) {
       if (_.indexOf(answers, item.id) !== -1) { // exist
         item.active = true;
         if (item.id === deficience_principale) {
+          console.log("ADD DEFICIENCE PRINCIPALE : " + deficience_principale);
           item.deficience_principale = true;
         }
+        console.log("item : " + JSON.stringify(item));
       }
       enhanceAnswers(item.Reponses, answers, deficience_principale);
     });
@@ -56,22 +58,22 @@ export default function({synthese, mdph, host}, next) {
     },
 
     environnement: function(callback) {
-      var sectionGeva = _.filter(geva, {Section: 'éléments environnementaux'});
+      var sectionGeva = _.clone(_.filter(geva, {Section: 'éléments environnementaux'}), true);
       callback(null, enhance(sectionGeva, synthese.geva.environnement, null));
     },
 
     personnel: function(callback) {
-      var sectionGeva = _.filter(geva, {Section: 'éléments personnels'});
+      var sectionGeva = _.clone(_.filter(geva, {Section: 'éléments personnels'}), true);
       callback(null, enhance(sectionGeva, synthese.geva.personnel, synthese.geva.deficience_principale));
     },
 
     scolaire_professionnel: function(callback) {
-      var sectionGeva = _.filter(geva, {Section: 'éléments scolaires ou professionnels'});
+      var sectionGeva = _.clone(_.filter(geva, {Section: 'éléments scolaires ou professionnels'}), true);
       callback(null, enhance(sectionGeva, synthese.geva.scolaire_professionnel, null));
     },
 
     evolution_besoins: function(callback) {
-      var sectionGeva = _.filter(geva, {Section: 'évolution et besoins'});
+      var sectionGeva = _.clone(_.filter(geva, {Section: 'évolution et besoins'}), true);
       callback(null, enhance(sectionGeva, synthese.geva.evolution_besoins, null));
     },
 
