@@ -22,10 +22,8 @@ function enhanceAnswers(answersGeva, answers, deficience_principale) {
       if (_.indexOf(answers, item.id) !== -1) { // exist
         item.active = true;
         if (item.id === deficience_principale) {
-          console.log("ADD DEFICIENCE PRINCIPALE : " + deficience_principale);
           item.deficience_principale = true;
         }
-        console.log("item : " + JSON.stringify(item));
       }
       enhanceAnswers(item.Reponses, answers, deficience_principale);
     });
