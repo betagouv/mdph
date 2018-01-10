@@ -9,4 +9,3 @@ export function readTemplateSync(template) {
 }
 
 export const recapitulatif = Handlebars.compile(readTemplateSync('pdfAnswers.html'));
-export const synthese = Handlebars.compile(readTemplateSync('pdfSynthese.html'));

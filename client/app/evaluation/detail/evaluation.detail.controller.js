@@ -136,9 +136,13 @@ angular.module('impactApp')
       $scope.$emit('saveEvaluationDetailEvent');
     };
 
+    this.canDownload = function() {
+      return currentSynthese.firstname && currentSynthese.lastname && currentSynthese.birthdate;
+    };
+
     $scope.$on('saveEvaluationDetailEvent', function(event, deficienceQuestionId) {
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
-      currentSynthese.geva.deficienceQuestionId = deficienceQuestionId;
+      currentSynthese.geva.deficience_principale = deficienceQuestionId;
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
       SyntheseResource.update(currentSynthese, function() {
         toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
