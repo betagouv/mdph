@@ -53,7 +53,7 @@ angular.module('impactApp')
               identite.updatedAt = Date.now();
               profile.identites.beneficiaire = identite;
               profile.$save({userId: currentUser._id}, function() {
-                if (ProfileService.estAdulte(profile)) {
+                if (profile.identites.beneficiaire.numero_secu_enfant) {
                   $state.go('^.vie_quotidienne');
                 } else {
                   $state.go('^.representant');
