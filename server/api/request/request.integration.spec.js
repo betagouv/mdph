@@ -37,7 +37,6 @@ describe('Request Integration', function() {
       var newRequest = new Request({
         shortId: '1234',
         prestations: ['AAH'],
-        renouvellements: ['PCH'],
         documents: [{
           type: 'carteIdentite',
           originalname: 'carte-identite.jpg',
@@ -68,7 +67,6 @@ describe('Request Integration', function() {
 
           gettedRequest = res.body;
           gettedRequest.should.have.property('detailPrestations');
-          gettedRequest.should.have.property('detailRenouvellements');
           gettedRequest.should.have.property('documents');
           gettedRequest.documents.should.have.property('obligatoires');
           done();

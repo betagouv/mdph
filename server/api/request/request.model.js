@@ -42,7 +42,6 @@ var RequestSchema = new Schema({
   status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
   formAnswers:    { type: Schema.Types.Mixed, default: {} }, // Need minimize: false in order to not be deleted http://mongoosejs.com/docs/guide.html#minimize
   prestations:    [{ type: String, lowercase: true }],
-  renouvellements:[{ type: String, lowercase: true }],
   certificat:     Schema.Types.Mixed,
   synthese:       Schema.Types.Mixed,
   comments:       { type: String },

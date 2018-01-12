@@ -4,22 +4,10 @@
 
     {{#if request.detailPrestations}}
       <div class="question">
-        <h3>Nouvelles demandes</h3>
         <ul>
           {{#request.detailPrestations}}
             <li>{{ title }}</li>
           {{/request.detailPrestations}}
-        </ul>
-      </div>
-    {{/if}}
-
-    {{#if request.detailRenouvellements}}
-      <div class="question">
-        <h3>Renouvellements</h3>
-        <ul>
-          {{#request.detailRenouvellements}}
-            <li>{{ title }}</li>
-          {{/request.detailRenouvellements}}
         </ul>
       </div>
     {{/if}}

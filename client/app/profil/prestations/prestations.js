@@ -18,16 +18,11 @@ angular.module('impactApp').config(function($stateProvider) {
       this.request = currentRequest;
       this.types = _.groupBy(prestations, 'type');
 
-      const getSelectedPrestationIdList = (filter, prestations) => {
-        return _.chain(prestations)
-         .filter(filter)
-         .pluck('id')
-         .value();
-      };
-
       this.submit = () => {
-        this.request.renouvellements = getSelectedPrestationIdList({choice: true, renouvellement: true}, this.prestations);
-        this.request.prestations = getSelectedPrestationIdList(current => current.choice && !current.renouvellement, this.prestations);
+        this.request.prestations = _.chain(this.prestations)
+        .filter(current => current.choice)
+        .pluck('id')
+        .value();
 
         RequestResource.update(this.request).$promise.then(result => {
           this.request = result;
@@ -100,13 +95,6 @@ angular.module('impactApp').config(function($stateProvider) {
       if (this.request.prestations && this.request.prestations.length > 0) {
         this.request.prestations.forEach(prestation => {
           this[prestation].choice = true;
-        });
-      }
-
-      if (this.request.renouvellements && this.request.renouvellements.length > 0) {
-        this.request.renouvellements.forEach(prestation => {
-          this[prestation].choice = true;
-          this[prestation].renouvellement = true;
         });
       }
     }

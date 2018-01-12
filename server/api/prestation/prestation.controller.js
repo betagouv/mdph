@@ -36,7 +36,6 @@ export function populateAndSortPrestations(request) {
     }
 
     request.detailPrestations = reducer(request.prestations);
-    request.detailRenouvellements = reducer(request.renouvellements);
 
     resolve(request);
   });

@@ -11,16 +11,8 @@
     <h2>Prestations demandées</h2>
     <div class="content">
       <div class="user">
-        <h3 ng-if="request.detailPrestations && request.detailPrestations.length > 0">Nouvelles demandes</h3>
         <ul>
           <li ng-repeat="prestation in request.detailPrestations">
-            {{prestation.title}}
-          </li>
-        </ul>
-
-        <h3 ng-if="request.detailRenouvellements && request.detailRenouvellements.length > 0">Renouvellements</h3>
-        <ul>
-          <li ng-repeat="prestation in request.detailRenouvellements">
             {{prestation.title}}
           </li>
         </ul>
