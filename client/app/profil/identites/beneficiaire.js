@@ -56,7 +56,7 @@ angular.module('impactApp')
                 if (ProfileService.estAdulte(profile)) {
                   $state.go('^.vie_quotidienne');
                 } else {
-                  $state.go('^.autorite');
+                  $state.go('^.representant');
                 }
               });
             }
@@ -64,4 +64,3 @@ angular.module('impactApp')
         }
       });
   });
-

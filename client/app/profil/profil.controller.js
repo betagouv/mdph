@@ -65,6 +65,16 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       }
     },
 
+    representant: {
+      title: 'Représentant légal',
+      icon: 'fa-users',
+      model: 'identites.representant',
+      mandatory: true,
+      action: {
+        sref: 'profil.representant'
+      }
+    },
+
     autre: {
       title: 'Personne vous aidant dans cette démarche',
       model: 'identites.autre',

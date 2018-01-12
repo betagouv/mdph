@@ -1,0 +1,146 @@
+<h3>Representant {{id}}</h3>
+<section class="identite-section">
+  <div class="section-row">
+      <div class="form-group"
+           ng-class="{'has-error': hasError('type') && forms.infoForm.$submitted, 'required': required}">
+           <label for="typeRepresentant{{id}}" class="control-label">La personne vous aidant dans votre démarche est</label>
+           <select id="typeRepresentant{{id}}" name="typeRepresentant{{id}}" class="form-control"ng-model="identite.type" ng-required="{{required}}">
+              <option value="proche">Tutelle</option>
+              <option value="association">Curatelle</option>
+              <option value="enseignant">Curatelle renforcée</option>
+              <option value="tuteur">Habilitation familiale</option>
+          </select>
+          <div ng-messages="getError('type')" ng-if="forms.infoForm.$submitted">
+              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          </div>
+      </div>
+  </div>
+
+  <div class="section-row">
+    <div class="form-group"
+         ng-class="{'has-error': hasError('nom') && forms.infoForm.$submitted, 'required': required}">
+      <label for="nomRepresentant{{id}}" class="control-label">Nom</label>
+      <input id="nomRepresentant{{id}}" type="text" name="nomRepresentant{{id}}" class="form-control" ng-model="identite.nom" ng-required="{{required}}">
+      <div ng-messages="getError('nom')" ng-if="forms.infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      </div>
+    </div>
+</section>
+
+<section class="identite-section">
+    <div class="section-row">
+      <div class="address-input">
+        <div class="form-group" ng-class="{'has-error': hasError('dateDeNaissance') && forms.infoForm.$submitted, 'required': required}">
+          <label class="control-label" for="date-de-naissance{{id}}">Date de naissance <span class="small">au format jour/mois/année</span></label>
+          <input
+            type="text"
+            class="form-control"
+            name="dateDeNaissanceRepresentant{{id}}"
+            id="date-de-naissanceRepresentant{{id}}"
+            ng-required="{{required}}"
+            ng-model="identite.dateNaissance"
+            input-date
+            date-autocomplete
+            placeholder="JJ/MM/AAAA"
+            aria-describedby="help-date-de-naissance">
+          <div ng-messages="getError('dateDeNaissance')" ng-if="forms.infoForm.$submitted">
+            <p class="help-block" id="help-date-de-naissance" ng-message='required'>Ce champ est obligatoire.</p>
+            <p class="help-block" id="help-date-de-naissance" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="identite-section">
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="identite.isSameAddress" ng-change="changeIsSameAddress()"> Même adresse que le bénéficiaire
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group" ng-show="!identite.isSameAddress">
+    <div class="address-input">
+      <div class="form-group">
+        <label for="complementAdresseRepresentant{{id}}" class="control-label">Complément d'adresse</label>
+        <input id="complementAdresseRepresentant{{id}}" type="text" name="complementAdresseRepresentant{{id}}" class="form-control" ng-model="identite.complementAdresse">
+      </div>
+    </div>
+    <div class="address-input">
+      <div class="form-group">
+        <label for="nomVoieRepresentant{{id}}" class="control-label">Adresse</label>
+        <div class="input-group">
+          <input type="search"
+            typeahead="result as result.properties.label for result in getAdress($viewValue, currentMdph)"
+            typeahead-min-length='3'
+            typeahead-on-select='fillAdressOnSelect($item, identite)'
+            typeahead-wait-ms="100"
+            typeahead-loading="loadingLocations"
+            typeahead-no-results="noResults"
+            ng-model="identite.nomVoie" class="form-control"
+            name="nomVoieRepresentant{{id}}"
+            id="nomVoieRepresentant{{id}}"
+            placeholder="Recherche adresse">
+          <span class="input-group-addon basic-addon">
+            <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
+          </span>
+        </div>
+        <div ng-show="noResults">
+          <i class="fa fa-times"></i> Pas de résultats
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="code_postalRepresentant{{id}}" class="control-label">Code postal</label>
+          <input id="code_postalRepresentant{{id}}" type="text" name="code_postalRepresentant{{id}}" class="form-control" ui-mask="99999"
+          ng-model="identite.code_postal">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="localiteRepresentant{{id}}" class="control-label">Localité</label>
+          <input id="localiteRepresentant{{id}}" type="text" name="localiteRepresentant{{id}}" class="form-control" ng-model="identite.localite">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="paysRepresentant{{id}}" class="control-label">Pays</label>
+          <input id="paysRepresentant{{id}}" type="text" name="paysRepresentant{{id}}" class="form-control" ng-model="identite.pays">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="identite-section">
+  <div class="form-group"
+       ng-class="{'has-error': hasError('email') && forms.infoForm.$submitted, 'required': required}">
+    <label for="emailRepresentant{{id}}" class="control-label">Email</label>
+    <div class="input-group margin-bottom-sm">
+      <input id="emailRepresentant{{id}}" type="email" name="emailRepresentant{{id}}" class="form-control" ng-model="identite.email" ng-required="{{required}}">
+      <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+    </div>
+    <div ng-messages="getError('email')" ng-if="forms.infoForm.$submitted">
+      <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="tel_1Representant{{id}}" class="control-label">Téléphone 1</label>
+    <input id="tel_1Representant{{id}}" type="text" name="tel_1Representant{{id}}" class="form-control" ng-model="identite.tel_1">
+  </div>
+
+  <div class="form-group">
+    <label for="tel_2Representant{{id}}" class="control-label">Téléphone 2</label>
+    <input id="tel_2Representant{{id}}" type="text" name="tel_2Representant{{id}}" class="form-control" ng-model="identite.tel_2">
+  </div>
+</section>
