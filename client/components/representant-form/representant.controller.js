@@ -22,9 +22,11 @@ angular.module('impactApp')
       $scope.changeIsSameAddress = function() {
         if ($scope.identite.isSameAddress) {
           $scope.searchAdress = '';
+          $scope.identite.complementAdresse = '';
           $scope.identite.nomVoie = '';
           $scope.identite.code_postal = '';
           $scope.identite.localite = '';
+          $scope.identite.pays = '';
         }
       };
     });
