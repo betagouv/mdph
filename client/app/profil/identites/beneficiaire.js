@@ -54,9 +54,9 @@ angular.module('impactApp')
               profile.identites.beneficiaire = identite;
               profile.$save({userId: currentUser._id}, function() {
                 if (profile.identites.beneficiaire.numero_secu_enfant) {
-                  $state.go('^.vie_quotidienne');
+                  $state.go('^.autorite');
                 } else {
-                  $state.go('^.representant');
+                  $state.go('^.aidant');
                 }
               });
             }
