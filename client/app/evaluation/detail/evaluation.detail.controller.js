@@ -147,7 +147,6 @@ angular.module('impactApp')
       SyntheseResource.update(currentSynthese, function() {
         toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
       });
-
     });
 
   });

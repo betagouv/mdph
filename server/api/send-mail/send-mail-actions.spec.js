@@ -41,15 +41,15 @@ describe('Send Mail Actions', function() {
   describe('sendMailReceivedTransmission', function() {
     let sendMailSpy = sinon.spy();
 
-    let fakePath = 'toto/lol/';
-    const PdfMakerStub = sinon.stub().resolves({ path: fakePath });
+    let fakePath = 'tmp/';
+    const DemandeBuilderStub = sinon.stub().resolves({ path: fakePath });
 
     const SendMailAction = proxyquire('./send-mail-actions', {
       './send-mail.controller': {
         sendMail: sendMailSpy
       },
-      '../../components/pdf-maker': {
-        default: PdfMakerStub
+      '../../components/DemandeBuilder': {
+        default: DemandeBuilderStub
       }
     });
 
