@@ -200,19 +200,25 @@ function getRequestMdphEmail(request) {
 
 function sendMailReceivedTransmission(req) {
   return function(request) {
-    const options = {
-      request: request,
-      host: req.headers.host,
-      user: req.user,
-      email: req.user.email,
-      replyTo: getRequestMdphEmail(request),
-      role: req.user.role,
-      withSeparator: false,
-      format: 'pdf'
-    };
-    MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
-    return request;
-    })
+    Mdph
+      .findOne({zipcode: req.request.mdph})
+      .exec()
+      .then(mdph => {
+        const options = {
+          request: request,
+          host: req.headers.host,
+          mdph: mdph,
+          user: req.user,
+          email: req.user.email,
+          replyTo: getRequestMdphEmail(request),
+          role: req.user.role,
+          withSeparator: false,
+          format: 'pdf'
+        }
+
+        MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
+        return request;
+      });
   };
 }
 
@@ -337,16 +343,21 @@ export function getHistory(req, res) {
 }
 
 export function getRecapitulatif(req, res) {
-  recapitulatif({
-    request: req.request,
-    host: req.headers.host
-  }, function(err, html) {
-    if (err) {
-      return handleError(req, res)(500, err);
-    }
-      return res.status(200).send(html);
-    });
-  })
+  Mdph
+    .findOne({zipcode: req.request.mdph})
+    .exec()
+    .then(mdph => {
+      recapitulatif({
+        request: req.request,
+        host: req.headers.host,
+        mdph: mdph
+      }, function(err, html) {
+        if (err) {
+          return handleError(req, res)(500, err);
+        }
+           return res.status(200).send(html);
+      });
+    })
 }
 
 export function getPdf(req, res) {
@@ -359,6 +370,7 @@ export function getPdf(req, res) {
       return demandeBuilder({
         request: req.request,
         host: req.headers.host,
+        mdph: currentMdph,
         withSeparator: req.params.type !== "user",
         format: req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf'
       });
@@ -398,9 +410,11 @@ export function getDownload(req, res) {
       .then(fillRequestMdph)
       .then(demande => {
         currentDemande = demande;
+        console.log("demande : " + JSON.stringify(demande));
         return demandeBuilder({
           request: req.request,
           host: req.headers.host,
+          mdph: currentDemande.fullMdph,
           withSeparator: true,
           format: currentDemande.fullMdph.requestExportFormat
         });

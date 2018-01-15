@@ -4,7 +4,7 @@ import _ from 'lodash';
 import async from 'async';
 import moment from 'moment';
 
-import {cerfa} from './templates';
+import {recapitulatif} from './templates';
 import { populateAndSortPrestations } from '../api/prestation/prestation.controller';
 
 var sections = require('../api/sections/sections.json');
@@ -156,7 +156,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-export default function({request, host}, next) {
+export default function({request, host, mdph}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
@@ -210,7 +210,7 @@ export default function({request, host}, next) {
     if (err) { return next(err); }
 
     try {
-      var html = cerfa(results);
+      var html = recapitulatif(results);
       next(null, html);
     } catch (e) {
       next(null, '<html><body><p>Erreur lors de la génération du récapitulatif.</p><p>Détail de l\'erreur: ' + e + '</p></body></html>');
