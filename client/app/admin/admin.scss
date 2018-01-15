@@ -32,11 +32,12 @@
   }
 
   .main-content {
-    @extend .container;
+    //@extend .container;
     background: white;
     min-height: 70vh;
     max-width: 700px;
     flex-grow: 1;
+    padding: 0px 0px 0px 10px;
   }
 
   footer {

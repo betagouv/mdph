@@ -15,7 +15,7 @@ var DocumentsPage = function() {
   this.returnToProfile = () => element(by.id('backtoprofile')).click();
 
   this.addDocuments = () => {
-    const absolutePath = path.join(config.serverConfig.root, '/test/assets/', 'test.jpg');
+    const absolutePath = path.join(config.serverConfig.root, '/test/assets/', 'image_test.jpg');
     this.listUploads.each(function(currentInput) {
       currentInput.sendKeys(absolutePath);
     });

@@ -191,7 +191,8 @@ fieldset {
 // injector
 @import 'account/account.scss';
 @import 'admin/admin.scss';
-@import 'admin/mdph/admin.mdph.scss';
+@import 'admin/mdph/detail/admin.mdph.detail.scss';
+@import 'admin/mdph/list/admin.mdph.list.scss';
 @import 'apropos/apropos.scss';
 @import 'cgu/cgu.scss';
 @import 'dashboard/dashboard.scss';
@@ -239,6 +240,7 @@ fieldset {
 @import '../components/question/questions.scss';
 @import '../components/question/structure.scss';
 @import '../components/request/request.progress.scss';
+@import '../components/section-flow/section-flow.scss';
 @import '../components/subsection/subsection.scss';
 @import '../components/trajectoire/trajectoire.scss';
 @import '../components/well/well.scss';

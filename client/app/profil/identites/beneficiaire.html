@@ -107,6 +107,15 @@
   </section>
 
   <section class="identite-section">
+
+    <div class="form-group">
+      <label for="complement_adresse" class="control-label">Complément d’adresse</label>
+      <input id="complement_adresse" type="text" name="complement_adresse" class="form-control" ng-model="identite.complement_adresse">
+      <div ng-messages="infoForm.complement_adresse.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      </div>
+    </div>
+
     <div class="form-group required" ng-class="{'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
       <label for="nomVoie" class="control-label">Adresse</label>
       <div class="input-group">

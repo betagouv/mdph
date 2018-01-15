@@ -12,7 +12,7 @@ angular.module('impactApp')
           password: form.password.$modelValue
         })
         .then(function(user) {
-          return $state.go('admin.mdph', {currentUser: user}, {reload: true});
+          return $state.go('admin.mdph.list', {currentUser: user}, {reload: true});
         })
         .catch(function(err) {
           $scope.error = err.message;
