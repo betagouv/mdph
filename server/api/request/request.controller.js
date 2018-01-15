@@ -11,7 +11,6 @@ import async from 'async';
 import Promise from 'bluebird';
 import archiver from 'archiver';
 import recapitulatif from '../../components/recapitulatif';
-import SynthesePDF from '../../components/synthese';
 import demandeBuilder from '../../components/DemandeBuilder';
 
 import Request from './request.model';
