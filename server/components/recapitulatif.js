@@ -176,11 +176,11 @@ export default function({request, host}, next) {
     },
 
     mdph: function(callback) {
-      if (!request.mdph) {
+      if (!mdph) {
         return callback(null, []);
       }
 
-      callback(null, request.mdph);
+      callback(null, mdph);
     },
 
     request: function(callback) {

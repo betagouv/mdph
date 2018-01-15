@@ -81,9 +81,9 @@ function createRequestWithFiles({tempDirPath, recapitulatifPdfPath, request, req
   });
 }
 
-function createRequestExport({role, request, host, tempDirPath, requestExportFormat}) {
+function createRequestExport({role, request, host, mdph, tempDirPath, requestExportFormat}) {
   return new Promise(function(resolve, reject) {
-    Recapitulatif.answersToHtml({request, host}, (err, recapitulatifHtml) => {
+    Recapitulatif.answersToHtml({request, host, mdph}, (err, recapitulatifHtml) => {
       if (err) {
         return reject(err);
       }
@@ -109,9 +109,9 @@ function createRequestExport({role, request, host, tempDirPath, requestExportFor
   });
 }
 
-export default function({request, host, role, requestExportFormat}) {
+export default function({request, host, mdph, role, requestExportFormat}) {
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
-    return createRequestExport({tempDirPath, request, host, role, requestExportFormat});
+    return createRequestExport({tempDirPath, request, mdph, host, role, requestExportFormat});
   });
 }

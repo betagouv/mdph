@@ -210,9 +210,9 @@ function sendMailReceivedTransmission(req) {
       withSeparator: false,
       format: 'pdf'
     };
-
     MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
     return request;
+    })
   };
 }
 
@@ -344,9 +344,9 @@ export function getRecapitulatif(req, res) {
     if (err) {
       return handleError(req, res)(500, err);
     }
-
-    return res.status(200).send(html);
-  });
+      return res.status(200).send(html);
+    });
+  })
 }
 
 export function getPdf(req, res) {
