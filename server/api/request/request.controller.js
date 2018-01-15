@@ -2,26 +2,22 @@
 
 import { populateAndSortPrestations } from '../prestation/prestation.controller';
 import { populateAndSortDocumentTypes } from '../document-type/document-type.controller';
-import mongoose from 'mongoose';
 
 import _ from 'lodash';
-import pdf from 'html-pdf';
 import moment from 'moment';
 import fs from 'fs';
 import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
 import archiver from 'archiver';
-import Recapitulatif from '../../components/recapitulatif';
-import SynthesePDF from '../../components/synthese';
-import pdfMaker from '../../components/pdf-maker';
+import recapitulatif from '../../components/recapitulatif';
+import demandeBuilder from '../../components/DemandeBuilder';
 
 import Request from './request.model';
 import Profile from '../profile/profile.model';
 import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
-import Synthese from '../synthese/synthese.model';
 
 import Dispatcher from '../../components/dispatcher';
 import RequestActionModel from './action.model';
@@ -204,22 +200,18 @@ function getRequestMdphEmail(request) {
 
 function sendMailReceivedTransmission(req) {
   return function(request) {
-    Mdph
-    .findOne({zipcode: req.request.mdph})
-    .exec()
-    .then(mdph => {
-      const options = {
-        request: request,
-        host: req.headers.host,
-        mdph: mdph,
-        user: req.user,
-        email: req.user.email,
-        replyTo: getRequestMdphEmail(request),
-        role: req.user.role
-      };
-
-      MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
-      return request;
+    const options = {
+      request: request,
+      host: req.headers.host,
+      user: req.user,
+      email: req.user.email,
+      replyTo: getRequestMdphEmail(request),
+      role: req.user.role,
+      withSeparator: false,
+      format: 'pdf'
+    };
+    MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
+    return request;
     })
   };
 }
@@ -255,49 +247,10 @@ function computeEnregistrementOptions(request, host) {
   }
 
   if (host) {
-    options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}/demande/${request.shortId}`;
+    options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}`;
   }
 
   return options;
-}
-
-// create a snapshot of the current synthesis for a saved request
-function snapshotSynthese(request) {
-  Synthese
-    .find({profile: request.profile})
-    .exec(
-      function(err, profileSyntheses) {
-        if (err) return;
-
-        var snapshotSynthese;
-        var now = Date.now();
-
-        var existingRequestSynthese = _.find(profileSyntheses, function(synthese) {
-          return synthese.request === request._id;
-        });
-
-        var currentProfileSynthese = _.find(profileSyntheses, function(synthese) {
-          return synthese.request === null;
-        });
-
-        if (!currentProfileSynthese) return;
-
-        if (existingRequestSynthese) {
-          snapshotSynthese = existingRequestSynthese;
-          snapshotSynthese.geva = currentProfileSynthese.geva;
-        } else {
-          snapshotSynthese = new Synthese(currentProfileSynthese);
-          snapshotSynthese._id = mongoose.Types.ObjectId();
-          snapshotSynthese.request = request._id;
-          snapshotSynthese.createdAt = now;
-          snapshotSynthese.isNew = true;
-        }
-
-        snapshotSynthese.updatedAt = now;
-        snapshotSynthese.save();
-      }
-    );
-  return request;
 }
 
 function resolveEnregistrement(req) {
@@ -306,7 +259,6 @@ function resolveEnregistrement(req) {
   return req.request
     .set('status', options.status)
     .save()
-    .then(snapshotSynthese)
     .then(fillRequestMdph)
     .then(request => {
       options.replyTo = getRequestMdphEmail(request);
@@ -385,22 +337,16 @@ export function getHistory(req, res) {
 }
 
 export function getRecapitulatif(req, res) {
-  Mdph
-    .findOne({zipcode: req.request.mdph})
-    .exec()
-    .then(mdph => {
-      Recapitulatif.answersToHtml({
-        request: req.request,
-        host: req.headers.host,
-        mdph: mdph
-      }, function(err, html) {
-        if (err) {
-          return handleError(req, res)(500, err);
-        }
-
-        return res.status(200).send(html);
-      });
-    })
+  recapitulatif({
+    request: req.request,
+    host: req.headers.host
+  }, function(err, html) {
+    if (err) {
+      return handleError(req, res)(500, err);
+    }
+      return res.status(200).send(html);
+    });
+  })
 }
 
 export function getPdf(req, res) {
@@ -410,28 +356,23 @@ export function getPdf(req, res) {
     .exec()
     .then(mdph => {
       currentMdph = mdph;
-      return pdfMaker({
+      return demandeBuilder({
         request: req.request,
         host: req.headers.host,
-        mdph: currentMdph,
-        user: req.user,
-        role: req.user.role,
-        requestExportFormat: mdph.requestExportFormat
+        withSeparator: req.params.type !== "user",
+        format: req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf'
       });
     })
     .then(readStream => {
       const beneficiaire = req.request.formAnswers.identites.beneficiaire;
-      const extension = req.user.role !== 'user' ? currentMdph.requestExportFormat : 'pdf';
+      const extension = req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf';
 
       const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
 
+      res.header('Content-Type', `application/octet-stream`);
       res.header('Content-Disposition', `attachment; filename="${filename}"`);
 
-      if (extension !== 'pdf') {
-        readStream.pipe(res);
-      } else {
-        fs.createReadStream(readStream).pipe(res);
-      }
+      readStream.pipe(res);
       return null;
     })
     .catch(handleError(req, res));
@@ -457,12 +398,11 @@ export function getDownload(req, res) {
       .then(fillRequestMdph)
       .then(demande => {
         currentDemande = demande;
-        return pdfMaker({
-          request: currentDemande,
+        return demandeBuilder({
+          request: req.request,
           host: req.headers.host,
-          user: req.user,
-          role: 'adminMdph',
-          requestExportFormat: currentDemande.fullMdph.requestExportFormat
+          withSeparator: true,
+          format: currentDemande.fullMdph.requestExportFormat
         });
       })
       .then(readStream => {
@@ -490,16 +430,6 @@ export function getDownload(req, res) {
       return null;
     }
   );
-}
-
-export function getSynthesePdf(req, res) {
-  SynthesePDF.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
-    if (err) { throw(500, err); }
-
-    pdf.create(html).toStream(function(err, readStream) {
-      readStream.pipe(res);
-    });
-  });
 }
 
 function processDocument(file, fileData, done) {

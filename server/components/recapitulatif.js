@@ -4,7 +4,7 @@ import _ from 'lodash';
 import async from 'async';
 import moment from 'moment';
 
-import {recapitulatif} from './templates';
+import {cerfa} from './templates';
 import { populateAndSortPrestations } from '../api/prestation/prestation.controller';
 
 var sections = require('../api/sections/sections.json');
@@ -95,10 +95,17 @@ function computeAnswers(question, trajectoireAnswers) {
     if (answer.detailModel) {
       var detailType = answer.detailType;
       var detail = trajectoireAnswers[answer.detailModel];
-      if (detailType) {
-        answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
-      } else {
-        answer.detail = detail;
+      switch (detailType){
+        case 'date':
+          answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          break;
+        case 'date&text':
+          answer.detail = 'Date d\'entrée prévue : ';
+          answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          answer.detail += ' ; ' + detail.text;
+          break;
+        default:
+          answer.detail = detail;
       }
     }
   });
@@ -149,7 +156,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-exports.answersToHtml = function({request, host, mdph}, next) {
+export default function({request, host}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
@@ -184,13 +191,13 @@ exports.answersToHtml = function({request, host, mdph}, next) {
 
     colors: function(callback) {
       callback(null, [
-        { class: '.section-identite', color: 'rgb(73, 82, 130)' },
-        { class: '.section-vie_quotidienne', color: 'rgb(90, 136, 175)' },
-        { class: '.section-prestations', color: 'rgb(255, 143, 27)' },
-        { class: '.section-vie_au_travail', color: '#815EA5' },
-        { class: '.section-aidant', color: '#815EA5' },
-        { class: '.section-vie_scolaire', color: '#58A0E6' },
-        { class: '.section-situations_particulieres', color: '#EA2E49' }
+        { class: '.section-identite', color: 'rgb(96, 149, 195)' },
+        { class: '.section-vie_quotidienne', color: 'rgb(38, 151, 135)' },
+        { class: '.section-prestations', color: 'rgb(89, 135, 53)' },
+        { class: '.section-vie_au_travail', color: 'rgb(21, 79, 131)' },
+        { class: '.section-aidant', color: 'rgb(172, 35, 92)'  },
+        { class: '.section-vie_scolaire', color: 'rgb(74, 44, 97)'},
+        { class: '.section-situations_particulieres', color: 'rgb(234, 46, 73)' }
       ]);
     },
 
@@ -203,10 +210,10 @@ exports.answersToHtml = function({request, host, mdph}, next) {
     if (err) { return next(err); }
 
     try {
-      var html = recapitulatif(results);
+      var html = cerfa(results);
       next(null, html);
     } catch (e) {
       next(null, '<html><body><p>Erreur lors de la génération du récapitulatif.</p><p>Détail de l\'erreur: ' + e + '</p></body></html>');
     }
   });
-};
+}
