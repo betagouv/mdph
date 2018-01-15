@@ -21,6 +21,8 @@ angular.module('impactApp')
 
     $scope.currentSynthese = currentSynthese;
 
+    this.birthdate = currentSynthese.birthdate;
+
     $scope.section = section;
 
     function findDeep(array, id) {
@@ -130,6 +132,14 @@ angular.module('impactApp')
           };
         }
       });
+    };
+
+    this.treatBirthDate = function() {
+      if (currentSynthese.birthdate && ((new Date(currentSynthese.birthdate)).getTime()) !== ((new Date(this.birthdate)).getTime())) {
+        this.change();
+      }
+
+      this.birthdate = currentSynthese.birthdate;
     };
 
     this.change = function() {
