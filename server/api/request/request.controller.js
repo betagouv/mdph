@@ -411,7 +411,6 @@ export function getDownload(req, res) {
       .then(fillRequestMdph)
       .then(demande => {
         currentDemande = demande;
-        console.log("demande : " + JSON.stringify(demande));
         return demandeBuilder({
           request: req.request,
           host: req.headers.host,
