@@ -7,6 +7,9 @@
         <ul>
           {{#request.detailPrestations}}
             <li>{{ title }}</li>
+            {{#if precision}}
+            <ul><li>{{precision}}</li></ul>
+            {{/if}}
           {{/request.detailPrestations}}
         </ul>
       </div>

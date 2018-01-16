@@ -9,11 +9,9 @@ angular.module('impactApp')
       this.request.prestations =_.chain(this.prestations)
         .filter(current => current.choice)
         .map(function(value) {
-          return {id: value.id};
+          return {code: value.id, precision: value.precision};
         })
         .value();
-
-      console.log('prestations : ' + JSON.stringify(this.request.prestations));
 
       RequestResource.update(this.request).$promise.then(result => {
         this.request = result;
@@ -85,8 +83,8 @@ angular.module('impactApp')
 
     if (this.request.prestations && this.request.prestations.length > 0) {
       this.request.prestations.forEach(prestation => {
-        console.log("presation : " + prestation);
-        this[prestation.id].choice = true;
+        this[prestation.code].choice = true;
+        this[prestation.code].precision = prestation.precision;
       });
     }
   });

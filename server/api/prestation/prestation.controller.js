@@ -6,21 +6,6 @@ import prestations from './prestations.json';
 
 var prestationsById = indexBy(prestations, 'id');
 
-let reducer = function(array) {
-  var reducedArray = [];
-
-  if (array && array.length > 0) {
-    array = array.map(str => str.toLowerCase());
-
-    reduce(array, (result, current) => {
-      result.push(prestationsById[current]);
-      return result;
-    }, reducedArray);
-  }
-
-  return reducedArray;
-};
-
 export function index(req, res) {
   return res.json(prestations);
 }
@@ -35,7 +20,11 @@ export function populateAndSortPrestations(request) {
       request = request.toObject();
     }
 
-    request.detailPrestations = reducer(request.prestations);
+    request.detailPrestations = request.prestations.map(function(value) {
+      var prestation = prestationsById[value.code];
+      prestation.precision = value.precision;
+      return prestation;
+    })
 
     resolve(request);
   });

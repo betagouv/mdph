@@ -14,6 +14,11 @@
         <ul>
           <li ng-repeat="prestation in request.detailPrestations">
             {{prestation.title}}
+            <ul ng-if="prestation.precision">
+                <li>
+                  {{prestation.precision}}
+                </li>
+              </ul>
           </li>
         </ul>
       </div>
