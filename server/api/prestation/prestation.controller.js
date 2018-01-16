@@ -1,7 +1,7 @@
 'use strict';
 
 import Promise from 'bluebird';
-import {indexBy, reduce} from 'lodash';
+import {indexBy} from 'lodash';
 import prestations from './prestations.json';
 
 var prestationsById = indexBy(prestations, 'id');
@@ -20,11 +20,13 @@ export function populateAndSortPrestations(request) {
       request = request.toObject();
     }
 
-    request.detailPrestations = request.prestations.map(function(value) {
-      var prestation = prestationsById[value.code];
-      prestation.precision = value.precision;
-      return prestation;
-    })
+    if(request.prestations && request.prestations.length > 0){
+      request.detailPrestations = request.prestations.map(function(value) {
+        var prestation = prestationsById[value.code];
+        prestation.precision = value.precision;
+        return prestation;
+      });
+    }
 
     resolve(request);
   });
