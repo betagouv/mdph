@@ -84,7 +84,7 @@ function joinFiles({tempDirPath, recapitulatifPdfPath, request, withSeparator, f
   });
 }
 
-function build({request, host, tempDirPath, withSeparator, format}) {
+function build({request, host, mdph, tempDirPath, withSeparator, format}) {
   return new Promise(function(resolve, reject) {
     recapitulatif({request, host, mdph}, (err, recapitulatifHtml) => {
       if (err) {
