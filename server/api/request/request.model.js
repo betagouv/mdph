@@ -41,11 +41,7 @@ var RequestSchema = new Schema({
   updatedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
   formAnswers:    { type: Schema.Types.Mixed, default: {} }, // Need minimize: false in order to not be deleted http://mongoosejs.com/docs/guide.html#minimize
-  prestations: [new Schema({
-    code: { type: String, lowercase: true },
-    precision: { type: String}
-   }, {_id: false})
-  ],
+  prestations:    [{ code: String, precision: String }],
   certificat:     Schema.Types.Mixed,
   synthese:       Schema.Types.Mixed,
   comments:       { type: String },

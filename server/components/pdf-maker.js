@@ -110,7 +110,6 @@ function createRequestExport({role, request, host, tempDirPath, requestExportFor
 }
 
 export default function({request, host, role, requestExportFormat}) {
-  console.log('pdfmaker');
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
     return createRequestExport({tempDirPath, request, host, role, requestExportFormat});
