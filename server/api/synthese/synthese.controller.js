@@ -80,7 +80,6 @@ export function update(req, res) {
 }
 
 export function getPdf(req, res) {
-  console.log("generation synthese : " + JSON.stringify(req.synthese));
   syntheseBuilder({
     synthese: req.synthese,
     mdph: req.mdph,
