@@ -89,7 +89,7 @@ export default function({synthese, mdph, host}, next) {
 
     colors: function(callback) {
       callback(null, [
-        { class: '.section-identite', color: 'rgb(96, 149, 195)' },
+        { class: '.section-identite', color: 'rgb(95, 148, 195)' },
         { class: '.section-environnement', color: 'rgb(37, 150, 134)' },
         { class: '.section-personnel', color: 'rgb(73, 44, 96)' },
         { class: '.section-scolaire_professionnel', color: 'rgb(20, 79, 131)' },
