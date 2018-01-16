@@ -35,6 +35,9 @@ angular.module('impactApp')
           $scope.majAdulteEnfant = function() {
             $scope.estAdulteStricte = ProfileService.estAdulteStricte(profile);
             $scope.estEnfant = ProfileService.estEnfant(profile);
+            if ($scope.estAdulteStricte) {
+              identite.numero_secu_enfant = '';
+            }
           };
 
           if (!identite.email) {
@@ -56,7 +59,11 @@ angular.module('impactApp')
                 if (profile.identites.beneficiaire.numero_secu_enfant) {
                   $state.go('^.autorite');
                 } else {
-                  $state.go('^.aidant');
+                  if (profile.identites.beneficiaire.aide === 'Oui') {
+                    $state.go('^.aidant');
+                  } else {
+                    $state.go('^.representant');
+                  }
                 }
               });
             }

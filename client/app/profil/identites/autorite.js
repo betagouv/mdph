@@ -24,7 +24,11 @@ angular.module('impactApp')
                   identite.updatedAt = Date.now();
                   profile.identites.autorite = identite;
                   profile.$save({userId: currentUser._id}, function() {
-                    $state.go('^.aidant');
+                    if (profile.identites.beneficiaire.aide === 'Oui') {
+                      $state.go('^.aidant');
+                    } else {
+                      $state.go('^.representant');
+                    }
                   });
                 }
               };
