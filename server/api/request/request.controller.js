@@ -217,8 +217,9 @@ function sendMailReceivedTransmission(req) {
         }
 
         MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
-        return request;
       });
+
+    return request;
   };
 }
 

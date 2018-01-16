@@ -177,7 +177,7 @@ export default function({request, host, mdph}, next) {
 
     mdph: function(callback) {
       if (!mdph) {
-        return callback(null, []);
+        return callback(null, {});
       }
 
       callback(null, mdph);
