@@ -110,7 +110,6 @@ function build({request, host, mdph, tempDirPath, withSeparator, format}) {
 export default function({request, host, mdph, withSeparator, format}) {
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
-    withSeparator = false;
-    return build({tempDirPath, request, host, mdph, withSeparator, format});
+    return build({tempDirPath, request, host, withSeparator, format});
   });
 }

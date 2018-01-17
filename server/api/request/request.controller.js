@@ -368,6 +368,7 @@ export function getPdf(req, res) {
     .exec()
     .then(mdph => {
       currentMdph = mdph;
+
       return demandeBuilder({
         request: req.request,
         host: req.headers.host,
