@@ -29,6 +29,17 @@
   </div>
   {{/if}}
 
+  {{#if autre}}
+  <div class="subsection">
+    <h3>Personne accompagnant la demande</h3>
+    {{#autre}}
+      <div class="question">
+        {{>identite}}
+      </div>
+    {{/autre}}
+  </div>
+  {{/if}}
+
   {{#if representant}}
   <div class="subsection">
     {{#representant}}
@@ -44,17 +55,6 @@
     <div class="question">
       <p>Aucun représentant déclaré</p>
     </div>
-  </div>
-  {{/if}}
-
-  {{#if autre}}
-  <div class="subsection">
-    <h3>Personne accompagnant la demande</h3>
-    {{#autre}}
-      <div class="question">
-        {{>identite}}
-      </div>
-    {{/autre}}
   </div>
   {{/if}}
 </div>
