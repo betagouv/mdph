@@ -29,6 +29,24 @@
   </div>
   {{/if}}
 
+  {{#if representant}}
+  <div class="subsection">
+    {{#representant}}
+      <h3>Identité du représentant légal</h3>
+      <div class="question">
+        {{>representants}}
+      </div>
+    {{/representant}}
+  </div>
+  {{else}}
+  <div class="subsection">
+    <h3>Représentant légal</h3>
+    <div class="question">
+      <p>Aucun représentant déclaré</p>
+    </div>
+  </div>
+  {{/if}}
+
   {{#if autre}}
   <div class="subsection">
     <h3>Personne accompagnant la demande</h3>

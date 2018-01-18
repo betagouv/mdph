@@ -1,0 +1,62 @@
+
+{{#if type}}
+<p>
+  Type de mesure de protection: <strong>{{type}}</strong>
+</p>
+{{/if}}
+
+{{#if nom}}
+<p>
+    Nom (ou intitulé): <strong>{{nom}}</strong>
+</p>
+{{/if}}
+
+{{#if dateNaissance}}
+<p>
+  Date de naissance : <strong>{{moment dateNaissance}}</strong> <br>
+  {{#if commune_naissance}}Commune : {{commune_naissance}} <br> {{/if}}
+  {{#if departement_naissance}}Département : {{departement_naissance}} <br> {{/if}}
+  {{#if pays_naissance}}Pays : {{pays_naissance}}{{/if}}
+</p>
+{{/if}}
+
+{{#if isSameAdress}}
+<p>
+  Même adresse que le bénéficiaire
+</p>
+{{/if}}
+
+{{#if nomVoie}}
+  <p>
+    Adresse actuelle :
+  </p>
+  <address>
+    {{numero_voie}} {{extension}} {{typeVoie.label}} {{nomVoie}}
+     <br>
+    {{code_postal}} {{capitalize localite}}
+  </address>
+{{/if}}
+
+{{#if adresse}}
+<p>
+  Adresse actuelle : <strong>{{capitalize adresse}}, {{code_postal}} {{capitalize commune}}, {{capitalize pays 'upper'}}</strong>.
+</p>
+{{/if}}
+
+{{#if email}}
+<p>
+  Email : <strong>{{email}}</strong>
+</p>
+{{/if}}
+
+{{#if tel_1}}
+<p>
+  Téléphone 1 : <strong>{{tel_1}}</strong>
+</p>
+{{/if}}
+
+{{#if tel_2}}
+<p>
+  Téléphone 2 : <strong>{{tel_2}}</strong>
+</p>
+{{/if}}
