@@ -636,12 +636,8 @@
             "model": "accueil"
           },
           {
-            "label": "Une carte de stationnement",
+            "label": "Une aide animalière",
             "model": "stationnement"
-          },
-          {
-            "label": "Une carte d'invalidité ou de priorité",
-            "model": "invalidite"
           },
           {
             "label": "Autre attente",
