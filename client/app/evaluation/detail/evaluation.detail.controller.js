@@ -143,17 +143,7 @@ angular.module('impactApp')
     };
 
     this.change = function() {
-      if (currentSynthese._id) {
-        SyntheseResource.update(currentSynthese, function() {
-          toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
-        });
-      } else {
-        currentSynthese.mdph = currentUser.mdph;
-        SyntheseResource.save(currentSynthese, function(synthese) {
-          $state.go('.', {syntheseId: synthese._id}, {reload: false});
-          toastr.info('création de la fiche de synthèse effectuée', 'Information');
-        });
-      }
+      $scope.$emit('saveEvaluationDetailEvent');
     };
 
     this.canDownload = function() {
@@ -169,7 +159,11 @@ angular.module('impactApp')
           toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
         });
       } else {
-        toastr.error('Vous devez remplir la partie : Éléments du profil', 'Erreur');
+        currentSynthese.mdph = currentUser.mdph;
+        SyntheseResource.save(currentSynthese, function(synthese) {
+          $state.go('.', {syntheseId: synthese._id});
+          toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
+        });
       }
     });
 
