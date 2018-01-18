@@ -4,7 +4,7 @@ import _ from 'lodash';
 import async from 'async';
 import moment from 'moment';
 
-import {recapitulatif} from './templates';
+import {cerfa} from './templates';
 import { populateAndSortPrestations } from '../api/prestation/prestation.controller';
 
 var sections = require('../api/sections/sections.json');
@@ -95,10 +95,17 @@ function computeAnswers(question, trajectoireAnswers) {
     if (answer.detailModel) {
       var detailType = answer.detailType;
       var detail = trajectoireAnswers[answer.detailModel];
-      if (detailType) {
-        answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
-      } else {
-        answer.detail = detail;
+      switch (detailType){
+        case 'date':
+          answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          break;
+        case 'date&text':
+          answer.detail = 'Date d\'entrée prévue : ';
+          answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          answer.detail += ' ; ' + detail.text;
+          break;
+        default:
+          answer.detail = detail;
       }
     }
   });
@@ -149,7 +156,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-exports.answersToHtml = function({request, host}, next) {
+export default function({request, host}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
@@ -203,10 +210,10 @@ exports.answersToHtml = function({request, host}, next) {
     if (err) { return next(err); }
 
     try {
-      var html = recapitulatif(results);
+      var html = cerfa(results);
       next(null, html);
     } catch (e) {
       next(null, '<html><body><p>Erreur lors de la génération du récapitulatif.</p><p>Détail de l\'erreur: ' + e + '</p></body></html>');
     }
   });
-};
+}
