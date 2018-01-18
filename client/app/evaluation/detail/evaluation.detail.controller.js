@@ -143,7 +143,17 @@ angular.module('impactApp')
     };
 
     this.change = function() {
-      $scope.$emit('saveEvaluationDetailEvent');
+      if (currentSynthese._id) {
+        SyntheseResource.update(currentSynthese, function() {
+          toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
+        });
+      } else {
+        currentSynthese.mdph = currentUser.mdph;
+        SyntheseResource.save(currentSynthese, function(synthese) {
+          $state.go('.', {syntheseId: synthese._id}, {reload: false});
+          toastr.info('création de la fiche de synthèse effectuée', 'Information');
+        });
+      }
     };
 
     this.canDownload = function() {
@@ -154,16 +164,12 @@ angular.module('impactApp')
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
       currentSynthese.geva.deficience_principale = deficienceQuestionId;
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
-
       if (currentSynthese._id) {
         SyntheseResource.update(currentSynthese, function() {
           toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
         });
       } else {
-        currentSynthese.mdph = currentUser.mdph;
-        SyntheseResource.save(currentSynthese, function() {
-          toastr.info('création de la fiche de synthèse effectuée', 'Information');
-        });
+        toastr.error('Vous devez remplir la partie : Éléments du profil', 'Erreur');
       }
     });
 
