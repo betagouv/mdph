@@ -12,17 +12,17 @@ angular.module('impactApp')
         views: {
           '': {
             templateUrl: 'app/profil/identites/representants.html',
-            controller: function($scope, $state, profile, currentUser, currentMdph, identite) {
-              $scope.identite = identite;
+            controller: function($scope, $state, profile, currentUser, currentMdph, representant) {
+              $scope.representant = representant;
               $scope.currentMdph = currentMdph;
 
               $scope.forms = $state.current.data.forms;
 
               $scope.submit = function(form) {
                 if (!form.$invalid) {
-                  identite.__completion = true;
-                  identite.updatedAt = Date.now();
-                  profile.identites.representant = identite;
+                  representant.__completion = true;
+                  representant.updatedAt = Date.now();
+                  profile.identites.representant = representant;
                   profile.$save({userId: currentUser._id}, function() {
                     $state.go('profil.situations_particulieres');
                   });
@@ -31,7 +31,7 @@ angular.module('impactApp')
             },
 
             resolve: {
-              identite: function(profile) {
+              representant: function(profile) {
                 if (!profile.identites) {
                   profile.identites = {};
                 }
