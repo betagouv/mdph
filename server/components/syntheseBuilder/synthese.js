@@ -16,6 +16,17 @@ const template = Handlebars.compile(readTemplateSync('./templates/pdfSynthese.ht
 Handlebars.registerPartial('answers', readTemplateSync('./templates/answers.html'));
 Handlebars.registerPartial('answers_unexpend', readTemplateSync('./templates/answers_unexpend.html'));
 
+function hasActiveAnswer(answers) {
+  return JSON.stringify(answers).includes("\"active\":true");
+}
+
+Handlebars.registerHelper('show', function(context, options) {
+  if (hasActiveAnswer(context)){
+    return new Handlebars.SafeString(options.fn(this));
+  }
+  return new Handlebars.SafeString(options.inverse(this));
+});
+
 function enhanceAnswers(answersGeva, answers, deficience_principale) {
   if(answersGeva){
     answersGeva.forEach(function(item) {

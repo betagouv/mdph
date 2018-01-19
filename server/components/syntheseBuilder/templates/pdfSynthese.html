@@ -151,6 +151,7 @@
         <div class="heading">
           <h2>Éléments environnementaux</h2>
         </div>
+        {{#show environnement}}
         {{#each environnement}}
         {{#if this.active}}
         <div class="subsection">
@@ -161,6 +162,11 @@
         </div>
         {{/if}}
         {{/each}}
+        {{else}}
+        <div class="subsection">
+          <h3>Aucune information</h3>
+        </div>
+        {{/show}}
       </div>
     </div>
 
@@ -168,6 +174,7 @@
         <div class="heading">
           <h2>Éléments personnels</h2>
         </div>
+        {{#show personnel}}
         {{#each personnel}}
         {{#if this.active}}
         <div class="subsection">
@@ -178,6 +185,11 @@
         </div>
         {{/if}}
         {{/each}}
+        {{else}}
+        <div class="subsection">
+          <h3>Aucune information</h3>
+        </div>
+        {{/show}}
       </div>
     </div>
 
@@ -185,6 +197,7 @@
         <div class="heading">
           <h2>Éléments scolaires ou professionnels</h2>
         </div>
+        {{#show scolaire_professionnel}}
         {{#each scolaire_professionnel}}
         {{#if this.active}}
         <div class="subsection">
@@ -195,6 +208,11 @@
         </div>
         {{/if}}
         {{/each}}
+        {{else}}
+        <div class="subsection">
+          <h3>Aucune information</h3>
+        </div>
+        {{/show}}
       </div>
     </div>
 
@@ -202,6 +220,7 @@
         <div class="heading">
           <h2>Évolution et besoins</h2>
         </div>
+        {{#show evolution_besoins}}
         {{#each evolution_besoins}}
         {{#if this.active}}
         <div class="subsection">
@@ -212,6 +231,11 @@
         </div>
         {{/if}}
         {{/each}}
+        {{else}}
+        <div class="subsection">
+          <h3>Aucune information</h3>
+        </div>
+        {{/show}}
       </div>
     </div>
 
