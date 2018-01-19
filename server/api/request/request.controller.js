@@ -444,7 +444,7 @@ export function getDownload(req, res) {
       .then(demande => {
         currentDemande = demande;
         return demandeBuilder({
-          request: req.request,
+          request: currentDemande,
           host: req.headers.host,
           withSeparator: true,
           format: currentDemande.fullMdph.requestExportFormat
@@ -457,12 +457,7 @@ export function getDownload(req, res) {
 
         const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${currentDemande.shortId}.${extension}`;
 
-
-        if (extension !== 'pdf') {
-          archive.append(readStream, { name: filename });
-        } else {
-          archive.append(fs.createReadStream(readStream), { name: filename });
-        }
+        archive.append(readStream, { name: filename });
 
         callback();
       });
