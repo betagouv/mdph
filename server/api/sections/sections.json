@@ -1616,12 +1616,15 @@
             "label": "Oui",
             "model": true,
             "detailUrl": "components/detail/precisez.html",
-            "detailModel": "passeDetail",
+            "detailModel": "passeDetailOui",
             "detailLabel": "Pourquoi êtes-vous actuellement sans emploi et depuis quand ?"
           },
           {
             "label": "Non",
-            "model": false
+            "model": false,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetailNon",
+            "detailLabel": "Pouvez-vous indiquer pourquoi vous êtes actuellement sans emploi ?"
           }
         ]
       }
