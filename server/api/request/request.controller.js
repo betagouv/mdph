@@ -2,10 +2,8 @@
 
 import { populateAndSortPrestations } from '../prestation/prestation.controller';
 import { populateAndSortDocumentTypes } from '../document-type/document-type.controller';
-import mongoose from 'mongoose';
 
 import _ from 'lodash';
-import pdf from 'html-pdf';
 import moment from 'moment';
 import fs from 'fs';
 import shortid from 'shortid';
@@ -13,7 +11,6 @@ import async from 'async';
 import Promise from 'bluebird';
 import archiver from 'archiver';
 import recapitulatif from '../../components/recapitulatif';
-import SynthesePDF from '../../components/synthese';
 import demandeBuilder from '../../components/DemandeBuilder';
 
 import Request from './request.model';
@@ -21,7 +18,6 @@ import Profile from '../profile/profile.model';
 import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
-import Synthese from '../synthese/synthese.model';
 
 import Dispatcher from '../../components/dispatcher';
 import RequestActionModel from './action.model';
@@ -204,18 +200,25 @@ function getRequestMdphEmail(request) {
 
 function sendMailReceivedTransmission(req) {
   return function(request) {
-    const options = {
-      request: request,
-      host: req.headers.host,
-      user: req.user,
-      email: req.user.email,
-      replyTo: getRequestMdphEmail(request),
-      role: req.user.role,
-      withSeparator: false,
-      format: 'pdf'
-    };
+    Mdph
+      .findOne({zipcode: req.request.mdph})
+      .exec()
+      .then(mdph => {
+        const options = {
+          request: request,
+          host: req.headers.host,
+          mdph: mdph,
+          user: req.user,
+          email: req.user.email,
+          replyTo: getRequestMdphEmail(request),
+          role: req.user.role,
+          withSeparator: false,
+          format: 'pdf'
+        }
 
-    MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
+        MailActions.sendMailReceivedTransmission(options); // Service sends summary to user
+      });
+
     return request;
   };
 }
@@ -257,52 +260,12 @@ function computeEnregistrementOptions(request, host) {
   return options;
 }
 
-// create a snapshot of the current synthesis for a saved request
-function snapshotSynthese(request) {
-  Synthese
-    .find({profile: request.profile})
-    .exec(
-      function(err, profileSyntheses) {
-        if (err) return;
-
-        var snapshotSynthese;
-        var now = Date.now();
-
-        var existingRequestSynthese = _.find(profileSyntheses, function(synthese) {
-          return synthese.request === request._id;
-        });
-
-        var currentProfileSynthese = _.find(profileSyntheses, function(synthese) {
-          return synthese.request === null;
-        });
-
-        if (!currentProfileSynthese) return;
-
-        if (existingRequestSynthese) {
-          snapshotSynthese = existingRequestSynthese;
-          snapshotSynthese.geva = currentProfileSynthese.geva;
-        } else {
-          snapshotSynthese = new Synthese(currentProfileSynthese);
-          snapshotSynthese._id = mongoose.Types.ObjectId();
-          snapshotSynthese.request = request._id;
-          snapshotSynthese.createdAt = now;
-          snapshotSynthese.isNew = true;
-        }
-
-        snapshotSynthese.updatedAt = now;
-        snapshotSynthese.save();
-      }
-    );
-  return request;
-}
-
 function resolveEnregistrement(req) {
   const options = computeEnregistrementOptions(req.request, req.headers.host);
 
   return req.request
     .set('status', options.status)
     .save()
-    .then(snapshotSynthese)
     .then(fillRequestMdph)
     .then(request => {
       options.replyTo = getRequestMdphEmail(request);
@@ -381,16 +344,21 @@ export function getHistory(req, res) {
 }
 
 export function getRecapitulatif(req, res) {
-  recapitulatif({
-    request: req.request,
-    host: req.headers.host
-  }, function(err, html) {
-    if (err) {
-      return handleError(req, res)(500, err);
-    }
-
-    return res.status(200).send(html);
-  });
+  Mdph
+    .findOne({zipcode: req.request.mdph})
+    .exec()
+    .then(mdph => {
+      recapitulatif({
+        request: req.request,
+        host: req.headers.host,
+        mdph: mdph
+      }, function(err, html) {
+        if (err) {
+          return handleError(req, res)(500, err);
+        }
+           return res.status(200).send(html);
+      });
+    })
 }
 
 export function getPdf(req, res) {
@@ -404,6 +372,7 @@ export function getPdf(req, res) {
       return demandeBuilder({
         request: req.request,
         host: req.headers.host,
+        mdph: currentMdph,
         withSeparator: req.params.type !== "user",
         format: req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf'
       });
@@ -444,8 +413,9 @@ export function getDownload(req, res) {
       .then(demande => {
         currentDemande = demande;
         return demandeBuilder({
-          request: req.request,
+          request: currentDemande,
           host: req.headers.host,
+          mdph: currentDemande.fullMdph,
           withSeparator: true,
           format: currentDemande.fullMdph.requestExportFormat
         });
@@ -457,12 +427,7 @@ export function getDownload(req, res) {
 
         const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${currentDemande.shortId}.${extension}`;
 
-
-        if (extension !== 'pdf') {
-          archive.append(readStream, { name: filename });
-        } else {
-          archive.append(fs.createReadStream(readStream), { name: filename });
-        }
+        archive.append(readStream, { name: filename });
 
         callback();
       });
@@ -475,16 +440,6 @@ export function getDownload(req, res) {
       return null;
     }
   );
-}
-
-export function getSynthesePdf(req, res) {
-  SynthesePDF.answersToHtml(req.request, req.headers.host, 'pdf', function(err, html) {
-    if (err) { throw(500, err); }
-
-    pdf.create(html).toStream(function(err, readStream) {
-      readStream.pipe(res);
-    });
-  });
 }
 
 function processDocument(file, fileData, done) {

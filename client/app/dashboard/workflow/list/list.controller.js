@@ -94,8 +94,6 @@ angular.module('impactApp')
       if (selectedRequests.length === 1) {
         var request = _.find(this.requests, 'isSelected');
 
-        console.log('une demande : ' + JSON.stringify(request));
-
         const pdfName = request.formAnswers.identites.beneficiaire.nom.toLowerCase() +
         '_' + request.formAnswers.identites.beneficiaire.prenom.toLowerCase() +
         '_' + request.shortId;
@@ -104,10 +102,7 @@ angular.module('impactApp')
 
       } else {
         if (selectedRequests.length > 1) {
-          console.log(selectedRequests.length + ' demandes');
           $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + this.token);
-        } else {
-          console.log('aucune demande');
         }
       }
     };

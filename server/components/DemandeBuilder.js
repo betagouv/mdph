@@ -84,9 +84,9 @@ function joinFiles({tempDirPath, recapitulatifPdfPath, request, withSeparator, f
   });
 }
 
-function build({request, host, tempDirPath, withSeparator, format}) {
+function build({request, host, mdph, tempDirPath, withSeparator, format}) {
   return new Promise(function(resolve, reject) {
-    recapitulatif({request, host}, (err, recapitulatifHtml) => {
+    recapitulatif({request, host, mdph}, (err, recapitulatifHtml) => {
       if (err) {
         return reject(err);
       }
@@ -107,9 +107,9 @@ function build({request, host, tempDirPath, withSeparator, format}) {
   });
 }
 
-export default function({request, host, withSeparator, format}) {
+export default function({request, host, mdph, withSeparator, format}) {
   var dirPromise = dir({unsafeCleanup: true, keep: true});
   return Promise.using(dirPromise, tempDirPath  => {
-    return build({tempDirPath, request, host, withSeparator, format});
+    return build({request, host, mdph, tempDirPath, withSeparator, format});
   });
 }

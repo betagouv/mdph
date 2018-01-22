@@ -4,7 +4,7 @@ import _ from 'lodash';
 import async from 'async';
 import moment from 'moment';
 
-import {cerfa} from './templates';
+import {recapitulatif} from './templates';
 import { populateAndSortPrestations } from '../api/prestation/prestation.controller';
 
 var sections = require('../api/sections/sections.json');
@@ -156,7 +156,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-export default function({request, host}, next) {
+export default function({request, host, mdph}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
@@ -176,11 +176,11 @@ export default function({request, host}, next) {
     },
 
     mdph: function(callback) {
-      if (!request.mdph) {
-        return callback(null, []);
+      if (!mdph) {
+        return callback(null, {});
       }
 
-      callback(null, request.mdph);
+      callback(null, mdph);
     },
 
     request: function(callback) {
@@ -191,13 +191,13 @@ export default function({request, host}, next) {
 
     colors: function(callback) {
       callback(null, [
-        { class: '.section-identite', color: 'rgb(73, 82, 130)' },
-        { class: '.section-vie_quotidienne', color: 'rgb(90, 136, 175)' },
-        { class: '.section-prestations', color: 'rgb(255, 143, 27)' },
-        { class: '.section-vie_au_travail', color: '#815EA5' },
-        { class: '.section-aidant', color: '#815EA5' },
-        { class: '.section-vie_scolaire', color: '#58A0E6' },
-        { class: '.section-situations_particulieres', color: '#EA2E49' }
+        { class: '.section-identite', color: 'rgb(96, 149, 195)' },
+        { class: '.section-vie_quotidienne', color: 'rgb(38, 151, 135)' },
+        { class: '.section-prestations', color: 'rgb(89, 135, 53)' },
+        { class: '.section-vie_au_travail', color: 'rgb(21, 79, 131)' },
+        { class: '.section-aidant', color: 'rgb(172, 35, 92)'  },
+        { class: '.section-vie_scolaire', color: 'rgb(74, 44, 97)'},
+        { class: '.section-situations_particulieres', color: 'rgb(234, 46, 73)' }
       ]);
     },
 
@@ -210,7 +210,7 @@ export default function({request, host}, next) {
     if (err) { return next(err); }
 
     try {
-      var html = cerfa(results);
+      var html = recapitulatif(results);
       next(null, html);
     } catch (e) {
       next(null, '<html><body><p>Erreur lors de la génération du récapitulatif.</p><p>Détail de l\'erreur: ' + e + '</p></body></html>');

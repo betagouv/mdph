@@ -8,5 +8,4 @@ export function readTemplateSync(template) {
   return String(fs.readFileSync(path.join(__dirname, template)));
 }
 
-export const cerfa = Handlebars.compile(readTemplateSync('pdfCerfa.html'));
-export const synthese = Handlebars.compile(readTemplateSync('pdfSynthese.html'));
+export const recapitulatif = Handlebars.compile(readTemplateSync('pdfAnswers.html'));
