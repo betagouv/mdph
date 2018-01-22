@@ -14,13 +14,14 @@ angular.module('impactApp')
         delete sectionModel[question.model];
         if (question.answers) {
           question.answers.map(function(answer) {
-            if(sectionModel[answer.detailModel]){
+            if (sectionModel[answer.detailModel]) {
               delete sectionModel[answer.detailModel];
             }
           });
         }
+
         return prevStep();
-     };
+      };
 
       // Si pas encore de réponse, on reprend la dernière
       if (previousModel && !sectionModel[question.model]) {
