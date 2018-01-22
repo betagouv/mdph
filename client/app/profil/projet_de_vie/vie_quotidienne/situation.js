@@ -86,18 +86,7 @@ angular.module('impactApp')
           nextStep: function(ProfileService, profile, $state, sectionModel, saveCurrentState) {
             return function() {
               saveCurrentState();
-              if (ProfileService.estAdulte(profile)) {
-                $state.go('^.aideFinancierePasse');
-              } else {
-                var answerAideActuelle = sectionModel.aideActuelle;
-                if (answerAideActuelle.technique) {
-                  $state.go('^.aideTechnique');
-                } else if (answerAideActuelle.personne) {
-                  $state.go('^.aidePersonne');
-                } else {
-                  $state.go('^.pensionInvalidite');
-                }
-              }
+              $state.go('^.aideFinancierePasse');
             };
           }
         }
