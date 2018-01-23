@@ -222,18 +222,7 @@
         "answers": [
           {
             "label": "Allocation Adulte Handicapé (AAH)",
-            "model": "aah",
-            "onlyAdult": true
-          },
-          {
-            "label": "Allocation d'éducation de l'enfant handicapé (AEEH)",
-            "model": "aeeh",
-            "onlyChild": true
-          },
-          {
-            "label": "Une PCH enfant",
-            "model": "pch_enfant",
-            "onlyChild": true
+            "model": "aah"
           },
           {
             "label": "Revenu de Solidarité Active (RSA)",
@@ -242,17 +231,11 @@
           },
           {
             "label": "Allocation chômage versée par Pôle Emploi",
-            "model": "chomage",
-            "onlyAdult": true
+            "model": "chomage"
           },
           {
             "label": "Allocation de Solidarité Spécifique (ASS)",
             "model": "ass",
-            "onlyAdult": true
-          },
-          {
-            "label": "Retraite pour inaptitude dans la fonction publique ou anticipée",
-            "model": "retraite",
             "onlyAdult": true
           }
         ]
