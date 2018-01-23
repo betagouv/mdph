@@ -104,6 +104,11 @@ function computeAnswers(question, trajectoireAnswers) {
           answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           answer.detail += ' ; ' + detail.text;
           break;
+        case 'date&catégorie':
+          answer.detail = detail.categorie;
+          answer.detail += ' ; Depuis le ? ';
+          answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          break;
         default:
           answer.detail = detail;
       }

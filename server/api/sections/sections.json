@@ -348,7 +348,8 @@
             "label": "Une pension d'invalidité",
             "model": "invalidite",
             "detailUrl": "components/detail/pension_invalidite.html",
-            "detailModel": "categorie"
+            "detailModel": "categorie",
+            "detailType": "date&categorie"
           },
           {
             "label": "Une autre pension de ce type",
