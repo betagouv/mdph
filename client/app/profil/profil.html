@@ -61,6 +61,7 @@
           <ul class="profile-card-row">
             <li id="beneficiaire" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.beneficiaire" /></li>
             <li id="autorite" class="profile-card-row-item" ng-if="!profilCtrl.estAdulte"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.autorite" /></li>
+            <li id="representant" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.representant" /></li>
             <li id="vieQuotidienne" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.vieQuotidienne" /></li>
             <li id="documents" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" completion="profilCtrl.documentCompletion()" options="profilCtrl.options.documents" /></li>
             <li id="unconfirmed" ng-if="profilCtrl.currentUser.unconfirmed" class="profile-card-row-item"><profile-category profile="profilCtrl.profile" options="profilCtrl.options.unconfirmed" /></li>
