@@ -3,7 +3,11 @@
   <body>
     <div class="pull-left">
       <img src="http://{{path}}/assets/images/cerfa.png" width="91,4" height="48,9"></img>
-      <img src="http://{{path}}/assets/images/logo{{mdph}}.jpg" width="88,9" height="48,9"></img>
+      {{#if mdph.logo}}
+      <img src="http://{{path}}/api/mdphs/{{mdph.zipcode}}/logo/" width="88,9" height="48,9"></img>
+      {{else}}
+      <img src="http://{{path}}/assets/images/logo_defaut.jpg" width="88,9" height="48,9"></img>
+      {{/if}}
     </div>
     <div class="pull-right">
       {{#if submittedAt}}
