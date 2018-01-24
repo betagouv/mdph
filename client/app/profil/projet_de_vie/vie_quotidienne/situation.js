@@ -55,12 +55,16 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aideActuelle', profile);
           },
 
-          nextStep: function($state, sectionModel, question, saveCurrentState) {
+          nextStep: function($state, sectionModel, question, saveCurrentState, ProfileService, profile) {
             return function() {
               saveCurrentState();
               var answer = sectionModel[question.model];
               if (!answer) {
-                $state.go('^.fraisHandicap');
+                if (ProfileService.estAdulte(profile)) {
+                  $state.go('^.retraite');
+                } else {
+                  $state.go('^.fraisHandicap');
+                }
               } else if (answer.financiere) {
                 $state.go('^.aideFinancierePresent');
               } else if (answer.technique) {
@@ -68,7 +72,11 @@ angular.module('impactApp')
               } else if (answer.personne) {
                 $state.go('^.aidePersonne');
               } else {
-                $state.go('^.fraisHandicap');
+                if (ProfileService.estAdulte(profile)) {
+                  $state.go('^.retraite');
+                } else {
+                  $state.go('^.fraisHandicap');
+                }
               }
             };
           }
