@@ -113,22 +113,10 @@
 </p>
 {{/if}}
 
-{{#if aide}}
 <p>
-  Êtes-vous aidé.e dans vos démarches auprès de la MDPH ? : <strong>Oui</strong>
+  Êtes-vous aidé.e dans vos démarches auprès de la MDPH ? : {{#if aide}}<strong>Oui</strong>{{else}}<strong>Non</strong>{{/if}}
 </p>
-{{else}}
-<p>
-  Êtes-vous aidé.e dans vos démarches auprès de la MDPH ? : <strong>Non</strong>
-</p>
-{{/if}}
 
-{{#if protection}}
 <p>
-  Bénéficiez-vous d’une mesure de protection ? : <strong>Oui</strong>
+  Bénéficiez-vous d’une mesure de protection ? : {{#if protection}}<strong>Oui</strong>{{else}} <strong>Non</strong>{{/if}}
 </p>
-{{else}}
-<p>
-  Bénéficiez-vous d’une mesure de protection ? : <strong>Non</strong>
-</p>
-{{/if}}
