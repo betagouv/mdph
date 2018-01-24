@@ -4,11 +4,24 @@ angular.module('impactApp')
   .factory('initQuestionScope', function() {
     return function(scope, question, prevStep, nextStep, data, previousModel, sectionModel) {
       scope.question = question;
-      scope.prevStep = prevStep;
       scope.nextStep = nextStep;
       scope.hideBack = data && data.hideBack;
       scope.isFirstQuestion = data && data.isFirstQuestion;
       scope.isLastQuestion = data && data.isLastQuestion;
+
+      scope.prevStep = function() {
+        // suppression de la reponse courrente
+        delete sectionModel[question.model];
+        if (question.answers) {
+          question.answers.map(function(answer) {
+            if (sectionModel[answer.detailModel]) {
+              delete sectionModel[answer.detailModel];
+            }
+          });
+        }
+
+        return prevStep();
+      };
 
       // Si pas encore de réponse, on reprend la dernière
       if (previousModel && !sectionModel[question.model]) {
