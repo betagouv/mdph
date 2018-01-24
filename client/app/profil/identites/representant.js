@@ -24,7 +24,7 @@ angular.module('impactApp')
                   identite.updatedAt = Date.now();
                   profile.identites.representant = identite;
                   profile.$save({userId: currentUser._id}, function() {
-                    $state.go('^.vie_quotidienne');
+                    $state.go('profil.situations_particulieres');
                   });
                 }
               };
