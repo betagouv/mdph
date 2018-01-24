@@ -1655,6 +1655,11 @@
         "titleDefault": "Date de naissance",
         "type": "date"
       },
+      "adresseAidant": {
+        "model": "adresseAidant",
+        "titleDefault": "Adresse",
+        "type": "adresse"
+      },
       "lien": {
         "model": "lien",
         "titleDefault": "Quel est son lien avec la personne en situation de handicap ?",

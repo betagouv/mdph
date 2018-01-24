@@ -42,6 +42,23 @@ angular.module('impactApp')
         nextStep: function($state, saveCurrentState) {
           return function() {
             saveCurrentState();
+            $state.go('^.adresse_aidant');
+          };
+        }
+      }
+    })
+    .state(index + '.adresse_aidant', {
+      url: '',
+      templateUrl: 'components/question/adresse.html',
+      controller: 'AdresseCtrl',
+      resolve: {
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'adresseAidant', profile);
+        },
+
+        nextStep: function($state, saveCurrentState) {
+          return function() {
+            saveCurrentState();
             $state.go('^.lien');
           };
         }

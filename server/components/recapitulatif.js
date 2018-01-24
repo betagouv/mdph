@@ -10,6 +10,9 @@ import { populateAndSortPrestations } from '../api/prestation/prestation.control
 var sections = require('../api/sections/sections.json');
 
 function rebuildAnswersFromModel(question, questionAnswers) {
+
+//console.log("question : " + JSON.stringify(question) + " - questionAnswers : " + JSON.stringify(questionAnswers));
+
   switch (question.type){
     case 'date':
       return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
@@ -77,6 +80,15 @@ function rebuildAnswersFromModel(question, questionAnswers) {
         label: 'Etablissements',
         etablissements: questionAnswers.etablissements
       }];
+    case 'adresse':
+      var adresse = '';
+      if(questionAnswers.complement_adresse) {
+        adresse += questionAnswers.complement_adresse + '\n';
+      }
+      adresse += questionAnswers.nomVoie + '\n';
+      adresse += questionAnswers.code_postal + ' ' +  questionAnswers.localite + ' ' + (questionAnswers.pays ?  questionAnswers.pays : '');
+
+      return [{label: adresse}];
   }
 }
 

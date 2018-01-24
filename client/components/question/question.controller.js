@@ -148,4 +148,14 @@ angular.module('impactApp')
   .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep, initQuestionScope, previousModel, prevStep) {
     initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
     $scope.sectionModel = sectionModel;
+  })
+  .controller('AdresseCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep, AdressService, currentMdph) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
+
+    $scope.currentMdph = currentMdph;
+    $scope.getAdress = AdressService.getAdress;
+    $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
+    $scope.maskOptions = {clearOnBlur: false, allowInvalidValue: true};
+
+    $scope.sectionModel = sectionModel;
   });
