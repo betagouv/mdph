@@ -81,7 +81,8 @@
         input-date
         date-autocomplete
         placeholder="JJ/MM/AAAA"
-        aria-describedby="help-date-de-naissance">
+        aria-describedby="help-date-de-naissance"
+        ng-change="majAdulteEnfant()">
       <div ng-messages="infoForm.dateDeNaissance.$error" ng-if="infoForm.$submitted">
         <p class="help-block" id="help-date-de-naissance" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
         <p class="help-block" id="help-date-de-naissance" ng-message='required'>Ce champ est obligatoire.</p>
@@ -250,18 +251,19 @@
         ng-model="identite.numero_secu" ui-options="maskOptions" ui-mask="* ** ** ** *** *** **" numero-secu>
       <div ng-messages="infoForm.numero_secu.$error" ng-if="infoForm.$submitted">
         <p class="help-block" ng-message='numero-secu'>Ce numéro de sécurité sociale est invalide.</p>
-        <p class="help-block" ng-message='minlength'>Ce numéro de sécurité sociale est invalide.</p>
+       <p class="help-block" ng-message='minlength'>Ce numéro de sécurité sociale est invalide.</p>
         <p class="help-block" ng-message='maxlength'>Ce numéro de sécurité sociale est invalide.</p>
         <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         <p class="help-block" ng-message='mask'>Ce champ est incomplet.</p>
       </div>
     </div>
 
-    <div class="form-group" ng-class="{'has-error': infoForm.numero_secu_enfant.$invalid && !infoForm.numero_secu_enfant.$pristine && infoForm.$submitted}">
+    <div class="form-group" ng-class="{'required': estEnfant, 'has-error': infoForm.numero_secu_enfant.$invalid && infoForm.$submitted}" ng-if="!estAdulteStricte">
       <label for="numero_secu_enfant" class="control-label">Si c’est votre enfant qui est concerné par la demande, indiquer son numéro de sécurité sociale</label>
-      <input id="numero_secu_enfant" type="text" name="numero_secu_enfant" class="form-control"
+      <input id="numero_secu_enfant" type="text" name="numero_secu_enfant" class="form-control" ng-required="estEnfant"
         ng-model="identite.numero_secu_enfant" ui-options="maskOptions" ui-mask="* ** ** ** *** *** **" numero-secu>
       <div ng-messages="infoForm.numero_secu_enfant.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
         <p class="help-block" ng-message='minlength'>Ce numéro de sécurité sociale est invalide.</p>
         <p class="help-block" ng-message='maxlength'>Ce numéro de sécurité sociale est invalide.</p>
         <p class="help-block" ng-message='numero-secu'>Ce numéro de sécurité sociale est invalide.</p>
