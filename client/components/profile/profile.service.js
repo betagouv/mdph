@@ -69,7 +69,7 @@ angular.module('impactApp')
         return false;
       }
 
-      if (_estMineur(profile) && !profile.identites.autorite) {
+      if (profile.identites.beneficiaire && profile.identites.beneficiaire.numero_secu_enfant && !profile.identites.autorite) {
         return false;
       }
 
