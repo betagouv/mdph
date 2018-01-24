@@ -1617,7 +1617,10 @@
           },
           {
             "label": "Non",
-            "model": false
+            "model": false,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetail",
+            "detailLabel": "Pouvez-vous indiquer pourquoi vous êtes actuellement sans emploi ?"
           }
         ]
       }
