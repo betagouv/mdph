@@ -33,8 +33,6 @@ angular.module('impactApp')
       user.role = 'adminMdph';
       user.mdph = $scope.agent.mdph._id;
 
-      console.log('creation agent' + JSON.stringify(user));
-
       user.$saveAgent()
       .then(function() {
         $scope.show = true;

@@ -10,6 +10,7 @@
           ng-if="profilCtrl.estAdulte || !answer.onlyAdult">
           <input type="radio" class="radio-answers" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
             ng-model="sectionModel[question.model]" ng-value="answer.model"
+            ng-change="sectionModel[answer.detailModel]= ''"
             ng-required="!sectionModel[question.model]"/>
           <label for="{{question.model}}-{{answer.model}}">{{answer.label}}</label>
         </li>

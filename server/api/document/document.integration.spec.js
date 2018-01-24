@@ -50,7 +50,6 @@ describe('Document Integration', function() {
       var newRequest = new Request({
         shortId: '1234',
         prestations: ['AAH'],
-        renouvellements: ['PCH'],
         user: testUser._id
       });
 
@@ -103,7 +102,6 @@ describe('Document Integration', function() {
       let newRequest = new Request({
         shortId: '1234',
         prestations: ['AAH'],
-        renouvellements: ['PCH'],
         user: testUser._id
       });
 
@@ -148,7 +146,6 @@ describe('Document Integration', function() {
       var newRequest = new Request({
         shortId: '1234',
         prestations: ['AAH'],
-        renouvellements: ['PCH'],
         documents: [{
           type: 'carteIdentite',
           originalname: 'carte-identite.jpg',
@@ -191,7 +188,6 @@ describe('Document Integration', function() {
         var newRequest = new Request({
           shortId: '1234',
           prestations: ['AAH'],
-          renouvellements: ['PCH'],
           documents: [{
             type: 'carteIdentite',
             originalname: 'carte-identite.jpg',
@@ -225,7 +221,6 @@ describe('Document Integration', function() {
         var newRequest = new Request({
           shortId: '1234',
           prestations: ['AAH'],
-          renouvellements: ['PCH'],
           documents: [{
             type: 'carteIdentite',
             originalname: 'carte-identite.jpg',

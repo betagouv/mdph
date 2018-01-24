@@ -1,4 +1,4 @@
-<div id="pre-evaluation">
+<div id="validation-depot">
   <section>
     <div class="content">
       <div class="embed-responsive embed-responsive-16by9">
@@ -11,17 +11,14 @@
     <h2>Prestations demandées</h2>
     <div class="content">
       <div class="user">
-        <h3 ng-if="request.detailPrestations && request.detailPrestations.length > 0">Nouvelles demandes</h3>
         <ul>
           <li ng-repeat="prestation in request.detailPrestations">
             {{prestation.title}}
-          </li>
-        </ul>
-
-        <h3 ng-if="request.detailRenouvellements && request.detailRenouvellements.length > 0">Renouvellements</h3>
-        <ul>
-          <li ng-repeat="prestation in request.detailRenouvellements">
-            {{prestation.title}}
+            <ul ng-if="prestation.precision">
+                <li>
+                  {{prestation.precision}}
+                </li>
+              </ul>
           </li>
         </ul>
       </div>
