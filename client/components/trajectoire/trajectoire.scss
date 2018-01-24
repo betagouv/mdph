@@ -42,9 +42,24 @@
     }
   }
 
+  .btn-link.show {
+    visibility: visible;
+  }
+
   .question-active {
     background-color: #337ab7;
     border-color: #456179;
+    .btn-link {
+      color: #fff;
+      &:disabled {
+        opacity: 1;
+      }
+    }
+  }
+
+  .question-deficience {
+    background-color: #FFA500;
+    border-color: rgb(223, 146, 5);
     .btn-link {
       color: #fff;
       &:disabled {

@@ -6,7 +6,7 @@
       <div class="header-actions">
         <a target="_blank"
           class="btn btn-primary"
-          href="api/requests/{{request.shortId}}/pdf/{{pdfName}}?access_token={{token}}"
+          href="api/requests/{{request.shortId}}/pdf/agent/{{pdfName}}?access_token={{token}}"
           download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
         </a>
@@ -51,7 +51,7 @@
 
 <div class="detail-main">
   <!-- <ul class="nav nav-tabs">
-    <li role="presentation" ui-sref-active="active"><a ui-sref=".pre_evaluation">Récapitulatif</a></li>
+    <li role="presentation" ui-sref-active="active"><a ui-sref=".validation_depot">Récapitulatif</a></li>
     <li role="presentation" ui-sref-active="active"><a ui-sref=".documents">Documents associés</a></li>
     <li role="presentation" ui-sref-active="active"><a ui-sref=".evaluation">Synthèse de l'évaluation</a></li>
     <li role="presentation" ui-sref-active="active"><a ui-sref=".history">Vie de la demande</a></li>
