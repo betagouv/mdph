@@ -95,12 +95,12 @@
     "description": "L'affiliation à l'assurance vieillesse permet à l'aidant familial de valider des trimestres pour sa retraite sans qu'il ait besoin de verser des cotisations auprès de sa caisse de retraite.",
     "link": "http://vosdroits.service-public.fr/particuliers/F2574.xhtml"
   },
-  "ems": {
-    "id": "ems",
+  "esms": {
+    "id": "esms",
     "type": "accompagnement",
-    "label": "EMS",
-    "title": "Accompagnement par un service ou établissement médico-social",
-    "description": "Orientation vers un établissement médical de santé.",
+    "label": "ESMS",
+    "title": "Maintien en établissement ou service médico-social (ESMS) au titre de l'amendement Creton",
+    "description": "Maintien en établissement ou service médico-social (ESMS) au titre de l'amendement Creton",
     "link": "http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux"
   },
   "pps": {

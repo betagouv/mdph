@@ -21,6 +21,8 @@ angular.module('impactApp')
 
     $scope.currentSynthese = currentSynthese;
 
+    this.birthdate = currentSynthese.birthdate;
+
     $scope.section = section;
 
     function findDeep(array, id) {
@@ -52,9 +54,25 @@ angular.module('impactApp')
 
     })(section);
 
+    function hasQuestionSelected(question) {
+      if (question.Reponses) {
+        for (let i = 0; i < question.Reponses.length; i++) {
+          if (question.Reponses[i].isSelected) {
+            return true;
+          } else {
+            if (hasQuestionSelected(question.Reponses[i])) {
+              return true;
+            }
+          }
+        }
+      }
+
+      return false;
+    }
+
     function answersToIdArray(root, level) {
       return _.reduce(root, function(result, question) {
-        if (question.isSelected) {
+        if (question.isSelected || hasQuestionSelected(question)) {
           var reponses = [];
 
           if (question.Reponses) {
@@ -62,7 +80,7 @@ angular.module('impactApp')
             result = result.concat(reponses);
           }
 
-          if (level !== 0 || reponses.length > 0) {
+          if (level !== 0 &&  question.isSelected || level === 0 && hasQuestionSelected(question)) {
             result.push(question.id);
           } else {
             question.isSelected = false;
@@ -116,16 +134,37 @@ angular.module('impactApp')
       });
     };
 
+    this.treatBirthDate = function() {
+      if (currentSynthese.birthdate && ((new Date(currentSynthese.birthdate)).getTime()) !== ((new Date(this.birthdate)).getTime())) {
+        this.change();
+      }
+
+      this.birthdate = currentSynthese.birthdate;
+    };
+
     this.change = function() {
       $scope.$emit('saveEvaluationDetailEvent');
     };
 
-    $scope.$on('saveEvaluationDetailEvent', function() {
+    this.canDownload = function() {
+      return currentSynthese.firstname && currentSynthese.lastname && currentSynthese.birthdate;
+    };
+
+    $scope.$on('saveEvaluationDetailEvent', function(event, deficienceQuestionId) {
       currentSynthese.geva[section.id] = trajectoiresToIdArray($scope.section.trajectoires);
+      currentSynthese.geva.deficience_principale = deficienceQuestionId;
       $scope.noAnswer = (currentSynthese.geva[section.id].length === 0);
-      SyntheseResource.update(currentSynthese, function() {
-        toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
-      });
+      if (currentSynthese._id) {
+        SyntheseResource.update(currentSynthese, function() {
+          toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
+        });
+      } else {
+        currentSynthese.mdph = currentUser.mdph;
+        SyntheseResource.save(currentSynthese, function(synthese) {
+          $state.go('.', {syntheseId: synthese._id});
+          toastr.info('Sauvegarde de la fiche de synthèse effectuée', 'Information');
+        });
+      }
     });
 
   });
