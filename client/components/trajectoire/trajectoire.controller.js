@@ -50,7 +50,7 @@ angular.module('impactApp')
     this.toggleSelected = (question, questions) => {
       question.isSelected = !question.isSelected;
 
-      if (!question.isSelected && this.deficienceQuestionId) {
+      if (!question.isSelected && question.id === this.deficienceQuestionId) {
         this.deficienceQuestionId =  null;
       }
 
