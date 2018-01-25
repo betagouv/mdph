@@ -2,8 +2,8 @@
   ng-class="{
     'sub-level': trjctrCtrl.sublevel,
     'main-level': !trjctrCtrl.sublevel}">
-  <div ng-repeat="question in trjctrCtrl.questions" ng-if="trjctrCtrl.filterQuestion(question)">
-    <div class="question" ng-class="{'question-deficience': trjctrCtrl.deficienceQuestionId === question.id, 'question-active': question.isSelected}">
+  <div ng-repeat="question in trjctrCtrl.questions">
+    <div class="question" ng-class="{'question-deficience': trjctrCtrl.deficienceQuestionId === question.id, 'question-active': question.isSelected}" ng-if="trjctrCtrl.filterDisplayQuestion(question)">
       <button type="button" class="btn btn-link" ng-click="trjctrCtrl.toggleSelected(question, trjctrCtrl.questions)" ng-disabled="trjctrCtrl.readOnly">
         <i class="fa" ng-class="question.isSelected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true" ng-if="trjctrCtrl.sublevel"></i>
         {{question.Question ? (question.Question | capitalizeString) : (question.Libelle | capitalizeString)}}
@@ -23,7 +23,7 @@
     </div>
 
     <trajectoire
-      ng-if="question.isOpen || question.isSelected || trjctrCtrl.hasQuestionSelected(question)"
+      ng-if="trjctrCtrl.filterIterateResponses(question)"
       model="question.id"
       questions="question.Reponses"
       sublevel="true"
