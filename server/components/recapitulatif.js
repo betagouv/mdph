@@ -11,8 +11,6 @@ var sections = require('../api/sections/sections.json');
 
 function rebuildAnswersFromModel(question, questionAnswers) {
 
-//console.log("question : " + JSON.stringify(question) + " - questionAnswers : " + JSON.stringify(questionAnswers));
-
   switch (question.type){
     case 'date':
       return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
