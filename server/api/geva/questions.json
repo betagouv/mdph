@@ -82,72 +82,72 @@
       {
         "id": "III_1_4",
         "CodeValeur": "III.1.4",
-        "Libelle": "Hébergée par un établissement médico-social",
+        "Libelle": "Hébergée dans un établissement médico-social",
         "Reponses": [
           {
             "id": "III_1_4_a",
             "CodeValeur": "III.1.4.a",
-            "Libelle": "hébergée par un IME"
+            "Libelle": "hébergée dans un IME"
           },
           {
             "id": "III_1_4_b",
             "CodeValeur": "III.1.4.b",
-            "Libelle": "hébergée par un ITEP"
+            "Libelle": "hébergée dans un ITEP"
           },
           {
             "id": "III_1_4_c",
             "CodeValeur": "III.1.4.c",
-            "Libelle": "hébergée par un IEM"
+            "Libelle": "hébergée dans un IEM"
           },
           {
             "id": "III_1_4_d",
             "CodeValeur": "III.1.4.d",
-            "Libelle": "hébergée par un établissement pour enfant ou adolescent polyhandicapé"
+            "Libelle": "hébergée dans un établissement pour enfant ou adolescent polyhandicapé"
           },
           {
             "id": "III_1_4_e",
             "CodeValeur": "III.1.4.e",
-            "Libelle": "hébergée par un institut pour déficient auditif"
+            "Libelle": "hébergée dans un institut pour déficient auditif"
           },
           {
             "id": "III_1_4_f",
             "CodeValeur": "III.1.4.f",
-            "Libelle": "hébergée par un institut pour déficient visuel"
+            "Libelle": "hébergée dans un institut pour déficient visuel"
           },
           {
             "id": "III_1_4_g",
             "CodeValeur": "III.1.4.g",
-            "Libelle": "hébergée par un autre établissement médico-social enfant"
+            "Libelle": "hébergée dans un autre établissement médico-social enfant"
           },
           {
             "id": "III_1_4_h",
             "CodeValeur": "III.1.4.h",
-            "Libelle": "hébergée par un FH"
+            "Libelle": "hébergée dans un FH"
           },
           {
             "id": "III_1_4_i",
             "CodeValeur": "III.1.4.i",
-            "Libelle": "hébergée par un foyer de vie"
+            "Libelle": "hébergée dans un foyer de vie"
           },
           {
             "id": "III_1_4_j",
             "CodeValeur": "III.1.4.j",
-            "Libelle": "hébergée par un FAM"
+            "Libelle": "hébergée dans un FAM"
           },
           {
             "id": "III_1_4_k",
             "CodeValeur": "III.1.4.k",
-            "Libelle": "hébergée par un établissement d'accueil non médicalisé"
+            "Libelle": "hébergée dans un établissement d'accueil non médicalisé"
           },
           {
             "id": "III_1_4_l",
             "CodeValeur": "III.1.4.l",
-            "Libelle": "hébergée par un établissement d'accueil médicalisé en tout ou partie"
+            "Libelle": "hébergée dans un établissement d'accueil médicalisé en tout ou partie"
           },
           {
             "id": "III_1_4_m",
             "CodeValeur": "III.1.4.m",
-            "Libelle": "hébergée par une MAS"
+            "Libelle": "hébergée dans une MAS"
           }
         ]
       },
@@ -184,7 +184,7 @@
       {
         "id": "III_1_11",
         "CodeValeur": "III.1.11",
-        "Libelle": "Autre "
+        "Libelle": "Autre type de domicile"
       }
     ]
   },
@@ -204,7 +204,7 @@
       {
         "id": "III_5_5",
         "CodeValeur": "III.5.5",
-        "Libelle": "logement non accessible, non adapté",
+        "Libelle": "logement non accessible ou non adapté",
         "Reponses": [
           {
             "id": "III_5_5_a",
@@ -241,47 +241,143 @@
           {
             "id": "III_5_5_b",
             "CodeValeur": "III.5.5.b",
-            "Libelle": "intérieur du logement non adapté",
+            "Libelle": "intérieur du logement non accessible ou non adapté",
             "Reponses": [
               {
                 "id": "III_5_5_b_1",
                 "CodeValeur": "III.5.5.b.1",
-                "Libelle": "séjour non adapté"
+                "Libelle": "séjour non accessible ou non adapté",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_1_a",
+                    "CodeValeur": "III.5.5.b.1.a",
+                    "Libelle": "séjour non accessible"
+                  },
+                  {
+                    "id": "III_5_5_b_1_b",
+                    "CodeValeur": "III.5.5.b.1.b",
+                    "Libelle": "séjour non adapté"
+                  }
+                ]
               },
               {
                 "id": "III_5_5_b_2",
                 "CodeValeur": "III.5.5.b.2",
-                "Libelle": "cuisine non adaptée"
+                "Libelle": "cuisine non accessible ou non adaptée",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_2_a",
+                    "CodeValeur": "III.5.5.b.2.a",
+                    "Libelle": "cuisine non accessible "
+                  },
+                  {
+                    "id": "III_5_5_b_2_b",
+                    "CodeValeur": "III.5.5.b.2.b",
+                    "Libelle": "cuisine non adaptée"
+                  }
+                ]
               },
               {
                 "id": "III_5_5_b_3",
                 "CodeValeur": "III.5.5.b.3",
-                "Libelle": "chambre non adaptée"
+                "Libelle": "chambre non accessible ou non adaptée",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_3_a",
+                    "CodeValeur": "III.5.5.b.3.a",
+                    "Libelle": "chambre non accessible "
+                  },
+                  {
+                    "id": "III_5_5_b_3_b",
+                    "CodeValeur": "III.5.5.b.3.b",
+                    "Libelle": "chambre non adaptée"
+                  }
+                ]
               },
               {
                 "id": "III_5_5_b_4",
                 "CodeValeur": "III.5.5.b.4",
-                "Libelle": "W.C non adaptés"
+                "Libelle": "W.C non accessibles ou non adaptés",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_4_a",
+                    "CodeValeur": "III.5.5.b.4.a",
+                    "Libelle": "W.C non accessibles"
+                  },
+                  {
+                    "id": "III_5_5_b_4_b",
+                    "CodeValeur": "III.5.5.b.4.b",
+                    "Libelle": "W.C non adaptés"
+                  }
+                ]
               },
               {
                 "id": "III_5_5_b_5",
                 "CodeValeur": "III.5.5.b.5",
-                "Libelle": "salle de bain non adaptée"
+                "Libelle": "salle de bain non accessible ou non adaptée",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_5_a",
+                    "CodeValeur": "III.5.5.b.5.a",
+                    "Libelle": "salle de bain non accessible"
+                  },
+                  {
+                    "id": "III_5_5_b_5_b",
+                    "CodeValeur": "III.5.5.b.5.b",
+                    "Libelle": "salle de bain non adaptée"
+                  }
+                ]
               },
               {
                 "id": "III_5_5_b_6",
                 "CodeValeur": "III.5.5.b.6",
-                "Libelle": "autre pièce non adaptée"
+                "Libelle": "autre pièce non accessible ou non adaptée",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_6_a",
+                    "CodeValeur": "III.5.5.b.6.a",
+                    "Libelle": "autre pièce non accessible"
+                  },
+                  {
+                    "id": "III_5_5_b_6_b",
+                    "CodeValeur": "III.5.5.b.6.b",
+                    "Libelle": "autre pièce non adaptée"
+                  }
+                ]
               },
               {
                 "id": "III_5_5_b_7",
                 "CodeValeur": "III.5.5.b.7",
-                "Libelle": "circulation intérieure verticale non adaptée"
+                "Libelle": "circulation intérieure verticale non accessible ou non adaptée",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_7_a",
+                    "CodeValeur": "III.5.5.b.7.a",
+                    "Libelle": "circulation intérieure verticale non accessible"
+                  },
+                  {
+                    "id": "III_5_5_b_7_b",
+                    "CodeValeur": "III.5.5.b.7.b",
+                    "Libelle": "circulation intérieure verticale non adaptée"
+                  }
+                ]
               },
               {
                 "id": "III_5_5_b_8",
                 "CodeValeur": "III.5.5.b.8",
-                "Libelle": "circulation intérieure horizontale non adaptée"
+                "Libelle": "circulation intérieure horizontale non accessible ou non adaptée",
+                "Reponses": [
+                  {
+                    "id": "III_5_5_b_8_a",
+                    "CodeValeur": "III.5.5.b.8.a",
+                    "Libelle": "circulation intérieure horizontale non accessible"
+                  },
+                  {
+                    "id": "III_5_5_b_8_b",
+                    "CodeValeur": "III.5.5.b.8.b",
+                    "Libelle": "circulation intérieure horizontale non adaptée"
+                  }
+                ]
               }
             ]
           }
@@ -300,7 +396,7 @@
       {
         "id": "II_3_1",
         "CodeValeur": "II.3.1",
-        "Libelle": "non attendu en fonction de l'âge"
+        "Libelle": "pas de ressources propres attendues en fonction de l'âge"
       },
       {
         "id": "II_3_2",
@@ -524,14 +620,21 @@
           {
             "id": "IV_2_ter_4 ",
             "CodeValeur": "IV.2.ter.4 ",
-            "Libelle": "est en cours de formation au permis de conduire pour utiliser un véhicule personnel"
+            "Libelle": "est en cours de formation au permis de conduire pour utiliser un véhicule personnel",
+            "Reponses": [
+              {
+                "id": "IV_2_ter_4_a ",
+                "CodeValeur": "IV.2.ter.4.a ",
+                "Libelle": "est en cours de formation au permis de conduire avec avis du délégué à la formation routière"
+              },
+              {
+                "id": "IV_2_ter_4_b ",
+                "CodeValeur": "IV.2.ter.4.b ",
+                "Libelle": "est en cours de formation au permis de conduire sans avis du délégué à la formation routière"
+              }
+            ]
           }
         ]
-      },
-      {
-        "id": "IV_2_quater",
-        "CodeValeur": "IV.2.quater",
-        "Libelle": "non attendu en fonction de l'âge"
       }
     ]
   },
@@ -826,11 +929,16 @@
               {
                 "id": "II_2_2_a_8",
                 "CodeValeur": "II.2.2.a.8",
-                "Libelle": "Scolarisation dans le cadre de l’enseignement adapté (SEGPA, EREA)"
+                "Libelle": "Scolarisation dans une unité d’enseignement installée dans un établissement sanitaire"
               },
               {
                 "id": "II_2_2_a_9",
                 "CodeValeur": "II.2.2.a.9",
+                "Libelle": "Scolarisation dans le cadre de l’enseignement adapté (SEGPA, EREA)"
+              },
+              {
+                "id": "II_2_2_a_10",
+                "CodeValeur": "II.2.2.a.10",
                 "Libelle": "Formation en CFA"
               }
             ]
@@ -848,7 +956,12 @@
               {
                 "id": "II_2_2_b_2",
                 "CodeValeur": "II.2.2.b.2",
-                "Libelle": "enseignement à domicile (SAPAD, autres…) "
+                "Libelle": "enseignement à domicile avec un SAPAD "
+              },
+              {
+                "id": "II_2_2_b_3",
+                "CodeValeur": "II.2.2.b.3",
+                "Libelle": "autre modalité d'enseignement à domicile "
               }
             ]
           }
@@ -1007,7 +1120,7 @@
       {
         "id": "VI_3_bis_1",
         "CodeValeur": "VI.3.bis.1",
-        "Libelle": "ne travaille pas",
+        "Libelle": "n'a pas d'activité professionnelle ou à caractère professionnel",
         "Reponses": [
           {
             "id": "VI_3_bis_1_a",
@@ -1085,7 +1198,7 @@
           {
             "id": "VI_3_bis_1_b",
             "CodeValeur": "VI.3.bis.1.b",
-            "Libelle": "a déjà travaillé mais ne travaille pas actuellement ",
+            "Libelle": " ne travaille pas actuellement mais a déjà travaillé ",
             "Reponses": [
               {
                 "id": "VI_3_bis_1_b_1",
@@ -1212,7 +1325,7 @@
       {
         "id": "VI_3_bis_2",
         "CodeValeur": "VI.3.bis.2",
-        "Libelle": "travaille actuellement",
+        "Libelle": "a actuellement une activité professionnelle ou à caractère professionnel",
         "Reponses": [
           {
             "id": "VI_3_bis_2_a",
@@ -1232,12 +1345,12 @@
                   {
                     "id": "VI_3_bis_2_a_2_a",
                     "CodeValeur": "VI.3.bis.2.a.2.a",
-                    "Libelle": "travail à temps partiel en apprentissage sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "travaille à temps partiel en apprentissage sur un temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_a_2_b",
                     "CodeValeur": "VI.3.bis.2.a.2.b",
-                    "Libelle": "travail à temps partiel en apprentissage sur un temps inférieur à un mi temps"
+                    "Libelle": "travaille à temps partiel en apprentissage sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1246,27 +1359,27 @@
           {
             "id": "VI_3_bis_2_b",
             "CodeValeur": "VI.3.bis.2.b",
-            "Libelle": "travaille en tant que stagiaire",
+            "Libelle": "travaille en contrat aidé",
             "Reponses": [
               {
                 "id": "VI_3_bis_2_b_1",
                 "CodeValeur": "VI.3.bis.2.b.1",
-                "Libelle": "travaille en tant que stagiaire à temps complet"
+                "Libelle": "travaille en contrat aidé à temps complet"
               },
               {
                 "id": "VI_3_bis_2_b_2",
                 "CodeValeur": "VI.3.bis.2.b.2",
-                "Libelle": "travaille en tant que stagiaire à temps partiel",
+                "Libelle": "travaille en contrat aidé à temps partiel",
                 "Reponses": [
                   {
                     "id": "VI_3_bis_2_b_2_a",
                     "CodeValeur": "VI.3.bis.2.b.2.a",
-                    "Libelle": "travail à temps partiel en tant que stagiaire sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "travaille à temps partiel en contrat aidé sur un temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_b_2_b",
                     "CodeValeur": "VI.3.bis.2.b.2.b",
-                    "Libelle": "travail à temps partiel en tant que stagiaire sur un temps inférieur à un mi temps"
+                    "Libelle": "travaille à temps partiel en contrat aidé sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1275,27 +1388,27 @@
           {
             "id": "VI_3_bis_2_c",
             "CodeValeur": "VI.3.bis.2.c",
-            "Libelle": "travaille en contrat aidé",
+            "Libelle": "travaille en CDD",
             "Reponses": [
               {
                 "id": "VI_3_bis_2_c_1",
                 "CodeValeur": "VI.3.bis.2.c.1",
-                "Libelle": "travaille en contrat aidé à temps complet"
+                "Libelle": "travaille en CDD à temps complet"
               },
               {
                 "id": "VI_3_bis_2_c_2",
                 "CodeValeur": "VI.3.bis.2.c.2",
-                "Libelle": "travaille en contrat aidé à temps partiel",
+                "Libelle": "travaille en CDD à temps partiel",
                 "Reponses": [
                   {
                     "id": "VI_3_bis_2_c_2_a",
                     "CodeValeur": "VI.3.bis.2.c.2.a",
-                    "Libelle": "travail à temps partiel en contrat aidé sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "travaille à temps partiel en CDD sur un temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_c_2_b",
                     "CodeValeur": "VI.3.bis.2.c.2.b",
-                    "Libelle": "travail à temps partiel en contrat aidé sur un temps inférieur à un mi temps"
+                    "Libelle": "travaille à temps partiel en CDD sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1304,27 +1417,27 @@
           {
             "id": "VI_3_bis_2_d",
             "CodeValeur": "VI.3.bis.2.d",
-            "Libelle": "travaille en CDD",
+            "Libelle": "travaille en CDI",
             "Reponses": [
               {
                 "id": "VI_3_bis_2_d_1",
                 "CodeValeur": "VI.3.bis.2.d.1",
-                "Libelle": "travaille en CDD à temps complet"
+                "Libelle": "travaille en CDI à temps complet"
               },
               {
                 "id": "VI_3_bis_2_d_2",
                 "CodeValeur": "VI.3.bis.2.d.2",
-                "Libelle": "travaille en CDD à temps partiel",
+                "Libelle": "travaille en CDI à temps partiel",
                 "Reponses": [
                   {
                     "id": "VI_3_bis_2_d_2_a",
                     "CodeValeur": "VI.3.bis.2.d.2.a",
-                    "Libelle": "travail à temps partiel en CDD sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "travaille à temps partiel en CDI sur un temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_d_2_b",
                     "CodeValeur": "VI.3.bis.2.d.2.b",
-                    "Libelle": "travail à temps partiel en CDD sur un temps inférieur à un mi temps"
+                    "Libelle": "travaille à temps partiel en CDI sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1333,27 +1446,27 @@
           {
             "id": "VI_3_bis_2_e",
             "CodeValeur": "VI.3.bis.2.e",
-            "Libelle": "travaille en CDI",
+            "Libelle": "travaille en intérim",
             "Reponses": [
               {
                 "id": "VI_3_bis_2_e_1",
                 "CodeValeur": "VI.3.bis.2.e.1",
-                "Libelle": "travaille en CDI à temps complet"
+                "Libelle": "travaille en intérim à temps complet"
               },
               {
                 "id": "VI_3_bis_2_e_2",
                 "CodeValeur": "VI.3.bis.2.e.2",
-                "Libelle": "travaille en CDI à temps partiel",
+                "Libelle": "travaille en intérim à temps partiel",
                 "Reponses": [
                   {
                     "id": "VI_3_bis_2_e_2_a",
                     "CodeValeur": "VI.3.bis.2.e.2.a",
-                    "Libelle": "travail à temps partiel en CDI sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "travaille à temps partiel en intérim sur un temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_e_2_b",
                     "CodeValeur": "VI.3.bis.2.e.2.b",
-                    "Libelle": "travail à temps partiel en CDI sur un temps inférieur à un mi temps"
+                    "Libelle": "travaille à temps partiel en intérim sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1362,27 +1475,27 @@
           {
             "id": "VI_3_bis_2_f",
             "CodeValeur": "VI.3.bis.2.f",
-            "Libelle": "travaille en intérim",
+            "Libelle": "travaille en tant que travailleur indépendant",
             "Reponses": [
               {
                 "id": "VI_3_bis_2_f_1",
                 "CodeValeur": "VI.3.bis.2.f.1",
-                "Libelle": "travaille en intérim à temps complet"
+                "Libelle": "travaille en tant que travailleur indépendant à temps complet"
               },
               {
                 "id": "VI_3_bis_2_f_2",
                 "CodeValeur": "VI.3.bis.2.f.2",
-                "Libelle": "travaille en intérim à temps partiel",
+                "Libelle": "travaille en tant que travailleur indépendant à temps partiel",
                 "Reponses": [
                   {
                     "id": "VI_3_bis_2_f_2_a",
                     "CodeValeur": "VI.3.bis.2.f.2.a",
-                    "Libelle": "travail à temps partiel en intérim sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "travailleur indépendant à temps partiel sur un temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_f_2_b",
                     "CodeValeur": "VI.3.bis.2.f.2.b",
-                    "Libelle": "travail à temps partiel en intérim sur un temps inférieur à un mi temps"
+                    "Libelle": "travailleur indépendant à temps partiel sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1391,27 +1504,27 @@
           {
             "id": "VI_3_bis_2_g",
             "CodeValeur": "VI.3.bis.2.g",
-            "Libelle": "travaille en tant que travailleur indépendant",
+            "Libelle": "travaille en ESAT",
             "Reponses": [
               {
                 "id": "VI_3_bis_2_g_1",
                 "CodeValeur": "VI.3.bis.2.g.1",
-                "Libelle": "travaille en tant que travailleur indépendant à temps complet"
+                "Libelle": "travaille en ESAT à temps complet"
               },
               {
                 "id": "VI_3_bis_2_g_2",
                 "CodeValeur": "VI.3.bis.2.g.2",
-                "Libelle": "travaille en tant que travailleur indépendant à temps partiel",
+                "Libelle": "travaille en ESAT à temps partiel",
                 "Reponses": [
                   {
                     "id": "VI_3_bis_2_g_2_a",
                     "CodeValeur": "VI.3.bis.2.g.2.a",
-                    "Libelle": "travailleur indépendant à temps partiel sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "travaille à temps partiel en ESAT sur un temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_g_2_b",
                     "CodeValeur": "VI.3.bis.2.g.2.b",
-                    "Libelle": "travailleur indépendant à temps partiel sur un temps inférieur à un mi temps"
+                    "Libelle": "travaille à temps partiel en ESAT sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1420,56 +1533,27 @@
           {
             "id": "VI_3_bis_2_h",
             "CodeValeur": "VI.3.bis.2.h",
-            "Libelle": "travaille en ESAT",
+            "Libelle": "autre type d'activité ",
             "Reponses": [
               {
                 "id": "VI_3_bis_2_h_1",
                 "CodeValeur": "VI.3.bis.2.h.1",
-                "Libelle": "travaille en ESAT à temps complet"
+                "Libelle": "autre type d'activité à temps complet"
               },
               {
                 "id": "VI_3_bis_2_h_2",
                 "CodeValeur": "VI.3.bis.2.h.2",
-                "Libelle": "travaille en ESAT à temps partiel",
+                "Libelle": "autre type d'activité à temps partiel",
                 "Reponses": [
                   {
                     "id": "VI_3_bis_2_h_2_a",
                     "CodeValeur": "VI.3.bis.2.h.2.a",
-                    "Libelle": "travail à temps partiel en ESAT sur un temps supérieur ou égal un à mi temps"
+                    "Libelle": "autre type d'activité à temps partiel sur un  temps supérieur ou égal un à mi temps"
                   },
                   {
                     "id": "VI_3_bis_2_h_2_b",
                     "CodeValeur": "VI.3.bis.2.h.2.b",
-                    "Libelle": "travail à temps partiel en ESAT sur un temps inférieur à un mi temps"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "id": "VI_3_bis_2_i",
-            "CodeValeur": "VI.3.bis.2.i",
-            "Libelle": "autre type de travail",
-            "Reponses": [
-              {
-                "id": "VI_3_bis_2_i_1",
-                "CodeValeur": "VI.3.bis.2.i.1",
-                "Libelle": "autre type de travail à temps complet"
-              },
-              {
-                "id": "VI_3_bis_2_i_2",
-                "CodeValeur": "VI.3.bis.2.i.2",
-                "Libelle": "autre type de travail à temps partiel",
-                "Reponses": [
-                  {
-                    "id": "VI_3_bis_2ia_2_a",
-                    "CodeValeur": "VI.3.bis.2ia.2.a",
-                    "Libelle": "autre type de travail à temps partiel sur un  temps supérieur ou égal un à mi temps"
-                  },
-                  {
-                    "id": "VI_3_bis_2_i_2_b",
-                    "CodeValeur": "VI.3.bis.2.i.2.b",
-                    "Libelle": "autre type de travail à temps partiel sur un temps inférieur à un mi temps"
+                    "Libelle": "autre type d'activité à temps partiel sur un temps inférieur à un mi temps"
                   }
                 ]
               }
@@ -1591,7 +1675,7 @@
     "Type": "CU tous niveaux (attention la colonne J ne permet que de s'orienter dans la nomenclature et pas d'enregistrer des données)  ",
     "Reponses": [
       {
-        "id": "272_id",
+        "id": "286_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Certaines maladies infectieuses et parasitaires",
         "Reponses": [
@@ -1899,7 +1983,7 @@
         ]
       },
       {
-        "id": "332_id",
+        "id": "346_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Tumeurs",
         "Reponses": [
@@ -2415,7 +2499,7 @@
         ]
       },
       {
-        "id": "434_id",
+        "id": "448_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies du sang et des organes hématopoïétiques et certains troubles du système immunitaire",
         "Reponses": [
@@ -2686,7 +2770,7 @@
         ]
       },
       {
-        "id": "487_id",
+        "id": "501_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies endocriniennes, nutritionnelles et métaboliques",
         "Reponses": [
@@ -3006,7 +3090,7 @@
         ]
       },
       {
-        "id": "549_id",
+        "id": "563_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Troubles mentaux et du comportement",
         "Reponses": [
@@ -3685,7 +3769,7 @@
         ]
       },
       {
-        "id": "680_id",
+        "id": "694_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies du système nerveux",
         "Reponses": [
@@ -4231,7 +4315,7 @@
         ]
       },
       {
-        "id": "786_id",
+        "id": "800_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'oeil et de ses annexes",
         "Reponses": [
@@ -4700,7 +4784,7 @@
         ]
       },
       {
-        "id": "879_id",
+        "id": "893_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'oreille et de l'apophyse mastoïde",
         "Reponses": [
@@ -4863,7 +4947,7 @@
         ]
       },
       {
-        "id": "910_id",
+        "id": "924_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil circulatoire",
         "Reponses": [
@@ -5223,7 +5307,7 @@
         ]
       },
       {
-        "id": "980_id",
+        "id": "994_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil respiratoire",
         "Reponses": [
@@ -5446,7 +5530,7 @@
         ]
       },
       {
-        "id": "1023_id",
+        "id": "1037_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil digestif",
         "Reponses": [
@@ -5657,7 +5741,7 @@
         ]
       },
       {
-        "id": "1064_id",
+        "id": "1078_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de la peau et du tissu cellulaire sous-cutané",
         "Reponses": [
@@ -6041,7 +6125,7 @@
         ]
       },
       {
-        "id": "1140_id",
+        "id": "1154_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies du système ostéo-articulaire, des muscles et du tissu conjonctif",
         "Reponses": [
@@ -6726,7 +6810,7 @@
         ]
       },
       {
-        "id": "1275_id",
+        "id": "1289_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Maladies de l'appareil génito-urinaire",
         "Reponses": [
@@ -6902,7 +6986,7 @@
         ]
       },
       {
-        "id": "1309_id",
+        "id": "1323_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Grossesse, accouchement et puerpéralité",
         "Reponses": [
@@ -6931,7 +7015,7 @@
         ]
       },
       {
-        "id": "1314_id",
+        "id": "1328_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Certaines affections dont l'origine se situe dans la période périnatale",
         "Reponses": [
@@ -7105,7 +7189,7 @@
         ]
       },
       {
-        "id": "1348_id",
+        "id": "1362_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Malformations congénitales et anomalies chromosomiques",
         "Reponses": [
@@ -7726,7 +7810,7 @@
         ]
       },
       {
-        "id": "1471_id",
+        "id": "1485_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Symptômes, signes et résultats anormaux d'examens cliniques et de laboratoire, non classés ailleurs",
         "Reponses": [
@@ -8109,7 +8193,7 @@
         ]
       },
       {
-        "id": "1546_id",
+        "id": "1560_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Lésions traumatiques, empoisonnements et certaines autres conséquences de causes externes",
         "Reponses": [
@@ -8305,7 +8389,7 @@
         ]
       },
       {
-        "id": "1584_id",
+        "id": "1598_id",
         "CodeValeur": "pas de code valeur",
         "Libelle": "Facteurs influant sur l'état de santé et motifs de recours aux services de santé",
         "Reponses": [
@@ -9045,12 +9129,12 @@
       {
         "id": "VII_10_1",
         "CodeValeur": "VII.10.1",
-        "Libelle": "pas de prise en charge"
+        "Libelle": "pas de prise en charge régulière ou d'appareillage"
       },
       {
         "id": "VII_10_2",
         "CodeValeur": "VII.10.2",
-        "Libelle": "existence d'une prise en charge",
+        "Libelle": "existence d'une prise en charge régulière ou d'un appareillage",
         "Reponses": [
           {
             "id": "VII_10_2_a",
@@ -9075,16 +9159,6 @@
               {
                 "id": "VII_10_2_a_4",
                 "CodeValeur": "VII.10.2.a.4",
-                "Libelle": "prise en charge avec hospitalisations trimestrielles"
-              },
-              {
-                "id": "VII_10_2_a_5",
-                "CodeValeur": "VII.10.2.a.5",
-                "Libelle": "prise en charge avec hospitalisations annuelles"
-              },
-              {
-                "id": "VII_10_2_a_6",
-                "CodeValeur": "VII.10.2.a.6",
                 "Libelle": "prise en charge avec hospitalisations selon une autre fréquence"
               }
             ]
@@ -9092,7 +9166,7 @@
           {
             "id": "VII_10_2_b",
             "CodeValeur": "VII.10.2.b",
-            "Libelle": "prise en charge par un kinésithérapeute",
+            "Libelle": "prise en charge régulière par un kinésithérapeute",
             "Reponses": [
               {
                 "id": "VII_10_2_b_1",
@@ -9107,11 +9181,6 @@
               {
                 "id": "VII_10_2_b_3",
                 "CodeValeur": "VII.10.2.b.3",
-                "Libelle": "prise en charge trimestrielle par un kinésithérapeute "
-              },
-              {
-                "id": "VII_10_2_b_4",
-                "CodeValeur": "VII.10.2.b.4",
                 "Libelle": "prise en charge par un kinésithérapeute selon une autre fréquence"
               }
             ]
@@ -9119,7 +9188,7 @@
           {
             "id": "VII_10_2_c",
             "CodeValeur": "VII.10.2.c",
-            "Libelle": "prise en charge par un infirmier ",
+            "Libelle": "prise en charge régulière par un infirmier ",
             "Reponses": [
               {
                 "id": "VII_10_2_c_1",
@@ -9134,11 +9203,6 @@
               {
                 "id": "VII_10_2_c_3",
                 "CodeValeur": "VII.10.2.c.3",
-                "Libelle": "prise en charge trimestrielle par un infirmier "
-              },
-              {
-                "id": "VII_10_2_c_4",
-                "CodeValeur": "VII.10.2.c.4",
                 "Libelle": "prise en charge par un infirmier  selon une autre fréquence"
               }
             ]
@@ -9146,7 +9210,7 @@
           {
             "id": "VII_10_2_d",
             "CodeValeur": "VII.10.2.d",
-            "Libelle": "prise en charge par un orthophoniste",
+            "Libelle": "prise en charge régulière par un orthophoniste",
             "Reponses": [
               {
                 "id": "VII_10_2_d_1",
@@ -9161,11 +9225,6 @@
               {
                 "id": "VII_10_2_d_3",
                 "CodeValeur": "VII.10.2.d.3",
-                "Libelle": "prise en charge trimestrielle par un orthophoniste"
-              },
-              {
-                "id": "VII_10_2_d_4",
-                "CodeValeur": "VII.10.2.d.4",
                 "Libelle": "prise en charge par un orthophoniste selon une autre fréquence"
               }
             ]
@@ -9173,7 +9232,7 @@
           {
             "id": "VII_10_2_e",
             "CodeValeur": "VII.10.2.e",
-            "Libelle": "prise en charge par un psychologue",
+            "Libelle": "prise en charge régulière par un psychologue",
             "Reponses": [
               {
                 "id": "VII_10_2_e_1",
@@ -9188,11 +9247,6 @@
               {
                 "id": "VII_10_2_e_3",
                 "CodeValeur": "VII.10.2.e.3",
-                "Libelle": "prise en charge trimestrielle par un psychologue"
-              },
-              {
-                "id": "VII_10_2_e_4",
-                "CodeValeur": "VII.10.2.e.4",
                 "Libelle": "prise en charge par un psychologue selon une autre fréquence"
               }
             ]
@@ -9200,7 +9254,7 @@
           {
             "id": "VII_10_2_f",
             "CodeValeur": "VII.10.2.f",
-            "Libelle": "prise en charge par un ergothérapeute",
+            "Libelle": "prise en charge régulière par un ergothérapeute",
             "Reponses": [
               {
                 "id": "VII_10_2_f_1",
@@ -9215,11 +9269,6 @@
               {
                 "id": "VII_10_2_f_3",
                 "CodeValeur": "VII.10.2.f.3",
-                "Libelle": "prise en charge trimestrielle par un ergothérapeute "
-              },
-              {
-                "id": "VII_10_2_f_4",
-                "CodeValeur": "VII.10.2.f.4",
                 "Libelle": "prise en charge par un ergothérapeute selon une autre fréquence"
               }
             ]
@@ -9227,7 +9276,7 @@
           {
             "id": "VII_10_2_g",
             "CodeValeur": "VII.10.2.g",
-            "Libelle": "prise en charge par un psychomotricien",
+            "Libelle": "prise en charge régulière par un psychomotricien",
             "Reponses": [
               {
                 "id": "VII_10_2_g_1",
@@ -9242,11 +9291,6 @@
               {
                 "id": "VII_10_2_g_3",
                 "CodeValeur": "VII.10.2.g.3",
-                "Libelle": "prise en charge trimestrielle par un psychomotricien"
-              },
-              {
-                "id": "VII_10_2_g_4",
-                "CodeValeur": "VII.10.2.g.4",
                 "Libelle": "prise en charge par un psychomotricien selon une autre fréquence"
               }
             ]
@@ -9254,7 +9298,7 @@
           {
             "id": "VII_10_2_h",
             "CodeValeur": "VII.10.2.h",
-            "Libelle": "prise en charge par un orthoptiste",
+            "Libelle": "prise en charge régulière par un orthoptiste",
             "Reponses": [
               {
                 "id": "VII_10_2_h_1",
@@ -9269,11 +9313,6 @@
               {
                 "id": "VII_10_2_h_3",
                 "CodeValeur": "VII.10.2.h.3",
-                "Libelle": "prise en charge trimestrielle par un orthoptiste"
-              },
-              {
-                "id": "VII_10_2_h_4",
-                "CodeValeur": "VII.10.2.h.4",
                 "Libelle": "prise en charge par un orthoptiste selon une autre fréquence"
               }
             ]
@@ -9281,7 +9320,7 @@
           {
             "id": "VII_10_2_i",
             "CodeValeur": "VII.10.2.i",
-            "Libelle": "prise en charge par un autre professionnel",
+            "Libelle": "prise en charge régulière par un autre professionnel",
             "Reponses": [
               {
                 "id": "VII_10_2_i_1",
@@ -9296,11 +9335,6 @@
               {
                 "id": "VII_10_2_i_3",
                 "CodeValeur": "VII.10.2.i.3",
-                "Libelle": "prise en charge trimestrielle par un autre professionnel"
-              },
-              {
-                "id": "VII_10_2_i_4",
-                "CodeValeur": "VII.10.2.i.4",
                 "Libelle": "prise en charge par un autre professionnel selon une autre fréquence"
               }
             ]
@@ -9328,7 +9362,7 @@
               {
                 "id": "VII_10_2_j_4",
                 "CodeValeur": "VII.10.2.j.4",
-                "Libelle": "prise en charge par un hôpital de jour"
+                "Libelle": "prise en charge par un Hôpital de Jour"
               },
               {
                 "id": "VII_10_2_j_5",
@@ -9668,12 +9702,12 @@
           {
             "id": "VII_10_2_m",
             "CodeValeur": "VII.10.2.m",
-            "Libelle": "pas de contrainte lié aux prises en charge "
+            "Libelle": "pas de contrainte lié aux prises en charge ou à l'appareillage"
           },
           {
             "id": "VII_10_2_n",
             "CodeValeur": "VII.10.2.n",
-            "Libelle": "présence de contraintes liées aux prises en charge ",
+            "Libelle": "présence de contraintes liées aux prises en charge ou appareillages",
             "Reponses": [
               {
                 "id": "VII_10_2_n_1",
@@ -9747,7 +9781,7 @@
               {
                 "id": "VII_10_2_n_4",
                 "CodeValeur": "VII.10.2.n.4",
-                "Libelle": "autres contraintes liées aux prises en charge "
+                "Libelle": "autres contraintes liées aux prises en charge ou appareillages"
               }
             ]
           }
@@ -12790,7 +12824,7 @@
               {
                 "id": "XI_1_bis_2_b_1",
                 "CodeValeur": "XI.1.bis.2.b.1",
-                "Libelle": "besoins en matière d'autonomie pour communiquer, mener une conversation ou une discussion",
+                "Libelle": "besoins en matière d'autonomie pour communiquer, mener une conversation ",
                 "Reponses": [
                   {
                     "id": "XI_1_bis_2_b_1_a",
@@ -12918,40 +12952,40 @@
                 ]
               },
               {
-                "id": "XI_1_bis_2_b_4",
-                "CodeValeur": "XI.1.bis.2.b.4",
+                "id": "XI_1_bis_2_b_3",
+                "CodeValeur": "XI.1.bis.2.b.3",
                 "Libelle": "besoins en matière d'autonomie pour utiliser des appareils et techniques de communication",
                 "Reponses": [
                   {
-                    "id": "XI_1_bis_2_b_4_a",
-                    "CodeValeur": "XI.1.bis.2.b.4.a",
+                    "id": "XI_1_bis_2_b_3_a",
+                    "CodeValeur": "XI.1.bis.2.b.3.a",
                     "Libelle": "besoins en matière d'autonomie pour utiliser le téléphone",
                     "Reponses": [
                       {
-                        "id": "XI_1_bis_2_b_4_a_1",
-                        "CodeValeur": "XI.1.bis.2.b.4.a.1",
+                        "id": "XI_1_bis_2_b_3_a_1",
+                        "CodeValeur": "XI.1.bis.2.b.3.a.1",
                         "Libelle": "besoin épisodique pour utiliser le téléphone"
                       },
                       {
-                        "id": "XI_1_bis_2_b_4_a_2",
-                        "CodeValeur": "XI.1.bis.2.b.4.a.2",
+                        "id": "XI_1_bis_2_b_3_a_2",
+                        "CodeValeur": "XI.1.bis.2.b.3.a.2",
                         "Libelle": "besoin permanent pour utiliser le téléphone"
                       }
                     ]
                   },
                   {
-                    "id": "XI_1_bis_2_b_4_b",
-                    "CodeValeur": "XI.1.bis.2.b.4.b",
+                    "id": "XI_1_bis_2_b_3_b",
+                    "CodeValeur": "XI.1.bis.2.b.3.b",
                     "Libelle": "besoins en matière d'autonomie pour utiliser les autres appareils et techniques de communication",
                     "Reponses": [
                       {
-                        "id": "XI_1_bis_2_b_4_b_1",
-                        "CodeValeur": "XI.1.bis.2.b.4.b.1",
+                        "id": "XI_1_bis_2_b_3_b_1",
+                        "CodeValeur": "XI.1.bis.2.b.3.b.1",
                         "Libelle": "besoin épisodique pour utiliser les autres appareils et techniques de communication"
                       },
                       {
-                        "id": "XI_1_bis_2_b_4_b_2",
-                        "CodeValeur": "XI.1.bis.2.b.4.b.2",
+                        "id": "XI_1_bis_2_b_3_b_2",
+                        "CodeValeur": "XI.1.bis.2.b.3.b.2",
                         "Libelle": "besoin permanent pour utiliser les autres appareils et techniques de communication"
                       }
                     ]
@@ -13453,70 +13487,22 @@
               {
                 "id": "XI_1_bis_3_a_1",
                 "CodeValeur": "XI.1.bis.3.a.1",
-                "Libelle": "besoins pour la participation sociale pour accéder aux droits",
-                "Reponses": [
-                  {
-                    "id": "XI_1_bis_3_a_1_a",
-                    "CodeValeur": "XI.1.bis.3.a.1.a",
-                    "Libelle": "besoin épisodique pour accéder aux droits "
-                  },
-                  {
-                    "id": "XI_1_bis_3_a_1_b",
-                    "CodeValeur": "XI.1.bis.3.a.1.b",
-                    "Libelle": "besoin permanent pour accéder aux droits "
-                  }
-                ]
+                "Libelle": "besoins pour la participation sociale pour accéder aux droits"
               },
               {
                 "id": "XI_1_bis_3_a_2",
                 "CodeValeur": "XI.1.bis.3.a.2",
-                "Libelle": "besoins pour la participation sociale pour accéder à la vie politique et à la citoyenneté",
-                "Reponses": [
-                  {
-                    "id": "XI_1_bis_3_a_2_a",
-                    "CodeValeur": "XI.1.bis.3.a.2.a",
-                    "Libelle": "besoin épisodique pour accéder à la vie politique et à la citoyenneté"
-                  },
-                  {
-                    "id": "XI_1_bis_3_a_2_b",
-                    "CodeValeur": "XI.1.bis.3.a.2.b",
-                    "Libelle": "besoin permanent pour accéder à la vie politique et à la citoyenneté"
-                  }
-                ]
+                "Libelle": "besoins pour la participation sociale pour accéder à la vie politique et à la citoyenneté"
               },
               {
                 "id": "XI_1_bis_3_a_3",
                 "CodeValeur": "XI.1.bis.3.a.3",
-                "Libelle": "besoins pour la participation sociale pour la pratique religieuse",
-                "Reponses": [
-                  {
-                    "id": "XI_1_bis_3_a_3_a",
-                    "CodeValeur": "XI.1.bis.3.a.3.a",
-                    "Libelle": "besoin épisodique pour la pratique religieuse"
-                  },
-                  {
-                    "id": "XI_1_bis_3_a_3_b",
-                    "CodeValeur": "XI.1.bis.3.a.3.b",
-                    "Libelle": "besoin permanent pour la pratique religieuse"
-                  }
-                ]
+                "Libelle": "besoins pour la participation sociale pour la pratique religieuse"
               },
               {
                 "id": "XI_1_bis_3_a_4",
                 "CodeValeur": "XI.1.bis.3.a.4",
-                "Libelle": "besoins pour la participation sociale pour faire du bénévolat",
-                "Reponses": [
-                  {
-                    "id": "XI_1_bis_3_a_4_a",
-                    "CodeValeur": "XI.1.bis.3.a.4.a",
-                    "Libelle": "besoin épisodique pour faire du bénévolat"
-                  },
-                  {
-                    "id": "XI_1_bis_3_a_4_b",
-                    "CodeValeur": "XI.1.bis.3.a.4.b",
-                    "Libelle": "besoin permanent pour faire du bénévolat"
-                  }
-                ]
+                "Libelle": "besoins pour la participation sociale pour faire du bénévolat"
               }
             ]
           },
@@ -13528,29 +13514,17 @@
               {
                 "id": "XI_1_bis_3_b_1",
                 "CodeValeur": "XI.1.bis.3.b.1",
-                "Libelle": "besoins pour la participation sociale pour vivre dans un logement",
+                "Libelle": "besoins pour la participation sociale pour vivre seul dans un logement",
                 "Reponses": [
                   {
                     "id": "XI_1_bis_3_b_1_a",
                     "CodeValeur": "XI.1.bis.3.b.1.a",
-                    "Libelle": "besoins pour la participation sociale pour avoir un lieu d'hébergement"
+                    "Libelle": "besoin épisodique pour vivre seul dans un logement"
                   },
                   {
                     "id": "XI_1_bis_3_b_1_b",
                     "CodeValeur": "XI.1.bis.3.b.1.b",
-                    "Libelle": "besoins pour la participation sociale pour vivre seul dans un logement",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_b_1_b_1",
-                        "CodeValeur": "XI.1.bis.3.b.1.b.1",
-                        "Libelle": "besoin épisodique pour vivre seul dans un logement"
-                      },
-                      {
-                        "id": "XI_1_bis_3_b_1_b_2",
-                        "CodeValeur": "XI.1.bis.3.b.1.b.2",
-                        "Libelle": "besoin permanent pour vivre seul dans un logement"
-                      }
-                    ]
+                    "Libelle": "besoin permanent pour vivre seul dans un logement"
                   }
                 ]
               },
@@ -13634,29 +13608,12 @@
           {
             "id": "XI_1_bis_3_c",
             "CodeValeur": "XI.1.bis.3.c",
-            "Libelle": "besoins pour la participation sociale pour l'insertion sociale/professionnelle, avoir un rôle social",
+            "Libelle": "besoins pour la participation sociale pour l'insertion scolaire/professionnelle",
             "Reponses": [
               {
                 "id": "XI_1_bis_3_c_1",
                 "CodeValeur": "XI.1.bis.3.c.1",
-                "Libelle": "besoins pour la participation sociale en lien avec la vie scolaire et étudiante",
-                "Reponses": [
-                  {
-                    "id": "XI_1_bis_3_c_1_a",
-                    "CodeValeur": "XI.1.bis.3.c.1.a",
-                    "Libelle": "besoins pour la participation sociale pour l'éducation préscolaire"
-                  },
-                  {
-                    "id": "XI_1_bis_3_c_1_b",
-                    "CodeValeur": "XI.1.bis.3.c.1.b",
-                    "Libelle": "besoins pour la participation sociale pour l'éducation scolaire"
-                  },
-                  {
-                    "id": "XI_1_bis_3_c_1_c",
-                    "CodeValeur": "XI.1.bis.3.c.1.c",
-                    "Libelle": "besoins pour la participation sociale pour l'éducation supérieure"
-                  }
-                ]
+                "Libelle": "besoins pour la participation sociale en lien avec la vie scolaire et étudiante"
               },
               {
                 "id": "XI_1_bis_3_c_2",
@@ -13672,11 +13629,6 @@
                     "id": "XI_1_bis_3_c_2_b",
                     "CodeValeur": "XI.1.bis.3.c.2.b",
                     "Libelle": "besoins pour la participation sociale pour obtenir ou garder un travail ou un emploi"
-                  },
-                  {
-                    "id": "XI_1_bis_3_c_2_c",
-                    "CodeValeur": "XI.1.bis.3.c.2.c",
-                    "Libelle": "besoins transversaux pour la participation sociale en lien avec le travail et l'emploi"
                   }
                 ]
               },
@@ -13708,168 +13660,62 @@
                     ]
                   }
                 ]
-              },
-              {
-                "id": "XI_1_bis_3_c_4",
-                "CodeValeur": "XI.1.bis.3.c.4",
-                "Libelle": "besoins pour la participation sociale pour vie familiale, parentalité, vie affective et sexuelle",
-                "Reponses": [
-                  {
-                    "id": "XI_1_bis_3_c_4_a",
-                    "CodeValeur": "XI.1.bis.3.c.4.a",
-                    "Libelle": "besoins pour la participation sociale pour s'occuper de sa famille",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_c_4_a_1",
-                        "CodeValeur": "XI.1.bis.3.c.4.a.1",
-                        "Libelle": "besoin épisodique pour s'occuper de sa famille"
-                      },
-                      {
-                        "id": "XI_1_bis_3_c_4_a_2",
-                        "CodeValeur": "XI.1.bis.3.c.4.a.2",
-                        "Libelle": "besoin permanent pour s'occuper de sa famille"
-                      }
-                    ]
-                  },
-                  {
-                    "id": "XI_1_bis_3_c_4_b",
-                    "CodeValeur": "XI.1.bis.3.c.4.b",
-                    "Libelle": "besoins pour la participation sociale pour la parentalité",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_c_4_b_1",
-                        "CodeValeur": "XI.1.bis.3.c.4.b.1",
-                        "Libelle": "besoin épisodique pour la parentalité"
-                      },
-                      {
-                        "id": "XI_1_bis_3_c_4_b_2",
-                        "CodeValeur": "XI.1.bis.3.c.4.b.2",
-                        "Libelle": "besoin permanent pour la parentalité "
-                      }
-                    ]
-                  },
-                  {
-                    "id": "XI_1_bis_3_c_4_c",
-                    "CodeValeur": "XI.1.bis.3.c.4.c",
-                    "Libelle": "besoins pour la participation sociale pour la vie affective et sexuelle",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_c_4_c_1",
-                        "CodeValeur": "XI.1.bis.3.c.4.c.1",
-                        "Libelle": "besoin épisodique pour la vie affective et sexuelle"
-                      },
-                      {
-                        "id": "XI_1_bis_3_c_4_c_2",
-                        "CodeValeur": "XI.1.bis.3.c.4.c.2",
-                        "Libelle": "besoin permanent pour la vie affective et sexuelle"
-                      }
-                    ]
-                  }
-                ]
               }
             ]
           },
           {
             "id": "XI_1_bis_3_d",
             "CodeValeur": "XI.1.bis.3.d",
-            "Libelle": "besoins pour participer à la vie sociale et se déplacer avec un moyen de transport",
+            "Libelle": "besoins pour la participation sociale pour avoir un rôle social",
             "Reponses": [
               {
                 "id": "XI_1_bis_3_d_1",
                 "CodeValeur": "XI.1.bis.3.d.1",
-                "Libelle": "besoins pour participer à la vie sociale ",
+                "Libelle": "besoins pour la participation sociale pour s'occuper de sa famille",
                 "Reponses": [
                   {
                     "id": "XI_1_bis_3_d_1_a",
                     "CodeValeur": "XI.1.bis.3.d.1.a",
-                    "Libelle": "besoins pour participer à la vie sociale pour les loisirs",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_d_1_a_1",
-                        "CodeValeur": "XI.1.bis.3.d.1.a.1",
-                        "Libelle": "besoin épisodique pour les loisirs"
-                      },
-                      {
-                        "id": "XI_1_bis_3_d_1_a_2",
-                        "CodeValeur": "XI.1.bis.3.d.1.a.2",
-                        "Libelle": "besoin permanent pour les loisirs"
-                      }
-                    ]
+                    "Libelle": "besoin épisodique pour s'occuper de sa famille"
                   },
                   {
                     "id": "XI_1_bis_3_d_1_b",
                     "CodeValeur": "XI.1.bis.3.d.1.b",
-                    "Libelle": "besoins pour participer à la vie sociale pour partir en congés",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_d_1_b_1",
-                        "CodeValeur": "XI.1.bis.3.d.1.b.1",
-                        "Libelle": "besoin épisodique pour partir en congés"
-                      },
-                      {
-                        "id": "XI_1_bis_3_d_1_b_2",
-                        "CodeValeur": "XI.1.bis.3.d.1.b.2",
-                        "Libelle": "besoin permanent pour partir en congés"
-                      }
-                    ]
+                    "Libelle": "besoin permanent pour s'occuper de sa famille"
                   }
                 ]
               },
               {
                 "id": "XI_1_bis_3_d_2",
                 "CodeValeur": "XI.1.bis.3.d.2",
-                "Libelle": "besoins pour la participation sociale pour se déplacer avec un moyen de transport",
+                "Libelle": "besoins pour la participation sociale pour la parentalité",
                 "Reponses": [
                   {
                     "id": "XI_1_bis_3_d_2_a",
                     "CodeValeur": "XI.1.bis.3.d.2.a",
-                    "Libelle": "besoins pour la participation sociale pour utiliser les transports en commun",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_d_2_a_1",
-                        "CodeValeur": "XI.1.bis.3.d.2.a.1",
-                        "Libelle": "besoin épisodique pour utiliser les transports en commun"
-                      },
-                      {
-                        "id": "XI_1_bis_3_d_2_a_2",
-                        "CodeValeur": "XI.1.bis.3.d.2.a.2",
-                        "Libelle": "besoin permanent pour utiliser les transports en commun"
-                      }
-                    ]
+                    "Libelle": "besoin épisodique pour la parentalité"
                   },
                   {
                     "id": "XI_1_bis_3_d_2_b",
                     "CodeValeur": "XI.1.bis.3.d.2.b",
-                    "Libelle": "besoins pour la participation sociale pour utiliser un véhicule particulier",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_d_2_b_1",
-                        "CodeValeur": "XI.1.bis.3.d.2.b.1",
-                        "Libelle": "besoin épisodique pour utiliser un véhicule particulier"
-                      },
-                      {
-                        "id": "XI_1_bis_3_d_2_b_2",
-                        "CodeValeur": "XI.1.bis.3.d.2.b.2",
-                        "Libelle": "besoin permanent pour utiliser un véhicule particulier"
-                      }
-                    ]
+                    "Libelle": "besoin permanent pour la parentalité "
+                  }
+                ]
+              },
+              {
+                "id": "XI_1_bis_3_d_3",
+                "CodeValeur": "XI.1.bis.3.d.3",
+                "Libelle": "besoins pour la participation sociale pour la vie affective et sexuelle",
+                "Reponses": [
+                  {
+                    "id": "XI_1_bis_3_d_3_a",
+                    "CodeValeur": "XI.1.bis.3.d.3.a",
+                    "Libelle": "besoin épisodique pour la vie affective et sexuelle"
                   },
                   {
-                    "id": "XI_1_bis_3_d_2_c",
-                    "CodeValeur": "XI.1.bis.3.d.2.c",
-                    "Libelle": "besoins pour la participation sociale pour conduire un véhicule",
-                    "Reponses": [
-                      {
-                        "id": "XI_1_bis_3_d_2_c_1",
-                        "CodeValeur": "XI.1.bis.3.d.2.c.1",
-                        "Libelle": "besoin épisodique pour conduire un véhicule"
-                      },
-                      {
-                        "id": "XI_1_bis_3_d_2_c_2",
-                        "CodeValeur": "XI.1.bis.3.d.2.c.2",
-                        "Libelle": "besoin permanent pour conduire un véhicule"
-                      }
-                    ]
+                    "id": "XI_1_bis_3_d_3_b",
+                    "CodeValeur": "XI.1.bis.3.d.3.b",
+                    "Libelle": "besoin permanent pour la vie affective et sexuelle"
                   }
                 ]
               }
@@ -13878,38 +13724,101 @@
           {
             "id": "XI_1_bis_3_e",
             "CodeValeur": "XI.1.bis.3.e",
-            "Libelle": "besoins pour la participation sociale en matière de ressources et d'autosuffisance économique",
+            "Libelle": "besoins pour participer à la vie sociale ",
             "Reponses": [
               {
                 "id": "XI_1_bis_3_e_1",
                 "CodeValeur": "XI.1.bis.3.e.1",
+                "Libelle": "besoins pour participer à la vie sociale pour les loisirs"
+              },
+              {
+                "id": "XI_1_bis_3_e_2",
+                "CodeValeur": "XI.1.bis.3.e.2",
+                "Libelle": "besoins pour participer à la vie sociale pour partir en congés"
+              }
+            ]
+          },
+          {
+            "id": "XI_1_bis_3_f",
+            "CodeValeur": "XI.1.bis.3.f",
+            "Libelle": "besoins pour la participation sociale pour se déplacer avec un moyen de transport",
+            "Reponses": [
+              {
+                "id": "XI_1_bis_3_f_1",
+                "CodeValeur": "XI.1.bis.3.f.1",
+                "Libelle": "besoins pour la participation sociale pour utiliser les transports en commun",
+                "Reponses": [
+                  {
+                    "id": "XI_1_bis_3_f_1_a",
+                    "CodeValeur": "XI.1.bis.3.f.1.a",
+                    "Libelle": "besoin épisodique pour utiliser les transports en commun"
+                  },
+                  {
+                    "id": "XI_1_bis_3_f_1_b",
+                    "CodeValeur": "XI.1.bis.3.f.1.b",
+                    "Libelle": "besoin permanent pour utiliser les transports en commun"
+                  }
+                ]
+              },
+              {
+                "id": "XI_1_bis_3_f_2",
+                "CodeValeur": "XI.1.bis.3.f.2",
+                "Libelle": "besoins pour la participation sociale pour utiliser un véhicule particulier",
+                "Reponses": [
+                  {
+                    "id": "XI_1_bis_3_f_2_a",
+                    "CodeValeur": "XI.1.bis.3.f.2.a",
+                    "Libelle": "besoin épisodique pour utiliser un véhicule particulier"
+                  },
+                  {
+                    "id": "XI_1_bis_3_f_2_b",
+                    "CodeValeur": "XI.1.bis.3.f.2.b",
+                    "Libelle": "besoin permanent pour utiliser un véhicule particulier"
+                  }
+                ]
+              },
+              {
+                "id": "XI_1_bis_3_f_3",
+                "CodeValeur": "XI.1.bis.3.f.3",
+                "Libelle": "besoins pour la participation sociale pour conduire un véhicule"
+              }
+            ]
+          },
+          {
+            "id": "XI_1_bis_3_g",
+            "CodeValeur": "XI.1.bis.3.g",
+            "Libelle": "besoins pour la participation sociale en matière de ressources et d'autosuffisance économique",
+            "Reponses": [
+              {
+                "id": "XI_1_bis_3_g_1",
+                "CodeValeur": "XI.1.bis.3.g.1",
                 "Libelle": "besoins pour la participation sociale pour gérer ses ressources",
                 "Reponses": [
                   {
-                    "id": "XI_1_bis_3_e_1_a",
-                    "CodeValeur": "XI.1.bis.3.e.1.a",
+                    "id": "XI_1_bis_3_g_1_a",
+                    "CodeValeur": "XI.1.bis.3.g.1.a",
                     "Libelle": "besoin épisodique pour gérer ses ressources"
                   },
                   {
-                    "id": "XI_1_bis_3_e_1_b",
-                    "CodeValeur": "XI.1.bis.3.e.1.b",
+                    "id": "XI_1_bis_3_g_1_b",
+                    "CodeValeur": "XI.1.bis.3.g.1.b",
                     "Libelle": "besoin permanent pour gérer ses ressources "
                   }
                 ]
               },
               {
-                "id": "XI_1_bis_3_e_2",
-                "CodeValeur": "XI.1.bis.3.e.2",
+                "id": "XI_1_bis_3_g_2",
+                "CodeValeur": "XI.1.bis.3.g.2",
                 "Libelle": "besoins pour la participation sociale pour faire des démarches administratives ",
                 "Reponses": [
                   {
-                    "id": "XI_1_bis_3_e_2_a",
-                    "CodeValeur": "XI.1.bis.3.e.2.a",
+                    "id": "XI_1_bis_3_g_2_a",
+                    "CodeValeur": "XI.1.bis.3.g.2.a",
                     "Libelle": "besoin épisodique pour faire des démarches administratives  "
                   },
                   {
-                    "id": "XI_1_bis_3_e_2_b",
-                    "CodeValeur": "XI.1.bis.3.e.2.b",
+                    "id": "XI_1_bis_3_g_2_b",
+                    "CodeValeur": "XI.1.bis.3.g.2.b",
                     "Libelle": "besoin permanent pour faire des démarches administratives "
                   }
                 ]
