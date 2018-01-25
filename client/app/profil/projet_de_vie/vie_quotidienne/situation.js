@@ -268,7 +268,7 @@ angular.module('impactApp')
       .state(index + '.fraisHandicap', {
         url: '',
         templateUrl: 'components/question/frais_handicap.html',
-        controller: 'ListQuestionCtrl',
+        controller: 'ListFraisCtrl',
         resolve: {
           listName: function() {
             return 'listeFrais';

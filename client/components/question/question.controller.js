@@ -135,6 +135,30 @@ angular.module('impactApp')
       $scope.model[listName].pop();
     };
   })
+  .controller('ListFraisCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName, previousModel, sectionModel, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
+
+    if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[question.model] = {};
+      $scope.sectionModel[question.model][listName] = [];
+    }
+
+    $scope.model = $scope.sectionModel[question.model];
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
+
+    $scope.addLine = function(isRecurrent) {
+      $scope.model[listName].push({recurrent: isRecurrent});
+    };
+
+    $scope.removeLine = function() {
+      $scope.model[listName].pop();
+    };
+  })
   .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep) {
     initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
 
