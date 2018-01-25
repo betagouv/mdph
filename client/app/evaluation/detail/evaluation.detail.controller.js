@@ -147,7 +147,7 @@ angular.module('impactApp')
 
     this.download = function() {
       if (currentSynthese.firstname && currentSynthese.lastname && currentSynthese.birthdate) {
-        $window.open('api/syntheses/'+currentSynthese._id+'/pdf?access_token=' + $cookies.get('token'), '_self');
+        $window.open('api/syntheses/' + currentSynthese._id + '/pdf?access_token=' + $cookies.get('token'), '_self');
       } else {
         toastr.error('Merci de remplir tous les champs de saisie de l\'onglet Eléments du profil pour télécharger une fiche récapitulative de l\'évaluation.', 'Erreur');
       }
