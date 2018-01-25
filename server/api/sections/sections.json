@@ -249,6 +249,11 @@
             "label": "Allocation de Solidarité Spécifique (ASS)",
             "model": "ass",
             "onlyAdult": true
+          },
+          {
+            "label": "Retraite pour inaptitude dans la fonction publique ou anticipée",
+            "model": "retraite",
+            "onlyAdult": true
           }
         ]
       },
