@@ -193,6 +193,48 @@
           }
         ]
       },
+      "aidePasse": {
+        "model": "aidePasse",
+        "titleDefault": "Vous avez déjà eu :",
+        "titleRep": "<%= name %> a-t-<%= pronoun %> eu :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Un accident causé par un tiers",
+            "model": "accidentTiers"
+          },
+          {
+            "label": "Un accident du travail",
+            "model": "accidentTravail"
+          },
+          {
+            "label": "Un autre accident",
+            "model": "accidentAutre",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailAccident",
+            "type": "text"
+          }
+        ]
+      },
+      "indemnisation": {
+        "model": "indemnisation",
+        "titleDefault": "Suite à cet accident y a-t-il une demande d'indemnisation en cours ou ayant abouti ?",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailIndemnisation",
+            "detailLabel": "Auprès de quel organisme",
+            "detailType": "text"
+          },
+          {
+            "label": "Non",
+            "model": false
+          }
+        ]
+      },
       "aideActuelle": {
         "model": "aideActuelle",
         "titleDefault": "Vous recevez :",

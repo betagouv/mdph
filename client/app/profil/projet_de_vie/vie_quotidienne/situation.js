@@ -41,6 +41,46 @@ angular.module('impactApp')
           nextStep: function($state, saveCurrentState) {
             return function() {
               saveCurrentState();
+              $state.go('^.aidePasse');
+            };
+          }
+        }
+      })
+      .state(index + '.aidePasse', {
+        url: '',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aidePasse', profile);
+          },
+
+          nextStep: function($state, sectionModel, question, saveCurrentState) {
+            return function() {
+              saveCurrentState();
+              var answer = sectionModel[question.model];
+              if (answer.accidentAutre || answer.accidentTiers || answer.accidentTravail)
+              {
+                $state.go('^.indemnisation');
+              } else {
+                $state.go('^.aides');
+              }
+            };
+          }
+        }
+      })
+      .state(index + '.indemnisation', {
+        url: '',
+        templateUrl: 'components/question/radio.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'indemnisation', profile);
+          },
+
+          nextStep: function($state, saveCurrentState) {
+            return function() {
+              saveCurrentState();
               $state.go('^.aides');
             };
           }
