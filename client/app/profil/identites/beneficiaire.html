@@ -277,9 +277,9 @@
     <div class="form-group required" ng-class="{'has-error': !identite.aide && infoForm.$submitted}">
       <fieldset>
         <legend class="control-label">Êtes-vous aidé.e dans vos démarches auprès de la MDPH ?</legend>
-        <input type="radio" name="aide" id="aide-o" ng-model="identite.aide" ng-required="!identite.aide" value="Oui">
+        <input type="radio" name="aide" id="aide-o" ng-model="identite.aide" ng-required="!identite.aide" value="true">
         <label class="radio-inline" for="aide-o">Oui</label>
-        <input type="radio" name="aide" id="aide-n" ng-model="identite.aide" ng-required="!identite.aide" value="Non">
+        <input type="radio" name="aide" id="aide-n" ng-model="identite.aide" ng-required="!identite.aide" value="false">
         <label class="radio-inline" for="aide-n">Non</label>
       </fieldset>
       <div ng-if="!identite.aide && infoForm.$submitted">
@@ -289,9 +289,9 @@
     <div class="form-group required" ng-class="{'has-error': !identite.protection && infoForm.$submitted}">
       <fieldset>
         <legend class="control-label">Bénéficiez-vous d’une mesure de protection ?</legend>
-        <input type="radio" name="protection" id="protection-o" ng-model="identite.protection" ng-required="!identite.protection" value="Oui">
+        <input type="radio" name="protection" id="protection-o" ng-model="identite.protection" ng-required="!identite.protection" value="true">
         <label class="radio-inline" for="protection-o">Oui</label>
-        <input type="radio" name="protection" id="protection-n" ng-model="identite.protection" ng-required="!identite.protection" value="Non">
+        <input type="radio" name="protection" id="protection-n" ng-model="identite.protection" ng-required="!identite.protection" value="false">
         <label class="radio-inline" for="protection-n">Non</label>
       </fieldset>
       <div ng-if="!identite.protection && infoForm.$submitted">

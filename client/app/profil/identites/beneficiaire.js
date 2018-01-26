@@ -59,7 +59,7 @@ angular.module('impactApp')
                 if (profile.identites.beneficiaire.numero_secu_enfant) {
                   $state.go('^.autorite');
                 } else {
-                  if (profile.identites.beneficiaire.aide === 'Oui') {
+                  if (profile.identites.beneficiaire.aide === 'true') {
                     $state.go('^.aidant');
                   } else {
                     $state.go('^.representant');
