@@ -111,6 +111,9 @@ function computeAnswers(question, trajectoireAnswers) {
             answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
+        case 'remuneration':
+          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
+          break;
         default:
           answer.detail = detail;
       }

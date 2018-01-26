@@ -1191,7 +1191,8 @@
             "model": "stagiaire",
             "detailUrl": "components/detail/precisez_yes_no.html",
             "detailModel": "stagiaireDetail",
-            "detailLabel": "Est-ce un stage rémunéré ?"
+            "detailLabel": "Est-ce un stage rémunéré ?",
+            "detailType": "remuneration"
           }
         ]
       },
