@@ -121,3 +121,7 @@ Handlebars.registerHelper('pronoun', function(sexe, capitalize) {
 
   return isMale(sexe) ? 'il' : 'elle';
 });
+
+Handlebars.registerHelper('ouiNon', function(str) {
+  return str ==='true' ? 'Oui' : 'Non';
+});
