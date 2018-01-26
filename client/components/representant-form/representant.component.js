@@ -5,7 +5,7 @@ angular.module('impactApp').component('representantForm', {
   controller: 'RepresentantCtrl',
   controllerAs: 'representantctrl',
   bindings: {
-    identite: '=',
+    representant: '=',
     id: '<',
     required: '<',
     currentMdph: '<',

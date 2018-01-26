@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .controller('RepresentantCtrl', function($state, $scope, AdressService) {
-      $scope.identite = this.identite;
+      $scope.representant = this.representant;
       $scope.id = this.id;
       $scope.required = this.required;
       $scope.currentMdph = this.currentMdph;
@@ -20,13 +20,13 @@ angular.module('impactApp')
       };
 
       $scope.changeIsSameAddress = function() {
-        if ($scope.identite.isSameAddress) {
+        if ($scope.representant.isSameAddress) {
           $scope.searchAdress = '';
-          $scope.identite.complementAdresse = '';
-          $scope.identite.nomVoie = '';
-          $scope.identite.code_postal = '';
-          $scope.identite.localite = '';
-          $scope.identite.pays = '';
+          $scope.representant.complementAdresse = '';
+          $scope.representant.nomVoie = '';
+          $scope.representant.code_postal = '';
+          $scope.representant.localite = '';
+          $scope.representant.pays = '';
         }
       };
     });
