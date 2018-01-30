@@ -1,7 +1,10 @@
 <div class="row form-horizontal control-group">
-  <label class="col-md-2 control-label" for="inputPourcent" ng-bind-html="answer.detailLabel"></label>
-  <div class="col-md-10 input-group">
-    <input id="inputPourcent" type="number" class="form-control" ng-model="sectionModel[answer.detailModel]" min="0" max="100" placeholder="{{answer.placeholder}}">
-    <div class="input-group-addon">%</div>
+  <label class="col-md-3 control-label" for="inputPourcent" ng-bind-html="answer.detailLabel"></label>
+  <div class="col-md-2 input-group">
+    <input id="inputPourcent" type="number" class="form-control" ng-model="sectionModel[answer.detailModel]" min="0" max="100" placeholder="{{answer.placeholder}}" required>
+    <!--<div class="input-group-addon">%</div> -->
   </div>
+  <div ng-messages="questionForm[answer.detailModel].$error" ng-if="questionForm.showError">
+      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+    </div>
 </div>

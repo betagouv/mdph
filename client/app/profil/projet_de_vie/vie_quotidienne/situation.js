@@ -62,6 +62,8 @@ angular.module('impactApp')
               if (!answer) {
                 if (ProfileService.estAdulte(profile)) {
                   $state.go('^.retraite');
+                } else if (!ProfileService.estAdulte(profile)) {
+                  $state.go('^.activiteHandicap');
                 } else {
                   $state.go('^.fraisHandicap');
                 }
@@ -71,12 +73,6 @@ angular.module('impactApp')
                 $state.go('^.aideTechnique');
               } else if (answer.personne) {
                 $state.go('^.aidePersonne');
-              } else {
-                if (ProfileService.estAdulte(profile)) {
-                  $state.go('^.retraite');
-                } else {
-                  $state.go('^.fraisHandicap');
-                }
               }
             };
           }
@@ -104,6 +100,8 @@ angular.module('impactApp')
                   $state.go('^.aidePersonne');
                 } else if (sectionModel.aideActuelle.financiere) {
                   $state.go('^.pensionInvalidite');
+                } else if (!ProfileService.estAdulte(profile)) {
+                  $state.go('^.activiteHandicap');
                 } else {
                   $state.go('^.fraisHandicap');
                 }
@@ -133,6 +131,8 @@ angular.module('impactApp')
                 $state.go('^.pensionInvalidite');
               } else if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
+              } else if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
               } else {
                 $state.go('^.fraisHandicap');
               }
@@ -159,6 +159,8 @@ angular.module('impactApp')
                 $state.go('^.pensionInvalidite');
               } else if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
+              } else if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
               } else {
                 $state.go('^.fraisHandicap');
               }
@@ -182,6 +184,8 @@ angular.module('impactApp')
                 $state.go('^.pensionInvalidite');
               } else if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
+              } else if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
               } else {
                 $state.go('^.fraisHandicap');
               }
@@ -220,6 +224,8 @@ angular.module('impactApp')
               saveCurrentState();
               if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
+              } else if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
               } else {
                 $state.go('^.fraisHandicap');
               }
@@ -236,11 +242,13 @@ angular.module('impactApp')
             return QuestionService.get(section, 'retraite', profile);
           },
 
-          nextStep: function($state, sectionModel, question, saveCurrentState) {
+          nextStep: function(ProfileService, $state, sectionModel, question, saveCurrentState) {
             return function() {
               saveCurrentState();
               if (sectionModel[question.model]) {
                 $state.go('^.aidesRetraite');
+              } else if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
               } else {
                 $state.go('^.fraisHandicap');
               }
@@ -255,6 +263,45 @@ angular.module('impactApp')
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'aidesRetraite', profile);
+          },
+
+          nextStep: function(ProfileService, $state, saveCurrentState) {
+            return function() {
+              saveCurrentState();
+              if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
+              } else {
+                $state.go('^.fraisHandicap');
+              }
+            };
+          }
+        }
+      })
+
+      .state(index + '.activiteHandicap', {
+        url: '',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'activiteHandicap', profile);
+          },
+
+          nextStep: function($state, saveCurrentState) {
+            return function() {
+              saveCurrentState();
+              $state.go('^.remunHandicap');
+            };
+          }
+        }
+      })
+      .state(index + '.remunHandicap', {
+        url: '',
+        templateUrl: 'components/question/radio.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'remunHandicap', profile);
           },
 
           nextStep: function($state, saveCurrentState) {
