@@ -121,12 +121,20 @@ function computeAnswers(question, trajectoireAnswers) {
             answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
-          case 'remunHandicap':
-          answer.detail = detail.categorie;
-          if(detail.date){
-            answer.detail += ' ; Depuis le : ';
-            answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+        case 'remunHandicap':
+          answer.detail='';
+          if(detail.detail1){
+            answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
           }
+          if(detail.detail1 && detail.detail2){
+            answer.detail += '; ';
+          }
+          if(detail.detail2){
+            answer.detail += 'Nombre d\'heures par an : ' + detail.detail2;
+          }
+          break;
+        case 'pourcentage':
+        answer.detail = detail + ' %';
           break;
         default:
           answer.detail = detail;

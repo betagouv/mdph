@@ -424,18 +424,19 @@
       },
       "activiteHandicap": {
         "model": "activiteHandicap",
+        "titleDefault": "Du fait de votre handicap :",
         "titleRep": "Du fait du handicap de <%= name %> :",
         "type": "checkbox",
         "answers": [
           {
             "label": "Vous exercez une activité professionnelle à temps partiel",
-            "titleDefault": "Vous exercez une activité professionnelle à temps partiel",
             "titleRep": "Vous exercez une activité professionnelle à temps partiel",
             "model": "tempsPartiel",
             "detailModel": "tempsPartiel_detail",
             "detailUrl": "components/detail/precisez_pourcent.html",
             "detailLabel": "Précisez la quotité <br\/><span class=\"small\">en pourcentage</span>",
-            "placeholder": "__%"
+            "placeholder": "__%",
+            "detailType": "pourcentage"
           },
           {
             "label": "Vous avez dû renoncer à votre emploi",
@@ -445,19 +446,18 @@
       },
       "remunHandicap": {
         "model": "remunHandicap",
-        "titleDefault": " Du fait du handicap de <%= name %>, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
+        "titleDefault": " Du fait de votre handicap, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
         "titleRep": " Du fait du handicap de <%= name %>, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
         "type": "radio",
         "answers": [
           {
             "label": "Oui",
             "model": true,
-            "detailModel1": "remunHandicapDetail_NbHSemaine",
-            "detailModel2": "remunHandicapDetail_NbHAn",
+            "detailModel": "remunHandicapDetail",
             "detailTextLabel1": "Précisez le nombre d'heures par semaine",
             "detailTextLabel2": "Si l'emploi n'est pas régulier, précisez le nombre d'heures par an",
             "detailUrl": "components/detail/precisez_2_details.html",
-            "type": "remunHandicap"
+            "detailType": "remunHandicap"
           },
           {
             "label": "Non",

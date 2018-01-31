@@ -1,12 +1,12 @@
 <div class="row form-horizontal">
   <label class="col-md-9 control-label">{{answer.detailTextLabel1 || 'Précisez'}}</label>
   <div class="col-md-3">
-    <input type="text" class="form-control" ng-model="sectionModel[answer.detailModel1]" ng-required="!sectionModel[answer.detailModel2]">
+    <input type="text" class="form-control" ng-model="sectionModel[answer.detailModel].detail1" ng-required="!sectionModel[answer.detailModel].detail2">
   </div>
 </div>
 <div class="row form-horizontal">
   <label class="col-md-9 control-label">{{answer.detailTextLabel2 || 'Précisez'}}</label>
   <div class="col-md-3">
-    <input type="text" class="form-control" ng-model="sectionModel[answer.detailModel2]" ng-required="!sectionModel[answer.detailModel1]">
+    <input type="text" class="form-control" ng-model="sectionModel[answer.detailModel].detail2" ng-required="!sectionModel[answer.detailModel].detail1">
   </div>
 </div>

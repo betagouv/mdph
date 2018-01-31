@@ -242,7 +242,7 @@ angular.module('impactApp')
             return QuestionService.get(section, 'retraite', profile);
           },
 
-          nextStep: function(ProfileService, $state, sectionModel, question, saveCurrentState) {
+          nextStep: function(profile, ProfileService, $state, sectionModel, question, saveCurrentState) {
             return function() {
               saveCurrentState();
               if (sectionModel[question.model]) {
@@ -265,7 +265,7 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aidesRetraite', profile);
           },
 
-          nextStep: function(ProfileService, $state, saveCurrentState) {
+          nextStep: function(profile, ProfileService, $state, saveCurrentState) {
             return function() {
               saveCurrentState();
               if (!ProfileService.estAdulte(profile)) {
