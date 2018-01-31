@@ -4,7 +4,4 @@
     <input id="inputPourcent" type="number" class="form-control" ng-model="sectionModel[answer.detailModel]" min="0" max="100" placeholder="{{answer.placeholder}}" required>
     <!--<div class="input-group-addon">%</div> -->
   </div>
-  <div ng-messages="questionForm[answer.detailModel].$error" ng-if="questionForm.showError">
-      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
-    </div>
 </div>
