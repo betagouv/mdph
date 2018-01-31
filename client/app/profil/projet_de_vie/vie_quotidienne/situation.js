@@ -62,10 +62,8 @@ angular.module('impactApp')
               if (!answer) {
                 if (ProfileService.estAdulte(profile)) {
                   $state.go('^.retraite');
-                } else if (!ProfileService.estAdulte(profile)) {
-                  $state.go('^.activiteHandicap');
                 } else {
-                  $state.go('^.fraisHandicap');
+                  $state.go('^.activiteHandicap');
                 }
               } else if (answer.financiere) {
                 $state.go('^.aideFinancierePresent');
@@ -131,10 +129,8 @@ angular.module('impactApp')
                 $state.go('^.pensionInvalidite');
               } else if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
-              } else if (!ProfileService.estAdulte(profile)) {
-                $state.go('^.activiteHandicap');
               } else {
-                $state.go('^.fraisHandicap');
+                $state.go('^.activiteHandicap');
               }
             };
           }
@@ -159,10 +155,8 @@ angular.module('impactApp')
                 $state.go('^.pensionInvalidite');
               } else if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
-              } else if (!ProfileService.estAdulte(profile)) {
-                $state.go('^.activiteHandicap');
               } else {
-                $state.go('^.fraisHandicap');
+                $state.go('^.activiteHandicap');
               }
             };
           }
@@ -184,10 +178,8 @@ angular.module('impactApp')
                 $state.go('^.pensionInvalidite');
               } else if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
-              } else if (!ProfileService.estAdulte(profile)) {
-                $state.go('^.activiteHandicap');
               } else {
-                $state.go('^.fraisHandicap');
+                $state.go('^.activiteHandicap');
               }
             };
           }
@@ -224,10 +216,8 @@ angular.module('impactApp')
               saveCurrentState();
               if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
-              } else if (!ProfileService.estAdulte(profile)) {
-                $state.go('^.activiteHandicap');
               } else {
-                $state.go('^.fraisHandicap');
+                $state.go('^.activiteHandicap');
               }
             };
           }
