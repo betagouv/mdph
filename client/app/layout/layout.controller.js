@@ -19,7 +19,7 @@ angular.module('impactApp')
       this.logo = 'assets/images/' + currentMdph.logo;
     } else {
       this.mdphName = 'Choix de votre département';
-      this.logo = 'assets/images/logo_marianne.png';
+      this.logo = 'assets/images/logo_defaut.png';
     }
 
     this.showDashboard = () => {
