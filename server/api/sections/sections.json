@@ -77,7 +77,7 @@
           },
           {
             "label": "Vous venez de trouver un emploi",
-            "labelRep": "<%= pronoun %> a trouvé un emploi",
+            "labelRep": "<%= pronoun %> vient de trouver un emploi",
             "detailModel": "emploiDetail",
             "detailUrl": "components/detail/precisez_date_et_detail.html",
             "detailTextLabel": "Précisez",
