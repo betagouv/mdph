@@ -193,23 +193,23 @@
           }
         ]
       },
-      "aidePasse": {
-        "model": "aidePasse",
+      "accident": {
+        "model": "accident",
         "titleDefault": "Vous avez déjà eu :",
         "titleRep": "<%= name %> a-t-<%= pronoun %> eu :",
         "type": "checkbox",
         "answers": [
           {
             "label": "Un accident causé par un tiers",
-            "model": "accidentTiers"
+            "model": "tiers"
           },
           {
             "label": "Un accident du travail",
-            "model": "accidentTravail"
+            "model": "travail"
           },
           {
             "label": "Un autre accident",
-            "model": "accidentAutre",
+            "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "detailAccident",
             "type": "text"
