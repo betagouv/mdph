@@ -464,6 +464,49 @@
         "titleDefault": "Frais liés au handicap et restant à charge",
         "placeholder": "Indiquez les frais non remboursés ou, le cas échéant, remboursés partiellement par votre assurance maladie ou mutuelle complémentaire. Précisez notamment si vous recourez à l'emploi rémunéré d'une tierce personne, motivé par votre situation de handicap."
       },
+      "activiteHandicap": {
+        "model": "activiteHandicap",
+        "titleDefault": "Du fait de votre handicap :",
+        "titleRep": "Du fait du handicap de <%= name %> :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Vous exercez une activité professionnelle à temps partiel",
+            "titleRep": "Vous exercez une activité professionnelle à temps partiel",
+            "model": "tempsPartiel",
+            "detailModel": "tempsPartiel_detail",
+            "detailUrl": "components/detail/precisez_pourcent.html",
+            "detailLabel": "Précisez la quotité <br\/><span class=\"small\">en pourcentage</span>",
+            "placeholder": "__%",
+            "detailType": "pourcentage"
+          },
+          {
+            "label": "Vous avez dû renoncer à votre emploi",
+            "model": "renonceEnmploi"
+          }
+        ]
+      },
+      "remunHandicap": {
+        "model": "remunHandicap",
+        "titleDefault": " Du fait de votre handicap, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
+        "titleRep": " Du fait du handicap de <%= name %>, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailModel": "remunHandicapDetail",
+            "detailTextLabel1": "Précisez le nombre d'heures par semaine",
+            "detailTextLabel2": "Si l'emploi n'est pas régulier, précisez le nombre d'heures par an",
+            "detailUrl": "components/detail/precisez_2_details.html",
+            "detailType": "remunHandicap"
+          },
+          {
+            "label": "Non",
+            "model": false
+          }
+        ]
+      },
       "besoinsVie": {
         "model": "besoinsVie",
         "titleDefault": "Vous avez besoin d'aide dans votre vie quotidienne :",
