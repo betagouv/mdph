@@ -16,10 +16,8 @@ angular.module('impactApp')
 
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
-      this.logo = 'assets/images/' + currentMdph.logo;
     } else {
       this.mdphName = 'Choix de votre département';
-      this.logo = 'assets/images/logo_marianne.png';
     }
 
     this.showDashboard = () => {
