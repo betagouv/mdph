@@ -1,14 +1,16 @@
 .profile-category {
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
   margin-bottom: 20px;
   background-color: $lighter-grey;
   color: black;
   border: 1px solid $light-grey;
 
+
   + div {
     color: #a94442;
-    font-size: 12px;
+    /*font-size: 12px;*/
     text-align: center;
   }
 
@@ -44,8 +46,8 @@
   align-content: space-around;
   justify-content: center;
   flex-direction: column;
-  width: 30%;
-  overflow: hidden;
+  /*width: 30%;
+  overflow: hidden;*/
 
   .icon {
     font-size: 5rem;
@@ -72,7 +74,9 @@
   flex-grow: 1;
   justify-content: space-around;
   align-items: center;
-  width: 70%;
+
+  flex-wrap: wrap;
+  /*width: 130px;   width: 70%;*/
 }
 
 .last-updated {
@@ -82,7 +86,7 @@
 }
 
 .profile-category-content-text {
-  margin: 10px 0;
+  margin: 1px 0;
 }
 
 .profile-category-actions {
@@ -97,7 +101,8 @@
   .profile-category-header-title {
     font-size: 1.2em;
     font-weight: 500;
-    margin: 0px 20px;
+    /*margin: 0px 20px;
+    width: 200px;*/
   }
 }
 
