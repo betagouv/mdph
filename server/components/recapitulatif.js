@@ -134,7 +134,9 @@ function computeAnswers(question, trajectoireAnswers) {
           }
           break;
         case 'pourcentage':
-        answer.detail = detail + ' %';
+          answer.detail = detail + ' %';
+        case 'remuneration':
+          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
           break;
         default:
           answer.detail = detail;

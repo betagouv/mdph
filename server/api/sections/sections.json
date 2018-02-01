@@ -77,7 +77,7 @@
           },
           {
             "label": "Vous venez de trouver un emploi",
-            "labelRep": "<%= pronoun %> a trouvé un emploi",
+            "labelRep": "<%= pronoun %> vient de trouver un emploi",
             "detailModel": "emploiDetail",
             "detailUrl": "components/detail/precisez_date_et_detail.html",
             "detailTextLabel": "Précisez",
@@ -190,6 +190,48 @@
             "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "logement_autre"
+          }
+        ]
+      },
+      "accident": {
+        "model": "accident",
+        "titleDefault": "Vous avez déjà eu :",
+        "titleRep": "<%= name %> a-t-<%= pronoun %> eu :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Un accident causé par un tiers",
+            "model": "tiers"
+          },
+          {
+            "label": "Un accident du travail",
+            "model": "travail"
+          },
+          {
+            "label": "Un autre accident",
+            "model": "autre",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailAccident",
+            "type": "text"
+          }
+        ]
+      },
+      "indemnisation": {
+        "model": "indemnisation",
+        "titleDefault": "Suite à cet accident y a-t-il une demande d'indemnisation en cours ou ayant abouti ?",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailIndemnisation",
+            "detailLabel": "Auprès de quel organisme",
+            "detailType": "text"
+          },
+          {
+            "label": "Non",
+            "model": false
           }
         ]
       },
@@ -1228,8 +1270,23 @@
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "independantDetail",
             "detailLabel": "Régime :"
+          },
+          {
+            "label": "Stagiaire professionnel",
+            "model": "stagiaire",
+            "detailUrl": "components/detail/precisez_yes_no.html",
+            "detailModel": "stagiaireDetail",
+            "detailLabel": "Est-ce un stage rémunéré ?",
+            "detailType": "remuneration"
           }
         ]
+      },
+      "situationStage": {
+        "model": "situationStage",
+        "titleDefault": "Au sein de quel organisme effectuez-vous votre stage ?",
+        "titleRep": "Au sein de quel organisme effectue-t-<%= pronoun %> son stage ?",
+        "type": "text",
+        "placeholder": "Nom de l'organisme"
       },
       "employeur": {
         "model": "employeur",
@@ -1589,22 +1646,8 @@
           {
             "label": "Etudiant",
             "model": "etudiant"
-          },
-          {
-            "label": "Stagiaire",
-            "model": "stagiaire",
-            "detailUrl": "components/detail/precisez_yes_no.html",
-            "detailModel": "stagiaireDetail",
-            "detailLabel": "Est-ce un stage rémunéré ?"
           }
         ]
-      },
-      "situationStage": {
-        "model": "situationStage",
-        "titleDefault": "Au sein de quel organisme effectuez-vous votre stage ?",
-        "titleRep": "Au sein de quel organisme effectue-t-<%= pronoun %> son stage ?",
-        "type": "text",
-        "placeholder": "Nom de l'organisme"
       },
       "situationAccompagnement": {
         "titleRep": "Son accompagnement vers l'emploi est réalisé par",

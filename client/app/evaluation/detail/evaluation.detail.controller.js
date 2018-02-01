@@ -2,12 +2,11 @@
 
 angular.module('impactApp')
   .controller('EvaluationDetailCtrl', function(
-    $scope, $modal, toastr, $cookies, $http, $state, $stateParams,
+    $scope, $modal, toastr, $window, $cookies, $http, $state, $stateParams,
     sections, section, sectionId, model, GevaService, currentSynthese, currentUser, SyntheseResource) {
 
     $scope.model = model;
     $scope.sections = sections;
-    $scope.token = $cookies.get('token');
 
     $scope.sectionId = sectionId;
 
@@ -146,8 +145,12 @@ angular.module('impactApp')
       $scope.$emit('saveEvaluationDetailEvent');
     };
 
-    this.canDownload = function() {
-      return currentSynthese.firstname && currentSynthese.lastname && currentSynthese.birthdate;
+    this.download = function() {
+      if (currentSynthese.firstname && currentSynthese.lastname && currentSynthese.birthdate) {
+        $window.open('api/syntheses/' + currentSynthese._id + '/pdf?access_token=' + $cookies.get('token'), '_self');
+      } else {
+        toastr.error('Merci de remplir tous les champs de saisie de l\'onglet Eléments du profil pour télécharger une fiche récapitulative de l\'évaluation.');
+      }
     };
 
     $scope.$on('saveEvaluationDetailEvent', function(event, deficienceQuestionId) {
