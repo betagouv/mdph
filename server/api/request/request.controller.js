@@ -10,6 +10,7 @@ import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
 import archiver from 'archiver';
+import Joi from 'joi';
 import recapitulatif from '../../components/recapitulatif';
 import demandeBuilder from '../../components/DemandeBuilder';
 
@@ -148,6 +149,40 @@ function fillRequestOnSubmit(request, body) {
   };
 }
 
+function valideRequestOnSubmit(req) {
+  return function(request) {
+
+    const beneficiaireSchema = Joi.object().keys({
+      localite: Joi.string().required(),
+      code_postal: Joi.string().required(),
+      nomVoie: Joi.string().required(),
+      dateNaissance: Joi.date().required(),
+      nationalite: Joi.string().required(),
+      sexe: Joi.string().required(),
+      prenom: Joi.string().required(),
+      nom: Joi.string().required(),
+      email: Joi.string().required(),
+      numero_secu: Joi.string().required(),
+      assurance: Joi.string().required()
+    });
+
+    if(request.formAnswers.identites.beneficiaire){
+      return Joi.validate(request.formAnswers.identites.beneficiaire, beneficiaireSchema, {allowUnknown: true}, (err) => {
+        if(err !== null) {
+          var error = err.details.reduce(function(prev, curr) {
+            return [...prev, curr.message];
+          }, []);
+          res.status(406).json(error);
+        } else {
+          return request;
+        }
+      });
+    } else {
+      res.status(406).send('identitée du bénéficiaire non present');
+    }
+  };
+}
+
 export function saveEvaluateurs(req, res) {
   const evaluators = req.body;
 
@@ -186,6 +221,7 @@ function resolveSubmit(req) {
     .findById(req.request.profile)
     .exec()
     .then(fillRequestOnSubmit(req.request, req.body))
+    .then(valideRequestOnSubmit(req.request))
     .then(saveRequestOnSubmit(req))
     .then(fillRequestMdph)
     .then(sendMailReceivedTransmission(req))
