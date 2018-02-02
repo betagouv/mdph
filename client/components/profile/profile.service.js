@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('ProfileService', function ProfileService(estAdulte, estMineur, estAdulteStricte, estEnfant, RequestService) {
+.factory('ProfileService', function ProfileService(estAdulte, estMineur, estAdulteStricte, estEnfant, RequestService) {
     function _estMineur(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
@@ -49,6 +49,10 @@ angular.module('impactApp')
         missingSections.push('autorite');
       }
 
+      if (!profile.identites || !profile.identites.representant) {
+        missingSections.push('representant');
+      }
+
       if (!profile.vie_quotidienne || !profile.vie_quotidienne.__completion) {
         missingSections.push('vieQuotidienne');
       }
@@ -65,7 +69,11 @@ angular.module('impactApp')
         return false;
       }
 
-      if (_estMineur(profile) && !profile.identites.autorite) {
+      if (profile.identites.beneficiaire && profile.identites.beneficiaire.numero_secu_enfant && !profile.identites.autorite) {
+        return false;
+      }
+
+      if (!profile.identites.representant) {
         return false;
       }
 
