@@ -1,6 +1,6 @@
 <div class="detail-mdph">
   <h1>Detail de la MDPH {{mdphDetail.name}} </h1>
-  <form id="mdphDetailFormId" aria-labelledby="mdphDetail" name="mdphDetailForm" ng-submit="AdminMdphDetailCtrl.submit(mdphDetailForm)" novalidate>
+  <form id="mdphDetailFormId" aria-labelledby="mdphDetail" name="mdphDetailForm" ng-submit="adminMdphDetailCtrl.submit(mdphDetailForm)" novalidate>
 
   <fieldset>
     <legend>Identification</legend>
@@ -25,10 +25,10 @@
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.logo.$invalid && mdphDetailForm.$submitted}">
       <label for="logo" class="control-label">Logo</label><br/>
       <label for="logo" class="btn btn-default btn-sm">
-        <input id="logo" type="file" name="logo" style="display:none;" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ngf-max-size="2MB" ng-Change="AdminMdphDetailCtrl.setLogoChanged()"/>
+        <input id="logo" type="file" name="logo" style="display:none;" ngf-select ng-model="mdphDetail.logo" accept=".jpg" ngf-multiple="false" ng-Change="adminMdphDetailCtrl.setLogoChanged()"/>
         <i class="fa fa-upload"></i> {{ !logoChanged && !mdphDetail.logo ? 'Ajouter un logo' : 'Modifier le logo'}}
       </label>
-      <span class="font-italic">La taille du logo est 150x90 (LxH) et au format .jpg</span>
+      <span class="font-italic">Le logo doit être au format JPG et mesurer 150*90 pixels (L*H)</span>
       <div>
         <img ng-if="!logoChanged && mdphDetail.logo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/logo" class="thumb" width="150" height="90" alt="logo"/>
         <img ng-if="logoChanged" ngf-src="mdphDetail.logo" class="thumb" width="150" height="90"/>
@@ -41,10 +41,10 @@
     <div class="form-group" ng-class="{'has-error': mdphDetailForm.photo.$invalid && mdphDetailForm.$submitted}">
       <label for="photo" class="control-label">Photo d'accueil</label><br/>
       <label for="photo" class="btn btn-default btn-sm" >
-        <input id="photo" type="file" name="photo" style="display:none;" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ngf-max-size="10MB" ng-Change="AdminMdphDetailCtrl.setPhotoChanged()"/>
+        <input id="photo" type="file" name="photo" style="display:none;" ngf-select ng-model="mdphDetail.photo" accept=".jpg" ngf-multiple="false" ng-Change="adminMdphDetailCtrl.setPhotoChanged()"/>
         <i class="fa fa-upload"></i> {{ !photoChanged && !mdphDetail.photo ? 'Ajouter une photo' : 'Modifier la photo'}}
       </label>
-      <span class="font-italic">La taille de la photo est 2000x500 (LxH) et au format .jpg</span>
+      <span class="font-italic">La photo doit être au format JPG et mesurer 2000*500 pixels (L*H)</span>
 
       <div>
         <img ng-if="!photoChanged && mdphDetail.photo" ng-src="/api/mdphs/{{mdphDetail.zipcode}}/photo" class="thumb" width="100%" alt="photo"/>
@@ -130,12 +130,12 @@
             <p class="help-block" ng-message='required'>Les horaires d'ouverture de la MDPH sont obligatoires.</p>
           </div>
         </div>
-        <button type="button" ng-click="AdminMdphDetailCtrl.removeLocation($index)" class="btn btn-default btn-xs" aria-label="Supprimer le site">
+        <button type="button" ng-click="adminMdphDetailCtrl.removeLocation($index)" class="btn btn-default btn-xs" aria-label="Supprimer le site">
           <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Supprimer
         </button>
         <hr/>
       </div>
-      <button type="button" ng-click="AdminMdphDetailCtrl.addLocation($index)" class="btn btn-default btn-xs" aria-label="Ajouter un nouveau site">
+      <button type="button" ng-click="adminMdphDetailCtrl.addLocation($index)" class="btn btn-default btn-xs" aria-label="Ajouter un nouveau site">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Ajouter
       </button>
     </fieldset>

@@ -71,3 +71,4 @@ angular.module('impactApp')
         }
       });
   });
+
