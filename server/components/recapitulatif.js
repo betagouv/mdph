@@ -10,6 +10,7 @@ import { populateAndSortPrestations } from '../api/prestation/prestation.control
 var sections = require('../api/sections/sections.json');
 
 function rebuildAnswersFromModel(question, questionAnswers) {
+
   switch (question.type){
     case 'date':
       return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
@@ -77,6 +78,15 @@ function rebuildAnswersFromModel(question, questionAnswers) {
         label: 'Etablissements',
         etablissements: questionAnswers.etablissements
       }];
+    case 'adresse':
+      var adresse = '';
+      if(questionAnswers.complement_adresse) {
+        adresse += questionAnswers.complement_adresse + '\n';
+      }
+      adresse += questionAnswers.nomVoie + '\n';
+      adresse += questionAnswers.code_postal + ' ' +  questionAnswers.localite + ' ' + (questionAnswers.pays ?  questionAnswers.pays : '');
+
+      return [{label: adresse}];
   }
 }
 
@@ -95,10 +105,42 @@ function computeAnswers(question, trajectoireAnswers) {
     if (answer.detailModel) {
       var detailType = answer.detailType;
       var detail = trajectoireAnswers[answer.detailModel];
-      if (detailType) {
-        answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
-      } else {
-        answer.detail = detail;
+      switch (detailType){
+        case 'date':
+          answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          break;
+        case 'date&text':
+          answer.detail = 'Date d\'entrée prévue : ';
+          answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          answer.detail += ' ; ' + detail.text;
+          break;
+        case 'date&categorie':
+          answer.detail = detail.categorie;
+          if(detail.date){
+            answer.detail += ' ; Depuis le : ';
+            answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'remunHandicap':
+          answer.detail='';
+          if(detail.detail1){
+            answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
+          }
+          if(detail.detail1 && detail.detail2){
+            answer.detail += '; ';
+          }
+          if(detail.detail2){
+            answer.detail += 'Nombre d\'heures par an : ' + detail.detail2;
+          }
+          break;
+        case 'pourcentage':
+          answer.detail = detail + ' %';
+          break;
+        case 'remuneration':
+          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
+          break;
+        default:
+          answer.detail = detail;
       }
     }
   });
@@ -149,7 +191,7 @@ function computeTrajectoires(request) {
   return trajectoires;
 }
 
-exports.answersToHtml = function({request, host}, next) {
+export default function({request, host, mdph}, next) {
   if (!request.formAnswers) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
@@ -169,11 +211,11 @@ exports.answersToHtml = function({request, host}, next) {
     },
 
     mdph: function(callback) {
-      if (!request.mdph) {
-        return callback(null, []);
+      if (!mdph) {
+        return callback(null, {});
       }
 
-      callback(null, request.mdph);
+      callback(null, mdph);
     },
 
     request: function(callback) {
@@ -184,13 +226,13 @@ exports.answersToHtml = function({request, host}, next) {
 
     colors: function(callback) {
       callback(null, [
-        { class: '.section-identite', color: 'rgb(73, 82, 130)' },
-        { class: '.section-vie_quotidienne', color: 'rgb(90, 136, 175)' },
-        { class: '.section-prestations', color: 'rgb(255, 143, 27)' },
-        { class: '.section-vie_au_travail', color: '#815EA5' },
-        { class: '.section-aidant', color: '#815EA5' },
-        { class: '.section-vie_scolaire', color: '#58A0E6' },
-        { class: '.section-situations_particulieres', color: '#EA2E49' }
+        { class: '.section-identite', color: 'rgb(96, 149, 195)' },
+        { class: '.section-vie_quotidienne', color: 'rgb(38, 151, 135)' },
+        { class: '.section-prestations', color: 'rgb(89, 135, 53)' },
+        { class: '.section-vie_au_travail', color: 'rgb(21, 79, 131)' },
+        { class: '.section-aidant', color: 'rgb(172, 35, 92)'  },
+        { class: '.section-vie_scolaire', color: 'rgb(74, 44, 97)'},
+        { class: '.section-situations_particulieres', color: 'rgb(234, 46, 73)' }
       ]);
     },
 
@@ -209,4 +251,4 @@ exports.answersToHtml = function({request, host}, next) {
       next(null, '<html><body><p>Erreur lors de la génération du récapitulatif.</p><p>Détail de l\'erreur: ' + e + '</p></body></html>');
     }
   });
-};
+}

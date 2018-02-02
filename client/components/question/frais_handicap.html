@@ -21,7 +21,7 @@
         <td>
           <div class="flex-group">
             <input type="text" class="form-control flex-group-left" ng-model="frais.total" placeholder="Montant" aria-labelledby="montant1">
-            <select ng-init="frais.frequence = 'Par mois'" class="form-control flex-group-right" ng-model="frais.frequence" aria-labelledby="frequence">
+            <select ng-init="frais.frequence = 'Par mois'" class="form-control flex-group-right" ng-model="frais.frequence" aria-labelledby="frequence" ng-if="frais.recurrent">
               <option value="Par jour">Par jour</option>
               <option value="Par semaine">Par semaine</option>
               <option value="Par mois">Par mois</option>
@@ -41,8 +41,11 @@
           <button class="btn btn-default" ng-click="removeLine()" aria-label="Supprimer le dernier frais" ng-if="model.listeFrais.length > 1">
             <i class="fa fa-minus"></i> Supprimer le dernier frais
           </button>
-          <button class="btn btn-success" ng-click="addLine()" aria-label="Ajouter un frais">
-            <i class="fa fa-plus"></i> Ajouter un frais
+          <button class="btn btn-success" ng-click="addLine(false)" aria-label="Ajouter des frais ponctuels">
+            <i class="fa fa-plus"></i> Ajouter des frais ponctuels
+          </button>
+          <button class="btn btn-success" ng-click="addLine(true)" aria-label="Ajouter des frais récurrents">
+            <i class="fa fa-plus"></i> Ajouter des frais récurrents
           </button>
         </td>
       </tr>

@@ -1,5 +1,7 @@
+import fs from 'fs';
 import Synthese from './synthese.model';
 import _ from 'lodash';
+import syntheseBuilder from '../../components/syntheseBuilder';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -75,4 +77,21 @@ export function update(req, res) {
   saveUpdates(req)
     .then(respondWithResult(res))
     .catch(handleError(req, res));
+}
+
+export function getPdf(req, res) {
+  syntheseBuilder({
+    synthese: req.synthese,
+    mdph: req.mdph,
+    host: req.headers.host
+  })
+  .then(readStream => {
+    const filename = `${req.synthese.lastname.toLowerCase()}_${req.synthese.firstname.toLowerCase()}.pdf`;
+
+    res.header('Content-Disposition', `attachment; filename="${filename}"`);
+
+    fs.createReadStream(readStream).pipe(res);
+    return null;
+  })
+  .catch(handleError(req, res));
 }

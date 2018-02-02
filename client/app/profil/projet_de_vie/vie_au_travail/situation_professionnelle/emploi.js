@@ -127,7 +127,7 @@ angular.module('impactApp')
               if (sectionModel[question.model]) {
                 $state.go('^.raison_arret_de_travail');
               } else {
-                $state.go('^.^.^.situation_professionnelle.prestations');
+                $state.go('^.^.^.situation_professionnelle.rqth');
               }
             };
           }
@@ -179,7 +179,7 @@ angular.module('impactApp')
           nextStep: function($state, saveCurrentState) {
             return function() {
               saveCurrentState();
-              $state.go('^.^.^.situation_professionnelle.prestations');
+              $state.go('^.^.^.situation_professionnelle.rqth');
             };
           }
         }

@@ -1,21 +1,36 @@
 <div class="row form-horizontal">
   <label class="col-md-3 control-label">De catégorie</label>
   <div class="col-md-2">
-    <button type="button" class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'categorie1'"
-      ng-required="!sectionModel[answer.detailModel]">
+    <button type="button" class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel].categorie" btn-radio="'categorie1'"
+      ng-required="!sectionModel[answer.detailModel].categorie">
       1
     </button>
   </div>
   <div class="col-md-2">
-    <button type="button" class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'categorie2'"
-      ng-required="!sectionModel[answer.detailModel]">
+    <button type="button" class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel].categorie" btn-radio="'categorie2'"
+      ng-required="!sectionModel[answer.detailModel].categorie">
       2
     </button>
   </div>
   <div class="col-md-2">
-    <button type="button" class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel]" btn-radio="'categorie3'"
-      ng-required="!sectionModel[answer.detailModel]">
+    <button type="button" class="btn btn-default btn-block" ng-model="sectionModel[answer.detailModel].categorie" btn-radio="'categorie3'"
+      ng-required="!sectionModel[answer.detailModel].categorie">
       3
     </button>
+  </div>
+</div>
+<div class="row form-horizontal">
+  <label class="col-md-3 control-label">Depuis le ?<br/><span class="small">au format jour/mois/année</span></label>
+  <div class="col-md-9">
+    <input
+      type="text"
+      class="form-control"
+      name="dateCommencement"
+      id="date-de-commencement"
+      ng-model="sectionModel[answer.detailModel].date"
+      input-date
+      date-autocomplete
+      placeholder="JJ/MM/AAAA"
+      aria-describedby="help-date-de-commencement">
   </div>
 </div>
