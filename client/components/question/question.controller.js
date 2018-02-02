@@ -4,11 +4,24 @@ angular.module('impactApp')
   .factory('initQuestionScope', function() {
     return function(scope, question, prevStep, nextStep, data, previousModel, sectionModel) {
       scope.question = question;
-      scope.prevStep = prevStep;
       scope.nextStep = nextStep;
       scope.hideBack = data && data.hideBack;
       scope.isFirstQuestion = data && data.isFirstQuestion;
       scope.isLastQuestion = data && data.isLastQuestion;
+
+      scope.prevStep = function() {
+        // suppression de la reponse courrente
+        delete sectionModel[question.model];
+        if (question.answers) {
+          question.answers.map(function(answer) {
+            if (sectionModel[answer.detailModel]) {
+              delete sectionModel[answer.detailModel];
+            }
+          });
+        }
+
+        return prevStep();
+      };
 
       // Si pas encore de réponse, on reprend la dernière
       if (previousModel && !sectionModel[question.model]) {
@@ -122,6 +135,30 @@ angular.module('impactApp')
       $scope.model[listName].pop();
     };
   })
+  .controller('ListFraisCtrl', function($scope, $state, question, nextStep, initQuestionScope, listName, previousModel, sectionModel, prevStep) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
+
+    if (angular.isUndefined($scope.sectionModel[question.model])) {
+      $scope.sectionModel[question.model] = {};
+      $scope.sectionModel[question.model][listName] = [];
+    }
+
+    $scope.model = $scope.sectionModel[question.model];
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
+
+    $scope.addLine = function(isRecurrent) {
+      $scope.model[listName].push({recurrent: isRecurrent});
+    };
+
+    $scope.removeLine = function() {
+      $scope.model[listName].pop();
+    };
+  })
   .controller('EmploiDuTempsCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep) {
     initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
 
@@ -147,5 +184,15 @@ angular.module('impactApp')
   })
   .controller('SimpleSectionQuestionCtrl', function($scope, $state, sectionModel, question, nextStep, initQuestionScope, previousModel, prevStep) {
     initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
+    $scope.sectionModel = sectionModel;
+  })
+  .controller('AdresseCtrl', function($scope, $state, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep, AdressService, currentMdph) {
+    initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
+
+    $scope.currentMdph = currentMdph;
+    $scope.getAdress = AdressService.getAdress;
+    $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
+    $scope.maskOptions = {clearOnBlur: false, allowInvalidValue: true};
+
     $scope.sectionModel = sectionModel;
   });

@@ -8,7 +8,7 @@ import * as DocumentCategoryCtrl from '../../api/document-category/document-cate
 
 import Promise from 'bluebird';
 
-module.exports = function(zipcode, requestTempPdfPath, documentList) {
+module.exports = function(zipcode, requestTempPdfPath, documentList, withSeparator) {
   return Promise.using(
     Mdph.findOne({zipcode: zipcode}).exec(),
 
@@ -27,7 +27,7 @@ module.exports = function(zipcode, requestTempPdfPath, documentList) {
             // Main request document
             if (category.required) {
               pdfStructure.unshift({name: 'Demande.pdf', path: requestTempPdfPath});
-              if (category.barcode) {
+              if (category.barcode && withSeparator) {
                 pdfStructure.unshift({name: 'separateur_demande.pdf', path: gfs.createReadStream({_id: category.barcode._id})});
               }
 
@@ -39,7 +39,7 @@ module.exports = function(zipcode, requestTempPdfPath, documentList) {
               _.forEach(documentList, function(currentDocument) {
                 if (currentDocument.type === documentType.id) {
                   index += 1;
-                  if (!documentFoundForThisCategory && category.barcode) {
+                  if (!documentFoundForThisCategory && category.barcode && withSeparator) {
                     pdfStructure.push({name: `separateur_${documentType.id}.pdf`, path: gfs.createReadStream({_id: category.barcode._id})});
                     documentFoundForThisCategory = true;
                   }
@@ -56,7 +56,7 @@ module.exports = function(zipcode, requestTempPdfPath, documentList) {
             return !document.___classified;
           });
 
-          if (unclassifiedCategory.barcode && unclassifiedDocuments.length > 0) {
+          if (unclassifiedCategory.barcode && withSeparator && unclassifiedDocuments.length > 0) {
             pdfStructure.push({name: 'separateur_autre.pdf', path: gfs.createReadStream({_id: unclassifiedCategory.barcode._id})});
           }
 

@@ -26,13 +26,6 @@ Handlebars.registerPartial({
   detailsEDT: readTemplateSync('detailsEDT.html'),
   detailsCV: readTemplateSync('detailsCV.html'),
   prestations: readTemplateSync('prestations.html'),
-
-  // Synthese
-  geva: readTemplateSync('geva.html'),
-  propositions: readTemplateSync('propositions.html'),
-  prestaDemande: readTemplateSync('prestaDemande.html'),
-  prestaAutre: readTemplateSync('prestaAutre.html'),
-  gevaAnswers: readTemplateSync('gevaAnswers.html')
 });
 
 Handlebars.registerHelper('moment', function(str) {
@@ -122,4 +115,8 @@ Handlebars.registerHelper('pronoun', function(sexe, capitalize) {
   }
 
   return isMale(sexe) ? 'il' : 'elle';
+});
+
+Handlebars.registerHelper('ouiNon', function(str) {
+  return str ==='true' ? 'Oui' : 'Non';
 });

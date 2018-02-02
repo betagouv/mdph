@@ -36,8 +36,6 @@ angular.module('impactApp', [
     if (!$httpProvider.defaults.headers.get) {
       $httpProvider.defaults.headers.get = {};
     }
-
-    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
   })
   .run(function($rootScope, $window, $location, $state) {
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {
