@@ -11,9 +11,13 @@ angular.module('impactApp')
       }
     };
 
-    this.filterQuestion = (question) => {
-        return ((!this.sublevel && !this.readOnly) || question.isOpen || question.isParentOpen || question.isSelected || this.hasQuestionSelected(question));
-      };
+    this.filterIterateResponses = (question) => {
+      return (question.isOpen || question.isSelected || this.hasQuestionSelected(question));
+    };
+
+    this.filterDisplayQuestion = (question) => {
+      return ((!this.sublevel && !this.readOnly) || question.isOpen || question.isParentOpen || question.isSelected);
+    };
 
     function closeTree(question) {
       if (question.Reponses) {
@@ -46,7 +50,7 @@ angular.module('impactApp')
     this.toggleSelected = (question, questions) => {
       question.isSelected = !question.isSelected;
 
-      if (!question.isSelected && this.deficienceQuestionId) {
+      if (!question.isSelected && question.id === this.deficienceQuestionId) {
         this.deficienceQuestionId =  null;
       }
 

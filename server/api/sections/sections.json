@@ -77,7 +77,7 @@
           },
           {
             "label": "Vous venez de trouver un emploi",
-            "labelRep": "<%= pronoun %> a trouvé un emploi",
+            "labelRep": "<%= pronoun %> vient de trouver un emploi",
             "detailModel": "emploiDetail",
             "detailUrl": "components/detail/precisez_date_et_detail.html",
             "detailTextLabel": "Précisez",
@@ -190,6 +190,48 @@
             "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "logement_autre"
+          }
+        ]
+      },
+      "accident": {
+        "model": "accident",
+        "titleDefault": "Vous avez déjà eu :",
+        "titleRep": "<%= name %> a-t-<%= pronoun %> eu :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Un accident causé par un tiers",
+            "model": "tiers"
+          },
+          {
+            "label": "Un accident du travail",
+            "model": "travail"
+          },
+          {
+            "label": "Un autre accident",
+            "model": "autre",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailAccident",
+            "type": "text"
+          }
+        ]
+      },
+      "indemnisation": {
+        "model": "indemnisation",
+        "titleDefault": "Suite à cet accident y a-t-il une demande d'indemnisation en cours ou ayant abouti ?",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailIndemnisation",
+            "detailLabel": "Auprès de quel organisme",
+            "detailType": "text"
+          },
+          {
+            "label": "Non",
+            "model": false
           }
         ]
       },
@@ -356,6 +398,14 @@
           {
             "label": "Une Prestation Complémentaire de Recours à Tierce Personne",
             "model": "pcrtp"
+          },
+          {
+            "label": "Une retraite pour inaptitude dans la fonction publique ou anticipée",
+            "model": "retraiteInaptitude",
+            "detailUrl": "components/detail/precisez_date.html",
+            "detailModel": "retraiteInaptitudeDetail",
+            "detailLabel": "Depuis ?",
+            "detailType": "date"
           }
         ]
       },
@@ -413,6 +463,49 @@
         "type": "frais",
         "titleDefault": "Frais liés au handicap et restant à charge",
         "placeholder": "Indiquez les frais non remboursés ou, le cas échéant, remboursés partiellement par votre assurance maladie ou mutuelle complémentaire. Précisez notamment si vous recourez à l'emploi rémunéré d'une tierce personne, motivé par votre situation de handicap."
+      },
+      "activiteHandicap": {
+        "model": "activiteHandicap",
+        "titleDefault": "Du fait de votre handicap :",
+        "titleRep": "Du fait du handicap de <%= name %> :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Vous exercez une activité professionnelle à temps partiel",
+            "titleRep": "Vous exercez une activité professionnelle à temps partiel",
+            "model": "tempsPartiel",
+            "detailModel": "tempsPartiel_detail",
+            "detailUrl": "components/detail/precisez_pourcent.html",
+            "detailLabel": "Précisez la quotité <br\/><span class=\"small\">en pourcentage</span>",
+            "placeholder": "__%",
+            "detailType": "pourcentage"
+          },
+          {
+            "label": "Vous avez dû renoncer à votre emploi",
+            "model": "renonceEnmploi"
+          }
+        ]
+      },
+      "remunHandicap": {
+        "model": "remunHandicap",
+        "titleDefault": " Du fait de votre handicap, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
+        "titleRep": " Du fait du handicap de <%= name %>, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailModel": "remunHandicapDetail",
+            "detailTextLabel1": "Précisez le nombre d'heures par semaine",
+            "detailTextLabel2": "Si l'emploi n'est pas régulier, précisez le nombre d'heures par an",
+            "detailUrl": "components/detail/precisez_2_details.html",
+            "detailType": "remunHandicap"
+          },
+          {
+            "label": "Non",
+            "model": false
+          }
+        ]
       },
       "besoinsVie": {
         "model": "besoinsVie",
@@ -1177,8 +1270,23 @@
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "independantDetail",
             "detailLabel": "Régime :"
+          },
+          {
+            "label": "Stagiaire professionnel",
+            "model": "stagiaire",
+            "detailUrl": "components/detail/precisez_yes_no.html",
+            "detailModel": "stagiaireDetail",
+            "detailLabel": "Est-ce un stage rémunéré ?",
+            "detailType": "remuneration"
           }
         ]
+      },
+      "situationStage": {
+        "model": "situationStage",
+        "titleDefault": "Au sein de quel organisme effectuez-vous votre stage ?",
+        "titleRep": "Au sein de quel organisme effectue-t-<%= pronoun %> son stage ?",
+        "type": "text",
+        "placeholder": "Nom de l'organisme"
       },
       "employeur": {
         "model": "employeur",
@@ -1538,22 +1646,8 @@
           {
             "label": "Etudiant",
             "model": "etudiant"
-          },
-          {
-            "label": "Stagiaire",
-            "model": "stagiaire",
-            "detailUrl": "components/detail/precisez_yes_no.html",
-            "detailModel": "stagiaireDetail",
-            "detailLabel": "Est-ce un stage rémunéré ?"
           }
         ]
-      },
-      "situationStage": {
-        "model": "situationStage",
-        "titleDefault": "Au sein de quel organisme effectuez-vous votre stage ?",
-        "titleRep": "Au sein de quel organisme effectue-t-<%= pronoun %> son stage ?",
-        "type": "text",
-        "placeholder": "Nom de l'organisme"
       },
       "situationAccompagnement": {
         "titleRep": "Son accompagnement vers l'emploi est réalisé par",
@@ -1637,6 +1731,11 @@
         "model": "dateNaissanceAidant",
         "titleDefault": "Date de naissance",
         "type": "date"
+      },
+      "adresseAidant": {
+        "model": "adresseAidant",
+        "titleDefault": "Adresse",
+        "type": "adresse"
       },
       "lien": {
         "model": "lien",
@@ -1745,24 +1844,6 @@
             "model": "autre",
             "detailModel": "natureAideDetail",
             "detailUrl": "components/detail/precisez.html"
-          }
-        ]
-      },
-      "dedommagement": {
-        "titleDefault": "Est-il/elle dédommagé·e pour l’aide apportée ?",
-        "model": "dedommagement",
-        "type": "radio",
-        "answers": [
-          {
-            "label": "Oui",
-            "model": true,
-            "detailUrl": "components/detail/precisez_montant.html",
-            "detailModel": "dedommagementDetail",
-            "placeholder": "Montant mensuel"
-          },
-          {
-            "label": "Non",
-            "model": false
           }
         ]
       },

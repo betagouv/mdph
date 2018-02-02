@@ -10,6 +10,7 @@ import { populateAndSortPrestations } from '../api/prestation/prestation.control
 var sections = require('../api/sections/sections.json');
 
 function rebuildAnswersFromModel(question, questionAnswers) {
+
   switch (question.type){
     case 'date':
       return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
@@ -77,6 +78,15 @@ function rebuildAnswersFromModel(question, questionAnswers) {
         label: 'Etablissements',
         etablissements: questionAnswers.etablissements
       }];
+    case 'adresse':
+      var adresse = '';
+      if(questionAnswers.complement_adresse) {
+        adresse += questionAnswers.complement_adresse + '\n';
+      }
+      adresse += questionAnswers.nomVoie + '\n';
+      adresse += questionAnswers.code_postal + ' ' +  questionAnswers.localite + ' ' + (questionAnswers.pays ?  questionAnswers.pays : '');
+
+      return [{label: adresse}];
   }
 }
 
@@ -110,6 +120,24 @@ function computeAnswers(question, trajectoireAnswers) {
             answer.detail += ' ; Depuis le : ';
             answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           }
+          break;
+        case 'remunHandicap':
+          answer.detail='';
+          if(detail.detail1){
+            answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
+          }
+          if(detail.detail1 && detail.detail2){
+            answer.detail += '; ';
+          }
+          if(detail.detail2){
+            answer.detail += 'Nombre d\'heures par an : ' + detail.detail2;
+          }
+          break;
+        case 'pourcentage':
+          answer.detail = detail + ' %';
+          break;
+        case 'remuneration':
+          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
           break;
         default:
           answer.detail = detail;
