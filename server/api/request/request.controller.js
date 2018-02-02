@@ -149,7 +149,7 @@ function fillRequestOnSubmit(request, body) {
   };
 }
 
-function valideRequestOnSubmit(req) {
+function valideRequestOnSubmit(res) {
   return function(request) {
 
     const beneficiaireSchema = Joi.object().keys({
@@ -216,12 +216,12 @@ function fillRequestMdph(request) {
   });
 }
 
-function resolveSubmit(req) {
+function resolveSubmit(req, res) {
   return Profile
     .findById(req.request.profile)
     .exec()
     .then(fillRequestOnSubmit(req.request, req.body))
-    .then(valideRequestOnSubmit(req.request))
+    .then(valideRequestOnSubmit(res))
     .then(saveRequestOnSubmit(req))
     .then(fillRequestMdph)
     .then(sendMailReceivedTransmission(req))
