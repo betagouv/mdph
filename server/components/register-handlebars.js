@@ -16,6 +16,8 @@ Handlebars.registerPartial({
   identites: readTemplateSync('identites.html'),
   identite: readTemplateSync('identite.html'),
   autorite: readTemplateSync('autorite.html'),
+  representants: readTemplateSync('representants.html'),
+  representant: readTemplateSync('representant.html'),
   question: readTemplateSync('question.html'),
   detailsFrais: readTemplateSync('detailsFrais.html'),
   detailsStructures: readTemplateSync('detailsStructures.html'),
