@@ -42,6 +42,23 @@ angular.module('impactApp')
         nextStep: function($state, saveCurrentState) {
           return function() {
             saveCurrentState();
+            $state.go('^.adresse_aidant');
+          };
+        }
+      }
+    })
+    .state(index + '.adresse_aidant', {
+      url: '',
+      templateUrl: 'components/question/adresse.html',
+      controller: 'AdresseCtrl',
+      resolve: {
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'adresseAidant', profile);
+        },
+
+        nextStep: function($state, saveCurrentState) {
+          return function() {
+            saveCurrentState();
             $state.go('^.lien');
           };
         }
@@ -105,23 +122,6 @@ angular.module('impactApp')
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'natureAide', profile);
-        },
-
-        nextStep: function($state, saveCurrentState) {
-          return function() {
-            saveCurrentState();
-            $state.go('^.dedommagement');
-          };
-        }
-      }
-    })
-    .state(index + '.dedommagement', {
-      url: '',
-      templateUrl: 'components/question/radio.html',
-      controller: 'QuestionCtrl',
-      resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'dedommagement', profile);
         },
 
         nextStep: function($state, saveCurrentState) {

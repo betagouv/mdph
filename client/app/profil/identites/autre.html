@@ -13,10 +13,6 @@
         <select name="identite-type" class="form-control" id="identite-type" ng-model="identite.type" ng-required="!identite.type">
           <option value="proche">Un proche</option>
           <option value="association">Une association</option>
-          <option value="enseignant">Un enseignant référent</option>
-          <option value="tuteur">Le tuteur</option>
-          <option value="curateur">Le curateur</option>
-          <option value="organisme">Un organisme</option>
           <option value="autre">Autre</option>
         </select>
       </fieldset>
@@ -40,8 +36,8 @@
   <section class="identite-section">
   <div class="address-input">
       <div class="form-group">
-        <label for="complementAdresse{{id}}" class="control-label">Complément d'adresse</label>
-        <input id="complementAdresse{{id}}" type="text" name="complementAdresse{{id}}" class="form-control" ng-model="identite.complementAdresse">
+        <label for="complement_adresse{{id}}" class="control-label">Complément d'adresse</label>
+        <input id="complement_adresse{{id}}" type="text" name="complement_adresse{{id}}" class="form-control" ng-model="identite.complement_adresse">
       </div>
     </div>
 

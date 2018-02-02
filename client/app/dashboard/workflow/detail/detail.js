@@ -16,10 +16,10 @@ angular.module('impactApp')
         abstract: true,
         authenticate: true
       })
-      .state('dashboard.workflow.detail.pre_evaluation', {
-        url: '/pre_evaluation',
-        templateUrl: 'app/dashboard/workflow/detail/pre_evaluation/pre_evaluation.html',
-        controller: 'PreEvaluationCtrl',
+      .state('dashboard.workflow.detail.validation_depot', {
+        url: '/validation_depot',
+        templateUrl: 'app/dashboard/workflow/detail/validation_depot/validation_depot.html',
+        controller: 'validationDepotCtrl',
         authenticate: true
       })
       .state('dashboard.workflow.detail.documents', {

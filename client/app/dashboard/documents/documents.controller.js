@@ -108,13 +108,15 @@ angular.module('impactApp')
     };
 
     $scope.save = function(category) {
-      category.$save({zipcode: currentMdph.zipcode}).then(function() {
-        showAlert();
-      },
+      if (category.label.length !== 0) {
+        category.$save({zipcode: currentMdph.zipcode}).then(function() {
+          showAlert();
+        },
 
-      function() {
-        showAlert(true);
-      });
+        function() {
+          showAlert(true);
+        });
+      }
     };
 
     $scope.deleteSeparator = function(category) {

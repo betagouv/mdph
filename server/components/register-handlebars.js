@@ -26,13 +26,6 @@ Handlebars.registerPartial({
   detailsEDT: readTemplateSync('detailsEDT.html'),
   detailsCV: readTemplateSync('detailsCV.html'),
   prestations: readTemplateSync('prestations.html'),
-
-  // Synthese
-  geva: readTemplateSync('geva.html'),
-  propositions: readTemplateSync('propositions.html'),
-  prestaDemande: readTemplateSync('prestaDemande.html'),
-  prestaAutre: readTemplateSync('prestaAutre.html'),
-  gevaAnswers: readTemplateSync('gevaAnswers.html')
 });
 
 Handlebars.registerHelper('moment', function(str) {

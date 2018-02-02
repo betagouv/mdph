@@ -1,0 +1,78 @@
+<form name="questionForm" novalidate>
+  <fieldset>
+    <legend ng-hide="hideTitle" class="question-legend" ng-bind-html="question.title"></legend>
+
+      <div class="form-group">
+        <label for="complement_adresse" class="control-label">Complément d’adresse</label>
+        <input id="complement_adresse" type="text" name="complement_adresse" class="form-control" ng-model="sectionModel[question.model].complement_adresse">
+        <div ng-messages="infoForm.complement_adresse.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+
+      <div class="form-group required" ng-class="{'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
+        <label for="nomVoie" class="control-label">Adresse</label>
+        <div class="input-group">
+          <input id="address"
+            type="search"
+            typeahead="result as result.properties.label for result in getAdress($viewValue, currentMdph)"
+            typeahead-min-length='3'
+            typeahead-on-select='fillAdressOnSelect($item, sectionModel[question.model])'
+            typeahead-wait-ms="100"
+            typeahead-loading="loadingLocations"
+            typeahead-no-results="noResults"
+            ng-model="sectionModel[question.model].nomVoie" class="form-control"
+            name="nomVoie"
+            required
+            placeholder="Recherche adresse"
+            autocomplete="off">
+          <span class="input-group-addon basic-addon">
+            <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
+          </span>
+        </div>
+        <div ng-show="noResults">
+          <i class="fa fa-times"></i> Pas de résultats
+        </div>
+        <div ng-messages="infoForm.nomVoie.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group required" ng-class="{'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
+            <label for="code_postal" class="control-label">Code postal</label>
+            <input id="code_postal" type="text" name="code_postal" class="form-control" ui-mask="99999"
+            ng-model="sectionModel[question.model].code_postal" ng-disabled="disableAddress()" required>
+            <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
+              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group required" ng-class="{'has-error': infoForm.localite.$invalid && infoForm.$submitted}">
+            <label for="localite" class="control-label">Localité</label>
+            <input id="localite" type="text" name="localite" class="form-control" ng-model="sectionModel[question.model].localite" required>
+            <div ng-messages="infoForm.localite.$error" ng-if="infoForm.$submitted">
+              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="pays" class="control-label">Pays</label>
+            <input id="pays" type="text" name="pays" class="form-control" ng-model="sectionModel[question.model].pays">
+          </div>
+        </div>
+      </div>
+  </fieldset>
+
+  <nav-steps
+    ng-hide="hideSteps"
+    prev-step="prevStep"
+    next-step="nextStep"
+    question-form="questionForm"
+    is-first-question="isFirstQuestion"
+    is-last-question="isLastQuestion" />
+
+</form>

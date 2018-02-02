@@ -41,6 +41,46 @@ angular.module('impactApp')
           nextStep: function($state, saveCurrentState) {
             return function() {
               saveCurrentState();
+              $state.go('^.accident');
+            };
+          }
+        }
+      })
+      .state(index + '.accident', {
+        url: '',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'accident', profile);
+          },
+
+          nextStep: function($state, sectionModel, question, saveCurrentState) {
+            return function() {
+              saveCurrentState();
+              var answer = sectionModel[question.model];
+              if (answer && (answer.autre || answer.tiers || answer.travail))
+              {
+                $state.go('^.indemnisation');
+              } else {
+                $state.go('^.aides');
+              }
+            };
+          }
+        }
+      })
+      .state(index + '.indemnisation', {
+        url: '',
+        templateUrl: 'components/question/radio.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'indemnisation', profile);
+          },
+
+          nextStep: function($state, saveCurrentState) {
+            return function() {
+              saveCurrentState();
               $state.go('^.aides');
             };
           }
@@ -55,20 +95,22 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aideActuelle', profile);
           },
 
-          nextStep: function($state, sectionModel, question, saveCurrentState) {
+          nextStep: function($state, sectionModel, question, saveCurrentState, ProfileService, profile) {
             return function() {
               saveCurrentState();
               var answer = sectionModel[question.model];
               if (!answer) {
-                $state.go('^.fraisHandicap');
+                if (ProfileService.estAdulte(profile)) {
+                  $state.go('^.retraite');
+                } else {
+                  $state.go('^.activiteHandicap');
+                }
               } else if (answer.financiere) {
                 $state.go('^.aideFinancierePresent');
               } else if (answer.technique) {
                 $state.go('^.aideTechnique');
               } else if (answer.personne) {
                 $state.go('^.aidePersonne');
-              } else {
-                $state.go('^.fraisHandicap');
               }
             };
           }
@@ -94,8 +136,12 @@ angular.module('impactApp')
                   $state.go('^.aideTechnique');
                 } else if (answerAideActuelle.personne) {
                   $state.go('^.aidePersonne');
-                } else {
+                } else if (sectionModel.aideActuelle.financiere) {
                   $state.go('^.pensionInvalidite');
+                } else if (!ProfileService.estAdulte(profile)) {
+                  $state.go('^.activiteHandicap');
+                } else {
+                  $state.go('^.fraisHandicap');
                 }
               }
             };
@@ -111,7 +157,7 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aideFinancierePasse', profile);
           },
 
-          nextStep: function($state, sectionModel, saveCurrentState) {
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
               var answerAideActuelle = sectionModel.aideActuelle;
@@ -119,8 +165,12 @@ angular.module('impactApp')
                 $state.go('^.aideTechnique');
               } else if (answerAideActuelle.personne) {
                 $state.go('^.aidePersonne');
-              } else {
+              } else if (sectionModel.aideActuelle.financiere) {
                 $state.go('^.pensionInvalidite');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.activiteHandicap');
               }
             };
           }
@@ -135,14 +185,18 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aideTechnique', profile);
           },
 
-          nextStep: function($state, sectionModel, saveCurrentState) {
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
               var answerAideActuelle = sectionModel.aideActuelle;
               if (answerAideActuelle.personne) {
                 $state.go('^.aidePersonne');
-              } else {
+              } else if (sectionModel.aideActuelle.financiere) {
                 $state.go('^.pensionInvalidite');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.activiteHandicap');
               }
             };
           }
@@ -157,10 +211,16 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aidePersonne', profile);
           },
 
-          nextStep: function($state, saveCurrentState) {
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
-              $state.go('^.pensionInvalidite');
+              if (sectionModel.aideActuelle.financiere) {
+                $state.go('^.pensionInvalidite');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.activiteHandicap');
+              }
             };
           }
         }
@@ -197,7 +257,7 @@ angular.module('impactApp')
               if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
               } else {
-                $state.go('^.fraisHandicap');
+                $state.go('^.activiteHandicap');
               }
             };
           }
@@ -212,11 +272,13 @@ angular.module('impactApp')
             return QuestionService.get(section, 'retraite', profile);
           },
 
-          nextStep: function($state, sectionModel, question, saveCurrentState) {
+          nextStep: function(profile, ProfileService, $state, sectionModel, question, saveCurrentState) {
             return function() {
               saveCurrentState();
               if (sectionModel[question.model]) {
                 $state.go('^.aidesRetraite');
+              } else if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
               } else {
                 $state.go('^.fraisHandicap');
               }
@@ -233,6 +295,45 @@ angular.module('impactApp')
             return QuestionService.get(section, 'aidesRetraite', profile);
           },
 
+          nextStep: function(profile, ProfileService, $state, saveCurrentState) {
+            return function() {
+              saveCurrentState();
+              if (!ProfileService.estAdulte(profile)) {
+                $state.go('^.activiteHandicap');
+              } else {
+                $state.go('^.fraisHandicap');
+              }
+            };
+          }
+        }
+      })
+
+      .state(index + '.activiteHandicap', {
+        url: '',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'activiteHandicap', profile);
+          },
+
+          nextStep: function($state, saveCurrentState) {
+            return function() {
+              saveCurrentState();
+              $state.go('^.remunHandicap');
+            };
+          }
+        }
+      })
+      .state(index + '.remunHandicap', {
+        url: '',
+        templateUrl: 'components/question/radio.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'remunHandicap', profile);
+          },
+
           nextStep: function($state, saveCurrentState) {
             return function() {
               saveCurrentState();
@@ -244,7 +345,7 @@ angular.module('impactApp')
       .state(index + '.fraisHandicap', {
         url: '',
         templateUrl: 'components/question/frais_handicap.html',
-        controller: 'ListQuestionCtrl',
+        controller: 'ListFraisCtrl',
         resolve: {
           listName: function() {
             return 'listeFrais';
@@ -263,3 +364,4 @@ angular.module('impactApp')
         }
       });
   });
+
