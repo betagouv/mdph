@@ -4,7 +4,7 @@ angular.module('impactApp')
   .factory('estAdulteStricte', function() {
     return function(dateNaissance) {
       if (dateNaissance) {
-        return moment().diff(dateNaissance, 'years') > 20;
+        return moment().add(-20, 'years').diff(dateNaissance, 'days') > 0;
       }
 
       return true;
