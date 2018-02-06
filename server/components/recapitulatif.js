@@ -126,11 +126,8 @@ function computeAnswers(question, trajectoireAnswers) {
           if(detail.detail1){
             answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
           }
-          if(detail.detail1 && detail.detail2){
-            answer.detail += '; ';
-          }
           if(detail.detail2){
-            answer.detail += 'Nombre d\'heures par an : ' + detail.detail2;
+            answer.detail2 += 'Nombre d\'heures par an : ' + detail.detail2;
           }
           break;
         case 'pourcentage':
