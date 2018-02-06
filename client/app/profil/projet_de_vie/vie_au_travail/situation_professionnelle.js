@@ -86,13 +86,13 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, '^.emploi.nom_poste', profile);
+          return QuestionService.get(section, 'situationStage', profile);
         },
 
         nextStep: function($state, saveCurrentState) {
           return function() {
             saveCurrentState();
-            $state.go('^.employeur');
+            $state.go('^.emploi.nom_poste');
           };
         }
       }
