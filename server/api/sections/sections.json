@@ -404,8 +404,8 @@
             "model": "retraiteInaptitude",
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "retraiteInaptitudeDetail",
-            "detailLabel": "Depuis ?",
-            "detailType": "date"
+            "detailLabel": "Depuis le ?",
+            "detailType": "depuis"
           }
         ]
       },
