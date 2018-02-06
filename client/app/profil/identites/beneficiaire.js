@@ -60,7 +60,7 @@ angular.module('impactApp')
                   $state.go('^.autorite');
                 } else {
                   if (profile.identites.beneficiaire.aide === 'true') {
-                    $state.go('^.aidant');
+                    $state.go('profil.autre');
                   } else {
                     if (profile.identites.beneficiaire.protection === 'Oui') {
                       $state.go('^.representant');
