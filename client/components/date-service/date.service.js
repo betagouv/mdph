@@ -4,7 +4,7 @@ angular.module('impactApp')
   .factory('estEnfant', function() {
     return function(dateNaissance) {
       if (dateNaissance) {
-        return moment().add(-16, 'years').diff(dateNaissance, 'days') < 0;
+        return moment().add(-16, 'years').diff(dateNaissance, 'hours') < 0;
       }
 
       return false;
@@ -13,7 +13,7 @@ angular.module('impactApp')
   .factory('estAdulte', function() {
     return function(dateNaissance) {
       if (dateNaissance) {
-        return moment().add(-20, 'years').diff(dateNaissance, 'days') >= 0;
+        return moment().add(-20, 'years').diff(dateNaissance, 'hours') >= 0;
       }
 
       return true;
@@ -22,7 +22,7 @@ angular.module('impactApp')
   .factory('estMineur', function() {
     return function(dateNaissance) {
       if (dateNaissance) {
-        return moment().add(-20, 'years').diff(dateNaissance, 'days') < 0;
+        return moment().add(-20, 'years').diff(dateNaissance, 'hours') < 0;
       }
 
       return false;
