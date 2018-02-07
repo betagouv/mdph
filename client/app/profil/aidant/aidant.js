@@ -29,11 +29,7 @@ angular.module('impactApp')
           saveSection: function($state, currentUser, profile, sectionId, sectionModel) {
             return function() {
               profile.saveSection(sectionId, sectionModel, currentUser, function() {
-                if (profile.identites.beneficiaire.protection === 'Oui') {
-                  $state.go('profil.representant');
-                } else {
-                  $state.go('profil.situations_particulieres');
-                }
+                $state.go('profil', {}, {reload: true});
               });
             };
           }
