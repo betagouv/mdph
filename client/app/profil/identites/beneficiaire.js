@@ -29,13 +29,13 @@ angular.module('impactApp')
           $scope.getAdress = AdressService.getAdress;
           $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
           $scope.maskOptions = {clearOnBlur: false, allowInvalidValue: true};
-          $scope.estAdulteStricte = ProfileService.estAdulteStricte(profile);
+          $scope.estAdulte = ProfileService.estAdulte(profile);
           $scope.estEnfant = ProfileService.estEnfant(profile);
 
           $scope.majAdulteEnfant = function() {
-            $scope.estAdulteStricte = ProfileService.estAdulteStricte(profile);
+            $scope.estAdulte = ProfileService.estAdulte(profile);
             $scope.estEnfant = ProfileService.estEnfant(profile);
-            if ($scope.estAdulteStricte) {
+            if ($scope.estAdulte) {
               identite.numero_secu_enfant = '';
             }
           };

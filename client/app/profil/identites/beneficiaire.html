@@ -259,7 +259,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-class="{'required': estEnfant, 'has-error': infoForm.numero_secu_enfant.$invalid && infoForm.$submitted}" ng-if="!estAdulteStricte">
+    <div class="form-group" ng-class="{'required': estEnfant, 'has-error': infoForm.numero_secu_enfant.$invalid && infoForm.$submitted}" ng-if="!estAdulte">
       <label for="numero_secu_enfant" class="control-label">Si c’est votre enfant qui est concerné par la demande, indiquer son numéro de sécurité sociale</label>
       <input id="numero_secu_enfant" type="text" name="numero_secu_enfant" class="form-control" ng-required="estEnfant"
         ng-model="identite.numero_secu_enfant" ui-options="maskOptions" ui-mask="* ** ** ** *** *** **" numero-secu>
