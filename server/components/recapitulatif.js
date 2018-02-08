@@ -136,8 +136,8 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'date&categorie':
           answer.detail = detail.categorie;
           if(detail.date){
-            answer.detail += ' ; Depuis le : ';
-            answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+            answer.detail2 = 'Depuis le : ';
+            answer.detail2 += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
         case 'remunHandicap':
