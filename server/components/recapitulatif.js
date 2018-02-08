@@ -109,10 +109,29 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'date':
           answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           break;
+        case 'duree':
+          answer.detail = '';
+          if (detail.debut){
+            answer.detail += 'Du : ';
+            answer.detail += moment(detail.debut, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          if (detail.fin){
+            if (detail.debut){
+              answer.detail += ' au : ';
+            } else {
+              answer.detail += 'Au : ';
+            }
+            answer.detail += moment(detail.fin, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
         case 'date&text':
           answer.detail = 'Date d\'entrée prévue : ';
           answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           answer.detail += ' ; ' + detail.text;
+          break;
+        case 'depuis':
+          answer.detail = 'Depuis le : ';
+          answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           break;
         case 'date&categorie':
           answer.detail = detail.categorie;
@@ -126,11 +145,8 @@ function computeAnswers(question, trajectoireAnswers) {
           if(detail.detail1){
             answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
           }
-          if(detail.detail1 && detail.detail2){
-            answer.detail += '; ';
-          }
           if(detail.detail2){
-            answer.detail += 'Nombre d\'heures par an : ' + detail.detail2;
+            answer.detail2 += 'Nombre d\'heures par an : ' + detail.detail2;
           }
           break;
         case 'pourcentage':
