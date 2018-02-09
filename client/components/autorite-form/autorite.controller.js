@@ -12,7 +12,7 @@ angular.module('impactApp')
       $scope.forms = $state.current.data.forms;
 
       $scope.hasError = function(name) {
-        return $scope.forms.infoForm['' + name + this.id].$invalid;
+        return $scope.required ? $scope.forms.infoForm['' + name + this.id].$invalid : false;
       };
 
       $scope.getError = function(name) {

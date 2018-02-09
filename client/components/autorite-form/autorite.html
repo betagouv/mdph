@@ -34,14 +34,13 @@
 
   <div class="section-row">
     <div class="address-input">
-      <div class="form-group" ng-class="{'has-error': hasError('dateDeNaissance') && forms.infoForm.$submitted}">
+      <div class="form-group" ng-class="{'has-error': forms.infoForm.dateDeNaissance{{id}}.$invalid && forms.infoForm.$submitted}">
         <label class="control-label" for="dateDeNaissance{{id}}">Date de naissance <span class="small">au format jour/mois/année</span></label>
         <input
           type="text"
           class="form-control"
           name="dateDeNaissance{{id}}"
           id="dateDeNaissance{{id}}"
-          ng-required="{{required}}"
           ng-model="identite.dateNaissance"
           input-date
           date-autocomplete
