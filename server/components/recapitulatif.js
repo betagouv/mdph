@@ -109,21 +109,6 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'date':
           answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           break;
-        case 'duree':
-          answer.detail = '';
-          if (detail.debut){
-            answer.detail += 'Du : ';
-            answer.detail += moment(detail.debut, moment.ISO_8601).format('DD/MM/YYYY');
-          }
-          if (detail.fin){
-            if (detail.debut){
-              answer.detail += ' au : ';
-            } else {
-              answer.detail += 'Au : ';
-            }
-            answer.detail += moment(detail.fin, moment.ISO_8601).format('DD/MM/YYYY');
-          }
-          break;
         case 'date&text':
           answer.detail = 'Date d\'entrée prévue : ';
           answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
