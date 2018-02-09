@@ -29,13 +29,13 @@ angular.module('impactApp')
           $scope.getAdress = AdressService.getAdress;
           $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
           $scope.maskOptions = {clearOnBlur: false, allowInvalidValue: true};
-          $scope.estAdulteStricte = ProfileService.estAdulteStricte(profile);
+          $scope.estAdulte = ProfileService.estAdulte(profile);
           $scope.estEnfant = ProfileService.estEnfant(profile);
 
           $scope.majAdulteEnfant = function() {
-            $scope.estAdulteStricte = ProfileService.estAdulteStricte(profile);
+            $scope.estAdulte = ProfileService.estAdulte(profile);
             $scope.estEnfant = ProfileService.estEnfant(profile);
-            if ($scope.estAdulteStricte) {
+            if ($scope.estAdulte) {
               identite.numero_secu_enfant = '';
             }
           };
@@ -60,9 +60,9 @@ angular.module('impactApp')
                   $state.go('^.autorite');
                 } else {
                   if (profile.identites.beneficiaire.aide === 'true') {
-                    $state.go('^.aidant');
+                    $state.go('profil.autre');
                   } else {
-                    if (profile.identites.beneficiaire.protection === 'Oui') {
+                    if (profile.identites.beneficiaire.protection === 'true') {
                       $state.go('^.representant');
                     } else {
                       $state.go('profil.situations_particulieres');

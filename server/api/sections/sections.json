@@ -297,7 +297,7 @@
             "model": "indemnites",
             "detailUrl": "components/detail/precisez_duree.html",
             "detailModel": "duree",
-            "detailType": "duree"
+            "type": "date"
           },
           {
             "label": "Un revenu issu d'une activité en ESAT",
