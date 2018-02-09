@@ -92,7 +92,7 @@ angular.module('impactApp')
         nextStep: function($state, saveCurrentState) {
           return function() {
             saveCurrentState();
-            $state.go('^.employeur');
+            $state.go('^.emploi.nom_poste');
           };
         }
       }

@@ -114,11 +114,15 @@ function computeAnswers(question, trajectoireAnswers) {
           answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           answer.detail += ' ; ' + detail.text;
           break;
+        case 'depuis':
+          answer.detail = 'Depuis le : ';
+          answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          break;
         case 'date&categorie':
           answer.detail = detail.categorie;
           if(detail.date){
-            answer.detail += ' ; Depuis le : ';
-            answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+            answer.detail2 = 'Depuis le : ';
+            answer.detail2 += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
         case 'remunHandicap':
@@ -126,11 +130,8 @@ function computeAnswers(question, trajectoireAnswers) {
           if(detail.detail1){
             answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
           }
-          if(detail.detail1 && detail.detail2){
-            answer.detail += '; ';
-          }
           if(detail.detail2){
-            answer.detail += 'Nombre d\'heures par an : ' + detail.detail2;
+            answer.detail2 += 'Nombre d\'heures par an : ' + detail.detail2;
           }
           break;
         case 'pourcentage':
