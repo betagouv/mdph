@@ -2,7 +2,7 @@
 <section class="identite-section">
   <div class="section-row">
       <div class="form-group"
-           ng-class="{'has-error': hasError('type') && forms.representantForm.$submitted, 'required': required}">
+           ng-class="{'has-error': forms.representantForm.type{{id}}.$invalid && forms.representantForm.$submitted, 'required': required}">
            <label for="type{{id}}" class="control-label">Type de mesure de protection</label>
            <select id="type{{id}}" name="type{{id}}" class="form-control"ng-model="representant.type" ng-required="{{required}}">
               <option value="Tutelle">Tutelle</option>
@@ -18,7 +18,7 @@
 
   <div class="section-row">
     <div class="form-group"
-         ng-class="{'has-error': hasError('nom') && forms.representantForm.$submitted, 'required': required}">
+         ng-class="{'has-error': forms.representantForm.nom{{id}}.$invalid && forms.representantForm.$submitted, 'required': required}">
       <label for="nom{{id}}" class="control-label">Nom (ou intitulé)</label>
       <input id="nom{{id}}" type="text" name="nom{{id}}" class="form-control" ng-model="representant.nom" ng-required="{{required}}">
       <div ng-messages="getError('nom')" ng-if="forms.representantForm.$submitted">
@@ -117,7 +117,7 @@
 
 <section class="identite-section">
   <div class="form-group"
-       ng-class="{'has-error': hasError('email') && forms.representantForm.$submitted, 'required': required}">
+       ng-class="{'has-error': forms.representantForm.email{{id}}.$invalid && forms.representantForm.$submitted, 'required': required}">
     <label for="email{{id}}" class="control-label">Email</label>
     <div class="input-group margin-bottom-sm">
       <input id="email{{id}}" type="email" name="email{{id}}" class="form-control" ng-model="representant.email" ng-required="{{required}}">
