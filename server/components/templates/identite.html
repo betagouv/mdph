@@ -2,6 +2,12 @@
   Nom complet : <strong>{{capitalize prenom}} {{capitalize nom 'upper'}}</strong>
 </p>
 
+{{#if autoriteParentale}}
+<p>
+  Exerce l'autorité parentale
+</p>
+{{/if}}
+
 {{#if nom_usage}}
 <p>
     Nom d'usage: <strong>{{nom_usage}}</strong>
