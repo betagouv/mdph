@@ -1,4 +1,4 @@
-<h3>Représentant {{id}}</h3>
+<h3>Représentant légal {{id}}</h3>
 <section class="identite-section">
   <div class="section-row">
       <div class="form-group"
@@ -30,13 +30,13 @@
 <section class="identite-section">
     <div class="section-row">
       <div class="address-input">
-        <div class="form-group" ng-class="{'has-error': hasError('dateDeNaissance') && forms.representantForm.$submitted, 'required': required}">
+        <div class="form-group" ng-class="{'has-error': hasError('dateDeNaissance') && forms.representantForm.$submitted}">
           <label class="control-label" for="date-de-naissance{{id}}">Date de naissance <span class="small">au format jour/mois/année</span></label>
           <input
             type="text"
             class="form-control"
             name="dateDeNaissance{{id}}"
-            id="date-de-naissance{{id}}"
+            id="dateDeNaissance{{id}}"
             ng-required="{{required}}"
             ng-model="representant.dateNaissance"
             input-date
@@ -44,7 +44,6 @@
             placeholder="JJ/MM/AAAA"
             aria-describedby="help-date-de-naissance">
           <div ng-messages="getError('dateDeNaissance')" ng-if="forms.representantForm.$submitted">
-            <p class="help-block" id="help-date-de-naissance" ng-message='required'>Ce champ est obligatoire.</p>
             <p class="help-block" id="help-date-de-naissance" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
           </div>
         </div>
