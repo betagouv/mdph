@@ -94,11 +94,7 @@ angular.module('impactApp')
       if (selectedRequests.length === 1) {
         var request = _.find(this.requests, 'isSelected');
 
-        const pdfName = request.formAnswers.identites.beneficiaire.nom.toLowerCase() +
-        '_' + request.formAnswers.identites.beneficiaire.prenom.toLowerCase() +
-        '_' + request.shortId;
-
-        $window.open('api/requests/' + request.shortId + '/pdf/agent/' + pdfName + '?access_token=' + this.token);
+        $window.open('api/requests/' + request.shortId + '/pdf/agent?access_token=' + this.token);
 
       } else {
         if (selectedRequests.length > 1) {
