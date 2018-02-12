@@ -10,11 +10,6 @@ angular.module('impactApp')
       $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
 
       $scope.forms = $state.current.data.forms;
-
-      $scope.hasError = function(name) {
-        return $scope.required ? $scope.forms.representantForm['' + name + this.id].$invalid : false;
-      };
-
       $scope.getError = function(name) {
         return $scope.forms.representantForm['' + name + this.id].$error;
       };

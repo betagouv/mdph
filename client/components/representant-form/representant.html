@@ -1,8 +1,8 @@
-<h3>Représentant {{id}}</h3>
+<h3>Représentant légal {{id}}</h3>
 <section class="identite-section">
   <div class="section-row">
       <div class="form-group"
-           ng-class="{'has-error': hasError('type') && forms.representantForm.$submitted, 'required': required}">
+           ng-class="{'has-error': forms.representantForm.type{{id}}.$invalid && forms.representantForm.$submitted, 'required': required}">
            <label for="type{{id}}" class="control-label">Type de mesure de protection</label>
            <select id="type{{id}}" name="type{{id}}" class="form-control"ng-model="representant.type" ng-required="{{required}}">
               <option value="Tutelle">Tutelle</option>
@@ -18,7 +18,7 @@
 
   <div class="section-row">
     <div class="form-group"
-         ng-class="{'has-error': hasError('nom') && forms.representantForm.$submitted, 'required': required}">
+         ng-class="{'has-error': forms.representantForm.nom{{id}}.$invalid && forms.representantForm.$submitted, 'required': required}">
       <label for="nom{{id}}" class="control-label">Nom (ou intitulé)</label>
       <input id="nom{{id}}" type="text" name="nom{{id}}" class="form-control" ng-model="representant.nom" ng-required="{{required}}">
       <div ng-messages="getError('nom')" ng-if="forms.representantForm.$submitted">
@@ -30,21 +30,19 @@
 <section class="identite-section">
     <div class="section-row">
       <div class="address-input">
-        <div class="form-group" ng-class="{'has-error': hasError('dateDeNaissance') && forms.representantForm.$submitted, 'required': required}">
+        <div class="form-group" ng-class="{'has-error': forms.representantForm.dateDeNaissance{{id}}.$invalid && forms.representantForm.$submitted}">
           <label class="control-label" for="date-de-naissance{{id}}">Date de naissance <span class="small">au format jour/mois/année</span></label>
           <input
             type="text"
             class="form-control"
             name="dateDeNaissance{{id}}"
-            id="date-de-naissance{{id}}"
-            ng-required="{{required}}"
+            id="dateDeNaissance{{id}}"
             ng-model="representant.dateNaissance"
             input-date
             date-autocomplete
             placeholder="JJ/MM/AAAA"
             aria-describedby="help-date-de-naissance">
           <div ng-messages="getError('dateDeNaissance')" ng-if="forms.representantForm.$submitted">
-            <p class="help-block" id="help-date-de-naissance" ng-message='required'>Ce champ est obligatoire.</p>
             <p class="help-block" id="help-date-de-naissance" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
           </div>
         </div>
@@ -119,7 +117,7 @@
 
 <section class="identite-section">
   <div class="form-group"
-       ng-class="{'has-error': hasError('email') && forms.representantForm.$submitted, 'required': required}">
+       ng-class="{'has-error': forms.representantForm.email{{id}}.$invalid && forms.representantForm.$submitted, 'required': required}">
     <label for="email{{id}}" class="control-label">Email</label>
     <div class="input-group margin-bottom-sm">
       <input id="email{{id}}" type="email" name="email{{id}}" class="form-control" ng-model="representant.email" ng-required="{{required}}">
