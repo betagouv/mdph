@@ -125,7 +125,7 @@
         </div>
         <div class="form-group required" ng-class="{'has-error': mdphDetailForm['location-schedule'+$index].$invalid && mdphDetailForm.$submitted}">
           <label for="location-schedule" class="control-label">Horaires d'ouverture</label>
-          <input id="location-schedule" type="text" name="location-schedule{{$index}}" class="form-control" ng-model="location.schedule" required/>
+          <textarea id="location-schedule" name="location-schedule{{$index}}" class="form-control" ng-model="location.schedule" rows="2" required></textarea>
           <div ng-messages="mdphDetailForm['location-schedule'+$index].$error" ng-if="mdphDetailForm.$submitted">
             <p class="help-block" ng-message='required'>Les horaires d'ouverture de la MDPH sont obligatoires.</p>
           </div>
