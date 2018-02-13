@@ -163,6 +163,21 @@ export default function({request, host, mdph}, next) {
 
   async.series({
     identites: function(callback) {
+
+      if(request.formAnswers.identites && request.formAnswers.identites.autorite && request.formAnswers.identites.autorite.parent1 && request.formAnswers.identites.autorite.parent1.isSameAddress){
+        request.formAnswers.identites.autorite.parent1.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.autorite.parent1.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.autorite.parent1.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.autorite.parent1.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.autorite.parent1.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
+      if(request.formAnswers.identites && request.formAnswers.identites.autorite && request.formAnswers.identites.autorite.parent2 && request.formAnswers.identites.autorite.parent2.isSameAddress){
+        request.formAnswers.identites.autorite.parent2.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.autorite.parent2.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.autorite.parent2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.autorite.parent2.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.autorite.parent2.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
       callback(null, request.formAnswers.identites);
     },
 
