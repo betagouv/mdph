@@ -25,8 +25,7 @@ footer {
     }
 
     .schedule {
-      white-space: pre-wrap;
-      display: flex;
+      margin: 0;
 
       &:before {
         content: '\f017';
