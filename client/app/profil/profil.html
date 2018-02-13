@@ -30,7 +30,7 @@
           <iframe ng-src="{{'/api/requests/' + profilCtrl.currentRequest.shortId + '/recapitulatif?access_token=' + profilCtrl.token}}" class="embed-responsive-item"></iframe>
         </div>
         <br>
-        <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{profilCtrl.currentRequest.shortId}}/pdf/user/{{profilCtrl.pdfName}}?access_token={{profilCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
+        <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{profilCtrl.currentRequest.shortId}}/pdf/user?access_token={{profilCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
 
         <div class="button-container">
           <button type="button" ng-click="profilCtrl.sendRequest()" class="btn hero-button btn-primary">
@@ -50,7 +50,7 @@
           <iframe ng-src="{{'/api/requests/' + profilCtrl.currentRequest.shortId + '/recapitulatif?access_token=' + profilCtrl.token}}" class="embed-responsive-item"></iframe>
         </div>
         <br>
-        <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{profilCtrl.currentRequest.shortId}}/pdf/user/{{profilCtrl.pdfName}}?access_token={{profilCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
+        <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{profilCtrl.currentRequest.shortId}}/pdf/user?access_token={{profilCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
       </div>
     </div>
 

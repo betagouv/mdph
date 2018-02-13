@@ -417,7 +417,7 @@ export function getPdf(req, res) {
       const beneficiaire = req.request.formAnswers.identites.beneficiaire;
       const extension = req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf';
 
-      const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${req.request.shortId}.${extension}`;
+      const filename = `${beneficiaire.nom.toLowerCase().replace(/\W/g, '')}_${beneficiaire.prenom.toLowerCase().replace(/\W/g, '')}_${req.request.shortId}.${extension}`;
 
       res.header('Content-Type', `application/octet-stream`);
       res.header('Content-Disposition', `attachment; filename="${filename}"`);
