@@ -33,7 +33,7 @@ footer {
         font-family: 'FontAwesome';
         align-self: center;
         width: 1.2em;
-        padding-right: 25px;
+        padding-right: 15px;
       }
     }
 
@@ -80,6 +80,7 @@ footer {
     }
 
     .location-row {
+      display: flex;
       margin: 10px 0;
       line-height: 1em;
     }
