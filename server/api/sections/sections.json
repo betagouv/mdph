@@ -398,6 +398,14 @@
           {
             "label": "Une Prestation Complémentaire de Recours à Tierce Personne",
             "model": "pcrtp"
+           },
+          {
+            "label": "Une retraite pour inaptitude dans la fonction publique ou anticipée",
+            "model": "retraiteInaptitude",
+            "detailUrl": "components/detail/precisez_date.html",
+            "detailModel": "retraiteInaptitudeDetail",
+            "detailLabel": "Depuis le ?",
+            "detailType": "depuis"
           }
         ]
       },
@@ -421,8 +429,8 @@
             "model": true,
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "retraiteDetail",
-            "detailLabel": "Depuis quand ?",
-            "detailType": "date"
+            "detailLabel": "Depuis le ?",
+            "detailType": "depuis"
           },
           {
             "label": "Non",
