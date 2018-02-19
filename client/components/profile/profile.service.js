@@ -41,7 +41,7 @@ angular.module('impactApp')
         missingSections.push('autorite');
       }
 
-      if (!profile.identites || !profile.identites.representant) {
+      if (!profile.identites || profile.identites.beneficiaire.protection === 'true' && !profile.identites.representant) {
         missingSections.push('representant');
       }
 

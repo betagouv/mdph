@@ -134,7 +134,7 @@ function computeAnswers(question, trajectoireAnswers) {
           answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           break;
         case 'date&categorie':
-          answer.detail = detail.categorie;
+          answer.detail = 'De ' + detail.categorie;
           if(detail.date){
             answer.detail2 = 'Depuis le : ';
             answer.detail2 += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
