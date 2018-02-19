@@ -26,8 +26,16 @@ angular.module('impactApp')
       }
     }
 
+    function identiteAidantObligatoire(profile) {
+      return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.aide === 'true';
+    }
+
     function getMissingSection(profile, request, user) {
       const missingSections = [];
+
+      if (identiteAidantObligatoire(profile) && !profile.identites.autre) {
+        missingSections.push('autre');
+      }
 
       if (user.unconfirmed) {
         missingSections.push('unconfirmed');
@@ -113,6 +121,7 @@ angular.module('impactApp')
       getCompletion,
       getMissingSection,
       needUploadCV,
-      getAskedDocumentTypes
+      getAskedDocumentTypes,
+      identiteAidantObligatoire
     };
   });
