@@ -429,8 +429,8 @@
             "model": true,
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "retraiteDetail",
-            "detailLabel": "Depuis le ?",
-            "detailType": "depuis"
+            "detailLabel": "Depuis quand ?",
+            "detailType": "date"
           },
           {
             "label": "Non",
