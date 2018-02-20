@@ -4,6 +4,7 @@ angular.module('impactApp')
   .controller('RepresentantCtrl', function($state, $scope, AdressService) {
       $scope.representant = this.representant;
       $scope.id = this.id;
+      $scope.libelle = this.libelle;
       $scope.required = this.required;
       $scope.currentMdph = this.currentMdph;
       $scope.getAdress = AdressService.getAdress;
