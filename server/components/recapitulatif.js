@@ -228,6 +228,20 @@ export default function({request, host, mdph}, next) {
         request.formAnswers.identites.autorite.parent2.localite = request.formAnswers.identites.beneficiaire.localite;
         request.formAnswers.identites.autorite.parent2.pays = request.formAnswers.identites.beneficiaire.pays;
       }
+      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant1 && request.formAnswers.identites.representant.representant1.isSameAddress){
+        request.formAnswers.identites.representant.representant1.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.representant.representant1.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.representant.representant1.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.representant.representant1.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.representant.representant1.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
+      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant2 && request.formAnswers.identites.representant.representant2.isSameAddress){
+        request.formAnswers.identites.representant.representant2.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.representant.representant2.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.representant.representant2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.representant.representant2.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.representant.representant2.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
       callback(null, request.formAnswers.identites);
     },
 
