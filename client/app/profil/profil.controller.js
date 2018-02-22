@@ -19,6 +19,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.estAdulte = ProfileService.estAdulte(profile);
+  this.identiteAidantObligatoire = ProfileService.identiteAidantObligatoire(profile);
 
   this.sendRequest = () => {
     const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);
@@ -77,6 +78,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
     autre: {
       title: 'Personne vous aidant dans cette démarche',
       model: 'identites.autre',
+      mandatory: this.identiteAidantObligatoire,
       icon: 'fa-users',
       action: {
         sref: 'profil.autre'
