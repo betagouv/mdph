@@ -141,12 +141,11 @@ function computeAnswers(question, trajectoireAnswers) {
           }
           break;
         case 'remunHandicap':
-          answer.detail='';
           if(detail.detail1){
-            answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
+            answer.detail = 'Nombre d\'heures par semaine : ' + detail.detail1;
           }
           if(detail.detail2){
-            answer.detail2 += 'Nombre d\'heures par an : ' + detail.detail2;
+            answer.detail2 = 'Nombre d\'heures par an : ' + detail.detail2;
           }
           break;
         case 'pourcentage':
