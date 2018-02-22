@@ -112,14 +112,14 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'duree':
           answer.detail = '';
           if (detail.debut){
-            answer.detail += 'Du : ';
+            answer.detail += 'Du ';
             answer.detail += moment(detail.debut, moment.ISO_8601).format('DD/MM/YYYY');
           }
           if (detail.fin){
             if (detail.debut){
-              answer.detail += ' au : ';
+              answer.detail += ' au ';
             } else {
-              answer.detail += 'Au : ';
+              answer.detail += 'Au ';
             }
             answer.detail += moment(detail.fin, moment.ISO_8601).format('DD/MM/YYYY');
           }
