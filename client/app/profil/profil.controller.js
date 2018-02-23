@@ -20,6 +20,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.estAdulte = ProfileService.estAdulte(profile);
   this.identiteAidantObligatoire = ProfileService.identiteAidantObligatoire(profile);
+  this.representantObligatoire = ProfileService.representantObligatoire(profile);
 
   this.sendRequest = () => {
     const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);
@@ -69,7 +70,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       title: 'Représentant légal',
       icon: 'fa-users',
       model: 'identites.representant',
-      mandatory: true,
+      mandatory: this.representantObligatoire,
       action: {
         sref: 'profil.representant'
       }

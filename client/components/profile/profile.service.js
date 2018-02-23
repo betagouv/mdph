@@ -30,6 +30,14 @@ angular.module('impactApp')
       return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.aide === 'true';
     }
 
+    function representantObligatoire(profile) {
+      return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.protection === 'true';
+    }
+
+    function autoriteObligatoire(profile) {
+      return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.numero_secu_enfant;
+    }
+
     function getMissingSection(profile, request, user) {
       const missingSections = [];
 
@@ -45,11 +53,11 @@ angular.module('impactApp')
         missingSections.push('beneficiaire');
       }
 
-      if (_estMineur(profile) && (!profile.identites || !profile.identites.autorite)) {
+      if (autoriteObligatoire(profile) && !profile.identites.autorite) {
         missingSections.push('autorite');
       }
 
-      if (!profile.identites || profile.identites.beneficiaire.protection === 'true' && !profile.identites.representant) {
+      if (representantObligatoire(profile) && !profile.identites.representant) {
         missingSections.push('representant');
       }
 
@@ -69,15 +77,19 @@ angular.module('impactApp')
         return false;
       }
 
-      if (profile.identites.beneficiaire && profile.identites.beneficiaire.numero_secu_enfant && !profile.identites.autorite) {
+      if (autoriteObligatoire(profile) && !profile.identites.autorite) {
         return false;
       }
 
-      if (!profile.identites.representant) {
+      if (representantObligatoire(profile) && !profile.identites.representant) {
         return false;
       }
 
       if (!profile.vie_quotidienne || !profile.vie_quotidienne.__completion) {
+        return false;
+      }
+
+      if (identiteAidantObligatoire(profile) && !profile.identites.autre) {
         return false;
       }
 
@@ -122,6 +134,7 @@ angular.module('impactApp')
       getMissingSection,
       needUploadCV,
       getAskedDocumentTypes,
-      identiteAidantObligatoire
+      identiteAidantObligatoire,
+      representantObligatoire
     };
   });
