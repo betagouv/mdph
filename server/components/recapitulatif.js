@@ -111,11 +111,11 @@ function computeAnswers(question, trajectoireAnswers) {
           break;
         case 'duree':
           answer.detail = '';
-          if (detail.debut){
+          if (detail && detail.debut){
             answer.detail += 'Du ';
             answer.detail += moment(detail.debut, moment.ISO_8601).format('DD/MM/YYYY');
           }
-          if (detail.fin){
+          if (detail && detail.fin){
             if (detail.debut){
               answer.detail += ' au ';
             } else {
@@ -130,13 +130,15 @@ function computeAnswers(question, trajectoireAnswers) {
           answer.detail += ' ; ' + detail.text;
           break;
         case 'depuis':
-          answer.detail = 'Depuis le : ';
-          answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          if(detail){
+            answer.detail = 'Depuis le ';
+            answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
           break;
         case 'date&categorie':
           answer.detail = 'De ' + detail.categorie;
           if(detail.date){
-            answer.detail2 = 'Depuis le : ';
+            answer.detail2 = 'Depuis le ';
             answer.detail2 += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
