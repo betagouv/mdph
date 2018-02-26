@@ -22,6 +22,13 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.identiteAidantObligatoire = ProfileService.identiteAidantObligatoire(profile);
   this.representantObligatoire = ProfileService.representantObligatoire(profile);
 
+  if (currentUser.unconfirmed === true) {
+    User.get(currentUser._id).$promise
+    .then(function(user) {
+      currentUser.unconfirmed = user.unconfirmed;
+    });
+  }
+
   this.sendRequest = () => {
     const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);
 

@@ -6,7 +6,7 @@
   <div class="profile-card profile-card-vertical">
     <div class="profile-card-header">
       <span class="profile-card-avatar">
-        <span class="profile-card-icon"><a ui-sref="." title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
+        <span class="profile-card-icon"><a ui-sref="." ui-sref-opts="{reload: true, notify: true}" title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
       </span>
       <div class="profile-card-header-text">
         <h1 class="profile-card-header-text-title"><a ui-sref=".">{{ ::profilCtrl.profile.getTitle() }}</a></h1>
