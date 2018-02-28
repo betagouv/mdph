@@ -6,6 +6,7 @@ angular.module('impactApp').component('representantForm', {
   controllerAs: 'representantctrl',
   bindings: {
     representant: '=',
+    libelle: '@',
     id: '<',
     required: '<',
     currentMdph: '<',

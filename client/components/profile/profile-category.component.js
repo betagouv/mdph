@@ -22,6 +22,12 @@ const profileCategoryComponent = {
       this.action = action;
 
       this.section = _.property(model)(this.profile);
+
+      this.mandatory =  this.options.mandatory;
+      if (model === 'identites.autre' && this.profile.identites && this.profile.identites.beneficiaire) {
+        this.mandatory = this.profile.identites.beneficiaire.aide === 'true';
+      }
+
       this.updatedAt = this.section && this.section.updatedAt;
       this.completion = this.completion || this.computeCompletion();
     }
@@ -33,7 +39,7 @@ const profileCategoryComponent = {
     computeCompletion() {
       if (this.section && this.section.__completion) {
         return 'complete';
-      } else if (this.options.mandatory) {
+      } else if (this.mandatory) {
         return 'error';
       }
     }

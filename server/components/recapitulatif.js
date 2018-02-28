@@ -111,15 +111,15 @@ function computeAnswers(question, trajectoireAnswers) {
           break;
         case 'duree':
           answer.detail = '';
-          if (detail.debut){
-            answer.detail += 'Du : ';
+          if (detail && detail.debut){
+            answer.detail += 'Du ';
             answer.detail += moment(detail.debut, moment.ISO_8601).format('DD/MM/YYYY');
           }
-          if (detail.fin){
+          if (detail && detail.fin){
             if (detail.debut){
-              answer.detail += ' au : ';
+              answer.detail += ' au ';
             } else {
-              answer.detail += 'Au : ';
+              answer.detail += 'Au ';
             }
             answer.detail += moment(detail.fin, moment.ISO_8601).format('DD/MM/YYYY');
           }
@@ -130,23 +130,24 @@ function computeAnswers(question, trajectoireAnswers) {
           answer.detail += ' ; ' + detail.text;
           break;
         case 'depuis':
-          answer.detail = 'Depuis le : ';
-          answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          if(detail){
+            answer.detail = 'Depuis le ';
+            answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
           break;
         case 'date&categorie':
-          answer.detail = detail.categorie;
+          answer.detail = 'De ' + detail.categorie;
           if(detail.date){
-            answer.detail2 = 'Depuis le : ';
+            answer.detail2 = 'Depuis le ';
             answer.detail2 += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
         case 'remunHandicap':
-          answer.detail='';
           if(detail.detail1){
-            answer.detail += 'Nombre d\'heures par semaine : ' + detail.detail1;
+            answer.detail = 'Nombre d\'heures par semaine : ' + detail.detail1;
           }
           if(detail.detail2){
-            answer.detail2 += 'Nombre d\'heures par an : ' + detail.detail2;
+            answer.detail2 = 'Nombre d\'heures par an : ' + detail.detail2;
           }
           break;
         case 'pourcentage':
@@ -228,6 +229,20 @@ export default function({request, host, mdph}, next) {
         request.formAnswers.identites.autorite.parent2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
         request.formAnswers.identites.autorite.parent2.localite = request.formAnswers.identites.beneficiaire.localite;
         request.formAnswers.identites.autorite.parent2.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
+      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant1 && request.formAnswers.identites.representant.representant1.isSameAddress){
+        request.formAnswers.identites.representant.representant1.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.representant.representant1.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.representant.representant1.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.representant.representant1.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.representant.representant1.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
+      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant2 && request.formAnswers.identites.representant.representant2.isSameAddress){
+        request.formAnswers.identites.representant.representant2.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.representant.representant2.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.representant.representant2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.representant.representant2.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.representant.representant2.pays = request.formAnswers.identites.beneficiaire.pays;
       }
       callback(null, request.formAnswers.identites);
     },
