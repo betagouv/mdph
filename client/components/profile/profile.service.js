@@ -135,6 +135,7 @@ angular.module('impactApp')
       needUploadCV,
       getAskedDocumentTypes,
       identiteAidantObligatoire,
-      representantObligatoire
+      representantObligatoire,
+      autoriteObligatoire
     };
   });

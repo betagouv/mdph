@@ -21,6 +21,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.estAdulte = ProfileService.estAdulte(profile);
   this.identiteAidantObligatoire = ProfileService.identiteAidantObligatoire(profile);
   this.representantObligatoire = ProfileService.representantObligatoire(profile);
+  this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
 
   if (currentUser.unconfirmed === true) {
     User.get(currentUser._id).$promise
@@ -67,7 +68,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       title: 'Autorité parentale',
       icon: 'fa-users',
       model: 'identites.autorite',
-      mandatory: !this.estAdulte,
+      mandatory: this.autoriteObligatoire,
       action: {
         sref: 'profil.autorite'
       }
