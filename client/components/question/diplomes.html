@@ -10,8 +10,8 @@
     <tbody>
       <tr ng-repeat="(idx, diplome) in model.listeDiplomes">
         <td class="col-md-4">
-          <input aria-labelledby="diplome" name="diplome" aria-describedby="help-diplome" required type="text" class="form-control" ng-model="diplome.nom" placeholder="Intitulé du diplôme">
-          <div ng-messages="questionForm.diplome.$error" ng-if="questionForm.showError">
+          <input id="diplome{{idx}}" name="diplome{{idx}}" aria-labelledby="diplome" aria-describedby="help-diplome" required type="text" class="form-control" ng-model="diplome.nom" placeholder="Intitulé du diplôme">
+          <div ng-messages="questionForm['diplome'+idx].$error" ng-if="questionForm.showError">
             <div class="help-block" id="help-diplome" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
           </div>
         </td>
@@ -19,20 +19,20 @@
           <input
             type="text"
             class="form-control"
-            name="annee"
-            id="annee"
+            name="annee{{idx}}"
+            id="annee{{idx}}"
             required
             ng-model="diplome.annee"
             ui-mask="9999"
             aria-labelledby="annee"
             aria-describedby="help-annee">
-          <div ng-messages="questionForm.annee.$error" ng-if="questionForm.showError">
+          <div ng-messages="questionForm['annee'+idx].$error" ng-if="questionForm.showError">
             <div class="help-block" id="help-annee" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
           </div>
         </td>
         <td class="col-md-4">
-          <input aria-labelledby="domaine" name="domaine" aria-describedby="help-domaine" required type="text" class="form-control" ng-model="diplome.domaine" placeholder="Domaine d'étude">
-          <div ng-messages="questionForm.domaine.$error" ng-if="questionForm.showError">
+          <input aria-labelledby="domaine{{idx}}" name="domaine{{idx}}" aria-describedby="help-domaine" required type="text" class="form-control" ng-model="diplome.domaine" placeholder="Domaine d'étude">
+          <div ng-messages="questionForm['domaine'+idx].$error" ng-if="questionForm.showError">
             <div class="help-block" id="help-domaine" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
           </div>
         </td>
