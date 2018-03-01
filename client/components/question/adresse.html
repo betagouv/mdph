@@ -5,12 +5,9 @@
       <div class="form-group">
         <label for="complement_adresse" class="control-label">Complément d’adresse</label>
         <input id="complement_adresse" type="text" name="complement_adresse" class="form-control" ng-model="sectionModel[question.model].complement_adresse">
-        <div ng-messages="infoForm.complement_adresse.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
-        </div>
       </div>
 
-      <div class="form-group required" ng-class="{'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
+      <div class="form-group required">
         <label for="nomVoie" class="control-label">Adresse</label>
         <div class="input-group">
           <input id="address"
@@ -33,28 +30,28 @@
         <div ng-show="noResults">
           <i class="fa fa-times"></i> Pas de résultats
         </div>
-        <div ng-messages="infoForm.nomVoie.$error" ng-if="infoForm.$submitted">
-          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <div ng-messages="questionForm.nomVoie.$error" ng-if="questionForm.$submitted">
+          <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-4">
-          <div class="form-group required" ng-class="{'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
+          <div class="form-group required">
             <label for="code_postal" class="control-label">Code postal</label>
             <input id="code_postal" type="text" name="code_postal" class="form-control" ui-mask="99999"
             ng-model="sectionModel[question.model].code_postal" ng-disabled="disableAddress()" required>
-            <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
-              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            <div ng-messages="questionForm.code_postal.$error" ng-if="questionForm.$submitted">
+              <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
             </div>
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="form-group required" ng-class="{'has-error': infoForm.localite.$invalid && infoForm.$submitted}">
+          <div class="form-group required">
             <label for="localite" class="control-label">Localité</label>
             <input id="localite" type="text" name="localite" class="form-control" ng-model="sectionModel[question.model].localite" required>
-            <div ng-messages="infoForm.localite.$error" ng-if="infoForm.$submitted">
-              <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+            <div ng-messages="questionForm.localite.$error" ng-if="questionForm.$submitted">
+              <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire.</div>
             </div>
           </div>
         </div>
