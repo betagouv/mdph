@@ -40,9 +40,7 @@ const profileCategoryComponent = {
     }
 
     computeMandatory(model, ProfileService) {
-      if (model === 'identites.autre') {
-        return ProfileService.identiteAidantObligatoire(this.profile);
-      } else if (model === 'identites.representant') {
+      if (model === 'identites.representant') {
         return ProfileService.representantObligatoire(this.profile);
       } else if (model === 'identites.autorite') {
         return ProfileService.autoriteObligatoire(this.profile);

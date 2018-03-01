@@ -26,10 +26,6 @@ angular.module('impactApp')
       }
     }
 
-    function identiteAidantObligatoire(profile) {
-      return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.aide === 'true';
-    }
-
     function representantObligatoire(profile) {
       return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.protection === 'true';
     }
@@ -40,10 +36,6 @@ angular.module('impactApp')
 
     function getMissingSection(profile, request, user) {
       const missingSections = [];
-
-      if (identiteAidantObligatoire(profile) && !profile.identites.autre) {
-        missingSections.push('autre');
-      }
 
       if (user.unconfirmed) {
         missingSections.push('unconfirmed');
@@ -89,10 +81,6 @@ angular.module('impactApp')
         return false;
       }
 
-      if (identiteAidantObligatoire(profile) && !profile.identites.autre) {
-        return false;
-      }
-
       return true;
     }
 
@@ -134,7 +122,6 @@ angular.module('impactApp')
       getMissingSection,
       needUploadCV,
       getAskedDocumentTypes,
-      identiteAidantObligatoire,
       representantObligatoire,
       autoriteObligatoire
     };
