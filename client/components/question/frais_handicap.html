@@ -19,8 +19,8 @@
           <input type="text" class="form-control" ng-model="frais.nom" placeholder="Libellé des frais" aria-labelledby="frais">
         </td>
         <td>
-          <div class="flex-group">
-            <input type="text" class="form-control flex-group-left" ng-model="frais.total" placeholder="Montant" aria-labelledby="montant1">
+          <div ng-class="{'flex-group': frais.recurrent}">
+            <input type="text" class="form-control" ng-class="{'flex-group-left': frais.recurrent}" ng-model="frais.total" placeholder="Montant" aria-labelledby="montant1">
             <select ng-init="frais.frequence = 'Par mois'" class="form-control flex-group-right" ng-model="frais.frequence" aria-labelledby="frequence" ng-if="frais.recurrent">
               <option value="Par jour">Par jour</option>
               <option value="Par semaine">Par semaine</option>
