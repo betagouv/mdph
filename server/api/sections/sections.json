@@ -52,8 +52,7 @@
             "detailModel": "travailDetail",
             "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
-            "model": "travail",
-            "onlyAdult": true
+            "model": "travail"
           },
           {
             "label": "Vous sortez d'hospitalisation et vous ne pouvez pas retourner chez vous",
@@ -72,8 +71,7 @@
             "detailTextLabel": "Précisez",
             "detailDateLabel": "Date d'entrée prévue",
             "detailType": "date&text",
-            "model": "formation",
-            "onlyAdult": true
+            "model": "formation"
           },
           {
             "label": "Vous venez de trouver un emploi",
@@ -83,8 +81,7 @@
             "detailTextLabel": "Précisez",
             "detailDateLabel": "Date d'entrée prévue",
             "detailType": "date&text",
-            "model": "emploi",
-            "onlyAdult": true
+            "model": "emploi"
           },
           {
             "label": "Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
