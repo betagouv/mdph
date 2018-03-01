@@ -5,18 +5,18 @@
       <input
         type="text"
         class="form-control"
-        name="dateDeNaissance"
-        id="date-de-naissance"
+        name="date_{{answer.detailModel}}"
+        id="date_{{answer.detailModel}}"
         ng-model="sectionModel[answer.detailModel].date"
         required
         input-date
         date-autocomplete
         placeholder="JJ/MM/AAAA"
-        aria-describedby="help-date-de-naissance">
-      <div ng-messages="questionForm.dateDeNaissance.$error" ng-if="questionForm.showError">
-        <p class="help-block" id="help-date-de-naissance" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
-        <p class="help-block" id="help-date-de-naissance" ng-message='required'>Ce champ est obligatoire.</p>
-      </div>
+        aria-describedby="help-date">
+        <div ng-messages="questionForm['date_' + answer.detailModel].$error" ng-if="questionForm.showError">
+          <p class="help-block" ng-message='inputDate'><i class="fa fa-warning"></i>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
+          <p class="help-block" ng-message='required'><i class="fa fa-warning"></i>Ce champ est obligatoire.</p>
+        </div>
     </div>
   </div>
   <div class="row">
