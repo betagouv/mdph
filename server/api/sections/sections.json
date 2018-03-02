@@ -967,14 +967,15 @@
       },
       "aideEleve": {
         "model": "aideEleve",
-        "titleDefault": "Vous disposez actuellement d’une aide humaine aux élèves handicapés",
-        "titleRep": "<%= name %> dispose actuellement d’une aide humaine aux élèves handicapés",
+        "titleDefault": "Vous disposez actuellement d'une aide humaine aux élèves handicapésune aide humaine aux élèves handicapés",
+        "titleRep": "<%= name %> dispose actuellement d'une aide humaine aux élèves handicapés",
         "type": "radio",
         "answers": [
           {
             "label": "Oui",
             "model": true,
             "detailModel": "aideEleveDetail",
+            "detailLabel": "Précisez laquelle",
             "detailUrl": "components/detail/precisez.html"
           },
           {
