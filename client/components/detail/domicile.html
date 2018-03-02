@@ -9,11 +9,12 @@
     <label for="domicile-parents" ng-if="!profilCtrl.estAdulte">De ses parents (ou l'un d'entre eux)</label>
   </div>
 
-  <div ng-if="profilCtrl.estAdulte">
+  <div>
     <input type="radio" name="domicile" id="domicile-enfants"
       ng-model="sectionModel[answer.detailModel]" value="'enfants'"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-enfants" >De vos enfants (ou l'un d'entre eux)</label>
+    <label ng-if="profilCtrl.estAdulte" for="domicile-enfants" >De vos enfants (ou l'un d'entre eux)</label>
+    <label ng-if="!profilCtrl.estAdulte" for="domicile-enfants" >De ses enfants (ou l'un d'entre eux)</label>
   </div>
 
   <div>

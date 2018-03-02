@@ -146,61 +146,12 @@ angular.module('impactApp')
             return function() {
               saveCurrentState();
               var answerAideActuelle = sectionModel.aideActuelle;
-              if (answerAideActuelle.technique) {
+              if (answerAideActuelle.financiere) {
+                $state.go('^.pensionInvalidite');
+              } else if (answerAideActuelle.technique) {
                 $state.go('^.aideTechnique');
               } else if (answerAideActuelle.personne) {
                 $state.go('^.aidePersonne');
-              } else if (sectionModel.aideActuelle.financiere) {
-                $state.go('^.pensionInvalidite');
-              } else if (ProfileService.estAdulte(profile)) {
-                $state.go('^.retraite');
-              } else {
-                $state.go('^.activiteHandicap');
-              }
-            };
-          }
-        }
-      })
-      .state(index + '.aideTechnique', {
-        url: '',
-        templateUrl: 'components/question/checkbox.html',
-        controller: 'QuestionCtrl',
-        resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'aideTechnique', profile);
-          },
-
-          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
-            return function() {
-              saveCurrentState();
-              var answerAideActuelle = sectionModel.aideActuelle;
-              if (answerAideActuelle.personne) {
-                $state.go('^.aidePersonne');
-              } else if (sectionModel.aideActuelle.financiere) {
-                $state.go('^.pensionInvalidite');
-              } else if (ProfileService.estAdulte(profile)) {
-                $state.go('^.retraite');
-              } else {
-                $state.go('^.activiteHandicap');
-              }
-            };
-          }
-        }
-      })
-      .state(index + '.aidePersonne', {
-        url: '',
-        templateUrl: 'components/question/checkbox.html',
-        controller: 'QuestionCtrl',
-        resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'aidePersonne', profile);
-          },
-
-          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
-            return function() {
-              saveCurrentState();
-              if (sectionModel.aideActuelle.financiere) {
-                $state.go('^.pensionInvalidite');
               } else if (ProfileService.estAdulte(profile)) {
                 $state.go('^.retraite');
               } else {
@@ -236,7 +187,56 @@ angular.module('impactApp')
             return QuestionService.get(section, 'ipp', profile);
           },
 
-          nextStep: function(ProfileService, profile, $state, saveCurrentState) {
+          nextStep: function(ProfileService, profile, $state, sectionModel, saveCurrentState) {
+            return function() {
+              saveCurrentState();
+              var answerAideActuelle = sectionModel.aideActuelle;
+              if (answerAideActuelle.technique) {
+                $state.go('^.aideTechnique');
+              } else if (answerAideActuelle.personne) {
+                $state.go('^.aidePersonne');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.activiteHandicap');
+              }
+            };
+          }
+        }
+      })
+      .state(index + '.aideTechnique', {
+        url: '',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aideTechnique', profile);
+          },
+
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
+            return function() {
+              saveCurrentState();
+              if (sectionModel.aideActuelle.personne) {
+                $state.go('^.aidePersonne');
+              } else if (ProfileService.estAdulte(profile)) {
+                $state.go('^.retraite');
+              } else {
+                $state.go('^.activiteHandicap');
+              }
+            };
+          }
+        }
+      })
+      .state(index + '.aidePersonne', {
+        url: '',
+        templateUrl: 'components/question/checkbox.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: function(QuestionService, section, profile) {
+            return QuestionService.get(section, 'aidePersonne', profile);
+          },
+
+          nextStep: function(ProfileService, $state, sectionModel, saveCurrentState, profile) {
             return function() {
               saveCurrentState();
               if (ProfileService.estAdulte(profile)) {
