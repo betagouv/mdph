@@ -19,8 +19,8 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.estAdulte = ProfileService.estAdulte(profile);
-  this.identiteAidantObligatoire = ProfileService.identiteAidantObligatoire(profile);
   this.representantObligatoire = ProfileService.representantObligatoire(profile);
+  this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
 
   if (currentUser.unconfirmed === true) {
     User.get(currentUser._id).$promise
@@ -67,7 +67,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       title: 'Autorité parentale',
       icon: 'fa-users',
       model: 'identites.autorite',
-      mandatory: !this.estAdulte,
+      mandatory: this.autoriteObligatoire,
       action: {
         sref: 'profil.autorite'
       }
@@ -86,7 +86,6 @@ angular.module('impactApp').controller('ProfilCtrl', function(
     autre: {
       title: 'Personne vous aidant dans cette démarche',
       model: 'identites.autre',
-      mandatory: this.identiteAidantObligatoire,
       icon: 'fa-users',
       action: {
         sref: 'profil.autre'
