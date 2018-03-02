@@ -1,10 +1,10 @@
 <div class="row form-horizontal control-group">
-  <label class="col-md-3 control-label" for="inputPourcent" ng-bind-html="answer.detailLabel"></label>
+  <label class="col-md-3 control-label" for="inputPourcent_{{answer.detailModel}}" ng-bind-html="answer.detailLabel"></label>
   <div class="col-md-2 input-group">
-    <input id="inputPourcent" type="number" name="quotite" class="form-control" ng-model="sectionModel[answer.detailModel]" min="0" max="100" placeholder="{{answer.placeholder}}" required>
+    <input id="inputPourcent_{{answer.detailModel}}" name="inputPourcent_{{answer.detailModel}}"  type="number" class="form-control" ng-model="sectionModel[answer.detailModel]" min="0" max="100" placeholder="{{answer.placeholder}}" required>
     <!--<div class="input-group-addon">%</div> -->
   </div>
-  <div ng-messages="questionForm.quotite.$error" ng-if="questionForm.showError">
+  <div ng-messages="questionForm['inputPourcent_' + answer.detailModel].$error" ng-if="questionForm.showError">
     <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
     <div class="help-block" ng-message='number,min,max'><i class="fa fa-warning"></i> Veuillez saisir un nombre entre 0 et 100.</div>
   </div>
