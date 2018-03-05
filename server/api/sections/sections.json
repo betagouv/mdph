@@ -398,7 +398,8 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "retraiteInaptitudeDetail",
             "detailLabel": "Depuis le ?",
-            "detailType": "depuis"
+            "detailType": "depuis",
+            "onlyAdult": true
           }
         ]
       },
