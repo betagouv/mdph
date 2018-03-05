@@ -4,18 +4,19 @@
 
     <ul class="answers">
       <div class="answer" ng-repeat="answer in question.answers">
-        <li
-          ng-if="(!answer.onlyAdult || (answer.onlyAdult && profilCtrl.estAdulte)) && (!answer.onlyChild || (answer.onlyChild && !profilCtrl.estAdulte))">
-          <label for="{{question.model}}-{{answer.model}}" class="btn-answer"
-            ng-class="{'active': sectionModel[question.model][answer.model]}">
-            <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
-            ng-model="sectionModel[question.model][answer.model]" ng-value="answer.label" />
-            <span ng-bind-html="answer.label"></span>
-          </label>
-        </li>
+        <div ng-if="(!answer.onlyAdult || (answer.onlyAdult && profilCtrl.estAdulte)) && (!answer.onlyChild || (answer.onlyChild && !profilCtrl.estAdulte))">
+            <li>
+            <label for="{{question.model}}-{{answer.model}}" class="btn-answer"
+              ng-class="{'active': sectionModel[question.model][answer.model]}">
+              <input type="checkbox" name="{{question.model}}" id="{{question.model}}-{{answer.model}}"
+              ng-model="sectionModel[question.model][answer.model]" ng-value="answer.label" />
+              <span ng-bind-html="answer.label"></span>
+            </label>
+          </li>
 
-        <div class="well well-detail slide" ng-if="(!answer.onlyAdult || (answer.onlyAdult && profilCtrl.estAdulte)) && (!answer.onlyChild || (answer.onlyChild && !profilCtrl.estAdulte)) && answer.detailUrl && sectionModel[question.model][answer.model] === true">
-          <div ng-include="answer.detailUrl"></div>
+          <div class="well well-detail slide" ng-if="answer.detailUrl && sectionModel[question.model][answer.model] === true">
+            <div ng-include="answer.detailUrl"></div>
+          </div>
         </div>
       </div>
     </ul>
