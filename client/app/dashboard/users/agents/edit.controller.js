@@ -24,6 +24,10 @@ angular.module('impactApp')
       }
     };
 
+    $scope.resetMongooseError = function(form, field) {
+      form[field].$setValidity('mongoose', true);
+    };
+
     $scope.update = function(form) {
       if ($scope.user._id) {
         $scope.user.$changeInfo(function() {
