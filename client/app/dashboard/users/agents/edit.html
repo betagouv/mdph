@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="form-group required" ng-class="{ 'has-error': form.password.$invalid && form.$submitted }">
+    <div class="form-group required" ng-class="{ 'has-error': form.password.$invalid && form.$submitted }" ng-if="!user._id">
       <div class="col-sm-2 text-right">
         <label for="password" class="control-label">Mot de passe</label>
       </div>
