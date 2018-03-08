@@ -4,6 +4,8 @@
     <h2 class="padding-title" ng-if="user._id">Edition d'un agent</h2>
   </div>
   <form class="form-horizontal" name="form" ng-submit="update(form)" novalidate>
+  <div class="row">
+  <div class="col-sm-6">
     <div class="form-group required" ng-class="{ 'has-error': form.nom.$invalid && form.$submitted }">
       <div class="col-sm-2 text-right">
         <label for="nom" class="control-label">Nom</label>
@@ -52,6 +54,11 @@
         <label for="checkbox">Afficher le mot de passe</label>
       </div>
     </div>
+  </div>
+  <div class="col-sm-6">
+    <password-rules-alert password="form.password.$viewValue"></password-rules-alert>
+  </div>
+  </div>
     <div class="form-group">
       <label for="secteur" class="col-sm-2 control-label">Secteurs associés</label>
       <div class="col-sm-10">
