@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp').controller('ProfilCtrl', function(
-  $state, $modal, $http, toastr, $anchorScroll, $cookies,
+  $scope, $state, $modal, $http, toastr, $anchorScroll, $cookies,
   User, RequestResource,
   ProfileService, RequestService,
   currentUser, profile, currentRequest, hasRequest, currentMdph) {
@@ -19,6 +19,8 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.estAdulte = ProfileService.estAdulte(profile);
+  $scope.pronomPluriel = this.estAdulte ? 'vos' : 'ses';
+  $scope.pronomSingulier = this.estAdulte ? 'votre' : 'sa';
   this.representantObligatoire = ProfileService.representantObligatoire(profile);
   this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
 
