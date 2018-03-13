@@ -20,10 +20,19 @@ export function setup(User) {
             return done(null, false, { message: 'Email ou mot de passe incorrect.' });
           }
 
+          if (user.isLocked) {
+            return done({message : 'locked', lockUntil : user.lockUntil, loginAttempts : user.loginAttempts});
+          }
+
           if (!user.authenticate(password)) {
+            user.incLoginAttempts(false);
+            if (user.isLocked) {
+              return done({message : 'locked', lockUntil : user.lockUntil, loginAttempts : user.loginAttempts});
+            }
             return done(null, false, { message: 'Email ou mot de passe incorrect.' });
           }
 
+          user.incLoginAttempts(true);
           return done(null, user);
         });
     }
