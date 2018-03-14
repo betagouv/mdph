@@ -3,7 +3,6 @@
 angular.module('impactApp').config(function($stateProvider) {
   $stateProvider.state('profil.prestations', {
     url: '/prestations',
-    authenticate: true,
     templateUrl: 'app/profil/prestations/prestations.html',
     controller: 'PrestationsCtrl',
     controllerAs: 'prestationsCtrl',

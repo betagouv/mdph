@@ -49,7 +49,7 @@ angular.module('impactApp', [
 
       // Gestion des authorisations
       if (toState.authorized && !Auth.isAuthorized(Auth.getCurrentUser(), toState.authorized)) {
-        console.info("UNAUTHORIZED >>> " + toState.url + " pour le role " + Auth.getCurrentUser().role);
+        console.info('UNAUTHORIZED >>> ' + toState.url + ' pour le role ' + Auth.getCurrentUser().role);
         $state.go('403');
       }
 
