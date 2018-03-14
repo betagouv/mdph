@@ -37,7 +37,7 @@ angular.module('impactApp', [
       $httpProvider.defaults.headers.get = {};
     }
   })
-  .run(function($rootScope, $window, $location, $state) {
+  .run(function($rootScope, $window, $location, $state, Auth) {
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {
       $window.scrollTo(0, 0);
 
@@ -45,6 +45,12 @@ angular.module('impactApp', [
         $window.document.title = toState.data.title + ' | MDPH en ligne';
       } else {
         $window.document.title = 'MDPH en ligne';
+      }
+
+      // Gestion des authorisations
+      if (toState.authorized && !Auth.isAuthorized(Auth.getCurrentUser(), toState.authorized)) {
+        console.info("UNAUTHORIZED >>> " + toState.url + " pour le role " + Auth.getCurrentUser().role);
+        $state.go('403');
       }
 
       if ($window._paq) {
@@ -67,4 +73,5 @@ angular.module('impactApp', [
         $window._paq.push(['trackPageView']);
       }
     });
+
   });

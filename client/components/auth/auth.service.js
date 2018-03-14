@@ -235,6 +235,27 @@
       },
 
       /**
+        * Check if a user has a specified role of array roles
+        *   (synchronous|asynchronous)
+        *
+        * @param  {Object}   user - the user
+        * @param  {Array of String}  roles - the roles authorized
+        * @param  {Function|*} callback - optional, function(has)
+        * @return {Bool|Promise}
+        */
+      isAuthorized(user, roles, callback) {
+        console.log("user.role : " + user.role);
+        console.log("roles : " + roles);
+
+        var authorized = (user && user.hasOwnProperty('role')) ? roles.indexOf(user.role) !== -1 : false;
+
+        console.log("authorized : " + authorized);
+
+        safeCb(callback)(authorized);
+        return authorized;
+      },
+
+      /**
         * Check if a user can access an mdph admin
         *   (synchronous|asynchronous)
         *
