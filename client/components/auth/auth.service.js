@@ -64,7 +64,7 @@
         })
         .then(user => {
 
-          if (Auth.hasRole(user, 'admin') || Auth.hasRole(user, 'adminMdph')) {
+          if (Auth.isAdminMdph(user, user.mdph)) {
             return user;
           } else {
             Auth.logout();
@@ -101,7 +101,7 @@
         })
         .then(user => {
 
-          if (Auth.hasRole(user, 'admin')) {
+          if (Auth.isAdmin(user)) {
             return user;
           } else {
             Auth.logout();
@@ -220,15 +220,7 @@
         * @return {Bool|Promise}
         */
       hasRole(user, role, callback) {
-        var hasRole = function(r, h) {
-          return userRoles.indexOf(r) >= userRoles.indexOf(h);
-        };
-
-        if (arguments.length < 2) {
-          return hasRole(currentUser.role, role);
-        }
-
-        var has = (user.hasOwnProperty('role')) ? hasRole(user.role, role) : false;
+        var has = (user.hasOwnProperty('role')) ? user.role === role : false;
 
         safeCb(callback)(has);
         return has;
@@ -244,12 +236,7 @@
         * @return {Bool|Promise}
         */
       isAuthorized(user, roles, callback) {
-        console.log("user.role : " + user.role);
-        console.log("roles : " + roles);
-
         var authorized = (user && user.hasOwnProperty('role')) ? roles.indexOf(user.role) !== -1 : false;
-
-        console.log("authorized : " + authorized);
 
         safeCb(callback)(authorized);
         return authorized;
@@ -263,16 +250,32 @@
         * @return {Bool|Promise}
         */
       isAdminMdph(user, mdph) {
-        if (Auth.hasRole(user, 'admin')) {
-          return true;
-        }
-
         if (Auth.hasRole(user, 'adminMdph')) {
           return user.mdph.zipcode === mdph.zipcode;
         }
 
         return false;
       },
+
+      /**
+        * Check if a user can access an admin
+        *   (synchronous|asynchronous)
+        *
+        * @return {Bool|Promise}
+        */
+      isAdmin(user) {
+        return Auth.hasRole(user, 'admin');
+      },
+
+      /**
+        * Check if a user can access an user
+        *   (synchronous|asynchronous)
+        *
+        * @return {Bool|Promise}
+        */
+        isUser(user) {
+          return Auth.hasRole(user, 'user');
+        },
 
       /**
        * Get auth token
