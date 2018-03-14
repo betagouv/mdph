@@ -14,6 +14,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       data: {
         isFirstQuestion: true
       },
@@ -38,6 +40,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'milieuTravail', profile);
@@ -59,6 +63,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'typeTravail', profile);
@@ -84,6 +90,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'situationStage', profile);
@@ -100,6 +108,8 @@ angular.module('impactApp')
     .state(index + '.situation_professionnelle.employeur', {
       url: '',
       templateUrl: 'components/question/employeur.html',
+      authenticate: true,
+      authorized: ['user'],
       controller: function($scope, question, prevStep, nextStep) {
         if (angular.isUndefined($scope.sectionModel.employeur)) {
           $scope.sectionModel.employeur = {
@@ -132,6 +142,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'prestations', profile);
@@ -149,6 +161,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'rqth', profile);

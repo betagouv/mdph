@@ -5,6 +5,8 @@ angular.module('impactApp')
     $stateProvider
       .state('profil.representant', {
         url: '/identite-representant',
+        authenticate: true,
+        authorized: ['user'],
         data: {
           title: 'Identité de l\'autorité parentale',
           forms: {}

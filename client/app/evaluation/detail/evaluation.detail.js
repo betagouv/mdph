@@ -11,6 +11,8 @@ angular.module('impactApp')
             templateUrl: 'app/evaluation/detail/evaluation.detail.html',
             controller: 'EvaluationDetailCtrl',
             controllerAs: 'evaluationDetailCtrl',
+            authenticate: true,
+            authorized: ['adminMdph'],
             resolve: {
               sections: function(GevaService) {
                 return GevaService.getSections();
@@ -49,6 +51,8 @@ angular.module('impactApp')
           },
           'issues@evaluation.detail': {
             templateUrl: 'app/evaluation/issues/evaluation.issues.html',
+            authenticate: true,
+            authorized: ['adminMdph'],
             controllerAs: 'evaluationIssuesCtrl',
             controller: function($http, $stateParams) {
               this.loading = true;

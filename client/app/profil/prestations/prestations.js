@@ -7,6 +7,8 @@ angular.module('impactApp').config(function($stateProvider) {
     templateUrl: 'app/profil/prestations/prestations.html',
     controller: 'PrestationsCtrl',
     controllerAs: 'prestationsCtrl',
+    authenticate: true,
+    authorized: ['user'],
     resolve: {
       prestations: function($http) {
         return $http.get('api/prestations').then(function(result) {

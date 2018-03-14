@@ -9,6 +9,8 @@ angular.module('impactApp')
         templateUrl: 'app/profil/section.html',
         controller: 'SectionCtrl',
         redirectTo: index + '.situation',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           sections: function($http) {
             return $http.get('/api/sections').then(function(result) {

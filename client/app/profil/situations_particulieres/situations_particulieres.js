@@ -9,6 +9,8 @@ angular.module('impactApp')
         templateUrl: 'app/profil/section.html',
         controller: 'SectionCtrl',
         redirectTo: index + '.detail',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           sections: function($http) {
             return $http.get('/api/sections').then(function(result) {
@@ -49,6 +51,8 @@ angular.module('impactApp')
           isFirstQuestion: true,
           isLastQuestion: true
         },
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'urgences', profile);

@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/mdph/list',
         parent: 'admin',
         authenticate: true,
+        authorized: ['admin'],
         templateUrl: 'app/admin/mdph/list/admin.mdph.list.html',
         controller: 'AdminMdphListCtrl',
         controllerAs: 'adminMdphListCtrl',

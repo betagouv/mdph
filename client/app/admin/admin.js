@@ -25,6 +25,7 @@ angular.module('impactApp')
         url: '',
         parent: 'admin',
         authenticate: true,
+        authorized: ['admin'],
         template: '<div><ui-view /></div>',
         redirectTo: 'admin.mdph'
       });

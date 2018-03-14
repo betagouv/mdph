@@ -9,6 +9,8 @@ angular.module('impactApp')
           title: 'Identité du bénéficiaire'
         },
         templateUrl: 'app/profil/identites/beneficiaire.html',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           identite: function(profile) {
             if (!profile.identites) {

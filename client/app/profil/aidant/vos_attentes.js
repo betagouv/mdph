@@ -14,6 +14,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'typeAttente', profile);
@@ -31,6 +33,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/structure.html',
       controller: 'ListQuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         listName: function() {
           return 'structures';
@@ -52,6 +56,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'demandesAides', profile);
@@ -69,6 +75,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/autres_renseignements.html',
       controller: 'RenseignementsQuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       data: {
         isLastQuestion: true
       },

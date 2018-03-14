@@ -14,6 +14,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'nomPoste', profile);
@@ -31,6 +33,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'temps', profile);
@@ -48,6 +52,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'adapte', profile);
@@ -65,6 +71,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/textarea.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'difficultes', profile);
@@ -82,6 +90,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'conservation', profile);
@@ -99,6 +109,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'amenagement', profile);
@@ -116,6 +128,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'arretDeTravail', profile);
@@ -137,6 +151,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'arretDeTravailRaison', profile);
@@ -154,6 +170,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'profesionnelSocial', profile);
@@ -171,6 +189,8 @@ angular.module('impactApp')
         url: '',
         templateUrl: 'components/question/radio.html',
         controller: 'QuestionCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           question: function(QuestionService, section, profile) {
             return QuestionService.get(section, 'medecinTravail', profile);
