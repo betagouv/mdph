@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 
     if (error && error.message === 'locked') {
       var lockTime = ((error.lockUntil - Date.now()) / (60 * 1000)).toFixed();
-      var message = "Le compte est verouillé après " + error.loginAttempts + " échecs consécutifs. Vous devez attendre " + lockTime + " minutes avant de recommencer."
+      var message = "Vous avez saisi un email ou un mot de passe incorrect " + error.loginAttempts + " fois. Vous devez attendre " + lockTime + " minutes avant de recommencer."
       return res.status(403).json({message: message});
     }
 
