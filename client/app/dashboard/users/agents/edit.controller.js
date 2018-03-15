@@ -4,7 +4,6 @@ angular.module('impactApp')
   .controller('AgentsEditCtrl', function($scope, $state, user, currentMdph, secteurs) {
     $scope.user = user;
     $scope.secteurs = secteurs;
-    $scope.inputType = 'password';
     $scope.forms = $state.current.data.forms;
 
     $scope.toggleSelection = function(secteur) {
