@@ -5,6 +5,7 @@ angular.module('impactApp')
     $scope.user = user;
     $scope.secteurs = secteurs;
     $scope.inputType = 'password';
+    $scope.forms = $state.current.data.forms;
 
     $scope.toggleType = function() {
       if ($scope.inputType === 'password') {

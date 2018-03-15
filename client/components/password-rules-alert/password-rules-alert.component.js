@@ -6,6 +6,7 @@ angular.module('impactApp')
       password: '<'
     },
     templateUrl: 'components/password-rules-alert/password-rules-alert.html',
-    controller: 'PasswordRulesAlertCtrl',
-    controllerAs: 'passwordRulesAlertCtrl'
+    controllerAs: 'passwordRulesAlertCtrl',
+    controller() {
+    }
   });
