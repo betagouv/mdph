@@ -7,14 +7,6 @@ angular.module('impactApp')
     $scope.inputType = 'password';
     $scope.forms = $state.current.data.forms;
 
-    $scope.toggleType = function() {
-      if ($scope.inputType === 'password') {
-        $scope.inputType = 'text';
-      } else {
-        $scope.inputType = 'password';
-      }
-    };
-
     $scope.toggleSelection = function(secteur) {
       const idx = user.secteurs.indexOf(secteur._id);
 
@@ -23,10 +15,6 @@ angular.module('impactApp')
       } else {
         user.secteurs.push(secteur._id);
       }
-    };
-
-    $scope.resetMongooseError = function(form, field) {
-      form[field].$setValidity('mongoose', true);
     };
 
     $scope.update = function(form) {
