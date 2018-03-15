@@ -8,8 +8,8 @@ angular.module('impactApp')
         parent: 'layout',
         templateUrl: 'app/error/error.html',
         data: {
-          title : 'Accès refusé',
-          text : 'Vous n\'êtes pas autorisé à consulter cette page.'
+          title: 'Accès refusé',
+          text: 'Vous n\'êtes pas autorisé à consulter cette page.'
         },
         controllerAs: 'errorCtrl',
         controller: function($scope, $state) {

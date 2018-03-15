@@ -272,9 +272,9 @@
         *
         * @return {Bool|Promise}
         */
-        isUser(user) {
-          return Auth.hasRole(user, 'user');
-        },
+      isUser(user) {
+        return Auth.hasRole(user, 'user');
+      },
 
       /**
        * Get auth token
