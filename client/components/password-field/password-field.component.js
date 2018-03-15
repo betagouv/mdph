@@ -2,9 +2,13 @@
 
 angular.module('impactApp')
   .component('passwordField', {
+    bindings: {
+      user: '='
+    },
     templateUrl: 'components/password-field/password-field.html',
     controllerAs: 'passwordFieldCtrl',
     controller($scope, $state) {
+      $scope.user = this.user;
       $scope.forms = $state.current.data.forms;
       $scope.inputType = 'password';
       $scope.toggleType = function() {
