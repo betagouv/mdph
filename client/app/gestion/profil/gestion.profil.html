@@ -1,0 +1,35 @@
+<init ng-init="gestionProfilCtrl.init()"/>
+
+<header class="banner bg" mdph-photo="{{gestionProfilCtrl.currentMdph.zipcode}}">
+  <div class="hero-unit" ng-if="gestionProfilCtrl.isOpened()">
+    <h1 ng-if="gestionProfilCtrl.currentMdph">Votre MDPH {{gestionProfilCtrl.currentMdph.name}}</h1>
+
+    <p>Gérez vos demandes en ligne</p>
+
+  </div>
+</header>
+
+<section class="section-blue">
+  <div class="row">
+    <h2>Vos profils</h2>
+  </div>
+</section>
+
+<section class="map-container">
+  <mdph-map mdph="gestionProfilCtrl.currentMdph"/>
+</section>
+
+<section class="section-main section-text" id="en-savoir-plus">
+  <h2>Un suivi en ligne de votre dossier</h2>
+  <div>
+    <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
+      Elle peut répondre aux besoins liés à votre handicap.</p>
+    <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise votre dossier.</p>
+    <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
+  </div>
+</section>
+
+<section class="section-main">
+  <h2>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h2>
+  <liste-prestations />
+</section>

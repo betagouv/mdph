@@ -7,7 +7,6 @@ angular.module('impactApp')
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/workflow/detail/detail.html',
         controller: 'WorkflowDetailCtrl',
-
         resolve: {
           request: function($http, $stateParams, RequestResource) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
