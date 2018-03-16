@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '',
         parent: 'evaluation',
         authenticate: true,
+        authorized: ['adminMdph'],
         templateUrl: 'app/evaluation/dashboard/evaluation.dashboard.html',
         controller: 'EvaluationDashboardCtrl',
         controllerAs: 'evaluationDashboardCtrl',

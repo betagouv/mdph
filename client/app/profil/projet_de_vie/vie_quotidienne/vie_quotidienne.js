@@ -9,6 +9,8 @@ angular.module('impactApp')
         templateUrl: 'app/profil/section.html',
         controller: 'SectionCtrl',
         redirectTo: index + '.situation',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           sectionId: function() {
             return 'vie_quotidienne';

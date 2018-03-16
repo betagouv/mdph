@@ -7,6 +7,8 @@ angular.module('impactApp')
         parent: 'layout',
         url: '',
         templateUrl: 'app/departement/departement.html',
+        authenticate: true,
+        authorized: ['user'],
         controller: 'DepartementCtrl',
         controllerAs: 'departementctrl',
       });

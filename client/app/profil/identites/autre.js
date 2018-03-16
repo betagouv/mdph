@@ -9,6 +9,8 @@ angular.module('impactApp')
           title: 'Identité de la personne vous aidant dans cette démarche'
         },
         templateUrl: 'app/profil/identites/autre.html',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           identite: function(profile) {
             if (!profile.identites) {

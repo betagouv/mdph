@@ -6,6 +6,8 @@ angular.module('impactApp').config(function($stateProvider) {
     templateUrl: 'app/profil/documents/documents.html',
     controller: 'DocumentsCtrl',
     controllerAs: 'documentsCtrl',
+    authenticate: true,
+    authorized: ['user'],
     resolve: {
       documentTypes: function(DocumentTypeResource) {
         return DocumentTypeResource.query().$promise;

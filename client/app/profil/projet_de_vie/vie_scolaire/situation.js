@@ -17,6 +17,8 @@ angular.module('impactApp')
       data: {
         isFirstQuestion: true
       },
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'condition', profile);
@@ -38,6 +40,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'vieScolaireType', profile);
@@ -64,6 +68,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/etablissement_scolaire.html',
       controller: 'ListQuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         listName: function() {
           return 'etablissements';
@@ -85,6 +91,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'internat', profile);
@@ -102,6 +110,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'typeEtudes', profile);
@@ -119,6 +129,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'diplomePasse', profile);
@@ -136,6 +148,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'diplomePresent', profile);
@@ -153,6 +167,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/etablissement_scolaire.html',
       controller: 'ListQuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         listName: function() {
           return 'etablissements';
@@ -174,6 +190,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'parcoursEtudes', profile);
@@ -191,6 +209,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'accompagnement', profile);
@@ -208,6 +228,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/checkbox.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'adaptation', profile);
@@ -225,6 +247,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'aideEleve', profile);
@@ -242,6 +266,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/emploi_du_temps.html',
       controller: 'EmploiDuTempsCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'emploiDuTemps', profile);
@@ -259,6 +285,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'raisonNonScolaire', profile);

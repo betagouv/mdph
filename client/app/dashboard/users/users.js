@@ -21,6 +21,7 @@ angular.module('impactApp')
           }
         },
         authenticate: true,
+        authorized: ['adminMdph'],
         abstract: true
       })
       .state('dashboard.users.agents', {
@@ -72,7 +73,8 @@ angular.module('impactApp')
             }
           }
         },
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       })
       .state('dashboard.users.agents.edit', {
         url: '/:id',
@@ -88,7 +90,8 @@ angular.module('impactApp')
             }
           }
         },
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph'],
       })
       .state('dashboard.users.partenaires.edit', {
         url: '/:id',
@@ -99,6 +102,7 @@ angular.module('impactApp')
             return Partenaire.get({id: $stateParams.id});
           }
         },
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       });
   });

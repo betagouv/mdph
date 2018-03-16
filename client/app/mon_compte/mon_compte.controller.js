@@ -2,6 +2,9 @@
 
 angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, $state, User, Auth, currentUser) {
+
+    this.showProfileBloc =  () => Auth.isUser(this.getCurrentUser());
+
     $scope.errors = {};
     $scope.user = currentUser;
 

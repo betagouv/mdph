@@ -13,19 +13,22 @@ angular.module('impactApp')
           }
         },
         abstract: true,
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       })
       .state('dashboard.workflow.detail.validation_depot', {
         url: '/validation_depot',
         templateUrl: 'app/dashboard/workflow/detail/validation_depot/validation_depot.html',
         controller: 'validationDepotCtrl',
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       })
       .state('dashboard.workflow.detail.documents', {
         url: '/documents',
         controller: 'RequestDocumentsCtrl',
         templateUrl: 'app/dashboard/workflow/detail/documents/documents.html',
         authenticate: true,
+        authorized: ['adminMdph'],
         resolve: {
           documentTypes: function($http) {
             return $http.get('api/document-types').then(function(result) {
@@ -40,6 +43,7 @@ angular.module('impactApp')
         url: '/comments',
         templateUrl: 'app/dashboard/workflow/detail/comments/comments.html',
         controller: 'RequestCommentsCtrl',
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       });
   });
