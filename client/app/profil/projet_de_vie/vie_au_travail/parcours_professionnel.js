@@ -13,6 +13,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'uploadCV', profile);
@@ -34,6 +36,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/cv.html',
       controller: 'CvQuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'cv', profile);
@@ -51,6 +55,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'qualification', profile);
@@ -68,6 +74,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'derniereClasse', profile);
@@ -85,6 +93,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/radio.html',
       controller: 'QuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'formations', profile);
@@ -102,6 +112,8 @@ angular.module('impactApp')
       url: '',
       templateUrl: 'components/question/diplomes.html',
       controller: 'ListQuestionCtrl',
+      authenticate: true,
+      authorized: ['user'],
       resolve: {
         listName: function() {
           return 'listeDiplomes';

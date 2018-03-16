@@ -17,5 +17,6 @@ angular.module('impactApp')
         },
         templateUrl: 'app/mon_compte/mon_compte.html',
         controller: 'MonCompteCtrl',
+        controllerAs: 'monCompteCtrl',
       });
   });

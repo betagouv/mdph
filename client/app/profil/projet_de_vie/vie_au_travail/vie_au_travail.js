@@ -9,6 +9,8 @@ angular.module('impactApp')
         templateUrl: 'app/profil/section.html',
         controller: 'SectionCtrl',
         redirectTo: index + '.situation_professionnelle.condition',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           sectionId: function() {
             return 'vie_au_travail';

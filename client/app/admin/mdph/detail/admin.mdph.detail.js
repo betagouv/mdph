@@ -10,6 +10,7 @@ angular.module('impactApp')
         },
         parent: 'admin',
         authenticate: true,
+        authorized: ['admin'],
         templateUrl: 'app/admin/mdph/detail/admin.mdph.detail.html',
         controller: 'AdminMdphDetailCtrl',
         controllerAs: 'adminMdphDetailCtrl',

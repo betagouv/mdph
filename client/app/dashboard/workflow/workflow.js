@@ -13,6 +13,7 @@ angular.module('impactApp')
             userId: 'me'
           }
         },
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       });
   });

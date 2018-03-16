@@ -8,6 +8,7 @@ angular.module('impactApp').config(function($stateProvider) {
     controller: 'ProfilCtrl',
     controllerAs: 'profilCtrl',
     authenticate: true,
+    authorized: ['user'],
     data: {
       title: 'Détail du profil'
     },

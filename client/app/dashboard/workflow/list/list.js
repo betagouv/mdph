@@ -33,6 +33,7 @@ angular.module('impactApp')
             return User.get({id: userId}).$promise;
           }
         },
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       });
   });
