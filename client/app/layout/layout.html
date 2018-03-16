@@ -23,7 +23,7 @@
     <li ng-if="layoutctrl.showEvaluationLink()">
       <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
     </li>
-    <li>
+    <li ng-if="layoutctrl.showGestionLink()">
       <a ui-sref="gestion_profil">Profil et demandes</a>
     </li>
     <li>
