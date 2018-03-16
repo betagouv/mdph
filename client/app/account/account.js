@@ -27,7 +27,8 @@ angular.module('impactApp')
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl',
         data: {
-          title: 'Inscription'
+          title: 'Inscription',
+          forms: {}
         }
       })
       .state('forgotten_password', {
