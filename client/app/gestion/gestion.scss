@@ -1,0 +1,125 @@
+.section-gestion {
+  @extend .section-main;
+  background-color: $lighter-blue;
+  max-width: 100% !important;
+
+  .row {
+    max-width: 100% !important;
+    margin: 4px;
+  }
+
+  .col {
+    margin: 4px;
+  }
+
+  .icon {
+    height: 100%;
+    &:before {
+      content: "\f007";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      font-size: 10em;
+      color: #FFFFFF;
+    }
+  }
+
+  .border-left {
+    border-left-style: solid;
+    border-left-color: #FFFFFF;
+    border-left-width: 2px;
+  }
+
+  h2{
+    color: white;
+  }
+
+  .col-icon {
+    background-color: #FFFFFF;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #4f6083;
+
+    &:before {
+      content: "\f007";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+      margin-right: 4px;
+      color: #3598DB;
+    }
+  }
+
+  .col-item {
+    background-color: #FFFFFF;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #4f6083;
+  }
+
+  .col-action {
+    background-color: #d9534f ;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #FFFFFF;
+    border-left: 4px solid $lighter-blue;
+
+    &:before {
+      content: "\f1f8";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+      margin-right: 4px;
+    }
+  }
+
+  .col-new {
+    background-color: #3598DB;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    width: 100%;
+    color: #FFFFFF;
+
+    &:before {
+      content: "\f055";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+      margin-right: 4px;
+    }
+  }
+
+  .col-icon-desabled {
+    background-color: #D0D0D0;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #666666;
+
+    &:before {
+      content: "\f007";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+      margin-right: 4px;
+    }
+  }
+
+  .col-item-desabled {
+    background-color: #D0D0D0;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #666666;
+  }
+
+  .col-action-desabled {
+    background-color: #D0D0D0;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #666666;
+    border-left: 4px solid $lighter-blue;
+  }
+
+  .note{
+    font-size: 1.0em;
+    color: #FFFFFF;
+  }
+}

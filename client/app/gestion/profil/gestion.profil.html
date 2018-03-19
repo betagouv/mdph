@@ -1,5 +1,5 @@
 <header class="banner bg" mdph-photo="{{gestionProfilCtrl.currentMdph.zipcode}}">
-  <div class="hero-unit" ng-if="gestionProfilCtrl.isOpened()">
+  <div class="hero-unit">
     <h1 ng-if="gestionProfilCtrl.currentMdph">Votre MDPH {{gestionProfilCtrl.currentMdph.name}}</h1>
 
     <p>Gérez vos demandes en ligne</p>
@@ -7,13 +7,50 @@
   </div>
 </header>
 
-<section class="section-blue">
-  <ul class="breadcrumb">
-    <li>Profils</li>
-    <li>Demandes</li>
-  </ul>
+<section class="section-gestion container-fluid">
   <div class="row">
-    <h2>Vos profils</h2>
+    <div class="col-md-1">
+      <span class="icon align-middle"/>
+    </div>
+    <div class="col-md-11 border-left">
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="Gestion des profils">Profils</li>
+          <li class="breadcrumb-item">Demandes</li>
+        </ol>
+      </nav>
+
+      <div class="container-fluid">
+        <h2>Vos profils</h2>
+        <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils">
+          <div class="col-md-4 col-icon" ng-click="gestionProfilCtrl.goProfil(profil)">
+            {{profil.identites.beneficiaire.nom}} {{profil.identites.beneficiaire.prenom}}
+          </div>
+          <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Créé le {{profil.createdAt | date:'dd/MM/yyyy'}}</div>
+          <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Derniere demande [ETAT]</div>
+          <div class="col-md-2 col-action" ng-click="gestionProfilCtrl.deleteProfil()">Supprimer</div>
+        </div>
+        <div class="row" >
+          <div class="col-md-12 col-new" ng-click="gestionProfilCtrl.createProfil()">Créer un nouveau profil</div>
+        </div>
+        <div class="row" >
+          <i class="note">* Le mode multi-profil permet d'afficher des demandes pour plusieurs usagers</i>
+        </div>
+        <h2>Vos profils supprimés</h2>
+        <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils">
+          <div class="col-md-4 col-icon-desabled">
+            <pan>{{deletedProfil.identites.beneficiaire.nom}} {{deletedProfil.identites.beneficiaire.prenom}}</pan>
+          </div>
+          <div class="col-md-3 col-item-desabled">
+            <pan>Créé le {{deletedProfil.updatedAt | date:'dd/MM/yyyy'}}
+          </div>
+          <div class="col-md-3 col-item-desabled">
+            <pan>Derniere demande [ETAT]</pan>
+          </div>
+        <div class="col-md-2 col-action-desabled">Profil suppriné</div>
+      </div>
+    </div>
   </div>
 </section>
 
