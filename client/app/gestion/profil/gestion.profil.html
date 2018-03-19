@@ -1,5 +1,3 @@
-<init ng-init="gestionProfilCtrl.init()"/>
-
 <header class="banner bg" mdph-photo="{{gestionProfilCtrl.currentMdph.zipcode}}">
   <div class="hero-unit" ng-if="gestionProfilCtrl.isOpened()">
     <h1 ng-if="gestionProfilCtrl.currentMdph">Votre MDPH {{gestionProfilCtrl.currentMdph.name}}</h1>
@@ -10,6 +8,10 @@
 </header>
 
 <section class="section-blue">
+  <ul class="breadcrumb">
+    <li>Profils</li>
+    <li>Demandes</li>
+  </ul>
   <div class="row">
     <h2>Vos profils</h2>
   </div>
