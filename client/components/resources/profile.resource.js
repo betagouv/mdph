@@ -15,7 +15,7 @@ angular.module('impactApp')
     });
 
     Profile.prototype.getTitle = function() {
-      if (this._id && this.identites && this.identites.beneficiaire && this.identites.beneficiaire.prenom) {
+      if (this._id && this.identites && this.identites.beneficiaire && this.identites.beneficiaire.prenom && this.identites.beneficiaire.nom) {
         return this.identites.beneficiaire.prenom + ' ' + this.identites.beneficiaire.nom;
       } else {
         return 'Profil en cours de saisie';
