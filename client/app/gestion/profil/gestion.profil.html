@@ -45,7 +45,7 @@
           <i class="note">* Le mode multi-profil permet d'afficher des demandes pour plusieurs usagers</i>
         </div>
 
-        <h2>Vos profils supprimés</h2>
+        <h2 ng-if="gestionProfilCtrl.deletedProfils.length > 0">Vos profils supprimés</h2>
         <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils">
           <div class="col-md-4 col-icon-desabled">{{ ::deletedProfil.getTitle() }}</div>
           <div class="col-md-3 col-item-desabled">Créé le {{deletedProfil.createdAt | date:'dd/MM/yyyy'}} - Supprimé le {{deletedProfil.deletedAt | date:'dd/MM/yyyy'}}</div>
