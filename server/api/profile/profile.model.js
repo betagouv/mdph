@@ -1,7 +1,7 @@
 'use strict';
 
 import mongoose, {Schema} from 'mongoose';
-import Request from '../request/request.model';
+//import Request from '../request/request.model';
 
 var ProfileSchema = new Schema({
   user:       { type: Schema.Types.ObjectId, ref: 'User' },
@@ -17,7 +17,7 @@ ProfileSchema.pre('save', function(next) {
 
   if (this.isNew) {
     this.createdAt = now;
-    Request.create({user: this.user._id, profile: this._id, status: 'en_cours'});
+    //Request.create({user: this.user._id, profile: this._id, status: 'en_cours'});
   }
 
   this.updatedAt = now;
