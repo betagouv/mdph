@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('GestionProfilCtrl', function($state, currentMdph, currentUser, profils, ProfileResource) {
+  .controller('GestionProfilCtrl', function($http, $state, currentMdph, currentUser, profils, ProfileResource) {
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
+
     this.profils = _.filter(profils, function(profil) {
       return !profil.hasOwnProperty('deletedAt');
     });
+
     this.deletedProfils = _.filter(profils, function(profil) {
       return profil.hasOwnProperty('deletedAt');
     });
@@ -53,18 +55,35 @@ angular.module('impactApp')
     this.goProfil = function(profil) {
       $state.go('gestion_demande', {profilId: profil._id});
     };
+
+    this.showCurrentRequestStatus = function(profile) {
+      switch (profile.currentRequestStatus) {
+        case 'en_cours':
+          return 'en cours de création';
+        case 'emise':
+          return 'émise';
+        case 'enregistree':
+          return 'enregistrée';
+        case 'en_attente_usager':
+          return 'en attente';
+        case 'archive':
+          return 'archivée';
+        default:
+          return 'indéfinie';
+      }
+    };
+
   });
 
+// .controller('ModalDeleteProfileCtrl', function($scope, $modalInstance, profile, requests) {
+//   $scope.profile = profile;
+//   $scope.requests = requests;
 
-  // .controller('ModalDeleteProfileCtrl', function($scope, $modalInstance, profile, requests) {
-  //   $scope.profile = profile;
-  //   $scope.requests = requests;
+//   $scope.cancel = function() {
+//     $modalInstance.close(false);
+//   };
 
-  //   $scope.cancel = function() {
-  //     $modalInstance.close(false);
-  //   };
-
-  //   $scope.ok = function() {
-  //     $modalInstance.close(true);
-  //   };
-  // });
+//   $scope.ok = function() {
+//     $modalInstance.close(true);
+//   };
+// });
