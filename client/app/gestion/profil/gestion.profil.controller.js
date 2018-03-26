@@ -20,6 +20,7 @@ angular.module('impactApp')
     };
 
     this.deleteProfil = function() {
+      alert('suppression');
       // var modalInstance = $modal.open({
       //   templateUrl: 'components/mes_profils/delete_confirmation.html',
       //   controller: 'ModalDeleteProfileCtrl',

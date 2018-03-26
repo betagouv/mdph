@@ -10,15 +10,16 @@ angular.module('impactApp')
         controller: 'GestionDemandeCtrl',
         controllerAs: 'gestionDemandeCtrl',
         resolve: {
-          currentProfil: function($http, $stateParams, ProfileResource, currentUser) {
+          profil: function($stateParams, ProfileResource, currentUser) {
             return ProfileResource.get({userId: currentUser._id, id: $stateParams.profilId}).$promise;
           },
 
-          // demandes: function($http, $stateParams, RequestResource) {
-          // return $http.get(`/api/users/${currentUser._id}/profiles/${profil._id}/requests`).then(function(result) {
-          // return result.data;
-          // })
-          // }
+          demandes: function($http, $stateParams, currentUser) {
+            return $http.get(`/api/users/${currentUser._id}/profiles/${$stateParams.profilId}/requests`)
+              .then(function(response){
+                return response.data;
+            })
+          }
         }
       });
   });

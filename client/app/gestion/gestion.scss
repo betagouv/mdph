@@ -12,13 +12,24 @@
     margin: 4px;
   }
 
-  .icon {
+  .icon-profil {
     margin-top: 50px;
     &:before {
       content: "\f007";
       font-family: 'FontAwesome';
       display: inline-block;
-      font-size: 10em;
+      font-size: 9em;
+      color: #FFFFFF;
+    }
+  }
+
+  .icon-demande {
+    margin-top: 50px;
+    &:before {
+      content: "\f07c";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      font-size: 9em;
       color: #FFFFFF;
     }
   }
@@ -33,7 +44,7 @@
     color: white;
   }
 
-  .col-icon {
+  .col-icon-profil {
     background-color: #FFFFFF;
     padding: 10px 15px;
     font-size: 1.2em;
@@ -41,6 +52,22 @@
 
     &:before {
       content: "\f007";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+      margin-right: 4px;
+      color: #3598DB;
+    }
+  }
+
+  .col-icon-demande {
+    background-color: #FFFFFF;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #4f6083;
+
+    &:before {
+      content: "\f07c";
       font-family: 'FontAwesome';
       display: inline-block;
       width: 1.2em;
@@ -89,7 +116,24 @@
     }
   }
 
-  .col-icon-desabled {
+  .col-new-desabled {
+    background-color: #D0D0D0;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    width: 100%;
+    color: #666666;
+    text-align: center;
+
+    &:before {
+      content: "\f055";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+      margin-right: 4px;
+    }
+  }
+
+  .col-icon-profil-desabled {
     background-color: #D0D0D0;
     padding: 10px 15px;
     font-size: 1.2em;
@@ -97,6 +141,21 @@
 
     &:before {
       content: "\f007";
+      font-family: 'FontAwesome';
+      display: inline-block;
+      width: 1.2em;
+      margin-right: 4px;
+    }
+  }
+
+  .col-icon-demande-desabled {
+    background-color: #D0D0D0;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    color: #666666;
+
+    &:before {
+      content: "\f07c";
       font-family: 'FontAwesome';
       display: inline-block;
       width: 1.2em;
