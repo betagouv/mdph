@@ -9,7 +9,7 @@ angular.module('impactApp')
       return !profil.hasOwnProperty('deletedAt');
     });
 
-    this.deletedProfils = []
+    this.deletedProfils = [];
     // _.filter(profils, function(profil) {
     //   return profil.hasOwnProperty('deletedAt');
     // });
