@@ -17,7 +17,7 @@ angular.module('impactApp')
         url: '/logout',
         template: '',
         controller: function($state, Auth) {
-          $state.go('departement');
+          $state.go('gestion_profil');
           Auth.logout();
         }
       })

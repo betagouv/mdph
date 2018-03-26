@@ -117,7 +117,7 @@ describe('ProfilCtrl', function() {
       // then
       expect(controller.$modal.open).toHaveBeenCalled();
       expect(controller.$state.go).toHaveBeenCalled();
-      expect(controller.$state.go.calls.argsFor(0)[0]).toEqual('departement');
+      expect(controller.$state.go.calls.argsFor(0)[0]).toEqual('gestion_profil');
     });
 
   });
