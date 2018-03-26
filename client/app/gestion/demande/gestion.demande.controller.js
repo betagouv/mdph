@@ -7,16 +7,18 @@ angular.module('impactApp')
     this.profil = profil;
 
     this.currentDemande = _.filter(demandes, function(demande) {
-         return demande.hasOwnProperty('status') && (demande.status !== 'enregistree' && demande.status !== 'archive');
-       })[0];
+      return demande.hasOwnProperty('status') && (demande.status !== 'enregistree' && demande.status !== 'archive');
+    })[0];
 
-    this.archivedDemandes = []
+    this.archivedDemandes = [];
+
     // _.filter(demandes, function(demande) {
     //   return demande.hasOwnProperty('status') && (demande.status === 'enregistree' || demande.status === 'archive');
     // });
 
     this.createDemande = function() {
-      if(!this.currentDemande){
+      if (!this.currentDemande) {
+
         $http.get(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/current`).then(function() {
           $state.go('profil', {profileId: profil._id});
         });
@@ -24,7 +26,7 @@ angular.module('impactApp')
     };
 
     this.deleteCurrentDemande = function() {
-      alert('Suppression')
+
     };
 
     this.goCurrentDemande = function() {

@@ -9,7 +9,8 @@ angular.module('impactApp')
       return !profil.hasOwnProperty('deletedAt');
     });
 
-    this.deletedProfils = []
+    this.deletedProfils = [];
+
     // _.filter(profils, function(profil) {
     //   return profil.hasOwnProperty('deletedAt');
     // });
@@ -21,7 +22,6 @@ angular.module('impactApp')
     };
 
     this.deleteProfil = function() {
-      alert('suppression');
       // var modalInstance = $modal.open({
       //   templateUrl: 'components/mes_profils/delete_confirmation.html',
       //   controller: 'ModalDeleteProfileCtrl',

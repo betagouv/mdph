@@ -16,9 +16,10 @@ angular.module('impactApp')
 
           demandes: function($http, $stateParams, currentUser) {
             return $http.get(`/api/users/${currentUser._id}/profiles/${$stateParams.profilId}/requests`)
-              .then(function(response){
+              .then(function(response) {
+
                 return response.data;
-            })
+              });
           }
         }
       });
