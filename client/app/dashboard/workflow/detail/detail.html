@@ -1,15 +1,9 @@
 <div class="list-header">
-  <h1 class="padding-title">Validation du dépot de la demande</h1>
+  <h1 class="padding-title">Demande n° {{request.shortId}}</h1>
   <div class="dashboard-demande-header">
     <div class="detail">
-      <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong> - {{request.shortId}}</h2>
+      <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
-        <a target="_blank"
-          class="btn btn-primary"
-          href="api/requests/{{request.shortId}}/pdf/agent?access_token={{token}}"
-          download>
-          <i class="fa fa-download"></i>&nbsp;Télécharger
-        </a>
         <button class="btn btn-link" ng-click="toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
       </div>
       <div class="alert alert-info" ng-show="showDetail">
