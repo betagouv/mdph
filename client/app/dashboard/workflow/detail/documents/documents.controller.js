@@ -59,4 +59,20 @@ angular.module('impactApp')
         }
       });
     };
+    $scope.allRequiredFilesChecked = function() {
+      let allRequiredFilesChecked = true;
+      angular.forEach(request.documents.obligatoires, function (value, category) {
+        if(value.documentList[0].isInvalid === undefined){
+          allRequiredFilesChecked = false;
+          return;
+        }
+      });
+      if(allRequiredFilesChecked){
+        console.info('all checked');
+        this.openModal();
+      } else {
+        console.info('all not checked');
+        return;
+      }
+    };
   });
