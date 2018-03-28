@@ -5,7 +5,7 @@
       <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
 
-        <a ng-show="request.status !== 'emise' && request.status !== 'en_attente_usager'" target="_blank"
+        <a ng-show="request.status === 'archive' || request.status === 'enregistree'" target="_blank"
           class="btn btn-primary"
           href="api/requests/{{request.shortId}}/pdf/agent?access_token={{token}}"
           download>
@@ -37,7 +37,7 @@
       </div>
       <div ng-switch-when="enregistree">
         <div class="status-actions">
-          <h3>Demande enregistrée</h3>
+          <h3>Demande validée</h3>
         </div>
       </div>
       <div ng-switch-when="en_attente_usager">
@@ -45,6 +45,11 @@
           <h3>Demande en attente</h3>
         </div>
       </div>
+      <div ng-switch-when="archive">
+          <div class="status-actions">
+            <h3>Demande irrecevable</h3>
+          </div>
+        </div>
     </div>
 
   </div>
