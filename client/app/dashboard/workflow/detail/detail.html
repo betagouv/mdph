@@ -4,12 +4,13 @@
     <div class="detail">
       <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
-
-        <a ng-show="request.status === 'archive' || request.status === 'enregistree'" target="_blank"
-          class="btn btn-primary"
-          href="api/requests/{{request.shortId}}/pdf/agent?access_token={{token}}"
-          download>
+        <a ng-show="request.status === 'archive' || request.status === 'enregistree'"
+          class="btn btn-primary" href="api/requests/{{request.shortId}}/pdf/agent?access_token={{token}}"
+          ng-click="showRemoveButton()"  target="_blank" download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
+        </a>
+        <a ng-show="removeButtonShowed" target="_blank" class="btn btn-danger" >
+          <i class="fa fa-trash"></i>&nbsp;Supprimer
         </a>
         <button class="btn btn-link" ng-click="toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
       </div>

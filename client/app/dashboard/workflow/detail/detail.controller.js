@@ -8,4 +8,8 @@ angular.module('impactApp')
     $scope.toggleDetail = function() {
       $scope.showDetail = !$scope.showDetail;
     };
+
+    $scope.showRemoveButton = function() {
+      $scope.removeButtonShowed = true;
+    };
   });
