@@ -9,7 +9,7 @@
           ng-click="showRemoveButton()"  target="_blank" download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
         </a>
-        <a ng-show="removeButtonShowed" target="_blank" class="btn btn-danger" >
+        <a ng-show="removeButtonShowed" target="#" class="btn btn-danger" ng-click="openModal()" >
           <i class="fa fa-trash"></i>&nbsp;Supprimer
         </a>
         <button class="btn btn-link" ng-click="toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
