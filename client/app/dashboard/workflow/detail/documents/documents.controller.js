@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestDocumentsCtrl', function($scope, $modal, Auth, request, documentTypes, currentUser) {
+  .controller('RequestDocumentsCtrl', function($scope, $modal, toastr, Auth, request, documentTypes, currentUser) {
     $scope.documentTypes = documentTypes;
     $scope.request = request;
     $scope.currentUser = currentUser;
@@ -68,10 +68,9 @@ angular.module('impactApp')
         }
       });
       if(allRequiredFilesChecked){
-        console.info('all checked');
         this.openModal();
       } else {
-        console.info('all not checked');
+        toastr.error('Vous n\'avez pas statué sur tous les documents obligatoires joints par l\'usager');
         return;
       }
     };
