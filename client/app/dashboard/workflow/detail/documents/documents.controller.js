@@ -59,15 +59,17 @@ angular.module('impactApp')
         }
       });
     };
+
     $scope.allRequiredFilesChecked = function() {
       let allRequiredFilesChecked = true;
-      angular.forEach(request.documents.obligatoires, function (value, category) {
-        if(value.documentList[0].isInvalid === undefined){
+      angular.forEach(request.documents.obligatoires, function(value, category) {
+        if (category !== undefined && value.documentList[0].isInvalid === undefined) {
           allRequiredFilesChecked = false;
           return;
         }
       });
-      if(allRequiredFilesChecked){
+
+      if (allRequiredFilesChecked) {
         this.openModal();
       } else {
         toastr.error('Vous n\'avez pas statué sur tous les documents obligatoires joints par l\'usager');

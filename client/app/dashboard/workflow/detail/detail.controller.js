@@ -15,16 +15,13 @@ angular.module('impactApp')
 
     $scope.openModal = function() {
       let request = $scope.request;
-      let token = $scope.token;
-
       $modal.open({
         templateUrl: 'app/dashboard/workflow/detail/modal.html',
         controllerAs: 'modalRemove',
         size: 'md',
-        controller($modalInstance, $state, RequestService) {
+        controller($modalInstance) {
           this.shortId = request.shortId;
           this.remove = function() {
-            console.info('remove');
             //TODO service de suppression des demandes
           };
 
