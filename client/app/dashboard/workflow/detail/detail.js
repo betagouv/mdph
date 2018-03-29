@@ -27,6 +27,7 @@ angular.module('impactApp')
       .state('dashboard.workflow.detail.documents', {
         url: '/documents',
         controller: 'RequestDocumentsCtrl',
+        controllerAs: 'requestDocumentsCtrl',
         templateUrl: 'app/dashboard/workflow/detail/documents/documents.html',
         authenticate: true,
         authorized: ['adminMdph'],

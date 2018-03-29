@@ -16,17 +16,17 @@ angular.module('impactApp')
     $scope.openModal = function() {
       let request = $scope.request;
       $modal.open({
-        templateUrl: 'app/dashboard/workflow/detail/modal.html',
+        templateUrl: 'app/dashboard/workflow/detail/modalRemove.html',
         controllerAs: 'modalRemove',
         size: 'md',
-        controller($modalInstance) {
+        controller($modalRemoveInstance) {
           this.shortId = request.shortId;
           this.remove = function() {
             //TODO service de suppression des demandes
           };
 
           this.cancel = function() {
-            $modalInstance.dismiss('cancel');
+            $modalRemoveInstance.dismiss('cancel');
           };
         }
       });
