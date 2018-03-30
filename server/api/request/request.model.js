@@ -46,7 +46,8 @@ var RequestSchema = new Schema({
   synthese:       Schema.Types.Mixed,
   comments:       { type: String },
   hasFirstExpirationNotification: { type: Boolean, default: false },
-  hasLastExpirationNotification: { type: Boolean, default: false }
+  hasLastExpirationNotification: { type: Boolean, default: false },
+  isDownloaded: { type: Boolean, default: false }
 }, { minimize: false });
 
 // RequestSchema.set('toObject', { virtuals: false });

@@ -1,19 +1,22 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowDetailCtrl', function($scope, $state, $cookies, $modal, request) {
+  .controller('WorkflowDetailCtrl', function($scope, $state, RequestResource, $cookies, $modal, $window, request) {
     $scope.request = request;
     $scope.token = $cookies.get('token');
 
-    $scope.toggleDetail = function() {
+    this.toggleDetail = function() {
       $scope.showDetail = !$scope.showDetail;
     };
 
-    $scope.showRemoveButton = function() {
-      $scope.removeButtonShowed = true;
+    this.download  = () => {
+      $scope.request.isDownloaded = 'true';
+      RequestResource.update($scope.request).$promise.then(result => {
+        $window.open('api/requests/' + result.shortId + '/pdf/agent?access_token=' + $scope.token, '_self');
+      });
     };
 
-    $scope.openModal = function() {
+    this.openModal = function() {
       let request = $scope.request;
       $modal.open({
         templateUrl: 'app/dashboard/workflow/detail/modalRemove.html',

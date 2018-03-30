@@ -5,14 +5,14 @@
       <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
         <a ng-show="request.status === 'archive' || request.status === 'enregistree'"
-          class="btn btn-primary" href="api/requests/{{request.shortId}}/pdf/agent?access_token={{token}}"
-          ng-click="showRemoveButton()"  target="_blank" download>
+          class="btn btn-primary" ng-click="workflowDetailCtrl.download()"  target="_blank"
+          download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
         </a>
-        <a ng-show="removeButtonShowed" target="#" class="btn btn-danger" ng-click="openModal()" >
+        <a ng-show="request.isDownloaded" target="#" class="btn btn-danger" ng-click="workflowDetailCtrl.openModal()" >
           <i class="fa fa-trash"></i>&nbsp;Supprimer
         </a>
-        <button class="btn btn-link" ng-click="toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
+        <button class="btn btn-link" ng-click="workflowDetailCtrl.toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
       </div>
       <div class="alert alert-info" ng-show="showDetail">
         <p>Identitfiant <strong>{{request.shortId}}</strong></p>
