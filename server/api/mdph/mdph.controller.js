@@ -287,7 +287,7 @@ export function showRequestsForSecteur(req, res) {
 
   Request
     .find(search)
-    .select('user shortId formAnswers.identites status submittedAt evaluator')
+    .select('user shortId data.identites status submittedAt evaluator')
     .populate('user evaluator', 'name')
     .sort('-submittedAt')
     .exec(function(err, requests) {

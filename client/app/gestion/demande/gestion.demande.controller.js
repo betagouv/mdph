@@ -19,8 +19,8 @@ angular.module('impactApp')
     this.createDemande = function() {
       if (!this.currentDemande) {
 
-        $http.get(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/current`).then(function() {
-          $state.go('profil', {profileId: profil._id});
+        $http.get(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/current`).then(function(result) {
+          $state.go('demande', {shortId: result.shortId});
         });
       }
     };
@@ -30,7 +30,7 @@ angular.module('impactApp')
     };
 
     this.goCurrentDemande = function() {
-      $state.go('profil', {profileId: profil._id});
+      $state.go('demande', {shortId: this.currentDemande.shortId});
     };
 
     this.showStatus = function(demande) {

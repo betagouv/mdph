@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .factory('UploadService', function UploadService(Upload, $rootScope) {
     return {
-      upload: function(request, file, documentType) {
+      upload: function(demande, file, documentType) {
         if (!file) {
           return;
         }
@@ -11,18 +11,18 @@ angular.module('impactApp')
         var model;
 
         if (documentType.mandatory) {
-          if (!request.documents.obligatoires) {
-            request.documents.obligatoires = {};
+          if (!demande.data.documents.obligatoires) {
+            demande.data.documents.obligatoires = {};
           }
 
-          model = request.documents.obligatoires;
+          model = demande.data.documents.obligatoires;
 
         } else {
-          if (!request.documents.complementaires) {
-            request.documents.complementaires = {};
+          if (!demande.data.documents.complementaires) {
+            demande.data.documents.complementaires = {};
           }
 
-          model = request.documents.complementaires;
+          model = demande.data.documents.complementaires;
         }
 
         if (!model[documentType.id]) {
@@ -39,7 +39,7 @@ angular.module('impactApp')
         model[documentType.id].documentList.push(uploadedFile);
 
         Upload.upload({
-          url: 'api/requests/' + request.shortId + '/document',
+          url: 'api/requests/' + demande.shortId + '/document',
           method: 'POST',
           data: {
             file: file,

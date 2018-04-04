@@ -16,8 +16,10 @@ angular.module('impactApp')
     // });
 
     this.createProfil = function() {
-      new ProfileResource().$save({userId: this.currentUser._id}, function(result) {
-        $state.go('profil', {profileId: result._id});
+      new ProfileResource().$save({userId: this.currentUser._id}, function(profilResult) {
+        $http.get(`/api/users/${currentUser._id}/profiles/${profilResult._id}/requests/current`).then(function(demandeResult) {
+          $state.go('demande', {shortId: demandeResult.data.shortId});
+        });
       });
     };
 

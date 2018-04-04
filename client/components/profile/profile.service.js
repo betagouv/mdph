@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-.factory('ProfileService', function ProfileService(estAdulte, estMineur, estEnfant, RequestService) {
+.factory('ProfileService', function ProfileService(estAdulte, estMineur, estEnfant, DemandeService) {
     function _estMineur(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
@@ -57,7 +57,7 @@ angular.module('impactApp')
         missingSections.push('vieQuotidienne');
       }
 
-      if (!RequestService.getDocumentCompletion(request)) {
+      if (!DemandeService.getDocumentCompletion(request)) {
         missingSections.push('documents');
       }
 

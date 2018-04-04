@@ -1,0 +1,174 @@
+.demande-card-row {
+  @extend .row;
+  padding: 0;
+  list-style-type: none;
+
+  .demande-card-row-item {
+    @extend .col-md-4;
+    @extend .col-lg-3;
+  }
+}
+
+.demande-card.demande-card-danger {
+  background-color: $lighter-red;
+}
+
+.demande-card-danger i {
+  color: $lighter-red;
+}
+
+.demande-card {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 30px;
+  background-color: $bg-blue;
+  color: white;
+
+  &.nouvelle-demande {
+    background-color: $flat-ui-blue;
+
+    .btn-default {
+      background-color: $lighter-red;
+      color: white;
+    }
+  }
+}
+
+.demande-card.demande-card-new {
+  background-color: $flat-ui-blue;
+  min-height: 145px;
+  justify-content: center;
+
+  > .demande-card-header {
+    padding: 0;
+  }
+}
+
+.demande-card > .demande-card-content {
+  padding: 40px 60px;
+  border-top: 1px solid #eee;
+  background-color: whitesmoke;
+  color: black;
+}
+
+.demande-card > .demande-card-header {
+  padding: 16px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+  min-height: 120px;
+
+  .trash {
+    background-color:rgb(209, 91, 71);
+    color: whitesmoke;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    align-self: flex-end;
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    &:hover, &:focus {
+      color:rgb(209, 91, 71);
+      background-color: whitesmoke;
+      text-decoration: none;
+    }
+  }
+
+  .demande-card-avatar {
+    margin-right: 12px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.6em;
+
+    .demande-card-icon {
+      padding: 9px;
+      border-radius: 50%;
+      background-color: white;
+      display: inline-block;
+      text-align: center;
+      height: 50px;
+      width: 50px;
+      color: $flat-ui-blue;
+    }
+
+    &:hover  ~ .demande-card-header-text > .demande-card-header-text-title {
+      text-decoration: underline;
+    }
+  }
+
+  .demande-card-header-text {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: white;
+    }
+
+    .demande-card-header-text-title {
+      font-size: 1.2em;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .demande-card-header-text-subhead {
+      color: rgba(255, 255, 255, 0.54);
+      font-size: 1.1em;
+      font-weight: 300;
+      line-height: 24px;
+
+      .btn-link {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.demande-card.demande-card-vertical > .demande-card-header {
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+
+  margin-right: 30px;
+  margin-left: 15px;
+  padding-bottom: 16px;
+
+  .demande-card-header-text {
+    align-items: flex-start;
+    align-items: flex-start;
+  }
+}
+
+
+@media (max-width: $screen-sm-max) {
+  .panel-content {
+    padding: 20px;
+  }
+}

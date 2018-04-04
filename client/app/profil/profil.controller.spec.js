@@ -44,8 +44,9 @@ describe('ProfilCtrl', function() {
       },
       currentMdph: {},
       currentRequest: {
-        prestations: [],
-        formAnswers: {}
+        data: {
+          prestations: []
+        }
       },
       hasRequest: 0,
       ProfileService,

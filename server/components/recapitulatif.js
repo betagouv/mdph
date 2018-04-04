@@ -166,7 +166,7 @@ function computeAnswers(question, trajectoireAnswers) {
 }
 
 function computeQuestions(request, trajectoireId) {
-  var trajectoireAnswers = request.formAnswers[trajectoireId];
+  var trajectoireAnswers = request.data[trajectoireId];
   if (!trajectoireAnswers) {
     return [];
   }
@@ -209,42 +209,42 @@ function computeTrajectoires(request) {
 }
 
 export default function({request, host, mdph}, next) {
-  if (!request.formAnswers) {
+  if (!request.data) {
     return next(null, '<p>Pas de réponses fournies.</p>');
   }
 
   async.series({
     identites: function(callback) {
 
-      if(request.formAnswers.identites && request.formAnswers.identites.autorite && request.formAnswers.identites.autorite.parent1 && request.formAnswers.identites.autorite.parent1.isSameAddress){
-        request.formAnswers.identites.autorite.parent1.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
-        request.formAnswers.identites.autorite.parent1.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
-        request.formAnswers.identites.autorite.parent1.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
-        request.formAnswers.identites.autorite.parent1.localite = request.formAnswers.identites.beneficiaire.localite;
-        request.formAnswers.identites.autorite.parent1.pays = request.formAnswers.identites.beneficiaire.pays;
+      if(request.data.identites && request.data.identites.autorite && request.data.identites.autorite.parent1 && request.data.identites.autorite.parent1.isSameAddress){
+        request.data.identites.autorite.parent1.complement_adresse = request.data.identites.beneficiaire.complement_adresse;
+        request.data.identites.autorite.parent1.nomVoie = request.data.identites.beneficiaire.nomVoie;
+        request.data.identites.autorite.parent1.code_postal = request.data.identites.beneficiaire.code_postal;
+        request.data.identites.autorite.parent1.localite = request.data.identites.beneficiaire.localite;
+        request.data.identites.autorite.parent1.pays = request.data.identites.beneficiaire.pays;
       }
-      if(request.formAnswers.identites && request.formAnswers.identites.autorite && request.formAnswers.identites.autorite.parent2 && request.formAnswers.identites.autorite.parent2.isSameAddress){
-        request.formAnswers.identites.autorite.parent2.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
-        request.formAnswers.identites.autorite.parent2.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
-        request.formAnswers.identites.autorite.parent2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
-        request.formAnswers.identites.autorite.parent2.localite = request.formAnswers.identites.beneficiaire.localite;
-        request.formAnswers.identites.autorite.parent2.pays = request.formAnswers.identites.beneficiaire.pays;
+      if(request.data.identites && request.data.identites.autorite && request.data.identites.autorite.parent2 && request.data.identites.autorite.parent2.isSameAddress){
+        request.data.identites.autorite.parent2.complement_adresse = request.data.identites.beneficiaire.complement_adresse;
+        request.data.identites.autorite.parent2.nomVoie = request.data.identites.beneficiaire.nomVoie;
+        request.data.identites.autorite.parent2.code_postal = request.data.identites.beneficiaire.code_postal;
+        request.data.identites.autorite.parent2.localite = request.data.identites.beneficiaire.localite;
+        request.data.identites.autorite.parent2.pays = request.data.identites.beneficiaire.pays;
       }
-      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant1 && request.formAnswers.identites.representant.representant1.isSameAddress){
-        request.formAnswers.identites.representant.representant1.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
-        request.formAnswers.identites.representant.representant1.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
-        request.formAnswers.identites.representant.representant1.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
-        request.formAnswers.identites.representant.representant1.localite = request.formAnswers.identites.beneficiaire.localite;
-        request.formAnswers.identites.representant.representant1.pays = request.formAnswers.identites.beneficiaire.pays;
+      if(request.data.identites && request.data.identites.representant && request.data.identites.representant.representant1 && request.data.identites.representant.representant1.isSameAddress){
+        request.data.identites.representant.representant1.complement_adresse = request.data.identites.beneficiaire.complement_adresse;
+        request.data.identites.representant.representant1.nomVoie = request.data.identites.beneficiaire.nomVoie;
+        request.data.identites.representant.representant1.code_postal = request.data.identites.beneficiaire.code_postal;
+        request.data.identites.representant.representant1.localite = request.data.identites.beneficiaire.localite;
+        request.data.identites.representant.representant1.pays = request.data.identites.beneficiaire.pays;
       }
-      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant2 && request.formAnswers.identites.representant.representant2.isSameAddress){
-        request.formAnswers.identites.representant.representant2.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
-        request.formAnswers.identites.representant.representant2.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
-        request.formAnswers.identites.representant.representant2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
-        request.formAnswers.identites.representant.representant2.localite = request.formAnswers.identites.beneficiaire.localite;
-        request.formAnswers.identites.representant.representant2.pays = request.formAnswers.identites.beneficiaire.pays;
+      if(request.data.identites && request.data.identites.representant && request.data.identites.representant.representant2 && request.data.identites.representant.representant2.isSameAddress){
+        request.data.identites.representant.representant2.complement_adresse = request.data.identites.beneficiaire.complement_adresse;
+        request.data.identites.representant.representant2.nomVoie = request.data.identites.beneficiaire.nomVoie;
+        request.data.identites.representant.representant2.code_postal = request.data.identites.beneficiaire.code_postal;
+        request.data.identites.representant.representant2.localite = request.data.identites.beneficiaire.localite;
+        request.data.identites.representant.representant2.pays = request.data.identites.beneficiaire.pays;
       }
-      callback(null, request.formAnswers.identites);
+      callback(null, request.data.identites);
     },
 
     submittedAt: function(callback) {
