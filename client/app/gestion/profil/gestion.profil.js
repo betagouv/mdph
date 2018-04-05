@@ -10,6 +10,7 @@ angular.module('impactApp')
         controller: 'GestionProfilCtrl',
         controllerAs: 'gestionProfilCtrl',
         resolve: {
+<<<<<<< HEAD
           profils: function($http, ProfileResource, currentUser) {
 
             return ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
@@ -26,6 +27,10 @@ angular.module('impactApp')
 
             });
 
+=======
+          profils: function(ProfileResource, currentUser) {
+            return ProfileResource.query({userId: currentUser._id}).$promise;
+>>>>>>> refs/remotes/origin/v0.4.0---lot4
           }
         }
       });

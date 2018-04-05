@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
+<<<<<<< HEAD
   .controller('GestionProfilCtrl', function($http, $state, currentMdph, currentUser, profils, ProfileResource) {
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
@@ -89,3 +90,9 @@ angular.module('impactApp')
 //     $modalInstance.close(true);
 //   };
 // });
+=======
+  .controller('GestionProfilCtrl', function($state, currentMdph) {
+    this.currentMdph = currentMdph;
+
+  });
+>>>>>>> refs/remotes/origin/v0.4.0---lot4
