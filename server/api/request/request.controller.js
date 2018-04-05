@@ -15,12 +15,11 @@ import recapitulatif from '../../components/recapitulatif';
 import demandeBuilder from '../../components/DemandeBuilder';
 
 import Request from './request.model';
-import Profile from '../profile/profile.model';
 import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 
-import Dispatcher from '../../components/dispatcher';
+//import Dispatcher from '../../components/dispatcher';
 import RequestActionModel from './action.model';
 import { ACTIONS } from './actions';
 import resizeAndMove from '../../components/resize-image';
@@ -40,8 +39,8 @@ function handleError(req, res) {
 
 function unlinkRequestDocuments(req) {
   return new Promise(function(resolve) {
-    if (req.request.documents && Array.isArray(req.request.documents)) {
-      req.request.documents.forEach(function(requestDoc) {
+    if (req.request.data.documents && Array.isArray(req.request.data.documents)) {
+      req.request.data.documents.forEach(function(requestDoc) {
         if (requestDoc.path) {
           fs.unlink(requestDoc.path);
         }
@@ -485,7 +484,7 @@ export function saveFilePartenaire(req, res) {
 
     function(request, callback) {
       _request = request;
-      request.documents.push(_document);
+      request.data.documents.push(_document);
       request.save();
       callback();
     },

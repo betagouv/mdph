@@ -217,11 +217,6 @@ fieldset {
 @import 'mon_compte/mon_compte.scss';
 @import 'partenaire/partenaire.scss';
 @import 'partenaire/pj/pj.scss';
-@import 'profil/documents/documents.scss';
-@import 'profil/identites/identites.scss';
-@import 'profil/liste_demandes.scss';
-@import 'profil/prestations/prestations.scss';
-@import 'profil/profile.scss';
 @import 'stats/stats.scss';
 @import 'suivi/suivi.scss';
 @import '../components/demande-category/demande-category.scss';
@@ -235,8 +230,6 @@ fieldset {
 @import '../components/nav-steps/nav-steps.scss';
 @import '../components/password-strength-bar/password-strength-bar.scss';
 @import '../components/prestations/prestation.scss';
-@import '../components/profile/profile-card.scss';
-@import '../components/profile/profile-category.scss';
 @import '../components/qtitle/qtitle.scss';
 @import '../components/question/cv.scss';
 @import '../components/question/droits.scss';

@@ -34,6 +34,59 @@ angular.module('impactApp')
       return demande && demande.data && demande.data.identites && demande.data.identites.beneficiaire && demande.data.identites.beneficiaire.numero_secu_enfant;
     }
 
+    function allMandatoryFilesPresent(demande) {
+      // TODO Object.keys(request.data.documents.obligatoires).length === 3 doesn't seem strict enough
+      return demande.data && demande.data.documents && demande.data.documents.obligatoires && Object.keys(demande.data.documents.obligatoires).length === 3;
+    }
+
+    function allAskedFilesPresent(demande) {
+      let allAskedFilesComplete = true;
+      _.forEach(demande.data.askedDocumentTypes, (askedType) => {
+        let askedDocs = _.get(demande.data.documents, ['complementaires', askedType, 'documentList']);
+        if (typeof askedDocs === 'undefined' || askedDocs.length === 0) {
+          allAskedFilesComplete = false;
+        }
+      });
+
+      return allAskedFilesComplete;
+    }
+
+    function findInvalid(categories) {
+      var invalidDocuments = [];
+
+      _.forEach(categories, category => {
+        _.forEach(category.documentList, document => {
+          if (document.isInvalid) {
+            invalidDocuments.push(document);
+          }
+        });
+      });
+
+      return invalidDocuments;
+    }
+
+    function hasRefusedDocuments(demande) {
+      if (findInvalid(demande.data.documents.obligatoires).length > 0) {
+        return true;
+      }
+
+      if (findInvalid(demande.data.documents.complementaires).length > 0) {
+        return true;
+      }
+
+      return false;
+    }
+
+    function getDocumentCompletion(demande) {
+      if (!demande.data.documents) {
+        return false;
+      }
+
+      return allMandatoryFilesPresent(demande) &&
+        allAskedFilesPresent(demande) &&
+        hasRefusedDocuments(demande) !== true;
+    }
+
     function getMissingSection(demande, user) {
       const missingSections = [];
 
@@ -100,59 +153,6 @@ angular.module('impactApp')
 
     function getPrestationCompletion(demande) {
       return Array.isArray(demande.data.prestations) && demande.data.prestations.length > 0;
-    }
-
-    function allMandatoryFilesPresent(demande) {
-      // TODO Object.keys(request.documents.obligatoires).length === 3 doesn't seem strict enough
-      return demande.data && demande.data.documents && demande.data.documents.obligatoires && Object.keys(demande.data.documents.obligatoires).length === 3;
-    }
-
-    function allAskedFilesPresent(demande) {
-      let allAskedFilesComplete = true;
-      _.forEach(demande.data.askedDocumentTypes, (askedType) => {
-        let askedDocs = _.get(demande.data.documents, ['complementaires', askedType, 'documentList']);
-        if (typeof askedDocs === 'undefined' || askedDocs.length === 0) {
-          allAskedFilesComplete = false;
-        }
-      });
-
-      return allAskedFilesComplete;
-    }
-
-    function findInvalid(categories) {
-      var invalidDocuments = [];
-
-      _.forEach(categories, category => {
-        _.forEach(category.documentList, document => {
-          if (document.isInvalid) {
-            invalidDocuments.push(document);
-          }
-        });
-      });
-
-      return invalidDocuments;
-    }
-
-    function hasRefusedDocuments(demande) {
-      if (findInvalid(demande.data.documents.obligatoires).length > 0) {
-        return true;
-      }
-
-      if (findInvalid(demande.data.documents.complementaires).length > 0) {
-        return true;
-      }
-
-      return false;
-    }
-
-    function getDocumentCompletion(demande) {
-      if (!demande.data.documents) {
-        return false;
-      }
-
-      return allMandatoryFilesPresent(demande) &&
-        allAskedFilesPresent(demande) &&
-        hasRefusedDocuments(demande) !== true;
     }
 
     function postAction(demande, action) {

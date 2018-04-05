@@ -20,18 +20,18 @@ class RequestService {
   }
 
   findRefusedDocuments(request) {
-    if (!request.documents) {
+    if (!request.data.documents) {
       return { obligatoires: [], complementaires: [] };
     }
 
     return {
-      obligatoires: this.findInvalid(request.documents.obligatoires),
-      complementaires: this.findInvalid(request.documents.complementaires)
+      obligatoires: this.findInvalid(request.data.documents.obligatoires),
+      complementaires: this.findInvalid(request.data.documents.complementaires)
     };
   }
 
   getAskedDocumentTypes(request) {
-    return request.askedDocumentTypes || [];
+    return request.data.askedDocumentTypes || [];
   }
 
   groupByAge(requests) {

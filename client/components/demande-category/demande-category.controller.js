@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('impactApp').controller('DemandeCategoryCtrl', function($state) {
+angular.module('impactApp').controller('DemandeCategoryCtrl', function($state, DemandeService) {
 
   const { title, subhead, content, icon, model, action } = this.options;
 
@@ -19,9 +19,9 @@ angular.module('impactApp').controller('DemandeCategoryCtrl', function($state) {
 
   this.computeMandatory = function() {
     if (this.model === 'identites.representant') {
-      return RequestService.representantObligatoire(this.demande);
+      return DemandeService.representantObligatoire(this.demande);
     } else if (this.model === 'identites.autorite') {
-      return RequestService.autoriteObligatoire(this.demande);
+      return DemandeService.autoriteObligatoire(this.demande);
     } else {
       return this.options.mandatory;
     }

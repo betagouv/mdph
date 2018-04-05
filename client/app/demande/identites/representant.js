@@ -48,7 +48,7 @@ angular.module('impactApp')
                   representant.__completion = true;
                   representant.updatedAt = Date.now();
                   demande.data.identites.representant = representant;
-                  RequestResource.update(demande).$promise.then(function(){
+                  RequestResource.update(demande).$promise.then(function() {
                     $state.go('demande.situations_particulieres');
                   });
                 }

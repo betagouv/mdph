@@ -57,7 +57,7 @@ angular.module('impactApp')
               identite.__completion = true;
               identite.updatedAt = Date.now();
               demande.data.identites.beneficiaire = identite;
-              RequestResource.update(demande).$promise.then(function(){
+              RequestResource.update(demande).$promise.then(function() {
                 if (demande.data.identites.beneficiaire.numero_secu_enfant) {
                   $state.go('^.autorite');
                 } else {

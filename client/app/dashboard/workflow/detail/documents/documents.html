@@ -2,14 +2,14 @@
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces obligatoires</div>
     <div class="panel-body">
-      <display-file-list categories="request.documents.obligatoires" request="request" user="currentUser"></display-file-list>
+      <display-file-list categories="request.data.documents.obligatoires" request="request" user="currentUser"></display-file-list>
     </div>
   </div>
 
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces complémentaires</div>
     <div class="panel-body">
-      <display-file-list categories="request.documents.complementaires" request="request" user="currentUser"></display-file-list>
+      <display-file-list categories="request.data.documents.complementaires" request="request" user="currentUser"></display-file-list>
     </div>
   </div>
 
@@ -22,9 +22,9 @@
       type="text" ng-model="selectedDocument" class="form-control" placeholder="Justificatif, carte, certificat ...">
 
       <div class="selected-types">
-        <em ng-hide="request.askedDocumentTypes.length">Pas de demande complémentaire</em>
+        <em ng-hide="request.data.askedDocumentTypes.length">Pas de demande complémentaire</em>
         <ul class="list-group">
-          <li class="list-group-item" ng-click="removeSelectedType(idx)" ng-repeat="(idx, type) in request.askedDocumentTypes">
+          <li class="list-group-item" ng-click="removeSelectedType(idx)" ng-repeat="(idx, type) in request.data.askedDocumentTypes">
             {{ showLabel(type) }}
             <a href="#" class="pull-right">
               Supprimer

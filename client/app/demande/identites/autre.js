@@ -37,7 +37,7 @@ angular.module('impactApp')
               identite.__completion = true;
               identite.updatedAt = Date.now();
               demande.data.identites.autre = identite;
-              RequestResource.update(demande).$promise.then(function(){
+              RequestResource.update(demande).$promise.then(function() {
                 if (demande.data.identites.beneficiaire.protection === 'true') {
                   $state.go('demande.representant');
                 } else {

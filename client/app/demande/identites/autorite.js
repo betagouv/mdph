@@ -48,7 +48,7 @@ angular.module('impactApp')
                   identite.__completion = true;
                   identite.updatedAt = Date.now();
                   demande.data.identites.autorite = identite;
-                  RequestResource.update(demande).$promise.then(function(){
+                  RequestResource.update(demande).$promise.then(function() {
                     if (demande.data.identites.beneficiaire.aide === 'true') {
                       $state.go('demande.autre');
                     } else {

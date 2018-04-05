@@ -33,8 +33,8 @@ angular.module('impactApp')
               sectionModel.__completion = true;
               sectionModel.updatedAt = Date.now();
               demande.data[sectionId] = sectionModel;
-              RequestResource.update(demande).$promise.then(function(){
-                $state.go('demande', {shortId : demande.shortId}, {reload: true});
+              RequestResource.update(demande).$promise.then(function() {
+                $state.go('demande', {shortId: demande.shortId}, {reload: true});
               });
             };
           }

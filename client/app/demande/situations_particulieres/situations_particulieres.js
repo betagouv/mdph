@@ -39,7 +39,7 @@ angular.module('impactApp')
               sectionModel.__completion = true;
               sectionModel.updatedAt = Date.now();
               demande.data[sectionId] = sectionModel;
-              RequestResource.update(demande).$promise.then(function(){
+              RequestResource.update(demande).$promise.then(function() {
                 $state.go('demande.vie_quotidienne');
               });
             };

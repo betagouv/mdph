@@ -8,13 +8,13 @@ angular.module('impactApp')
     $scope.token = Auth.getToken();
 
     function alreadySelected(request, typeId) {
-      return _.find(request.askedDocumentTypes, function(current) {
+      return _.find(request.data.askedDocumentTypes, function(current) {
         return current === typeId;
       });
     }
 
-    if (!request.askedDocumentTypes) {
-      request.askedDocumentTypes = [];
+    if (!request.data.askedDocumentTypes) {
+      request.data.askedDocumentTypes = [];
     }
 
     $scope.showLabel = function(type) {
@@ -23,13 +23,13 @@ angular.module('impactApp')
 
     $scope.addSelectedType = function(type) {
       if (!alreadySelected($scope.request, type.id)) {
-        $scope.request.askedDocumentTypes.push(type.id);
+        $scope.request.data.askedDocumentTypes.push(type.id);
         $scope.request.$save();
       }
     };
 
     $scope.removeSelectedType = function(idx) {
-      $scope.request.askedDocumentTypes.splice(idx, 1);
+      $scope.request.data.askedDocumentTypes.splice(idx, 1);
       $scope.request.$save();
     };
 

@@ -10,8 +10,8 @@ import fs from 'fs';
     .lean()
     .exec(function(err, requests) {
       _.forEach(requests, function(request) {
-        if (request.documents && request.documents.length > 0) {
-          _.forEach(request.documents, function(document) {
+        if (request.data.documents && request.data.documents.length > 0) {
+          _.forEach(request.data.documents, function(document) {
             if (!document.filename) {
               return;
             }
