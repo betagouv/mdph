@@ -202,11 +202,11 @@ fieldset {
 @import 'dashboard/workflow/detail/detail.scss';
 @import 'dashboard/workflow/detail/documents/documents.scss';
 @import 'dashboard/workflow/detail/validation_depot/validation_depot.scss';
-@import 'departement/departement.scss';
 @import 'evaluation/dashboard/evaluation.dashboard.scss';
 @import 'evaluation/detail/evaluation.detail.scss';
 @import 'evaluation/evaluation.scss';
 @import 'evaluation/issues/evaluation.issues.scss';
+@import 'gestion/gestion.scss';
 @import 'layout/layout.scss';
 @import 'main/main.scss';
 @import 'medecin/medecin.scss';
@@ -227,7 +227,6 @@ fieldset {
 @import '../components/history/history.scss';
 @import '../components/mdph-map/mdph-map.scss';
 @import '../components/menu-dashboard/menu-dashboard.scss';
-@import '../components/mes_profils/mes_profils.scss';
 @import '../components/nav-steps/nav-steps.scss';
 @import '../components/password-strength-bar/password-strength-bar.scss';
 @import '../components/prestations/prestation.scss';

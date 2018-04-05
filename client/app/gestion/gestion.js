@@ -3,13 +3,12 @@
 angular.module('impactApp')
   .config(function($stateProvider) {
     $stateProvider
-      .state('departement', {
+      .state('gestion', {
         parent: 'layout',
         url: '',
-        templateUrl: 'app/departement/departement.html',
         authenticate: true,
         authorized: ['user'],
-        controller: 'DepartementCtrl',
-        controllerAs: 'departementctrl',
+        template: '<ui-view />',
+        redirectTo: 'gestion_profil'
       });
   });

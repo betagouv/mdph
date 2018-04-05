@@ -235,7 +235,7 @@ describe('LoginCtrl', function() {
         $scope.login(fakeForm);
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('departement');
+        expect($state.go.calls.argsFor(0)[0]).toEqual('gestion_profil');
       });
     });
   });
