@@ -4,6 +4,7 @@ angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, $state, User, Auth, currentUser) {
     $scope.errors = {};
     $scope.user = currentUser;
+    $scope.forms = $state.current.data.forms;
 
     $scope.changePassword = function(form) {
       $scope.passwordSubmitted = true;
