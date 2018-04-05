@@ -23,6 +23,9 @@
     <li ng-if="layoutctrl.showEvaluationLink()">
       <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
     </li>
+    <li ng-if="layoutctrl.showGestionLink()">
+      <a ui-sref="gestion_profil">Profil et demandes</a>
+    </li>
     <li>
       <a ui-sref="mon_compte">Mon compte</a>
     </li>
@@ -33,7 +36,7 @@
 </nav>
 
 <div ng-class="{'dashbord-content': layoutctrl.shouldShowDashboard()}">
-  <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" current-user="layoutctrl.getCurrentUser()" mdph="layoutctrl.currentMdph" />
+  <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" current-user="layoutctrl.currentUser" mdph="layoutctrl.currentMdph" />
 
   <main>
     <div ui-view></div>
