@@ -60,8 +60,8 @@
           <h2>Informations obligatoires</h2>
           <ul class="demande-card-row">
             <li id="beneficiaire" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.beneficiaire" /></li>
-            <li id="autorite" class="demande-card-row-item" ng-if="demandeCtrl.profile.identites.beneficiaire.numero_secu_enfant"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.autorite" /></li>
-            <li id="representant" class="demande-card-row-item" ng-if="demandeCtrl.profile.identites.beneficiaire.protection === 'true' "><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.representant" /></li>
+            <li id="autorite" class="demande-card-row-item" ng-if="demandeCtrl.demande.data.identites.beneficiaire.numero_secu_enfant"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.autorite" /></li>
+            <li id="representant" class="demande-card-row-item" ng-if="demandeCtrl.demande.data.identites.beneficiaire.protection === 'true' "><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.representant" /></li>
             <li id="vieQuotidienne" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.vieQuotidienne" /></li>
             <li id="documents" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" completion="demandeCtrl.documentCompletion()" options="demandeCtrl.options.documents" /></li>
             <li id="unconfirmed" ng-if="demandeCtrl.currentUser.unconfirmed" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.unconfirmed" /></li>

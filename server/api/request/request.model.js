@@ -63,13 +63,6 @@ RequestSchema.pre('save', function(next) {
 
   this.updatedAt = now;
 
-  // init identite from profile
-  ProfileModel.findById(this.profile).then(function(profile){
-    if(profile.identites){
-      this.set('identites', profile.identites);
-    }
-  });
-
   next();
 });
 

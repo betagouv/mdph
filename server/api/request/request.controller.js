@@ -323,11 +323,15 @@ export function generateReceptionMail(req, res) {
  * Create request
  */
 export function create(req, res) {
+  console.log("create request : ", req.profile);
   Request
     .create({
       profile: req.profile,
       user: req.user,
-      askedDocumentTypes: req.body.askedDocumentTypes
+      askedDocumentTypes: req.body.askedDocumentTypes,
+      data:{
+        identites: req.profile.identites
+      }
     })
     .then(request => {
       request.saveActionLog(ACTIONS.CREATION, req.user, req.log);
