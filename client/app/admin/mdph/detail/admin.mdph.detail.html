@@ -8,7 +8,7 @@
       <label for="zipcode" class="control-label">Code département</label>
       <input id="zipcode" type="text" name="zipcode" class="form-control" ng-model="mdphDetail.zipcode" ng-minlength="1" required/>
       <div ng-messages="mdphDetailForm.zipcode.$error" ng-if="mdphDetailForm.$submitted">
-        <p class="help-block" ng-message='required'>Le code departementest obligatoire.</p>
+        <p class="help-block" ng-message='required'>Le code departement est obligatoire.</p>
         <p class="help-block" ng-message='minlength'>La longueur du code departement est 2 ou 3.</p>
       </div>
     </div>

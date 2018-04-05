@@ -1,0 +1,308 @@
+<form id="profile-identites" aria-labelledby="infoPerso" name="infoForm" ng-submit="submit(infoForm)" novalidate>
+  <div class="section-body-head">
+    <h2>
+      <a id="backtodemande" ui-sref="demande({shortId: demandeCtrl.demande.shortId})" ui-sref-opts="{reload: true, notify: true}">Demande</a>
+      / Identité du bénéficiaire
+    </h2>
+  </div>
+
+  <section class="identite-section">
+    <div class="section-row">
+      <div class="form-group required" ng-class="{'has-error': infoForm.nom.$invalid && infoForm.$submitted}">
+        <label for="nom" class="control-label">Nom de naissance</label>
+        <input id="nom" type="text" name="nom" class="form-control" ng-model="identite.nom" ng-minlength="1" required>
+        <div ng-messages="infoForm.nom.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+        </div>
+      </div>
+
+      <div class="form-group required" ng-class="{'has-error': infoForm.prenom.$invalid && infoForm.$submitted}">
+        <label for="prenom" class="control-label">Prénoms</label>
+        <input id="prenom" type="text" name="prenom" class="form-control" ng-model="identite.prenom" ng-minlength="1" required>
+        <div ng-messages="infoForm.prenom.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+          <p class="help-block" ng-message='minlength'>La longueur minimale du nom est de 1 caractère.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nom_usage" class="control-label">Nom d'époux·se ou nom d'usage</label>
+      <input id="nom_usage" type="text" name="nom_usage" class="form-control" ng-model="identite.nom_usage">
+    </div>
+
+    <div class="form-group">
+      <div class="form-group required" ng-class="{'has-error': !identite.sexe && infoForm.$submitted}">
+        <fieldset>
+          <legend class="control-label">Sexe</legend>
+          <input type="radio" name="sexe" id="sexe-m" ng-model="identite.sexe" ng-required="!identite.sexe" value="homme">
+          <label class="radio-inline" for="sexe-m">Homme</label>
+          <input type="radio" name="sexe" id="sexe-f" ng-model="identite.sexe" ng-required="!identite.sexe" value="femme">
+          <label class="radio-inline" for="sexe-f">Femme</label>
+        </fieldset>
+        <div ng-if="!identite.sexe && infoForm.$submitted">
+          <p class="help-block">Ce champ est obligatoire.</p>
+        </div>
+      </div>
+
+      <div class="form-group required" ng-class="{'has-error': !identite.nationalite && infoForm.$submitted}">
+        <fieldset>
+          <legend class="control-label">Nationalité</legend>
+          <input type="radio" name="nationalite" id="nationalite_francaise" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="francaise">
+          <label class="radio-inline" for="nationalite_francaise">Française</label>
+          <input type="radio" name="nationalite" id="nationalite_union_europeene" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="ue">
+          <label class="radio-inline" for="nationalite_union_europeene">Espace Économique Européen ou Suisse</label>
+          <input type="radio" name="nationalite" id="nationalite_autre" ng-model="identite.nationalite" ng-required="!identite.nationalite" value="autre">
+          <label class="radio-inline" for="nationalite_autre">Autre</label>
+        </fieldset>
+        <div ng-if="infoForm.$submitted && !identite.nationalite">
+          <p class="help-block">Ce champ est obligatoire.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="identite-section">
+    <div class="form-group required"
+      ng-class="{
+        'has-error': infoForm.dateDeNaissance.$invalid && infoForm.$submitted
+      }">
+      <label class="control-label" for="date-de-naissance">
+        Date de naissance <span class="small">au format jour/mois/année</span>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        name="dateDeNaissance"
+        id="date-de-naissance"
+        required
+        ng-model="identite.dateNaissance"
+        input-date
+        date-autocomplete
+        placeholder="JJ/MM/AAAA"
+        aria-describedby="help-date-de-naissance"
+        ng-change="majAdulteEnfant()">
+      <div ng-messages="infoForm.dateDeNaissance.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" id="help-date-de-naissance" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
+        <p class="help-block" id="help-date-de-naissance" ng-message='required'>Ce champ est obligatoire.</p>
+      </div>
+    </div>
+
+    <div class="section-row">
+      <div class="form-group">
+        <label for="commune_naissance" class="control-label">Commune de naissance</label>
+        <input id="commune_naissance" type="text" name="commune_naissance" class="form-control" ng-model="identite.commune_naissance">
+      </div>
+
+      <div class="form-group">
+        <label for="departement_naissance" class="control-label">Département</label>
+        <input id="departement_naissance" type="text" name="departement_naissance" class="form-control" ng-model="identite.departement_naissance">
+      </div>
+
+      <div class="form-group">
+        <label for="pays_naissance" class="control-label">Pays <small>(en cas de naissance à l'étranger)</small></label>
+        <input id="pays_naissance" type="text" name="pays_naissance" class="form-control" ng-model="identite.pays_naissance">
+      </div>
+    </div>
+  </section>
+
+  <section class="identite-section">
+
+   <div class="form-group">
+      <label for="complement_address" class="control-label">Complément d’adresse</label>
+      <input id="complement_address" type="text" name="complement_address" class="form-control" ng-model="identite.complement_address">
+      <div ng-messages="infoForm.complement_address.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      </div>
+    </div>
+
+    <div class="form-group required" ng-class="{'has-error': infoForm.nomVoie.$invalid && infoForm.$submitted}">
+      <label for="nomVoie" class="control-label">Adresse</label>
+      <div class="input-group">
+        <input id="address"
+          type="search"
+          typeahead="result as result.properties.label for result in getAdress($viewValue, currentMdph)"
+          typeahead-min-length='3'
+          typeahead-on-select='fillAdressOnSelect($item, identite)'
+          typeahead-wait-ms="100"
+          typeahead-loading="loadingLocations"
+          typeahead-no-results="noResults"
+          ng-model="identite.nomVoie" class="form-control"
+          name="nomVoie"
+          required
+          placeholder="Recherche adresse"
+          autocomplete="off">
+        <span class="input-group-addon basic-addon">
+          <i class="fa" ng-class="{ 'fa-search': !loadingLocations, 'fa-refresh fa-spin': loadingLocations }"></i>
+        </span>
+      </div>
+      <div ng-show="noResults">
+        <i class="fa fa-times"></i> Pas de résultats
+      </div>
+      <div ng-messages="infoForm.nomVoie.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      </div>
+    </div>
+
+    <div class="section-row">
+      <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.code_postal.$invalid && infoForm.$submitted}">
+        <label for="code_postal" class="control-label">Code postal</label>
+        <input id="code_postal" type="text" name="code_postal" class="form-control" ui-mask="99999"
+        ng-model="identite.code_postal" ng-disabled="disableAddress()" ng-required="!disableAddress()">
+        <div ng-messages="infoForm.code_postal.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'required': !disableAddress(), 'has-error': infoForm.localite.$invalid && infoForm.$submitted}">
+        <label for="localite" class="control-label">Localité</label>
+        <input id="localite" type="text" name="localite" class="form-control" ng-model="identite.localite" ng-disabled="disableAddress()" ng-required="!disableAddress()">
+        <div ng-messages="infoForm.localite.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pays_adresse" class="control-label">Pays</label>
+        <input id="pays_adresse" type="text" name="pays_adresse" class="form-control" ng-model="identite.pays_adresse">
+      </div>
+    </div>
+  </section>
+
+  <section class="identite-section">
+    <div class="form-group required" ng-class="{'has-error': infoForm.email.$invalid && infoForm.$submitted}">
+      <label for="email" class="control-label">Email</label>
+      <input id="email" type="email" name="email" class="form-control" ng-model="identite.email" ng-init="currentUser.email" required>
+      <div ng-messages="infoForm.email.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <p class="help-block" ng-message='email'>L'adresse email saisie est incorrecte.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="tel_1" class="control-label">Téléphone 1</label>
+          <input id="tel_1" type="text" name="tel_1" class="form-control" ng-model="identite.tel_1">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="tel_2" class="control-label">Téléphone 2</label>
+          <input id="tel_2" type="text" name="tel_2" class="form-control" ng-model="identite.tel_2">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="identite-section">
+    <div class="form-group">
+      <label for="domicile_organisme" class="control-label">Si vous avez élu domicile auprès d'un organisme (association, centre d’hébergement ou d’action sociale), précisez lequel</label>
+      <input id="domicile_organisme" type="text" name="domicile_organisme" class="form-control" ng-model="identite.domicile_organisme">
+      <hr>
+    </div>
+
+    <div class="form-group">
+      <fieldset>
+        <legend class="control-label">Organisme payeur de prestations familiales / RSA</legend>
+        <input type="radio" name="prestations_familiales" id="prestations_familiales_caf" ng-model="identite.prestations_familiales" value="caf">
+        <label class="radio-inline" for="prestations_familiales_caf">CAF</label>
+        <input type="radio" name="prestations_familiales" id="prestations_familiales_msa" ng-model="identite.prestations_familiales" value="msa">
+        <label class="radio-inline" for="prestations_familiales_msa">MSA</label>
+        <input type="radio" name="prestations_familiales" id="prestations_familiales_autre" ng-model="identite.prestations_familiales" value="autre">
+        <label class="radio-inline" for="prestations_familiales_autre">Autre</label>
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <label for="numero_allocataire" class="control-label">Numéro Allocataire</label>
+      <input id="numero_allocataire" type="text" name="numero_allocataire" class="form-control" ng-model="identite.numero_allocataire">
+      <hr>
+    </div>
+
+    <div class="form-group required" ng-class="{'has-error': infoForm.assurance.$invalid && infoForm.$submitted}">
+      <fieldset>
+        <legend class="control-label">Organisme d'assurance maladie</legend>
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_cpam" ng-model="identite.assurance" value="cpam">
+        <label class="radio-inline" for="assurance_cpam">CPAM</label>
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_msa" ng-model="identite.assurance" value="msa">
+        <label class="radio-inline" for="assurance_msa">MSA</label>
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_rsi" ng-model="identite.assurance" value="rsi">
+        <label class="radio-inline" for="assurance_rsi">RSI</label>
+        <input type="radio" ng-required="!identite.assurance" name="assurance" id="assurance_autre" ng-model="identite.assurance" value="autre">
+        <label class="radio-inline" for="assurance_autre">Autre</label>
+      </fieldset>
+      <div ng-messages="infoForm.assurance.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+      </div>
+    </div>
+
+    <div class="form-group required" ng-if="identite.assurance === 'autre'" ng-class="{'has-error': infoForm.assurance_precisez.$invalid && infoForm.$submitted}">
+      <label for="assurance_precisez" class="control-label">Précisez</label>
+      <input id="assurance_precisez" type="text" name="assurance_precisez" class="form-control" ng-model="identite.assurance_precisez" required>
+      <div ng-messages="infoForm.assurance_precisez.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        </div>
+    </div>
+
+    <div class="form-group required" ng-class="{'has-error': infoForm.numero_secu.$invalid && !infoForm.numero_secu.$pristine && infoForm.$submitted}">
+      <label for="numero_secu" class="control-label">Votre numéro de Sécurité Sociale</label>
+      <input id="numero_secu" type="text" name="numero_secu" required class="form-control"
+        ng-model="identite.numero_secu" ui-options="maskOptions" ui-mask="* ** ** ** *** *** **" numero-secu>
+      <div ng-messages="infoForm.numero_secu.$error" ng-if="infoForm.$submitted">
+        <p class="help-block" ng-message='numero-secu'>Ce numéro de sécurité sociale est invalide.</p>
+       <p class="help-block" ng-message='minlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='maxlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <p class="help-block" ng-message='mask'>Ce champ est incomplet.</p>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{'required': estEnfant, 'has-error': infoForm.numero_secu_enfant.$invalid && infoForm.$submitted}" ng-if="!estAdulte">
+      <label for="numero_secu_enfant" class="control-label">Si c’est votre enfant qui est concerné par la demande, indiquer son numéro de sécurité sociale</label>
+      <input id="numero_secu_enfant" type="text" name="numero_secu_enfant" class="form-control" ng-required="estEnfant"
+        ng-model="identite.numero_secu_enfant" ui-options="maskOptions" ui-mask="* ** ** ** *** *** **" numero-secu>
+      <div ng-messages="infoForm.numero_secu_enfant.$error" ng-if="infoForm.$submitted">
+          <p class="help-block" ng-message='required'>Ce champ est obligatoire.</p>
+        <p class="help-block" ng-message='minlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='maxlength'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='numero-secu'>Ce numéro de sécurité sociale est invalide.</p>
+        <p class="help-block" ng-message='mask'>Ce champ est incomplet.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="identite-section">
+    <div class="form-group required" ng-class="{'has-error': !identite.aide && infoForm.$submitted}">
+      <fieldset>
+        <legend class="control-label">Êtes-vous aidé.e dans vos démarches auprès de la MDPH ?</legend>
+        <input type="radio" name="aide" id="aide-o" ng-model="identite.aide" ng-required="!identite.aide" value="true">
+        <label class="radio-inline" for="aide-o">Oui</label>
+        <input type="radio" name="aide" id="aide-n" ng-model="identite.aide" ng-required="!identite.aide" value="false">
+        <label class="radio-inline" for="aide-n">Non</label>
+      </fieldset>
+      <div ng-if="!identite.aide && infoForm.$submitted">
+        <p class="help-block">Ce champ est obligatoire.</p>
+      </div>
+    </div>
+    <div class="form-group required" ng-class="{'has-error': !identite.protection && infoForm.$submitted}">
+      <fieldset>
+        <legend class="control-label">Bénéficiez-vous d’une mesure de protection ?</legend>
+        <input type="radio" name="protection" id="protection-o" ng-model="identite.protection" ng-required="!identite.protection" value="true">
+        <label class="radio-inline" for="protection-o">Oui</label>
+        <input type="radio" name="protection" id="protection-n" ng-model="identite.protection" ng-required="!identite.protection" value="false">
+        <label class="radio-inline" for="protection-n">Non</label>
+      </fieldset>
+      <div ng-if="!identite.protection && infoForm.$submitted">
+        <p class="help-block">Ce champ est obligatoire.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="identity-form-actions">
+    <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
+    <button id="submit-benef" type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
+  </div>
+</form>

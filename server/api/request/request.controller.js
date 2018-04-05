@@ -15,12 +15,11 @@ import recapitulatif from '../../components/recapitulatif';
 import demandeBuilder from '../../components/DemandeBuilder';
 
 import Request from './request.model';
-import Profile from '../profile/profile.model';
 import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 
-import Dispatcher from '../../components/dispatcher';
+//import Dispatcher from '../../components/dispatcher';
 import RequestActionModel from './action.model';
 import { ACTIONS } from './actions';
 import resizeAndMove from '../../components/resize-image';
@@ -40,8 +39,8 @@ function handleError(req, res) {
 
 function unlinkRequestDocuments(req) {
   return new Promise(function(resolve) {
-    if (req.request.documents && Array.isArray(req.request.documents)) {
-      req.request.documents.forEach(function(requestDoc) {
+    if (req.request.data.documents && Array.isArray(req.request.data.documents)) {
+      req.request.data.documents.forEach(function(requestDoc) {
         if (requestDoc.path) {
           fs.unlink(requestDoc.path);
         }
@@ -60,14 +59,14 @@ function removeRequest() {
 
 function saveUpdates(req) {
   return new Promise(function(resolve, reject) {
-    let filteredUpdates = _.omit(req.body, '_id', 'user', '__v', 'documents', 'detailPrestations');
-
+    let filteredUpdates = _.omit(req.body, '_id', 'user', 'profile', '__v', 'createdAt');
+    filteredUpdates.data = _.omit(filteredUpdates.data, 'documents', 'detailPrestations');
     req.request.set(filteredUpdates).save(function(err, updated) {
       if (err) {
         return reject(err);
       }
 
-      updated.saveActionLog(ACTIONS.UPDATE_ANSWERS, req.user, req.log);
+      updated.saveActionLog(ACTIONS.UPDATE_DATA, req.user, req.log);
       return resolve(updated);
     });
   });
@@ -101,7 +100,7 @@ export function showPartenaire(req, res) {
     .findOne({
       shortId: req.params.shortId
     })
-    .select('shortId mdph createdAt formAnswers.identites.beneficiaire.nom formAnswers.identites.beneficiaire.prenom')
+    .select('shortId mdph createdAt data.identites.beneficiaire.nom data.identites.beneficiaire.prenom')
     .exec()
     .then(respondWithResult(res))
     .catch(handleError(req, res));
@@ -129,60 +128,6 @@ export function showUserRequests(req, res) {
   .catch(handleError(req, res));
 }
 
-function fillRequestOnSubmit(request, body) {
-  return function(profile) {
-    let formAnswers = _.pick(
-      profile,
-      'identites',
-      'vie_quotidienne',
-      'vie_scolaire',
-      'vie_au_travail',
-      'aidant',
-      'situations_particulieres'
-    );
-
-    return request
-      .set('status', 'emise')
-      .set('formAnswers', formAnswers)
-      .set('mdph', body.mdph)
-      .set('submittedAt', Date.now());
-  };
-}
-
-function valideRequestOnSubmit(res) {
-  return function(request) {
-
-    const beneficiaireSchema = Joi.object().keys({
-      localite: Joi.string().required(),
-      code_postal: Joi.string().required(),
-      nomVoie: Joi.string().required(),
-      dateNaissance: Joi.date().required(),
-      nationalite: Joi.string().required(),
-      sexe: Joi.string().required(),
-      prenom: Joi.string().required(),
-      nom: Joi.string().required(),
-      email: Joi.string().required(),
-      numero_secu: Joi.string().required(),
-      assurance: Joi.string().required()
-    });
-
-    if(request.formAnswers.identites.beneficiaire){
-      return Joi.validate(request.formAnswers.identites.beneficiaire, beneficiaireSchema, {allowUnknown: true}, (err) => {
-        if(err !== null) {
-          var error = err.details.reduce(function(prev, curr) {
-            return [...prev, curr.message];
-          }, []);
-          res.status(406).json(error);
-        } else {
-          return request;
-        }
-      });
-    } else {
-      res.status(406).send('identitée du bénéficiaire non present');
-    }
-  };
-}
-
 export function saveEvaluateurs(req, res) {
   const evaluators = req.body;
 
@@ -193,17 +138,6 @@ export function saveEvaluateurs(req, res) {
       saved.saveActionLog(ACTIONS.ASSIGN_EVALUATORS, req.user, req.log);
       return res.send(saved);
     });
-}
-
-function saveRequestOnSubmit(req) {
-  return function(request) {
-    return request
-      .save()
-      .then(saved => {
-        saved.saveActionLog(ACTIONS.SUBMIT, req.user, req.log);
-        return saved;
-      });
-  };
 }
 
 function fillRequestMdph(request) {
@@ -217,15 +151,55 @@ function fillRequestMdph(request) {
 }
 
 function resolveSubmit(req, res) {
-  return Profile
-    .findById(req.request.profile)
-    .exec()
-    .then(fillRequestOnSubmit(req.request, req.body))
-    .then(valideRequestOnSubmit(res))
-    .then(saveRequestOnSubmit(req))
+  return Request
+    .findOne({shortId: req.body.request.shortId})
+    .then(function(request){
+      return request
+        .set('status', 'emise')
+        .set('mdph', req.body.mdph)
+        .set('submittedAt', Date.now());
+    })
+    .then(function(request) {
+      const beneficiaireSchema = Joi.object().keys({
+        localite: Joi.string().required(),
+        code_postal: Joi.string().required(),
+        nomVoie: Joi.string().required(),
+        dateNaissance: Joi.date().required(),
+        nationalite: Joi.string().required(),
+        sexe: Joi.string().required(),
+        prenom: Joi.string().required(),
+        nom: Joi.string().required(),
+        email: Joi.string().required(),
+        numero_secu: Joi.string().required(),
+        assurance: Joi.string().required()
+      });
+
+      if(request.data.identites.beneficiaire){
+        return Joi.validate(request.data.identites.beneficiaire, beneficiaireSchema, {allowUnknown: true}, (err) => {
+          if(err !== null) {
+            var error = err.details.reduce(function(prev, curr) {
+              return [...prev, curr.message];
+            }, []);
+            res.status(406).json(error);
+          } else {
+            return request;
+          }
+        });
+      } else {
+        res.status(406).send('identitée du bénéficiaire non present');
+      }
+    })
+    .then(function(request){
+      return request
+        .save()
+        .then(saved => {
+          saved.saveActionLog(ACTIONS.SUBMIT, req.user, req.log);
+          return saved;
+        });
+    })
     .then(fillRequestMdph)
-    .then(sendMailReceivedTransmission(req))
-    .then(Dispatcher.dispatch);
+    .then(sendMailReceivedTransmission(req));
+    //.then(Dispatcher.dispatch);
 }
 
 function getRequestMdphEmail(request) {
@@ -349,11 +323,15 @@ export function generateReceptionMail(req, res) {
  * Create request
  */
 export function create(req, res) {
+  console.log("create request : ", req.profile);
   Request
     .create({
       profile: req.profile,
       user: req.user,
-      askedDocumentTypes: req.body.askedDocumentTypes
+      askedDocumentTypes: req.body.askedDocumentTypes,
+      data:{
+        identites: req.profile.identites
+      }
     })
     .then(request => {
       request.saveActionLog(ACTIONS.CREATION, req.user, req.log);
@@ -414,7 +392,7 @@ export function getPdf(req, res) {
       });
     })
     .then(readStream => {
-      const beneficiaire = req.request.formAnswers.identites.beneficiaire;
+      const beneficiaire = req.request.data.identites.beneficiaire;
       const extension = req.params.type !== 'user' ? currentMdph.requestExportFormat : 'pdf';
 
       const filename = `${beneficiaire.nom.toLowerCase().replace(/\W/g, '')}_${beneficiaire.prenom.toLowerCase().replace(/\W/g, '')}_${req.request.shortId}.${extension}`;
@@ -458,7 +436,7 @@ export function getDownload(req, res) {
       })
       .then(readStream => {
 
-        const beneficiaire = currentDemande.formAnswers.identites.beneficiaire;
+        const beneficiaire = currentDemande.data.identites.beneficiaire;
         const extension = currentDemande.fullMdph.requestExportFormat;
 
         const filename = `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${currentDemande.shortId}.${extension}`;
@@ -510,7 +488,7 @@ export function saveFilePartenaire(req, res) {
 
     function(request, callback) {
       _request = request;
-      request.documents.push(_document);
+      request.data.documents.push(_document);
       request.save();
       callback();
     },
