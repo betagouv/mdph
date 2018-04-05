@@ -3,6 +3,7 @@
 angular.module('impactApp')
   .controller('ResetPasswordCtrl', function($stateParams, $scope, $http, $state, $interval) {
     $scope.errors = {};
+    $scope.forms = $state.current.data.forms;
 
     $scope.changePassword = function(form) {
       $scope.passwordSubmitted = true;

@@ -71,7 +71,8 @@ angular.module('impactApp')
         templateUrl: 'app/account/reset_password/reset_password.html',
         controller: 'ResetPasswordCtrl',
         data: {
-          title: 'Mot de passe oublié'
+          title: 'Mot de passe oublié',
+          forms: {}
         }
       })
       .state('resend_confirmation', {
