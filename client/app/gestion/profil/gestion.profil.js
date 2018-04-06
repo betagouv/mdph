@@ -17,7 +17,7 @@ angular.module('impactApp')
             return ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
 
               return _.map(profilList, function(profil) { // Ajout du status de la derniere demande
-                $http.get(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/current`).then(function({data}) {
+                $http.get(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/last`).then(function({data}) {
                   if (data) {
                     profil.currentRequestStatus = data.status;
                   }

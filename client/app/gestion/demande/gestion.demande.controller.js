@@ -19,8 +19,9 @@ angular.module('impactApp')
     this.createDemande = function() {
       if (!this.currentDemande) {
 
-        $http.get(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/current`).then(function(result) {
-          $state.go('demande', {shortId: result.shortId});
+        $http.post(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/new`).then(function(result) {
+          console.log("result : ", result);
+          $state.go('demande', {shortId: result.data.shortId});
         });
       }
     };

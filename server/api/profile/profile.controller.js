@@ -70,9 +70,9 @@ export function indexRequests(req, res) {
     .catch(handleError(req, res));
 }
 
-export function showCurrentRequest(req, res) {
+export function showLastRequest(req, res) {
   Request
-    .findOne({ profile: req.profile._id, status: { $nin: ['archive', 'enregistree'] } }, {}, { sort: { createdAt: -1 } })
+    .findOne({ profile: req.profile._id }, {}, { sort: { createdAt: -1 } })
     .exec()
     .then(request => {
       if (!request) {
@@ -82,6 +82,10 @@ export function showCurrentRequest(req, res) {
       req.request = request;
       return RequestController.show(req, res);
     });
+}
+
+export function createNewRequest(req, res) {
+  return RequestController.create(req, res);
 }
 
 export function count(req, res) {

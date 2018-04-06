@@ -323,7 +323,6 @@ export function generateReceptionMail(req, res) {
  * Create request
  */
 export function create(req, res) {
-  console.log("create request : ", req.profile);
   Request
     .create({
       profile: req.profile,
