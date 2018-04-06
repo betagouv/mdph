@@ -159,11 +159,11 @@ describe('LoginCtrl', function() {
 
       // Mock ressource call to send back a count of 1
       let ProfileResource = {
-        count() {
+        query() {
           return {
             $promise: {
               then(callback) {
-                callback({count: 1});
+                callback([{_id: 1}]);
               }
             }
           };
@@ -186,8 +186,7 @@ describe('LoginCtrl', function() {
         $scope.login(fakeForm);
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('profil');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: 'me'});
+        expect($state.go.calls.argsFor(0)[0]).toEqual('gestion_demande');
       });
     });
 
@@ -208,11 +207,11 @@ describe('LoginCtrl', function() {
 
       // Mock ressource call to send back a count of 2
       let ProfileResource = {
-        count() {
+        query() {
           return {
             $promise: {
               then(callback) {
-                callback({count: 2});
+                callback([{_id: 1},{_id: 2}]);
               }
             }
           };
@@ -231,7 +230,7 @@ describe('LoginCtrl', function() {
         });
       });
 
-      it('should go to the mdph\'s home page of the user', function() {
+      it('should go to the profil\'s dashboard user page of the user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();

@@ -22,13 +22,5 @@ angular.module('impactApp')
       }
     };
 
-    Profile.prototype.saveSection = function(sectionId, sectionModel, user, onSuccess) {
-      sectionModel.__completion = true;
-      sectionModel.updatedAt = Date.now();
-
-      this[sectionId] = sectionModel;
-      this.$save({userId: user._id}, onSuccess);
-    };
-
     return Profile;
   });

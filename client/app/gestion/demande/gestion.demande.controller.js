@@ -20,7 +20,6 @@ angular.module('impactApp')
       if (!this.currentDemande) {
 
         $http.post(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/new`).then(function(result) {
-          console.log("result : ", result);
           $state.go('demande', {shortId: result.data.shortId});
         });
       }
