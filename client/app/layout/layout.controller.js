@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($scope, $state, Auth, currentMdph, currentUser) {
+  .controller('LayoutCtrl', function($scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
     this.isLoggedIn = Auth.isLoggedIn;
@@ -23,4 +23,15 @@ angular.module('impactApp')
     this.showDashboard = () => {
       return currentMdph && currentUser && Auth.isAdminMdph(currentUser, currentMdph);
     };
+
+    this.gestionLinkValue = function() {
+
+      ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
+        if (profilList.length === 1) {
+          return $state.go('gestion_demande', {profilId: profilList[0]._id});
+        }
+
+        return $state.go('gestion_profil', {}, {reload: true});
+      });
+    }
   });

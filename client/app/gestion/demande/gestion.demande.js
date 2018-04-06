@@ -9,6 +9,8 @@ angular.module('impactApp')
         templateUrl: 'app/gestion/demande/gestion.demande.html',
         controller: 'GestionDemandeCtrl',
         controllerAs: 'gestionDemandeCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           profil: function($stateParams, ProfileResource, currentUser) {
             return ProfileResource.get({userId: currentUser._id, id: $stateParams.profilId}).$promise;

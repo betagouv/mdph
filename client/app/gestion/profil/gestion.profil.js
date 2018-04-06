@@ -9,6 +9,8 @@ angular.module('impactApp')
         templateUrl: 'app/gestion/profil/gestion.profil.html',
         controller: 'GestionProfilCtrl',
         controllerAs: 'gestionProfilCtrl',
+        authenticate: true,
+        authorized: ['user'],
         resolve: {
           profils: function($http, ProfileResource, currentUser) {
 

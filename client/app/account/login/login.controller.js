@@ -21,14 +21,13 @@ angular.module('impactApp')
           }
 
           // When the user is logged, move to profile if only one is set.
-          ProfileResource.count({userId: user._id}).$promise.then(function({count}) {
-            if (count === 1) {
-              return $state.go('profil', {profileId: 'me'});
+          ProfileResource.query({userId: user._id}).$promise.then(function(profilList) {
+            if (profilList.length === 1) {
+              return $state.go('gestion_demande', {profilId: profilList[0]._id});
             }
 
             return $state.go('gestion_profil', {}, {reload: true});
           });
-
         })
         .catch(function(err) {
           $scope.error = err.message;
