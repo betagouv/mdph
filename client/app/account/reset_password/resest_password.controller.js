@@ -6,9 +6,10 @@ angular.module('impactApp')
     $scope.forms = $state.current.data.forms;
 
     $scope.changePassword = function(form) {
+      form.password.$setValidity('mongoose', true);
       $scope.passwordSubmitted = true;
       if (form.$valid) {
-        $http.post('api/users/' + $stateParams.userId + '/reset_password/' + $stateParams.newPasswordToken, {newPassword: $scope.password})
+        $http.post('api/users/' + $stateParams.userId + '/reset_password/' + $stateParams.newPasswordToken, {newPassword: form.password.$modelValue})
         .then(function() {
           $scope.passwordMessage = 'Votre mot de passe a été modifié.';
           $interval(function() {
