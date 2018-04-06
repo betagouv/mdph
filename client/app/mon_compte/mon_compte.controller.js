@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($scope, $state, User, Auth, currentUser) {
-
-    this.showProfileBloc =  () => Auth.isUser(this.getCurrentUser());
-
+  .controller('MonCompteCtrl', function($scope, Auth, currentUser) {
     $scope.errors = {};
     $scope.user = currentUser;
 

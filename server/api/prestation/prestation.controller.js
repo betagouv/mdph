@@ -20,8 +20,8 @@ export function populateAndSortPrestations(request) {
       request = request.toObject();
     }
 
-    if(request.prestations && request.prestations.length > 0){
-      request.detailPrestations = request.prestations.map(function(value) {
+    if(request.data.prestations && request.data.prestations.length > 0){
+      request.data.detailPrestations = request.data.prestations.map(function(value) {
         var prestation = prestationsById[value.code];
         prestation.precision = value.precision;
         return prestation;

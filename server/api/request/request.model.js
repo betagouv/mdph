@@ -6,6 +6,7 @@ import moment from 'moment';
 import shortId from 'shortid';
 import Mdph from '../mdph/mdph.model';
 import ActionModel from './action.model';
+import ProfileModel from '../profile/profile.model';
 import DateUtils from '../../components/dateUtils';
 
 var DocumentSchema = new Schema({
@@ -21,29 +22,31 @@ var DocumentSchema = new Schema({
   path:           String,
   extension:      String,
   size:           Number
-});
+}, { _id: false });
+
+var DataSchema = new Schema({
+  identites:                { type: Schema.Types.Mixed },
+  vie_quotidienne:          { type: Schema.Types.Mixed },
+  vie_scolaire:             { type: Schema.Types.Mixed },
+  vie_au_travail:           { type: Schema.Types.Mixed },
+  situations_particulieres: { type: Schema.Types.Mixed },
+  aidant:                   { type: Schema.Types.Mixed },
+  prestations:    [{ code: String, precision: String }],
+  documents:      [DocumentSchema],
+  askedDocumentTypes: [String]
+}, { _id: false });
 
 var RequestSchema = new Schema({
   shortId:        { type: String, unique: true, default: shortId.generate },
-  documents:      [DocumentSchema],
-  askedDocumentTypes: [String],
   user:           { type: Schema.Types.ObjectId, ref: 'User', required: true },
   profile:        { type: Schema.Types.ObjectId, ref: 'Profile' },
   mdph:           String,
-
-  //TODO Remove
-  estRenouvellement: Boolean,
-  old_mdph:       String,
-  numeroDossier:  String,
   evaluators:     [{ type: Schema.Types.ObjectId, ref: 'User' }],
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
-  formAnswers:    { type: Schema.Types.Mixed, default: {} }, // Need minimize: false in order to not be deleted http://mongoosejs.com/docs/guide.html#minimize
-  prestations:    [{ code: String, precision: String }],
-  certificat:     Schema.Types.Mixed,
-  synthese:       Schema.Types.Mixed,
+  data:           { type: DataSchema, default: {} },
   comments:       { type: String },
   hasFirstExpirationNotification: { type: Boolean, default: false },
   hasLastExpirationNotification: { type: Boolean, default: false },
@@ -62,6 +65,15 @@ RequestSchema.pre('save', function(next) {
   this.updatedAt = now;
 
   next();
+});
+
+RequestSchema.post('save', function(doc) {
+  // Set entite from request
+  ProfileModel.findById(doc.profile).then(function(profile){
+    if(doc.data.identites){
+      profile.set('identites', doc.data.identites).save();
+    }
+  });
 });
 
 RequestSchema.methods = {
@@ -84,8 +96,8 @@ RequestSchema.methods = {
   },
 
   getDateNaissance() {
-    if (this.formAnswers && this.formAnswers.identites && this.formAnswers.identites.beneficiaire && this.formAnswers.identites.beneficiaire.dateNaissance) {
-      var date = this.formAnswers.identites.beneficiaire.dateNaissance;
+    if (this.data && this.data.identites && this.data.identites.beneficiaire && this.data.identites.beneficiaire.dateNaissance) {
+      var date = this.data.identites.beneficiaire.dateNaissance;
       return moment(date, moment.ISO_8601);
     }
 
@@ -101,8 +113,8 @@ RequestSchema.methods = {
   },
 
   getCodePostal() {
-    if (this.formAnswers && this.formAnswers.identites && this.formAnswers.identites.beneficiaire) {
-      return this.formAnswers.identites.beneficiaire.code_postal;
+    if (this.data && this.data.identites && this.data.identites.beneficiaire) {
+      return this.data.identites.beneficiaire.code_postal;
     }
 
     return null;

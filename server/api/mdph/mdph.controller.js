@@ -216,9 +216,9 @@ export function showBeneficiaires(req, res) {
         .map('profile')
         .uniq('_id')
         .map((profile) => {
-          if (profile && profile.identites && profile.identites.beneficiaire) {
-            profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
-            profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
+          if (profile && profile.recipient) {
+            profile.recipient.firstname = capitalize(profile.recipient.firstname);
+            profile.recipient.lastname = capitalize(profile.recipient.lastname);
           }
           return profile;
         })
@@ -287,7 +287,7 @@ export function showRequestsForSecteur(req, res) {
 
   Request
     .find(search)
-    .select('user shortId formAnswers.identites status submittedAt evaluator')
+    .select('user shortId data.identites status submittedAt evaluator')
     .populate('user evaluator', 'name')
     .sort('-submittedAt')
     .exec(function(err, requests) {

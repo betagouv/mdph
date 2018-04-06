@@ -1,9 +1,0 @@
-<ul class="mes-profiles-row">
-  <li ng-repeat="(idx, profile) in mesprofilsctrl.profiles">
-    <a ui-sref="profil({profileId: profile._id})">{{ ::profile.getTitle() }}</a>
-  </li>
-
-  <li class="new">
-    <button class="btn btn-link" ng-click="mesprofilsctrl.addProfile()">Créer un nouveau profil</button>
-  </li>
-</ul>

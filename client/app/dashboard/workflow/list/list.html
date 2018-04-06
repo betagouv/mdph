@@ -59,10 +59,10 @@
           <td>
             <span class="user">
               <a ui-sref="dashboard.workflow.detail.validation_depot({shortId: request.shortId})">
-                <span ng-if="request.formAnswers.identites.beneficiaire">
-                  {{::request.formAnswers.identites.beneficiaire.nom | uppercase}}, {{::request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                <span ng-if="request.data.identites.beneficiaire">
+                  {{::request.data.identites.beneficiaire.nom | uppercase}}, {{::request.data.identites.beneficiaire.prenom | capitalize}}
                 </span>
-                <span ng-if="!request.formAnswers.identites.beneficiaire">
+                <span ng-if="!request.data.identites.beneficiaire">
                   Demande incomplète, bénéficiaire non remplis
                 </span>
               </a>

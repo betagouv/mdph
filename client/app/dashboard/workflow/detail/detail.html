@@ -2,7 +2,7 @@
   <h1 class="padding-title">Demande n° {{request.shortId}}</h1>
   <div class="dashboard-demande-header">
     <div class="detail">
-      <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></h2>
+      <h2 class="padding-title"><strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
         <a ng-show="request.status === 'archive' || request.status === 'enregistree'"
           class="btn btn-primary" ng-click="workflowDetailCtrl.download()"  target="_blank"
@@ -16,8 +16,8 @@
       </div>
       <div class="alert alert-info" ng-show="showDetail">
         <p>Identitfiant <strong>{{request.shortId}}</strong></p>
-        <p ng-if="request.formAnswers.identites">Bénéficiaire <strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></p>
-        <p ng-if="!request.formAnswers.identites"><em>Demande incomplète - Identité non remplies</em></p>
+        <p ng-if="request.data.identites">Bénéficiaire <strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong></p>
+        <p ng-if="!request.data.identites"><em>Demande incomplète - Identité non remplies</em></p>
         <p>Effectuée par <strong>{{request.user.email}}</strong></p>
         <p>
           <span ng-if="request.submittedAt">
