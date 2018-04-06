@@ -1,5 +1,5 @@
 <header class="banner bg" mdph-photo="{{gestionDemandeCtrl.currentMdph.zipcode}}">
-  <div class="hero-unit" ng-if="gestionDemandeCtrl.isOpened()">
+  <div class="hero-unit">
     <h1 ng-if="gestionDemandeCtrl.currentMdph">Votre MDPH {{gestionDemandeCtrl.currentMdph.name}}</h1>
 
     <p>Gérez vos demandes en ligne</p>
@@ -7,7 +7,7 @@
   </div>
 </header>
 
-<section class="section-gestion">
+<section class="section-gestion container-fluid">
   <div class="row">
 
     <div class="col-md-1" style="width:11%">
@@ -15,7 +15,6 @@
       <div class="row">
         <div class="icon-demande"/>
       </div>
-
     </div>
 
     <div class="col-md-11 border-left" style="width:89%">
