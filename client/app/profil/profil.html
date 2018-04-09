@@ -9,7 +9,14 @@
         <span class="profile-card-icon"><a ui-sref="." ui-sref-opts="{reload: true, notify: true}" title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
       </span>
       <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title"><a ui-sref=".">{{ ::profilCtrl.profile.getTitle() }}</a></h1>
+        <h1 class="profile-card-header-text-title">
+            <a ui-sref=".">
+                <span ng-switch="profilCtrl.profile.updatedAt===profilCtrl.profileUpdatedAt">
+                    <span ng-switch-when="true">{{::profilCtrl.profile.getTitle()}}</span>
+                    <span ng-switch-default>{{profilCtrl.profile.getTitle()}}</span>
+                  </span>
+              </a>
+        </h1>
         <p class="profile-card-header-text-subhead">Dernière modification le {{ profilCtrl.profile.updatedAt | date:'short' }}</p>
         <p class="profile-card-header-text-subhead"><button ng-click="profilCtrl.delete(profile)" class="btn btn-link">Supprimer ce profil</button></p>
       </div>
