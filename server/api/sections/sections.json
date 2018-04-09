@@ -774,6 +774,7 @@
             "model": "tropJeune",
             "detailModel": "raisonNonScolaireTropJeune",
             "detailLabel": "A partir de quand serez-vous scolarisé·e ?",
+            "detailLabelRep": "A partir de quand serez-vous scolarisé·e ?",
             "detailUrl": "components/detail/precisez.html"
           },
           {
