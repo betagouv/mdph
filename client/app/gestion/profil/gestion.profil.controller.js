@@ -9,11 +9,9 @@ angular.module('impactApp')
       return !profil.hasOwnProperty('deletedAt');
     });
 
-    this.deletedProfils = [];
-
-    // _.filter(profils, function(profil) {
-    //   return profil.hasOwnProperty('deletedAt');
-    // });
+    this.deletedProfils = _.filter(profils, function(profil) {
+      return profil.hasOwnProperty('deletedAt');
+    });
 
     this.createProfil = function() {
       new ProfileResource().$save({userId: this.currentUser._id}, function(profilResult) {
