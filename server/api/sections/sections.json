@@ -1615,6 +1615,28 @@
         "titleRep": "Autres renseignements concernant sa vie au travail que vous souhaiteriez nous communiquer",
         "type": "text"
       },
+      "passe": {
+        "titleRep": "A-t-<%= pronoun %> déjà travaillé ?",
+        "titleDefault": "Avez-vous déjà travaillé ?",
+        "type": "radio",
+        "model": "passe",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetail",
+            "detailLabel": "Pourquoi êtes-vous actuellement sans emploi et depuis quand ?"
+          },
+          {
+            "label": "Non",
+            "model": false,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetail",
+            "detailLabel": "Pouvez-vous indiquer pourquoi vous êtes actuellement sans emploi ?"
+          }
+        ]
+      },
       "situationSansEmploi": {
         "titleRep": "Est-<%= pronoun %> dans une des situations suivantes ?",
         "titleDefault": "Êtes-vous dans une des situations suivantes ?",
@@ -1665,28 +1687,6 @@
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "autreDetail",
             "detailLabel": "Précisez :"
-          }
-        ]
-      },
-      "passe": {
-        "titleRep": "A-t-<%= pronoun %> déjà travaillé ?",
-        "titleDefault": "Avez-vous déjà travaillé ?",
-        "type": "radio",
-        "model": "passe",
-        "answers": [
-          {
-            "label": "Oui",
-            "model": true,
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "passeDetail",
-            "detailLabel": "Pourquoi êtes-vous actuellement sans emploi et depuis quand ?"
-          },
-          {
-            "label": "Non",
-            "model": false,
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "passeDetail",
-            "detailLabel": "Pouvez-vous indiquer pourquoi vous êtes actuellement sans emploi ?"
           }
         ]
       }
