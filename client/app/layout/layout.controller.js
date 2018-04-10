@@ -25,7 +25,6 @@ angular.module('impactApp')
     };
 
     this.gestionLinkValue = function() {
-
       ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
         if (profilList.length === 1) {
           return $state.go('gestion_demande', {profilId: profilList[0]._id});
@@ -33,5 +32,5 @@ angular.module('impactApp')
 
         return $state.go('gestion_profil', {}, {reload: true});
       });
-    }
+    };
   });

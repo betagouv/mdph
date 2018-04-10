@@ -10,17 +10,14 @@ angular.module('impactApp')
       return demande.hasOwnProperty('status') && (demande.status !== 'enregistree' && demande.status !== 'archive');
     })[0];
 
-    this.archivedDemandes = [];
-
-    // _.filter(demandes, function(demande) {
-    //   return demande.hasOwnProperty('status') && (demande.status === 'enregistree' || demande.status === 'archive');
-    // });
+    this.archivedDemandes = _.filter(demandes, function(demande) {
+      return demande.hasOwnProperty('status') && (demande.status === 'enregistree' || demande.status === 'archive');
+    });
 
     this.createDemande = function() {
       if (!this.currentDemande) {
 
         $http.post(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/new`).then(function(result) {
-          console.log("result : ", result);
           $state.go('demande', {shortId: result.data.shortId});
         });
       }
