@@ -36,7 +36,8 @@
 </nav>
 
 <div ng-class="{'dashbord-content': layoutctrl.shouldShowDashboard()}">
-  <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" current-user="layoutctrl.currentUser" mdph="layoutctrl.currentMdph" />
+  <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" current-user="layoutctrl.currentUser" mdph="layoutctrl.currentMdph"
+  nav-user-id="{{navUserId}}" nav-status="{{navStatus}}"/>
 
   <main>
     <div ui-view></div>
