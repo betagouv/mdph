@@ -26,7 +26,7 @@ angular.module('impactApp')
         })
         .then(function(data) {
           // Logged in, redirect
-          return $state.go('profil.beneficiaire', {profileId: data.profile}, {reload: true});
+          return $state.go('demande.beneficiaire', {profileId: data.profile}, {reload: true});
         })
         .catch(function(err) {
           err = err.data;

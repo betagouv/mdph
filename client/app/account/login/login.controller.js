@@ -20,14 +20,17 @@ angular.module('impactApp')
             return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 
-          // When the user is logged, move to profile if only one is set.
-          ProfileResource.query({userId: user._id}).$promise.then(function(profilList) {
-            if (profilList.length === 1) {
-              return $state.go('gestion_demande', {profilId: profilList[0]._id});
-            }
+          if (Auth.hasRole(user, 'user')) {
+            ProfileResource.query({userId: user._id}).$promise.then(function(profilList) {
+              if (profilList.length === 1) {
+                return $state.go('gestion_demande', {profilId: profilList[0]._id}, {});
+              }
 
-            return $state.go('gestion_profil', {}, {reload: true});
-          });
+              return $state.go('gestion_profil', {}, {reload: true});
+            });
+          }
+
+          return $state.go('login');
         })
         .catch(function(err) {
           $scope.error = err.message;
