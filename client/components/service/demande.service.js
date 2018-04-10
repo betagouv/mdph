@@ -117,8 +117,16 @@ angular.module('impactApp')
       return missingSections.length > 0 ? missingSections : null;
     }
 
-    function getCompletion(demande) {
+    function getBeneficiaireCompletion(demande) {
       if (!demande.data || !demande.data.identites || !demande.data.identites.beneficiaire) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function getCompletion(demande) {
+      if (!getBeneficiaireCompletion(demande)) {
         return false;
       }
 
@@ -223,6 +231,7 @@ angular.module('impactApp')
       estAdulte: _estAdulte,
       estMineur: _estMineur,
       estEnfant: _estEnfant,
+      getBeneficiaireCompletion,
       getCompletion,
       getMissingSection,
       needUploadCV,
