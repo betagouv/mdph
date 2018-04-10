@@ -1927,27 +1927,7 @@
           }
         ]
       },
-      "structures": {
-        "model": "structures",
-        "type": "structure",
-        "titleDefault": "As-t-il/elle déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
-      },
-      "demandesAides": {
-        "titleDefault": "Vous souhaitez mieux connaitre les dispositifs et aides existants :",
-        "model": "demandesAides",
-        "type": "checkbox",
-        "answers": [
-          {
-            "label": "Pour l'aidant",
-            "model": "pour_vous"
-          },
-          {
-            "label": "Pour la personne aidée",
-            "model": "pour_la_personne"
-          }
-        ]
-      },
-      "typeAttente": {
+            "typeAttente": {
         "titleDefault": "Ses attentes en tant qu'aidant familial :",
         "model": "typeAttente",
         "type": "checkbox",
@@ -2005,6 +1985,26 @@
             "model": "autre",
             "detailModel": "attentesDetail",
             "detailUrl": "components/detail/precisez.html"
+          }
+        ]
+      },
+      "structures": {
+        "model": "structures",
+        "type": "structure",
+        "titleDefault": "As-t-il/elle déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
+      },
+      "demandesAides": {
+        "titleDefault": "Vous souhaitez mieux connaitre les dispositifs et aides existants :",
+        "model": "demandesAides",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Pour l'aidant",
+            "model": "pour_vous"
+          },
+          {
+            "label": "Pour la personne aidée",
+            "model": "pour_la_personne"
           }
         ]
       },
