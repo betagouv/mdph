@@ -60,6 +60,7 @@ angular.module('impactApp')
     this.esms = prestations.esms;
     this.prestations.push(this.esms);
 
+    prestations.pps.precision = '';
     this.pps = prestations.pps;
     this.prestations.push(this.pps);
 
