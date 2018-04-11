@@ -152,7 +152,11 @@ describe('LoginCtrl', function() {
           return $q.resolve(fakeUser);
         },
 
-        hasRole() {
+        hasRole(user, role) {
+          if (role === 'user') {
+            return true;
+          }
+
           return false;
         }
       };
@@ -200,7 +204,11 @@ describe('LoginCtrl', function() {
           return $q.resolve(fakeUser);
         },
 
-        hasRole() {
+        hasRole(user, role) {
+          if (role === 'user') {
+            return true;
+          }
+
           return false;
         }
       };
