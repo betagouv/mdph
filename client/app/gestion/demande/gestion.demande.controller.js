@@ -7,11 +7,11 @@ angular.module('impactApp')
     this.profil = profil;
 
     this.currentDemande = _.filter(demandes, function(demande) {
-      return demande.hasOwnProperty('status') && (demande.status !== 'validee' && demande.status !== 'archive');
+      return demande.hasOwnProperty('status') && (demande.status !== 'validee' && demande.status !== 'irrecevable');
     })[0];
 
     this.archivedDemandes = _.filter(demandes, function(demande) {
-      return demande.hasOwnProperty('status') && (demande.status === 'validee' || demande.status === 'archive');
+      return demande.hasOwnProperty('status') && (demande.status === 'validee' || demande.status === 'irrecevable');
     });
 
     this.createDemande = function() {
@@ -41,8 +41,8 @@ angular.module('impactApp')
           return 'validée';
         case 'en_attente_usager':
           return 'En attente';
-        case 'archive':
-          return 'Archivée';
+        case 'irrecevable':
+          return 'Irrecevable';
         default:
           return 'Indéfinie';
       }

@@ -246,7 +246,7 @@ L'administrateur du produit :
 
 - La demande est "validée".
 - L'agent peut télécharger les demandes reçues. 
-- L'agent peut archiver les demandes reçues.
+- L'agent peut passer les demandes reçues au status "irrecevable".
 
 ##### En préparant l'évaluation des demandes 
 

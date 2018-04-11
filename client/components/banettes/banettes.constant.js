@@ -14,7 +14,7 @@ angular.module('impactApp').constant('BanettesConstant', [
     label: 'En attente'
   },
   {
-    id: 'archive',
+    id: 'irrecevable',
     label: 'Archivée'
   }
 ]);

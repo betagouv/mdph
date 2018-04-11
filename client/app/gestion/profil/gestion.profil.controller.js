@@ -68,8 +68,8 @@ angular.module('impactApp')
           return 'validée';
         case 'en_attente_usager':
           return 'en attente';
-        case 'archive':
-          return 'archivée';
+        case 'irrecevable':
+          return 'Irrecevable';
         default:
           return 'indéfinie';
       }
