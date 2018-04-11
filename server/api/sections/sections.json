@@ -1667,7 +1667,7 @@
             "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "autreDetail",
-            "detailLabel": "Précisez :"
+            "detailLabel": "Précisez"
           }
         ]
       },
