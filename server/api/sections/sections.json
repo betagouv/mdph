@@ -513,6 +513,7 @@
           },
           {
             "label": "Pour gérer votre budget et répondre à vos obligations (démarches administratives, assurances, impôts, etc.)",
+            "labelRep": "Pour gérer son budget et répondre à ses obligations (démarches administratives, assurances, impôts, etc.)",
             "model": "budget"
           },
           {
