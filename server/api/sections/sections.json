@@ -1166,8 +1166,8 @@
           }
         ]
       },
-      "vieScolaireAutresRenseignements": {
-        "model": "vieScolaireAutresRenseignements",
+      "autresRenseignements": {
+        "model": "autresRenseignements",
         "titleDefault": "Vous avez d'autres renseignements importants(situation, attentes, projets) concernant votre vie scolaire, étudiante ou en apprentissage, indiquez-les ici :",
         "type": "text"
       }
