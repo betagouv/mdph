@@ -408,7 +408,7 @@
         "titleDefault": "Connaissez-vous votre taux d'IPP (Incapacité Permanente Partielle) ?",
         "titleRep": "Connaissez-vous son taux d'IPP (Incapacité Permanente Partielle) ?",
         "help": "Renseignez ici le taux qui vous a été attribué par l'assurance maladie (CPAM)",
-        "type": "text",
+        "type": "pourcentage",
         "placeholder": "Taux d'IPP, en %",
         "isOptionnal": true
       },
@@ -852,7 +852,8 @@
             "model": true,
             "detailModel": "internatFrais",
             "detailUrl": "components/detail/precisez_yes_no.html",
-            "detailLabel": "Ses frais de séjour sont-ils intégralement pris en charge par l'assurance maladie, l'Etat ou l'aide sociale ?"
+            "detailLabel": "Ses frais de séjour sont-ils intégralement pris en charge par l'assurance maladie, l'Etat ou l'aide sociale ?",
+            "detailType": "fraisInternat"
           },
           {
             "label": "Non",
