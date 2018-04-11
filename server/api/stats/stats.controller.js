@@ -49,7 +49,7 @@ export function submittedRequestCount(req, res) {
         $gte: getStartDate(req.query.period)
       },
       status: {
-        $in: ['emise', 'enregistree', 'en_attente_usager', 'archive']
+        $in: ['emise', 'validee', 'en_attente_usager', 'archive']
       },
     })
     .count()
@@ -76,7 +76,7 @@ export function requestCountByMdph(req, res) {
         },
         mdph: { $in: officialMdphs },
         status: {
-          $in: ['emise', 'enregistree', 'en_attente_usager', 'archive']
+          $in: ['emise', 'validee', 'en_attente_usager', 'archive']
         }
       }
     },

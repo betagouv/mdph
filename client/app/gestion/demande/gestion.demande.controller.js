@@ -7,11 +7,11 @@ angular.module('impactApp')
     this.profil = profil;
 
     this.currentDemande = _.filter(demandes, function(demande) {
-      return demande.hasOwnProperty('status') && (demande.status !== 'enregistree' && demande.status !== 'archive');
+      return demande.hasOwnProperty('status') && (demande.status !== 'validee' && demande.status !== 'archive');
     })[0];
 
     this.archivedDemandes = _.filter(demandes, function(demande) {
-      return demande.hasOwnProperty('status') && (demande.status === 'enregistree' || demande.status === 'archive');
+      return demande.hasOwnProperty('status') && (demande.status === 'validee' || demande.status === 'archive');
     });
 
     this.createDemande = function() {
@@ -37,8 +37,8 @@ angular.module('impactApp')
           return 'En cours de création';
         case 'emise':
           return 'Emise';
-        case 'enregistree':
-          return 'Enregistrée';
+        case 'validee':
+          return 'validée';
         case 'en_attente_usager':
           return 'En attente';
         case 'archive':

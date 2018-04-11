@@ -6,7 +6,7 @@ angular.module('impactApp').constant('BanettesConstant', [
     label: 'Émise'
   },
   {
-    id: 'enregistree',
+    id: 'validee',
     label: 'Enregistrée'
   },
   {

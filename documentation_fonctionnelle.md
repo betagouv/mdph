@@ -244,7 +244,7 @@ L'administrateur du produit :
 
 > L'usager reçoit un mail envoyé par l'adresse impact@sgmap.fr _**à modifier**_. Le ReplyTo de cet email est une adresse générique de la MDPH concernée par la demande _**à vérifier**_. 
 
-- La demande est "enregistrée".
+- La demande est "validée".
 - L'agent peut télécharger les demandes reçues. 
 - L'agent peut archiver les demandes reçues.
 
