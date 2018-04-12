@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('GestionProfilCtrl', function($http, $state, currentMdph, currentUser, profils, ProfileResource) {
+  .controller('GestionProfilCtrl', function($http, $state, $modal,toastr, currentMdph, currentUser, profils, ProfileResource) {
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
 
@@ -21,37 +21,36 @@ angular.module('impactApp')
       });
     };
 
-    this.deleteProfil = function() {
-      // var modalInstance = $modal.open({
-      //   templateUrl: 'components/mes_profils/delete_confirmation.html',
-      //   controller: 'ModalDeleteProfileCtrl',
-      //   resolve: {
-      //     profile: () => {
-      //       return this.profile;
-      //     },
+    this.deleteProfil = function(profil) {
+      this.profile = profil;
+      var modalInstance = $modal.open({
+         templateUrl: 'app/gestion/profil/delete_confirmation.html',
+         controller: 'ModalDeleteProfileCtrl',
+         resolve: {
+           profile: () => {
+             return this.profile;
+           },
 
-      //     requests: ($http) => {
-      //       return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + this.profile._id + '/requests').then(function(result) {
-      //         return _.filter(result.data, function(request) {
-      //           return request.status !== 'en_cours';
-      //         });
-      //       });
-      //     }
-      //   }
-      // });
+           requests: ($http) => {
+            return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + profil._id + '/requests').then(function(result) {
+              return _.filter(result.data, function(request) {
+                return request.status !== 'en_cours';
+              });
+            });
+          }
+        }
+      });
 
-      // modalInstance.result.then((result) => {
-      //   if (result) {
-      //     profile.$delete({userId: this.currentUser._id}, function success() {
-      //       toastr.success('Le profil "' + profile.getTitle() + '" a bien été supprimé.', 'Succès');
-      //       $state.go('departement');
-      //     },
-
-      //     function error() {
-      //       toastr.error('Impossible de supprimer le profil "' + profile.getTitle() + '"', 'Erreur');
-      //     });
-      //   }
-      // });
+      modalInstance.result.then((result) => {
+         if (result) {
+          $http.delete('/api/users/' + this.currentUser._id + '/profiles/' + profil._id ).then(function() {
+            toastr.success('Le profil "' + profil.getTitle() + '" a bien été supprimé.', 'Succès');
+            $state.go('departement');
+           }).catch(function() {
+            toastr.error('Impossible de supprimer le profil "' + profil.getTitle() + '"', 'Erreur');
+           });
+         }
+       });
     };
 
     this.goProfil = function(profil) {
@@ -75,17 +74,14 @@ angular.module('impactApp')
       }
     };
 
+  })
+  .controller('ModalDeleteProfileCtrl', function($scope, $modalInstance, profile, requests) {
+    $scope.profile = profile;
+    $scope.requests = requests;
+    $scope.cancel = function() {
+      $modalInstance.close(false);
+    };
+    $scope.ok = function() {
+      $modalInstance.close(true);
+    };
   });
-
-// .controller('ModalDeleteProfileCtrl', function($scope, $modalInstance, profile, requests) {
-//   $scope.profile = profile;
-//   $scope.requests = requests;
-
-//   $scope.cancel = function() {
-//     $modalInstance.close(false);
-//   };
-
-//   $scope.ok = function() {
-//     $modalInstance.close(true);
-//   };
-// });

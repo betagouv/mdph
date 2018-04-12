@@ -1,5 +1,5 @@
 'use strict';
-
+import _ from 'lodash';
 import Profile from './profile.model';
 import Request from '../request/request.model';
 import * as RequestController from '../request/request.controller';
@@ -54,10 +54,36 @@ export function create(req, res) {
 }
 
 export function destroy(req, res) {
-  req.profile
+  let requests;
+  // chercher toutes les demandes du profil puis les clasifier par état en_cours ou non
+  indexRequests(req, requests);
+  let requestsEnCours = _.filter(requests, function(request) {
+    return request.status === 'en_cours';
+  });
+  let requestsAutre = _.filter(requests, function(request) {
+    return request.status !== 'en_cours';
+  });
+
+  // suppression des demandes en_cours
+  requestsEnCours.forEach(function(request) {
+    RequestController.destroy(request);
+  });
+
+  // si il existe au moins une demande autre que en_cours alors suppression partielle
+  // maj le profil en ajoutant une datez de suppression
+  if (requestsAutre && requestsAutre.length >0) {
+    let profile = req.profile;
+    profile.deletedAt = Date.now();
+    update(req, res);
+
+  // suppression totale
+  // suppression du profil
+  } else {
+    req.profile
     .remove()
     .then(() => res.sendStatus(204))
     .catch(handleError(req, res));
+  }
 }
 
 export function indexRequests(req, res) {
