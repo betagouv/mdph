@@ -22,7 +22,7 @@ var DocumentSchema = new Schema({
   path:           String,
   extension:      String,
   size:           Number
-}, { _id: false });
+});
 
 var DataSchema = new Schema({
   identites:                { type: Schema.Types.Mixed },
