@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowListCtrl', function(
+  .controller('WorkflowListCtrl', function($scope,
     $cookies, $window, $modal, $q, $state, $rootScope,
     RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph, banetteUser) {
 
@@ -24,6 +24,8 @@ angular.module('impactApp')
         title: 'Envoyées il y a plus de trois mois'
       }
     ];
+
+    $scope.showDownloadButton = (this.status === 'enregistree' || this.status === 'archive');
 
     this.selectAll = () => {
       const action = !this.allSelected();
