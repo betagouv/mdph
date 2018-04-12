@@ -35,7 +35,7 @@ angular.module('impactApp')
 
     this.allRequiredFilesCheckedOpenModal = function() {
       let allRequiredFilesChecked = true;
-      angular.forEach(request.documents.obligatoires, function(value, category) {
+      angular.forEach(request.data.documents.obligatoires, function(value, category) {
         if (category !== undefined && value.documentList[0].isInvalid === undefined) {
           allRequiredFilesChecked = false;
           return;
@@ -50,11 +50,11 @@ angular.module('impactApp')
           templateUrl: 'app/dashboard/workflow/detail/documents/modal.html',
           controllerAs: 'modalRdc',
           size: 'lg',
-          controller($modalInstance, $state, RequestService) {
+          controller($modalInstance, $state, DemandeService) {
             this.src = `/api/requests/${request.shortId}/generate-reception-mail?access_token=${token}`;
 
             this.ok = function() {
-              RequestService.postAction(request, {
+              DemandeService.postAction(request, {
                 id: 'enregistrement'
               }).then(() => {
                 $modalInstance.close();
