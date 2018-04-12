@@ -49,7 +49,8 @@ var RequestSchema = new Schema({
   data:           { type: DataSchema, default: {} },
   comments:       { type: String },
   hasFirstExpirationNotification: { type: Boolean, default: false },
-  hasLastExpirationNotification: { type: Boolean, default: false }
+  hasLastExpirationNotification: { type: Boolean, default: false },
+  isDownloaded: { type: Boolean, default: false }
 }, { minimize: false });
 
 // RequestSchema.set('toObject', { virtuals: false });
