@@ -35,7 +35,7 @@ angular.module('impactApp')
 
     this.allRequiredFilesCheckedOpenModal = function() {
       let allRequiredFilesChecked = true;
-      angular.forEach(request.documents.obligatoires, function(value, category) {
+      angular.forEach(request.data.documents.obligatoires, function(value, category) {
         if (category !== undefined && value.documentList[0].isInvalid === undefined) {
           allRequiredFilesChecked = false;
           return;
