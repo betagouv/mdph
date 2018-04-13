@@ -5,11 +5,11 @@
       <h2 class="padding-title"><strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
         <a ng-show="request.status === 'archive' || request.status === 'enregistree'"
-          class="btn btn-primary" ng-click="workflowDetailCtrl.download()"  target="_blank"
+          class="btn btn-primary" ng-click="workflowCtrl.download(request)"  target="_blank"
           download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
         </a>
-        <a ng-show="request.isDownloaded" target="#" class="btn btn-danger" ng-click="workflowDetailCtrl.openModal()" >
+        <a ng-show="request.isDownloaded" target="#" class="btn btn-danger" ng-click="workflowCtrl.openDeleteModal(request)" >
           <i class="fa fa-trash"></i>&nbsp;Supprimer
         </a>
         <button class="btn btn-link" ng-click="workflowDetailCtrl.toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>

@@ -25,7 +25,7 @@ angular.module('impactApp')
       }
     ];
 
-    $scope.showDownloadButton = (this.status === 'enregistree' || this.status === 'archive');
+    $scope.showDownloadAndDeleteButtons = (this.status === 'enregistree' || this.status === 'archive');
 
     this.selectAll = () => {
       const action = !this.allSelected();
@@ -117,13 +117,6 @@ angular.module('impactApp')
 
       actionOnSelectedRequests(requests, archive, afterTransfer);
     }
-
-    this.download  = (request) => {
-      request.isDownloaded = 'true';
-      RequestResource.update(request).$promise.then(result => {
-        $window.open('api/requests/' + result.shortId + '/pdf/agent?access_token=' + this.token, '_self');
-      });
-    };
 
     this.openArchiveModal = () => {
       if (_.find(this.requests, 'isSelected')) {
