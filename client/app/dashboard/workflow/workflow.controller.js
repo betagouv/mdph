@@ -5,7 +5,7 @@ angular.module('impactApp')
     this.token = $cookies.get('token');
 
     this.openDeleteModal = function(request) {
-      const modalDeleteInstance = $modal.open({
+      $modal.open({
         templateUrl: 'app/dashboard/workflow/detail/modalDelete.html',
         controllerAs: 'modalDeleteCtrl',
         size: 'md',
