@@ -24,14 +24,14 @@ angular.module('impactApp')
     this.deleteProfil = function(profil) {
       this.profile = profil;
       var modalInstance = $modal.open({
-         templateUrl: 'app/gestion/profil/delete_confirmation.html',
-         controller: 'ModalDeleteProfileCtrl',
-         resolve: {
-           profile: () => {
-             return this.profile;
-           },
+        templateUrl: 'app/gestion/profil/delete_confirmation.html',
+        controller: 'ModalDeleteProfileCtrl',
+        resolve: {
+          profile: () => {
+            return this.profile;
+          },
 
-           requests: ($http) => {
+          requests: ($http) => {
             return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + profil._id + '/requests').then(function(result) {
               return _.filter(result.data, function(request) {
                 return request.status !== 'en_cours';
@@ -42,15 +42,15 @@ angular.module('impactApp')
       });
 
       modalInstance.result.then((result) => {
-         if (result) {
-          $http.delete('/api/users/' + this.currentUser._id + '/profiles/' + profil._id ).then(function() {
+        if (result) {
+          $http.delete('/api/users/' + this.currentUser._id + '/profiles/' + profil._id).then(function() {
             toastr.success('Le profil "' + profil.getTitle() + '" a bien été supprimé.', 'Succès');
             $state.go('departement');
-           }).catch(function() {
+          }).catch(function() {
             toastr.error('Impossible de supprimer le profil "' + profil.getTitle() + '"', 'Erreur');
-           });
-         }
-       });
+          });
+        }
+      });
     };
 
     this.goProfil = function(profil) {
@@ -81,6 +81,7 @@ angular.module('impactApp')
     $scope.cancel = function() {
       $modalInstance.close(false);
     };
+
     $scope.ok = function() {
       $modalInstance.close(true);
     };
