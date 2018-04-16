@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowListCtrl', function($scope,
-    $cookies, $window, $modal, $q, $state, $rootScope,
+  .controller('WorkflowListCtrl', function($scope, $cookies, $window, $modal, $q, $state, $rootScope,
     RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph, banetteUser) {
 
     this.token = $cookies.get('token');
