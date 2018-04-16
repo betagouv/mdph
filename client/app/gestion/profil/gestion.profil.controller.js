@@ -64,12 +64,12 @@ angular.module('impactApp')
           return 'en cours de création';
         case 'emise':
           return 'émise';
-        case 'enregistree':
-          return 'enregistrée';
+        case 'validee':
+          return 'validée';
         case 'en_attente_usager':
           return 'en attente';
-        case 'archive':
-          return 'archivée';
+        case 'irrecevable':
+          return 'Irrecevable';
         default:
           return 'indéfinie';
       }
