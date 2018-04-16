@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+  .controller('LayoutCtrl', function($rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
     this.isLoggedIn = Auth.isLoggedIn;
@@ -13,6 +13,11 @@ angular.module('impactApp')
     this.showEvaluationLink = () => this.currentMdph.evaluate && Auth.isAdminMdph(currentUser, currentMdph);
 
     this.shouldShowLogin = () => this.currentMdph.opened;
+
+    $rootScope.currentMenu = function(userId, status) {
+      $scope.navUserId = userId;
+      $scope.navStatus = status;
+    };
 
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
