@@ -48,12 +48,12 @@
           <i class="note">* Vous ne pouvez pas créer de nouvelle demande tant qu'une demande est en cours</i>
         </div>
 
-        <h2 ng-if="gestionDemandeCtrl.archivedDemandes.length > 0">Demande de {{ ::gestionDemandeCtrl.profil.getTitle() }} archivée</h2>
+        <h2 ng-if="gestionDemandeCtrl.archivedDemandes.length > 0">Demande de {{ ::gestionDemandeCtrl.profil.getTitle() }} irrecevable</h2>
         <div class="row" ng-repeat="(idx, archivedDemande) in gestionDemandeCtrl.archivedDemandes">
           <div class="col-md-4 col-icon-demande-desabled">{{ archivedDemande.shortId }}</div>
           <div class="col-md-3 col-item-desabled">Créé le {{archivedDemande.createdAt | date:'dd/MM/yyyy'}}</div>
           <div class="col-md-3 col-item-desabled">{{ gestionDemandeCtrl.showStatus(archivedDemande) }}</div>
-          <div class="col-md-2 col-action-desabled">Demande archivée</div>
+          <div class="col-md-2 col-action-desabled">Demande irrecevable</div>
         </div>
       </div>
     </div>

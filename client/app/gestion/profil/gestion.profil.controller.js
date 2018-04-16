@@ -15,7 +15,7 @@ angular.module('impactApp')
 
     this.createProfil = function() {
       new ProfileResource().$save({userId: this.currentUser._id}, function(profilResult) {
-        $http.get(`/api/users/${currentUser._id}/profiles/${profilResult._id}/requests/current`).then(function(demandeResult) {
+        $http.post(`/api/users/${currentUser._id}/profiles/${profilResult._id}/requests/new`).then(function(demandeResult) {
           $state.go('demande', {shortId: demandeResult.data.shortId});
         });
       });
@@ -64,12 +64,12 @@ angular.module('impactApp')
           return 'en cours de création';
         case 'emise':
           return 'émise';
-        case 'enregistree':
-          return 'enregistrée';
+        case 'validee':
+          return 'validée';
         case 'en_attente_usager':
           return 'en attente';
-        case 'archive':
-          return 'archivée';
+        case 'irrecevable':
+          return 'Irrecevable';
         default:
           return 'indéfinie';
       }

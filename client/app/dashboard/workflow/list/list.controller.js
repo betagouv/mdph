@@ -105,7 +105,7 @@ angular.module('impactApp')
 
     function archiveRequests(requests) {
       const archive = function(request) {
-        request.status = 'archive';
+        request.status = 'irrecevable';
         return RequestResource.update(request).$promise;
       };
 

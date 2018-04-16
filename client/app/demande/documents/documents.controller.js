@@ -65,7 +65,7 @@ angular.module('impactApp').controller('DemandeDocumentsCtrl', function(
     const filteredDocumentTypes = _.filter(this.documentTypes, (type) => typeof _.find(this.selectedDocumentTypes, {id: type.id}) === 'undefined');
 
     return {
-      templateUrl: 'app/profil/documents/modal_type.html',
+      templateUrl: 'app/demande/documents/modal_type.html',
       controller: ['$scope', '$modalInstance', ($scope, $modalInstance) => {
         $scope.filteredDocumentTypes = filteredDocumentTypes;
         $scope.select = (selected) => $modalInstance.close(selected);

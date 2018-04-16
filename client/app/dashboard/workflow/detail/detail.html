@@ -1,16 +1,18 @@
 <div class="list-header">
-  <h1 class="padding-title">Validation du dépot de la demande</h1>
+  <h1 class="padding-title">Demande n° {{request.shortId}}</h1>
   <div class="dashboard-demande-header">
     <div class="detail">
-      <h2 class="padding-title"><strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong> - {{request.shortId}}</h2>
+      <h2 class="padding-title"><strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
-        <a target="_blank"
-          class="btn btn-primary"
-          href="api/requests/{{request.shortId}}/pdf/agent?access_token={{token}}"
+        <a ng-show="request.status === 'archive' || request.status === 'enregistree'"
+          class="btn btn-primary" ng-click="workflowDetailCtrl.download()"  target="_blank"
           download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
         </a>
-        <button class="btn btn-link" ng-click="toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
+        <a ng-show="request.isDownloaded" target="#" class="btn btn-danger" ng-click="workflowDetailCtrl.openModal()" >
+          <i class="fa fa-trash"></i>&nbsp;Supprimer
+        </a>
+        <button class="btn btn-link" ng-click="workflowDetailCtrl.toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
       </div>
       <div class="alert alert-info" ng-show="showDetail">
         <p>Identitfiant <strong>{{request.shortId}}</strong></p>
@@ -34,9 +36,9 @@
           </a>
         </div>
       </div>
-      <div ng-switch-when="enregistree">
+      <div ng-switch-when="validee">
         <div class="status-actions">
-          <h3>Demande enregistrée</h3>
+          <h3>Demande validée</h3>
         </div>
       </div>
       <div ng-switch-when="en_attente_usager">
@@ -44,6 +46,11 @@
           <h3>Demande en attente</h3>
         </div>
       </div>
+      <div ng-switch-when="archive">
+          <div class="status-actions">
+            <h3>Demande irrecevable</h3>
+          </div>
+        </div>
     </div>
 
   </div>

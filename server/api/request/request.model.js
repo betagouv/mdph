@@ -22,7 +22,7 @@ var DocumentSchema = new Schema({
   path:           String,
   extension:      String,
   size:           Number
-}, { _id: false });
+});
 
 var DataSchema = new Schema({
   identites:                { type: Schema.Types.Mixed },
@@ -45,11 +45,12 @@ var RequestSchema = new Schema({
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,
-  status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
+  status:         { type: String, enum: ['en_cours', 'emise', 'validee', 'en_attente_usager', 'irrecevable'], default: 'en_cours' },
   data:           { type: DataSchema, default: {} },
   comments:       { type: String },
   hasFirstExpirationNotification: { type: Boolean, default: false },
-  hasLastExpirationNotification: { type: Boolean, default: false }
+  hasLastExpirationNotification: { type: Boolean, default: false },
+  isDownloaded: { type: Boolean, default: false }
 }, { minimize: false });
 
 // RequestSchema.set('toObject', { virtuals: false });
