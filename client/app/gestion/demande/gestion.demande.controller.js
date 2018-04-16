@@ -15,7 +15,7 @@ angular.module('impactApp')
     });
 
     this.createDemande = function() {
-      if (!this.currentDemande || this.currentDemande.status==='emise' ) {
+      if (!this.currentDemande || this.currentDemande.status === 'emise') {
 
         $http.post(`/api/users/${currentUser._id}/profiles/${profil._id}/requests/new`).then(function(result) {
           $state.go('demande', {shortId: result.data.shortId});

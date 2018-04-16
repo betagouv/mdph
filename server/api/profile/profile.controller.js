@@ -53,50 +53,56 @@ export function create(req, res) {
     .catch(handleError(req, res));
 }
 
+function deleteRequests(req, res) {
+  let requestsToDelete = req.requestsToDelete;
+  return requestsToDelete.reduce(function(promise, request) {
+      return promise.then(function() {
+          req.request = request;
+          RequestController.unlinkRequestDocuments(req)
+          .then(request.remove())
+          .then(respondWithResult(res, 204))
+          .catch(handleError(req, res));
+          return ;
+      });
+  }, Promise.resolve());
+}
+
 export function destroy(req, res) {
   // chercher toutes les demandes du profil puis les clasifier par état en_cours ou non
   Request
   .find({profile: req.profile._id}, '_id status data')
-  /*.populate({
-    path: 'data'
-  })*/
   .exec()
   .then ( requests => {
     if(requests){
       let requestsEnCours = _.filter(requests, function(request) {
         return request.status === 'en_cours';
       });
-      console.info('requestsEnCours.length'+ requestsEnCours.length);
       let requestsAutre = _.filter(requests, function(request) {
         return  request.status !== 'en_cours';
       });
-      console.info('requestsAutre.length'+ requestsAutre.length);
 
       // suppression des demandes en_cours
-      console.info('suppression des demandes en_cours');
-      requestsEnCours.forEach(function(request) {
-        req.request = request;
-        RequestController.destroy(req, res);
+      req.requestsToDelete = requestsEnCours;
+      deleteRequests(req, res).then(function() {
+
+          // si il existe au moins une demande autre que en_cours alors suppression partielle
+          // maj le profil en ajoutant une datez de suppression
+          if (requestsAutre && requestsAutre.length >0) {
+            let profile = req.profile;
+            profile.deletedAt = Date.now();
+            profile
+            .save()
+            .then(respondWithResult(res,200))
+            .catch(handleError(req, res));
+
+          // suppression totale
+          // suppression du profil
+          } else {
+            req.profile.remove()
+            .then(() => res.sendStatus(204))
+            .catch(handleError(req, res));
+          }
       });
-
-      // si il existe au moins une demande autre que en_cours alors suppression partielle
-      // maj le profil en ajoutant une datez de suppression
-      if (requestsAutre && requestsAutre.length >0) {
-        let profile = req.profile;
-        profile.deletedAt = Date.now();
-        console.info('update profile'+ profile );
-        update(req, res);
-
-    // suppression totale
-    // suppression du profil
-    } else {
-        console.info('suppression totale profil');
-        /*req.profile
-        .remove()
-        .then(() => res.sendStatus(204))
-        .catch(handleError(req, res));*/
-      }
-
     }
   }
   )

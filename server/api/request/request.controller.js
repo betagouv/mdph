@@ -37,17 +37,12 @@ function handleError(req, res) {
   };
 }
 
-function unlinkRequestDocuments(req) {
+export function unlinkRequestDocuments(req) {
 
   return new Promise(function(resolve) {
-    console.info('req.request wxsdx' + req.request );
-    //console.info('req sssd  '+  Object.keys(req) );
     if (req.request.data.documents && Array.isArray(req.request.data.documents)) {
-      console.info('a des docs');
-      console.info('a des docs' + req.request.data.documents);
       req.request.data.documents.forEach(function(requestDoc) {
         if (requestDoc.path) {
-          console.info('  requestDoc.path s' + requestDoc.path);
           fs.unlink(requestDoc.path);
         }
       });
@@ -80,6 +75,7 @@ function saveUpdates(req) {
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
+  console.info()
   return function(request) {
     res.status(statusCode).json(request);
     return null;

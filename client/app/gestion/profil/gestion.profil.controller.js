@@ -45,7 +45,7 @@ angular.module('impactApp')
         if (result) {
           $http.delete('/api/users/' + this.currentUser._id + '/profiles/' + profil._id).then(function() {
             toastr.success('Le profil "' + profil.getTitle() + '" a bien été supprimé.', 'Succès');
-            $state.go('departement');
+            $state.go($state.current, {}, {reload: true});
           }).catch(function() {
             toastr.error('Impossible de supprimer le profil "' + profil.getTitle() + '"', 'Erreur');
           });
