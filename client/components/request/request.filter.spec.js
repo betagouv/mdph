@@ -6,7 +6,7 @@ describe('requestStatus filter', function() {
   describe('When the status is found', function() {
     it('should return the status label',
         inject(function(requestStatusFilter) {
-      expect(requestStatusFilter('emise')).toBe('Émise');
+      expect(requestStatusFilter('emise')).toBe('Émises');
     }));
   });
 

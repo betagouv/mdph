@@ -3,11 +3,11 @@
 angular.module('impactApp').constant('BanettesConstant', [
   {
     id: 'emise',
-    label: 'Émise'
+    label: 'Émises'
   },
   {
     id: 'validee',
-    label: 'Enregistrée'
+    label: 'Validées'
   },
   {
     id: 'en_attente_usager',
@@ -15,6 +15,6 @@ angular.module('impactApp').constant('BanettesConstant', [
   },
   {
     id: 'irrecevable',
-    label: 'Archivée'
+    label: 'Irrecevables'
   }
 ]);
