@@ -452,12 +452,6 @@
           }
         ]
       },
-      "fraisHandicap": {
-        "model": "fraisHandicap",
-        "type": "frais",
-        "titleDefault": "Frais liés au handicap et restant à charge",
-        "placeholder": "Indiquez les frais non remboursés ou, le cas échéant, remboursés partiellement par votre assurance maladie ou mutuelle complémentaire. Précisez notamment si vous recourez à l'emploi rémunéré d'une tierce personne, motivé par votre situation de handicap."
-      },
       "activiteHandicap": {
         "model": "activiteHandicap",
         "titleDefault": "Du fait de votre handicap :",
@@ -500,6 +494,12 @@
             "model": false
           }
         ]
+      },
+      "fraisHandicap": {
+        "model": "fraisHandicap",
+        "type": "frais",
+        "titleDefault": "Frais liés au handicap et restant à charge",
+        "placeholder": "Indiquez les frais non remboursés ou, le cas échéant, remboursés partiellement par votre assurance maladie ou mutuelle complémentaire. Précisez notamment si vous recourez à l'emploi rémunéré d'une tierce personne, motivé par votre situation de handicap."
       },
       "besoinsVie": {
         "model": "besoinsVie",
@@ -1210,6 +1210,81 @@
           {
             "label": "Non",
             "model": false
+          }
+        ]
+      },
+      "passe": {
+        "titleRep": "A-t-<%= pronoun %> déjà travaillé ?",
+        "titleDefault": "Avez-vous déjà travaillé ?",
+        "type": "radio",
+        "model": "passe",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetail",
+            "detailLabel": "Pourquoi êtes-vous actuellement sans emploi et depuis quand ?"
+          },
+          {
+            "label": "Non",
+            "model": false,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetail",
+            "detailLabel": "Pouvez-vous indiquer pourquoi vous êtes actuellement sans emploi ?"
+          }
+        ]
+      },
+      "situationSansEmploi": {
+        "titleRep": "Est-<%= pronoun %> dans une des situations suivantes ?",
+        "titleDefault": "Êtes-vous dans une des situations suivantes ?",
+        "model": "situationSansEmploi",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Inscrit à pôle emploi",
+            "model": "poleEmploi"
+          },
+          {
+            "label": "En formation continue",
+            "model": "formation",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "formationDetail"
+          },
+          {
+            "label": "Etudiant",
+            "model": "etudiant"
+          }
+        ]
+      },
+      "situationAccompagnement": {
+        "titleRep": "Son accompagnement vers l'emploi est réalisé par",
+        "titleDefault": "Votre accompagnement vers l'emploi est réalisé par",
+        "model": "situationAccompagnement",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Mission locale",
+            "model": "mission"
+          },
+          {
+            "label": "Cap emploi",
+            "model": "capEmploi"
+          },
+          {
+            "label": "Pôle emploi",
+            "model": "poleEmploi"
+          },
+          {
+            "label": "Un référent RSA désigné par le Conseil Général",
+            "model": "rsa"
+          },
+          {
+            "label": "Autre",
+            "model": "autre",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "autreDetail",
+            "detailLabel": "Précisez :"
           }
         ]
       },
@@ -2008,6 +2083,26 @@
             "model": "autre",
             "detailModel": "attentesDetail",
             "detailUrl": "components/detail/precisez.html"
+          }
+        ]
+      },
+      "structures": {
+        "model": "structures",
+        "type": "structure",
+        "titleDefault": "As-t-il/elle déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
+      },
+      "demandesAides": {
+        "titleDefault": "Vous souhaitez mieux connaitre les dispositifs et aides existants :",
+        "model": "demandesAides",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Pour l'aidant",
+            "model": "pour_vous"
+          },
+          {
+            "label": "Pour la personne aidée",
+            "model": "pour_la_personne"
           }
         ]
       },
