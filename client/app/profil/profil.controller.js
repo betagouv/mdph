@@ -11,7 +11,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.currentUser = currentUser;
   this.currentMdph = currentMdph;
   this.hasRequest = hasRequest;
-  this.updatedAt = profile.updatedAt;
+  this.profileUpdatedAt = profile.updatedAt;
 
   this.$state = $state;
   this.$modal = $modal;
