@@ -3,38 +3,35 @@
 
   <div>
     <input type="radio" name="domicile" id="domicile-parents"
-      ng-model="sectionModel[answer.detailModel]" value="'parents'"
+      ng-model="sectionModel[answer.detailModel]" value="De {{profilCtrl.pronomPluriel}} parents (ou l'un d'entre eux)"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-parents" ng-if="profilCtrl.estAdulte">De vos parents (ou l'un d'entre eux)</label>
-    <label for="domicile-parents" ng-if="!profilCtrl.estAdulte">De ses parents (ou l'un d'entre eux)</label>
+    <label for="domicile-parents">De {{profilCtrl.pronomPluriel}} parents (ou l'un d'entre eux)</label>
   </div>
 
   <div>
     <input type="radio" name="domicile" id="domicile-enfants"
-      ng-model="sectionModel[answer.detailModel]" value="'enfants'"
+      ng-model="sectionModel[answer.detailModel]" value="De {{profilCtrl.pronomPluriel}} enfants (ou l'un d'entre eux)"
       ng-required="!sectionModel[answer.detailModel]">
-    <label ng-if="profilCtrl.estAdulte" for="domicile-enfants" >De vos enfants (ou l'un d'entre eux)</label>
-    <label ng-if="!profilCtrl.estAdulte" for="domicile-enfants" >De ses enfants (ou l'un d'entre eux)</label>
+    <label for="domicile-enfants" >De {{profilCtrl.pronomPluriel}} enfants (ou l'un d'entre eux)</label>
   </div>
 
   <div>
     <input type="radio" name="domicile" id="domicile-ami"
-      ng-model="sectionModel[answer.detailModel]" value="'ami'"
+      ng-model="sectionModel[answer.detailModel]" value="D'un(e) ami(e)"
       ng-required="!sectionModel[answer.detailModel]">
     <label for="domicile-ami">D'un(e) ami(e)</label>
   </div>
 
   <div>
     <input type="radio" name="domicile" id="domicile-autreMembreFamille"
-      ng-model="sectionModel[answer.detailModel]" value="'autreMembreFamille'"
+      ng-model="sectionModel[answer.detailModel]" value="D'un autre membre de {{profilCtrl.pronomSingulier}} famille"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-autreMembreFamille" ng-if="profilCtrl.estAdulte">D'un autre membre de votre famille</label>
-    <label for="domicile-autreMembreFamille" ng-if="!profilCtrl.estAdulte">D'un autre membre de sa famille</label>
+    <label for="domicile-autreMembreFamille">D'un autre membre de {{profilCtrl.pronomSingulier}} famille</label>
   </div>
 
   <div>
     <input type="radio" name="domicile" id="domicile-familleAccueill"
-      ng-model="sectionModel[answer.detailModel]" value="'familleAccueill'"
+      ng-model="sectionModel[answer.detailModel]" value="D'une famille d'accueil"
       ng-required="!sectionModel[answer.detailModel]">
     <label for="domicile-familleAccueill">D'une famille d'accueil</label>
   </div>

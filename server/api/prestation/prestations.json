@@ -1,21 +1,5 @@
-{
-  "cartestationnement": {
-    "id": "cartestationnement",
-    "type": "carte",
-    "label": "Carte stationnement",
-    "title": "Stationnement",
-    "description": "La carte européenne de stationnement permet à son titulaire ou à la personne qui l'accompagne de stationner sur les places réservées aux personnes handicapées.",
-    "link": "http://vosdroits.service-public.fr/particuliers/F2891.xhtml"
-  },
-  "carteinvalidite": {
-    "id": "carteinvalidite",
-    "type": "carte",
-    "label": "Carte d'invalidité ou de priorité",
-    "title": "Mention invalidité ou priorité",
-    "description": "La carte d'invalidité civile a pour but d'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports. La carte de priorité permet d'obtenir un droit de priorité pour l'accès aux bureaux et guichets des administrations et services publics et aux transports publics.",
-    "link": "http://vosdroits.service-public.fr/particuliers/F2446.xhtml"
-  },
-  "aeeh": {
+[
+  {
     "id": "aeeh",
     "type": "enfant",
     "label": "AEEH",
@@ -23,7 +7,7 @@
     "description": "L'allocation d'éducation de l'enfant handicapé (AEEH) est destinée à soutenir les personnes qui assurent la charge d'un enfant en situation de handicap.",
     "link": "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
   },
-  "aah": {
+  {
     "id": "aah",
     "type": "allocation",
     "label": "AAH",
@@ -31,7 +15,7 @@
     "description": "L'allocation aux adultes handicapés (AAH) est versée, sous conditions de ressources, aux adultes déclarés handicapés afin de leur assurer un revenu minimum.",
     "link": "http://vosdroits.service-public.fr/particuliers/N12230.xhtml"
   },
-  "complement": {
+  {
     "id": "complement",
     "type": "allocation",
     "label": "complement ressources",
@@ -39,95 +23,7 @@
     "description": "Le complément de ressources est une allocation qui s'ajoute à l'allocation aux adultes handicapés (AAH). Il a pour objectif de compenser l'absence durable de revenus d'activité si vous êtes dans l'incapacité de travailler.",
     "link": "https://www.service-public.fr/particuliers/vosdroits/F12911"
   },
-  "pch": {
-    "id": "pch",
-    "type": "compensation",
-    "label": "PCH",
-    "title": "Prestation de Compensation du Handicap (PCH)",
-    "description": "La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à financer les besoins liés à la perte d'autonomie des personnes handicapées.",
-    "link": "http://vosdroits.service-public.fr/particuliers/N14201.xhtml"
-  },
-  "rqth": {
-    "id": "rqth",
-    "type": "travail",
-    "label": "RQTH",
-    "title": "Reconnaissance de la Qualité de Travailleur Handicapé (RQTH)",
-    "description": "Un travailleur handicapé est une personne dont les possibilités d'obtenir ou de conserver un emploi sont réduites à cause de son handicap. Il peut s'agir de l'altération d'une ou plusieurs fonctions physique, sensorielle, mentale ou psychique.",
-    "link": "http://vosdroits.service-public.fr/particuliers/F1650.xhtml"
-  },
-  "crp_cpo_ueros": {
-    "id": "crp_cpo_ueros",
-    "type": "travail",
-    "label": "CRP_CPO_UEROS",
-    "title": "Centre de rééducation professionnelle (CRP), Centre de pré-orientation (CPO) ou Unité d’évaluation, de réentraînement et d’orientation sociale et socioprofessionnelle pour personnes cérébro-lésées (UEROS)",
-    "description": "Centre de rééducation professionnelle (CRP), Centre de pré-orientation (CPO) ou Unité d’évaluation, de réentraînement et d’orientation sociale et socioprofessionnelle pour personnes cérébro-lésées (UEROS)",
-    "link": "http://www.mdph33.fr/l_orientation_professionnelle_orp.html"
-  },
-  "esat": {
-    "id": "esat",
-    "type": "travail",
-    "label": "ESAT",
-    "title": "Établissement et service d’aide par le travail (ESAT)",
-    "description": "Établissement et service d’aide par le travail (ESAT)",
-    "link": "https://www.service-public.fr/particuliers/vosdroits/F1654"
-  },
-  "marche_travail": {
-    "id": "marche_travail",
-    "type": "travail",
-    "label": "MARCHE_TRAVAIL",
-    "title": "Marché du travail",
-    "description": "L'entreprise adaptée permet à une personne en situation de handicap d'exercer une activité professionnelle dans des conditions adaptées à ses possibilités.",
-    "link": "https://www.service-public.fr/particuliers/vosdroits/F1653"
-  },
-  "marche_travail_acc": {
-    "id": "marche_travail_acc",
-    "type": "travail",
-    "label": "MARCHE_TRAVAIL_ACC",
-    "title": "Accompagnement par le dispositif Emploi accompagné",
-    "description": "Accompagnement par le dispositif Emploi accompagné",
-    "link": "https://www.service-public.fr/particuliers/vosdroits/F1653"
-  },
-  "av": {
-    "id": "av",
-    "type": "aidant",
-    "label": "AV",
-    "title": "Affiliation gratuite à l'assurance vieillesse (AVPF)",
-    "description": "L'affiliation à l'assurance vieillesse permet à l'aidant familial de valider des trimestres pour sa retraite sans qu'il ait besoin de verser des cotisations auprès de sa caisse de retraite.",
-    "link": "http://vosdroits.service-public.fr/particuliers/F2574.xhtml"
-  },
-  "esms": {
-    "id": "esms",
-    "type": "accompagnement",
-    "label": "ESMS",
-    "title": "Maintien en établissement ou service médico-social (ESMS) au titre de l'amendement Creton",
-    "description": "Maintien en établissement ou service médico-social (ESMS) au titre de l'amendement Creton",
-    "link": "http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux"
-  },
-  "pps": {
-    "id": "pps",
-    "type": "enfant",
-    "label": "PPS",
-    "title": "Parcours de scolarisation et/ou de formation avec ou sans accompagnement par un établissement ou service médico-social.",
-    "description": "Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.",
-    "link": "http://www.education.gouv.fr/pid25535/bulletin_officiel.html&cid_bo=86108"
-  },
-  "orp": {
-    "id": "orp",
-    "type": "travail",
-    "label": "ORP",
-    "title": "Orientation professionnelle",
-    "description": "La demande d'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation.",
-    "link": "https://www.service-public.fr/particuliers/vosdroits/F211"
-  },
-  "formation": {
-    "id": "formation",
-    "type": "travail",
-    "label": "formation",
-    "title": "Formation professionnelle",
-    "description": "En plus des dispositifs généraux de formation, une personne handicapée peut entrer en apprentissage pour obtenir une qualification et bénéficier d'aménagements particuliers. Elle peut aussi bénéficier d'une formation dans un centre de pré-orientation si elle rencontre des difficultés d'orientation. Enfin, elle peut bénéficier d'un contrat de rééducation ou suivre un stage pour se réaccoutumer à son ancien emploi si elle est devenue inapte à exercer sa profession, ou apprendre un nouveau métier.",
-    "link": "https://www.service-public.fr/particuliers/vosdroits/N198"
-  },
-  "sms": {
+  {
     "id": "sms",
     "type": "accompagnement",
     "label": "SMS",
@@ -135,15 +31,31 @@
     "description": "Ce sont des établissements médico-sociaux chargés d’offrir aux personnes accueillies différentes activités à caractère professionnel qui donnent lieu au versement d’une rémunération garantie et à un soutien médico-social et éducatif. La personne est accueillie dans les Etablissements et Services d’Aide par le Travail (ESAT) à temps complet ou à temps partiel (combiné à une section occupationnelle à temps partiel).",
     "link": "http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux"
   },
-  "sms_enfant": {
-    "id": "sms_enfant",
-    "type": "enfant",
-    "label": "SMS enfant",
-    "title": "Parcours de scolarisation et/ou de formation avec ou sans accompagnement par un établissement ou service médico-social.",
-    "description": "Au cours de son parcours de formation, l'élève handicapé peut être amené à séjourner, à temps plein ou à temps partiel, dans un établissement médico-social. Ces établissements médico-sociaux, publics ou privés, se caractérisent par des spécificités qui permettent de répondre aux besoins des enfants et adolescents handicapés.",
-    "link": "http://eduscol.education.fr/cid53162/les-etablissements-medico-sociaux.html"
+  {
+    "id": "esms",
+    "type": "accompagnement",
+    "label": "ESMS",
+    "title": "Maintien en établissement ou service médico-social (ESMS) au titre de l'amendement Creton",
+    "description": "Maintien en établissement ou service médico-social (ESMS) au titre de l'amendement Creton",
+    "link": "http://www.cnsa.fr/accompagnement-en-etablissement-et-service/les-etablissements-et-les-services-medico-sociaux"
   },
-  "ac": {
+  {
+    "id": "pch",
+    "type": "compensation",
+    "label": "PCH",
+    "title": "Prestation de Compensation du Handicap (PCH)",
+    "description": "La prestation de compensation du handicap (PCH) est une aide personnalisée destinée à financer les besoins liés à la perte d'autonomie des personnes handicapées.",
+    "link": "http://vosdroits.service-public.fr/particuliers/N14201.xhtml"
+  },
+  {
+    "id": "av",
+    "type": "aidant",
+    "label": "AV",
+    "title": "Affiliation gratuite à l'assurance vieillesse (AVPF)",
+    "description": "L'affiliation à l'assurance vieillesse permet à l'aidant familial de valider des trimestres pour sa retraite sans qu'il ait besoin de verser des cotisations auprès de sa caisse de retraite.",
+    "link": "http://vosdroits.service-public.fr/particuliers/F2574.xhtml"
+  },
+  {
     "id": "ac",
     "type": "compensation",
     "label": "AC",
@@ -151,12 +63,84 @@
     "link": "http://vosdroits.service-public.fr/particuliers/F2475.xhtml",
     "description": "Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du handicap. Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver."
   },
-  "acfp": {
+  {
     "id": "acfp",
     "type": "compensation",
     "label": "ACFP",
     "title": "Allocation Compensatrice pour Frais Professionnels (ACFP)",
     "link": "https://www.service-public.fr/particuliers/vosdroits/F1657",
     "description": "Cette allocation a été remplacée le 1er janvier 2006 par la prestation de compensation du handicap. Elle ne concerne plus que les personnes qui la percevaient déjà et qui ont choisi de la conserver."
+  },
+  {
+    "id": "carteinvalidite",
+    "type": "carte",
+    "label": "Carte d'invalidité ou de priorité",
+    "title": "Mention invalidité ou priorité",
+    "description": "La carte d'invalidité civile a pour but d'attester que son détenteur est handicapé et permet de bénéficier de certains droits spécifiques, notamment dans les transports. La carte de priorité permet d'obtenir un droit de priorité pour l'accès aux bureaux et guichets des administrations et services publics et aux transports publics.",
+    "link": "http://vosdroits.service-public.fr/particuliers/F2446.xhtml"
+  },
+  {
+    "id": "cartestationnement",
+    "type": "carte",
+    "label": "Carte stationnement",
+    "title": "Stationnement",
+    "description": "La carte européenne de stationnement permet à son titulaire ou à la personne qui l'accompagne de stationner sur les places réservées aux personnes handicapées.",
+    "link": "http://vosdroits.service-public.fr/particuliers/F2891.xhtml"
+  },
+  {
+    "id": "pps",
+    "type": "enfant",
+    "label": "PPS",
+    "title": "Parcours de scolarisation et/ou de formation avec ou sans accompagnement par un établissement ou service médico-social.",
+    "description": "Le PPS fait partie du Plan de compensation du handicap (PCH). Il définit les modalités de déroulement de la scolarité et les actions pédagogiques, psychologiques, éducatives,sociales, médicales et paramédicales répondant aux besoins particuliers des élèves présentant un handicap.",
+    "link": "http://www.education.gouv.fr/pid25535/bulletin_officiel.html&cid_bo=86108"
+  },
+  {
+    "id": "rqth",
+    "type": "travail",
+    "label": "RQTH",
+    "title": "Reconnaissance de la Qualité de Travailleur Handicapé (RQTH)",
+    "description": "Un travailleur handicapé est une personne dont les possibilités d'obtenir ou de conserver un emploi sont réduites à cause de son handicap. Il peut s'agir de l'altération d'une ou plusieurs fonctions physique, sensorielle, mentale ou psychique.",
+    "link": "http://vosdroits.service-public.fr/particuliers/F1650.xhtml"
+  },
+  {
+    "id": "orp",
+    "type": "travail",
+    "label": "ORP",
+    "title": "Orientation professionnelle",
+    "description": "La demande d'Orientation professionnelle vise à définir le milieu de travail dans lequel la personne handicapée pourra exercer une activité adaptée à sa situation.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F211"
+  },
+  {
+    "id": "crp_cpo_ueros",
+    "type": "travail",
+    "label": "CRP_CPO_UEROS",
+    "title": "Centre de rééducation professionnelle (CRP), Centre de pré-orientation (CPO) ou Unité d’évaluation, de réentraînement et d’orientation sociale et socioprofessionnelle pour personnes cérébro-lésées (UEROS)",
+    "description": "Centre de rééducation professionnelle (CRP), Centre de pré-orientation (CPO) ou Unité d’évaluation, de réentraînement et d’orientation sociale et socioprofessionnelle pour personnes cérébro-lésées (UEROS)",
+    "link": "http://www.mdph33.fr/l_orientation_professionnelle_orp.html"
+  },
+  {
+    "id": "esat",
+    "type": "travail",
+    "label": "ESAT",
+    "title": "Établissement et service d’aide par le travail (ESAT)",
+    "description": "Établissement et service d’aide par le travail (ESAT)",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F1654"
+  },
+  {
+    "id": "marche_travail",
+    "type": "travail",
+    "label": "MARCHE_TRAVAIL",
+    "title": "Marché du travail",
+    "description": "L'entreprise adaptée permet à une personne en situation de handicap d'exercer une activité professionnelle dans des conditions adaptées à ses possibilités.",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F1653"
+  },
+  {
+    "id": "marche_travail_acc",
+    "type": "travail",
+    "label": "MARCHE_TRAVAIL_ACC",
+    "title": "Accompagnement par le dispositif Emploi accompagné",
+    "description": "Accompagnement par le dispositif Emploi accompagné",
+    "link": "https://www.service-public.fr/particuliers/vosdroits/F1653"
   }
-}
+]

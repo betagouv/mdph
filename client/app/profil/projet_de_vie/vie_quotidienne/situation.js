@@ -180,7 +180,7 @@ angular.module('impactApp')
       })
       .state(index + '.ipp', {
         url: '',
-        templateUrl: 'components/question/textinput.html',
+        templateUrl: 'components/question/pourcentageinput.html',
         controller: 'QuestionCtrl',
         resolve: {
           question: function(QuestionService, section, profile) {
