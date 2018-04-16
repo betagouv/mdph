@@ -56,7 +56,10 @@ export function create(req, res) {
 export function destroy(req, res) {
   // chercher toutes les demandes du profil puis les clasifier par état en_cours ou non
   Request
-  .find({profile: req.profile._id}, '_id status')
+  .find({profile: req.profile._id}, '_id status data')
+  /*.populate({
+    path: 'data'
+  })*/
   .exec()
   .then ( requests => {
     if(requests){
@@ -72,7 +75,8 @@ export function destroy(req, res) {
       // suppression des demandes en_cours
       console.info('suppression des demandes en_cours');
       requestsEnCours.forEach(function(request) {
-        RequestController.destroy(request);
+        req.request = request;
+        RequestController.destroy(req, res);
       });
 
       // si il existe au moins une demande autre que en_cours alors suppression partielle
@@ -80,7 +84,7 @@ export function destroy(req, res) {
       if (requestsAutre && requestsAutre.length >0) {
         let profile = req.profile;
         profile.deletedAt = Date.now();
-        console.info('update profile'+ profile.deletedAt );
+        console.info('update profile'+ profile );
         update(req, res);
 
     // suppression totale

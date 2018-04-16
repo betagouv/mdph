@@ -38,10 +38,16 @@ function handleError(req, res) {
 }
 
 function unlinkRequestDocuments(req) {
+
   return new Promise(function(resolve) {
+    console.info('req.request wxsdx' + req.request );
+    //console.info('req sssd  '+  Object.keys(req) );
     if (req.request.data.documents && Array.isArray(req.request.data.documents)) {
+      console.info('a des docs');
+      console.info('a des docs' + req.request.data.documents);
       req.request.data.documents.forEach(function(requestDoc) {
         if (requestDoc.path) {
+          console.info('  requestDoc.path s' + requestDoc.path);
           fs.unlink(requestDoc.path);
         }
       });
@@ -108,7 +114,10 @@ export function showPartenaire(req, res) {
 
 // Deletes a request from the DB and FS
 export function destroy(req, res) {
-  unlinkRequestDocuments()
+  //console.info('req destroy  destroy' + Object.keys(req.re));
+  console.info('rrrrr destroy' + req.request);
+
+  unlinkRequestDocuments(req)
     .then(removeRequest())
     .then(respondWithResult(res, 204))
     .catch(handleError(req, res));
