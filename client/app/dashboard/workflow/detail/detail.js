@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/workflow/detail/detail.html',
         controller: 'WorkflowDetailCtrl',
+        controllerAs: 'workflowDetailCtrl',
         resolve: {
           request: function($http, $stateParams, RequestResource) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
@@ -26,6 +27,7 @@ angular.module('impactApp')
       .state('dashboard.workflow.detail.documents', {
         url: '/documents',
         controller: 'RequestDocumentsCtrl',
+        controllerAs: 'requestDocumentsCtrl',
         templateUrl: 'app/dashboard/workflow/detail/documents/documents.html',
         authenticate: true,
         authorized: ['adminMdph'],

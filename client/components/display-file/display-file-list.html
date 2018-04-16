@@ -4,7 +4,7 @@
 
     <ul class="list-unstyled">
       <li ng-repeat="document in category.documentList">
-        <display-file file="document" request="request" user="user"></display-file>
+        <display-file file="document" request="request" user="user" hide-actions="!showValidationActions"></display-file>
       </li>
     </ul>
   </div>

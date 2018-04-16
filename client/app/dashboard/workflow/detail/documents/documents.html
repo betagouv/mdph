@@ -2,18 +2,18 @@
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces obligatoires</div>
     <div class="panel-body">
-      <display-file-list categories="request.data.documents.obligatoires" request="request" user="currentUser"></display-file-list>
+      <display-file-list categories="request.data.documents.obligatoires" request="request" user="currentUser" show-validation-actions="true"></display-file-list>
     </div>
   </div>
 
   <div class="panel panel-flat-default">
     <div class="panel-heading">Pièces complémentaires</div>
     <div class="panel-body">
-      <display-file-list categories="request.data.documents.complementaires" request="request" user="currentUser"></display-file-list>
+      <display-file-list categories="request.data.documents.complementaires" request="request" user="currentUser" show-validation-actions="false"></display-file-list>
     </div>
   </div>
 
-  <div class="panel panel-flat-default">
+  <div class="panel panel-flat-default" ng-show="request.status === 'emise'">
     <div class="panel-heading">Demandes de documents complémentaires</div>
     <div class="panel-body">
       <label for="inputDocCompl">Ajouter un type de document complémentaire</label>
@@ -34,9 +34,8 @@
     </div>
   </div>
 </div>
-
 <div class="text-right">
-  <button type="button" ng-click="openModal()" ng-if="request.status === 'emise' || request.status === 'en_attente_usager'" class="btn btn-lg btn-primary">
+  <button type="button" ng-click="requestDocumentsCtrl.allRequiredFilesCheckedOpenModal()" ng-if="request.status === 'emise'" class="btn btn-lg btn-primary">
     Envoyer un accusé de réception
   </button>
 </div>

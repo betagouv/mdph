@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h1 class="modal-title">Suppression d'une ou plusieurs demandes</h1>
+</div>
+<div class="modal-body">
+  <div class="embed-responsive embed-responsive-16by9">
+    <p>Vous êtes sur le point de supprimer définitivement la demande suivante du service :
+      <ul>
+        <li>Demande n° {{modalRemove.shortId}}</li>
+      </ul>
+    </p>
+    <p />
+      Il est de votre responsabilité d'assurer la sauvegarde correcte des données du bénéficiaire dans votre système.
+    <p />
+    <p>
+      Souhaitez-vous poursuivre ?
+    </p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="modalRemove.cancel()">Annuler</button>
+  <button class="btn btn-success" ng-click="modalRemove.remove()">Supprimer</button>
+</div>
