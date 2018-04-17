@@ -8,23 +8,20 @@ angular.module('impactApp')
         templateUrl: 'app/dashboard/workflow/detail/modalDelete.html',
         controllerAs: 'modalDeleteCtrl',
         size: 'md',
-        controller(navUserId, navStatus, $modalInstance) {
+        controller(navUserId, navStatus, $modalInstance, RequestResource) {
           this.shortId = request.shortId;
           this.navUserId = navUserId;
           this.navStatus = navStatus;
           this.delete = function() {
-              //TODO appeler le service de suppression
-              //$http.delete('/api/requests/' + this.shortId).then(() => {
+              RequestResource.remove({shortId: this.shortId}).$promise.then(() => {
               $modalInstance.close();
               if ($state.includes('dashboard.workflow.detail')) {
-
-                //TODO mettre les bons parms apres l'integration de la fiche sur le menu courant
                 $state.go('dashboard.workflow.list', {userId:navUserId, status:navStatus}, {reload: true});
               } else {
                 $state.go('.', {}, {reload: true});
               }
 
-              // });
+              });
             };
 
           this.cancel = function() {
