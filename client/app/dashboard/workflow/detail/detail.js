@@ -26,6 +26,7 @@ angular.module('impactApp')
       })
       .state('dashboard.workflow.detail.documents', {
         url: '/documents',
+        parent: 'dashboard.workflow',
         controller: 'RequestDocumentsCtrl',
         controllerAs: 'requestDocumentsCtrl',
         templateUrl: 'app/dashboard/workflow/detail/documents/documents.html',
