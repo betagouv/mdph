@@ -85,21 +85,17 @@ export function destroy(req, res) {
       req.requestsToDelete = requestsEnCours;
       deleteRequests(req, res).then(function() {
 
-          // si il existe au moins une demande autre que en_cours alors suppression partielle
-          // maj le profil en ajoutant une datez de suppression
+          // s'il existe au moins une demande autre que en_cours alors suppression partielle
+          // maj du profil en ajoutant une date de suppression
+          let profile = req.profile;
           if (requestsAutre && requestsAutre.length >0) {
-            let profile = req.profile;
             profile.deletedAt = Date.now();
-            profile
-            .save()
-            .then(respondWithResult(res,200))
+            profile.save()
             .catch(handleError(req, res));
 
-          // suppression totale
-          // suppression du profil
+          // suppression totale du profil
           } else {
-            req.profile.remove()
-            .then(() => res.sendStatus(204))
+            profile.remove()
             .catch(handleError(req, res));
           }
       });
