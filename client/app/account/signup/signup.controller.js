@@ -3,6 +3,7 @@
 angular.module('impactApp')
   .controller('SignupCtrl', function($rootScope, $scope, $state, ProfileResource, Auth, currentMdph) {
     $scope.user = {};
+    $scope.forms = $state.current.data.forms;
     $scope.inputType = 'password';
 
     $scope.toggleType = function() {
