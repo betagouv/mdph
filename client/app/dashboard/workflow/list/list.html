@@ -2,7 +2,7 @@
   <div class="list-header">
     <h2 class="padding-title">{{ workflowListCtrl.banetteUser.name }} - Demandes {{workflowListCtrl.status | requestStatus}}</h2>
 
-    <form class="form-group">
+    <form class="pull-right">
       <div class="input-group search">
         <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
         <div class="input-group-btn">
@@ -26,7 +26,7 @@
           <li role="menuitem">
             <a href="#" ng-click="workflowListCtrl.downloadRequests()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
-          <li role="menuitem" ng-if="status !== 'archive'">
+          <li role="menuitem" ng-if="status !== 'irrecevable'">
             <a href="#" ng-click="workflowListCtrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
           </li>
         </ul>

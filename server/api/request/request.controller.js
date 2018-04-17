@@ -260,8 +260,8 @@ function computeEnregistrementOptions(request, host) {
       options.nonPresentAskedDocumentTypes = nonPresentAskedDocumentTypes;
     }
   } else {
-    options.status = 'enregistree';
-    options.enregistree = true;
+    options.status = 'validee';
+    options.validee = true;
   }
 
   if (host) {
