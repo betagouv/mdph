@@ -34,24 +34,6 @@
 
     </div>
 
-    <div class="form-group required" ng-show="show">
-      <label for="emailSecours" class="control-label">Adresse email de secours</label>
-      <input id="emailSecours" type="email" name="emailSecours" class="form-control" ng-model="user.emailSecours" ng-init="user.emailSecours = 'your@email.com'"/>
-    </div>
-    <div ng-messages="form.emailSecours.$error" ng-if="form.$submitted">
-      <p class="help-block" ng-message='required'>Veuillez entrer votre adresse e-mail de secours.</p>
-      <p id="error-message" ng-message="formulaire" class="help-block">Erreur dans le formulaire, merci de raffraichir la page</p>
-    </div>
-
-    <div class="input-field required">
-      <label for="contact" class="control-label">Contact</label>
-      <input id="contact" type="text" name="contact" class="input-field" ng-model="user.contact" ng-init="user.contact = ''"/>
-    </div>
-    <div ng-messages="form.contact.$error" ng-if="form.$submitted">
-      <p class="help-block" ng-message='required'>Veuillez entrer votre numéro de contact.</p>
-      <p id="error-message" ng-message="formulaire" class="help-block">Erreur dans le formulaire, merci de raffraîchir la page</p>
-    </div>
-
     <div class="text-center">
       <button class="btn btn-primary btn-lg btn-login" type="submit">
         Inscrivez-vous
