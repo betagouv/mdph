@@ -24,9 +24,6 @@
     <table>
       <tbody>
         <tr ng-repeat="user in users | filter:query">
-          <td class="check-request" ng-click="user.isSelected = !user.isSelected">
-            <i class="fa" ng-class="{'fa-square': !user.isSelected, 'fa-check-square': user.isSelected}"></i>
-          </td>
           <td class="text-left"><a ui-sref="dashboard.users.agents.edit({id: user._id})">{{user.name}}</a></td>
           <td class="text-right"><a ui-sref="dashboard.users.agents.edit({id: user._id})">{{user.email}}</a></td>
         </tr>
