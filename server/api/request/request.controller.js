@@ -38,7 +38,6 @@ function handleError(req, res) {
 }
 
 export function unlinkRequestDocuments(req) {
-
   return new Promise(function(resolve) {
     if (req.request.data.documents && Array.isArray(req.request.data.documents)) {
       req.request.data.documents.forEach(function(requestDoc) {
