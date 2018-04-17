@@ -24,7 +24,7 @@ angular.module('impactApp')
     };
 
     this.deleteCurrentDemande = function() {
-       var modalDeleteDemandeInstance = $modal.open({
+      var modalDeleteDemandeInstance = $modal.open({
         templateUrl: 'app/gestion/demande/delete_confirmation.html',
         controller: function($scope, $modalInstance, demande) {
           this.demande = demande;
@@ -37,6 +37,7 @@ angular.module('impactApp')
             $modalInstance.close(true);
           };
         },
+
         controllerAs: 'deleteDemandeConfirmationCtrl',
         resolve: {
           demande: () => {
@@ -76,6 +77,3 @@ angular.module('impactApp')
       }
     };
   });
-
-
-
