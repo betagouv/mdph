@@ -3,53 +3,74 @@
     <h2 class="padding-title" ng-if="!user._id">Création d'un agent</h2>
     <h2 class="padding-title" ng-if="user._id">Edition d'un agent</h2>
   </div>
-  <form class="form-horizontal" name="userForm" ng-submit="update(userForm)" >
-    <div class="form-group">
-      <label for="inputName" class="col-sm-2 control-label">Nom</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputName" name="nom" ng-model="user.name" required>
+  <form class="form-horizontal" name="forms.form" ng-submit="update(forms.form)" novalidate>
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="form-group required" ng-class="{ 'has-error': forms.form.nom.$invalid && forms.form.$submitted }">
+            <div class="col-sm-3 text-right">
+              <label for="nom" class="control-label">Nom</label>
+            </div>
+            <div class="col-sm-9">
+                <input id="nom" type="text" name="nom" class="form-control" ng-model="user.name" required />
+
+                <div ng-messages="forms.form.nom.$error" ng-if="forms.form.$submitted">
+                 <p class="help-block" ng-message='required'>Veuillez entrer votre nom.</p>
+                </div>
+            </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail" name="email" ng-model="user.email" required>
-        <p class="help-block" ng-show="userForm.email.$error.mongoose">
-          {{ errors.email }}
-        </p>
+
+      <div class="form-group required" ng-class="{ 'has-error': forms.form.email.$invalid && forms.form.$submitted }">
+            <div class="col-sm-3 text-right">
+                <label for="email" class="control-label">Email</label>
+            </div>
+            <div class="col-sm-9">
+              <input id="email" type="email" name="email" class="form-control" ng-model="user.email"
+                required
+                ng-change="resetMongooseError(forms.form, 'email')"
+                mongoose-error/>
+              <div ng-messages="forms.form.email.$error" ng-if="forms.form.$submitted">
+                <p class="help-block" ng-message='required'>Veuillez entrer votre adresse e-mail.</p>
+                <p class="help-block" ng-message='email'> Cet email n'est pas valide.</p>
+                <p class="help-block" ng-message="mongoose">{{ errors.email }}</p>
+              </div>
+            </div>
       </div>
+
+      <password-field user="user"/>
     </div>
-    <div class="form-group" ng-if="!user._id">
-      <label for="inputEmail" class="col-sm-2 control-label">Mot de passe</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword" name="password" ng-model="user.password" required>
-      </div>
+
+    <div class="col-sm-5">
+      <password-rules-alert/>
     </div>
-    <div class="form-group">
-      <label for="secteur" class="col-sm-2 control-label">Secteurs associés</label>
-      <div class="col-sm-10">
-        <div ng-repeat="secteur in secteurs">
-          <label>
-            <input type="checkbox" name="secteur"
-              ng-value="secteur._id"
-              ng-checked="user.secteurs.indexOf(secteur._id) > -1"
-              ng-click="toggleSelection(secteur)">
-            {{secteur.name}}
-          </label>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="form-group">
+        <label for="secteur" class="col-sm-3 control-label">Secteurs associés</label>
+          <div class="col-sm-9">
+            <div ng-repeat="secteur in secteurs">
+              <label>
+                <input type="checkbox" name="secteur"
+                       ng-value="secteur._id"
+                       ng-checked="user.secteurs.indexOf(secteur._id) > -1"
+                       ng-click="toggleSelection(secteur)">
+                       {{secteur.name}}
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-10">
+      <div class="col-sm-12 text-right">
         <button class="btn btn-danger" ng-if="user._id" type="button" ng-click="delete()">
           <i class="fa fa-remove"></i> Supprimer
         </button>
         <a class="btn btn-default" ui-sref="^">Annuler</a>
-      </div>
-      <div class="col-sm-2 text-right">
         <button class="btn btn-primary" type="submit">
-          <i class="fa fa-save"></i> Sauver
-        </button>
+            <i class="fa fa-save"></i> Enregistrer
+          </button>
       </div>
     </div>
   </form>
