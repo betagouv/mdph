@@ -42,12 +42,12 @@
     <table>
       <tbody ng-repeat="group in workflowListCtrl.groups">
         <tr>
-          <td class="lead" colspan="{{showDownloadButton ? '8' : '6'}}">
+          <td class="lead" colspan="{{workflowListCtrl.showDownloadButton ? '8' : '6'}}">
             {{::group.title}}
           </td>
         </tr>
         <tr ng-hide="filteredRequests.length">
-          <td colspan="{{showDownloadButton ? '8' : '6'}}">
+          <td colspan="{{workflowListCtrl.showDownloadButton ? '8' : '6'}}">
             Pas de demandes
           </td>
         </tr>
@@ -101,7 +101,7 @@
             </table>
           </td>
           <td>{{::request.submittedAt | date}}</td>
-          <td ng-show="showDownloadButton">
+          <td ng-show="workflowListCtrl.showDownloadButton">
             <a href="#" ng-click=" workflowListCtrl.download(request)"><i class="fa fa-download"></i>&nbsp;Télécharger</a>
           </td>
           <td ng-show="request.isDownloaded">

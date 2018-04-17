@@ -24,7 +24,7 @@ angular.module('impactApp')
       }
     ];
 
-    $scope.showDownloadButton = (this.status === 'enregistree' || this.status === 'archive');
+    this.showDownloadButton = (this.status === 'enregistree' || this.status === 'archive');
     $scope.currentMenu(userId, status) ;
 
     this.selectAll = () => {
