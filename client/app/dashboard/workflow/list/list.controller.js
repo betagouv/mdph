@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowListCtrl', function(
+  .controller('WorkflowListCtrl', function($scope,
     $cookies, $window, $modal, $q, $state, $rootScope,
-    RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph, banetteUser) {
-
+    RequestService, RequestResource, MdphResource, userId, status, requests, groupedByAge, currentMdph, banetteUser) {
     this.token = $cookies.get('token');
     this.status = status;
     this.requests = requests;
@@ -24,6 +23,8 @@ angular.module('impactApp')
         title: 'Envoyées il y a plus de trois mois'
       }
     ];
+
+    $scope.currentMenu(userId, status) ;
 
     this.selectAll = () => {
       const action = !this.allSelected();
