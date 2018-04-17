@@ -19,7 +19,7 @@ angular.module('impactApp')
       $scope.navStatus = status;
     };
 
-    $scope.toggle = {};
+    $scope.toggle = null;
 
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
