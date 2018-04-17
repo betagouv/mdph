@@ -110,11 +110,11 @@ angular.module('impactApp')
           const download =  function() {
             $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + $cookies.get('token'));
           };
+
           actionOnSelectedRequests(requests, update, download);
         }
       }
     };
-
 
     function archiveRequests(requests) {
       const archive = function(request) {
