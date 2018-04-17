@@ -2,6 +2,7 @@
 
 import mongoose, {Schema} from 'mongoose';
 import _ from 'lodash';
+import fs from 'fs';
 import moment from 'moment';
 import shortId from 'shortid';
 import Mdph from '../mdph/mdph.model';
@@ -45,7 +46,7 @@ var RequestSchema = new Schema({
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,
-  status:         { type: String, enum: ['en_cours', 'emise', 'enregistree', 'en_attente_usager', 'archive'], default: 'en_cours' },
+  status:         { type: String, enum: ['en_cours', 'emise', 'validee', 'en_attente_usager', 'irrecevable'], default: 'en_cours' },
   data:           { type: DataSchema, default: {} },
   comments:       { type: String },
   hasFirstExpirationNotification: { type: Boolean, default: false },
@@ -74,6 +75,18 @@ RequestSchema.post('save', function(doc) {
       profile.set('identites', doc.data.identites).save();
     }
   });
+});
+
+RequestSchema.pre('remove', function(next) {
+  if (this.data.documents && Array.isArray(this.data.documents)) {
+    this.data.documents.forEach(function(document) {
+      if (document.path) {
+        fs.unlink(document.path);
+      }
+    });
+  }
+
+  next();
 });
 
 RequestSchema.methods = {

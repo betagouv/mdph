@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowListCtrl', function($scope, $cookies, $window, $modal, $q, $state, $rootScope,
-    RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph, banetteUser) {
-
+  .controller('WorkflowListCtrl', function($scope,
+    $cookies, $window, $modal, $q, $state, $rootScope,
+    RequestService, RequestResource, MdphResource, userId, status, requests, groupedByAge, currentMdph, banetteUser) {
     this.token = $cookies.get('token');
     this.status = status;
     this.requests = requests;
@@ -25,6 +25,7 @@ angular.module('impactApp')
     ];
 
     $scope.showDownloadButton = (this.status === 'enregistree' || this.status === 'archive');
+    $scope.currentMenu(userId, status) ;
 
     this.selectAll = () => {
       const action = !this.allSelected();
@@ -106,7 +107,7 @@ angular.module('impactApp')
 
     function archiveRequests(requests) {
       const archive = function(request) {
-        request.status = 'archive';
+        request.status = 'irrecevable';
         return RequestResource.update(request).$promise;
       };
 
