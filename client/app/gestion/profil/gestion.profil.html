@@ -1,0 +1,79 @@
+<header class="banner bg" mdph-photo="{{gestionProfilCtrl.currentMdph.zipcode}}">
+  <div class="hero-unit">
+    <h1 ng-if="gestionProfilCtrl.currentMdph">Votre MDPH {{gestionProfilCtrl.currentMdph.name}}</h1>
+
+    <p>Gérez vos demandes en ligne</p>
+
+  </div>
+</header>
+
+<section class="section-gestion container-fluid">
+  <div class="row">
+
+    <div class="col-md-1" style="width:11%">
+      <div class="row">
+          <div class="icon-profil"/>
+        </div>
+    </div>
+
+    <div class="col-md-11 border-left" style="width:89%">
+
+      <div class="breadcrump">
+        <div class="breadcrump-section">
+          <div class="first right-arrow active">
+            <span>Profils</span>
+          </div>
+        </div>
+        <div class="breadcrump-section">
+          <div class="left-arrow last">
+            <span>Demandes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+
+        <h2>Vos profils</h2>
+        <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils">
+          <div class="col-md-4 col-icon-profil" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
+          <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Créé le {{profil.createdAt | date:'dd/MM/yyyy'}}</div>
+          <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Dernière demande {{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
+          <div class="col-md-2 col-action" ng-click="gestionProfilCtrl.deleteProfil()">Supprimer</div>
+        </div>
+        <div class="row" >
+          <div class="col-md-12 col-new" ng-click="gestionProfilCtrl.createProfil()">Créer un nouveau profil</div>
+        </div>
+        <div class="row" >
+          <i class="note">* Le mode multi-profil permet d'afficher des demandes pour plusieurs usagers</i>
+        </div>
+
+        <h2 ng-if="gestionProfilCtrl.deletedProfils.length > 0">Vos profils supprimés</h2>
+        <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils">
+          <div class="col-md-4 col-icon-profil-desabled">{{ ::deletedProfil.getTitle() }}</div>
+          <div class="col-md-3 col-item-desabled">Créé le {{deletedProfil.createdAt | date:'dd/MM/yyyy'}} - Supprimé le {{ deletedProfil.deletedAt | date:'dd/MM/yyyy'}}</div>
+          <div class="col-md-3 col-item-desabled">Dernière demande envoyée {{ gestionProfilCtrl.showCurrentRequestStatus(deletedProfil) }}</div>
+          <div class="col-md-2 col-action-desabled">Profil suppriné</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="map-container">
+  <mdph-map mdph="gestionProfilCtrl.currentMdph"/>
+</section>
+
+<section class="section-main section-text" id="en-savoir-plus">
+  <h2>Un suivi en ligne de votre dossier</h2>
+  <div>
+    <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
+      Elle peut répondre aux besoins liés à votre handicap.</p>
+    <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise votre dossier.</p>
+    <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
+  </div>
+</section>
+
+<section class="section-main">
+  <h2>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h2>
+  <liste-prestations />
+</section>

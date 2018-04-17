@@ -19,8 +19,8 @@ export var allDocumentTypes = DocumentTypes.obligatoires.concat(DocumentTypes.co
 export var allDocumentTypesById = _.indexBy(allDocumentTypes, 'id');
 
 export function populateAndSortDocumentTypes(request) {
-  if (request.documents && request.documents.length >= 0) {
-    var groupedDocuments = _.reduce(request.documents, function(result, currentDocument) {
+  if (request.data && request.data.documents && request.data.documents.length >= 0) {
+    var groupedDocuments = _.reduce(request.data.documents, function(result, currentDocument) {
       var documentType = allDocumentTypesById[currentDocument.type];
       if (!documentType) {
         documentType = allDocumentTypesById.autre;
@@ -35,9 +35,9 @@ export function populateAndSortDocumentTypes(request) {
       return result;
     }, {obligatoires: {}, complementaires: {}});
 
-    request.documents = groupedDocuments;
+    request.data.documents = groupedDocuments;
   } else {
-    request.documents = {obligatoires: {}, complementaires: {}};
+    request.data.documents = {obligatoires: {}, complementaires: {}};
   }
 
   return request;

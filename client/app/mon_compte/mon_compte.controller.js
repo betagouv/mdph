@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($scope, $state, User, Auth, currentUser) {
+  .controller('MonCompteCtrl', function($scope, Auth, currentUser) {
     $scope.errors = {};
     $scope.user = currentUser;
 

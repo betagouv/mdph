@@ -1,0 +1,95 @@
+<div class="section-body">
+  <div class="section-body-head">
+    <h2>
+      <a id="backtodemande" ui-sref="demande({shortId: demandeCtrl.demande.shortId})">Demande</a>
+      / Prestations
+    </h2>
+  </div>
+
+  <div class="section-body-content">
+    <div ng-if="!profilCtrl.estAdulte">
+      <h3>Demandes relatives à la vie quotidienne</h3>
+      <!--Vous avez moins de 20 ans : -->
+      <ul class="list-prestations">
+        <li><prestation ng-model="demandePrestationsCtrl.aeeh"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.pch"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.av"></prestation></li>
+      </ul>
+
+      <div class="prestation-group">
+        <h4>Carte mobilité inclusion</h4>
+        <ul class="list-prestations">
+          <li><prestation ng-model="demandePrestationsCtrl.carteinvalidite"></prestation></li>
+          <li><prestation ng-model="demandePrestationsCtrl.cartestationnement"></prestation></li>
+        </ul>
+      </div>
+    </div>
+
+    <div ng-if="profilCtrl.estAdulte">
+      <h3>Demandes relatives à la vie quotidienne</h3>
+      <!--Vous avez plus de 20 ans :-->
+      <ul class="list-prestations">
+        <li><prestation ng-model="demandePrestationsCtrl.aah"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.complement"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.sms"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.esms"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.pch"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.av"></prestation></li>
+      </ul>
+
+      <div class="prestation-group">
+        <h4>Allocation Compensatrice (AC)</h4>
+        <ul class="list-prestations">
+          <li><prestation ng-model="demandePrestationsCtrl.ac"></prestation></li>
+          <li><prestation ng-model="demandePrestationsCtrl.acfp"></prestation></li>
+        </ul>
+      </div>
+
+      <div class="prestation-group">
+        <h4>Carte mobilité inclusion</h4>
+        <ul class="list-prestations">
+          <li><prestation ng-model="demandePrestationsCtrl.carteinvalidite"></prestation></li>
+          <li><prestation ng-model="demandePrestationsCtrl.cartestationnement"></prestation></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Demandes relatives à la vie scolaire</h3>
+    <ul class="list-prestations">
+      <li><prestation ng-model="demandePrestationsCtrl.pps" precision="true"></prestation></li>
+    </ul>
+
+
+    <h3>Demandes relatives au travail, à l’emploi et à la formation professionnelle</h3>
+    <ul class="list-prestations">
+      <li><prestation ng-model="demandePrestationsCtrl.rqth"></prestation></li>
+      <li><prestation ng-model="demandePrestationsCtrl.orp"></prestation></li>
+    </ul>
+
+    <div class="prestation-group">
+      <h4>Orientation professionnelle</h4>
+      <ul class="list-prestations">
+        <li><prestation ng-model="demandePrestationsCtrl.crp_cpo_ueros"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.esat"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.marche_travail"></prestation></li>
+        <li><prestation ng-model="demandePrestationsCtrl.marche_travail_acc"></prestation></li>
+      </ul>
+
+      <div class="alert alert-warning">
+        <p>« Le dispositif emploi accompagné propose un accompagnement médico-social et un soutien à l’insertion professionnelle du travailleur handicapé et à son employeur. Peuvent être bénéficiaires de ce dispositif les travailleurs handicapés :</p>
+        <ul>
+          <li>ayant un projet d’insertion en milieu ordinaire de travail,</li>
+          <li>accueillis dans un établissement ou service d’aide par le travail ayant un projet d’insertion en milieu ordinaire de travail,</li>
+          <li>déjà en emploi en milieu ordinaire de travail, rencontrant des difficultés particulières pour sécuriser leur insertion professionnelle.»</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prestation-form-actions">
+      <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
+      <button id="btn-next" class="btn btn-primary" type="submit" ng-click="demandePrestationsCtrl.submit()">
+        Valider
+      </button>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,8 @@ angular.module('impactApp')
     bindings: {
       mdph: '<',
       currentUser: '<',
+      navUserId: '@',
+      navStatus: '@'
     },
     templateUrl: 'components/menu-dashboard/menu-dashboard.html',
     controllerAs: 'menudashboardctrl',

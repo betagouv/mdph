@@ -1,32 +1,32 @@
 <div id="mon-compte">
 
   <div ng-if="user.unconfirmed">
-    <div class="profile-card profile-card-danger profile-card-vertical">
-      <div class="profile-card-header">
-        <span class="profile-card-avatar">
-          <span class="profile-card-icon"><i class="fa fa-warning"></i></span>
+    <div class="demande-card demande-card-danger demande-card-vertical">
+      <div class="demande-card-header">
+        <span class="demande-card-avatar">
+          <span class="demande-card-icon"><i class="fa fa-warning"></i></span>
         </span>
-        <div class="profile-card-header-text">
-          <h1 class="profile-card-header-text-title">En attente de validation</h1>
+        <div class="demande-card-header-text">
+          <h1 class="demande-card-header-text-title">En attente de validation</h1>
         </div>
       </div>
-      <div class="profile-card-content">
+      <div class="demande-card-content">
         <p>Vous n'avez pas encore confirmé votre compte. Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail.</p>
         <p>Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({userId: user._id})">cliquez ici pour le renvoyer</a>.</p>
       </div>
     </div>
   </div>
 
-  <div class="profile-card profile-card-vertical">
-    <div class="profile-card-header">
-      <span class="profile-card-avatar">
-        <span class="profile-card-icon"><i class="fa fa-cogs"></i></span>
+  <div class="demande-card demande-card-vertical">
+    <div class="demande-card-header">
+      <span class="demande-card-avatar">
+        <span class="demande-card-icon"><i class="fa fa-cogs"></i></span>
       </span>
-      <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title">Modifier mon mot de passe</h1>
+      <div class="demande-card-header-text">
+        <h1 class="demande-card-header-text-title">Modifier mon mot de passe</h1>
       </div>
     </div>
-    <div class="profile-card-content">
+    <div class="demande-card-content">
       <div class="form-group">
         <label for="email" class="control-label">Email</label>
         <div>
@@ -69,20 +69,6 @@
         <p class="help-block"> {{ passwordMessage }} </p>
         <button class="btn btn-primary" type="submit" name="submit">Valider</button>
       </form>
-    </div>
-  </div>
-
-  <div class="profile-card profile-card-vertical">
-    <div class="profile-card-header">
-      <span class="profile-card-avatar">
-        <span class="profile-card-icon"><i class="fa fa-users"></i></span>
-      </span>
-      <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title">Mes profils</h1>
-      </div>
-    </div>
-    <div class="profile-card-content">
-      <mes-profils user="user" details="true" />
     </div>
   </div>
 </div>

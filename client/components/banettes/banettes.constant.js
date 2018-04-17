@@ -3,18 +3,18 @@
 angular.module('impactApp').constant('BanettesConstant', [
   {
     id: 'emise',
-    label: 'Émise'
+    label: 'Émises'
   },
   {
-    id: 'enregistree',
-    label: 'Enregistrée'
+    id: 'validee',
+    label: 'Validées'
   },
   {
     id: 'en_attente_usager',
     label: 'En attente'
   },
   {
-    id: 'archive',
-    label: 'Archivée'
+    id: 'irrecevable',
+    label: 'Irrecevables'
   }
 ]);

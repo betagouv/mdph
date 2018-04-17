@@ -46,7 +46,6 @@ function findEvaluators(options) {
 
 function linkRequestToEvaluators(options) {
   const {request, evaluators} = options;
-
   return request.set('evaluators', evaluators)
     .save()
     .then(sendMailToEvaluators)

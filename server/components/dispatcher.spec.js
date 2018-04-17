@@ -95,7 +95,7 @@ describe('Dispatcher', function() {
     const request = new Request({
       mdph: '14',
       user: user._id,
-      formAnswers: {
+      data: {
         identites: {
           beneficiaire: {
             code_postal: '14100',
@@ -117,7 +117,7 @@ describe('Dispatcher', function() {
     const request = new Request({
       mdph: '14',
       user: user._id,
-      formAnswers: {
+      data: {
         identites: {
           beneficiaire: {
             code_postal: '14100',
@@ -140,7 +140,7 @@ describe('Dispatcher', function() {
     const request = new Request({
       mdph: '14',
       user: user._id,
-      formAnswers: {
+      data: {
         identites: {
           beneficiaire: {
             code_postal: '14000',
@@ -166,7 +166,7 @@ describe('Dispatcher', function() {
     const request = new Request({
       mdph: '14',
       user: user._id,
-      formAnswers: {
+      data: {
         identites: {
           beneficiaire: {
             code_postal: '14100',
