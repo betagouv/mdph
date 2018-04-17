@@ -19,6 +19,8 @@ angular.module('impactApp')
       $scope.navStatus = status;
     };
 
+    $scope.toggle = {};
+
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
     } else {

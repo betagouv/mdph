@@ -14,24 +14,38 @@
   </ul>
 
   <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()">
-    <li ng-if="layoutctrl.showAdminLink()">
-      <a ui-sref="admin.main" title="Admin">Admin</a>
-    </li>
-    <li ng-if="layoutctrl.showDashboard()">
-      <a ui-sref="dashboard.workflow({zipcode: layoutctrl.currentMdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
-    </li>
-    <li ng-if="layoutctrl.showEvaluationLink()">
-      <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
-    </li>
-    <li ng-if="layoutctrl.showGestionLink()">
-      <a ng-click="layoutctrl.gestionLinkValue()">Profil et demandes</a>
-    </li>
-    <li>
-      <a ui-sref="mon_compte">Mon compte</a>
-    </li>
-    <li>
-      <a ui-sref="logout" id="logout">Déconnexion</a>
-    </li>
+    <md-list flex>
+      <md-list-item ng-click="toggle.list1 = !toggle.list1">
+
+          <i class="fa fa-bars"></i>
+        <md-icon ng-show="!toggle.list1">Menu <br/></md-icon>
+        <md-icon ng-show="toggle.list1">Menu <br/></md-icon>
+      </md-list-item>
+      <md-list-item ng-show="toggle.list1">
+
+
+            <li ng-if="layoutctrl.showAdminLink()">
+              <a ui-sref="admin.main" title="Admin">Admin</a>
+            </li>
+            <li ng-if="layoutctrl.showDashboard()">
+              <a ui-sref="dashboard.workflow({zipcode: layoutctrl.currentMdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
+            </li>
+            <li ng-if="layoutctrl.showEvaluationLink()">
+              <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
+            </li>
+            <li ng-if="layoutctrl.showGestionLink()">
+              <a ng-click="layoutctrl.gestionLinkValue()">Profil et demandes</a>
+            </li>
+            <li>
+              <a ui-sref="mon_compte">Mon compte</a>
+            </li>
+            <li>
+              <a ui-sref="logout" id="logout">Déconnexion</a>
+            </li>
+
+
+      </md-list-item>
+    </md-list>
   </ul>
 </nav>
 
