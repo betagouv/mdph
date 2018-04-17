@@ -5,7 +5,7 @@ angular.module('impactApp')
     bindings: {
       user: '=',
       libelle: '@',
-      vertical: '@'
+      horizontal: '@'
     },
     templateUrl: 'components/password-field/password-field.html',
     controllerAs: 'passwordFieldCtrl',
