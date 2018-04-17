@@ -77,6 +77,14 @@ describe('SignupCtrl', function() {
       password: {
         $modelValue: '1234',
         $setValidity() {}
+      },
+      contact: {
+        $modelValue: '',
+        $setValidity() {}
+      },
+      emailSecours: {
+        $modelValue: 'your@email.com',
+        $setValidity() {}
       }
     };
 
@@ -101,11 +109,12 @@ describe('SignupCtrl', function() {
       });
 
       it('should create the user, its profile and redirect to the page beneficiaire', function() {
+        $scope.startTime = new Date().getTime() - 100000;
         $scope.register(fakeForm);
         $scope.$apply();
 
         expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('profil.beneficiaire');
+        expect($state.go.calls.argsFor(0)[0]).toEqual('demande.beneficiaire');
         expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: fakeCreatedUser.profile});
       });
     });
@@ -137,6 +146,7 @@ describe('SignupCtrl', function() {
       });
 
       it('should explicit the error on the form', function() {
+        $scope.startTime = new Date().getTime() - 100000;
         $scope.register(fakeForm);
         $scope.$apply();
 

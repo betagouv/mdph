@@ -51,7 +51,7 @@ function buildFiles(tempDirPath) {
 }
 
 function imagesToPdf(tempDirPath, request) {
-  return convertToPdf(tempDirPath, request.documents);
+  return convertToPdf(tempDirPath, request.data.documents);
 }
 
 function joinFilesInPdf(tempDirPath) {
@@ -68,8 +68,8 @@ function joinFilesInArchive(tempDirPath) {
 
 function joinFiles({tempDirPath, recapitulatifPdfPath, request, withSeparator, format}) {
   return imagesToPdf(tempDirPath, request)
-    .then(() => decryptPdf(tempDirPath, request.documents))
-    .then(() => filterMissingPdf(request.documents))
+    .then(() => decryptPdf(tempDirPath, request.data.documents))
+    .then(() => filterMissingPdf(request.data.documents))
     .then(buildStructure(request, recapitulatifPdfPath, withSeparator))
     .then(buildFiles(tempDirPath))
     .then((pdfStructure) => {

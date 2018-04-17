@@ -8,6 +8,7 @@ angular.module('impactApp')
         parent: 'layout',
         template: '<div class="dashboard-container"><ui-view /></div>',
         authenticate: true,
+        authorized: ['adminMdph'],
         redirectTo: 'dashboard.workflow',
         resolve: {
           currentUser: function(Auth) {

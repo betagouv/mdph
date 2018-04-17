@@ -17,7 +17,8 @@ router.post('/:profileId', canAccessProfile(), controller.update);
 router.delete('/:profileId', canAccessProfile(), controller.destroy);
 
 router.get('/:profileId/requests', canAccessProfile(), controller.indexRequests);
-router.get('/:profileId/requests/current', canAccessProfile(), controller.showCurrentRequest);
+router.get('/:profileId/requests/last', canAccessProfile(), controller.showLastRequest);
+router.post('/:profileId/requests/new', canAccessProfile(), controller.createNewRequest);
 router.get('/:profileId/requests/count', canAccessProfile(), controller.count);
 
 router.param('profileId', function(req, res, next, profileId) {

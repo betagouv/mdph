@@ -1,0 +1,92 @@
+<div class="text-container" ng-if="demandeCtrl.currentMdph.opened == false">
+  <div class="alert alert-danger text-center">La MDPH {{demandeCtrl.currentMdph.name}} n'accepte pas les demandes de ce téléservice, il n'est donc pas possible de lui transmettre de demande par l'intermediaire de ce téléservice.</div>
+</div>
+
+<div id="demande" class="demande-container">
+  <div class="demande-card demande-card-vertical">
+    <div class="demande-card-header">
+      <span class="demande-card-avatar">
+        <span class="demande-card-icon"><a ui-sref="." ui-sref-opts="{reload: true, notify: true}" title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
+      </span>
+      <div class="demande-card-header-text">
+        <h1 class="demande-card-header-text-title"><a ui-sref=".">{{ ::demandeCtrl.profile.getTitle() }}</a></h1>
+        <p class="demande-card-header-text-subhead">Dernière modification le {{ demandeCtrl.demande.updatedAt | date:'short' }}</p>
+        <p class="demande-card-header-text-subhead"><button ng-click="demandeCtrl.delete(demande)" class="btn btn-link">Supprimer ce profil</button></p>
+      </div>
+    </div>
+
+    <div class="demande-card-content" ng-if="demandeCtrl.demande.status === 'en_attente_usager'">
+      <div ui-view class="container-fluid">
+        <h2>Votre MDPH vous demande de corriger les documents associés à votre demande</h2>
+        <p>Pour tout autre modification, veuillez contacter directement votre MDPH (vous trouverez les informations de contact en bas de page)</p>
+        <ul class="demande-card-row">
+          <li id="documents" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" completion="demandeCtrl.documentCompletion()" options="demandeCtrl.options.documents" /></li>
+        </ul>
+
+        <h3>Récapitulatif de votre demande</h3>
+        <div class="request-identifier">{{demandeCtrl.demande.shortId}}</div>
+
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe ng-src="{{'/api/requests/' + demandeCtrl.demande.shortId + '/recapitulatif?access_token=' + demandeCtrl.token}}" class="embed-responsive-item"></iframe>
+        </div>
+        <br>
+        <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{demandeCtrl.demande.shortId}}/pdf/user?access_token={{demandeCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
+
+        <div class="button-container">
+          <button type="button" ng-click="demandeCtrl.sendRequest()" class="btn hero-button btn-primary">
+            Envoyer la demande
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demande-card-content" ng-if="demandeCtrl.demande.status === 'emise'">
+      <div ui-view class="container-fluid">
+        <h2>Votre demande est en cours de validation par votre MDPH</h2>
+        <h3>Récapitulatif de votre demande</h3>
+        <div class="request-identifier">{{demandeCtrl.demande.shortId}}</div>
+
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe ng-src="{{'/api/requests/' + demandeCtrl.demande.shortId + '/recapitulatif?access_token=' + demandeCtrl.token}}" class="embed-responsive-item"></iframe>
+        </div>
+        <br>
+        <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{demandeCtrl.demande.shortId}}/pdf/user?access_token={{demandeCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
+      </div>
+    </div>
+
+    <div class="demande-card-content" ng-if="demandeCtrl.demande.status === 'en_cours'">
+      <div ui-view class="container-fluid">
+        <section class="demande-section">
+          <h2>Informations obligatoires</h2>
+          <ul class="demande-card-row">
+            <li id="beneficiaire" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.beneficiaire" /></li>
+            <li id="autorite" class="demande-card-row-item" ng-if="demandeCtrl.demande.data.identites.beneficiaire.numero_secu_enfant"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.autorite" /></li>
+            <li id="representant" class="demande-card-row-item" ng-if="demandeCtrl.demande.data.identites.beneficiaire.protection === 'true' "><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.representant" /></li>
+            <li id="vieQuotidienne" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.vieQuotidienne" /></li>
+            <li id="documents" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" completion="demandeCtrl.documentCompletion()" options="demandeCtrl.options.documents" /></li>
+            <li id="unconfirmed" ng-if="demandeCtrl.currentUser.unconfirmed" class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.unconfirmed" /></li>
+          </ul>
+        </section>
+
+        <section class="demande-section">
+          <h2>Informations complémentaires</h2>
+          <p class="section-subhead">Décrivez votre situation, vos besoins, vos projets et vos attentes.</p>
+          <ul class="demande-card-row">
+            <li class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.vieScolaire" /></li>
+            <li class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.vieTravail" /></li>
+            <li class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.aidant" ></li>
+            <li class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.autre" /></li>
+            <li class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" completion="demandeCtrl.prestationsCompletion()" options="demandeCtrl.options.prestations" /></li>
+            <li class="demande-card-row-item"><demande-category demande="demandeCtrl.demande" options="demandeCtrl.options.particulieres" /></li>
+          </ul>
+        </section>
+
+        <div class="button-container" ng-if="demandeCtrl.currentMdph.opened">
+          <button type="button" ng-click="demandeCtrl.sendRequest()" class="btn hero-button btn-primary">
+            Envoyer la demande
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

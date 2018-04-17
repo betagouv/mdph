@@ -12,7 +12,7 @@ angular.module('impactApp').controller('EvaluationSyntheseAddPrefilledCtrl', fun
         this.profiles = MdphResource.queryBeneficiaires({zipcode: currentMdph.zipcode});
 
         this.getProfileTitle = (profile) => {
-          return `${profile.identites.beneficiaire.prenom} ${profile.identites.beneficiaire.nom}`;
+          return `${profile.recipient.firstname} ${profile.recipient.lastname}`;
         };
 
         this.addNewSynthese = (profile) => {
@@ -21,8 +21,8 @@ angular.module('impactApp').controller('EvaluationSyntheseAddPrefilledCtrl', fun
 
           var newSynthese = new SyntheseResource();
           newSynthese.mdph = currentMdph._id;
-          newSynthese.firstname = profile.identites.beneficiaire.prenom;
-          newSynthese.lastname = profile.identites.beneficiaire.nom;
+          newSynthese.firstname = profile.recipient.firstname;
+          newSynthese.lastname = profile.recipient.lastname;
           newSynthese.birthdate = profile.identites.beneficiaire.dateNaissance;
 
           SyntheseResource.save(newSynthese, function(synthese) {
