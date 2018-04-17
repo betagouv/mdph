@@ -4,7 +4,7 @@
     <div class="detail">
       <h2 class="padding-title"><strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
-        <a ng-show="request.status === 'archive' || request.status === 'enregistree'"
+        <a ng-show="request.status === 'irrecevable' || request.status === 'validee'"
           class="btn btn-primary" ng-click="workflowCtrl.download(request)"  target="_blank"
           download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
