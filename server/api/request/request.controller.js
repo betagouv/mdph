@@ -75,7 +75,6 @@ function saveUpdates(req) {
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
-  console.info()
   return function(request) {
     res.status(statusCode).json(request);
     return null;
@@ -110,9 +109,6 @@ export function showPartenaire(req, res) {
 
 // Deletes a request from the DB and FS
 export function destroy(req, res) {
-  //console.info('req destroy  destroy' + Object.keys(req.re));
-  console.info('rrrrr destroy' + req.request);
-
   unlinkRequestDocuments(req)
     .then(removeRequest())
     .then(respondWithResult(res, 204))

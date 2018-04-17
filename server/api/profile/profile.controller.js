@@ -110,7 +110,6 @@ export function destroy(req, res) {
 
 export function indexRequests(req, res) {
   let profile = req.profile;
-
   Request
     .find({profile: profile._id})
     .sort('-submittedAt')
