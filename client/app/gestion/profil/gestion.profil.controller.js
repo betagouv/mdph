@@ -22,10 +22,9 @@ angular.module('impactApp')
     };
 
     this.deleteProfil = function(profil) {
-      this.profile = profil;
       var deleteProfilModalInstance = $modal.open({
         templateUrl: 'app/gestion/profil/delete_confirmation.html',
-        controller: function($scope, $modalInstance, profil, demandes) {
+        controller: function($scope, $modalInstance, demandes) {
           this.profil = profil;
           this.demandes = demandes;
           this.cancel = function() {
@@ -39,10 +38,6 @@ angular.module('impactApp')
 
         controllerAs: 'deleteProfilConfirmationCtrl',
         resolve: {
-          profil: () => {
-            return this.profile;
-          },
-
           demandes: ($http) => {
             return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + profil._id + '/requests').then(function(result) {
               return _.filter(result.data, function(request) {
