@@ -30,7 +30,7 @@ angular.module('impactApp')
     };
 
     this.gestionLinkValue = function() {
-      if(Auth.hasRole(currentUser, 'user')){
+      if (Auth.hasRole(currentUser, 'user')) {
 
         ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
           if (profilList.length === 1) {
@@ -41,7 +41,7 @@ angular.module('impactApp')
         });
       } else if (Auth.hasRole(currentUser, 'adminMdph')) {
 
-        return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode}, {reload: true});
+        return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode, userId:'me', status:'emise'}, {reload: true});
       } else if (Auth.hasRole(currentUser, 'admin')) {
 
         return $state.go('admin.main', {}, {reload: true});
