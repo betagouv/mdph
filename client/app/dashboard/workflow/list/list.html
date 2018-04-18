@@ -112,7 +112,7 @@
             </a>
           </td>
           <td class="col-md-2">
-            <button ng-show="request.isDownloaded" class="btn btn-link red-color" ng-click="workflowCtrl.openDeleteModal(request)">
+            <button ng-show="workflowListCtrl.showDownloadAndDeleteButtons && request.isDownloaded" class="btn btn-link red-color" ng-click="workflowCtrl.openDeleteModal(request)">
               <i class="fa fa-trash"></i>&nbsp;Supprimer</i>
             </button>
           </td>

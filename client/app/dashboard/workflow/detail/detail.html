@@ -9,7 +9,7 @@
           download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
         </a>
-        <a ng-show="request.isDownloaded" target="#" class="btn btn-danger" ng-click="workflowCtrl.openDeleteModal(request)" >
+        <a ng-show="(request.status === 'irrecevable' || request.status === 'validee') && request.isDownloaded" target="#" class="btn btn-danger" ng-click="workflowCtrl.openDeleteModal(request)" >
           <i class="fa fa-trash"></i>&nbsp;Supprimer
         </a>
         <button class="btn btn-link" ng-click="workflowDetailCtrl.toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
