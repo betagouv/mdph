@@ -69,7 +69,8 @@ export function destroy(req, res) {
 
       // suppression de la demande en_cours si il y en a une
       if (requestsEnCours.length > 0) {
-        requestsEnCours[0].remove();
+        requestsEnCours[0].remove()
+        .catch(handleError(req, res));
       }
 
       // s'il existe au moins une demande autre que en_cours alors suppression partielle
