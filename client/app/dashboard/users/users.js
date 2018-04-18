@@ -80,6 +80,9 @@ angular.module('impactApp')
         url: '/:id',
         templateUrl: 'app/dashboard/users/agents/edit.html',
         controller: 'AgentsEditCtrl',
+        data: {
+          forms: {}
+        },
         resolve: {
           user: function(User, $stateParams) {
             var id = $stateParams.id;
