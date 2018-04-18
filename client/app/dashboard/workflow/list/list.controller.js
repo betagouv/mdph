@@ -106,8 +106,8 @@ angular.module('impactApp')
       }
     };
 
-    function archiveRequests(requests) {
-      const archive = function(request) {
+    function irrecevableRequests(requests) {
+      const irrecevable = function(request) {
         request.status = 'irrecevable';
         return RequestResource.update(request).$promise;
       };
@@ -116,18 +116,19 @@ angular.module('impactApp')
         $state.go('.', {}, {reload: true});
       };
 
-      actionOnSelectedRequests(requests, archive, afterTransfer);
+      actionOnSelectedRequests(requests, irrecevable, afterTransfer);
     }
 
-    this.openArchiveModal = () => {
+    this.openIrrecevableModal = () => {
       if (_.find(this.requests, 'isSelected')) {
         const modalInstance = $modal.open({
           animation: false,
-          templateUrl: 'app/dashboard/workflow/list/modalArchive.html',
-          controller: 'ModalArchiveCtrl'
+          templateUrl: 'app/dashboard/workflow/list/modalIrrecevable.html',
+          controller: 'ModalIrrecevableCtrl',
+          controllerAs: 'modalIrrecevableCtrl',
         });
 
-        modalInstance.result.then(() => archiveRequests(this.requests));
+        modalInstance.result.then(() => irrecevableRequests(this.requests));
       }
     };
 
@@ -152,12 +153,12 @@ angular.module('impactApp')
       $modalInstance.dismiss('cancel');
     };
   })
-  .controller('ModalArchiveCtrl', function($scope, $modalInstance) {
-    $scope.archive = function() {
+  .controller('ModalIrrecevableCtrl', function($modalInstance) {
+    this.archive = function() {
       $modalInstance.close();
     };
 
-    $scope.cancel = function() {
+    this.cancel = function() {
       $modalInstance.dismiss('cancel');
     };
   });

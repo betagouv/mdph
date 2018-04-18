@@ -26,8 +26,8 @@
           <li role="menuitem">
             <a href="#" ng-click="workflowListCtrl.downloadRequests()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
-          <li role="menuitem" ng-if="status !== 'irrecevable'">
-            <a href="#" ng-click="workflowListCtrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
+          <li role="menuitem" ng-if="workflowListCtrl.status !== 'irrecevable'">
+            <a href="#" ng-click="workflowListCtrl.openIrrecevableModal()"><i class="fa fa-archive"></i> Marquer comme irrecevable</a>
           </li>
         </ul>
 
