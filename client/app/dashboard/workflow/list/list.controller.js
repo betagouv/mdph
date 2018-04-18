@@ -3,7 +3,8 @@
 angular.module('impactApp')
   .controller('WorkflowListCtrl', function($scope,
     $cookies, $window, $modal, $q, $state, $rootScope,
-    RequestService, RequestResource, MdphResource, userId, status, requests, groupedByAge, currentMdph, banetteUser) {
+    RequestService, RequestResource, MdphResource, userId, status, requests,
+    groupedByAge, currentMdph, banetteUser, toastr) {
     this.token = $cookies.get('token');
     this.status = status;
     this.requests = requests;
@@ -27,6 +28,14 @@ angular.module('impactApp')
     this.showDownloadAndDeleteButtons = (this.status === 'validee' || this.status === 'irrecevable');
 
     $scope.currentMenu(userId, status) ;
+
+    this.deselect = () => {
+      this.requests.forEach(function(request) {
+        if (request.isSelected) {
+          request.isSelected = false;
+        }
+      });
+    };
 
     this.selectAll = () => {
       const action = !this.allSelected();
@@ -111,7 +120,7 @@ angular.module('impactApp')
             $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + $cookies.get('token'));
           };
 
-          actionOnSelectedRequests(requests, update, download);
+          this.actionOnSelectedRequests(requests, update, download);
         }
       }
     };
@@ -148,6 +157,58 @@ angular.module('impactApp')
         this.groupedByAge = RequestService.groupByAge(this.requests);
         this.isRefreshing = false;
       });
+    };
+
+    this.allSelectedRequestsDownloadOpenModal = function() {
+      if (_.find(this.requests, 'isSelected')) {
+
+        var selectedRequests = _.reduce(this.requests, function(selectedRequests, request) {
+          if (request.isSelected) {
+            selectedRequests.push(request);
+          }
+
+          return selectedRequests;
+        }, []);
+
+        let SelectedRequestsDownload = true;
+        angular.forEach(selectedRequests, function(request) {
+          if (request.isDownloaded === undefined || !request.isDownloaded) {
+            SelectedRequestsDownload = false;
+            return;
+          }
+        });
+
+        if (SelectedRequestsDownload) {
+
+          $modal.open({
+            templateUrl: 'app/dashboard/workflow/detail/modalDelete.html',
+            controllerAs: 'modalDeleteCtrl',
+            size: 'md',
+            controller($modalInstance, $state) {
+              this.requests = selectedRequests;
+              this.delete = function() {
+                const remove = function(request) {
+                  return RequestResource.remove({shortId: request.shortId}).$promise;
+                };
+
+                const closeModal = function() {
+                  $modalInstance.close();
+                  $state.go('.', {}, {reload: true});
+                };
+
+                this.actionOnSelectedRequests(this.requests, remove, closeModal);
+              };
+
+              this.cancel = function() {
+                $modalInstance.dismiss('cancel');
+              };
+            }
+          });
+        } else {
+          this.deselect();
+          toastr.error('Les demandes n\' ont pas pu être supprimées car au moins l\'une d\'entre elles n\'a pas été téléchargée');
+        }
+      }
     };
   })
   .controller('ModalAssignCtrl', function($scope, $modalInstance, evaluators) {

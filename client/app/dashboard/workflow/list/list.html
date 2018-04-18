@@ -30,7 +30,7 @@
             <a href="#" ng-click="workflowListCtrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
           </li>
           <li role="menuitem" ng-if="workflowListCtrl.status === 'validee' || workflowListCtrl.status === 'irrecevable'">
-              <a href="#" ng-click="#">
+              <a href="#" ng-click="workflowListCtrl.allSelectedRequestsDownloadOpenModal()">
                 <i class="fa fa-trash"></i> Supprimer les demandes {{workflowListCtrl.status === 'validee' ? 'validées' : 'irrecevables'}} téléchargées
               </a>
           </li>
