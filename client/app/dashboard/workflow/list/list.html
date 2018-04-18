@@ -23,7 +23,7 @@
           Action <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-          <li role="menuitem">
+          <li role="menuitem" ng-if="workflowListCtrl.showDownloadAndDeleteButtons">
             <a href="#" ng-click="workflowListCtrl.downloadRequests()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
           <li role="menuitem" ng-if="status !== 'irrecevable'">
