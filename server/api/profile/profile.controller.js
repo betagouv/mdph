@@ -53,20 +53,6 @@ export function create(req, res) {
     .catch(handleError(req, res));
 }
 
-function deleteRequests(req, res) {
-  let requestsToDelete = req.requestsToDelete;
-  return requestsToDelete.reduce(function(promise, request) {
-      return promise.then(function() {
-          req.request = request;
-          RequestController.unlinkRequestDocuments(req)
-          .then(request.remove())
-          .then(respondWithResult(res, 204))
-          .catch(handleError(req, res));
-          return ;
-      });
-  }, Promise.resolve());
-}
-
 export function destroy(req, res) {
   // chercher toutes les demandes du profil puis les clasifier par état en_cours ou non
   Request
@@ -81,24 +67,26 @@ export function destroy(req, res) {
         return  request.status !== 'en_cours';
       });
 
-      // suppression des demandes en_cours
-      req.requestsToDelete = requestsEnCours;
-      deleteRequests(req, res).then(function() {
+      // suppression de la demande en_cours si il y en a une
+      if (requestsEnCours.length > 0) {
+        requestsEnCours[0].remove();
+      }
 
-          // s'il existe au moins une demande autre que en_cours alors suppression partielle
-          // maj du profil en ajoutant une date de suppression
-          let profile = req.profile;
-          if (requestsAutre && requestsAutre.length >0) {
-            profile.deletedAt = Date.now();
-            profile.save()
-            .catch(handleError(req, res));
+      // s'il existe au moins une demande autre que en_cours alors suppression partielle
+      // maj du profil en ajoutant une date de suppression
+      let profile = req.profile;
+      if (requestsAutre && requestsAutre.length >0) {
+        profile.deletedAt = Date.now();
+        profile.save()
+        .then(respondWithResult(res))
+        .catch(handleError(req, res));
 
-          // suppression totale du profil
-          } else {
-            profile.remove()
-            .catch(handleError(req, res));
-          }
-      });
+      // suppression totale du profil
+      } else {
+        profile.remove()
+        .then(respondWithResult(res))
+        .catch(handleError(req, res));
+      }
     }
   }
   )

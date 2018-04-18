@@ -23,15 +23,26 @@ angular.module('impactApp')
 
     this.deleteProfil = function(profil) {
       this.profile = profil;
-      var modalInstance = $modal.open({
+      var deleteProfilModalInstance = $modal.open({
         templateUrl: 'app/gestion/profil/delete_confirmation.html',
-        controller: 'ModalDeleteProfileCtrl',
+        controller: function($scope, $modalInstance, profil, demandes) {
+          this.profil = profil;
+          this.demandes = demandes;
+          this.cancel = function() {
+            $modalInstance.close(false);
+          };
+
+          this.ok = function() {
+            $modalInstance.close(true);
+          };
+        },
+        controllerAs: 'deleteProfilConfirmationCtrl',
         resolve: {
-          profile: () => {
+          profil: () => {
             return this.profile;
           },
 
-          requests: ($http) => {
+          demandes: ($http) => {
             return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + profil._id + '/requests').then(function(result) {
               return _.filter(result.data, function(request) {
                 return request.status !== 'en_cours';
@@ -41,13 +52,10 @@ angular.module('impactApp')
         }
       });
 
-      modalInstance.result.then((result) => {
+      deleteProfilModalInstance.result.then((result) => {
         if (result) {
-          $http.delete('/api/users/' + this.currentUser._id + '/profiles/' + profil._id).then(function() {
-            toastr.success('Le profil "' + profil.getTitle() + '" a bien été supprimé.', 'Succès');
-            $state.go($state.current, {}, {reload: true});
-          }).catch(function() {
-            toastr.error('Impossible de supprimer le profil "' + profil.getTitle() + '"', 'Erreur');
+          ProfileResource.remove({userId: currentUser._id, id: profil._id}).$promise.then(function() {
+            return $state.go('gestion_profil', {}, {reload: true});
           });
         }
       });
@@ -76,13 +84,5 @@ angular.module('impactApp')
 
   })
   .controller('ModalDeleteProfileCtrl', function($scope, $modalInstance, profile, requests) {
-    $scope.profile = profile;
-    $scope.requests = requests;
-    $scope.cancel = function() {
-      $modalInstance.close(false);
-    };
 
-    $scope.ok = function() {
-      $modalInstance.close(true);
-    };
   });
