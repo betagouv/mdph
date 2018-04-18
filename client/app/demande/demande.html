@@ -44,12 +44,22 @@
       <div ui-view class="container-fluid">
         <h2>Votre demande est en cours de validation par votre MDPH</h2>
         <h3>Récapitulatif de votre demande</h3>
-        <div class="request-identifier">{{demandeCtrl.demande.shortId}}</div>
 
         <div class="embed-responsive embed-responsive-16by9">
           <iframe ng-src="{{'/api/requests/' + demandeCtrl.demande.shortId + '/recapitulatif?access_token=' + demandeCtrl.token}}" class="embed-responsive-item"></iframe>
         </div>
-        <br>
+        <br/>
+
+        <h3>Documents</h3>
+
+        <div class="embed-responsive embed-responsive-16by9">
+          <ul>
+            <li ng-repeat="document in demandeCtrl.getDocuments()">{{document.type}} : {{document.originalname}}</li>
+          </ul>
+        </div>
+        <br/>
+
+
         <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{demandeCtrl.demande.shortId}}/pdf/user?access_token={{demandeCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
       </div>
     </div>
