@@ -24,6 +24,8 @@ angular.module('impactApp')
       }
     ];
 
+    this.showDownloadAndDeleteButtons = (this.status === 'validee' || this.status === 'irrecevable');
+
     $scope.currentMenu(userId, status) ;
 
     this.selectAll = () => {

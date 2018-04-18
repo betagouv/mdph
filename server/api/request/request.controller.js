@@ -5,7 +5,6 @@ import { populateAndSortDocumentTypes } from '../document-type/document-type.con
 
 import _ from 'lodash';
 import moment from 'moment';
-import fs from 'fs';
 import shortid from 'shortid';
 import async from 'async';
 import Promise from 'bluebird';
@@ -34,26 +33,6 @@ function handleError(req, res) {
     } else {
       return res.status(statusCode).send('Server error');
     }
-  };
-}
-
-function unlinkRequestDocuments(req) {
-  return new Promise(function(resolve) {
-    if (req.request.data.documents && Array.isArray(req.request.data.documents)) {
-      req.request.data.documents.forEach(function(requestDoc) {
-        if (requestDoc.path) {
-          fs.unlink(requestDoc.path);
-        }
-      });
-    }
-
-    return resolve();
-  });
-}
-
-function removeRequest() {
-  return function(request) {
-    return request.remove().exec();
   };
 }
 
@@ -106,10 +85,10 @@ export function showPartenaire(req, res) {
     .catch(handleError(req, res));
 }
 
-// Deletes a request from the DB and FS
+// Deletes a request from the DB
 export function destroy(req, res) {
-  unlinkRequestDocuments()
-    .then(removeRequest())
+  req.request
+    .remove()
     .then(respondWithResult(res, 204))
     .catch(handleError(req, res));
 }
