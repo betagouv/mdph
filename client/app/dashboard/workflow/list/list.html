@@ -29,6 +29,11 @@
           <li role="menuitem" ng-if="status !== 'irrecevable'">
             <a href="#" ng-click="workflowListCtrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
           </li>
+          <li role="menuitem" ng-if="workflowListCtrl.status === 'validee' || workflowListCtrl.status === 'irrecevable'">
+              <a href="#" ng-click="#">
+                <i class="fa fa-trash"></i> Supprimer les demandes {{workflowListCtrl.status === 'validee' ? 'validées' : 'irrecevables'}} téléchargées
+              </a>
+          </li>
         </ul>
 
         <button type="button" class="btn btn-link btn-refresh" ng-class="{ 'refreshing': workflowlistctrl.isRefreshing }" ng-click="workflowlistctrl.refresh()">
