@@ -36,6 +36,7 @@ angular.module('impactApp')
             $modalInstance.close(true);
           };
         },
+
         controllerAs: 'deleteProfilConfirmationCtrl',
         resolve: {
           profil: () => {
@@ -81,8 +82,5 @@ angular.module('impactApp')
           return 'indéfinie';
       }
     };
-
-  })
-  .controller('ModalDeleteProfileCtrl', function($scope, $modalInstance, profile, requests) {
 
   });
