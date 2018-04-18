@@ -154,7 +154,7 @@ angular.module('impactApp')
     };
   })
   .controller('ModalIrrecevableCtrl', function($modalInstance) {
-    this.archive = function() {
+    this.confirm = function() {
       $modalInstance.close();
     };
 
