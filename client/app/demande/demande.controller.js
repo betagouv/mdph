@@ -176,36 +176,4 @@ angular.module('impactApp').controller('DemandeCtrl', function(
     },
   };
 
-  this.delete = () => {
-    var modalInstance = $modal.open({
-      templateUrl: 'components/mes_profils/delete_confirmation.html',
-      controller: 'ModalDeleteProfileCtrl',
-      resolve: {
-        profile: () => {
-          return this.profile;
-        },
-
-        requests: ($http) => {
-          return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + this.profile._id + '/requests').then(function(result) {
-            return _.filter(result.data, function(request) {
-              return request.status !== 'en_cours';
-            });
-          });
-        }
-      }
-    });
-
-    modalInstance.result.then((result) => {
-      if (result) {
-        profile.$delete({userId: this.currentUser._id}, function success() {
-          toastr.success('Le profil "' + profile.getTitle() + '" a bien été supprimé.', 'Succès');
-          $state.go('gestion_profil');
-        },
-
-        function error() {
-          toastr.error('Impossible de supprimer le profil "' + profile.getTitle() + '"', 'Erreur');
-        });
-      }
-    });
-  };
 });
