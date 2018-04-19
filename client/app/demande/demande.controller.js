@@ -27,10 +27,28 @@ angular.module('impactApp').controller('DemandeCtrl', function(
     });
   }
 
+  this.getFiles = () => {
+    var files = [];
+    angular.forEach(demande.data.documents.obligatoires, function(group) {
+      angular.forEach(group.documentList, function(doc) {
+        files.push(doc);
+      });
+    });
+
+    angular.forEach(demande.data.documents.complementaires, function(group) {
+      angular.forEach(group.documentList, function(doc) {
+        files.push(doc);
+      });
+    });
+
+    return files;
+  };
+
   this.sendRequest = () => {
     const missingSections = DemandeService.getMissingSection(demande, currentUser);
 
     if (missingSections.indexOf('beneficiaire') !== -1) {
+
       $anchorScroll(missingSections[0]);
       toastr.error('Vous n\'avez pas fini de remplir la section « Bénéficiaire ».', 'Erreur de la création de la demande');
       missingSections.forEach((sectionId) => {
