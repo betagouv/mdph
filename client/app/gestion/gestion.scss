@@ -14,6 +14,7 @@
 
   .icon-profil {
     margin-top: 50px;
+    text-align: center;
     &:before {
       content: "\f007";
       font-family: 'FontAwesome';
@@ -32,6 +33,12 @@
       font-size: 9em;
       color: #FFFFFF;
     }
+  }
+
+  .border-top {
+    border-top-style: solid;
+    border-top-color: #FFFFFF;
+    border-top-width: 2px;
   }
 
   .border-left {
