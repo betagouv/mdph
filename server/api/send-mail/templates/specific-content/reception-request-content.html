@@ -2,10 +2,10 @@
   <h1>Demande mise <b>en attente</b></h1>
 {{/if}}
 {{#if options.validee}}
-  <h1>Demande <b>validée</b></h1>
+  <h1>Demande <b>reçue</b></h1>
 {{/if}}
 
-<p>La Mdph {{request.mdph}} a accusé réception de votre dossier le {{moment options.receivedAt}}.</p>
+<p>La Mdph {{request.mdph}} a accusé réception de votre demande n° {{request.shortId}} le {{moment options.receivedAt}}.</p>
 
 {{#if options.invalidDocumentTypes}}
   <h2>Documents invalides</h2>
