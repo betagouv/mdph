@@ -27,22 +27,22 @@ angular.module('impactApp').controller('DemandeCtrl', function(
     });
   }
 
-  this.getDocuments = () => {
-    var documents = [];
+  this.getFiles = () => {
+    var files = [];
     angular.forEach(demande.data.documents.obligatoires, function(group, category) {
       angular.forEach(group.documentList, function(doc) {
-        documents.push(doc);
+        files.push(doc);
       });
     });
 
     angular.forEach(demande.data.documents.complementaires, function(group, category) {
       angular.forEach(group.documentList, function(doc) {
-        documents.push(doc);
+        files.push(doc);
       });
     });
 
-    return documents;
-  }
+    return files;
+  };
 
   this.sendRequest = () => {
     const missingSections = DemandeService.getMissingSection(demande, currentUser);

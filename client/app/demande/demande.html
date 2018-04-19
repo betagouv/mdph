@@ -52,13 +52,12 @@
 
         <h3>Documents</h3>
 
-        <div class="embed-responsive embed-responsive-16by9">
+        <div class="">
           <ul>
-            <li ng-repeat="document in demandeCtrl.getDocuments()">{{document.type}} : {{document.originalname}}</li>
+            <li ng-repeat="file in demandeCtrl.getFiles()">{{file.type}} : {{file.originalname}} &nbsp; <file-viewer file="file" demande="demandeCtrl.demande"></file-viewer></li>
           </ul>
         </div>
         <br/>
-
 
         <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{demandeCtrl.demande.shortId}}/pdf/user?access_token={{demandeCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
       </div>
