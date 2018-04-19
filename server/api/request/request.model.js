@@ -134,11 +134,11 @@ RequestSchema.methods = {
   },
 
   getInvalidDocuments() {
-    if (!this.documents) {
+    if (!this.data.documents) {
       return [];
     }
 
-    return _.filter(this.documents, 'isInvalid');
+    return _.filter(this.data.documents, 'isInvalid');
   },
 
   getInvalidDocumentTypes() {
@@ -159,7 +159,7 @@ RequestSchema.methods = {
     return _.reduce(this.askedDocumentTypes, (types, currentType) => {
       let found = false;
 
-      _.forEach(this.documents, (document) => {
+      _.forEach(this.data.documents, (document) => {
         if (document.type === currentType) {
           found = true;
         }
