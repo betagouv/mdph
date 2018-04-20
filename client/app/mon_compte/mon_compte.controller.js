@@ -3,6 +3,18 @@
 angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, $state, User, Auth, currentUser) {
     $scope.errors = {};
+
+    if (currentUser.unconfirmed === true) {
+      var configNoCache = {
+        headers: {common: {'Cache-Control': 'no-cache'}}
+      };
+
+      User.get(currentUser._id, configNoCache).$promise
+      .then(function(user) {
+        currentUser.unconfirmed = user.unconfirmed;
+      });
+    }
+
     $scope.user = currentUser;
 
     $scope.changePassword = function(form) {
