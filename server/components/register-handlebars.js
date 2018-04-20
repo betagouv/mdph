@@ -47,7 +47,13 @@ Handlebars.registerHelper('moment', function(str) {
 });
 
 Handlebars.registerHelper('contact', function(str) {
-  return str === 'oui' ? 'et a déjà pris contact' : 'mais n\'a pas encore pris contact';
+  let contact;
+  if(str){
+    contact = str === 'oui' ? 'et a déjà pris contact' : 'mais n\'a pas encore pris contact';
+  } else {
+    contact = '';
+  }
+  return contact;
 });
 
 Handlebars.registerHelper('ntobr', function(str) {

@@ -11,6 +11,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.currentUser = currentUser;
   this.currentMdph = currentMdph;
   this.hasRequest = hasRequest;
+  this.profileUpdatedAt = profile.updatedAt;
 
   this.$state = $state;
   this.$modal = $modal;
@@ -19,6 +20,8 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.estAdulte = ProfileService.estAdulte(profile);
+  this.pronomPluriel = this.estAdulte ? 'vos' : 'ses';
+  this.pronomSingulier = this.estAdulte ? 'votre' : 'sa';
   this.representantObligatoire = ProfileService.representantObligatoire(profile);
   this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
 
