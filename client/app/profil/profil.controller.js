@@ -26,11 +26,11 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
 
   if (currentUser.unconfirmed === true) {
-    var config = {
-      //headers : {common : {'Cache-Control' : 'no-cache'}}
-     };
+    var configNoCache = {
+      headers: {common: {'Cache-Control': 'no-cache'}}
+    };
 
-    User.get(currentUser._id, config).$promise
+    User.get(currentUser._id, configNoCache).$promise
     .then(function(user) {
       currentUser.unconfirmed = user.unconfirmed;
     });

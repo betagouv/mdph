@@ -14,18 +14,10 @@ angular.module('impactApp')
             lat: mainLocation.coordinates.coordy,
             lon: mainLocation.coordinates.coordx,
             limit: 8
-          },
-          headers: {
-            'Cache-Control': undefined
-          },
+          }
         })
         .then(function(response) {
-          console.info('response.data.features   ' + response.data.features);
           return response.data.features;
-
-        })
-        .catch((err) => {
-          console.info('erqSDQWD   ' + err);
         });
       },
 
