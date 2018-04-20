@@ -32,7 +32,6 @@ angular.module('impactApp', [
     treeConfig.dragClass = 'angular-ui-tree-drag';
 
     // disable IE ajax request caching
-    //$httpProvider.defaults.headers.common['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.cache = false;
     if (!$httpProvider.defaults.headers.get) {
       $httpProvider.defaults.headers.get = {};
