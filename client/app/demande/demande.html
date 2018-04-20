@@ -52,7 +52,7 @@
 
         <h3>Documents : </h3>
 
-        <div class="">
+        <div>
           <ul>
             <li ng-repeat="file in demandeCtrl.getFiles()">{{file.type}} : {{file.originalname}} &nbsp; <file-viewer file="file" demande="demandeCtrl.demande"></file-viewer></li>
           </ul>
