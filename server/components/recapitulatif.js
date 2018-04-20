@@ -143,9 +143,12 @@ function computeAnswers(question, trajectoireAnswers) {
           }
           break;
         case 'fraisInternat':
-          if(detail){
-            answer.detail = 'Ses frais de séjour sont-ils intégralement pris en charge par l\'assurance maladie, l\'Etat ou l`\'aide sociale ? ';
-            answer.detail += detail.text;
+          if(detail !== undefined){
+            if(detail){
+              answer.detail = 'Les frais de séjour sont intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            } else {
+              answer.detail = 'Les frais de séjour ne sont pas intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            }
           }
           break;
         case 'date&categorie':
