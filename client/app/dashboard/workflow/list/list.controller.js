@@ -124,8 +124,16 @@ angular.module('impactApp')
         const modalInstance = $modal.open({
           animation: false,
           templateUrl: 'app/dashboard/workflow/list/modalIrrecevable.html',
-          controller: 'ModalIrrecevableCtrl',
           controllerAs: 'modalIrrecevableCtrl',
+          controller($modalInstance) {
+            this.confirm = function() {
+              $modalInstance.close();
+            };
+
+            this.cancel = function() {
+              $modalInstance.dismiss('cancel');
+            };
+          }
         });
 
         modalInstance.result.then(() => irrecevableRequests(this.requests));
@@ -150,15 +158,6 @@ angular.module('impactApp')
     };
 
     $scope.cancel = function() {
-      $modalInstance.dismiss('cancel');
-    };
-  })
-  .controller('ModalIrrecevableCtrl', function($modalInstance) {
-    this.confirm = function() {
-      $modalInstance.close();
-    };
-
-    this.cancel = function() {
       $modalInstance.dismiss('cancel');
     };
   });
