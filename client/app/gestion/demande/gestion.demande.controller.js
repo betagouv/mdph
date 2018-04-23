@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('GestionDemandeCtrl', function($state, $http, currentMdph, currentUser, profil, demandes) {
+  .controller('GestionDemandeCtrl', function($state, $http, $modal, currentMdph, currentUser, profil, demandes, RequestResource) {
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
     this.profil = profil;
@@ -24,7 +24,36 @@ angular.module('impactApp')
     };
 
     this.deleteCurrentDemande = function() {
+      var modalDeleteDemandeInstance = $modal.open({
+        templateUrl: 'app/gestion/demande/delete_confirmation.html',
+        controller: function($scope, $modalInstance, demande) {
+          this.demande = demande;
 
+          this.cancel = function() {
+            $modalInstance.close(false);
+          };
+
+          this.ok = function() {
+            $modalInstance.close(true);
+          };
+        },
+
+        controllerAs: 'deleteDemandeConfirmationCtrl',
+        resolve: {
+          demande: () => {
+            return this.currentDemande;
+          },
+        },
+      });
+
+      modalDeleteDemandeInstance.result.then((result) => {
+        if (result) {
+
+          RequestResource.remove({shortId: this.currentDemande.shortId}).$promise.then(function() {
+            $state.go('gestion_demande', {profilId: profil._id}, {reload: true});
+          });
+        }
+      });
     };
 
     this.goCurrentDemande = function() {
