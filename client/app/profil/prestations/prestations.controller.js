@@ -6,7 +6,7 @@ angular.module('impactApp')
     this.types = _.groupBy(prestations, 'type');
 
     this.submit = () => {
-      this.request.prestations = _.chain(this.prestations)
+      this.request.prestations = _.chain(prestations)
         .filter(current => current.choice)
         .map(function(value) {
           return {code: value.id, precision: value.precision};
