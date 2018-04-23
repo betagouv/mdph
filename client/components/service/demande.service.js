@@ -114,7 +114,7 @@ angular.module('impactApp')
         }
       }
 
-      return missingSections.length > 0 ? missingSections : null;
+      return missingSections;
     }
 
     function getBeneficiaireCompletion(demande) {

@@ -38,7 +38,7 @@
           <div class="col-md-4 col-icon-profil" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
           <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Créé le {{profil.createdAt | date:'dd/MM/yyyy'}}</div>
           <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Dernière demande {{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
-          <div class="col-md-2 col-action" ng-click="gestionProfilCtrl.deleteProfil()">Supprimer</div>
+          <div class="col-md-2 col-action" ng-click="gestionProfilCtrl.deleteProfil(profil)">Supprimer</div>
         </div>
         <div class="row" >
           <div class="col-md-12 col-new" ng-click="gestionProfilCtrl.createProfil()">Créer un nouveau profil</div>

@@ -30,12 +30,22 @@ angular.module('impactApp')
     };
 
     this.gestionLinkValue = function() {
-      ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
-        if (profilList.length === 1) {
-          return $state.go('gestion_demande', {profilId: profilList[0]._id});
-        }
+      if (Auth.hasRole(currentUser, 'user')) {
 
-        return $state.go('gestion_profil', {}, {reload: true});
-      });
+        ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
+          if (profilList.length === 1) {
+            return $state.go('gestion_demande', {profilId: profilList[0]._id});
+          }
+
+          return $state.go('gestion_profil', {}, {reload: true});
+        });
+      } else if (Auth.hasRole(currentUser, 'adminMdph')) {
+
+        return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode, userId:'me', status:'emise'}, {reload: true});
+      } else if (Auth.hasRole(currentUser, 'admin')) {
+
+        return $state.go('admin.main', {}, {reload: true});
+      }
+
     };
   });
