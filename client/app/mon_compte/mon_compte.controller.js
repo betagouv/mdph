@@ -5,11 +5,7 @@ angular.module('impactApp')
     $scope.errors = {};
 
     if (currentUser.unconfirmed === true) {
-      var configNoCache = {
-        headers: {common: {'Cache-Control': 'no-cache'}}
-      };
-
-      User.get(currentUser._id, configNoCache).$promise
+      User.get(currentUser._id).$promise
       .then(function(user) {
         currentUser.unconfirmed = user.unconfirmed;
       });
