@@ -96,12 +96,22 @@ angular.module('impactApp')
 
       if (selectedRequests.length === 1) {
         var request = _.find(this.requests, 'isSelected');
-
-        $window.open('api/requests/' + request.shortId + '/pdf/agent?access_token=' + this.token);
-
+        request.isDownloaded = 'true';
+        RequestResource.update(request).$promise.then(result => {
+          $window.open('api/requests/' + result.shortId + '/pdf/agent?access_token=' + this.token);
+        });
       } else {
         if (selectedRequests.length > 1) {
-          $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + this.token);
+          const update = function(request) {
+            request.isDownloaded = 'true';
+            return RequestResource.update(request).$promise;
+          };
+
+          const download =  function() {
+            $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + $cookies.get('token'));
+          };
+
+          actionOnSelectedRequests(requests, update, download);
         }
       }
     };
