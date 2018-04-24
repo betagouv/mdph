@@ -20,8 +20,6 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.estAdulte = ProfileService.estAdulte(profile);
-  this.pronomPluriel = this.estAdulte ? 'vos' : 'ses';
-  this.pronomSingulier = this.estAdulte ? 'votre' : 'sa';
   this.representantObligatoire = ProfileService.representantObligatoire(profile);
   this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
 
@@ -35,6 +33,14 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       currentUser.unconfirmed = user.unconfirmed;
     });
   }
+
+  this.pronomPluriel = () => {
+    return ProfileService.estAdulte(this.profile) ? 'vos' : 'ses';
+  };
+
+  this.pronomSingulier = () => {
+    return ProfileService.estAdulte(this.profile) ? 'votre' : 'sa';
+  };
 
   this.sendRequest = () => {
     const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);
