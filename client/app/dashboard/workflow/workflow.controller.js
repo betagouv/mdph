@@ -9,9 +9,11 @@ angular.module('impactApp')
         controllerAs: 'modalDeleteCtrl',
         size: 'md',
         controller(navUserId, navStatus, $modalInstance, RequestResource) {
+          this.requests = [];
           this.shortId = request.shortId;
           this.navUserId = navUserId;
           this.navStatus = navStatus;
+          this.requests.push(request);
           this.delete = function() {
               RequestResource.remove({shortId: this.shortId}).$promise.then(() => {
                 $modalInstance.close();
