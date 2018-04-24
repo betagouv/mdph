@@ -14,21 +14,6 @@
   </div>
 </header>
 
-<section class="section-main section-flow">
-  <form id="form-subscribe" class="form" name="form" ng-submit="closedCtrl.submit()">
-    <label for="email" class="title">Être prévenu·e de l'ouverture du service</label>
-    <div class="input-container">
-      <input required type="email" id="email" ng-model="closedCtrl.subscribeEmail" placeholder="votre@email.fr">
-      <input id="subscribe" type="submit" value="Envoyer" ng-if="!closedCtrl.loading">
-      <span class="loading" ng-if="closedCtrl.loading"><i class="fa fa-spinner fa-spin"></i></span>
-    </div>
-    <div class="thankyou" ng-if="!closedCtrl.thankyou">&nbsp;</div>
-    <div class="thankyou" ng-if="closedCtrl.thankyou">Merci !</div>
-  </form>
-</section>
-
-<section-flow />
-
 <section class="map-container">
   <mdph-map mdph="closedCtrl.currentMdph"/>
 </section>
