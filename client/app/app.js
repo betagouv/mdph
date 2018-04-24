@@ -36,6 +36,8 @@ angular.module('impactApp', [
     if (!$httpProvider.defaults.headers.get) {
       $httpProvider.defaults.headers.get = {};
     }
+
+    $httpProvider.defaults.headers.get.Pragma = 'no-cache';
   })
   .run(function($rootScope, $window, $location, $state) {
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {

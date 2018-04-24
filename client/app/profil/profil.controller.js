@@ -20,21 +20,23 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
   this.estAdulte = ProfileService.estAdulte(profile);
-  this.pronomPluriel = this.estAdulte ? 'vos' : 'ses';
-  this.pronomSingulier = this.estAdulte ? 'votre' : 'sa';
   this.representantObligatoire = ProfileService.representantObligatoire(profile);
   this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
 
   if (currentUser.unconfirmed === true) {
-    var configNoCache = {
-      headers: {common: {'Cache-Control': 'no-cache'}}
-    };
-
-    User.get(currentUser._id, configNoCache).$promise
+    User.get(currentUser._id).$promise
     .then(function(user) {
       currentUser.unconfirmed = user.unconfirmed;
     });
   }
+
+  this.pronomPluriel = () => {
+    return ProfileService.estAdulte(this.profile) ? 'vos' : 'ses';
+  };
+
+  this.pronomSingulier = () => {
+    return ProfileService.estAdulte(this.profile) ? 'votre' : 'sa';
+  };
 
   this.sendRequest = () => {
     const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);

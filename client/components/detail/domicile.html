@@ -3,16 +3,16 @@
 
   <div>
     <input type="radio" name="domicile" id="domicile-parents"
-      ng-model="sectionModel[answer.detailModel]" value="De {{profilCtrl.pronomPluriel}} parents (ou l'un d'entre eux)"
+      ng-model="sectionModel[answer.detailModel]" value="De {{profilCtrl.pronomPluriel()}} parents (ou l'un d'entre eux)"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-parents">De {{profilCtrl.pronomPluriel}} parents (ou l'un d'entre eux)</label>
+    <label for="domicile-parents">De {{profilCtrl.pronomPluriel()}} parents (ou l'un d'entre eux)</label>
   </div>
 
   <div>
     <input type="radio" name="domicile" id="domicile-enfants"
-      ng-model="sectionModel[answer.detailModel]" value="De {{profilCtrl.pronomPluriel}} enfants (ou l'un d'entre eux)"
+      ng-model="sectionModel[answer.detailModel]" value="De {{profilCtrl.pronomPluriel()}} enfants (ou l'un d'entre eux)"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-enfants" >De {{profilCtrl.pronomPluriel}} enfants (ou l'un d'entre eux)</label>
+    <label for="domicile-enfants" >De {{profilCtrl.pronomPluriel()}} enfants (ou l'un d'entre eux)</label>
   </div>
 
   <div>
@@ -24,9 +24,9 @@
 
   <div>
     <input type="radio" name="domicile" id="domicile-autreMembreFamille"
-      ng-model="sectionModel[answer.detailModel]" value="D'un autre membre de {{profilCtrl.pronomSingulier}} famille"
+      ng-model="sectionModel[answer.detailModel]" value="D'un autre membre de {{profilCtrl.pronomSingulier()}} famille"
       ng-required="!sectionModel[answer.detailModel]">
-    <label for="domicile-autreMembreFamille">D'un autre membre de {{profilCtrl.pronomSingulier}} famille</label>
+    <label for="domicile-autreMembreFamille">D'un autre membre de {{profilCtrl.pronomSingulier()}} famille</label>
   </div>
 
   <div>
