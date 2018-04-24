@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MdphInputCtrl', function($state) {
+  .controller('MdphInputCtrl', function(MdphResource, $state) {
 
     this.zipcode = '';
 
@@ -12,7 +12,15 @@ angular.module('impactApp')
 
     this.go = () => {
       const codeDepartement = this.zipcode.toUpperCase();
-      $state.go('gestion_profil', {codeDepartement});
+      MdphResource.get({zipcode: codeDepartement}).$promise.then(function(mdph) {
+        if (mdph.opened) {
+
+          $state.go('gestion_profil', {codeDepartement});
+        } else {
+
+          $state.go('closed', {codeDepartement});
+        }
+      });
     };
 
   });
