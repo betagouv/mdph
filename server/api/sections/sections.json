@@ -957,7 +957,7 @@
       },
       "aideEleve": {
         "model": "aideEleve",
-        "titleDefault": "Vous disposez actuellement d'une aide humaine aux élèves handicapésune aide humaine aux élèves handicapés",
+        "titleDefault": "Vous disposez actuellement d'une aide humaine aux élèves handicapé",
         "titleRep": "<%= name %> dispose actuellement d'une aide humaine aux élèves handicapés",
         "type": "radio",
         "answers": [
