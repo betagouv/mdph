@@ -26,7 +26,7 @@
         })
         .then(res => {
           $cookies.put('token', res.data.token);
-          currentUser = User.get(/*{user: res.data.user}*/);
+          currentUser = User.get();
           return currentUser.$promise;
         })
         .then(user => {
@@ -118,11 +118,8 @@
        * Delete access token and user info
        */
       logout() {
-        console.info($cookies.get('token'));
         $cookies.remove('token');
-        //$cookies.remove('token', { path: '/' });
         currentUser = {};
-        console.info($cookies.get('token'));
       },
 
       /**
@@ -222,7 +219,7 @@
         * @return {Bool|Promise}
         */
       hasRole(user, role, callback) {
-        var has = (user && user.hasOwnProperty('role')) ? user.role === role : false;
+        var has = (user.hasOwnProperty('role')) ? user.role === role : false;
 
         safeCb(callback)(has);
         return has;
