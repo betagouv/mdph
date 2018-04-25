@@ -3,9 +3,9 @@
 </div>
 <div class="modal-body">
   <div class="embed-responsive embed-responsive-16by9">
-    <p>Vous êtes sur le point de supprimer définitivement la demande suivante du service :
-      <ul>
-        <li>Demande n° {{modalDeleteCtrl.shortId}}</li>
+    <p>Vous êtes sur le point de supprimer définitivement {{modalDeleteCtrl.requests.length === 1 ? 'la demande suivante' : 'les demandes suivantes'}} du service :
+      <ul ng-repeat="request in modalDeleteCtrl.requests">
+        <li>Demande n° {{request.shortId}}</li>
       </ul>
     </p>
     <p />

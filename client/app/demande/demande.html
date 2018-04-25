@@ -11,7 +11,7 @@
       <div class="demande-card-header-text">
         <h1 class="demande-card-header-text-title"><a ui-sref="demande({shortId: demandeCtrl.demande.shortId})">{{ ::demandeCtrl.profile.getTitle() }}</a></h1>
         <p class="demande-card-header-text-subhead">Dernière modification le {{ demandeCtrl.demande.updatedAt | date:'short' }}</p>
-        <p class="demande-card-header-text-subhead">Demande n° {{ demandeCtrl.demande.shortId}}</p>
+        <p class="demande-card-header-text-subhead">Demande n° <span class="request-identifier">{{ demandeCtrl.demande.shortId}}</span></p>
       </div>
     </div>
 
