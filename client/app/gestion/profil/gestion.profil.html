@@ -10,25 +10,30 @@
 <section class="section-gestion container-fluid">
   <div class="row">
 
+    <div ng-class="{'col-md-1':!showMenu}" style="width:11%" ng-if="!showMenu">
+      <div class="row">
+          <div class="icon-profil"/>
+        </div>
+    </div>
 
-    <div>
+    <div ng-class="{'col-md-11 border-left':!showMenu}" style="width:89%">
 
       <div class="breadcrump">
         <div class="breadcrump-section">
-          <div class="first right-arrow active">
+          <div ng-class="{'large': !showMenu}"  class="first right-arrow active">
             <span>Profils</span>
           </div>
         </div>
         <div class="breadcrump-section">
-          <div class="left-arrow last">
+          <div ng-class="{'large': !showMenu}"  class="left-arrow last">
             <span>Demandes</span>
           </div>
         </div>
       </div>
 
-      <div class="icon-profil"/>
+      <div class="icon-profil centre" ng-if="showMenu" />
 
-      <div class="container-fluid border-top" >
+      <div class="container-fluid " ng-class="{'border-top': showMenu}">
 
         <h2>Vos profils</h2>
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils">
