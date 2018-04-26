@@ -6,12 +6,12 @@
   <div class="demande-card demande-card-vertical">
     <div class="demande-card-header">
       <span class="demande-card-avatar">
-        <span class="demande-card-icon"><a ui-sref="." ui-sref-opts="{reload: true, notify: true}" title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
+        <span class="demande-card-icon"><a ui-sref="demande({shortId: demandeCtrl.demande.shortId})" ui-sref-opts="{reload: true, notify: true}" title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
       </span>
       <div class="demande-card-header-text">
-        <h1 class="demande-card-header-text-title"><a ui-sref=".">{{ ::demandeCtrl.profile.getTitle() }}</a></h1>
+        <h1 class="demande-card-header-text-title"><a ui-sref="demande({shortId: demandeCtrl.demande.shortId})">{{ ::demandeCtrl.profile.getTitle() }}</a></h1>
         <p class="demande-card-header-text-subhead">Dernière modification le {{ demandeCtrl.demande.updatedAt | date:'short' }}</p>
-        <p class="demande-card-header-text-subhead"><button ng-click="demandeCtrl.delete(demande)" class="btn btn-link">Supprimer ce profil</button></p>
+        <p class="demande-card-header-text-subhead">Demande n° <span class="request-identifier">{{ demandeCtrl.demande.shortId}}</span></p>
       </div>
     </div>
 
@@ -44,12 +44,21 @@
       <div ui-view class="container-fluid">
         <h2>Votre demande est en cours de validation par votre MDPH</h2>
         <h3>Récapitulatif de votre demande</h3>
-        <div class="request-identifier">{{demandeCtrl.demande.shortId}}</div>
 
         <div class="embed-responsive embed-responsive-16by9">
           <iframe ng-src="{{'/api/requests/' + demandeCtrl.demande.shortId + '/recapitulatif?access_token=' + demandeCtrl.token}}" class="embed-responsive-item"></iframe>
         </div>
-        <br>
+        <br/>
+
+        <h3>Documents : </h3>
+
+        <div class="">
+          <ul>
+            <li ng-repeat="file in demandeCtrl.getFiles()">{{file.type}} : {{file.originalname}} &nbsp; <file-viewer file="file" demande="demandeCtrl.demande"></file-viewer></li>
+          </ul>
+        </div>
+        <br/>
+
         <a target="_blank" class="btn btn-lg btn-primary" href="api/requests/{{demandeCtrl.demande.shortId}}/pdf/user?access_token={{demandeCtrl.token}}" download>Télécharger&nbsp;<i class="fa fa-download"></i></a>
       </div>
     </div>

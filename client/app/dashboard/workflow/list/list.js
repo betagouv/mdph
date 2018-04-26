@@ -5,7 +5,6 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.workflow.list', {
         url: '/:userId/:status',
-        parent: 'dashboard.workflow',
         templateUrl: 'app/dashboard/workflow/list/list.html',
         controller: 'WorkflowListCtrl',
         controllerAs: 'workflowListCtrl',

@@ -34,7 +34,7 @@
 
       <div class="container-fluid">
 
-        <h2>Demandes de {{ ::gestionDemandeCtrl.profil.getTitle() }} en cours</h2>
+        <h2>Demande de {{ ::gestionDemandeCtrl.profil.getTitle() }} en cours</h2>
         <div class="row" ng-if="gestionDemandeCtrl.currentDemande">
           <div class="col-md-4 col-icon-demande" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.currentDemande.shortId }}</div>
           <div class="col-md-3 col-item" ng-click="gestionDemandeCtrl.goCurrentDemande()">Créé le {{gestionDemandeCtrl.currentDemande.createdAt | date:'dd/MM/yyyy'}}</div>
