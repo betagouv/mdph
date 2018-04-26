@@ -92,7 +92,7 @@ angular.module('impactApp').controller('DemandeCtrl', function(
       title: 'Autorité parentale',
       icon: 'fa-users',
       model: 'identites.autorite',
-      mandatory: this.autoriteObligatoire,
+      mandatory: true,
       action: {
         sref: 'demande.autorite'
       }
@@ -102,7 +102,7 @@ angular.module('impactApp').controller('DemandeCtrl', function(
       title: 'Représentant légal',
       icon: 'fa-users',
       model: 'identites.representant',
-      mandatory: this.representantObligatoire,
+      mandatory: true,
       action: {
         sref: 'demande.representant'
       }

@@ -14,6 +14,9 @@ angular.module('impactApp')
             lat: mainLocation.coordinates.coordy,
             lon: mainLocation.coordinates.coordx,
             limit: 8
+          },
+          headers: {
+            Pragma: undefined
           }
         })
         .then(function(response) {
