@@ -2,7 +2,7 @@
   <div class="hero-unit" >
     <h1 ng-if="closedCtrl.currentMdph">MDPH {{closedCtrl.currentMdph.name}}</h1>
 
-    <p>Votre MDPH n'accepte pas les demandesen ligne</p>
+    <p>Votre MDPH n'utilise pas ce service de demandes en ligne</p>
 
     <a ng-if="!closedCtrl.currentMdph.outsideLink" class="btn btn-lg btn-link" href="https://www.service-public.fr/particuliers/vosdroits/N12230">
       Continuer sur service-public.fr
@@ -13,21 +13,6 @@
     </a>
   </div>
 </header>
-
-<section class="section-main section-flow">
-  <form id="form-subscribe" class="form" name="form" ng-submit="closedCtrl.submit()">
-    <label for="email" class="title">Être prévenu·e de l'ouverture du service</label>
-    <div class="input-container">
-      <input required type="email" id="email" ng-model="closedCtrl.subscribeEmail" placeholder="votre@email.fr">
-      <input id="subscribe" type="submit" value="Envoyer" ng-if="!closedCtrl.loading">
-      <span class="loading" ng-if="closedCtrl.loading"><i class="fa fa-spinner fa-spin"></i></span>
-    </div>
-    <div class="thankyou" ng-if="!closedCtrl.thankyou">&nbsp;</div>
-    <div class="thankyou" ng-if="closedCtrl.thankyou">Merci !</div>
-  </form>
-</section>
-
-<section-flow />
 
 <section class="map-container">
   <mdph-map mdph="closedCtrl.currentMdph"/>
