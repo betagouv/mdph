@@ -44,32 +44,25 @@ angular.module('impactApp')
             <td><span>${location.address}</span></td>
           </tr>`;
 
-        let phoneRow;
-        let emailRow;
-        let scheduleRow;
-        let description;
-        if (this.mdph.opened === true) {
-          phoneRow = location.phone &&
+        const phoneRow = location.phone &&
           `<tr>
             <td class="cell-icon"><i class="fa fa-phone"></i></td>
             <td><span>${location.phone}</span></td>
           </tr>`;
 
-          emailRow = location.email &&
+        const emailRow = location.email &&
           `<tr>
             <td class="cell-icon"><i class="fa fa-envelope"></i></td>
             <td><a href="mailto:${location.email}" title="Envoyer un mail de contact">${location.email}</a></td>
           </tr>`;
 
-          scheduleRow = location.schedule &&
+        const scheduleRow = location.schedule &&
           `<tr>
             <td class="cell-icon"><i class="fa fa-clock-o"></i></td>
             <td><span>${location.schedule}</span></td>
           </tr>`;
-          description = `<table><tbody>${addressRow}${phoneRow}${emailRow}${scheduleRow}</tbody></table>`;
-        } else {
-          description = `<table><tbody>${addressRow}</tbody></table>`;
-        }
+
+        const description = `<table><tbody>${addressRow}${phoneRow}${emailRow}${scheduleRow}</tbody></table>`;
 
         const featureLayer = {
           // this feature is in the GeoJSON format: see geojson.org
