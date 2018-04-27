@@ -83,7 +83,6 @@ UserSchema
 UserSchema
 .virtual('isLocked')
 .get(function() {
-  var lockTime = ((this.lockUntil - Date.now()) / (60 * 1000)).toFixed();
   return this.lockUntil && this.lockUntil > Date.now();
 });
 
