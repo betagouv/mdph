@@ -90,7 +90,7 @@ angular.module('impactApp').controller('DemandeCtrl', function(
         };
 
         this.cancel = function() {
-
+          $modalInstance.dismiss();
         };
       },
 
