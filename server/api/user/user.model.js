@@ -83,10 +83,7 @@ UserSchema
 UserSchema
 .virtual('isLocked')
 .get(function() {
-  console.log("lockUntil : " + this.lockUntil);
-  console.log("Date : " + Date.now());
   var lockTime = ((this.lockUntil - Date.now()) / (60 * 1000)).toFixed();
-  console.log("lockTime : " + lockTime);
   return this.lockUntil && this.lockUntil > Date.now();
 });
 
@@ -172,7 +169,7 @@ UserSchema.methods = {
     } else{
       this.loginAttempts = this.loginAttempts + 1
       if(this.loginAttempts >= MAX_LOGIN_ATTEMPTS){
-        if(this.loginAttempts >= 16){
+        if(this.loginAttempts < 17){
           this.lockUntil = Date.now() + (Math.pow(2, this.loginAttempts - MAX_LOGIN_ATTEMPTS) * LOCK_TIME) ;
         } else {
           this.lockUntil = Date.now() + 86400000 ; // + 24 heures
