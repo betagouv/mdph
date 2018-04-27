@@ -10,16 +10,16 @@
     ng-repeat="documentType in demandeDocumentsCtrl.selectedDocumentTypes"
     class="row-document-type"
     ng-class="{
-      'invalid': demandeDocumentsCtrl.isInvalid(documentType),
-      'complete': demandeDocumentsCtrl.isComplete(documentType),
-      'incomplete': demandeDocumentsCtrl.isEmpty(documentType)}">
+      'invalid': demandeDocumentsCtrl.isInvalid(documentType) && demandeDocumentsCtrl.isMandatory(documentType),
+      'complete': demandeDocumentsCtrl.isComplete(documentType) && demandeDocumentsCtrl.isMandatory(documentType),
+      'incomplete': demandeDocumentsCtrl.isEmpty(documentType) && demandeDocumentsCtrl.isMandatory(documentType)}">
     <div class="header-document-type">
       <div class="title-card">
         <h4>
           {{documentType.label}}
           <span class="label label-default" ng-if="demandeDocumentsCtrl.isEmpty(documentType)">À renseigner</span>
-          <span class="label label-success" ng-if="demandeDocumentsCtrl.isComplete(documentType)">Complet</span>
-          <span class="label label-danger"ng-if="demandeDocumentsCtrl.isInvalid(documentType)">Invalide</span>
+          <span class="label label-success" ng-if="demandeDocumentsCtrl.isComplete(documentType) && demandeDocumentsCtrl.isMandatory(documentType)">Complet</span>
+          <span class="label label-danger"ng-if="demandeDocumentsCtrl.isInvalid(documentType) && demandeDocumentsCtrl.isMandatory(documentType)">Invalide</span>
         </h4>
         <p ng-bind-html="documentType.desc"></p>
 

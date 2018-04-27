@@ -195,6 +195,7 @@ fieldset {
 @import 'admin/mdph/list/admin.mdph.list.scss';
 @import 'apropos/apropos.scss';
 @import 'cgu/cgu.scss';
+@import 'closed/closed.scss';
 @import 'dashboard/dashboard.scss';
 @import 'dashboard/documents/documents.scss';
 @import 'dashboard/list.scss';
@@ -229,6 +230,7 @@ fieldset {
 @import '../components/mdph-map/mdph-map.scss';
 @import '../components/menu-dashboard/menu-dashboard.scss';
 @import '../components/nav-steps/nav-steps.scss';
+@import '../components/password-rules-alert/password-rules-alert.scss';
 @import '../components/password-strength-bar/password-strength-bar.scss';
 @import '../components/prestations/prestation.scss';
 @import '../components/qtitle/qtitle.scss';

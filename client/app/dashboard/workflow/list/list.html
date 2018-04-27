@@ -23,11 +23,16 @@
           Action <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-          <li role="menuitem">
+          <li role="menuitem" ng-if="workflowListCtrl.showDownloadAndDeleteButtons">
             <a href="#" ng-click="workflowListCtrl.downloadRequests()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
-          <li role="menuitem" ng-if="status !== 'irrecevable'">
-            <a href="#" ng-click="workflowListCtrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
+          <li role="menuitem" ng-if="workflowListCtrl.status !== 'irrecevable'">
+            <a href="#" ng-click="workflowListCtrl.openIrrecevableModal()"><i class="fa fa-archive"></i> Marquer comme irrecevable</a>
+          </li>
+          <li role="menuitem" ng-if="workflowListCtrl.status === 'validee' || workflowListCtrl.status === 'irrecevable'">
+              <a href="#" ng-click="workflowListCtrl.allSelectedRequestsDownloadOpenModal()">
+                <i class="fa fa-trash"></i> Supprimer les demandes {{workflowListCtrl.status === 'validee' ? 'validées' : 'irrecevables'}} téléchargées
+              </a>
           </li>
         </ul>
 
@@ -42,12 +47,12 @@
     <table>
       <tbody ng-repeat="group in workflowListCtrl.groups">
         <tr>
-          <td class="lead" colspan="{{workflowListCtrl.showDownloadButton ? '8' : '6'}}">
+          <td class="lead" colspan="{{workflowListCtrl.showDownloadAndDeleteButtons ? '8' : '6'}}">
             {{::group.title}}
           </td>
         </tr>
         <tr ng-hide="filteredRequests.length">
-          <td colspan="{{workflowListCtrl.showDownloadButton ? '8' : '6'}}">
+          <td colspan="{{workflowListCtrl.showDownloadAndDeleteButtons ? '8' : '6'}}">
             Pas de demandes
           </td>
         </tr>
@@ -101,11 +106,15 @@
             </table>
           </td>
           <td>{{::request.submittedAt | date}}</td>
-          <td ng-show="workflowListCtrl.showDownloadButton">
-            <a href="#" ng-click=" workflowListCtrl.download(request)"><i class="fa fa-download"></i>&nbsp;Télécharger</a>
+          <td>
+            <a ng-show="workflowListCtrl.showDownloadAndDeleteButtons" href="#" ng-click="workflowCtrl.download(request)">
+              <i class="fa fa-download"></i>&nbsp;Télécharger
+            </a>
           </td>
-          <td ng-show="request.isDownloaded">
-            <button class="btn btn-link" ng-click=""><i class="fa fa-trash"></i>&nbsp;Supprimer</i></button>
+          <td class="col-md-2">
+            <button ng-show="workflowListCtrl.showDownloadAndDeleteButtons && request.isDownloaded" class="btn btn-link red-color" ng-click="workflowCtrl.openDeleteModal(request)">
+              <i class="fa fa-trash"></i>&nbsp;Supprimer</i>
+            </button>
           </td>
         </tr>
       </tbody>

@@ -96,29 +96,37 @@ angular.module('impactApp')
 
       if (!demande || !demande.data || !demande.data.identites || !demande.data.identites.beneficiaire || !demande.data.identites.beneficiaire.localite || !demande.data.identites.beneficiaire.code_postal || !demande.data.identites.beneficiaire.nomVoie || !demande.data.identites.beneficiaire.dateNaissance || !demande.data.identites.beneficiaire.nationalite || !demande.data.identites.beneficiaire.sexe || !demande.data.identites.beneficiaire.prenom || !demande.data.identites.beneficiaire.nom || !demande.data.identites.beneficiaire.email || !demande.data.identites.beneficiaire.numero_secu || !demande.data.identites.beneficiaire.assurance || (demande.data.identites.beneficiaire.assurance === 'autre' && !demande.data.identites.beneficiaire.assurance_precisez)) {
         missingSections.push('beneficiaire');
+      } else {
+        if (autoriteObligatoire(demande) && (!demande.data.identites.autorite || !demande.data.identites.autorite.parent1 || !demande.data.identites.autorite.parent1.nom)) {
+          missingSections.push('autorite');
+        }
+
+        if (representantObligatoire(demande) && (!demande.data.identites.representant || !demande.data.identites.representant.representant1 || !demande.data.identites.representant.representant1.nom)) {
+          missingSections.push('representant');
+        }
+
+        if (!demande.data.vie_quotidienne || !demande.data.vie_quotidienne.__completion) {
+          missingSections.push('vieQuotidienne');
+        }
+
+        if (!getDocumentCompletion(demande)) {
+          missingSections.push('documents');
+        }
       }
 
-      if (autoriteObligatoire(demande) && !demande.data.identites.autorite) {
-        missingSections.push('autorite');
+      return missingSections;
+    }
+
+    function getBeneficiaireCompletion(demande) {
+      if (!demande.data || !demande.data.identites || !demande.data.identites.beneficiaire) {
+        return false;
       }
 
-      if (representantObligatoire(demande) && !demande.data.identites.representant) {
-        missingSections.push('representant');
-      }
-
-      if (!demande.data.vie_quotidienne || !demande.data.vie_quotidienne.__completion) {
-        missingSections.push('vieQuotidienne');
-      }
-
-      if (!getDocumentCompletion(demande)) {
-        missingSections.push('documents');
-      }
-
-      return missingSections.length > 0 ? missingSections : null;
+      return true;
     }
 
     function getCompletion(demande) {
-      if (!demande.data || !demande.data.identites || !demande.data.identites.beneficiaire) {
+      if (!getBeneficiaireCompletion(demande)) {
         return false;
       }
 
@@ -223,6 +231,7 @@ angular.module('impactApp')
       estAdulte: _estAdulte,
       estMineur: _estMineur,
       estEnfant: _estEnfant,
+      getBeneficiaireCompletion,
       getCompletion,
       getMissingSection,
       needUploadCV,
