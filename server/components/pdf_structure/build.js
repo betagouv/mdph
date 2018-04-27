@@ -28,7 +28,8 @@ module.exports = function(zipcode, requestTempPdfPath, documentList, withSeparat
             if (category.required) {
               pdfStructure.unshift({name: 'Demande.pdf', path: requestTempPdfPath});
               if (category.barcode && withSeparator) {
-                pdfStructure.unshift({name: 'separateur_demande.pdf', path: gfs.createReadStream({_id: category.barcode._id})});
+                let separatorName = computeSeparatorName(category);
+                pdfStructure.unshift({name: separatorName, path: gfs.createReadStream({_id: category.barcode._id})});
               }
 
               documentFoundForThisCategory = true;
@@ -40,7 +41,8 @@ module.exports = function(zipcode, requestTempPdfPath, documentList, withSeparat
                 if (currentDocument.type === documentType.id) {
                   index += 1;
                   if (!documentFoundForThisCategory && category.barcode && withSeparator) {
-                    pdfStructure.push({name: `separateur_${documentType.id}.pdf`, path: gfs.createReadStream({_id: category.barcode._id})});
+                    let separatorName = computeSeparatorName(category);
+                    pdfStructure.push({name: separatorName, path: gfs.createReadStream({_id: category.barcode._id})});
                     documentFoundForThisCategory = true;
                   }
 
@@ -57,7 +59,7 @@ module.exports = function(zipcode, requestTempPdfPath, documentList, withSeparat
           });
 
           if (unclassifiedCategory.barcode && withSeparator && unclassifiedDocuments.length > 0) {
-            pdfStructure.push({name: 'separateur_autre.pdf', path: gfs.createReadStream({_id: unclassifiedCategory.barcode._id})});
+            pdfStructure.push({name: 'Separateur_autre.pdf', path: gfs.createReadStream({_id: unclassifiedCategory.barcode._id})});
           }
 
           var index = 0;
@@ -70,3 +72,13 @@ module.exports = function(zipcode, requestTempPdfPath, documentList, withSeparat
         });
     });
 };
+
+function computeSeparatorName(category) {
+  let categoryNameOrFileName;
+  if(category.label === undefined || category.label === 'Nouvelle catégorie') {
+    categoryNameOrFileName = category.barcode.filename.substring(0, category.barcode.filename.lastIndexOf('.'));
+  } else {
+    categoryNameOrFileName = category.label;
+  }
+  return `Separateur_${categoryNameOrFileName}.pdf`;
+}
