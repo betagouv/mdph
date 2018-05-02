@@ -4,6 +4,9 @@ import mongoose, {Schema} from 'mongoose';
 import crypto from 'crypto';
 import Request from '../request/request.model';
 
+const  MAX_LOGIN_ATTEMPTS = 5;
+const  LOCK_TIME = 2 * 60 * 1000; // 2 minutes
+
 var UserSchema = new Schema({
   name: String,
   hashedPassword: { type: String, select: false },
@@ -21,7 +24,10 @@ var UserSchema = new Schema({
   specialisation: {
     enfant: { type: Boolean, default: true },
     adulte: { type: Boolean, default: true },
-  }
+  },
+
+  loginAttempts: { type: Number, required: true, default: 0 },
+  lockUntil: { type: Number }
 });
 
 /**
@@ -72,6 +78,13 @@ UserSchema
       role: this.role
     };
   });
+
+//
+UserSchema
+.virtual('isLocked')
+.get(function() {
+  return this.lockUntil && this.lockUntil > Date.now();
+});
 
 /**
  * Validations
@@ -146,6 +159,24 @@ UserSchema.methods = {
    */
   authenticate(plainText) {
     return this.encryptPassword(plainText) === this.hashedPassword;
+  },
+
+  incLoginAttempts(isReinit) {
+    if(isReinit){
+      this.loginAttempts = 0;
+      this.lockUntil = Date.now();
+    } else{
+      this.loginAttempts = this.loginAttempts + 1
+      if(this.loginAttempts >= MAX_LOGIN_ATTEMPTS){
+        if(this.loginAttempts < 17){
+          this.lockUntil = Date.now() + (Math.pow(2, this.loginAttempts - MAX_LOGIN_ATTEMPTS) * LOCK_TIME) ;
+        } else {
+          this.lockUntil = Date.now() + 86400000 ; // + 24 heures
+        }
+
+      }
+    }
+    this.save();
   },
 
   /**

@@ -152,11 +152,11 @@ RequestSchema.methods = {
   },
 
   getNonPresentAskedDocumentTypes() {
-    if (!this.askedDocumentTypes || this.askedDocumentTypes.length === 0) {
+    if (!this.data.askedDocumentTypes || this.data.askedDocumentTypes.length === 0) {
       return [];
     }
 
-    return _.reduce(this.askedDocumentTypes, (types, currentType) => {
+    return _.reduce(this.data.askedDocumentTypes, (types, currentType) => {
       let found = false;
 
       _.forEach(this.data.documents, (document) => {
