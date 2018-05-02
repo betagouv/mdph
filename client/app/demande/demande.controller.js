@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp').controller('DemandeCtrl', function(
-  $state, $modal, $http, toastr, $anchorScroll, $cookies,
+  $modal, $http, toastr, $anchorScroll, $cookies,
   User, currentUser, currentMdph, RequestResource,
   DemandeService, profile, demande) {
 
@@ -10,8 +10,6 @@ angular.module('impactApp').controller('DemandeCtrl', function(
   this.profile = profile;
   this.demande = demande;
 
-  this.$state = $state;
-  this.$modal = $modal;
   this.token = $cookies.get('token');
   this.$anchorScroll = $anchorScroll;
   this.prestationsCompletion = () => DemandeService.getPrestationCompletion(demande) ? 'complete' : null;
@@ -68,14 +66,36 @@ angular.module('impactApp').controller('DemandeCtrl', function(
       return;
     }
 
-    return DemandeService
-      .postAction(demande, {
-        id: 'submit',
-        mdph: currentMdph.zipcode,
-      })
-      .then(() => {
-        $state.go('demande', {}, {reload: true});
-      });
+    let _this = this;
+    $modal.open({
+      templateUrl: 'app/demande/demande-preview-modal.html',
+      size: 'lg',
+      controller($modalInstance, DemandeService, $state) {
+        this.demande = demande;
+        this.profile = profile;
+        this.mdph = currentMdph;
+        this.token = _this.token;
+        this.files = _this.getFiles();
+
+        this.ok = function() {
+          return DemandeService
+          .postAction(this.demande, {
+            id: 'submit',
+            mdph: this.mdph.zipcode,
+          })
+          .then(() => {
+            $state.go('demande', {}, {reload: true});
+            $modalInstance.dismiss();
+          });
+        };
+
+        this.cancel = function() {
+          $modalInstance.dismiss();
+        };
+      },
+
+      controllerAs: 'demandePreviewModalCtrl',
+    });
   };
 
   this.options = {
