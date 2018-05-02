@@ -1,3 +1,8 @@
 <ul>
-  <a target="_blank" download="" href="/assets/documents/CM.pdf">Télécharger le modèle de certificat médical</a>
-</ul>
+    <li ng-if="documentInformationCtrl.mdph.zipcode == 14">
+      <a target="_blank" download="" href="/assets/documents/CM.pdf">Télécharger le modèle de certificat médical</a>
+    </li>
+    <li ng-if="documentInformationCtrl.mdph.zipcode != '14'">
+      <a target="_blank" download="" href="/assets/documents/cerfa_13878-01.pdf">Télécharger le modèle de certificat médical</a>
+    </li>
+  </ul>
