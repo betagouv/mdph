@@ -28,6 +28,9 @@
 
   .icon-demande {
     margin-top: 50px;
+    &.centre {
+      text-align: center;
+    }
     &:before {
       content: "\f07c";
       font-family: 'FontAwesome';
@@ -90,6 +93,15 @@
     padding: 10px 15px;
     font-size: 1.2em;
     color: #4f6083;
+  }
+
+  .retour {
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+    font-size: 1.2em;
+    color: #4f6083;
+    width: 200px;
   }
 
   .col-action {
