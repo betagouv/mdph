@@ -46,6 +46,7 @@ var RequestSchema = new Schema({
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,
+  deletedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'validee', 'en_attente_usager', 'irrecevable'], default: 'en_cours' },
   data:           { type: DataSchema, default: {} },
   comments:       { type: String },
@@ -78,18 +79,21 @@ RequestSchema.post('save', function(doc) {
 });
 
 RequestSchema.pre('remove', function(next) {
-  if (this.data.documents && Array.isArray(this.data.documents)) {
-    this.data.documents.forEach(function(document) {
-      if (document.path) {
-        fs.unlink(document.path);
-      }
-    });
-  }
-
+  this.unlinkDocuments();
   next();
 });
 
 RequestSchema.methods = {
+  unlinkDocuments() {
+    if (this.data.documents && Array.isArray(this.data.documents)) {
+      this.data.documents.forEach(function(document) {
+        if (document.path) {
+          fs.unlink(document.path);
+        }
+      });
+    }
+  },
+
   saveActionLog(action, user, log, params) {
     return ActionModel.create({
       action: action,

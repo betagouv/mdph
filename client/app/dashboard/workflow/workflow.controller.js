@@ -15,15 +15,15 @@ angular.module('impactApp')
           this.navStatus = navStatus;
           this.requests.push(request);
           this.delete = function() {
-              RequestResource.remove({shortId: this.shortId}).$promise.then(() => {
-                $modalInstance.close();
-                if ($state.includes('dashboard.workflow.detail')) {
-                  $state.go('dashboard.workflow.list', {userId:navUserId, status:navStatus}, {reload: true});
-                } else {
-                  $state.go('.', {}, {reload: true});
-                }
-              });
-            };
+            RequestResource.partialDelete(request).$promise.then(() => {
+              $modalInstance.close();
+              if ($state.includes('dashboard.workflow.detail')) {
+                $state.go('dashboard.workflow.list', {userId:navUserId, status:navStatus}, {reload: true});
+              } else {
+                $state.go('.', {}, {reload: true});
+              }
+            });
+          };
 
           this.cancel = function() {
             $modalInstance.dismiss('cancel');

@@ -287,6 +287,15 @@ export function update(req, res) {
     .catch(handleError(req, res));
 }
 
+export function partialDelete(req, res) {
+  req.request.unlinkDocuments();
+  req.request.data = {};
+  req.request.deletedAt = new Date();
+  req.request.save()
+    .then(respondWithResult(res, 200))
+    .catch(handleError(req, res));
+}
+
 /**
  * Generates an html mail body to use as a preview
  */
