@@ -10,35 +10,41 @@
 <section class="section-gestion container-fluid">
   <div class="row">
 
-    <div class="col-md-1" style="width:11%">
+    <div ng-class="{'col-md-1':!showMenu}" style="width:11%" ng-if="!showMenu">
       <div class="row">
           <div class="icon-profil"/>
         </div>
     </div>
 
-    <div class="col-md-11 border-left" style="width:89%">
+    <div ng-class="{'col-md-11 border-left':!showMenu}" style="width:89%">
 
       <div class="breadcrump">
         <div class="breadcrump-section">
-          <div class="first right-arrow active">
+          <div ng-class="{'large': !showMenu}"  class="first right-arrow active">
             <span>Profils</span>
           </div>
         </div>
         <div class="breadcrump-section">
-          <div class="left-arrow last">
+          <div ng-class="{'large': !showMenu}"  class="left-arrow last">
             <span>Demandes</span>
           </div>
         </div>
       </div>
 
-      <div class="container-fluid">
+      <div class="icon-profil centre" ng-if="showMenu" />
+
+      <div class="container-fluid " ng-class="{'border-top': showMenu}">
 
         <h2>Vos profils</h2>
-        <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils">
+        <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="!showMenu">
           <div class="col-md-4 col-icon-profil" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
           <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Créé le {{profil.createdAt | date:'dd/MM/yyyy'}}</div>
           <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Dernière demande {{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
           <div class="col-md-2 col-action" ng-click="gestionProfilCtrl.deleteProfil(profil)">Supprimer</div>
+        </div>
+        <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="showMenu">
+          <div style="width:80%" class="col-xs-11 col-icon-profil " ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
+          <div style="width:20%" class="col-xs-1 col-action" ng-click="gestionProfilCtrl.deleteProfil(profil)"></div>
         </div>
         <div class="row" >
           <div class="col-md-12 col-new" ng-click="gestionProfilCtrl.createProfil()">Créer un nouveau profil</div>

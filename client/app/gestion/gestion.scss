@@ -14,6 +14,9 @@
 
   .icon-profil {
     margin-top: 50px;
+    &.centre {
+      text-align: center;
+    }
     &:before {
       content: "\f007";
       font-family: 'FontAwesome';
@@ -25,6 +28,9 @@
 
   .icon-demande {
     margin-top: 50px;
+    &.centre {
+      text-align: center;
+    }
     &:before {
       content: "\f07c";
       font-family: 'FontAwesome';
@@ -32,6 +38,12 @@
       font-size: 9em;
       color: #FFFFFF;
     }
+  }
+
+  .border-top {
+    border-top-style: solid;
+    border-top-color: #FFFFFF;
+    border-top-width: 2px;
   }
 
   .border-left {
@@ -81,6 +93,15 @@
     padding: 10px 15px;
     font-size: 1.2em;
     color: #4f6083;
+  }
+
+  .retour {
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+    font-size: 1.2em;
+    color: #4f6083;
+    width: 200px;
   }
 
   .col-action {
@@ -201,14 +222,16 @@
       margin-right: 7px;
       position: relative;
       display: block;
-      width: 240px;
       height: 44px;
       padding: 10px 15px;
       float: left;
       background-color: white;
 
-      span {
-        padding: 0 20px;
+      &.large {
+        width: 177px;
+        span {
+          padding: 0 20px;
+        }
       }
 
       &.first {

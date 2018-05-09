@@ -10,36 +10,43 @@
 <section class="section-gestion container-fluid">
   <div class="row">
 
-    <div class="col-md-1" style="width:11%">
+    <div ng-class="{'col-md-1':!showMenu}" style="width:15%" ng-if="!showMenu">
       <div class="col-md-12 col-item"> <a ui-sref="gestion_profil">Retour aux profils</a></div>
       <div class="row">
         <div class="icon-demande"/>
       </div>
     </div>
 
-    <div class="col-md-11 border-left" style="width:89%">
+    <div ng-class="{'col-md-11 border-left':!showMenu}" style="width:85%">
 
       <div class="breadcrump">
         <div class="breadcrump-section">
-          <div class="first right-arrow">
+          <div ng-class="{'large': !showMenu}" class=" first right-arrow">
             <a ui-sref="gestion_profil"><span>Profils</span></a>
           </div>
         </div>
         <div class="breadcrump-section">
-          <div class="left-arrow last active">
+          <div ng-class="{'large': !showMenu}"  class="left-arrow last active">
             <span>Demandes</span>
           </div>
         </div>
       </div>
 
-      <div class="container-fluid">
+      <div class="col-md-12 retour" ng-if="showMenu"> <a ui-sref="gestion_profil">Retour aux profils</a></div>
+      <div class="icon-demande centre" ng-if="showMenu"/>
+
+      <div class="container-fluid" ng-class="{'border-top': showMenu}">
 
         <h2>Demande de {{ ::gestionDemandeCtrl.profil.getTitle() }} en cours</h2>
-        <div class="row" ng-if="gestionDemandeCtrl.currentDemande">
+        <div class="row" ng-if="gestionDemandeCtrl.currentDemande && !showMenu">
           <div class="col-md-4 col-icon-demande" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.currentDemande.shortId }}</div>
           <div class="col-md-3 col-item" ng-click="gestionDemandeCtrl.goCurrentDemande()">Créé le {{gestionDemandeCtrl.currentDemande.createdAt | date:'dd/MM/yyyy'}}</div>
           <div class="col-md-3 col-item" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.showStatus(gestionDemandeCtrl.currentDemande) }}</div>
           <div class="col-md-2 col-action" ng-click="gestionDemandeCtrl.deleteCurrentDemande()">Supprimer</div>
+        </div>
+        <div class="row" ng-if="gestionDemandeCtrl.currentDemande && showMenu">
+          <div style="width:80%" class="col-xs-11 col-icon-demande" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.currentDemande.shortId }}</div>
+          <div style="width:20%" class="col-xs-1 col-action" ng-click="gestionDemandeCtrl.deleteCurrentDemande()"></div>
         </div>
         <div class="row">
           <div class="col-md-12" ng-class="{'col-new': !gestionDemandeCtrl.currentDemande, 'col-new-desabled': gestionDemandeCtrl.currentDemande}" ng-click="gestionDemandeCtrl.createDemande()">Créer une nouvelle demande *</div>

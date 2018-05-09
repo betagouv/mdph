@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+  .controller('LayoutCtrl', function($window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+    let sizeMaxToReduceMenu = 500;
+
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
     this.isLoggedIn = Auth.isLoggedIn;
@@ -18,6 +20,19 @@ angular.module('impactApp')
       $scope.navUserId = userId;
       $scope.navStatus = status;
     };
+
+    $scope.size = $window.innerWidth;
+    $scope.showMenu = $window.innerWidth < sizeMaxToReduceMenu;
+    $scope.toggle = null;
+
+    var wind = angular.element($window).on('resize', function() {
+      $scope.showMenu = $window.innerWidth < sizeMaxToReduceMenu;
+      $scope.size = $window.innerWidth;
+    });
+
+    wind.bind('resize', function() {
+      $scope.$apply();
+    });
 
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
