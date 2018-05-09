@@ -9,6 +9,12 @@ angular.module('impactApp')
       update: {
         method: 'PUT'
       },
+      partialDelete: {
+        method: 'PUT',
+        params: {
+          controller: 'partial'
+        }
+      },
       transfer: {
         method: 'POST',
         params: {

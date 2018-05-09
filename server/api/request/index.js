@@ -26,6 +26,7 @@ router.post('/:shortId/action', isAgentOrOwner(), controller.saveAction);
 router.get('/:shortId/history', isAgentOrOwner(), controller.getHistory);
 router.get('/:shortId/recapitulatif', isAgentOrOwner(), controller.getRecapitulatif);
 router.post('/:shortId/evaluateurs', hasRole('adminMdph'), controller.saveEvaluateurs);
+router.put('/:shortId/partial',  hasRole('adminMdph'), controller.partialDelete);
 
 router.get('/:shortId/pdf/:type', isAgentOrOwner(), controller.getPdf);
 
