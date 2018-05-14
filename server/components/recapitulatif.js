@@ -23,6 +23,13 @@ function rebuildAnswersFromModel(question, questionAnswers) {
       }
 
       return [{label: label}];
+    case 'pourcentage':
+      if (!questionAnswers) {
+        return [];
+      }
+
+      return [{ label: questionAnswers + ' %'}];
+
     case 'radio':
       var constantAnswer = _.find(question.answers, {model: questionAnswers});
       if (!constantAnswer) {
@@ -133,6 +140,15 @@ function computeAnswers(question, trajectoireAnswers) {
           if(detail){
             answer.detail = 'Depuis le ';
             answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'fraisInternat':
+          if(detail !== undefined){
+            if(detail){
+              answer.detail = 'Les frais de séjour sont intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            } else {
+              answer.detail = 'Les frais de séjour ne sont pas intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            }
           }
           break;
         case 'date&categorie':

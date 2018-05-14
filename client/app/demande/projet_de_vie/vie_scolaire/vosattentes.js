@@ -82,7 +82,7 @@ angular.module('impactApp')
       authorized: ['user'],
       resolve: {
         question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'vieScolaireAutresRenseignements', profile);
+          return QuestionService.get(section, 'autresRenseignements', profile);
         },
 
         nextStep: function(saveSection) {

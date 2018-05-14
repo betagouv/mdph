@@ -4,8 +4,6 @@ import Promise from 'bluebird';
 import {indexBy} from 'lodash';
 import prestations from './prestations.json';
 
-var prestationsById = indexBy(prestations, 'id');
-
 export function index(req, res) {
   return res.json(prestations);
 }
@@ -21,11 +19,15 @@ export function populateAndSortPrestations(request) {
     }
 
     if(request.data.prestations && request.data.prestations.length > 0){
-      request.data.detailPrestations = request.data.prestations.map(function(value) {
-        var prestation = prestationsById[value.code];
-        prestation.precision = value.precision;
-        return prestation;
-      });
+      let prestationsByCode = indexBy(request.data.prestations, 'code');
+      request.data.detailPrestations = prestations
+        .filter(current => prestationsByCode[current.id])
+        .map(function(value) {
+          if (prestationsByCode[value.id].precision !== undefined) {
+            value.precision = prestationsByCode[value.id].precision;
+          }
+          return value;
+        });
     }
 
     resolve(request);

@@ -3,6 +3,14 @@
 angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, Auth, currentUser) {
     $scope.errors = {};
+
+    if (currentUser.unconfirmed === true) {
+      User.get(currentUser._id).$promise
+      .then(function(user) {
+        currentUser.unconfirmed = user.unconfirmed;
+      });
+    }
+
     $scope.user = currentUser;
 
     $scope.changePassword = function(form) {

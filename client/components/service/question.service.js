@@ -36,9 +36,19 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    var compileTitle = function(question, demande) {
-      if (DemandeService.estMineur(demande) && question.titleRep) {
-        return loadAshCompile(question.titleRep, demande);
+    var compileDetailLabel = function(answer, profile) {
+      if (DemandeService.estMineur(profile)) {
+        if (answer.detailLabelRep) {
+          return answer.detailLabelRep;
+        }
+      }
+
+      return answer.detailLabel;
+    };
+
+    var compileTitle = function(question, profile) {
+      if (DemandeService.estMineur(profile) && question.titleRep) {
+        return loadAshCompile(question.titleRep, profile);
       }
 
       return question.titleDefault;
@@ -69,6 +79,10 @@ angular.module('impactApp')
         angular.forEach(question.answers, function(answer) {
           var label = compileLabel(answer, demande);
           answer.label = capitaliseFirstLetter(label);
+
+          if (answer.detailLabel) {
+            answer.detailLabel = compileDetailLabel(answer, profile);
+          }
 
           if (answer.placeholder) {
             var placeholder = compilePlaceholder(answer, demande);
