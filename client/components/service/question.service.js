@@ -81,7 +81,7 @@ angular.module('impactApp')
           answer.label = capitaliseFirstLetter(label);
 
           if (answer.detailLabel) {
-            answer.detailLabel = compileDetailLabel(answer, profile);
+            answer.detailLabel = compileDetailLabel(answer, demande);
           }
 
           if (answer.placeholder) {
