@@ -37,6 +37,8 @@ angular.module('impactApp').controller('DemandeCategoryCtrl', function($state, D
     }
   };
 
+  this.active = this.options.model === 'identites.beneficiaire' || DemandeService.getBeneficiaireCompletion(this.demande);
+
   // les sections restes grises même completes lorsque le bénéficiaire n'est pas renseigné
-  this.completion = (this.options.model === 'identites.beneficiaire' || DemandeService.getBeneficiaireCompletion(this.demande)) && (this.completion || this.computeCompletion());
+  this.completion = this.active && (this.completion || this.computeCompletion());
 });
