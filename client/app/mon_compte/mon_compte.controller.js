@@ -4,12 +4,13 @@ angular.module('impactApp')
   .controller('MonCompteCtrl', function($scope, Auth, currentUser) {
     $scope.errors = {};
     $scope.user = currentUser;
+    $scope.forms = $state.current.data.forms;
 
     $scope.changePassword = function(form) {
       $scope.passwordSubmitted = true;
       if (form.$valid) {
         Auth
-          .changePassword($scope.user.oldPassword, $scope.user.newPassword)
+          .changePassword($scope.user.oldPassword, $scope.user.password)
           .then(function() {
             $scope.errors.password = '';
             $scope.passwordMessage = 'Votre mot de passe a été modifié.';
