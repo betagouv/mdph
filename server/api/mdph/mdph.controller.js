@@ -252,7 +252,7 @@ export function showRequestsByStatus(req, res) {
 
       const unnassignedRequests = Request
         .aggregate([
-          {$match: {mdph: req.mdph.zipcode, evaluators: { $exists: false }}},
+          {$match: {mdph: req.mdph.zipcode, evaluators: { $exists: false }, deletedAt: { $exists: false }}},
           {$group: {_id: '$status', count: {$sum: 1} }}
         ])
         .exec()
@@ -260,7 +260,7 @@ export function showRequestsByStatus(req, res) {
 
       const allRequests = Request
         .aggregate([
-          {$match: {mdph: req.mdph.zipcode}},
+          {$match: {mdph: req.mdph.zipcode, deletedAt: { $exists: false }}},
           {$group: {_id: '$status', count: {$sum: 1} }}
         ])
         .exec()

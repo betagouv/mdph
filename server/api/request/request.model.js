@@ -46,6 +46,7 @@ var RequestSchema = new Schema({
   createdAt:      Date,
   submittedAt:    Date,
   updatedAt:      Date,
+  deletedAt:      Date,
   status:         { type: String, enum: ['en_cours', 'emise', 'validee', 'en_attente_usager', 'irrecevable'], default: 'en_cours' },
   data:           { type: DataSchema, default: {} },
   comments:       { type: String },
@@ -78,18 +79,21 @@ RequestSchema.post('save', function(doc) {
 });
 
 RequestSchema.pre('remove', function(next) {
-  if (this.data.documents && Array.isArray(this.data.documents)) {
-    this.data.documents.forEach(function(document) {
-      if (document.path) {
-        fs.unlink(document.path);
-      }
-    });
-  }
-
+  this.unlinkDocuments();
   next();
 });
 
 RequestSchema.methods = {
+  unlinkDocuments() {
+    if (this.data.documents && Array.isArray(this.data.documents)) {
+      this.data.documents.forEach(function(document) {
+        if (document.path) {
+          fs.unlink(document.path);
+        }
+      });
+    }
+  },
+
   saveActionLog(action, user, log, params) {
     return ActionModel.create({
       action: action,
@@ -134,11 +138,11 @@ RequestSchema.methods = {
   },
 
   getInvalidDocuments() {
-    if (!this.documents) {
+    if (!this.data.documents) {
       return [];
     }
 
-    return _.filter(this.documents, 'isInvalid');
+    return _.filter(this.data.documents, 'isInvalid');
   },
 
   getInvalidDocumentTypes() {
@@ -152,14 +156,14 @@ RequestSchema.methods = {
   },
 
   getNonPresentAskedDocumentTypes() {
-    if (!this.askedDocumentTypes || this.askedDocumentTypes.length === 0) {
+    if (!this.data.askedDocumentTypes || this.data.askedDocumentTypes.length === 0) {
       return [];
     }
 
-    return _.reduce(this.askedDocumentTypes, (types, currentType) => {
+    return _.reduce(this.data.askedDocumentTypes, (types, currentType) => {
       let found = false;
 
-      _.forEach(this.documents, (document) => {
+      _.forEach(this.data.documents, (document) => {
         if (document.type === currentType) {
           found = true;
         }

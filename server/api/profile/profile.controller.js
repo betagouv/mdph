@@ -1,5 +1,5 @@
 'use strict';
-
+import _ from 'lodash';
 import Profile from './profile.model';
 import Request from '../request/request.model';
 import * as RequestController from '../request/request.controller';
@@ -54,11 +54,44 @@ export function create(req, res) {
 }
 
 export function destroy(req, res) {
-  req.profile
-    .remove()
-    .then(() => res.sendStatus(204))
-    .catch(handleError(req, res));
-}
+  // chercher toutes les demandes du profil puis les clasifier par état en_cours ou non
+  Request
+  .find({profile: req.profile._id}, '_id status data')
+  .exec()
+  .then ( requests => {
+    if(requests){
+      let requestsEnCours = _.filter(requests, function(request) {
+        return request.status === 'en_cours';
+      });
+      let requestsAutre = _.filter(requests, function(request) {
+        return  request.status !== 'en_cours';
+      });
+
+      // suppression de la demande en_cours si il y en a une
+      if (requestsEnCours.length > 0) {
+        requestsEnCours[0].remove()
+        .catch(handleError(req, res));
+      }
+
+      // s'il existe au moins une demande autre que en_cours alors suppression partielle
+      // maj du profil en ajoutant une date de suppression
+      let profile = req.profile;
+      if (requestsAutre && requestsAutre.length >0) {
+        profile.deletedAt = Date.now();
+        profile.save()
+        .then(respondWithResult(res))
+        .catch(handleError(req, res));
+
+      // suppression totale du profil
+      } else {
+        profile.remove()
+        .then(respondWithResult(res))
+        .catch(handleError(req, res));
+      }
+    }
+  }
+  )
+ }
 
 export function indexRequests(req, res) {
   let profile = req.profile;

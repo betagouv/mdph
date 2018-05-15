@@ -83,6 +83,14 @@ describe('SignupCtrl', function() {
       password: {
         $modelValue: '1234',
         $setValidity() {}
+      },
+      contact: {
+        $modelValue: '',
+        $setValidity() {}
+      },
+      emailSecours: {
+        $modelValue: 'your@email.com',
+        $setValidity() {}
       }
     };
 
@@ -107,6 +115,7 @@ describe('SignupCtrl', function() {
       });
 
       it('should create the user, its profile and redirect to the page beneficiaire', function() {
+        $scope.startTime = new Date().getTime() - 100000;
         $scope.register(fakeForm);
         $scope.$apply();
 
@@ -143,6 +152,7 @@ describe('SignupCtrl', function() {
       });
 
       it('should explicit the error on the form', function() {
+        $scope.startTime = new Date().getTime() - 100000;
         $scope.register(fakeForm);
         $scope.$apply();
 

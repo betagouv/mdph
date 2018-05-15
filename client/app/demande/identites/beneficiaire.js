@@ -58,6 +58,12 @@ angular.module('impactApp')
               identite.updatedAt = Date.now();
               demande.data.identites.beneficiaire = identite;
               RequestResource.update(demande).$promise.then(function() {
+                if (!$scope.demandeCtrl.profile.recipient) {
+                  $scope.demandeCtrl.profile.recipient = {};
+                }
+
+                $scope.demandeCtrl.profile.recipient.firstname = demande.data.identites.beneficiaire.prenom;
+                $scope.demandeCtrl.profile.recipient.lastname = demande.data.identites.beneficiaire.nom;
                 if (demande.data.identites.beneficiaire.numero_secu_enfant) {
                   $state.go('^.autorite');
                 } else {

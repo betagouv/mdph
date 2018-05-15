@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('GestionProfilCtrl', function($http, $state, currentMdph, currentUser, profils, ProfileResource) {
+  .controller('GestionProfilCtrl', function($http, $state, $modal,toastr, currentMdph, currentUser, profils, ProfileResource) {
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
 
@@ -21,37 +21,40 @@ angular.module('impactApp')
       });
     };
 
-    this.deleteProfil = function() {
-      // var modalInstance = $modal.open({
-      //   templateUrl: 'components/mes_profils/delete_confirmation.html',
-      //   controller: 'ModalDeleteProfileCtrl',
-      //   resolve: {
-      //     profile: () => {
-      //       return this.profile;
-      //     },
+    this.deleteProfil = function(profil) {
+      var deleteProfilModalInstance = $modal.open({
+        templateUrl: 'app/gestion/profil/delete_confirmation.html',
+        controller: function($scope, $modalInstance, demandes) {
+          this.profil = profil;
+          this.demandes = demandes;
+          this.cancel = function() {
+            $modalInstance.close(false);
+          };
 
-      //     requests: ($http) => {
-      //       return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + this.profile._id + '/requests').then(function(result) {
-      //         return _.filter(result.data, function(request) {
-      //           return request.status !== 'en_cours';
-      //         });
-      //       });
-      //     }
-      //   }
-      // });
+          this.ok = function() {
+            $modalInstance.close(true);
+          };
+        },
 
-      // modalInstance.result.then((result) => {
-      //   if (result) {
-      //     profile.$delete({userId: this.currentUser._id}, function success() {
-      //       toastr.success('Le profil "' + profile.getTitle() + '" a bien été supprimé.', 'Succès');
-      //       $state.go('departement');
-      //     },
+        controllerAs: 'deleteProfilConfirmationCtrl',
+        resolve: {
+          demandes: ($http) => {
+            return $http.get('/api/users/' + this.currentUser._id + '/profiles/' + profil._id + '/requests').then(function(result) {
+              return _.filter(result.data, function(request) {
+                return request.status !== 'en_cours';
+              });
+            });
+          }
+        }
+      });
 
-      //     function error() {
-      //       toastr.error('Impossible de supprimer le profil "' + profile.getTitle() + '"', 'Erreur');
-      //     });
-      //   }
-      // });
+      deleteProfilModalInstance.result.then((result) => {
+        if (result) {
+          ProfileResource.remove({userId: currentUser._id, id: profil._id}).$promise.then(function() {
+            return $state.go('gestion_profil', {}, {reload: true});
+          });
+        }
+      });
     };
 
     this.goProfil = function(profil) {
@@ -76,16 +79,3 @@ angular.module('impactApp')
     };
 
   });
-
-// .controller('ModalDeleteProfileCtrl', function($scope, $modalInstance, profile, requests) {
-//   $scope.profile = profile;
-//   $scope.requests = requests;
-
-//   $scope.cancel = function() {
-//     $modalInstance.close(false);
-//   };
-
-//   $scope.ok = function() {
-//     $modalInstance.close(true);
-//   };
-// });

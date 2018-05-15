@@ -1,0 +1,102 @@
+.section-blue {
+  @extend .section-main;
+  background-color: $lighter-blue;
+  max-width: 100% !important;
+
+  .row {
+    max-width: 1170px;
+    margin: auto;
+  }
+
+  h2 {
+    color: white;
+    margin-top: 0;
+  }
+
+  .card {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+
+    .p {
+      color: #6b6b6b;
+    }
+
+    .fa {
+      color: #8b8b8b;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: #444;
+    }
+  }
+}
+
+.section-padding {
+  padding: 50px 0;
+}
+
+.bg {
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  width: 100%;
+}
+
+#form-subscribe {
+  margin: 0 auto;
+  max-width: 480px;
+  width: 100%;
+
+  label {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .input-container {
+    display: flex;
+  }
+
+  input[type=email] {
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    background-color: #f6f8fe;
+    font: inherit;
+    flex-grow: 1;
+    line-height: 1.6;
+    font-size: 1.3em;
+    color: $light-blue;
+  }
+
+  input[type=submit],
+  span.loading {
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    background-color: $light-blue;
+    font: inherit;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 1.3em;
+    color: #f6f8fe;
+  }
+
+  div.thankyou {
+    text-align: center;
+    flex-grow: 1;
+    padding: 16px 20px;
+    color: $light-blue;
+    line-height: 1.6;
+    font-size: 1.3em;
+  }
+}
+
+.leaflet-container a {
+  color: $light-blue;
+}

@@ -5,7 +5,6 @@ angular.module('impactApp')
     $stateProvider
       .state('dashboard.workflow.list', {
         url: '/:userId/:status',
-        parent: 'dashboard.workflow',
         templateUrl: 'app/dashboard/workflow/list/list.html',
         controller: 'WorkflowListCtrl',
         controllerAs: 'workflowListCtrl',
@@ -19,7 +18,11 @@ angular.module('impactApp')
           },
 
           requests: function(MdphResource, currentMdph, userId, status) {
-            return MdphResource.queryRequests({zipcode: currentMdph.zipcode, controllerid: userId, status}).$promise;
+            return MdphResource.queryRequests({zipcode: currentMdph.zipcode, controllerid: userId, status}).$promise.then(
+              function(requests) {
+                return _.filter(requests, (request) => request.deletedAt === undefined);
+              }
+            );
           },
 
           groupedByAge: function(RequestService, requests) {

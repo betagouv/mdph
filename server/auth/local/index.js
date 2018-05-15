@@ -9,6 +9,13 @@ var router = new Router();
 router.post('/', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     var error = err || info;
+
+    if (error && error.message === 'locked') {
+      var lockTime = ((error.lockUntil - Date.now()) / (60 * 1000)).toFixed();
+      var message = "Vous avez saisi un email ou un mot de passe incorrect " + error.loginAttempts + " fois. Vous devez attendre " + lockTime + " minutes avant de recommencer."
+      return res.status(403).json({message: message});
+    }
+
     if (error) return res.status(401).json(error);
     if (!user) return res.status(404).json({message: 'Une erreur est survenue, veuillez réessayer.'});
 

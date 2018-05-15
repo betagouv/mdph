@@ -1,8 +1,16 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($state, $scope, Auth, currentUser) {
+  .controller('MonCompteCtrl', function($scope, User, Auth, currentUser) {
     $scope.errors = {};
+
+    if (currentUser.unconfirmed === true) {
+      User.get(currentUser._id).$promise
+      .then(function(user) {
+        currentUser.unconfirmed = user.unconfirmed;
+      });
+    }
+
     $scope.user = currentUser;
     $scope.forms = $state.current.data.forms;
 

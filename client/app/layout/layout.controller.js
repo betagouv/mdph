@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+  .controller('LayoutCtrl', function($window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+    let sizeMaxToReduceMenu = 500;
+
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
     this.isLoggedIn = Auth.isLoggedIn;
@@ -19,6 +21,19 @@ angular.module('impactApp')
       $scope.navStatus = status;
     };
 
+    $scope.size = $window.innerWidth;
+    $scope.showMenu = $window.innerWidth < sizeMaxToReduceMenu;
+    $scope.toggle = null;
+
+    var wind = angular.element($window).on('resize', function() {
+      $scope.showMenu = $window.innerWidth < sizeMaxToReduceMenu;
+      $scope.size = $window.innerWidth;
+    });
+
+    wind.bind('resize', function() {
+      $scope.$apply();
+    });
+
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
     } else {
@@ -30,12 +45,22 @@ angular.module('impactApp')
     };
 
     this.gestionLinkValue = function() {
-      ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
-        if (profilList.length === 1) {
-          return $state.go('gestion_demande', {profilId: profilList[0]._id});
-        }
+      if (Auth.hasRole(currentUser, 'user')) {
 
-        return $state.go('gestion_profil', {}, {reload: true});
-      });
+        ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
+          if (profilList.length === 1) {
+            return $state.go('gestion_demande', {profilId: profilList[0]._id});
+          }
+
+          return $state.go('gestion_profil', {}, {reload: true});
+        });
+      } else if (Auth.hasRole(currentUser, 'adminMdph')) {
+
+        return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode, userId:'me', status:'emise'}, {reload: true});
+      } else if (Auth.hasRole(currentUser, 'admin')) {
+
+        return $state.go('admin.main', {}, {reload: true});
+      }
+
     };
   });
