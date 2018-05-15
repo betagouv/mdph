@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($scope, User, Auth, currentUser) {
+  .controller('MonCompteCtrl', function($state, $scope, User, Auth, currentUser) {
     $scope.errors = {};
 
     if (currentUser.unconfirmed === true) {
