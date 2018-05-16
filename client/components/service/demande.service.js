@@ -118,27 +118,7 @@ angular.module('impactApp')
     }
 
     function getBeneficiaireCompletion(demande) {
-      if (!demande.data || !demande.data.identites || !demande.data.identites.beneficiaire) {
-        return false;
-      }
-
-      return true;
-    }
-
-    function getCompletion(demande) {
-      if (!getBeneficiaireCompletion(demande)) {
-        return false;
-      }
-
-      if (autoriteObligatoire(demande) && !demande.data.identites.autorite) {
-        return false;
-      }
-
-      if (representantObligatoire(demande) && !demande.data.identites.representant) {
-        return false;
-      }
-
-      if (!demande.data.vie_quotidienne || !demande.data.vie_quotidienne.__completion) {
+      if (!demande.data || !demande.data.identites || !demande.data.identites.beneficiaire || !demande.data.identites.beneficiaire.nom) {
         return false;
       }
 
@@ -232,7 +212,6 @@ angular.module('impactApp')
       estMineur: _estMineur,
       estEnfant: _estEnfant,
       getBeneficiaireCompletion,
-      getCompletion,
       getMissingSection,
       needUploadCV,
       getAskedDocumentTypes,
