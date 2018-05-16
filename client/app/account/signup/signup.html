@@ -2,37 +2,25 @@
 
   <h1>Inscrivez-vous pour commencer votre démarche</h1>
 
-  <form class="form" name="form" ng-submit="register(form)" novalidate>
-    <div class="form-group required" ng-class="{ 'has-error': form.email.$invalid && form.$submitted }">
+  <form class="form" name="forms.form" ng-submit="register(forms.form)" novalidate>
+    <div class="form-group required" ng-class="{ 'has-error': forms.form.email.$invalid && forms.form.$submitted }">
       <label for="email" class="control-label">Adresse email</label>
 
       <input id="email" type="email" name="email" class="form-control" ng-model="user.email"
              required
-             ng-change="resetMongooseError(form, 'email')"
+             ng-change="resetMongooseError(forms.form, 'email')"
              mongoose-error/>
 
-      <div ng-messages="form.email.$error" ng-if="form.$submitted">
+      <div ng-messages="forms.form.email.$error" ng-if="forms.form.$submitted">
        <p class="help-block" ng-message='required'>Veuillez entrer votre adresse e-mail.</p>
        <p class="help-block" ng-message='email'> Cet email n'est pas valide.</p>
        <p class="help-block" ng-message="mongoose">{{ errors.email }}</p>
       </div>
     </div>
 
-    <div class="form-group required" ng-class="{ 'has-error': form.password.$invalid && form.$submitted }">
-      <label for="password" class="control-label">Créez votre mot de passe</label>
-      <input id="password" type="{{inputType}}" name="password"
-        class="form-control" ng-model="user.password" required mongoose-error zxcvbn="passwordStrength" zx-min-score="2">
+    <password-field user="user" libelle="Créez votre mot de passe"/>
 
-      <div ng-messages="form.password.$error" ng-if="form.$submitted">
-        <p id="error-message" ng-message="passwordStrength" class="help-block">Votre mot de passe est d'une robustesse trop faible</p>
-      </div>
-
-      <password-strength-bar password="form.password.$viewValue"></password-strength-bar>
-
-      <input type="checkbox" id="checkbox" ng-model="hidePassword" ng-click="toggleType()" />
-      <label for="checkbox">Afficher le mot de passe</label>
-
-    </div>
+    <password-rules-alert/>
 
     <div class="form-group required" ng-show="show">
       <label for="emailSecours" class="control-label">Adresse email de secours</label>

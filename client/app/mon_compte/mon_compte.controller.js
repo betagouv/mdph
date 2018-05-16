@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MonCompteCtrl', function($scope, User, Auth, currentUser) {
+  .controller('MonCompteCtrl', function($state, $scope, User, Auth, currentUser) {
     $scope.errors = {};
 
     if (currentUser.unconfirmed === true) {
@@ -12,12 +12,13 @@ angular.module('impactApp')
     }
 
     $scope.user = currentUser;
+    $scope.forms = $state.current.data.forms;
 
     $scope.changePassword = function(form) {
       $scope.passwordSubmitted = true;
       if (form.$valid) {
         Auth
-          .changePassword($scope.user.oldPassword, $scope.user.newPassword)
+          .changePassword($scope.user.oldPassword, $scope.user.password)
           .then(function() {
             $scope.errors.password = '';
             $scope.passwordMessage = 'Votre mot de passe a été modifié.';

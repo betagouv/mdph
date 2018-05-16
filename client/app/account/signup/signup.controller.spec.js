@@ -8,7 +8,13 @@ describe('SignupCtrl', function() {
     zipcode: 'test'
   };
   let $state = {
-    go() {}
+    go() {},
+
+    current: {
+      data: {
+        forms: {}
+      }
+    }
   };
 
   beforeEach(function() {
@@ -28,7 +34,7 @@ describe('SignupCtrl', function() {
 
   describe('toggleType', function() {
     beforeEach(function() {
-      $controller('SignupCtrl', { $scope, currentMdph });
+      $controller('SignupCtrl', { $scope, $state, currentMdph });
     });
 
     describe('password to text', function() {
@@ -56,7 +62,7 @@ describe('SignupCtrl', function() {
     };
 
     beforeEach(function() {
-      $controller('SignupCtrl', { $scope, currentMdph });
+      $controller('SignupCtrl', { $scope, $state, currentMdph });
       spyOn(fakeForm.fakeField, '$setValidity');
     });
 
