@@ -4,7 +4,7 @@
 
     <ul class="answers">
       <div class="answer" ng-repeat="answer in question.answers">
-        <div ng-if="(!answer.onlyAdult || (answer.onlyAdult && profilCtrl.estAdulte)) && (!answer.onlyChild || (answer.onlyChild && !profilCtrl.estAdulte))">
+        <div ng-if="(!answer.onlyAdult || (answer.onlyAdult && demandeCtrl.estAdulte)) && (!answer.onlyChild || (answer.onlyChild && !demandeCtrl.estAdulte))">
             <li>
             <label for="{{question.model}}-{{answer.model}}" class="btn-answer"
               ng-class="{'active': sectionModel[question.model][answer.model]}">

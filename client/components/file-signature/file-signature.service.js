@@ -7,17 +7,20 @@ angular.module('impactApp')
         var deferred = $q.defer();
         var fileReader = new FileReader();
         fileReader.onloadend = function(e) {
-          const MAGIC_NUMBER = { pdf: {size: 4, number: '25504446'}, png: {size: 8, number: '89504E47DA1AA'}, jpg: {size: 4, number: 'FFD8FFE0'}};
+          const MAGIC_NUMBER = { pdf: [{size: 4, number: '25504446'}], png: [{size: 8, number: '89504E47DA1AA'}], jpg: [{size: 4, number: 'FFD8FFE0'}, {size: 4, number: 'FFD8FFE1'}, {size: 4, number: 'FFD8FFE8'}]};
           extentions.forEach(function(extention) {
-            var arr = (new Uint8Array(e.target.result)).subarray(0, MAGIC_NUMBER[extention].size);
-            var header = '';
-            for (var i = 0; i < arr.length; i++) {
-              header += arr[i].toString(16);
-            }
+            MAGIC_NUMBER[extention].forEach(function(magic) {
+              var arr = (new Uint8Array(e.target.result)).subarray(0, magic.size);
+              var header = '';
+              for (var i = 0; i < arr.length; i++) {
+                header += arr[i].toString(16);
+              }
 
-            if (header.toLocaleUpperCase() === MAGIC_NUMBER[extention].number) {
-              deferred.resolve(true);
-            }
+              if (header.toLocaleUpperCase() === magic.number) {
+                deferred.resolve(true);
+              }
+
+            });
           });
 
           deferred.resolve(false);

@@ -1,0 +1,26 @@
+<form name="questionForm" novalidate>
+  <div class="question-legend" for="inputid" ng-bind-html="question.title"></div>
+
+  <p class="question-help" ng-show="question.help" ng-bind-html="question.help"></p>
+
+  <div class="form-group">
+    <input type="number" name="pourcentage" id="inputid" class="form-control" ng-model="sectionModel[question.model]"
+           min="0" max="100" placeholder="{{question.placeholder}}" ng-required="!question.isOptionnal">
+
+    <p class="help-block">Dernière réponse enregistrée le {{ previousModel.updatedAt | moment }}: {{ previousModel[question.model] }}</p>
+
+    <div ng-messages="questionForm.pourcentage.$error" ng-if="questionForm.showError">
+      <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
+      <div class="help-block" ng-message='number,min,max'><i class="fa fa-warning"></i> Veuillez saisir un nombre entre 0 et 100.</div>
+    </div>
+  </div>
+
+  <nav-steps
+    ng-hide="hideSteps"
+    prev-step="prevStep"
+    next-step="nextStep"
+    question-form="questionForm"
+    is-first-question="isFirstQuestion"
+    is-last-question="isLastQuestion" />
+
+</form>
