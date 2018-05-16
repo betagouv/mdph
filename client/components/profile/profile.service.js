@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('ProfileService', function ProfileService(estAdulte, estMineur, RequestService) {
+.factory('ProfileService', function ProfileService(estAdulte, estMineur, estEnfant, RequestService) {
     function _estMineur(profile) {
       if (profile.identites && profile.identites.beneficiaire) {
         return estMineur(profile.identites.beneficiaire.dateNaissance);
@@ -18,6 +18,22 @@ angular.module('impactApp')
       }
     }
 
+    function _estEnfant(profile) {
+      if (profile && profile.identites && profile.identites.beneficiaire) {
+        return estEnfant(profile.identites.beneficiaire.dateNaissance);
+      } else {
+        return false;
+      }
+    }
+
+    function representantObligatoire(profile) {
+      return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.protection === 'true';
+    }
+
+    function autoriteObligatoire(profile) {
+      return profile.identites && profile.identites.beneficiaire && profile.identites.beneficiaire.numero_secu_enfant;
+    }
+
     function getMissingSection(profile, request, user) {
       const missingSections = [];
 
@@ -29,8 +45,12 @@ angular.module('impactApp')
         missingSections.push('beneficiaire');
       }
 
-      if (_estMineur(profile) && (!profile.identites || !profile.identites.autorite)) {
+      if (autoriteObligatoire(profile) && !profile.identites.autorite) {
         missingSections.push('autorite');
+      }
+
+      if (representantObligatoire(profile) && !profile.identites.representant) {
+        missingSections.push('representant');
       }
 
       if (!profile.vie_quotidienne || !profile.vie_quotidienne.__completion) {
@@ -49,7 +69,11 @@ angular.module('impactApp')
         return false;
       }
 
-      if (_estMineur(profile) && !profile.identites.autorite) {
+      if (autoriteObligatoire(profile) && !profile.identites.autorite) {
+        return false;
+      }
+
+      if (representantObligatoire(profile) && !profile.identites.representant) {
         return false;
       }
 
@@ -93,9 +117,12 @@ angular.module('impactApp')
 
       estAdulte: _estAdulte,
       estMineur: _estMineur,
+      estEnfant: _estEnfant,
       getCompletion,
       getMissingSection,
       needUploadCV,
-      getAskedDocumentTypes
+      getAskedDocumentTypes,
+      representantObligatoire,
+      autoriteObligatoire
     };
   });

@@ -32,7 +32,7 @@
   </ul>
 </nav>
 
-<div class="main-content">
+<div ng-class="{'dashbord-content': layoutctrl.shouldShowDashboard()}">
   <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" current-user="layoutctrl.getCurrentUser()" mdph="layoutctrl.currentMdph" />
 
   <main>

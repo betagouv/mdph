@@ -2,7 +2,6 @@
 
 import {Router} from 'express';
 import * as controller from './profile.controller';
-import * as validator from './profile.validator';
 import Profile from './profile.model';
 import { canAccessProfileList, canAccessProfile } from '../../auth/auth.service';
 
@@ -14,7 +13,7 @@ router.get('/me', canAccessProfileList(), controller.showMe);
 router.get('/count', canAccessProfileList(), controller.profileCount);
 router.get('/:profileId', canAccessProfile(), controller.show);
 
-router.post('/:profileId', canAccessProfile() && validator.check(), controller.update);
+router.post('/:profileId', canAccessProfile(), controller.update);
 router.delete('/:profileId', canAccessProfile(), controller.destroy);
 
 router.get('/:profileId/requests', canAccessProfile(), controller.indexRequests);

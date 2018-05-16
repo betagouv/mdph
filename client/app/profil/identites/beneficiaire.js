@@ -29,6 +29,16 @@ angular.module('impactApp')
           $scope.getAdress = AdressService.getAdress;
           $scope.fillAdressOnSelect = AdressService.fillAdressOnSelect;
           $scope.maskOptions = {clearOnBlur: false, allowInvalidValue: true};
+          $scope.estAdulte = ProfileService.estAdulte(profile);
+          $scope.estEnfant = ProfileService.estEnfant(profile);
+
+          $scope.majAdulteEnfant = function() {
+            $scope.estAdulte = ProfileService.estAdulte(profile);
+            $scope.estEnfant = ProfileService.estEnfant(profile);
+            if ($scope.estAdulte) {
+              identite.numero_secu_enfant = '';
+            }
+          };
 
           if (!identite.email) {
             identite.email = currentUser.email;
@@ -46,10 +56,18 @@ angular.module('impactApp')
               identite.updatedAt = Date.now();
               profile.identites.beneficiaire = identite;
               profile.$save({userId: currentUser._id}, function() {
-                if (ProfileService.estAdulte(profile)) {
-                  $state.go('^.vie_quotidienne');
-                } else {
+                if (profile.identites.beneficiaire.numero_secu_enfant) {
                   $state.go('^.autorite');
+                } else {
+                  if (profile.identites.beneficiaire.aide === 'true') {
+                    $state.go('profil.autre');
+                  } else {
+                    if (profile.identites.beneficiaire.protection === 'true') {
+                      $state.go('^.representant');
+                    } else {
+                      $state.go('profil.situations_particulieres');
+                    }
+                  }
                 }
               });
             }
@@ -57,3 +75,4 @@ angular.module('impactApp')
         }
       });
   });
+

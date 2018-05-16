@@ -10,6 +10,7 @@ import { populateAndSortPrestations } from '../api/prestation/prestation.control
 var sections = require('../api/sections/sections.json');
 
 function rebuildAnswersFromModel(question, questionAnswers) {
+
   switch (question.type){
     case 'date':
       return [{label: moment(questionAnswers, moment.ISO_8601).format('DD/MM/YYYY')}];
@@ -22,6 +23,13 @@ function rebuildAnswersFromModel(question, questionAnswers) {
       }
 
       return [{label: label}];
+    case 'pourcentage':
+      if (!questionAnswers) {
+        return [];
+      }
+
+      return [{ label: questionAnswers + ' %'}];
+
     case 'radio':
       var constantAnswer = _.find(question.answers, {model: questionAnswers});
       if (!constantAnswer) {
@@ -77,6 +85,15 @@ function rebuildAnswersFromModel(question, questionAnswers) {
         label: 'Etablissements',
         etablissements: questionAnswers.etablissements
       }];
+    case 'adresse':
+      var adresse = '';
+      if(questionAnswers.complement_adresse) {
+        adresse += questionAnswers.complement_adresse + '\n';
+      }
+      adresse += questionAnswers.nomVoie + '\n';
+      adresse += questionAnswers.code_postal + ' ' +  questionAnswers.localite + ' ' + (questionAnswers.pays ?  questionAnswers.pays : '');
+
+      return [{label: adresse}];
   }
 }
 
@@ -99,10 +116,61 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'date':
           answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           break;
+        case 'duree':
+          answer.detail = '';
+          if (detail && detail.debut){
+            answer.detail += 'Du ';
+            answer.detail += moment(detail.debut, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          if (detail && detail.fin){
+            if (detail.debut){
+              answer.detail += ' au ';
+            } else {
+              answer.detail += 'Au ';
+            }
+            answer.detail += moment(detail.fin, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
         case 'date&text':
           answer.detail = 'Date d\'entrée prévue : ';
           answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
           answer.detail += ' ; ' + detail.text;
+          break;
+        case 'depuis':
+          if(detail){
+            answer.detail = 'Depuis le ';
+            answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'fraisInternat':
+          if(detail !== undefined){
+            if(detail){
+              answer.detail = 'Les frais de séjour sont intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            } else {
+              answer.detail = 'Les frais de séjour ne sont pas intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            }
+          }
+          break;
+        case 'date&categorie':
+          answer.detail = 'De ' + detail.categorie;
+          if(detail.date){
+            answer.detail2 = 'Depuis le ';
+            answer.detail2 += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'remunHandicap':
+          if(detail.detail1){
+            answer.detail = 'Nombre d\'heures par semaine : ' + detail.detail1;
+          }
+          if(detail.detail2){
+            answer.detail2 = 'Nombre d\'heures par an : ' + detail.detail2;
+          }
+          break;
+        case 'pourcentage':
+          answer.detail = detail + ' %';
+          break;
+        case 'remuneration':
+          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
           break;
         default:
           answer.detail = detail;
@@ -163,6 +231,35 @@ export default function({request, host, mdph}, next) {
 
   async.series({
     identites: function(callback) {
+
+      if(request.formAnswers.identites && request.formAnswers.identites.autorite && request.formAnswers.identites.autorite.parent1 && request.formAnswers.identites.autorite.parent1.isSameAddress){
+        request.formAnswers.identites.autorite.parent1.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.autorite.parent1.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.autorite.parent1.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.autorite.parent1.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.autorite.parent1.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
+      if(request.formAnswers.identites && request.formAnswers.identites.autorite && request.formAnswers.identites.autorite.parent2 && request.formAnswers.identites.autorite.parent2.isSameAddress){
+        request.formAnswers.identites.autorite.parent2.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.autorite.parent2.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.autorite.parent2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.autorite.parent2.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.autorite.parent2.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
+      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant1 && request.formAnswers.identites.representant.representant1.isSameAddress){
+        request.formAnswers.identites.representant.representant1.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.representant.representant1.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.representant.representant1.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.representant.representant1.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.representant.representant1.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
+      if(request.formAnswers.identites && request.formAnswers.identites.representant && request.formAnswers.identites.representant.representant2 && request.formAnswers.identites.representant.representant2.isSameAddress){
+        request.formAnswers.identites.representant.representant2.complement_adresse = request.formAnswers.identites.beneficiaire.complement_adresse;
+        request.formAnswers.identites.representant.representant2.nomVoie = request.formAnswers.identites.beneficiaire.nomVoie;
+        request.formAnswers.identites.representant.representant2.code_postal = request.formAnswers.identites.beneficiaire.code_postal;
+        request.formAnswers.identites.representant.representant2.localite = request.formAnswers.identites.beneficiaire.localite;
+        request.formAnswers.identites.representant.representant2.pays = request.formAnswers.identites.beneficiaire.pays;
+      }
       callback(null, request.formAnswers.identites);
     },
 

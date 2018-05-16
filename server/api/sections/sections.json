@@ -52,8 +52,7 @@
             "detailModel": "travailDetail",
             "detailUrl": "components/detail/precisez_libre.html",
             "placeholder": "Expliquez la difficulté",
-            "model": "travail",
-            "onlyAdult": true
+            "model": "travail"
           },
           {
             "label": "Vous sortez d'hospitalisation et vous ne pouvez pas retourner chez vous",
@@ -72,8 +71,7 @@
             "detailTextLabel": "Précisez",
             "detailDateLabel": "Date d'entrée prévue",
             "detailType": "date&text",
-            "model": "formation",
-            "onlyAdult": true
+            "model": "formation"
           },
           {
             "label": "Vous venez de trouver un emploi",
@@ -83,8 +81,7 @@
             "detailTextLabel": "Précisez",
             "detailDateLabel": "Date d'entrée prévue",
             "detailType": "date&text",
-            "model": "emploi",
-            "onlyAdult": true
+            "model": "emploi"
           },
           {
             "label": "Vous arrivez dans moins de 2 mois à la fin de vos droits (ex: AEEH, AAH, PCH, RQTH, etc.)",
@@ -129,8 +126,7 @@
             "label": "Seul·e",
             "labelRepMasc": "Seul",
             "labelRepFem": "Seule",
-            "model": "seul",
-            "onlyAdult": true
+            "model": "seul"
           },
           {
             "label": "Avec vos parents (ou l'un d'entre eux)",
@@ -140,13 +136,11 @@
           {
             "label": "Avec vos enfants (ou l'un d'entre eux)",
             "labelRep": "Avec ses enfants (ou l'un d'entre eux)",
-            "model": "enfants",
-            "onlyAdult": true
+            "model": "enfants"
           },
           {
             "label": "En couple",
-            "model": "couple",
-            "onlyAdult": true
+            "model": "couple"
           },
           {
             "label": "Autre situation",
@@ -167,8 +161,7 @@
             "labelRep": "<%= pronoun %> a un logement indépendant",
             "model": "independant",
             "detailUrl": "components/detail/independant.html",
-            "detailModel": "logement_independant",
-            "onlyAdult": true
+            "detailModel": "logement_independant"
           },
           {
             "label": "Vous vivez dans un établissement médico-social ou de soin",
@@ -190,6 +183,48 @@
             "model": "autre",
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "logement_autre"
+          }
+        ]
+      },
+      "accident": {
+        "model": "accident",
+        "titleDefault": "Vous avez déjà eu :",
+        "titleRep": "<%= name %> a-t-<%= pronoun %> eu :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Un accident causé par un tiers",
+            "model": "tiers"
+          },
+          {
+            "label": "Un accident du travail",
+            "model": "travail"
+          },
+          {
+            "label": "Un autre accident",
+            "model": "autre",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailAccident",
+            "type": "text"
+          }
+        ]
+      },
+      "indemnisation": {
+        "model": "indemnisation",
+        "titleDefault": "Suite à cet accident y a-t-il une demande d'indemnisation en cours ou ayant abouti ?",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "detailIndemnisation",
+            "detailLabel": "Auprès de quel organisme ?",
+            "detailType": "text"
+          },
+          {
+            "label": "Non",
+            "model": false
           }
         ]
       },
@@ -222,18 +257,7 @@
         "answers": [
           {
             "label": "Allocation Adulte Handicapé (AAH)",
-            "model": "aah",
-            "onlyAdult": true
-          },
-          {
-            "label": "Allocation d'éducation de l'enfant handicapé (AEEH)",
-            "model": "aeeh",
-            "onlyChild": true
-          },
-          {
-            "label": "Une PCH enfant",
-            "model": "pch_enfant",
-            "onlyChild": true
+            "model": "aah"
           },
           {
             "label": "Revenu de Solidarité Active (RSA)",
@@ -242,17 +266,11 @@
           },
           {
             "label": "Allocation chômage versée par Pôle Emploi",
-            "model": "chomage",
-            "onlyAdult": true
+            "model": "chomage"
           },
           {
             "label": "Allocation de Solidarité Spécifique (ASS)",
             "model": "ass",
-            "onlyAdult": true
-          },
-          {
-            "label": "Retraite pour inaptitude dans la fonction publique ou anticipée",
-            "model": "retraite",
             "onlyAdult": true
           }
         ]
@@ -272,7 +290,7 @@
             "model": "indemnites",
             "detailUrl": "components/detail/precisez_duree.html",
             "detailModel": "duree",
-            "type": "date"
+            "detailType": "duree"
           },
           {
             "label": "Un revenu issu d'une activité en ESAT",
@@ -348,7 +366,8 @@
             "label": "Une pension d'invalidité",
             "model": "invalidite",
             "detailUrl": "components/detail/pension_invalidite.html",
-            "detailModel": "categorie"
+            "detailModel": "categorie",
+            "detailType": "date&categorie"
           },
           {
             "label": "Une autre pension de ce type",
@@ -372,6 +391,15 @@
           {
             "label": "Une Prestation Complémentaire de Recours à Tierce Personne",
             "model": "pcrtp"
+           },
+          {
+            "label": "Une retraite pour inaptitude dans la fonction publique ou anticipée",
+            "model": "retraiteInaptitude",
+            "detailUrl": "components/detail/precisez_date.html",
+            "detailModel": "retraiteInaptitudeDetail",
+            "detailLabel": "Depuis le ?",
+            "detailType": "depuis",
+            "onlyAdult": true
           }
         ]
       },
@@ -380,7 +408,7 @@
         "titleDefault": "Connaissez-vous votre taux d'IPP (Incapacité Permanente Partielle) ?",
         "titleRep": "Connaissez-vous son taux d'IPP (Incapacité Permanente Partielle) ?",
         "help": "Renseignez ici le taux qui vous a été attribué par l'assurance maladie (CPAM)",
-        "type": "text",
+        "type": "pourcentage",
         "placeholder": "Taux d'IPP, en %",
         "isOptionnal": true
       },
@@ -424,6 +452,49 @@
           }
         ]
       },
+      "activiteHandicap": {
+        "model": "activiteHandicap",
+        "titleDefault": "Du fait de votre handicap :",
+        "titleRep": "Du fait du handicap de <%= name %> :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Vous exercez une activité professionnelle à temps partiel",
+            "titleRep": "Vous exercez une activité professionnelle à temps partiel",
+            "model": "tempsPartiel",
+            "detailModel": "tempsPartiel_detail",
+            "detailUrl": "components/detail/precisez_pourcent.html",
+            "detailLabel": "Précisez la quotité <br\/><span class=\"small\">en pourcentage</span>",
+            "placeholder": "__%",
+            "detailType": "pourcentage"
+          },
+          {
+            "label": "Vous avez dû renoncer à votre emploi",
+            "model": "renonceEnmploi"
+          }
+        ]
+      },
+      "remunHandicap": {
+        "model": "remunHandicap",
+        "titleDefault": " Du fait de votre handicap, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
+        "titleRep": " Du fait du handicap de <%= name %>, recourez-vous à l’emploi rémunéré d’une tierce personne ?",
+        "type": "radio",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailModel": "remunHandicapDetail",
+            "detailTextLabel1": "Précisez le nombre d'heures par semaine",
+            "detailTextLabel2": "Si l'emploi n'est pas régulier, précisez le nombre d'heures par an",
+            "detailUrl": "components/detail/precisez_2_details.html",
+            "detailType": "remunHandicap"
+          },
+          {
+            "label": "Non",
+            "model": false
+          }
+        ]
+      },
       "fraisHandicap": {
         "model": "fraisHandicap",
         "type": "frais",
@@ -438,13 +509,12 @@
         "answers": [
           {
             "label": "Pour régler les dépenses courantes (loyer, énergie, habillement, alimentation, etc.)",
-            "model": "courant",
-            "onlyAdult": true
+            "model": "courant"
           },
           {
             "label": "Pour gérer votre budget et répondre à vos obligations (démarches administratives, assurances, impôts, etc.)",
-            "model": "budget",
-            "onlyAdult": true
+            "labelRep": "Pour gérer son budget et répondre à ses obligations (démarches administratives, assurances, impôts, etc.)",
+            "model": "budget"
           },
           {
             "label": "Pour l'hygiène corporelle (se laver, aller aux toilettes)",
@@ -457,13 +527,11 @@
           },
           {
             "label": "Pour faire les courses",
-            "model": "courses",
-            "onlyAdult": true
+            "model": "courses"
           },
           {
             "label": "Pour préparer les repas",
-            "model": "cuisine",
-            "onlyAdult": true
+            "model": "cuisine"
           },
           {
             "label": "Pour prendre les repas",
@@ -471,8 +539,7 @@
           },
           {
             "label": "Pour faire le ménage et l'entretien des vêtements",
-            "model": "menage",
-            "onlyAdult": true
+            "model": "menage"
           },
           {
             "label": "Pour prendre soin de votre santé (suivre un traitement, aller en consultation, etc.)",
@@ -518,7 +585,7 @@
             "model": "vacances"
           },
           {
-            "label": "Autre besoin",
+            "label": "Autre situation",
             "model": "autre",
             "detailModel": "besoinsDeplacement_autre",
             "detailUrl": "components/detail/precisez.html"
@@ -562,14 +629,12 @@
           {
             "label": "Pour vous occuper de votre famille",
             "labelRep": "Pour s'occuper de sa famille",
-            "model": "famille",
-            "onlyAdult": true
+            "model": "famille"
           },
           {
             "label": "Pour vous accompagner dans votre vie citoyenne (ex: aller voter, vie associative, etc.)",
             "labelRep": "Pour se faire accompagner dans sa vie citoyenne (ex: aller voter, vie associative, etc.)",
-            "model": "citoyen",
-            "onlyAdult": true
+            "model": "citoyen"
           },
           {
             "label": "Pour assurer votre sécurité",
@@ -638,12 +703,8 @@
             "model": "accueil"
           },
           {
-            "label": "Une carte de stationnement",
+            "label": "Une aide animalière",
             "model": "stationnement"
-          },
-          {
-            "label": "Une carte d'invalidité ou de priorité",
-            "model": "invalidite"
           },
           {
             "label": "Autre attente",
@@ -714,6 +775,7 @@
             "model": "tropJeune",
             "detailModel": "raisonNonScolaireTropJeune",
             "detailLabel": "A partir de quand serez-vous scolarisé·e ?",
+            "detailLabelRep": "A partir de quand sera-t-il/elle scolarisé.e ?",
             "detailUrl": "components/detail/precisez.html"
           },
           {
@@ -790,7 +852,8 @@
             "model": true,
             "detailModel": "internatFrais",
             "detailUrl": "components/detail/precisez_yes_no.html",
-            "detailLabel": "Ses frais de séjour sont-ils intégralement pris en charge par l'assurance maladie, l'Etat ou l'aide sociale ?"
+            "detailLabel": "Ses frais de séjour sont-ils intégralement pris en charge par l'assurance maladie, l'Etat ou l'aide sociale ?",
+            "detailType": "fraisInternat"
           },
           {
             "label": "Non",
@@ -894,14 +957,15 @@
       },
       "aideEleve": {
         "model": "aideEleve",
-        "titleDefault": "Vous disposez actuellement d’une aide humaine aux élèves handicapés",
-        "titleRep": "<%= name %> dispose actuellement d’une aide humaine aux élèves handicapés",
+        "titleDefault": "Vous disposez actuellement d'une aide humaine aux élèves handicapés",
+        "titleRep": "<%= name %> dispose actuellement d'une aide humaine aux élèves handicapés",
         "type": "radio",
         "answers": [
           {
             "label": "Oui",
             "model": true,
             "detailModel": "aideEleveDetail",
+            "detailLabel": "Précisez laquelle",
             "detailUrl": "components/detail/precisez.html"
           },
           {
@@ -1102,8 +1166,8 @@
           }
         ]
       },
-      "vieScolaireAutresRenseignements": {
-        "model": "vieScolaireAutresRenseignements",
+      "autresRenseignements": {
+        "model": "autresRenseignements",
         "titleDefault": "Vous avez d'autres renseignements importants(situation, attentes, projets) concernant votre vie scolaire, étudiante ou en apprentissage, indiquez-les ici :",
         "type": "text"
       }
@@ -1146,6 +1210,81 @@
           {
             "label": "Non",
             "model": false
+          }
+        ]
+      },
+      "passe": {
+        "titleRep": "A-t-<%= pronoun %> déjà travaillé ?",
+        "titleDefault": "Avez-vous déjà travaillé ?",
+        "type": "radio",
+        "model": "passe",
+        "answers": [
+          {
+            "label": "Oui",
+            "model": true,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetail",
+            "detailLabel": "Pourquoi êtes-vous actuellement sans emploi et depuis quand ?"
+          },
+          {
+            "label": "Non",
+            "model": false,
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "passeDetail",
+            "detailLabel": "Pouvez-vous indiquer pourquoi vous êtes actuellement sans emploi ?"
+          }
+        ]
+      },
+      "situationSansEmploi": {
+        "titleRep": "Est-<%= pronoun %> dans une des situations suivantes ?",
+        "titleDefault": "Êtes-vous dans une des situations suivantes ?",
+        "model": "situationSansEmploi",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Inscrit à pôle emploi",
+            "model": "poleEmploi"
+          },
+          {
+            "label": "En formation continue",
+            "model": "formation",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "formationDetail"
+          },
+          {
+            "label": "Etudiant",
+            "model": "etudiant"
+          }
+        ]
+      },
+      "situationAccompagnement": {
+        "titleRep": "Son accompagnement vers l'emploi est réalisé par",
+        "titleDefault": "Votre accompagnement vers l'emploi est réalisé par",
+        "model": "situationAccompagnement",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Mission locale",
+            "model": "mission"
+          },
+          {
+            "label": "Cap emploi",
+            "model": "capEmploi"
+          },
+          {
+            "label": "Pôle emploi",
+            "model": "poleEmploi"
+          },
+          {
+            "label": "Un référent RSA désigné par le Conseil Général",
+            "model": "rsa"
+          },
+          {
+            "label": "Autre",
+            "model": "autre",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "autreDetail",
+            "detailLabel": "Précisez"
           }
         ]
       },
@@ -1197,8 +1336,23 @@
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "independantDetail",
             "detailLabel": "Régime :"
+          },
+          {
+            "label": "Stagiaire professionnel",
+            "model": "stagiaire",
+            "detailUrl": "components/detail/precisez_yes_no.html",
+            "detailModel": "stagiaireDetail",
+            "detailLabel": "Est-ce un stage rémunéré ?",
+            "detailType": "remuneration"
           }
         ]
+      },
+      "situationStage": {
+        "model": "situationStage",
+        "titleDefault": "Au sein de quel organisme effectuez-vous votre stage ?",
+        "titleRep": "Au sein de quel organisme effectue-t-<%= pronoun %> son stage ?",
+        "type": "text",
+        "placeholder": "Nom de l'organisme"
       },
       "employeur": {
         "model": "employeur",
@@ -1538,92 +1692,6 @@
         "titleDefault": "Autres renseignements concernant votre vie au travail que vous souhaiteriez nous communiquer",
         "titleRep": "Autres renseignements concernant sa vie au travail que vous souhaiteriez nous communiquer",
         "type": "text"
-      },
-      "situationSansEmploi": {
-        "titleRep": "Est-<%= pronoun %> dans une des situations suivantes ?",
-        "titleDefault": "Êtes-vous dans une des situations suivantes ?",
-        "model": "situationSansEmploi",
-        "type": "checkbox",
-        "answers": [
-          {
-            "label": "Inscrit à pôle emploi",
-            "model": "poleEmploi"
-          },
-          {
-            "label": "En formation continue",
-            "model": "formation",
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "formationDetail"
-          },
-          {
-            "label": "Etudiant",
-            "model": "etudiant"
-          },
-          {
-            "label": "Stagiaire",
-            "model": "stagiaire",
-            "detailUrl": "components/detail/precisez_yes_no.html",
-            "detailModel": "stagiaireDetail",
-            "detailLabel": "Est-ce un stage rémunéré ?"
-          }
-        ]
-      },
-      "situationStage": {
-        "model": "situationStage",
-        "titleDefault": "Au sein de quel organisme effectuez-vous votre stage ?",
-        "titleRep": "Au sein de quel organisme effectue-t-<%= pronoun %> son stage ?",
-        "type": "text",
-        "placeholder": "Nom de l'organisme"
-      },
-      "situationAccompagnement": {
-        "titleRep": "Son accompagnement vers l'emploi est réalisé par",
-        "titleDefault": "Votre accompagnement vers l'emploi est réalisé par",
-        "model": "situationAccompagnement",
-        "type": "checkbox",
-        "answers": [
-          {
-            "label": "Mission locale",
-            "model": "mission"
-          },
-          {
-            "label": "Cap emploi",
-            "model": "capEmploi"
-          },
-          {
-            "label": "Pôle emploi",
-            "model": "poleEmploi"
-          },
-          {
-            "label": "Un référent RSA désigné par le Conseil Général",
-            "model": "rsa"
-          },
-          {
-            "label": "Autre",
-            "model": "autre",
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "autreDetail",
-            "detailLabel": "Préciser :"
-          }
-        ]
-      },
-      "passe": {
-        "titleRep": "A-t-<%= pronoun %> déjà travaillé ?",
-        "titleDefault": "Avez-vous déjà travaillé ?",
-        "type": "radio",
-        "model": "passe",
-        "answers": [
-          {
-            "label": "Oui",
-            "model": true,
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "passeDetail",
-            "detailLabel": "Pourquoi êtes-vous actuellement sans emploi et depuis quand ?"
-          },
-          {
-            "label": "Non",
-            "model": false
-          }
-        ]
       }
     }
   },
@@ -1654,6 +1722,11 @@
         "model": "dateNaissanceAidant",
         "titleDefault": "Date de naissance",
         "type": "date"
+      },
+      "adresseAidant": {
+        "model": "adresseAidant",
+        "titleDefault": "Adresse",
+        "type": "adresse"
       },
       "lien": {
         "model": "lien",
@@ -1765,24 +1838,6 @@
           }
         ]
       },
-      "dedommagement": {
-        "titleDefault": "Est-il/elle dédommagé·e pour l’aide apportée ?",
-        "model": "dedommagement",
-        "type": "radio",
-        "answers": [
-          {
-            "label": "Oui",
-            "model": true,
-            "detailUrl": "components/detail/precisez_montant.html",
-            "detailModel": "dedommagementDetail",
-            "placeholder": "Montant mensuel"
-          },
-          {
-            "label": "Non",
-            "model": false
-          }
-        ]
-      },
       "accompagnementAidant": {
         "titleDefault": "Qui participe avec lui/elle à l'accompagnement de la personne aidée ?",
         "titleRep": "Qui participe avec lui/elle à l'accompagnement de <%= name %> ?",
@@ -1875,26 +1930,6 @@
           }
         ]
       },
-      "structures": {
-        "model": "structures",
-        "type": "structure",
-        "titleDefault": "As-t-il/elle déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
-      },
-      "demandesAides": {
-        "titleDefault": "Vous souhaitez mieux connaitre les dispositifs et aides existants :",
-        "model": "demandesAides",
-        "type": "checkbox",
-        "answers": [
-          {
-            "label": "Pour l'aidant",
-            "model": "pour_vous"
-          },
-          {
-            "label": "Pour la personne aidée",
-            "model": "pour_la_personne"
-          }
-        ]
-      },
       "typeAttente": {
         "titleDefault": "Ses attentes en tant qu'aidant familial :",
         "model": "typeAttente",
@@ -1953,6 +1988,26 @@
             "model": "autre",
             "detailModel": "attentesDetail",
             "detailUrl": "components/detail/precisez.html"
+          }
+        ]
+      },
+      "structures": {
+        "model": "structures",
+        "type": "structure",
+        "titleDefault": "A-t-il/elle déjà identifié une ou plusieurs structures qui pourraient répondre à ses attentes ?"
+      },
+      "demandesAides": {
+        "titleDefault": "Vous souhaitez mieux connaitre les dispositifs et aides existants :",
+        "model": "demandesAides",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Pour l'aidant",
+            "model": "pour_vous"
+          },
+          {
+            "label": "Pour la personne aidée",
+            "model": "pour_la_personne"
           }
         ]
       },

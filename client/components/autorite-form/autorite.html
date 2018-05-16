@@ -32,22 +32,21 @@
 
 <section class="identite-section">
 
-  <div class="section-row">
-    <div class="form-group" ng-class="{'has-error': hasError('dateDeNaissance') && forms.infoForm.$submitted">
-      <label class="control-label" for="date-de-naissance{{id}}">Date de naissance <span class="small">au format jour/mois/année</span></label>
+  <div class="address-input">
+    <div class="form-group" ng-class="{'has-error': forms.infoForm.dateDeNaissance{{id}}.$invalid && forms.infoForm.$submitted}">
+      <label class="control-label" for="dateDeNaissance{{id}}">Date de naissance <span class="small">au format jour/mois/année</span></label>
       <input
         type="text"
         class="form-control"
         name="dateDeNaissance{{id}}"
-        id="date-de-naissance{{id}}"
+        id="dateDeNaissance{{id}}"
         ng-model="identite.dateNaissance"
         input-date
         date-autocomplete
         placeholder="JJ/MM/AAAA"
         aria-describedby="help-date-de-naissance">
-      <div ng-messages="infoForm.dateDeNaissance.$error" ng-if="infoForm.$submitted">
+      <div ng-messages="getError('dateDeNaissance')" ng-if="forms.infoForm.$submitted">
         <p class="help-block" id="help-date-de-naissance" ng-message='inputDate'>Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.</p>
-        <p class="help-block" id="help-date-de-naissance" ng-message='required'>Ce champ est obligatoire.</p>
       </div>
     </div>
   </div>
@@ -103,16 +102,13 @@
           ng-model="identite.code_postal">
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-4">
         <div class="form-group">
           <label for="localite{{id}}" class="control-label">Localité</label>
           <input id="localite{{id}}" type="text" name="localite{{id}}" class="form-control" ng-model="identite.localite">
         </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label for="pays{{id}}" class="control-label">Pays</label>
           <input id="pays{{id}}" type="text" name="pays{{id}}" class="form-control" ng-model="identite.pays">

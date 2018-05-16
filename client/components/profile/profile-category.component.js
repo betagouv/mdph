@@ -11,7 +11,7 @@ const profileCategoryComponent = {
   templateUrl: 'components/profile/profile-category.html',
   controllerAs: 'profileCategoryCtrl',
   controller: class profileCategoryController {
-    constructor($state) {
+    constructor($state, ProfileService) {
       const { title, subhead, content, icon, model, action } = this.options;
 
       this.$state = $state;
@@ -23,6 +23,7 @@ const profileCategoryComponent = {
 
       this.section = _.property(model)(this.profile);
       this.updatedAt = this.section && this.section.updatedAt;
+      this.mandatory = this.computeMandatory(model, ProfileService);
       this.completion = this.completion || this.computeCompletion();
     }
 
@@ -33,14 +34,24 @@ const profileCategoryComponent = {
     computeCompletion() {
       if (this.section && this.section.__completion) {
         return 'complete';
-      } else if (this.options.mandatory) {
+      } else if (this.mandatory) {
         return 'error';
+      }
+    }
+
+    computeMandatory(model, ProfileService) {
+      if (model === 'identites.representant') {
+        return ProfileService.representantObligatoire(this.profile);
+      } else if (model === 'identites.autorite') {
+        return ProfileService.autoriteObligatoire(this.profile);
+      } else {
+        return this.options.mandatory;
       }
     }
 
     static get $inject() {
       return [
-        '$state'
+        '$state', 'ProfileService'
       ];
     }
   }

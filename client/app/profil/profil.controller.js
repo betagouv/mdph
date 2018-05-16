@@ -11,6 +11,7 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.currentUser = currentUser;
   this.currentMdph = currentMdph;
   this.hasRequest = hasRequest;
+  this.profileUpdatedAt = profile.updatedAt;
 
   this.$state = $state;
   this.$modal = $modal;
@@ -18,8 +19,24 @@ angular.module('impactApp').controller('ProfilCtrl', function(
   this.$anchorScroll = $anchorScroll;
   this.prestationsCompletion = () => RequestService.getPrestationCompletion(currentRequest) ? 'complete' : null;
   this.documentCompletion = () => RequestService.getDocumentCompletion(currentRequest) ? 'complete' : 'error';
-  this.pdfName = RequestService.getPdfName(currentRequest);
   this.estAdulte = ProfileService.estAdulte(profile);
+  this.representantObligatoire = ProfileService.representantObligatoire(profile);
+  this.autoriteObligatoire = ProfileService.autoriteObligatoire(profile);
+
+  if (currentUser.unconfirmed === true) {
+    User.get(currentUser._id).$promise
+    .then(function(user) {
+      currentUser.unconfirmed = user.unconfirmed;
+    });
+  }
+
+  this.pronomPluriel = () => {
+    return ProfileService.estAdulte(this.profile) ? 'vos' : 'ses';
+  };
+
+  this.pronomSingulier = () => {
+    return ProfileService.estAdulte(this.profile) ? 'votre' : 'sa';
+  };
 
   this.sendRequest = () => {
     const missingSections = ProfileService.getMissingSection(profile, currentRequest, currentUser);
@@ -59,9 +76,19 @@ angular.module('impactApp').controller('ProfilCtrl', function(
       title: 'Autorité parentale',
       icon: 'fa-users',
       model: 'identites.autorite',
-      mandatory: !this.estAdulte,
+      mandatory: this.autoriteObligatoire,
       action: {
         sref: 'profil.autorite'
+      }
+    },
+
+    representant: {
+      title: 'Représentant légal',
+      icon: 'fa-users',
+      model: 'identites.representant',
+      mandatory: this.representantObligatoire,
+      action: {
+        sref: 'profil.representant'
       }
     },
 

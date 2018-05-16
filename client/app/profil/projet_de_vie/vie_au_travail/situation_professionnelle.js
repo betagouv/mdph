@@ -67,11 +67,32 @@ angular.module('impactApp')
         nextStep: function($state, sectionModel, saveCurrentState) {
           return function() {
             saveCurrentState();
-            if (sectionModel.typeTravail === 'independant') {
-              $state.go('^.emploi.nom_poste');
+            if (sectionModel.typeTravail === 'stagiaire') {
+              $state.go('^.stage');
             } else {
-              $state.go('^.employeur');
+              if (sectionModel.typeTravail === 'independant') {
+                $state.go('^.emploi.nom_poste');
+              } else {
+                $state.go('^.employeur');
+              }
             }
+          };
+        }
+      }
+    })
+    .state(index + '.situation_professionnelle.stage', {
+      url: '',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'situationStage', profile);
+        },
+
+        nextStep: function($state, saveCurrentState) {
+          return function() {
+            saveCurrentState();
+            $state.go('^.emploi.nom_poste');
           };
         }
       }

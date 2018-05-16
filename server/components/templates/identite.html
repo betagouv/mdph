@@ -1,3 +1,9 @@
+{{#if autoriteParentale}}
+<p>
+  Exerce l'autorité parentale
+</p>
+{{/if}}
+
 <p>
   Nom complet : <strong>{{capitalize prenom}} {{capitalize nom 'upper'}}</strong>
 </p>
@@ -44,7 +50,7 @@
     <br>
     {{numero_voie}} {{extension}} {{typeVoie.label}} {{nomVoie}}
      <br>
-    {{code_postal}} {{capitalize localite}} {{pays}}
+    {{code_postal}} {{capitalize localite}} {{capitalize pays 'upper'}}
   </address>
 {{/if}}
 
@@ -112,5 +118,17 @@
 {{#if numero_secu_enfant}}
 <p>
   Numéro de sécurité sociale de l'enfant : <strong>{{numero_secu_enfant}}</strong>
+</p>
+{{/if}}
+
+{{#if aide}}
+<p>
+  Êtes-vous aidé.e dans vos démarches auprès de la MDPH ? : <strong>{{ouiNon aide}}</strong>
+</p>
+{{/if}}
+
+{{#if protection}}
+<p>
+  Bénéficiez-vous d’une mesure de protection ? : <strong>{{ouiNon protection}}</strong>
 </p>
 {{/if}}

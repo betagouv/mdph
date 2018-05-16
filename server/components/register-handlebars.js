@@ -16,6 +16,8 @@ Handlebars.registerPartial({
   identites: readTemplateSync('identites.html'),
   identite: readTemplateSync('identite.html'),
   autorite: readTemplateSync('autorite.html'),
+  representants: readTemplateSync('representants.html'),
+  representant: readTemplateSync('representant.html'),
   question: readTemplateSync('question.html'),
   detailsFrais: readTemplateSync('detailsFrais.html'),
   detailsStructures: readTemplateSync('detailsStructures.html'),
@@ -45,7 +47,13 @@ Handlebars.registerHelper('moment', function(str) {
 });
 
 Handlebars.registerHelper('contact', function(str) {
-  return str === 'oui' ? 'et a déjà pris contact' : 'mais n\'a pas encore pris contact';
+  let contact;
+  if(str){
+    contact = str === 'oui' ? 'et a déjà pris contact' : 'mais n\'a pas encore pris contact';
+  } else {
+    contact = '';
+  }
+  return contact;
 });
 
 Handlebars.registerHelper('ntobr', function(str) {
@@ -113,4 +121,8 @@ Handlebars.registerHelper('pronoun', function(sexe, capitalize) {
   }
 
   return isMale(sexe) ? 'il' : 'elle';
+});
+
+Handlebars.registerHelper('ouiNon', function(str) {
+  return str ==='true' ? 'Oui' : 'Non';
 });

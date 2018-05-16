@@ -1,10 +1,19 @@
 'use strict';
 
 angular.module('impactApp')
+  .factory('estEnfant', function() {
+    return function(dateNaissance) {
+      if (dateNaissance) {
+        return moment().add(-16, 'years').diff(dateNaissance, 'hours') < 0;
+      }
+
+      return false;
+    };
+  })
   .factory('estAdulte', function() {
     return function(dateNaissance) {
       if (dateNaissance) {
-        return moment().diff(dateNaissance, 'years') >= 20;
+        return moment().add(-20, 'years').diff(dateNaissance, 'hours') >= 0;
       }
 
       return true;
@@ -13,7 +22,7 @@ angular.module('impactApp')
   .factory('estMineur', function() {
     return function(dateNaissance) {
       if (dateNaissance) {
-        return moment().diff(dateNaissance, 'years') < 20;
+        return moment().add(-20, 'years').diff(dateNaissance, 'hours') < 0;
       }
 
       return false;

@@ -13,10 +13,6 @@
         <select name="identite-type" class="form-control" id="identite-type" ng-model="identite.type" ng-required="!identite.type">
           <option value="proche">Un proche</option>
           <option value="association">Une association</option>
-          <option value="enseignant">Un enseignant référent</option>
-          <option value="tuteur">Le tuteur</option>
-          <option value="curateur">Le curateur</option>
-          <option value="organisme">Un organisme</option>
           <option value="autre">Autre</option>
         </select>
       </fieldset>
@@ -76,11 +72,15 @@
         </div>
       </div>
 
-      <div class="col-sm-8">
+      <div class="col-sm-4">
         <div class="form-group">
           <label for="localite" class="control-label">Localité</label>
           <input id="localite" type="text" name="localite" class="form-control" ng-model="identite.localite">
         </div>
+      </div>
+      <div class="col-sm-4">
+        <label for="pays" class="control-label">Pays</label>
+        <input id="pays" type="text" name="pays" class="form-control" ng-model="identite.pays">
       </div>
     </div>
   </section>

@@ -27,17 +27,6 @@ class RequestService {
     return Array.isArray(request.prestations) && request.prestations.length > 0;
   }
 
-  getPdfName(request) {
-    const identites = request.formAnswers.identites;
-    const beneficiaire = identites && identites.beneficiaire;
-
-    if (!identites || !beneficiaire || !beneficiaire.nom || !beneficiaire.prenom) {
-      return `${request.shortId}.pdf`;
-    }
-
-    return `${beneficiaire.nom.toLowerCase()}_${beneficiaire.prenom.toLowerCase()}_${request.shortId}.pdf`;
-  }
-
   getDocumentCompletion(request) {
     if (!request.documents) {
       return false;
