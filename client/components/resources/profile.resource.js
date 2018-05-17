@@ -15,8 +15,18 @@ angular.module('impactApp')
     });
 
     Profile.prototype.getTitle = function() {
+      function capitalize(input) {
+        if (!input) {
+          return input;
+        }
+
+        return input.replace(/\w\S*/g, function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      }
+
       if (this._id && this.recipient) {
-        return this.recipient.firstname + ' ' + this.recipient.lastname;
+        return capitalize(this.recipient.firstname + ' ' + this.recipient.lastname);
       } else {
         return 'Profil en cours de saisie';
       }
