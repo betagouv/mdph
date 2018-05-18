@@ -71,9 +71,9 @@ angular.module('impactApp')
         case 'en_attente_usager':
           return 'En attente';
         case 'irrecevable':
-          return 'Irrecevable';
+          return 'irrecevable';
         default:
-          return 'Indéfinie';
+          return 'indéfinie';
       }
     };
   });

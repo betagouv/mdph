@@ -39,8 +39,8 @@
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="!showMenu">
           <div class="col-md-4 col-icon-profil" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
           <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Créé le {{profil.createdAt | date:'dd/MM/yyyy'}}</div>
-          <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Dernière demande {{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
-          <div class="col-md-2 col-action" ng-click="gestionProfilCtrl.deleteProfil(profil)">Supprimer</div>
+          <div class="col-md-3 col-item" align="right" ng-click="gestionProfilCtrl.goProfil(profil)">Dernière demande {{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
+          <div class="col-md-2 col-action" align="center" ng-click="gestionProfilCtrl.deleteProfil(profil)">Supprimer</div>
         </div>
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="showMenu">
           <div style="width:80%" class="col-xs-11 col-icon-profil " ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
@@ -57,8 +57,8 @@
         <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils">
           <div class="col-md-4 col-icon-profil-desabled">{{ ::deletedProfil.getTitle() }}</div>
           <div class="col-md-3 col-item-desabled">Créé le {{deletedProfil.createdAt | date:'dd/MM/yyyy'}} - Supprimé le {{ deletedProfil.deletedAt | date:'dd/MM/yyyy'}}</div>
-          <div class="col-md-3 col-item-desabled">Dernière demande envoyée {{ gestionProfilCtrl.showCurrentRequestStatus(deletedProfil) }}</div>
-          <div class="col-md-2 col-action-desabled">Profil suppriné</div>
+          <div class="col-md-3 col-item-desabled" align="right">Dernière demande envoyée {{ gestionProfilCtrl.showCurrentRequestStatus(deletedProfil) }}</div>
+          <div class="col-md-2 col-action-desabled" align="center">Profil supprimé</div>
         </div>
       </div>
     </div>
