@@ -167,9 +167,9 @@ UserSchema.methods = {
       this.lockUntil = Date.now();
     } else{
       this.loginAttempts = this.loginAttempts + 1
-      if(this.loginAttempts >= MAX_LOGIN_ATTEMPTS){
+      if(this.loginAttempts > MAX_LOGIN_ATTEMPTS){
         if(this.loginAttempts < 17){
-          this.lockUntil = Date.now() + (Math.pow(2, this.loginAttempts - MAX_LOGIN_ATTEMPTS) * LOCK_TIME) ;
+          this.lockUntil = Date.now() + (Math.pow(2, this.loginAttempts - (MAX_LOGIN_ATTEMPTS + 2 )) * LOCK_TIME) ;
         } else {
           this.lockUntil = Date.now() + 86400000 ; // + 24 heures
         }
