@@ -205,7 +205,7 @@ angular.module('impactApp')
                   $state.go('.', {}, {reload: true});
                 };
 
-                this.actionOnSelectedRequests(this.requests, remove, closeModal);
+                actionOnSelectedRequests(this.requests, remove, closeModal);
               };
 
               this.cancel = function() {
