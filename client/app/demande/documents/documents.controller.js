@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp').controller('DemandeDocumentsCtrl', function(
-  $scope, $modal, toastr, currentUser, currentMdph, UploadService, DemandeService, profile, demande, documentTypes, FileSignatureService) {
+  $state, $scope, $modal, toastr, currentUser, currentMdph, UploadService, DemandeService, profile, demande, documentTypes, FileSignatureService) {
 
   this.$modal = $modal;
   this.user = currentUser;
@@ -17,6 +17,7 @@ angular.module('impactApp').controller('DemandeDocumentsCtrl', function(
       .then(function(result) {
         if (result) {
           UploadService.upload(demande, file, documentType);
+          window.location.reload();
         } else {
           $scope.$emit('file-upload-error', documentType.id);
         }
