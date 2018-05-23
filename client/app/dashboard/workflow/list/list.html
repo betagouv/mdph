@@ -47,12 +47,12 @@
     <table>
       <tbody ng-repeat="group in workflowListCtrl.groups">
         <tr>
-          <td class="lead" colspan="{{workflowListCtrl.showDownloadAndDeleteButtons ? '8' : '6'}}">
+          <td class="lead" colspan="8">
             {{::group.title}}
           </td>
         </tr>
         <tr ng-hide="filteredRequests.length">
-          <td colspan="{{workflowListCtrl.showDownloadAndDeleteButtons ? '8' : '6'}}">
+          <td colspan="8">
             Pas de demandes
           </td>
         </tr>
@@ -107,9 +107,9 @@
           </td>
           <td>{{::request.submittedAt | date}}</td>
           <td>
-            <a ng-show="workflowListCtrl.showDownloadAndDeleteButtons" href="#" ng-click="workflowCtrl.download(request)">
+            <button ng-show="workflowListCtrl.showDownloadAndDeleteButtons" class="btn btn-link" ng-click="workflowCtrl.download(request)">
               <i class="fa fa-download"></i>&nbsp;Télécharger
-            </a>
+            </button>
           </td>
           <td class="col-md-2">
             <button ng-show="workflowListCtrl.showDownloadAndDeleteButtons && request.isDownloaded" class="btn btn-link red-color" ng-click="workflowCtrl.openDeleteModal(request)">
