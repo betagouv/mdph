@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestDocumentsCtrl', function($scope, $modal, toastr, Auth, request, documentTypes, currentUser, RequestResource) {
+  .controller('RequestDocumentsCtrl', function($scope, $modal, toastr, Auth, request,
+    navUserId, navStatus, documentTypes, currentUser, RequestResource) {
     $scope.documentTypes = documentTypes;
     $scope.request = request;
     $scope.currentUser = currentUser;
     $scope.token = Auth.getToken();
+
+    if (navUserId !== '' && navStatus !== '') {
+      $scope.currentMenu(navUserId, navStatus);
+    }
 
     function alreadySelected(request, typeId) {
       return _.find(request.data.askedDocumentTypes, function(current) {
@@ -52,7 +57,7 @@ angular.module('impactApp')
             templateUrl: 'app/dashboard/workflow/detail/documents/modal.html',
             controllerAs: 'modalRdc',
             size: 'lg',
-            controller($modalInstance, $state, DemandeService) {
+            controller(navUserId, navStatus, $modalInstance, $state, DemandeService) {
               this.src = `/api/requests/${request.shortId}/generate-reception-mail?access_token=${token}`;
 
               this.ok = function() {
@@ -60,13 +65,23 @@ angular.module('impactApp')
                   id: 'enregistrement'
                 }).then(() => {
                   $modalInstance.close();
-                  $state.go('.', {}, {reload: true});
+                  $state.go('.', {navUserId:navUserId, navStatus:navStatus}, {reload: true});
                 });
               };
 
               this.cancel = function() {
                 $modalInstance.dismiss('cancel');
               };
+            },
+
+            resolve: {
+              navUserId: function() {
+                return $scope.navUserId;
+              },
+
+              navStatus: function() {
+                return $scope.navStatus;
+              }
             }
           });
         } else {
