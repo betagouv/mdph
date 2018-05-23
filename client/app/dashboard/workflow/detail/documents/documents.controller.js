@@ -8,7 +8,7 @@ angular.module('impactApp')
     $scope.currentUser = currentUser;
     $scope.token = Auth.getToken();
 
-    if(navUserId !== '' && navStatus !== ''){
+    if (navUserId !== '' && navStatus !== '') {
       $scope.currentMenu(navUserId, navStatus);
     }
 
