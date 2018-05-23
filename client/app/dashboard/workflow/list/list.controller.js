@@ -120,7 +120,7 @@ angular.module('impactApp')
             $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + $cookies.get('token'));
           };
 
-          this.actionOnSelectedRequests(requests, update, download);
+          actionOnSelectedRequests(requests, update, download);
         }
       }
     };
