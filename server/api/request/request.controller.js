@@ -243,7 +243,7 @@ function computeEnregistrementOptions(request, host) {
   }
 
   if (host) {
-    options.url = `${host}/mdph/${request.mdph}/profil/${request.profile}`;
+    options.url = `${host}/mdph/${request.mdph}/gestion_demande/${request.profile}`;
   }
 
   return options;

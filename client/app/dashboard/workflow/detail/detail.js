@@ -25,7 +25,7 @@ angular.module('impactApp')
         authorized: ['adminMdph']
       })
       .state('dashboard.workflow.detail.documents', {
-        url: '/documents',
+        url: '/documents/:navUserId/:navStatus',
         controller: 'RequestDocumentsCtrl',
         controllerAs: 'requestDocumentsCtrl',
         templateUrl: 'app/dashboard/workflow/detail/documents/documents.html',
@@ -38,7 +38,16 @@ angular.module('impactApp')
                 return !documentType.mandatory;
               });
             });
+          },
+
+          navUserId: function($stateParams) {
+            return $stateParams.navUserId;
+          },
+
+          navStatus: function($stateParams) {
+            return $stateParams.navStatus;
           }
+
         }
       })
       .state('dashboard.workflow.detail.comments', {

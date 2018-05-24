@@ -25,21 +25,18 @@ angular.module('impactApp')
         } else {
           $scope.user.role = 'adminMdph';
           $scope.user.mdph = currentMdph._id;
-          $scope.user.$saveAgent(
-            function() {
-              $state.go('^', {}, {reload: true});
-            },
+          $scope.user.$saveAgent().catch(function(err) {
+            err = err.data;
+            $scope.errors = {};
 
-            function(err) {
-              err = err.data;
-              $scope.errors = {};
-
-              // Update validity of form fields that match the mongoose errors
-              angular.forEach(err.errors, function(error, field) {
-                form[field].$setValidity('mongoose', false);
-                $scope.errors[field] = error.message;
-              });
+            // Update validity of form fields that match the mongoose errors
+            angular.forEach(err.errors, function(error, field) {
+              form[field].$setValidity('mongoose', false);
+              $scope.errors[field] = error.message;
             });
+          });
+
+          $state.go('^', {}, {reload: false});
         }
       }
     };

@@ -5,7 +5,7 @@
   </div>
   <form class="form-horizontal" name="forms.form" ng-submit="update(forms.form)" novalidate>
   <div class="row">
-    <div class="col-sm-7">
+    <div ng-class="{ 'col-sm-7': !user._id }">
       <div class="form-group required" ng-class="{ 'has-error': forms.form.nom.$invalid && forms.form.$submitted }">
             <div class="col-sm-3 text-right">
               <label for="nom" class="control-label">Nom</label>
@@ -39,13 +39,13 @@
       <password-field user="user" libelle="Mot de passe"  horizontal="true" ng-if="!user._id"/>
     </div>
 
-    <div class="col-sm-5">
+    <div class="col-sm-5" ng-if="!user._id">
       <password-rules-alert/>
     </div>
 
   </div>
   <div class="row">
-    <div class="col-sm-7">
+    <div ng-class="{ 'col-sm-7': !user._id }">
       <div class="form-group">
         <label for="secteur" class="col-sm-3 control-label">Secteurs associés</label>
           <div class="col-sm-9">

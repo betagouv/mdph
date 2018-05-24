@@ -243,7 +243,7 @@ export function showRequestsByStatus(req, res) {
       const promises = users.map(user => {
         return Request
           .aggregate([
-            {$match: {mdph: req.mdph.zipcode, evaluators: user._id }},
+            {$match: {mdph: req.mdph.zipcode, evaluators: user._id, deletedAt: { $exists: false } }},
             {$group: {_id: '$status', count: {$sum: 1} }}
           ])
           .exec()
