@@ -109,7 +109,7 @@ export function showLastRequest(req, res) {
     .exec()
     .then(request => {
       if (!request) {
-        return RequestController.create(req, res);
+        return res.sendStatus(404);
       }
 
       req.request = request;
