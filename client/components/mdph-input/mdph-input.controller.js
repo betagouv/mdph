@@ -12,15 +12,7 @@ angular.module('impactApp')
 
     this.go = () => {
       const codeDepartement = this.zipcode.toUpperCase();
-      MdphResource.get({zipcode: codeDepartement}).$promise.then(function(mdph) {
-        if (mdph.opened) {
-
-          $state.go('gestion_profil', {codeDepartement});
-        } else {
-
-          $state.go('closed', {codeDepartement});
-        }
-      });
+      $state.go('mdph-main', {codeDepartement});
     };
 
   });

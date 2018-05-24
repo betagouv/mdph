@@ -54,7 +54,9 @@
               if (path[1] === 'admin') {
                 $state.go('admin.login', nextParams);
               } else {
-                $state.go('login', nextParams);
+                if (path[1] === 'mdph' && path[3]) {
+                  $state.go('login', nextParams);
+                }
               }
             }
           });
