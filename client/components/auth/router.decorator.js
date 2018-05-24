@@ -54,7 +54,7 @@
               if (path[1] === 'admin') {
                 $state.go('admin.login', nextParams);
               } else {
-                //$state.go('login', nextParams);
+                $state.go('login', nextParams);
               }
             }
           });
