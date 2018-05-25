@@ -137,13 +137,14 @@
     }
   }
 
-  .col-new-desabled {
+  .col-new-disabled {
     background-color: #D0D0D0;
     padding: 10px 15px;
     font-size: 1.2em;
     width: 100%;
     color: #666666;
     text-align: center;
+    cursor: pointer;
 
     &:before {
       content: "\f055";
