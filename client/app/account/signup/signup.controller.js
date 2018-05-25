@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('SignupCtrl', function($rootScope, $scope, $state, ProfileResource, Auth, currentMdph) {
+  .controller('SignupCtrl', function($rootScope, $scope, $state, ProfileResource, Auth, currentMdph, $http) {
     $scope.user = {};
     $scope.forms = $state.current.data.forms;
     $scope.inputType = 'password';
@@ -31,8 +31,10 @@ angular.module('impactApp')
               mdph: currentMdph.zipcode
             })
             .then(function(data) {
-              // Logged in, redirect
-              return $state.go('gestion_demande', {profilId: data.profile}, {reload: true});
+              // Logged in, create request then redirect
+              $http.post(`/api/users/${data.id}/profiles/${data.profile}/requests/new`).then(function(result) {
+                return $state.go('demande.beneficiaire', {shortId: result.data.shortId}, {reload: true});
+              });
             })
             .catch(function(err) {
               err = err.data;
