@@ -25,7 +25,12 @@ angular.module('impactApp')
         } else {
           $scope.user.role = 'adminMdph';
           $scope.user.mdph = currentMdph._id;
-          $scope.user.$saveAgent().catch(function(err) {
+
+          $scope.user.$saveAgent()
+          .then(function() {
+            $state.go('^', {}, {reload: true});
+          })
+          .catch(function(err) {
             err = err.data;
             $scope.errors = {};
 
@@ -35,8 +40,6 @@ angular.module('impactApp')
               $scope.errors[field] = error.message;
             });
           });
-
-          $state.go('^', {}, {reload: false});
         }
       }
     };
