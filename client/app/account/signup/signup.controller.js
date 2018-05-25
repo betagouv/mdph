@@ -31,7 +31,7 @@ angular.module('impactApp')
               mdph: currentMdph.zipcode
             })
             .then(function(data) {
-              // Logged in,  redirect
+              // Logged in, redirect
               return $state.go('demande.beneficiaire', {shortId: data.request}, {reload: true});
             })
             .catch(function(err) {

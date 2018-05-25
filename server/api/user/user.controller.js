@@ -42,7 +42,6 @@ function saveUserAndSendConfirmation(req, res, user, mdph) {
       }
 
       Request.create({user: user._id, profile: profile._id, status: 'en_cours'}).then((request) => {
-        console.info('wsw  ' + request);
         const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
         res.status(201);
         return res.json({ token: token, id: user._id, profile: profile._id, request: request.shortId });
