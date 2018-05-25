@@ -49,7 +49,9 @@
           <div style="width:20%" class="col-xs-1 col-action" ng-click="gestionDemandeCtrl.deleteCurrentDemande()"></div>
         </div>
         <div class="row">
-          <div class="col-md-12" ng-class="{'col-new': !gestionDemandeCtrl.currentDemande, 'col-new-desabled': gestionDemandeCtrl.currentDemande}" ng-click="gestionDemandeCtrl.createDemande()">Créer une nouvelle demande *</div>
+          <div class="col-md-12"
+          ng-class="{'col-new': !gestionDemandeCtrl.currentDemande, 'col-new-disabled': gestionDemandeCtrl.currentDemande}"
+          ng-click="gestionDemandeCtrl.createDemande()">Créer une nouvelle demande *</div>
         </div>
         <div class="row" >
           <i class="note">* Vous ne pouvez pas créer de nouvelle demande tant qu'une demande est en cours</i>
@@ -60,7 +62,7 @@
           <div class="col-md-4 col-icon-demande-desabled">{{ archivedDemande.shortId }}</div>
           <div class="col-md-3 col-item-desabled">Créé le {{archivedDemande.createdAt | date:'dd/MM/yyyy'}}</div>
           <div class="col-md-3 col-item-desabled" align="right">{{ gestionDemandeCtrl.showStatus(archivedDemande) }}</div>
-          <div class="col-md-2 col-action-desabled" align="center">Demande irrecevable</div>
+          <div class="col-md-2 col-action-desabled" align="center">Demande archivée</div>
         </div>
       </div>
     </div>

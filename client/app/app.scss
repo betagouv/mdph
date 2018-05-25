@@ -195,7 +195,6 @@ fieldset {
 @import 'admin/mdph/list/admin.mdph.list.scss';
 @import 'apropos/apropos.scss';
 @import 'cgu/cgu.scss';
-@import 'closed/closed.scss';
 @import 'dashboard/dashboard.scss';
 @import 'dashboard/documents/documents.scss';
 @import 'dashboard/list.scss';
@@ -215,6 +214,7 @@ fieldset {
 @import 'gestion/gestion.scss';
 @import 'layout/layout.scss';
 @import 'main/main.scss';
+@import 'mdph/mdph.scss';
 @import 'medecin/medecin.scss';
 @import 'mon_compte/mon_compte.scss';
 @import 'partenaire/partenaire.scss';
