@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 import shortid from 'shortid';
 import { ACTIONS, saveActionLog } from './actions';
 import * as MailActions from '../send-mail/send-mail-actions';
-
+import Request from '../request/request.model';
 import Profile from '../profile/profile.model';
 
 var validationError = function(res, err) {
@@ -41,9 +41,12 @@ function saveUserAndSendConfirmation(req, res, user, mdph) {
         MailActions.sendConfirmationMail(user.email, confirmationUrl);
       }
 
-      const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
-      res.status(201);
-      return res.json({ token: token, id: user._id, profile: profile._id });
+      Request.create({user: user._id, profile: profile._id, status: 'en_cours'}).then((request) => {
+        console.info('wsw  ' + request);
+        const token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60 * 60 * 5 });
+        res.status(201);
+        return res.json({ token: token, id: user._id, profile: profile._id, request: request.shortId });
+      })
     })
     .catch(err => {
       return validationError(res, err);
