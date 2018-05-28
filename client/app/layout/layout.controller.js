@@ -2,7 +2,7 @@
 
 angular.module('impactApp')
   .controller('LayoutCtrl', function($window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
-    let sizeMaxToReduceMenu = 836; //521
+    let sizeMaxToReduceMenu = 836;
 
     this.currentMdph = currentMdph;
     this.currentUser = currentUser;
