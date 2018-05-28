@@ -12,7 +12,7 @@
       <a class="icon login" id="login" ui-sref="login({codeDepartement: layoutctrl.currentMdph.zipcode})" title="Connexion">Connexion</a>
     </li>
   </ul>
-
+  {{size}}
   <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()" ng-show="!showMenu">
     <li ng-if="layoutctrl.showAdminLink()">
       <a ui-sref="admin.main" title="Admin">Admin</a>

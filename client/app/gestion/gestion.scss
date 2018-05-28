@@ -6,10 +6,44 @@
   .row {
     max-width: 100% !important;
     margin: 4px;
+    display: flex;
   }
 
   .col {
     margin: 4px;
+    flex: 1;
+  }
+
+  .col-flex1 {
+    flex: 1;
+  }
+
+  .col-flex2 {
+    flex: 2;
+  }
+
+  .col-flex3 {
+    flex: 3;
+  }
+
+  .col-flex4 {
+    flex: 4;
+  }
+
+  .col-flex5 {
+    flex: 5;
+  }
+
+  .col-flex6 {
+    flex: 6;
+  }
+
+  .col-flex7 {
+    flex: 7;
+  }
+
+  .col-flex8 {
+    flex: 8;
   }
 
   .icon-profil {
