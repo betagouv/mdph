@@ -17,7 +17,6 @@ angular.module('impactApp').controller('DemandeDocumentsCtrl', function(
       .then(function(result) {
         if (result) {
           UploadService.upload(demande, file, documentType);
-          window.location.reload();
         } else {
           $scope.$emit('file-upload-error', documentType.id);
         }
