@@ -22,8 +22,7 @@ var Schema = mongoose.Schema;
 
       _.forEach(requests, function(request) {
 
-        if(request.status === 'enregistree' || request.status === 'archive' ){
-
+        if(request.status != 'en_cours' && request.status != 'emise' && request.status != 'validee' && request.status != 'en_attente_usager' && request.status != 'irrecevable'){
             request.remove();
             count++;
         }

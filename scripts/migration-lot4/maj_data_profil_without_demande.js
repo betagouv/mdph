@@ -8,7 +8,10 @@ import Request from '../../server/api/request/request.model';
 import mongoose, {Schema} from 'mongoose';
 
 (function() {
-  console.log('MISE A JOUR DES DONNEES DES PROFILS EN_COURS');
+  console.log('MISE A JOUR DES DONNEES DES PROFILS SANS DEMANDES');
+
+
+
 
 
 })();
