@@ -22,7 +22,6 @@ nav {
 
   li+li {
     margin-left: 20px;
-    //line-height: 20pt;
   }
 }
 
@@ -34,4 +33,8 @@ main {
 
 .dashbord-content {
   display: flex;
+}
+
+.interligne {
+  line-height: 20pt;
 }
