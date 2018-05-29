@@ -12,6 +12,10 @@
     display: flex;
   }
 
+  .coll{
+    flex-direction: column;
+  }
+
   .col {
     margin: 4px;
     flex: 1;
@@ -49,10 +53,21 @@
     flex: 8;
   }
 
+  .left-radius {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .right-radius {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
   .icon-profil {
-    margin-top: 50px;
+    margin-top: auto;
     &.centre {
       text-align: center;
+
     }
     &:before {
       content: "\f007";
@@ -60,7 +75,34 @@
       display: inline-block;
       font-size: 9em;
       color: #FFFFFF;
+      //float: none;
+      //text-align: left;
     }
+  }
+
+  #flex-container {
+    display: flex;
+    flex-direction: column;
+    color: rgb(157, 250, 177);
+    justify-content: center;
+  }
+
+  #flex-container > .flex-itemé {
+    flex: auto;
+    color: rgb(157, 250, 177);
+  }
+
+  .flex-item {
+    justify-content: center;
+  }
+
+  .centered {
+    text-align: center;
+    //font-size: 0;
+  }
+  .col-centered{
+    float: none;
+    //margin: 0 auto;
   }
 
   .icon-demande {
@@ -114,6 +156,8 @@
     padding: 10px 15px;
     font-size: 1.2em;
     color: #4f6083;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 
     &:before {
       content: "\f07c";
@@ -141,9 +185,9 @@
     min-height: 44px;
 
     &.espace {
-      //margin: 15px 0px;
-      font-size: 1.2em;
-      //width: 200px;
+      margin-left: 28px;
+      margin-top: 15px;
+      width: 200px;
     }
   }
 
@@ -153,7 +197,7 @@
     padding: 10px 15px;
     font-size: 1.2em;
     color: #FFFFFF;
-    border-left: 4px solid $lighter-blue;
+    //border-left: 4px solid $lighter-blue;
 
     &:before {
       content: "\f1f8";
@@ -242,7 +286,7 @@
     margin-left: 10px;
     font-size: 1.2em;
     color: #666666;
-    border-left: 4px solid $lighter-blue;
+    //border-left: 4px solid $lighter-blue;
   }
 
   .note{
