@@ -25,6 +25,7 @@ angular.module('impactApp')
 
       // Si pas encore de réponse, on reprend la dernière
       if (previousModel && !sectionModel[question.model]) {
+        console.info('previousModel:', previousModel[question.model]);
         sectionModel[question.model] = previousModel[question.model];
 
         if (question.answers) {
@@ -33,6 +34,15 @@ angular.module('impactApp')
           });
         }
       }
+
+      if (!previousModel && !sectionModel[question.model] && question.model === 'employeur') {
+        sectionModel[question.model] = {
+          nom: {label: 'Nom', value: ''},
+          adresse: {label: 'Adresse', value: ''},
+          medecin: {label: 'Service/Médecin', value: ''}
+        };
+      }
+
     };
   })
   .controller('QuestionCtrl', function($scope, $state, question, previousModel, sectionModel, nextStep, initQuestionScope, prevStep) {
