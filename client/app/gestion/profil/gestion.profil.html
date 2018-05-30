@@ -10,8 +10,8 @@
 <section class="section-gestion container-fluid">
   <div class="row">
 
-    <div ng-class="{'col-md-1':!showMenu}" class="flex-container" style="width:11%" ng-if="!showMenu">
-      <div class="icon-profil" style="align-self: center"/>
+    <div ng-class="{'col-md-1':!showMenu}" style="width:11%" ng-if="!showMenu">
+      <div class="icon-profil"/>
     </div>
 
     <div ng-class="{'col-md-11 border-left':!showMenu}" style="width:89%">
@@ -32,7 +32,7 @@
       <div class="icon-profil centre" ng-if="showMenu" />
 
       <div class="container-fluid " ng-class="{'border-top': showMenu}">
-
+        <br/>
         <h2>Vos profils</h2>
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="!showMenu">
           <div class="col-flex5 col-icon-profil left-radius" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
