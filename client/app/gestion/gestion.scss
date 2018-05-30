@@ -75,34 +75,7 @@
       display: inline-block;
       font-size: 9em;
       color: #FFFFFF;
-      //float: none;
-      //text-align: left;
     }
-  }
-
-  #flex-container {
-    display: flex;
-    flex-direction: column;
-    color: rgb(157, 250, 177);
-    justify-content: center;
-  }
-
-  #flex-container > .flex-itemé {
-    flex: auto;
-    color: rgb(157, 250, 177);
-  }
-
-  .flex-item {
-    justify-content: center;
-  }
-
-  .centered {
-    text-align: center;
-    //font-size: 0;
-  }
-  .col-centered{
-    float: none;
-    //margin: 0 auto;
   }
 
   .icon-demande {
@@ -197,7 +170,6 @@
     padding: 10px 15px;
     font-size: 1.2em;
     color: #FFFFFF;
-    //border-left: 4px solid $lighter-blue;
 
     &:before {
       content: "\f1f8";
