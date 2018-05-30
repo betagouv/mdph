@@ -32,7 +32,7 @@
       <div class="icon-profil centre" ng-if="showMenu" />
 
       <div class="container-fluid " ng-class="{'border-top': showMenu}">
-
+        <br/>
         <h2>Vos profils</h2>
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="!showMenu">
           <div class="col-flex5 col-icon-profil left-radius" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
