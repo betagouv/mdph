@@ -11,9 +11,7 @@
   <div class="row">
 
     <div ng-class="{'col-md-1':!showMenu}" style="width:11%" ng-if="!showMenu">
-      <div class="row">
-          <div class="icon-profil"/>
-        </div>
+      <div class="icon-profil"/>
     </div>
 
     <div ng-class="{'col-md-11 border-left':!showMenu}" style="width:89%">
@@ -37,28 +35,31 @@
 
         <h2>Vos profils</h2>
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="!showMenu">
-          <div class="col-md-4 col-icon-profil" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
-          <div class="col-md-3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Créé le {{profil.createdAt | date:'dd/MM/yyyy'}}</div>
-          <div class="col-md-3 col-item" align="right" ng-click="gestionProfilCtrl.goProfil(profil)">Dernière demande {{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
-          <div class="col-md-2 col-action" align="center" ng-click="gestionProfilCtrl.deleteProfil(profil)">Supprimer</div>
+          <div class="col-flex5 col-icon-profil left-radius" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
+          <div class="col-flex3 col-item" ng-click="gestionProfilCtrl.goProfil(profil)">Créé le {{profil.createdAt | date:'dd/MM/yyyy'}}</div>
+          <div class="col-flex6 col-item right-radius" align="right" ng-click="gestionProfilCtrl.goProfil(profil)">Dernière demande {{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
+          <div class="col-flex2 col-action left-radius right-radius" align="center" ng-click="gestionProfilCtrl.deleteProfil(profil)">Supprimer</div>
         </div>
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="showMenu">
-          <div style="width:80%" class="col-xs-11 col-icon-profil " ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
-          <div style="width:20%" class="col-xs-1 col-action" ng-click="gestionProfilCtrl.deleteProfil(profil)"></div>
+          <div style="width:80%" class="col-flex6 col-icon-profil " ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
+          <div style="width:20%" class="col-flex1 col-action" ng-click="gestionProfilCtrl.deleteProfil(profil)"></div>
         </div>
         <div class="row" >
-          <div class="col-md-12 col-new" ng-click="gestionProfilCtrl.createProfil()">Créer un nouveau profil</div>
+          <div class="col-md-12 col-new left-radius right-radius" ng-click="gestionProfilCtrl.createProfil()">Créer un nouveau profil</div>
         </div>
         <div class="row" >
-          <i class="note">* Le mode multi-profil permet d'afficher des demandes pour plusieurs usagers</i>
+          <i class="note">* Le mode multi-profils permet d'afficher des demandes pour plusieurs usagers</i>
         </div>
 
         <h2 ng-if="gestionProfilCtrl.deletedProfils.length > 0">Vos profils supprimés</h2>
-        <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils">
-          <div class="col-md-4 col-icon-profil-desabled">{{ ::deletedProfil.getTitle() }}</div>
-          <div class="col-md-3 col-item-desabled">Créé le {{deletedProfil.createdAt | date:'dd/MM/yyyy'}} - Supprimé le {{ deletedProfil.deletedAt | date:'dd/MM/yyyy'}}</div>
-          <div class="col-md-3 col-item-desabled" align="right">Dernière demande envoyée {{ gestionProfilCtrl.showCurrentRequestStatus(deletedProfil) }}</div>
-          <div class="col-md-2 col-action-desabled" align="center">Profil supprimé</div>
+        <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils" ng-if="!showMenu">
+          <div class="col-flex3 col-icon-profil-desabled  left-radius">{{ ::deletedProfil.getTitle() }}</div>
+          <div class="col-flex6 col-item-desabled">Créé le {{deletedProfil.createdAt | date:'dd/MM/yyyy'}} - Supprimé le {{ deletedProfil.deletedAt | date:'dd/MM/yyyy'}}</div>
+          <div class="col-flex5 col-item-desabled right-radius" align="right">Dernière demande envoyée {{ gestionProfilCtrl.showCurrentRequestStatus(deletedProfil) }}</div>
+          <div class="col-flex2 col-action-desabled left-radius right-radius" align="center">Profil supprimé</div>
+        </div>
+        <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils" ng-if="showMenu">
+          <div class="col-flex1  col-icon-profil-desabled">{{ ::deletedProfil.getTitle() }}</div>
         </div>
       </div>
     </div>
