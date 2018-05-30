@@ -17,8 +17,11 @@ angular.module('impactApp').controller('DemandeDocumentsCtrl', function(
       .then(function(result) {
         if (result) {
           UploadService.upload(demande, file, documentType).then(function(resp) {
-            demande = resp;
-            $state.go('^.documents', {}, {reload: true});
+            console.log('resp : ',  resp);
+            $http.get(`/api/requests/${demande.shortId}`).then(function(result) {
+              demande = result.data;
+              $state.go('^.documents', {}, {reload: true});
+            });
           });
         } else {
           $scope.$emit('file-upload-error', documentType.id);

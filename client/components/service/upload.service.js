@@ -50,7 +50,7 @@ angular.module('impactApp')
         }).then(function(resp) {
           model[documentType.id].documentList.pop();
           model[documentType.id].documentList.push(resp.data);
-          deferred.resolve(demande);
+          deferred.resolve(resp);
         },
 
         function() {
