@@ -63,8 +63,13 @@
     border-bottom-right-radius: 5px;
   }
 
+  .flex-container {
+    display: flex;
+    height: 100vh;
+  }
+
   .icon-profil {
-    margin-top: auto;
+    margin-top: 50px;
     &.centre {
       text-align: center;
 
