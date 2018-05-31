@@ -1258,8 +1258,8 @@
         ]
       },
       "situationAccompagnement": {
-        "titleRep": "Son accompagnement vers l'emploi est réalisé par",
-        "titleDefault": "Votre accompagnement vers l'emploi est réalisé par",
+        "titleRep": "Son accompagnement vers l'emploi est réalisé par :",
+        "titleDefault": "Votre accompagnement vers l'emploi est réalisé par :",
         "model": "situationAccompagnement",
         "type": "checkbox",
         "answers": [
