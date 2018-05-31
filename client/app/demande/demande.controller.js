@@ -29,12 +29,14 @@ angular.module('impactApp').controller('DemandeCtrl', function(
     var files = [];
     angular.forEach(demande.data.documents.obligatoires, function(group) {
       angular.forEach(group.documentList, function(doc) {
+        doc.type = group.documentType.label;
         files.push(doc);
       });
     });
 
     angular.forEach(demande.data.documents.complementaires, function(group) {
       angular.forEach(group.documentList, function(doc) {
+        doc.type = group.documentType.label;
         files.push(doc);
       });
     });

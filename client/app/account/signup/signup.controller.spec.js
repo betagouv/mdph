@@ -96,7 +96,8 @@ describe('SignupCtrl', function() {
 
     describe('with correct values', function() {
       let fakeCreatedUser = {
-        profile: '1234'
+        profile: '1234',
+        request: 'req213'
       };
 
       let Auth = {
@@ -121,7 +122,7 @@ describe('SignupCtrl', function() {
 
         expect($state.go).toHaveBeenCalled();
         expect($state.go.calls.argsFor(0)[0]).toEqual('demande.beneficiaire');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: fakeCreatedUser.profile});
+        expect($state.go.calls.argsFor(0)[1]).toEqual({shortId: fakeCreatedUser.request});
       });
     });
 

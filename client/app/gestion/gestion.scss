@@ -5,17 +5,65 @@
 
   .row {
     max-width: 100% !important;
-    margin: 4px;
+    margin-left: 24px;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    margin-top: 14px;
+    display: flex;
   }
 
   .col {
     margin: 4px;
+    flex: 1;
+  }
+
+  .col-flex1 {
+    flex: 1;
+  }
+
+  .col-flex2 {
+    flex: 2;
+  }
+
+  .col-flex3 {
+    flex: 3;
+  }
+
+  .col-flex4 {
+    flex: 4;
+  }
+
+  .col-flex5 {
+    flex: 5;
+  }
+
+  .col-flex6 {
+    flex: 6;
+  }
+
+  .col-flex7 {
+    flex: 7;
+  }
+
+  .col-flex8 {
+    flex: 8;
+  }
+
+  .left-radius {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .right-radius {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 
   .icon-profil {
     margin-top: 50px;
     &.centre {
       text-align: center;
+
     }
     &:before {
       content: "\f007";
@@ -58,6 +106,7 @@
 
   .col-icon-profil {
     background-color: #FFFFFF;
+    border-right: 4px solid #FFFFFF;
     padding: 10px 15px;
     font-size: 1.2em;
     color: #4f6083;
@@ -74,9 +123,12 @@
 
   .col-icon-demande {
     background-color: #FFFFFF;
+    border-right: 4px solid #FFFFFF;
     padding: 10px 15px;
     font-size: 1.2em;
     color: #4f6083;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 
     &:before {
       content: "\f07c";
@@ -90,26 +142,34 @@
 
   .col-item {
     background-color: #FFFFFF;
+    border-left: 4px solid #FFFFFF;
+    border-right: 4px solid #FFFFFF;
     padding: 10px 15px;
     font-size: 1.2em;
     color: #4f6083;
   }
 
   .retour {
-    margin: 15px 0px;
-    padding: 10px 15px;
     background-color: #FFFFFF;
     font-size: 1.2em;
     color: #4f6083;
-    width: 200px;
+    text-align: center;
+    border-radius: 3px;
+    min-height: 44px;
+
+    &.espace {
+      margin-left: 28px;
+      margin-top: 15px;
+      width: 200px;
+    }
   }
 
   .col-action {
     background-color: #d9534f ;
+    margin-left: 10px;
     padding: 10px 15px;
     font-size: 1.2em;
     color: #FFFFFF;
-    border-left: 4px solid $lighter-blue;
 
     &:before {
       content: "\f1f8";
@@ -157,6 +217,7 @@
 
   .col-icon-profil-desabled {
     background-color: #D0D0D0;
+    border-right: 4px solid #D0D0D0;
     padding: 10px 15px;
     font-size: 1.2em;
     color: #666666;
@@ -172,6 +233,7 @@
 
   .col-icon-demande-desabled {
     background-color: #D0D0D0;
+    border-right: 4px solid #D0D0D0;
     padding: 10px 15px;
     font-size: 1.2em;
     color: #666666;
@@ -187,6 +249,8 @@
 
   .col-item-desabled {
     background-color: #D0D0D0;
+    border-left: 4px solid #D0D0D0;
+    border-right: 4px solid #D0D0D0;
     padding: 10px 15px;
     font-size: 1.2em;
     color: #666666;
@@ -195,9 +259,10 @@
   .col-action-desabled {
     background-color: #D0D0D0;
     padding: 10px 15px;
+    margin-left: 10px;
     font-size: 1.2em;
     color: #666666;
-    border-left: 4px solid $lighter-blue;
+    //border-left: 4px solid $lighter-blue;
   }
 
   .note{
@@ -237,6 +302,7 @@
       }
 
       &.first {
+        margin-left: 28px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
       }
@@ -256,7 +322,7 @@
         position: absolute;
         content: "";
         top: 0px;
-        left: -22px;
+        left: -21px;
       }
 
       &.active.left-arrow:before {
@@ -273,7 +339,7 @@
         position: absolute;
         content: "";
         top: 0px;
-        right: -22px;
+        right: -21px;
       }
 
       &.active:after {

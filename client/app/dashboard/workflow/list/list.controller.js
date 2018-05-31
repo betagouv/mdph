@@ -4,12 +4,14 @@ angular.module('impactApp')
   .controller('WorkflowListCtrl', function($scope,
     $cookies, $window, $modal, $q, $state, $rootScope,
     RequestService, RequestResource, MdphResource, userId, status, requests,
-    groupedByAge, currentMdph, banetteUser, toastr) {
+    groupedByAge, currentMdph, currentUser, banetteUser, toastr) {
     this.token = $cookies.get('token');
     this.status = status;
     this.requests = requests;
     this.groupedByAge = groupedByAge;
     this.banetteUser = banetteUser;
+    $scope.layoutctrl.currentUser = currentUser;
+
     this.groups = [
       {
         id: 'new',

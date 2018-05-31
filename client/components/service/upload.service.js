@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('impactApp')
-  .factory('UploadService', function UploadService(Upload, $rootScope) {
+  .factory('UploadService', function UploadService(Upload, $rootScope, $q) {
     return {
       upload: function(demande, file, documentType) {
+        var deferred = $q.defer();
+
         if (!file) {
           return;
         }
@@ -48,6 +50,7 @@ angular.module('impactApp')
         }).then(function(resp) {
           model[documentType.id].documentList.pop();
           model[documentType.id].documentList.push(resp.data);
+          deferred.resolve(resp);
         },
 
         function() {
@@ -58,6 +61,8 @@ angular.module('impactApp')
         function(evt) {
           uploadedFile.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
+
+        return deferred.promise;
       }
     };
   });
