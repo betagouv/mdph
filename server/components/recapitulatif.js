@@ -170,7 +170,7 @@ function computeAnswers(question, trajectoireAnswers) {
           answer.detail = detail + ' %';
           break;
         case 'remuneration':
-          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
+          answer.detail = 'stage ' + (detail === true ? 'rémunéré' : 'non rémunéré');
           break;
         default:
           answer.detail = detail;
