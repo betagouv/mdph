@@ -81,10 +81,17 @@ function rebuildAnswersFromModel(question, questionAnswers) {
         jours: questionAnswers.jours
       }];
     case 'etablissement':
+      if (questionAnswers.etablissements && questionAnswers.etablissements.length > 0) {
+        return [{
+          label: 'Etablissements',
+          etablissements: questionAnswers.etablissements
+        }];
+      }
+
       return [{
-        label: 'Etablissements',
-        etablissements: questionAnswers.etablissements
+        label: 'Pas de réponse'
       }];
+
     case 'adresse':
       var adresse = '';
       if(questionAnswers.complement_adresse) {
