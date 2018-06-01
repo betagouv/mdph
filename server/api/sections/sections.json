@@ -844,7 +844,7 @@
       },
       "internat": {
         "model": "internat",
-        "titleDefault": "Est-il placé en internat ?",
+        "titleDefault": "Êtes-vous placé en internat ?",
         "type": "radio",
         "answers": [
           {
