@@ -1580,8 +1580,8 @@
         "type": "cv"
       },
       "qualification": {
-        "titleRep": "Son niveau de qualification",
-        "titleDefault": "Votre niveau de qualification",
+        "titleRep": "Son niveau de qualification :",
+        "titleDefault": "Votre niveau de qualification :",
         "model": "qualification",
         "type": "radio",
         "answers": [
