@@ -2,9 +2,9 @@
 
 angular.module('impactApp')
 .factory('DemandeService', function DemandeService($http, estAdulte, estMineur, estEnfant) {
-    function _estMineur(demande) {
-      if (demande && demande.data && demande.data.identites && demande.data.identites.beneficiaire) {
-        return estMineur(demande.data.identites.beneficiaire.dateNaissance);
+    function _estMineur(profil) {
+      if (profil && profil.identites && profil.identites.beneficiaire) {
+        return estMineur(profil.identites.beneficiaire.dateNaissance);
       } else {
         return false;
       }
@@ -192,17 +192,17 @@ angular.module('impactApp')
     }
 
     return {
-      estHomme: function(demande) {
-        if (demande.data.identites && demande.data.identites.beneficiaire) {
-          return demande.data.identites.beneficiaire.sexe === 'homme';
+      estHomme: function(profil) {
+        if (profil.identites && profil.identites.beneficiaire) {
+          return profil.identites.beneficiaire.sexe === 'homme';
         } else {
           return false;
         }
       },
 
-      getPrenom: function(demande) {
-        if (demande.data.identites && demande.data.identites.beneficiaire) {
-          return demande.data.identites.beneficiaire.prenom;
+      getPrenom: function(profil) {
+        if (profil.identites && profil.identites.beneficiaire) {
+          return profil.identites.beneficiaire.prenom;
         } else {
           return 'le bénéficiaire de la demande';
         }

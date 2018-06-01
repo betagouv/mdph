@@ -3,13 +3,13 @@
 angular.module('impactApp')
   .factory('QuestionService', function QuestionService(DemandeService) {
 
-    var loadAshCompile = function(str, demande) {
+    var loadAshCompile = function(str, profil) {
 
-      var estHomme = DemandeService.estHomme(demande);
+      var estHomme = DemandeService.estHomme(profil);
       var pronoun = estHomme ? 'il' : 'elle';
       var pronounTonic = estHomme ? 'lui' : 'elle';
       var fem = estHomme ? '' : 'e';
-      var name = DemandeService.getPrenom(demande);
+      var name = DemandeService.getPrenom(profil);
 
       var compiled = _.template(str);
       return compiled({
@@ -20,16 +20,16 @@ angular.module('impactApp')
       });
     };
 
-    var compileLabel = function(answer, demande) {
-      if (DemandeService.estMineur(demande)) {
+    var compileLabel = function(answer, profil) {
+      if (DemandeService.estMineur(profil)) {
         if (answer.labelRep) {
-          return loadAshCompile(answer.labelRep, demande);
+          return loadAshCompile(answer.labelRep, profil);
         }
 
-        if (DemandeService.estHomme(demande) && answer.labelRepMasc) {
-          return loadAshCompile(answer.labelRepMasc, demande);
+        if (DemandeService.estHomme(profil) && answer.labelRepMasc) {
+          return loadAshCompile(answer.labelRepMasc, profil);
         } else if (answer.labelRepFem) {
-          return loadAshCompile(answer.labelRepFem, demande);
+          return loadAshCompile(answer.labelRepFem, profil);
         }
       }
 
@@ -54,9 +54,9 @@ angular.module('impactApp')
       return question.titleDefault;
     };
 
-    var compilePlaceholder = function(question, demande) {
-      if (DemandeService.estMineur(demande) && angular.isDefined(question.placeholder)) {
-        return loadAshCompile(question.placeholder, demande);
+    var compilePlaceholder = function(question, profil) {
+      if (DemandeService.estMineur(profil) && angular.isDefined(question.placeholder)) {
+        return loadAshCompile(question.placeholder, profil);
       }
 
       return question.placeholderDefault ? question.placeholderDefault : question.placeholder;
@@ -67,25 +67,25 @@ angular.module('impactApp')
     };
 
     return {
-      get: function(section, model, demande) {
+      get: function(section, model, profil) {
         var question = section.questions[model];
         if (typeof question === 'undefined') {
           console.error('Question "' + model + '" not found in section "' + section.id + '"');
         }
 
-        var title = compileTitle(question, demande);
+        var title = compileTitle(question, profil);
         question.title = capitaliseFirstLetter(title);
 
         angular.forEach(question.answers, function(answer) {
-          var label = compileLabel(answer, demande);
+          var label = compileLabel(answer, profil);
           answer.label = capitaliseFirstLetter(label);
 
           if (answer.detailLabel) {
-            answer.detailLabel = compileDetailLabel(answer, demande);
+            answer.detailLabel = compileDetailLabel(answer, profil);
           }
 
           if (answer.placeholder) {
-            var placeholder = compilePlaceholder(answer, demande);
+            var placeholder = compilePlaceholder(answer, profil);
             answer.placeholder = capitaliseFirstLetter(placeholder);
           }
         });
