@@ -114,7 +114,9 @@ function computeAnswers(question, trajectoireAnswers) {
       var detail = trajectoireAnswers[answer.detailModel];
       switch (detailType){
         case 'date':
-          answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          if (detail){
+            answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
           break;
         case 'duree':
           answer.detail = '';
