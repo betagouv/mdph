@@ -20,8 +20,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'condition', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'condition', demande);
         },
 
         nextStep: function($state, sectionModel, saveCurrentState) {
@@ -43,8 +43,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'vieScolaireType', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'vieScolaireType', demande);
         },
 
         nextStep: function($state, sectionModel, question, saveCurrentState) {
@@ -75,8 +75,8 @@ angular.module('impactApp')
           return 'etablissements';
         },
 
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'etablissement', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'etablissement', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -94,8 +94,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'internat', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'internat', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -113,8 +113,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'typeEtudes', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'typeEtudes', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -132,8 +132,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'diplomePasse', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'diplomePasse', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -151,8 +151,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'diplomePresent', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'diplomePresent', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -174,8 +174,8 @@ angular.module('impactApp')
           return 'etablissements';
         },
 
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'diplomeEtablissement', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'diplomeEtablissement', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -193,8 +193,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'parcoursEtudes', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'parcoursEtudes', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -212,8 +212,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'accompagnement', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'accompagnement', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -231,8 +231,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'adaptation', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'adaptation', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -250,8 +250,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'aideEleve', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'aideEleve', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -269,8 +269,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'emploiDuTemps', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'emploiDuTemps', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -288,8 +288,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'raisonNonScolaire', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'raisonNonScolaire', demande);
         },
 
         nextStep: function($state, saveCurrentState) {

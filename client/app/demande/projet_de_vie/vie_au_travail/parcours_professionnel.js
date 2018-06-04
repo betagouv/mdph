@@ -16,8 +16,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'uploadCV', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'uploadCV', demande);
         },
 
         nextStep: function($state, sectionModel, saveCurrentState) {
@@ -39,8 +39,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'cv', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'cv', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -58,8 +58,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'qualification', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'qualification', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -77,8 +77,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'derniereClasse', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'derniereClasse', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -96,8 +96,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'formations', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'formations', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -119,8 +119,8 @@ angular.module('impactApp')
           return 'listeDiplomes';
         },
 
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'diplomes', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'diplomes', demande);
         },
 
         nextStep: function($state, saveCurrentState) {

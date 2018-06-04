@@ -17,8 +17,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'attentesVieScolaire', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'attentesVieScolaire', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -40,8 +40,8 @@ angular.module('impactApp')
           return 'structures';
         },
 
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'structure', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'structure', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -59,8 +59,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'referent', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'referent', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -81,8 +81,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'autresRenseignements', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'autresRenseignements', demande);
         },
 
         nextStep: function(saveSection) {
