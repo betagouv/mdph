@@ -110,21 +110,7 @@ angular.module('impactApp')
       templateUrl: 'components/question/employeur.html',
       authenticate: true,
       authorized: ['user'],
-      controller: function($scope, question, prevStep, nextStep) {
-        if (angular.isUndefined($scope.sectionModel.employeur)) {
-          $scope.sectionModel.employeur = {
-            nom: {label: 'Nom', value: ''},
-            adresse: {label: 'Adresse', value: ''},
-            medecin: {label: 'Service/Médecin', value: ''}
-          };
-        }
-
-        $scope.question = question;
-        $scope.nextStep = nextStep;
-        $scope.prevStep = prevStep;
-        $scope.model = $scope.sectionModel.employeur;
-      },
-
+      controller: 'QuestionCtrl',
       resolve: {
         question: function(QuestionService, section, profile) {
           return QuestionService.get(section, 'employeur', profile);

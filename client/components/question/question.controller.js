@@ -33,6 +33,15 @@ angular.module('impactApp')
           });
         }
       }
+
+      if (!previousModel && !sectionModel[question.model] && question.model === 'employeur') {
+        sectionModel[question.model] = {
+          nom: {label: 'Nom', value: ''},
+          adresse: {label: 'Adresse', value: ''},
+          medecin: {label: 'Service/Médecin', value: ''}
+        };
+      }
+
     };
   })
   .controller('QuestionCtrl', function($scope, $state, question, previousModel, sectionModel, nextStep, initQuestionScope, prevStep) {
