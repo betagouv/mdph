@@ -1517,7 +1517,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "medecinTravailDetail",
             "detailLabel": "A quelle date ?",
-            "type": "date"
+            "detailType": "jour"
           },
           {
             "label": "Non",
