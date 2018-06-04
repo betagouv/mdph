@@ -1453,7 +1453,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "arretDeTravailDetail",
             "detailLabel": "Depuis quand ?",
-            "detailType": "date"
+            "detailType": "depuis"
           },
           {
             "label": "Non",
