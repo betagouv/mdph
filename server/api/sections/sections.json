@@ -1497,7 +1497,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "profesionnelSocialDetail",
             "detailLabel": "A quelle date ?",
-            "detailType": "le"
+            "detailType": "jour"
           },
           {
             "label": "Non",

@@ -142,7 +142,7 @@ function computeAnswers(question, trajectoireAnswers) {
             answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
-        case 'le':
+        case 'jour':
           if(detail){
             answer.detail = 'Le ';
             answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
