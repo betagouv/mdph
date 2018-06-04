@@ -144,6 +144,12 @@ function computeAnswers(question, trajectoireAnswers) {
             answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
+        case 'jour':
+          if(detail){
+            answer.detail = 'Le ';
+            answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
         case 'fraisInternat':
           if(detail !== undefined){
             if(detail){
