@@ -837,11 +837,6 @@
           }
         ]
       },
-      "etablissement": {
-        "model": "etablissement",
-        "titleDefault": "Dans quel(s) établissement(s) ?",
-        "type": "etablissement"
-      },
       "internat": {
         "model": "internat",
         "titleDefault": "Est-il placé en internat ?",
@@ -860,6 +855,11 @@
             "model": false
           }
         ]
+      },
+      "etablissement": {
+        "model": "etablissement",
+        "titleDefault": "Dans quel(s) établissement(s) ?",
+        "type": "etablissement"
       },
       "typeEtudes": {
         "model": "typeEtudes",
