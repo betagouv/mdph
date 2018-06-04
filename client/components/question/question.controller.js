@@ -25,7 +25,6 @@ angular.module('impactApp')
 
       // Si pas encore de réponse, on reprend la dernière
       if (previousModel && !sectionModel[question.model]) {
-        console.info('previousModel:', previousModel[question.model]);
         sectionModel[question.model] = previousModel[question.model];
 
         if (question.answers) {
