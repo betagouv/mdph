@@ -18,6 +18,9 @@
       border-bottom-left-radius: 0px;
       margin-left: -1px;
     }
+    select::-ms-expand {
+      display: none;
+    }
   }
 
   .flex-group::after {
