@@ -1746,7 +1746,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "vieDetail",
             "detailLabel": "Depuis le",
-            "type": "date"
+            "detailType": "depuis"
           },
           {
             "label": "Non",
