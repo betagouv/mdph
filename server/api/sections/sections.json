@@ -1725,7 +1725,7 @@
       },
       "adresseAidant": {
         "model": "adresseAidant",
-        "titleDefault": "Adresse",
+        "titleDefault": "Adresse :",
         "type": "adresse"
       },
       "lien": {
