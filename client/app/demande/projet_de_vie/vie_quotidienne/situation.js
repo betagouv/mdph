@@ -19,8 +19,8 @@ angular.module('impactApp')
         authenticate: true,
         authorized: ['user'],
         resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'famille', profile);
+          question: function(QuestionService, section, demande) {
+            return QuestionService.get(section, 'famille', demande);
           },
 
           nextStep: function($state, saveCurrentState) {
@@ -38,8 +38,8 @@ angular.module('impactApp')
         authenticate: true,
         authorized: ['user'],
         resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'logement', profile);
+          question: function(QuestionService, section, demande) {
+            return QuestionService.get(section, 'logement', demande);
           },
 
           nextStep: function($state, saveCurrentState) {
@@ -57,8 +57,8 @@ angular.module('impactApp')
         authenticate: true,
         authorized: ['user'],
         resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'accident', profile);
+          question: function(QuestionService, section, demande) {
+            return QuestionService.get(section, 'accident', demande);
           },
 
           nextStep: function($state, sectionModel, question, saveCurrentState) {
@@ -82,8 +82,8 @@ angular.module('impactApp')
         authenticate: true,
         authorized: ['user'],
         resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'indemnisation', profile);
+          question: function(QuestionService, section, demande) {
+            return QuestionService.get(section, 'indemnisation', demande);
           },
 
           nextStep: function($state, saveCurrentState) {
@@ -101,8 +101,8 @@ angular.module('impactApp')
         authenticate: true,
         authorized: ['user'],
         resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'aideActuelle', profile);
+          question: function(QuestionService, section, demande) {
+            return QuestionService.get(section, 'aideActuelle', demande);
           },
 
           nextStep: function($state, sectionModel, question, saveCurrentState, DemandeService, demande) {

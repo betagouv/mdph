@@ -298,6 +298,62 @@
           }
         ]
       },
+      "pensionInvalidite": {
+        "model": "pensionInvalidite",
+        "titleDefault": "Vous percevez une ou plusieurs des aides suivantes :",
+        "titleRep": "<%= name %> perçoit une ou plusieurs des aides suivantes :",
+        "type": "checkbox",
+        "answers": [
+          {
+            "label": "Une pension d'invalidité",
+            "model": "invalidite",
+            "detailUrl": "components/detail/pension_invalidite.html",
+            "detailModel": "categorie",
+            "detailType": "date&categorie"
+          },
+          {
+            "label": "Une autre pension de ce type",
+            "model": "autre",
+            "detailUrl": "components/detail/precisez.html",
+            "detailModel": "amenagementDetail",
+            "placeholder": "Pension des deux tiers, d'incapacité, etc."
+          },
+          {
+            "label": "Une Majoration Tierce Personne",
+            "model": "mtp"
+          },
+          {
+            "label": "Une Allocation Supplémentaire d'Invalidité",
+            "model": "asi"
+          },
+          {
+            "label": "Une rente d'accident ou de maladie professionnelle",
+            "model": "renteAccident"
+          },
+          {
+            "label": "Une Prestation Complémentaire de Recours à Tierce Personne",
+            "model": "pcrtp"
+           },
+          {
+            "label": "Une retraite pour inaptitude dans la fonction publique ou anticipée",
+            "model": "retraiteInaptitude",
+            "detailUrl": "components/detail/precisez_date.html",
+            "detailModel": "retraiteInaptitudeDetail",
+            "detailLabel": "Depuis le ?",
+            "detailType": "depuis",
+            "onlyAdult": true
+          }
+        ]
+      },
+      "ipp": {
+        "model": "ipp",
+        "titleDefault": "Connaissez-vous votre taux d'IPP (Incapacité Permanente Partielle) ?",
+        "titleRep": "Connaissez-vous son taux d'IPP (Incapacité Permanente Partielle) ?",
+        "help": "Renseignez ici le taux qui vous a été attribué par l'assurance maladie (CPAM)",
+        "type": "pourcentage",
+        "placeholder": "Taux d'IPP, en %",
+        "isOptionnal": true
+      },
       "aideTechnique": {
         "model": "aideTechnique",
         "titleDefault": "Vous avez indiqué recevoir une aide technique, matérielle ou de l'équipement, cette aide consiste en :",
@@ -356,62 +412,6 @@
           }
         ]
       },
-      "pensionInvalidite": {
-        "model": "pensionInvalidite",
-        "titleDefault": "Vous percevez une ou plusieurs des aides suivantes :",
-        "titleRep": "<%= name %> perçoit une ou plusieurs des aides suivantes :",
-        "type": "checkbox",
-        "answers": [
-          {
-            "label": "Une pension d'invalidité",
-            "model": "invalidite",
-            "detailUrl": "components/detail/pension_invalidite.html",
-            "detailModel": "categorie",
-            "detailType": "date&categorie"
-          },
-          {
-            "label": "Une autre pension de ce type",
-            "model": "autre",
-            "detailUrl": "components/detail/precisez.html",
-            "detailModel": "amenagementDetail",
-            "placeholder": "Pension des deux tiers, d'incapacité, etc."
-          },
-          {
-            "label": "Une Majoration Tierce Personne",
-            "model": "mtp"
-          },
-          {
-            "label": "Une Allocation Supplémentaire d'Invalidité",
-            "model": "asi"
-          },
-          {
-            "label": "Une rente d'accident ou de maladie professionnelle",
-            "model": "renteAccident"
-          },
-          {
-            "label": "Une Prestation Complémentaire de Recours à Tierce Personne",
-            "model": "pcrtp"
-           },
-          {
-            "label": "Une retraite pour inaptitude dans la fonction publique ou anticipée",
-            "model": "retraiteInaptitude",
-            "detailUrl": "components/detail/precisez_date.html",
-            "detailModel": "retraiteInaptitudeDetail",
-            "detailLabel": "Depuis le ?",
-            "detailType": "depuis",
-            "onlyAdult": true
-          }
-        ]
-      },
-      "ipp": {
-        "model": "ipp",
-        "titleDefault": "Connaissez-vous votre taux d'IPP (Incapacité Permanente Partielle) ?",
-        "titleRep": "Connaissez-vous son taux d'IPP (Incapacité Permanente Partielle) ?",
-        "help": "Renseignez ici le taux qui vous a été attribué par l'assurance maladie (CPAM)",
-        "type": "pourcentage",
-        "placeholder": "Taux d'IPP, en %",
-        "isOptionnal": true
-      },
       "retraite": {
         "model": "retraite",
         "titleDefault": "Êtes-vous à la retraite ?",
@@ -424,7 +424,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "retraiteDetail",
             "detailLabel": "Depuis quand ?",
-            "detailType": "date"
+            "detailType": "depuis"
           },
           {
             "label": "Non",
@@ -837,14 +837,9 @@
           }
         ]
       },
-      "etablissement": {
-        "model": "etablissement",
-        "titleDefault": "Dans quel(s) établissement(s) ?",
-        "type": "etablissement"
-      },
       "internat": {
         "model": "internat",
-        "titleDefault": "Est-il placé en internat ?",
+        "titleDefault": "Êtes-vous placé en internat ?",
         "type": "radio",
         "answers": [
           {
@@ -860,6 +855,11 @@
             "model": false
           }
         ]
+      },
+      "etablissement": {
+        "model": "etablissement",
+        "titleDefault": "Dans quel(s) établissement(s) ?",
+        "type": "etablissement"
       },
       "typeEtudes": {
         "model": "typeEtudes",
@@ -1168,7 +1168,7 @@
       },
       "autresRenseignements": {
         "model": "autresRenseignements",
-        "titleDefault": "Vous avez d'autres renseignements importants(situation, attentes, projets) concernant votre vie scolaire, étudiante ou en apprentissage, indiquez-les ici :",
+        "titleDefault": "Vous avez d'autres renseignements importants (situation, attentes, projets) concernant votre vie scolaire, étudiante ou en apprentissage, indiquez-les ici :",
         "type": "text"
       }
     }
@@ -1205,7 +1205,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "conditionTravailDetail",
             "detailLabel": "Depuis quand ?",
-            "detailType": "date"
+            "detailType": "depuis"
           },
           {
             "label": "Non",
@@ -1453,7 +1453,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "arretDeTravailDetail",
             "detailLabel": "Depuis quand ?",
-            "detailType": "date"
+            "detailType": "depuis"
           },
           {
             "label": "Non",
@@ -1497,7 +1497,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "profesionnelSocialDetail",
             "detailLabel": "A quelle date ?",
-            "type": "date"
+            "detailType": "jour"
           },
           {
             "label": "Non",
@@ -1517,7 +1517,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "medecinTravailDetail",
             "detailLabel": "A quelle date ?",
-            "type": "date"
+            "detailType": "jour"
           },
           {
             "label": "Non",
@@ -1580,8 +1580,8 @@
         "type": "cv"
       },
       "qualification": {
-        "titleRep": "Son niveau de qualification",
-        "titleDefault": "Votre niveau de qualification",
+        "titleRep": "Son niveau de qualification :",
+        "titleDefault": "Votre niveau de qualification :",
         "model": "qualification",
         "type": "radio",
         "answers": [
@@ -1720,12 +1720,12 @@
       },
       "dateNaissanceAidant": {
         "model": "dateNaissanceAidant",
-        "titleDefault": "Date de naissance",
+        "titleDefault": "Date de naissance :",
         "type": "date"
       },
       "adresseAidant": {
         "model": "adresseAidant",
-        "titleDefault": "Adresse",
+        "titleDefault": "Adresse :",
         "type": "adresse"
       },
       "lien": {
@@ -1746,7 +1746,7 @@
             "detailUrl": "components/detail/precisez_date.html",
             "detailModel": "vieDetail",
             "detailLabel": "Depuis le",
-            "type": "date"
+            "detailType": "depuis"
           },
           {
             "label": "Non",
