@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LoginCtrl', function($rootScope, $scope, Auth, $location, $state, currentMdph, ProfileResource) {
+  .controller('LoginCtrl', function($http, $rootScope, $scope, Auth, $location, $state, currentMdph, ProfileResource) {
     $scope.user = {};
     $scope.error = null;
 
@@ -22,11 +22,19 @@ angular.module('impactApp')
 
           if (Auth.hasRole(user, 'user')) {
             ProfileResource.query({userId: user._id}).$promise.then(function(profilList) {
-              if (profilList.length === 1) {
-                return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
+
+              if (profilList.filter(profil => profil.deletedAt).length > 1) {
+                return $state.go('gestion_profil', {}, {reload: true});
               }
 
-              return $state.go('gestion_profil', {}, {reload: true});
+              $http.get(`/api/users/${user._id}/profiles/${profilList[0]._id}/requests/last`).then(function({data}) {
+
+                if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
+                  return $state.go('demande.beneficiaire', {shortId: data.shortId}, {reload: true});
+                } else {
+                  return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
+                }
+              });
             });
           }
 

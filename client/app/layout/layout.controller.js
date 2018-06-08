@@ -48,12 +48,25 @@ angular.module('impactApp')
       if (Auth.hasRole(currentUser, 'user')) {
 
         ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
-          if (profilList.length === 1) {
-            return $state.go('gestion_demande', {profilId: profilList[0]._id});
+
+          if (profilList.filter(profil => profil.deletedAt).length > 1) {
+            return $state.go('gestion_profil', {}, {reload: true});
           }
 
-          return $state.go('gestion_profil', {}, {reload: true});
+          $http.get(`/api/users/${user._id}/profiles/${profilList[0]._id}/requests/last`).then(function({data}) {
+
+            if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
+              return $state.go('demande.beneficiaire', {shortId: data.shortId}, {reload: true});
+            } else {
+              return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
+            }
+          });
         });
+
+
+
+
+
       } else if (Auth.hasRole(currentUser, 'adminMdph')) {
 
         return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode, userId:'me', status:'emise'}, {reload: true});
