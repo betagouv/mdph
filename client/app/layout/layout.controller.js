@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+  .controller('LayoutCtrl', function($http, $window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
     let sizeMaxToReduceMenu = 836;
 
     this.currentMdph = currentMdph;
@@ -53,7 +53,7 @@ angular.module('impactApp')
             return $state.go('gestion_profil', {}, {reload: true});
           }
 
-          $http.get(`/api/users/${user._id}/profiles/${profilList[0]._id}/requests/last`).then(function({data}) {
+          $http.get(`/api/users/${currentUser._id}/profiles/${profilList[0]._id}/requests/last`).then(function({data}) {
 
             if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
               return $state.go('demande.beneficiaire', {shortId: data.shortId}, {reload: true});
@@ -62,10 +62,6 @@ angular.module('impactApp')
             }
           });
         });
-
-
-
-
 
       } else if (Auth.hasRole(currentUser, 'adminMdph')) {
 
