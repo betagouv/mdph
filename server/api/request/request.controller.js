@@ -364,6 +364,7 @@ export function getRecapitulatif(req, res) {
 
 export function getPdf(req, res) {
   var currentMdph = null;
+  if (req.request.deletedAt) return res.sendStatus(404);
   Mdph
     .findOne({zipcode: req.request.mdph})
     .exec()
