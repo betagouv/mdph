@@ -44,7 +44,7 @@
         <h2>Demande de {{ ::gestionDemandeCtrl.profil.getTitle() }} en cours</h2>
         <div class="row" ng-if="gestionDemandeCtrl.currentDemande && !showMenu">
           <div class="col-flex5 col-icon-demande left-radius" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.currentDemande.shortId }}</div>
-          <div class="col-flex5 col-item" ng-click="gestionDemandeCtrl.goCurrentDemande()">Créé le {{gestionDemandeCtrl.currentDemande.createdAt | date:'dd/MM/yyyy'}}</div>
+          <div class="col-flex5 col-item" ng-click="gestionDemandeCtrl.goCurrentDemande()">Créée le {{gestionDemandeCtrl.currentDemande.createdAt | date:'dd/MM/yyyy'}}</div>
           <div class="col-flex5 col-item right-radius" align="right" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.showStatus(gestionDemandeCtrl.currentDemande) }}</div>
           <div class="col-flex3 col-action left-radius right-radius" align="center" ng-click="gestionDemandeCtrl.deleteCurrentDemande()">Supprimer</div>
         </div>
