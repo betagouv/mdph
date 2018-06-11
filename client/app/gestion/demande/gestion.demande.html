@@ -8,16 +8,16 @@
 </header>
 
 <section class="section-gestion container-fluid">
-  <div class="row">
+  <div class="rowMenu">
 
-    <div ng-class="{'col-md-1':!showMenu}" style="width:15%" ng-if="!showMenu">
+    <div ng-class="{'col-md-2':!showMenu}" ng-if="!showMenu">
         <button ui-sref="gestion_profil" class="btn retour">
             Retour aux profils
         </button>
         <div class="icon-demande centre"/>
     </div>
 
-    <div ng-class="{'col-md-11 border-left':!showMenu}" style="width:85%">
+    <div ng-class="{'col-md-10 border-left':!showMenu}">
 
       <div class="breadcrump">
         <div class="breadcrump-section">
@@ -49,8 +49,8 @@
           <div class="col-flex3 col-action left-radius right-radius" align="center" ng-click="gestionDemandeCtrl.deleteCurrentDemande()">Supprimer</div>
         </div>
         <div class="row" ng-if="gestionDemandeCtrl.currentDemande && showMenu">
-          <div style="width:80%" class="col-xs-11 col-icon-demande left-radius right-radius" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.currentDemande.shortId }}</div>
-          <div style="width:20%" class="col-xs-1 col-action left-radius right-radius" ng-click="gestionDemandeCtrl.deleteCurrentDemande()"></div>
+          <div class="col-flex6 col-icon-demande left-radius right-radius" ng-click="gestionDemandeCtrl.goCurrentDemande()">{{ gestionDemandeCtrl.currentDemande.shortId }}</div>
+          <div class="col-flex1 col-action centre left-radius right-radius" ng-click="gestionDemandeCtrl.deleteCurrentDemande()"></div>
         </div>
         <div class="row">
           <div class="col-md-12 left-radius right-radius"
@@ -64,7 +64,7 @@
         <h2 ng-if="gestionDemandeCtrl.archivedDemandes.length > 0">Demandes de {{ ::gestionDemandeCtrl.profil.getTitle() }} archivées</h2>
         <div class="row" ng-repeat="(idx, archivedDemande) in gestionDemandeCtrl.archivedDemandes" ng-if="!showMenu">
           <div class="col-flex5 col-icon-demande-desabled left-radius">{{ archivedDemande.shortId }}</div>
-          <div class="col-flex7 col-item-desabled">Créé le {{archivedDemande.createdAt | date:'dd/MM/yyyy'}} - Archivée le {{ archivedDemande.updatedAt | date:'dd/MM/yyyy'}}</div>
+          <div class="col-flex7 col-item-desabled">Créée le {{archivedDemande.createdAt | date:'dd/MM/yyyy'}} - Archivée le {{ archivedDemande.updatedAt | date:'dd/MM/yyyy'}}</div>
           <div class="col-flex3 col-item-desabled right-radius" align="right">{{ gestionDemandeCtrl.showStatus(archivedDemande) }}</div>
           <div class="col-flex3 col-action-desabled left-radius right-radius" align="center">Demande archivée</div>
         </div>
