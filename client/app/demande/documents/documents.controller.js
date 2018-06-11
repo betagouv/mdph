@@ -16,13 +16,7 @@ angular.module('impactApp').controller('DemandeDocumentsCtrl', function(
     FileSignatureService.check(file, ['pdf', 'jpg', 'png'])
       .then(function(result) {
         if (result) {
-          UploadService.upload(demande, file, documentType).then(function(resp) {
-            console.log('resp : ',  resp);
-            $http.get(`/api/requests/${demande.shortId}`).then(function(result) {
-              demande = result.data;
-              $state.go('^.documents', {}, {reload: true});
-            });
-          });
+          UploadService.upload(demande, file, documentType);
         } else {
           $scope.$emit('file-upload-error', documentType.id);
         }
