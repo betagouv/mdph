@@ -26,7 +26,7 @@ angular.module('impactApp')
       label: 'Refus de document',
       fa: 'thumbs-down',
     },
-    update_answers: {
+    update_data: {
       label: 'Mise à jour des réponses',
       fa: 'edit',
     },
