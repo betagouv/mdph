@@ -62,6 +62,7 @@ angular.module('impactApp')
                   $scope.demandeCtrl.profile.recipient = {};
                 }
 
+                $scope.demandeCtrl.estAdulte = DemandeService.estAdulte(demande);
                 $scope.demandeCtrl.profile.recipient.firstname = demande.data.identites.beneficiaire.prenom;
                 $scope.demandeCtrl.profile.recipient.lastname = demande.data.identites.beneficiaire.nom;
                 if (demande.data.identites.beneficiaire.numero_secu_enfant) {
