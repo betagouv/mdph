@@ -49,7 +49,7 @@ angular.module('impactApp')
 
         ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
 
-          if (profilList.filter(profil => profil.deletedAt).length > 1) {
+          if (profilList.filter(profil => !profil.deletedAt).length > 1) {
             return $state.go('gestion_profil', {}, {reload: true});
           }
 
