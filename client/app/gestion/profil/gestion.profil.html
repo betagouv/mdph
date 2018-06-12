@@ -40,14 +40,14 @@
           <div class="col-flex6 col-item right-radius" align="right" ng-click="gestionProfilCtrl.goProfil(profil)">{{ gestionProfilCtrl.showCurrentRequestStatus(profil) }}</div>
           <div class="col-flex2 col-action left-radius right-radius" align="center" ng-click="gestionProfilCtrl.deleteProfil(profil)">Supprimer</div>
         </div>
-        <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="showMenu">
-          <div class="col-flex6 col-icon-profil " ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
-          <div class="col-flex1 col-action" ng-click="gestionProfilCtrl.deleteProfil(profil)"></div>
+        <div class="smallRow" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="showMenu">
+          <div class="col-flex11 col-icon-profil left-radius right-radius" ng-click="gestionProfilCtrl.goProfil(profil)">{{ ::profil.getTitle() }}</div>
+          <div class="col-flex1 col-action left-radius right-radius" ng-click="gestionProfilCtrl.deleteProfil(profil)"></div>
         </div>
-        <div class="row" >
+        <div class="row" ng-class="{'smallRow': showMenu}">
           <div class="col-md-12 col-new left-radius right-radius" ng-click="gestionProfilCtrl.createProfil()">Créer un nouveau profil *</div>
         </div>
-        <div class="row" >
+        <div class="row" ng-class="{'smallRow': showMenu}" >
           <i class="note">* Le mode multi-profils permet d'effectuer des demandes pour plusieurs usagers</i>
         </div>
 
@@ -58,8 +58,8 @@
           <div class="col-flex5 col-item-desabled right-radius" align="right">{{ gestionProfilCtrl.showCurrentRequestSendedStatus(deletedProfil) }}</div>
           <div class="col-flex2 col-action-desabled left-radius right-radius" align="center">Profil supprimé</div>
         </div>
-        <div class="row" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils" ng-if="showMenu">
-          <div class="col-flex1  col-icon-profil-desabled">{{ ::deletedProfil.getTitle() }}</div>
+        <div class="smallRow" ng-repeat="(idx, deletedProfil) in gestionProfilCtrl.deletedProfils" ng-if="showMenu">
+          <div class="col-flex1 col-icon-profil-desabled left-radius right-radius">{{ ::deletedProfil.getTitle() }}</div>
         </div>
       </div>
     </div>

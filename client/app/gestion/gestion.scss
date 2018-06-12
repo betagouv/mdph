@@ -12,6 +12,15 @@
     display: flex;
   }
 
+  .smallRow {
+    max-width: 100% !important;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 6px;
+    margin-top: 6x;
+    display: flex;
+  }
+
   .rowMenu {
     max-width: 100% !important;
     margin-bottom: 14px;
@@ -52,8 +61,8 @@
     flex: 7;
   }
 
-  .col-flex8 {
-    flex: 8;
+  .col-flex11 {
+    flex: 11;
   }
 
   .left-radius {
@@ -301,7 +310,7 @@
       position: relative;
       display: block;
       height: 44px;
-      padding: 10px 15px;
+      padding: 10px;
       float: left;
       background-color: white;
 
