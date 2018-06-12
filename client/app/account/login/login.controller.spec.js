@@ -250,19 +250,10 @@ describe('LoginCtrl', function() {
       });
 
       it('should go to the profil\'s dashboard user page of the user', function() {
-
-        $httpBackend
-        .whenGET('/api/users/1/profiles/1/requests/last')
-        .respond(200, {status: 'en_cours'});
-        $httpBackend
-        .whenGET('/api/users/1/profiles/2/requests/last')
-        .respond(200, {status: 'emise'});
         $scope.login(fakeForm);
-        $httpBackend.flush();
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
-
-        //expect($state.go.calls.argsFor(0)[0]).toEqual('gestion_profil');
+        expect($state.go.calls.argsFor(0)[0]).toEqual('gestion_profil');
       });
     });
   });

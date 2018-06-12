@@ -30,7 +30,7 @@ angular.module('impactApp')
               $http.get(`/api/users/${user._id}/profiles/${profilList[0]._id}/requests/last`).then(function({data}) {
 
                 if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
-                  return $state.go('demande.beneficiaire', {shortId: data.shortId}, {reload: true});
+                  return $state.go('demande', {shortId: data.shortId}, {reload: true});
                 } else {
                   return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
                 }
