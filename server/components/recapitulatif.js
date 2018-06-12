@@ -63,7 +63,9 @@ function rebuildAnswersFromModel(question, questionAnswers) {
     case 'cv':
       return [{label: 'Curriculum vitae', listeCv: questionAnswers.experiences}];
     case 'diplomes':
-      return [{label: 'Diplômes', listeDiplomes: questionAnswers.listeDiplomes}];
+      return questionAnswers.listeDiplomes && questionAnswers.listeDiplomes.length > 0 ?
+             [{label: 'Diplômes', listeDiplomes: questionAnswers.listeDiplomes}] :
+             [{label: 'Pas de réponse'}];
     case 'employeur':
       return [{label: questionAnswers.nom.value + ', ' + questionAnswers.adresse.value}];
     case 'structure':
@@ -81,10 +83,17 @@ function rebuildAnswersFromModel(question, questionAnswers) {
         jours: questionAnswers.jours
       }];
     case 'etablissement':
+      if (questionAnswers.etablissements && questionAnswers.etablissements.length > 0) {
+        return [{
+          label: 'Etablissements',
+          etablissements: questionAnswers.etablissements
+        }];
+      }
+
       return [{
-        label: 'Etablissements',
-        etablissements: questionAnswers.etablissements
+        label: 'Pas de réponse'
       }];
+
     case 'adresse':
       var adresse = '';
       if(questionAnswers.complement_adresse) {
@@ -114,7 +123,9 @@ function computeAnswers(question, trajectoireAnswers) {
       var detail = trajectoireAnswers[answer.detailModel];
       switch (detailType){
         case 'date':
-          answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          if (detail){
+            answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
           break;
         case 'duree':
           answer.detail = '';
@@ -139,6 +150,12 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'depuis':
           if(detail){
             answer.detail = 'Depuis le ';
+            answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'jour':
+          if(detail){
+            answer.detail = 'Le ';
             answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
@@ -170,7 +187,7 @@ function computeAnswers(question, trajectoireAnswers) {
           answer.detail = detail + ' %';
           break;
         case 'remuneration':
-          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
+          answer.detail = 'stage ' + (detail === true ? 'rémunéré' : 'non rémunéré');
           break;
         default:
           answer.detail = detail;

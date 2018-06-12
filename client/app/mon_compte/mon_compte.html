@@ -42,7 +42,7 @@
                   <div>
                       <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword" required mongoose-error/>
                     <div ng-messages="forms.form.password.$error" ng-if="forms.form.$submitted">
-                      <p class="help-block" ng-message='required'>Veuillez entrer votre mot de passe précédent</p>
+                      <p class="help-block" ng-message='required'>Veuillez entrer votre mot de passe précédent.</p>
                       <p class="help-block" ng-message="mongoose">{{ errors.password }}</p>
                     </div>
                   </div>

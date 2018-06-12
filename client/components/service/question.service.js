@@ -36,8 +36,8 @@ angular.module('impactApp')
       return answer.label;
     };
 
-    var compileDetailLabel = function(answer, profile) {
-      if (DemandeService.estMineur(profile)) {
+    var compileDetailLabel = function(answer, demande) {
+      if (DemandeService.estMineur(demande)) {
         if (answer.detailLabelRep) {
           return answer.detailLabelRep;
         }
@@ -46,9 +46,9 @@ angular.module('impactApp')
       return answer.detailLabel;
     };
 
-    var compileTitle = function(question, profile) {
-      if (DemandeService.estMineur(profile) && question.titleRep) {
-        return loadAshCompile(question.titleRep, profile);
+    var compileTitle = function(question, demande) {
+      if (DemandeService.estMineur(demande) && question.titleRep) {
+        return loadAshCompile(question.titleRep, demande);
       }
 
       return question.titleDefault;

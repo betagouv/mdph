@@ -7,7 +7,7 @@ angular.module('impactApp')
 
     this.submit = () => {
       this.demande.data.prestations = _.chain(this.prestations)
-        .filter(current => current.choice)
+        .filter(current => current && current.choice)
         .map(function(value) {
           return {code: value.id, precision: value.precision};
         })

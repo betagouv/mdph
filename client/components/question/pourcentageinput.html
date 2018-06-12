@@ -4,14 +4,15 @@
   <p class="question-help" ng-show="question.help" ng-bind-html="question.help"></p>
 
   <div class="form-group">
-    <input type="number" name="pourcentage" id="inputid" class="form-control" ng-model="sectionModel[question.model]"
-           min="0" max="100" placeholder="{{question.placeholder}}" ng-required="!question.isOptionnal">
+    <input name="pourcentage" class="form-control" ng-model="sectionModel[question.model]"
+           placeholder="{{question.placeholder}}" ng-required="!question.isOptionnal"
+           ng-change="verifyPattern(questionForm, 'pourcentage', '^[1-9]?[0-9]{1}$|^100$')" >
 
     <p class="help-block">Dernière réponse enregistrée le {{ previousModel.updatedAt | moment }}: {{ previousModel[question.model] }}</p>
 
     <div ng-messages="questionForm.pourcentage.$error" ng-if="questionForm.showError">
       <div class="help-block" ng-message='required'><i class="fa fa-warning"></i> Ce champ est obligatoire</div>
-      <div class="help-block" ng-message='number,min,max'><i class="fa fa-warning"></i> Veuillez saisir un nombre entre 0 et 100.</div>
+      <div class="help-block" ng-message='pattern'><i class="fa fa-warning"></i> Veuillez saisir un nombre entre 0 et 100.</div>
     </div>
   </div>
 

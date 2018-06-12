@@ -33,10 +33,30 @@ angular.module('impactApp')
           });
         }
       }
+
+      if (!previousModel && !sectionModel[question.model] && question.model === 'employeur') {
+        sectionModel[question.model] = {
+          nom: {label: 'Nom', value: ''},
+          adresse: {label: 'Adresse', value: ''},
+          medecin: {label: 'Service/Médecin', value: ''}
+        };
+      }
+
     };
   })
   .controller('QuestionCtrl', function($scope, $state, question, previousModel, sectionModel, nextStep, initQuestionScope, prevStep) {
     initQuestionScope($scope, question, prevStep, nextStep, $state.current.data, previousModel, sectionModel);
+    $scope.verifyPattern = function(form, field, pattern) {
+      if (form[field].$viewValue.trim().length > 0) {
+        if (new RegExp(pattern).test(form[field].$viewValue)) {
+          form[field].$setValidity('pattern', true);
+        } else {
+          form[field].$setValidity('pattern', false);
+        }
+      } else {
+        form[field].$setValidity('pattern', true);
+      }
+    };
   })
   .controller('CvQuestionCtrl', function($scope, question, nextStep, initQuestionScope, previousModel, sectionModel, prevStep) {
     initQuestionScope($scope, question, prevStep, nextStep, null, previousModel, sectionModel);

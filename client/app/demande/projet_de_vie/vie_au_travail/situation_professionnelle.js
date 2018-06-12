@@ -20,8 +20,8 @@ angular.module('impactApp')
         isFirstQuestion: true
       },
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'conditionTravail', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'conditionTravail', demande);
         },
 
         nextStep: function($state, sectionModel, saveCurrentState) {
@@ -43,8 +43,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'milieuTravail', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'milieuTravail', demande);
         },
 
         nextStep: function($state, sectionModel, saveCurrentState) {
@@ -66,8 +66,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'typeTravail', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'typeTravail', demande);
         },
 
         nextStep: function($state, sectionModel, saveCurrentState) {
@@ -93,8 +93,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'situationStage', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'situationStage', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -110,24 +110,10 @@ angular.module('impactApp')
       templateUrl: 'components/question/employeur.html',
       authenticate: true,
       authorized: ['user'],
-      controller: function($scope, question, prevStep, nextStep) {
-        if (angular.isUndefined($scope.sectionModel.employeur)) {
-          $scope.sectionModel.employeur = {
-            nom: {label: 'Nom', value: ''},
-            adresse: {label: 'Adresse', value: ''},
-            medecin: {label: 'Service/Médecin', value: ''}
-          };
-        }
-
-        $scope.question = question;
-        $scope.nextStep = nextStep;
-        $scope.prevStep = prevStep;
-        $scope.model = $scope.sectionModel.employeur;
-      },
-
+      controller: 'QuestionCtrl',
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'employeur', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'employeur', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -145,8 +131,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'prestations', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'prestations', demande);
         },
 
         nextStep: function($state, saveCurrentState) {
@@ -164,8 +150,8 @@ angular.module('impactApp')
       authenticate: true,
       authorized: ['user'],
       resolve: {
-        question: function(QuestionService, section, profile) {
-          return QuestionService.get(section, 'rqth', profile);
+        question: function(QuestionService, section, demande) {
+          return QuestionService.get(section, 'rqth', demande);
         },
 
         nextStep: function($state, saveCurrentState) {

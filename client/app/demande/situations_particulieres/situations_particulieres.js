@@ -57,8 +57,8 @@ angular.module('impactApp')
         authenticate: true,
         authorized: ['user'],
         resolve: {
-          question: function(QuestionService, section, profile) {
-            return QuestionService.get(section, 'urgences', profile);
+          question: function(QuestionService, section, demande) {
+            return QuestionService.get(section, 'urgences', demande);
           },
 
           nextStep: function(saveSection) {
