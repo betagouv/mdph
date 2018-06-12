@@ -12,6 +12,13 @@
     display: flex;
   }
 
+  .rowMenu {
+    max-width: 100% !important;
+    margin-bottom: 14px;
+    margin-top: 14px;
+    display: flex;
+  }
+
   .col {
     margin: 4px;
     flex: 1;
@@ -156,6 +163,7 @@
     text-align: center;
     border-radius: 3px;
     min-height: 44px;
+    width: 90%;
 
     &.espace {
       margin-left: 28px;
@@ -170,6 +178,9 @@
     padding: 10px 15px;
     font-size: 1.2em;
     color: #FFFFFF;
+    &.centre {
+      text-align: center;
+    }
 
     &:before {
       content: "\f1f8";

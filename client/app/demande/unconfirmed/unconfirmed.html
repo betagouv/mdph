@@ -1,7 +1,7 @@
 <div class="section-body">
   <div class="section-body-head">
     <h2>
-      <a id="backtoprofile" ui-sref="profil({profileId: gestionProfilCtrl.profile._id})">Profil</a>
+      <a id="backtoprofile" ui-sref="demande({shortId: demandeCtrl.demande.shortId})">Demande</a>
       / Confirmer votre compte mail
     </h2>
   </div>
@@ -12,7 +12,7 @@
       <p>En cas de difficultés vous pouvez nous contacter à l'adresse <a href="mailto:contact.mdphenligne@cnsa.fr">contact.mdphenligne@cnsa.fr</a></p>
 
       <div class="text-center">
-        <a target="_blank" class="btn btn-lg btn-primary" ui-sref="resend_confirmation({userId: gestionProfilCtrl.currentUser._id})">Cliquez ici pour renvoyer un mail de confirmation</a>
+        <a target="_blank" class="btn btn-lg btn-primary" ui-sref="resend_confirmation({userId: demandeCtrl.currentUser._id})">Cliquez ici pour renvoyer un mail de confirmation</a>
       </div>
     </div>
 
