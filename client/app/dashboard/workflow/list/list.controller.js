@@ -168,6 +168,7 @@ angular.module('impactApp')
         this.groupedByAge = RequestService.groupByAge(this.requests);
         this.isRefreshing = false;
       });
+      $state.go('.', {}, {reload: true});
     };
 
     this.allSelectedRequestsDownloadOpenModal = function() {
