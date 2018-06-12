@@ -62,6 +62,14 @@ angular.module('impactApp')
     };
 
     this.showCurrentRequestStatus = function(profile) {
+      return this.currentRequestStatus(profile) ? 'Dernière demande ' + this.currentRequestStatus(profile) : '';
+    };
+
+    this.showCurrentRequestSendedStatus = function(profile) {
+      return this.currentRequestStatus(profile) ? 'Dernière demande envoyée ' + this.currentRequestStatus(profile) : '';
+    };
+
+    this.currentRequestStatus = function(profile) {
       switch (profile.currentRequestStatus) {
         case 'en_cours':
           return 'en cours de création';
@@ -74,7 +82,7 @@ angular.module('impactApp')
         case 'irrecevable':
           return 'irrecevable';
         default:
-          return 'indéfinie';
+          return '';
       }
     };
 
