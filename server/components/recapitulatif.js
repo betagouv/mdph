@@ -63,7 +63,9 @@ function rebuildAnswersFromModel(question, questionAnswers) {
     case 'cv':
       return [{label: 'Curriculum vitae', listeCv: questionAnswers.experiences}];
     case 'diplomes':
-      return [{label: 'Diplômes', listeDiplomes: questionAnswers.listeDiplomes}];
+      return questionAnswers.listeDiplomes && questionAnswers.listeDiplomes.length > 0 ?
+             [{label: 'Diplômes', listeDiplomes: questionAnswers.listeDiplomes}] :
+             [{label: 'Pas de réponse'}];
     case 'employeur':
       return [{label: questionAnswers.nom.value + ', ' + questionAnswers.adresse.value}];
     case 'structure':
