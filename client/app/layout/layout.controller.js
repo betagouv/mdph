@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($http, $window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+  .controller('LayoutCtrl', function($window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
     let sizeMaxToReduceMenu = 836;
 
     this.currentMdph = currentMdph;
@@ -51,16 +51,10 @@ angular.module('impactApp')
 
           if (profilList.filter(profil => !profil.deletedAt).length > 1) {
             return $state.go('gestion_profil', {}, {reload: true});
+          } else {
+            return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
           }
 
-          $http.get(`/api/users/${currentUser._id}/profiles/${profilList[0]._id}/requests/last`).then(function({data}) {
-
-            if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
-              return $state.go('demande', {shortId: data.shortId}, {reload: true});
-            } else {
-              return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
-            }
-          });
         });
 
       } else if (Auth.hasRole(currentUser, 'adminMdph')) {
