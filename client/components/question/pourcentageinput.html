@@ -5,7 +5,7 @@
 
   <div class="form-group">
     <input name="pourcentage" class="form-control" ng-model="sectionModel[question.model]"
-           placeholder="{{question.placeholder}}" ng-required="question.isOptionnal"
+           placeholder="{{question.placeholder}}" ng-required="!question.isOptionnal"
            ng-change="verifyPattern(questionForm, 'pourcentage', '^[1-9]?[0-9]{1}$|^100$')" >
 
     <p class="help-block">Dernière réponse enregistrée le {{ previousModel.updatedAt | moment }}: {{ previousModel[question.model] }}</p>
