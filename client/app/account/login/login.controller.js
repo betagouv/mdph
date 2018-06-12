@@ -23,7 +23,7 @@ angular.module('impactApp')
           if (Auth.hasRole(user, 'user')) {
             ProfileResource.query({userId: user._id}).$promise.then(function(profilList) {
 
-              if (profilList.filter(profil => profil.deletedAt).length > 1) {
+              if (profilList.filter(profil => !profil.deletedAt).length > 1) {
                 return $state.go('gestion_profil', {}, {reload: true});
               }
 
