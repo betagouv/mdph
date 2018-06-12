@@ -67,13 +67,13 @@ angular.module('impactApp')
         case 'emise':
           return 'Emise';
         case 'validee':
-          return 'validée';
+          return 'Validée';
         case 'en_attente_usager':
           return 'En attente';
         case 'irrecevable':
-          return 'irrecevable';
+          return 'Irrecevable';
         default:
-          return 'indéfinie';
+          return 'Indéfinie';
       }
     };
   });
