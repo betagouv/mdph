@@ -72,8 +72,16 @@ RequestSchema.pre('save', function(next) {
 RequestSchema.post('save', function(doc) {
   // Set entite from request
   ProfileModel.findById(doc.profile).then(function(profile){
-    if(doc.data.identites){
-      profile.set('identites', doc.data.identites).save();
+    if(doc.data.identites.beneficiaire || doc.data.identites.autorite) {
+
+      if(doc.data.identites.beneficiaire){
+
+        profile
+          .set('identites.beneficiaire', doc.data.identites.beneficiaire)
+      }
+
+      profile.set('identites.autorite', doc.data.identites.autorite)
+      profile.save();
     }
   });
 });

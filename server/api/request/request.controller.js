@@ -317,7 +317,10 @@ export function create(req, res) {
       user: req.user,
       askedDocumentTypes: req.body.askedDocumentTypes,
       data:{
-        identites: req.profile.identites
+        identites : req.profile.identites ? {
+          beneficiaire: req.profile.identites.beneficiaire,
+          autorite: req.profile.identites.autorite
+        } : ''
       }
     })
     .then(request => {
