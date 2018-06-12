@@ -16,7 +16,8 @@ export default function(fileList, directory) {
       var archive = archiver.create('zip', {});
 
       fileList.forEach((file) => {
-        archive.append(fs.createReadStream(file.path), { name: file.name });
+        var filename = file.name.replace(" / ", "_").replace("/", "_");
+        archive.append(fs.createReadStream(file.path), { name: filename });
       });
 
       archive.on('finish', function() {
