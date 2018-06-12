@@ -26,7 +26,7 @@
           <li role="menuitem" ng-if="workflowListCtrl.showDownloadAndDeleteButtons">
             <a href="#" ng-click="workflowListCtrl.downloadRequests()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
-          <li role="menuitem" ng-if="workflowListCtrl.status !== 'irrecevable'">
+          <li role="menuitem" ng-if="workflowListCtrl.status !== 'irrecevable' && workflowListCtrl.status !== 'validee' ">
             <a href="#" ng-click="workflowListCtrl.openIrrecevableModal()"><i class="fa fa-archive"></i> Marquer comme irrecevable</a>
           </li>
           <li role="menuitem" ng-if="workflowListCtrl.status === 'validee' || workflowListCtrl.status === 'irrecevable'">
@@ -36,7 +36,7 @@
           </li>
         </ul>
 
-        <button type="button" class="btn btn-link btn-refresh" ng-class="{ 'refreshing': workflowlistctrl.isRefreshing }" ng-click="workflowlistctrl.refresh()">
+        <button type="button" class="btn btn-link btn-refresh" ng-class="{ 'refreshing': workflowListCtrl.isRefreshing }" ng-click="workflowListCtrl.refresh()">
           Rafraîchir
         </button>
       </div>

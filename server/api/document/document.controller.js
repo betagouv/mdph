@@ -114,7 +114,7 @@ export function saveFile(req, res) {
 
       request.saveActionLog(ACTIONS.DOCUMENT_ADDED, req.user, req.log, {document: document});
 
-      var savedDocument = _.find(saved.documents, {filename: document.filename});
+      var savedDocument = _.find(saved.data.documents, {filename: document.filename});
       return res
         .status(201)
         .json(savedDocument);
