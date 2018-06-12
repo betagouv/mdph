@@ -16,7 +16,7 @@ angular.module('impactApp')
     this.createProfil = function() {
       new ProfileResource().$save({userId: this.currentUser._id}, function(profilResult) {
         $http.post(`/api/users/${currentUser._id}/profiles/${profilResult._id}/requests/new`).then(function(demandeResult) {
-          $state.go('demande', {shortId: demandeResult.data.shortId});
+          $state.go('demande.beneficiaire', {shortId: demandeResult.data.shortId}, {reload: true});
         });
       });
     };
