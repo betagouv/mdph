@@ -27,7 +27,7 @@
             <a href="#" ng-click="workflowListCtrl.downloadRequests()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
           <li role="menuitem" ng-if="workflowListCtrl.status !== 'irrecevable' && workflowListCtrl.status !== 'validee' ">
-            <a href="#" ng-click="workflowListCtrl.openIrrecevableModal()"><i class="fa fa-archive"></i> Marquer comme irrecevable</a>
+            <a href="#" ng-click="workflowListCtrl.openIrrecevableModal()"><i class="fa fa-ban"></i> Marquer comme irrecevable</a>
           </li>
           <li role="menuitem" ng-if="workflowListCtrl.status === 'validee' || workflowListCtrl.status === 'irrecevable'">
               <a href="#" ng-click="workflowListCtrl.allSelectedRequestsDownloadOpenModal()">
@@ -113,7 +113,7 @@
           </td>
           <td class="col-md-2">
             <button ng-show="workflowListCtrl.showDownloadAndDeleteButtons && request.isDownloaded" class="btn btn-link red-color" ng-click="workflowCtrl.openDeleteModal(request)">
-              <i class="fa fa-trash"></i>&nbsp;Supprimer</i>
+              <i class="fa fa-trash"></i>&nbsp;Supprimer
             </button>
           </td>
         </tr>
