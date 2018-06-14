@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowCtrl', function($scope, $modal, $window, $cookies, $state, $http, RequestResource) {
+  .controller('WorkflowCtrl', function($scope, $modal, $window, $cookies, $state, $http, RequestResource, toastr) {
     this.token = $cookies.get('token');
     this.openDeleteModal = function(request) {
       $modal.open({
@@ -44,9 +44,13 @@ angular.module('impactApp')
 
     this.download  = function(request) {
       request.isDownloaded = 'true';
-      RequestResource.update(request).$promise.then(result => {
-        $window.open('api/requests/' + result.shortId + '/pdf/agent?access_token=' + this.token, '_self');
-      });
+      if (request.deletedAt) {
+        toastr.error('La demande correspondant à la référence ' + request.shortId + ' a été supprimée.', 'Erreur');
+      } else {
+        RequestResource.update(request).$promise.then(result => {
+          $window.open('api/requests/' + result.shortId + '/pdf/agent?access_token=' + this.token, '_self');
+        });
+      }
     };
 
   });
