@@ -4,7 +4,7 @@
 
 <div class="modal-body">
   <p ng-if="deleteProfilConfirmationCtrl.demandes.length === 0">Voulez-vous vraiment supprimer le profil de <strong>{{deleteProfilConfirmationCtrl.profil.getTitle()}}</strong> et la demande associée? Cette suppression est définitive.</p>
-  <p ng-if="deleteProfilConfirmationCtrl.demandes.length > 0">Voulez-vous vraiment supprimer le profil de <strong>{{deleteProfilConfirmationCtrl.profil.getTitle()}}</strong> ? Cette suppression est définitive."</p>
+  <p ng-if="deleteProfilConfirmationCtrl.demandes.length > 0">Voulez-vous vraiment supprimer le profil de <strong>{{deleteProfilConfirmationCtrl.profil.getTitle()}}</strong> ? Cette suppression est définitive.</p>
   <div ng-if="deleteProfilConfirmationCtrl.demandes.length > 0" class="alert alert-warning">
     <p ng-if="deleteProfilConfirmationCtrl.demandes.length === 1">
         Vous avez une demande associée à ce profil déjà transmise à une MDPH. <br/>
