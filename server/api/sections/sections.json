@@ -840,6 +840,7 @@
       "internat": {
         "model": "internat",
         "titleDefault": "Êtes-vous placé en internat ?",
+        "titleRep": "Est-il placé en internat ?",
         "type": "radio",
         "answers": [
           {
