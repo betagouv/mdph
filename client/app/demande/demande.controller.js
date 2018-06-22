@@ -50,7 +50,7 @@ angular.module('impactApp').controller('DemandeCtrl', function(
     if (missingSections.indexOf('beneficiaire') !== -1) {
 
       $anchorScroll(missingSections[0]);
-      toastr.error('Vous n\'avez pas fini de remplir la section « Bénéficiaire ».', 'Erreur de la création de la demande');
+      toastr.error('Vous n\'avez pas fini de remplir la section « Bénéficiaire ».', 'Erreur');
       missingSections.forEach((sectionId) => {
         this.options[sectionId].error = true;
       });
@@ -60,7 +60,7 @@ angular.module('impactApp').controller('DemandeCtrl', function(
 
     if (missingSections.length > 0) {
       $anchorScroll(missingSections[0]);
-      toastr.error('Vous n\'avez pas fini de remplir les parties obligatoires de ce profil.', 'Erreur de la création de la demande');
+      toastr.error('Vous n\'avez pas fini de remplir les parties obligatoires de ce profil.', 'Erreur');
       missingSections.forEach((sectionId) => {
         this.options[sectionId].error = true;
       });
