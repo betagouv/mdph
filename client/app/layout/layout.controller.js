@@ -63,6 +63,9 @@ angular.module('impactApp')
       } else if (Auth.hasRole(currentUser, 'admin')) {
 
         return $state.go('admin.main', {}, {reload: true});
+      } else {
+        var codeDepartement = currentMdph.zipcode;
+        return $state.go('mdph-main', {codeDepartement}, {reload: true});
       }
 
     };
