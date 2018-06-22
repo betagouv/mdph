@@ -145,7 +145,7 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'date&text':
           answer.detail = 'Date d\'entrée prévue : ';
           answer.detail += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
-          answer.detail += ' ; ' + detail.text;
+          if(detail.text) answer.detail += ' ; ' + detail.text;
           break;
         case 'depuis':
           if(detail){
