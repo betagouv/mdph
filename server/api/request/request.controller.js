@@ -18,7 +18,7 @@ import Mdph from '../mdph/mdph.model';
 import Partenaire from '../partenaire/partenaire.model';
 import * as MailActions from '../send-mail/send-mail-actions';
 
-//import Dispatcher from '../../components/dispatcher';
+import Dispatcher from '../../components/dispatcher';
 import RequestActionModel from './action.model';
 import { ACTIONS } from './actions';
 import resizeAndMove from '../../components/resize-image';
@@ -177,8 +177,8 @@ function resolveSubmit(req, res) {
         });
     })
     .then(fillRequestMdph)
-    .then(sendMailReceivedTransmission(req));
-    //.then(Dispatcher.dispatch);
+    .then(sendMailReceivedTransmission(req))
+    .then(Dispatcher.dispatch);
 }
 
 function getRequestMdphEmail(request) {
