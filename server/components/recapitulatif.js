@@ -249,6 +249,20 @@ export default function({request, host, mdph}, next) {
   async.series({
     identites: function(callback) {
 
+      if(request.data.identites.beneficiaire && request.data.identites.beneficiaire && request.data.identites.beneficiaire.nationalite) {
+        console.log("nationalite : ", request.data.identites.beneficiaire.nationalite);
+        switch(request.data.identites.beneficiaire.nationalite) {
+          case "francaise":
+            request.data.identites.beneficiaire.nationalite = "Française";
+            break;
+          case "ue":
+            request.data.identites.beneficiaire.nationalite = "Espace Économique Européen ou Suisse";
+            break;
+          default:
+            request.data.identites.beneficiaire.nationalite = "Autre";
+        }
+      }
+
       if(request.data.identites && request.data.identites.autorite && request.data.identites.autorite.parent1 && request.data.identites.autorite.parent1.isSameAddress){
         request.data.identites.autorite.parent1.complement_adresse = request.data.identites.beneficiaire.complement_adresse;
         request.data.identites.autorite.parent1.nomVoie = request.data.identites.beneficiaire.nomVoie;
