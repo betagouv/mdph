@@ -71,18 +71,35 @@ RequestSchema.pre('save', function(next) {
 
 RequestSchema.post('save', function(doc) {
   // Set entite from request
+
   ProfileModel.findById(doc.profile).then(function(profile){
-    if(doc.data.identites.beneficiaire || doc.data.identites.autorite) {
+    var save = false;
 
-      if(doc.data.identites.beneficiaire){
+    if(doc.data.identites.beneficiaire
+        && (!profile.identites
+          || !profile.identites.beneficiaire
+          || doc.data.identites.beneficiaire.updatedAt > profile.identites.beneficiaire.updatedAt )) {
 
-        profile
-          .set('identites.beneficiaire', doc.data.identites.beneficiaire)
-      }
+      profile
+        .set('identites.beneficiaire', doc.data.identites.beneficiaire);
 
-      profile.set('identites.autorite', doc.data.identites.autorite)
+        save = true;
+    }
+
+    if(doc.data.identites.autorite
+      && (!profile.identites
+        || !profile.identites.autorite
+        || doc.data.identites.autorite.updatedAt > profile.identites.autorite.updatedAt )) {
+
+          profile.set('identites.autorite', doc.data.identites.autorite)
+
+      save = true;
+    }
+
+    if(save) {
       profile.save();
     }
+
   });
 });
 
