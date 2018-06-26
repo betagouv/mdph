@@ -9,7 +9,7 @@
         <span class="demande-card-icon"><a ui-sref="demande({shortId: demandeCtrl.demande.shortId})" ui-sref-opts="{reload: true, notify: true}" title="Écran principal du profil"><i class="fa fa-user"></i></a></span>
       </span>
       <div class="demande-card-header-text">
-        <h1 class="demande-card-header-text-title"><a ui-sref="demande({shortId: demandeCtrl.demande.shortId})">{{ demandeCtrl.profile.getTitle() }}</a></h1>
+        <h1 class="demande-card-header-text-title"><a ui-sref="demande({shortId: demandeCtrl.demande.shortId})" ui-sref-opts="{reload: true}">{{ demandeCtrl.profile.getTitle() }}</a></h1>
         <p class="demande-card-header-text-subhead">Dernière modification le {{ demandeCtrl.demande.updatedAt | date:'short' }}</p>
         <p class="demande-card-header-text-subhead">Demande n° <span class="request-identifier">{{ demandeCtrl.demande.shortId}}</span></p>
       </div>
