@@ -14,7 +14,7 @@
         <button ui-sref="gestion_profil" class="btn retour">
             Retour aux profils
         </button>
-        <div class="icon-demande centre"/>
+        <div class="icon-demande centre margin-top"/>
     </div>
 
     <div ng-class="{'col-md-10 border-left':!showMenu}">
@@ -34,12 +34,14 @@
         </div>
       </div>
 
-      <div ng-if="showMenu">
-        <button ui-sref="gestion_profil" class="btn retour espace">
-            Retour aux profils
-        </button>
+      <div class="container-fluid" ng-if="showMenu">
+        <div class="row">
+          <div class="col-md-12 btn retour whole" ui-sref="gestion_profil">
+            <span>Retour aux profils</span>
+          </div>
+        </div>
+        <div class="icon-demande centre" ng-if="showMenu"/>
       </div>
-      <div class="icon-demande centre" ng-if="showMenu"/>
 
       <div class="container-fluid" ng-class="{'border-top': showMenu}">
         <br/>
