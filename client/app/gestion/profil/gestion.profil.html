@@ -16,22 +16,24 @@
 
     <div ng-class="{'col-md-10 border-left':!showMenu}">
 
-      <div class="breadcrump">
-        <div class="breadcrump-section">
-          <div ng-class="{'large': !showMenu}"  class="first right-arrow active">
-            <span>Profils</span>
+      <div class="container-fluid">
+        <div class="container-fluid breadcrump">
+          <div class="breadcrump-section">
+            <div ng-class="{'large': !showMenu}"  class="first right-arrow active">
+              <span>Profils</span>
+            </div>
           </div>
-        </div>
-        <div class="breadcrump-section">
-          <div ng-class="{'large': !showMenu}"  class="left-arrow last">
-            <span>Demandes</span>
+          <div class="breadcrump-section">
+            <div ng-class="{'large': !showMenu}"  class="left-arrow last">
+              <span>Demandes</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="icon-profil centre" ng-if="showMenu" />
 
-      <div class="container-fluid " ng-class="{'border-top': showMenu}">
+      <div class="container-fluid" ng-class="{'border-top': showMenu}">
         <br/>
         <h2>Vos profils</h2>
         <div class="row" ng-repeat="(idx, profil) in gestionProfilCtrl.profils" ng-if="!showMenu">
