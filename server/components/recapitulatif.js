@@ -250,7 +250,7 @@ export default function({request, host, mdph}, next) {
     identites: function(callback) {
 
       if(request.data.identites.beneficiaire && request.data.identites.beneficiaire && request.data.identites.beneficiaire.nationalite) {
-        console.log("nationalite : ", request.data.identites.beneficiaire.nationalite);
+
         switch(request.data.identites.beneficiaire.nationalite) {
           case "francaise":
             request.data.identites.beneficiaire.nationalite = "Française";

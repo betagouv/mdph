@@ -349,7 +349,7 @@ export function getHistory(req, res) {
 
 export function getRecapitulatif(req, res) {
   Mdph
-    .findOne({zipcode: req.request.mdph})
+    .findOne({zipcode: req.request.mdph ? req.request.mdph : req.params.mdph})
     .exec()
     .then(mdph => {
       recapitulatif({

@@ -7,7 +7,7 @@
 
     <h3>Récapitulatif de votre demande</h3>
     <div class="embed-responsive embed-responsive-preview">
-      <iframe ng-src="{{'/api/requests/' + demandePreviewModalCtrl.demande.shortId + '/recapitulatif?access_token=' + demandePreviewModalCtrl.token}}" class="embed-responsive-item"></iframe>
+      <iframe ng-src="{{'/api/requests/' + demandePreviewModalCtrl.demande.shortId + '/' + demandePreviewModalCtrl.mdph.zipcode + '/preview?access_token=' + demandePreviewModalCtrl.token}}" class="embed-responsive-item"></iframe>
     </div>
     <br/>
 
