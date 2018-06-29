@@ -4,7 +4,7 @@ defaults: &defaults
   working_directory: /home/circleci/mdph
   docker:
     - image: mdphbeta/node-mdph:1.0.5
-    - image: circleci/mongo:3.4.2
+    - image: circleci/mongo:3.4
     - image: selenium/standalone-chrome:3.4.0
 
 restore_cache: &restore_cache
