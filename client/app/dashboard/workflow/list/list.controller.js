@@ -200,7 +200,7 @@ angular.module('impactApp')
               this.requests = selectedRequests;
               this.delete = function() {
                 const remove = function(request) {
-                  return RequestResource.remove({shortId: request.shortId}).$promise;
+                  return RequestResource.partialDelete(request).$promise;
                 };
 
                 const closeModal = function() {
