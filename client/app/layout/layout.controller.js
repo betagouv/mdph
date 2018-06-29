@@ -49,8 +49,10 @@ angular.module('impactApp')
 
         ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
 
-          if (profilList.filter(profil => !profil.deletedAt).length == 1) {
-            return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
+          var activeProfilList = profilList.filter(profil => !profil.deletedAt);
+
+          if (activeProfilList.length == 1) {
+            return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
           } else {
             return $state.go('gestion_profil', {}, {reload: true});
           }

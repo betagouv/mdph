@@ -23,20 +23,22 @@ angular.module('impactApp')
           if (Auth.hasRole(user, 'user')) {
             ProfileResource.query({userId: user._id}).$promise.then(function(profilList) {
 
-              if (profilList.filter(profil => !profil.deletedAt).length == 0) {
+              var activeProfilList = profilList.filter(profil => !profil.deletedAt);
+
+              if (activeProfilList.length == 0) {
                 return $state.go('gestion_profil', {}, {reload: true});
               }
 
-              if (profilList.filter(profil => !profil.deletedAt).length > 1) {
+              if (activeProfilList.length > 1) {
                 return $state.go('gestion_profil', {}, {reload: true});
               }
 
-              $http.get(`/api/users/${user._id}/profiles/${profilList[0]._id}/requests/last`).then(function({data}) {
+              $http.get(`/api/users/${user._id}/profiles/${activeProfilList[0]._id}/requests/last`).then(function({data}) {
 
                 if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
                   return $state.go('demande', {shortId: data.shortId}, {reload: true});
                 } else {
-                  return $state.go('gestion_demande', {profilId: profilList[0]._id}, {reload: true});
+                  return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
                 }
               });
             });
