@@ -75,24 +75,13 @@ RequestSchema.post('save', function(doc) {
   ProfileModel.findById(doc.profile).then(function(profile){
     var save = false;
 
-    if(doc.data.identites.beneficiaire
-        && (!profile.identites
-          || !profile.identites.beneficiaire
-          || doc.data.identites.beneficiaire.updatedAt > profile.identites.beneficiaire.updatedAt )) {
-
-      profile
-        .set('identites.beneficiaire', doc.data.identites.beneficiaire);
-
-        save = true;
+    if(doc.data.identites.beneficiaire && (!profile.identites || !profile.identites.beneficiaire || doc.data.identites.beneficiaire.updatedAt > profile.identites.beneficiaire.updatedAt )) {
+      profile.set('identites.beneficiaire', doc.data.identites.beneficiaire);
+      save = true;
     }
 
-    if(doc.data.identites.autorite
-      && (!profile.identites
-        || !profile.identites.autorite
-        || doc.data.identites.autorite.updatedAt > profile.identites.autorite.updatedAt )) {
-
-          profile.set('identites.autorite', doc.data.identites.autorite)
-
+    if(doc.data.identites.autorite && (!profile.identites || !profile.identites.autorite || doc.data.identites.autorite.updatedAt > profile.identites.autorite.updatedAt )) {
+      profile.set('identites.autorite', doc.data.identites.autorite)
       save = true;
     }
 
