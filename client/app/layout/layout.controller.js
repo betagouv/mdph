@@ -51,7 +51,7 @@ angular.module('impactApp')
 
           var activeProfilList = profilList.filter(profil => !profil.deletedAt);
 
-          if (activeProfilList.length == 1) {
+          if (activeProfilList.length === 1) {
             return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
           } else {
             return $state.go('gestion_profil', {}, {reload: true});
