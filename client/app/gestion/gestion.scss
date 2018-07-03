@@ -314,7 +314,7 @@
     text-align: center;
 
     div {
-      margin-right: 7px;
+     // margin-right: 7px;
       position: relative;
       display: block;
       height: 44px;
@@ -328,13 +328,13 @@
       }
 
       &.first {
-        margin-left: 28px;
+        margin-left: 24px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
       }
 
       &.last {
-        margin-right: 0;
+        margin-right: 14px;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
       }
