@@ -20,14 +20,14 @@
     <div ng-class="{'col-md-10 border-left':!showMenu}">
 
       <div class="container-fluid">
-        <div class="breadcrump">
-          <div class="breadcrump-section">
-            <div ng-class="{'large': !showMenu}" class=" first right-arrow">
+        <div ng-class="{'row':showMenu}" class="breadcrump">
+          <div ng-class="{'col-flex6':showMenu}" class="breadcrump-section">
+            <div class=" first right-arrow">
               <a ui-sref="gestion_profil"><span>Profils</span></a>
             </div>
           </div>
-          <div class="breadcrump-section">
-            <div ng-class="{'large': !showMenu}"  class="left-arrow last active">
+          <div ng-class="{'col-flex7':showMenu}" class="breadcrump-section">
+            <div class="left-arrow last active">
               <span>Demandes</span>
             </div>
           </div>

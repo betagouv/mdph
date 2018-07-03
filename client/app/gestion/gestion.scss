@@ -318,15 +318,13 @@
       position: relative;
       display: block;
       height: 44px;
-      padding: 10px;
+      padding: 10px 0px;
       float: left;
       background-color: white;
+      width: 177px;
 
-      &.large {
-        width: 177px;
-        span {
-          padding: 0 20px;
-        }
+      span {
+        padding: 0 20px;
       }
 
       &.first {
