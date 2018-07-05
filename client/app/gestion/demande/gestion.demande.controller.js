@@ -14,6 +14,12 @@ angular.module('impactApp')
       return demande.hasOwnProperty('status') && (demande.status === 'validee' || demande.status === 'irrecevable');
     });
 
+    this.check = function() {
+      if (profil.deletedAt) {
+        return $state.go('gestion_profil', {}, {reload: true});
+      }
+    };
+
     this.createDemande = function() {
       if (!this.currentDemande) {
 
