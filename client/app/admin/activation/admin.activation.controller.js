@@ -3,7 +3,7 @@
 angular.module('impactApp')
   .controller('AdminActivationCtrl', function($scope, $location, $anchorScroll, User) {
     this.searchAndActive = function() {
-      if($scope.mail) {
+      if ($scope.mail) {
         User.activate({email:$scope.mail.toLowerCase()}).$promise
         .then(function() {
           $scope.message = 'Compte activé';
