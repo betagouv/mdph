@@ -45,7 +45,7 @@ angular.module('impactApp')
     };
 
     this.gestionLinkValue = function() {
-     if(this.isLoggedIn()) {
+      if (this.isLoggedIn()) {
         if (Auth.hasRole(currentUser, 'user')) {
 
           ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
