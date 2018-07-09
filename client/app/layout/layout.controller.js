@@ -45,30 +45,31 @@ angular.module('impactApp')
     };
 
     this.gestionLinkValue = function() {
-      if (Auth.hasRole(currentUser, 'user')) {
+     if(this.isLoggedIn()) {
+        if (Auth.hasRole(currentUser, 'user')) {
 
-        ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
+          ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
 
-          var activeProfilList = profilList.filter(profil => !profil.deletedAt);
+            var activeProfilList = profilList.filter(profil => !profil.deletedAt);
 
-          if (activeProfilList.length === 1) {
-            return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
-          } else {
-            return $state.go('gestion_profil', {}, {reload: true});
-          }
+            if (activeProfilList.length === 1) {
+              return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
+            } else {
+              return $state.go('gestion_profil', {}, {reload: true});
+            }
 
-        });
+          });
 
-      } else if (Auth.hasRole(currentUser, 'adminMdph')) {
+        } else if (Auth.hasRole(currentUser, 'adminMdph')) {
 
-        return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode, userId:'me', status:'emise'}, {reload: true});
-      } else if (Auth.hasRole(currentUser, 'admin')) {
+          return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode, userId:'me', status:'emise'}, {reload: true});
+        } else if (Auth.hasRole(currentUser, 'admin')) {
 
-        return $state.go('admin.main', {}, {reload: true});
+          return $state.go('admin.main', {}, {reload: true});
+        }
       } else {
         var codeDepartement = currentMdph.zipcode;
         return $state.go('mdph-main', {codeDepartement}, {reload: true});
       }
-
     };
   });
