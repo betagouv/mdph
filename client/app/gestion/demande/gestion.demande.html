@@ -20,18 +20,18 @@
     <div ng-class="{'col-md-10 border-left':!showMenu}">
 
       <div class="container-fluid">
-        <div ng-class="{'row':showMenu}" class="breadcrump">
-          <div ng-class="{'col-flex6':showMenu}" class="breadcrump-section">
-            <div class=" first right-arrow">
-              <a ui-sref="gestion_profil"><span>Profils</span></a>
+          <div ng-class="{'row':showMenu, 'breadcrump':!showMenu}">
+              <div ng-class="{'col-flex6':showMenu}" class="breadcrump-section">
+                  <div class=" first right-arrow" ng-class="{'whole':showMenu, 'large withMargin':!showMenu}">
+                    <a ui-sref="gestion_profil"><span>Profils</span></a>
+                  </div>
+                </div>
+                <div ng-class="{'col-flex6':showMenu}" class="breadcrump-section">
+                    <div class="left-arrow last active" ng-class="{'whole':showMenu, 'large':!showMenu}">
+                      <span>Demandes</span>
+                    </div>
+                  </div>
             </div>
-          </div>
-          <div ng-class="{'col-flex6':showMenu}" class="breadcrump-section">
-            <div class="left-arrow last active">
-              <span>Demandes</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="container-fluid" ng-if="showMenu">

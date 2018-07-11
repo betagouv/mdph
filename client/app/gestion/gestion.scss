@@ -17,7 +17,7 @@
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 6px;
-    margin-top: 6x;
+    margin-top: 6px;
     display: flex;
   }
 
@@ -320,16 +320,26 @@
       padding: 10px 0px;
       float: left;
       background-color: white;
-      width: 177px;
+
+      &.whole {
+        width: 100%;
+      }
+
+      &.large{
+        width: 240px;
+      }
 
       span {
         padding: 0 20px;
       }
 
       &.first {
-        margin-left: 24px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
+      }
+
+      &.withMargin {
+        margin-left: 24px;
       }
 
       &.last {
