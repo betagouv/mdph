@@ -33,14 +33,20 @@ angular.module('impactApp')
                 return $state.go('gestion_profil', {}, {reload: true});
               }
 
-              $http.get(`/api/users/${user._id}/profiles/${activeProfilList[0]._id}/requests/last`).then(function({data}) {
+              $http.get(`/api/users/${user._id}/profiles/${activeProfilList[0]._id}/requests/last`).then(function(result) {
 
+                var data = result.data;
                 if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
                   return $state.go('demande', {shortId: data.shortId}, {reload: true});
                 } else {
                   return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
                 }
+
+              },function(error) {
+                if (error.status === 404)
+                  return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
               });
+
             });
           }
 
