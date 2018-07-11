@@ -17,14 +17,14 @@
     <div ng-class="{'col-md-10 border-left':!showMenu}">
 
       <div class="container-fluid">
-        <div ng-class="{'rowMenu':showMenu}" class="breadcrump">
+          <div ng-class="{'row':showMenu, 'breadcrump':!showMenu}">
           <div ng-class="{'col-flex6':showMenu}" class="breadcrump-section">
-            <div class="first right-arrow active">
+            <div class="first right-arrow active" ng-class="{'whole':showMenu, 'large withMargin':!showMenu}">
               <span>Profils</span>
             </div>
           </div>
           <div ng-class="{'col-flex6':showMenu}" class="breadcrump-section">
-            <div class="left-arrow last">
+            <div class="left-arrow last" ng-class="{'whole':showMenu, 'large':!showMenu}">
               <span>Demandes</span>
             </div>
           </div>
