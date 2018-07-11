@@ -41,12 +41,10 @@ angular.module('impactApp')
                 } else {
                   return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
                 }
-              },
 
-              function(error) {
-                if (error.status === 404) {
+              },function(error) {
+                if (error.status === 404)
                   return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
-                }
               });
 
             });
