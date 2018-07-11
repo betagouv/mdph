@@ -46,10 +46,12 @@ function findEvaluators(options) {
 }
 
 function linkRequestToEvaluators(options) {
-  console.log("options : ", options);
   const {request, evaluators} = options;
-  console.log("request : ", request);
-  console.log("evaluators : ", evaluators);
+
+  if (request.evaluators) {
+    request.evaluators.forEach((evaluator) => evaluators.push(evaluator));
+  }
+
   return request.set('evaluators', evaluators)
     .save()
     .then(sendMailToEvaluators);
