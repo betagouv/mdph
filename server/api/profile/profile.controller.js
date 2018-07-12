@@ -78,6 +78,7 @@ export function destroy(req, res) {
       let profile = req.profile;
       if (requestsAutre && requestsAutre.length >0) {
         profile.deletedAt = Date.now();
+        profile.identites = undefined;
         profile.save()
         .then(respondWithResult(res))
         .catch(handleError(req, res));
