@@ -15,6 +15,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'uploadCV', demande);
@@ -38,6 +39,7 @@ angular.module('impactApp')
       controller: 'CvQuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'cv', demande);
@@ -57,6 +59,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'qualification', demande);
@@ -76,6 +79,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'derniereClasse', demande);
@@ -95,6 +99,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'formations', demande);
@@ -114,6 +119,7 @@ angular.module('impactApp')
       controller: 'ListQuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         listName: function() {
           return 'listeDiplomes';

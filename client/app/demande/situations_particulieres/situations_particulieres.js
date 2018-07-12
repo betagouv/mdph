@@ -11,6 +11,7 @@ angular.module('impactApp')
         redirectTo: index + '.detail',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           sections: function($http) {
             return $http.get('/api/sections').then(function(result) {
@@ -56,6 +57,7 @@ angular.module('impactApp')
         },
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'urgences', demande);

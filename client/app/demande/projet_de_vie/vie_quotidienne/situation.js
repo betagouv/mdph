@@ -18,6 +18,7 @@ angular.module('impactApp')
         },
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'famille', demande);
@@ -37,6 +38,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'logement', demande);
@@ -56,6 +58,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'accident', demande);
@@ -81,6 +84,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'indemnisation', demande);
@@ -100,6 +104,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'aideActuelle', demande);
@@ -132,6 +137,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'aideFinancierePresent', demande);
@@ -151,6 +157,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'aideFinancierePasse', demande);
@@ -181,6 +188,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'pensionInvalidite', demande);
@@ -200,6 +208,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'ipp', demande);
@@ -228,6 +237,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'aideTechnique', demande);
@@ -253,6 +263,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'aidePersonne', demande);
@@ -276,6 +287,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'retraite', demande);
@@ -301,6 +313,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'aidesRetraite', demande);
@@ -325,6 +338,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'activiteHandicap', demande);
@@ -344,6 +358,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'remunHandicap', demande);
@@ -363,6 +378,7 @@ angular.module('impactApp')
         controller: 'ListFraisCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           listName: function() {
             return 'listeFrais';

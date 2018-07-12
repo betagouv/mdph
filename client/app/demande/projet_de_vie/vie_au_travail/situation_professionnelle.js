@@ -16,6 +16,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       data: {
         isFirstQuestion: true
       },
@@ -42,6 +43,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'milieuTravail', demande);
@@ -65,6 +67,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'typeTravail', demande);
@@ -92,6 +95,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'situationStage', demande);
@@ -108,9 +112,10 @@ angular.module('impactApp')
     .state(index + '.situation_professionnelle.employeur', {
       url: '',
       templateUrl: 'components/question/employeur.html',
+      controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
-      controller: 'QuestionCtrl',
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'employeur', demande);
@@ -130,6 +135,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'prestations', demande);
@@ -149,6 +155,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'rqth', demande);

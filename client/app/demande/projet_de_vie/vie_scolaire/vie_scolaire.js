@@ -11,6 +11,7 @@ angular.module('impactApp')
         redirectTo: index + '.situation',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           sections: function($http) {
             return $http.get('/api/sections').then(function(result) {

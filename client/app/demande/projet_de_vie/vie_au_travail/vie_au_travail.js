@@ -11,6 +11,7 @@ angular.module('impactApp')
         redirectTo: index + '.situation_professionnelle.condition',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           sectionId: function() {
             return 'vie_au_travail';

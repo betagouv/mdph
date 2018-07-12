@@ -11,6 +11,7 @@ angular.module('impactApp')
         redirectTo: index + '.situation.nom_aidant',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           sectionId: function() {
             return 'aidant';

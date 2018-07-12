@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/identite-representant',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         data: {
           title: 'Identité de l\'autorité parentale',
           forms: {}

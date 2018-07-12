@@ -15,6 +15,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'passe', demande);
@@ -34,6 +35,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'situationSansEmploi', demande);
@@ -57,6 +59,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'situationStage', demande);
@@ -76,6 +79,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'situationAccompagnement', demande);
