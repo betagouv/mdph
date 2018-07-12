@@ -24,7 +24,6 @@
         </ul>
 
         <h3>Récapitulatif de votre demande</h3>
-        <div class="request-identifier">{{demandeCtrl.demande.shortId}}</div>
 
         <div class="embed-responsive embed-responsive-16by9">
           <iframe ng-src="{{'/api/requests/' + demandeCtrl.demande.shortId + '/recapitulatif?access_token=' + demandeCtrl.token}}" class="embed-responsive-item"></iframe>
