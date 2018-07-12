@@ -39,7 +39,7 @@ angular.module('impactApp', [
 
     $httpProvider.defaults.headers.get.Pragma = 'no-cache';
   })
-  .run(function($rootScope, $window, $location, $state, Auth) {
+  .run(function($rootScope, $window, $location, $state, Auth, RequestResource) {
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toStateParams) {
       $window.scrollTo(0, 0);
 
@@ -53,6 +53,17 @@ angular.module('impactApp', [
       if (toState.authorized && !Auth.isAuthorized(Auth.getCurrentUser(), toState.authorized)) {
         console.info('UNAUTHORIZED >>> ' + toState.url + ' pour le role ' + Auth.getCurrentUser().role);
         $state.go('403');
+      }
+
+      if (toState.protected) {
+
+        RequestResource.get({shortId: toStateParams.shortId}).$promise.then(function(request) {
+
+          if (request && request.status !== 'en_cours' && request.status !== 'en_attente_usager') {
+            $state.go('403');
+          }
+        });
+
       }
 
       if ($window._paq) {

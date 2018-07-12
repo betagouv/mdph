@@ -8,6 +8,7 @@ angular.module('impactApp').config(function($stateProvider) {
     controllerAs: 'demandeDocumentsCtrl',
     authenticate: true,
     authorized: ['user'],
+    protected: true,
     resolve: {
       documentTypes: function(DocumentTypeResource) {
         return DocumentTypeResource.query().$promise;

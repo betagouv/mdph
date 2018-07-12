@@ -11,6 +11,7 @@ angular.module('impactApp')
         redirectTo: index + '.situation',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           sectionId: function() {
             return 'vie_quotidienne';

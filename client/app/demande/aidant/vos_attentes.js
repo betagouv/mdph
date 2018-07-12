@@ -58,6 +58,7 @@ angular.module('impactApp')
       controller: 'QuestionCtrl',
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'demandesAides', demande);

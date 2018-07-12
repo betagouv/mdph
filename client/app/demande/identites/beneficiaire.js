@@ -11,6 +11,7 @@ angular.module('impactApp')
         templateUrl: 'app/demande/identites/beneficiaire.html',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           identite: function(demande) {
             if (!demande.data.identites) {

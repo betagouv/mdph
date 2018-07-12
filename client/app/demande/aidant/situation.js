@@ -19,6 +19,7 @@ angular.module('impactApp')
       },
       authenticate: true,
       authorized: ['user'],
+      protected: true,
       resolve: {
         question: function(QuestionService, section, demande) {
           return QuestionService.get(section, 'nomAidant', demande);

@@ -35,6 +35,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'temps', demande);
@@ -54,6 +55,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'adapte', demande);
@@ -73,6 +75,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'difficultes', demande);
@@ -92,6 +95,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'conservation', demande);
@@ -111,6 +115,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'amenagement', demande);
@@ -130,6 +135,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'arretDeTravail', demande);
@@ -153,6 +159,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'arretDeTravailRaison', demande);
@@ -172,6 +179,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'profesionnelSocial', demande);
@@ -191,6 +199,7 @@ angular.module('impactApp')
         controller: 'QuestionCtrl',
         authenticate: true,
         authorized: ['user'],
+        protected: true,
         resolve: {
           question: function(QuestionService, section, demande) {
             return QuestionService.get(section, 'medecinTravail', demande);
