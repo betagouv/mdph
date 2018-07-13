@@ -189,6 +189,9 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'remuneration':
           answer.detail = 'stage ' + (detail === true ? 'rémunéré' : 'non rémunéré');
           break;
+        case 'indemnisation':
+          answer.detail = 'Auprès de l\'organisme : ' + detail;
+          break;
         default:
           answer.detail = detail;
       }

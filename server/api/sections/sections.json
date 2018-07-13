@@ -220,7 +220,7 @@
             "detailUrl": "components/detail/precisez.html",
             "detailModel": "detailIndemnisation",
             "detailLabel": "Auprès de quel organisme ?",
-            "detailType": "text"
+            "detailType": "indemnisation"
           },
           {
             "label": "Non",
