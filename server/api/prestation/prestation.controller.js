@@ -18,11 +18,9 @@ export function populateAndSortPrestations(request) {
       request = request.toObject();
     }
 
-
-    if(request.prestations && request.prestations.length > 0){
-
-      let prestationsByCode = indexBy(request.prestations, 'code');
-      request.detailPrestations = prestations
+    if(request.data.prestations && request.data.prestations.length > 0){
+      let prestationsByCode = indexBy(request.data.prestations, 'code');
+      request.data.detailPrestations = prestations
         .filter(current => prestationsByCode[current.id])
         .map(function(value) {
           if (prestationsByCode[value.id].precision !== undefined) {

@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h1 class="modal-title">Suppression d'une ou plusieurs demandes</h1>
+</div>
+<div class="modal-body">
+  <div>
+    <p>Vous êtes sur le point de supprimer définitivement {{modalDeleteCtrl.requests.length === 1 ? 'la demande suivante' : 'les demandes suivantes'}} du service :
+      <ul ng-repeat="request in modalDeleteCtrl.requests">
+        <li>Demande n° {{request.shortId}}</li>
+      </ul>
+    </p>
+    <p />
+      Il est de votre responsabilité d'assurer la sauvegarde correcte des données du bénéficiaire dans votre système.
+    <p />
+    <p>
+      Souhaitez-vous poursuivre ?
+    </p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="modalDeleteCtrl.cancel()">Annuler</button>
+  <button class="btn btn-success" ng-click="modalDeleteCtrl.delete()">Supprimer</button>
+</div>

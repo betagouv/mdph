@@ -65,7 +65,7 @@ function removeFileFromFS(path) {
 }
 
 function handleDeleteFile(req) {
-  const file = req.request.documents.id(req.params.fileId);
+  const file = req.request.data.documents.id(req.params.fileId);
 
   if (!file) {
     throw(304);
@@ -107,14 +107,14 @@ export function saveFile(req, res) {
     }
 
     var request = req.request;
-    request.documents.push(document);
+    request.data.documents.push(document);
 
     request.save(function(err, saved) {
       if (err) { return handleError(req, res, err); }
 
       request.saveActionLog(ACTIONS.DOCUMENT_ADDED, req.user, req.log, {document: document});
 
-      var savedDocument = _.find(saved.documents, {filename: document.filename});
+      var savedDocument = _.find(saved.data.documents, {filename: document.filename});
       return res
         .status(201)
         .json(savedDocument);
@@ -144,7 +144,7 @@ export function deleteFile(req, res) {
 
 export function updateFile(req, res) {
   var request = req.request;
-  var file = request.documents.id(req.params.fileId);
+  var file = request.data.documents.id(req.params.fileId);
   var isInvalid = req.body.isInvalid;
   var invalidReason = req.body.invalidReason;
 

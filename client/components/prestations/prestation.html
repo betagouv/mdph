@@ -1,19 +1,19 @@
 <div class="prestation">
   <div class="input">
-    <input type="checkbox" ng-model="prestationctrl.prestation.choice" name="{{prestationctrl.prestation.id}}" id="{{prestationctrl.prestation.id}}"/>
+    <input type="checkbox" ng-model="prestationCtrl.prestation.choice" name="{{prestationCtrl.prestation.id}}" id="{{prestationCtrl.prestation.id}}"/>
   </div>
   <div class="detail">
-    <label for="{{prestationctrl.prestation.id}}">
-      {{prestationctrl.prestation.title}}
-      <a target="_blank" href="{{prestationctrl.prestation.link}}">
+    <label for="{{prestationCtrl.prestation.id}}">
+      {{prestationCtrl.prestation.title}}
+      <a target="_blank" href="{{prestationCtrl.prestation.link}}">
         En savoir plus<i class="fa fa-external-link" aria-hidden="true"></i>
       </a>
     </label>
 
     <div class="text-justify">
-      <div ng-if="prestationctrl.precision && prestationctrl.prestation.choice">
-        <label for="{{prestationctrl.prestation.id + '-renouvellement'}}">Précisez éventuellement votre demande</label>
-        <textarea type="text" name="{{prestationctrl.prestation.id + '-precision'}}" id="{{prestationctrl.prestation.id + '-precision'}}" class="form-control" rows="4" ng-model="prestationctrl.prestation.precision"></textarea>
+      <div ng-if="prestationCtrl.precision && prestationCtrl.prestation.choice">
+        <label for="{{prestationCtrl.prestation.id + '-renouvellement'}}">Précisez éventuellement votre demande</label>
+        <textarea type="text" name="{{prestationCtrl.prestation.id + '-precision'}}" id="{{prestationCtrl.prestation.id + '-precision'}}" class="form-control" rows="4" ng-model="prestationCtrl.prestation.precision"></textarea>
       </div>
   </div>
 </div>

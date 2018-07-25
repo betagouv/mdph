@@ -4,6 +4,7 @@ angular.module('impactApp')
   .controller('AgentsEditCtrl', function($scope, $state, user, currentMdph, secteurs) {
     $scope.user = user;
     $scope.secteurs = secteurs;
+    $scope.forms = $state.current.data.forms;
 
     $scope.toggleSelection = function(secteur) {
       const idx = user.secteurs.indexOf(secteur._id);
@@ -16,19 +17,20 @@ angular.module('impactApp')
     };
 
     $scope.update = function(form) {
-      if ($scope.user._id) {
-        $scope.user.$changeInfo(function() {
-          $state.go('^', {}, {reload: true});
-        });
-      } else {
-        $scope.user.role = 'adminMdph';
-        $scope.user.mdph = currentMdph._id;
-        $scope.user.$saveAgent(
-          function() {
+      if (form.$valid) {
+        if ($scope.user._id) {
+          $scope.user.$changeInfo(function() {
             $state.go('^', {}, {reload: true});
-          },
+          });
+        } else {
+          $scope.user.role = 'adminMdph';
+          $scope.user.mdph = currentMdph._id;
 
-          function(err) {
+          $scope.user.$saveAgent()
+          .then(function() {
+            $state.go('^', {}, {reload: true});
+          })
+          .catch(function(err) {
             err = err.data;
             $scope.errors = {};
 
@@ -38,6 +40,7 @@ angular.module('impactApp')
               $scope.errors[field] = error.message;
             });
           });
+        }
       }
     };
 

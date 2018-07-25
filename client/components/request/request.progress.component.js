@@ -29,8 +29,8 @@ angular.module('impactApp')
           warning: true
         },
         {
-          title: 'Enregistrée',
-          status: 'enregistree',
+          title: 'Validée',
+          status: 'validee',
           desc: {
             done: 'Validée, en cours de traitement dans votre MDPH'
           }
@@ -62,9 +62,9 @@ angular.module('impactApp')
           }
         });
 
-        if (request.status === 'enregistree') {
-          _.find(values, {status: 'enregistree'}).active = false;
-          _.find(values, {status: 'enregistree'}).done = true;
+        if (request.status === 'validee') {
+          _.find(values, {status: 'validee'}).active = false;
+          _.find(values, {status: 'validee'}).done = true;
         }
 
         values.reverse();
@@ -74,14 +74,14 @@ angular.module('impactApp')
         let byStatus = _.indexBy(values, 'status');
 
         if (request.status === 'en_attente_usager') {
-          byStatus.enregistree.hidden = true;
+          byStatus.validee.hidden = true;
           byStatus.emise.hidden = true;
-        } else if (request.status === 'enregistree') {
+        } else if (request.status === 'validee') {
           byStatus.en_attente_usager.hidden = true;
           byStatus.emise.hidden = true;
         } else {
           byStatus.en_attente_usager.hidden = true;
-          byStatus.enregistree.hidden = true;
+          byStatus.validee.hidden = true;
         }
       }
 

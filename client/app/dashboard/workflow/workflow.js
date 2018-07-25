@@ -6,6 +6,8 @@ angular.module('impactApp')
       .state('dashboard.workflow', {
         url: '/workflow',
         template: '<div ui-view></div>',
+        controller: 'WorkflowCtrl',
+        controllerAs: 'workflowCtrl',
         redirectTo: {
           url: 'dashboard.workflow.list',
           params: {
@@ -13,6 +15,7 @@ angular.module('impactApp')
             userId: 'me'
           }
         },
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       });
   });

@@ -1,15 +1,17 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('WorkflowListCtrl', function(
+  .controller('WorkflowListCtrl', function($scope,
     $cookies, $window, $modal, $q, $state, $rootScope,
-    RequestService, RequestResource, MdphResource, status, requests, groupedByAge, currentMdph, banetteUser) {
-
+    RequestService, RequestResource, MdphResource, userId, status, requests,
+    groupedByAge, currentMdph, currentUser, banetteUser, toastr) {
     this.token = $cookies.get('token');
     this.status = status;
     this.requests = requests;
     this.groupedByAge = groupedByAge;
     this.banetteUser = banetteUser;
+    $scope.layoutctrl.currentUser = currentUser;
+
     this.groups = [
       {
         id: 'new',
@@ -24,6 +26,18 @@ angular.module('impactApp')
         title: 'Envoyées il y a plus de trois mois'
       }
     ];
+
+    this.showDownloadAndDeleteButtons = (this.status === 'validee' || this.status === 'irrecevable');
+
+    $scope.currentMenu(userId, status) ;
+
+    this.deselect = () => {
+      this.requests.forEach(function(request) {
+        if (request.isSelected) {
+          request.isSelected = false;
+        }
+      });
+    };
 
     this.selectAll = () => {
       const action = !this.allSelected();
@@ -93,19 +107,29 @@ angular.module('impactApp')
 
       if (selectedRequests.length === 1) {
         var request = _.find(this.requests, 'isSelected');
-
-        $window.open('api/requests/' + request.shortId + '/pdf/agent?access_token=' + this.token);
-
+        request.isDownloaded = 'true';
+        RequestResource.update(request).$promise.then(result => {
+          $window.open('api/requests/' + result.shortId + '/pdf/agent?access_token=' + this.token);
+        });
       } else {
         if (selectedRequests.length > 1) {
-          $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + this.token);
+          const update = function(request) {
+            request.isDownloaded = 'true';
+            return RequestResource.update(request).$promise;
+          };
+
+          const download =  function() {
+            $window.open('api/requests/download?short_ids=' + JSON.stringify(selectedRequests) + '&access_token=' + $cookies.get('token'));
+          };
+
+          actionOnSelectedRequests(requests, update, download);
         }
       }
     };
 
-    function archiveRequests(requests) {
-      const archive = function(request) {
-        request.status = 'archive';
+    function irrecevableRequests(requests) {
+      const irrecevable = function(request) {
+        request.status = 'irrecevable';
         return RequestResource.update(request).$promise;
       };
 
@@ -113,18 +137,27 @@ angular.module('impactApp')
         $state.go('.', {}, {reload: true});
       };
 
-      actionOnSelectedRequests(requests, archive, afterTransfer);
+      actionOnSelectedRequests(requests, irrecevable, afterTransfer);
     }
 
-    this.openArchiveModal = () => {
+    this.openIrrecevableModal = () => {
       if (_.find(this.requests, 'isSelected')) {
         const modalInstance = $modal.open({
           animation: false,
-          templateUrl: 'app/dashboard/workflow/list/modalArchive.html',
-          controller: 'ModalArchiveCtrl'
+          templateUrl: 'app/dashboard/workflow/list/modalIrrecevable.html',
+          controllerAs: 'modalIrrecevableCtrl',
+          controller($modalInstance) {
+            this.confirm = function() {
+              $modalInstance.close();
+            };
+
+            this.cancel = function() {
+              $modalInstance.dismiss('cancel');
+            };
+          }
         });
 
-        modalInstance.result.then(() => archiveRequests(this.requests));
+        modalInstance.result.then(() => irrecevableRequests(this.requests));
       }
     };
 
@@ -135,6 +168,59 @@ angular.module('impactApp')
         this.groupedByAge = RequestService.groupByAge(this.requests);
         this.isRefreshing = false;
       });
+      $state.go('.', {}, {reload: true});
+    };
+
+    this.allSelectedRequestsDownloadOpenModal = function() {
+      if (_.find(this.requests, 'isSelected')) {
+
+        var selectedRequests = _.reduce(this.requests, function(selectedRequests, request) {
+          if (request.isSelected) {
+            selectedRequests.push(request);
+          }
+
+          return selectedRequests;
+        }, []);
+
+        let SelectedRequestsDownload = true;
+        angular.forEach(selectedRequests, function(request) {
+          if (request.isDownloaded === undefined || !request.isDownloaded) {
+            SelectedRequestsDownload = false;
+            return;
+          }
+        });
+
+        if (SelectedRequestsDownload) {
+
+          $modal.open({
+            templateUrl: 'app/dashboard/workflow/detail/modalDelete.html',
+            controllerAs: 'modalDeleteCtrl',
+            size: 'md',
+            controller($modalInstance, $state) {
+              this.requests = selectedRequests;
+              this.delete = function() {
+                const remove = function(request) {
+                  return RequestResource.partialDelete(request).$promise;
+                };
+
+                const closeModal = function() {
+                  $modalInstance.close();
+                  $state.go('.', {}, {reload: true});
+                };
+
+                actionOnSelectedRequests(this.requests, remove, closeModal);
+              };
+
+              this.cancel = function() {
+                $modalInstance.dismiss('cancel');
+              };
+            }
+          });
+        } else {
+          this.deselect();
+          toastr.error('Les demandes n\' ont pas pu être supprimées car au moins l\'une d\'entre elles n\'a pas été téléchargée');
+        }
+      }
     };
   })
   .controller('ModalAssignCtrl', function($scope, $modalInstance, evaluators) {
@@ -143,15 +229,6 @@ angular.module('impactApp')
     $scope.ok = function() {
       const selectedEvaluators = evaluators.filter(evaluator => evaluator.isSelected);
       $modalInstance.close(selectedEvaluators);
-    };
-
-    $scope.cancel = function() {
-      $modalInstance.dismiss('cancel');
-    };
-  })
-  .controller('ModalArchiveCtrl', function($scope, $modalInstance) {
-    $scope.archive = function() {
-      $modalInstance.close();
     };
 
     $scope.cancel = function() {

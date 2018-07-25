@@ -8,7 +8,7 @@
       <label for="zipcode" class="control-label">Code département</label>
       <input id="zipcode" type="text" name="zipcode" class="form-control" ng-model="mdphDetail.zipcode" ng-minlength="1" required/>
       <div ng-messages="mdphDetailForm.zipcode.$error" ng-if="mdphDetailForm.$submitted">
-        <p class="help-block" ng-message='required'>Le code departementest obligatoire.</p>
+        <p class="help-block" ng-message='required'>Le code departement est obligatoire.</p>
         <p class="help-block" ng-message='minlength'>La longueur du code departement est 2 ou 3.</p>
       </div>
     </div>
@@ -142,7 +142,7 @@
     <br/>
     <div class="form-actions">
       <button id="submitId" type="submit" name="save" alt="Enregistrer" class="btn btn-success">Enregistrer</button>
-      <button id="submitId" type="submit" name="cencel" alt="Annuler" class="btn btn-default" ng-click="adminMdphDetailCtrl.cancel()">Annuler</button>
+      <a id="cancelId" type="submit" name="cancel" alt="Annuler" class="btn btn-default no-decoration" ng-click="adminMdphDetailCtrl.cancel()">Annuler</a>
     </div>
   </form>
 </div>

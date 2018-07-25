@@ -1,88 +1,65 @@
 <div id="mon-compte">
 
   <div ng-if="user.unconfirmed">
-    <div class="profile-card profile-card-danger profile-card-vertical">
-      <div class="profile-card-header">
-        <span class="profile-card-avatar">
-          <span class="profile-card-icon"><i class="fa fa-warning"></i></span>
+    <div class="demande-card demande-card-danger demande-card-vertical">
+      <div class="demande-card-header">
+        <span class="demande-card-avatar">
+          <span class="demande-card-icon"><i class="fa fa-warning"></i></span>
         </span>
-        <div class="profile-card-header-text">
-          <h1 class="profile-card-header-text-title">En attente de validation</h1>
+        <div class="demande-card-header-text">
+          <h1 class="demande-card-header-text-title">En attente de validation</h1>
         </div>
       </div>
-      <div class="profile-card-content">
+      <div class="demande-card-content">
         <p>Vous n'avez pas encore confirmé votre compte. Vous pouvez le faire en ouvrant le lien d'activation qui vous a été envoyé par mail.</p>
         <p>Si vous n'avez pas reçu ce mail, <a target="_blank" ui-sref="resend_confirmation({userId: user._id})">cliquez ici pour le renvoyer</a>.</p>
       </div>
     </div>
   </div>
 
-  <div class="profile-card profile-card-vertical">
-    <div class="profile-card-header">
-      <span class="profile-card-avatar">
-        <span class="profile-card-icon"><i class="fa fa-cogs"></i></span>
+  <div class="demande-card demande-card-vertical">
+    <div class="demande-card-header">
+      <span class="demande-card-avatar">
+        <span class="demande-card-icon"><i class="fa fa-cogs"></i></span>
       </span>
-      <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title">Modifier mon mot de passe</h1>
+      <div class="demande-card-header-text">
+        <h1 class="demande-card-header-text-title">Modifier mon mot de passe</h1>
       </div>
     </div>
-    <div class="profile-card-content">
-      <div class="form-group">
-        <label for="email" class="control-label">Email</label>
-        <div>
-          <p id="email" class="control-label">{{user.email}}</p>
-        </div>
-      </div>
-
-      <form aria-labelledby="changePassword" name="passwordForm" ng-submit="changePassword(passwordForm)" novalidate>
-        <div class="form-group" ng-class="{ 'has-error': passwordForm.password.$invalid && passwordForm.$submitted }">
-          <label for="oldPassword" class="control-label">Mot de passe actuel</label>
-          <div>
-            <div class="input-group margin-bottom-sm">
-              <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword" required mongoose-error/>
-              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+    <div class="demande-card-content">
+        <div class="form-group">
+            <label for="email" class="control-label">Email</label>
+            <div>
+              <p id="email" class="control-label">{{user.email}}</p>
             </div>
-            <div ng-messages="passwordForm.password.$error" ng-if="passwordForm.$submitted">
-              <p class="help-block" ng-message='required'>Veuillez entrer votre mot de passe précédent</p>
-              <p class="help-block" ng-message="mongoose">{{ errors.password }}</p>
-              </div>
-          </div>
         </div>
 
-        <div class="form-group required" ng-class="{ 'has-error': passwordForm.newPassword.$invalid && passwordForm.$submitted}">
-          <label for="newPassword" class="control-label">Nouveau mot de passe</label>
-          <div>
-            <div class="input-group margin-bottom-sm">
-              <input id="newPassword" type="password" name="newPassword" class="form-control" ng-model="user.newPassword" required mongoose-error
-                     zxcvbn="passwordStrength" zx-min-score="2"/>
-              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+        <div class="row">
+            <div class="col-sm-4">
+              <form aria-labelledby="changePassword" name="forms.form" ng-submit="changePassword(forms.form)" novalidate>
+                <div class="form-group" ng-class="{ 'has-error': forms.form.password.$invalid && forms.form.$submitted }">
+                  <label for="oldPassword" class="control-label">Mot de passe actuel</label>
+                  <div>
+                      <input id="oldPassword" type="password" name="password" class="form-control" ng-model="user.oldPassword" required mongoose-error/>
+                    <div ng-messages="forms.form.password.$error" ng-if="forms.form.$submitted">
+                      <p class="help-block" ng-message='required'>Veuillez entrer votre mot de passe précédent.</p>
+                      <p class="help-block" ng-message="mongoose">{{ errors.password }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <password-field user="user" libelle="Nouveau mot de passe"/>
+
+                <p class="help-block"> {{ passwordMessage }} </p>
+                <button class="btn btn-primary" type="submit" name="submit">Valider</button>
+              </form>
             </div>
 
-            <div ng-messages="passwordForm.newPassword.$error" ng-if="passwordForm.$submitted">
-              <p id="error-message" ng-message="passwordStrength" class="help-block">Votre mot de passe est d'une robustesse trop faible</p>
+            <div class="col-sm-8">
+                <password-rules-alert/>
             </div>
-
-            <password-strength-bar password="passwordForm.newPassword.$viewValue"></password-strength-bar>
-          </div>
         </div>
 
-        <p class="help-block"> {{ passwordMessage }} </p>
-        <button class="btn btn-primary" type="submit" name="submit">Valider</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="profile-card profile-card-vertical">
-    <div class="profile-card-header">
-      <span class="profile-card-avatar">
-        <span class="profile-card-icon"><i class="fa fa-users"></i></span>
-      </span>
-      <div class="profile-card-header-text">
-        <h1 class="profile-card-header-text-title">Mes profils</h1>
-      </div>
-    </div>
-    <div class="profile-card-content">
-      <mes-profils user="user" details="true" />
     </div>
   </div>
 </div>

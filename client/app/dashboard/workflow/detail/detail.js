@@ -7,26 +7,30 @@ angular.module('impactApp')
         url: '/detail/:shortId',
         templateUrl: 'app/dashboard/workflow/detail/detail.html',
         controller: 'WorkflowDetailCtrl',
-
+        controllerAs: 'workflowDetailCtrl',
         resolve: {
           request: function($http, $stateParams, RequestResource) {
             return RequestResource.get({shortId: $stateParams.shortId}).$promise;
           }
         },
         abstract: true,
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       })
       .state('dashboard.workflow.detail.validation_depot', {
         url: '/validation_depot',
         templateUrl: 'app/dashboard/workflow/detail/validation_depot/validation_depot.html',
         controller: 'validationDepotCtrl',
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       })
       .state('dashboard.workflow.detail.documents', {
-        url: '/documents',
+        url: '/documents/:navUserId/:navStatus',
         controller: 'RequestDocumentsCtrl',
+        controllerAs: 'requestDocumentsCtrl',
         templateUrl: 'app/dashboard/workflow/detail/documents/documents.html',
         authenticate: true,
+        authorized: ['adminMdph'],
         resolve: {
           documentTypes: function($http) {
             return $http.get('api/document-types').then(function(result) {
@@ -34,13 +38,23 @@ angular.module('impactApp')
                 return !documentType.mandatory;
               });
             });
+          },
+
+          navUserId: function($stateParams) {
+            return $stateParams.navUserId;
+          },
+
+          navStatus: function($stateParams) {
+            return $stateParams.navStatus;
           }
+
         }
       })
       .state('dashboard.workflow.detail.comments', {
         url: '/comments',
         templateUrl: 'app/dashboard/workflow/detail/comments/comments.html',
         controller: 'RequestCommentsCtrl',
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       });
   });

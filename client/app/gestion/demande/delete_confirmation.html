@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h3 class="modal-title">Suppression d'une demande</h3>
+</div>
+
+<div class="modal-body">
+  <p ng-if="deleteDemandeConfirmationCtrl.demande.status == 'en_cours'">Voulez-vous vraiment supprimer la demande n° <strong>{{deleteDemandeConfirmationCtrl.demande.shortId}}</strong> ? <br/> Cette suppression est définitive.</p>
+  <p ng-if="deleteDemandeConfirmationCtrl.demande.status !== 'en_cours'">Vous ne pouvez pas supprimer la demande n° <strong>{{deleteDemandeConfirmationCtrl.demande.shortId}}</strong> via ce service.</p>
+  <div ng-if="deleteDemandeConfirmationCtrl.demande.status !== 'en_cours'" class="alert alert-warning">
+    <p>
+      Cette demande a été transmise à votre MDPH. <br/>
+      Pour toutes demandes de suppression des données associées à cette demande, merci de contacter votre MDPH, dont les coordonnées sont affichées en bas de page.
+    </p>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="deleteDemandeConfirmationCtrl.cancel()">Annuler</button>
+  <button class="btn btn-primary" ng-click="deleteDemandeConfirmationCtrl.ok()" ng-if="deleteDemandeConfirmationCtrl.demande.status === 'en_cours'">Confirmer</button>
+</div>

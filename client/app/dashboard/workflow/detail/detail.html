@@ -1,21 +1,23 @@
 <div class="list-header">
-  <h1 class="padding-title">Validation du dépot de la demande</h1>
+  <h1 class="padding-title">Demande n° {{request.shortId}}</h1>
   <div class="dashboard-demande-header">
     <div class="detail">
-      <h2 class="padding-title"><strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong> - {{request.shortId}}</h2>
+      <h2 class="padding-title"><strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong></h2>
       <div class="header-actions">
-        <a target="_blank"
-          class="btn btn-primary"
-          href="api/requests/{{request.shortId}}/pdf/agent?access_token={{token}}"
+        <a ng-show="request.status === 'irrecevable' || request.status === 'validee'"
+          class="btn btn-primary" ng-click="workflowCtrl.download(request)"  target="_blank"
           download>
           <i class="fa fa-download"></i>&nbsp;Télécharger
         </a>
-        <button class="btn btn-link" ng-click="toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
+        <a ng-show="(request.status === 'irrecevable' || request.status === 'validee') && request.isDownloaded" target="#" class="btn btn-danger" ng-click="workflowCtrl.openDeleteModal(request)" >
+          <i class="fa fa-trash"></i>&nbsp;Supprimer
+        </a>
+        <button class="btn btn-link" ng-click="workflowDetailCtrl.toggleDetail()">{{showDetail ? 'Cacher' : 'Afficher'}} détails</button>
       </div>
       <div class="alert alert-info" ng-show="showDetail">
         <p>Identitfiant <strong>{{request.shortId}}</strong></p>
-        <p ng-if="request.formAnswers.identites">Bénéficiaire <strong>{{request.formAnswers.identites.beneficiaire.nom | capitalize}} {{request.formAnswers.identites.beneficiaire.prenom | capitalize}}</strong></p>
-        <p ng-if="!request.formAnswers.identites"><em>Demande incomplète - Identité non remplies</em></p>
+        <p ng-if="request.data.identites">Bénéficiaire <strong>{{request.data.identites.beneficiaire.nom | capitalize}} {{request.data.identites.beneficiaire.prenom | capitalize}}</strong></p>
+        <p ng-if="!request.data.identites"><em>Demande incomplète - Identité non remplies</em></p>
         <p>Effectuée par <strong>{{request.user.email}}</strong></p>
         <p>
           <span ng-if="request.submittedAt">
@@ -34,9 +36,9 @@
           </a>
         </div>
       </div>
-      <div ng-switch-when="enregistree">
+      <div ng-switch-when="validee">
         <div class="status-actions">
-          <h3>Demande enregistrée</h3>
+          <h3>Demande validée</h3>
         </div>
       </div>
       <div ng-switch-when="en_attente_usager">
@@ -44,6 +46,11 @@
           <h3>Demande en attente</h3>
         </div>
       </div>
+      <div ng-switch-when="irrecevable">
+          <div class="status-actions">
+            <h3>Demande irrecevable</h3>
+          </div>
+        </div>
     </div>
 
   </div>

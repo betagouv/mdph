@@ -1,5 +1,11 @@
 <div ui-view>
   <div class="list-header">
+    <h2 class="padding-title">Gestion des comptes agents</h2>
+
+    <button class="btn btn-primary" ui-sref="dashboard.users.agents.edit({id: 'nouvel_agent'})">
+      <i class="fa fa-plus-circle"></i> Ajouter un compte
+    </button>
+
     <form class="pull-right">
       <div class="input-group search">
         <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
@@ -10,23 +16,12 @@
         </div>
       </div>
     </form>
-
-    <h2 class="padding-title">Gestion des comptes agents</h2>
-
-    <div class="tools">
-      <a class="btn btn-sm btn-primary" ui-sref="dashboard.users.agents.edit({id: 'nouvel_agent'})">
-        Ajouter un compte
-      </a>
-    </div>
   </div>
 
   <div class="list-main">
     <table>
       <tbody>
         <tr ng-repeat="user in users | filter:query">
-          <td class="check-request" ng-click="user.isSelected = !user.isSelected">
-            <i class="fa" ng-class="{'fa-square': !user.isSelected, 'fa-check-square': user.isSelected}"></i>
-          </td>
           <td class="text-left"><a ui-sref="dashboard.users.agents.edit({id: user._id})">{{user.name}}</a></td>
           <td class="text-right"><a ui-sref="dashboard.users.agents.edit({id: user._id})">{{user.email}}</a></td>
         </tr>

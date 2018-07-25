@@ -2,15 +2,15 @@
   <h2>Vos demandes</h2>
   <div class="subsection">
 
-    {{#if request.detailPrestations}}
+    {{#if request.data.detailPrestations}}
       <div class="question">
         <ul>
-          {{#request.detailPrestations}}
+          {{#request.data.detailPrestations}}
             <li>{{ title }}</li>
             {{#if precision}}
             <ul><li>{{precision}}</li></ul>
             {{/if}}
-          {{/request.detailPrestations}}
+          {{/request.data.detailPrestations}}
         </ul>
       </div>
     {{/if}}

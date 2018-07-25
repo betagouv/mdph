@@ -12,7 +12,7 @@
     <div class="content">
       <div class="user">
         <ul>
-          <li ng-repeat="prestation in request.detailPrestations">
+          <li ng-repeat="prestation in request.data.detailPrestations">
             {{prestation.title}}
             <ul ng-if="prestation.precision">
                 <li>

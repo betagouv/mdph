@@ -8,6 +8,7 @@ import * as MailActions from '../api/send-mail/send-mail-actions';
 // TODO
 function sendMailToEvaluators(request) {
   request.evaluators.forEach((evaluator) => MailActions.sendMailNotificationAgent(request, evaluator.email));
+  return request;
 }
 
 function findRequestMdph(request) {
@@ -47,10 +48,13 @@ function findEvaluators(options) {
 function linkRequestToEvaluators(options) {
   const {request, evaluators} = options;
 
+  if (request.evaluators) {
+    request.evaluators.forEach((evaluator) => evaluators.push(evaluator));
+  }
+
   return request.set('evaluators', evaluators)
     .save()
-    .then(sendMailToEvaluators)
-    .then(() => options);
+    .then(sendMailToEvaluators);
 }
 
 function findSecteur({request, mdph}) {

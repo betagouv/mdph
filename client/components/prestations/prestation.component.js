@@ -7,6 +7,6 @@ angular.module('impactApp')
       prestation: '=ngModel',
       precision: '@'
     },
-    controllerAs: 'prestationctrl',
+    controllerAs: 'prestationCtrl',
     controller: function() {}
   });

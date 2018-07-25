@@ -1,7 +1,7 @@
 <form name="questionForm" novalidate>
   <label class="question-legend" ng-bind-html="question.title"></label>
 
-  <show-prestations form-answers="formAnswers" prestations="prestations" editable="true" width="4" end-date="true"></show-prestations>
+  <show-prestations form-answers="data" prestations="prestations" editable="true" width="4" end-date="true"></show-prestations>
 
   <nav-steps
     ng-hide="hideSteps"

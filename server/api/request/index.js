@@ -4,7 +4,7 @@ import {Router} from 'express';
 import multer from 'multer';
 import documentsRouter from '../document';
 import * as controller from './request.controller';
-import { isAgentOrOwner, isAgent, hasRole } from '../../auth/auth.service';
+import { isAgentOrOwner, isAgent, isOwner, hasRole } from '../../auth/auth.service';
 import Request from './request.model';
 import config from '../../config/environment';
 
@@ -25,7 +25,9 @@ router.get('/:shortId/generate-reception-mail', isAgentOrOwner(), controller.gen
 router.post('/:shortId/action', isAgentOrOwner(), controller.saveAction);
 router.get('/:shortId/history', isAgentOrOwner(), controller.getHistory);
 router.get('/:shortId/recapitulatif', isAgentOrOwner(), controller.getRecapitulatif);
+router.get('/:shortId/:mdph/preview', isOwner(), controller.getRecapitulatif);
 router.post('/:shortId/evaluateurs', hasRole('adminMdph'), controller.saveEvaluateurs);
+router.put('/:shortId/partial',  hasRole('adminMdph'), controller.partialDelete);
 
 router.get('/:shortId/pdf/:type', isAgentOrOwner(), controller.getPdf);
 

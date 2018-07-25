@@ -1,5 +1,5 @@
 <nav role="navigation">
-  <a ng-show="layoutctrl.currentMdph" ui-sref="departement({codeDepartement: layoutctrl.currentMdph.zipcode})">
+  <a ng-show="layoutctrl.currentMdph" ng-click="layoutctrl.gestionLinkValue()">
     <img ng-show="layoutctrl.currentMdph.logo" ng-src="/api/mdphs/{{layoutctrl.currentMdph.zipcode}}/logo/" alt="Retourner à l'accueil" />
     <img ng-hide="layoutctrl.currentMdph.logo" ng-src="assets/images/logo_defaut.jpg" alt="Retourner à l'accueil" />
   </a>
@@ -13,7 +13,7 @@
     </li>
   </ul>
 
-  <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()">
+  <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()" ng-show="!showMenu">
     <li ng-if="layoutctrl.showAdminLink()">
       <a ui-sref="admin.main" title="Admin">Admin</a>
     </li>
@@ -23,6 +23,9 @@
     <li ng-if="layoutctrl.showEvaluationLink()">
       <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
     </li>
+    <li ng-if="layoutctrl.showGestionLink()">
+      <a ng-click="layoutctrl.gestionLinkValue()">Profils et demandes</a>
+    </li>
     <li>
       <a ui-sref="mon_compte">Mon compte</a>
     </li>
@@ -30,10 +33,41 @@
       <a ui-sref="logout" id="logout">Déconnexion</a>
     </li>
   </ul>
+
+
+  <ul ng-if="layoutctrl.isLoggedIn() && layoutctrl.shouldShowLogin()" ng-show="showMenu">
+    <md-list flex>
+      <md-list-item ng-click="toggle = !toggle">
+        <i class="fa fa-bars"></i>
+        <md-icon><a class="interligne">Menu</a> <br/></md-icon>
+      </md-list-item>
+      <md-list-item ng-show="toggle">
+            <li class="interligne" ng-if="layoutctrl.showAdminLink()">
+              <a ui-sref="admin.main" title="Admin">Admin</a>
+            </li>
+            <li class="interligne" ng-if="layoutctrl.showDashboard()">
+              <a ui-sref="dashboard.workflow({zipcode: layoutctrl.currentMdph.zipcode})" title="Tableau de bord">Tableau de bord</a>
+            </li>
+            <li class="interligne" ng-if="layoutctrl.showEvaluationLink()">
+              <a ui-sref="evaluation.dashboard" title="Outil de soutien">Outil de soutien</a>
+            </li>
+            <li class="interligne" ng-if="layoutctrl.showGestionLink()">
+              <a ng-click="layoutctrl.gestionLinkValue()">Profils et demandes</a>
+            </li>
+            <li class="interligne">
+              <a ui-sref="mon_compte">Mon compte</a>
+            </li>
+            <li class="interligne">
+              <a ui-sref="logout" id="logout">Déconnexion</a>
+            </li>
+      </md-list-item>
+    </md-list>
+  </ul>
 </nav>
 
 <div ng-class="{'dashbord-content': layoutctrl.shouldShowDashboard()}">
-  <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" current-user="layoutctrl.getCurrentUser()" mdph="layoutctrl.currentMdph" />
+  <menu-dashboard ng-if="layoutctrl.shouldShowDashboard()" current-user="layoutctrl.currentUser" mdph="layoutctrl.currentMdph"
+  nav-user-id="{{navUserId}}" nav-status="{{navStatus}}"/>
 
   <main>
     <div ui-view></div>

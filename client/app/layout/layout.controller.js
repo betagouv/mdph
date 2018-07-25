@@ -1,18 +1,38 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LayoutCtrl', function($scope, $state, Auth, currentMdph) {
-    this.currentMdph = currentMdph;
+  .controller('LayoutCtrl', function($window, $rootScope, $scope, $state, Auth, ProfileResource, currentMdph, currentUser) {
+    let sizeMaxToReduceMenu = 836;
 
-    this.getCurrentUser = Auth.getCurrentUser;
+    this.currentMdph = currentMdph;
+    this.currentUser = currentUser;
     this.isLoggedIn = Auth.isLoggedIn;
     this.logout = Auth.logout;
 
     this.shouldShowDashboard = () => $state.includes('dashboard');
-    this.showAdminLink =  () => Auth.hasRole(this.getCurrentUser(), 'admin');
-    this.showEvaluationLink = () => this.currentMdph.evaluate && Auth.isAdminMdph(Auth.getCurrentUser(), currentMdph);
+    this.showAdminLink =  () => Auth.isAdmin(currentUser);
+    this.showGestionLink =  () => Auth.isUser(currentUser);
+    this.showEvaluationLink = () => this.currentMdph.evaluate && Auth.isAdminMdph(currentUser, currentMdph);
 
     this.shouldShowLogin = () => this.currentMdph.opened;
+
+    $rootScope.currentMenu = function(userId, status) {
+      $scope.navUserId = userId;
+      $scope.navStatus = status;
+    };
+
+    $scope.size = $window.innerWidth;
+    $scope.showMenu = $window.innerWidth < sizeMaxToReduceMenu;
+    $scope.toggle = null;
+
+    var wind = angular.element($window).on('resize', function() {
+      $scope.showMenu = $window.innerWidth < sizeMaxToReduceMenu;
+      $scope.size = $window.innerWidth;
+    });
+
+    wind.bind('resize', function() {
+      $scope.$apply();
+    });
 
     if (currentMdph) {
       this.mdphName = 'Mdph ' + currentMdph.name;
@@ -21,6 +41,35 @@ angular.module('impactApp')
     }
 
     this.showDashboard = () => {
-      return currentMdph && Auth.getCurrentUser() && Auth.isAdminMdph(Auth.getCurrentUser(), currentMdph);
+      return currentMdph && currentUser && Auth.isAdminMdph(currentUser, currentMdph);
+    };
+
+    this.gestionLinkValue = function() {
+      if (this.isLoggedIn()) {
+        if (Auth.hasRole(currentUser, 'user')) {
+
+          ProfileResource.query({userId: currentUser._id}).$promise.then(function(profilList) {
+
+            var activeProfilList = profilList.filter(profil => !profil.deletedAt);
+
+            if (activeProfilList.length === 1) {
+              return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
+            } else {
+              return $state.go('gestion_profil', {}, {reload: true});
+            }
+
+          });
+
+        } else if (Auth.hasRole(currentUser, 'adminMdph')) {
+
+          return $state.go('dashboard.workflow', {zipcode: currentMdph.zipcode, userId:'me', status:'emise'}, {reload: true});
+        } else if (Auth.hasRole(currentUser, 'admin')) {
+
+          return $state.go('admin.main', {}, {reload: true});
+        }
+      } else {
+        var codeDepartement = currentMdph.zipcode;
+        return $state.go('mdph-main', {codeDepartement}, {reload: true});
+      }
     };
   });

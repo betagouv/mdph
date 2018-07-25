@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/activation',
         parent: 'admin',
         authenticate: true,
+        authorized: ['admin'],
         templateUrl: 'app/admin/activation/admin.activation.html',
         controller: 'AdminActivationCtrl',
         controllerAs: 'adminActivationCtrl',

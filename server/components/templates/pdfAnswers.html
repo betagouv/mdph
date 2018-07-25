@@ -26,12 +26,6 @@
       Une évaluation approfondie va être réalisée par l’équipe de la MDPH, qui vous recontactera si nécessaire.
     </p>
 
-    {{#if request.numeroDossier}}
-      <p class="emphasize">Ce dossier est un renouvellement. Ancien numéro de dossier dans votre MDPH : <strong>{{ request.numeroDossier }}</strong></p>
-    {{else if request.estRenouvellement}}
-      <p class="emphasize">Ce bénéficiaire a déjà un dossier dans la MDPH du département <strong>{{ request.old_mdph }}</strong></p>
-    {{/if}}
-
     {{#identites}}
       {{> identites}}
     {{/identites}}
@@ -40,7 +34,7 @@
       {{> section}}
     {{/sections}}
 
-    {{#if request.prestations}}
+    {{#if request.data.prestations}}
       {{> prestations}}
     {{/if}}
   </body>

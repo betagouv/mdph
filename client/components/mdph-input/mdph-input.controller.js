@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('MdphInputCtrl', function($state) {
+  .controller('MdphInputCtrl', function(MdphResource, $state) {
 
     this.zipcode = '';
 
@@ -12,7 +12,7 @@ angular.module('impactApp')
 
     this.go = () => {
       const codeDepartement = this.zipcode.toUpperCase();
-      $state.go('departement', {codeDepartement});
+      $state.go('mdph-main', {codeDepartement});
     };
 
   });

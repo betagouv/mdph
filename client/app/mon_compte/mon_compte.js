@@ -8,7 +8,8 @@ angular.module('impactApp')
         parent: 'layout',
         authenticate: true,
         data: {
-          title: 'Mon compte'
+          title: 'Mon compte',
+          forms: {}
         },
         resolve: {
           currentUser: function(Auth) {
@@ -17,5 +18,6 @@ angular.module('impactApp')
         },
         templateUrl: 'app/mon_compte/mon_compte.html',
         controller: 'MonCompteCtrl',
+        controllerAs: 'monCompteCtrl',
       });
   });

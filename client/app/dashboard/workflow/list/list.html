@@ -2,7 +2,7 @@
   <div class="list-header">
     <h2 class="padding-title">{{ workflowListCtrl.banetteUser.name }} - Demandes {{workflowListCtrl.status | requestStatus}}</h2>
 
-    <form class="form-group">
+    <form class="pull-right">
       <div class="input-group search">
         <input type="text" class="form-control input-sm" ng-model="query" name="search" placeholder="Recherche">
         <div class="input-group-btn">
@@ -23,15 +23,20 @@
           Action <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-          <li role="menuitem">
+          <li role="menuitem" ng-if="workflowListCtrl.showDownloadAndDeleteButtons">
             <a href="#" ng-click="workflowListCtrl.downloadRequests()"><i class="fa fa-download"></i> Télécharger les demandes</a>
           </li>
-          <li role="menuitem" ng-if="status !== 'archive'">
-            <a href="#" ng-click="workflowListCtrl.openArchiveModal()"><i class="fa fa-archive"></i> Archiver les demandes</a>
+          <li role="menuitem" ng-if="workflowListCtrl.status !== 'irrecevable' && workflowListCtrl.status !== 'validee' ">
+            <a href="#" ng-click="workflowListCtrl.openIrrecevableModal()"><i class="fa fa-ban"></i> Marquer comme irrecevable</a>
+          </li>
+          <li role="menuitem" ng-if="workflowListCtrl.status === 'validee' || workflowListCtrl.status === 'irrecevable'">
+              <a href="#" ng-click="workflowListCtrl.allSelectedRequestsDownloadOpenModal()">
+                <i class="fa fa-trash"></i> Supprimer les demandes {{workflowListCtrl.status === 'validee' ? 'validées' : 'irrecevables'}} téléchargées
+              </a>
           </li>
         </ul>
 
-        <button type="button" class="btn btn-link btn-refresh" ng-class="{ 'refreshing': workflowlistctrl.isRefreshing }" ng-click="workflowlistctrl.refresh()">
+        <button type="button" class="btn btn-link btn-refresh" ng-class="{ 'refreshing': workflowListCtrl.isRefreshing }" ng-click="workflowListCtrl.refresh()">
           Rafraîchir
         </button>
       </div>
@@ -42,12 +47,12 @@
     <table>
       <tbody ng-repeat="group in workflowListCtrl.groups">
         <tr>
-          <td class="lead" colspan="6">
+          <td class="lead" colspan="8">
             {{::group.title}}
           </td>
         </tr>
         <tr ng-hide="filteredRequests.length">
-          <td colspan="6">
+          <td colspan="8">
             Pas de demandes
           </td>
         </tr>
@@ -59,10 +64,10 @@
           <td>
             <span class="user">
               <a ui-sref="dashboard.workflow.detail.validation_depot({shortId: request.shortId})">
-                <span ng-if="request.formAnswers.identites.beneficiaire">
-                  {{::request.formAnswers.identites.beneficiaire.nom | uppercase}}, {{::request.formAnswers.identites.beneficiaire.prenom | capitalize}}
+                <span ng-if="request.data.identites.beneficiaire">
+                  {{::request.data.identites.beneficiaire.nom | uppercase}}, {{::request.data.identites.beneficiaire.prenom | capitalize}}
                 </span>
-                <span ng-if="!request.formAnswers.identites.beneficiaire">
+                <span ng-if="!request.data.identites.beneficiaire">
                   Demande incomplète, bénéficiaire non remplis
                 </span>
               </a>
@@ -101,6 +106,16 @@
             </table>
           </td>
           <td>{{::request.submittedAt | date}}</td>
+          <td>
+            <button ng-show="workflowListCtrl.showDownloadAndDeleteButtons" class="btn btn-link" ng-click="workflowCtrl.download(request)">
+              <i class="fa fa-download"></i>&nbsp;Télécharger
+            </button>
+          </td>
+          <td class="col-md-2">
+            <button ng-show="workflowListCtrl.showDownloadAndDeleteButtons && request.isDownloaded" class="btn btn-link red-color" ng-click="workflowCtrl.openDeleteModal(request)">
+              <i class="fa fa-trash"></i>&nbsp;Supprimer
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

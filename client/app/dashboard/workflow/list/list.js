@@ -18,7 +18,11 @@ angular.module('impactApp')
           },
 
           requests: function(MdphResource, currentMdph, userId, status) {
-            return MdphResource.queryRequests({zipcode: currentMdph.zipcode, controllerid: userId, status}).$promise;
+            return MdphResource.queryRequests({zipcode: currentMdph.zipcode, controllerid: userId, status}).$promise.then(
+              function(requests) {
+                return _.filter(requests, (request) => request.deletedAt === undefined);
+              }
+            );
           },
 
           groupedByAge: function(RequestService, requests) {
@@ -33,6 +37,7 @@ angular.module('impactApp')
             return User.get({id: userId}).$promise;
           }
         },
-        authenticate: true
+        authenticate: true,
+        authorized: ['adminMdph']
       });
   });

@@ -7,6 +7,7 @@ angular.module('impactApp')
         url: '/agent',
         parent: 'admin',
         authenticate: true,
+        authorized: ['admin'],
         templateUrl: 'app/admin/agent/admin.agent.html',
         controller: 'AdminAgentCtrl',
         controllerAs: 'adminAgentCtrl',

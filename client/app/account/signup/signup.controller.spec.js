@@ -8,7 +8,13 @@ describe('SignupCtrl', function() {
     zipcode: 'test'
   };
   let $state = {
-    go() {}
+    go() {},
+
+    current: {
+      data: {
+        forms: {}
+      }
+    }
   };
 
   beforeEach(function() {
@@ -28,7 +34,7 @@ describe('SignupCtrl', function() {
 
   describe('toggleType', function() {
     beforeEach(function() {
-      $controller('SignupCtrl', { $scope, currentMdph });
+      $controller('SignupCtrl', { $scope, $state, currentMdph });
     });
 
     describe('password to text', function() {
@@ -56,7 +62,7 @@ describe('SignupCtrl', function() {
     };
 
     beforeEach(function() {
-      $controller('SignupCtrl', { $scope, currentMdph });
+      $controller('SignupCtrl', { $scope, $state, currentMdph });
       spyOn(fakeForm.fakeField, '$setValidity');
     });
 
@@ -77,12 +83,21 @@ describe('SignupCtrl', function() {
       password: {
         $modelValue: '1234',
         $setValidity() {}
+      },
+      contact: {
+        $modelValue: '',
+        $setValidity() {}
+      },
+      emailSecours: {
+        $modelValue: 'your@email.com',
+        $setValidity() {}
       }
     };
 
     describe('with correct values', function() {
       let fakeCreatedUser = {
-        profile: '1234'
+        profile: '1234',
+        request: 'req213'
       };
 
       let Auth = {
@@ -101,12 +116,13 @@ describe('SignupCtrl', function() {
       });
 
       it('should create the user, its profile and redirect to the page beneficiaire', function() {
+        $scope.startTime = new Date().getTime() - 100000;
         $scope.register(fakeForm);
         $scope.$apply();
 
         expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('profil.beneficiaire');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: fakeCreatedUser.profile});
+        expect($state.go.calls.argsFor(0)[0]).toEqual('demande.beneficiaire');
+        expect($state.go.calls.argsFor(0)[1]).toEqual({shortId: fakeCreatedUser.request});
       });
     });
 
@@ -137,6 +153,7 @@ describe('SignupCtrl', function() {
       });
 
       it('should explicit the error on the form', function() {
+        $scope.startTime = new Date().getTime() - 100000;
         $scope.register(fakeForm);
         $scope.$apply();
 

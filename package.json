@@ -1,6 +1,6 @@
 {
   "name": "impact",
-  "version": "0.3.4",
+  "version": "0.4.3",
   "license": "AGPL-3.0",
   "main": "server/app.js",
   "dependencies": {

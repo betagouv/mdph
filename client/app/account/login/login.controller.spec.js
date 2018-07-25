@@ -21,6 +21,8 @@ describe('LoginCtrl', function() {
     go() {}
   };
 
+  let $httpBackend;
+
   beforeEach(function() {
     module('impactApp');
     spyOn($state, 'go');
@@ -30,10 +32,11 @@ describe('LoginCtrl', function() {
     $urlRouterProvider.deferIntercept();
   }));
 
-  beforeEach(inject(function($rootScope, _$controller_, _$q_) {
+  beforeEach(inject(function($rootScope, _$controller_, _$q_, _$httpBackend_) {
     $scope = $rootScope.$new();
     $controller = _$controller_;
     $q = _$q_;
+    $httpBackend = _$httpBackend_;
   }));
 
   describe('login', function() {
@@ -152,18 +155,22 @@ describe('LoginCtrl', function() {
           return $q.resolve(fakeUser);
         },
 
-        hasRole() {
+        hasRole(user, role) {
+          if (role === 'user') {
+            return true;
+          }
+
           return false;
         }
       };
 
       // Mock ressource call to send back a count of 1
       let ProfileResource = {
-        count() {
+        query() {
           return {
             $promise: {
               then(callback) {
-                callback({count: 1});
+                callback([{_id: 1}]);
               }
             }
           };
@@ -172,6 +179,7 @@ describe('LoginCtrl', function() {
 
       beforeEach(function() {
         $controller('LoginCtrl', {
+          $httpBackend,
           $rootScope: {},
           $scope,
           Auth,
@@ -183,17 +191,22 @@ describe('LoginCtrl', function() {
       });
 
       it('should go to the account settings of the user', function() {
+
+        $httpBackend
+          .whenGET('/api/users/1/profiles/1/requests/last')
+          .respond(200, {status: 'validee'});
         $scope.login(fakeForm);
+        $httpBackend.flush();
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('profil');
-        expect($state.go.calls.argsFor(0)[1]).toEqual({profileId: 'me'});
+
+        //expect($state.go.calls.argsFor(0)[0]).toEqual('gestion_demande');
       });
     });
 
     describe('user with multiple profiles', function() {
       let fakeUser = {
-        _id: '1',
+        _id: '1'
       };
 
       let Auth = {
@@ -201,18 +214,22 @@ describe('LoginCtrl', function() {
           return $q.resolve(fakeUser);
         },
 
-        hasRole() {
+        hasRole(user, role) {
+          if (role === 'user') {
+            return true;
+          }
+
           return false;
         }
       };
 
       // Mock ressource call to send back a count of 2
       let ProfileResource = {
-        count() {
+        query() {
           return {
             $promise: {
               then(callback) {
-                callback({count: 2});
+                callback([{_id: 1},{_id: 2}]);
               }
             }
           };
@@ -221,6 +238,7 @@ describe('LoginCtrl', function() {
 
       beforeEach(function() {
         $controller('LoginCtrl', {
+          $httpBackend,
           $rootScope: {},
           $scope,
           Auth,
@@ -231,11 +249,11 @@ describe('LoginCtrl', function() {
         });
       });
 
-      it('should go to the mdph\'s home page of the user', function() {
+      it('should go to the profil\'s dashboard user page of the user', function() {
         $scope.login(fakeForm);
         $scope.$apply();
         expect($state.go).toHaveBeenCalled();
-        expect($state.go.calls.argsFor(0)[0]).toEqual('departement');
+        expect($state.go.calls.argsFor(0)[0]).toEqual('gestion_profil');
       });
     });
   });

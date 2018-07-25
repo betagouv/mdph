@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="modal-title">Suppression d'un profil</h3>
+</div>
+
+<div class="modal-body">
+  <p ng-if="deleteProfilConfirmationCtrl.demandes.length === 0">Voulez-vous vraiment supprimer le profil de <strong>{{deleteProfilConfirmationCtrl.profil.getTitle()}}</strong> et la demande associée? Cette suppression est définitive.</p>
+  <p ng-if="deleteProfilConfirmationCtrl.demandes.length > 0">Voulez-vous vraiment supprimer le profil de <strong>{{deleteProfilConfirmationCtrl.profil.getTitle()}}</strong> ? Cette suppression est définitive.</p>
+  <div ng-if="deleteProfilConfirmationCtrl.demandes.length > 0" class="alert alert-warning">
+    <p ng-if="deleteProfilConfirmationCtrl.demandes.length === 1">
+        Vous avez une demande associée à ce profil déjà transmise à une MDPH. <br/>
+        Pour toute demande de suppression des données associées à cette demande, merci de contacter votre MDPH dont les coordonnées sont affichées en bas de page.
+    </p>
+    <p ng-if="deleteProfilConfirmationCtrl.demandes.length > 1">
+      Vous avez {{ deleteProfilConfirmationCtrl.demandes.length }} demandes associées à ce profil déjà transmises à une MDPH. <br/>
+      Pour toute demande de suppression des données associées à ces demandes, merci de contacter votre MDPH dont les coordonnées sont affichées en bas de page.
+    </p>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="deleteProfilConfirmationCtrl.cancel()">Annuler</button>
+  <button class="btn btn-primary" ng-click="deleteProfilConfirmationCtrl.ok()">Confirmer</button>
+</div>

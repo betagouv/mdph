@@ -6,6 +6,7 @@
     .flex-group-left{
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
+      width: 50%;
     }
 
     .flex-group-right{
@@ -17,6 +18,10 @@
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px;
       margin-left: -1px;
+      width: 50%;
+    }
+    select::-ms-expand {
+      display: none;
     }
   }
 

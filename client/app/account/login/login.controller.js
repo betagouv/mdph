@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('LoginCtrl', function($rootScope, $scope, Auth, $location, $state, currentMdph, ProfileResource) {
+  .controller('LoginCtrl', function($http, $rootScope, $scope, Auth, $location, $state, currentMdph, ProfileResource) {
     $scope.user = {};
     $scope.error = null;
 
@@ -20,15 +20,39 @@ angular.module('impactApp')
             return $state.go('dashboard.workflow', {codeDepartement: user.mdph  && user.mdph.zipcode}, {reload: true});
           }
 
-          // When the user is logged, move to profile if only one is set.
-          ProfileResource.count({userId: user._id}).$promise.then(function({count}) {
-            if (count === 1) {
-              return $state.go('profil', {profileId: 'me'});
-            }
+          if (Auth.hasRole(user, 'user')) {
+            ProfileResource.query({userId: user._id}).$promise.then(function(profilList) {
 
-            return $state.go('departement', {}, {reload: true});
-          });
+              var activeProfilList = profilList.filter(profil => !profil.deletedAt);
 
+              if (activeProfilList.length === 0) {
+                return $state.go('gestion_profil', {}, {reload: true});
+              }
+
+              if (activeProfilList.length > 1) {
+                return $state.go('gestion_profil', {}, {reload: true});
+              }
+
+              $http.get(`/api/users/${user._id}/profiles/${activeProfilList[0]._id}/requests/last`).then(function(result) {
+
+                var data = result.data;
+                if (data && data.status !== 'validee' && data.status !== 'irrecevable') {
+                  return $state.go('demande', {shortId: data.shortId}, {reload: true});
+                } else {
+                  return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
+                }
+
+              }, function(error) {
+
+                if (error.status === 404) {
+                  return $state.go('gestion_demande', {profilId: activeProfilList[0]._id}, {reload: true});
+                }
+              });
+
+            });
+          }
+
+          return $state.go('login');
         })
         .catch(function(err) {
           $scope.error = err.message;

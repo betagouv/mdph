@@ -1,0 +1,24 @@
+<div class="demande-category {{demandeCategoryCtrl.completion}}" ng-class="{
+    'mandatory': demandeCategoryCtrl.options.mandatory,
+    'error': demandeCategoryCtrl.options.error
+  }">
+  <div class="demande-category-icon">
+    <i class="icon fa" ng-class="demandeCategoryCtrl.icon"></i>
+
+    <div class="progress-desc" ng-if="demandeCategoryCtrl.options.mandatory || demandeCategoryCtrl.completion === 'complete'" ng-switch="demandeCategoryCtrl.completion">
+      <span ng-switch-default>À renseigner</span>
+      <span ng-switch-when="complete"><i class="fa fa-check-circle"></i>&nbsp;Complet</span>
+    </div>
+  </div>
+
+  <div class="demande-category-content">
+    <div class="demande-category-header">
+        <h2 class="demande-category-header-title">{{ ::demandeCategoryCtrl.title }}</h2>
+    </div>
+
+    <div class="demande-category-actions">
+      <button ng-click="demandeCategoryCtrl.go()" class="btn btn-blue" ng-disabled="!demandeCategoryCtrl.active">Modifier</button>
+    </div>
+  </div>
+</div>
+<div ng-if="demandeCategoryCtrl.options.error"> Complétez cette section avant de transmettre la demande</div>

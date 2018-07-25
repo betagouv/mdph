@@ -17,7 +17,7 @@ angular.module('impactApp')
         url: '/logout',
         template: '',
         controller: function($state, Auth) {
-          $state.go('departement');
+          $state.go('login');
           Auth.logout();
         }
       })
@@ -27,7 +27,8 @@ angular.module('impactApp')
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl',
         data: {
-          title: 'Inscription'
+          title: 'Inscription',
+          forms: {}
         }
       })
       .state('forgotten_password', {
@@ -70,7 +71,8 @@ angular.module('impactApp')
         templateUrl: 'app/account/reset_password/reset_password.html',
         controller: 'ResetPasswordCtrl',
         data: {
-          title: 'Mot de passe oublié'
+          title: 'Mot de passe oublié',
+          forms: {}
         }
       })
       .state('resend_confirmation', {

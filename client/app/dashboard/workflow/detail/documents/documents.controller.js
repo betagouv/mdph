@@ -1,20 +1,25 @@
 'use strict';
 
 angular.module('impactApp')
-  .controller('RequestDocumentsCtrl', function($scope, $modal, Auth, request, documentTypes, currentUser) {
+  .controller('RequestDocumentsCtrl', function($scope, $modal, toastr, Auth, request,
+    navUserId, navStatus, documentTypes, currentUser, RequestResource) {
     $scope.documentTypes = documentTypes;
     $scope.request = request;
     $scope.currentUser = currentUser;
     $scope.token = Auth.getToken();
 
+    if (navUserId !== '' && navStatus !== '') {
+      $scope.currentMenu(navUserId, navStatus);
+    }
+
     function alreadySelected(request, typeId) {
-      return _.find(request.askedDocumentTypes, function(current) {
+      return _.find(request.data.askedDocumentTypes, function(current) {
         return current === typeId;
       });
     }
 
-    if (!request.askedDocumentTypes) {
-      request.askedDocumentTypes = [];
+    if (!request.data.askedDocumentTypes) {
+      request.data.askedDocumentTypes = [];
     }
 
     $scope.showLabel = function(type) {
@@ -23,40 +28,66 @@ angular.module('impactApp')
 
     $scope.addSelectedType = function(type) {
       if (!alreadySelected($scope.request, type.id)) {
-        $scope.request.askedDocumentTypes.push(type.id);
+        $scope.request.data.askedDocumentTypes.push(type.id);
         $scope.request.$save();
       }
     };
 
     $scope.removeSelectedType = function(idx) {
-      $scope.request.askedDocumentTypes.splice(idx, 1);
+      $scope.request.data.askedDocumentTypes.splice(idx, 1);
       $scope.request.$save();
     };
 
-    $scope.openModal = function() {
-      let request = $scope.request;
-      let token = $scope.token;
+    this.allRequiredFilesCheckedOpenModal = function() {
 
-      $modal.open({
-        templateUrl: 'app/dashboard/workflow/detail/documents/modal.html',
-        controllerAs: 'modalRdc',
-        size: 'lg',
-        controller($modalInstance, $state, RequestService) {
-          this.src = `/api/requests/${request.shortId}/generate-reception-mail?access_token=${token}`;
+      RequestResource.get({shortId: request.shortId}).$promise.then((result) => {
+        let allRequiredFilesChecked = true;
+        angular.forEach(result.data.documents.obligatoires, function(value, category) {
+          if (category !== undefined && value.documentList[0].isInvalid === undefined) {
+            allRequiredFilesChecked = false;
+            return;
+          }
+        });
 
-          this.ok = function() {
-            RequestService.postAction(request, {
-              id: 'enregistrement'
-            }).then(() => {
-              $modalInstance.close();
-              $state.go('.', {}, {reload: true});
-            });
-          };
+        if (allRequiredFilesChecked) {
 
-          this.cancel = function() {
-            $modalInstance.dismiss('cancel');
-          };
+          let request = result;
+          let token = $scope.token;
+          $modal.open({
+            templateUrl: 'app/dashboard/workflow/detail/documents/modal.html',
+            controllerAs: 'modalRdc',
+            size: 'lg',
+            controller(navUserId, navStatus, $modalInstance, $state, DemandeService) {
+              this.src = `/api/requests/${request.shortId}/generate-reception-mail?access_token=${token}`;
+
+              this.ok = function() {
+                DemandeService.postAction(request, {
+                  id: 'enregistrement'
+                }).then(() => {
+                  $modalInstance.close();
+                  $state.go('.', {navUserId:navUserId, navStatus:navStatus}, {reload: true});
+                });
+              };
+
+              this.cancel = function() {
+                $modalInstance.dismiss('cancel');
+              };
+            },
+
+            resolve: {
+              navUserId: function() {
+                return $scope.navUserId;
+              },
+
+              navStatus: function() {
+                return $scope.navStatus;
+              }
+            }
+          });
+        } else {
+          toastr.error('Vous n\'avez pas statué sur tous les documents obligatoires joints par l\'usager');
         }
       });
     };
+
   });

@@ -15,19 +15,21 @@ angular.module('impactApp')
     });
 
     Profile.prototype.getTitle = function() {
-      if (this._id && this.identites && this.identites.beneficiaire && this.identites.beneficiaire.prenom) {
-        return this.identites.beneficiaire.prenom + ' ' + this.identites.beneficiaire.nom;
+      function capitalize(input) {
+        if (!input) {
+          return input;
+        }
+
+        return input.replace(/\w\S*/g, function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      }
+
+      if (this._id && this.recipient) {
+        return capitalize(this.recipient.firstname + ' ' + this.recipient.lastname);
       } else {
         return 'Profil en cours de saisie';
       }
-    };
-
-    Profile.prototype.saveSection = function(sectionId, sectionModel, user, onSuccess) {
-      sectionModel.__completion = true;
-      sectionModel.updatedAt = Date.now();
-
-      this[sectionId] = sectionModel;
-      this.$save({userId: user._id}, onSuccess);
     };
 
     return Profile;

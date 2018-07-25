@@ -216,9 +216,9 @@ export function showBeneficiaires(req, res) {
         .map('profile')
         .uniq('_id')
         .map((profile) => {
-          if (profile && profile.identites && profile.identites.beneficiaire) {
-            profile.identites.beneficiaire.prenom = capitalize(profile.identites.beneficiaire.prenom);
-            profile.identites.beneficiaire.nom = capitalize(profile.identites.beneficiaire.nom);
+          if (profile && profile.recipient) {
+            profile.recipient.firstname = capitalize(profile.recipient.firstname);
+            profile.recipient.lastname = capitalize(profile.recipient.lastname);
           }
           return profile;
         })
@@ -243,7 +243,7 @@ export function showRequestsByStatus(req, res) {
       const promises = users.map(user => {
         return Request
           .aggregate([
-            {$match: {mdph: req.mdph.zipcode, evaluators: user._id }},
+            {$match: {mdph: req.mdph.zipcode, evaluators: user._id, deletedAt: { $exists: false } }},
             {$group: {_id: '$status', count: {$sum: 1} }}
           ])
           .exec()
@@ -252,7 +252,7 @@ export function showRequestsByStatus(req, res) {
 
       const unnassignedRequests = Request
         .aggregate([
-          {$match: {mdph: req.mdph.zipcode, evaluators: { $exists: false }}},
+          {$match: {mdph: req.mdph.zipcode, evaluators: { $exists: false }, deletedAt: { $exists: false }}},
           {$group: {_id: '$status', count: {$sum: 1} }}
         ])
         .exec()
@@ -260,7 +260,7 @@ export function showRequestsByStatus(req, res) {
 
       const allRequests = Request
         .aggregate([
-          {$match: {mdph: req.mdph.zipcode}},
+          {$match: {mdph: req.mdph.zipcode, deletedAt: { $exists: false }}},
           {$group: {_id: '$status', count: {$sum: 1} }}
         ])
         .exec()
@@ -287,7 +287,7 @@ export function showRequestsForSecteur(req, res) {
 
   Request
     .find(search)
-    .select('user shortId formAnswers.identites status submittedAt evaluator')
+    .select('user shortId data.identites status submittedAt evaluator')
     .populate('user evaluator', 'name')
     .sort('-submittedAt')
     .exec(function(err, requests) {

@@ -1,0 +1,81 @@
+<header class="banner bg" mdph-photo="{{mdphCtrl.currentMdph.zipcode}}">
+  <div class="hero-unit" ng-if="mdphCtrl.isOpened()">
+    <h1 ng-if="mdphCtrl.currentMdph">Votre MDPH {{mdphCtrl.currentMdph.name}}</h1>
+
+    <p>Gérez vos demandes en ligne</p>
+
+    <div ng-if="!mdphCtrl.isLoggedIn()">
+      <a class="hero-button" ui-sref="signup">
+        S'inscrire
+      </a>
+    </div>
+
+    <a class="btn btn-link" ng-if="!mdphCtrl.isLoggedIn()" ui-sref="login">
+      J'ai déjà un compte
+    </a>
+  </div>
+
+  <div class="hero-unit" ng-if="mdphCtrl.isClosed()">
+    <h1 ng-if="mdphCtrl.currentMdph">MDPH {{mdphCtrl.currentMdph.name}}</h1>
+
+    <p>Votre MDPH n'utilise pas ce service de demandes en ligne</p>
+
+    <a ng-if="!mdphCtrl.currentMdph.outsideLink" class="btn btn-lg btn-link" href="https://www.service-public.fr/particuliers/vosdroits/N12230">
+      Continuer sur service-public.fr
+    </a>
+
+    <a ng-if="mdphCtrl.currentMdph.outsideLink" class="btn btn-lg btn-link" ng-href="{{ mdphCtrl.currentMdph.outsideLink.href }}">
+      Continuer sur {{ mdphCtrl.currentMdph.outsideLink.label }}
+    </a>
+  </div>
+</header>
+
+<section-flow ng-if="mdphCtrl.isOpened() && !mdphCtrl.isLoggedIn()"/>
+
+<section class="section-blue section-blue-row" ng-if="mdphCtrl.isOpened() && !mdphCtrl.isLoggedIn()">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <h2><i class="fa fa-user-md"></i> Vous êtes médecin</h2>
+        <hr>
+        <p>Facilitez la vie des demandeurs en attachant simplement un certificat médical.</p>
+        <div class="list-actions">
+          <a ui-sref="medecin">
+            Ajouter un certificat
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <h2><i class="fa fa-group"></i> Vous êtes partenaire</h2>
+        <hr>
+        <p>N'envoyez plus vos pièces justificatives par courrier, déposez-les simplement dans le dossier de l'usager.</p>
+        <div class="list-actions">
+          <a ui-sref="partenaire">
+            Fournir des pièces complémentaires
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="map-container">
+  <mdph-map mdph="mdphCtrl.currentMdph"/>
+</section>
+
+<section class="section-main section-text" id="en-savoir-plus" ng-if="mdphCtrl.isOpened()">
+  <h2>Votre demande en ligne à la MDPH</h2>
+  <div>
+    <p>La MDPH, c'est la Maison Départementale pour les Personnes Handicapées.
+      Elle peut répondre aux besoins liés à votre handicap.</p>
+    <p>Ce service vous permet de saisir votre demande et de la transmettre à votre MDPH pour qu'elle instruise votre dossier.</p>
+    <p>Il vous permet de solliciter la MDPH en tant que bénéficiaire ou en tant que représentant légal d'un bénéficiaire.</p>
+  </div>
+</section>
+
+<section class="section-main" ng-if="mdphCtrl.isOpened()">
+  <h2>En fonction de votre situation, vous pourrez peut-être bénéficier des droits suivants</h2>
+  <liste-prestations />
+</section>
