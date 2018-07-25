@@ -87,6 +87,26 @@ angular.module('impactApp')
       }
     })
     .state(index + '.situation_professionnelle.stage', {
+<<<<<<< HEAD:client/app/demande/projet_de_vie/vie_au_travail/situation_professionnelle.js
+=======
+      url: '',
+      templateUrl: 'components/question/textarea.html',
+      controller: 'QuestionCtrl',
+      resolve: {
+        question: function(QuestionService, section, profile) {
+          return QuestionService.get(section, 'situationStage', profile);
+        },
+
+        nextStep: function($state, saveCurrentState) {
+          return function() {
+            saveCurrentState();
+            $state.go('^.emploi.nom_poste');
+          };
+        }
+      }
+    })
+    .state(index + '.situation_professionnelle.employeur', {
+>>>>>>> refs/remotes/origin/master:client/app/profil/projet_de_vie/vie_au_travail/situation_professionnelle.js
       url: '',
       templateUrl: 'components/question/textarea.html',
       controller: 'QuestionCtrl',

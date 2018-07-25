@@ -1,0 +1,22 @@
+<form id="profile-identites" aria-labelledby="infoPerso" name="forms.representantForm" ng-submit="submit(forms.representantForm)" novalidate>
+  <div class="section-body-head">
+    <h2>
+      <a id="backtoprofile" ui-sref="profil({profileId: profilCtrl.profile._id})">Profil</a>
+      / Identité du représentant légal
+    </h2>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <representant-form representant="representant.representant1" libelle="Représentant légal 1" id="1" current-mdph="currentMdph" required="true"></representant-form>
+    </div>
+    <div class="col-sm-6">
+      <representant-form representant="representant.representant2" libelle="Représentant légal 2 (le cas échéant)" id="2" current-mdph="currentMdph" required="false"></representant-form>
+    </div>
+  </div>
+
+  <div class="identity-form-actions">
+    <a ui-sref="^" class="btn btn-link" role="button">Annuler</a>
+    <button type="submit" name="submit" alt="Valider" class="btn btn-success">Valider</button>
+  </div>
+</form>

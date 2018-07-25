@@ -93,7 +93,6 @@ function rebuildAnswersFromModel(question, questionAnswers) {
       return [{
         label: 'Pas de réponse'
       }];
-
     case 'adresse':
       var adresse = '';
       if(questionAnswers.complement_adresse) {
@@ -125,6 +124,21 @@ function computeAnswers(question, trajectoireAnswers) {
         case 'date':
           if (detail){
             answer.detail = moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'duree':
+          answer.detail = '';
+          if (detail && detail.debut){
+            answer.detail += 'Du ';
+            answer.detail += moment(detail.debut, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          if (detail && detail.fin){
+            if (detail.debut){
+              answer.detail += ' au ';
+            } else {
+              answer.detail += 'Au ';
+            }
+            answer.detail += moment(detail.fin, moment.ISO_8601).format('DD/MM/YYYY');
           }
           break;
         case 'duree':
@@ -188,6 +202,42 @@ function computeAnswers(question, trajectoireAnswers) {
           break;
         case 'remuneration':
           answer.detail = 'stage ' + (detail === true ? 'rémunéré' : 'non rémunéré');
+          break;
+        case 'depuis':
+          if(detail){
+            answer.detail = 'Depuis le ';
+            answer.detail += moment(detail, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'fraisInternat':
+          if(detail !== undefined){
+            if(detail){
+              answer.detail = 'Les frais de séjour sont intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            } else {
+              answer.detail = 'Les frais de séjour ne sont pas intégralement pris en charge par l\'assurance maladie, l\'Etat ou l\'aide sociale';
+            }
+          }
+          break;
+        case 'date&categorie':
+          answer.detail = 'De ' + detail.categorie;
+          if(detail.date){
+            answer.detail2 = 'Depuis le ';
+            answer.detail2 += moment(detail.date, moment.ISO_8601).format('DD/MM/YYYY');
+          }
+          break;
+        case 'remunHandicap':
+          if(detail.detail1){
+            answer.detail = 'Nombre d\'heures par semaine : ' + detail.detail1;
+          }
+          if(detail.detail2){
+            answer.detail2 = 'Nombre d\'heures par an : ' + detail.detail2;
+          }
+          break;
+        case 'pourcentage':
+          answer.detail = detail + ' %';
+          break;
+        case 'remuneration':
+          answer.detail = 'stage ' + (detail === 'true' ? 'rémunéré' : 'non rémunéré');
           break;
         default:
           answer.detail = detail;
